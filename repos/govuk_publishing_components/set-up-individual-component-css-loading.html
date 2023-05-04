@@ -240,7 +240,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0ee24666c0c73ed23409ee76972173178d4d61dc">28 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/a6ea44b95a983305cca50ef4ae5e64152a5f36ae">4 May 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: # Set up individual component CSS loading</h1>
@@ -277,15 +277,7 @@
 <pre lang="ruby"><code>add_stylesheet_path("views/dir-1/_partial.css")
 </code></pre>
 <h3 id="precompiling">Precompiling</h3>
-<p>The stylesheets need to be added to the rendering applications list of assets to precompile. The <code>get_component_css_paths</code> method is available from the AssetHelper module in GovukPublishingComponents.</p>
-<pre lang="ruby"><code>#config/application.rb
-module Frontend
-  class Application &lt; Rails::Application
-    include GovukPublishingComponents::AppHelpers::AssetHelper
-    ...
-    config.assets.precompile &lt;&lt; get_component_css_paths
-</code></pre>
-<p>Stylesheets for components in the gem are automatically generated, any app component and view stylesheets should be added to the application's <code>manifest.js</code>.</p>
+<p>Gem component stylesheets are automatically precompiled. Application component and view stylesheets should be added to the application's manifest file to be precompiled, included and served.</p>
 <h3 id="known-problems">Known problems</h3>
 <h4 id="nested-components-in-gov-uk-frontend">Nested components in GOV.UK Frontend</h4>
 <p>GOV.UK Frontend has components that use other components - for example, both the radio button and character count component include the label component. These are deduped by GOV.UK Frontend when compiling the CSS to a single file.</p>
@@ -304,17 +296,14 @@ add_gem_component_stylesheet("radio")
 <p>We will use this feature in the <code>frontend</code> app first and review the performance impact before rolling out to other frontend apps.</p>
 <p>The increased cache size in NGINX is large enough for the loading of individual CSS assets in the <code>frontend</code> app. However, we will need to increase the cache size further before being used in other apps such as <code>government-frontend</code> that use a larger number of components, and before it is used to load individual JS assets.</p>
 <h3 id="step-by-step-changes-to-the-rendering-application">Step by step changes to the rendering application</h3>
-<p><strong>Set up the stylesheets to be precompiled</strong>. Add any app components and views in <code>app/assets/config/manifest.js</code> (and then remove them from <code>app/assets/stylesheets/application.scss</code>).</p>
-<pre lang="js"><code>//= link components/_calendar.css
-//= link views/_homepage.css
+<p><strong>Set up the stylesheets to be precompiled</strong>. Add any app components and views in <code>app/assets/config/manifest.js</code>.</p>
+<pre lang="diff"><code>+  //= link components/_calendar.css
++  //= link views/_homepage.css
 </code></pre>
-<p>Add list of gem components to be precompiled in <code>config/application.rb</code> (and then all gem component <code>@import</code>s can also be removed from <code>app/assets/stylesheets/application.scss</code>):</p>
-<pre lang="ruby"><code>#config/application.rb
-module Frontend
-  class Application &lt; Rails::Application
-    include GovukPublishingComponents::AppHelpers::AssetHelper
-    ...
-    config.assets.precompile &lt;&lt; get_component_css_paths
+<p>Remove gem component imports from <code>app/assets/stylesheets/application.scss</code>:</p>
+<pre lang="diff"><code>- @import "govuk_publishing_components/components/accordion";
+- @import "govuk_publishing_components/components/action-link";
+- @import "govuk_publishing_components/components/big-number";
 </code></pre>
 <h4 id="using-the-publishing-components-gem-without-the-static-rendering-app">Using the publishing components gem without the <code>static</code> rendering app</h4>
 <p>The <code>static</code> rendering application already includes several components from the publishing components gem. To avoid requesting the same stylesheet twice, we exclude any stylesheets included in <code>static</code> by default.</p>
@@ -334,7 +323,7 @@ end
 <pre lang="scss"><code>@import "govuk_publishing_components/individual_component_support";
 </code></pre>
 <p><strong>Hoist body content to the top of your layouts</strong></p>
-<p>This will ensure that all components and views are dicovered, before <code>render_component_stylesheets</code> is called, and their respective style sheets added inside the <code>&lt;head&gt;</code>. Otherwise, components and view partials added in body content are not rendered in time and associated style sheets are not included.</p>
+<p>This will ensure that all components and views are discovered, before <code>render_component_stylesheets</code> is called, and their respective stylesheets added inside the <code>&lt;head&gt;</code>. Otherwise, components and view partials added in body content are not rendered in time and associated stylesheets are not included.</p>
 <pre lang="rb"><code>&lt;% content_for :body do %&gt;
   &lt;main id="content"&gt;
     &lt;%= yield %&gt;
