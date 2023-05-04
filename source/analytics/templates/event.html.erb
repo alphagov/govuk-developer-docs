@@ -12,6 +12,15 @@
     <h2 class="govuk-heading-m">
       <%= page_event.name %>
     </h2>
+
+    <strong class="govuk-tag <%= tag_colours[page_event.priority] %>">
+      <%= page_event.priority %>
+    </strong>
+
+    <% unless page_event.implemented %>
+      <strong class="govuk-tag">Not yet implemented</strong>
+    <% end %>
+
     <% if page_event.description %>
       <p class="govuk-body">
         <%= page_event.description %>
