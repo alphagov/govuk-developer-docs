@@ -176,4 +176,35 @@ RSpec.describe AnalyticsHelpers do
       expect(helper.to_html(input)).to eq(expected)
     end
   end
+
+  describe "#implementation_percentage" do
+    it "should be 0% when there are no events" do
+      expect(helper.implementation_percentage([])).to eq("0 of 0 (0%)")
+    end
+
+    it "should be 0% when none of the events are implemented" do
+      events = [
+        { "implemented" => false },
+      ]
+
+      expect(helper.implementation_percentage(events)).to eq("0 of 1 (0%)")
+    end
+
+    it "should be 100% when all the events are implemented" do
+      events = [
+        { "implemented" => true },
+      ]
+
+      expect(helper.implementation_percentage(events)).to eq("1 of 1 (100.0%)")
+    end
+
+    it "should be 50% when half of the events are implemented" do
+      events = [
+        { "implemented" => true },
+        { "implemented" => false },
+      ]
+
+      expect(helper.implementation_percentage(events)).to eq("1 of 2 (50.0%)")
+    end
+  end
 end
