@@ -240,7 +240,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/745817ccacdb3bc999e263162885fb0dddd9ea67">6 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/8f063b4e9da085859aa6fb692f68c9d31a0447ac">18 Apr 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Install and use this gem</h1>
@@ -268,7 +268,7 @@ mount GovukPublishingComponents::Engine, at: "/component-guide" if Rails.env.dev
 <pre lang="ruby"><code># config/initializers/govuk_publishing_components.rb
 GovukPublishingComponents.configure do |c|
   c.component_guide_title = "My component guide"
-  c.application_stylesheet = "custom_stylesheet" # Defaults to "application"
+  c.application_stylesheet = "custom_stylesheet" # Defaults to "application", set to `nil` if the application stylesheet is not in use
   c.application_javascript = "custom_javascript" # Defaults to "application"
 end
 </code></pre>
