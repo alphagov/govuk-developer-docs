@@ -197,10 +197,10 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dabfc048b09fa963b1613d2800fe916422a5b721">3 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8e1e37290bc4a5cf0842a4ca32f6e43244ec7734">5 May 2023</a>
 </div>
 
- <h1 id='header'>Content Data architecture</h1> <p>[Content Data][] is a service that allows organisations to view performance and content metrics about GOV.UK pages they maintain, so that they can manage their content effectively over time. The data helps them decide what content to improve and prioritise.</p>
+ <h1 id='header'>Content Data architecture</h1> <p><a href="https://content-data.publishing.service.gov.uk/content">Content Data</a> is a service that allows organisations to view performance and content metrics about GOV.UK pages they maintain, so that they can manage their content effectively over time. The data helps them decide what content to improve and prioritise.</p>
 <p>Behind the scenes it is made up of:</p>
 
 <ul>
@@ -245,7 +245,7 @@
 <p>These forms are managed and rendered by the <a href="https://github.com/alphagov/feedback">Feedback app</a>. When a user fills in the form on GOV.UK and submits the information, the anonymous data is then sent to <a href="https://github.com/alphagov/support-api">Support API</a> to be stored and processed further. Users of the Support app can then query the information in the Feedback Explorer.</p>
 <p><a href="/images/content-data-architecture-feedback-explorer.png" rel="noopener noreferrer"><img src="/images/content-data-architecture-feedback-explorer.png" alt="Overview of Feedback Explorer" /></a></p>
 <p>Content Data API only collects metrics on the number of feedback comments for pages on GOV.UK from Support API. This data is fed into its data warehouse using the <a href="#etl-processor">Extract, Transform, Load (ETL) process</a>.</p>
-<h4 id='publishing-api'>Publishing API</h4><p>Content Data API processes messages from the [Publishing API][] in order to detect and track changes to content.</p>
+<h4 id='publishing-api'>Publishing API</h4><p>Content Data API processes messages from the <a href="https://github.com/alphagov/publishing-api">Publishing API</a> in order to detect and track changes to content.</p>
 <p>It stores information such as:</p>
 
 <ul>
