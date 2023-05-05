@@ -91,3 +91,14 @@ ul.subdir__menu {
 .indented-list {
   margin: 0 0 0 20px;
 }
+
+.architecture-diagram {
+  // https://github.com/alphagov/tech-docs-gem/blob/main/lib/assets/stylesheets/modules/_app-pane.scss#L2
+  $toc-width: 330px;
+
+  height: 700px;
+  width: calc(100vw - #{$toc-width} - #{$govuk-gutter} * 2);
+  @include govuk-media-query($until: tablet) {
+    width: calc(100vw - #{$govuk-gutter} * 2);
+  }
+}
