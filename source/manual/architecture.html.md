@@ -7,9 +7,15 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-<iframe src="https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Logical#Uhttps%3A%2F%2Fdrive.google.com%2Fa%2Fdigital.cabinet-office.gov.uk%2Fuc%3Fid%3D1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm%26export%3Ddownload" style="width:700pt;height:400pt; display: block; border:none"></iframe>
+[//]: # (1 - Visit https://app.diagrams.net/#G1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm)
+[//]: # (2 - File > Embed > IFrame...)
+[//]: # (3 - Uncheck Edit / Layers / Tags)
+[//]: # (4 - Create)
+[//]: # (5 - Copy the snippet and paste below, replacing the inline style attribute with class="architecture-diagram")
 
-[Open in Full Screen Mode](https://www.draw.io/?lightbox=1&highlight=0000ff&layers=1&nav=1&title=Logical#Uhttps%3A%2F%2Fdrive.google.com%2Fa%2Fdigital.cabinet-office.gov.uk%2Fuc%3Fid%3D1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm%26export%3Ddownload){:target="_blank"}
+<iframe frameborder="0" class="architecture-diagram" src="https://viewer.diagrams.net/?highlight=0000ff&nav=1&title=GOV.UK%20Logical%20architecture%20diagram#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm%26export%3Ddownload"></iframe>
+
+[Open in Full Screen Mode](https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=https%3A%2F%2Fapp.diagrams.net%2F%23G1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm&layers=1&nav=1&title=GOV.UK%20Logical%20architecture%20diagram#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm%26export%3Ddownload)
 
 [Source diagram][src] in the [GOV.UK architecture folder][arch-folder].
 

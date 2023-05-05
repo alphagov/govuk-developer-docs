@@ -91,3 +91,11 @@ ul.subdir__menu {
 .indented-list {
   margin: 0 0 0 20px;
 }
+
+.architecture-diagram {
+  height: 700px;
+  width: calc(100vw - 400px);
+  @include govuk-media-query($until: tablet) {
+    width: calc(100vw - 60px);
+  }
+}
