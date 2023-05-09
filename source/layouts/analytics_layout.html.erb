@@ -89,6 +89,14 @@
               <% end %>
             </ul>
           </ul>
+
+          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+          <ul class="govuk-list">
+            <li>
+              <%= link_to data.analytics.navigation.progress.name, data.analytics.navigation.progress.link, class: "govuk-link" %>
+            </li>
+          </ul>
         </div>
         <div class="govuk-grid-column-two-thirds">
           <%= yield %>

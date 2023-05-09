@@ -35,4 +35,19 @@ module AnalyticsHelpers
     html += "</ul>"
     html
   end
+
+  def tag_colours
+    {
+      "high" => "govuk-tag--red",
+      "medium" => "govuk-tag--yellow",
+      "low" => "govuk-tag--green",
+    }
+  end
+
+  def implementation_percentage(events)
+    implemented = events.select { |x| x["implemented"] == true }.count
+    percentage = ((implemented.to_f / events.count) * 100.00).round(2)
+    percentage = 0 if implemented.zero? || events.count.zero?
+    "#{implemented} of #{events.count} (#{percentage}%)"
+  end
 end
