@@ -1,0 +1,391 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Use of backups - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/backups.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Use of backups - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/backups.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Use of backups" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/backups.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Use of backups</span></a>
+  </li>
+  <li>
+    <a href="#aws-rds-backups"><span>AWS RDS Backups</span></a>
+    <ul>
+      <li>
+        <a href="#point-in-time-rds-backups"><span>Point-in-time RDS backups</span></a>
+        <ul>
+          <li>
+            <a href="#manual-rds-snapshots"><span>Manual RDS snapshots</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#full-backups-via-govuk_env_sync"><span>Full backups via govuk_env_sync</span></a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#s3-buckets-backups"><span>S3 buckets backups</span></a>
+    <ul>
+      <li>
+        <a href="#s3-versioning"><span>S3 versioning</span></a>
+      </li>
+      <li>
+        <a href="#s3-cross-region-replication"><span>S3 Cross-Region Replication</span></a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#documentdb-backups"><span>DocumentDB backups</span></a>
+  </li>
+  <li>
+    <a href="#mongodb-backups"><span>MongoDB backups</span></a>
+  </li>
+  <li>
+    <a href="#elasticsearch-backups"><span>Elasticsearch backups</span></a>
+  </li>
+  <li>
+    <a href="#graphite-whisper-backups"><span>Graphite Whisper backups</span></a>
+  </li>
+  <li>
+    <a href="#aws-backup"><span>AWS Backup</span></a>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Backups",
+        "@id": "http://www.dev.gov.uk/manual.html#backups"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#backups" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Backups&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#backups">Backups</a>
+        </li>
+  </ol>
+</div>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/823df3b831ada2980ca26a9d1d3264acb0d70008">13 Apr 2023</a>
+</div>
+
+ <h1 id='header'>Use of backups</h1> <p>This manual provides a shared definition of a backup and documents our current use of backups summarising strategies and tools we use.</p>
+
+<blockquote>
+<p>A backup is a process of creating a copy of the data stored in a database and storing it in a safe location to allow data recovery in case of a disaster, system failure or human error.</p>
+</blockquote>
+<h1 id='aws-rds-backups'>AWS RDS Backups</h1><h2 id='point-in-time-rds-backups'>Point-in-time RDS backups</h2><p>Point-in-time backups for Amazon Relational Database Service (RDS) allow us to restore databases to a specific point in time in the past. This feature is useful when we want to restore database to a state before an unintended change or data loss occurred.</p>
+<p>When point-in-time backups for an RDS instance are enabled, Amazon RDS automatically takes regular backups of the database and stores them in Amazon S3. Each backup contains a snapshot of the database at a specific point in time. RDS uploads transaction logs for DB instances to Amazon S3 every five minutes. We can restore the database to any of these points in time, within the retention period up to the last five minutes of database usage.</p>
+<p>The retention period is the amount of time that Amazon RDS stores our backups.</p>
+<p>They are configured with <a href="https://github.com/alphagov/govuk-aws/blob/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/modules/aws/rds_instance/main.tf#L118-L128">terraform</a> where <code>backup_retention_period</code> is set to 7 days, creating one snapshot per day during the specified <code>backup_window</code> (see  <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance">aws_db_instance terraform docs</a>). The <code>backup_window</code>, should generally be set to a time where some increased latency would be acceptable (i.e. overnight, between 1 AM and 3 AM in our case), as <a href="https://github.com/shunliz/AWS-certificate/blob/master/rds/rds-back-up-restore-and-snapshots.md#automated-backups">storage I/O may be suspended for a few seconds</a> when the backup initialises, though this only seems to apply to single Availability Zone instances. All our RDS databases, except for Transition PostgreSQL, are Multi-AZ.</p>
+<p>These snapshots are visible on the &ldquo;<a href="https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#automatedbackups:">Automated backups</a>&rdquo; page in the AWS console (and are the same snapshots as can be seen under each RDS instance&rsquo;s &ldquo;Maintenance &amp; backups&rdquo; tab).
+The &ldquo;Earliest restorable time&rdquo; and &ldquo;Latest restorable time&rdquo; columns show the time range that can be restored to. <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html">Read more about restoring a DB instance to a specified time</a>.</p>
+<p>When we restore a database to a point in time, Amazon RDS creates a new instance and restores the database to the specified point in time. Amazon RDS first restores the automated backup that is closest to the desired time and then applies the transaction logs to roll the database forward to the specific point in time. The new instance will have a new endpoint and downstream apps will need to be updated to point to it.</p>
+<h3 id='manual-rds-snapshots'>Manual RDS snapshots</h3><p>It is also possible to take manual snapshots (<a href="https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#snapshots-list:">example</a>) at any time to create a backup. Amazon RDS snapshots are point-in-time backups of a relational database. They capture the entire database at a specific point in time, including the data, configuration and transaction logs.</p>
+<p>They are different from automated backups, which are taken automatically by RDS. They are stored indefinitely until we delete them. We don&rsquo;t typically create manual snapshots.
+<a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateSnapshot.html">Read more about creating a manual DB snapshot</a>.</p>
+<h2 id='full-backups-via-govuk_env_sync'>Full backups via govuk_env_sync</h2><p>In addition to the automatic point-in-time RDS backups described above, we use pg_dump and mysqldump utilities in the <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_env_sync/files/govuk_env_sync.sh">govuk_env_sync</a> that runs daily. The full backups are stored in an S3 bucket with a mixture of Glacier, Standard-IA and Standard storage classes (depending on age) and retained for 120 days.</p>
+<p>It also facilitates Mongo, DocumentDB and Elasticsearch backups described in the later sections of this manual. <a href="manual/govuk-env-sync.html">Read more about Environment data sync</a>.</p>
+<h1 id='s3-buckets-backups'>S3 buckets backups</h1><p>Besides the S3 buckets that store aforementioned full database backups, we have S3 buckets that store business critical information, for example:</p>
+
+<ul>
+<li><a href="https://docs.publishing.service.gov.uk/manual/fall-back-to-mirror.html">GOV.UK mirrors</a>
+
+<ul>
+<li>A replica is also held in <a href="https://github.com/alphagov/govuk-aws/tree/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/infra-google-mirror-bucket">Google Cloud Storage</a> with versioning enabled</li>
+</ul></li>
+<li>GOV.UK assets (attachments)</li>
+<li>Terraform state</li>
+<li>Data.gov.uk organograms</li>
+</ul>
+<h2 id='s3-versioning'>S3 versioning</h2><p>S3 have a versioning feature, which allows you to keep multiple versions of an object in the same bucket. We have versioning enabled in some buckets, which allows both:</p>
+
+<ul>
+<li>restoration of an old version while retaining the most recent</li>
+<li>permanent deletion of the most recent version, reverting to the previous version</li>
+</ul>
+<p>The feature is enabled by configuring the <code>versioning</code> attribute (<a href="https://github.com/alphagov/govuk-aws/blob/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/infra-assets/backup.tf#L11-L13">example</a>) in terraform.</p>
+<p>S3 versioning is enabled for buckets that store GOV.UK assets, mirrors, data.gov.uk organograms, related links, database backups, ActiveStorage blobs uploaded via Content Publisher, <a href="https://github.com/alphagov/govuk-aws/tree/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/infra-artefact-bucket">some non-ruby apps artifact used for deployment</a>, Fastly and AWS logs.</p>
+<h2 id='s3-cross-region-replication'>S3 Cross-Region Replication</h2><p>S3 replication between regions is a feature of Amazon S3 that allows you to automatically replicate S3 objects from one region to another. To enable it we:</p>
+
+<ol>
+<li>create a designated replica S3 bucket in the destination region that will receive the replicated objects</li>
+<li>configure replication rules for the source bucket with <code>s3_bucket_replication_configuration</code> attribute in terraform (<a href="https://github.com/alphagov/govuk-aws/blob/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/infra-database-backups-bucket/main.tf#L139-L151">example</a> of <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_replication_configuration">deprecated  <code>replication_configuration</code></a>), where we specify the destination bucket and whether the feature is &ldquo;Enabled&rdquo;.</li>
+</ol>
+<p>Region replication is enabled for buckets that store GOV.UK mirrors, assets, database backups, ActiveStorage blobs uploaded via Content Publisher, some non-ruby apps artifact used for deployment and AWS logging (in production).</p>
+<h1 id='documentdb-backups'>DocumentDB backups</h1><p>Amazon DocumentDB snapshots are point-in-time backups of Amazon DocumentDB cluster that are stored in Amazon S3. These are service-managed Amazon S3 buckets and we don&rsquo;t have access to the backup files. These backups capture the entire cluster at a specific point in time, including the data, configuration and transaction logs (used to enable point-in-time recovery).</p>
+<p>Automated backups are taken daily and are retained for <a href="https://github.com/alphagov/govuk-aws-data/blob/4cc7b75f9ac5f7fd76923c3e82f825913c89670f/data/app-licensify-documentdb/production/common.tfvars#L1">5 days</a>. We also have point-in-time recovery enabled, which allows us to restore to database to any point in time within the retention period.</p>
+<p>When the point-in-time recovery is initialised, Amazon DocumentDB first restores the automated backup that is closest to the desired time and then applies the transaction logs to roll the database forward to the specific point in time.</p>
+<p>We also take full backups via govuk_env_sync using mongodump utility.</p>
+<p>It is also possible but not typically done to take manual snapshots of a DocumentDB cluster to create a backup.</p>
+<h1 id='mongodb-backups'>MongoDB backups</h1>
+<blockquote>
+<p>Use of Mongo is a recognised <a href="https://trello.com/c/lSpntlfk/81-mongo-26-has-reached-end-of-life">tech debt</a> and is likely to soon go away as we are planning to port to PostgreSQL.</p>
+</blockquote>
+<p>We still run two MongoDB clusters:</p>
+
+<ul>
+<li>router_backend (router)</li>
+<li>mongo (content store, draft content store, licence finder)</li>
+</ul>
+<p>Databases are backed up to S3 using mongodump, a command-line tool that creates a binary dump, in the <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_env_sync/files/govuk_env_sync.sh">govuk_env_sync</a>.</p>
+<h1 id='elasticsearch-backups'>Elasticsearch backups</h1><p>Elasticsearch provides the Snapshot and Restore API for creating and restoring snapshots of Elasticsearch indices. When we create a snapshot using the API, Elasticsearch creates a copy of the index and its data and stores it in the specified repository. Elasticsearch also stores metadata about the snapshot, including the index mappings, settings and aliases. These snapshots are taken <a href="https://github.com/alphagov/govuk-aws/blob/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/app-elasticsearch6/main.tf#L87-L91">overnight</a> and stored in an <a href="https://github.com/alphagov/govuk-aws/blob/c7297c0730dd4a7319e11f270e197dd52e5d8127/terraform/projects/app-elasticsearch6/register-snapshot-repository.py#L37">S3 bucket</a> to be used in the <a href="https://github.com/alphagov/govuk-puppet/blob/aa75027/modules/govuk_env_sync/files/govuk_env_sync.sh#L328-L336">environment sync process</a>.</p>
+<p>GOV.UK search is a consumer of publishing API events. Indices can be recreated to match current publishing state by republishing content.</p>
+<p>Automated snapshots are taken hourly, retained for 2 weeks in an AWS repository that we can interact with via the Elasticsearch API.</p>
+<p><a href="https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html#header">Read more about backup and restore of Elasticsearch indices</a>.</p>
+<h1 id='graphite-whisper-backups'>Graphite Whisper backups</h1><p>Graphite is a open-source monitoring tool that stores time-series data. Whisper is a data storage format used by Graphite that is optimised for fast, reliable storage of time-series data.</p>
+<p>We use the <a href="https://github.com/alphagov/govuk-puppet/blob/648e9b95014b5fb40e9fb8da2a14c008ebf934aa/modules/govuk/manifests/node/s_graphite.pp#L117">whisper-backup script in govuk-puppet</a> to replicate the files daily to a <a href="https://github.com/alphagov/govuk-aws/blob/cb3205d8b11da3edd518924ad5ab2668627c6d48/terraform/projects/infra-graphite-backups-bucket/README.md">dedicated s3 bucket</a>. The data from production is retained for <a href="https://github.com/alphagov/govuk-aws/blob/cb3205d8b11da3edd518924ad5ab2668627c6d48/terraform/projects/infra-graphite-backups-bucket/main.tf#L23-L27">7 days</a> and for <a href="https://github.com/alphagov/govuk-aws-data/blob/7b5a2638c9d432aca5d7e09be3f990256b3a475d/data/infra-graphite-backups-bucket/integration/common.tfvars#L1">3 days</a> for non-production environments.</p>
+<h1 id='aws-backup'>AWS Backup</h1><p>We are not curreently using &ldquo;AWS Backup&rdquo; but we are reviewing the feasibility of using it in the future.</p>
+<p>AWS Backup is a fully managed backup service. It allows you to centrally manage backups across multiple AWS services and on-premises resources from a single console. It is possible to automate and manage backups for resources like Amazon RDS databases, Amazon DynamoDB tables.</p>
+<p>AWS Backup provides a number of benefits, including:</p>
+
+<ul>
+<li>simplified backup management</li>
+<li>automated backups process and schedule</li>
+<li>flexible backup policies such as retention periods and backup frequency</li>
+<li>incremental backups: AWS Backup supports incremental backups, which means that only the changes made since the last backup are backed up, reducing backup times and storage costs</li>
+<li>cross-region backups: AWS Backup allows you to back up resources across multiple regions, making it easier to protect against regional outages</li>
+</ul>
+
+
+  <div class='related-content'>
+
+    <h3>More in the Backups section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/postgresql-backups.html">PostgreSQL backups</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/howto-backup-and-restore-in-aws-rds.html">Backup and restore databases in AWS RDS</a></li>
+            <li><a href="/manual/elasticsearch-dumps.html">Backup and restore Elasticsearch indices</a></li>
+            <li><a href="/manual/fix-out-of-date-search-indices.html">Fix out-of-date search indices</a></li>
+            <li><a href="/manual/howto-restore-an-individual-postgres-database.html">Restore an Individual Postgres Production Database in AWS RDS</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/backups.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Use+of+backups%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fbackups.html%29&amp;labels=bug&amp;title=Re%3A+%27Use+of+backups%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
