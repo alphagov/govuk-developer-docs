@@ -232,6 +232,88 @@
     <div class="gem-c-summary__block"></div>
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<p>Checks either the size or version of public - third-party hosted - asset files (e.g. JavaScript, CSS etc). We use these assets on GOV.UK pages, so we want to know if the file size or version have changed. To do this we evaluated each file against a known baseline size or version. This then notifies the #user-experience-measurement-govuk Slack channel of the result or action taken.</p>
+
+<h2 id="size-checking">Size checking</h2>
+
+<p>This compares the current file size (in bytes) with the latest known size. It uses a tolerance level to automatically update the latest known size if appropriate to minimise the amount of developer interaction and updates to the app.</p>
+
+<p>Currently, the files checked are:</p>
+
+<ul>
+<li><a href="https://www.googletagmanager.com/gtm.js">https://www.googletagmanager.com/gtm.js</a></li>
+<li><a href="https://www.googletagmanager.com/gtag/js">https://www.googletagmanager.com/gtag/js</a></li>
+</ul>
+
+<p>There are 3 possible outcomes when checking for size:</p>
+
+<ul>
+<li>
+<p><strong>Update</strong> - the app will automatically update the latest known size of the file to the current size, if the difference between the latest known size and current size is within the tolerance level given.</p>
+</li>
+<li>
+<p><strong>Warning</strong> - given when the difference between the current size and the latest known size is outside of the tolerance level given.</p>
+</li>
+<li>
+<p><strong>Same</strong> - given when the current size and the latest known size are exactly the same.</p>
+</li>
+</ul>
+
+<h2 id="version-checking">Version checking</h2>
+
+<p>Currently, the files checked are:</p>
+
+<ul>
+<li><a href="https://cdn.speedcurve.com/js/lux.js">https://cdn.speedcurve.com/js/lux.js</a></li>
+</ul>
+
+<p>There are 2 possible outcomes when checking for version:</p>
+
+<ul>
+<li>
+<p><strong>Warning</strong> - given when the current version and the latest known version are not the same.</p>
+</li>
+<li>
+<p><strong>Same</strong> - given when the current version and the latest known version are the same.</p>
+</li>
+</ul>
+
+<h2 id="screenshots">Screenshots</h2>
+
+<p>The app is <a href="https://govuk-public-asset-checker.herokuapp.com/">hosted on Heroku</a>.</p>
+
+<h3 id="status-page"><a href="https://govuk-public-asset-checker.herokuapp.com">Status page</a></h3>
+
+<p><img src="https://raw.githubusercontent.com/docs/status-page.png" alt="image"></p>
+
+<h3 id="historical-chart-for-file"><a href="https://govuk-public-asset-checker.herokuapp.com/public_assets/2">Historical chart for file</a></h3>
+
+<p><img src="https://raw.githubusercontent.com/docs/url-chart-page.png" alt="image"></p>
+
+<h3 id="example-slack-notifications"><a href="https://gds.slack.com/archives/C03BF2YV63E">Example Slack notifications</a></h3>
+
+<p><img src="https://raw.githubusercontent.com/docs/slack-notification.png" alt="image"></p>
+
+<h2 id="technical-documentation">Technical documentation</h2>
+
+<p>The app is a standard Rails application.</p>
+
+<h3 id="before-running-the-app">Before running the app</h3>
+
+<p>Prior to running the first time in development, and after migrating the database, you might find it useful to create some test data.</p>
+
+<pre lang="shell"><code>bundle exec rails db:seed
+</code></pre>
+
+<h3 id="running-the-test-suite">Running the test suite</h3>
+
+<pre lang="shell"><code>bundle exec rake
+</code></pre>
+
+<h2 id="licence">Licence</h2>
+
+<p><a href="https://github.com/alphagov/public-asset-checker/blob/main/LICENCE">MIT Licence</a></p>
 <p></div></p>
 
 
