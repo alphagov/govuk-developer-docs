@@ -2,12 +2,20 @@
   <%= data.analytics.navigation.approach.name %>
 </h1>
 
-<p class="govuk-body">This is our high level approach to implementing tracking across our applications.</p>
+<p class="govuk-body">This is our high-level approach to implementing tracking across our applications.</p>
 
-<p class="govuk-body">For elements that are consistent from page to page (such as the header, footer and breadcrumbs) tracking within these elements should be enabled by default.</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>
+    For elements that are consistent from page to page (such as the header, footer and breadcrumbs) tracking should be enabled by default.
+  </li>
 
-<p class="govuk-body">For elements within the content of a page, tracking should be controllable. We want the flexibility to disable tracking in the unforeseen event of some kind of tracking collision/duplication. Tracking should be disabled on <a href="https://components.publishing.service.gov.uk/component-guide" class="govuk-link">components</a> by default and enabled with a 'ga4_tracking: true' option.</p>
+  <li>
+    For elements within the content of a page, tracking should be controllable. Specifically, tracking should be disabled on <a href="https://components.publishing.service.gov.uk/component-guide" class="govuk-link">components</a> by default and then enabled with the 'ga4_tracking: true' option. This provides the flexibility to disable tracking in the unforeseen event of some kind of tracking collision or duplication.
+  </li>
 
-<p class="govuk-body">For elements that are inside content coming from a publishing interface, such as <a href="https://components.publishing.service.gov.uk/component-guide/govspeak" class="govuk-link">govspeak</a> elements, we will decide on a case by case basis. The most likely approach is that tracking would be enabled by default (otherwise publishers would need an option to enable tracking on their content, and the conversation would get much more complex).</p>
+  <li>
+    For elements that are inside content coming from a publishing interface, such as <a href="https://components.publishing.service.gov.uk/component-guide/govspeak" class="govuk-link">govspeak</a> elements, tracking should be decided on a case by case basis. The most likely approach would be to enable tracking by default. This removes the need to provide publishers with an option to enable tracking on their content, which could get much more complex.
+  </li>
+</ul>
 
-<p class="govuk-body">Tracking should be handled internally by components unless external data is required i.e. if something unique must be passed from the application to the component to track it correctly because we want to make enabling tracking as simple as possible.</p>
+<p class="govuk-body">Enabling tracking should be as simple as possible. For this reason, tracking should be handled internally by components unless external data is required, that is, unless something unique must be passed from the application to the component to track it correctly.</p>
