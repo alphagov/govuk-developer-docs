@@ -384,7 +384,7 @@
         - name: event_name
           value: navigation
         - name: external
-          value: true
+          value: string (true)
         - name: link_domain
         - name: link_path_parts
         - name: method
@@ -413,17 +413,47 @@
           value: generic download
         - name: url
     - name: mailto links
-      implemented: false
+      implemented: true
       priority: low
+      description: 'When a link points to an email address using mailto:'
+      tracker: specialist_link_tracker.
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: 'string (true)'
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: email
+        - name: url
+          value: '[email] (PII redacted)'
     - name: attachment links
       implemented: false
       priority: medium
+      description: 'Links on our guidance pages that contain file attachments, such as https://www.gov.uk/government/publications/equality-act-guidance'
+      tracker: specialist_link_tracker.
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: attachment
+        - name: url
 
 - name: miscellaneous
   events:
