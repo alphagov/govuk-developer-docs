@@ -14,7 +14,7 @@
         Technical documentation
       </dt>
       <dd class="govuk-summary-list__value">
-        <%= link_to tracker.technical_name, "#{tracker.url}" %>
+        <%= link_to tracker.technical_name, "#{tracker.url}", class: "govuk-link" %>
       </dd>
     </div>
   <% end %>
@@ -24,7 +24,7 @@
         Tracker code
       </dt>
       <dd class="govuk-summary-list__value">
-        <%= link_to "#{tracker.technical_name} code", "#{tracker.code}" %>
+        <%= link_to "#{tracker.technical_name} code", "#{tracker.code}", class: "govuk-link" %>
       </dd>
     </div>
   <% end %>
@@ -36,7 +36,7 @@
       <% data.analytics.events.each do |event| %>
         <% event.events.each do |events| %>
           <% if events.tracker == tracker.technical_name %>
-            <%= link_to event.name, "event_#{urlize(event.name)}.html" %> (<%= events.name %>)<br/>
+            <%= link_to event.name, "event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
           <% end %>
         <% end %>
       <% end %>
