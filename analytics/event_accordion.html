@@ -54,7 +54,7 @@
   </header>
 
   <div class="govuk-width-container ">
-    <main class="govuk-main-wrapper " id="main-content" role="main">
+    <main class="govuk-main-wrapper">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third">
           <ul class="govuk-list">
@@ -87,10 +87,10 @@
             </li>
             <ul class="govuk-list govuk-list--bullet">
                 <li>
-                  <a href="/analytics/approach.html" class="govuk-link">Developer approach</a>
+                  <a href="/analytics/approach.html" class="govuk-link">Development approach</a>
                 </li>
                 <li>
-                  <a href="/analytics/pii.html" class="govuk-link">Personally Identifiable Information</a>
+                  <a href="/analytics/pii.html" class="govuk-link">Personally identifiable information</a>
                 </li>
                 <li>
                   <a href="/analytics/trackers.html" class="govuk-link">Trackers</a>
@@ -106,62 +106,66 @@
             </li>
           </ul>
         </div>
-        <div class="govuk-grid-column-two-thirds">
-          <h1 class="govuk-heading-l">
+        <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
+          <h1 class="govuk-heading-l analytics-heading">
   <span class="govuk-caption-l">Event</span>
   accordion
 </h1>
 
 
   <div class="event">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-m analytics-heading">
       Accordion section
     </h2>
 
-    <strong class="govuk-tag govuk-tag--red">
-      high
-    </strong>
+    <p class="govuk-body">
+      <strong class="govuk-tag govuk-tag--red">
+        high
+      </strong>
 
+    </p>
 
       <p class="govuk-body">
         When a section of the accordion is opened or closed.
       </p>
     <ul class="govuk-list govuk-list--bullet">
         <li>
-          Example of <a href="https://www.gov.uk/coronavirus">Accordion section</a>
+          Example of <a href="https://www.gov.uk/coronavirus" class="govuk-link">Accordion section</a>
         </li>
             <li>
-              Tracked by <a href="/analytics/tracker_event_tracker.html">event_tracker</a>
+              Tracked by <a href="/analytics/tracker_event_tracker.html" class="govuk-link">event_tracker</a>
             </li>
     </ul>
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
 
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html'>action</a>: "opened" when clicked to expand, or "closed" when clicked to collapse</li><li><a href='/analytics/attribute_event_name.html'>event_name</a>: select_content</li><li>index: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_index_link.html'>index_link</a>: number</li><li><a href='/analytics/attribute_index_section.html'>index_section</a>: number</li><li><a href='/analytics/attribute_index_section_count.html'>index_section_count</a>: number</li></ul></li><li><a href='/analytics/attribute_index_total.html'>index_total</a>: number of sections in accordion (not including 'show all')</li><li><a href='/analytics/attribute_text.html'>text</a>: text of selected accordion</li><li><a href='/analytics/attribute_type.html'>type</a>: accordion</li></ul></li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: "opened" when clicked to expand, or "closed" when clicked to collapse</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: select_content</li><li>index: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_index_link.html' class='govuk-link'>index_link</a>: number</li><li><a href='/analytics/attribute_index_section.html' class='govuk-link'>index_section</a>: number</li><li><a href='/analytics/attribute_index_section_count.html' class='govuk-link'>index_section_count</a>: number</li></ul></li><li><a href='/analytics/attribute_index_total.html' class='govuk-link'>index_total</a>: number of sections in accordion (not including 'show all')</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: text of selected accordion</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: accordion</li></ul></li></ul>
     </div>
   </div>
   <div class="event">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-m analytics-heading">
       Show all sections
     </h2>
 
-    <strong class="govuk-tag govuk-tag--red">
-      high
-    </strong>
+    <p class="govuk-body">
+      <strong class="govuk-tag govuk-tag--red">
+        high
+      </strong>
 
+    </p>
 
       <p class="govuk-body">
         When the 'Show all sections' control is used.
       </p>
     <ul class="govuk-list govuk-list--bullet">
             <li>
-              Tracked by <a href="/analytics/tracker_event_tracker.html">event_tracker</a>
+              Tracked by <a href="/analytics/tracker_event_tracker.html" class="govuk-link">event_tracker</a>
             </li>
     </ul>
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
 
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html'>action</a>: "opened" when clicked to expand, or "closed" when clicked to collapse</li><li><a href='/analytics/attribute_event_name.html'>event_name</a>: select_content</li><li><a href='/analytics/attribute_index_total.html'>index_total</a>: number of sections in the accordion (not including 'show all')</li><li><a href='/analytics/attribute_text.html'>text</a>: text of show all link when clicked e.g. "Show all sections"</li><li><a href='/analytics/attribute_type.html'>type</a>: accordion</li></ul></li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: "opened" when clicked to expand, or "closed" when clicked to collapse</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: select_content</li><li><a href='/analytics/attribute_index_total.html' class='govuk-link'>index_total</a>: number of sections in the accordion (not including 'show all')</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: text of show all link when clicked e.g. "Show all sections"</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: accordion</li></ul></li></ul>
     </div>
   </div>
 

@@ -54,7 +54,7 @@
   </header>
 
   <div class="govuk-width-container ">
-    <main class="govuk-main-wrapper " id="main-content" role="main">
+    <main class="govuk-main-wrapper">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third">
           <ul class="govuk-list">
@@ -87,10 +87,10 @@
             </li>
             <ul class="govuk-list govuk-list--bullet">
                 <li>
-                  <a href="/analytics/approach.html" class="govuk-link">Developer approach</a>
+                  <a href="/analytics/approach.html" class="govuk-link">Development approach</a>
                 </li>
                 <li>
-                  <a href="/analytics/pii.html" class="govuk-link">Personally Identifiable Information</a>
+                  <a href="/analytics/pii.html" class="govuk-link">Personally identifiable information</a>
                 </li>
                 <li>
                   <a href="/analytics/trackers.html" class="govuk-link">Trackers</a>
@@ -106,59 +106,105 @@
             </li>
           </ul>
         </div>
-        <div class="govuk-grid-column-two-thirds">
-          <h1 class="govuk-heading-l">
+        <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
+          <h1 class="govuk-heading-l analytics-heading">
   <span class="govuk-caption-l">Event</span>
   links
 </h1>
 
 
   <div class="event">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-m analytics-heading">
       External links
     </h2>
 
-    <strong class="govuk-tag govuk-tag--red">
-      high
-    </strong>
+    <p class="govuk-body">
+      <strong class="govuk-tag govuk-tag--red">
+        high
+      </strong>
 
+    </p>
 
       <p class="govuk-body">
         When a link is followed to a page outside of www.gov.uk.
       </p>
     <ul class="govuk-list govuk-list--bullet">
             <li>
-              Tracked by <a href="/analytics/tracker_specialist_link_tracker.html">specialist_link_tracker</a>
+              Tracked by <a href="/analytics/tracker_specialist_link_tracker.html" class="govuk-link">specialist_link_tracker</a>
             </li>
     </ul>
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
 
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html'>event_name</a>: navigation</li><li><a href='/analytics/attribute_link_domain.html'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html'>link_path_parts</a>: string</li><li><a href='/analytics/attribute_method.html'>method</a>: string</li><li><a href='/analytics/attribute_text.html'>text</a>: string</li><li><a href='/analytics/attribute_type.html'>type</a>: generic link</li><li><a href='/analytics/attribute_url.html'>url</a>: string</li></ul></li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: navigation</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html' class='govuk-link'>link_path_parts</a>: string</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: generic link</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li></ul></li></ul>
     </div>
   </div>
   <div class="event">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-m analytics-heading">
       Download links
     </h2>
 
-    <strong class="govuk-tag govuk-tag--red">
-      high
-    </strong>
+    <p class="govuk-body">
+      <strong class="govuk-tag govuk-tag--red">
+        high
+      </strong>
 
+    </p>
 
       <p class="govuk-body">
         When a link is followed to an asset such as a PDF.
       </p>
     <ul class="govuk-list govuk-list--bullet">
             <li>
-              Tracked by <a href="/analytics/tracker_specialist_link_tracker.html">specialist_link_tracker</a>
+              Tracked by <a href="/analytics/tracker_specialist_link_tracker.html" class="govuk-link">specialist_link_tracker</a>
             </li>
     </ul>
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
 
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html'>event_name</a>: file_download</li><li><a href='/analytics/attribute_external.html'>external</a>: string (true or false)</li><li><a href='/analytics/attribute_link_domain.html'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html'>link_path_parts</a>: string</li><li><a href='/analytics/attribute_method.html'>method</a>: string</li><li><a href='/analytics/attribute_text.html'>text</a>: string</li><li><a href='/analytics/attribute_type.html'>type</a>: generic download</li><li><a href='/analytics/attribute_url.html'>url</a>: string</li></ul></li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: file_download</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: string (true or false)</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html' class='govuk-link'>link_path_parts</a>: string</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: generic download</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li></ul></li></ul>
+    </div>
+  </div>
+  <div class="event">
+    <h2 class="govuk-heading-m analytics-heading">
+      mailto links
+    </h2>
+
+    <p class="govuk-body">
+      <strong class="govuk-tag govuk-tag--green">
+        low
+      </strong>
+
+        <strong class="govuk-tag">Not yet implemented</strong>
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+    </ul>
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+
+    <div class="govuk-inset-text">
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
+    </div>
+  </div>
+  <div class="event">
+    <h2 class="govuk-heading-m analytics-heading">
+      attachment links
+    </h2>
+
+    <p class="govuk-body">
+      <strong class="govuk-tag govuk-tag--yellow">
+        medium
+      </strong>
+
+        <strong class="govuk-tag">Not yet implemented</strong>
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+    </ul>
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+
+    <div class="govuk-inset-text">
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
     </div>
   </div>
 

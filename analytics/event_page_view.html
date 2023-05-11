@@ -54,7 +54,7 @@
   </header>
 
   <div class="govuk-width-container ">
-    <main class="govuk-main-wrapper " id="main-content" role="main">
+    <main class="govuk-main-wrapper">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third">
           <ul class="govuk-list">
@@ -87,10 +87,10 @@
             </li>
             <ul class="govuk-list govuk-list--bullet">
                 <li>
-                  <a href="/analytics/approach.html" class="govuk-link">Developer approach</a>
+                  <a href="/analytics/approach.html" class="govuk-link">Development approach</a>
                 </li>
                 <li>
-                  <a href="/analytics/pii.html" class="govuk-link">Personally Identifiable Information</a>
+                  <a href="/analytics/pii.html" class="govuk-link">Personally identifiable information</a>
                 </li>
                 <li>
                   <a href="/analytics/trackers.html" class="govuk-link">Trackers</a>
@@ -106,35 +106,37 @@
             </li>
           </ul>
         </div>
-        <div class="govuk-grid-column-two-thirds">
-          <h1 class="govuk-heading-l">
+        <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
+          <h1 class="govuk-heading-l analytics-heading">
   <span class="govuk-caption-l">Event</span>
   page view
 </h1>
 
 
   <div class="event">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-m analytics-heading">
       Page view
     </h2>
 
-    <strong class="govuk-tag govuk-tag--red">
-      high
-    </strong>
+    <p class="govuk-body">
+      <strong class="govuk-tag govuk-tag--red">
+        high
+      </strong>
 
+    </p>
 
       <p class="govuk-body">
         When a page loads.
       </p>
     <ul class="govuk-list govuk-list--bullet">
             <li>
-              Tracked by <a href="/analytics/tracker_page_view_tracker.html">page_view_tracker</a>
+              Tracked by <a href="/analytics/tracker_page_view_tracker.html" class="govuk-link">page_view_tracker</a>
             </li>
     </ul>
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
 
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html'>event</a>: page_view</li><li>page_view: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_browse_topic.html'>browse_topic</a>: string</li><li><a href='/analytics/attribute_content_id.html'>content_id</a>: string</li><li><a href='/analytics/attribute_document_type.html'>document_type</a>: string</li><li><a href='/analytics/attribute_dynamic.html'>dynamic</a>: string</li><li><a href='/analytics/attribute_first_published_at.html'>first_published_at</a>: string</li><li><a href='/analytics/attribute_history.html'>history</a>: string</li><li><a href='/analytics/attribute_language.html'>language</a>: string</li><li><a href='/analytics/attribute_location.html'>location</a>: string</li><li><a href='/analytics/attribute_publishing_app.html'>publishing_app</a>: string</li><li><a href='/analytics/attribute_referrer.html'>referrer</a>: string</li><li><a href='/analytics/attribute_rendering_app.html'>rendering_app</a>: string</li><li><a href='/analytics/attribute_schema_name.html'>schema_name</a>: string</li><li><a href='/analytics/attribute_status_code.html'>status_code</a>: string</li><li><a href='/analytics/attribute_taxonomy_all.html'>taxonomy_all</a>: string</li><li><a href='/analytics/attribute_taxonomy_all_ids.html'>taxonomy_all_ids</a>: string</li><li><a href='/analytics/attribute_taxonomy_level1.html'>taxonomy_level1</a>: string</li><li><a href='/analytics/attribute_taxonomy_main.html'>taxonomy_main</a>: string</li><li><a href='/analytics/attribute_taxonomy_main_id.html'>taxonomy_main_id</a>: string</li><li><a href='/analytics/attribute_title.html'>title</a>: string</li><li><a href='/analytics/attribute_updated_at.html'>updated_at</a>: string</li><li><a href='/analytics/attribute_withdrawn.html'>withdrawn</a>: string</li></ul></li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: page_view</li><li>page_view: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_browse_topic.html' class='govuk-link'>browse_topic</a>: string</li><li><a href='/analytics/attribute_content_id.html' class='govuk-link'>content_id</a>: string</li><li><a href='/analytics/attribute_document_type.html' class='govuk-link'>document_type</a>: string</li><li><a href='/analytics/attribute_dynamic.html' class='govuk-link'>dynamic</a>: string</li><li><a href='/analytics/attribute_first_published_at.html' class='govuk-link'>first_published_at</a>: string</li><li><a href='/analytics/attribute_history.html' class='govuk-link'>history</a>: string</li><li><a href='/analytics/attribute_language.html' class='govuk-link'>language</a>: string</li><li><a href='/analytics/attribute_location.html' class='govuk-link'>location</a>: string</li><li><a href='/analytics/attribute_publishing_app.html' class='govuk-link'>publishing_app</a>: string</li><li><a href='/analytics/attribute_referrer.html' class='govuk-link'>referrer</a>: string</li><li><a href='/analytics/attribute_rendering_app.html' class='govuk-link'>rendering_app</a>: string</li><li><a href='/analytics/attribute_schema_name.html' class='govuk-link'>schema_name</a>: string</li><li><a href='/analytics/attribute_status_code.html' class='govuk-link'>status_code</a>: string</li><li><a href='/analytics/attribute_taxonomy_all.html' class='govuk-link'>taxonomy_all</a>: string</li><li><a href='/analytics/attribute_taxonomy_all_ids.html' class='govuk-link'>taxonomy_all_ids</a>: string</li><li><a href='/analytics/attribute_taxonomy_level1.html' class='govuk-link'>taxonomy_level1</a>: string</li><li><a href='/analytics/attribute_taxonomy_main.html' class='govuk-link'>taxonomy_main</a>: string</li><li><a href='/analytics/attribute_taxonomy_main_id.html' class='govuk-link'>taxonomy_main_id</a>: string</li><li><a href='/analytics/attribute_title.html' class='govuk-link'>title</a>: string</li><li><a href='/analytics/attribute_updated_at.html' class='govuk-link'>updated_at</a>: string</li><li><a href='/analytics/attribute_withdrawn.html' class='govuk-link'>withdrawn</a>: string</li></ul></li></ul>
     </div>
   </div>
 
