@@ -49,35 +49,26 @@
         - name: action
           value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
 
-- name: HTML attachments
+- name: banners
   events:
-    - name: link clicks (not implemented yet)
-      implemented: true
-      priority: high
-      description: Triggered when a HTML attachment link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/government/publications/equality-act-guidance
-      tracker: link_tracker
+    - name: banner shown
+      implemented: false
+      priority: medium
       data:
       - name: event
         value: event_data
-      - name: event_data
-        value:
-        - name: event_name
-          value: navigation
-        - name: external
-        - name: link_domain
-        - name: link_path_parts
-        - name: method
-        - name: text
-        - name: type
-          value: html attachment
-        - name: url
+    - name: link click
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
 
 - name: breadcrumbs
   events:
     - name: link clicks
       implemented: true
-      priority: high
+      priority: medium
       description: Triggered when a breadcrumb link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
       example_url: https://www.gov.uk/learn-to-drive-a-car
       tracker: link_tracker
@@ -103,11 +94,74 @@
           value: breadcrumbs
         - name: url
 
+- name: browse
+  events:
+    - name: topic browse link click
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: page view topic page parameters
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: see more in this topic link click
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+
+- name: call out box
+  events:
+    - name: call out box link click
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+
+- name: council lookup
+  events:
+    - name: council lookup
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+
+- name: contents link
+  events:
+    - name: link click
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: back to contents link click
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+
+- name: details elements
+  events:
+    - name: details expanded/collapsed
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+
 - name: feedback
   events:
     - name: Is this page useful? Yes
       implemented: true
-      priority: high
+      priority: medium
       description:
       tracker: event_tracker
       data:
@@ -125,7 +179,7 @@
           value: feedback
     - name: Is this page useful? No
       implemented: true
-      priority: high
+      priority: medium
       description:
       tracker: event_tracker
       data:
@@ -143,7 +197,7 @@
           value: feedback
     - name: Report a problem with this page
       implemented: true
-      priority: high
+      priority: medium
       description:
       tracker: event_tracker
       data:
@@ -161,7 +215,7 @@
           value: feedback
     - name: Send me the survey
       implemented: true
-      priority: high
+      priority: medium
       description:
       tracker: event_tracker
       data:
@@ -179,7 +233,7 @@
           value: feedback
     - name: Send
       implemented: true
-      priority: high
+      priority: medium
       description:
       tracker: event_tracker
       data:
@@ -200,7 +254,7 @@
   events:
     - name: link clicks
       implemented: true
-      priority: high
+      priority: medium
       description: Triggered when a footer link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
       example_url: https://www.gov.uk/
       tracker: link_tracker
@@ -230,6 +284,90 @@
         - name: url
         - name: section
           value: One of "Topics", "Government Activity", "Support Links", "Licence", or "Copyright"
+
+- name: forms
+  events:
+    - name: form success alert
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+
+- name: get emails
+  events:
+    - name: get emails about this page link click
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: change how often you get emails
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: unsubscribe
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: unsubscribe from everything
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+
+- name: homepage
+  events:
+    - name: Link clicks
+      implemented: true
+      priority: medium
+      description:
+      tracker:
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: homepage
+        - name: index
+          value:
+          - name: index_section
+          - name: index_link
+          - name: index_section_count
+        - name: index_total
+        - name: section
+
+- name: html attachments
+  events:
+    - name: link clicks (not implemented yet)
+      implemented: true
+      priority: high
+      description: Triggered when a HTML attachment link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
+      example_url: https://www.gov.uk/government/publications/equality-act-guidance
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: html attachment
+        - name: url
 
 - name: links
   events:
@@ -274,6 +412,57 @@
         - name: type
           value: generic download
         - name: url
+    - name: mailto links
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+    - name: attachment links
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+
+- name: miscellaneous
+  events:
+    - name: javascript error
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+    - name: webchat
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+    - name: accessible format request
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+    - name: see all updates link click
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+    - name: view printable version of page
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+    - name: video
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
 
 - name: page view
   events:
@@ -319,7 +508,7 @@
   events:
     - name: print page
       implemented: true
-      priority: high
+      priority: low
       description: When a 'print this page' button is used
       example_url: https://www.gov.uk/guidance/register-a-trust-as-a-trustee
       tracker: event_tracker
@@ -366,11 +555,74 @@
         - name: method
         - name: external
 
+- name: scroll tracking
+  events:
+    - name: scroll tracking
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+
+- name: see all link
+  events:
+    - name: see all link click
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+
+- name: search
+  events:
+    - name: search results
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: search boxes
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: ecommerce product list views and clicks
+      implemented: true
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: filters open/closed
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: facet tag removed
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+    - name: filter click
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: organisations link click
+      implemented: false
+      priority: low
+      data:
+      - name: event
+        value: event_data
+
 - name: share this page
   events:
     - name: follow us
       implemented: true
-      priority: high
+      priority: low
       description: Triggered when a 'follow us' social media link is used.
       example_url: https://www.gov.uk/government/organisations/department-for-digital-culture-media-sport
       tracker: link_tracker
@@ -394,7 +646,7 @@
         - name: url
     - name: share this page
       implemented: true
-      priority: high
+      priority: low
       description: Triggered when a 'share on' social media link is used.
       example_url: https://www.gov.uk/government/news/new-protections-for-children-and-free-speech-added-to-internet-laws
       tracker: link_tracker
@@ -416,6 +668,108 @@
         - name: type
           value: share this page
         - name: url
+
+- name: simple smart answers
+  events:
+    - name: completed
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: results link click
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: start again link click
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: question
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: change answer
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: start again
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: form error
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: start button
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+
+- name: smart answers
+  events:
+    - name: completed
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: results link click
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: start again link click
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: question
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: change answer
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: start again
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: form error
+      implemented: true
+      priority: high
+      data:
+      - name: event
+        value: event_data
+    - name: results ecommerce list views and click
+      implemented: true
+      priority: medium
+      data:
+      - name: event
+        value: event_data
 
 - name: step by step navigation
   events:
@@ -490,6 +844,15 @@
         - name: url
         - name: section
           value: The name of the step
+
+- name: super breadcrumb
+  events:
+    - name: link click
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
 
 - name: super navigation header
   events:
