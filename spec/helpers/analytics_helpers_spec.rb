@@ -116,10 +116,10 @@ RSpec.describe AnalyticsHelpers do
       expected = <<~HTML.gsub(/^\s+/, "").gsub("\n", "")
         <ul class='govuk-list indented-list'>
           <li>
-            <a href='/analytics/attribute_event_name.html'>event_name</a>: select_content
+            <a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: select_content
           </li>
           <li>
-            <a href='/analytics/attribute_type.html'>type</a>: accordion
+            <a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: accordion
           </li>
         </ul>
       HTML
@@ -136,7 +136,7 @@ RSpec.describe AnalyticsHelpers do
         <ul class='govuk-list indented-list'>
           <li>event_data: <ul class='govuk-list indented-list'>
               <li>
-                <a href='/analytics/attribute_event_name.html'>event_name</a>: select_content
+                <a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: select_content
               </li>
             </ul>
           </li>
@@ -160,11 +160,11 @@ RSpec.describe AnalyticsHelpers do
         <ul class='govuk-list indented-list'>
           <li>event_data: <ul class='govuk-list indented-list'>
               <li>
-                <a href='/analytics/attribute_event_name.html'>event_name</a>: select_content
+                <a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: select_content
               </li>
               <li>index: <ul class='govuk-list indented-list'>
                   <li>
-                    <a href='/analytics/attribute_index_section.html'>index_section</a>: integer
+                    <a href='/analytics/attribute_index_section.html' class='govuk-link'>index_section</a>: integer
                   </li>
                 </ul>
               </li>

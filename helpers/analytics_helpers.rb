@@ -27,7 +27,7 @@ module AnalyticsHelpers
     hash.each do |key, value|
       case value
       when String
-        html += "<li><a href='/analytics/attribute_#{urlize(key)}.html'>#{key}</a>: #{value}</li>"
+        html += "<li><a href='/analytics/attribute_#{urlize(key)}.html' class='govuk-link'>#{key}</a>: #{value}</li>"
       when Hash
         html += "<li>#{key}: #{to_html(value)}</li>"
       end

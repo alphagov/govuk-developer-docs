@@ -1,6 +1,6 @@
 analytics:
-  name: Google Analytics 4 Implementation record
-  desc: This site contains a record of the data implementation for Google Analytics 4 on GOV.UK Publishing. It has been built as an aid to developers on GOV.UK Publishing but is being made available for anyone who may find our approach useful.
+  name: Google Analytics 4 implementation record
+  desc: This site contains a record of the data implementation for Google Analytics 4 (GA4) on GOV.UK Publishing. It was built to aid developers on GOV.UK Publishing but available to anyone who may find our approach useful.
 
 data:
   name: Data
@@ -15,13 +15,13 @@ data:
 
 docs:
   name: Documentation
-  desc: Relevant documentation including our approach.
+  desc: Documentation relevant to GOV.UK's dataLayer approach.
   link_title: Browse documentation
   link: docs.html
   subsections:
-    - name: Developer approach
+    - name: Development approach
       link: approach.html
-    - name: Personally Identifiable Information
+    - name: Personally identifiable information
       link: pii.html
     - name: Trackers
       link: trackers.html
@@ -32,19 +32,26 @@ progress:
   link: progress.html
 
 approach:
-  name: Developer approach
+  name: Development approach
 
 pii:
   name: Personally Identifiable Information
 
 trackers:
   name: Trackers
-  desc: Trackers are distinct JavaScripts that collect GA4 data in specific ways. They work differently but produce and send data to GA4 in the same way.
+  desc: Trackers are distinct JavaScripts that collect GA4 data in specific ways. Each works differently but produces and sends data to GA4 in the same way.
 
 attributes:
   name: Attributes
-  desc: Attributes are the key/value pairs of data inside events. Attributes are often used by more than one event.
+  desc: |
+    Attributes are the key value pairs of data inside events. Attributes are often used by more than one event.
+
+    Events use the following attributes:
 
 events:
   name: Events
-  desc: Events are collections of data that are sent to Google Analytics when users do certain things, like opening an accordion or clicking certain links.
+  desc: |
+    Events are collections of data that are sent to a GA4 property when users do certain things, like opening an accordion or clicking a link. 
+
+    We use the following events:
+

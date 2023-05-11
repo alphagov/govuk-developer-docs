@@ -11,7 +11,7 @@
       </dt>
       <dd class="govuk-summary-list__value">
         <% if name == 'Redact' %>
-          <%= link_to attribute.send(name.downcase), "pii.html" %>
+          <%= link_to attribute.send(name.downcase), "pii.html", class: "govuk-link" %>
         <% else %>
           <%= attribute.send(name.downcase) %>
         <% end %>
@@ -30,12 +30,12 @@
             <% if events_attribute.value.is_a?(Array) %>
               <% events_attribute.value.each do |sub_attribute| %>
                 <% if sub_attribute.name == attribute.name %>
-                  <%= link_to event.name, "event_#{urlize(event.name)}.html" %> (<%= events.name %>)<br/>
+                  <%= link_to event.name, "event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
                 <% end %>
               <% end %>
             <% else %>
               <% if events_attribute.name == attribute.name %>
-                <%= link_to event.name, "event_#{urlize(event.name)}.html" %> (<%= events.name %>)<br/>
+                <%= link_to event.name, "event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
               <% end %>
             <% end %>
           <% end %>

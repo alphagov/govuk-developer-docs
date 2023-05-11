@@ -1,4 +1,4 @@
-<h1 class="govuk-heading-l">
+<h1 class="govuk-heading-l analytics-heading">
   <span class="govuk-caption-l">Event</span>
   <%= event.name %>
 </h1>
@@ -9,17 +9,19 @@
 
 <% event.events.each do |page_event| %>
   <div class="event">
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-m analytics-heading">
       <%= page_event.name %>
     </h2>
 
-    <strong class="govuk-tag <%= tag_colours[page_event.priority] %>">
-      <%= page_event.priority %>
-    </strong>
+    <p class="govuk-body">
+      <strong class="govuk-tag <%= tag_colours[page_event.priority] %>">
+        <%= page_event.priority %>
+      </strong>
 
-    <% unless page_event.implemented %>
-      <strong class="govuk-tag">Not yet implemented</strong>
-    <% end %>
+      <% unless page_event.implemented %>
+        <strong class="govuk-tag">Not yet implemented</strong>
+      <% end %>
+    </p>
 
     <% if page_event.description %>
       <p class="govuk-body">
@@ -29,14 +31,14 @@
     <ul class="govuk-list govuk-list--bullet">
       <% if page_event.example_url %>
         <li>
-          Example of <%= link_to page_event.name, page_event.example_url %>
+          Example of <%= link_to page_event.name, page_event.example_url, class: "govuk-link" %>
         </li>
       <% end %>
       <% if page_event.tracker %>
         <% data.analytics.trackers.each do |tracker| %>
           <% if tracker.technical_name == page_event.tracker %>
             <li>
-              Tracked by <%= link_to page_event.tracker, "tracker_#{page_event.tracker}.html" %>
+              Tracked by <%= link_to page_event.tracker, "tracker_#{page_event.tracker}.html", class: "govuk-link" %>
             </li>
           <% end %>
         <% end %>
