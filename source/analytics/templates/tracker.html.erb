@@ -8,16 +8,26 @@
 <% end %>
 
 <dl class="govuk-summary-list">
-  <div class="govuk-summary-list__row">
-    <% if tracker.url %>
+  <% if tracker.url %>
+    <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
         Technical documentation
       </dt>
       <dd class="govuk-summary-list__value">
-        <%= link_to tracker.technical_name, "tracker_#{tracker.url}.html" %>
+        <%= link_to tracker.technical_name, "#{tracker.url}", class: "govuk-link" %>
       </dd>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+  <% if tracker.code %>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Tracker code
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <%= link_to "#{tracker.technical_name} code", "#{tracker.code}", class: "govuk-link" %>
+      </dd>
+    </div>
+  <% end %>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
       Used by
@@ -26,7 +36,7 @@
       <% data.analytics.events.each do |event| %>
         <% event.events.each do |events| %>
           <% if events.tracker == tracker.technical_name %>
-            <%= link_to event.name, "event_#{urlize(event.name)}.html" %> (<%= events.name %>)<br/>
+            <%= link_to event.name, "event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
           <% end %>
         <% end %>
       <% end %>
