@@ -240,7 +240,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/745817ccacdb3bc999e263162885fb0dddd9ea67">6 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/1bb24dd72f6b5a7d58f2c7a07dd90c9112f857da">12 May 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Generate a new component</h1>
@@ -251,6 +251,7 @@
 <p>The gem includes a component generator to stub the minimal files required for a component. The following command will create a component in the application it is run in - it will not create a component if run within the gem.</p>
 <pre lang="ruby"><code>rails generate govuk_publishing_components:component [component_name]
 </code></pre>
+<p><code>component_name</code> should use underscores and not hyphens. Read our <a href="/repos/govuk_publishing_components/component_conventions.html">component conventions</a> for further details.</p>
 <p>This will create a template, scss file and yml documentation file for a new component. It will not create a test file as this cannot be reliably done automatically across applications, but a test file will be necessary.</p>
 <h2 id="option-2-create-a-component-in-the-gem">Option 2: create a component in the gem</h2>
 <p>New components in the gem should be tested with users. Mark all new components as <code>(experimental)</code> (after the component name in the documentation file) until you collect enough feedback to be confident it can be used across applications.</p>
