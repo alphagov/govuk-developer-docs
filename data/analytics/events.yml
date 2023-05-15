@@ -43,9 +43,9 @@
         - name: text
           value: text of show all link when clicked e.g. "Show all sections"
         - name: index
-          value: 0
-        - name: index_total
-          value: number of sections in the accordion (not including 'show all')
+          value:
+          - name: index_section
+          - name: index_section_count
         - name: action
           value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
 
@@ -549,10 +549,13 @@
         - name: event_name
           value: print_page
         - name: index
+          value:
+          - name: index_link
         - name: index_total
         - name: section
         - name: type
           value: print page
+        - name: text
 
 - name: related navigation
   description: Events gathered in the contextual sidebar, contextual footer and related navigation components.
@@ -573,7 +576,10 @@
         - name: type
           value: related content
         - name: index
-          value: 1.1
+          value:
+          - name: index_section
+          - name: index_link
+          - name: index_section_count
         - name: section
           value: Heading of section e.g. Related content, Collection
         - name: text
@@ -653,7 +659,7 @@
       implemented: true
       priority: low
       description: Triggered when a 'follow us' social media link is used.
-      example_url: https://www.gov.uk/government/organisations/department-for-digital-culture-media-sport
+      example_url: https://www.gov.uk/government/organisations/department-for-culture-media-and-sport
       tracker: link_tracker
       data:
       - name: event
@@ -665,6 +671,8 @@
         - name: external
           value: true
         - name: index
+          value:
+          - name: index_link
         - name: index_total
         - name: link_domain
         - name: link_path_parts
@@ -689,6 +697,8 @@
         - name: external
           value: true
         - name: index
+          value:
+          - name: index_link
         - name: index_total
         - name: link_domain
         - name: link_path_parts
@@ -972,6 +982,8 @@
         - name: text
           value: text of the selected tab
         - name: index
-          value: index of the selected tab
+          value:
+          - name: index_section
+          - name: index_section_count
         - name: index_total
           value: number of tabs in total
