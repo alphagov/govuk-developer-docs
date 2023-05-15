@@ -56,7 +56,7 @@
   description: Used for link tracking. True means the link points to a URL not on the current site.
   example:
   required: yes
-  type: string (true or false)
+  type: string ("true" or "false")
   redact: false
 
 - name: first_published_at
@@ -76,7 +76,7 @@
   redact: false
 
 - name: index
-  description: Contains an object with the indexes of a thing being interacted with on, for example the nth accordion section, or the nth link in a list.
+  description: Contains an object with the indexes of a thing being interacted with, for example the nth accordion section, or the nth link in a list.
   example:
   required: no
   type: object
@@ -91,7 +91,7 @@
   redact: false
 
 - name: index_section
-  description: The index of the section that was interacted with, for example the index of the section the clicked link is in
+  description: The index of the section that was interacted with, for example the index of the section the clicked link is in. Sections are usually segmented by headings within a component.
   value:
   example: 1
   required: no
@@ -99,7 +99,7 @@
   redact: false
 
 - name: index_section_count
-  description: The total number of sections in the thing being tracked, such as the header or sidebar
+  description: The total number of sections in the thing being tracked, such as the header or sidebar. Sections are usually segmented by headings within a component.
   value:
   example: 1
   required: no
