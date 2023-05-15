@@ -384,7 +384,7 @@
         - name: event_name
           value: navigation
         - name: external
-          value: string (true)
+          value: '"true"'
         - name: link_domain
         - name: link_path_parts
         - name: method
@@ -416,7 +416,7 @@
       implemented: true
       priority: low
       description: 'When a link points to an email address using mailto:'
-      tracker: specialist_link_tracker.
+      tracker: specialist_link_tracker
       data:
       - name: event
         value: event_data
@@ -425,7 +425,7 @@
         - name: event_name
           value: navigation
         - name: external
-          value: 'string (true)'
+          value: '"true"'
         - name: link_domain
         - name: link_path_parts
         - name: method
@@ -437,7 +437,7 @@
       implemented: false
       priority: medium
       description: 'Links on our guidance pages that contain file attachments, such as https://www.gov.uk/government/publications/equality-act-guidance'
-      tracker: specialist_link_tracker.
+      tracker: specialist_link_tracker
       data:
       - name: event
         value: event_data
@@ -820,11 +820,9 @@
         - name: index
           value:
           - name: index_section
-            value: The section that this step is in. The section in this case refers to the step number.
           - name: index_section_count
-            value: The total amount of steps within this step by step component.
         - name: text
-          value: (the opened/closed step's title)
+          value: title of the opened/closed step
         - name: type
           value: "step by step"
     - name: Show/hide all steps
@@ -867,11 +865,9 @@
         - name: index
           value:
           - name: index_section
-            value: The section that this link is in. The section in this case refers to the step number.
           - name: index_link
             value: The position of the link within this section.
         - name: index_total
-          value: The total amount of links within this section.
         - name: link_domain
         - name: link_path_parts
         - name: method
