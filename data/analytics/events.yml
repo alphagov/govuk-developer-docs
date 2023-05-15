@@ -384,7 +384,7 @@
         - name: event_name
           value: navigation
         - name: external
-          value: true
+          value: '"true"'
         - name: link_domain
         - name: link_path_parts
         - name: method
@@ -413,17 +413,46 @@
           value: generic download
         - name: url
     - name: mailto links
-      implemented: false
+      implemented: true
       priority: low
+      description: 'When a link points to an email address using mailto:'
+      tracker: specialist_link_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: '"true"'
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: email
+        - name: url
     - name: attachment links
       implemented: false
       priority: medium
+      description: 'Links on our guidance pages that contain file attachments, such as https://www.gov.uk/government/publications/equality-act-guidance'
+      tracker: specialist_link_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: attachment
+        - name: url
 
 - name: miscellaneous
   events:
@@ -784,12 +813,16 @@
         value: event_data
       - name: event_data
         value:
+        - name: event_name
+          value: select_content
         - name: action
           value: opened/closed
-        - name: event_name
         - name: index
-        - name: index_total
+          value:
+          - name: index_section
+          - name: index_section_count
         - name: text
+          value: title of the opened/closed step
         - name: type
           value: "step by step"
     - name: Show/hide all steps
@@ -806,10 +839,13 @@
         - name: action
           value: opened/closed
         - name: event_name
+          value: select_content
         - name: index
-          value: 0
-        - name: index_total
+          value:
+          - name: index_section
+            value: '0'
         - name: text
+          value: Show all steps
         - name: type
           value: "step by step"
     - name: link clicks
@@ -829,11 +865,8 @@
         - name: index
           value:
           - name: index_section
-            value: The section that this link is in. The section in this case refers to the step number.
           - name: index_link
             value: The position of the link within this section.
-          - name: index_section_count
-            value: The total amount of links within this section.
         - name: index_total
         - name: link_domain
         - name: link_path_parts
