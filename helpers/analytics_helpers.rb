@@ -50,4 +50,10 @@ module AnalyticsHelpers
     percentage = 0 if implemented.zero? || events.count.zero?
     "#{implemented} of #{events.count} (#{percentage}%)"
   end
+
+  def create_page_title(title)
+    header = ["GOV.UK GA4 Implementation record"]
+    header.prepend(title) if title
+    header.join(" | ")
+  end
 end
