@@ -20,10 +20,7 @@
         - name: index
           value:
           - name: index_section
-          - name: index_link
           - name: index_section_count
-        - name: index_total
-          value: number of sections in accordion (not including 'show all')
         - name: action
           value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
     - name: Show all sections
@@ -43,9 +40,9 @@
         - name: text
           value: text of show all link when clicked e.g. "Show all sections"
         - name: index
-          value: 0
-        - name: index_total
-          value: number of sections in the accordion (not including 'show all')
+          value:
+          - name: index_section
+          - name: index_section_count
         - name: action
           value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
 
@@ -505,33 +502,33 @@
         value: page_view
       - name: page_view
         value:
-        - name: referrer
-        - name: location
-        - name: title
-        - name: status_code
-        - name: document_type
-        - name: publishing_app
-        - name: rendering_app
-        - name: schema_name
-        - name: content_id
         - name: browse_topic
-        - name: taxonomy_main
-        - name: taxonomy_all
-        - name: taxonomy_main_id
-        - name: taxonomy_all_ids
-        - name: taxonomy_level1
-        - name: language
-        - name: history
-        - name: withdrawn
+        - name: content_id
+        - name: document_type
+        - name: dynamic
         - name: first_published_at
-        - name: updated_at
-        - name: public_updated_at
-        - name: publishing_government
+        - name: history
+        - name: language
+        - name: location
+        - name: organisations
         - name: political_status
         - name: primary_publishing_organisation
-        - name: organisations
+        - name: public_updated_at
+        - name: publishing_app
+        - name: publishing_government
+        - name: referrer
+        - name: rendering_app
+        - name: schema_name
+        - name: status_code
+        - name: taxonomy_all
+        - name: taxonomy_all_ids
+        - name: taxonomy_level1
+        - name: taxonomy_main
+        - name: taxonomy_main_id
+        - name: title
+        - name: updated_at
+        - name: withdrawn
         - name: world_locations
-        - name: dynamic
 
 - name: print page
   events:
@@ -549,15 +546,18 @@
         - name: event_name
           value: print_page
         - name: index
+          value:
+          - name: index_link
         - name: index_total
         - name: section
         - name: type
           value: print page
+        - name: text
 
 - name: related navigation
   description: Events gathered in the contextual sidebar, contextual footer and related navigation components.
   events:
-    - name: Related Navigation
+    - name: related Navigation
       implemented: true
       priority: high
       description: Clicks in the related navigation component
@@ -573,7 +573,11 @@
         - name: type
           value: related content
         - name: index
-          value: 1.1
+          value:
+          - name: index_section
+          - name: index_link
+          - name: index_section_count
+        - name: index_total
         - name: section
           value: Heading of section e.g. Related content, Collection
         - name: text
@@ -653,7 +657,7 @@
       implemented: true
       priority: low
       description: Triggered when a 'follow us' social media link is used.
-      example_url: https://www.gov.uk/government/organisations/department-for-digital-culture-media-sport
+      example_url: https://www.gov.uk/government/organisations/department-for-culture-media-and-sport
       tracker: link_tracker
       data:
       - name: event
@@ -665,6 +669,8 @@
         - name: external
           value: true
         - name: index
+          value:
+          - name: index_link
         - name: index_total
         - name: link_domain
         - name: link_path_parts
@@ -689,6 +695,8 @@
         - name: external
           value: true
         - name: index
+          value:
+          - name: index_link
         - name: index_total
         - name: link_domain
         - name: link_path_parts
@@ -907,10 +915,7 @@
         - name: index
           value:
           - name: index_section
-          - name: index_link
           - name: index_section_count
-        - name: index_total
-          value: 2
         - name: section
           value: Menu/Search
         - name: type
@@ -931,6 +936,7 @@
         - name: event_name
           value: navigation
         - name: external
+          value: "false"
         - name: index
           value:
           - name: index_section
@@ -940,7 +946,6 @@
           - name: index_section_count
             value: 2 (Menu and Search)
         - name: index_total
-          value: Total links across all sections (currently 28)
         - name: link_domain
         - name: link_path_parts
         - name: method
@@ -965,6 +970,7 @@
       - name: event_data
         value:
         - name: event_name
+          value: select_content
         - name: type
           value: tabs
         - name: url
@@ -972,6 +978,6 @@
         - name: text
           value: text of the selected tab
         - name: index
-          value: index of the selected tab
-        - name: index_total
-          value: number of tabs in total
+          value:
+          - name: index_section
+          - name: index_section_count
