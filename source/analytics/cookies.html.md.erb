@@ -1,0 +1,71 @@
+<% content_for :title, create_page_title(data.analytics.navigation.cookies.name) %>
+
+<div id="cookie-page-notice" class="cookie-page-notice">
+  <%= GovukPublishingComponents.render("govuk_publishing_components/components/success_alert", {
+    message: "Cookie preferences updated"
+  }) %>
+</div>
+
+<h1 class="govuk-heading-l">
+  <%= data.analytics.navigation.cookies.name %>
+</h1>
+
+<p class="govuk-body">Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
+<p class="govuk-body">We use cookies to collect and store information about how you use this site, such as the pages you visit.</p>
+<p class="govuk-body">This page has a brief explanation of each type of cookie we use.</p>
+
+<form data-module="cookie-settings">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+        Cookie settings
+      </h2>
+    </legend>
+    <p class="govuk-body">We use 2 types of cookie. You can choose which cookies you're happy for us to use.</p>
+
+    <% cookies_usage_hint = capture do %>
+      <p class="govuk-body govuk-hint">We use Google Analytics cookies to measure how you use this site.</p>
+      <p class="govuk-body govuk-hint">These cookies collect information about:</p>
+      <ul class="govuk-list--bullet govuk-hint">
+        <li>how you got to these sites</li>
+        <li>the pages you visit and how long you spend on each page</li>
+        <li>what you click on while you're visiting these sites</li>
+      </ul>
+      <p class="govuk-body govuk-hint">We do not allow Google to use or share the data about how you use these sites.</p>
+    <% end %>
+
+    <%= GovukPublishingComponents.render("govuk_publishing_components/components/radio", {
+      heading: "Cookies that measure website use",
+      heading_size: "s",
+      hint: cookies_usage_hint.html_safe,
+      name: "cookie-consent",
+      id_prefix: "cookie-consent",
+      items: [
+        {
+          value: "true",
+          text: "Use cookies that measure my website use"
+        },
+        {
+          value: "false",
+          text: "Do not use cookies that measure my website use"
+        }
+      ]
+    }) %>
+  </fieldset>
+
+  <%= GovukPublishingComponents.render("govuk_publishing_components/components/heading", {
+    text: "Strictly necessary cookies",
+    heading_level: 2,
+    font_size: "s",
+    margin_bottom: 2
+  }) %>
+
+  <p class="govuk-body">These essential cookies do things like remember your progress through a form (for example a licence application)</p>
+  <p class="govuk-body">They always need to be on.</p>
+
+  <%= GovukPublishingComponents.render("govuk_publishing_components/components/button", {
+    text: "Save changes",
+    type: "submit",
+    classes: "js-set-cookie-consent"
+  }) %>  
+</form>
