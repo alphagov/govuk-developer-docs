@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Edition Workflow - GOV.UK Developer Documentation</title>
+    <title>whitehall: Tips for working on whitehall locally - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/edition_workflow.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/tips_for_local_development.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Edition Workflow - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/edition_workflow.html" />
+      <meta name="twitter:title" content="whitehall: Tips for working on whitehall locally - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/tips_for_local_development.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Edition Workflow" />
+      <meta property="og:title" content="whitehall: Tips for working on whitehall locally" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/edition_workflow.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/tips_for_local_development.html" />
 
     
   </head>
@@ -213,97 +213,59 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/74404b89b0c1c27c0d2ff195b49b2dc3a36fe3d5">21 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/9feaafe457a9e8db636f1bd234184cafd7fd6b00">18 May 2023</a>
 </div>
 
-  <h1 class="page-title">whitehall: Edition Workflow</h1>
+  <h1 class="page-title">whitehall: Tips for working on whitehall locally</h1>
 
   
-<p>(See also <a href="/repos/whitehall/edition_model.html">Edition model</a> for more on the model objects involved)</p>
-<p>Editions will be in one of a number of states. The state machine for them is located in <a href="https://github.com/alphagov/whitehall/blob/main/app/models/edition/workflow.rb">workflow.rb</a>. This configures the possible transitions between states, resulting in this:</p>
-<p><img src="https://raw.githubusercontent.com/alphagov/whitehall/main/docs/diagrams/edition_state_transitions.png" alt="Transitions graph"></p>
-<p>Note that a <code>Document</code> has no state, there is just state inferred by the various <code>Edition</code>s.  This diagram doesn't show the effect of multiple editions - sometimes a state transition involves superseding an existing edition and replacing it with a new one, with its own state.</p>
-<h2 id="unpublishing-withdrawal">Unpublishing / Withdrawal</h2>
-<p>Some status is also controlled by the presence or otherwise of a related <code>Unpublishing</code> record. These are created during the <code>withdraw</code> and <code>unpublish</code> transitions. Editors trigger these in the <a href="https://github.com/alphagov/whitehall/blob/main/app/controllers/admin/edition_workflow_controller.rb"><code>EditionWorkflowController</code></a>. The three options for Unpublishing or Withdrawing correspond to an <a href="https://github.com/alphagov/whitehall/blob/main/app/models/unpublishing_reason.rb"><code>UnpublishingReason</code></a>, each of which control the behaviour of a document when visited by a user:</p>
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>State</th>
-<th>Requires explanation?</th>
-<th>Requires URL?</th>
-<th>Redirects?</th>
-<th>Shows original content?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><code>PublishedInError</code></td>
-<td><code>draft</code></td>
-<td>No</td>
-<td>No</td>
-<td>If provided</td>
-<td>No</td>
-</tr>
-<tr>
-<td>4</td>
-<td><code>Consolidated</code></td>
-<td><code>draft</code></td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-</tr>
-<tr>
-<td>5</td>
-<td><code>Withdrawn</code></td>
-<td><code>withdrawn</code></td>
-<td>Yes</td>
-<td>No</td>
-<td>No</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-<p>If a document has an edition in one of the <code>Edition::PUBLICLY_VISIBLE_STATES</code> (<code>published</code> or <code>withdrawn</code>), Whitehall's <code>DocumentsController</code> will render it. If an <code>Unpublishing</code> exists, the withdrawal notice will be rendered near the top of the page as well.</p>
-<p>If a document does not have an edition in one of these states, it will use the <code>Unpublishing</code> to determine the response. If the <code>Unpublishing</code> is a redirect, ie a <code>Consolidated</code> <code>Unpublishing</code>, it will redirect to the alternative url. Otherwise it will render the <code>unpublished</code> view.</p>
-<p>The <code>PublishingApiUnpublishingWorker</code> uses the above to decide what to do with an <code>Unpublishing</code> when sending the content to the Publishing API. It will always call the <code>unpublish</code> endpoint, with one of the following types:</p>
-<table>
-<thead>
-<tr>
-<th>Unpublishing type</th>
-<th>Publishing API unpublishing type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>PublishedInError</code> with alternative url</td>
-<td><code>redirect</code></td>
-</tr>
-<tr>
-<td>
-<code>PublishedInError</code> without alternative url</td>
-<td><code>gone</code></td>
-</tr>
-<tr>
-<td><code>PublishedInError</code></td>
-<td><code>gone</code></td>
-</tr>
-<tr>
-<td><code>Consolidated</code></td>
-<td><code>redirect</code></td>
-</tr>
-<tr>
-<td><code>Withdrawn</code></td>
-<td><code>withdrawn</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="linkcheckerapi">LinkCheckerAPI</h2>
-<p>The <code>link-checker-api</code> has been integrated on the show page for Editions. It extracts all links from within any GovSpeak fields and sends them to the <code>/batch</code> endpoint of the API. In this request it also sends across a <code>webhook_callback</code> which then populates any information about broken/warning links. More reading about the endpoints can be found <a href="https://docs.publishing.service.gov.uk/apis/link-checker-api.html">here</a></p>
+<h2 id="installing-whitehall-gems-locally">Installing Whitehall gems locally</h2>
+<p>Sometimes it’s useful to install Whitehall on bare metal, outside of the standard <code>govuk-docker</code> environment.</p>
+<p>Annoyingly, just running <code>bundle install</code> can result in an error where it fails to install the <code>mysql2</code> gem. It tries to build it but fails when it can’t find some required system libraries.</p>
+<h3 id="this-can-be-resolved-by">This can be resolved by:</h3>
+<ol>
+<li><code>brew install mysql2 openssl@3</code></li>
+<li>Add the following to <code>~/.bundle/config</code>:</li>
+</ol>
+<pre lang="jsx"><code>BUNDLE_BUILD__MYSQL2: "--with-opt-dir=/opt/homebrew/opt/openssl@3 --with-ldflags=-L/opt/homebrew/Cellar/zstd/1.5.2/lib"
+</code></pre>
+<ol>
+<li>
+<code>bundle install</code> should now succeed.</li>
+</ol>
+<p><strong>Note:</strong> this assumes you’re on an M1 Mac, where <code>brew --prefix</code> is <code>/opt/homebrew</code>. The paths will be different on Intel Macs, but hopefully the logic is the same.</p>
+<h2 id="running-linters-locally">Running linters locally</h2>
+<p>Once you have the gems running you can run the ruby and javascript linters without using docker:</p>
+<pre><code>bundle exec rake lint
+</code></pre>
+<p>This is a good idea before pushing, unless you have an IDE that checks linters, or you have run a full test suite (which also runs them inside docker)</p>
+<h2 id="running-an-individual-test-file">Running an individual test file</h2>
+<pre><code>govuk-docker-run bundle exec rake test TEST=path/to/test/file
+</code></pre>
+<pre><code>govuk-docker-run cucumber path/to/cucumber/test
+</code></pre>
+<h2 id="changing-local-user-permissions-flags">Changing local user permissions / flags</h2>
+<p>User permissions double in some cases as feature flags - see <a href="https://github.com/alphagov/whitehall/blob/main/app/models/user.rb#LL16C7-L16C7">Permissions in the User model</a> for valid permission values</p>
+<p>So if you want to view the next release UI, you need to be logged in as a user with the "Preview next release" permission.</p>
+<p>To change permissions on a dev machine, run the following to open a rails console:</p>
+<pre lang="bash"><code>govuk-docker run whitehall-lite rails console
+</code></pre>
+<p>In development you are logged in as the first user - in the console you can find that user and see their permissions:</p>
+<pre lang="rb"><code>&gt; user = User::first()
+&gt; user.permissions
+ ["Editor", "GDS Editor", "Import CSVs", "signin"]
+</code></pre>
+<p>You can, for example, add the "Preview next release" permission as follows:</p>
+<pre lang="rb"><code>&gt; user = User::first()
+&gt; user.permissions &lt;&lt;= User::Permissions::PREVIEW_NEXT_RELEASE
+&gt; user.save!
+</code></pre>
+<p>Similarly you can remove permissions by removing them from user.permissions:</p>
+<pre lang="rb"><code>&gt; user = User::first()
+&gt; user.permissions.reject! { |p| p == User::Permissions::PREVIEW_NEXT_RELEASE }
+&gt; user.save!
+</code></pre>
+<p>If you reload a Whitehall page in your browser, the new permissions should be used immediately.</p>
 
 
             
@@ -311,8 +273,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/edition_workflow.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fedition_workflow.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/tips_for_local_development.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Ftips_for_local_development.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
