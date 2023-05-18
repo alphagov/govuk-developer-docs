@@ -342,14 +342,16 @@
 
 <h3 id="running-the-test-suite">Running the test suite</h3>
 
+<p>These commands assume you have the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> running and its binaries in your PATH.</p>
+
 <pre><code># run all the test suites
-bundle exec rake
+govuk-docker-run bundle exec rake
 </code></pre>
 
 <p>Javascript unit tests can also be run separately:</p>
 
 <pre><code># run all the JavaScript tests
-bundle exec rake jasmine
+govuk-docker-run bundle exec rake jasmine
 </code></pre>
 
 <h3 id="further-documentation">Further documentation</h3>
