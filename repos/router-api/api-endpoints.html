@@ -184,15 +184,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/router-api/commit/6ed4f93c6b4cd342cdea4de8a73f1764cd5f7a09">17 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/router-api/commit/a1d62006efc9971925b821d1825fee6dd3d868de">22 May 2023</a>
 </div>
 
   <h1 class="page-title">router-api: API endpoints</h1>
@@ -200,6 +193,7 @@
   
 <h2 id="routes">Routes</h2>
 <p>Information about the route data structure can be found in the <a href="https://github.com/alphagov/router#routes">router repository</a>.</p>
+<p>Router watches its database for changes and will pick up new/changed/deleted routes automatically within a few seconds.</p>
 <h3 id="getting-details-of-a-route">Getting details of a route:</h3>
 <pre lang="sh"><code>curl "http://router-api.example.com/routes?incoming_path=/foo"
 </code></pre>
@@ -216,10 +210,6 @@
 <pre lang="sh"><code>curl "http://router-api.example.com/routes?incoming_path=/foo" -X DELETE
 </code></pre>
 <p>This will delete the corresponding route.  If no route matches the JSON request, a 404 status code will be returned.</p>
-<h3 id="committing-changes">Committing changes:</h3>
-<pre lang="sh"><code>curl http://router-api.example.com/routes/commit -X POST
-</code></pre>
-<p>This will trigger a router reload and cause any changes to the route to take effect.</p>
 <h2 id="backends">Backends</h2>
 <p>Backends represent an application that the router can route requests to.  They are referenced by entries in the routes collection. Information about the backend data structure can be found in the <a href="https://github.com/alphagov/router#backends">router repository</a>.</p>
 <h3 id="getting-details-for-a-backend">Getting details for a backend:</h3>
