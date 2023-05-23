@@ -135,9 +135,6 @@
             <a href="/content-schemas/case_study.html"><span>case_study</span></a>
           </li>
           <li>
-            <a href="/content-schemas/coming_soon.html"><span>coming_soon</span></a>
-          </li>
-          <li>
             <a href="/content-schemas/completed_transaction.html"><span>completed_transaction</span></a>
           </li>
           <li>
@@ -229,9 +226,6 @@
           </li>
           <li>
             <a href="/content-schemas/html_publication.html"><span>html_publication</span></a>
-          </li>
-          <li>
-            <a href="/content-schemas/knowledge_alpha.html"><span>knowledge_alpha</span></a>
           </li>
           <li>
             <a href="/content-schemas/licence.html"><span>licence</span></a>
@@ -356,9 +350,6 @@
             <a href="/content-schemas/travel_advice_index.html"><span>travel_advice_index</span></a>
           </li>
           <li>
-            <a href="/content-schemas/unpublishing.html"><span>unpublishing</span></a>
-          </li>
-          <li>
             <a href="/content-schemas/vanish.html"><span>vanish</span></a>
           </li>
           <li>
@@ -420,7 +411,7 @@
 <tr><td><strong>policies</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>primary_topic</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>topics</strong><br/><code>array</code></td> <td><br/></td></tr></table></td></tr></table></td></tr>
-<tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>guidance</code>, <code>form</code>, <code>foi_release</code>, <code>promotional</code>, <code>notice</code>, <code>correspondence</code>, <code>research</code>, <code>official_statistics</code>, <code>transparency</code>, <code>standard</code>, <code>statutory_guidance</code>, <code>independent_report</code>, <code>national_statistics</code>, <code>corporate_report</code>, <code>policy_paper</code>, <code>decision</code>, <code>map</code>, <code>regulation</code>, <code>international_treaty</code>, <code>impact_assessment</code>, <code>imported</code></td></tr>
+<tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>guidance</code>, <code>form</code>, <code>foi_release</code>, <code>promotional</code>, <code>notice</code>, <code>correspondence</code>, <code>research</code>, <code>official_statistics</code>, <code>transparency</code>, <code>standard</code>, <code>statutory_guidance</code>, <code>independent_report</code>, <code>national_statistics</code>, <code>corporate_report</code>, <code>policy_paper</code>, <code>decision</code>, <code>map</code>, <code>regulation</code>, <code>international_treaty</code>, <code>impact_assessment</code></td></tr>
 <tr><td><strong>first_published_at</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
 <tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>available_translations</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
 <tr><td><strong>child_taxons</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
@@ -1555,7 +1546,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>policies</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>primary_topic</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>topics</strong><br/><code>array</code></td> <td><br/></td></tr></table></td></tr></table></td></tr>
-<tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>guidance</code>, <code>form</code>, <code>foi_release</code>, <code>promotional</code>, <code>notice</code>, <code>correspondence</code>, <code>research</code>, <code>official_statistics</code>, <code>transparency</code>, <code>standard</code>, <code>statutory_guidance</code>, <code>independent_report</code>, <code>national_statistics</code>, <code>corporate_report</code>, <code>policy_paper</code>, <code>decision</code>, <code>map</code>, <code>regulation</code>, <code>international_treaty</code>, <code>impact_assessment</code>, <code>imported</code></td></tr>
+<tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>guidance</code>, <code>form</code>, <code>foi_release</code>, <code>promotional</code>, <code>notice</code>, <code>correspondence</code>, <code>research</code>, <code>official_statistics</code>, <code>transparency</code>, <code>standard</code>, <code>statutory_guidance</code>, <code>independent_report</code>, <code>national_statistics</code>, <code>corporate_report</code>, <code>policy_paper</code>, <code>decision</code>, <code>map</code>, <code>regulation</code>, <code>international_treaty</code>, <code>impact_assessment</code></td></tr>
 <tr><td><strong>first_published_at</strong><br/><code>string</code></td> <td>The date the content was first published.  Automatically determined by the publishing-api, unless overridden by the publishing application.<br/></td></tr>
 <tr><td><strong>last_edited_at</strong><br/><code>string</code></td> <td>Last time when the content received a major or minor update.<br/></td></tr>
 <tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>government</strong><br/></td> <td>The government associated with this document<br/></td></tr>

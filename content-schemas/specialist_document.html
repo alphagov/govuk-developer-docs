@@ -135,9 +135,6 @@
             <a href="/content-schemas/case_study.html"><span>case_study</span></a>
           </li>
           <li>
-            <a href="/content-schemas/coming_soon.html"><span>coming_soon</span></a>
-          </li>
-          <li>
             <a href="/content-schemas/completed_transaction.html"><span>completed_transaction</span></a>
           </li>
           <li>
@@ -229,9 +226,6 @@
           </li>
           <li>
             <a href="/content-schemas/html_publication.html"><span>html_publication</span></a>
-          </li>
-          <li>
-            <a href="/content-schemas/knowledge_alpha.html"><span>knowledge_alpha</span></a>
           </li>
           <li>
             <a href="/content-schemas/licence.html"><span>licence</span></a>
@@ -356,9 +350,6 @@
             <a href="/content-schemas/travel_advice_index.html"><span>travel_advice_index</span></a>
           </li>
           <li>
-            <a href="/content-schemas/unpublishing.html"><span>unpublishing</span></a>
-          </li>
-          <li>
             <a href="/content-schemas/vanish.html"><span>vanish</span></a>
           </li>
           <li>
@@ -406,7 +397,7 @@
 <tr><td><strong>max_cache_time</strong><br/><code>integer</code></td> <td>The maximum length of time the content should be cached, in seconds<br/></td></tr>
 <tr><td><strong>metadata</strong><br/><code>object</code></td> <td><br/></td></tr>
 <tr><td><strong>temporary_update_type</strong><br/><code>boolean</code></td> <td>Indicates that the user should choose a new update type on the next save.<br/></td></tr></table></td></tr>
-<tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>aaib_report</code>, <code>animal_disease_case</code>, <code>asylum_support_decision</code>, <code>business_finance_support_scheme</code>, <code>cma_case</code>, <code>uk_market_conformity_assessment_body</code>, <code>countryside_stewardship_grant</code>, <code>dfid_research_output</code>, <code>drcf_digital_markets_research</code>, <code>drug_safety_update</code>, <code>employment_appeal_tribunal_decision</code>, <code>employment_tribunal_decision</code>, <code>esi_fund</code>, <code>export_health_certificate</code>, <code>flood_and_coastal_erosion_risk_management_research_report</code>, <code>international_development_fund</code>, <code>licence_transaction</code>, <code>maib_report</code>, <code>marine_equipment_approved_recommendation</code>, <code>marine_notice</code>, <code>medical_safety_alert</code>, <code>oim_project</code>, <code>product_safety_alert_report_recall</code>, <code>protected_food_drink_name</code>, <code>raib_report</code>, <code>research_for_development_output</code>, <code>residential_property_tribunal_decision</code>, <code>service_standard_report</code>, <code>statutory_instrument</code>, <code>tax_tribunal_decision</code>, <code>traffic_commissioner_regulatory_decision</code>, <code>utaac_decision</code></td></tr>
+<tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>aaib_report</code>, <code>animal_disease_case</code>, <code>asylum_support_decision</code>, <code>business_finance_support_scheme</code>, <code>cma_case</code>, <code>uk_market_conformity_assessment_body</code>, <code>countryside_stewardship_grant</code>, <code>drcf_digital_markets_research</code>, <code>drug_safety_update</code>, <code>employment_appeal_tribunal_decision</code>, <code>employment_tribunal_decision</code>, <code>esi_fund</code>, <code>export_health_certificate</code>, <code>flood_and_coastal_erosion_risk_management_research_report</code>, <code>international_development_fund</code>, <code>licence_transaction</code>, <code>maib_report</code>, <code>marine_equipment_approved_recommendation</code>, <code>marine_notice</code>, <code>medical_safety_alert</code>, <code>oim_project</code>, <code>product_safety_alert_report_recall</code>, <code>protected_food_drink_name</code>, <code>raib_report</code>, <code>research_for_development_output</code>, <code>residential_property_tribunal_decision</code>, <code>service_standard_report</code>, <code>statutory_instrument</code>, <code>tax_tribunal_decision</code>, <code>traffic_commissioner_regulatory_decision</code>, <code>utaac_decision</code></td></tr>
 <tr><td><strong>first_published_at</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
 <tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>available_translations</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
 <tr><td><strong>child_taxons</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
@@ -918,7 +909,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>max_cache_time</strong><br/><code>integer</code></td> <td>The maximum length of time the content should be cached, in seconds<br/></td></tr>
 <tr><td><strong>metadata</strong><br/><code>object</code></td> <td><br/></td></tr>
 <tr><td><strong>temporary_update_type</strong><br/><code>boolean</code></td> <td>Indicates that the user should choose a new update type on the next save.<br/></td></tr></table></td></tr>
-<tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>aaib_report</code>, <code>animal_disease_case</code>, <code>asylum_support_decision</code>, <code>business_finance_support_scheme</code>, <code>cma_case</code>, <code>uk_market_conformity_assessment_body</code>, <code>countryside_stewardship_grant</code>, <code>dfid_research_output</code>, <code>drcf_digital_markets_research</code>, <code>drug_safety_update</code>, <code>employment_appeal_tribunal_decision</code>, <code>employment_tribunal_decision</code>, <code>esi_fund</code>, <code>export_health_certificate</code>, <code>flood_and_coastal_erosion_risk_management_research_report</code>, <code>international_development_fund</code>, <code>licence_transaction</code>, <code>maib_report</code>, <code>marine_equipment_approved_recommendation</code>, <code>marine_notice</code>, <code>medical_safety_alert</code>, <code>oim_project</code>, <code>product_safety_alert_report_recall</code>, <code>protected_food_drink_name</code>, <code>raib_report</code>, <code>research_for_development_output</code>, <code>residential_property_tribunal_decision</code>, <code>service_standard_report</code>, <code>statutory_instrument</code>, <code>tax_tribunal_decision</code>, <code>traffic_commissioner_regulatory_decision</code>, <code>utaac_decision</code></td></tr>
+<tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>aaib_report</code>, <code>animal_disease_case</code>, <code>asylum_support_decision</code>, <code>business_finance_support_scheme</code>, <code>cma_case</code>, <code>uk_market_conformity_assessment_body</code>, <code>countryside_stewardship_grant</code>, <code>drcf_digital_markets_research</code>, <code>drug_safety_update</code>, <code>employment_appeal_tribunal_decision</code>, <code>employment_tribunal_decision</code>, <code>esi_fund</code>, <code>export_health_certificate</code>, <code>flood_and_coastal_erosion_risk_management_research_report</code>, <code>international_development_fund</code>, <code>licence_transaction</code>, <code>maib_report</code>, <code>marine_equipment_approved_recommendation</code>, <code>marine_notice</code>, <code>medical_safety_alert</code>, <code>oim_project</code>, <code>product_safety_alert_report_recall</code>, <code>protected_food_drink_name</code>, <code>raib_report</code>, <code>research_for_development_output</code>, <code>residential_property_tribunal_decision</code>, <code>service_standard_report</code>, <code>statutory_instrument</code>, <code>tax_tribunal_decision</code>, <code>traffic_commissioner_regulatory_decision</code>, <code>utaac_decision</code></td></tr>
 <tr><td><strong>first_published_at</strong><br/><code>string</code></td> <td>The date the content was first published.  Automatically determined by the publishing-api, unless overridden by the publishing application.<br/></td></tr>
 <tr><td><strong>last_edited_at</strong><br/><code>string</code></td> <td>Last time when the content received a major or minor update.<br/></td></tr>
 <tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>finder</strong><br/></td> <td>The finder for this specialist document.<br/></td></tr>
@@ -1063,37 +1054,48 @@ a publishing application sends to the publishing-api in a
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"sift_end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-23"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"withdrawn_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-23"</span><span class="w">
+      </span><span class="nl">"hidden_indexable_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tristique Ut interdum. cursus Duis morbi risus pellentesque tristique imperdiet Mauris vestibulum. Suspendisse eu porttitor lorem ac tempor eu sed elit. ac consectetur habitant leo Aenean vel dolor bibendum. finibus non a adipiscing at risus orci est. massa turpis et egestas. sit ultricies nibh. fames netus Lorem Ut vel Nam amet Pellentesque sagittis non scelerisque. molestie mauris Nam nibh molestie libero. sem malesuada interdum. dolor"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tribunal_decision_category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charity"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"temporary_update_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="nl">"temporary_update_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"statutory_instrument"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-11-06T20:35:35+00:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"last_edited_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-03-12T05:59:14+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uk_market_conformity_assessment_body"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-07-23T10:06:25+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"finder"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"8df6f2d4-5ac7-1f29-adfa-6d5fe140f0b7"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"3a24b90b-de8a-1315-a60e-347c52f351f5"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"66aaba76-9cc2-1455-a7ba-42cd2e1e19e3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"b43fb6a3-2a0f-1ac3-aead-af1da40dff3a"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"82fabaec-730e-19fb-a7fa-34ab04baf69d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"73959cc5-b093-10f0-a632-05bf0c58657c"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"et"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"need_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
+    </span><span class="s2">"egestas. molestie Nam vel eros. ultricies"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nibh pellentesque egestas. Duis interdum. molestie Pellentesque malesuada sed ipsum imperdiet et consectetur Suspendisse eros. eu cursus finibus Nam molestie elit. turpis dolor sollicitudin scelerisque. Aenean vel amet mauris eu vel tristique hendrerit fames at purus leo libero. aliquet. bibendum. Sed est. sagittis nibh. dolor netus et massa risus ac porttitor lorem Quisque non ac sit Ut tempor ac tempor volutpat ultricies a nisl risus ac non Lorem Ut vestibulum. suscipit Nam"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"molestie Nam amet et tristique purus ultricies imperdiet non elit. tristique nibh. tempor est. et sagittis ac tempor lorem aliquet. vel Duis libero. ac egestas. ac bibendum. senectus Pellentesque vestibulum. Sed dolor turpis risus dolor sollicitudin Suspendisse"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"molestie dolor consectetur morbi adipiscing vestibulum. nibh hendrerit vel a Quisque vel Suspendisse mauris suscipit turpis bibendum. Nam sem ac Ut non Nam sed non amet ipsum Ut molestie tempor finibus Aenean libero. imperdiet ac et eu pellentesque et scelerisque. Sed risus porttitor volutpat aliquet. senectus leo ultricies sagittis tempor ac nisl elit. in malesuada Mauris tristique risus egestas. lorem eros. interdum. netus Duis Lorem ac eu dolor massa nibh. purus fames habitant sit interdum. orci tristique sollicitudin cursus Pellentesque lectus at est."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"turpis ac cursus lorem et purus in egestas. lectus molestie Sed eros. Ut Nam nibh sem adipiscing volutpat risus porttitor a Mauris finibus Suspendisse sagittis netus Nam scelerisque. eu dolor nibh. mauris interdum. bibendum. Pellentesque habitant Duis ultricies at sit dolor non consectetur risus Lorem et sed massa est. leo elit. tristique libero. amet non Aenean ac vel vel fames interdum. ipsum hendrerit sollicitudin aliquet. eu nisl vestibulum. ac tristique senectus imperdiet pellentesque Ut orci tempor ac morbi molestie tempor Quisque suscipit malesuada"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Pellentesque cursus purus interdum. interdum. molestie ac mauris morbi amet Nam libero. habitant massa consectetur Ut porttitor Suspendisse eros. non a vestibulum. Sed suscipit pellentesque et Lorem et non egestas. senectus ac"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"leo Lorem tristique vestibulum. vel sagittis mauris Aenean eros. habitant a Nam fames adipiscing Nam non hendrerit porttitor netus sem dolor Quisque et interdum. ipsum nibh."</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alpha"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-06T08:04:57+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"suscipit est. Nam tempor elit. lorem aliquet. ipsum molestie nibh. ac ac"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-04-10T13:44:53+00:00"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local-links-manager"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"redirects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"habitant netus tempor nibh. turpis risus senectus hendrerit cursus porttitor elit. lectus ac tristique imperdiet ac a nibh morbi ac Ut Nam ac molestie nisl Lorem egestas. molestie mauris Suspendisse Sed amet sagittis suscipit non eros. purus Aenean ultricies dolor tempor orci et non consectetur finibus aliquet. sollicitudin libero. eu massa et at volutpat ipsum sit Pellentesque interdum. leo Mauris Ut sem tristique eu bibendum. risus Duis est. dolor pellentesque vestibulum. Quisque in vel scelerisque. interdum. sed adipiscing malesuada Nam fames vel lorem"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"molestie sit turpis dolor interdum. Nam nisl morbi finibus Ut adipiscing Lorem pellentesque Mauris imperdiet ac non sagittis elit. eu vestibulum. eu tempor senectus suscipit dolor malesuada tristique Sed sed non aliquet. in fames Pellentesque sem risus egestas. ultricies lorem ipsum at porttitor ac risus lectus netus Duis Aenean et sollicitudin Suspendisse massa consectetur hendrerit nibh bibendum. vel nibh. leo tempor habitant mauris a orci molestie est. cursus et ac volutpat Quisque purus vel libero. tristique scelerisque."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"consectetur finibus pellentesque netus elit. et Nam adipiscing molestie porttitor purus amet Ut Quisque interdum. bibendum. nisl dolor mauris senectus cursus vestibulum. Suspendisse molestie"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"aliquet. finibus adipiscing interdum. cursus massa a et at libero. nisl purus Duis dolor Ut ac vestibulum. tristique leo molestie non bibendum. in et vel netus morbi ac amet suscipit nibh dolor Sed non ac tristique risus ipsum sed eros. nibh. est. tempor volutpat egestas. scelerisque. turpis lectus sollicitudin imperdiet Aenean pellentesque eu Lorem sagittis porttitor interdum. Mauris Nam Nam vel ac mauris Suspendisse ultricies malesuada fames"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tristique morbi risus lectus nibh at senectus molestie orci aliquet. dolor habitant malesuada scelerisque. imperdiet Sed pellentesque vestibulum. eu non nibh. tempor bibendum. cursus Quisque sagittis amet porttitor tempor nisl adipiscing consectetur eu purus sed Mauris ac est. Ut sit et finibus libero. ultricies leo molestie egestas. Lorem Nam massa sem volutpat et turpis in dolor eros. interdum. a risus vel ac Aenean vel ac fames ac Ut ipsum elit. lorem Nam interdum. hendrerit sollicitudin Duis Suspendisse tristique Pellentesque"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"libero. pellentesque orci lorem aliquet. mauris risus interdum. tristique Lorem sed Pellentesque et porttitor ac sollicitudin Sed morbi est. eu netus dolor dolor hendrerit amet Nam consectetur sagittis senectus"</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email-campaign-frontend"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"content-store"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"routes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"egestas. scelerisque. volutpat ac non nibh molestie Nam morbi ac ac sit vel fames elit. tempor eu nisl ultricies sollicitudin mauris vel imperdiet vestibulum. Lorem ac adipiscing sed leo non cursus purus turpis"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non morbi hendrerit volutpat eu est. finibus interdum. scelerisque. risus lorem aliquet. fames malesuada non risus Ut leo ac vel pellentesque molestie sem ac Ut eu Pellentesque Nam Aenean ac elit. amet molestie habitant et nibh ac sed senectus vel Sed tristique Nam at egestas. porttitor ipsum dolor tempor Mauris orci imperdiet lectus dolor turpis adipiscing purus Duis eros. et vestibulum. sagittis nisl mauris suscipit libero. tristique consectetur nibh. Suspendisse massa a Lorem interdum. Quisque bibendum. netus tempor sit cursus in ultricies sollicitudin"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"specialist_document"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ac purus non Quisque netus eros. Lorem non vel leo ultricies vestibulum. Aenean consectetur imperdiet aliquet. scelerisque. ac risus elit. a adipiscing sagittis tempor habitant finibus amet in suscipit interdum. interdum. tempor tristique Duis et sollicitudin molestie nibh. libero. cursus fames"</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"consectetur Nam a adipiscing non morbi nisl dolor ac Mauris et Nam fames suscipit leo risus interdum. massa sem ac Suspendisse Lorem sed cursus tempor ultricies non interdum. Ut finibus aliquet. eu vel eros. dolor ac libero. molestie vestibulum. tristique hendrerit et risus senectus in amet mauris habitant turpis netus purus egestas. sollicitudin bibendum. pellentesque sit vel"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"update_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"major"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <hr>
