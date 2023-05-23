@@ -135,7 +135,7 @@
         <a href="#create-a-new-rails-app"><span>Create a new Rails app</span></a>
         <ul>
           <li>
-            <a href="#set-up-a-unicorn-web-server"><span>Set up a Unicorn web server</span></a>
+            <a href="#setting-up-a-puma-web-server"><span>Setting up a Puma web server</span></a>
           </li>
           <li>
             <a href="#add-your-rails-app-to-gov-uk-docker"><span>Add your Rails app to GOV.UK Docker</span></a>
@@ -238,7 +238,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/190a9e55d7f82368fadcde51b0e3718ca205873a">12 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/eacb6eceb08e68b5ec5ef0bdb5757dfa9937769c">23 May 2023</a>
 </div>
 
  <h1 id='header'>Set up a new Rails application</h1> <h2 id='before-you-start'>Before you start</h2><p>Before you create a Ruby on Rails (“Rails”) app, you must complete all steps in the <a href="https://docs.publishing.service.gov.uk/manual/get-started.html">GOV.UK developer get started documentation</a>.</p>
@@ -342,18 +342,11 @@
 </code></pre></div></li>
 <li><p>Configure linting for your Rails app to make sure the app&rsquo;s code is consistent with other GOV.UK apps. Find out more information about <a href="https://docs.publishing.service.gov.uk/manual/configure-linting.html">configuring linting</a>.</p></li>
 </ol>
-<h3 id='set-up-a-unicorn-web-server'>Set up a Unicorn web server</h3>
-<ol>
-<li><p>If your Rails app&rsquo;s <code>Gemfile</code> includes <code>gem &quot;puma&quot;</code>, open <code>Gemfile</code> and delete <code>gem &quot;puma&quot;</code>.</p></li>
-<li><p>Create a <code>Procfile</code> in your app&rsquo;s root directory that contains the following:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>web: bundle exec unicorn -c ./config/unicorn.rb -p ${PORT:-3000}
-</code></pre></div></li>
-<li><p>Create a <code>config/unicorn.rb</code> file that contains the following code:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>require "govuk_app_config/govuk_unicorn"
-GovukUnicorn.configure(self)
-</code></pre></div></li>
-</ol>
-<h3 id='add-your-rails-app-to-gov-uk-docker'>Add your Rails app to GOV.UK Docker</h3><p>Add your Rails app to GOV.UK Docker so you can run the app locally. See an <a href="https://github.com/alphagov/govuk-docker/pull/465">example GOV.UK Docker pull request</a>.</p>
+<h3 id='setting-up-a-puma-web-server'>Setting up a Puma web server</h3><p>Puma is already included in the <a href="https://github.com/alphagov/govuk_app_config">govuk_app_config</a> gem.</p>
+<p>Create a <code>config/puma.rb</code> file that contains the following code:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>  <span class="nb">require</span> <span class="s2">"govuk_app_config/govuk_puma"</span>
+  <span class="no">GovukPuma</span><span class="p">.</span><span class="nf">configure_rails</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+</code></pre></div><h3 id='add-your-rails-app-to-gov-uk-docker'>Add your Rails app to GOV.UK Docker</h3><p>Add your Rails app to GOV.UK Docker so you can run the app locally. See an <a href="https://github.com/alphagov/govuk-docker/pull/465">example GOV.UK Docker pull request</a>.</p>
 <h3 id='set-up-contract-tests-for-your-app'>Set up contract tests for your app</h3><p>If your app provides an internal API, it should have <a href="https://docs.publishing.service.gov.uk/manual/pact-testing.html">contract tests</a>.</p>
 <h2 id='set-up-a-github-repo-for-your-rails-app'>Set up a GitHub repo for your Rails app</h2><p>When you’ve finished developing your Rails app, you can <a href="https://docs.publishing.service.gov.uk/manual/configure-github-repo.html#auto-configuration">set up a GitHub repo for your Rails app</a>.</p>
 <p>You must add a description to the <em>About</em> section in the GitHub repo, or the GOV.UK developer documentation build will break when it tries to build the <a href="https://docs.publishing.service.gov.uk/#applications">list of apps</a>.</p>
