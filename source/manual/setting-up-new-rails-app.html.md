@@ -151,22 +151,16 @@ You should:
 
 1. Configure linting for your Rails app to make sure the app's code is consistent with other GOV.UK apps. Find out more information about [configuring linting][linting].
 
-### Set up a Unicorn web server
+### Setting up a Puma web server
 
-1. If your Rails app's `Gemfile` includes `gem "puma"`, open `Gemfile` and delete `gem "puma"`.
+Puma is already included in the [govuk_app_config](https://github.com/alphagov/govuk_app_config) gem.
 
-1. Create a `Procfile` in your app's root directory that contains the following:
+Create a `config/puma.rb` file that contains the following code:
 
-    ```
-    web: bundle exec unicorn -c ./config/unicorn.rb -p ${PORT:-3000}
-    ```
-
-1. Create a `config/unicorn.rb` file that contains the following code:
-
-    ```
-    require "govuk_app_config/govuk_unicorn"
-    GovukUnicorn.configure(self)
-    ```
+  ```rb
+  require "govuk_app_config/govuk_puma"
+  GovukPuma.configure_rails(self)
+  ```
 
 ### Add your Rails app to GOV.UK Docker
 
