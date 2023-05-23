@@ -312,7 +312,7 @@ Use the following instructions to set up your MFA device.
 1. Select the link for your email address.
 1. Select the __Security credentials__ tab.
 1. Select __Manage__, which is next to __Assigned MFA device__.
-1. Specify your email address as the MFA device name
+1. Specify your email address as the entire MFA device name. Do __not__ add anything else to the name, or will receive a permissions error.
 1. Follow the instructions to set up your MFA device.
 
 #### If you have a Yubikey
