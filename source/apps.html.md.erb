@@ -25,7 +25,7 @@ Apps can be loosely grouped into different types, including:
 
 ## Apps by team
 
-| Type | Count | Applications |
+| Team | Count | Applications |
 | --- | --- | --- |
 <% Repos.active_apps.group_by(&:team).sort.each do |name, apps| %>
 | # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
