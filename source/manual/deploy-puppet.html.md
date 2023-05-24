@@ -6,6 +6,14 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+## Building a release
+
+> Jenkins should normally build govuk-puppet automatically on push to any branch, but unfortunately this is currently broken (May 2023).
+>
+> To work around this, go to [govuk-puppet in CI Jenkins](https://ci.integration.publishing.service.gov.uk/job/govuk-puppet/) and choose `Scan Repository Now` from the left-hand column.
+>
+> You will usually need to do this twice: once to make the pre-merge checks run against your branch and again to build the release after you have merged your PR.
+
 ## Deploying a branch
 
 Before merging your PR, it's recommended that you deploy the change to
