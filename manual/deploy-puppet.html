@@ -129,6 +129,9 @@
     <a href="#header"><span>Deploy Puppet</span></a>
     <ul>
       <li>
+        <a href="#building-a-release"><span>Building a release</span></a>
+      </li>
+      <li>
         <a href="#deploying-a-branch"><span>Deploying a branch</span></a>
       </li>
       <li>
@@ -189,18 +192,17 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/06b89f88b33cae1796638055bff88668218a516f">28 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a0cbf96346266b2dc9f204f4126b2a6b04c8d645">24 May 2023</a>
 </div>
 
- <h1 id='header'>Deploy Puppet</h1> <h2 id='deploying-a-branch'>Deploying a branch</h2><p>Before merging your PR, it&rsquo;s recommended that you deploy the change to
+ <h1 id='header'>Deploy Puppet</h1> <h2 id='building-a-release'>Building a release</h2>
+<blockquote>
+<p>Jenkins should normally build govuk-puppet automatically on push to any branch, but unfortunately this is currently broken (May 2023).</p>
+<p>To work around this, go to <a href="https://ci.integration.publishing.service.gov.uk/job/govuk-puppet/">govuk-puppet in CI Jenkins</a> and choose <code>Scan Repository Now</code> from the left-hand column.</p>
+<p>You will usually need to do this twice: once to make the pre-merge checks run against your branch and again to build the release after you have merged your PR.</p>
+</blockquote>
+<h2 id='deploying-a-branch'>Deploying a branch</h2><p>Before merging your PR, it&rsquo;s recommended that you deploy the change to
 Integration in order to test it works on real infrastructure. Go to <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/">the
 <code>Deploy_Puppet</code> job in Jenkins</a> and click ‘Build with
 Parameters’. The <code>TAG</code> field should contain the name of the branch you wish to
