@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: search-admin - GOV.UK Developer Documentation</title>
+    <title>travel-advice-publisher: # Further technical information - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-admin.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/travel-advice-publisher/further_technical_information.html">
 
-      <meta name="description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: search-admin - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta name="twitter:title" content="travel-advice-publisher: # Further technical information - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/travel-advice-publisher/further_technical_information.html" />
 
-      <meta property="og:description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: search-admin" />
+      <meta property="og:title" content="travel-advice-publisher: # Further technical information" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/travel-advice-publisher/further_technical_information.html" />
 
     
   </head>
@@ -123,10 +121,14 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                   <ul>
     <li>
-      <a href="/repos/search-admin.html" rel="noopener" class="govuk-link">search-admin</a>
+      <a href="/repos/travel-advice-publisher.html" rel="noopener" class="govuk-link">travel-advice-publisher</a>
     </li>
     <li>
       <ul>
+          <li><a href="/repos/travel-advice-publisher/error_monitoring_for_travel_advice_alerts.html" rel="noopener" class="govuk-link">Error Monitoring for Travel Advice Alerts</a></li>
+          <li><a href="/repos/travel-advice-publisher/further_technical_information.html" rel="noopener" class="govuk-link"># Further technical information</a></li>
+          <li><a href="/repos/travel-advice-publisher/move_summary_to_parts.html" rel="noopener" class="govuk-link">Move Summary to Parts</a></li>
+          <li><a href="/repos/travel-advice-publisher/publish_and_notification_workflow.html" rel="noopener" class="govuk-link">Publish and Notification Workflow</a></li>
       </ul>
     </li>
   </ul>
@@ -158,6 +160,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "travel-advice-publisher",
+        "@id": "http://www.dev.gov.uk/repos/travel-advice-publisher.html"
+      }
     }
   ]
 }
@@ -166,116 +176,53 @@
 <div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/travel-advice-publisher.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;travel-advice-publisher&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;3&quot;},&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/travel-advice-publisher.html">travel-advice-publisher</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Application: search-admin</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Admin for GOV.UK search</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/search-admin">search-admin</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#user-experience-measurement-govuk</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS (EKS)</strong></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Supporting apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://search-admin.publishing.service.gov.uk" class="govuk-link">search-admin.publishing.service.gov.uk</a></li>
-    <li><a href="https://sentry.io/govuk/app-search-admin" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/000000111?var-app=search-admin" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/search-admin" class="govuk-link">Argo CD (search-admin)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/travel-advice-publisher/commit/9cb4241408e58baa892c99ee4e8295bcf987760a">23 May 2023</a>
 </div>
-<h2 id='example-pages-published-by-search-admin'>Example pages published by search-admin</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="http://www.nfdc.gov.uk" class="govuk-link">New Forest District Council</a></li>
-      <li><a href="http://www.hounslow.gov.uk" class="govuk-link">London Borough of Hounslow Council</a></li>
-      <li><a href="https://www.lewes-eastbourne.gov.uk" class="govuk-link">Lewes District Council</a></li>
-      <li><a href="http://www.canterbury.gov.uk" class="govuk-link">Canterbury City Council</a></li>
-      <li><a href="http://www.manchester.gov.uk" class="govuk-link">Manchester City Council</a></li>
-      <li><a href="http://www.hertsmere.gov.uk/" class="govuk-link">Hertsmere Borough Council</a></li>
-      <li><a href="http://www.darlington.gov.uk" class="govuk-link">Darlington Borough Council</a></li>
-      <li><a href="http://www.hyndburnbc.gov.uk" class="govuk-link">Hyndburn Borough Council</a></li>
-      <li><a href="http://www.eden.gov.uk/" class="govuk-link">Eden District Council</a></li>
-      <li><a href="http://www.northdown.gov.uk" class="govuk-link">North Down Borough Council</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Manages search &ldquo;best bets&rdquo; and &ldquo;external links&rdquo; along with other search and browse data.</p>
+  <h1 class="page-title">travel-advice-publisher: # Further technical information</h1>
 
-<h2 id="screenshots">Screenshots</h2>
-
-<p><img src="https://raw.githubusercontent.com/alphagov/search-admin/main/docs/images/screenshot.png" alt="Search Admin"></p>
-
-<h2 id="live-example">Live example</h2>
-
+  <h2 id="further-technical-information">Further technical information</h2>
+<h3 id="models">Models</h3>
+<p>The list of countries is defined in <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/lib/data/countries.yml"><code>lib/data/countries.yml</code></a>.</p>
+<p>Published travel advice is exposed through the <a href="https://github.com/alphagov/content-store">content-store</a> and presented in <a href="https://github.com/alphagov/frontend">frontend</a> and <a href="https://github.com/alphagov/government-frontend">government-frontend</a>.</p>
+<h3 id="workflow">Workflow</h3>
+<p>Each country can have one or more editions. At any one time, there can be a single edition in draft, a single published edition and any number of archived editions. When an edition is published, the existing published edition will be archived.</p>
+<p>When published, unless the 'minor update' checkbox is checked, a change description must be provided. This is exposed in the API response and the frontend.</p>
+<h3 id="adding-or-renaming-a-country">Adding or renaming a country</h3>
+<p>To add or rename a country, update the <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/lib/data/countries.yml"><code>lib/data/countries.yml</code></a> file. You will then need to:</p>
 <ul>
-<li><a href="https://search-admin.publishing.service.gov.uk/">https://search-admin.publishing.service.gov.uk/</a></li>
+<li>Publish the content item for the country to Publishing API</li>
+<li>Publish the email signup content item for the country to Publishing API</li>
 </ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rake</code></p>
-
-<h3 id="external-links">External links</h3>
-
-<p>Run <code>bundle exec rake publish_external_links:publishing_api</code> to send all external links to the publishing API.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/search-admin/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+<p>See <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/lib/tasks/publishing_api.rake"><code>lib/tasks/publishing_api.rake</code></a> for details of how to do this.</p>
+<p>To maintain the history of a country when renaming you will need to perform a <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/db/migrate/20160916161059_rename_democratic_republic_of_congo.rb">migration</a> on TravelAdviceEdition.</p>
+<h3 id="removing-a-country">Removing a country</h3>
+<p>If a country's foreign travel advice is being subsumed into another country's page:</p>
+<ol>
+<li>Run the <code>publishing_api:unpublish_published_edition_and_email_signup_content_item['country_slug', 'new_country_slug']</code> rake task, providing the slug of the country being removed, and the slug of the country that it should be redirected to.</li>
+<li>Remove the country from the <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/lib/data/countries.yml"><code>lib/data/countries.yml</code></a> file.</li>
+</ol>
+<h3 id="publishing-api">Publishing API</h3>
+<p>Travel advice content reaches the <a href="https://github.com/alphagov/content-store">content-store</a> via the <a href="https://github.com/alphagov/publishing-api">publishing-api</a>, editorial work is batch-enqueued with Sidekiq for processing out of request.
+Processing of travel-advice publishing-api jobs is made visible via the <a href="https://github.com/alphagov/sidekiq-monitoring">sidekiq-monitoring</a> application.</p>
+<h3 id="email-alert-api">Email Alert API</h3>
+<p>Changes to Travel Advice content will send an email alert to subscribers via the <a href="https://github.com/alphagov/email-alert-api">Email Alert API</a> unless marked as a <em>minor</em> change. Subscription is handled via the <a href="https://github.com/alphagov/email-alert-frontend">Email Alert Frontend</a> application.</p>
+<h3 id="link-checker-api">Link Checker API</h3>
+<p>The <code>link-checker-api</code> has been integrated on the edit page for TravelAdviceEditions. It extracts all links from within any Govspeak fields and sends them to the <code>/batch</code> endpoint of the API. In this request it also sends across a <code>webhook_callback</code> which then populates any information about broken/warning links. More reading about the endpoints can be found <a href="https://docs.publishing.service.gov.uk/apis/link-checker-api.html">here</a>.</p>
+<h3 id="search-indexing">Search indexing</h3>
+<p>Changes to Travel Advice content will update our search index via <a href="https://github.com/alphagov/rummager">Rummager</a>.</p>
 
 
             
@@ -283,8 +230,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-admin.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/travel-advice-publisher/blob/main/docs/further_technical_information.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ftravel-advice-publisher%2Ffurther_technical_information.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

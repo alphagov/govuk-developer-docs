@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>travel-advice-publisher: # Further technical information - GOV.UK Developer Documentation</title>
+    <title>travel-advice-publisher: Move Summary to Parts - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/travel-advice-publisher/further-technical-information.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/travel-advice-publisher/move_summary_to_parts.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="travel-advice-publisher: # Further technical information - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/travel-advice-publisher/further-technical-information.html" />
+      <meta name="twitter:title" content="travel-advice-publisher: Move Summary to Parts - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/travel-advice-publisher/move_summary_to_parts.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="travel-advice-publisher: # Further technical information" />
+      <meta property="og:title" content="travel-advice-publisher: Move Summary to Parts" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/travel-advice-publisher/further-technical-information.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/travel-advice-publisher/move_summary_to_parts.html" />
 
     
   </head>
@@ -125,8 +125,9 @@
     </li>
     <li>
       <ul>
-          <li><a href="/repos/travel-advice-publisher/error-monitoring-for-travel-advice-alerts.html" rel="noopener" class="govuk-link">Error Monitoring for Travel Advice Alerts</a></li>
-          <li><a href="/repos/travel-advice-publisher/further-technical-information.html" rel="noopener" class="govuk-link"># Further technical information</a></li>
+          <li><a href="/repos/travel-advice-publisher/error_monitoring_for_travel_advice_alerts.html" rel="noopener" class="govuk-link">Error Monitoring for Travel Advice Alerts</a></li>
+          <li><a href="/repos/travel-advice-publisher/further_technical_information.html" rel="noopener" class="govuk-link"># Further technical information</a></li>
+          <li><a href="/repos/travel-advice-publisher/move_summary_to_parts.html" rel="noopener" class="govuk-link">Move Summary to Parts</a></li>
           <li><a href="/repos/travel-advice-publisher/publish_and_notification_workflow.html" rel="noopener" class="govuk-link">Publish and Notification Workflow</a></li>
       </ul>
     </li>
@@ -186,49 +187,26 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/travel-advice-publisher/commit/8433d9ede7bd3aa105a6f60538b48660767d7671">26 Feb 2019</a>
+  Last updated: <a href="https://github.com/alphagov/travel-advice-publisher/commit/9cb4241408e58baa892c99ee4e8295bcf987760a">23 May 2023</a>
 </div>
 
-  <h1 class="page-title">travel-advice-publisher: # Further technical information</h1>
+  <h1 class="page-title">travel-advice-publisher: Move Summary to Parts</h1>
 
-  <h2 id="further-technical-information">Further technical information</h2>
-<h3 id="models">Models</h3>
-<p>The list of countries is defined in <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/lib/data/countries.yml"><code>lib/data/countries.yml</code></a>.</p>
-<p>Published travel advice is exposed through the <a href="https://github.com/alphagov/content-store">content-store</a> and presented in <a href="https://github.com/alphagov/frontend">frontend</a> and <a href="https://github.com/alphagov/government-frontend">government-frontend</a>.</p>
-<h3 id="workflow">Workflow</h3>
-<p>Each country can have one or more editions. At any one time, there can be a single edition in draft, a single published edition and any number of archived editions. When an edition is published, the existing published edition will be archived.</p>
-<p>When published, unless the 'minor update' checkbox is checked, a change description must be provided. This is exposed in the API response and the frontend.</p>
-<h3 id="adding-or-renaming-a-country">Adding or renaming a country</h3>
-<p>To add or rename a country, update the <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/lib/data/countries.yml"><code>lib/data/countries.yml</code></a> file. You will then need to:</p>
+  
+<p>As part of <a href="https://trello.com/c/tua0TaRV/1225-remove-summary-from-travel-advice">this ticket</a> a migration has taken place in travel-advice-publisher that moves the summary section
+of the travel advice editions into parts (from 'edition -&gt; summary' to 'edition -&gt; parts[0]'). This change means that publishers can rename the title and slug of this section
+as well as move it around in the parts order.</p>
+<p>All future travel advice editions from this migration (12/5/23) will be constructed as such. However, all historical versions maintain their structure ('edition -&gt; summary').
+This ensures clear and accurate history and auditability. In order to facilitate this, there is some conditional logic in the views that checks
+whether summary is coming from parts and renders accordingly. The 'summary' field will also remain on the TravelAdviceEdition model but should not only be used for
+historical editions.</p>
+<h2 id="the-migration">The Migration</h2>
+<p>The migration was run using the following rake tasks:</p>
 <ul>
-<li>Publish the content item for the country to Publishing API</li>
-<li>Publish the email signup content item for the country to Publishing API</li>
+<li>migrate_summary_all_countries task in lib/tasks/data_migrations.rake. This created a new edition for every country, moved its summary into parts and then saves it in the travel advice database</li>
+<li>republish_editions task in lib/tasks/publishing_api.rake. This republishes all those new editions to publishing api</li>
 </ul>
-<p>See <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/lib/tasks/publishing_api.rake"><code>lib/tasks/publishing_api.rake</code></a> for details of how to do this.</p>
-<p>To maintain the history of a country when renaming you will need to perform a <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/db/migrate/20160916161059_rename_democratic_republic_of_congo.rb">migration</a> on TravelAdviceEdition.</p>
-<h3 id="removing-a-country">Removing a country</h3>
-<p>If a country's foreign travel advice is being subsumed into another country's page:</p>
-<ol>
-<li>Run the <code>publishing_api:unpublish_published_edition_and_email_signup_content_item['country_slug', 'new_country_slug']</code> rake task, providing the slug of the country being removed, and the slug of the country that it should be redirected to.</li>
-<li>Remove the country from the <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/lib/data/countries.yml"><code>lib/data/countries.yml</code></a> file.</li>
-</ol>
-<h3 id="publishing-api">Publishing API</h3>
-<p>Travel advice content reaches the <a href="https://github.com/alphagov/content-store">content-store</a> via the <a href="https://github.com/alphagov/publishing-api">publishing-api</a>, editorial work is batch-enqueued with Sidekiq for processing out of request.
-Processing of travel-advice publishing-api jobs is made visible via the <a href="https://github.com/alphagov/sidekiq-monitoring">sidekiq-monitoring</a> application.</p>
-<h3 id="email-alert-api">Email Alert API</h3>
-<p>Changes to Travel Advice content will send an email alert to subscribers via the <a href="https://github.com/alphagov/email-alert-api">Email Alert API</a> unless marked as a <em>minor</em> change. Subscription is handled via the <a href="https://github.com/alphagov/email-alert-frontend">Email Alert Frontend</a> application.</p>
-<h3 id="link-checker-api">Link Checker API</h3>
-<p>The <code>link-checker-api</code> has been integrated on the edit page for TravelAdviceEditions. It extracts all links from within any Govspeak fields and sends them to the <code>/batch</code> endpoint of the API. In this request it also sends across a <code>webhook_callback</code> which then populates any information about broken/warning links. More reading about the endpoints can be found <a href="https://docs.publishing.service.gov.uk/apis/link-checker-api.html">here</a>.</p>
-<h3 id="search-indexing">Search indexing</h3>
-<p>Changes to Travel Advice content will update our search index via <a href="https://github.com/alphagov/rummager">Rummager</a>.</p>
 
 
             
@@ -236,8 +214,8 @@ Processing of travel-advice publishing-api jobs is made visible via the <a href=
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/travel-advice-publisher/blob/main/docs/further-technical-information.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ftravel-advice-publisher%2Ffurther-technical-information.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/travel-advice-publisher/blob/main/docs/move_summary_to_parts.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ftravel-advice-publisher%2Fmove_summary_to_parts.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
