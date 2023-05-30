@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-repo-mirror - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-repo-mirror (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,13 +16,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-repo-mirror - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-repo-mirror (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-repo-mirror.html" />
 
       <meta property="og:description" content="Everything about govuk-repo-mirror (Mirrors repositories from GitHub to AWS CodeCommit)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-repo-mirror" />
+      <meta property="og:title" content="Repository: govuk-repo-mirror (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-repo-mirror.html" />
 
@@ -174,106 +174,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-repo-mirror</h1>
+  <h1 class="page-title">Repository: govuk-repo-mirror (retired)</h1>
 
-  <p>Mirrors repositories from GitHub to AWS CodeCommit</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-repo-mirror">govuk-repo-mirror</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-platform-security-reliability-team</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk-repo-mirror" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk-repo-mirror.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p><strong>⚠️ Repository retired</strong>: This repository has been retired in favor of functionality in <a href="https://github.com/alphagov/govuk-infrastructure">govuk-infrastructure</a>. CodeCommit repositories are now <a href="https://github.com/alphagov/govuk-infrastructure/blob/3a245e80b2ba8ba9f24a326e39532c9443cbc5a6/terraform/deployments/github/mirror.tf#L10">managed using Terraform</a> and the synchronization is done by the <a href="https://github.com/alphagov/govuk-infrastructure/blob/3a245e80b2ba8ba9f24a326e39532c9443cbc5a6/.github/workflows/mirror-repos.yml#L1"><code>mirror-repo</code> GitHub Action</a>.</p>
-<p><hr>
-<p>Ensures all repositories tagged with <code>govuk</code> in the alphagov organisation in GitHub.com are mirrored to AWS CodeCommit.</p>
-<p>We use AWS CodeCommit so we can still <a href="https://docs.publishing.service.gov.uk/manual/github-unavailable.html">deploy in the event that GitHub.com is down</a>
-. We also use the private repositories on AWS CodeCommit in order to fix any <a href="https://docs.publishing.service.gov.uk/manual/deploy-fixes-for-a-security-vulnerability.html">security vulnerabilities without disclosing them</a>.</p>
-<p>This script will ensure every non-archived repository tagged with <code>govuk</code> on Github is mirrored to AWS CodeCommit. It will then synchronise all branches and the most recent tags, including removing branches that have been deleted in GitHub. In runs periodically in <a href="https://deploy.integration.publishing.service.gov.uk/job/Mirror_Github_Repositories/">Jenkins</a>.</p>
-<p><strong>Warning:</strong> If you need to work on a branch in private on AWS CodeCommit, this script must be prevented from running. If it runs and the branch you&rsquo;re working on does not exist in GitHub, it will be removed from AWS CodeCommit. The easiest way to prevent this is to untag the repository in GitHub.</p>
-<h2 id="usage">Usage</h2>
-<p>Required environment variables:</p>
-<table>
-<thead>
-<tr>
-<th align="left">Variable</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><code>GITHUB_ACCESS_TOKEN</code></td>
-<td align="left">A personal access token with <code>read:org</code> and <code>repo</code> scope</td>
-</tr>
-<tr>
-<td align="left"><code>AWS_CODECOMMIT_USER_ID</code></td>
-<td align="left">IAM user with privileges to assume the role in <code>ROLE_ARN</code>
-</td>
-</tr>
-<tr>
-<td align="left"><code>GIT_SSH_PRIVATE_KEY</code></td>
-<td align="left">A private key attached to the IAM user in <code>AWS_CODECOMMIT_USER_ID</code>
-</td>
-</tr>
-<tr>
-<td align="left"><code>ROLE_ARN</code></td>
-<td align="left">IAM role with privileges to create, list and push to CodeCommit repositories</td>
-</tr>
-</tbody>
-</table>
-<pre lang="shell"><code>$ bundle install
-$ ./mirror_repos
-</code></pre>
-<h2 id="licence">Licence</h2>
-<p><a href="https://github.com/alphagov/govuk-repo-mirror/blob/main/LICENCE">MIT License</a></p>
-  </div></p>
+  <p>This application is retired.</p>
+<p><p>Mirrors repositories from GitHub to AWS CodeCommit</p></p>
+<p><a href="https://github.com/alphagov/govuk-repo-mirror">GitHub repository</a></p>
 
 
             
