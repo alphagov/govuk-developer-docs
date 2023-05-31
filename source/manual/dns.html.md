@@ -39,7 +39,8 @@ When you've verified the authenticity of the request as per the SRE docs above, 
 1. Push your changes to GitHub and open a pull request
 1. Terraform Cloud will automatically perform a plan
 1. If you are happy with the results of the plan, merge your PR
-1. Terraform Cloud will automatically apply your changes when they are merged to `main`
+1. From the PR page in GitHub, look under the pre-merge checks section and open the "details" link from the Terraform Cloud check.
+1. Press "Confirm and apply" in Terraform Cloud.
 
 ## DNS for `govuk.digital` and `govuk-internal.digital`
 
