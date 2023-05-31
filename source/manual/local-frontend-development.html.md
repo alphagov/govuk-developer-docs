@@ -63,6 +63,13 @@ govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
 
+Some frontend apps can be run against integration too. For example:
+
+```sh
+cd /govuk/collections
+govuk-docker-up app-integration
+```
+
 ### Using startup scripts
 
 If you are making changes to certain frontend apps you can also view these changes by running the application's `./startup.sh` script - if it has one. This example is for [government-frontend], but these instructions may apply to other frontend apps.
