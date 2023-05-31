@@ -125,7 +125,8 @@ Some of these are not managed by Terraform. If you can't find a configuration fi
 
 ## Getting Terraform Cloud access
 
-Any member of the GOV.UK Platform Engineering team can invite you to the GOV.UK Terraform Cloud organisation.
-Ask in their [slack channel](https://gds.slack.com/archives/C013F737737).
+If you're a member of 2nd-line, Platform Engineering or Platform Security and Reliability, you should automatically be able to log into Terraform Cloud using your digital.cabinet-office.gov.uk Google account.
+
+If you're having trouble logging into Terraform Cloud then [Platform Engineering team](https://gds.slack.com/channels/govuk-platform-engineering) or an [owner of the GOV.UK_Terraform_Cloud_Access group](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/GOV.UK_Terraform_Cloud_Access/about) will be able to help you.
 
 [govuk-dns-tf]: https://github.com/alphagov/govuk-dns-tf
