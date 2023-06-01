@@ -24,10 +24,10 @@ This assumes that you have already installed and setup [govuk-docker]. We will u
 If you are making changes to a frontend app and nothing else, you can view these changes by running the following:
 
 ```shell
-cd /govuk/govuk-docker
+cd ~/govuk/govuk-docker
 make government-frontend
 
-cd /govuk/government-frontend
+cd ~/govuk/government-frontend
 govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
@@ -35,7 +35,7 @@ govuk-docker-up app-live
 If you want to test changes in static against a frontend app, you need to tell Docker to look at your local version of static rather than live:
 
 ```shell
-cd /govuk/govuk-docker/projects/government-frontend
+cd ~/govuk/govuk-docker/projects/government-frontend
 ```
 
 Open `government-frontend`'s `docker-compose.yml` file, then edit the live config to depend on static and remove the live static environment:
@@ -55,10 +55,10 @@ Open `government-frontend`'s `docker-compose.yml` file, then edit the live confi
 We can now run the frontend application as normal:
 
 ```shell
-cd /govuk/govuk-docker
+cd ~/govuk/govuk-docker
 make government-frontend
 
-cd /govuk/government-frontend
+cd ~/govuk/government-frontend
 govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
@@ -66,7 +66,7 @@ govuk-docker-up app-live
 Some frontend apps can be run against integration too. For example:
 
 ```sh
-cd /govuk/collections
+cd ~/govuk/collections
 govuk-docker-up app-integration
 ```
 
@@ -75,7 +75,7 @@ govuk-docker-up app-integration
 If you are making changes to certain frontend apps you can also view these changes by running the application's `./startup.sh` script - if it has one. This example is for [government-frontend], but these instructions may apply to other frontend apps.
 
 ```shell
-cd /govuk/government-frontend
+cd ~/govuk/government-frontend
 ./startup.sh --live
 # Check the output to see what port the app is running on, e.g: localhost:3005
 ```
