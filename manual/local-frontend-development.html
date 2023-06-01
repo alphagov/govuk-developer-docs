@@ -209,7 +209,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6ee3ac708cfb8bc3914c1ed9628a0155ca30be3b">31 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9c3ca787643e86e0d3f7d6849c5d65da332f2b46">1 Jun 2023</a>
 </div>
 
  <h1 id='header'>Local frontend development</h1> <h2 id='running-applications-locally'>Running applications locally</h2><p>There are several ways of running applications locally when developing and you should choose the option that works best for your situation. For frontend developers, the following is recommended.</p>
@@ -222,14 +222,14 @@
 <p>The following sections contain specific details of these approaches.</p>
 <h3 id='using-govuk-docker'>Using govuk-docker</h3><p>This assumes that you have already installed and setup <a href="https://github.com/alphagov/govuk-docker/blob/master/README.md">govuk-docker</a>. We will use <a href="https://github.com/alphagov/government-frontend">government-frontend</a> as an example here, but these instructions apply to any frontend app.</p>
 <p>If you are making changes to a frontend app and nothing else, you can view these changes by running the following:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> /govuk/govuk-docker
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> ~/govuk/govuk-docker
 make government-frontend
 
-<span class="nb">cd</span> /govuk/government-frontend
+<span class="nb">cd</span> ~/govuk/government-frontend
 govuk-docker-up app-live
 <span class="c"># You can now view the app on government-frontend.dev.gov.uk</span>
 </code></pre></div><p>If you want to test changes in static against a frontend app, you need to tell Docker to look at your local version of static rather than live:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> /govuk/govuk-docker/projects/government-frontend
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> ~/govuk/govuk-docker/projects/government-frontend
 </code></pre></div><p>Open <code>government-frontend</code>&lsquo;s <code>docker-compose.yml</code> file, then edit the live config to depend on static and remove the live static environment:</p>
 <div class="highlight"><pre class="highlight yaml" tabindex="0"><code>  <span class="na">government-frontend-app-live</span><span class="pi">:</span>
     <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*government-frontend-app</span>
@@ -241,17 +241,17 @@ govuk-docker-up app-live
     <span class="s"># Comment out this line to stop pointing to live static</span>
     <span class="s">#PLEK_SERVICE_STATIC_URI</span><span class="err">:</span> <span class="s">assets.publishing.service.gov.uk</span>
 </code></pre></div><p>We can now run the frontend application as normal:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> /govuk/govuk-docker
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> ~/govuk/govuk-docker
 make government-frontend
 
-<span class="nb">cd</span> /govuk/government-frontend
+<span class="nb">cd</span> ~/govuk/government-frontend
 govuk-docker-up app-live
 <span class="c"># You can now view the app on government-frontend.dev.gov.uk</span>
 </code></pre></div><p>Some frontend apps can be run against integration too. For example:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> /govuk/collections
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> ~/govuk/collections
 govuk-docker-up app-integration
 </code></pre></div><h3 id='using-startup-scripts'>Using startup scripts</h3><p>If you are making changes to certain frontend apps you can also view these changes by running the application&rsquo;s <code>./startup.sh</code> script - if it has one. This example is for <a href="https://github.com/alphagov/government-frontend">government-frontend</a>, but these instructions may apply to other frontend apps.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> /govuk/government-frontend
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> ~/govuk/government-frontend
 ./startup.sh <span class="nt">--live</span>
 <span class="c"># Check the output to see what port the app is running on, e.g: localhost:3005</span>
 </code></pre></div><h3 id='using-startup-scripts-and-govuk-docker'>Using startup scripts and govuk-docker</h3><p>If you need to run a local application with a local version of <a href="https://github.com/alphagov/static">static</a> it is also possible to do this with a combination of a startup script and govuk-docker.</p>
