@@ -127,6 +127,8 @@ Some of these are not managed by Terraform. If you can't find a configuration fi
 
 If you're a member of 2nd-line, Platform Engineering or Platform Security and Reliability, you should automatically be able to [log into Terraform Cloud](https://accounts.google.com/o/saml2/initsso?idpid=C01ppujwc&spid=738388265440&forceauthn=false) using your digital.cabinet-office.gov.uk Google account.
 
+For your first login, you must link a new or an existing one Terraform Cloud account (which will have its own password) to your Google Account. After linking these accounts, you'll be able to access the organization by signing in through your Google Account.
+
 If you're having trouble logging into Terraform Cloud then [Platform Engineering team](https://gds.slack.com/channels/govuk-platform-engineering) or an [owner of the GOV.UK_Terraform_Cloud_Access group](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/GOV.UK_Terraform_Cloud_Access/about) will be able to help you.
 
 [govuk-dns-tf]: https://github.com/alphagov/govuk-dns-tf
