@@ -209,7 +209,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9c3ca787643e86e0d3f7d6849c5d65da332f2b46">1 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0a8edb20b5d6f633130e3a97e05970ea5a29e4e8">1 Jun 2023</a>
 </div>
 
  <h1 id='header'>Local frontend development</h1> <h2 id='running-applications-locally'>Running applications locally</h2><p>There are several ways of running applications locally when developing and you should choose the option that works best for your situation. For frontend developers, the following is recommended.</p>
@@ -250,7 +250,8 @@ govuk-docker-up app-live
 </code></pre></div><p>Some frontend apps can be run against integration too. For example:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> ~/govuk/collections
 govuk-docker-up app-integration
-</code></pre></div><h3 id='using-startup-scripts'>Using startup scripts</h3><p>If you are making changes to certain frontend apps you can also view these changes by running the application&rsquo;s <code>./startup.sh</code> script - if it has one. This example is for <a href="https://github.com/alphagov/government-frontend">government-frontend</a>, but these instructions may apply to other frontend apps.</p>
+</code></pre></div><p>For <code>frontend</code>, if you wish to develop the CSV Preview functionality without having a local copy of Asset Manager, you will need to obtain a bearer token for Asset Manager from the <a href="https://signon.integration.publishing.service.gov.uk/api_users">integration Signon</a>, then add it as the value for <code>ASSET_MANAGER_BEARER_TOKEN</code> in <code>projects/frontend/docker-compose.yml</code>.</p>
+<h3 id='using-startup-scripts'>Using startup scripts</h3><p>If you are making changes to certain frontend apps you can also view these changes by running the application&rsquo;s <code>./startup.sh</code> script - if it has one. This example is for <a href="https://github.com/alphagov/government-frontend">government-frontend</a>, but these instructions may apply to other frontend apps.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> ~/govuk/government-frontend
 ./startup.sh <span class="nt">--live</span>
 <span class="c"># Check the output to see what port the app is running on, e.g: localhost:3005</span>
