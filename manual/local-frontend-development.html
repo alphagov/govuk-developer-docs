@@ -209,7 +209,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4c6737a53fda992dc198459bd4b1161661b15b03">9 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6ee3ac708cfb8bc3914c1ed9628a0155ca30be3b">31 May 2023</a>
 </div>
 
  <h1 id='header'>Local frontend development</h1> <h2 id='running-applications-locally'>Running applications locally</h2><p>There are several ways of running applications locally when developing and you should choose the option that works best for your situation. For frontend developers, the following is recommended.</p>
@@ -247,6 +247,9 @@ make government-frontend
 <span class="nb">cd</span> /govuk/government-frontend
 govuk-docker-up app-live
 <span class="c"># You can now view the app on government-frontend.dev.gov.uk</span>
+</code></pre></div><p>Some frontend apps can be run against integration too. For example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> /govuk/collections
+govuk-docker-up app-integration
 </code></pre></div><h3 id='using-startup-scripts'>Using startup scripts</h3><p>If you are making changes to certain frontend apps you can also view these changes by running the application&rsquo;s <code>./startup.sh</code> script - if it has one. This example is for <a href="https://github.com/alphagov/government-frontend">government-frontend</a>, but these instructions may apply to other frontend apps.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> /govuk/government-frontend
 ./startup.sh <span class="nt">--live</span>
