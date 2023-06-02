@@ -200,15 +200,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f62018e8b5fc2848b4ec71477f4feac900b3b0af">25 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ef496d2da86cc7064b0fed0bda6d5dbe06f23ce1">25 May 2023</a>
 </div>
 
  <h1 id='header'>Deploy when GitHub is unavailable</h1> <p>Many of the git repositories which make up GOV.UK are hosted on public GitHub. If GitHub becomes unavailable, our Jenkins deployment pipeline breaks. This is because:</p>
@@ -234,20 +227,7 @@ In this scenario, Jenkins security should be disabled to enable deployment:</p>
 <p>We can deploy from AWS CodeCommit instead of GitHub, if GitHub is down or if we need a private place to develop fixes for security vulnerabilities before they are deployed.</p>
 <p>To do so, trigger the <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/"><code>Deploy_App</code></a> Jenkins job, but check the <code>DEPLOY_FROM_AWS_CODECOMMIT</code> box to deploy from AWS CodeCommit.</p>
 <h3 id='making-changes-to-code-in-aws-codecommit-before-deployment'>Making changes to code in AWS CodeCommit before deployment</h3><p>If you need to deploy from AWS CodeCommit because GitHub is down or you need to test a change of a sensitive nature, you will likely need to push a new branch of code to CodeCommit.</p>
-<p>Log into the Tools account:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-admin -l
-</code></pre></div><p>Switch to the <code>eu-west-2</code> region, and navigate to the <a href="https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories">CodeCommit Repositories screen</a>.</p>
-<p>Find the relevant repo and click the &ldquo;HTTPS&rdquo; Clone URL to copy the clone URL, then clone the repository locally. For example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>git clone https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/account-api
-</code></pre></div><p>You will be asked for a username and password, which you can retrieve from govuk-secrets:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass govuk-repo-mirror/https_git_credentials
-</code></pre></div><p>Make the necessary changes in a branch locally. For example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>git checkout -b hotfix
-rm README.md
-git add .
-git commit -m "Test commit: remove README"
-git push -u origin HEAD
-</code></pre></div><p>After you&rsquo;ve pushed the branch, you should see it in AWS CodeCommit.</p>
+<p>Setup your local environment for <a href="/manual/howto-checkout-and-commit-to-codecommit.html">checking out code from CodeCommit</a></p>
 <h3 id='deploying-a-hotfix-from-aws-codecommit'>Deploying a hotfix from AWS CodeCommit</h3><p>Once you&rsquo;ve <a href="#making-changes-to-code-in-aws-codecommit-before-deployment">pushed your hotfix branch to CodeCommit</a>, you should:</p>
 
 <ol>

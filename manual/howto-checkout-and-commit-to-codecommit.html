@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Migration to AWS - GOV.UK Developer Documentation</title>
+    <title>How to check and commit code to AWS CodeCommit - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/govuk-in-aws.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/howto-checkout-and-commit-to-codecommit.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Migration to AWS - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/govuk-in-aws.html" />
+      <meta name="twitter:title" content="How to check and commit code to AWS CodeCommit - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/howto-checkout-and-commit-to-codecommit.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Migration to AWS" />
+      <meta property="og:title" content="How to check and commit code to AWS CodeCommit" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/govuk-in-aws.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/howto-checkout-and-commit-to-codecommit.html" />
 
     
   </head>
@@ -126,27 +126,19 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Migration to AWS</span></a>
+    <a href="#header"><span>How to check and commit code to AWS CodeCommit</span></a>
     <ul>
       <li>
-        <a href="#key-differences"><span>Key Differences</span></a>
-        <ul>
-          <li>
-            <a href="#hostnames-and-dns"><span>Hostnames and DNS</span></a>
-          </li>
-          <li>
-            <a href="#databases"><span>Databases</span></a>
-          </li>
-          <li>
-            <a href="#architecture-changes"><span>Architecture changes</span></a>
-          </li>
-          <li>
-            <a href="#deploying-infrastructure"><span>Deploying infrastructure</span></a>
-          </li>
-          <li>
-            <a href="#automated-application-deployments"><span>Automated application deployments</span></a>
-          </li>
-        </ul>
+        <a href="#quick-reference-guide"><span>Quick reference guide</span></a>
+      </li>
+      <li>
+        <a href="#install-dependencies-and-set-up-local-environment"><span>Install dependencies and set up local environment</span></a>
+      </li>
+      <li>
+        <a href="#cloning-repositories"><span>Cloning repositories</span></a>
+      </li>
+      <li>
+        <a href="#pushing-to-a-branch"><span>Pushing to a branch</span></a>
       </li>
     </ul>
   </li>
@@ -197,86 +189,63 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4d34f82591bebc44e64ca54eadbef53f6ffb7cc7">2 Jun 2023</a>
 </div>
 
- <h1 id='header'>Migration to AWS</h1> <p>To bring the GOV.UK platform in line with the <a href="https://www.gov.uk/service-manual/technology/deciding-how-to-host-your-service">guidance detailed in the Service Manual</a>,
-it has been migrated to <a href="https://aws.amazon.com/">Amazon Web Services</a>.</p>
-<p>Most services run on <a href="https://aws.amazon.com/ec2/">Amazon EC2</a>, but there are some differences in the infrastructure that you should be aware of.</p>
-<h2 id='key-differences'>Key Differences</h2><h3 id='hostnames-and-dns'>Hostnames and DNS</h3><p>Traditionally we hardcoded hostnames and IPs on each instance in <code>/etc/hosts</code>. In AWS, we are making use of <a href="http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html">Auto Scaling Groups (ASG)</a> and <a href="https://aws.amazon.com/elasticloadbalancing/">Elastic Load Balancing (ELB)</a> to connect to instances, and internal DNS using <a href="https://aws.amazon.com/route53/">Amazon Route 53</a> for service resolution.</p>
-<h4 id='hostnames'>Hostnames</h4><p>Traditionally you would see hostnames similar to:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>backend-1.backend
-frontend-1.frontend
-puppetmaster-1.management
-</code></pre></div><p>Hostnames are now automatically generated by DHCP, and refer to the IP address and <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html">region</a> that the instance belongs to:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ip-10-1-4-100.eu-west-1.compute.internal
-</code></pre></div><p>Please see <a href="/manual/howto-ssh-to-machines.html">the documentation</a> about accessing the environment.</p>
-<h4 id='service-resolution'>Service resolution</h4><p>Traditionally resolving a service name to an IP would be handled by hardcoding names and IPs in <code>/etc/hosts</code>.</p>
-<p>To make use of the dynamic environment in AWS, we are using <a href="https://aws.amazon.com/route53/">Amazon Route 53</a> to resolve service names to their appropriate ELB. Each node group (a set of instances within an autoscaling group) will resolve a main service name, along with any application service names that belong to that group. For example, the <code>calculators-frontend</code> node group, will resolve <code>calculators-frontend</code> as the service name:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>lauramartin@ec2-integration-blue-backend-ip-10-1-5-53:~$ host calculators-frontend
-calculators-frontend.integration.govuk-internal.digital is an alias for calculators-frontend.blue.integration.govuk-internal.digital.
-calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.6.27
-calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.5.238
-</code></pre></div><p>It will also resolve for an application service name, such as <code>finder-frontend</code>:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>lauramartin@ec2-integration-blue-backend-ip-10-1-5-53:~$ host finder-frontend
-finder-frontend.integration.govuk-internal.digital is an alias for calculators-frontend.integration.govuk-internal.digital.
-calculators-frontend.integration.govuk-internal.digital is an alias for calculators-frontend.blue.integration.govuk-internal.digital.
-calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.4.222
-calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.6.202
-</code></pre></div><p>The service name will first resolve the top level environment domain name (<code>integration.govuk-internal.digital</code>), which will be a <a href="https://en.wikipedia.org/wiki/CNAME_record">CNAME record</a> to a stack specific DNS record.</p>
-<p>GOV.UK applications use <a href="https://github.com/alphagov/plek">Plek</a> for service discovery. Plek will return the fully-qualified domain name (FQDN) of the service it is discovering.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>irb(main):001:0&gt; Plek.find("publishing-api")
-=&gt; "https://publishing-api.integration.govuk-internal.digital"
-</code></pre></div><p>This will resolve to the associated ELB:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>lauramartin@ec2-integration-blue-backend-ip-10-1-5-53:~$ host publishing-api.integration.govuk-internal.digital
-publishing-api.integration.govuk-internal.digital is an alias for publishing-api.blue.integration.govuk-internal.digital.
-publishing-api.blue.integration.govuk-internal.digital has address 10.1.4.215
-publishing-api.blue.integration.govuk-internal.digital has address 10.1.5.50
-</code></pre></div><p><strong>No internal services should be accessed using the external public load balancers from within the internal network.</strong></p>
-<p>We are unable to set the internal domain as the default because some applications do self-referred Plek lookups that affect how applications are presented to the user. We have determined it is safer to set specific overrides for services until this behaviour is changed within the applications.</p>
-<p>Please see the related <a href="https://github.com/alphagov/govuk-aws/blob/master/docs/architecture/decisions/0015-dns-infrastructure.md">ADR for DNS Infrastructure</a> for further detail.</p>
-<h3 id='databases'>Databases</h3><h4 id='postgresql-and-mysql'>PostgreSQL and MySQL</h4><p>We are using <a href="https://aws.amazon.com/rds/">Amazon Relational Database Service (RDS)</a> to host PostgreSQL and MySQL databases.</p>
-<p>We use a number of application specific <code>db_admin</code> nodes (for example: <code>whitehall_db_admin</code>) as a way for Puppet to manage MySQL and PostgreSQL RDS instances. They also run nightly backups to S3 using <a href="/manual/govuk-env-sync.html">govuk_env_sync</a>.</p>
-<h4 id='documentdb'>DocumentDB</h4><p>Applications in AWS are gradually being migrated from self-hosted MongoDB to Amazon DocumentDB. Notable differences include:</p>
-
+ <h1 id='header'>How to check and commit code to AWS CodeCommit</h1> <p>CodeCommit is used as a backup/mirror for our repositories in GitHub. It is regularly populated by a <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml">GitHub Action in govuk-infrastructure</a>.</p>
+<p>Should we need to commit code manually to CodeCommit (if GitHub is down, for example), we can leverage the access granted to us via <a href="https://github.com/alphagov/gds-cli">gds-cli</a> in order to authenticate our local user and commit code.</p>
+<h2 id='quick-reference-guide'>Quick reference guide</h2><p>The following example shows how to clone the whitehall-prototype-2023 repository, create a local branch, make a local change then push the change to a remote branch in aws codecommit. <em>You must</em> first <a href="#install-dependencies-and-set-up-local-environment">install dependencies and set up your local environment</a>.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall-prototype-2023
+cd whitehall-prototype-2023
+git checkout -b mybranch
+touch mychange
+git add mychange
+git commit -m "my change"
+gds aws govuk-tools-poweruser git push origin mychange
+</code></pre></div><h2 id='install-dependencies-and-set-up-local-environment'>Install dependencies and set up local environment</h2>
 <ul>
-<li>DocumentDB implements the MongoDB 3.6 API, whereas our self-hosted MongoDB is version 2.4.</li>
-<li>DocumentDB instances do not support unauthenticated connections; they require a username and password.</li>
-<li>Storage is allocated automatically and scales automatically.</li>
-<li>DocumentDB does not support arbitrary binary data in fields of type <code>String</code> because it doesn&rsquo;t allow strings to contain NUL characters (<code>\\u+0000</code>).</li>
+<li><p>For this to work you need to have <a href="https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools">set up the GDS command line tools</a></p></li>
+<li><p>You will also need to install git-remote-codecommit</p></li>
 </ul>
-<p>DocumentDB instances are managed and backed up via the <code>db_admin</code> bastion hosts, similarly to Postgres and MySQL.</p>
-<h4 id='redis'>Redis</h4><p>We are using <a href="https://aws.amazon.com/elasticache/">Amazon Elasticache</a> instead of managing our own Redis
-instances.</p>
-<h3 id='architecture-changes'>Architecture changes</h3><h4 id='removal-of-load-balancer-tiers'>Removal of load balancer tiers</h4><p>Due to the use of <a href="https://aws.amazon.com/elasticloadbalancing/">Elastic Load Balancing</a> we no longer have a need to maintain
-our own nginx load balancers, and so these have been removed from the stack. See the <a href="https://github.com/alphagov/govuk-aws/blob/master/docs/architecture/decisions/0026-remove-load-balancer-tier.md">related ADR</a> for further details.</p>
-<h4 id='merging-of-mysql-database-servers'>Merging of MySQL database servers</h4><p>Traditionally, we had a separate MySQL server for Whitehall. Rather than manage multiple RDS instances,
-we have merged this into the main MySQL server. See the <a href="https://github.com/alphagov/govuk-aws/blob/master/docs/architecture/decisions/0019-centralise-mysql-databases.md">relevant ADR</a> for details.</p>
-<h3 id='deploying-infrastructure'>Deploying infrastructure</h3><p><a href="https://terraform.io">Terraform</a> is used to manage our <a href="https://en.wikipedia.org/wiki/Infrastructure_as_Code">Infrastructure as Code</a>. This code is stored
-in <a href="https://github.com/alphagov/govuk-aws">govuk-aws</a>.</p>
-<p>See the <a href="/manual/deploying-terraform.html">documentation</a> to make and deploy changes to the infrastructure.</p>
-<h3 id='automated-application-deployments'>Automated application deployments</h3><p>If an EC2 instance is terminated, it will be automatically rebuilt by the autoscaling group. If an instance runs deployable applications,
-it will automatically start a deployment of the applications it runs using the <code>Deploy_App</code> Jenkins job. It deploys the <code>deployed-to-&lt;environment&gt;</code> branch,
-and runs the <code>deploy:without_migrations</code> task.</p>
-<p>If an instance is having issues, terminating the instance may be the quickest way of ensuring a clean redeploy the applications.</p>
-<p>Be aware of instances that run a lot of applications that this may block ongoing deployments due to the time it takes to deploy multiple
-applications.</p>
-<p>For a list of what applications run on which instance types, see the <code>node_class:</code> entry in the relevant hieradata for the environment:</p>
-
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>brew install git-remote-codecommit
+</code></pre></div>
 <ul>
-<li><a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml#L13-L121">Integration (common.yaml)</a>.</li>
-<li><a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/staging.yaml#L14">Staging</a></li>
-<li><a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/production.yaml#L14">Production</a>.</li>
+<li>You will also need to add the below lines to your git config as per <a href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html#setting-up-https-unixes-credential-helper">AWS documentation</a></li>
 </ul>
-
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>git config --global credential.helper '!aws codecommit credential-helper $@'
+git config --global credential.UseHttpPath true
+</code></pre></div>
+<ul>
+<li>You should see the following entry in the gitconfig file (<code>cat ~/.gitconfig</code>)</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>[credential]
+    helper = !aws codecommit credential-helper $@
+    UseHttpPath = true
+</code></pre></div><h2 id='cloning-repositories'>Cloning repositories</h2>
+<ul>
+<li>login to the AWS console to see the available repositories using <a href="https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools">the GDS command line tool</a></li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser --login
+</code></pre></div>
+<ul>
+<li><p>search &ldquo;codecommit&rdquo; in the aws search bar and ensure that &ldquo;London&rdquo; is selected as the region</p></li>
+<li><p>find the repository you are wanting to clone using the repository search bar then select the &ldquo;HTTPS (GRC)&rdquo; <strong>repository url</strong></p></li>
+<li><p>open a terminal and navigate to the directory you want to clone the repository to then clone the repository using</p></li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git clone &lt;repository url&gt;
+</code></pre></div>
+<ul>
+<li>an example of cloning the whitehall prototype 2023 repository looks like this</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall-prototype-2023
+</code></pre></div><h2 id='pushing-to-a-branch'>Pushing to a branch</h2>
+<ul>
+<li><p>After cloning the repository you can create local branches and make local changes as you would with a normal git repository</p></li>
+<li><p>When it comes to pushing to a remote branch prefix the git command with the GDS command line tool so the correct credentials are used to authenticate with AWS</p></li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git push origin mybranch
+</code></pre></div>
 
   <div class='related-content'>
 
@@ -290,6 +259,7 @@ applications.</p>
             <li><a href="/manual/aws-iam-key-rotation.html">AWS IAM Key Rotation</a></li>
             <li><a href="/manual/common-aws-tasks-for-2nd-line-support.html">Common AWS tasks for Technical 2nd Line</a></li>
             <li><a href="/manual/how-to-escalate-to-AWS-support.html">How to raise a support ticket with AWS</a></li>
+            <li><a href="/manual/govuk-in-aws.html">Migration to AWS</a></li>
           </ul>
         </div>
 
@@ -298,7 +268,6 @@ applications.</p>
 
           <ul class="govuk-list">
             <li><a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a></li>
-            <li><a href="/manual/howto-checkout-and-commit-to-codecommit.html">How to check and commit code to AWS CodeCommit</a></li>
             <li><a href="/manual/howto-run-ssh-commands-on-many-machines.html">Run commands on many machines</a></li>
             <li><a href="/manual/howto-ssh-to-machines.html">SSH into machines</a></li>
           </ul>
@@ -313,8 +282,8 @@ applications.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/govuk-in-aws.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Migration+to+AWS%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fgovuk-in-aws.html%29&amp;labels=bug&amp;title=Re%3A+%27Migration+to+AWS%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-checkout-and-commit-to-codecommit.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27How+to+check+and+commit+code+to+AWS+CodeCommit%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-checkout-and-commit-to-codecommit.html%29&amp;labels=bug&amp;title=Re%3A+%27How+to+check+and+commit+code+to+AWS+CodeCommit%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
