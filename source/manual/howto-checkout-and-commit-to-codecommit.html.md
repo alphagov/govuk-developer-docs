@@ -12,7 +12,7 @@ Should we need to commit code manually to CodeCommit (if GitHub is down, for exa
 
 ## Quick reference guide
 
-- The following example shows how to clone the whitehall-prototype-2023 repository, create a local branch, make a local change then push the change to a remote branch in aws codecommit
+The following example shows how to clone the whitehall-prototype-2023 repository, create a local branch, make a local change then push the change to a remote branch in aws codecommit. *You must* first [install dependencies and set up your local environment](#install-dependencies-and-set-up-local-environment).
 
 ```
 gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall-prototype-2023
