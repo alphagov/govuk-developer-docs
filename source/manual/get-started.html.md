@@ -428,6 +428,15 @@ Signon](https://signon.publishing.service.gov.uk/users/invitation/new), at 'Norm
 the 'Release' app only. No permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html)
 is granted.
 
+## 15. Talk to your tech lead about supporting services you should have access to
+
+Depending on the team you've joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access (or escalate to their allocated Lead Developer) to provide access. Services you may need access to are:
+
+- [Sentry](/manual/sentry.html) - the error monitoring software we use
+- [Logit](/manual/logit.html#accessing-logit) - the software we use for access application logs, where new starters are given access to the integration environment
+- [Google Analytics](/manual/analytics.html) - the software we use to track user behaviour, typically only needed if you work on a team working frequently with analytics
+- [Zendesk](/manual/zendesk.html) - the software we use for tracking support tickets, typically access isn't needed until working as part of the [2nd line](/manual/2nd-line.html) support team
+
 ## Supporting information
 
 Now you have completed the get started process, you should look at the following supporting information:
