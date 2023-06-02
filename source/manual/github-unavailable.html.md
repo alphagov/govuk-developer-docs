@@ -40,37 +40,7 @@ To do so, trigger the [`Deploy_App`][Deploy_App] Jenkins job, but check the `DEP
 
 If you need to deploy from AWS CodeCommit because GitHub is down or you need to test a change of a sensitive nature, you will likely need to push a new branch of code to CodeCommit.
 
-Log into the Tools account:
-
-```
-gds aws govuk-tools-admin -l
-```
-
-Switch to the `eu-west-2` region, and navigate to the [CodeCommit Repositories screen](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories).
-
-Find the relevant repo and click the "HTTPS" Clone URL to copy the clone URL, then clone the repository locally. For example:
-
-```
-git clone https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/account-api
-```
-
-You will be asked for a username and password, which you can retrieve from govuk-secrets:
-
-```
-PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass govuk-repo-mirror/https_git_credentials
-```
-
-Make the necessary changes in a branch locally. For example:
-
-```
-git checkout -b hotfix
-rm README.md
-git add .
-git commit -m "Test commit: remove README"
-git push -u origin HEAD
-```
-
-After you've pushed the branch, you should see it in AWS CodeCommit.
+Setup your local environment for [checking out code from CodeCommit](/manual/howto-checkout-and-commit-to-codecommit.html)
 
 ### Deploying a hotfix from AWS CodeCommit
 
