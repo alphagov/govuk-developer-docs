@@ -129,13 +129,19 @@
     <a href="#header"><span>Purge a page from cache</span></a>
     <ul>
       <li>
-        <a href="#purging-a-page-from-the-cache"><span>Purging a page from the cache</span></a>
+        <a href="#background"><span>Background</span></a>
       </li>
       <li>
-        <a href="#purging-a-page-from-fastly-manually-e-g-if-gov-uk-production-is-dead"><span>Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)</span></a>
+        <a href="#check-the-cache-headers-of-a-page"><span>Check the cache headers of a page</span></a>
       </li>
       <li>
-        <a href="#full-edge-flush-on-fastly"><span>Full Edge Flush on Fastly</span></a>
+        <a href="#purge-a-page-from-the-fastly-cdn"><span>Purge a page from the Fastly CDN</span></a>
+      </li>
+      <li>
+        <a href="#purging-all-objects-from-the-fastly-cdn"><span>Purging all objects from the Fastly CDN</span></a>
+      </li>
+      <li>
+        <a href="#further-reading"><span>Further reading</span></a>
       </li>
     </ul>
   </li>
@@ -186,94 +192,65 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bd9b30739a857ac7e9b10456bdcc2e8e0f976a4c">3 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4297ae73380728aaf9ecb54867724f4861573c08">2 Jun 2023</a>
 </div>
 
- <h1 id='header'>Purge a page from cache</h1> <p>The <code>www.gov.uk</code> domain is served through Fastly, which honours the
-cache control headers sent by GOV.UK&rsquo;s running instance of <a href="https://varnish-cache.org/">Varnish</a>.
-Most pages are set with cache headers of 5 minutes, so when new changes
-are published it may take 5 minutes for users to see those changes.</p>
-<p>You can check the cache headers of a page with a curl command:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-sI</span> https://www.gov.uk/vat-rates | <span class="nb">grep</span> <span class="s2">"cache-control: </span><span class="se">\|</span><span class="s2">age: </span><span class="se">\|</span><span class="s2">x-cache"</span>
+ <h1 id='header'>Purge a page from cache</h1> <h2 id='background'>Background</h2><p><a href="https://www.fastly.com/products/cdn">Fastly</a> caches HTTP resources such as
+HTML pages, images and scripts on <code>www.gov.uk</code> and
+<code>assets.publishing.service.gov.uk</code> based on the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control">Cache-Control
+headers</a>
+that we serve from our origin site. Most pages are cached for 5 minutes, so
+when changes are published it may take up to 5 minutes for users to see those
+changes.</p>
+<h2 id='check-the-cache-headers-of-a-page'>Check the cache headers of a page</h2><p>You can check the cache headers of a page or any other HTTP resource using
+<a href="https://curl.se/docs/manpage.html">curl</a>:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-sI</span> https://www.gov.uk/vat-rates | <span class="nb">grep</span> <span class="nt">-Ei</span> <span class="s1">'cache-control|age:|x-cache'</span>
 age: 107
 cache-control: max-age<span class="o">=</span>300, public,private
-x-cache: MISS, HIT
+x-cache: HIT
 x-cache-hits: 1
-</code></pre></div><p>Where:</p>
-
+</code></pre></div>
 <ul>
-<li><code>age</code> is time since the resource was cached</li>
-<li><code>cache-control</code> dictates how long a resource can be cached for</li>
-<li><code>x-cache</code> indicates whether the request was served from a cache (the two
-values are GOV.UK&rsquo;s internal varnish and Fastly CDN - a result of MISS, HIT
-indicates that Fastly CDN was a cache hit, and when Fastly CDN originally
-requested GOV.UK&rsquo;s varnish this was a cache miss),</li>
-<li><code>x-cache-hits</code> is the amount of cache hits on the CDN point of presence.</li>
+<li><code>age</code> is time in seconds since the resource was cached</li>
+<li><code>cache-control</code> defines where and when a resource can be cached and for how long</li>
+<li><code>x-cache</code> indicates whether the request was served from cache</li>
+<li><code>x-cache-hits</code> is the number of cache hits at that particular Fastly <a href="https://developer.fastly.com/learning/concepts/pop/">point
+of presence</a></li>
 </ul>
-<p>If an item is seemingly cached longer than expected or needs to be urgently
-removed from the cache, you can manually remove it by purging our caches.</p>
-<h2 id='purging-a-page-from-the-cache'>Purging a page from the cache</h2><p>There is a Jenkins task to clear an item from the Fastly CDN and GOV.UK internal
-varnish cache.</p>
-<p>If you enter a path (e.g. <code>/vat-rates</code>) it will remove the item from both
-caches. For resources that are not on <code>www.gov.uk</code>, such as assets,
-you can enter a full URL (e.g. <code>https://assets.example.gov.uk/your-path-here</code>)
-and this will remove them from Fastly - these items are not stored in the
-GOV.UK internal varnish.</p>
+<h2 id='purge-a-page-from-the-fastly-cdn'>Purge a page from the Fastly CDN</h2><p>If an item urgently needs to be removed from the cache, you can issue a purge
+request.</p>
 
-<ul>
-<li><a href="https://deploy.integration.publishing.service.gov.uk/job/clear-cdn-cache/build">Clear CDN cache on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/clear-cdn-cache/build">Clear CDN cache on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/clear-cdn-cache/build">Clear CDN cache on Production</a></li>
-</ul>
-<h2 id='purging-a-page-from-fastly-manually-e-g-if-gov-uk-production-is-dead'>Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)</h2><p>To purge content on the Fastly cache nodes, use the PURGE method against the URL
-you wish to purge, passing the correct Fastly API token for the environment.</p>
-<p>First, connect to the GDS VPN if you&rsquo;re out of the office or on GovWiFi. Our
-Fastly account is configured with an IP allowlist, preventing access to the
-Fastly website or API from outside the GDS network.</p>
-<p>Next, extract the Fastly API token. Check out the <code>govuk-secrets</code> repo, install
-dependencies with <code>bundle install</code>, <code>cd</code> into the <code>puppet_aws</code> directory,
-and run the following command, replacing <code>production</code> with a different
-environment if required:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake <span class="s1">'eyaml:decrypt_value[production,govuk_jenkins::jobs::clear_cdn_cache::fastly_api_token]'</span>
-</code></pre></div><p>You may be prompted to enter the password for your keychain.</p>
-<p>You can then issue a PURGE request to Fastly using the following command
-(replacing FASTLY_API_TOKEN with the token retrieved in the previous step).</p>
-<p><strong>Note</strong>: this request must be issued over HTTPS to prevent the Fastly API token
-from being sent as plaintext.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s2">"Fastly-Key: FASTLY_API_TOKEN"</span> <span class="nt">-XPURGE</span> https://www.gov.uk/bank-holidays
-</code></pre></div><p>You should receive <code>{ &quot;status&quot;: &quot;ok&quot; }</code> returned as a response. If not, you may wish to request
-more verbose output using the <code>-i</code> switch:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-i</span> <span class="nt">-H</span> <span class="s2">"Fastly-Key: FASTLY_API_TOKEN"</span> <span class="nt">-XPURGE</span> https://www.gov.uk/bank-holidays
-</code></pre></div><h2 id='full-edge-flush-on-fastly'>Full Edge Flush on Fastly</h2><p>There are two steps involved in flushing <em>everything</em>; our origin (the cache
-servers) followed by Fastly.</p>
-<p>If possible, speak to a member of the senior tech team before doing this, to
-evaluate the risk.</p>
-<p>To flush our origin, ssh onto each cache and draft_cache box in turn and run
-the following command:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>varnishadm <span class="s1">'ban req.url ~ .'</span>
-</code></pre></div><p>This invalidates all current cached objects in varnish.
-Note that this will not delete existing objects but does present them from being served.
-We use it instead of purging because it&rsquo;s more efficient when invalidating a large
-number of objects, i.e. all objects.</p>
-<p>See: https://www.varnish-cache.org/docs/3.0/tutorial/purging.html</p>
-<p>Once this is done move on to Fastly. This can only be done through the Fastly
-UI - if you don&rsquo;t have access, speak to a member of the senior tech team.</p>
-<p>Within the UI you reach the purge all functionality.</p>
+<blockquote>
+<p>If something was published that should not have been published, consider
+whether there has been a notifiable data breach and if so, make sure that
+someone is handling the matter.</p>
+</blockquote>
 
-<ul>
-<li>Click &ldquo;Configure&rdquo;</li>
-<li>Choose the correct service in the service drop down</li>
-<li>Click on the &ldquo;Purge&rdquo; drop down</li>
-<li>Click on &ldquo;Purge All&rdquo;</li>
-</ul>
+<ol>
+<li>Log into <a href="https://manage.fastly.com/">https://manage.fastly.com/</a>. If you don&rsquo;t have an account, ask
+your tech lead or a member of the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members">senior tech team</a>.</li>
+<li>Under <a href="https://manage.fastly.com/services/all">All services</a>, choose the
+appropriate service. For example, <code>Production GOV.UK</code> for www.gov.uk or
+<code>Production Assets</code> for assets.publishing.service.gov.uk.</li>
+<li>From the &ldquo;Purge&rdquo; drop-down button near the top left of the page, choose
+&ldquo;Purge URL&rdquo;.</li>
+<li>Enter the full path of the resource to purge (that is, everything after the
+hostname in the URL) and choose Purge.</li>
+</ol>
+<h2 id='purging-all-objects-from-the-fastly-cdn'>Purging all objects from the Fastly CDN</h2><p>If possible, check with a member of the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members">senior tech team</a> before doing this in
+production.</p>
+
+<ol>
+<li>Log into <a href="https://manage.fastly.com/">https://manage.fastly.com/</a>.</li>
+<li>Under <a href="https://manage.fastly.com/services/all">All services</a>, choose the
+appropriate service. For example, <code>Production GOV.UK</code> for www.gov.uk or
+<code>Production Assets</code> for assets.publishing.service.gov.uk.</li>
+<li>From the &ldquo;Purge&rdquo; drop-down button near the top left of the page, choose
+&ldquo;Purge all&rdquo;.</li>
+<li>The UI will ask you for confirmation before issuing the purge request.</li>
+</ol>
+<h2 id='further-reading'>Further reading</h2><p>See <a href="https://developer.fastly.com/learning/concepts/purging/">Fastly&rsquo;s documentation on purging</a>.</p>
 
 
   <div class='related-content'>
