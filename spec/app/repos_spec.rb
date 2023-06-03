@@ -31,6 +31,21 @@ RSpec.describe Repos do
     end
   end
 
+  describe "active_public" do
+    let(:repos) do
+      [
+        { repo_name: "secret-squirrel", private_repo: true },
+        { repo_name: "olde-time-public-repo", retired: true },
+        { repo_name: "active-public-repo", retired: false },
+        { repo_name: "retired-secret-squirrel", private_repo: true, retired: true },
+      ]
+    end
+
+    it "should return only repos that are both public and not retired" do
+      expect(Repos.active_public.map(&:repo_name)).to eq(%w[active-public-repo])
+    end
+  end
+
   describe "active_apps" do
     let(:repos) do
       [
