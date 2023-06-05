@@ -199,7 +199,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/841dce44cdd1a5ea074561ee06a5bf394ae71a5d">1 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/20f9cd07c0368774fd36fae28ba9e816145ec460">5 Jun 2023</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones.</p>
@@ -292,8 +292,15 @@ the CNAME points to.</li>
 <li><p>Update the DNS records as required.</p></li>
 <li><p><strong>For bonus points:</strong> If the zone description wasn&rsquo;t clear, but you&rsquo;re certain it&rsquo;s safe to be updated manually, then consider changing the description field so it&rsquo;s clearer for the next person.</p></li>
 </ol>
-<h2 id='getting-terraform-cloud-access'>Getting Terraform Cloud access</h2><p>If you&rsquo;re a member of 2nd-line, Platform Engineering or Platform Security and Reliability, you should automatically be able to <a href="https://accounts.google.com/o/saml2/initsso?idpid=C01ppujwc&amp;spid=738388265440&amp;forceauthn=false">log into Terraform Cloud</a> using your digital.cabinet-office.gov.uk Google account.</p>
-<p>If you&rsquo;re having trouble logging into Terraform Cloud then <a href="https://gds.slack.com/channels/govuk-platform-engineering">Platform Engineering team</a> or an <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/GOV.UK_Terraform_Cloud_Access/about">owner of the GOV.UK_Terraform_Cloud_Access group</a> will be able to help you.</p>
+<h2 id='getting-terraform-cloud-access'>Getting Terraform Cloud access</h2><p>You can sign up for Terraform Cloud and join the GOV.UK organisation yourself. You will need to be a member of the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/2nd-line-support">Technical 2nd Line Support</a> Google Group, or the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/GOV.UK_Terraform_Cloud_Access/members">GOV.UK Terraform Cloud Access</a> group.</p>
+
+<ol>
+<li>Follow this link to <a href="https://accounts.google.com/o/saml2/initsso?idpid=C01ppujwc&amp;spid=738388265440&amp;forceauthn=false">join the GOV.UK Terraform Cloud organisation</a>. By connecting your digital.cabinet-office.gov.uk Google account, you&rsquo;ll be granted access to the GOV.UK organisation.</li>
+<li>After connecting Google, you&rsquo;ll be asked to create a Terraform Cloud account (or sign in if you already have one). You&rsquo;ll need to set an account password – which might feel weird because you&rsquo;ve already linked Google, but it turns out that&rsquo;s only used to grant access to the GOV.UK organisation, not for SSO login functionality.</li>
+<li>You should now have access to <a href="https://app.terraform.io/app/govuk/workspaces">workspaces in the GOV.UK organisation</a>.</li>
+<li>Open the <a href="https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf">govuk-dns-tf</a> workspace. This is where Terraform Cloud will plan &amp; apply changes made to the <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a> GitHub repository.</li>
+</ol>
+<p>If you have problems following any of the above steps, you might be missing from the required Google Group. Ask over in the <a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a> Slack channel for help.</p>
 
 
   <div class='related-content'>
