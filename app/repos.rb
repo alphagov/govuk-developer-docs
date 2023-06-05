@@ -16,6 +16,10 @@ class Repos
     Repos.all.reject(&:retired?)
   end
 
+  def self.active_public
+    Repos.active.reject(&:private_repo?)
+  end
+
   def self.active_apps
     Repos.active.select(&:is_app?)
   end
