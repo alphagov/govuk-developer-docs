@@ -125,8 +125,14 @@ Some of these are not managed by Terraform. If you can't find a configuration fi
 
 ## Getting Terraform Cloud access
 
-If you're a member of 2nd-line, Platform Engineering or Platform Security and Reliability, you should automatically be able to [log into Terraform Cloud](https://accounts.google.com/o/saml2/initsso?idpid=C01ppujwc&spid=738388265440&forceauthn=false) using your digital.cabinet-office.gov.uk Google account.
+You can sign up for Terraform Cloud and join the GOV.UK organisation yourself. You will need to be a member of the [Technical 2nd Line Support](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/2nd-line-support) Google Group, or the [GOV.UK Terraform Cloud Access](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/GOV.UK_Terraform_Cloud_Access/members) group.
 
-If you're having trouble logging into Terraform Cloud then [Platform Engineering team](https://gds.slack.com/channels/govuk-platform-engineering) or an [owner of the GOV.UK_Terraform_Cloud_Access group](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/GOV.UK_Terraform_Cloud_Access/about) will be able to help you.
+1. Follow this link to [join the GOV.UK Terraform Cloud organisation](https://accounts.google.com/o/saml2/initsso?idpid=C01ppujwc&spid=738388265440&forceauthn=false). By connecting your digital.cabinet-office.gov.uk Google account, you'll be granted access to the GOV.UK organisation.
+2. After connecting Google, you'll be asked to create a Terraform Cloud account (or sign in if you already have one). You'll need to set an account password – which might feel weird because you've already linked Google, but it turns out that's only used to grant access to the GOV.UK organisation, not for SSO login functionality.
+3. You should now have access to [workspaces in the GOV.UK organisation](https://app.terraform.io/app/govuk/workspaces).
+4. Open the [govuk-dns-tf][govuk-dns-tf-cloud] workspace. This is where Terraform Cloud will plan & apply changes made to the [govuk-dns-tf][] GitHub repository.
+
+If you have problems following any of the above steps, you might be missing from the required Google Group. Ask over in the [#govuk-platform-engineering](https://gds.slack.com/channels/govuk-platform-engineering) Slack channel for help.
 
 [govuk-dns-tf]: https://github.com/alphagov/govuk-dns-tf
+[govuk-dns-tf-cloud]: https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf
