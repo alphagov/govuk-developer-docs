@@ -77,7 +77,7 @@ Once these conditions are met, you will be drafted onto one last Technical 2nd L
 
 At the end of your shadow shift, you will retain your Production Admin access, and will no longer need to be supervised. However, you should ensure you are careful with the new access, and seek the support of your tech lead or your team whenever you're in doubt.
 
-Note that a Lead Developer or the Head of Technology is able to approve Production Admin access for individuals who may not have met all of the conditions above, where there is a business case to do so. In these cases, access should ideally be supervised at all times, and revoked after a pre-determined period of time.
+Note that a Lead Developer or the Head of Technology is able to approve Production Admin access for individuals who may not have met all of the conditions above, where there is a business case to do so.
 
 ## Rules for Primary, Secondary and On Call
 
