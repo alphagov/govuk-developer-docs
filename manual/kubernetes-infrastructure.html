@@ -208,7 +208,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dabfc048b09fa963b1613d2800fe916422a5b721">3 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e19610af825031051f76776ecaefd480fc38bc8a">6 Jun 2023</a>
 </div>
 
  <h1 id='header'>EKS/Kubernetes infrastructure</h1> <p>This is a temporary page to tide us over as we get used to the new EKS platform.
@@ -262,7 +262,7 @@ It will eventually be consolidated when the <a href="https://govuk-k8s-user-docs
 </ul>
 <h2 id='cdn-and-dns-deployments'>CDN and DNS deployments</h2>
 <ul>
-<li>DNS rollouts are <a href="/manual/dns.html">via Terraform Cloud</a></li>
+<li><a href="/manual/dns.html">DNS rollouts</a> are via <a href="/manual/terraform-cloud.html">Terraform Cloud</a></li>
 <li>Fastly CDN config rollouts are still via Jenkins for now.</li>
 </ul>
 <h2 id='smokey'>Smokey</h2><p>Smokey runs in Argo Workflows persist for longer only if they have failed (because of limitations of Argo Workflows that we can&rsquo;t easily get around).
@@ -338,6 +338,7 @@ To find out what they do, run <code>k exec --help</code>.</p>
             <li><a href="/manual/new-instances-fail-to-provision.html">New instances fail to provision</a></li>
             <li><a href="/manual/rate-limiting.html">Rate Limiting</a></li>
             <li><a href="/manual/rollback-puppet-if-jenkins-is-broken.html">Rollback Puppet if Jenkins is broken</a></li>
+            <li><a href="/manual/terraform-cloud.html">Terraform Cloud</a></li>
             <li><a href="/manual/upgrade-terraform.html">Upgrade Terraform</a></li>
           </ul>
         </div>

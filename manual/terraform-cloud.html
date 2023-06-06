@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Rollback Puppet if Jenkins is broken - GOV.UK Developer Documentation</title>
+    <title>Terraform Cloud - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/rollback-puppet-if-jenkins-is-broken.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/terraform-cloud.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Rollback Puppet if Jenkins is broken - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/rollback-puppet-if-jenkins-is-broken.html" />
+      <meta name="twitter:title" content="Terraform Cloud - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/terraform-cloud.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Rollback Puppet if Jenkins is broken" />
+      <meta property="og:title" content="Terraform Cloud" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/rollback-puppet-if-jenkins-is-broken.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/terraform-cloud.html" />
 
     
   </head>
@@ -126,7 +126,12 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Rollback Puppet if Jenkins is broken</span></a>
+    <a href="#header"><span>Terraform Cloud</span></a>
+    <ul>
+      <li>
+        <a href="#getting-terraform-cloud-access"><span>Getting Terraform Cloud access</span></a>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -175,55 +180,20 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e19610af825031051f76776ecaefd480fc38bc8a">6 Jun 2023</a>
 </div>
 
- <h1 id='header'>Rollback Puppet if Jenkins is broken</h1> <p>Sometimes, a Puppet release may break Jenkins and since Jenkins is used to
-release Puppet, there is no straight forward way to rollback Puppet.</p>
-<p>This procedure will rollback Puppet to a previous release so that Jenkins is
-restored:</p>
+ <h1 id='header'>Terraform Cloud</h1> <p>GOV.UK uses Terraform Cloud as a centralised interface for running Terraform.</p>
+<h2 id='getting-terraform-cloud-access'>Getting Terraform Cloud access</h2><p>You can sign up for Terraform Cloud and join the GOV.UK organisation yourself. You will need to be a member of the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/2nd-line-support">Technical 2nd Line Support</a> Google Group, or the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/GOV.UK_Terraform_Cloud_Access/members">GOV.UK Terraform Cloud Access</a> group.</p>
 
 <ol>
-<li>log into the Puppet master machine:</li>
+<li>Follow this link to <a href="https://accounts.google.com/o/saml2/initsso?idpid=C01ppujwc&amp;spid=738388265440&amp;forceauthn=false">join the GOV.UK Terraform Cloud organisation</a>. By connecting your digital.cabinet-office.gov.uk Google account, you&rsquo;ll be granted access to the GOV.UK organisation.</li>
+<li>After connecting Google, you&rsquo;ll be asked to create a Terraform Cloud account (or sign in if you already have one), as <a href="https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/single-sign-on#sso-identities-and-terraform-cloud-user-accounts">SSO does not automatically provision Terraform Cloud user accounts</a>. You&rsquo;ll need to set an account password, however, once the SSO identity is linked, you&rsquo;ll only log in to the GOV.UK organization using the linked (Google) account.</li>
+<li>You should now have access to <a href="https://app.terraform.io/app/govuk/workspaces">workspaces in the GOV.UK organisation</a>.</li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  gds govuk connect ssh <span class="nt">-e</span> &lt;govuk_environment&gt; puppetmaster
-</code></pre></div>
-<ol>
-<li>check the current active release by looking at the symbolic link of <code>/usr/share/puppet/production/current</code>:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  <span class="nb">sudo </span>su
-  su deploy
-  <span class="nb">ls</span> <span class="nt">-lh</span> /usr/share/puppet/production/
-</code></pre></div>
-<ol>
-<li>get a list of Puppet available releases on the Puppet master, they are in the format year/month/day/time:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  <span class="nb">ls</span> /usr/share/puppet/production/releases
-</code></pre></div>
-<ol>
-<li>link to another previous release using:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  <span class="nb">ln</span> <span class="nt">-sfn</span> /usr/share/puppet/production/releases/&lt;previous_release_number&gt; /usr/share/puppet/production/current
-</code></pre></div>
-<ol>
-<li>restart Puppet service (as root or your admin user):</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  service puppetserver restart
-</code></pre></div>
-<ol>
-<li>log into the Jenkins server and re-run Puppet:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  gds govuk connect ssh <span class="nt">-e</span> integration jenkins
-  govuk_puppet <span class="nt">--test</span>
-</code></pre></div>
+<p>If you have problems following any of the above steps, you might be missing from the required Google Group. Ask over in the <a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a> Slack channel for help.</p>
+
 
   <div class='related-content'>
 
@@ -241,7 +211,7 @@ restored:</p>
             <li><a href="/manual/load-testing.html">Load Testing</a></li>
             <li><a href="/manual/new-instances-fail-to-provision.html">New instances fail to provision</a></li>
             <li><a href="/manual/rate-limiting.html">Rate Limiting</a></li>
-            <li><a href="/manual/terraform-cloud.html">Terraform Cloud</a></li>
+            <li><a href="/manual/rollback-puppet-if-jenkins-is-broken.html">Rollback Puppet if Jenkins is broken</a></li>
             <li><a href="/manual/upgrade-terraform.html">Upgrade Terraform</a></li>
           </ul>
         </div>
@@ -277,8 +247,8 @@ restored:</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/rollback-puppet-if-jenkins-is-broken.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Rollback+Puppet+if+Jenkins+is+broken%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Frollback-puppet-if-jenkins-is-broken.html%29&amp;labels=bug&amp;title=Re%3A+%27Rollback+Puppet+if+Jenkins+is+broken%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/terraform-cloud.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Terraform+Cloud%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fterraform-cloud.html%29&amp;labels=bug&amp;title=Re%3A+%27Terraform+Cloud%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

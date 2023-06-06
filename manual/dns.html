@@ -146,9 +146,6 @@
       <li>
         <a href="#dns-for-non-gov-uk-domains"><span>DNS for non-gov.uk domains</span></a>
       </li>
-      <li>
-        <a href="#getting-terraform-cloud-access"><span>Getting Terraform Cloud access</span></a>
-      </li>
     </ul>
   </li>
 </ul>
@@ -199,7 +196,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/20f9cd07c0368774fd36fae28ba9e816145ec460">5 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e19610af825031051f76776ecaefd480fc38bc8a">6 Jun 2023</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones.</p>
@@ -219,10 +216,10 @@ Note that we <strong>do not</strong> manage any other DNS records: if you get a 
 <p>When you&rsquo;ve verified the authenticity of the request as per the SRE docs above, you should:</p>
 
 <ol>
-<li>Ensure you have <a href="#getting-terraform-cloud-access">Terraform Cloud access</a></li>
-<li>Commit your changes in <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a> (see <a href="https://github.com/alphagov/govuk-dns-tf/pull/14">example</a>)</li>
+<li>Ensure you have <a href="/manual/terraform-cloud.html">Terraform Cloud access</a></li>
+<li>Commit your changes in [govuk-dns-tf]<a href="see%20[example](https://github.com/alphagov/govuk-dns-tf/pull/14)"></a></li>
 <li>Push your changes to GitHub and open a pull request</li>
-<li>Terraform Cloud will automatically perform a plan</li>
+<li>Terraform Cloud will automatically perform a plan. Open the <a href="https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf">govuk-dns-tf</a> workspace to see it.</li>
 <li>If you are happy with the results of the plan, merge your PR</li>
 <li>Terraform Cloud will automatically apply your changes when they are merged to <code>main</code></li>
 </ol>
@@ -269,7 +266,7 @@ the CNAME points to.</li>
 <li><code>public-inquiry.uk</code></li>
 <li><code>royal-commission.uk</code></li>
 </ul>
-<p>Some of these are not managed by Terraform. If you can&rsquo;t find a configuration file for the zone in <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a>, then you&rsquo;ll need to update it manually in the AWS console.</p>
+<p>Some of these are not managed by Terraform. If you can&rsquo;t find a configuration file for the zone in [govuk-dns-tf][], then you&rsquo;ll need to update it manually in the AWS console.</p>
 
 <ol>
 <li><p>Login to the <strong>production</strong> AWS console.</p>
@@ -292,15 +289,6 @@ the CNAME points to.</li>
 <li><p>Update the DNS records as required.</p></li>
 <li><p><strong>For bonus points:</strong> If the zone description wasn&rsquo;t clear, but you&rsquo;re certain it&rsquo;s safe to be updated manually, then consider changing the description field so it&rsquo;s clearer for the next person.</p></li>
 </ol>
-<h2 id='getting-terraform-cloud-access'>Getting Terraform Cloud access</h2><p>You can sign up for Terraform Cloud and join the GOV.UK organisation yourself. You will need to be a member of the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/2nd-line-support">Technical 2nd Line Support</a> Google Group, or the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/GOV.UK_Terraform_Cloud_Access/members">GOV.UK Terraform Cloud Access</a> group.</p>
-
-<ol>
-<li>Follow this link to <a href="https://accounts.google.com/o/saml2/initsso?idpid=C01ppujwc&amp;spid=738388265440&amp;forceauthn=false">join the GOV.UK Terraform Cloud organisation</a>. By connecting your digital.cabinet-office.gov.uk Google account, you&rsquo;ll be granted access to the GOV.UK organisation.</li>
-<li>After connecting Google, you&rsquo;ll be asked to create a Terraform Cloud account (or sign in if you already have one). You&rsquo;ll need to set an account password – which might feel weird because you&rsquo;ve already linked Google, but it turns out that&rsquo;s only used to grant access to the GOV.UK organisation, not for SSO login functionality.</li>
-<li>You should now have access to <a href="https://app.terraform.io/app/govuk/workspaces">workspaces in the GOV.UK organisation</a>.</li>
-<li>Open the <a href="https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf">govuk-dns-tf</a> workspace. This is where Terraform Cloud will plan &amp; apply changes made to the <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a> GitHub repository.</li>
-</ol>
-<p>If you have problems following any of the above steps, you might be missing from the required Google Group. Ask over in the <a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a> Slack channel for help.</p>
 
 
   <div class='related-content'>
@@ -319,6 +307,7 @@ the CNAME points to.</li>
             <li><a href="/manual/new-instances-fail-to-provision.html">New instances fail to provision</a></li>
             <li><a href="/manual/rate-limiting.html">Rate Limiting</a></li>
             <li><a href="/manual/rollback-puppet-if-jenkins-is-broken.html">Rollback Puppet if Jenkins is broken</a></li>
+            <li><a href="/manual/terraform-cloud.html">Terraform Cloud</a></li>
             <li><a href="/manual/upgrade-terraform.html">Upgrade Terraform</a></li>
           </ul>
         </div>
