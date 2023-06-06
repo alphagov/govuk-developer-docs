@@ -55,7 +55,7 @@ Some things haven't yet been replatformed, and some things will remain unchanged
 
 ## CDN and DNS deployments
 
-- DNS rollouts are [via Terraform Cloud](/manual/dns.html)
+- [DNS rollouts](/manual/dns.html) are via [Terraform Cloud](/manual/terraform-cloud.html)
 - Fastly CDN config rollouts are still via Jenkins for now.
 
 ## Smokey
