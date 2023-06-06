@@ -129,18 +129,19 @@
     <a href="#header"><span>Deploy non-emergency global banner</span></a>
     <ul>
       <li>
-        <a href="#activating-the-global-banner"><span>Activating the global banner</span></a>
+        <a href="#activate-the-global-banner"><span>Activate the global banner</span></a>
       </li>
       <li>
-        <a href="#add-the-target-page-to-blocklist"><span>Add the target page to blocklist</span></a>
-        <ul>
-          <li>
-            <a href="#versioning-the-global-banner"><span>Versioning the global banner</span></a>
-          </li>
-        </ul>
+        <a href="#exclude-specific-pages-from-showing-the-banner"><span>Exclude specific pages from showing the banner</span></a>
       </li>
       <li>
-        <a href="#removing-the-global-banner"><span>Removing the global banner</span></a>
+        <a href="#update-the-global-banner-version"><span>Update the global banner version</span></a>
+      </li>
+      <li>
+        <a href="#remove-the-global-banner"><span>Remove the global banner</span></a>
+      </li>
+      <li>
+        <a href="#troubleshoot-the-banner"><span>Troubleshoot the banner</span></a>
       </li>
     </ul>
   </li>
@@ -191,50 +192,79 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/09d6166639082b4890f0a07b33f4aab4f33e3778">5 Jun 2023</a>
 </div>
 
- <h1 id='header'>Deploy non-emergency global banner</h1> <p>A site-wide banner can be activated to convey important information on GOV.UK
-which is not deemed emergency level information. Unlike the
-<a href="/manual/emergency-publishing.html">emergency banner</a>, by default the
-global banner disappears after someone has seen it three times (controlled
-by a cookie).</p>
-<p>The content of the site-wide banner is contained in
-<a href="https://github.com/alphagov/static/blob/main/app/views/components/_global_bar.html.erb"><code>app/views/notifications/_global_bar.html.erb</code> in Static</a>.</p>
-<h2 id='activating-the-global-banner'>Activating the global banner</h2><p>In <code>app/views/notifications/_global_bar.html.erb</code>,</p>
+ <h1 id='header'>Deploy non-emergency global banner</h1> <p>A site-wide (global) banner can be activated to convey important information on
+GOV.UK which is not deemed emergency-level information. Unlike the <a href="/manual/emergency-publishing.html">emergency
+banner</a>, we show a user the global banner no
+more than 3 times, by storing the view count in a cookie.</p>
+<p>The content of the global banner is contained in
+<a href="https://github.com/alphagov/static/blob/main/app/views/components/_global_bar.html.erb"><code>app/views/components/_global_bar.html.erb</code></a> in Static.</p>
+<h2 id='activate-the-global-banner'>Activate the global banner</h2><p>In <a href="https://github.com/alphagov/static/blob/main/app/views/components/_global_bar.html.erb"><code>app/views/components/_global_bar.html.erb</code></a>:</p>
 
 <ol>
-<li>Update the variables <code>title</code>, <code>title_href</code>, <code>link_text</code> and <code>link_href</code> with the relevant info where applicable, otherwise set to <code>false</code>.</li>
-<li>Update the <code>show_global_bar</code> variable to <code>true</code></li>
-<li>Optional: set the <code>always_visible</code> boolean to <code>true</code> if banner should not disappear after being seen enough times.</li>
-<li>Deploy static</li>
+<li>Update the variables <code>title</code>, <code>title_href</code>, <code>link_href</code> and <code>link_text</code> with
+the relevant info where applicable, otherwise set them to <code>false</code>.</li>
+<li>Change the value of <code>show_global_bar</code> to <code>true</code>.</li>
+<li>Optional: set the <code>always_visible</code> boolean to <code>true</code> if the banner should
+not disappear after being seen 3 times.</li>
+<li><a href="https://github.com/alphagov/static/actions/workflows/deploy.yml">Deploy Static</a>. See the <a href="/manual/deploy-static.html">guidance on deploying Static</a>.</li>
 </ol>
-<p>The usual <a href="/manual/deploy-static.html">Static deployment rules</a> apply.</p>
 <p><a href="images/global_banner.png" rel="noopener noreferrer"><img src="/manual/images/global_banner.png" alt="screenshot" /></a></p>
-<h2 id='add-the-target-page-to-blocklist'>Add the target page to blocklist</h2><p>The target page linked to from the banner will automatically hide the banner.
-Add any other pages that don&rsquo;t need to show the banner to the <code>urlBlockList</code> in <code>app/assets/javascripts/global-bar-init.js</code>.</p>
-<h3 id='versioning-the-global-banner'>Versioning the global banner</h3><p>The number of times a user has viewed the banner is stored in a <code>global_bar_seen</code> cookie.
-Once the view count reaches 3, a user will not see the cookie again, even if the banner is
-re-deployed. The only way a user will see the banner again is if:</p>
+<h2 id='exclude-specific-pages-from-showing-the-banner'>Exclude specific pages from showing the banner</h2><p>The target page linked to from the banner will automatically not show the banner.</p>
+<p>To prevent other pages from showing the banner, add them to <code>urlBlockList</code> in
+<code>app/assets/javascripts/global-bar-init.js</code> in Static.</p>
+<h2 id='update-the-global-banner-version'>Update the global banner version</h2><p>The number of times a user has viewed the banner is stored in a
+<code>global_bar_seen</code> cookie. Once the view count reaches 3, that user will not see
+that banner again, even if new banner content is deployed.</p>
+<p>The user will only see the banner again after the third time if either:</p>
+
+<ul>
+<li>their <code>global_bar_seen</code> cookie expires, or</li>
+<li>the <code>version</code> field in their cookie differs from the value of
+<code>BANNER_VERSION</code> in <a href="https://github.com/alphagov/static/blob/main/app/assets/javascripts/global-bar-init.js"><code>global-bar-init.js</code></a></li>
+</ul>
+<p>To show the global banner again for all users including those who have already
+seen it 3 times:</p>
 
 <ol>
-<li>the <code>global_bar_seen</code> cookie expires, or</li>
-<li>the global banner is versioned</li>
+<li>Increment the value of <code>BANNER_VERSION</code> in <a href="https://github.com/alphagov/static/blob/main/app/assets/javascripts/global-bar-init.js"><code>global-bar-init.js</code></a>.</li>
+<li><a href="https://github.com/alphagov/static/actions/workflows/deploy.yml">Deploy Static</a>.</li>
 </ol>
-<p>To version the global banner, increase the <code>BANNER_VERSION</code> in <a href="https://github.com/alphagov/static/blob/main/app/assets/javascripts/global-bar-init.js"><code>global-bar-init.js</code></a> by one.</p>
-<h2 id='removing-the-global-banner'>Removing the global banner</h2><p>In <a href="https://github.com/alphagov/static/blob/main/app/views/components/_global_bar.html.erb"><code>app/views/notifications/_global_bar.html.erb</code></a>:</p>
+<h2 id='remove-the-global-banner'>Remove the global banner</h2>
+<ol>
+<li>In <a href="https://github.com/alphagov/static/blob/main/app/views/components/_global_bar.html.erb"><code>app/views/components/_global_bar.html.erb</code></a>, change the value of
+<code>show_global_bar</code> to <code>false</code>.</li>
+<li><a href="https://github.com/alphagov/static/actions/workflows/deploy.yml">Deploy Static</a>.</li>
+</ol>
+<h2 id='troubleshoot-the-banner'>Troubleshoot the banner</h2>
+<ol>
+<li>Check that your rollout of Static succeeded, for example by checking when
+Static was last synced in Argo CD
+(<a href="https://argo.eks.staging.govuk.digital/applications/cluster-services/static">staging</a>,
+<a href="https://argo.eks.production.govuk.digital/applications/cluster-services/static">production</a>).</li>
+<li>Make sure you are looking at the same environment where you deployed your
+change to Static.</li>
+<li>Use a fresh private/Incognito window so that your testing is not affected by
+browser state such as cookies or cache.</li>
+<li>Wait 5–10 minutes for caches to expire, then repeat the previous step.</li>
+</ol>
+<p>If the banner is still not showing, there may be a bug or misconfiguration
+somewhere. You might be able to work around the problem temporarily until
+the underlying issue is fixed.</p>
 
 <ol>
-<li>Update the <code>show_global_bar</code> variable to <code>false</code></li>
-<li>Deploy static</li>
+<li>Try clearing the frontend memcache. Log into the AWS web console for the
+appropriate environment, find <a href="https://eu-west-1.console.aws.amazon.com/elasticache/home?region=eu-west-1#/memcached/frontend-memcached-govuk">frontend-memcached-govuk under Elasticache,
+Memcached
+clusters</a>
+and press the Reboot button. The UI will ask you to confirm the request.</li>
+<li>Consider <a href="https://docs.publishing.service.gov.uk/manual/purge-cache">clearing the page from the CDN
+cache</a>. Most
+pages expire from the CDN cache within 5 minutes so this is unlikely (though
+not impossible) to be the issue.</li>
 </ol>
 
 
