@@ -34,8 +34,8 @@ Make sure you monitor your test after deployment.
 
 1. Write the A/B test. Use the information in the [govuk_ab_testing gem][govuk_ab_testing] to understand how to serve different versions to your users.
 1. Add your test to the [A/B test register][register].
-1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test.
-1. Create dictionary and A/B test files in the [govuk-cdn-config repo][govuk-cdn-config]. See an [example for the dictionaries][dictionary-config-example] and an [example for the A/B configuration][cdn-config-example]. For more information, see the [dictionaries README][dictionaries-readme].
+1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test. If you wish to run an A/B test in integration or staging you may need to ensure that analytics tracking exists in those environments.
+1. Create dictionary and A/B test files in the [govuk-cdn-config repo][govuk-cdn-config]. See an [example for the dictionaries][dictionary-config-example]. For the tests you will want to regenerate the spec files by running the script in the [govuk-cdn-config README][link-to-readme-script], this will generate test files as seen in this [example][spec-files-generated-example].
 
 ## 3. Deploy and activate an A/B test
 
@@ -47,9 +47,10 @@ To deploy and activate an A/B test, you must [set up a personal API token](https
 
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
 [dictionaries-readme]: https://github.com/alphagov/govuk-cdn-config#fastly-dictionaries
-[dictionary-config-example]: https://github.com/alphagov/govuk-cdn-config-secrets/commit/ba3ec923c0bb5bdf17bdaf02419ff4e049516fda
+[dictionary-config-example]: https://github.com/alphagov/govuk-cdn-config/pull/403/commits/4283c9358120360ebbfb00af4824e0571241f194
+[spec-files-generated-example]: https://github.com/alphagov/govuk-cdn-config/pull/403/commits/ac79b4b365e468f64e4cec35c6d22b45a90f9d16
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
-[cdn-config-example]: https://github.com/alphagov/fastly-configure/pull/29/files
+[link-to-readme-script]: https://github.com/alphagov/govuk-cdn-config#making-changes-to-vcl
 
 ## 4. Remove the A/B test
 
