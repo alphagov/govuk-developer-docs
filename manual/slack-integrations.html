@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>GitHub Trello Poster - GOV.UK Developer Documentation</title>
+    <title>How to add popular GOV.UK Slack integrations - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/github-trello-poster.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/slack-integrations.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="GitHub Trello Poster - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/github-trello-poster.html" />
+      <meta name="twitter:title" content="How to add popular GOV.UK Slack integrations - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/slack-integrations.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="GitHub Trello Poster" />
+      <meta property="og:title" content="How to add popular GOV.UK Slack integrations" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/github-trello-poster.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/slack-integrations.html" />
 
     
   </head>
@@ -126,16 +126,47 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>GitHub Trello Poster</span></a>
+    <a href="#header"><span>How to add popular GOV.UK Slack integrations</span></a>
     <ul>
       <li>
-        <a href="#background"><span>Background</span></a>
+        <a href="#seal"><span>Seal</span></a>
+        <ul>
+          <li>
+            <a href="#configuration"><span>Configuration</span></a>
+          </li>
+        </ul>
       </li>
       <li>
-        <a href="#credentials"><span>Credentials</span></a>
+        <a href="#dependapanda"><span>Dependapanda</span></a>
+        <ul>
+          <li>
+            <a href="#configuration"><span>Configuration</span></a>
+          </li>
+        </ul>
       </li>
       <li>
-        <a href="#using-github-trello-poster"><span>Using GitHub Trello Poster</span></a>
+        <a href="#rotabot"><span>Rotabot</span></a>
+        <ul>
+          <li>
+            <a href="#configuration"><span>Configuration</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#release-app-badger"><span>Release App Badger</span></a>
+        <ul>
+          <li>
+            <a href="#configuration"><span>Configuration</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#sentry"><span>Sentry</span></a>
+        <ul>
+          <li>
+            <a href="#configuration"><span>Configuration</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -187,20 +218,22 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/37f5953a891d537a39e851090ba1555e6e6e338f">2 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ef434bc4f2432eca7bee6575eb6b4d9f777e9bf8">6 Jun 2023</a>
 </div>
 
- <h1 id='header'>GitHub Trello Poster</h1> <p>This app uses GitHub webhooks to be notified when a pull request is opened or changed on GitHub. When it finds a link to a Trello card in the pull request, it posts a link to that pull request to a checklist on the given card. When a pull request is merged or closed the app checks the pull request off the checklist.</p>
-<h2 id='background'>Background</h2><p>This app was created by Emma Beynon as a <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds-technology/junior-technologist/previous-20-projects/github-trello-poster">20% time project</a>.  It was built using Ruby and Sinatra and makes use of the Trello and GitHub APIs and GitHub webhooks.  It is hosted on Heroku.  You can find the GitHub repo <a href="https://github.com/alphagov/github-trello-poster">here</a>.</p>
-<h2 id='credentials'>Credentials</h2><p>The credentials for the Trello account that posts to Trello cards can be found in <a href="https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/github-trello-poster">govuk-secrets</a>.</p>
-<p>The app uses the <code>govuk-ci</code> user&rsquo;s GitHub Personal Access Token.</p>
-<h2 id='using-github-trello-poster'>Using GitHub Trello Poster</h2><p>It&rsquo;s a simple process:</p>
-
-<ol>
-<li>Add user <code>@pullrequestposter</code> to your team&rsquo;s Trello board.  It will need <strong>read and write</strong> access.</li>
-<li>Set up a webhook for your chosen repo, if it hasn&rsquo;t already been done.  For instructions, see the app&rsquo;s <a href="https://github.com/alphagov/github-trello-poster">GitHub repo</a>.  You can find the payload URL in <a href="https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/github-trello-poster">govuk-secrets</a>.  Alternatively, copy how it&rsquo;s set up in a repo such as <a href="https://github.com/alphagov/publishing-api/settings/hooks">Publishing API</a>.</li>
-<li>That&rsquo;s it!  You should start seeing GitHub Trello Poster posting to your Trello cards once you start opening, modifying and closing pull requests.</li>
-</ol>
+ <h1 id='header'>How to add popular GOV.UK Slack integrations</h1> <h2 id='seal'>Seal</h2><p><a href="https://github.com/alphagov/seal">Seal</a> is a Slack bot that informs teams which pull requests they have open.</p>
+<h3 id='configuration'>Configuration</h3><p>Create a PR which adds some information (including team name and Slack channel) to <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">alphagov.yml in the Seal repo</a>. The Slack channel name does not need to match the team name.</p>
+<p>Add the team name to <a href="https://github.com/alphagov/seal/tree/main/bin">bin/morning_seal and bin/afternoon_seal</a> if you want two notifications a day, otherwise just pick one.</p>
+<p>Make sure that the Slack channel name has been set as the &lsquo;team&rsquo; in <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml in the GOV.UK Developer Docs repo</a>. This will <a href="https://docs.publishing.service.gov.uk/repos.json">update this JSON endpoint</a> which is <a href="https://github.com/alphagov/seal/blob/main/lib/team_builder.rb#L97">used by the Seal</a>.</p>
+<h2 id='dependapanda'>Dependapanda</h2><p>Dependapanda is a Slack bot which posts a list of open Dependabot Pull Requests for repos that a team owns.</p>
+<h3 id='configuration'>Configuration</h3><p>The process is the same as <a href="/manual/slack-integrations.html#configuration">configuring the Seal</a>. However, the team name will need to be added into <a href="https://github.com/alphagov/seal/blob/main/bin/dependapanda.sh">bin/dependapanda.sh</a> as opposed to the morning/afternoon Seal files.</p>
+<p><a href="https://github.com/alphagov/seal/tree/main">More information about the Seal can be found in Seal’s Github Readme</a>.</p>
+<h2 id='rotabot'>Rotabot</h2><p>The Rotabot calculates who’s turn it is to do the housekeeping today and tomorrow (usually tasks such as being in charge of Dependabots and Sentry alerts). The tasks in the Slack message are configured using Markdown, so it&rsquo;s fairly flexible.</p>
+<h3 id='configuration'>Configuration</h3><p>The Rotabot is configured using the <a href="https://github.com/alphagov/govuk-rota-announcer/">govuk-rota-announcer repo</a>. Add your team config to the <a href="https://github.com/alphagov/govuk-rota-announcer/blob/main/config/weekday.yml">weekday</a> or <a href="https://github.com/alphagov/govuk-rota-announcer/blob/main/config/weekly.yml">weekly</a> config depending on how often they want to be notified.</p>
+<h2 id='release-app-badger'>Release App Badger</h2><p>The Release App Badger informs the team if there are pull requests that have not been deployed for a while or if environments are out of sync. This was originally configured in a repo called <a href="https://github.com/alphagov/govuk-deploy-lag-badger/">GOV.UK Deploy Lag Badger</a> but the functionality was moved into the Release app as a result of the move to EKS.</p>
+<h3 id='configuration'>Configuration</h3><p>In the Release app, the badger will notify teams <a href="https://github.com/alphagov/release/pull/1198/files#diff-80e54224c5cd63358602f18016d42c42e208b7269bba5495cbc6a5ac3afac597R34">depending on the dependency_team</a> which is set in <a href="https://docs.publishing.service.gov.uk/repos.json">repos.json</a>. The <code>dependency_team</code> field in the repos.json file is <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/app/repo.rb#L168">pulled from the team field</a> in the <a href="https://github.com/alphagov/govuk-developer-docs/blob/a828a685cb9d475554b7144d0e13d91ac0e41337/data/repos.yml#L270">repos.yml file</a> if dependency_team isn’t set. If dependency_team isn&rsquo;t set, the <code>team</code> in <a href="https://github.com/alphagov/govuk-developer-docs/blob/a828a685cb9d475554b7144d0e13d91ac0e41337/data/repos.yml">repos.yml file</a> would need to be the name of the Slack channel that you want to post to.</p>
+<h2 id='sentry'>Sentry</h2><p><a href="https://docs.publishing.service.gov.uk/manual/sentry.html">Sentry</a> is an error monitoring tool that we use on GOV.UK.</p>
+<h3 id='configuration'>Configuration</h3><p><a href="https://docs.publishing.service.gov.uk/manual/sentry.html#slack-alerts">Please see these docs</a>. When creating a rule to send a notification to Slack, you may find that you need to input a channel ID as well as channel name. The ID can be found by clicking on the channel name in Slack and scrolling down until you can see the channel ID.</p>
 
 
   <div class='related-content'>
@@ -212,7 +245,7 @@
           <h4>Learn</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/slack-integrations.html">How to add popular GOV.UK Slack integrations</a></li>
+            <li><a href="/manual/github-trello-poster.html">GitHub Trello Poster</a></li>
           </ul>
         </div>
 
@@ -226,8 +259,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/github-trello-poster.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27GitHub+Trello+Poster%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fgithub-trello-poster.html%29&amp;labels=bug&amp;title=Re%3A+%27GitHub+Trello+Poster%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/slack-integrations.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27How+to+add+popular+GOV.UK+Slack+integrations%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fslack-integrations.html%29&amp;labels=bug&amp;title=Re%3A+%27How+to+add+popular+GOV.UK+Slack+integrations%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
