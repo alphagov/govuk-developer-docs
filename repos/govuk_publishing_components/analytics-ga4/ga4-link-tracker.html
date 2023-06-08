@@ -242,7 +242,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/8d258a131f59e79fc0ab12c0e31cc22294e3e806">6 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/62cec5b0f97f33d44643593f81a3ae4583628aa6">6 Jun 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 link tracker</h1>
@@ -253,22 +253,22 @@
 <pre lang="html"><code>&lt;a
   href="/link"
   data-module="ga4-link-tracker"
-  data-ga4-link='{ "event_name": "navigation", "type": "home page", "index": 0, "index_total": 1, "section": "name of section" }'&gt;
+  data-ga4-link='{ "event_name": "navigation", "type": "home page", "index": { "index_link": 1, "index_section": 1, "index_section_count": 3 }, "index_total": 1, "section": "name of section" }'&gt;
     Link
 &lt;/a&gt;
 </code></pre>
-<p>Note that the specific detail of the <code>data-ga4-link</code> attribute will depend on the context of the link.</p>
+<p>Note that the specific detail of the <code>data-ga4-link</code> attribute will depend on the context of the link. This is particularly true for the index parameters.</p>
 <h2 id="basic-use-multiple-links">Basic use (multiple links)</h2>
 <p>Specific tracking can be applied to multiple elements within a container, by applying the data module once to the parent element.</p>
 <pre lang="html"><code>&lt;div data-module="ga4-link-tracker"&gt;
   &lt;a
     href="/a-page"
-    data-ga4-link='{ "event_name": "navigation", "type": "browse", "index": "0", "index_total": "2", "section": "name of section" }'&gt;
+    data-ga4-link='{ "event_name": "navigation", "type": "browse", "index": { "index_link": 1, "index_section": 1, "index_section_count": 2 }, "index_total": "2", "section": "name of section" }'&gt;
     Link 1
   &lt;/a&gt;
   &lt;a
     href="/another-page"
-    data-ga4-link='{ "event_name": "navigation", "type": "browse", "index": "1", "index_total": "2", "section": "name of section" }'&gt;
+    data-ga4-link='{ "event_name": "navigation", "type": "browse", "index": { "index_link": 2, "index_section": 1, "index_section_count": 2 }, "index_total": "2", "section": "name of section" }'&gt;
     Link 2
   &lt;/a&gt;
 &lt;/div&gt;
@@ -279,7 +279,7 @@
 <pre lang="html"><code>&lt;a
   href="/link"
   data-module="ga4-link-tracker"
-  data-ga4-link='{ "event_name": "navigation", "type": "home page", "index": 0, "index_total": 1, "section": "name of section", "text": "This text will be recorded in the GA event" }'&gt;
+  data-ga4-link='{ "event_name": "navigation", "type": "home page", "index": { "index_link": 1, "index_section": 1, "index_section_count": 3 }, "index_total": 1, "section": "name of section", "text": "This text will be recorded in the GA event" }'&gt;
     This text will not be recorded
 &lt;/a&gt;
 </code></pre>
