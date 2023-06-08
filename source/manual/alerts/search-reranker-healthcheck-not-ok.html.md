@@ -23,6 +23,7 @@ Find out why the Search API can't connect to SageMaker.
 
 - Look at the error message in the healthcheck response
 - Look at the Search API logs
-- Check the status of the SageMaker endpoint in the AWS console
+- Check the status of the [SageMaker endpoint in the AWS console][sagemaker-endpoint]
 
 [aws-sagemaker]: https://aws.amazon.com/sagemaker/
+[sagemaker-endpoint]: https://eu-west-1.console.aws.amazon.com/sagemaker/home?region=eu-west-1#/endpoints/govuk-production-search-ltr-endpoint
