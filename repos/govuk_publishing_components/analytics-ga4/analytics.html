@@ -151,6 +151,7 @@
           <li class="subdir__heading">analytics-ga4</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-all-trackers.html" rel="noopener" class="govuk-link">Trackers</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-auto-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 auto tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
@@ -165,6 +166,7 @@
               <li><a href="/repos/govuk_publishing_components/load-analytics.html" rel="noopener" class="govuk-link">Loading analytics into our applications</a></li>
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-all-trackers.html" rel="noopener" class="govuk-link">Trackers</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-auto-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 auto tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
@@ -240,7 +242,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/ceb9f24b722cdb0bbe892d2e5373539262bf6b25">30 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/069ef775442ea4279da55a2673aa21fd549eaa5d">8 Jun 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 and Google Tag Manager</h1>
@@ -258,10 +260,16 @@
 <p>Page views happen when a page loads.</p>
 <p>Events happen when a user interacts with certain things, for example clicking on an accordion, tab, or link.</p>
 <p>Search data is gathered when users perform a search.</p>
+<p>For more information about different kinds of tracking, read our <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-all-trackers.md">overview of trackers</a>.</p>
 <h2 id="cookie-consent">Cookie consent</h2>
 <p>The analytics code is only loaded if users consent to cookies. This is managed by the <code>init-ga4.js</code> script.</p>
 <p>If the page loads and cookie consent has already been given, the analytics code is initialised. This includes sending a page view and creating any event listeners for analytics code such as link tracking.</p>
 <p>If the page loads and cookie consent has not been given, an event listener is created for the <code>cookie-consent</code> event, which is dispatched by the <a href="https://github.com/alphagov/govuk_publishing_components/pull/2041/commits/777a381d2ccb67f0a7e78ebf659be806d8d6442d">cookie banner component</a>. If triggered, the event listener will initialise the analytics code as described above. This allows analytics to begin on the page where the user consents to cookies.</p>
+<h2 id="testing-and-debugging">Testing and debugging</h2>
+<p>There is a <a href="https://github.com/alphagov/govuk_publishing_components/blob/00d81931a46e9826f07b939e0957ebc34d37f9ce/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-core.js#L36-L38">browser console command</a> to assist with debugging. Enter the following in your browser console to show the data of analytics events when they occur.</p>
+<pre><code>window.GOVUK.analyticsGa4.showDebug = true
+</code></pre>
+<p>This is useful for seeing what is being pushed to the dataLayer for in-page events such as tabs or accordions. Enabling 'Preserve log' in Chrome will allow link click and other page reload events to be seen, but the command will need to be run again after a page reload to see subsequent event data.</p>
 <h2 id="code-structure">Code structure</h2>
 <p>It is important that no analytics code runs until cookie consent is given. Code to be initialised as part of cookie consent should be attached to the <code>window.GOVUK.analyticsGa4.analyticsModules</code> object and include an <code>init</code> function, using the structure shown below.</p>
 <pre lang="JavaScript"><code>window.GOVUK = window.GOVUK || {}
@@ -284,14 +292,6 @@ window.GOVUK.analyticsGa4.analyticsModules = window.GOVUK.analyticsGa4.analytics
 <p><code>init-ga4.js</code> also handles adding data attributes to certain HTML elements, such as attachment links defined in our <code>whitehall</code> repo. This approach is used when it is difficult to maintain data attributes directly on the tracked elements' HTML. In the case of the attachment links, it would require republishing thousands of documents each time the attachment link data attributes need changing. Therefore, it is more efficient to add the GA4 HTML attributes via JavaScript as it is easier to just redeploy <code>govuk_publishing_components</code> instead with changes. The code for adding these attributes sits in <code>init-ga4.js</code> as the attributes need to exist before <code>analyticsModules</code> are run. This is so that when trackers initialise, they can find the data attributes (i.e. <code>data-module='ga4-link-tracker'</code>), and will therefore know to add the right event listeners to the elements in question.</p>
 <h3 id="code-structure-for-modules">Code structure for Modules</h3>
 <p>Where analytics code is required as a <a href="/repos/govuk_publishing_components/javascript-modules.html">GOV.UK JavaScript Module</a>, the code structure for the <a href="/repos/govuk_publishing_components/javascript-modules.html">existing model for deferred loading</a> should be used.</p>
-<h2 id="link-and-event-tracking">Link and event tracking</h2>
-<p>There are several types of user initiated tracking. To distinguish them and simplify the code, we consider them as the following:</p>
-<ul>
-<li>interactions with <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-link-tracker.md">links</a> where tracking is added using data attributes on specific links</li>
-<li>interactions with <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-specialist-link-tracker.md">specialist links</a>, e.g. external links, download links, mailto links, where tracking is determined automatically by the content of the link</li>
-<li>interactions with <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-event-tracker.md">buttons or other interactive elements</a> e.g. details elements, where tracking is added using data attributes on specific elements</li>
-</ul>
-<p>Each type of tracking is handled by a separate script, but some code is shared between them as they do similar things.</p>
 <h2 id="data-schemas">Data schemas</h2>
 <p>All of the data sent to GTM is based on a common schema.</p>
 <pre><code>{
@@ -305,6 +305,7 @@ window.GOVUK.analyticsGa4.analyticsModules = window.GOVUK.analyticsGa4.analytics
 <p><code>page</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-page-views.js">ga4-page-views script</a>.</p>
 <p><code>event_data</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-schemas.js">ga4-schemas script</a> and used in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-event-tracker.js">ga4-event-tracker script</a>.</p>
 <p><code>search_results</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.js">ga4-ecommerce-tracker script</a>.</p>
+<p>For more details of our data schema, see our <a href="https://docs.publishing.service.gov.uk/analytics/">implementation record</a>.</p>
 <h2 id="how-the-datalayer-works">How the dataLayer works</h2>
 <p>GTM's dataLayer has two elements - an array and an object. <code>window.dataLayer = []</code> is executed when the page loads.</p>
 <p>GOV.UK JavaScript (JS) pushes objects to the dataLayer array when certain things happen e.g. when the page loads, or a user clicks on a certain type of link. Once that happens GTM takes over. It reads the latest object in the array and passes the data found into the dataLayer object. Importantly, it only adds to the object, so data can persist from previous array pushes.</p>
