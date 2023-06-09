@@ -16,6 +16,7 @@
     </h2>
 
     <p class="govuk-body">
+      Priority
       <strong class="govuk-tag <%= tag_colours[page_event.priority] %>">
         <%= page_event.priority %>
       </strong>
@@ -30,24 +31,29 @@
         <%= page_event.description %>
       </p>
     <% end %>
-    <ul class="govuk-list govuk-list--bullet">
-      <% if page_event.example_url %>
-        <li>
-          Example of <%= link_to page_event.name, page_event.example_url, class: "govuk-link" %>
-        </li>
-      <% end %>
-      <% if page_event.tracker %>
-        <% data.analytics.trackers.each do |tracker| %>
-          <% if tracker.technical_name == page_event.tracker %>
-            <li>
-              Tracked by <%= link_to page_event.tracker, "tracker_#{page_event.tracker}.html", class: "govuk-link" %>
-            </li>
-          <% end %>
+
+    <% if page_event.tracker %>
+      <% data.analytics.trackers.each do |tracker| %>
+        <% if tracker.technical_name == page_event.tracker %>
+          <p class="govuk-body">
+            This event is tracked by the <%= link_to page_event.tracker, "tracker_#{page_event.tracker}.html", class: "govuk-link" %>.
+          </p>
         <% end %>
       <% end %>
-    </ul>
-    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+    <% end %>
 
+    <% if page_event.examples %>
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+        <% page_event.examples.each do |example| %>
+          <li>
+            <a href="<%= example.link %>" class="govuk-link"><%= example.text %></a>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <% event_hash = build_event(page_event.data, data.analytics.attributes) %>
     <div class="govuk-inset-text">
       <%= to_html(event_hash) %>
