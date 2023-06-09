@@ -4,7 +4,11 @@
       implemented: true
       priority: high
       description: When a section of the accordion is opened or closed.
-      example_url: https://www.gov.uk/coronavirus
+      examples:
+        - text: Coronavirus page
+          link: https://www.gov.uk/coronavirus
+        - text: Manual page
+          link: https://www.gov.uk/guidance/immigration-rules/immigration-rules-part-11b
       tracker: event_tracker
       data:
       - name: event
@@ -67,7 +71,11 @@
       implemented: true
       priority: medium
       description: Triggered when a breadcrumb link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/learn-to-drive-a-car
+      examples:
+        - text: Generic page with a breadcrumb
+          link: https://www.gov.uk/vehicle-tax-refund
+        - text: Another generic page with a breadcrumb
+          link: https://www.gov.uk/check-coastal-erosion-management-in-your-area
       tracker: link_tracker
       data:
       - name: event
@@ -253,7 +261,9 @@
       implemented: true
       priority: medium
       description: Triggered when a footer link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk/
       tracker: link_tracker
       data:
       - name: event
@@ -344,11 +354,13 @@
 
 - name: html attachments
   events:
-    - name: link clicks (not implemented yet)
+    - name: link clicks
       implemented: true
       priority: high
       description: Triggered when a HTML attachment link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/government/publications/equality-act-guidance
+      examples:
+        - text: Page with html attachments
+          link: https://www.gov.uk/government/publications/equality-act-guidance
       tracker: link_tracker
       data:
       - name: event
@@ -536,7 +548,9 @@
       implemented: true
       priority: low
       description: When a 'print this page' button is used
-      example_url: https://www.gov.uk/guidance/register-a-trust-as-a-trustee
+      examples:
+        - text: Page with print button
+          link: https://www.gov.uk/guidance/register-a-trust-as-a-trustee
       tracker: event_tracker
       data:
       - name: event
@@ -561,7 +575,9 @@
       implemented: true
       priority: high
       description: Clicks in the related navigation component
-      example_url: https://www.gov.uk/government/statistics/national-curriculum-assessments-key-stage-2-2016-provisional
+      examples:
+        - text: Page with related navigation
+          link: https://www.gov.uk/government/statistics/national-curriculum-assessments-key-stage-2-2016-provisional
       tracker: link_tracker
       data:
       - name: event
@@ -657,7 +673,9 @@
       implemented: true
       priority: low
       description: Triggered when a 'follow us' social media link is used.
-      example_url: https://www.gov.uk/government/organisations/department-for-culture-media-and-sport
+      examples:
+        - text: Organisation page
+          link: https://www.gov.uk/government/organisations/department-for-culture-media-and-sport
       tracker: link_tracker
       data:
       - name: event
@@ -683,7 +701,9 @@
       implemented: true
       priority: low
       description: Triggered when a 'share on' social media link is used.
-      example_url: https://www.gov.uk/government/news/new-protections-for-children-and-free-speech-added-to-internet-laws
+      examples:
+        - text: Press release
+          link: https://www.gov.uk/government/news/new-protections-for-children-and-free-speech-added-to-internet-laws
       tracker: link_tracker
       data:
       - name: event
@@ -814,7 +834,9 @@
       implemented: true
       priority: high
       description:
-      example_url: https://www.gov.uk/learn-to-drive-a-car
+      examples:
+        - text: Learn to drive a car step by step
+          link: https://www.gov.uk/learn-to-drive-a-car
       tracker: event_tracker
       data:
       - name: event
@@ -837,7 +859,9 @@
       implemented: true
       priority: high
       description:
-      example_url: https://www.gov.uk/learn-to-drive-a-car
+      examples:
+        - text: Learn to drive a car step by step
+          link: https://www.gov.uk/learn-to-drive-a-car
       tracker: event_tracker
       data:
       - name: event
@@ -860,7 +884,9 @@
       implemented: true
       priority: high
       description: Triggered when a link within a step by step is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/learn-to-drive-a-car
+      examples:
+        - text: Learn to drive a car step by step
+          link: https://www.gov.uk/learn-to-drive-a-car
       tracker: link_tracker
       data:
       - name: event
@@ -901,7 +927,9 @@
       implemented: true
       priority: high
       description: When the Menu or Search button is expanded or collapsed.
-      example_url: https://www.gov.uk/
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk
       tracker: event_tracker
       data:
       - name: event
@@ -926,7 +954,9 @@
       implemented: true
       priority: high
       description: Triggered when the GOVUK logo, a header "menu" section link, or a link under the search component is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk
       tracker: link_tracker
       data:
       - name: event
@@ -962,7 +992,11 @@
       implemented: true
       priority: high
       description: When a tab is selected.
-      example_url: https://www.gov.uk/renew-driving-licence
+      examples:
+        - text: Tax your vehicle
+          link: https://www.gov.uk/vehicle-tax
+        - text: Bank holidays
+          link: https://www.gov.uk/bank-holidays
       tracker: event_tracker
       data:
       - name: event
