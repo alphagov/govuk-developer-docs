@@ -779,54 +779,207 @@
 
 - name: smart answers
   events:
-    - name: completed
+    - name: smart answer start
       implemented: true
       priority: high
+      examples:
+        - text: Towing rules
+          link: https://www.gov.uk/towing-rules
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
-    - name: results link click
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_start
+        - name: type
+          value: smart answer
+        - name: url
+        - name: text
+          value: Start now
+        - name: section
+          value: start page
+        - name: action
+          value: start
+        - name: external
+          value: false
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
+    - name: submit question
       implemented: true
       priority: high
+      examples:
+        - text: Smart answer question
+          link: https://www.gov.uk/towing-rules/y
+      tracker: form_tracker
       data:
       - name: event
         value: event_data
-    - name: start again link click
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
-    - name: question
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
-    - name: change answer
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
-    - name: start again
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_response
+        - name: type
+          value: smart answer
+        - name: text
+          value: text of the selected answer
+        - name: section
+          value: text of the current question
+        - name: action
+          value: continue
+        - name: tool_name
     - name: form error
       implemented: true
       priority: high
+      examples:
+        - text: Smart answer error page
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle?next=1
+      tracker: auto_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_error
+        - name: action
+          value: error
+        - name: section
+          value: text of the current question
+        - name: text
+          value: text of the error message
+        - name: tool_name
+        - name: type
+          value: smart answer
+    - name: change answer
+      implemented: true
+      priority: high
+      examples:
+        - text: Smart answer question
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_change_response
+        - name: type
+          value: smart answer
+        - name: url
+        - name: text
+          value: (Change) text of the question to be changed
+        - name: section
+          value: text of the question to be changed
+        - name: action
+          value: change response
+        - name: external
+          value: false
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
+    - name: smart answer complete
+      implemented: true
+      priority: high
+      examples:
+        - text: Smart answer complete page
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle/yes/21-or-over
+      tracker: auto_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: complete
+        - name: event_name
+          value: form complete
+        - name: section
+          value: Information based on your answers
+        - name: tool_name
+        - name: type
+          value: smart answer
+    - name: results link click
+      implemented: true
+      priority: high
+      examples:
+        - text: Smart answer complete page
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle/yes/21-or-over
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: information_click
+        - name: type
+          value: smart answer
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: section
+          value: Information based on your answers
+        - name: action
+          value: information click
+        - name: external
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
     - name: results ecommerce list views and click
       implemented: true
       priority: medium
+      examples:
+        - text: Cost of living smart answer results page
+          link: https://www.gov.uk/check-benefits-financial-support/y/wales/yes/no_retired/no/no/no/dont_know/none_16000
+      tracker: ecommerce_tracker
+      data:
+      - name: event
+        value: search_results
+      - name: search_results
+        value:
+        - name: ecommerce
+          value:
+          - name: items
+        - name: event_name
+          value: view_item_list
+        - name: results
+    - name: start again link click
+      implemented: true
+      priority: high
+      examples:
+        - text: Smart answer complete page
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle/yes/21-or-over
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_start_again
+        - name: type
+          value: smart answer
+        - name: url
+        - name: text
+        - name: section
+          value: Information based on your answers
+        - name: action
+          value: start again
+        - name: external
+          value: false
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
 
 - name: step by step navigation
   events:

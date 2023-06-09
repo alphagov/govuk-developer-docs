@@ -37,6 +37,12 @@
   type: string
   redact: false
 
+- name: ecommerce
+  description: A Google Analytics ecommerce object, containing an array named 'items' that contains details of the results/links on the page.
+  required: no
+  type: object
+  redact: false
+
 - name: event
   description: Needed by Google to contain a specific thing to cause a trigger to happen.
   example: page_view, event_data
@@ -106,6 +112,12 @@
   type: string (number)
   redact: false
 
+- name: items
+  description: Occurs within the ecommerce attribute and contains details of all of the results/links on the page. Each element of the array contains an index (starting from 1), an item_id (link path e.g. '/pension-credit'), and an item_list_name (the title of the page).
+  required: yes
+  type: array
+  redact: false
+
 - name: language
   description: the language the page is rendered in
   value: lang attribute of the '#content' element
@@ -167,6 +179,12 @@
   description: application that renders the page
   value: content attribute of meta tag govuk:rendering-app
   example: government-frontend
+  required: no
+  type: string
+  redact: false
+
+- name: results
+  description: Used by ecommerce to give a total number of the results/links on the page.
   required: no
   type: string
   redact: false
@@ -241,6 +259,13 @@
 - name: text
   description: The text of the thing being tracked, for example the text of a link, button or tab. This can either be read directly from the element, passed from a data attribute, or generated automatically for elements where the text changes, for example the 'Show all sections' link in an accordion, which can also read 'Hide all sections'.
   value: text of the element
+  required: no
+  type: string
+  redact: false
+
+- name: tool_name
+  description: Refers to the tool being tracked, for example the name of a smart answer or 'Find your local council'.
+  value:
   required: no
   type: string
   redact: false
