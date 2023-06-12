@@ -162,6 +162,92 @@
       - name: event
         value: event_data
 
+- name: email alerts and rss subscriptions
+  events:
+    - name: email alerts
+      implemented: true
+      priority: medium
+      examples:
+        - text: Search pages
+          link: https://www.gov.uk/search/all?keywords=minister&order=relevance
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: subscribe
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: section
+        - name: external
+          value: false
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+    - name: rss subscriptions
+      implemented: true
+      priority: medium
+      examples:
+        - text: Search pages
+          link: https://www.gov.uk/search/all?keywords=minister&order=relevance
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: subscribe
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: section
+        - name: external
+          value: false
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+
+- name: email subscriptions
+  events:
+    - name: get emails about this page link click
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: change how often you get emails
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: unsubscribe
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: unsubscribe from everything
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+
 - name: feedback
   events:
     - name: Is this page useful? Yes
@@ -297,33 +383,6 @@
     - name: form success alert
       implemented: false
       priority: low
-      data:
-      - name: event
-        value: event_data
-
-- name: get emails
-  events:
-    - name: get emails about this page link click
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
-    - name: change how often you get emails
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
-    - name: unsubscribe
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
-    - name: unsubscribe from everything
-      implemented: false
-      priority: medium
       data:
       - name: event
         value: event_data
