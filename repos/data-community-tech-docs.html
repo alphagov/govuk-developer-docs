@@ -233,15 +233,6 @@
 
 <p>This project uses the <a href="https://github.com/alphagov/tech-docs-template">Tech Docs Template</a>, which is a <a href="https://middlemanapp.com/advanced/project_templates/">Middleman template</a> that you can use to build technical documentation using a GOV.UK style.</p>
 
-<p>You’re welcome to use the template even if your service isn’t considered part of GOV.UK, but your site or service must not:</p>
-
-<ul>
-<li>identify itself as being part of GOV.UK</li>
-<li>use the crown or GOV.UK logotype in the header</li>
-<li>use the GDS Transport typeface</li>
-<li>suggest that it’s an official UK government website if it’s not</li>
-</ul>
-
 <p>👉 To find out more about setting up and managing content for a website using this template, see the <a href="https://tdt-documentation.london.cloudapps.digital">Tech Docs Template documentation</a>.</p>
 
 <h2 id="before-you-start">Before you start</h2>
@@ -253,9 +244,48 @@
 <li><a href="https://tdt-documentation.london.cloudapps.digital/install_macs.html#install-middleman">Middleman</a></li>
 </ul>
 
+<p>The <a href="https://tdt-documentation.london.cloudapps.digital/create_project/get_started/#install-ruby">tech docs template
+documentation</a>
+says to install the latest 2.7.x version listed at
+<a href="https://www.ruby-lang.org/en/downloads/">https://www.ruby-lang.org/en/downloads/</a> which is 2.7.8, but that page says that
+2.7.8 is no longer maintained, and rbenv will only install 2.7.6.  The
+documentation also says to use RVM to install Ruby, but the <a href="https://gds-way.cloudapps.digital/manuals/programming-languages/ruby.html#conventional-tooling">GDS
+Way</a>
+recommends rbenv.</p>
+
+<h2 id="create-a-new-website">Create a new website</h2>
+
+<ul>
+<li>Install rbenv</li>
+<li>Install Ruby version 2.7.6 <code>rbenv install 2.7.6</code>
+</li>
+<li>Activate Ruby version 2.7.6 in your current terminal <code>rbenv shell 2.7.6</code>
+</li>
+<li>Install an old version of a dependency <code>rbenv exec gem install contracts -v 0.16.1</code>
+</li>
+<li>Install middleman <code>rbenv exec gem install middleman</code>
+</li>
+<li>Use middleman to create a new website <code>rbenv exec middleman init &lt;folder-name&gt; -T alphagov/tech-docs-template</code>
+</li>
+<li>Change directory into the new website <code>cd &lt;folder-name&gt;</code>
+</li>
+<li>Install packages that the website requires <code>rbenv exec bundle install</code>
+</li>
+<li>Change the contents of the file <code>config.rb</code> to the following
+<pre lang="ruby"><code>require 'govuk_tech_docs'
+
+GovukTechDocs.configure(self)
+
+configure :build do
+  activate :relative_assets
+end
+</code></pre>
+</li>
+</ul>
+
 <h2 id="making-changes">Making changes</h2>
 
-<p>To make changes to the documentation for the Tech Docs Template website, edit files in the <code>source</code> folder of this repository.</p>
+<p>To make changes to the content of this website, edit files in the <code>source</code> folder of this repository.</p>
 
 <p>You can add content by editing the <code>.html.md.erb</code> files. These files support content in:</p>
 
@@ -271,10 +301,23 @@
 
 <h2 id="preview-your-changes-locally">Preview your changes locally</h2>
 
-<p>To preview your new website locally, navigate to your project folder and run:</p>
-
-<pre lang="sh"><code>bundle exec middleman server
-</code></pre>
+<ul>
+<li>Install rbenv</li>
+<li>Install Ruby version 2.7.6 <code>rbenv install 2.7.6</code>
+</li>
+<li>Activate Ruby version 2.7.6 in your current terminal <code>rbenv shell 2.7.6</code>
+</li>
+<li>Install an old version of a dependency <code>rbenv exec gem install contracts -v 0.16.1</code>
+</li>
+<li>Install middleman <code>rbenv exec gem install middleman</code>
+</li>
+<li>Change directory into the website <code>cd &lt;folder-name&gt;</code>
+</li>
+<li>Install packages that the website requires <code>rbenv exec bundle install</code>
+</li>
+<li>View the website on your device <code>bundle exec middleman server</code>
+</li>
+</ul>
 
 <p>👉 See the generated website on <code>http://localhost:4567</code> in your browser. Any content changes you make to your website will be updated in real time.</p>
 
@@ -293,7 +336,9 @@
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 
-<p>Run <code>bundle update</code> to make sure you&rsquo;re using the most recent Ruby gem versions.</p>
+<p>Do not run <code>bundle update</code> because the website only builds with the current
+package versions, given the old version of ruby.  You could try using a more
+recent version of ruby, and recent versions of all the packages.</p>
 
 <p>Run <code>bundle exec middleman build --verbose</code> to get detailed error messages to help with finding the problem.</p>
 
