@@ -35,7 +35,7 @@
 - repo_name: bouncer
   type: Transition apps
   team: "#govuk-navigation-tech"
-  production_hosted_on: aws
+  production_hosted_on: eks
   production_url: false
 
 - repo_name: bulk-changer
@@ -450,6 +450,7 @@
 - repo_name: govuk-dependency-checker
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
+  production_hosted_on: eks
 
 - repo_name: govuk-deploy-lag-badger
   retired: true
@@ -604,6 +605,7 @@
   deploy_url: https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/deploy.sh
   sentry_url: false
   dashboard_url: false
+  production_hosted_on: aws
 
 - repo_name: govuk-related-links-recommender
   team: "#data-products"
@@ -761,6 +763,7 @@
 - repo_name: govuk_crawler_worker
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
+  production_hosted_on: aws
 
 - repo_name: govuk_document_types
   team: "#govuk-navigation-tech"
@@ -1173,6 +1176,7 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
+  production_hosted_on: aws
 
 - repo_name: signon
   type: Supporting apps
@@ -1196,6 +1200,7 @@
 - repo_name: smokey
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
+  production_hosted_on: eks
   sentry_url: false
   dashboard_url: false
 
