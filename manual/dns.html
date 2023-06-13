@@ -196,7 +196,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e19610af825031051f76776ecaefd480fc38bc8a">6 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4f47dff4a2c96fdb5738e443190cc2a0c18c1588">13 Jun 2023</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones.</p>
@@ -221,7 +221,8 @@ Note that we <strong>do not</strong> manage any other DNS records: if you get a 
 <li>Push your changes to GitHub and open a pull request</li>
 <li>Terraform Cloud will automatically perform a plan. Open the <a href="https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf">govuk-dns-tf</a> workspace to see it.</li>
 <li>If you are happy with the results of the plan, merge your PR</li>
-<li>Terraform Cloud will automatically apply your changes when they are merged to <code>main</code></li>
+<li>From the PR page in GitHub, look under the pre-merge checks section and open the &ldquo;details&rdquo; link from the Terraform Cloud check.</li>
+<li>Press &ldquo;Confirm and apply&rdquo; in Terraform Cloud.</li>
 </ol>
 <h2 id='dns-for-govuk-digital-and-govuk-internal-digital'>DNS for <code>govuk.digital</code> and <code>govuk-internal.digital</code></h2><p>Currently these zones are only used in environments running on AWS.</p>
 <p>These DNS zones are hosted in Route53 and managed by Terraform. Changes can be
