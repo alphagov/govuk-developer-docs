@@ -229,7 +229,7 @@
 
 <h2 id="usage">Usage</h2>
 
-<p>Once you&rsquo;ve generated a <code>/data/combined.csv</code> file as per <a href="#creating-the-input-data">Creating the input data</a>, you can generate a rota by running <code>ruby /bin/generate_rota.rb</code> (it will output to STDOUT).</p>
+<p>Once you&rsquo;ve generated a <code>/data/combined.csv</code> file as per <a href="#creating-the-input-data">Creating the input data</a>, you can generate a rota by running <code>ruby bin/generate_rota.rb</code> (it will output to STDOUT).</p>
 
 <p>Tweak the weighting in that file to place more or less emphasis on different cover types (e.g. oncall_primary).</p>
 
@@ -241,11 +241,10 @@
 
 <ol>
 <li>Download the <a href="https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1249170615">Technical Support Google Sheet</a> as a CSV, storing in <code>data/people.csv</code>.
-This CSV describes what roles developers are eligible for, e.g. whether or not they can do on-call.</li>
-<li>Download <a href="https://docs.google.com/forms/d/11Az5Y6acNYiqJPiIigHJRF-KdT8Fnpp2jmoQNysKzmg/edit#responses">Rota Availability Google Forms Responses</a> as CSV, store as <code>data/responses.csv</code>.
-This CSV describes which weeks developers are unavailable.</li>
-<li>Edit the <code>responses.csv</code> file so that it looks something like below.
-It may be easier to export to Google Sheets first, and then rename the first row columns to &ldquo;Week 1 (03/04/23 - 09/04/23)&rdquo;, and so on. Then re-export the CSV from Google Sheets.</li>
+This CSV describes what roles developers are eligible for, e.g. whether or not they can do on-call.
+Remember to delete the second row from the CSV, as this only contains hint text.</li>
+<li>Export the <a href="https://docs.google.com/forms/d/11Az5Y6acNYiqJPiIigHJRF-KdT8Fnpp2jmoQNysKzmg/edit#responses">Rota Availability Google Forms Responses</a> to Google Sheets (use the &ldquo;View in Sheets&rdquo; option). Rename row F onwards to something that identifies each week (e.g. &ldquo;Week 1 (03/04/23 - 09/04/23)&rdquo;). Now export the sheet as a CSV, storing it as <code>data/responses.csv</code>. This CSV describes which weeks developers are unavailable.</li>
+<li>Check your <code>responses.csv</code> file should look something like below (also ensure that any newlines have been removed from the output):</li>
 </ol>
 
 <pre lang="csv"><code>Timestamp,What is your name,What team will you be on? (team),"If you work different hours to the 9.30am-5.30pm 2nd line shifts, please state your hours",Do you have any non working days? [Non working day(s)],Week 1 (03/04/23 - 09/04/23),Week 2 (10/04/23 - 16/04/23),Week 3 (17/04/23 - 23/04/23),Week 4 (24/04/23 - 30/04/23),Week 5 (01/05/23 - 07/05/23),Week 6 (08/05/23 - 14/05/23),Week 7 (15/05/23 - 21/05/23),Week 8 (22/05/23 - 28/05/23),Week 9 (29/05/23 - 04/06/23),Week 10 (05/06/23 - 11/06/23),Week 11 (12/06/23 - 18/06/23),Week 12 (19/06/23 - 25/06/23),Week 13 (26/06/23 - 02/07/23),Need to elaborate on any of the above?
@@ -254,7 +253,7 @@ It may be easier to export to Google Sheets first, and then rename the first row
 
 <ol start="4">
 <li>
-<p>Update the <code>week_headers</code> variable in <code>bin/combine_csvs.rb</code>, so that it knows which columns to read.</p>
+<p>Update the <code>week_headers</code> variable in <code>bin/combine_csvs.rb</code> to refer to the headings you wrote in step 2, so that it knows which columns to read.</p>
 </li>
 <li>
 <p>Run <code>ruby bin/combine_csvs.rb</code>. This will generate a <code>data/combined.csv</code> file.</p>
