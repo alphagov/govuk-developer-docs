@@ -150,6 +150,7 @@ support (assuming everything is working).
 - Logs are not as important as being available - if you need to lose some logs
   in order to bring the site back up, that's probably a good trade-off to make
 - Get paid. Make sure you submit your [payment claim form][] after your shift.
+  Payment rates can be found on the [GDS Wiki](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/how-to-guides/out-of-hours-allowance).
 
 [So, you're having an incident]: /manual/incident-what-to-do.html
 [docs]: https://github.com/alphagov/govuk-developer-docs/
