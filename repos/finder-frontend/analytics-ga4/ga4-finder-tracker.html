@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>finder-frontend: faceted-search - GOV.UK Developer Documentation</title>
+    <title>finder-frontend: Google Analytics 4 finder tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/finder-frontend/faceted-search.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/finder-frontend/analytics-ga4/ga4-finder-tracker.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="finder-frontend: faceted-search - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend/faceted-search.html" />
+      <meta name="twitter:title" content="finder-frontend: Google Analytics 4 finder tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend/analytics-ga4/ga4-finder-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="finder-frontend: faceted-search" />
+      <meta property="og:title" content="finder-frontend: Google Analytics 4 finder tracker" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend/faceted-search.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend/analytics-ga4/ga4-finder-tracker.html" />
 
     
   </head>
@@ -195,112 +195,105 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/1f95c4b515ee54a1da0aec0fe4919c0d83428819">25 Feb 2020</a>
+  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/4cf7de2e85bb6323bf04fca7d4234bc81a4c6154">10 May 2023</a>
 </div>
 
-  <h1 class="page-title">finder-frontend: faceted-search</h1>
+  <h1 class="page-title">finder-frontend: Google Analytics 4 finder tracker</h1>
 
   
-<p>This document explains how you would add a facet to a finder.</p>
-<h2 id="terminology">Terminology</h2>
-<p>A <strong>finder</strong> is a search page served by GOV.UK. These pages are the main interface that people use to search for government services and information.</p>
-<p>Finder pages are served by finder-frontend, this repository. If this is news to you, first read <a href="https://github.com/alphagov/finder-frontend/blob/6faf8f865ce1b0a82c296e6eb8e1d5bc2da1bd72/docs/how-search-works.md">how search works</a>.</p>
-<p>Finders provide <a href="https://en.wikipedia.org/wiki/Faceted_search">faceted search</a>. The components on the side of search results below are facets (e.g. topic, organisation).</p>
-<p><a href="https://www.gov.uk/search"><img src="https://raw.githubusercontent.com/docs/assets/sitesearch-screenshot.png" alt="Faceted search screenshot"></a></p>
-<p>A <strong>filter</strong> is a query parameter passed to Search API that will return all documents that match. For example organisations=hmrc,fco,mod. See the <a href="https://github.com/alphagov/search-api/blob/0236e8e697f661524f11090a3d0f3b56f4786eb5/doc/search-api.md#using-the-search-api">Search API documentation</a> for more details about filtering.</p>
-<p>A <strong>facet</strong> is a user-interface (UI) component that people can use to apply filters to their search results.</p>
-<h2 id="adding-facets-to-finders">Adding facets to finders</h2>
-<p>For a user to apply a given filter to a search page, we must first add a corresponding facet to the page.</p>
-<p>The <a href="https://www.gov.uk/raib-reports">RAIB reports</a> finder has a corresponding <a href="https://www.gov.uk/api/content/raib-reports">raib reports content item</a>.</p>
-<p>This finder has three facets: Railway type, Report type, and Date.</p>
-<p>When a user selects e.g. "Heavy rail" from the "Railway type" option select box, finder-frontend attaches the filter <code>railway_type=heavy-rail</code> to the search query sent to Search API.</p>
-<p>For more details about the facet schema, see the finder <a href="https://github.com/alphagov/govuk-content-schemas/blob/0812e083f33ae98daa3f98d5106c0eae807468bc/dist/formats/finder/frontend/schema.json#L396">facets schema descriptions</a>. Warning: some of the fields defined in the schema are no longer used (<code>combine_mode</code>), and others are present but should not be used (<code>option_lookup</code>).</p>
-<pre lang="json"><code>[
-  {
-    "key": "railway_type",
-    "name": "Railway type",
-    "type": "text",
-    "preposition": "of type",
-    "display_as_result_metadata": true,
-    "filterable": true,
-    "allowed_values": [
-      {
-        "label": "Heavy rail",
-        "value": "heavy-rail"
-      },
-      {
-        "label": "Light rail",
-        "value": "light-rail"
-      },
-      ...
-    ]
-  },
-  ...
-]
+<p>This script is used to add GA4 tracking to the GOVUK finders in <code>finder-frontend</code> such as <a href="https://www.gov.uk/search/all">https://www.gov.uk/search/all</a>. These finders use client side JavaScript to update their results in response to a change in the search term or filters. Therefore, this tracker hooks in to the JavaScript <code>change</code> event that fires whenever a user updates their search. A GA4 schema is then built depending on what change was made to their search. This differs from the <code>ga4-form-tracker</code>. Firstly, this is because our finders are all contained in one large form. The <code>ga4-form-tracker</code> only allows for one GTM object per <code>&lt;form&gt;</code> when we need multiple for each element that can change the search results. Secondly, the <code>ga4-form-tracker</code> relies on a JavaScript <code>submit</code> event. Our finder pages use a <code>change</code> event to update their results.</p>
+<h2 id="basic-use">Basic use</h2>
+<pre lang="html"><code>&lt;form id="myForm"&gt;
+  &lt;div data-ga4-filter-container&gt;
+    &lt;div data-ga4-section="Topics"&gt;
+        &lt;select data-ga4-change-category="update-filter select"&gt;
+            &lt;option value="1"&gt;Default option&lt;/option&gt;
+            &lt;option value="2"&gt;Option 1&lt;/option&gt;
+            &lt;option value="3"&gt;Option 2&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;input type="search" data-ga4-change-category="update-keyword text" /&gt;
+&lt;/form&gt;
 </code></pre>
-<p>Here the values for the facet are static, they are hard-coded into the content item JSON under <code>allowed_values</code>. When we want to change the values that a user may filter by, we'd need to edit the JSON (in specialist publisher in this case) and republish the finder to the publishing-api.</p>
-<p>To add a facet add an object to the facets list in the finder content item JSON with the required keys from the schema.</p>
-<p>Finders are published by Specialist Publisher and Search API. You'll find some prior art for facets in Search API's <a href="https://github.com/alphagov/search-api/tree/0236e8e697f661524f11090a3d0f3b56f4786eb5/config/finders">config/finders</a> directory.</p>
-<p>Facets can be of various <code>type</code>s which affect the way they are displayed to users.</p>
-<p>You can find the <a href="https://github.com/alphagov/govuk-content-schemas/blob/0812e083f33ae98daa3f98d5106c0eae807468bc/dist/formats/finder/frontend/schema.json#L495-L505">available types in the schema</a>.</p>
-<h2 id="facets-with-dynamic-data">Facets with 'dynamic' data</h2>
-<p>For some facets here may be many allowed values and the permitted values can change frequently.</p>
-<p>The people facet enables users to filter by the person that documents are tagged to.</p>
-<p>However, there are a great many people, and they are often added, removed, and modified. Hard-coding the list of people into the <code>allowed_values</code> of a facet in a content item would make the JSON we fetch from the content store much larger. It would also be hard to maintain, since developers would need to amend the finder manually whenever a person is created/changed/removed.</p>
-<p>In these cases we use <strong>dynamic facets</strong>.</p>
-<p>Below is a dynamic facet for filtering by organisation. The <code>allowed_values</code> are provided by finder-frontend at runtime.</p>
-<pre lang="json"><code>{
-  "display_as_result_metadata": true,
-  "filterable": true,
-  "key": "organisations",
-  "name": "Organisation",
-  "preposition": "from",
-  "short_name": "From",
-  "type": "text",
-  "show_option_select_filter": true
+<pre lang="JavaScript"><code>var myForm = document.querySelector('#myForm')
+
+window.GOVUK.analyticsGa4.Ga4FinderTracker.setFilterIndexes()
+
+myForm.addEventListener('change', function(event) {
+    var ga4ChangeCategory = event.target.closest('[data-ga4-change-category]').getAttribute('data-ga4-change-category')
+    window.GOVUK.analyticsGa4.Ga4FinderTracker.trackChangeEvent(event.target, ga4ChangeCategory)
+})
+</code></pre>
+<p>The tracker is not a regular module. Instead it is called manually where needed. This is to allow the tracker to be called at the appropriate time in our finder's code. In our case, we only call <code>Ga4FinderTracker.trackChangeEvent()</code> when our search successfully displays new results to the user. This stops erroring change events (i.e. the user inputting non-dates into the date filter) from being tracked as an "added filter" event. Therefore we only track updates to the finders if they result in a successful update to the search results.</p>
+<p>The flow of the tracker is:</p>
+<ol>
+<li>
+<p>On the finder results page, tag your elements with the appropriate <code>data</code> attributes.</p>
+<p>a. Tag the parent <code>&lt;div&gt;</code> or wrapper element for your filters with <code>data-ga4-filter-container</code>. This tells our code where to look for filter sections, so that we can set an <code>index_section</code> for each filter.</p>
+<p>b. Tag each filter's wrapper element with a <code>data-ga4-section</code> attribute. This key can also be populated with a string value, which will be used to populate the <code>section</code> value of our GTM object. For example, on a "Topics" filter <code>&lt;div&gt;</code> you could add <code>data-ga4-section="Topics"</code> or just <code>data-ga4-section</code>.</p>
+<p>c. Tag each element of the form that can trigger a <code>change</code> event with a <code>data-ga4-change-category</code>. This will contain some metadata about what the change is. The current categories are: <code>update-filter</code>, <code>update-sort</code>, <code>clear-all-filters</code> and <code>update-keyword</code>. As well as this, add the type of element that the filter is (further details on what types are tracked is documented below.) This assists with our tracker extracting the value of the filter. For example, a <code>&lt;select&gt;</code> element that updates a filter would have <code>data-ga4-change-category="update-filter select"</code>. A search box would have <code>data-ga4-change-category="update-keyword text"</code>.</p>
+</li>
+<li>
+<p>When the finder page loads, call <code>Ga4FinderTracker.setFilterIndexes()</code>. This will grab the <code>data-ga4-filter-container</code> element. It will then look for every instance of <code>data-ga4-section</code> inside this element, then loop through them and assign an <code>index</code> to the section based on its position in the NodeList.</p>
+</li>
+<li>
+<p>In the finder's JavaScript code, find where it updates your search results, and call <code>Ga4FinderTracker.trackChangeEvent()</code>. Pass through the <code>event.target</code> of the element that triggered the change. Also grab and pass through the <code>data-ga4-change-category</code> that was set on the event target or its parent.</p>
+</li>
+<li>
+<p>The <code>ga4-finder-tracker</code> will then grab the "value" of the event target, using the metadata passed through to help categorise what type of element the change came from. The value in this case is the name of the filter that was set, the keyword that was input. For filters, it will also determine whether the change was the filter being "added" or "removed".
+For example if the event target is a checkbox, <code>&lt;input type="checkbox" data-ga4-change-category="update-filter checkbox"&gt;</code>, and it is <code>checked</code>, then we know the filter was added. If it isn't <code>checked</code>, we know the filter was removed.</p>
+</li>
+<li>
+<p>Using the <code>data-ga4-change-category</code>, the value of the event target, and whether it is a removed filter or not, we then build the GTM object and push it to the <code>dataLayer</code>.</p>
+</li>
+</ol>
+<h2 id="element-types-tracked">Element types tracked</h2>
+<h3 id="checkbox-">Checkbox (<code>&lt;input type="checkbox" /&gt;</code>)</h3>
+<p>Checkboxes have <code>data-ga4-change-category="update-filter checkbox"</code> on them. If a change event is fired on the element, and the checkbox is <code>checked</code>, the <code>update-filter</code> event will build an "Add filter" GTM Object. If the checkbox is not <code>checked</code>, it will build a "Remove filter" GTM Object. The value we grab for a checkbox is the user friendly label associated with the <code>&lt;input&gt;</code>.</p>
+<h3 id="select-">Select (<code>&lt;select&gt;</code>)</h3>
+<p>The value we grab from a <code>&lt;select&gt;</code> is the user friendly text of the selected option.</p>
+<p>Filter selects have  <code>data-ga4-change-category="update-filter select"</code> on them.</p>
+<p>If the filter <code>&lt;select&gt;</code> element changes and is set to their <em>first option</em>, we treat this as a "Filter removed" event. This is because the first <code>&lt;option&gt;</code> in a <code>&lt;select&gt;</code> is their default state in our use case. Therefore if the select has changed, and we're on the first option, we can safely assume we've moved from a "Added filter" option, back to the default option, so it's treated as a "Removed filter."</p>
+<p>"Sort by" selects have  <code>data-ga4-change-category="update-sort select"</code> on them. They send a separate "Sort event", so checking whether the filter was added or removed is irrelevant in this case.</p>
+<h3 id="radio-buttons-">Radio buttons (<code>&lt;input type="radio"&gt;</code>)</h3>
+<p>Radio buttons have <code>data-ga4-change-category="update-filter radio"</code> on them. If the changed radio button is not the <em>first radio button</em> (i.e. the default selection), then, the <code>update-filter</code> event will build an "Filter added" GTM Object. If the changed radio button is the <em>first radio button</em>, it will build a "Filter removed" GTM Object. This is because the first radio button in a list is typically the default "All XYZ" filter state. The value we grab for a radio button is the user friendly label associated with the <code>&lt;input&gt;</code>.</p>
+<h3 id="date-filters-">Date filters (<code>&lt;input type="text"&gt;</code>)</h3>
+<p>Our date filters have <code>data-ga4-change-category="update-filter text"</code> on them. The value we grab is the text that is input into its text field. If the text is an empty string, we treat this as a "Filter removed" event, as this means the date was removed. If text is available in the text box, we treat this as a "Filter added" event.</p>
+<h3 id="search-keyword-changes-">Search keyword changes (<code>&lt;input type="text"&gt;</code>)</h3>
+<p>Search boxes have <code>data-ga4-change-category="update-keyword text"</code> on them. The value we grab on change is the text that was input into the text box.  Regardless if text is available in the text box, we always treat it as a "search" event. This is because an empty search box is still as search event but it just searches for everything in our database.</p>
+<p>We apply the maximum level of PII removal on the user input.</p>
+<h3 id="clear-all-filters-button">Clear all filters button</h3>
+<p>On mobile, there is a "Clear all filters" button. This triggers a <code>change</code> event on the whole <code>&lt;form&gt;</code> element when clicked. Therefore, we have added <code>data-ga4-change-category="clear-all-filters"</code> on the parent <code>&lt;form&gt;</code> in our finders. The value pushed to GTM is hard coded in <code>Ga4FinderTracker</code> as "Clear all filters", so an element type is not passed through to <code>data-ga4-change-category</code> as we don't need to do any value extraction.</p>
+<h2 id="example-gtm-objects">Example GTM Objects</h2>
+<pre lang="JSON"><code>{
+    "event": "event_data",
+    "event_data": {
+        "event_name": "select_content",
+        "type": "finder",
+        "text": "Environment",
+        "index": {
+            "index_section": 2,
+            "index_section_count": 5
+        },
+        "section": "Topic",
+        "action": "select"
+    },
+    "govuk_gem_version": "35.3.1",
 }
 </code></pre>
-<p>Dynamic facets are pretty similar to other facets. The only difference is that their <code>allowed_values</code> are populated by finder-frontend, rather than in the content item.</p>
-<p>To provide the values for a dynamic facet, finder-frontend operates a read-ahead cache of <a href="https://github.com/alphagov/finder-frontend/blob/6faf8f865ce1b0a82c296e6eb8e1d5bc2da1bd72/docs/registries.md">registries</a>.</p>
-<p>If you are adding a dynamic facet for a new filter type (e.g. roles), you'll need to add or modify a registry in finder-frontend, in order to make the values for your facet available to the UI component.</p>
-<p>This may involve modifying Search API to provide the aggregations for a field, which populate the registries. For example the <a href="https://www.gov.uk/api/search.json?aggregate_people=10&amp;count=0">aggregations for people</a>.</p>
-<p>In future we could use aggregations to fetch the available values for each facets from Search API directly. Finder-frontend at one point did this. However, doing these aggregations at query time would come with a performance cost. Another option might be to autogenerate the <code>allowed_values</code> for a facet by listening to the publishing queue.</p>
-<h2 id="hidden-facets">Hidden facets</h2>
-<p>Sometimes it can be useful to permit filtering on a finder without displaying a facet UI component to users. In these cases we use <strong>hidden facets</strong>.</p>
-<p>Examples of these include <a href="https://www.gov.uk/search/all?manual%5B%5D=%2Fhmrc-internal-manuals%2Fadmin-law-manual&amp;q=advice">manual searches</a> and <a href="https://www.gov.uk/search/services?topic=d6c2de5d-ef90-45d1-82d4-5f2438369eea">topic searches</a>.</p>
-<p>Notice how those two links apply a filter to search using a query parameter? That is because those finder pages have a hidden facet.</p>
-<p>The services finder has this facet:</p>
-<pre lang="json"><code>{
-  "key": "topic",
-  "filter_key": "all_part_of_taxonomy_tree",
-  "name": "topic",
-  "short_name": "topic",
-  "type": "hidden",
-  "display_as_result_metadata": false,
-  "hide_facet_tag": true,
-  "filterable": true
-}
-</code></pre>
-<p>The type <code>hidden</code> means that users won't see the facet in the UI. Setting <code>filterable: true</code> means the user can use <code>topic</code> in a query parameter.</p>
-<p>The search homepage has a facet that enables filtering by manuals. Here the type is <code>hidden_clearable</code>, which seems to function in the exact same way as <code>hidden</code>.</p>
-<pre lang="json"><code>{
-  "display_as_result_metadata": false,
-  "filterable": true,
-  "key": "manual",
-  "name": "Manual",
-  "preposition": "in manual",
-  "short_name": "in",
-  "type": "hidden_clearable",
-  "show_option_select_filter": false,
-  "allowed_values": []
+<pre lang="JSON"><code>{
+    "event": "event_data",
+    "event_data": {
+        "event_name": "search",
+        "type": "finder",
+        "url": "/search/research-and-statistics",
+        "text": "hello world",
+        "section": "Search",
+        "action": "search"
+    },
+    "govuk_gem_version": "35.3.1",
 }
 </code></pre>
 
@@ -310,8 +303,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/finder-frontend/blob/main/docs/faceted-search.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffinder-frontend%2Ffaceted-search.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/finder-frontend/blob/main/docs/analytics-ga4/ga4-finder-tracker.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffinder-frontend%2Fanalytics-ga4%2Fga4-finder-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
