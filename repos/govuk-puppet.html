@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-puppet - GOV.UK Developer Documentation</title>
+    <title>Application: govuk-puppet - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,13 +16,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-puppet - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Application: govuk-puppet - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-puppet.html" />
 
       <meta property="og:description" content="Everything about govuk-puppet (Puppet manifests used to provision remaining parts of the legacy GOV.UK stack (as at Mar 2023: crawler, data sync/backup, Licensify, CKAN))" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-puppet" />
+      <meta property="og:title" content="Application: govuk-puppet" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-puppet.html" />
 
@@ -183,7 +183,7 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-puppet</h1>
+  <h1 class="page-title">Application: govuk-puppet</h1>
 
   <p>Puppet manifests used to provision remaining parts of the legacy GOV.UK stack (as at Mar 2023: crawler, data sync/backup, Licensify, CKAN)</p>
 
@@ -207,7 +207,7 @@
 </div>          <div class="govuk-summary-list__row">
 
             <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
+            <dd class="govuk-summary-list__value"><strong>AWS (EC2)</strong>, on the <strong>Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml</strong> machine class</dd>
 
 
 
@@ -215,6 +215,39 @@
 
             <dt class="govuk-summary-list__key">Category</dt>
             <dd class="govuk-summary-list__value">Utilities</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Rake tasks</dt>
+            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
+      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=govuk-puppet&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
+      class="govuk-link"
+      aria-label="Run a Rake task on Integration">Integration</a>, <a
+      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=govuk-puppet&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
+      class="govuk-link"
+      aria-label="Run a Rake task on Staging">Staging</a> or <a
+      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=govuk-puppet&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
+      class="govuk-link"
+      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Links</dt>
+            <dd class="govuk-summary-list__value"><ul class="govuk-list">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/govuk_puppet.pp" class="govuk-link">Puppet configuration</a></li>
+    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/govuk-puppet/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</dd>
 
 
 
