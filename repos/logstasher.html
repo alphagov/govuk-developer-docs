@@ -1,0 +1,525 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Repository: logstasher - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/logstasher.html">
+
+      <meta name="description" content="Everything about logstasher (Awesome rails logs)" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Repository: logstasher - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/logstasher.html" />
+
+      <meta property="og:description" content="Everything about logstasher (Awesome rails logs)" />
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Repository: logstasher" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/logstasher.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/logstasher.html" rel="noopener" class="govuk-link">logstasher</a>
+    </li>
+    <li>
+      <ul>
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+  
+  <h1 class="page-title">Repository: logstasher</h1>
+
+  <p>Awesome rails logs</p>
+
+<div class="gem-c-summary-list  ">
+
+      <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">GitHub</dt>
+            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/logstasher">logstasher</a></dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Ownership</dt>
+            <dd class="govuk-summary-list__value">#govuk-platform-security-reliability-team</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Hosting</dt>
+            <dd class="govuk-summary-list__value">N/A</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Category</dt>
+            <dd class="govuk-summary-list__value">Utilities</dd>
+
+
+
+</div></dl>
+    <div class="gem-c-summary__block"></div>
+</div>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<h3 id="awesome-logging-for-rails-">Awesome Logging for Rails !!</h3>
+
+<p>This gem is heavily inspired from <a href="https://github.com/roidrage/lograge">lograge</a>, but it&rsquo;s focused on one thing and one thing only. That&rsquo;s making your logs awesome like this:</p>
+
+<p><a href="https://f.cloud.github.com/assets/830679/2407078/dcde03e8-aa82-11e3-85ac-8c5b3a86676e.png"><img src="https://f.cloud.github.com/assets/830679/2407078/dcde03e8-aa82-11e3-85ac-8c5b3a86676e.png" alt="Awesome Logs"></a></p>
+
+<p>How it&rsquo;s done ?</p>
+
+<p>By, using these awesome tools:</p>
+
+<ul>
+<li>
+<a href="http://logstash.net">Logstash</a> - Store and index your logs</li>
+<li>
+<a href="http://kibana.org/">Kibana</a> - for awesome visualization. This is optional though, and you can use any other visualizer</li>
+</ul>
+
+<p>Update: Logstash now includes Kibana build in, so no need to separately install. Logstasher has been tested with <strong>logstash version 1.4.2</strong> with <code>file input</code> and <code>json codec</code>.</p>
+
+<p>See <a href="#quick-setup-for-logstash">quickstart</a> for quickly setting up logstash</p>
+
+<h2 id="about-logstasher">About logstasher</h2>
+
+<p>This gem purely focuses on how to generate logstash compatible logs i.e. <em>logstash json event format</em>,  without any overhead. Infact, logstasher logs to a separate log file named <code>logstash_&lt;environment&gt;.log</code>.
+The reason for this separation:</p>
+
+<ul>
+<li>To have a pure json log file</li>
+<li>Prevent any logger messages(e.g. info) getting into our pure json logs</li>
+</ul>
+
+<p>Before <strong>logstasher</strong> :</p>
+
+<pre><code>Started GET "/login" for 10.109.10.135 at 2013-04-30 08:59:01 -0400
+Processing by SessionsController#new as HTML
+[ActiveJob] [TestJob] [61d6e87a-875d-4255-9424-cab7d5ff208c] Performing TestJob from Test(default) with arguments: 0, 1
+  Rendered sessions/new.html.haml within layouts/application (4.3ms)
+  Rendered shared/_javascript.html.haml (0.6ms)
+  Rendered shared/_flashes.html.haml (0.2ms)
+  Rendered shared/_header.html.haml (52.9ms)
+  Rendered shared/_title.html.haml (0.2ms)
+  Rendered shared/_footer.html.haml (0.2ms)
+Completed 200 OK in 532ms (Views: 62.4ms | ActiveRecord: 0.0ms | ND API: 0.0ms)
+</code></pre>
+
+<p>After <strong>logstasher</strong>:</p>
+
+<pre lang="json"><code>{"job_id":"61d6e87a-875d-4255-9424-cab7d5ff208c","queue_name":"Test(default)","job_class":"ExampleJob","job_args":[1,0],
+"exception":["ZeroDivisionError","divided by 0"],"duration":3.07,"request_id":"61d6e87a-875d-4255-9424-cab7d5ff208c",
+"source":"unknown","tags":["job","perform","exception"],"@timestamp":"2016-03-29T16:14:32.837Z","@version":"1"}
+
+{"@source":"unknown","@tags":["request"],"@fields":{"method":"GET","path":"/","format":"html","controller":"file_servers"
+,"action":"index","status":200,"duration":28.34,"view":25.96,"db":0.88,"ip":"127.0.0.1","route":"file_servers#index",
+"parameters":"","ndapi_time":null,"uuid":"e81ecd178ed3b591099f4d489760dfb6","user":"shadab_ahmed@abc.com",
+"site":"internal"},"@timestamp":"2013-04-30T13:00:46.354500+00:00"}
+</code></pre>
+
+<p>By default, the older format rails request logs are disabled, though you can enable them.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>In your Gemfile:</p>
+
+<pre lang="ruby"><code>gem 'logstasher'
+</code></pre>
+
+<h3 id="configure-your-rb-e-g-development-rb">Configure your <code>&lt;environment&gt;.rb</code> e.g. <code>development.rb</code>
+</h3>
+
+<pre lang="ruby"><code># Enable the logstasher logs for the current environment
+config.logstasher.enabled = true
+
+# Each of the following lines are optional. If you want to selectively disable log subscribers.
+config.logstasher.controller_enabled = false
+config.logstasher.mailer_enabled = false
+config.logstasher.record_enabled = false
+config.logstasher.view_enabled = false
+config.logstasher.job_enabled = false
+
+# This line is optional if you do not want to suppress app logs in your &lt;environment&gt;.log
+config.logstasher.suppress_app_log = false
+
+# This line is optional, it allows you to set a custom value for the @source field of the log event
+config.logstasher.source = 'your.arbitrary.source'
+
+# This line is optional if you do not want to log the backtrace of exceptions
+config.logstasher.backtrace = false
+
+# This line is optional, defaults to log/logstasher_&lt;environment&gt;.log
+config.logstasher.logger_path = 'log/logstasher.log'
+
+# This line is optional, loaded only if the value is truthy
+config.field_renaming = {
+    old_field_name =&gt; new_field_name,
+}
+
+</code></pre>
+
+<h2 id="optionally-use-configlogstasher-yml-overrides-rb">Optionally use config/logstasher.yml (overrides <code>&lt;environment&gt;.rb</code>)</h2>
+
+<p>Has the same optional fields as the <code>&lt;environment&gt;.rb</code>. You can specify common configurations that are then overriden by environment specific configurations:</p>
+
+<pre lang="yml"><code>controller_enabled: true
+mailer_enabled: false
+record_enabled: false
+job_enabled: false
+view_enabled: true
+suppress_app_log: false
+development:
+  enabled: true
+  record_enabled: true
+production:
+  enabled: true
+  mailer_enabled: true
+  view_enabled: false
+</code></pre>
+
+<h2 id="logging-params-hash">Logging params hash</h2>
+
+<p>Logstasher can be configured to log the contents of the params hash.  When enabled, the contents of the params hash (minus the ActionController internal params)
+will be added to the log as a deep hash.  This can cause conflicts within the Elasticsearch mappings though, so should be enabled with care.  Conflicts will occur
+if different actions (or even different applications logging to the same Elasticsearch cluster) use the same params key, but with a different data type (e.g. a
+string vs. a hash).  This can lead to lost log entries.  Enabling this can also significantly increase the size of the Elasticsearch indexes.</p>
+
+<p>To enable this, add the following to your <code>&lt;environment&gt;.rb</code></p>
+
+<pre lang="ruby"><code># Enable logging of controller params
+config.logstasher.log_controller_parameters = true
+</code></pre>
+
+<h2 id="adding-custom-fields-to-the-log">Adding custom fields to the log</h2>
+
+<p>Since some fields are very specific to your application for e.g. <em>user_name</em>, so it is left upto you, to add them. Here&rsquo;s how to add those fields to the logs:</p>
+
+<pre lang="ruby"><code># Create a file - config/initializers/logstasher.rb
+
+if LogStasher.enabled?
+  LogStasher.add_custom_fields do |fields|
+    # This block is run in application_controller context,
+    # so you have access to all controller methods
+    fields[:user] = current_user &amp;&amp; current_user.mail
+    fields[:site] = request.path =~ /^\/api/ ? 'api' : 'user'
+
+    # If you are using custom instrumentation, just add it to logstasher custom fields
+    LogStasher.custom_fields &lt;&lt; :myapi_runtime
+  end
+
+  LogStasher.add_custom_fields_to_request_context do |fields|
+    # This block is run in application_controller context,
+    # so you have access to all controller methods
+    # You can log custom request fields using this block
+    fields[:user] = current_user &amp;&amp; current_user.mail
+    fields[:site] = request.path =~ /^\/api/ ? 'api' : 'user'
+  end
+end
+</code></pre>
+
+<h2 id="logging-actionmailer-events">Logging ActionMailer events</h2>
+
+<p>Logstasher can easily log messages from <code>ActionMailer</code>, such as incoming/outgoing e-mails and e-mail content generation (Rails &gt;= 4.1).
+This functionality is automatically enabled. Since the relationship between a concrete HTTP request and a mailer invocation is lost
+once in an <code>ActionMailer</code> instance method, global (per-request) state is kept to correlate HTTP requests and events from other parts
+of rails, such as <code>ActionMailer</code>. Every time a request is invoked, a <code>request_id</code> key is added which is present on every <code>ActionMailer</code> event.</p>
+
+<p>Note: Since mailers are executed within the lifetime of a request, they will show up in logs prior to the actual request.</p>
+
+<h2 id="logging-activejob-events">Logging ActiveJob events</h2>
+
+<p>Logstasher can also easily log messages from <code>ActiveJob</code> (Rails &gt;= 4.2).
+This functionality is automatically enabled. The <code>request_id</code> is set to the Job ID when the job is
+performed, and then reverted back to its previous value once the job is complete. Imagine this
+scenario:</p>
+
+<ul>
+<li>Web request starts (sets <code>request_id</code> to some value)</li>
+<li>Job is enqueued because of the web request (the same web <code>request_id</code> is used)</li>
+<li>Job is performing starts (pretend non-asynchronous adapter or perform_now was used)</li>
+<li>
+<code>request_id</code> is set to the job id. This is important because for asynchronous jobs, there&rsquo;s no way
+to remember the original <code>request_id</code>
+</li>
+<li>Now, you can add your own detailed logging to the job, and the <code>request_id</code> can be used</li>
+<li>Once the job completes, the <code>request_id</code> is reverted and other SQL and View log lines will use
+that same old <code>request_id</code> again.</li>
+</ul>
+
+<h2 id="listening-to-activesupportnotifications-events">Listening to <code>ActiveSupport::Notifications</code> events</h2>
+
+<p>It is possible to listen to any <code>ActiveSupport::Notifications</code> events and store arbitrary data to be included in the final JSON log entry:</p>
+
+<pre lang="ruby"><code># In config/initializers/logstasher.rb
+
+# Watch calls the block with the same arguments than any ActiveSupport::Notification, plus a store
+LogStasher.watch('some.activesupport.notification') do |name, start, finish, id, payload, store|
+  # Do something
+  store[:count] = 42
+end
+</code></pre>
+
+<p>Would change the log entry to:</p>
+
+<pre lang="json"><code>{"@source":"unknown","@tags":["request"],"@fields":{"method":"GET","path":"/","format":"html","controller":"file_servers","action":"index","status":200,"duration":28.34,"view":25.96,"db":0.88,"ip":"127.0.0.1","route":"file_servers#index", "parameters":"","ndapi_time":null,"uuid":"e81ecd178ed3b591099f4d489760dfb6","user":"shadab_ahmed@abc.com", "site":"internal","some.activesupport.notification":{"count":42}},"@timestamp":"2013-04-30T13:00:46.354500+00:00"}
+</code></pre>
+
+<p>The store exposed to the blocked passed to <code>watch</code> is thread-safe, and reset after each request.
+By default, the store is only shared between occurences of the same event.
+You can easily share the same store between different types of notifications, by assigning them to the same event group:</p>
+
+<pre lang="ruby"><code># In config/initializers/logstasher.rb
+
+LogStasher.watch('foo.notification', event_group: 'notification') do |*args, store|
+  # Shared store with 'bar.notification'
+end
+
+LogStasher.watch('bar.notification', event_group: 'notification') do |*args, store|
+  # Shared store with 'foo.notification'
+end
+</code></pre>
+
+<h2 id="quick-setup-for-logstash">Quick Setup for Logstash</h2>
+
+<p>Follow the instructions at <a href="https://www.elastic.co/guide/en/logstash/index.html">logstash documentation</a> to setup logstash.
+Start logstash with the following command:</p>
+
+<pre><code>bin/logstash -f quickstart.conf
+</code></pre>
+
+<h2 id="versions">Versions</h2>
+
+<p>All versions require Rails 3.0.x and higher and Ruby 1.9.2+. Tested on Rails 4 and Ruby 2.0</p>
+
+<h2 id="development">Development</h2>
+
+<ul>
+<li>Install dependencies:
+export RAILS_VERSION=4.2
+bundle install &ndash;without guard &ndash;path=${BUNDLE_PATH:-vendor/bundle}</li>
+<li>Run tests - <code>rake</code>
+</li>
+<li>Generate test coverage report - <code>rake coverage</code>. Coverage report path - coverage/index.html</li>
+</ul>
+
+<h2 id="copyright">Copyright</h2>
+
+<p>Copyright &copy; 2016 Shadab Ahmed, released under the MIT license</p>
+<p></div></p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Flogstasher.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
