@@ -30,12 +30,12 @@ RSpec.describe RunRakeTask do
           .to_return(body: File.read("spec/fixtures/puppet-hieradata-common.yaml"))
       end
 
-      let(:application) { "bouncer" }
+      let(:application) { "ckanext-datagovuk" }
 
       it "has three links" do
-        expect(html).to have_link("Run publishing_api:republish on Integration", href: "https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=bouncer&MACHINE_CLASS=bouncer&RAKE_TASK=publishing_api:republish")
-        expect(html).to have_link("Run publishing_api:republish on Staging", href: "https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=bouncer&MACHINE_CLASS=bouncer&RAKE_TASK=publishing_api:republish")
-        expect(html).to have_link("Run publishing_api:republish on Production", href: "https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=bouncer&MACHINE_CLASS=bouncer&RAKE_TASK=publishing_api:republish")
+        expect(html).to have_link("Run publishing_api:republish on Integration", href: "https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=ckanext-datagovuk&MACHINE_CLASS=ckan&RAKE_TASK=publishing_api:republish")
+        expect(html).to have_link("Run publishing_api:republish on Staging", href: "https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=ckanext-datagovuk&MACHINE_CLASS=ckan&RAKE_TASK=publishing_api:republish")
+        expect(html).to have_link("Run publishing_api:republish on Production", href: "https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=ckanext-datagovuk&MACHINE_CLASS=ckan&RAKE_TASK=publishing_api:republish")
       end
     end
   end
