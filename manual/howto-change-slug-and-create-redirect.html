@@ -189,7 +189,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2b780908f5bd97da0de173c40f94e6d01cd59969">13 Jun 2023</a>
 </div>
 
  <h1 id='header'>Change a slug and create redirect in Whitehall</h1> <h2 id='change-a-slug-and-create-a-redirect-in-whitehall'>Change a slug and create a redirect in Whitehall</h2><p>In Whitehall, we have Rake Tasks to change slugs and create redirects for
@@ -198,17 +198,29 @@ various entities: <code>Person</code>, <code>Role</code>, <code>Document</code>,
 <h3 id='rake-tasks'>Rake Tasks</h3><p>These Rake Tasks also reindex the entity with its new slug and republish it to
 Publishing API, which automatically handles the redirect. They all take the old
 slug and the new slug as arguments.</p>
-<p>To change slug and create redirect for a <code>Person</code> use <code>reslug:person[OLD_SLUG,NEW_SLUG]</code>.</p>
-<p>To change slug and create redirect for a <code>Role</code> use <code>reslug:role[OLD_SLUG,NEW_SLUG]</code>.</p>
-<p>To change slug and create redirect for a <code>Document</code>:</p>
+<p>If you have not accessed the EKS before you will need to follow <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">these set up instructions</a> first.</p>
+<p>To run a rake task you’ll need to set your region and context as below (swapping out the environment as appropriate. Note that the poweruser role is required as a minimum for running rake tasks):</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
+<span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
+kubectl config use-context &lt;your-context-name&gt;
+</code></pre></div><p>To change slug and create redirect for a <code>Person</code> use:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps deploy/whitehall-admin <span class="nt">--</span> rake <span class="s1">'reslug:person[OLD_SLUG,NEW_SLUG]'</span>
+</code></pre></div><p>To change slug and create redirect for a <code>Role</code> use:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code> kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps deploy/whitehall-admin <span class="nt">--</span> rake <span class="s1">'reslug:role[OLD_SLUG,NEW_SLUG]'</span>
+</code></pre></div><p>To change slug and create redirect for a <code>Document</code>:</p>
 <p>Visit the following URL, replacing <code>&lt;edition_id&gt;</code> with the ID of any of a documents editions:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/&lt;edition_id&gt;/edit_slug
-</code></pre></div><p>To change slug and create redirect for a <code>PolicyGroup</code> use <code>reslug:policy_group[OLD_SLUG,NEW_SLUG]</code>.</p>
-<p>To change slug and create redirect for a <code>WorldLocation</code> use <code>reslug:world_location[OLD_SLUG,NEW_SLUG]</code>.</p>
-<p>To change slug and create redirect for a <code>Organisation</code> use <code>reslug:organisation[OLD_SLUG,NEW_SLUG]</code>.</p>
-<p>To change slug and create redirect for a <code>WorldwideOrganisation</code> use <code>reslug:worldwide_organisation[OLD_SLUG,NEW_SLUG]</code>.</p>
-<p>To change slug and create redirect for a <code>StatisticsAnnoucement</code> use <code>reslug:statistics_annoucement[OLD_SLUG,NEW_SLUG]</code>.</p>
-<h3 id='issues'>Issues</h3><p>If you run a task and find the redirect has worked but the new location returns
+</code></pre></div><p>To change slug and create redirect for a <code>PolicyGroup</code> use:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps deploy/whitehall-admin <span class="nt">--</span> rake <span class="s1">'reslug:policy_group[OLD_SLUG,NEW_SLUG]'</span>
+</code></pre></div><p>To change slug and create redirect for a <code>WorldLocation</code> use:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps deploy/whitehall-admin <span class="nt">--</span> rake <span class="s1">'reslug:world_location[OLD_SLUG,NEW_SLUG]'</span>
+</code></pre></div><p>To change slug and create redirect for a <code>Organisation</code> use:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps deploy/whitehall-admin <span class="nt">--</span> rake <span class="s1">'reslug:organisation[OLD_SLUG,NEW_SLUG]'</span>
+</code></pre></div><p>To change slug and create redirect for a <code>WorldwideOrganisation</code> use:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps deploy/whitehall-admin <span class="nt">--</span> rake <span class="s1">'reslug:worldwide_organisation[OLD_SLUG,NEW_SLUG]'</span>
+</code></pre></div><p>To change slug and create redirect for a <code>StatisticsAnnoucement</code> use:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps deploy/whitehall-admin <span class="nt">--</span> rake <span class="s1">'reslug:statistics_annoucement[OLD_SLUG,NEW_SLUG]'</span>
+</code></pre></div><h3 id='issues'>Issues</h3><p>If you run a task and find the redirect has worked but the new location returns
 a 404, it&rsquo;s likely because the republish command is languishing in the
 low-priority queue (<a href="https://grafana.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=publishing-api&amp;var-Queues=All&amp;from=now-30m&amp;to=now">check queue volumes in Grafana</a>).
 Whitehall appears to put the redirect in the low-priority queue, so there can
