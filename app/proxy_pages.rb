@@ -59,13 +59,13 @@ class ProxyPages
   def self.repo_overviews
     Repos.all.map do |repo|
       {
-        path: "/repos/#{repo.repo_name}.html",
+        path: "/repos/#{repo.app_name}.html",
         template: "templates/repo_template.html",
         frontmatter: {
           title: repo.page_title,
           locals: {
             title: repo.page_title,
-            description: "Everything about #{repo.repo_name} (#{repo.description})",
+            description: "Everything about #{repo.app_name} (#{repo.description})",
             repo:,
           },
         },
