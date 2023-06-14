@@ -1,0 +1,447 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Repository: datagovuk-visual-regression-tests - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/datagovuk-visual-regression-tests.html">
+
+      <meta name="description" content="Everything about datagovuk-visual-regression-tests (Visual regression tests for data.gov.uk)" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Repository: datagovuk-visual-regression-tests - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/datagovuk-visual-regression-tests.html" />
+
+      <meta property="og:description" content="Everything about datagovuk-visual-regression-tests (Visual regression tests for data.gov.uk)" />
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Repository: datagovuk-visual-regression-tests" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/datagovuk-visual-regression-tests.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/datagovuk-visual-regression-tests.html" rel="noopener" class="govuk-link">datagovuk-visual-regression-tests</a>
+    </li>
+    <li>
+      <ul>
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+  
+  <h1 class="page-title">Repository: datagovuk-visual-regression-tests</h1>
+
+  <p>Visual regression tests for data.gov.uk</p>
+
+<div class="gem-c-summary-list  ">
+
+      <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">GitHub</dt>
+            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/datagovuk-visual-regression-tests">datagovuk-visual-regression-tests</a></dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Ownership</dt>
+            <dd class="govuk-summary-list__value">#govuk-datagovuk</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Hosting</dt>
+            <dd class="govuk-summary-list__value">N/A</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Category</dt>
+            <dd class="govuk-summary-list__value">data.gov.uk apps</dd>
+
+
+
+</div></dl>
+    <div class="gem-c-summary__block"></div>
+</div>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<p>This repo contains the BackstopJS configuration to run visual regression tests against the <a href="https://ckan.publishing.service.gov.uk/">data.gov.uk admin panel</a>.</p>
+
+<h2 id="credits">Credits</h2>
+
+<p>This repo is a fork of the work done by the <a href="https://github.com/alphagov/digitalmarketplace-visual-regression">Digital Marketplace team</a></p>
+
+<h2 id="setup">Setup</h2>
+
+<p>Ensure that you have the latest versions of Node js and NPM installed locally.</p>
+
+<p>Clone this repo and run:</p>
+
+<pre><code>npm install
+</code></pre>
+
+<p>Clone the <code>.env.example</code> file and create a <code>.env</code> file at the root of your local repo. Fill in the environment variables in accordance with their descriptions in <code>.env.example</code>. The variables <code>STANDARD_RESOURCE</code>, <code>ORGANOGRAM_RESOURCE_NO_SOURCE</code> and <code>ORGANOGRAM_RESOURCE_SOURCE_SPECIFIED</code> will be auto generated by the setup script (see below) if they are left blank or will be overwritten if they are filled in and setup is re-run.</p>
+
+<p>It&rsquo;s recommended that you run the VRT against a blank environment with only the standard DGU test data. See the data setup section below for more details including instructions on how to setup test data locally. If you run this against a populated environment, filling in the necessary env variables, then the VRT will still run as expected but it will &ldquo;fail&rdquo; as it isn&rsquo;t running against the data that it has been approved against and is therefore expecting. This isn&rsquo;t a problem if you just want to check specific features manually but can be an issue if you want to update the tests.</p>
+
+<p>Additionally, it&rsquo;s recommended you set the docker ckan environment variable <code>CKAN_DEBUG</code> to <code>false</code> for your local instance. This will turn off the debug console and other debug features for the ckan admin panel. Whilst this repo includes code to handle said debug features, it slows down local instances and can make the VRT sluggish and difficult to run.</p>
+
+<h2 id="how-it-works">How it works</h2>
+
+<p>BackstopJS compares an instance of ckan that you specify in the .env file, uses puppeteer to run that instance through a set of scenarios aka: views within the ckan user journey and variations of those views, and compares screenshots taken from those scenarios to existing screenshots stored in source control. Backstop will then produce a html report for interrogation, making use of puppeteer&rsquo;s rich diff functionality. You as the dev working on a feature or bugfix can then assess if any changes produced are acceptable or not and approve these changes, updating the screenshots in source control.</p>
+
+<p>The original intent of these tests was to assess changes between versions of ckan to ensure that the admin frontend hadn&rsquo;t broken when upgrading. This however has evolved as we start to think about ways to integrate this testing suite into a consistent CI flow.</p>
+
+<p>If these admin journeys change at any point, the scenarios in this tool will need to be reviewed.</p>
+
+<h2 id="running-tests-locally">Running tests locally</h2>
+
+<h3 id="quick-start">Quick start</h3>
+
+<pre><code>npm run setup OR npm run update-resource-ids
+</code></pre>
+
+<p>Either of these scripts will ensure that your local VRT is synced up with the data in your local ckan instance so that tests have all the data they need to run properly. Run one of these scripts before running <code>test</code>.</p>
+
+<pre><code>npm run test
+</code></pre>
+
+<p>With the basic setup as supplied, this will run an initial test on the domain specified in your .env file. By default, this will run against screenshots stored for ckan version 2.8. You can see the report by opening <code>backstop_data/html_report/index.html</code> in your browser. If there are any changes between the instance you are running and the stored screenshots then these tests will fail, showing diffs in the produced report. If you want to update these screenshots to the most recently run test screenshots, you can run:</p>
+
+<pre><code>npm run approve
+</code></pre>
+
+<p>This will update your saved screenshots to the most recently run tests. Remember you still have to commit these changes to source control. Every time you make a positive change, simply run <code>npm run test</code> to ensure visual fidelity and then <code>npm run approve</code> to update your reference screenshots.</p>
+
+<h3 id="different-ckan-versions-and-view-filters">Different ckan versions and view filters</h3>
+
+<p>This repo includes multiple scenario &ldquo;sets&rdquo; for different version of ckan. Currently, this includes a set of screenshots for ckan 2.9, 2.8 and 2.7. By default, running <code>test</code> will use the config for 2.8 as this is the version currently running in production. To use a different config, for example 2.9, just pass this as an argument:</p>
+
+<pre><code>npm run test 2.9
+</code></pre>
+
+<p>This will run your local instance against ckan 2.9 instead of 2.8. Remember that your .env file needs to reflect the scenario set that you are testing eg: Don&rsquo;t run a local version of 2.9 against the 2.8 scenarios (unless this is explicitly what you want to do, in which case do not approve these changes as they will override the existing 2.8 scenario set).</p>
+
+<p>Running the default <code>test</code> against any ckan config currently command will trigger 40 scenarios, each one with 3 views (desktop, tablet and phone), totalling to 120 tests. This will take a while to run all of these and may start eating into your machine&rsquo;s memory in a non-trivial way. To subvert this, scenarios are broken down into the following sections:</p>
+
+<ul>
+<li>homepage - 1 scenario</li>
+<li>dataset - 11 scenarios</li>
+<li>publisher - 5 scenarios</li>
+<li>harvest - 9 scenarios</li>
+<li>user - 8 scenarios</li>
+<li>dashboard - 3 scenarios</li>
+<li>admin - 3 scenarios</li>
+</ul>
+
+<p>You can use these section keywords to only target specific scenarios using the command <code>npm run test [config] [keyword]</code>. For example, to only test the harvest section for ckan 2.7, simply run <code>npm run test 2.7 harvest</code> to run only those 9 scenarios for 2.7.</p>
+
+<p>For running ckan locally, it is recommended you use the <a href="https://github.com/alphagov/docker-ckan">docker-ckan project</a>. Please see the documentation for that project for details on how to run ckan locally via docker.</p>
+
+<h2 id="updating-tests">Updating tests</h2>
+
+<p>To add new test scenarios, you can update <code>configs/ckan-config.js</code> under the <code>scenarios</code> key and follow the format of other entries in the list. Each scenario expects the following attributes:</p>
+
+<ul>
+<li>
+<code>label</code>: The name of the scenario. Please be descriptive and use a prefix where appropriate eg: if your new test is within the publisher views, the label should be &ldquo;Publisher - [your test]&rdquo;.</li>
+<li>
+<code>url</code>: The url of the scenario. Remember to make use of <code>process.env.DOMAIN</code> as necessary.</li>
+</ul>
+
+<p>In addition to the above, you can add the following additional attributes depending on what you need for your scenario:</p>
+
+<ul>
+<li>
+<code>skipLogin</code>: This will skip the login step. For instances where you are testing a view that relies on not being logged in.</li>
+<li>
+<code>submitForm</code>: Assumes there is a single form on your view and submits it. This is principally for instances where you want to test how form errors look on forms. Please see the Gotchas section below for details on a minor quirk within ckan forms.</li>
+<li>
+<code>uploadField</code>: Waits for elements specific to the image upload functionality to ensure that views using this pattern run properly for tests.</li>
+<li>
+<code>select2</code>: Waits for elements specific to the select2 custom dropdown vendor within to ensure that views using this pattern run properly for tests.</li>
+<li>
+<code>slugPreview</code>: Waits for elements specific to the slug preview functionality custom dropdown vendor within to ensure that views using this pattern run properly for tests.</li>
+<li>
+<code>textarea</code>: For views that use a textarea field, this attribute explicitly specifies the heigh of these fields. This is to fix an issue where the resize arrow would shift unpredictably on tests that included textareas.</li>
+<li>
+<code>tableRows</code>: Sets the content of data table row data to zero for views using the data table pattern to ensure that dynamic data doesn&rsquo;t interfere with tests.</li>
+<li>
+<code>dashboard</code>: Removes some specific elements related to dashboard views (dashboard default and user activity) to ensure that dynamic data doesn&rsquo;t interfere with tests.</li>
+<li>
+<code>harvestJobList</code>: An attribute for a specific view to clear dynamic data for the harvest job list view.</li>
+<li>
+<code>tableShowMore</code>: Removes the show more pattern from data tables to combat an unpredictable bug where the VRT would sometimes beat the js that rendered table hiding and showing on long data tables.</li>
+</ul>
+
+<p>Make sure to review the test report before approving to check that no unwanted changes have slipped in. You can find this at <code>backstop_data/html_report/index.html</code> and can view it in your browser. It will populate following a test run.</p>
+
+<p>If you want to add a new scenario set, you can add a new config root under the <code>configs</code> directory. If you are adding a new ckan version, it is recommended that you follow the setup in the other ckan config roots (currently <code>2.7.js</code>, <code>2.8.js</code> and <code>2.9.js</code>) and reference <code>ckan-config.js</code> as they do. If you are adding a completely new set of scenarios relating to datagovuk but unrelated to the ckan admin panel, you will need to create an entirely new config. You can use <code>ckan-config.js</code> as a basis for your config. If you want to use filters in your new scenario, it is recommended that you edit <code>test.js</code> and amend the code to properly catch your filter.</p>
+
+<h2 id="ckan-data-setup">Ckan data setup</h2>
+
+<p>In order to ensure that tests are based on consistent data and therefore consistent views, the tests in this repo are based on <a href="https://github.com/alphagov/ckanext-datagovuk#creating-test-data">datagovuk&rsquo;s test data setup</a>. You can run the commands specified in the documentation for ckanext-datagovuk from within the ckan image of the docker-ckan stack.</p>
+
+<p>You can verify this within the VRT after adding the test data, as well as the test organogram dataset, a necessary dataset for the VRT tests, by running <code>npm run setup</code>. This will check that each piece of test data exists and add the organogram dataset via puppeteer. As part of this script, the env variables <code>STANDARD_RESOURCE</code>, <code>ORGANOGRAM_RESOURCE_NO_SOURCE</code> and <code>ORGANOGRAM_RESOURCE_SOURCE_SPECIFIED</code> will be auto generated. You can also run this function as a standalone command by running:</p>
+
+<pre><code>npm run update-resource-id
+</code></pre>
+
+<p>You can pass either <code>organogram</code> or <code>default</code> to run only the organogram or the standard resource generations respectively. Please note that if you have already populated these env variables, that they will be overwritten by this script.</p>
+
+<h2 id="debugging-issues-in-the-code">Debugging issues in the code</h2>
+
+<p>Because a lot of the code in this repo is abstracted by puppeteer running a headless browser instance, as well as relying on an instance of docker-ckan running alongside, debugging issues can be difficult. If you encounter issues whilst running or developing upon this repo, it is recommended that you try the following:</p>
+
+<h3 id="check-the-html-report">Check the HTML report</h3>
+
+<p>The HTML report, found at <code>backstop_data/html_report/index.html</code> will often have some useful error messages for who a scenario didn&rsquo;t run and is typically more reliable that backstop&rsquo;s own CLI. An example of this is that backstop will sometimes give you an error message that looks like this:</p>
+
+<pre><code>Reference image not found [scenario_reference].png
+</code></pre>
+
+<p>Historically, this error has been less an indication of what a problem is and more a response from backstop to a problem and checking the HTML report has revealed that this is usually caused by a problem whilst running a particular scenario.</p>
+
+<h3 id="look-at-the-gotchas-section-below-">Look at the Gotchas section below.</h3>
+
+<p>It could be that the issue you&rsquo;re encountering has already been captured and explored.</p>
+
+<h3 id="use-puppeteers-screenshot-functionality-">Use puppeteer&rsquo;s screenshot functionality.</h3>
+
+<pre><code>await page.screenshot({path: 'screenshot.png'});
+</code></pre>
+
+<p>In the above example, puppeteer will take a screenshot of the current instance of puppeteer and output it to <code>screenshot.png</code> at the root of your local repo. You can change the output location to whatever you want and put this line virtually anywhere in this code and it&rsquo;ll be valid. This will give you a representation of puppeteer&rsquo;s state at any one time compared to what you&rsquo;re expecting.</p>
+
+<p>If you do find an issue, please create a pull request to either fix the issue or add it to the gotchas below.</p>
+
+<h2 id="gotchas">Gotchas</h2>
+
+<h3 id="issues-with-ckan">Issues with ckan</h3>
+
+<ul>
+<li>In ckan scenarios that involve submitting a form to test for form errors, the ideal would be to use <code>form.submit()</code> in line with the browser API. Unfortunately, ckan&rsquo;s <code>basic-form</code> js module hijacks the form submission flow, meaning that the submit button for that form has to be explicitly clicked. This can still be done via puppeteer, however it&rsquo;s not especially neat.</li>
+<li>On any view with an upload field, notably the organogram resource views, ckan&rsquo;s <code>image-upload</code> js module takes a little while to load and puppeteer manages to beat it 9 times out of 10. The <code>upload-field.js</code> script has therefore been added to wait for the js to load.</li>
+<li>Similar to the above around having to wait for js to load in a view, some forms have an autofill slug field, managed by ckan&rsquo;s <code>slug-preview</code> module. This both hides one field and generates markup for a non-input field which auto-updates based on an associated input field. Like above, puppeteer beats the rendering work for this 9 times out of 10, creating inconsistent view tests. The <code>slug-preview.js</code> script exists to account for this.</li>
+</ul>
+
+<h3 id="backstop-limitations">Backstop limitations</h3>
+
+<ul>
+<li>Backstop doesn&rsquo;t have a testing library for IE or Edge. The reason for this is that backstop relies on the headless infrastructure provided by engines like puppeteer or caspar, something that old microsoft browsers don&rsquo;t support. We have a need to support IE11 at least for this project, so you may need to do some additional manual testing on top of running these tests.</li>
+<li>Backstop can only run against a very specific stack. If any additional data is added, because Backstop explicitly tests against visual discrepancy, then tests will fail. This means that if any additional data is added to a local stack or anything is changed, either said data will need to be removed or you will have to reset your local stack.</li>
+<li>Backstop storing screenshots in source control is potentially problematic. A single set of ckan scenarios (120 screenshots) comes to approximately 15MB. A long term solution needs ot be considered for how we store scenarios to avoid taking up obscene amounts of space in source control.</li>
+</ul>
+<p></div></p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fdatagovuk-visual-regression-tests.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
