@@ -7,13 +7,13 @@ class Repo
 
   def api_payload
     {
-      app_name: repo_name, # beware renaming the key - it's used here: https://github.com/alphagov/govuk-dependencies/blob/b3a2a29eb80aefa08098a08633b4a08b05bcc527/lib/gateways/team.rb#L15
+      app_name:, # beware renaming the key - it's used here: https://github.com/alphagov/seal/blob/36a897b099943713ea14fa2cfe1abff8b25a83a7/lib/team_builder.rb#L97
       team:,
       dependencies_team:,
       shortname:,
       production_hosted_on:,
       links: {
-        self: "https://docs.publishing.service.gov.uk/repos/#{repo_name}.json",
+        self: "https://docs.publishing.service.gov.uk/repos/#{app_name}.json",
         html_url:,
         repo_url:,
         sentry_url:,
@@ -55,7 +55,7 @@ class Repo
   end
 
   def html_url
-    "https://docs.publishing.service.gov.uk/repos/#{repo_name}.html"
+    "https://docs.publishing.service.gov.uk/repos/#{app_name}.html"
   end
 
   def retired?
@@ -69,10 +69,14 @@ class Repo
   def page_title
     type = is_app? ? "Application" : "Repository"
     if retired?
-      "#{type}: #{repo_name} (retired)"
+      "#{type}: #{app_name} (retired)"
     else
-      "#{type}: #{repo_name}"
+      "#{type}: #{app_name}"
     end
+  end
+
+  def app_name
+    repo_data["app_name"] || repo_name
   end
 
   def repo_name
