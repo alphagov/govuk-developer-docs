@@ -274,7 +274,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/514f8a9e5a02724d247b227fbbb84fff44db1354">2 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b50cccc80993f97b41041453f5b8fd1d4d47bdc8">15 Jun 2023</a>
 </div>
 
  <h1 id='header'>Get started developing on GOV.UK</h1> <p><strong>This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in <a href="https://gds.blog.gov.uk/about/">GDS</a>. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.</strong></p>
@@ -482,6 +482,10 @@ See <a href="https://docs.publishing.service.gov.uk/manual/deploying-terraform.h
 to find out how to deploy infrastructure changes. The stackname is <code>govuk</code> and the project is
 <code>infra-security</code>.</p>
 <p>See the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html">AWS IAM users documentation</a> for more information.</p>
+<p>Lastly, you will need to add the integration permissions provided in <a href="https://github.com/alphagov/govuk-user-reviewer">GOV.UK User Reviewer</a>, for example:</p>
+<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="na">aws</span><span class="pi">:</span>
+  <span class="na">integration</span><span class="pi">:</span> <span class="s">user</span>
+</code></pre></div><p><a href="https://github.com/alphagov/govuk-user-reviewer/pull/924">Example PR</a></p>
 <h2 id='10-access-aws-for-the-first-time'>10. Access AWS for the first time</h2><p>If you are a frontend developer you do not need to complete this step as part of your initial setup.</p>
 
 <ol>
