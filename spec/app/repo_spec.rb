@@ -9,6 +9,16 @@ RSpec.describe Repo do
     end
   end
 
+  describe "app_name" do
+    it "returns repo_name if app_name not specified" do
+      expect(Repo.new({ "repo_name" => "foo" }).app_name).to eq("foo")
+    end
+
+    it "returns app_name if both app_name and repo_name are specified" do
+      expect(Repo.new({ "app_name" => "foo", "repo_name" => "bar" }).app_name).to eq("foo")
+    end
+  end
+
   describe "api_payload" do
     it "returns a hash of keys describing the app" do
       app_details = {
