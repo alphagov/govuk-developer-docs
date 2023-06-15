@@ -209,7 +209,7 @@ private
   end
 
   def shortname
-    repo_data["shortname"] || repo_name.underscore
+    repo_data["shortname"] || app_name.underscore
   end
 
   def description_from_github
