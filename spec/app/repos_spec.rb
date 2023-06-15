@@ -29,6 +29,20 @@ RSpec.describe Repos do
     it "should return only repos that are not retired" do
       expect(Repos.active.map(&:repo_name)).to eq(%w[asset-manager])
     end
+
+    context "repo contains multiple apps" do
+      let(:repos) do
+        [
+          { repo_name: "licensify", app_name: "licensify" },
+          { repo_name: "licensify", app_name: "licensify-feed" },
+          { repo_name: "licensify", app_name: "licensify-admin" },
+        ]
+      end
+
+      it "should return one repo name" do
+        expect(Repos.active.map(&:repo_name)).to eq(%w[licensify])
+      end
+    end
   end
 
   describe "active_public" do
