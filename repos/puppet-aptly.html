@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: puppet-aptly (retired) - GOV.UK Developer Documentation</title>
+    <title>Repository: puppet-aptly - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,13 +16,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: puppet-aptly (retired) - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: puppet-aptly - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/puppet-aptly.html" />
 
       <meta property="og:description" content="Everything about puppet-aptly (Puppet module for aptly)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: puppet-aptly (retired)" />
+      <meta property="og:title" content="Repository: puppet-aptly" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/puppet-aptly.html" />
 
@@ -174,11 +174,110 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: puppet-aptly (retired)</h1>
+  <h1 class="page-title">Repository: puppet-aptly</h1>
 
-  <p>This application is retired.</p>
-<p><p>Puppet module for aptly</p></p>
-<p><a href="https://github.com/alphagov/puppet-aptly">GitHub repository</a></p>
+  <p>Puppet module for aptly</p>
+
+<div class="gem-c-summary-list  ">
+
+      <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">GitHub</dt>
+            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/puppet-aptly">puppet-aptly</a></dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Ownership</dt>
+            <dd class="govuk-summary-list__value">#govuk-platform-security-reliability-team</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Hosting</dt>
+            <dd class="govuk-summary-list__value">N/A</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Category</dt>
+            <dd class="govuk-summary-list__value">Utilities</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Links</dt>
+            <dd class="govuk-summary-list__value"><ul class="govuk-list">
+    <li></li>
+    <li><a href="https://sentry.io/govuk/app-puppet-aptly" class="govuk-link">Sentry (error tracking)</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li><a href="https://grafana.production.govuk.digital/dashboard/file/puppet-aptly.json" class="govuk-link">Deployment dashboard</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</dd>
+
+
+
+</div></dl>
+    <div class="gem-c-summary__block"></div>
+</div>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<p>Puppet module for <a href="http://www.aptly.info/">aptly</a>.</p>
+
+<h2 id="example-usage">Example usage</h2>
+
+<p>You need to include the <code>apt</code> module if you wish to install it
+out-of-the-box.</p>
+
+<pre lang="puppet"><code>include apt
+</code></pre>
+
+<p>Include with default parameters:</p>
+
+<pre lang="puppet"><code>include aptly
+</code></pre>
+
+<p>Create a mirror for manual update/snapshot/publish:</p>
+
+<pre lang="puppet"><code>aptly::mirror { 'puppetlabs':
+  location =&gt; 'http://apt.puppetlabs.com/',
+  repos    =&gt; ['main', 'dependencies'],
+  key      =&gt; '4BD6EC30',
+}
+</code></pre>
+
+<p>or with the <a href="https://forge.puppet.com/puppetlabs/apt">puppetlabs/apt</a>  module 2.0+ format</p>
+
+<pre lang="puppet"><code>aptly::mirror { 'puppetlabs':
+  location =&gt; 'http://apt.puppetlabs.com/',
+  repos    =&gt; ['main', 'dependencies'],
+  key      =&gt;  {
+    server =&gt; 'keyserver.ubuntu.com',
+    id     =&gt; '4BD6EC30',
+  }
+}
+</code></pre>
+
+<p>Create an aptly repository to host local packages:</p>
+
+<pre lang="puppet"><code>aptly::repo{ 'mylocalrepo': }
+</code></pre>
+
+<p>See the class and defined type documentation for advanced usage.</p>
+
+<h2 id="license">License</h2>
+
+<p>See <a href="https://github.com/alphagov/puppet-aptly/blob/main/LICENSE">LICENSE</a> file.</p>
+<p></div></p>
 
 
             
