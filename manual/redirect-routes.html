@@ -218,7 +218,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e6810092722c185116d6152a4a4d10c62aa6824b">14 Jun 2023</a>
 </div>
 
  <h1 id='header'>Redirect a route</h1> <p>There are a number of different ways of applying redirects on GOV.UK.
@@ -359,12 +359,14 @@ and using non-default values for the <code>segments_mode</code>.</p>
 <h3 id='removing-a-route-created-in-the-short-url-manager'>Removing a route created in the Short URL Manager</h3><p>A Short URL route can be deleted from the <code>View short URL request</code> view in the UI of Short URL Manager.</p>
 <p>Once the redirect is removed, the page will return a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410">410 Gone status</a>.</p>
 <h3 id='removing-a-route-completely-so-it-can-be-replaced-with-another-route'>Removing a route completely so it can be replaced with another route</h3><p>Removing a route in the previous section returns a 410 Gone status - this means that the URL can not be reused by another publication as the route is still being used.</p>
-<p>To completely remove a route requires using the Rails console for several different apps using the <a href="https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-tooling">GDS CLI and GOV.UK Connect tools</a>.</p>
-<p>To access an app&rsquo;s Rails console, the following command is used:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect app-console <span class="nt">--environment</span> &lt;environment&gt; &lt;app name&gt;
-</code></pre></div><p>Replace <code>&lt;environment&gt;</code> with <code>integration</code>, <code>staging</code>, or <code>production</code>; and <code>&lt;app name&gt;</code> with the name of the app you want to access.</p>
-<p>For example, accessing the console for the <code>router-api</code> app in <code>staging</code> would be:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect app-console <span class="nt">--environment</span> staging router-api
+<p>To completely remove a route requires using the Rails console for several different apps using EKS.</p>
+<p>If you have not accessed the EKS before you will need to follow <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">these set up instructions</a> first.</p>
+<p>To access an app&rsquo;s Rails console you’ll need to set your region and context as below (swapping out the environment as appropriate):</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
+<span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
+kubectl config use-context &lt;your-context-name&gt;
+</code></pre></div><p>You can then access an app&rsquo;s Rails console using the following command:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps <span class="nt">-it</span> deploy/&lt;app-name&gt; <span class="nt">--</span> rails c
 </code></pre></div><p>Removing the route, we need to know the slug that should be deleted. These examples use <code>/example-path</code>.</p>
 <p>Delete the route in <code>router-api</code>:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Route</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">incoming_path: </span><span class="s2">"/example-path"</span><span class="p">).</span><span class="nf">delete</span>
