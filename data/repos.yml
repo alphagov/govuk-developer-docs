@@ -116,7 +116,7 @@
   team: "#govuk-datagovuk"
 
 - repo_name: ckanext-datagovuk
-  puppet_name: ckan
+  shortname: ckan
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
   production_hosted_on: aws
@@ -157,7 +157,7 @@
 
 - repo_name: contacts-admin
   type: Publishing apps
-  puppet_name: contacts
+  shortname: contacts
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
 
@@ -251,7 +251,7 @@
 - repo_name: design-principles
   type: Frontend apps
   retired: true
-  puppet_name: designprinciples
+  shortname: designprinciples
   description: |
     A frontend app that used to render the GDS design principles as static
     pages.  This required developer effort to update the content so in
@@ -797,7 +797,7 @@
 - repo_name: govuk_content_api
   retired: true
   type: APIs
-  puppet_name: contentapi
+  shortname: contentapi
   description: |
     API that used to store and serve published content to the rendering applications
     for display from public-facing URLs. This has now been superceded by the
@@ -829,7 +829,7 @@
 - repo_name: govuk_need_api
   retired: true
   type: APIs
-  puppet_name: need_api
+  shortname: need_api
   description: |
     A JSON read and write API for information about user needs on GOV.UK. It was a Rails
     app which was part of the GOV.UK Publishing Platform. The need information is now
@@ -903,7 +903,7 @@
 
 - repo_name: licence-finder
   type: Frontend apps
-  puppet_name: licencefinder
+  shortname: licencefinder
   team: "#tech-content-interactions-on-platform-govuk"
   production_hosted_on: eks
   argo_cd_apps:
@@ -1261,7 +1261,7 @@
 - repo_name: smart-answers
   type: Frontend apps
   team: "#user-experience-measurement-govuk-robot-invasion"
-  puppet_name: smartanswers
+  shortname: smartanswers
   production_hosted_on: eks
   argo_cd_apps:
     - smartanswers
