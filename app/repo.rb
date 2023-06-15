@@ -10,7 +10,7 @@ class Repo
       app_name: repo_name, # beware renaming the key - it's used here: https://github.com/alphagov/govuk-dependencies/blob/b3a2a29eb80aefa08098a08633b4a08b05bcc527/lib/gateways/team.rb#L15
       team:,
       dependencies_team:,
-      puppet_name:,
+      shortname:,
       production_hosted_on:,
       links: {
         self: "https://docs.publishing.service.gov.uk/repos/#{repo_name}.json",
@@ -23,7 +23,7 @@ class Repo
 
   def aws_puppet_class
     Hosts.aws_machines.each do |puppet_class, keys|
-      if keys["apps"].include?(repo_name) || keys["apps"].include?(puppet_name)
+      if keys["apps"].include?(repo_name) || keys["apps"].include?(shortname)
         return puppet_class
       end
     end
@@ -118,7 +118,7 @@ class Repo
 
     return repo_data["puppet_url"] if repo_data["puppet_url"]
 
-    "https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/#{puppet_name}.pp"
+    "https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/#{shortname}.pp"
   end
 
   def deploy_url
@@ -204,8 +204,8 @@ private
     repo_data["argo_cd_apps"] || [repo_name]
   end
 
-  def puppet_name
-    repo_data["puppet_name"] || repo_name.underscore
+  def shortname
+    repo_data["shortname"] || repo_name.underscore
   end
 
   def description_from_github
