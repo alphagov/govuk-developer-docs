@@ -55,6 +55,10 @@ All other fields can be left as they are.
 
 Click "build" and terraform should deploy as expected. Remember to deploy to staging and/or production as required.
 
+### Applying Terraform
+
+Once you have deployed Terraform, you will need [apply the changes in Terraform](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/docs/applying-terraform.md)
+
 ### Other ways of invoking Jenkins
 
 As of version `v2.15.0` of `gds-cli`, you can use it to deploy terraform via Jenkins.
