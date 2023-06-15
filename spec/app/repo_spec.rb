@@ -58,8 +58,8 @@ RSpec.describe Repo do
       expect(Repo.new("repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
     end
 
-    it "should find puppet class via puppet name" do
-      expect(Repo.new("puppet_name" => "smartanswers", "repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
+    it "should find puppet class via shortname" do
+      expect(Repo.new("shortname" => "smartanswers", "repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should return error message if no puppet class found" do
