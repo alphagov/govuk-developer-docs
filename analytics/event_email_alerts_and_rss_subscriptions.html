@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Browse_topic attribute data | GOV.UK GA4 Implementation record</title>
+  <title>Email alerts and rss subscriptions event data | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_browse_topic.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/event_email_alerts_and_rss_subscriptions.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_browse_topic.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/event_email_alerts_and_rss_subscriptions.html" />
   <script src="/javascripts/cookie-consent.js"></script>
 </head>
 
@@ -135,78 +135,72 @@
         </div>
         <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
           
-<h1 class="govuk-heading-l">
-  <span class="govuk-caption-l">Attribute</span>
-  browse_topic
+<h1 class="govuk-heading-l analytics-heading">
+  <span class="govuk-caption-l">Event</span>
+  email alerts and rss subscriptions
 </h1>
 
-<dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Name
-      </dt>
-      <dd class="govuk-summary-list__value">
-          browse_topic
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Description
-      </dt>
-      <dd class="govuk-summary-list__value">
-          Used in the page_view object to record the content section
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Value
-      </dt>
-      <dd class="govuk-summary-list__value">
-          content attribute of meta tag govuk:section
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Example
-      </dt>
-      <dd class="govuk-summary-list__value">
-          working at sea
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Required
-      </dt>
-      <dd class="govuk-summary-list__value">
-          false
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Type
-      </dt>
-      <dd class="govuk-summary-list__value">
-          string
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Redact
-      </dt>
-      <dd class="govuk-summary-list__value">
-          <a href="/analytics/pii.html" class="govuk-link">false</a>
-      </dd>
-    </div>
 
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Used by
-    </dt>
-    <dd class="govuk-summary-list__value">
-                  <a href="/analytics/event_page_view.html" class="govuk-link">page view</a> (Page view)<br/>
-    </dd>
+  <div class="event">
+    <h2 class="govuk-heading-m analytics-heading">
+      email alerts
+    </h2>
+
+    <p class="govuk-body">
+      Priority
+      <strong class="govuk-tag govuk-tag--yellow">
+        medium
+      </strong>
+
+    </p>
+
+
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_link_tracker.html" class="govuk-link">link_tracker</a>.
+          </p>
+
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/search/all?keywords=minister&order=relevance" class="govuk-link">Search pages</a>
+          </li>
+      </ul>
+
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+    <div class="govuk-inset-text">
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: navigation</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: string ("true" or "false")</li><li>index: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_index_link.html' class='govuk-link'>index_link</a>: number</li></ul></li><li><a href='/analytics/attribute_index_total.html' class='govuk-link'>index_total</a>: string (number)</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html' class='govuk-link'>link_path_parts</a>: object</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: subscribe</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li></ul></li></ul>
+    </div>
   </div>
-</dl>
+  <div class="event">
+    <h2 class="govuk-heading-m analytics-heading">
+      rss subscriptions
+    </h2>
+
+    <p class="govuk-body">
+      Priority
+      <strong class="govuk-tag govuk-tag--yellow">
+        medium
+      </strong>
+
+    </p>
+
+
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_link_tracker.html" class="govuk-link">link_tracker</a>.
+          </p>
+
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/search/all?keywords=minister&order=relevance" class="govuk-link">Search pages</a>
+          </li>
+      </ul>
+
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+    <div class="govuk-inset-text">
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: navigation</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: string ("true" or "false")</li><li>index: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_index_link.html' class='govuk-link'>index_link</a>: number</li></ul></li><li><a href='/analytics/attribute_index_total.html' class='govuk-link'>index_total</a>: string (number)</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html' class='govuk-link'>link_path_parts</a>: object</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: subscribe</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li></ul></li></ul>
+    </div>
+  </div>
 
         </div>
       </div>
