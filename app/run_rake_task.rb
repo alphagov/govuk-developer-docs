@@ -2,49 +2,16 @@ require "padrino-helpers"
 
 class RunRakeTask
   def self.links(application, rake_task = "")
-    application = find_application(application) if application.is_a? String
-
-    rake_task_name = rake_task.presence || "a Rake task"
-
-    links = [
-      ["Run #{rake_task_name} on Integration", application.rake_task_url("integration", rake_task)],
-      ["Run #{rake_task_name} on Staging", application.rake_task_url("staging", rake_task)],
-      ["⚠️ Run #{rake_task_name} on Production ⚠️", application.rake_task_url("production", rake_task)],
-    ]
-
-    html_lis = links
-      .map { |body, url| "<li><a href=\"#{url}\" class=\"govuk-link\">#{body}</a></li>" }
-      .join("\n")
-
-    <<~ERB
-      <ul>
-        #{html_lis}
-      </ul>
-    ERB
-  end
-
-  def self.terse_links(application, rake_task = "")
-    application = find_application(application) if application.is_a? String
-
-    rake_task_name = rake_task.presence || "a Rake task"
-
-    integration_link = "<a
-      href=\"#{application.rake_task_url('integration', rake_task)}\"
-      class=\"govuk-link\"
-      aria-label=\"Run #{rake_task_name} on Integration\">Integration</a>"
-    staging_link = "<a
-      href=\"#{application.rake_task_url('staging', rake_task)}\"
-      class=\"govuk-link\"
-      aria-label=\"Run #{rake_task_name} on Staging\">Staging</a>"
-    production_link = "<a
-      href=\"#{application.rake_task_url('production', rake_task)}\"
-      class=\"govuk-link\"
-      aria-label=\"Run #{rake_task_name} on Production\">⚠️ Production ⚠️</a>"
-
-    "<span aria-hidden='true'>Run #{rake_task_name} on</span> #{integration_link}, #{staging_link} or #{production_link}"
-  end
-
-  def self.find_application(name)
-    Repos.all.select { |app| app.repo_name == name }.first
+    app_name = if application.respond_to?(:repo_name)
+                 application.repo_name
+               else
+                 application
+               end
+    rake_task_name = rake_task.presence || "<rake task>".freeze
+    <<~END_OF_MARKDOWN
+      ```sh
+      k exec deploy/#{app_name} -- rake #{rake_task_name}
+      ```
+    END_OF_MARKDOWN
   end
 end
