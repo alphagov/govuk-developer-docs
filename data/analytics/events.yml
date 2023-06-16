@@ -806,24 +806,56 @@
 
 - name: search
   events:
-    - name: search results
+    - name: search results/ecommerce product list views
       implemented: true
       priority: high
+      examples: 
+        - text: Search results page
+          link: https://www.gov.uk/search/all?keywords=pension
       data:
       - name: event
-        value: event_data
+        value: search_results
+      - name: event_name
+        value: view_item_list
+      - name: results
+      - name: sort
+      - name: term
+      - name: search_results
+        value:
+        - name: ecommerce
+          value:
+          - name: items
+
     - name: search boxes
       implemented: false
       priority: medium
       data:
       - name: event
         value: event_data
-    - name: ecommerce product list views and clicks
+    - name: ecommerce product clicks
       implemented: true
       priority: medium
+      examples: 
+        - text: Search results page (click on a result)
+          link: https://www.gov.uk/search/all?keywords=pension
       data:
       - name: event
-        value: event_data
+        value: search_results
+      - name: event_name
+        value: view_item_list
+      - name: results
+      - name: sort
+      - name: term
+      - name: search_results
+        value:
+        - name: ecommerce
+          value:
+          - name: items
+            value:
+            - name: index (ecommerce)
+            - name: item_id
+            - name: item_list_name
+            - name: item_name
     - name: filters open/closed
       implemented: false
       priority: medium
