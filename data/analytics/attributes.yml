@@ -81,6 +81,14 @@
   type: string
   redact: false
 
+- name: index (ecommerce)
+  description: The position of the clicked result within an overall list of results e.g. 5 out of 20.
+  value:
+  example: 5
+  required: yes
+  type: number
+  redact: false
+
 - name: index_link
   description: The index of the clicked link within the section
   value:
@@ -110,6 +118,24 @@
   example:
   required: yes
   type: string (number)
+  redact: false
+
+- name: item_id
+  description: The URL path of the clicked result.
+  required: yes
+  type: number
+  redact: false
+
+- name: item_list_name
+  description: The name of the finder that the clicked result belongs to.
+  required: yes
+  type: string
+  redact: false
+
+- name: item_name
+  description: Link text of the clicked result.
+  required: yes
+  type: string
   redact: false
 
 - name: items
@@ -206,6 +232,13 @@
   type: string
   redact: false
 
+- name: sort
+  description: The method of sorting (i.e. relevance/updated(newest)/updated(oldest))
+  example: Updated (newest)
+  required: yes
+  type: string
+  redact: false
+
 - name: status_code
   description:
   value: HTTP response status code
@@ -255,6 +288,14 @@
   required: no
   type: string
   redact: false
+
+- name: term
+  description: The search term.
+  value:
+  example: "Pension"
+  required: yes
+  type: string
+  redact: true
 
 - name: text
   description: The text of the thing being tracked, for example the text of a link, button or tab. This can either be read directly from the element, passed from a data attribute, or generated automatically for elements where the text changes, for example the 'Show all sections' link in an accordion, which can also read 'Hide all sections'.
