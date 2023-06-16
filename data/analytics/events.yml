@@ -129,15 +129,6 @@
       - name: event
         value: event_data
 
-- name: council lookup
-  events:
-    - name: council lookup
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
-
 - name: contents link
   events:
     - name: link click
@@ -521,6 +512,138 @@
         - name: type
           value: attachment
         - name: url
+
+- name: local lookup
+  events:
+    - name: form submit
+      implemented: true
+      priority: medium
+      examples:
+      - text: Council lookup
+        link: https://www.gov.uk/find-local-council
+      - text: Licence lookup
+        link: https://www.gov.uk/food-business-registration
+      - text: Local lookup
+        link: https://www.gov.uk/rubbish-collection-day
+      - text: Place lookup
+        link: https://www.gov.uk/find-regional-passport-office
+      tracker: form_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_submit
+        - name: action
+          value: submit
+        - name: method
+        - name: section
+        - name: text
+        - name: tool_name
+        - name: type
+    - name: form error
+      implemented: true
+      priority: medium
+      examples:
+      - text: To see an error page, enter an invalid or empty postcode
+        link: https://www.gov.uk/find-local-council
+      tracker: auto_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_error
+        - name: action
+          value: error
+        - name: section
+        - name: text
+        - name: tool_name
+        - name: type
+    - name: form complete
+      implemented: true
+      priority: medium
+      examples:
+      - text: Council lookup complete page
+        link: https://www.gov.uk/find-local-council/westminster
+      - text: Licence lookup complete page
+        link: https://www.gov.uk/food-business-registration/westminster
+      - text: Local lookup complete page
+        link: https://www.gov.uk/rubbish-collection-day/westminster
+      - text: Place lookup complete page
+        link: https://www.gov.uk/find-regional-passport-office#results
+      tracker: auto_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_complete
+        - name: action
+          value: complete
+        - name: text
+        - name: tool_name
+        - name: type
+    - name: change response
+      implemented: true
+      priority: medium
+      examples:
+      - text: Licence lookup
+        link: https://www.gov.uk/food-business-registration/westminster
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_change_response
+        - name: action
+          value: change response
+        - name: external
+          value: '"true"'
+        - name: method
+        - name: section
+        - name: text
+        - name: tool_name
+        - name: type
+    - name: information click
+      implemented: true
+      priority: medium
+      examples:
+      - text: Council lookup complete page
+        link: https://www.gov.uk/find-local-council/westminster
+      - text: Licence lookup complete page
+        link: https://www.gov.uk/food-business-registration/westminster
+      - text: Local lookup complete page
+        link: https://www.gov.uk/rubbish-collection-day/westminster
+      - text: Place lookup complete page
+        link: https://www.gov.uk/find-regional-passport-office#results
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: information_click
+        - name: action
+          value: information click
+        - name: external
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: section
+        - name: text
+        - name: tool_name
+        - name: type
 
 - name: miscellaneous
   events:
