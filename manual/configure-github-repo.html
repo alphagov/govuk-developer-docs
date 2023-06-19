@@ -187,22 +187,22 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7ed5d188ab8312e78ff7b9407bb9c03abde83d04">14 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd69d4cc35ba9ec27db94438b18dd8b6deb3c8fc">19 Jun 2023</a>
 </div>
 
  <h1 id='header'>Configure a GitHub repo</h1> <h2 id='when-you-create-a-new-repo'>When you create a new repo</h2>
 <ul>
-<li>Give the <a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a>, <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy</a>, and <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a> teams <code>Admin</code> access</li>
+<li>Give the <a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a> and <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a> teams <code>Admin</code> access</li>
 <li>Give the <a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK team</a> <code>Write</code> access</li>
 <li>Tag it with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> topic</li>
 </ul>
 <p>If your repo will be continuously deployed, restrict merge access to users with production deploy access with <a href="https://github.com/alphagov/govuk-saas-config/blob/master/github/repo_overrides.yml">the <code>repo_overrides.yml</code> file</a>.</p>
 <h2 id='auto-configuration'>Auto configuration</h2><p>When your repo is tagged with <code>govuk</code>, it will be auto-configured by <a href="https://github.com/alphagov/govuk-saas-config">govuk-saas-config</a>, applying many of the rules below.</p>
-<p>The govuk-saas-config job runs overnight, but you can kick off a build of the <a href="https://deploy.blue.production.govuk.digital/job/configure-github-repos">Jenkins job</a> to trigger it sooner.</p>
+<p>The govuk-saas-config job runs overnight, but you can kick off a build of the <a href="https://github.com/alphagov/govuk-saas-config/blob/163497868926ffe9d7c7d789fb79c5cf8026ab93/.github/workflows/configure-github.yml">GitHub Action workflow</a> to trigger it sooner.</p>
 <h2 id='rules'>Rules</h2><p>Repositories in GOV.UK must:</p>
 
 <ul>
-<li>Have the <a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a>, <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy</a>, and <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a> teams as <code>Admin</code></li>
+<li>Have the <a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a> and <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a> teams as <code>Admin</code></li>
 <li>Give the <a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK team</a> <code>Write</code> access</li>
 <li>Have a good description</li>
 <li>Link to relevant documentation</li>

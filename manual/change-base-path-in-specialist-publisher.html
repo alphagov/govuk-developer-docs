@@ -187,13 +187,8 @@
 </div>
 
  <h1 id='header'>Change a specialist document base path</h1> <p>In <a href="https://specialist-publisher.publishing.service.gov.uk/">Specialist Publisher</a>, the base path is automatically generated based on the title when the document is first created. We sometimes receive Zendesk tickets to change a base path when the title has been updated, as the publisher does not have the ability to do this.</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run base_path:edit[content_id,locale,new_base_path] on Integration</a></li>
-<li><a href="" class="govuk-link">Run base_path:edit[content_id,locale,new_base_path] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run base_path:edit[content_id,locale,new_base_path] on Production ⚠️</a></li>
-</ul>
-<p>You can find the <code>content_id</code> and <code>locale</code> of the document using the <a href="https://github.com/alphagov/govuk-browser-extension">govuk-toolkit</a> browser extension.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/specialist-publisher <span class="nt">--</span> rake base_path:edit[content_id,locale,new_base_path]
+</code></pre></div><p>You can find the <code>content_id</code> and <code>locale</code> of the document using the <a href="https://github.com/alphagov/govuk-browser-extension">govuk-toolkit</a> browser extension.</p>
 
 <blockquote>
 <p><strong>Note</strong>: the rake task will only change the slug for the latest draft (creating a new draft if necessary). For the change to be permanent, you need to publish the draft, which you can either do in the Specialist Publisher UI or by using the CLI:</p>

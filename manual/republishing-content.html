@@ -217,13 +217,8 @@
 <li><a href="https://grafana.blue.staging.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=whitehall&amp;var-Interval=$__auto_interval">staging</a></li>
 <li><a href="https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=whitehall&amp;var-Interval=$__auto_interval">production</a></li>
 </ul>
-<h3 id='to-republish-a-single-document-by-slug'>To republish a single document by slug</h3>
-<ul>
-  <li><a href="" class="govuk-link">Run publishing_api:republish:document_by_slug[slug] on Integration</a></li>
-<li><a href="" class="govuk-link">Run publishing_api:republish:document_by_slug[slug] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run publishing_api:republish:document_by_slug[slug] on Production ⚠️</a></li>
-</ul>
-
+<h3 id='to-republish-a-single-document-by-slug'>To republish a single document by slug</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake publishing_api:republish:document_by_slug[slug]
+</code></pre></div>
 <blockquote>
 <p>Replace <code>slug</code> with the document&rsquo;s slug, but not the full base path. For example the slug for <code>https://www.gov.uk/government/important-news</code> would be <code>important-news</code>.</p>
 </blockquote>
@@ -257,24 +252,14 @@
 <li>WorldwideOffice</li>
 <li>WorldwideOrganisation</li>
 </ul>
-
-<ul>
-  <li><a href="" class="govuk-link">Run publishing_api:bulk_republish:document_type[DocumentClass] on Integration</a></li>
-<li><a href="" class="govuk-link">Run publishing_api:bulk_republish:document_type[DocumentClass] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run publishing_api:bulk_republish:document_type[DocumentClass] on Production ⚠️</a></li>
-</ul>
-
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake publishing_api:bulk_republish:document_type[DocumentClass]
+</code></pre></div>
 <blockquote>
 <p>Replace <code>DocumentClass</code> with the camelized (i.e. as it is written above) class name.</p>
 </blockquote>
 <h3 id='to-republish-multiple-documents'>To republish multiple documents</h3><p>For a small number of documents, use the following rake task:</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2] on Integration</a></li>
-<li><a href="" class="govuk-link">Run publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2] on Production ⚠️</a></li>
-</ul>
-
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2]
+</code></pre></div>
 <blockquote>
 <p>Replace <code>content_id_1</code> and <code>content_id_2</code> with the content ID (i.e. UUID) for the documents to republish. You can add more than 2 content IDs.</p>
 </blockquote>
@@ -284,11 +269,9 @@
 <li>Create a CSV file that contains a single column headed <code>content_id</code>. Put the content ID for each document on a separate line below this. The file should be saved in <code>lib/tasks/{FILENAME}.csv</code> and a PR raised.</li>
 <li>Merge and deploy the PR to the relevant environment.</li>
 <li>Run the <code>documents_by_content_ids_from_csv</code> rake task:
-<ul>
-<li><a href="" class="govuk-link">Run publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name] on Integration</a></li>
-<li><a href="" class="govuk-link">Run publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name] on Production ⚠️</a></li>
-</ul></li>
+<code>sh
+k exec deploy/whitehall -- rake publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]
+</code></li>
 </ol>
 
 <blockquote>
@@ -299,28 +282,13 @@
 <blockquote>
 <p>Caution: this is a lot of content and will take hours to complete. If it is possible to scope the republish do so and use a different task, but if you have made a change such as something in govspeak that will affect the majority of content, this is available. Before running this job confirm with Technical 2nd Line that they are happy for you to proceed as it could cause backed up publishing queues and alerts.</p>
 </blockquote>
-
-<ul>
-  <li><a href="" class="govuk-link">Run publishing_api:bulk_republish:all on Integration</a></li>
-<li><a href="" class="govuk-link">Run publishing_api:bulk_republish:all on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run publishing_api:bulk_republish:all on Production ⚠️</a></li>
-</ul>
-<h2 id='content-publisher'>Content Publisher</h2><p>If the document is in content publisher, there is a <a href="https://github.com/alphagov/content-publisher/blob/main/lib/tasks/resync.rake">resync Rake task</a> you can run.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake publishing_api:bulk_republish:all
+</code></pre></div><h2 id='content-publisher'>Content Publisher</h2><p>If the document is in content publisher, there is a <a href="https://github.com/alphagov/content-publisher/blob/main/lib/tasks/resync.rake">resync Rake task</a> you can run.</p>
 <p>You can resync a single document by passing it a content ID and locale:</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run resync:document[a-content-id:locale] on Integration</a></li>
-<li><a href="" class="govuk-link">Run resync:document[a-content-id:locale] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run resync:document[a-content-id:locale] on Production ⚠️</a></li>
-</ul>
-<p>or you can resync all documents:</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run resync:all on Integration</a></li>
-<li><a href="" class="govuk-link">Run resync:all on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run resync:all on Production ⚠️</a></li>
-</ul>
-
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/content-publisher <span class="nt">--</span> rake resync:document[a-content-id:locale]
+</code></pre></div><p>or you can resync all documents:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/content-publisher <span class="nt">--</span> rake resync:all
+</code></pre></div>
 
   <div class='related-content'>
 

@@ -167,13 +167,8 @@ made and changes to the Elasticsearch schema.</p>
 <p>If this process fails then please escalate to the <a href="/repos/search-api.html">team currently responsible for search</a>
 for further investigation.</p>
 <p>This task can be run in Jenkins:</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run search:migrate_schema SEARCH_INDEX=index_alias_name on Integration</a></li>
-<li><a href="" class="govuk-link">Run search:migrate_schema SEARCH_INDEX=index_alias_name on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run search:migrate_schema SEARCH_INDEX=index_alias_name on Production ⚠️</a></li>
-</ul>
-
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> rake search:migrate_schema <span class="nv">SEARCH_INDEX</span><span class="o">=</span>index_alias_name
+</code></pre></div>
 
   <div class='related-content'>
 
