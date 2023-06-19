@@ -33,10 +33,6 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repo
       field: "Category",
       value: repo.type,
     },
-    (repo.can_run_rake_tasks_in_jenkins? ? {
-      field: "Rake tasks",
-      value: RunRakeTask.terse_links(repo).html_safe,
-    } : nil),
     ((links = partial("partials/repo/links")) && links.strip.present? ? {
       field: "Links",
       value: links,
