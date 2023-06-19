@@ -213,7 +213,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/37256c306333f0ca68ad855ebb2cc1efd39d9abe">19 Jun 2023</a>
 </div>
 
  <h1 id='header'>Merge a Pull Request</h1> <p>There are five rules for reviewing and merging PRs, which apply to all applications:</p>
@@ -235,19 +235,8 @@
 <h3 id='a-change-from-a-non-developer'>A change from a non-developer</h3><p>Some repositories, such as <a href="https://github.com/alphagov/smart-answers">smart-answers</a>, regularly have PRs opened by content designers, which usually only change text content. These changes should be welcomed, as they&rsquo;ve saved a developer from having to make them!</p>
 <p>When reviewing these PRs, you should not expect them to be at the same commit structure standard as we&rsquo;d expect of developers. Changes are often made individually through the GitHub UI, which tends to lead to PRs with lots of commits, each changing a single file at a time.</p>
 <p>A verbose commit structure isn&rsquo;t itself a problem, and can be merged as-is if you do not think it would be difficult to unpick later on. However, if it makes sense to do so, consider using the &ldquo;Squash and merge&rdquo; feature on GitHub (you&rsquo;ll be asked to specify one overall commit message before merging), or rebase the commits yourself for more control.</p>
-<h3 id='a-change-from-an-external-contributor'>A change from an external contributor</h3><p>We occasionally receive PRs from external contributors who use our code. These will come from forks of the main repository. Our test suite will not run automatically against these PRs.</p>
-<p>First, review the code carefully for anything that might be malicious and damaging if run inside our infrastructure. Once you&rsquo;re satisfied, follow the instructions below to pull the forked branch locally, then push it to origin.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>brew <span class="nb">install </span>hub
-
-<span class="c"># You will need GITHUB_TOKEN set in your environment for the next command</span>
-
-hub <span class="nb">pr </span>checkout &lt;PR-NUMBER&gt;
-
-git push <span class="nt">--set-upstream</span> origin &lt;BRANCH-NAME&gt;
-</code></pre></div><p>(where <code>&lt;BRANCH-NAME&gt;</code> is the name of the branch that&rsquo;s checked out.)</p>
-<p>This will cause the test suite to run with the original commits, which will cause GitHub to green light the original PR. Two people from GDS should review this PR. The first reviewer should approve the PR, and the second reviewer should merge.</p>
-<p>You should also thank the contributor with an amount of emoji proportional to the time they&rsquo;re saving GDS developers.</p>
-<p>Finally, clean up by deleting the branch you created.</p>
+<h3 id='a-change-from-an-external-contributor'>A change from an external contributor</h3><p>We occasionally receive PRs from external contributors who use our code. These will come from forks of the main repository. Typically this will be from someone outside GOV.UK but inside GDS, in which case you can treat it as normal (ie review it normally), except that you will have to merge when satisfied (the originator may not have permission to merge)</p>
+<p>If the PR comes from outside GDS entirely, you will need to be a little more cautious. Two people from GDS should review this PR, focusing on anything that might be malicious and damaging if run inside our infrastructure. The first reviewer should approve the PR, and the second reviewer should merge. You should then thank the contributor with an amount of emoji proportional to the time they&rsquo;re saving GDS developers.</p>
 <h4 id='dependabot'>Dependabot</h4><p>As Dependabot changes the Gemfile/Gemfile.lock, or some other package
 management related manifests in the repository, when reviewing the
 diff, you should especially check if this is the case. Dependabot
