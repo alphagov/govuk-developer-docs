@@ -52,27 +52,9 @@ A verbose commit structure isn't itself a problem, and can be merged as-is if yo
 
 ### A change from an external contributor
 
-We occasionally receive PRs from external contributors who use our code. These will come from forks of the main repository. Our test suite will not run automatically against these PRs.
+We occasionally receive PRs from external contributors who use our code. These will come from forks of the main repository. Typically this will be from someone outside GOV.UK but inside GDS, in which case you can treat it as normal (ie review it normally), except that you will have to merge when satisfied (the originator may not have permission to merge)
 
-First, review the code carefully for anything that might be malicious and damaging if run inside our infrastructure. Once you're satisfied, follow the instructions below to pull the forked branch locally, then push it to origin.
-
-```bash
-brew install hub
-
-# You will need GITHUB_TOKEN set in your environment for the next command
-
-hub pr checkout <PR-NUMBER>
-
-git push --set-upstream origin <BRANCH-NAME>
-```
-
-(where `<BRANCH-NAME>` is the name of the branch that's checked out.)
-
-This will cause the test suite to run with the original commits, which will cause GitHub to green light the original PR. Two people from GDS should review this PR. The first reviewer should approve the PR, and the second reviewer should merge.
-
-You should also thank the contributor with an amount of emoji proportional to the time they're saving GDS developers.
-
-Finally, clean up by deleting the branch you created.
+If the PR comes from outside GDS entirely, you will need to be a little more cautious. Two people from GDS should review this PR, focusing on anything that might be malicious and damaging if run inside our infrastructure. The first reviewer should approve the PR, and the second reviewer should merge. You should then thank the contributor with an amount of emoji proportional to the time they're saving GDS developers.
 
 #### Dependabot
 
