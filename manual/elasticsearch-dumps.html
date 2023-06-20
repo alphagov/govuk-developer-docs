@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Backup and restore Elasticsearch indices - GOV.UK Developer Documentation</title>
+    <title>Restore Elasticsearch indices from backup - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -19,12 +19,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Backup and restore Elasticsearch indices - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Restore Elasticsearch indices from backup - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Backup and restore Elasticsearch indices" />
+      <meta property="og:title" content="Restore Elasticsearch indices from backup" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html" />
 
@@ -126,7 +126,21 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Backup and restore Elasticsearch indices</span></a>
+    <a href="#header"><span>Restore Elasticsearch indices from backup</span></a>
+    <ul>
+      <li>
+        <a href="#background"><span>Background</span></a>
+      </li>
+      <li>
+        <a href="#restore-a-specific-index-from-a-snapshot"><span>Restore a specific index from a snapshot</span></a>
+      </li>
+      <li>
+        <a href="#restore-all-indices-from-a-snapshot"><span>Restore all indices from a snapshot</span></a>
+      </li>
+      <li>
+        <a href="#further-reading"><span>Further reading</span></a>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -175,53 +189,65 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a298f11d6e64f618813d2c696a8992ff26d34baa">10 Aug 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/edf898522faa97ae03c641279f8d65c604d65f66">19 Jun 2023</a>
 </div>
 
- <h1 id='header'>Backup and restore Elasticsearch indices</h1> <p>GOV.UK uses AWS Managed Elasticsearch which takes daily snapshots of
-the cluster as part of the managed service.  These are stored in a S3
-bucket that is not made available to us.  Restoration is done by
-making HTTP requests to the <code>_snapshot</code> endpoint.</p>
-<p>To restore a snapshot, follow these steps:</p>
-
+ <h1 id='header'>Restore Elasticsearch indices from backup</h1> <h2 id='background'>Background</h2><p>AWS Managed Elasticsearch automatically takes hourly snapshots for backup and
+disaster recovery purposes. The snapshot data is stored in an Amazon-owned S3
+bucket that is not directly available to us via S3 but is configured as an
+Elasticsearch snapshot repository called <code>cs-automated-enc</code>.</p>
+<p>Restores are done via the Elasticsearch API, by making HTTP requests to the
+<code>_snapshot</code> endpoint.</p>
+<p>We also have a <code>govuk-production</code> snapshot repository, which is normally only
+used for copying indices from production to the non-production environments.</p>
+<h2 id='restore-a-specific-index-from-a-snapshot'>Restore a specific index from a snapshot</h2>
 <ol>
-<li><p>SSH to a <code>search</code> box:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh -e integration search
+<li><p>List the available backup snapshots in the <code>cs-automated-enc</code> snapshot
+respository and identify the snapshot that you want to restore from.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> <span class="se">\</span>
+  sh <span class="nt">-c</span> <span class="s1">'curl "$ELASTICSEARCH_URI/_snapshot/cs-automated-enc/_all?pretty"'</span>
+</code></pre></div><p>This can take a few seconds.</p></li>
+<li><p>If an index already exists with the same name as the one you want to
+restore, delete the existing index.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> sh <span class="nt">-c</span> <span class="s1">'curl -XDELETE "$ELASTICSEARCH_URI/&lt;index-name&gt;"'</span>
 </code></pre></div></li>
-<li><p>Query the <code>_snapshot</code> endpoint of Elasticsearch to get the snapshot
-repository name:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_setenv search-api \
-bash -c 'curl "$ELASTICSEARCH_URI/_snapshot?pretty"'
+<li><p>Restore the index from the snapshot. Fill in <code>&lt;snaphot-id&gt;</code> and
+<code>&lt;index-name&gt;</code> as appropriate.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> <span class="se">\</span>
+  sh <span class="nt">-c</span> <span class="s1">'curl -XPOST -H '</span>Content-Type: application/json<span class="s1">' "$ELASTICSEARCH_URI/_snapshot/cs-automated-enc/&lt;snapshot-id&gt;/_restore" -d "{\"indices\": \"&lt;index-name&gt;\"}"'</span>
 </code></pre></div></li>
-<li><p>Query the <code>_all</code> endpoint to identify the available snapshots in
-the named repository:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_setenv search-api \
-bash -c 'curl "$ELASTICSEARCH_URI/_snapshot/&lt;repository-name&gt;/_all?pretty"'
+<li><p>The restore can take a few minutes. The <code>/_cat/recovery</code> resource gives an
+indication of progress.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> sh <span class="nt">-c</span> <span class="s1">'curl "$ELASTICSEARCH_URI/_cat/recovery"'</span>
 </code></pre></div></li>
-<li><p>If an index already exists with the same name as the one being
-restored, delete the existing index:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_setenv search-api \
-bash -c 'curl -XDELETE "$ELASTICSEARCH_URI/&lt;index-name&gt;"'
-</code></pre></div></li>
-<li><p>Restore the index from the snapshot:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_setenv search-api \
-bash -c 'curl -XPOST -H 'Content-Type: application/json' "$ELASTICSEARCH_URI/_snapshot/&lt;repository-name&gt;/&lt;snapshot-id&gt;/_restore"  -d "{\"indices\": \"&lt;index-name&gt;\"}"'
-</code></pre></div></li>
+<li><p>Once the restore has finished, <a href="/manual/fix-out-of-date-search-indices.html">reprocess any content
+changes</a> that happened after
+the backup.</p></li>
 </ol>
 
 <blockquote>
-<p>Further information about Elasticsearch snapshots can be found in the <a href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-snapshots.html">AWS documentation</a></p>
+<p>The reprocessing step is necessary in order to bring the restored index up
+to date, because GOV.UK&rsquo;s indexing is incremental only. In other words,
+there is no regular full reindex.</p>
 </blockquote>
-<p>After a restore has taken place, you will need to <a href="/manual/fix-out-of-date-search-indices.html">fix the out-of-date search indices</a>
-following the restore, since any changes made in publishing apps since the backup was taken will be missing.</p>
+<h2 id='restore-all-indices-from-a-snapshot'>Restore all indices from a snapshot</h2><p>Restoring all indices is a similar procedure to restoring a specific index.</p>
+
+<ol>
+<li><p>Identify the snapshot to restore. See step 1 above.</p></li>
+<li><p>Delete all indices.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> sh <span class="nt">-c</span> <span class="s1">'curl -XDELETE "$ELASTICSEARCH_URI/_all"'</span>
+</code></pre></div></li>
+<li><p>Restore all indices from the snapshot.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> <span class="se">\</span>
+  sh <span class="nt">-c</span> <span class="s1">'curl -XPOST "$ELASTICSEARCH_URI/_snapshot/cs-automated-enc/&lt;snapshot-id&gt;/_restore"'</span>
+</code></pre></div></li>
+<li><p>Once the restore has finished, reprocess recent content changes to bring the
+indices up to date. See steps 4 and 5 above.</p></li>
+</ol>
+<h2 id='further-reading'>Further reading</h2><p>See <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html#managedomains-snapshot-restore">Restoring
+snapshots</a>
+in the AWS Managed Elasticsearch/Opensearch documentation.</p>
 
 
   <div class='related-content'>
@@ -258,7 +284,7 @@ following the restore, since any changes made in publishing apps since the backu
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/elasticsearch-dumps.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Backup+and+restore+Elasticsearch+indices%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Felasticsearch-dumps.html%29&amp;labels=bug&amp;title=Re%3A+%27Backup+and+restore+Elasticsearch+indices%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Restore+Elasticsearch+indices+from+backup%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Felasticsearch-dumps.html%29&amp;labels=bug&amp;title=Re%3A+%27Restore+Elasticsearch+indices+from+backup%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
