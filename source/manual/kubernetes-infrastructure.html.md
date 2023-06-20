@@ -29,7 +29,6 @@ eval $(gds aws govuk-integration-poweruser -e --art 8h)
     - `k -n apps exec -it deploy/router-api -- rails c`
 - To open a shell:
     - `k -n apps exec -it deploy/government-frontend -- bash`
-      \>> `curl` # (for example)
 - To open a shell on Router:
     - `k -n apps exec -it deploy/router -c nginx`
 
