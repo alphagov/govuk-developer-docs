@@ -308,12 +308,30 @@
 
 <p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
 
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> or the local <code>startup.sh</code> script to run the app. Read the <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">guidance on local frontend development</a> to find out more about each approach, before you get started.</p>
+<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> or the local <code>startup.sh --live</code> script to run the app. Read the <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">guidance on local frontend development</a> to find out more about each approach, before you get started.</p>
 
 <p>If you are using GOV.UK Docker, remember to combine it with the commands that follow. See the <a href="https://github.com/alphagov/govuk-docker#usage">GOV.UK Docker usage instructions</a> for examples.</p>
 
-<h3 id="smart-answer-design">Smart Answer design</h3>
+<h3 id="running-the-test-suite">Running the test suite</h3>
 
+<pre><code>bundle exec rake
+</code></pre>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<ul>
+<li>When running integration tests, if you get <code>SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version &lt;some version number&gt;</code> error, then:
+<ul>
+<li>run <code>brew install chromedriver</code> or if you already have the cask, <code>brew upgrade chromedriver</code>
+</li>
+<li>if that doesn&rsquo;t work, install the correct Chrome driver into <code>usr/local/bin</code>
+</li>
+</ul>
+<p></li>
+<li>When running <code>bundle exec rake</code>, if you get <code>rake aborted! LoadError: linked to incompatible &lt;some libruby or gem link&gt;</code>, run <code>gem pristine --all</code>
+</li>
+</ul>
+<h3 id="smart-answer-design">Smart Answer design</h3>
 <ul>
 <li><a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/file-structure.md">File structure</a></li>
 <li><a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/flow-definition.md">Flow definition</a></li>
@@ -327,7 +345,7 @@
 <li><a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/erb-templates/question-templates.md">Question templates</a></li>
 <li><a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/erb-templates/outcome-templates.md">Outcome templates</a></li>
 </ul>
-<p></li>
+</li>
 </ul>
 <h3 id="smart-answer-tasks">Smart Answer tasks</h3>
 <ul>
