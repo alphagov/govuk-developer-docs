@@ -238,16 +238,12 @@
 <h2 id="user-stories">User Stories</h2>
 
 <pre><code>As a GOV.UK developer
-
 So that I can make sure that the Trello card I am working on has the correct PR information
-
 I would like a link to relevant PRs to be automatically added to the Trello card.
+</code></pre>
 
-
-As a GOV.UK developer
-
+<pre><code>As a GOV.UK developer
 So that I can make sure that Pull Request information on the Trello card I am working on is up to date
-
 I would like the link to a Pull Request to be checked off after I have merged it.
 </code></pre>
 
@@ -255,38 +251,19 @@ I would like the link to a Pull Request to be checked off after I have merged it
 
 <p>This app is built using Ruby and Sinatra.  It makes use of GitHub webhooks to receive pull request information, and the Trello API to post pull request information to Trello cards.</p>
 
-<h4 id="setting-up-the-app">Setting up the app</h4>
+<h3 id="setting-up-the-app">Setting up the app</h3>
 
 <ol>
-<li>
-<p>Clone the repo down to your local machine.</p>
-</li>
-<li>
-<p>Run <code>bundle install</code>.</p>
-</li>
-<li>
-<p>Get your <a href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/">GitHub access token</a> and assign to the <code>GITHUB_ACCESS_TOKEN</code> environment variable.</p>
-</li>
-<li>
-<p>Get your <a href="https://trello.com/app-key">Trello developer API key</a> and assign to the <code>TRELLO_PUBLIC_KEY</code> environment variable. You may also find this key using <a href="https://github.com/jeremytregunna/ruby-trello">ruby-trello&rsquo;s</a> helpful methods.</p>
-</li>
-<li>
-<p>Get your <a href="https://developers.trello.com/authorize">Trello user token</a> and assign to the <code>TRELLO_MEMBER_TOKEN</code> environment variable. You may also find this token using <a href="https://github.com/jeremytregunna/ruby-trello">ruby-trello&rsquo;s</a> helpful methods.</p>
-</li>
-<li>
-<p>To set up a Webhook:</p>
-<p>a. Navigate to your chosen organisation or repository&rsquo;s settings on GitHub. Select &lsquo;Webhooks&rsquo; and click &lsquo;Add webhook&rsquo;</p>
-<p>b. Paste your payload URL (i.e. &lsquo;https://[insert-your-site-here]/payload&rsquo;) in the Payload URL box.</p>
-<p>c. Select content type as application/json.</p>
-<p>d. Select &lsquo;Let me select individual events&rsquo; and check the &lsquo;Pull requests&rsquo; box.</p>
-<p>e. Leave the Active checkbox checked, and save.</p>
-</li>
-<li>
-<p>Deploy to your preferred platform, or to run locally, run <code>ruby app.rb</code>.  If running locally, I would recommend using <a href="https://ngrok.com/">ngrok</a> to create a secure tunnel to your localhost.</p>
-</li>
+<li>Run <code>bundle install</code>.</li>
+<li>Get your <a href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/">GitHub access token</a> and assign to the <code>GITHUB_ACCESS_TOKEN</code> environment variable. On GOV.UK, we use a token associated with the govuk-ci user.</li>
+<li>Create a Trello account and add it to your team&rsquo;s Trello board, giving read and write access. On GOV.UK, we use the <a href="https://trello.com/u/pullrequestposter">@pullrequestposter</a> user.</li>
+<li>Get your <a href="https://trello.com/app-key">Trello developer API key</a> and assign to the <code>TRELLO_PUBLIC_KEY</code> environment variable. You may also find this key using <a href="https://github.com/jeremytregunna/ruby-trello">ruby-trello&rsquo;s</a> helpful methods.</li>
+<li>Get your <a href="https://developers.trello.com/authorize">Trello user token</a> and assign to the <code>TRELLO_MEMBER_TOKEN</code> environment variable. You may also find this token using <a href="https://github.com/jeremytregunna/ruby-trello">ruby-trello&rsquo;s</a> helpful methods.</li>
+<li>Deploy github-trello-poster to your preferred platform, or run locally with <code>ruby app.rb</code> and use <a href="https://ngrok.com/">ngrok</a> to open a secure tunnel to your localhost.</li>
+<li>Set up the webhook between your repo(s) and github-trello-poster. This is <a href="https://github.com/alphagov/govuk-saas-config/blob/ac02bd03637f41e7274c739bcb650fcabca1121e/github/lib/configure_repo.rb#L57-L77">done automatically by govuk-saas-config</a> for all GOV.UK repos. To set it up manually, go into your repo settings in GitHub and create a webhook pointing to your payload URL (&lsquo;https://[insert-your-site-here]/payload&rsquo;), select a content type of <code>application/json</code>, then finally choose &lsquo;Let me select individual events&rsquo; and check the &lsquo;Pull requests&rsquo; box.</li>
 </ol>
 
-<h4 id="running-the-test-suite">Running the test suite</h4>
+<h3 id="running-the-test-suite">Running the test suite</h3>
 
 <p>Run <code>bundle exec rspec</code>.
 Note the feature tests require real-world set up of Trello cards and GitHub repos, and you will need to amend the tests accordingly.</p>
