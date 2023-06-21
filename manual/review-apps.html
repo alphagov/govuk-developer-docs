@@ -138,6 +138,9 @@
         <a href="#enable-your-app-to-work-on-heroku"><span>Enable your app to work on Heroku</span></a>
       </li>
       <li>
+        <a href="#choose-the-most-appropriate-plan-for-your-app"><span>Choose the most appropriate plan for your app</span></a>
+      </li>
+      <li>
         <a href="#create-a-new-pipeline-on-heroku"><span>Create a new pipeline on Heroku</span></a>
       </li>
     </ul>
@@ -189,15 +192,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6631409a7116e2e522ecb54fe0a3687adfc9728d">13 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/214ff70164aba905bc2d7388ac4d26db1c3fe287">21 Jun 2023</a>
 </div>
 
  <h1 id='header'>Set up Heroku review apps for pull requests</h1> <p><a href="https://devcenter.heroku.com/articles/github-integration-review-apps">Review apps</a>
@@ -287,6 +283,10 @@ deploy review apps.</p>
 </code></pre></div><p>See <a href="https://github.com/alphagov/smart-answers/blob/release_3739/Gemfile#L3">smart-answers</a> for an example of this.</p>
 <p>If all goes well, you will be able to see your app on:
 <a href="https://govuk-app.herokuapp.com">https://govuk-app.herokuapp.com</a></p>
+<h2 id='choose-the-most-appropriate-plan-for-your-app'>Choose the most appropriate plan for your app</h2><p>To change the plan you have to go into the resources tab in the app and click on &ldquo;change dyno type&rdquo;.
+Most apps should be on the Eco plan and share dyno hours with other apps.
+If you expect your app to be accessed frequently you should pick the Basic plan, this is because
+the dyno hours on the Eco plan might run out and all apps on that plan will stop working.</p>
 <h2 id='create-a-new-pipeline-on-heroku'>Create a new pipeline on Heroku</h2><p>Once you have a successful deployment of your app into Heroku and the <code>app.json</code>
 file commited to the repository and in your main branch, you will now be able
 to start using review apps.</p>
