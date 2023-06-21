@@ -121,6 +121,13 @@ See [smart-answers](https://github.com/alphagov/smart-answers/blob/release_3739/
 If all goes well, you will be able to see your app on:
 <https://govuk-app.herokuapp.com>
 
+## Choose the most appropriate plan for your app
+
+To change the plan you have to go into the resources tab in the app and click on "change dyno type".
+Most apps should be on the Eco plan and share dyno hours with other apps.
+If you expect your app to be accessed frequently you should pick the Basic plan, this is because
+the dyno hours on the Eco plan might run out and all apps on that plan will stop working.
+
 ## Create a new pipeline on Heroku
 
 Once you have a successful deployment of your app into Heroku and the `app.json`
