@@ -129,27 +129,26 @@
     <a href="#header"><span>Deploy when GitHub is unavailable</span></a>
     <ul>
       <li>
-        <a href="#disable-jenkins-security"><span>Disable Jenkins Security</span></a>
-      </li>
-      <li>
-        <a href="#deploy-from-aws-codecommit"><span>Deploy from AWS CodeCommit</span></a>
+        <a href="#backup-to-aws-codecommit"><span>Backup to AWS CodeCommit</span></a>
         <ul>
           <li>
-            <a href="#making-changes-to-code-in-aws-codecommit-before-deployment"><span>Making changes to code in AWS CodeCommit before deployment</span></a>
+            <a href="#checkout-code-in-aws-codecommit"><span>Checkout code in AWS CodeCommit</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#drill-creating-and-deploying-a-branch-from-codecommit"><span>Drill creating and deploying a branch from CodeCommit</span></a>
+        <ul>
+          <li>
+            <a href="#create-and-deploy-an-image-to-ecr"><span>Create and deploy an image to ECR</span></a>
           </li>
           <li>
-            <a href="#deploying-a-hotfix-from-aws-codecommit"><span>Deploying a hotfix from AWS CodeCommit</span></a>
-          </li>
-          <li>
-            <a href="#tidy-up-after-deploying-a-hotfix"><span>Tidy up after deploying a hotfix</span></a>
+            <a href="#deploy-the-image-to-eks-using-argo"><span>Deploy the image to EKS using Argo</span></a>
           </li>
         </ul>
       </li>
       <li>
         <a href="#troubleshooting-403-errors-from-aws"><span>Troubleshooting 403 errors from AWS</span></a>
-      </li>
-      <li>
-        <a href="#drill-creating-and-deploying-a-branch-from-codecommit"><span>Drill creating and deploying a branch from CodeCommit</span></a>
       </li>
     </ul>
   </li>
@@ -201,54 +200,46 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ef496d2da86cc7064b0fed0bda6d5dbe06f23ce1">25 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b9547fe878c39dab8f93fcaa076778773e6a0dc4">16 Jun 2023</a>
 </div>
 
- <h1 id='header'>Deploy when GitHub is unavailable</h1> <p>Many of the git repositories which make up GOV.UK are hosted on public GitHub. If GitHub becomes unavailable, our Jenkins deployment pipeline breaks. This is because:</p>
-
-<ul>
-<li>Jenkins uses the <a href="https://plugins.jenkins.io/github-oauth/">GitHub Authentication plugin</a> to manage access: <a href="/manual/access-jenkins.html">only people in certain GitHub groups can access Jenkins</a>. If GitHub goes down, nobody can log into Jenkins</li>
-<li>The <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/"><code>Deploy_App</code> Jenkins job</a>  uses GitHub by default when it clones repositories ready for deploying. If GitHub goes down, it can&rsquo;t clone the repository</li>
-</ul>
-<p>The workaround is to disable Jenkins security, then configure the <code>Deploy_App</code> job to clone from AWS CodeCommit instead.</p>
-<h2 id='disable-jenkins-security'>Disable Jenkins Security</h2><p>If GitHub.com is down, we will not be able to log in to Jenkins.
-In this scenario, Jenkins security should be disabled to enable deployment:</p>
-
-<ol>
-<li>SSH to the Jenkins deploy instance: <code>gds govuk connect -e production ssh aws/jenkins</code></li>
-<li>Disable Puppet: <code>govuk_puppet -r &quot;Emergency Jenkins deploy&quot; --disable</code></li>
-<li>Edit the Jenkins configuration file: <code>sudo vim /var/lib/jenkins/config.xml</code></li>
-<li>Replace <code>&lt;useSecurity&gt;true&lt;/useSecurity&gt;</code> with <code>&lt;useSecurity&gt;false&lt;/useSecurity&gt;</code> and save</li>
-<li>Restart Jenkins: <code>sudo service jenkins restart</code></li>
-</ol>
-<p>Once security is disabled, anyone on GDS-trusted IPs will be able to invoke any Jenkins job, including <code>Deploy_App</code>. Do not leave security disabled for any longer than necessary.</p>
-<p>See the <a href="https://www.jenkins.io/doc/book/security/securing-jenkins/">Jenkins documentation</a> for further details.</p>
-<h2 id='deploy-from-aws-codecommit'>Deploy from AWS CodeCommit</h2><p>We mirror all non-archived GitHub repositories tagged with <code>govuk</code> to AWS CodeCommit every 2 hours. This is achieved using a <a href="https://deploy.integration.publishing.service.gov.uk/job/Mirror_Github_Repositories/">&lsquo;Mirror GitHub repositories&rsquo; Jenkins job</a>, which is <a href="https://github.com/alphagov/govuk-puppet/pull/11631/files">configured in govuk-puppet</a> and the <a href="https://github.com/alphagov/govuk-repo-mirror">govuk-repo-mirror repository</a>.</p>
-<p>We can deploy from AWS CodeCommit instead of GitHub, if GitHub is down or if we need a private place to develop fixes for security vulnerabilities before they are deployed.</p>
-<p>To do so, trigger the <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/"><code>Deploy_App</code></a> Jenkins job, but check the <code>DEPLOY_FROM_AWS_CODECOMMIT</code> box to deploy from AWS CodeCommit.</p>
-<h3 id='making-changes-to-code-in-aws-codecommit-before-deployment'>Making changes to code in AWS CodeCommit before deployment</h3><p>If you need to deploy from AWS CodeCommit because GitHub is down or you need to test a change of a sensitive nature, you will likely need to push a new branch of code to CodeCommit.</p>
+ <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='backup-to-aws-codecommit'>Backup to AWS CodeCommit</h2><p>We mirror all non-archived GitHub repositories tagged with <code>govuk</code> to AWS CodeCommit. This is achieved using a <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml">&ldquo;Mirror repositories&rdquo; GitHub workflow</a>, which uses a <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/mirror.tf"><code>github_action_mirror_repos_role</code> IAM role configured in Terraform</a>.</p>
+<h3 id='checkout-code-in-aws-codecommit'>Checkout code in AWS CodeCommit</h3><p>Since our deployment images are named via git tags, we&rsquo;ll need to checkout our code from AWS CodeCommit in order to make sure we&rsquo;re deploying the correct image and have an up-to-date copy of the code.</p>
 <p>Setup your local environment for <a href="/manual/howto-checkout-and-commit-to-codecommit.html">checking out code from CodeCommit</a></p>
-<h3 id='deploying-a-hotfix-from-aws-codecommit'>Deploying a hotfix from AWS CodeCommit</h3><p>Once you&rsquo;ve <a href="#making-changes-to-code-in-aws-codecommit-before-deployment">pushed your hotfix branch to CodeCommit</a>, you should:</p>
+<h2 id='drill-creating-and-deploying-a-branch-from-codecommit'>Drill creating and deploying a branch from CodeCommit</h2><p>If GitHub.com is down, Docker images can still be created and then deployed manually in Argo.</p>
+<h3 id='create-and-deploy-an-image-to-ecr'>Create and deploy an image to ECR</h3><p>Ensure the following instructions are all run from the root directory of the repository.</p>
 
 <ol>
-<li>Create a pull request in the CodeCommit UI.</li>
-<li>Ask another developer to review it as a sense check.</li>
-<li>With the branch reviewed, you can then <a href="#deploy-from-aws-codecommit">deploy it</a>, specifying your branch name as the <code>TAG</code> (in the example above, &lsquo;hotfix&rsquo;). Do this in Integration or Staging first, then manually test the changes.
-
-<ul>
-<li>In the example above, you can check the README was removed by SSH&#39;ing into the relevant machine and executing <code>ls /var/apps/{REPO_NAME}</code> to confirm that the README is absent.</li>
-</ul></li>
-<li>Once you&rsquo;re confident in your changes, deploy the branch to Production.</li>
-<li>Record the missing deployment in the Release app.</li>
+<li>Follow the steps for <a href="/manual/howto-checkout-and-commit-to-codecommit.html">checking out and committing from CodeCommit</a> to clone the repo.</li>
+<li>Make your changes.</li>
+<li>Name the <code>IMAGE_TAG</code> for your change, which you will then push to the ECR (Elastic Container Registry) in order to deploy the change from Argo.</li>
 </ol>
-<h3 id='tidy-up-after-deploying-a-hotfix'>Tidy up after deploying a hotfix</h3><p>When GitHub is back online, it&rsquo;s time to make Jenkins secure again and merge your changes back into the main repository.</p>
-
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>LOCAL_HEAD_SHA="$(git rev-parse HEAD)"
+IMAGE_TAG="release-${LOCAL_HEAD_SHA}"
+ECR_REGISTRY="172025368201.dkr.ecr.eu-west-1.amazonaws.com"
+REPO=$(awk -F '=' /GOVUK_APP_NAME/'{print $2}' Dockerfile)
+</code></pre></div>
 <ol>
-<li>Re-enable and run Puppet on the Jenkins instance: <code>govuk_puppet --enable &amp;&amp; govuk_puppet --test</code></li>
-<li>Restart Jenkins: <code>sudo service jenkins restart</code></li>
-<li>Push your hotfix branch to GitHub, open a pull request, and have it reviewed and merged as normal.</li>
-<li>This will create a proper release tag, which will automatically deploy through all of the environments if continuous deployment is enabled, or should be manually deployed to all environments if not.</li>
-<li>Delete your branch from CodeCommit.</li>
+<li>Build the docker image locally with the tag named after the latest sha.</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code> docker build --platform linux/amd64 -f Dockerfile -t $IMAGE_TAG .
+</code></pre></div>
+<ol>
+<li>Log in and push the image to ECR:</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-production-poweruser aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $ECR_REGISTRY
+docker push $ECR_REGISTRY/$REPO:$IMAGE_TAG
+</code></pre></div><h3 id='deploy-the-image-to-eks-using-argo'>Deploy the image to EKS using Argo</h3>
+<ol>
+<li>Get the Admin Argo credentials by running <code>kubectl -n cluster-services get secret argocd-initial-admin-secret -oyaml |yq .data.password |base64 -d</code></li>
+<li>Log into <a href="https://argo.eks.integration.govuk.digital/">Argo</a></li>
+<li>Search for the application you wish to deploy in the &ldquo;Search applications&hellip;&rdquo; search bar</li>
+<li>Select the application from the list below the search bar</li>
+<li>Select &ldquo;APP DETAILS&rdquo;</li>
+<li>Go to &ldquo;DISABLE AUTO-SYNC&rdquo; then select &ldquo;ok&rdquo; when prompted &ldquo;Disable Auto-Sync?&rdquo;</li>
+<li>Close the &ldquo;APP DETAILS&rdquo; menu, then select the three dots next to the Deploy object for the part of the application you&rsquo;d like to redeploy. For example, <code>account-api-worker</code> would be for deploying the <code>account-api-workers</code>.</li>
+<li>Go to the &ldquo;LIVE MANIFEST&rdquo; and select &ldquo;EDIT&rdquo;. Find the &ldquo;image&rdquo;, then update it to the new image tag you&rsquo;d like to deploy. (You can double-check you have the correct image name by doing a <code>git log</code> after <a href="/manual/howto-checkout-and-commit-to-codecommit.html">checking out the code from CodeCommit</a>).</li>
+<li>Click &ldquo;Save&rdquo; and Argo will start the deployment, which should complete in under ten minutes.</li>
 </ol>
 <h2 id='troubleshooting-403-errors-from-aws'>Troubleshooting 403 errors from AWS</h2><p>If running any <code>git</code> commands against CodeCommit returns a 403 response, you probably
 have expired credentials stored in your macOS keychain from a previous attempt.
@@ -268,17 +259,6 @@ to use them again despite you setting new AWS credentials.</p>
 <li>If you are prompted to add the item to keychain, deny.</li>
 </ol>
 <p>There is more information about setting up your access key in the <a href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html">AWS guide</a></p>
-<h2 id='drill-creating-and-deploying-a-branch-from-codecommit'>Drill creating and deploying a branch from CodeCommit</h2><p>To ensure that our fallback procedure continues to work, we need to drill it regularly.</p>
-
-<ol>
-<li><a href="#disable-jenkins-security">Disable Jenkins security</a></li>
-<li>Pick a publishing app at random (because the risk is lower than a frontend app, should the change be accidentally published to Production)</li>
-<li>Clone the repo from CodeCommit and create a branch with a trivial change (see <a href="#making-changes-to-code-in-aws-codecommit-before-deployment">instructions</a>). Ideally it should be a visible change, such as a text change in one of the pages rendered by the app.</li>
-<li>Get it reviewed by the other developer on 2nd line, and then deploy it to Staging (see <a href="#deploying-a-hotfix-from-aws-codecommit">instructions</a>). Do NOT deploy to Production.</li>
-<li>Manually test that you can see your changes in the app on Staging.</li>
-<li>Record the missing deployment in the Release app on Staging if you wish, just to familiarise yourself with the process</li>
-<li><a href="#tidy-up-after-deploying-a-hotfix">Re-enable Jenkins security</a>, re-deploy the previous release and delete your branch from CodeCommit</li>
-</ol>
 
 
   <div class='related-content'>

@@ -268,7 +268,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0e1c35f2b216af032c66656038bf321742859ca6">20 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b9547fe878c39dab8f93fcaa076778773e6a0dc4">16 Jun 2023</a>
 </div>
 
  <h1 id='header'>2nd line drills</h1> <p>There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going <a href="/manual/on-call.html">on call</a> if you are part of the out of hours rota.</p>
@@ -314,7 +314,7 @@ Walk through the <a href="/manual/incident-management-guidance.html">incident ma
 Use common sense when following the steps (i.e. don&rsquo;t actually publish an incident to Statuspage or email stakeholders).</p>
 <h3 id='drill-how-to-communicate-when-slack-is-down'>Drill how to communicate when Slack is down</h3><p>Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
 See &ldquo;<a href="https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp">If Slack is unavailable</a>&rdquo; for details.</p>
-<h2 id='drill-special-deployment-conditions'>Drill special deployment conditions</h2><h3 id='deploy-from-aws-codecommit-when-github-is-unavailable'>Deploy from AWS CodeCommit when Github is unavailable</h3><p>Follow the <a href="/manual/github-unavailable.html#drill-creating-and-deploying-a-branch-from-codecommit">Deploy when GitHub is unavailable</a> instructions.</p>
+<h2 id='drill-special-deployment-conditions'>Drill special deployment conditions</h2><h3 id='deploy-from-aws-codecommit-when-github-is-unavailable'>Deploy from AWS CodeCommit when Github is unavailable</h3><p>Follow the <a href="/manual/github-unavailable.html#create-and-deploy-an-image-to-ecr">Deploy when GitHub is unavailable</a> instructions.</p>
 <h3 id='drill-enabling-a-code-freeze'>Drill enabling a code freeze</h3><p>Choose a continuously-deployed app where you can make a meaningful change to the default branch, e.g. fixing a typo, or merging a Dependabot PR.</p>
 <p>Either before merging the change, or part way through the continuous deployment process, follow the instructions for <a href="/manual/development-pipeline.html#check-for-or-implement-a-deploy-freeze">implementing a deploy freeze</a> for that app.</p>
 <p>Follow the deployment pipeline in Jenkins. Confirm that no further environment deployments are triggered. For example, if you implemented the deploy freeze just after the app was deployed to Staging, confirm that the app was then not automatically deployed to Production.</p>
