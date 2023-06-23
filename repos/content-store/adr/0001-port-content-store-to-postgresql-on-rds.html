@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>content-store: Access-limited content items - GOV.UK Developer Documentation</title>
+    <title>content-store: 1. Port Content Store to PostgreSQL on RDS - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/content-store/access-limited-content-items.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/content-store/adr/0001-port-content-store-to-postgresql-on-rds.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="content-store: Access-limited content items - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/content-store/access-limited-content-items.html" />
+      <meta name="twitter:title" content="content-store: 1. Port Content Store to PostgreSQL on RDS - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/content-store/adr/0001-port-content-store-to-postgresql-on-rds.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="content-store: Access-limited content items" />
+      <meta property="og:title" content="content-store: 1. Port Content Store to PostgreSQL on RDS" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/content-store/access-limited-content-items.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/content-store/adr/0001-port-content-store-to-postgresql-on-rds.html" />
 
     
   </head>
@@ -194,35 +194,31 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/content-store/commit/d7a1cc60e52c6b368c811bc9f0af043dde9258e6">6 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/content-store/commit/e6b2bc260c46ce749eda4e78732a675db8f735f4">23 Jun 2023</a>
 </div>
 
-  <h1 class="page-title">content-store: Access-limited content items</h1>
+  <h1 class="page-title">content-store: 1. Port Content Store to PostgreSQL on RDS</h1>
 
   
-<p>Some content can be marked as <a href="/repos/content-store/content_item_fields.html">access-limited</a>.
-This content can only be retrieved from the content store with the right
-authorisation. Authentication details can be provided with a GET request to
-identify an authenticated user:</p>
-<pre lang="sh"><code>  curl -header "X-Govuk-Authenticated-User: f17150b0-7540-0131-f036-0050560123202" \
-    https://content-store.publishing.service.gov.uk/content&lt;base_path&gt;
-
-</code></pre>
-<p>If the supplied identifier is in the list of authorised users, the content item
-will be returned. If not, a 403 (Forbidden) response will be returned.</p>
-<p>Note: the access-limiting behaviour should only be active on the draft stack.</p>
-<h2 id="2nd-line-access">2nd line access</h2>
-<p>To help debug an issue for the user where the document has access limited permissions,
-you can change your organisation temporarily to match the user's organisation in
-<a href="https://signon.publishing.service.gov.uk/">Signon</a>.</p>
+<p>Date: 2023-05-16</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="context">Context</h2>
+<p>Content Store currently runs on legacy self-hosted MongoDB 2.6. This version has been end-of-life since 2016, is difficult to support and has long been noted as <a href="https://trello.com/b/oPnw6v3r/govuk-tech-debt">tech debt</a>. Regardless of version, MongoDB has also proven more difficult to work with in code, and is less well understood amongst GOV.UK technical staff than the much more widely-used PostgreSQL.</p>
+<h2 id="decision">Decision</h2>
+<p>As discussed in <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-158-port-content-store-to-postgresql.md">GOV.UK RFC158</a> the Publishing Platform team will port Content Store's datastore to PostgreSQL on Amazon's managed RDS service.</p>
+<h2 id="consequences">Consequences</h2>
+<ul>
+<li>The overnight environment sync job, which dumps live data to S3 and imports it into integration &amp; staging environments, will need to be changed.</li>
+<li>We have completed tech spikes into <a href="https://github.com/alphagov/content-store-on-postgresql">running the Content Store application on PostgreSQL</a> and <a href="https://github.com/alphagov/govuk-docker/pull/656">dual-running both versions</a> behind a <a href="https://github.com/alphagov/content-store-proxy">repeating proxy</a>.</li>
+<li>We have completed a round of load testing, and established that the PostgreSQL version serves <code>GET (path)</code> requests at least as fast as (in fact slightly faster on average than) the Mongo version on the same hardware.</li>
+<li>Retrieving content-items by <code>content-id</code>, rather than <code>base_path</code>, is significantly faster on the PostgreSQL version (~2ms rather than 20-30s)</li>
+<li>Consumers of the Content Store API should be unaffected. The API will remain as-is.</li>
+<li>Consumers of the database backups will need to need to be changed, to import a PostgreSQL backup rather than a MongoDB backup. We've spoken to Data Services - the main consumers - about our plans, and we can make the transition easier with our plan to dual-run both MongoDB and PostgreSQL versions behind the repeating proxy linked to above for an initial transition period. This will allow updated integrations to be written, tested and deployed before decommissioning MongoDB.</li>
+<li>Dual-running in production for a period of around a month will also allow time for a history of PostgreSQL backups to accumulate before the switchover.</li>
+<li>Moving to RDS should reduce support and maintenance costs by externalising the responsibility for maintaining a highly-available cluster to Amazon, and eliminating the cognitive load associated with supporting MongoDB.</li>
+</ul>
 
 
             
@@ -230,8 +226,8 @@ you can change your organisation temporarily to match the user's organisation in
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/content-store/blob/main/docs/access-limited-content-items.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fcontent-store%2Faccess-limited-content-items.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/content-store/blob/main/docs/adr/0001-port-content-store-to-postgresql-on-rds.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fcontent-store%2Fadr%2F0001-port-content-store-to-postgresql-on-rds.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
