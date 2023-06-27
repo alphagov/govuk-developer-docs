@@ -32,6 +32,12 @@
   production_hosted_on: eks
   production_url: false
 
+- repo_name: backdrop
+  type: Utilities
+  retired: true
+  description: |
+    Backdrop was a datastore built with Python and MongoDB. It was built for the Performance Platform. It was archived in March 2021.
+
 - repo_name: bouncer
   type: Transition apps
   team: "#govuk-navigation-tech"
@@ -441,6 +447,12 @@
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
 
+- repo_name: govuk-cdn-logs-monitor
+  type: Utilities
+  retired: true
+  description: |
+    This project monitored the CDN logs for GOV.UK, to find problems with the site. It was archived in July 2018, following RFC-93.
+
 - repo_name: govuk-ckan-charts
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
@@ -456,11 +468,10 @@
   type: Utilities
 
 - repo_name: govuk-content-schemas
-  team: "#govuk-publishing-platform"
   type: Utilities
-  sentry_url: false
-  dashboard_url: false
   retired: true
+  description: |
+    This repo contained JSON Schema files and examples of the content that uses them on GOV.UK. It was merged into Publishing API and subsequently archived in November 2022.
 
 - repo_name: govuk-content-similarity
   retired: true
@@ -902,6 +913,12 @@
   team: "#data-products"
   type: Data science
 
+- repo_name: kibana-gds
+  type: Utilities
+  retired: true
+  description: |
+    This was a wrapper that initialised Kibana behind GOV.UK's Signon. It was archived in May 2018.
+
 - repo_name: licence-finder
   type: Frontend apps
   shortname: licencefinder
@@ -961,11 +978,9 @@
 - repo_name: manuals-frontend
   retired: true
   type: Frontend apps
-  team: "#govuk-navigation-tech"
-  production_hosted_on: eks
   description: |
     Used to host manuals from manuals-publisher and hmrc-manuals-api
-    (now hosted by government-frontend)
+    (now hosted by government-frontend). Archived in June 2022.
 
 - repo_name: manuals-publisher
   type: Publishing apps
@@ -975,12 +990,10 @@
 - repo_name: mapit
   retired: true
   type: APIs
-  team: "#govuk-platform-security-reliability-team"
   api_docs_url: https://mapit.mysociety.org/docs/
-  production_hosted_on: aws
   description: |
     Used to do postcode lookups for Imminence and Frontend (now
-    replaced by locations-api)
+    replaced by locations-api). Archived in October 2022.
 
 - repo_name: mapit-scripts
   retired: true
@@ -1072,6 +1085,18 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
+
+- repo_name: performanceplatform-admin
+  type: Utilities
+  retired: true
+  description: |
+    Performance Platform admin was a Flask app that allowed authorised users to update performance data on GOV.UK. It was archived in March 2021.
+
+- repo_name: performanceplatform-big-screen-view
+  type: Utilities
+  retired: true
+  description: |
+    This was an application for displaying data from the Performance Platform fullscreen on a large display. It was archived in January 2018.
 
 - repo_name: plek
   team: "#govuk-platform-security-reliability-team"
@@ -1293,6 +1318,18 @@
   type: Publishing apps
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
+
+- repo_name: spotlight
+  type: Utilities
+  retired: true
+  description: |
+    Spotlight was a hybrid rendering app for the GOV.UK Performance Platform using Backbone and D3. It was archived in 2021.
+
+- repo_name: stagecraft
+  type: Utilities
+  retired: true
+  description: |
+    Stagecraft was built to manage the Performance Platform. It was archived in March 2021.
 
 - repo_name: static
   type: Frontend apps
