@@ -132,7 +132,7 @@
         <a href="#gov-uk-csp-history"><span>GOV.UK CSP History</span></a>
       </li>
       <li>
-        <a href="#how-the-policy-is-set"><span>How the policy is set</span></a>
+        <a href="#how-the-policy-is-set-and-changed"><span>How the policy is set and changed</span></a>
       </li>
       <li>
         <a href="#how-violations-are-reported"><span>How violations are reported</span></a>
@@ -191,15 +191,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d5e5b55366420c71079ee7686359a38daa42c816">9 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/924f9e80c80af1493b2e34fa3ebdc6d9b77e078d">27 Jun 2023</a>
 </div>
 
  <h1 id='header'>Content Security Policy on GOV.UK</h1> <p>Content Security Policy (CSP) is a browser standard to prevent cross-site scripting (XSS), clickjacking and other code
@@ -208,16 +201,23 @@ which stylesheets, scripts and other assets are allowed to run, is sent with eve
 the browser.</p>
 <p>CSP can be run in two modes - <em>report only</em>, where violations of the policy are reported to a given endpoint but
 allowed to execute, and <em>enforcement</em>, where violations are blocked.</p>
-<h2 id='gov-uk-csp-history'>GOV.UK CSP History</h2><p>As of 2022, GOV.UK has been working, on and off, towards adding a CSP to the public www.gov.uk website for a number of
-years. We have configured one that has been running on the frontend applications, in report only mode, since 2019.
-We track this incomplete implementation as <a href="https://trello.com/c/lxxx5XLZ/178-govuk-has-a-half-implemented-content-security-policy-csp">tech debt</a>.</p>
-<p>We continue to aspire to have the CSP set to enforcement mode and intend to enhance it to forbid <a href="https://content-security-policy.com/unsafe-inline/"><code>unsafe-inline</code></a>
-scripts and styles (in applicable applications) before launching it.</p>
-<h2 id='how-the-policy-is-set'>How the policy is set</h2><p>GOV.UK has a base policy set in the <a href="https://github.com/alphagov/govuk_app_config/blob/main/lib/govuk_app_config/govuk_content_security_policy.rb"><code>govuk_app_config</code> gem</a>. This policy is shared amongst GOV.UK
-applications and should contain directives that are either global or common to many applications.</p>
-<p>Each frontend app has an <a href="https://github.com/alphagov/government-frontend/blob/main/config/initializers/csp.rb">initialiser</a>
-which invokes the CSP setting code in the gem. Each application can make customisations to the policy for
-application/route specific needs (<a href="https://github.com/alphagov/smart-answers/blob/1a2ff1d9f430afcc7435ac9775cc44de6b0a98f1/app/controllers/smart_answers_controller.rb#L8-L12">example in Smart Answers</a>).</p>
+<h2 id='gov-uk-csp-history'>GOV.UK CSP History</h2><p>As of 2023, GOV.UK has been working, on and off, towards adding a CSP to the public www.gov.uk website for a number of
+years and have had a <em>report only</em> CSP since 2019. As of June 2023 we have began rolling this out in <em>enforcement</em>
+and have applied it to Feedback, Finder Frontend and Smart Answers. With the other frontend apps planned to be rolled
+out Summer 2023</p>
+<h2 id='how-the-policy-is-set-and-changed'>How the policy is set and changed</h2><p>We have a global base policy that can be modified in individual applications. When you need to make modifications you
+should prefer making changes in individual applications it is something that affects all GOV.UK pages or is across
+most applications. Each frontend app has an <a href="https://github.com/alphagov/government-frontend/blob/main/config/initializers/csp.rb">initialiser</a>
+which invokes the CSP setting code in the gem.</p>
+<p>There are two approaches to apply a CSP configuration change to an individual application:</p>
+
+<ul>
+<li>You can apply CSP modifications to an individual controller or action (<a href="https://github.com/alphagov/smart-answers/blob/1a2ff1d9f430afcc7435ac9775cc44de6b0a98f1/app/controllers/smart_answers_controller.rb#L8-L12">example in Smart Answers</a>).</li>
+<li>You can apply a CSP modification to an entire application (<a href="https://github.com/alphagov/govuk_publishing_components/blob/80791ac61e2d5b959725f6b1064a2f83a82e9bf8/spec/dummy/config/initializers/content_security_policy.rb#L23">example in govuk_publishing_components</a>)</li>
+</ul>
+<p>The base policy is set in <a href="https://github.com/alphagov/govuk_app_config/blob/main/lib/govuk_app_config/govuk_content_security_policy.rb"><code>govuk_app_config</code> gem</a>. This policy is shared amongst GOV.UK applications and
+should only contain directives that are either global or common to many applications. This can be amended and deployed
+to apps with a new gem release.</p>
 <h2 id='how-violations-are-reported'>How violations are reported</h2><p>In all production-like environments (production, staging, integration), CSP is running in report only mode. In other
 environments such as development and test, CSP is running in enforcement mode to allow errors to be captured
 at an early stage.</p>
