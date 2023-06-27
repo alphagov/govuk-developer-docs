@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>finder-frontend: Developing a Finder - GOV.UK Developer Documentation</title>
+    <title>finder-frontend: GA4 filter expand/collapse tracking - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/finder-frontend/developing-a-finder.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/finder-frontend/analytics-ga4/ga4-filter-expand-collapse.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="finder-frontend: Developing a Finder - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend/developing-a-finder.html" />
+      <meta name="twitter:title" content="finder-frontend: GA4 filter expand/collapse tracking - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend/analytics-ga4/ga4-filter-expand-collapse.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="finder-frontend: Developing a Finder" />
+      <meta property="og:title" content="finder-frontend: GA4 filter expand/collapse tracking" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend/developing-a-finder.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend/analytics-ga4/ga4-filter-expand-collapse.html" />
 
     
   </head>
@@ -196,31 +196,18 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/8e83db92d07ae8eb603bcf79f61351218db1455b">13 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/4210357f126297212a135f74ce801a7f75ea9c11">26 Jun 2023</a>
 </div>
 
-  <h1 class="page-title">finder-frontend: Developing a Finder</h1>
+  <h1 class="page-title">finder-frontend: GA4 filter expand/collapse tracking</h1>
 
   
-<ol>
-<li>
-<p>If required, add a schema to <a href="http://github.com/alphagov/search-api">alphagov/search-api</a> describing your document type -- <a href="https://github.com/alphagov/search-api/blob/master/config/schema/elasticsearch_types/cma_case.json">example</a></p>
-</li>
-<li>
-<p>Publish a Finder Content Item to the content store. See the doc for <a href="/repos/finder-frontend/finder-content-item.html">Finder Content Item</a> for more info.</p>
-</li>
-<li>
-<p>Ensure your documents are indexed in <a href="http://github.com/alphagov/search-api">alphagov/search-api</a> correctly.</p>
-</li>
-</ol>
+<p>The <code>ga4-event-tracker</code> is used in finders to add tracking to the filter accordion headings, and the mobile "Filter" toggle button. It tracks if these elements have been expanded or collapsed.</p>
+<p>The tracking relies on the <code>ga4-finder-tracker</code> running the <code>setFilterIndexes</code> function first. This is because we need the indexes to be appended onto the parent <!-- raw HTML omitted --> for each filter, so that when a filter is expanded or collapsed, we can use this index to track the position that the filter is in the whole list of filters.</p>
+<p>Therefore, some code exists in <code>expander.js</code> and <code>option-select.js</code> to wait for a custom JavaScript event before setting any GA4 attributes. This event is called <code>ga4-filter-indexes-added</code>. The <code>setFilterIndexes</code> function fires the <code>ga4-filter-indexes-added</code> event when it has finished running. When this event has fired, <code>addFilterButtonTracking</code> in <code>ga4-finder-tracker</code> will then be called, and will set the relevant GA4 attributes on each filter's accordion heading.</p>
+<p>The mobile "Filter" toggle button doesn't rely on <code>setFilterIndexes</code>, because it only uses an <code>index_total</code> in its tracking, which can be grabbed by running <code>document.querySelectorAll(['data-ga4-section']).length</code>. The filter accordion headings however need their specific index position within the filter list, which is why they wait for more specific indexes to be added to the DOM first.</p>
+<p>The <code>addFilterButtonTracking</code> function in <code>ga4-finder-tracker</code>, which adds GA4 attributes to the filter accordion headings, will  grab the <code>data-ga4-index</code> value from the trigger button's parent div when run. It will then merge the index attributes onto the existing GA4 object we have constructed for the buttons, and then append the completed GA4 object to the button.</p>
 
 
             
@@ -228,8 +215,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/finder-frontend/blob/main/docs/developing-a-finder.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffinder-frontend%2Fdeveloping-a-finder.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/finder-frontend/blob/main/docs/analytics-ga4/ga4-filter-expand-collapse.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffinder-frontend%2Fanalytics-ga4%2Fga4-filter-expand-collapse.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
