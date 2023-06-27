@@ -44,8 +44,6 @@ task :verify_deployable_apps do
       performanceplatform-admin
       performanceplatform-big-screen-view
 
-      EFG
-
       govuk-cdn-logs-monitor
       govuk-content-schemas
       govuk_crawler_worker
