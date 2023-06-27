@@ -255,7 +255,7 @@ Docs</a>.</p>
 <li>
 <p>Install <a href="https://sass-lang.com/install">Sass</a> and compile the Sass sources to CSS with</p>
 <p>cd src/scss
-sass main.scss &gt; ../../public/main.css</p>
+<code>sass ./src/frontend/scss/main.scss &gt; ./src/public/main.css</code></p>
 </li>
 <li>
 <p>Install <a href="https://webpack.js.org/">webpack</a> and compile the browser-side Typescript code to JavaScript by just running <code>webpack</code></p>
@@ -285,20 +285,19 @@ local machine</p>
 
 <ul>
 <li>
-<p><code>app.ts</code>: the main server file. All the <code>.ts</code> files in the same folder are server-side code.</p>
+<p><code>src/backend/app.ts</code>: the main server file. All the <code>.ts</code> files in the same folder are server-side code.</p>
 </li>
 <li>
-<p><code>src/ts/*.ts</code>: the main browser-side files (some type definitions and
-utilities are also used server-side). <code>webpack</code> compiles everything to <code>/public/main.js</code>.</p>
+<p><code>src/backend</code>: the server-side files.</p>
 </li>
 <li>
-<p><code>src/scss/main.scss</code>: the Sass file that <code>sass</code> compiles to <code>/public/main.css</code></p>
+<p><code>src/frontend</code>: the main browser-side files. <code>webpack</code> compiles everything to <code>src/public/main.js</code>.</p>
 </li>
 <li>
-<p><code>public/assets</code>: fonts and images</p>
+<p><code>src/scss/main.scss</code>: the Sass file that <code>sass</code> compiles to <code>src/public/main.css</code></p>
 </li>
 <li>
-<p><code>views/index.html</code>: the HTML source file sent to the browser</p>
+<p><code>src/public/assets</code>: publicly served fonts and images</p>
 </li>
 </ul>
 
@@ -329,11 +328,13 @@ utilities are also used server-side). <code>webpack</code> compiles everything t
 etc.</li>
 </ul>
 <h2 id="running-tests">Running tests</h2>
+<h1 id="unit-tests">unit tests</h1>
+<p>We use <a href="https://jestjs.io">Jest</a>
+<code>npm run test</code></p>
 <h1 id="end-to-end-tests">end-to-end tests</h1>
 <p>We use <a href="https://docs.cypress.io">Cypress</a>, which is installed automatically on installing the <code>dev</code> npm packages. If Chrome is installed on your system it should be as simple as running <code>npx cypress open</code> for the interactive version and <code>npx cypress run</code> for the command-line version.</p>
 <p>To run a single test file , use <code>--spec</code>. For instance:</p>
-<pre><code>cypress run --spec cypress/e2e/url.cy.ts
-</code></pre>
+<p><code>cypress run --spec cypress/e2e/url.cy.ts</code></p>
 <h2 id="deployment-steps">Deployment Steps</h2>
 <ol>
 <li>Go to production site <a href="https://govgraphsearch.dev/">https://govgraphsearch.dev/</a> and view the source.</li>
