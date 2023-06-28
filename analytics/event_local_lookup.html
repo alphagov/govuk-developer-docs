@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Search event data | GOV.UK GA4 Implementation record</title>
+  <title>Local lookup event data | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/event_search.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/event_local_lookup.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/event_search.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/event_local_lookup.html" />
   <script src="/javascripts/cookie-consent.js"></script>
 </head>
 
@@ -137,62 +137,52 @@
           
 <h1 class="govuk-heading-l analytics-heading">
   <span class="govuk-caption-l">Event</span>
-  search
+  local lookup
 </h1>
 
 
   <div class="event">
     <h2 class="govuk-heading-m analytics-heading">
-      search results/ecommerce product list views
+      form submit
     </h2>
 
     <p class="govuk-body">
       Priority
-      <strong class="govuk-tag govuk-tag--red">
-        high
+      <strong class="govuk-tag govuk-tag--yellow">
+        medium
       </strong>
 
     </p>
 
 
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_form_tracker.html" class="govuk-link">form_tracker</a>.
+          </p>
 
       <h3 class="govuk-heading-s">Examples</h3>
       <ul class="govuk-list govuk-list--bullet">
           <li>
-            <a href="https://www.gov.uk/search/all?keywords=pension" class="govuk-link">Search results page</a>
+            <a href="https://www.gov.uk/find-local-council" class="govuk-link">Council lookup</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/food-business-registration" class="govuk-link">Licence lookup</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/rubbish-collection-day" class="govuk-link">Local lookup</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/find-regional-passport-office" class="govuk-link">Place lookup</a>
           </li>
       </ul>
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: search_results</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: view_item_list</li><li><a href='/analytics/attribute_results.html' class='govuk-link'>results</a>: string</li><li>search_results: <ul class='govuk-list indented-list'><li>ecommerce: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_items.html' class='govuk-link'>items</a>: array</li></ul></li></ul></li><li><a href='/analytics/attribute_sort.html' class='govuk-link'>sort</a>: string</li><li><a href='/analytics/attribute_term.html' class='govuk-link'>term</a>: string</li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: submit</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: form_submit</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_tool_name.html' class='govuk-link'>tool_name</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: string</li></ul></li></ul>
     </div>
   </div>
   <div class="event">
     <h2 class="govuk-heading-m analytics-heading">
-      search boxes
-    </h2>
-
-    <p class="govuk-body">
-      Priority
-      <strong class="govuk-tag govuk-tag--yellow">
-        medium
-      </strong>
-
-        <strong class="govuk-tag">Not yet implemented</strong>
-    </p>
-
-
-
-
-    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
-    <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
-    </div>
-  </div>
-  <div class="event">
-    <h2 class="govuk-heading-m analytics-heading">
-      ecommerce product clicks
+      form error
     </h2>
 
     <p class="govuk-body">
@@ -204,22 +194,25 @@
     </p>
 
 
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_auto_tracker.html" class="govuk-link">auto_tracker</a>.
+          </p>
 
       <h3 class="govuk-heading-s">Examples</h3>
       <ul class="govuk-list govuk-list--bullet">
           <li>
-            <a href="https://www.gov.uk/search/all?keywords=pension" class="govuk-link">Search results page (click on a result)</a>
+            <a href="https://www.gov.uk/find-local-council" class="govuk-link">To see an error page, enter an invalid or empty postcode</a>
           </li>
       </ul>
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: search_results</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: view_item_list</li><li><a href='/analytics/attribute_results.html' class='govuk-link'>results</a>: string</li><li>search_results: <ul class='govuk-list indented-list'><li>ecommerce: <ul class='govuk-list indented-list'><li>items: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_index_(ecommerce).html' class='govuk-link'>index (ecommerce)</a>: number</li><li><a href='/analytics/attribute_item_id.html' class='govuk-link'>item_id</a>: number</li><li><a href='/analytics/attribute_item_list_name.html' class='govuk-link'>item_list_name</a>: string</li><li><a href='/analytics/attribute_item_name.html' class='govuk-link'>item_name</a>: string</li></ul></li></ul></li></ul></li><li><a href='/analytics/attribute_sort.html' class='govuk-link'>sort</a>: string</li><li><a href='/analytics/attribute_term.html' class='govuk-link'>term</a>: string</li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: error</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: form_error</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_tool_name.html' class='govuk-link'>tool_name</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: string</li></ul></li></ul>
     </div>
   </div>
   <div class="event">
     <h2 class="govuk-heading-m analytics-heading">
-      filters open/closed
+      form complete
     </h2>
 
     <p class="govuk-body">
@@ -228,42 +221,37 @@
         medium
       </strong>
 
-        <strong class="govuk-tag">Not yet implemented</strong>
     </p>
 
 
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_auto_tracker.html" class="govuk-link">auto_tracker</a>.
+          </p>
 
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/find-local-council/westminster" class="govuk-link">Council lookup complete page</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/food-business-registration/westminster" class="govuk-link">Licence lookup complete page</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/rubbish-collection-day/westminster" class="govuk-link">Local lookup complete page</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/find-regional-passport-office#results" class="govuk-link">Place lookup complete page</a>
+          </li>
+      </ul>
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: complete</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: form_complete</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_tool_name.html' class='govuk-link'>tool_name</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: string</li></ul></li></ul>
     </div>
   </div>
   <div class="event">
     <h2 class="govuk-heading-m analytics-heading">
-      facet tag removed
-    </h2>
-
-    <p class="govuk-body">
-      Priority
-      <strong class="govuk-tag govuk-tag--green">
-        low
-      </strong>
-
-        <strong class="govuk-tag">Not yet implemented</strong>
-    </p>
-
-
-
-
-    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
-    <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
-    </div>
-  </div>
-  <div class="event">
-    <h2 class="govuk-heading-m analytics-heading">
-      filter click
+      change response
     </h2>
 
     <p class="govuk-body">
@@ -272,37 +260,62 @@
         medium
       </strong>
 
-        <strong class="govuk-tag">Not yet implemented</strong>
     </p>
 
 
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_link_tracker.html" class="govuk-link">link_tracker</a>.
+          </p>
 
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/food-business-registration/westminster" class="govuk-link">Licence lookup</a>
+          </li>
+      </ul>
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: change response</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: form_change_response</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: "true"</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_tool_name.html' class='govuk-link'>tool_name</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: string</li></ul></li></ul>
     </div>
   </div>
   <div class="event">
     <h2 class="govuk-heading-m analytics-heading">
-      organisations link click
+      information click
     </h2>
 
     <p class="govuk-body">
       Priority
-      <strong class="govuk-tag govuk-tag--green">
-        low
+      <strong class="govuk-tag govuk-tag--yellow">
+        medium
       </strong>
 
-        <strong class="govuk-tag">Not yet implemented</strong>
     </p>
 
 
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_link_tracker.html" class="govuk-link">link_tracker</a>.
+          </p>
 
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/find-local-council/westminster" class="govuk-link">Council lookup complete page</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/food-business-registration/westminster" class="govuk-link">Licence lookup complete page</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/rubbish-collection-day/westminster" class="govuk-link">Local lookup complete page</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/find-regional-passport-office#results" class="govuk-link">Place lookup complete page</a>
+          </li>
+      </ul>
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: information click</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: information_click</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: string ("true" or "false")</li><li>index: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_index_link.html' class='govuk-link'>index_link</a>: number</li></ul></li><li><a href='/analytics/attribute_index_total.html' class='govuk-link'>index_total</a>: string (number)</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html' class='govuk-link'>link_path_parts</a>: object</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_tool_name.html' class='govuk-link'>tool_name</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: string</li></ul></li></ul>
     </div>
   </div>
 
