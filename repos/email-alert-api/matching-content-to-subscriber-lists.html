@@ -205,15 +205,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/6fe42c86a52ed8a81b75fde0bd99edcd7e6c0dbf">22 Jul 2020</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/a18c22829d0e5a225671aea30f1c3007be14c7b3">28 Jun 2023</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Matching content to subscriber lists</h1>
@@ -272,6 +265,32 @@ particular country uses <code>document_type</code> and <code>links -&gt; countri
 whereas the travel advice index subscription (which includes all
 countries) only uses <code>document_type</code>. See <a href="https://gov-uk.atlassian.net/wiki/pages/viewpage.action?pageId=108625932">this wiki page</a>
 for details of how each kind of subscription works.</p>
+<h3 id="uuid-field">UUID field</h3>
+<ul>
+<li><code>content_id</code></li>
+</ul>
+<p>This field stores the content ID of a page on GOV.UK.</p>
+<p>Content ID based subscriber lists match against any content changes
+that share the same content ID. These lists do not have populated
+<code>document_type</code>, <code>email_document_supertype</code> or <code>government_document_supertype</code>
+string fields.</p>
+<p>Content ID based lists can also have links. When both links and content ID
+are present, the list will match content changes by links OR by content-id.</p>
+<p>This "OR" match means we can support reverse linked email subscriptions. For example:</p>
+<p>A user subscribes to alerts on a document collection page, with content ID '123-abc'.
+The params sent to email alert api contains both links and content ID, and will
+create a subscriber list that contains:</p>
+<pre><code>content_id: "123-abc"
+links: {
+    "document_collections" : {
+        "any"=&gt; [ "123-abc" ]
+    }
+},
+
+</code></pre>
+<p>This list will match content changes made to the page with content ID "123-abc",
+and it will also match content changes to child pages which are reverse linked to
+to page with content id "123-abc".</p>
 <h2 id="finding-matches">Finding matches</h2>
 <p>The queries on subscriber lists power the two sides of the email system:
 subscribing and sending emails.</p>
