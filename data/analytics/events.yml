@@ -809,7 +809,7 @@
     - name: search results/ecommerce product list views
       implemented: true
       priority: high
-      examples: 
+      examples:
         - text: Search results page
           link: https://www.gov.uk/search/all?keywords=pension
       data:
@@ -825,17 +825,35 @@
         - name: ecommerce
           value:
           - name: items
-
     - name: search boxes
-      implemented: false
+      implemented: true
       priority: medium
+      examples:
+        - text: Search home page
+          link: https://www.gov.uk/search/
+        - text: Search results page
+          link: https://www.gov.uk/search/all?keywords=pension
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: search
+        - name: type
+          value: finder
+        - name: text
+          value: the search query
+        - name: section
+          value: the heading that the search box is under
+        - name: url
+          value: the url of the page the search box is on
+        - name: action
+          value: search
     - name: ecommerce product clicks
       implemented: true
       priority: medium
-      examples: 
+      examples:
         - text: Search results page (click on a result)
           link: https://www.gov.uk/search/all?keywords=pension
       data:
@@ -857,23 +875,63 @@
             - name: item_list_name
             - name: item_name
     - name: filters open/closed
-      implemented: false
+      implemented: true
       priority: medium
+      examples:
+        - text: Search results page
+          link: https://www.gov.uk/search/all?keywords=pension
       data:
       - name: event
         value: event_data
-    - name: facet tag removed
-      implemented: false
-      priority: low
-      data:
-      - name: event
-        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: select_content
+        - name: type
+          value: finder
+        - name: text
+          value: the filter's heading text
+        - name: section
+          value: the filter's heading text
+        - name: action
+          value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
+        - name: index
+          value:
+          - name: index_section
+          - name: index_link
+          - name: index_section_count
     - name: filter click
       implemented: false
       priority: medium
       data:
       - name: event
         value: event_data
+    - name: filter added/removed
+      implemented: true
+      priority: low
+      examples:
+        - text: Search results page
+          link: https://www.gov.uk/search/all?keywords=pension
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: select_content
+        - name: type
+          value: finder
+        - name: text
+          value: the filter value the user selected
+        - name: section
+          value: the filter's heading
+        - name: action
+          value: '"select" if added, "remove" if removed, "sort" if the search sort was changed'
+        - name: index
+          value:
+          - name: index_section
+          - name: index_link
+          - name: index_section_count
     - name: organisations link click
       implemented: false
       priority: low
