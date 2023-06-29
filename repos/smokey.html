@@ -235,31 +235,44 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>A suite of <a href="https://cucumber.io/">Cucumber</a> tests that probe GOV.UK frontend and backend publishing functionality. The tests <a href="https://github.com/alphagov/smokey/blob/main/features/support/env.rb">use Selenium to manipulate a headless Chrome browser</a>.</p>
+<p>Smokey is a suite of <a href="https://cucumber.io/">Cucumber</a> tests that probe GOV.UK
+frontend and backend publishing functionality. The tests <a href="https://github.com/alphagov/smokey/blob/main/features/support/env.rb">use Selenium to
+automate a headless Chrome browser</a>.</p>
 
-<p>The tests are run via a Jenkins job in each environment (e.g. <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Integration</a>).</p>
-
-<p>The job is triggered in multiple ways:</p>
+<p>Smokey is run automatically:</p>
 
 <ul>
-<li>Every few minutes <a href="https://github.com/alphagov/govuk-puppet/blob/278426769a1711c622bcb67a59175f73e8f4db61/modules/govuk_jenkins/manifests/jobs/smokey.pp#L24">via cron scheduler</a>
+<li>every few minutes via a
+<a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/smokey">cronjob</a>
 </li>
-<li>On demand, to check if a change breaks something. This is done when deploying GOV.UK applications, <a href="https://github.com/alphagov/govuk-puppet/blob/27faad21eadd52e8d8b37366eac0d8e1e123adbb/modules/govuk_jenkins/templates/jobs/deploy_puppet.yaml.erb#L44">Puppet</a> and other code, such as <a href="https://github.com/alphagov/govuk-puppet/blob/0e1f84954831188e22a1a76cedc4463318edf1e8/modules/govuk_jenkins/templates/jobs/deploy_cdn.yaml.erb#L49">CDN config</a>.</li>
+<li>by the <a href="https://argo-workflows.eks.integration.govuk.digital/workflows?limit=100">deployment
+automation</a>
+to determine whether to promote a release to the next environment (staging,
+production)</li>
 </ul>
 
-<p>Each test should check that a critical area of GOV.UK is working as expected. <a href="/repos/smokey/writing-tests.html">Read the guidance on what tests belong here and how to write new ones</a>.</p>
+<p>Each test should check that a critical area of GOV.UK is working as expected.
+See the <a href="/repos/smokey/writing-tests.html">guidance on what tests belong here and how to write new
+ones</a>.</p>
 
 <h2 id="technical-documentation">Technical documentation</h2>
 
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
+<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker
+environment</a> to run the application
+and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage
+instructions</a> to get started.</p>
 
 <p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
 
-<h3 id="running-the-test-suite">Running the test suite</h3>
+<h3 id="running-the-test-suite-from-your-machine">Running the test suite from your machine</h3>
 
-<p><strong>Note: you will need to be connected to the VPN to test against Integration or Staging.</strong></p>
+<blockquote>
+<p><strong>You will need to be connected to the VPN to test against Integration or
+Staging.</strong></p>
+</blockquote>
 
-<p>The tests require additional configuration to run successfully on a local machine.</p>
+<p>The tests require additional configuration to run successfully on a local
+machine.</p>
 
 <pre><code>env \
 ENVIRONMENT=integration \
@@ -272,7 +285,9 @@ bundle exec cucumber
 
 <ul>
 <li>
-<code>ENVIRONMENT</code>: controls domains returned by <a href="https://github.com/alphagov/plek">Plek</a> (see <a href="https://github.com/alphagov/smokey/blob/19c21ac4be3f67ef994f327670121209c8632c0d/features/support/env.rb#L9-L21">env.rb</a>)</li>
+<code>ENVIRONMENT</code>: controls domains returned by
+<a href="https://github.com/alphagov/plek">Plek</a> (see
+<a href="https://github.com/alphagov/smokey/blob/19c21ac/features/support/env.rb#L9-L21">env.rb</a>)</li>
 <li>
 <code>SIGNON_EMAIL</code>: email of a Signon user in $ENVIRONMENT</li>
 <li>
@@ -281,11 +296,12 @@ bundle exec cucumber
 <code>RATE_LIMIT_TOKEN</code>: (optional) a token used to bypass rate limiting if present on apps.</li>
 </ul>
 
-<p>You can try using your own Signon account, but this won&rsquo;t work if you have Multi Factor Auth enabled. Another option is to use the credentials for the Smokey test user in <code>govuk-secrets/puppet_aws</code>:</p>
+<p>Smokey cannot use a Signon account which has multi-factor authentication
+enabled. To test against integration/staging from your machine, you can fetch
+the Signon credentials for the Smokey test user:</p>
 
-<pre><code>bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]'
-bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
-bundle exec rake 'eyaml:decrypt_value[integration,smokey_rate_limit_token]'
+<pre lang="sh"><code>k get secret smokey-signon-account -oyaml | yq .data.password
+k get secret smokey-signon-account -oyaml | yq .data.email
 </code></pre>
 
 <h2 id="further-documentation">Further documentation</h2>

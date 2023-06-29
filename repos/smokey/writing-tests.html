@@ -186,15 +186,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/smokey/commit/55637e6ee1d0e6a9f84f788ab336b0d5a647f317">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/b608afba414de9a7e2b83b2c89ae2d30d15f11d5">29 Jun 2023</a>
 </div>
 
   <h1 class="page-title">smokey: Writing tests</h1>
@@ -207,48 +200,48 @@
 <p><strong>Covers vital site-wide configuration</strong>. The test checks that the foundations of GOV.UK exist, with some indication they work as expected:</p>
 <ul>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/mirror.feature#L11">Good example</a> - covers fallback mirrors exist</li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/mirror.feature#L11">Good example</a> - covers fallback mirrors exist</li>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/gov_uk_redirect.feature#L13">Good example</a> - covers Fastly CDN configuration</li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/gov_uk_redirect.feature#L13">Good example</a> - covers Fastly CDN configuration</li>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/gov_uk.feature#L9">Bad example</a> - covers an edge case of limited value</li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/gov_uk.feature#L9">Bad example</a> - covers an edge case of limited value</li>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/gov_uk.feature#L27">Bad example</a> - covers a negative or "unhappy" outcome</li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/gov_uk.feature#L27">Bad example</a> - covers a negative or "unhappy" outcome</li>
 </ul>
 </li>
 <li>
 <p><strong>Targets app-to-app data transfer</strong>. The test checks that data can flow between multiple apps to provide an end-to-end feature of GOV.UK:</p>
 <ul>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/service_manual.feature#L7">Good example</a> - basic test that an app is accessible via Router
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/service_manual.feature#L7">Good example</a> - basic test that an app is accessible via Router
 <ul>
 <li>Implicitly checks the app can talk to the Content Store</li>
 <li>Each app can have one (and only one) of these tests</li>
 </ul>
 </li>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/collections.feature#L53">Good example</a> - covers data transfer with Email Alert API</li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/collections.feature#L53">Good example</a> - covers data transfer with Email Alert API</li>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/router.feature#L8">Bad example</a> - doesn’t check content data was transferred</li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/router.feature#L8">Bad example</a> - doesn’t check content data was transferred</li>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/0d7134e3e99a8c0bd9b4ada13d6ce298bbf03f44/features/benchmarking.feature#L7">Bad example</a> - performance testing is out-of-scope</li>
+<a href="https://github.com/alphagov/smokey/blob/0d7134e/features/benchmarking.feature#L7">Bad example</a> - performance testing is out-of-scope</li>
 </ul>
 </li>
 <li>
 <p><strong>Second critical functional check</strong>. A very similar test exists at a lower level but the functionality is so absolutely critical we test it again:</p>
 <ul>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/frontend.feature#L18">Good example</a> - undeniably a critical page for GOV.UK (<a href="https://github.com/alphagov/frontend/blob/a40ba988c58dd882d841a6f1d82d5b894939fdc5/test/integration/help_test.rb#L18">lower level test exists</a>)</li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/frontend.feature#L18">Good example</a> - undeniably a critical page for GOV.UK (<a href="https://github.com/alphagov/frontend/blob/a40ba98/test/integration/help_test.rb#L18">lower level test exists</a>)</li>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/frontend.feature#L59">Good example</a> - one of the most critical features of GOV.UK (<a href="https://github.com/alphagov/router/blob/96d5912cec4c8052c2f9f71d257f2add2787b65d/integration_tests/redirect_test.go?L23#L12">lower level test exists</a>)</li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/frontend.feature#L59">Good example</a> - one of the most critical features of GOV.UK (<a href="https://github.com/alphagov/router/blob/96d5912/integration_tests/redirect_test.go?L23#L12">lower level test exists</a>)</li>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/collections.feature#L29">Bad example</a> - checks an arbitrary, non-critical page (<a href="https://github.com/alphagov/collections/blob/cc94525a05b2651fee621b588e530aca8e1f77e4/features/viewing_browse.feature">lower level test exists</a>)</li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/collections.feature#L29">Bad example</a> - checks an arbitrary, non-critical page (<a href="https://github.com/alphagov/collections/blob/cc94525/features/viewing_browse.feature">lower level test exists</a>)</li>
 <li>
-<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/finder_frontend.feature#L45">Bad example</a> - missing a lower level test in the app itself (<a href="https://github.com/alphagov/finder-frontend/blob/d70a01903e2813719e7d5adbf79fbcb1d49335fb/spec/controllers/email_alert_subscriptions_controller_spec.rb#L363">example test to copy</a>)</li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522/features/finder_frontend.feature#L45">Bad example</a> - missing a lower level test in the app itself (<a href="https://github.com/alphagov/finder-frontend/blob/d70a019/spec/controllers/email_alert_subscriptions_controller_spec.rb#L363">example test to copy</a>)</li>
 </ul>
 </li>
 </ul>
-<p>Do not duplicate tests. For example, <a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/collections.feature#L47">"Email signup from an organisation home page"</a> duplicates <a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/collections.feature#L53">"Email signup from a taxon page"</a>: both cover data transfer with Email Alert API.</p>
+<p>Do not duplicate tests. For example, <a href="https://github.com/alphagov/smokey/blob/aaa0522/features/collections.feature#L47">"Email signup from an organisation home page"</a> duplicates <a href="https://github.com/alphagov/smokey/blob/aaa0522/features/collections.feature#L53">"Email signup from a taxon page"</a>: both cover data transfer with Email Alert API.</p>
 <p>Do not add tests that can be implemented in other ways. We want this to be the tip of the <a href="https://martinfowler.com/bliki/TestPyramid.html">testing pyramid</a>, not a <a href="http://saeedgatson.com/the-software-testing-ice-cream-cone/">testing ice cream cone</a>. Instead of adding a test here, you can:</p>
 <ul>
 <li>
@@ -269,10 +262,10 @@
 <p><strong><code>apps/&lt;app&gt;.feature</code></strong> should contain tests that target a feature of &lt;app&gt; e.g.</p>
 <ul>
 <li>
-<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/foreign_travel_advice.feature#L15">Email signup from foreign travel advice</a>" is targeting Government Frontend, so should be in <code>apps/government_frontend.feature</code>.</p>
+<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae/features/foreign_travel_advice.feature#L15">Email signup from foreign travel advice</a>" is targeting Government Frontend, so should be in <code>apps/government_frontend.feature</code>.</p>
 </li>
 <li>
-<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/publishing_tools.feature#L4">Can log in to collections-publisher</a>" is targeting Collections Publisher, so should be in <code>apps/collections_publisher.feature</code>.</p>
+<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae/features/publishing_tools.feature#L4">Can log in to collections-publisher</a>" is targeting Collections Publisher, so should be in <code>apps/collections_publisher.feature</code>.</p>
 </li>
 </ul>
 </li>
@@ -280,15 +273,15 @@
 <p><strong><code>&lt;layer&gt;.feature</code></strong> should contain tests that target an infrastructure layer e.g.</p>
 <ul>
 <li>
-<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/gov_uk_redirect.feature#L3">Check redirect from bare domain to www.gov.uk is working for HTTP</a>" is <a href="https://github.com/alphagov/govuk-cdn-config/blob/8ca5780ec513c0c17f64304c26bbd3de18c5138d/vcl_templates/tldredirect.vcl.erb#L46">targeting site-wide behaviour of our CDN</a>, so should be in <code>cdn.feature</code>.</p>
+<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae/features/gov_uk_redirect.feature#L3">Check redirect from bare domain to www.gov.uk is working for HTTP</a>" is <a href="https://github.com/alphagov/govuk-cdn-config/blob/8ca5780/vcl_templates/tldredirect.vcl.erb#L46">targeting site-wide behaviour of our CDN</a>, so should be in <code>cdn.feature</code>.</p>
 </li>
 <li>
-<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/draft_environment.feature#L11">Check visiting a draft page requires a signon session</a>" is targeting site-wide behaviour of our (draft) origin, so should be in <code>origin.feature</code>.</p>
+<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae/features/draft_environment.feature#L11">Check visiting a draft page requires a signon session</a>" is targeting site-wide behaviour of our (draft) origin, so should be in <code>origin.feature</code>.</p>
 </li>
 </ul>
 </li>
 </ul>
-<p>Try to use existing step definitions e.g. <a href="https://github.com/alphagov/smokey/blob/b656e65ef6853d65de3e24a7e884911054c8bf7d/features/step_definitions/smokey_steps.rb#L70-L72"><code>When I visit "/some/path"</code></a>. If a more specific step is required, name the <code>_steps.rb</code> file after the feature file i.e. <code>myfeature_steps.rb</code>.</p>
+<p>Try to use existing step definitions e.g. <a href="https://github.com/alphagov/smokey/blob/b656e65/features/step_definitions/smokey_steps.rb#L70-L72"><code>When I visit "/some/path"</code></a>. If a more specific step is required, name the <code>_steps.rb</code> file after the feature file i.e. <code>myfeature_steps.rb</code>.</p>
 <h3 id="tests-that-makes-changes-to-gov-uk">Tests that makes changes to GOV.UK</h3>
 <p>Any test that changes GOV.UK must be discreet:</p>
 <ol>
