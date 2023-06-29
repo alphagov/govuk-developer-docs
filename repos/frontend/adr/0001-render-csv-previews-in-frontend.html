@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>frontend: Update homepage promotion slots - GOV.UK Developer Documentation</title>
+    <title>frontend: Render CSV Previews in Frontend - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/frontend/update-homepage-promotion-slots.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/frontend/adr/0001-render-csv-previews-in-frontend.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="frontend: Update homepage promotion slots - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/frontend/update-homepage-promotion-slots.html" />
+      <meta name="twitter:title" content="frontend: Render CSV Previews in Frontend - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/frontend/adr/0001-render-csv-previews-in-frontend.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="frontend: Update homepage promotion slots" />
+      <meta property="og:title" content="frontend: Render CSV Previews in Frontend" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/frontend/update-homepage-promotion-slots.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/frontend/adr/0001-render-csv-previews-in-frontend.html" />
 
     
   </head>
@@ -190,72 +190,48 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/0bd24c3bc89022a16f10cf9964b14cdfe88194f5">10 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/ef632102fe40cce1961a922fa870d995f4e0133c">29 Jun 2023</a>
 </div>
 
-  <h1 class="page-title">frontend: Update homepage promotion slots</h1>
+  <h1 class="page-title">frontend: Render CSV Previews in Frontend</h1>
 
   
-<p>The three promo boxes on the homepage are used to highlight important information on GOV.UK.</p>
-<p><img src="https://raw.githubusercontent.com/alphagov/frontend/main/docs/images/homepage-promotion-slots.jpg" alt="Example image of promotion slots on GOV.UK homepage"></p>
-<p>To update these promo boxes, you must edit the underlying HTML template for the homepage.</p>
-<h2 id="1-prerequisites">1. Prerequisites</h2>
-<p>Before updating the promotion slots you must have:</p>
+<p>Date: 2023-06-22</p>
+<h2 id="context">Context</h2>
+<p>The Publishing Platform team has been moving migration of public facing pages and end points out of Whitehall for a little over a year and has made its way to CSV previews. These pages differ from most pages in two key ways. Firstly they are served on the assets hostname (assets.publishing.service.gov.uk) and secondly they do not have a content item.</p>
+<p>These previews were being served by Whitehall making a request to the asset’s public URL and rendering this in Whitehall Frontend.  Two options were considered for moving these to another application.</p>
+<h3 id="option-1">Option 1</h3>
+<p>There is an RFC that suggests moving these pages to Government Frontend which would involve changing the hostname and creating a content item for these pages. This would be a substantial architectural change, that mostly sits outside the scope of changing the rendering application.</p>
+<h4 id="pros">Pros</h4>
 <ul>
-<li>the URL of the page that is being promoted</li>
-<li>an image that is at least 610 x 407 pixels in size in a landscape aspect ratio</li>
-<li>a title for the promotion (ideally under 25 characters to fit on a single line for most users)</li>
-<li>some contextual text for the promotion (ideally under 80 characters to spread across two lines for most users)</li>
+<li>Changes the hostname</li>
+<li>Is arguably a more suitable frontend application</li>
 </ul>
-<p>The image should not contain text as <a href="https://www.gov.uk/guidance/content-design/images">per GOV.UK guidelines</a>. Using text within an image creates accessibility problems. For example, the <a href="https://github.com/alphagov/frontend/pull/2292">past homepage promotion slots from March 2020</a> used text in the images and this approach would now be strongly discouraged.</p>
-<h2 id="2-resize-and-compress-the-images">2. Resize and compress the images</h2>
-<p>We want the GOV.UK homepage to be optimised towards a fast user experience with a low download size. Central to this is making sure that we serve optimised images. To achieve this, we resize the images and compress the files.</p>
-<p>You can use a web tool - <a href="https://squoosh.app/">Squoosh</a> - to resize and compress the images at the same time. You can use the before and after view to establish the highest level of compression that can be applied before the image quality deteriorates.</p>
-<p>Most promo images should ideally be less than 30 kB in size (at time of writing, the current promos are 14 kB, 10.7 kB and 6.3 kB). You might also need to change the format of the image to fit the content - JPGs for a photograph, but maybe PNG for a graphic. It's worth testing to see what gives the smaller file size and the best visual result.</p>
-<p>If the image is a photograph, or a detailed graphic, resize the image to all of the following sizes:</p>
+<h4 id="cons">Cons</h4>
 <ul>
-<li>610 by 407 pixels</li>
-<li>480 by 320 pixels</li>
-<li>320 by 213 pixels</li>
-<li>240 by 160 pixels</li>
-<li>170 by 113 pixels</li>
+<li>Changing the hostname is a considerable piece of work</li>
+<li>Will take a long time to get right</li>
 </ul>
-<p>If the image is a simple graphic, and thus already a small file size, resize it to 610 x 407 pixels.</p>
-<h2 id="3-update-the-content">3. Update the content</h2>
-<p>The content for the promo slots can be found in the <a href="https://github.com/alphagov/frontend/blob/main/config/locales/en.yml"><code>en.yml</code> translation file</a> (no other locales need to be updated). The specific key to look for is <code>promotion_slots</code>. Promo items are stored as a yml list in the order they appear on the homepage. The keys in each list item to update accordingly are:</p>
+<h3 id="option-2">Option 2</h3>
+<p>Allow a frontend app to communicate directly with Asset Manager and don’t require the changes to the URL or the creation of a content item. This would mean that we couldn’t render CSV previews in Government Frontend because it has a fairly unique way of rendering things that rely on content items existing. Frontend would be a better fit because it follows a traditional MVC architecture.</p>
+<h4 id="pros">Pros</h4>
 <ul>
-<li>
-<code>text</code>: the promo description</li>
-<li>
-<code>title</code>: the promo title</li>
-<li>
-<code>href</code>: the link the promo goes to. This can either be internal (<code>/my-path</code>) or external (<code>https://www.mywebsite.com/my-path</code>)</li>
-<li>
-<code>image_src</code>: the promo image location. Image should be in the <a href="https://github.com/alphagov/frontend/tree/main/app/assets/images/homepage"><code>homepage</code> asset directory</a> and can be pulled via <code>homepage/[my-image].png</code>
-</li>
-<li>
-<code>srcset</code>: this is an optional attribute to define promo image <code>srcset</code> values.</li>
+<li>Is relatively quick and straightforward</li>
+<li>Won't require funky redirect logic to make it work</li>
+<li>Still allows us to change the hostname in the future</li>
 </ul>
-<p>You can define <code>srcset</code> values in the yml like so:</p>
-<pre lang="yml"><code>srcset:
-  homepage/my-promo.jpg: 610w
-  homepage/my-promo-480.jpg: 480w
-  homepage/my-promo-320.jpg: 320w
-  homepage/my-promo-240.jpg: 240w
-  homepage/my-promo-170.jpg: 170w
-</code></pre>
-<h2 id="4-delete-the-previous-images">4. Delete the previous images</h2>
-<p>You should delete the images that you are replacing from the repository. If we need to use those images again, to perhaps reinstate the promotion later, we can retrieve the images from the Git history.</p>
-<h2 id="5-open-a-pull-request">5. Open a pull request</h2>
-<p>Finally, you should open a pull request. It is helpful to include information on the source of the change request and to provide a screenshot of the updated promotion slots. You should use the screenshot to confirm with stakeholders that they are happy with the change.</p>
+<h4 id="cons">Cons</h4>
+<ul>
+<li>Doesn't change the hostname</li>
+</ul>
+<h2 id="decision">Decision</h2>
+<p>Option 2</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>CSV previews are now rendered by Frontend and we’ve fixed a long standing problem that caused CSV’s attached to draft documents not to be previewable, as Whitehall could not access drafts from the public assets host.</p>
+<p>If we decide in the future that we want to make these served by the gov.uk endpoint rather than the assets one then we will have to do an amount of exploratory work that is separated from the immediate issue of moving the rendering.</p>
 
 
             
@@ -263,8 +239,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/frontend/blob/main/docs/update-homepage-promotion-slots.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffrontend%2Fupdate-homepage-promotion-slots.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/frontend/blob/main/docs/adr/0001-render-csv-previews-in-frontend.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffrontend%2Fadr%2F0001-render-csv-previews-in-frontend.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
