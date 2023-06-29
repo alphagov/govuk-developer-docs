@@ -192,7 +192,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/924f9e80c80af1493b2e34fa3ebdc6d9b77e078d">27 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/12e042a0a7e8897c4ff6a6b5397fe863026f090b">29 Jun 2023</a>
 </div>
 
  <h1 id='header'>Content Security Policy on GOV.UK</h1> <p>Content Security Policy (CSP) is a browser standard to prevent cross-site scripting (XSS), clickjacking and other code
@@ -226,8 +226,9 @@ for 30 days. Many of the reports we receive are from browser extensions we can&r
 <a href="https://github.com/alphagov/govuk-aws/blob/main/terraform/lambda/CspReportsToFirehose/index.mjs">filter the most prolific of them</a> from our logs.</p>
 <p>As we receive high volumes of false positive alerts, it is likely we will remove the reporting functionality once
 a CSP is enforced.</p>
-<h3 id='querying-violations'>Querying violations</h3><p>Athena is available through the AWS control panel. To access, <a href="/manual/get-started.html#sign-in-to-aws">log into AWS</a>,
-navigate to <a href="https://eu-west-1.console.aws.amazon.com/athena/home?region=eu-west-1#/query-editor">Athena</a> and select
+<h3 id='querying-violations'>Querying violations</h3><p>Athena is available through the AWS control panel. To access, <a href="/manual/get-started.html#sign-in-to-aws">log into AWS</a>
+as a poweruser or greater privilege access, navigate to
+<a href="https://eu-west-1.console.aws.amazon.com/athena/home?region=eu-west-1#/query-editor">Athena</a> and select
 the <code>csp_reports</code> database. The database is available in all environments, however the production environment one is
 that only one that will have good quality data.</p>
 <p>You can use SQL as the means to query Athena. Whenever you query it you should <strong>always use
