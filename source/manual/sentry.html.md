@@ -29,10 +29,7 @@ Useful links:
 
 ## Getting access to Sentry
 
-Your tech lead should have at least Sentry Admin access (see [Sentry roles](#sentry-roles)).
-They'll either be able to invite you to the [govuk organisation](https://sentry.io/settings/govuk/members/), or they'll be able to trigger a request to a Sentry Owner or Manager on your behalf.
-
-Once the request is approved, you'll be able to [sign in](https://sentry.io/auth/login/) using your GDS Google account.
+Your tech lead should raise a PR to give you Sentry access in the [govuk_tech.yml file in govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml). Once the PR is merged and the Terraform has been applied, you'll be able to [sign in](https://sentry.io/auth/login/) using your GDS Google account.
 
 ## Nomenclature
 
