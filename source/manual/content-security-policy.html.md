@@ -56,8 +56,9 @@ a CSP is enforced.
 
 ### Querying violations
 
-Athena is available through the AWS control panel. To access, [log into AWS](/manual/get-started.html#sign-in-to-aws),
-navigate to [Athena](https://eu-west-1.console.aws.amazon.com/athena/home?region=eu-west-1#/query-editor) and select
+Athena is available through the AWS control panel. To access, [log into AWS](/manual/get-started.html#sign-in-to-aws)
+as a poweruser or greater privilege access, navigate to
+[Athena](https://eu-west-1.console.aws.amazon.com/athena/home?region=eu-west-1#/query-editor) and select
 the `csp_reports` database. The database is available in all environments, however the production environment one is
 that only one that will have good quality data.
 
