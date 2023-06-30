@@ -247,27 +247,28 @@ Docs</a>.</p>
 <p>Prerequisite: you need to be logged in to gcloud (using the <code>gcloud</code> command) and have access to BigQuery (specifically you need the <code>BigQuery Viewer</code> and <code>BigQuery Job Runner</code> roles). Ask a BigQuery admin to add you.</p>
 </li>
 <li>
-<p>clone this repository</p>
+<p>Clone this repository</p>
 </li>
 <li>
-<p>run <code>npm install</code> to install all dependencies</p>
+<p>Run <code>npm install</code> to install all dependencies</p>
 </li>
 <li>
-<p>Install <a href="https://sass-lang.com/install">Sass</a> and compile the Sass sources to CSS with</p>
-<p>cd src/scss
-<code>sass ./src/frontend/scss/main.scss &gt; ./src/public/main.css</code></p>
+<p>Install <a href="https://sass-lang.com/install">Sass</a> and compile the Sass sources to CSS with <code>sass ./src/frontend/scss/main.scss &gt; ./src/public/main.css</code></p>
 </li>
 <li>
 <p>Install <a href="https://webpack.js.org/">webpack</a> and compile the browser-side Typescript code to JavaScript by just running <code>webpack</code></p>
 </li>
 <li>
-<p>set an environment variable called PROJECT_ID to the name of the GCP project
+<p>Copy assets from the GOVUK Frontend run <code>npm run copy-assets</code></p>
+</li>
+<li>
+<p>Set an environment variable called PROJECT_ID to the name of the GCP project
 your server will be running on. This is so the server knows where to connect
 to to run searches get the data. For instance, use <code>govuk-knowledge-graph-dev</code>
 to get the data from the development backend.</p>
 </li>
 <li>
-<p>set an environment variable called <code>ENABLE_AUTH</code> to <code>"false"</code> (or anthing but
+<p>Set an environment variable called <code>ENABLE_AUTH</code> to <code>"false"</code> (or anthing but
 <code>"true"</code>, or don&rsquo;t set one at all), as you won&rsquo;t need authentication on your
 local machine</p>
 </li>
