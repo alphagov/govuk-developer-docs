@@ -348,6 +348,43 @@ etc.</li>
 </li>
 <li>Continue. Check in the <a href="https://console.cloud.google.com/run/detail/europe-west2/govuk-knowledge-graph-search/revisions?project=govuk-knowledge-graph">web console</a> that a revision was deployed, and try using it at <a href="https://govgraphsearch.dev">https://govgraphsearch.dev</a>.</li>
 </ol>
+<p>## Logging</p>
+<p>We use Pino for logging.
+Pino enables structured logging, human-readable formatting, top-notch performance.</p>
+<p>⚠️⚠️ Pino doesn&rsquo;t behave the same as <code>console.log</code>. ⚠️⚠️</p>
+<p>You can&rsquo;t pass it infinite arguments. Instead, it&rsquo;s one string at a time.
+If you want to log an object alongside your log, then pass the <em>object as the first argument, then the string</em>.</p>
+<p>e.g</p>
+<pre lang="javascript"><code>console.log(&#39;this&#39;, &#39;is&#39;, &#39;a&#39;, &#39;test&#39;)
+// =
+log.info(&#39;this is a test&#39;)</p>
+<p>console.log(&#39;Look at this object&#39;, { ...anObject })
+// =
+log.info({ ...anObject }, &#39;Look at this object&#39;)</p>
+<p>console.log(&#39;A few objects&#39;, { ...obj1 }, { ...obj2 })
+// Separate your logs instead
+log.info(&#39;A few objects&#39;)
+log.info({ ...obj1 }, &#39;Object 1&#39;)
+log.info({ ...obj2 }, &#39;Object 2&#39;)</p>
+<p>// This WONT WORK
+// Second object will be swallowed as objects go to the first argument only.
+log.info(obj1, obj2)
+</code></pre>
+<p>If you want the request object logged alongside:</p>
+<pre lang="javascript"><code>function middeware(req, res, next) {
+  req.log.info(&#39;A log&#39;)
+  // logs: {...req} A log
+}
+</code></pre>
+<p>To use the logger otherwise:</p>
+<pre lang="javascript"><code>import log from &#39;./utils/logging&#39;</p>
+<p>log.info(&#39;in msg&#39;)
+log.debug(&#39;debug msg&#39;)
+log.error(&#39;error&#39;)
+log.error(error, &#39;error&#39;)</p>
+<p>// If you want to log an object:
+log.info({ a: 123, b: 456 }, &#39;This is a log&#39;)
+</code></pre>
   </div></p>
 
 
