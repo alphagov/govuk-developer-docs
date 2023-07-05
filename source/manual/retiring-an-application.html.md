@@ -56,8 +56,8 @@ retired", then save your changes.
 
 ## 7. Remove from GOV.UK Docker
 
-Remove from the [projects directory][] and any references
-in [docker compose][] or throughout the repo.
+Remove from the [projects directory] and any references
+in [docker compose] or throughout the repo.
 
 [projects directory]: https://github.com/alphagov/govuk-docker/tree/master/projects
 [docker compose]: https://github.com/alphagov/govuk-docker/blob/master/docker-compose.yml
@@ -68,17 +68,13 @@ Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the `publishing.service.gov.uk` domain.
 
 Follow the [instructions for DNS changes][dns-changes] in order to remove
-these, and ask the GOV.UK Platform Engineering team to approve any necessary Pull
-Requests.
+these.
 
 [dns-changes]: https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain
 
-## 9. Remove credentials
+## 9. Update docs
 
-Remove any hieradata credential entries for the app in [govuk-secrets][]
-(private repo).
-
-[govuk-secrets]: https://github.com/alphagov/govuk-secrets
+Mark the application as `retired` in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs)
 
 ## 10. Drop database
 
@@ -86,10 +82,10 @@ If Puppet hasn't done it (eg for MongoDB databases), drop the database.
 
 ## 11. Remove jobs in CI
 
-If tests were set up, go to [CI][ci] and choose "Delete Repository" for your
+If tests were set up, go to [CI] and choose "Delete Repository" for your
 project.
 
-[ci]: https://ci.integration.publishing.service.gov.uk/
+[CI]: https://ci.integration.publishing.service.gov.uk/
 
 ## 12. Unpublish routes
 
