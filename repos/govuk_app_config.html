@@ -353,6 +353,13 @@ check docs</a> for more information on how to use it.</p>
 <p>In Rails applications, the application will be configured to send JSON-formatted
 logs to <code>STDOUT</code> and unstructured logs to <code>STDERR</code>.</p>
 
+<p>To enable production-like logging, an env variable <code>GOVUK_RAILS_JSON_LOGGING</code>
+is set in the <code>govuk-helm-charts</code> and then checked in <code>railtie.rb</code>. This will
+allow JSON format logs and <code>Govuk-Request-Id</code> to be visible.</p>
+
+<p>For development logs, in order to see the production style logs, developers should
+set <code>GOVUK_RAILS_JSON_LOGGING</code>in <code>govuk-docker</code> -&gt; <code>docker-compose</code> files.</p>
+
 <h2 id="content-security-policy-generation">Content Security Policy generation</h2>
 
 <p>For frontend apps, configuration can be added to generate and serve a

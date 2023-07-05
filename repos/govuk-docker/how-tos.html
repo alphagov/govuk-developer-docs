@@ -201,15 +201,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/a4b504c5cb1c67620e8829f223c29f7719278dde">17 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/11ee28f98c021cebe66317699df076de47f606b8">4 Jul 2023</a>
 </div>
 
   <h1 class="page-title">govuk-docker: How To's</h1>
@@ -285,6 +278,10 @@ CTRL-P CTRL-Q
 <li>
 <code>$GOVUK_DOCKER</code> - path of the govuk-docker script, defaults to <code>$GOVUK_DOCKER_DIR/bin/govuk-docker</code>
 </li>
+</ul>
+<h2 id="how-to-enable-production-json-logs-in-development">How to: enable production JSON logs in development</h2>
+<ul>
+<li>Set <code>GOVUK_RAILS_JSON_LOGGING</code> to <code>"true"</code> in <code>docker-compose.yml</code> for the application you would like to enable the logs' behaviour for.</li>
 </ul>
 
 
