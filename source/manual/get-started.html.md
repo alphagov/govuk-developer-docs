@@ -6,7 +6,7 @@ layout: manual_layout
 section: Learning GOV.UK
 ---
 
-**This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in [GDS][]. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.**
+> This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in [GDS][]. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.
 
 Ask your tech lead to take you through the [overview slides][overview-slides] if they have not already done so.
 
@@ -17,6 +17,14 @@ If you're having trouble with this guide, you can ask your colleagues on the [#g
 [govuk-user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 
 ## Before you start
+
+> You must update your Slack profile to include details of:
+> - your role
+> - which team you're in
+> - your GitHub handle
+> - why you need access
+>
+> This is to help people ascertain if you should have access. Your Tech Lead should also be helping to make requests to other teams for you.
 
 You must have a laptop with full admin access. To check if you have full admin access, run a `sudo` command in your command line. For example, `sudo ls`.
 
@@ -113,7 +121,7 @@ On GOV.UK we use the following command-line tools for AWS and SSH access:
     brew install --cask aws-vault
     ```
 
-    The GDS CLI repository is private, so you must first [set up your GitHub account](#2-set-up-your-github-account).
+    The GDS CLI repository is private, so you must first [set up your GitHub account](#3-set-up-your-github-account).
 
 1. Test that both tools work by running `gds --help` and `gds govuk connect --help`.
 
@@ -150,7 +158,7 @@ Follow the [VPN guide for Bring Your Own Devices (BYOD)](https://docs.google.com
 
 We store who has access to GOV.UK tooling in a git repo, [GOV.UK User Reviewer][govuk-user-reviewer] and use automation to alert when people should not have access. It's a private repo so you won't be able to access it until step 3 is completed.
 
-Either yourself (access dependent) or your tech lead should create a pull request to add you to the [tech users](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml). The repo readme specifies the [format new starters should have, with integration admin access](https://github.com/alphagov/govuk-user-reviewer/tree/main#properties-in-the-config-file). The `ssh_username` is in the format of `firstnamelastname` and is utilised in [8. Get SSH access to integration](#7-get-ssh-access-to-integration)).
+Get your tech lead to create a pull request to add you to the [tech users](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml). The repo readme specifies the [format new starters should have, with integration admin access](https://github.com/alphagov/govuk-user-reviewer/tree/main#properties-in-the-config-file). The `ssh_username` is in the format of `firstnamelastname` and is utilised in [8. Get SSH access to integration](#7-get-ssh-access-to-integration)).
 
 If you are working with us as a contractor from a supplier, please include the supplier's name in the `why_do_they_need_access` field.
 
