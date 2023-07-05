@@ -187,12 +187,11 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba9ffde55d512ce00d9bd1754c8547ff1c4dae86">21 Apr 2023</a>
 </div>
 
- <h1 id='header'>Raise issues with Reliability Engineering</h1> <p>When on Technical 2nd Line you may experience an issue with GOV.UK that requires asking the Site Reliability Engineers (SREs) who work on GOV.UK infrastructure for assistance. The SREs previously worked in the RE GOV.UK team in Reliability Engineering, but currently they mostly work as part of the Platform Engineering team. It is best to use RE GOV.UK channels for communication.</p>
-<p>There are <a href="https://reliability-engineering.cloudapps.digital/">Reliability Engineering docs</a> for users of their systems. There are also <a href="https://re-team-manual.cloudapps.digital/">other Reliability Engineering docs</a> for use by the team, these may contain more technical details.</p>
-<h2 id='if-you-require-assistance'>If you require assistance</h2><p>Ask in <code>#govuk-platform-reliability</code> or in <code>#govuk-platform-engineering</code>.</p>
+ <h1 id='header'>Raise issues with Reliability Engineering</h1> <p>When on 2nd-line Tech Support you may experience an issue with GOV.UK where you need help from a Site Reliability Engineer (SRE). The SREs generally work on the <em>Platform Engineering</em> and <em>Platform Security and Reliability</em> teams.</p>
+<h2 id='if-you-require-assistance'>If you require assistance</h2><p>Ask in <code>#govuk-platform-reliability</code> or <code>#govuk-platform-engineering</code>.</p>
 <h2 id='if-a-problem-is-not-urgent'>If a problem is not urgent</h2><p>If the issue you&rsquo;ve identified seems like a non-urgent story you can add it the
 <a href="https://trello.com/b/M7UzqXpk/govuk-2nd-line">GOV.UK Technical 2nd Line trello board</a> in the &ldquo;Ongoing issues to be aware
 of &amp; unexplained events&rdquo; column. The Technical 2nd Line tech lead(s) will then decide whether
@@ -200,14 +199,18 @@ to pass this on to another team, manage the ticket through its life cycle, or to
 resolve this problem themselves.</p>
 <h2 id='understanding-what-sres-can-assist-with'>Understanding what SREs can assist with</h2><p>There is a broad explanation of the different areas of support in GOV.UK in
 <a href="/manual/ask-for-help.html">ask for help</a>.</p>
-<p>More specificially to GOV.UK, SREs can help with:</p>
+<p>SREs can help with:</p>
 
 <ul>
-<li><a href="https://github.com/alphagov/govuk-puppet">GOV.UK Puppet</a></li>
+<li>Scalability and resilience</li>
+<li>Designing or improving monitoring, metrics, tracing and observability of system behaviour</li>
+<li>Troubleshooting complex problems</li>
+<li>Designing new systems or backend (APIs, information storage and processing) features</li>
+<li>Designing for graceful degradation under failure conditions (for example the GOV.UK static mirrors)</li>
+<li>Migrating from legacy systems, for example <a href="https://github.com/alphagov/govuk-puppet">GOV.UK Puppet</a></li>
 <li>Upgrading software packages that are end-of-life/have security issues/no longer fit for purpose</li>
-<li>Running and maintaining the <a href="https://github.com/alphagov/govuk-aws/">Terraform configurations</a> for AWS</li>
-<li>Maintaining the mirror configuration</li>
-<li>Keeping the CI environment running (GOV.UK are responsible for job configuration)</li>
+<li>Advice on how to structure or maintain <a href="https://github.com/alphagov/govuk-aws/">Terraform modules</a> for managing cloud resources</li>
+<li>Continuous deployment and continuous delivery systems (CI/CD), build and release automation</li>
 </ul>
 
 

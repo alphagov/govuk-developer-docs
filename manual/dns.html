@@ -196,7 +196,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4f47dff4a2c96fdb5738e443190cc2a0c18c1588">13 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba9ffde55d512ce00d9bd1754c8547ff1c4dae86">21 Apr 2023</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones.</p>
@@ -228,35 +228,32 @@ Note that we <strong>do not</strong> manage any other DNS records: if you get a 
 <p>These DNS zones are hosted in Route53 and managed by Terraform. Changes can be
 made in the <a href="https://github.com/alphagov/govuk-aws/">govuk-aws</a> and
 <a href="https://github.com/alphagov/govuk-aws-data/">govuk-aws-data</a> repositories.
-While GOV.UK migrates to AWS speak with GOV.UK Platform Engineering for support
-making your changes.</p>
+Ask the Platform teams if you need help making your changes.</p>
 <h2 id='dns-for-the-publishing-service-gov-uk-domain'>DNS for the <code>publishing.service.gov.uk</code> domain</h2><p>To make a change to this zone, begin by adding the records to the yaml file for
 the zone held in the <a href="https://github.com/alphagov/govuk-dns-tf">DNS config repo</a>.</p>
 <p>The deployment process is the same as for <a href="#dns-for-service-gov-uk-domains"><code>service.gov.uk</code></a></p>
 <h2 id='dns-for-the-gov-uk-top-level-domain'>DNS for the <code>gov.uk</code> top level domain</h2><p><a href="https://www.jisc.ac.uk/">Jisc</a> is a non-profit which provides networking to
-UK education and government. They control the <code>gov.uk.</code> top-level domain.</p>
+UK education and government. They host DNS for the <code>gov.uk.</code> zone.</p>
 <p>Requests to modify the DNS records for <code>gov.uk.</code> should be sent by
 email to <code>naming@ja.net</code> from someone on Jisc&rsquo;s approved contacts
-list. Speak to a member of the senior tech team or someone in
-GOV.UK Platform Engineering if you need to make a change and don&rsquo;t have
-access.</p>
+list. Speak to a member of Senior Tech or someone in the Platform teams if you
+need to make a change and don&rsquo;t have access.</p>
 <p>You should also make sure that the following groups of people are aware before
 requesting any changes:</p>
 
 <ul>
 <li>Technical 2nd Line (via email)</li>
 <li>GOV.UK&rsquo;s Head of Tech and the senior tech team</li>
-<li>The CDDO domains team (the senior tech team can contact them)</li>
+<li>The CDDO domains team (#team-domains)</li>
 </ul>
 <p>Technical 2nd Line should be notified of any planned changes via email.</p>
 
 <ul>
-<li><code>gov.uk.</code> is a top-level domain so it cannot contain a CNAME record
-(see <a href="https://tools.ietf.org/html/rfc1912#section-2.4">RFC 1912 section 2.4</a>).
-Instead, it contains A records that point to anycast IP addresses for our CDN provider.</li>
-<li><code>www.gov.uk.</code> is a CNAME to <code>www-cdn.production.govuk.service.gov.uk.</code>, which means we
-do not need to make a request to Jisc if we want to change CDN providers. Just change where
-the CNAME points to.</li>
+<li>The domain name <code>gov.uk.</code> is an apex domain so it <a href="https://tools.ietf.org/html/rfc1912#section-2.4">cannot have a CNAME record</a>.
+Instead, it has A records that point directly to anycast virtual IP addresses (VIPs) for our CDN provider.</li>
+<li><code>www.gov.uk.</code> is a CNAME to <code>www-cdn.production.govuk.service.gov.uk.</code>, which
+means we do not need to make a request to Jisc if we want to change CDN
+providers. We can just change where the CNAME points to.</li>
 </ul>
 <h2 id='dns-for-non-gov-uk-domains'>DNS for non-<code>gov.uk</code> domains</h2><p>GOV.UK also manages DNS zones for some non-<code>gov.uk</code> domains.</p>
 <p>These include (but are not limited to):</p>

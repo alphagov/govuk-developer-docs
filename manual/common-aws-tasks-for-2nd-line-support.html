@@ -129,7 +129,7 @@
     <a href="#header"><span>Common AWS tasks for Technical 2nd Line</span></a>
     <ul>
       <li>
-        <a href="#logging-into-aws"><span>Logging into AWS</span></a>
+        <a href="#logging-into-the-aws-web-console"><span>Logging into the AWS web console</span></a>
       </li>
       <li>
         <a href="#getting-help-with-aws"><span>Getting help with AWS</span></a>
@@ -160,27 +160,6 @@
         </ul>
       </li>
       <li>
-        <a href="#how-to-analyse-and-find-out-the-performance-limiting-factor-of-an-ec2-instance"><span>How to analyse and find out the performance limiting factor of an EC2 instance</span></a>
-      </li>
-      <li>
-        <a href="#detaching-an-instance-from-an-auto-scaling-group"><span>Detaching an instance from an Auto Scaling Group</span></a>
-      </li>
-      <li>
-        <a href="#how-to-find-a-detached-instance"><span>How to find a detached instance</span></a>
-      </li>
-      <li>
-        <a href="#logging-into-a-detached-instance"><span>Logging into a detached instance</span></a>
-      </li>
-      <li>
-        <a href="#terminating-an-instance"><span>Terminating an instance</span></a>
-      </li>
-      <li>
-        <a href="#how-to-scale-up-vertically"><span>How to scale up vertically</span></a>
-      </li>
-      <li>
-        <a href="#how-to-scale-horizontally"><span>How to scale horizontally</span></a>
-      </li>
-      <li>
         <a href="#how-to-restore-an-aws-managed-db-from-a-backup"><span>How to restore an AWS managed DB from a backup</span></a>
       </li>
       <li>
@@ -198,7 +177,7 @@
         </ul>
       </li>
       <li>
-        <a href="#how-are-instances-provisioned"><span>How are instances provisioned?</span></a>
+        <a href="#how-are-ec2-instances-legacy-infrastructure-provisioned"><span>How are EC2 instances (legacy infrastructure) provisioned?</span></a>
       </li>
     </ul>
   </li>
@@ -250,112 +229,38 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba9ffde55d512ce00d9bd1754c8547ff1c4dae86">21 Apr 2023</a>
 </div>
 
  <h1 id='header'>Common AWS tasks for Technical 2nd Line</h1> <p>This document details some of the tasks that GOV.UK Technical 2nd Line may
 carry out regarding AWS.</p>
-<h2 id='logging-into-aws'>Logging into AWS</h2><p>Once you&rsquo;ve <a href="/manual/get-started.html#9-access-aws-for-the-first-time">set up AWS access</a>, you can log into the AWS console for the relevant environment by running:</p>
+<h2 id='logging-into-the-aws-web-console'>Logging into the AWS web console</h2><p>Once you&rsquo;ve <a href="/manual/get-started.html#9-access-aws-for-the-first-time">set up AWS access</a>, you can log into the AWS console for the relevant environment by running:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-&lt;environment&gt;-&lt;role&gt; -l
 </code></pre></div><p>See <a href="https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/integration/common.tfvars#L1-L13">these notes</a> about the different AWS IAM roles e.g.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-integration-readonly -l
-</code></pre></div><p>It will then ask you to supply your AWS vault password, followed by your 2FA code.</p>
+</code></pre></div><p>It will then ask you to supply your aws-vault password, followed by your 2FA code.</p>
 <h2 id='getting-help-with-aws'>Getting help with AWS</h2><h3 id='read-the-docs'>Read the docs</h3><p>The <a href="https://docs.aws.amazon.com/">AWS docs</a> are comprehensive, and the
 GOV.UK developer docs explain how to do common tasks.</p>
 <h3 id='raise-an-aws-support-request'>Raise an AWS support request</h3><p>We pay AWS for Premium Support. You are strongly encouraged to contact AWS to
 help you solve problems when using AWS products. Contacting AWS Support is a
 very common procedure.</p>
-<p>See our documentation on <a href="https://docs.publishing.service.gov.uk/manual/how-to-escalate-to-AWS-support.html">how to escalate to AWS support</a>.</p>
-<h3 id='internal-support'>Internal support</h3><p>Usually, Technical 2nd Line should be able to investigate issues related to AWS.</p>
-<p>During working hours, one of the Site Reliability Engineers on the Platform Engineering
-team may be able to provide advice or expert knowledge. Outside of working hours,
-you should escalate to AWS support if the engineers on call can&rsquo;t resolve an
-issue themselves.</p>
-<p>If you are experiencing an incident, refer to the
-<a href="https://docs.publishing.service.gov.uk/manual/incident-what-to-do.html">So, you&rsquo;re having an incident</a> documentation.</p>
+<p>See our documentation on <a href="/manual/how-to-escalate-to-AWS-support.html">how to escalate to AWS
+support</a></p>
+<h3 id='internal-support'>Internal support</h3><p>Usually, 2nd-line Tech Support should be able to investigate issues related to AWS.</p>
+<p>During working hours, one of the Site Reliability Engineers (SREs) on the
+Platform Engineering or Platform Security and Reliability teams may be able to
+provide advice or expert knowledge. Outside office hours, you should escalate
+to AWS Support if the engineers on call can&rsquo;t resolve an issue themselves.</p>
+<p>If you are experiencing an incident, refer to the <a href="/manual/incident-what-to-do.html">So, you&rsquo;re having an
+incident</a> documentation.</p>
 <h2 id='troubleshooting'>Troubleshooting</h2><h3 id='how-to-view-alb-metrics'>How to view ALB metrics</h3><p>You can see metrics for load balancers in CloudWatch. See the AWS documentation
 on <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-cloudwatch-metrics.html">load balancer CloudWatch metrics</a> for more detail.</p>
-<h3 id='how-to-query-athena-logs'>How to query Athena logs</h3><p>See the documentation on <a href="https://docs.publishing.service.gov.uk/manual/query-cdn-logs.html">how to query CDN logs</a>.</p>
+<h3 id='how-to-query-athena-logs'>How to query Athena logs</h3><p>See <a href="/manual/query-cdn-logs.html">how to query CDN logs</a></p>
 <h3 id='how-to-identify-aws-managed-db-performance-issues'>How to identify AWS managed DB performance issues</h3><p>If you find an AWS managed DB is experiencing performance issues, it&rsquo;s often
 worth having a look at the CloudWatch metrics for the service. This might tell
 you which resource is the limiting factor impacting performance.</p>
 <p>It is also worth looking at AWS&rsquo;s troubleshooting documentation, such as
 the <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/user_diagnostics.html">DocumentDB documentation</a>.</p>
-<h2 id='how-to-analyse-and-find-out-the-performance-limiting-factor-of-an-ec2-instance'>How to analyse and find out the performance limiting factor of an EC2 instance</h2><p>EC2 instances have limits on CPU, memory, network, and storage, which can
-impact application performance. To identify the machine resource that is the
-performance limiting factor, visit the <a href="https://grafana.blue.production.govuk.digital/dashboard/file/machine.json?refresh=1m&amp;orgId=1">machine metrics dashboard</a> (in the
-relevant environment!), which shows CPU, memory, disk, and TCP stats.
-This should help you find bottlenecks.</p>
-<p>You can also see the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-troubleshoot.html">EC2 troubleshooting documentation</a> and contact AWS Support.</p>
-<h2 id='detaching-an-instance-from-an-auto-scaling-group'>Detaching an instance from an Auto Scaling Group</h2><p>Log into the AWS console for the relevant environment:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  gds aws govuk-integration-poweruser -l
-  gds aws govuk-staging-poweruser -l
-  gds aws govuk-production-poweruser -l
-</code></pre></div><p>First, make a note of the instance ID in case you need to investigate the logs later
-following an incident. If you forget to do this, follow the instructions below on
-how to find a detached instance.</p>
-<p>Refer to the AWS documentation on steps for on <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/detach-instance-asg.html#detach-instance-console">how to detach an instance from an ASG</a></p>
-<p>If a machine is unhealthy, you may want to detach an instance from its Auto
-Scaling Group (ASG). Detaching the instance stops it receiving requests.</p>
-<p>Avoid removing an instance from an ALB Target Group if the target group&rsquo;s
-instances are managed by an ASG. Instead, simply remove the instance from the
-ASG. Removing an instance from an associated ASG will remove the instance
-from all target groups automatically (conversely, adding an instance to an
-ASG will add the instance to associated target groups).</p>
-<p>When detaching an instance from an ASG, you can choose whether to replace that
-instance in the ASG via a checkbox in the detach confirmation window: &lsquo;Add a
-new instance to the Auto Scaling group to balance the load&rsquo;. This option will
-need to be selected, otherwise an error will likely be thrown, as by default,
-the ASG&rsquo;s minimum capacity of instances will be equal to the amount instances
-running (desired capacity).</p>
-<p><em><strong>Note</strong>: check if the ASG has just a single instance. If so, removing the
-instance from the ASG may cause downtime for a service.</em></p>
-<p>The detached instance will stick around, so make sure to
-terminate it when you no longer need it. See the section below for further details.</p>
-<h2 id='how-to-find-a-detached-instance'>How to find a detached instance</h2><p>If you made a note of the instance id before you detached it, you should be able to find it in
-the console. If you forgot this step, you can work out which is the detached instance for an
-application by comparing the instances you get for the application under &lsquo;instances&rsquo; (which displays all instances)
-and the instances you get for an application by looking at the ASG for that application&rsquo;s instances
-(which displays only attached instances).</p>
-<h2 id='logging-into-a-detached-instance'>Logging into a detached instance</h2><p>When you&rsquo;ve found the detached instance in the AWS console, you can click on the instance ID column to get the summary. This includes the private IP. Copy this, and use it with the gds govuk connect command instead of an app/machine type, eg:</p>
-<p><code>gds govuk connect ssh -e integration ip-10-1-4-96.eu-west-1.compute.internal</code></p>
-<h2 id='terminating-an-instance'>Terminating an instance</h2><p>Refer to the AWS documentation for steps on <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#terminating-instances-console">how to terminate an instance</a>.</p>
-<p>If you do not want a detached instance to serve traffic again in future, you
-should terminate it. Detaching an instance from an ASG does not terminate the
-instance automatically. Once connections have drained from a detached instance,
-you can terminate the instance via the AWS EC2 user interface.</p>
-<p>Note that when you&rsquo;ve detached and terminated an instance, you may get sentry alerts from puppet about healthchecks for the affected application(s) not
-returning OK, as it still expects the old instance to be healthy. These should disappear when puppet next runs (every 30 minutes) and picks up the
-new instance.</p>
-<h2 id='how-to-scale-up-vertically'>How to scale up vertically</h2><p>You can increase the resources for EC2 instances by modifying the instance type in govuk-aws-data.</p>
-<p>We typically make this change very gradually. The process usually looks like this:</p>
-
-<ol>
-<li>Merge a PR changing the instance type (example: https://github.com/alphagov/govuk-aws-data/pull/827)</li>
-<li>Apply the Terraform change to all environments</li>
-<li>In the AWS UI, cycle the running instances gradually, to avoid downtime.</li>
-</ol>
-<p>Cycling an instance might involve removing the smaller instances one by one,
-  waiting for connections to the instance to drain, and then killing the
-  instance. This will prompt AWS to bring up the new bigger instances
-  automatically.</p>
-<p>Be careful here, <a href="#how-are-instances-provisioned">provisioning a machine</a> is
-  slow, flaky and requires manual intervention (e.g. sometimes we need to
-  manually run puppet on a new instance, must deploy apps to new instances from
-  Jenkins). Check that the new instances are healthy before removing the
-  healthy old instances.</p>
-<h2 id='how-to-scale-horizontally'>How to scale horizontally</h2><p>You can increase the number of EC2 instances running in an ASG via a config
-change in govuk-aws and govuk-aws-data.</p>
-<p>In an emergency, you can also <a href="https://docs.publishing.service.gov.uk/manual/auto-scaling-groups.html#removing-a-specific-instance">manually bump up the number of instances in the
-ASG via the AWS console</a>, but you&rsquo;re encouraged to use Terraform to do this,
-since you&rsquo;ll need to make the change in Terraform anyway.</p>
-<p>Here&rsquo;s an example set of PRs:</p>
-
-<ul>
-<li>https://github.com/alphagov/govuk-aws-data/pull/805</li>
-<li>https://github.com/alphagov/govuk-aws/pull/1385</li>
-</ul>
-<p>You will need to apply Terraform for this to have an effect.</p>
 <h2 id='how-to-restore-an-aws-managed-db-from-a-backup'>How to restore an AWS managed DB from a backup</h2><p>View the documentation on <a href="https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html">how to backup and restore in AWS RDS</a>.</p>
 <h2 id='how-to-resize-a-persistent-disk'>How to resize a persistent disk</h2><p>If you&rsquo;re not sure how to do this, ask an Site Reliability Engineer to give you a walk through.</p>
 <p>See the docs: https://docs.publishing.service.gov.uk/manual/manually-resize-ebs.html.</p>
@@ -374,12 +279,13 @@ old persistent disk</p>
 <li>Reboot the machine to make sure the persistent disk reattaches between reboots</li>
 <li>Initiate a puppet run to make sure that everything works</li>
 </ol>
-<h2 id='learn'>Learn</h2><h3 id='how-do-we-do-dns'>How do we do DNS?</h3><p>See the documentation on <a href="https://docs.publishing.service.gov.uk/manual/dns.html">how GOV.UK does DNS</a>.</p>
-<p>GOV.UK manages the DNS for other domain names used by third parties, for example
-service.gov.uk. At the moment this will remain with the SREs until further
-decisions have been made.</p>
-<h2 id='how-are-instances-provisioned'>How are instances provisioned?</h2><p>We typically use Terraform config in <a href="https://github.com/alphagov/govuk-aws">govuk-aws</a> to provision infrastructure,
-such as EC2 instances.</p>
+<h2 id='learn'>Learn</h2><h3 id='how-do-we-do-dns'>How do we do DNS?</h3><p>GOV.UK is effectively a DNS registrar for some third-level domain names, for
+example service.gov.uk.</p>
+<p>See <a href="/manual/dns.html">how GOV.UK does DNS</a>.</p>
+<h2 id='how-are-ec2-instances-legacy-infrastructure-provisioned'>How are EC2 instances (legacy infrastructure) provisioned?</h2><p><strong>As of Mar 2023, only Crawler, CKAN (for data.gov.uk) and Licensing still use
+the legacy EC2 infrastructure.</strong></p>
+<p>The legacy EC2 infrastructure is configured via Terraform code in the
+<a href="https://github.com/alphagov/govuk-aws">govuk-aws</a> repo.</p>
 <p>There are a few exceptions to this, such as ad-hoc instances started from
 Concourse via the AWS CLI - these are mainly for data science projects.</p>
 <p>We use <a href="https://github.com/alphagov/govuk-aws/blob/master/terraform/userdata/20-puppet-client">userdata scripts</a> to run commands on our instances at launch. These

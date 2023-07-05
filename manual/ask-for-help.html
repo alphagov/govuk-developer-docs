@@ -176,7 +176,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba9ffde55d512ce00d9bd1754c8547ff1c4dae86">21 Apr 2023</a>
 </div>
 
  <h1 id='header'>Ask for help</h1> <p>The GOV.UK Technical 2nd Line team (#govuk-2ndline-tech):</p>
@@ -185,7 +185,6 @@
 <li>monitors the GOV.UK hosting platform and applications, and works to fix any issues</li>
 <li>calls on experienced members of other teams to assist in incidents</li>
 <li>deploys changes on behalf of teams that don’t have sufficient access</li>
-<li>supports the software and processes that deploy code</li>
 <li>triages technical issues and recommends when to escalate to a site reliability engineer</li>
 </ul>
 <p>The GOV.UK developer community (#govuk-developers):</p>
@@ -198,30 +197,30 @@
 <p>The GOV.UK Platform Security and Reliability team (#govuk-platform-security-reliability-team):</p>
 
 <ul>
-<li>works on long term fixes to the platform</li>
-<li>owns the infrastructure, although doesn&rsquo;t necessarily have the expertise to fix issues</li>
+<li>works on long-term improvements to the reliability and security of GOV.UK</li>
+<li>manages some access control automation such as govuk-user-reviewer</li>
+<li>manages some AWS infrastructure that supports multiple teams (together with Platform Engineering team)</li>
 </ul>
 <p>The GOV.UK Platform Engineering team (#govuk-platform-engineering):</p>
 
 <ul>
-<li>supports the infrastructure used to run and make changes to GOV.UK</li>
-<li>handles updates to <code>*.gov.uk</code> DNS (excluding <code>*.publishing.service.gov.uk</code>)</li>
-<li>obtains and renews TLS certificates</li>
+<li>manages the Kubernetes clusters and base images on which GOV.UK applications run</li>
+<li>works on long-term improvements to the efficiency and reliability of GOV.UK</li>
+<li>supports CI/CD (build, rollout, release) automation</li>
+<li>can offer advice on monitoring and alerting</li>
+<li>can offer design reviews and advice to help build your application for
+reliability, robustness and low maintenance (especially at the early stages of
+the software lifecycle)</li>
+<li>can offer advice and assistance with changes such as migrating from one
+database to another as safely and efficiently as possible</li>
 </ul>
-<p>The GDS Reliability Engineering team (#reliability-eng):</p>
-
-<ul>
-<li>maintains centrally-provided services such as Logit and Concourse</li>
-</ul>
-<p>If you and your colleagues can’t resolve a technical issue, problem or question, you should escalate it through, in order:</p>
+<p>If you and your colleagues can’t resolve a technical issue, problem or question, you should try talking with (in this order):</p>
 
 <ol>
-<li>The Technical Lead on the team</li>
-<li>The Lead Developer on the programme</li>
-<li>The Lead Architect</li>
+<li>Your tech lead (TL)</li>
+<li><a href="https://gds.slack.com/channels/govuk-tech-leads">#govuk-tech-leads</a></li>
+<li>The <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members">senior tech team</a></li>
 </ol>
-<p>If Technical 2nd Line instructs you to escalate something to GOV.UK Platform Engineering, raise a ticket on Zendesk and assign it to the <code>3rd Line--GDS Reliability Engineering</code> queue. You should also raise a ticket if the issue is related to an ongoing incident for tracking purposes, but you can speak to the team directly to get it more immediate attention.</p>
-<p>If you speak to GOV.UK Platform Engineering about a process only they know about, they will work with you to document the process for all of GOV.UK.</p>
 
 
   <div class='related-content'>

@@ -153,7 +153,7 @@
         <a href="#8-update-dns"><span>8. Update DNS</span></a>
       </li>
       <li>
-        <a href="#9-remove-credentials"><span>9. Remove credentials</span></a>
+        <a href="#9-update-docs"><span>9. Update docs</span></a>
       </li>
       <li>
         <a href="#10-drop-database"><span>10. Drop database</span></a>
@@ -223,7 +223,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba9ffde55d512ce00d9bd1754c8547ff1c4dae86">21 Apr 2023</a>
 </div>
 
  <h1 id='header'>Retire an application</h1> <h2 id='1-remove-app-from-puppet'>1. Remove app from puppet</h2><p>Configure Puppet to remove the app from all servers. Change the app resource,
@@ -255,10 +255,8 @@ in <a href="https://github.com/alphagov/govuk-docker/blob/master/docker-compose.
 <h2 id='8-update-dns'>8. Update DNS</h2><p>Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the <code>publishing.service.gov.uk</code> domain.</p>
 <p>Follow the <a href="https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain">instructions for DNS changes</a> in order to remove
-these, and ask the GOV.UK Platform Engineering team to approve any necessary Pull
-Requests.</p>
-<h2 id='9-remove-credentials'>9. Remove credentials</h2><p>Remove any hieradata credential entries for the app in <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>
-(private repo).</p>
+these.</p>
+<h2 id='9-update-docs'>9. Update docs</h2><p>Mark the application as <code>retired</code> in <a href="https://github.com/alphagov/govuk-developer-docs">govuk-developer-docs</a></p>
 <h2 id='10-drop-database'>10. Drop database</h2><p>If Puppet hasn&rsquo;t done it (eg for MongoDB databases), drop the database.</p>
 <h2 id='11-remove-jobs-in-ci'>11. Remove jobs in CI</h2><p>If tests were set up, go to <a href="https://ci.integration.publishing.service.gov.uk/">CI</a> and choose &ldquo;Delete Repository&rdquo; for your
 project.</p>
