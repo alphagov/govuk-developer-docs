@@ -11,13 +11,13 @@ Protocol][AMQP] (AMQP). Publishing's RabbitMQ cluster is provided by AWS' [Amazo
 
 [Learn more about RabbitMQ][rabbitmq_tutorial].
 
-## Connecting to the AmazonMQ web control panel
+## Connecting to the RabbitMQ web control panel
 
 Run `gds govuk connect amazonmq -e integration` and point your
 browser at the URL it gives you - it will look like <http://127.0.0.1:45612>, but will have a random port number. You can connect to `staging` and `production` the same way, just replace `integration` above with the environment of your choice.
 
 The username for connecting to the RabbitMQ web control panel is `root` and the password
-can be decrypted from the `govuk-secrets` repo via `bundle exec rake 'eyaml:decrypt_value[integration,govuk_amazonmq::root_password]'` (from the `puppet_aws` directory).
+can be decrypted from the `govuk-secrets` repo via `bundle exec rake 'eyaml:decrypt_value[integration,govuk_publishing_amazonmq::passwords::root]'` (from the `puppet_aws` directory).
 
 ## AmazonMQ metrics
 
