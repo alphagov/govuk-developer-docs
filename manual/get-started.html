@@ -274,13 +274,24 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b50cccc80993f97b41041453f5b8fd1d4d47bdc8">15 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8627417898dbd203fd799ddfadd9b8965051ef76">5 Jul 2023</a>
 </div>
 
- <h1 id='header'>Get started developing on GOV.UK</h1> <p><strong>This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in <a href="https://gds.blog.gov.uk/about/">GDS</a>. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.</strong></p>
+ <h1 id='header'>Get started developing on GOV.UK</h1> <blockquote>
+<p>This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in <a href="https://gds.blog.gov.uk/about/">GDS</a>. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.</p>
+</blockquote>
 <p>Ask your tech lead to take you through the <a href="https://docs.google.com/presentation/d/1nAE65Og04JYNAc0VjYaUYLqNLuUOM9r3Mvo0PGFy_Zk">overview slides</a> if they have not already done so.</p>
 <p>If you&rsquo;re having trouble with this guide, you can ask your colleagues on the <a href="https://gds.slack.com/archives/CAB4Q3QBW">#govuk-developers Slack channel</a> or using email.</p>
-<h2 id='before-you-start'>Before you start</h2><p>You must have a laptop with full admin access. To check if you have full admin access, run a <code>sudo</code> command in your command line. For example, <code>sudo ls</code>.</p>
+<h2 id='before-you-start'>Before you start</h2>
+<blockquote>
+<p>You must update your Slack profile to include details of:
+- your role
+- which team you&rsquo;re in
+- your GitHub handle
+- why you need access</p>
+<p>This is to help people ascertain if you should have access. Your Tech Lead should also be helping to make requests to other teams for you.</p>
+</blockquote>
+<p>You must have a laptop with full admin access. To check if you have full admin access, run a <code>sudo</code> command in your command line. For example, <code>sudo ls</code>.</p>
 <p>If you do not have full admin access to your laptop, ask your line manager to ask IT to provide you with a developer build on your laptop.</p>
 <p>Once you have full admin access on your laptop, run the following in your command line to install the Xcode command line tool:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>xcode-select --install
@@ -339,7 +350,7 @@ $ git config --global user.name "Friendly Giraffe"
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>brew tap alphagov/gds
 brew <span class="nb">install </span>gds-cli govuk-connect
 brew <span class="nb">install</span> <span class="nt">--cask</span> aws-vault
-</code></pre></div><p>The GDS CLI repository is private, so you must first <a href="#2-set-up-your-github-account">set up your GitHub account</a>.</p></li>
+</code></pre></div><p>The GDS CLI repository is private, so you must first <a href="#3-set-up-your-github-account">set up your GitHub account</a>.</p></li>
 <li><p>Test that both tools work by running <code>gds --help</code> and <code>gds govuk connect --help</code>.</p>
 <p>If you see a <code>fatal: no such path in the working tree</code> error, that&rsquo;s because you&rsquo;re using ZSH, which has <code>gds</code> set up as a Git alias. To solve this, you can either:</p>
 
@@ -357,7 +368,7 @@ brew <span class="nb">install</span> <span class="nt">--cask</span> aws-vault
 <h3 id='for-gds-issued-macbooks'> For GDS issued MacBooks</h3><p>Follow the <a href="https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit">GDS guidance on how to sign into the GDS VPN using Google credentials</a>.</p>
 <h3 id='for-bring-your-own-devices-byod'> For Bring Your Own Devices (BYOD)</h3><p>Follow the <a href="https://docs.google.com/document/d/150JX1xiWdXY29ahcYUMb05Si-hEAZvtkGAKojT9Rjis/edit#">VPN guide for Bring Your Own Devices (BYOD)</a></p>
 <h2 id='6-get-added-to-the-gov-uk-user-monitor-system'>6. Get added to the GOV.UK user monitor system</h2><p>We store who has access to GOV.UK tooling in a git repo, <a href="https://github.com/alphagov/govuk-user-reviewer">GOV.UK User Reviewer</a> and use automation to alert when people should not have access. It&rsquo;s a private repo so you won&rsquo;t be able to access it until step 3 is completed.</p>
-<p>Either yourself (access dependent) or your tech lead should create a pull request to add you to the <a href="https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml">tech users</a>. The repo readme specifies the <a href="https://github.com/alphagov/govuk-user-reviewer/tree/main#properties-in-the-config-file">format new starters should have, with integration admin access</a>. The <code>ssh_username</code> is in the format of <code>firstnamelastname</code> and is utilised in <a href="#7-get-ssh-access-to-integration">8. Get SSH access to integration</a>).</p>
+<p>Get your tech lead to create a pull request to add you to the <a href="https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml">tech users</a>. The repo readme specifies the <a href="https://github.com/alphagov/govuk-user-reviewer/tree/main#properties-in-the-config-file">format new starters should have, with integration admin access</a>. The <code>ssh_username</code> is in the format of <code>firstnamelastname</code> and is utilised in <a href="#7-get-ssh-access-to-integration">8. Get SSH access to integration</a>).</p>
 <p>If you are working with us as a contractor from a supplier, please include the supplier&rsquo;s name in the <code>why_do_they_need_access</code> field.</p>
 <h2 id='7-set-up-gov-uk-docker'>7. Set up GOV.UK Docker</h2><p>We use a <code>govuk-docker</code> Docker environment for local development.</p>
 <p>To set up GOV.UK Docker, see the <a href="https://github.com/alphagov/govuk-docker/blob/master/README.md">installation instructions in the <code>govuk-docker</code> GitHub repo</a>.</p>
