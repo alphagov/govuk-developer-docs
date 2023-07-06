@@ -48,7 +48,7 @@ email-alert-api. Queues are [created by consumer applications][create_queues].
 **Bindings** are rules that exchanges use (among other things) to route
 messages to queues. To instruct an exchange E to route messages to a queue Q, Q
 has to be bound to E. Bindings may have an optional routing key attribute. An
-example of a binding is the `cache_clearing_service-high` queue is
+example of a binding is the `email_alert_service` queue is
 [bound][binding_config] to the `published_documents` exchange with a routing
 key matching of `*.major`. E.g messages sent to the exchange with a routing key
 of `guide.major` will be routed to that queue.
@@ -102,4 +102,4 @@ connecting to the RabbitMQ control panel (see above).
 [message_consumer]: https://github.com/alphagov/govuk_message_queue_consumer
 [email-alert-service]: https://github.com/alphagov/email-alert-service
 [major_message_processor]: https://github.com/alphagov/email-alert-service/blob/2ba8ecd982c2226158b528e5442b012639797d41/email_alert_service/models/major_change_message_processor.rb#L35P
-[binding_config]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/cache_clearing_service/rabbitmq.pp#L42-L48
+[binding_config]: https://github.com/alphagov/govuk-aws/blob/854bf0a652af5badaedd0e14ae4e841807075519/terraform/projects/app-publishing-amazonmq/publishing-rabbitmq-schema.json.tpl#L260-L267
