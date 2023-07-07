@@ -1,6 +1,12 @@
 @import "govuk_tech_docs";
 @import "govuk_publishing_components/components/_summary-list";
 @import "govuk_publishing_components/components/_breadcrumbs";
+@import "govuk_publishing_components/components/_cookie-banner";
+@import "govuk_publishing_components/components/_button";
+@import "govuk_publishing_components/components/_fieldset";
+@import "govuk_publishing_components/components/_heading";
+@import "govuk_publishing_components/components/_radio";
+@import "govuk_publishing_components/components/_success-alert";
 
 .gem-c-summary-list {
   border-bottom: 0; /* We have an extra border-bottom for some reason */
@@ -94,6 +100,18 @@ ul.subdir__menu {
 
 .analytics-heading {
   text-transform: capitalize;
+}
+
+.govuk-cookie-banner {
+  display: none;
+}
+
+.js-enabled .govuk-cookie-banner {
+  display: block;
+}
+
+.cookie-page-notice {
+  display: none;
 }
 
 .architecture-diagram {

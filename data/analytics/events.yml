@@ -4,7 +4,11 @@
       implemented: true
       priority: high
       description: When a section of the accordion is opened or closed.
-      example_url: https://www.gov.uk/coronavirus
+      examples:
+        - text: Coronavirus page
+          link: https://www.gov.uk/coronavirus
+        - text: Manual page
+          link: https://www.gov.uk/guidance/immigration-rules/immigration-rules-part-11b
       tracker: event_tracker
       data:
       - name: event
@@ -20,10 +24,7 @@
         - name: index
           value:
           - name: index_section
-          - name: index_link
           - name: index_section_count
-        - name: index_total
-          value: number of sections in accordion (not including 'show all')
         - name: action
           value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
     - name: Show all sections
@@ -43,9 +44,9 @@
         - name: text
           value: text of show all link when clicked e.g. "Show all sections"
         - name: index
-          value: 0
-        - name: index_total
-          value: number of sections in the accordion (not including 'show all')
+          value:
+          - name: index_section
+          - name: index_section_count
         - name: action
           value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
 
@@ -70,7 +71,11 @@
       implemented: true
       priority: medium
       description: Triggered when a breadcrumb link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/learn-to-drive-a-car
+      examples:
+        - text: Generic page with a breadcrumb
+          link: https://www.gov.uk/vehicle-tax-refund
+        - text: Another generic page with a breadcrumb
+          link: https://www.gov.uk/check-coastal-erosion-management-in-your-area
       tracker: link_tracker
       data:
       - name: event
@@ -124,15 +129,6 @@
       - name: event
         value: event_data
 
-- name: council lookup
-  events:
-    - name: council lookup
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
-
 - name: contents link
   events:
     - name: link click
@@ -151,6 +147,92 @@
 - name: details elements
   events:
     - name: details expanded/collapsed
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+
+- name: email alerts and rss subscriptions
+  events:
+    - name: email alerts
+      implemented: true
+      priority: medium
+      examples:
+        - text: Search pages
+          link: https://www.gov.uk/search/all?keywords=minister&order=relevance
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: subscribe
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: section
+        - name: external
+          value: false
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+    - name: rss subscriptions
+      implemented: true
+      priority: medium
+      examples:
+        - text: Search pages
+          link: https://www.gov.uk/search/all?keywords=minister&order=relevance
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: subscribe
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: section
+        - name: external
+          value: false
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+
+- name: email subscriptions
+  events:
+    - name: get emails about this page link click
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: change how often you get emails
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: unsubscribe
+      implemented: false
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+    - name: unsubscribe from everything
       implemented: false
       priority: medium
       data:
@@ -256,7 +338,9 @@
       implemented: true
       priority: medium
       description: Triggered when a footer link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk/
       tracker: link_tracker
       data:
       - name: event
@@ -294,33 +378,6 @@
       - name: event
         value: event_data
 
-- name: get emails
-  events:
-    - name: get emails about this page link click
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
-    - name: change how often you get emails
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
-    - name: unsubscribe
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
-    - name: unsubscribe from everything
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
-
 - name: homepage
   events:
     - name: Link clicks
@@ -347,11 +404,13 @@
 
 - name: html attachments
   events:
-    - name: link clicks (not implemented yet)
+    - name: link clicks
       implemented: true
       priority: high
       description: Triggered when a HTML attachment link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/government/publications/equality-act-guidance
+      examples:
+        - text: Page with html attachments
+          link: https://www.gov.uk/government/publications/equality-act-guidance
       tracker: link_tracker
       data:
       - name: event
@@ -384,7 +443,7 @@
         - name: event_name
           value: navigation
         - name: external
-          value: true
+          value: '"true"'
         - name: link_domain
         - name: link_path_parts
         - name: method
@@ -413,17 +472,178 @@
           value: generic download
         - name: url
     - name: mailto links
-      implemented: false
+      implemented: true
       priority: low
+      description: 'When a link points to an email address using mailto:'
+      tracker: specialist_link_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: '"true"'
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: email
+        - name: url
     - name: attachment links
       implemented: false
       priority: medium
+      description: 'Links on our guidance pages that contain file attachments, such as https://www.gov.uk/government/publications/equality-act-guidance'
+      tracker: specialist_link_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: attachment
+        - name: url
+
+- name: local lookup
+  events:
+    - name: form submit
+      implemented: true
+      priority: medium
+      examples:
+      - text: Council lookup
+        link: https://www.gov.uk/find-local-council
+      - text: Licence lookup
+        link: https://www.gov.uk/food-business-registration
+      - text: Local lookup
+        link: https://www.gov.uk/rubbish-collection-day
+      - text: Place lookup
+        link: https://www.gov.uk/find-regional-passport-office
+      tracker: form_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_submit
+        - name: action
+          value: submit
+        - name: method
+        - name: section
+        - name: text
+        - name: tool_name
+        - name: type
+    - name: form error
+      implemented: true
+      priority: medium
+      examples:
+      - text: To see an error page, enter an invalid or empty postcode
+        link: https://www.gov.uk/find-local-council
+      tracker: auto_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_error
+        - name: action
+          value: error
+        - name: section
+        - name: text
+        - name: tool_name
+        - name: type
+    - name: form complete
+      implemented: true
+      priority: medium
+      examples:
+      - text: Council lookup complete page
+        link: https://www.gov.uk/find-local-council/westminster
+      - text: Licence lookup complete page
+        link: https://www.gov.uk/food-business-registration/westminster
+      - text: Local lookup complete page
+        link: https://www.gov.uk/rubbish-collection-day/westminster
+      - text: Place lookup complete page
+        link: https://www.gov.uk/find-regional-passport-office#results
+      tracker: auto_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_complete
+        - name: action
+          value: complete
+        - name: text
+        - name: tool_name
+        - name: type
+    - name: change response
+      implemented: true
+      priority: medium
+      examples:
+      - text: Licence lookup
+        link: https://www.gov.uk/food-business-registration/westminster
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_change_response
+        - name: action
+          value: change response
+        - name: external
+          value: '"true"'
+        - name: method
+        - name: section
+        - name: text
+        - name: tool_name
+        - name: type
+    - name: information click
+      implemented: true
+      priority: medium
+      examples:
+      - text: Council lookup complete page
+        link: https://www.gov.uk/find-local-council/westminster
+      - text: Licence lookup complete page
+        link: https://www.gov.uk/food-business-registration/westminster
+      - text: Local lookup complete page
+        link: https://www.gov.uk/rubbish-collection-day/westminster
+      - text: Place lookup complete page
+        link: https://www.gov.uk/find-regional-passport-office#results
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: information_click
+        - name: action
+          value: information click
+        - name: external
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: section
+        - name: text
+        - name: tool_name
+        - name: type
 
 - name: miscellaneous
   events:
@@ -476,33 +696,33 @@
         value: page_view
       - name: page_view
         value:
-        - name: referrer
-        - name: location
-        - name: title
-        - name: status_code
-        - name: document_type
-        - name: publishing_app
-        - name: rendering_app
-        - name: schema_name
-        - name: content_id
         - name: browse_topic
-        - name: taxonomy_main
-        - name: taxonomy_all
-        - name: taxonomy_main_id
-        - name: taxonomy_all_ids
-        - name: taxonomy_level1
-        - name: language
-        - name: history
-        - name: withdrawn
+        - name: content_id
+        - name: document_type
+        - name: dynamic
         - name: first_published_at
-        - name: updated_at
-        - name: public_updated_at
-        - name: publishing_government
+        - name: history
+        - name: language
+        - name: location
+        - name: organisations
         - name: political_status
         - name: primary_publishing_organisation
-        - name: organisations
+        - name: public_updated_at
+        - name: publishing_app
+        - name: publishing_government
+        - name: referrer
+        - name: rendering_app
+        - name: schema_name
+        - name: status_code
+        - name: taxonomy_all
+        - name: taxonomy_all_ids
+        - name: taxonomy_level1
+        - name: taxonomy_main
+        - name: taxonomy_main_id
+        - name: title
+        - name: updated_at
+        - name: withdrawn
         - name: world_locations
-        - name: dynamic
 
 - name: print page
   events:
@@ -510,7 +730,9 @@
       implemented: true
       priority: low
       description: When a 'print this page' button is used
-      example_url: https://www.gov.uk/guidance/register-a-trust-as-a-trustee
+      examples:
+        - text: Page with print button
+          link: https://www.gov.uk/guidance/register-a-trust-as-a-trustee
       tracker: event_tracker
       data:
       - name: event
@@ -520,19 +742,24 @@
         - name: event_name
           value: print_page
         - name: index
+          value:
+          - name: index_link
         - name: index_total
         - name: section
         - name: type
           value: print page
+        - name: text
 
 - name: related navigation
   description: Events gathered in the contextual sidebar, contextual footer and related navigation components.
   events:
-    - name: Related Navigation
+    - name: related Navigation
       implemented: true
       priority: high
       description: Clicks in the related navigation component
-      example_url: https://www.gov.uk/government/statistics/national-curriculum-assessments-key-stage-2-2016-provisional
+      examples:
+        - text: Page with related navigation
+          link: https://www.gov.uk/government/statistics/national-curriculum-assessments-key-stage-2-2016-provisional
       tracker: link_tracker
       data:
       - name: event
@@ -544,7 +771,11 @@
         - name: type
           value: related content
         - name: index
-          value: 1.1
+          value:
+          - name: index_section
+          - name: index_link
+          - name: index_section_count
+        - name: index_total
         - name: section
           value: Heading of section e.g. Related content, Collection
         - name: text
@@ -575,42 +806,132 @@
 
 - name: search
   events:
-    - name: search results
+    - name: search results/ecommerce product list views
       implemented: true
       priority: high
+      examples:
+        - text: Search results page
+          link: https://www.gov.uk/search/all?keywords=pension
       data:
       - name: event
-        value: event_data
+        value: search_results
+      - name: event_name
+        value: view_item_list
+      - name: results
+      - name: sort
+      - name: term
+      - name: search_results
+        value:
+        - name: ecommerce
+          value:
+          - name: items
     - name: search boxes
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
-    - name: ecommerce product list views and clicks
       implemented: true
       priority: medium
+      examples:
+        - text: Search home page
+          link: https://www.gov.uk/search/
+        - text: Search results page
+          link: https://www.gov.uk/search/all?keywords=pension
       data:
       - name: event
         value: event_data
-    - name: filters open/closed
-      implemented: false
+      - name: event_data
+        value:
+        - name: event_name
+          value: search
+        - name: type
+          value: finder
+        - name: text
+          value: the search query
+        - name: section
+          value: the heading that the search box is under
+        - name: url
+          value: the url of the page the search box is on
+        - name: action
+          value: search
+    - name: ecommerce product clicks
+      implemented: true
       priority: medium
+      examples:
+        - text: Search results page (click on a result)
+          link: https://www.gov.uk/search/all?keywords=pension
+      data:
+      - name: event
+        value: search_results
+      - name: event_name
+        value: view_item_list
+      - name: results
+      - name: sort
+      - name: term
+      - name: search_results
+        value:
+        - name: ecommerce
+          value:
+          - name: items
+            value:
+            - name: index (ecommerce)
+            - name: item_id
+            - name: item_list_name
+            - name: item_name
+    - name: filters open/closed
+      implemented: true
+      priority: medium
+      examples:
+        - text: Search results page
+          link: https://www.gov.uk/search/all?keywords=pension
       data:
       - name: event
         value: event_data
-    - name: facet tag removed
-      implemented: false
-      priority: low
-      data:
-      - name: event
-        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: select_content
+        - name: type
+          value: finder
+        - name: text
+          value: the filter's heading text
+        - name: section
+          value: the filter's heading text
+        - name: action
+          value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
+        - name: index
+          value:
+          - name: index_section
+          - name: index_link
+          - name: index_section_count
     - name: filter click
       implemented: false
       priority: medium
       data:
       - name: event
         value: event_data
+    - name: filter added/removed
+      implemented: true
+      priority: low
+      examples:
+        - text: Search results page
+          link: https://www.gov.uk/search/all?keywords=pension
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: select_content
+        - name: type
+          value: finder
+        - name: text
+          value: the filter value the user selected
+        - name: section
+          value: the filter's heading
+        - name: action
+          value: '"select" if added, "remove" if removed, "sort" if the search sort was changed'
+        - name: index
+          value:
+          - name: index_section
+          - name: index_link
+          - name: index_section_count
     - name: organisations link click
       implemented: false
       priority: low
@@ -624,7 +945,9 @@
       implemented: true
       priority: low
       description: Triggered when a 'follow us' social media link is used.
-      example_url: https://www.gov.uk/government/organisations/department-for-digital-culture-media-sport
+      examples:
+        - text: Organisation page
+          link: https://www.gov.uk/government/organisations/department-for-culture-media-and-sport
       tracker: link_tracker
       data:
       - name: event
@@ -636,6 +959,8 @@
         - name: external
           value: true
         - name: index
+          value:
+          - name: index_link
         - name: index_total
         - name: link_domain
         - name: link_path_parts
@@ -648,7 +973,9 @@
       implemented: true
       priority: low
       description: Triggered when a 'share on' social media link is used.
-      example_url: https://www.gov.uk/government/news/new-protections-for-children-and-free-speech-added-to-internet-laws
+      examples:
+        - text: Press release
+          link: https://www.gov.uk/government/news/new-protections-for-children-and-free-speech-added-to-internet-laws
       tracker: link_tracker
       data:
       - name: event
@@ -660,6 +987,8 @@
         - name: external
           value: true
         - name: index
+          value:
+          - name: index_link
         - name: index_total
         - name: link_domain
         - name: link_path_parts
@@ -671,105 +1000,391 @@
 
 - name: simple smart answers
   events:
-    - name: completed
+    - name: simple smart answer start
       implemented: true
       priority: high
+      examples:
+        - text: Tell DVLA you've sold, transferred or bought a vehicle
+          link: https://www.gov.uk/sold-bought-vehicle
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
-    - name: results link click
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_start
+        - name: type
+          value: simple smart answer
+        - name: url
+        - name: text
+          value: Start now
+        - name: section
+          value: start page
+        - name: action
+          value: start
+        - name: external
+          value: false
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: tool_name
+    - name: submit question
       implemented: true
       priority: high
+      examples:
+        - text: Simple smart answer question
+          link: https://www.gov.uk/sold-bought-vehicle/y
+      tracker: form_tracker
       data:
       - name: event
         value: event_data
-    - name: start again link click
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
-    - name: question
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
-    - name: change answer
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
-    - name: start again
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_response
+        - name: type
+          value: simple smart answer
+        - name: text
+          value: text of the selected answer
+        - name: section
+          value: text of the current question
+        - name: action
+          value: Next step
+        - name: tool_name
     - name: form error
       implemented: true
       priority: high
+      examples:
+        - text: Simple smart answer error page
+          link: https://www.gov.uk/sold-bought-vehicle/y?response=
+      tracker: auto_tracker
       data:
       - name: event
         value: event_data
-    - name: start button
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_error
+        - name: action
+          value: error
+        - name: section
+          value: text of the current question
+        - name: text
+          value: text of the error message
+        - name: tool_name
+        - name: type
+          value: simple smart answer
+    - name: change answer
       implemented: true
       priority: high
+      examples:
+        - text: Simple smart answer change response
+          link: https://www.gov.uk/sold-bought-vehicle/y/yes
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_change_response
+        - name: type
+          value: simple smart answer
+        - name: url
+        - name: text
+          value: (Change) text of the question to be changed
+        - name: section
+          value: text of the question to be changed
+        - name: action
+          value: change response
+        - name: external
+          value: false
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
+    - name: simple smart answer complete
+      implemented: true
+      priority: high
+      examples:
+        - text: Simple smart answer complete page
+          link: https://www.gov.uk/sold-bought-vehicle/y/yes/bought-a-vehicle-into-the-trade
+      tracker: auto_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: complete
+        - name: event_name
+          value: form_complete
+        - name: section
+        - name: tool_name
+        - name: type
+          value: simple smart answer
+    - name: results link click
+      implemented: true
+      priority: high
+      examples:
+        - text: Simple smart answer complete page
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle/yes/21-or-over
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: information_click
+        - name: type
+          value: simple smart answer
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: section
+        - name: action
+          value: information click
+        - name: external
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
+    - name: start again link click
+      implemented: true
+      priority: high
+      examples:
+        - text: Simple smart answer complete page
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle/yes/21-or-over
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_start_again
+        - name: type
+          value: simple smart answer
+        - name: url
+        - name: text
+        - name: section
+        - name: action
+          value: start again
+        - name: external
+          value: false
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
 
 - name: smart answers
   events:
-    - name: completed
+    - name: smart answer start
       implemented: true
       priority: high
+      examples:
+        - text: Towing rules
+          link: https://www.gov.uk/towing-rules
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
-    - name: results link click
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_start
+        - name: type
+          value: smart answer
+        - name: url
+        - name: text
+          value: Start now
+        - name: section
+          value: start page
+        - name: action
+          value: start
+        - name: external
+          value: false
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
+    - name: submit question
       implemented: true
       priority: high
+      examples:
+        - text: Smart answer question
+          link: https://www.gov.uk/towing-rules/y
+      tracker: form_tracker
       data:
       - name: event
         value: event_data
-    - name: start again link click
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
-    - name: question
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
-    - name: change answer
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
-    - name: start again
-      implemented: true
-      priority: high
-      data:
-      - name: event
-        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_response
+        - name: type
+          value: smart answer
+        - name: text
+          value: text of the selected answer
+        - name: section
+          value: text of the current question
+        - name: action
+          value: continue
+        - name: tool_name
     - name: form error
       implemented: true
       priority: high
+      examples:
+        - text: Smart answer error page
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle?next=1
+      tracker: auto_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_error
+        - name: action
+          value: error
+        - name: section
+          value: text of the current question
+        - name: text
+          value: text of the error message
+        - name: tool_name
+        - name: type
+          value: smart answer
+    - name: change answer
+      implemented: true
+      priority: high
+      examples:
+        - text: Smart answer question
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_change_response
+        - name: type
+          value: smart answer
+        - name: url
+        - name: text
+          value: (Change) text of the question to be changed
+        - name: section
+          value: text of the question to be changed
+        - name: action
+          value: change response
+        - name: external
+          value: false
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
+    - name: smart answer complete
+      implemented: true
+      priority: high
+      examples:
+        - text: Smart answer complete page
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle/yes/21-or-over
+      tracker: auto_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: complete
+        - name: event_name
+          value: form complete
+        - name: section
+          value: Information based on your answers
+        - name: tool_name
+        - name: type
+          value: smart answer
+    - name: results link click
+      implemented: true
+      priority: high
+      examples:
+        - text: Smart answer complete page
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle/yes/21-or-over
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: information_click
+        - name: type
+          value: smart answer
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: section
+          value: Information based on your answers
+        - name: action
+          value: information click
+        - name: external
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
     - name: results ecommerce list views and click
       implemented: true
       priority: medium
+      examples:
+        - text: Cost of living smart answer results page
+          link: https://www.gov.uk/check-benefits-financial-support/y/wales/yes/no_retired/no/no/no/dont_know/none_16000
+      tracker: ecommerce_tracker
+      data:
+      - name: event
+        value: search_results
+      - name: search_results
+        value:
+        - name: ecommerce
+          value:
+          - name: items
+        - name: event_name
+          value: view_item_list
+        - name: results
+    - name: start again link click
+      implemented: true
+      priority: high
+      examples:
+        - text: Smart answer complete page
+          link: https://www.gov.uk/towing-rules/y/medium-sized-vehicle/yes/21-or-over
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_start_again
+        - name: type
+          value: smart answer
+        - name: url
+        - name: text
+        - name: section
+          value: Information based on your answers
+        - name: action
+          value: start again
+        - name: external
+          value: false
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+        - name: tool_name
 
 - name: step by step navigation
   events:
@@ -777,26 +1392,34 @@
       implemented: true
       priority: high
       description:
-      example_url: https://www.gov.uk/learn-to-drive-a-car
+      examples:
+        - text: Learn to drive a car step by step
+          link: https://www.gov.uk/learn-to-drive-a-car
       tracker: event_tracker
       data:
       - name: event
         value: event_data
       - name: event_data
         value:
+        - name: event_name
+          value: select_content
         - name: action
           value: opened/closed
-        - name: event_name
         - name: index
-        - name: index_total
+          value:
+          - name: index_section
+          - name: index_section_count
         - name: text
+          value: title of the opened/closed step
         - name: type
           value: "step by step"
     - name: Show/hide all steps
       implemented: true
       priority: high
       description:
-      example_url: https://www.gov.uk/learn-to-drive-a-car
+      examples:
+        - text: Learn to drive a car step by step
+          link: https://www.gov.uk/learn-to-drive-a-car
       tracker: event_tracker
       data:
       - name: event
@@ -806,17 +1429,22 @@
         - name: action
           value: opened/closed
         - name: event_name
+          value: select_content
         - name: index
-          value: 0
-        - name: index_total
+          value:
+          - name: index_section
+            value: '0'
         - name: text
+          value: Show all steps
         - name: type
           value: "step by step"
     - name: link clicks
       implemented: true
       priority: high
       description: Triggered when a link within a step by step is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/learn-to-drive-a-car
+      examples:
+        - text: Learn to drive a car step by step
+          link: https://www.gov.uk/learn-to-drive-a-car
       tracker: link_tracker
       data:
       - name: event
@@ -829,11 +1457,8 @@
         - name: index
           value:
           - name: index_section
-            value: The section that this link is in. The section in this case refers to the step number.
           - name: index_link
             value: The position of the link within this section.
-          - name: index_section_count
-            value: The total amount of links within this section.
         - name: index_total
         - name: link_domain
         - name: link_path_parts
@@ -860,7 +1485,9 @@
       implemented: true
       priority: high
       description: When the Menu or Search button is expanded or collapsed.
-      example_url: https://www.gov.uk/
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk
       tracker: event_tracker
       data:
       - name: event
@@ -874,10 +1501,7 @@
         - name: index
           value:
           - name: index_section
-          - name: index_link
           - name: index_section_count
-        - name: index_total
-          value: 2
         - name: section
           value: Menu/Search
         - name: type
@@ -888,7 +1512,9 @@
       implemented: true
       priority: high
       description: Triggered when the GOVUK logo, a header "menu" section link, or a link under the search component is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
-      example_url: https://www.gov.uk/
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk
       tracker: link_tracker
       data:
       - name: event
@@ -898,6 +1524,7 @@
         - name: event_name
           value: navigation
         - name: external
+          value: "false"
         - name: index
           value:
           - name: index_section
@@ -907,7 +1534,6 @@
           - name: index_section_count
             value: 2 (Menu and Search)
         - name: index_total
-          value: Total links across all sections (currently 28)
         - name: link_domain
         - name: link_path_parts
         - name: method
@@ -924,7 +1550,11 @@
       implemented: true
       priority: high
       description: When a tab is selected.
-      example_url: https://www.gov.uk/renew-driving-licence
+      examples:
+        - text: Tax your vehicle
+          link: https://www.gov.uk/vehicle-tax
+        - text: Bank holidays
+          link: https://www.gov.uk/bank-holidays
       tracker: event_tracker
       data:
       - name: event
@@ -932,6 +1562,7 @@
       - name: event_data
         value:
         - name: event_name
+          value: select_content
         - name: type
           value: tabs
         - name: url
@@ -939,6 +1570,6 @@
         - name: text
           value: text of the selected tab
         - name: index
-          value: index of the selected tab
-        - name: index_total
-          value: number of tabs in total
+          value:
+          - name: index_section
+          - name: index_section_count

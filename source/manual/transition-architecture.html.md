@@ -125,15 +125,6 @@ and that role is further restricted to connecting only to the slave because the
 [pg_hba.conf rule](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/node/s_transition_postgresql_slave.pp#L24-L30)
 to allow it isn't present on the master.
 
-#### Special cases
-
-We serve some assets which were previously on directgov and businesslink
-[via Nginx](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/bouncer.pp#L56-L146)
-on the Bouncer machines. The assets live in [two](https://github.com/alphagov/assets-directgov)
-[repos](https://github.com/alphagov/assets-businesslink) which are [fetched and
-rsynced](https://github.com/alphagov/govuk-app-deployment/blob/master/bouncer/config/deploy.rb#L16-L41)
-to the machines when Bouncer is deployed.
-
 #### HTTPS support for transitioned sites
 
 Bouncer in late 2020 began supporting HTTPS for transitioned sites, through

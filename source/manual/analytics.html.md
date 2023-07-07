@@ -10,7 +10,7 @@ related_repos: [static frontend government-frontend]
 
 GOV.UK uses Google Analytics to track user journeys through the site. The tracking
 data is available to anyone with Google Analytics Suite access for GOV.UK. You can
-request access to this by following the [steps in the GDS wiki](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/communities-of-practice/data-analysis/tools-technical/access-to-google-analytics).
+request access to this by following the [steps in the GDS wiki](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/professions-in-gds/communities-of-practice/data-analysis/tools-technical/access-to-google-analytics).
 
 ## GOV.UK analytics code
 

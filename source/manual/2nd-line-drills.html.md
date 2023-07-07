@@ -80,7 +80,7 @@ See "[If Slack is unavailable](https://docs.google.com/document/d/144y8c2Ly-kG3J
 
 ### Deploy from AWS CodeCommit when Github is unavailable
 
-Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#drill-creating-and-deploying-a-branch-from-codecommit) instructions.
+Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#create-and-deploy-an-image-to-ecr) instructions.
 
 ### Drill enabling a code freeze
 

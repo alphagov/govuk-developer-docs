@@ -6,13 +6,11 @@ layout: manual_layout
 section: 2nd line
 ---
 
-When on Technical 2nd Line you may experience an issue with GOV.UK that requires asking the Site Reliability Engineers (SREs) who work on GOV.UK infrastructure for assistance. The SREs previously worked in the RE GOV.UK team in Reliability Engineering, but currently they mostly work as part of the Platform Engineering team. It is best to use RE GOV.UK channels for communication.
-
-There are [Reliability Engineering docs](https://reliability-engineering.cloudapps.digital/) for users of their systems. There are also [other Reliability Engineering docs](https://re-team-manual.cloudapps.digital/) for use by the team, these may contain more technical details.
+When on 2nd-line Tech Support you may experience an issue with GOV.UK where you need help from a Site Reliability Engineer (SRE). The SREs generally work on the _Platform Engineering_ and _Platform Security and Reliability_ teams.
 
 ## If you require assistance
 
-Ask in `#govuk-platform-reliability` or in `#govuk-platform-engineering`.
+Ask in `#govuk-platform-reliability` or `#govuk-platform-engineering`.
 
 ## If a problem is not urgent
 
@@ -29,10 +27,14 @@ resolve this problem themselves.
 There is a broad explanation of the different areas of support in GOV.UK in
 [ask for help](/manual/ask-for-help.html).
 
-More specificially to GOV.UK, SREs can help with:
+SREs can help with:
 
-- [GOV.UK Puppet](https://github.com/alphagov/govuk-puppet)
+- Scalability and resilience
+- Designing or improving monitoring, metrics, tracing and observability of system behaviour
+- Troubleshooting complex problems
+- Designing new systems or backend (APIs, information storage and processing) features
+- Designing for graceful degradation under failure conditions (for example the GOV.UK static mirrors)
+- Migrating from legacy systems, for example [GOV.UK Puppet](https://github.com/alphagov/govuk-puppet)
 - Upgrading software packages that are end-of-life/have security issues/no longer fit for purpose
-- Running and maintaining the [Terraform configurations](https://github.com/alphagov/govuk-aws/) for AWS
-- Maintaining the mirror configuration
-- Keeping the CI environment running (GOV.UK are responsible for job configuration)
+- Advice on how to structure or maintain [Terraform modules](https://github.com/alphagov/govuk-aws/) for managing cloud resources
+- Continuous deployment and continuous delivery systems (CI/CD), build and release automation

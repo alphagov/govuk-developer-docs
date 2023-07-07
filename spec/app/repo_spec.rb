@@ -9,6 +9,16 @@ RSpec.describe Repo do
     end
   end
 
+  describe "app_name" do
+    it "returns repo_name if app_name not specified" do
+      expect(Repo.new({ "repo_name" => "foo" }).app_name).to eq("foo")
+    end
+
+    it "returns app_name if both app_name and repo_name are specified" do
+      expect(Repo.new({ "app_name" => "foo", "repo_name" => "bar" }).app_name).to eq("foo")
+    end
+  end
+
   describe "api_payload" do
     it "returns a hash of keys describing the app" do
       app_details = {
@@ -58,8 +68,8 @@ RSpec.describe Repo do
       expect(Repo.new("repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
     end
 
-    it "should find puppet class via puppet name" do
-      expect(Repo.new("puppet_name" => "smartanswers", "repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
+    it "should find puppet class via shortname" do
+      expect(Repo.new("shortname" => "smartanswers", "repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should return error message if no puppet class found" do

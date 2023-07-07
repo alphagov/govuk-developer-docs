@@ -29,7 +29,6 @@ eval $(gds aws govuk-integration-poweruser -e --art 8h)
     - `k -n apps exec -it deploy/router-api -- rails c`
 - To open a shell:
     - `k -n apps exec -it deploy/government-frontend -- bash`
-      \>> `curl` # (for example)
 - To open a shell on Router:
     - `k -n apps exec -it deploy/router -c nginx`
 
@@ -55,7 +54,7 @@ Some things haven't yet been replatformed, and some things will remain unchanged
 
 ## CDN and DNS deployments
 
-- DNS rollouts are [via Terraform Cloud](/manual/dns.html)
+- [DNS rollouts](/manual/dns.html) are via [Terraform Cloud](/manual/terraform-cloud.html)
 - Fastly CDN config rollouts are still via Jenkins for now.
 
 ## Smokey

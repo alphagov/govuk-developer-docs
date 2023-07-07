@@ -38,24 +38,10 @@ task :verify_deployable_apps do
 
   intentionally_missing =
     %w[
-      backdrop
-      spotlight
-      stagecraft
-      performanceplatform-admin
-      performanceplatform-big-screen-view
-
-      EFG
-
-      govuk-cdn-logs-monitor
-      govuk-content-schemas
       govuk_crawler_worker
       smokey
-
       kibana-gds
       sidekiq-monitoring
-
-      manuals-frontend
-      mapit
     ]
 
   missing_apps = (deployable_applications - (our_applications + intentionally_missing)).uniq

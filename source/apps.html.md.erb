@@ -20,15 +20,15 @@ Apps can be loosely grouped into different types, including:
 | Type | Count | Applications |
 | --- | --- | --- |
 <% Repos.active_apps.group_by(&:type).sort.each do |name, apps| %>
-| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
+| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.app_name}](/repos/#{app.app_name}.html)" }.join(", ") %> |
 <% end %>
 
 ## Apps by team
 
-| Type | Count | Applications |
+| Team | Count | Applications |
 | --- | --- | --- |
 <% Repos.active_apps.group_by(&:team).sort.each do |name, apps| %>
-| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
+| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.app_name}](/repos/#{app.app_name}.html)" }.join(", ") %> |
 <% end %>
 
 ## Apps by host
@@ -36,7 +36,7 @@ Apps can be loosely grouped into different types, including:
 | Hosting | Count | Applications |
 | --- | --- | --- |
 <% Repos.active_apps.group_by(&:hosting_name).sort.each do |name, apps| %>
-| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
+| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.app_name}](/repos/#{app.app_name}.html)" }.join(", ") %> |
 <% end %>
 
 ## Reuse this data
