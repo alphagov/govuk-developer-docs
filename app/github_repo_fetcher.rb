@@ -56,7 +56,7 @@ class GitHubRepoFetcher
       end
     end
 
-    return nil unless File.exist?("#{REPO_DIR}#{repo_name}/docs")
+    return nil unless File.exist?(File.join(repo_root, "docs"))
 
     recursively_fetch_files(repo_name, %w[docs])
   end
@@ -78,7 +78,7 @@ private
   end
 
   def recursively_fetch_files(repo_name, path_stack)
-    repo_dir = Dir["#{REPO_DIR}#{repo_name}/#{path_stack.join('/')}/*"]
+    repo_dir = Dir["#{File.join(REPO_DIR, repo_name, *path_stack)}/*"]
     top_level_files = repo_dir.select { |file_path| File.file?(file_path) && file_path.end_with?(".md") }.map do |doc_path|
       data_for_github_doc(doc_path, repo_name)
     end
