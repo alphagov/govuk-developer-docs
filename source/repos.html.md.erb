@@ -16,7 +16,7 @@ GOV.UK maintains at least <%= Repos.active.size %> repositories including apps, 
 
 ## Repos by team
 
-| Type | Count | Repos |
+| Team | Count | Repos |
 | --- | --- | --- |
 <% Repos.active.group_by(&:team).sort.each do |name, repos| %>
 | # <%= name %> | <%= repos.count %> | <%= repos.map { |repo| "[#{repo.repo_name}](/repos/#{repo.repo_name}.html)" }.join(", ") %> |

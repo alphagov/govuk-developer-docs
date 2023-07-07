@@ -1,56 +1,90 @@
 ---
 owner_slack: "#govuk-searchandnav"
-title: Backup and restore Elasticsearch indices
+title: Restore Elasticsearch indices from backup
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
 ---
 
-GOV.UK uses AWS Managed Elasticsearch which takes daily snapshots of
-the cluster as part of the managed service.  These are stored in a S3
-bucket that is not made available to us.  Restoration is done by
-making HTTP requests to the `_snapshot` endpoint.
+## Background
 
-To restore a snapshot, follow these steps:
+AWS Managed Elasticsearch automatically takes hourly snapshots for backup and
+disaster recovery purposes. The snapshot data is stored in an Amazon-owned S3
+bucket that is not directly available to us via S3 but is configured as an
+Elasticsearch snapshot repository called `cs-automated-enc`.
 
-0. SSH to a `search` box:
+Restores are done via the Elasticsearch API, by making HTTP requests to the
+`_snapshot` endpoint.
 
-    ```
-    gds govuk connect ssh -e integration search
-    ```
+We also have a `govuk-production` snapshot repository, which is normally only
+used for copying indices from production to the non-production environments.
 
-0. Query the `_snapshot` endpoint of Elasticsearch to get the snapshot
-   repository name:
+## Restore a specific index from a snapshot
 
-    ```
-    govuk_setenv search-api \
-    bash -c 'curl "$ELASTICSEARCH_URI/_snapshot?pretty"'
-    ```
+1. List the available backup snapshots in the `cs-automated-enc` snapshot
+   respository and identify the snapshot that you want to restore from.
 
-0. Query the `_all` endpoint to identify the available snapshots in
-   the named repository:
-
-    ```
-    govuk_setenv search-api \
-    bash -c 'curl "$ELASTICSEARCH_URI/_snapshot/<repository-name>/_all?pretty"'
+    ```sh
+    k exec deploy/search-api -- \
+      sh -c 'curl "$ELASTICSEARCH_URI/_snapshot/cs-automated-enc/_all?pretty"'
     ```
 
-0. If an index already exists with the same name as the one being
-   restored, delete the existing index:
+    This can take a few seconds.
 
-    ```
-    govuk_setenv search-api \
-    bash -c 'curl -XDELETE "$ELASTICSEARCH_URI/<index-name>"'
-    ```
+2. If an index already exists with the same name as the one you want to
+   restore, delete the existing index.
 
-0. Restore the index from the snapshot:
-
-    ```
-    govuk_setenv search-api \
-    bash -c 'curl -XPOST -H 'Content-Type: application/json' "$ELASTICSEARCH_URI/_snapshot/<repository-name>/<snapshot-id>/_restore"  -d "{\"indices\": \"<index-name>\"}"'
+    ```sh
+    k exec deploy/search-api -- sh -c 'curl -XDELETE "$ELASTICSEARCH_URI/<index-name>"'
     ```
 
-> Further information about Elasticsearch snapshots can be found in the [AWS documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-snapshots.html)
+3. Restore the index from the snapshot. Fill in `<snaphot-id>` and
+   `<index-name>` as appropriate.
 
-After a restore has taken place, you will need to [fix the out-of-date search indices](/manual/fix-out-of-date-search-indices.html)
-following the restore, since any changes made in publishing apps since the backup was taken will be missing.
+    ```sh
+    k exec deploy/search-api -- \
+      sh -c 'curl -XPOST -H 'Content-Type: application/json' "$ELASTICSEARCH_URI/_snapshot/cs-automated-enc/<snapshot-id>/_restore" -d "{\"indices\": \"<index-name>\"}"'
+    ```
+
+4. The restore can take a few minutes. The `/_cat/recovery` resource gives an
+   indication of progress.
+
+    ```sh
+    k exec deploy/search-api -- sh -c 'curl "$ELASTICSEARCH_URI/_cat/recovery"'
+    ```
+
+5. Once the restore has finished, [reprocess any content
+   changes](/manual/fix-out-of-date-search-indices.html) that happened after
+   the backup.
+
+   > The reprocessing step is necessary in order to bring the restored index up
+   > to date, because GOV.UK's indexing is incremental only. In other words,
+   > there is no regular full reindex.
+
+## Restore all indices from a snapshot
+
+Restoring all indices is a similar procedure to restoring a specific index.
+
+1. Identify the snapshot to restore. See step 1 above.
+
+1. Delete all indices.
+
+    ```sh
+    k exec deploy/search-api -- sh -c 'curl -XDELETE "$ELASTICSEARCH_URI/_all"'
+    ```
+
+1. Restore all indices from the snapshot.
+
+    ```sh
+    k exec deploy/search-api -- \
+      sh -c 'curl -XPOST "$ELASTICSEARCH_URI/_snapshot/cs-automated-enc/<snapshot-id>/_restore"'
+    ```
+
+1. Once the restore has finished, reprocess recent content changes to bring the
+   indices up to date. See steps 4 and 5 above.
+
+## Further reading
+
+See [Restoring
+snapshots](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html#managedomains-snapshot-restore)
+in the AWS Managed Elasticsearch/Opensearch documentation.

@@ -37,6 +37,12 @@
   type: string
   redact: false
 
+- name: ecommerce
+  description: A Google Analytics ecommerce object, containing an array named 'items' that contains details of the results/links on the page.
+  required: no
+  type: object
+  redact: false
+
 - name: event
   description: Needed by Google to contain a specific thing to cause a trigger to happen.
   example: page_view, event_data
@@ -56,7 +62,7 @@
   description: Used for link tracking. True means the link points to a URL not on the current site.
   example:
   required: yes
-  type: string (true or false)
+  type: string ("true" or "false")
   redact: false
 
 - name: first_published_at
@@ -75,11 +81,12 @@
   type: string
   redact: false
 
-- name: index
-  description: Contains the index of a thing being clicked on, for example the nth accordion section, or the nth link in a list.
-  example:
-  required: no
-  type: string (1-indexed number)
+- name: index (ecommerce)
+  description: The position of the clicked result within an overall list of results e.g. 5 out of 20.
+  value:
+  example: 5
+  required: yes
+  type: number
   redact: false
 
 - name: index_link
@@ -91,7 +98,7 @@
   redact: false
 
 - name: index_section
-  description: The index of the section that was interacted with, for example the index of the section the clicked link is in
+  description: The index of the section that was interacted with, for example the index of the section the clicked link is in. Sections are usually segmented by headings within a component.
   value:
   example: 1
   required: no
@@ -99,7 +106,7 @@
   redact: false
 
 - name: index_section_count
-  description: The total number of sections in the thing being tracked, such as the header or sidebar
+  description: The total number of sections in the thing being tracked, such as the header or sidebar. Sections are usually segmented by headings within a component.
   value:
   example: 1
   required: no
@@ -111,6 +118,30 @@
   example:
   required: yes
   type: string (number)
+  redact: false
+
+- name: item_id
+  description: The URL path of the clicked result.
+  required: yes
+  type: number
+  redact: false
+
+- name: item_list_name
+  description: The name of the finder that the clicked result belongs to.
+  required: yes
+  type: string
+  redact: false
+
+- name: item_name
+  description: Link text of the clicked result.
+  required: yes
+  type: string
+  redact: false
+
+- name: items
+  description: Occurs within the ecommerce attribute and contains details of all of the results/links on the page. Each element of the array contains an index (starting from 1), an item_id (link path e.g. '/pension-credit'), and an item_list_name (the title of the page).
+  required: yes
+  type: array
   redact: false
 
 - name: language
@@ -135,7 +166,7 @@
   example: |
     {1=>"/conditions/vaccinations/flu-influenza-vaccine/", 2=>"undefined", 3=>"undefined", 4=>"undefined", 5=>"undefined"}
   required: yes
-  type: string
+  type: object
   redact: true
 
 - name: location
@@ -178,6 +209,12 @@
   type: string
   redact: false
 
+- name: results
+  description: Used by ecommerce to give a total number of the results/links on the page.
+  required: no
+  type: string
+  redact: false
+
 - name: schema_name
   description:
   value: content attribute of meta tag govuk:schema-name
@@ -192,6 +229,13 @@
   value:
   example:
   required: no
+  type: string
+  redact: false
+
+- name: sort
+  description: The method of sorting (i.e. relevance/updated(newest)/updated(oldest))
+  example: Updated (newest)
+  required: yes
   type: string
   redact: false
 
@@ -245,9 +289,24 @@
   type: string
   redact: false
 
+- name: term
+  description: The search term.
+  value:
+  example: "Pension"
+  required: yes
+  type: string
+  redact: true
+
 - name: text
   description: The text of the thing being tracked, for example the text of a link, button or tab. This can either be read directly from the element, passed from a data attribute, or generated automatically for elements where the text changes, for example the 'Show all sections' link in an accordion, which can also read 'Hide all sections'.
   value: text of the element
+  required: no
+  type: string
+  redact: false
+
+- name: tool_name
+  description: Refers to the tool being tracked, for example the name of a smart answer or 'Find your local council'.
+  value:
   required: no
   type: string
   redact: false
