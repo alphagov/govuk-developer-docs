@@ -17,7 +17,7 @@ gem "middleman-search_engine_sitemap"
 gem "git"
 gem "html-pipeline"
 gem "mdl"
-gem 'open3'
+gem "open3"
 
 gem "govuk_publishing_components"
 gem "govuk_schemas"

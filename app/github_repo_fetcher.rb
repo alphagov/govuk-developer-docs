@@ -41,12 +41,14 @@ class GitHubRepoFetcher
   def docs(repo_name)
     return nil if repo(repo_name).private_repo?
 
-    unless File.exist?("#{REPO_DIR}#{repo_name}")
+    repo_root = File.join(REPO_DIR, repo_name)
+
+    unless File.exist?(repo_root)
       puts "Cloning #{repo_name} docs"
       git_commands = [
-        ["git", "clone", "-n", "--depth=1", "--filter=tree:0", "https://github.com/alphagov/#{repo_name}", "#{REPO_DIR}#{repo_name}"],
-        ["git", "sparse-checkout", "set", "--no-cone", "docs", { chdir: "#{REPO_DIR}#{repo_name}" }],
-        ["git", "checkout", { chdir: "#{REPO_DIR}#{repo_name}" }],
+        ["git", "clone", "-n", "--depth=1", "--filter=tree:0", "https://github.com/alphagov/#{repo_name}", repo_root],
+        ["git", "sparse-checkout", "set", "--no-cone", "docs", { chdir: repo_root }],
+        ["git", "checkout", { chdir: repo_root }],
       ]
       git_commands.each do |command|
         _stdout_str, stderr_str, status = Open3.capture3(*command)
