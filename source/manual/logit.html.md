@@ -161,7 +161,12 @@ should be consistent across stacks.
 
 ## Retention period
 
-[14 days](https://dashboard.logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/2dd89c13-a0ed-4743-9440-825e2e52329e).
+- Production: 14 days
+- Staging: 7 days
+- Integration: 7 days
+
+The retention window for an environment is configurable under the Settings page
+for the corresponding Logit stack, for users with the Stack Editor permission.
 
 ## Further reading
 
