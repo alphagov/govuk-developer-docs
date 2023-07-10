@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>signon: Sign-On-O-Tron and OAuth2 - GOV.UK Developer Documentation</title>
+    <title>signon: Signon and OAuth2 - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -15,12 +15,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="signon: Sign-On-O-Tron and OAuth2 - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="signon: Signon and OAuth2 - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/signon/oauth.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="signon: Sign-On-O-Tron and OAuth2" />
+      <meta property="og:title" content="signon: Signon and OAuth2" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/signon/oauth.html" />
 
@@ -126,7 +126,7 @@
     <li>
       <ul>
           <li><a href="/repos/signon/mass_password_reset.html" rel="noopener" class="govuk-link">mass_password_reset</a></li>
-          <li><a href="/repos/signon/oauth.html" rel="noopener" class="govuk-link">Sign-On-O-Tron and OAuth2</a></li>
+          <li><a href="/repos/signon/oauth.html" rel="noopener" class="govuk-link">Signon and OAuth2</a></li>
           <li><a href="/repos/signon/troubleshooting.html" rel="noopener" class="govuk-link">Troubleshooting</a></li>
           <li><a href="/repos/signon/usage.html" rel="noopener" class="govuk-link">Usage Documentation</a></li>
       </ul>
@@ -187,22 +187,15 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/17f234dd4edd405b45bd9f9040e9652ea0aed70c">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/3634928c4951fe1ab2f51649c16e762e708e2d4e">29 Jun 2023</a>
 </div>
 
-  <h1 class="page-title">signon: Sign-On-O-Tron and OAuth2</h1>
+  <h1 class="page-title">signon: Signon and OAuth2</h1>
 
   
 <p>The GOV.UK admin and editorial systems share a single sign-on system. User
-accounts are created and managed in the sign-on-o-tron application. Users
+accounts are created and managed in the Signon application. Users
 are then authorized to access any given app by use of the OAuth2 protocol.</p>
 <p>The OAuth2 provider functionality is provided by the
 <a href="https://rubygems.org/gems/doorkeeper">Doorkeeper ruby gem</a>. It is based on
@@ -229,12 +222,12 @@ and make any appropriate adjustments.</p>
 account, which are the resource to be shared with the client.</li>
 </ul>
 <h3 id="resource-server">Resource server</h3>
-<p>The resource server is the sign-on-o-tron application, where the resource
+<p>The resource server is the Signon application, where the resource
 is a set of us user permissions.</p>
 <h3 id="client">Client</h3>
 <p>The clients are the various admin and editorial applications.</p>
 <h3 id="authorization-server">Authorization server</h3>
-<p>The sign-on-o-tron application.</p>
+<p>The Signon application.</p>
 <h2 id="client-registration">Client Registration</h2>
 <p>Client credentials are created by developers using a standard script. Those
 credentials are included in applications through a configuration file that
@@ -280,7 +273,7 @@ mitigate the risk of cross-site request forgery.</p>
 <h2 id="overlaying-permissions">Overlaying Permissions</h2>
 <p>While OAuth itself is an authorization protocol we are using it to authorize
 an application’s permission to retrieve details of a given user. The
-sign-on-o-tron application will return details of a user and the client
+Signon application will return details of a user and the client
 applications are responsible for interpreting those to provide authorization
 <em>within</em> that application.</p>
 <p>A request to /user.json (used to retrieve user permissions and authenticated
@@ -292,7 +285,7 @@ will return something a JSON response such as:</p>
     "name": "Fake User",
     "email": "fake.user@digital.cabinet-office.gov.uk",
     "permissions": {
-      "Need-o-Tron": ["signin","admin"],
+      "Maslow": ["signin","admin"],
       "Publisher": ["signin"],
       "Whitehall": ["signin"],
       "Panopticon": ["signin"],
@@ -320,7 +313,7 @@ changed or their account has been suspended).</p>
 application an HTTP PUT to /users/{user.uid} with the full user object in
 JSON (as above). The application MUST then update its record of that user's
 permissions and change its behaviour accordingly.</p>
-<p>Where a user has been suspended sign-on-o-tron will send each application
+<p>Where a user has been suspended Signon will send each application
 an HTTP POST to /users/{user.uid}/reauth. The application MUST then invalidate
 the user’s current session and redirect them to the authorization server.</p>
 <p>The gds-sso library provides utilities to help GDS’ ruby applications manage
