@@ -238,10 +238,19 @@
 <p>See the <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/">GOV.UK Kubernetes Cluster User Docs</a> for an introduction to the
 cluster or ask <a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a> in Slack.</p>
 
-<h2 id="local-development">Local development</h2>
+<h2 id="versioned-vs-unversioned-charts">Versioned vs unversioned charts</h2>
 
-<p>Most of the charts in this repository are designed to be installed via <a href="https://argo-cd.readthedocs.io/en/stable/">Argo
-CD</a> rather than by <code>helm</code>. We hope to improve portability over time.</p>
+<p>Most of the charts in this repository are designed to be deployed via <a href="https://argo-cd.readthedocs.io/en/stable/">Argo
+CD</a> rather than by <code>helm install</code>.
+For these charts, we don&rsquo;t use <code>Chart.Version</code> or Helm&rsquo;s packaging system.</p>
+
+<p>A few charts are still installed via <code>helm install</code> (<a href="https://github.com/search?q=repo%3Aalphagov%2Fgovuk-infrastructure+path%3Aterraform%2Fdeployments%2Fcluster-services+alphagov.github.io">via
+Terraform</a>).
+Those charts are <a href="https://github.com/alphagov/govuk-helm-charts/blob/main/.github/workflows/release.yml">automatically packaged and
+pushed</a>
+to our Helm repository when a change to <code>Chart.Version</code> is merged.</p>
+
+<h2 id="local-development">Local development</h2>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
