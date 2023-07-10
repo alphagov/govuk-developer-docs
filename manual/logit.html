@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Use Logit for GOV.UK - GOV.UK Developer Documentation</title>
+    <title>View GOV.UK logs in Logit - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -19,12 +19,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Use Logit for GOV.UK - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="View GOV.UK logs in Logit - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/logit.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Use Logit for GOV.UK" />
+      <meta property="og:title" content="View GOV.UK logs in Logit" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/logit.html" />
 
@@ -126,38 +126,50 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Use Logit for GOV.UK</span></a>
+    <a href="#header"><span>View GOV.UK logs in Logit</span></a>
     <ul>
       <li>
-        <a href="#how-gov-uk-use-logit"><span>How GOV.UK use Logit</span></a>
-      </li>
-      <li>
-        <a href="#if-logit-is-down"><span>If Logit is down</span></a>
-      </li>
-      <li>
-        <a href="#if-logit39s-data-falls-off-a-cliff"><span>If Logit’s data falls off a cliff</span></a>
-      </li>
-      <li>
-        <a href="#accessing-logit"><span>Accessing Logit</span></a>
+        <a href="#access-logit"><span>Access Logit</span></a>
         <ul>
           <li>
-            <a href="#adding-your-user-to-the-right-team"><span>Adding your user to the right team</span></a>
+            <a href="#log-into-logit"><span>Log into Logit</span></a>
+          </li>
+          <li>
+            <a href="#launch-kibana"><span>Launch Kibana</span></a>
+          </li>
+          <li>
+            <a href="#alternative-login-method"><span>Alternative login method</span></a>
+          </li>
+          <li>
+            <a href="#if-you-don39t-have-access-to-logit"><span>If you don’t have access to Logit</span></a>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="#useful-kibana-queries"><span>Useful Kibana queries</span></a>
       </li>
       <li>
         <a href="#administration-guide"><span>Administration guide</span></a>
         <ul>
           <li>
-            <a href="#adding-users-to-gov-uk-stacks"><span>Adding users to GOV.UK Stacks</span></a>
+            <a href="#if-logit-is-down"><span>If Logit is down</span></a>
           </li>
           <li>
-            <a href="#updating-logstash-configuration"><span>Updating Logstash configuration</span></a>
+            <a href="#if-new-logs-stop-appearing-altogether"><span>If new logs stop appearing altogether</span></a>
+          </li>
+          <li>
+            <a href="#grant-logs-access-to-new-users"><span>Grant logs access to new users</span></a>
+          </li>
+          <li>
+            <a href="#update-logstash-configuration"><span>Update Logstash configuration</span></a>
           </li>
         </ul>
       </li>
       <li>
         <a href="#retention-period"><span>Retention period</span></a>
+      </li>
+      <li>
+        <a href="#further-reading"><span>Further reading</span></a>
       </li>
     </ul>
   </li>
@@ -208,38 +220,115 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/25634d56859b9d7ac4ab409785c4c337c9dbf693">22 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/da4d6c5be9f27f409b1a120741a2b426b831b6ef">7 Jul 2023</a>
 </div>
 
- <h1 id='header'>Use Logit for GOV.UK</h1> <h2 id='how-gov-uk-use-logit'>How GOV.UK use Logit</h2><p>GOV.UK use <a href="https://logit.io">Logit</a> to provide our
-<a href="https://www.elastic.co/webinars/introduction-elk-stack">ELK Stack</a>.</p>
-<p>This is in line with <a href="https://gds-way.cloudapps.digital/">The GDS Way</a> guidance
-on <a href="https://gds-way.cloudapps.digital/standards/logging.html">logging</a>.</p>
-<h2 id='if-logit-is-down'>If Logit is down</h2><p>If there is a problem with Logit you should report it by following the
-instructions in the Reliability Engineering manual for <a href="https://reliability-engineering.cloudapps.digital/logging.html#logit-incident-management">reporting an incident</a>.</p>
-<h2 id='if-logit39s-data-falls-off-a-cliff'>If Logit&rsquo;s data falls off a cliff</h2><p>If there seems to be no recent data in Logit when there really should be, you can try &ldquo;restarting&rdquo; the logstash instance.</p>
-<p>You can get an visual indication of logs sent by navigating to the &ldquo;Settings&rdquo; for an environment and then looking at the &ldquo;Statistics&rdquo;. If no logs are coming in, then this might indicate a restart is required.</p>
-<p>Navigate to the Logit dashboard and select the &ldquo;Settings&rdquo; button next to the environment that is experiencing issues. Next select &ldquo;Logstash Filters&rdquo; in the left hand menu. The &ldquo;Restart Logstash&rdquo; button is in the &ldquo;Danger Zone&rdquo;.</p>
-<p>When we experienced this on 04/03/2019, the Logstash logs for our Staging environment reported the following error repeatedly:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Exception: io.netty.util.internal.OutOfDirectMemoryError: failed to allocate 16777216 byte(s) of direct memory
-</code></pre></div>
+ <h1 id='header'>View GOV.UK logs in Logit</h1> <p>GOV.UK sends application logs and origin HTTP request logs to Logit, a
+software-as-a-service log storage and retrieval system based on the
+<a href="https://logit.io/blog/post/elk-stack-guide/#what-is-the-elk-stack">Elasticsearch, Logstash, Kibana
+stack</a>.</p>
+
 <blockquote>
-<p>If you don&rsquo;t have Settings option, speak to your tech lead/lead developer who will hopefully be able to help.</p>
+<p><strong>Fastly CDN logs are not stored in Logit.</strong> See <a href="/manual/query-cdn-logs.html">Query CDN
+logs</a>.</p>
 </blockquote>
-<h2 id='accessing-logit'>Accessing Logit</h2><p>You can <a href="https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit">access Logit</a> by following the instructions in the Reliability Engineering manual.</p>
-<p>Logit stores the last environment you visited in a session. If you open any
-direct links externally they will take you to this stack.</p>
-<h3 id='adding-your-user-to-the-right-team'>Adding your user to the right team</h3><p>If you are unable to see any logs, please speak to a GOV.UK Logit administrator.
-This will normally be your Tech Lead.</p>
-<h2 id='administration-guide'>Administration guide</h2><h3 id='adding-users-to-gov-uk-stacks'>Adding users to GOV.UK Stacks</h3><p>If you cannot see the user in the user list, they need to first attempt to login via SSO to Logit.  Only once they have attempted to login to Logit will their account be visible for you to then assign them to a team.</p>
+<h2 id='access-logit'>Access Logit</h2><h3 id='log-into-logit'>Log into Logit</h3><p>You can <a href="https://accounts.google.com/o/saml2/initsso?idpid=C01ppujwc&amp;spid=408557323201&amp;forceauthn=false">log into Logit directly via Google Workspace
+single-sign-on</a>.</p>
+<p>Alternatively, you can open Logit from the Google Workspace apps menu in Gmail,
+Calendar, and Drive. Click the 3x3-grid-of-dots icon next to the GDS logo in
+the top-right corner, scroll all the way to the bottom of the list of icons
+that appears, then choose Logit.</p>
+<p>Once you are logged in, you should see the Logit Dashboard page.</p>
+<h3 id='launch-kibana'>Launch Kibana</h3><p>From the Logit Dashboard page, choose Launch Kibana for the appropriate stack.
+Each environment (production, staging, integration) has its own ELK stack in
+Logit named <code>GOV.UK &lt;environment&gt; EKS</code>.</p>
+<p>There are also separate stacks for the legacy EC2/Puppet environments, named
+<code>GOV.UK &lt;environment&gt; AWS</code>.</p>
+<h3 id='alternative-login-method'>Alternative login method</h3>
+<ol>
+<li>Go to <a href="https://dashboard.logit.io/sign-in">https://dashboard.logit.io/sign-in</a>.</li>
+<li>Enter your <code>&lt;username&gt;@digital.cabinet-office.gov.uk</code> email address. The
+password box should disappear when you do this.</li>
+<li>Press Return.</li>
+<li>If you are signed into multiple Google accounts, you will be prompted to
+choose one. Choose your <code>digital.cabinet-office.gov.uk</code> account.</li>
+<li>If you are accessing Logit for the first time, you may need to allow
+Logit to connect with your Google Workspace account if prompted.</li>
+<li>You should be redirected to <code>dashboard.logit.io</code> and see a list of available
+stacks.</li>
+</ol>
+<h3 id='if-you-don39t-have-access-to-logit'>If you don&rsquo;t have access to Logit</h3>
+<blockquote>
+<p>Make sure you have followed the <a href="#log-into-logit">instructions</a> precisely.</p>
+<p>If you chose <em>Sign in with Google</em> (or any of the other <em>Sign in with</em> links)
+on the Logit <em>Sign into your account</em> page, you may be logged in but with no
+stacks visible. Sign out using the link at the bottom-left corner of the page
+and try again.</p>
+</blockquote>
+<p>Your tech lead should have already set up your logs access when you joined your
+team. If you are unable to view logs in Logit, get in touch with your tech lead
+or a member of <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members">GOV.UK Senior Tech</a>.</p>
+<h2 id='useful-kibana-queries'>Useful Kibana queries</h2><p>See <a href="/manual/kibana.html">Useful Kibana queries</a>.</p>
+<h2 id='administration-guide'>Administration guide</h2><p>For an overview of GOV.UK&rsquo;s logging architecture, see <a href="/manual/logging.html">How logging works on
+GOV.UK</a>.</p>
+<h3 id='if-logit-is-down'>If Logit is down</h3>
+<ol>
+<li><p>Check the <a href="https://status.logit.io/">Logit status page</a> to see if there is a
+known issue.</p></li>
+<li><p>Check that you can sign into other third-party services via Google Workspace
+SSO, for example Terraform Cloud. If not then the problem is likely with
+your account or GDS&rsquo;s Google Workspace setup. Contact the <a href="https://gds.slack.com/channels/ask-it">IT
+helpdesk</a> if you suspect this.</p></li>
+<li><p>Try from a different network (for example by tethering your work mobile
+phone to your laptop, or by disconnecting from the office VPN) to make sure
+it&rsquo;s not a local network issue.</p></li>
+<li><p>Have someone else check that it&rsquo;s down for them too, in case the problem is
+specific to your user account. Your tech lead (during office hours) or
+secondary on call (if you&rsquo;re on call out of hours) can help with this.</p></li>
+<li><p>If you are sure there is a Logit outage, contact <a href="https://docs.google.com/document/d/1TFsMkCafynS6e4S0PL6qN8Ml7JgorbAG8AWoHGelaGk/view">Logit telephone
+support</a>
+(access restricted to GDS). If unsure, ask your tech lead or a member of
+<a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members">GOV.UK Senior Tech</a>.</p>
+
+<ul>
+<li>You will be prompted to enter the PIN and leave a voicemail message.</li>
+<li>Mention your name, that you&rsquo;re calling from GDS, a brief description of
+the problem and a contact number for them to reach you.</li>
+<li>This will page someone at Logit and they should call you back within half
+an hour.</li>
+</ul></li>
+</ol>
+<h3 id='if-new-logs-stop-appearing-altogether'>If new logs stop appearing altogether</h3><p>Logs should normally become available to query in Kibana within a minute or two
+of being written.</p>
+<p>Find out when logs stopped appearing. Run an empty query in Kibana Explore
+with the time range set to &ldquo;last 7 days&rdquo; and check the bar graph of message
+count per time window.</p>
+<p>On the source Kubernetes cluster, make sure the filebeat daemonset is healthy
+and look for errors in its logs. <a href="https://gds.slack.com/channels/govuk-platform-engineering">Platform Engineering
+team</a> can help you
+with this.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nt">-n</span> cluster-services describe ds/filebeat-filebeat
+</code></pre></div><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nt">-n</span> cluster-services logs ds/filebeat-filebeat
+</code></pre></div><p>Check for ingestion errors in Logstash:</p>
+
+<ol>
+<li>From the Logit dashboard, choose Settings for the affected stack.</li>
+<li>Choose Diagnostic Logs from the left-hand menu.</li>
+</ol>
+
+<blockquote>
+<p>If you don&rsquo;t have the Settings option, ask your tech lead or someone in
+<a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members">GOV.UK Senior Tech</a> for help.</p>
+</blockquote>
+<p>If there seems to be no recent data in Kibana when there really should be, you can try restarting the Logstash instance:</p>
+
+<ol>
+<li>From the Logit dashboard, choose Settings for the affected stack.</li>
+<li>Select Logstash Filters in the left hand menu.</li>
+<li>Under Danger Zone, press Restart Logstash.</li>
+</ol>
+<h3 id='grant-logs-access-to-new-users'>Grant logs access to new users</h3><p>If you cannot see the user in the user list, they need to first attempt to login via SSO to Logit.  Only once they have attempted to login to Logit will their account be visible for you to then assign them to a team.</p>
 
 <ol>
 <li>Go to the main &ldquo;Dashboard&rdquo;</li>
@@ -247,7 +336,7 @@ This will normally be your Tech Lead.</p>
 <li>Scroll down until you see a list of users and for the particular user give them &ldquo;Member&rdquo; access</li>
 <li>Click &ldquo;Apply Changes&rdquo;</li>
 </ol>
-<h3 id='updating-logstash-configuration'>Updating Logstash configuration</h3><p>At present there is no automated way to configure Logstash configuration.</p>
+<h3 id='update-logstash-configuration'>Update Logstash configuration</h3><p>At present there is no automated way to configure Logstash configuration.</p>
 
 <ol>
 <li>Click the &ldquo;Settings&rdquo; button next to the stack you wish to configure.</li>
@@ -260,6 +349,7 @@ This will normally be your Tech Lead.</p>
 repository. Any changes to the configuration should be stored in here, and they
 should be consistent across stacks.</p>
 <h2 id='retention-period'>Retention period</h2><p><a href="https://dashboard.logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/2dd89c13-a0ed-4743-9440-825e2e52329e">14 days</a>.</p>
+<h2 id='further-reading'>Further reading</h2><p>See <a href="/manual/logging.html">How logging works on GOV.UK</a>.</p>
 
 
   <div class='related-content'>
@@ -280,6 +370,7 @@ should be consistent across stacks.</p>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
+            <li><a href="/manual/query-cdn-logs.html">Query CDN logs</a></li>
             <li><a href="/manual/kibana.html">Query Kibana (includes useful queries)</a></li>
           </ul>
         </div>
@@ -294,7 +385,7 @@ should be consistent across stacks.</p>
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/logit.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Use+Logit+for+GOV.UK%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Flogit.html%29&amp;labels=bug&amp;title=Re%3A+%27Use+Logit+for+GOV.UK%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27View+GOV.UK+logs+in+Logit%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Flogit.html%29&amp;labels=bug&amp;title=Re%3A+%27View+GOV.UK+logs+in+Logit%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

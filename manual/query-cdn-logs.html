@@ -129,10 +129,10 @@
     <a href="#header"><span>Query CDN logs</span></a>
     <ul>
       <li>
-        <a href="#accessing-athena"><span>Accessing Athena</span></a>
+        <a href="#access-athena"><span>Access Athena</span></a>
       </li>
       <li>
-        <a href="#querying"><span>Querying</span></a>
+        <a href="#write-an-athena-sql-query"><span>Write an Athena SQL query</span></a>
         <ul>
           <li>
             <a href="#always-query-with-a-partition"><span>Always query with a partition</span></a>
@@ -140,7 +140,7 @@
         </ul>
       </li>
       <li>
-        <a href="#example-queries"><span>Example Queries</span></a>
+        <a href="#example-athena-queries"><span>Example Athena queries</span></a>
         <ul>
           <li>
             <a href="#how-many-errors-were-served-to-users-in-a-timeframe"><span>How many errors were served to users in a timeframe</span></a>
@@ -216,13 +216,24 @@
         </ul>
       </li>
       <li>
-        <a href="#adding-a-new-field-to-the-cdn-logs"><span>Adding a new field to the CDN logs</span></a>
+        <a href="#add-a-new-field-to-the-cdn-logs"><span>Add a new field to the CDN logs</span></a>
       </li>
       <li>
         <a href="#troubleshooting"><span>Troubleshooting</span></a>
         <ul>
           <li>
             <a href="#hive_cursor_error-row-is-not-a-valid-json-object"><span>HIVE_CURSOR_ERROR: Row is not a valid JSON Object</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#splunk"><span>Splunk</span></a>
+        <ul>
+          <li>
+            <a href="#query-cdn-logs-in-splunk"><span>Query CDN logs in Splunk</span></a>
+          </li>
+          <li>
+            <a href="#gain-access-to-splunk"><span>Gain access to Splunk</span></a>
           </li>
         </ul>
       </li>
@@ -256,8 +267,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "CDN & Caching",
-        "@id": "http://www.dev.gov.uk/manual.html#cdn-caching"
+        "name": "Logging",
+        "@id": "http://www.dev.gov.uk/manual.html#logging"
       }
     }
   ]
@@ -270,25 +281,25 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#cdn-caching" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;CDN \u0026 Caching&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#cdn-caching">CDN &amp; Caching</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#logging" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Logging&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#logging">Logging</a>
         </li>
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0e8e9cf7015b386035de75e02c97dcf831e9221d">11 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/da4d6c5be9f27f409b1a120741a2b426b831b6ef">7 Jul 2023</a>
 </div>
 
- <h1 id='header'>Query CDN logs</h1> <p>The <a href="/manual/cdn.html">CDN</a> log files are sent to Amazon S3 every 15 minutes
-and are stored for 120 days. The data in these log files can be queried via
-<a href="https://aws.amazon.com/athena/">Amazon Athena</a> to gain a variety of insights into GOV.UK traffic.</p>
-<p>Previously, the log files were sent via syslog and available in real time
-in the <code>/var/log/cdn</code> directory of the <code>monitoring</code> server. Due to low use now
-we have Athena, these were <a href="https://github.com/alphagov/govuk-puppet/pull/10126">removed</a>,
-but the behaviour can be restored if necessary.</p>
-<h2 id='accessing-athena'>Accessing Athena</h2><p>Amazon Athena provides the means to query the logs through an SQL syntax.</p>
-<p>The logs appear in a database named <code>fastly_logs</code> and there are 3 logs from
-the CDN which are available as tables:</p>
+ <h1 id='header'>Query CDN logs</h1> <p>Fastly, GOV.UK&rsquo;s <a href="/manual/cdn.html">content distribution network</a>, logs
+metadata about HTTP requests to GOV.UK. Fastly sends log files to Amazon S3
+every 15 minutes, where we store them for 120 days.</p>
+<p>You can query these logs using <a href="https://docs.aws.amazon.com/athena/latest/ug/what-is.html">Amazon
+Athena</a> to gain
+insights into GOV.UK traffic.</p>
+<p>The same Fastly logs are also available to query <a href="#splunk">in Splunk</a>.</p>
+<h2 id='access-athena'>Access Athena</h2><p>You can use Amazon Athena to query the CDN logs by writing SQL queries.</p>
+<p>The logs are written to a database named <code>fastly_logs</code>. There are 3 different
+services on the CDN, corresponding to 3 different tables in the database:</p>
 
 <ul>
 <li><strong>bouncer</strong> - legacy government websites that are now redirected to GOV.UK</li>
@@ -298,37 +309,45 @@ stylesheets and javascripts</li>
 <li><strong>govuk_www</strong> - content served from www.gov.uk, mainly HTML pages with atom
 feeds and web services</li>
 </ul>
-<p>Athena is available through the AWS control panel and is only useful in
-the <code>govuk_infrastructure_production</code> account (as we barely use the ones for
-integration and staging). To access,
-<a href="/manual/get-started.html#sign-in-to-aws">log into AWS</a>, navigate to
-<a href="https://eu-west-1.console.aws.amazon.com/athena">Athena</a> and select the
-<code>fastly_logs</code> database.</p>
-<h2 id='querying'>Querying</h2><p>Queries are written using an SQL dialect, <a href="https://prestodb.io/">presto</a>,
-AWS provides <a href="https://docs.aws.amazon.com/athena/latest/ug/functions-operators-reference-section.html">usage documentation</a>. GOV.UK indexes use
-<a href="https://docs.aws.amazon.com/athena/latest/ug/presto-functions.html#presto-functions-env1">version 1 of the Athena engine</a>, which is based off
-<a href="https://prestodb.io/docs/0.172/index.html">Presto 0.172</a>.</p>
+<p>You can access Athena through the AWS console in the <strong>production</strong> account.</p>
+
+<ol>
+<li><a href="/manual/get-started.html#sign-in-to-aws">Log in</a> to the <strong>production</strong> AWS
+account</li>
+<li>Navigate to <a href="https://eu-west-1.console.aws.amazon.com/athena">Athena</a></li>
+<li>Select the <code>fastly_logs</code> database.</li>
+</ol>
+<h2 id='write-an-athena-sql-query'>Write an Athena SQL query</h2><p>Athena is based on the <a href="https://trino.io/docs/current/">Trino</a> SQL dialect. See
+Amazon&rsquo;s documentation:</p>
+
+<ul>
+<li><a href="https://docs.aws.amazon.com/athena/latest/ug/dml-queries-functions-operators.html">Data manipulation language statements, functions and
+operators</a></li>
+<li><a href="https://docs.aws.amazon.com/athena/latest/ug/functions.html#functions-env3">Functions in Athena engine version
+3</a></li>
+</ul>
 <p>A basic query could be:</p>
 <div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="o">*</span>
 <span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
 <span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2018</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">request_received</span> <span class="k">DESC</span>
 <span class="k">LIMIT</span> <span class="mi">10</span>
-</code></pre></div><p>Take note of the use of a date to restrict the data, this utilises a
-data <a href="https://docs.aws.amazon.com/athena/latest/ug/partitions.html">partition</a> so that the query only traverses a subset of data.</p>
-<h3 id='always-query-with-a-partition'>Always query with a partition</h3><p>Unless you have a good reason to do otherwise all queries to the CDN logs
-should be restricted to just the dates that you care about. Doing this makes
-the queries:</p>
+</code></pre></div><p><strong>Note the <code>date</code>, <code>month</code> and <code>year</code> fields in the <code>WHERE</code> clause.</strong> These
+special fields represent a data <a href="https://docs.aws.amazon.com/athena/latest/ug/partitions.html">partition</a>. This helps the query engine to
+read just the data for the date you&rsquo;re interested in, instead of scanning the
+entire 120 days of data unnecessarily.</p>
+<h3 id='always-query-with-a-partition'>Always query with a partition</h3><p>Unless you have a good reason to run your query over the entire dataset, always
+specify just the dates that you care about. This makes your queries:</p>
 
 <ul>
-<li><strong>substantially faster</strong> - far less data needs to be traversed and there is a
-lower chance of a query timeout</li>
-<li><strong>substantially cheaper</strong> - the cost of using Athena is based on the amount
-of data that is traversed</li>
+<li><strong>much faster</strong> because far less data needs to be scanned</li>
+<li><strong>more reliable</strong> because your query is less likely to time out</li>
+<li><strong>much cheaper</strong> because Athena queries
+<a href="https://aws.amazon.com/athena/pricing/#Pricing">cost</a> $5 per TB of data
+scanned</li>
 </ul>
-<h2 id='example-queries'>Example Queries</h2><p>This is a selection of queries put together to show some of the ways to
-query the CDN logs. You are encouraged to add to this list if you
-write useful queries for particular scenarios.</p>
+<h2 id='example-athena-queries'>Example Athena queries</h2><p>This is a selection of queries to show some of the ways to query the CDN logs.</p>
+<p>You can add to this list if you write a useful query for a new scenario.</p>
 <h3 id='how-many-errors-were-served-to-users-in-a-timeframe'>How many errors were served to users in a timeframe</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">status</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="k">count</span>
 <span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
 <span class="k">WHERE</span> <span class="n">status</span> <span class="o">&gt;=</span> <span class="mi">500</span> <span class="k">AND</span> <span class="n">status</span> <span class="o">&lt;=</span> <span class="mi">599</span>
@@ -599,7 +618,7 @@ E.g.:</p>
 <div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="p">...</span> <span class="k">THEN</span> <span class="n">true_value</span> <span class="k">ELSE</span> <span class="n">false_value</span> <span class="k">END</span><span class="p">)</span>
 </code></pre></div><p>E.g.</p>
 <div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">status</span> <span class="k">BETWEEN</span> <span class="mi">200</span> <span class="k">AND</span> <span class="mi">499</span> <span class="k">THEN</span> <span class="n">request_time</span> <span class="k">ELSE</span> <span class="mi">0</span> <span class="k">END</span><span class="p">)</span>
-</code></pre></div><h2 id='adding-a-new-field-to-the-cdn-logs'>Adding a new field to the CDN logs</h2><p>Adding a new field to the CDN logs is a half manual, half automated
+</code></pre></div><h2 id='add-a-new-field-to-the-cdn-logs'>Add a new field to the CDN logs</h2><p>Adding a new field to the CDN logs is a half manual, half automated
 process and is <a href="https://trello.com/c/7pAvfM8R/167">tracked as tech debt</a>.</p>
 <p>You should do this in the Integration environment first and wait until
 you see the logs coming through to Athena from Fastly. Only then
@@ -666,18 +685,27 @@ to your local machine and then parse each JSON blob in each of the files with a
 JSON tool (such as <code>JSON.parse</code> in Ruby) until you find the problem. Once
 identified you may need to need to contact Fastly about the
 problem or update the log formatting in Fastly to resolve the issue.</p>
+<h2 id='splunk'>Splunk</h2><h3 id='query-cdn-logs-in-splunk'>Query CDN logs in Splunk</h3><p>Fastly logs are also available in <a href="https://gds.splunkcloud.com/">Splunk Cloud</a>
+in the <code>govuk_cdn</code> index.</p>
+<p>Example query: <a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3Dgovuk_cdn%20http_method%3Dpost">all POST requests made in the last 30
+minutes</a>.</p>
+<h3 id='gain-access-to-splunk'>Gain access to Splunk</h3><p>If you work on GOV.UK and do not yet have access to Splunk, you can request
+access by raising a support ticket with the GDS IT Helpdesk and asking them to
+enable Splunk for your GDS Google Workspace account with a note that you work
+on GOV.UK.</p>
 
 
   <div class='related-content'>
 
-    <h3>More in the CDN & Caching section</h3>
+    <h3>More in the Logging section</h3>
 
     <div class='govuk-grid-row'>
         <div class='govuk-grid-column-one-half'>
           <h4>Learn</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/cdn.html">Our content delivery network (CDN)</a></li>
+            <li><a href="/manual/logging.html">How logging works on GOV.UK</a></li>
+            <li><a href="/manual/request-tracing.html">Request tracing</a></li>
           </ul>
         </div>
 
@@ -685,7 +713,8 @@ problem or update the log formatting in Fastly to resolve the issue.</p>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/purge-cache.html">Purge a page from cache</a></li>
+            <li><a href="/manual/kibana.html">Query Kibana (includes useful queries)</a></li>
+            <li><a href="/manual/logit.html">View GOV.UK logs in Logit</a></li>
           </ul>
         </div>
 

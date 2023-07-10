@@ -129,22 +129,30 @@
     <a href="#header"><span>How logging works on GOV.UK</span></a>
     <ul>
       <li>
-        <a href="#logit"><span>Logit</span></a>
+        <a href="#overview"><span>Overview</span></a>
       </li>
       <li>
-        <a href="#kibana"><span>Kibana</span></a>
-      </li>
-      <li>
-        <a href="#filebeat"><span>Filebeat</span></a>
-      </li>
-      <li>
-        <a href="#logstream-and-logship"><span>Logstream and Logship</span></a>
-      </li>
-      <li>
-        <a href="#fastly"><span>Fastly</span></a>
-      </li>
-      <li>
-        <a href="#ssh-logs"><span>SSH logs</span></a>
+        <a href="#components-in-the-logging-path"><span>Components in the logging path</span></a>
+        <ul>
+          <li>
+            <a href="#application-container"><span>Application container</span></a>
+          </li>
+          <li>
+            <a href="#kubernetes-worker-node"><span>Kubernetes worker node</span></a>
+          </li>
+          <li>
+            <a href="#filebeat"><span>Filebeat</span></a>
+          </li>
+          <li>
+            <a href="#logstash"><span>Logstash</span></a>
+          </li>
+          <li>
+            <a href="#elasticsearch"><span>Elasticsearch</span></a>
+          </li>
+          <li>
+            <a href="#kibana"><span>Kibana</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -195,43 +203,98 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/33490c77297ea88b07de4c5489e0106a4982346d">7 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/da4d6c5be9f27f409b1a120741a2b426b831b6ef">7 Jul 2023</a>
 </div>
 
- <h1 id='header'>How logging works on GOV.UK</h1> <p><a href="/manual/images/logging.png" rel="noopener noreferrer"><img src="/manual/images/logging.png" alt="" /></a>
-<em><a href="https://drive.google.com/file/d/0B7zRJZy-BNyUMVBENnVNYW9TTEk/view?usp=sharing">Source diagram</a>.</em></p>
-<h2 id='logit'>Logit</h2><p>GOV.UK is following <a href="https://gds-way.cloudapps.digital/standards/logging.html#content">The GDS Way guidance on logging</a> by using the approved vendor <a href="https://logit.io">Logit</a>.</p>
-<p>For information on how to log in and view stacks, please see the <a href="/manual/logit.html">GOV.UK Logit documentation</a>.</p>
+ <h1 id='header'>How logging works on GOV.UK</h1> <blockquote>
+<p><strong>To view logs, see <a href="/manual/logit.html">View GOV.UK logs in Logit</a>.</strong></p>
+</blockquote>
+<h2 id='overview'>Overview</h2><p>GOV.UK sends its application logs and origin HTTP request logs to managed <a href="https://logit.io/blog/post/elk-stack-guide/#what-is-the-elk-stack">ELK
+stacks</a>
+hosted by <a href="https://logit.io/">Logit.io</a>, a software-as-a-service provider. Each
+environment has its own ELK stack in Logit.</p>
 
 <blockquote>
-<p><strong>Note:</strong> although Logit is where we currently store logs, the GDS Way suggests we are migrating towards Splunk and therefore some logs are currently available in Splunk.</p>
+<p><a href="/manual/query-cdn-logs.html">Fastly CDN request logs</a> use a different system
+to this because of the much higher data rates involved.</p>
 </blockquote>
-<h2 id='kibana'>Kibana</h2><p>Kibana is the interface for viewing logs in Elasticsearch. Use the Logit interface to log into Kibana.</p>
-<p>There&rsquo;s some documentation on <a href="/manual/kibana.html">useful Kibana queries for Technical 2nd Line</a>.</p>
-<h2 id='filebeat'>Filebeat</h2><p>Each machine runs <a href="https://www.elastic.co/products/beats/filebeat">Elastic Filebeat</a>, and independently ships logs to the Logit-provided logstash endpoint.</p>
-<p>Filebeat tails logs every 10 seconds and can output to a variety of sources. It is fully incorporated into the Elastic ecosystem.</p>
-<p>We use <a href="https://github.com/alphagov/govuk-puppet/blob/4cca939ec49a9b4c106b14b7cf896db31a003636/modules/filebeat/manifests/prospector.pp">the <code>filebeat::prospector</code> defined type</a> to create the filebeat configuration on each instance.</p>
-<h2 id='logstream-and-logship'>Logstream and Logship</h2><p>We have a defined type in our Puppet code which uses <a href="https://github.com/alphagov/tagalog/blob/master/tagalog/command/logship.py">logship</a> to tail logfiles. We only use Logstream to send nginx metrics, via statsd, to Graphite.</p>
-<p>In the future this will be replaced.</p>
-<h2 id='fastly'>Fastly</h2><p>Fastly sends logs to S3 for the www, assets and bouncer services. These can be <a href="/manual/query-cdn-logs.html">queried through Athena</a>.</p>
-<p>Logs are also available in Splunk in the <code>govuk_cdn</code> index. Here&rsquo;s an <a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3Dgovuk_cdn%20http_method%3Dpost">example query for POST requests</a></p>
-<h2 id='ssh-logs'>SSH logs</h2><p>We ship <code>/var/log/auth.log</code> and <code>/var/log/secure.log</code> to Splunk <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/files/node/s_base/amazon-cloudwatch-agent.json">via CloudWatch</a> and CDIO Cyber&rsquo;s <a href="https://github.com/alphagov/centralised-security-logging-service/blob/master/kinesis_processor%2Faccounts_loggroup_index.toml#L1430-L1440">centralised security logging service</a>.</p>
-<p>There are different indices for each environment:</p>
+<p><a href="https://docs.google.com/drawings/d/1m0ls6d7dEkHeRgLLnrXrtDOUSnptF3npzJCxrYqmZ5I/export/svg" rel="noopener noreferrer"><img src="https://docs.google.com/drawings/d/1m0ls6d7dEkHeRgLLnrXrtDOUSnptF3npzJCxrYqmZ5I/export/svg" alt="Block diagram showing data flow from containers in Kubernetes through to the
+managed ELK
+stack." /></a>
+<small>
+<a href="https://docs.google.com/drawings/d/1m0ls6d7dEkHeRgLLnrXrtDOUSnptF3npzJCxrYqmZ5I/edit">edit diagram</a>
+</small></p>
+<h2 id='components-in-the-logging-path'>Components in the logging path</h2><h3 id='application-container'>Application container</h3><p>The application container, or a sidecar/adapter container such as the nginx
+reverse proxy, writes log lines to stdout or stderr.</p>
+<p>Log lines can be structured (JSON) or unstructured (arbitrary text).</p>
+
+<blockquote>
+<p>Application workloads in GOV.UK&rsquo;s Kubernetes clusters run with
+<code>readOnlyRootFilesystem: true</code> and should not write logs anywhere other than
+stdout/stderr. Only logs written to stdout/stderr will be collected by the
+logging system.</p>
+</blockquote>
+<h3 id='kubernetes-worker-node'>Kubernetes worker node</h3><p>The container runtime (<a href="https://containerd.io/"><code>containerd</code></a>) and
+<a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/"><code>kubelet</code></a>
+on the worker node are responsible for:</p>
 
 <ul>
-<li><a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D%22govuk_production%22">govuk_production</a></li>
-<li><a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D%22govuk_staging%22">govuk_staging</a></li>
-<li><a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D%22govuk_integration%22">govuk_integration</a></li>
+<li>writing the workload containers&rsquo; stdout/stderr streams to files in
+<code>/var/log/containers</code></li>
+<li>rotating those log files so as not to run out of space</li>
 </ul>
-<p>You can see the logs if your account has access to GOV.UK&rsquo;s Splunk. If you do not have access to Splunk, you can request access by raising a support ticket with IT and asking them to enable Splunk for your Google account with a note that you work on GOV.UK.</p>
+<h3 id='filebeat'>Filebeat</h3><p>The
+<a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-overview.html">Filebeat</a>
+daemon runs on each Kubernetes worker node and is responsible for:</p>
+
+<ul>
+<li>finding and tailing log files on the local filesystem</li>
+<li>applying some transformations such as parsing JSON-formatted log lines and
+dropping some unwanted fields</li>
+<li>sending logs to Logstash (at Logit)</li>
+</ul>
+<p>Filebeat runs as a
+<a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">daemonset</a>
+in the <code>cluster-services</code> namespace.</p>
+<p>As of mid-2023, Filebeat is installed <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/logging.tf">by a Helm chart via
+Terraform</a>
+and its
+<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/filebeat.yml">configuration</a>
+is also managed using Terraform. In the future, Argo CD could replace this
+usage of Terraform as part of ongoing efforts to reduce toil.</p>
+<h3 id='logstash'>Logstash</h3><p><a href="https://www.elastic.co/guide/en/logstash/current/introduction.html">Logstash</a>
+is a log ingestion pipeline, essentially an
+<a href="https://en.wikipedia.org/wiki/Extract,_transform,_load">ETL</a> system for logs.
+Logstash and the remaining components in the logging path are hosted by
+<a href="https://logit.io/">Logit.io</a>.</p>
+<p>Logstash is responsible for:</p>
+
+<ul>
+<li>receiving streams of log messages from each node&rsquo;s Filebeat process via TLS
+over the Internet</li>
+<li>parsing the semi-structured log messages from Filebeat and transforming them
+where necessary, for example to fit the <a href="https://www.elastic.co/guide/en/ecs/current/index.html">Elastic Common
+Schema</a></li>
+<li>loading the logs into Elasticsearch for storage and indexing</li>
+</ul>
+<h3 id='elasticsearch'>Elasticsearch</h3><p><a href="https://www.elastic.co/what-is/elasticsearch">Elasticsearch</a> is a search
+engine and storage/retrieval system. It is responsible for:</p>
+
+<ul>
+<li><a href="https://www.elastic.co/blog/found-dive-into-elasticsearch-storage">storing the log data</a></li>
+<li>indexing the stored logs for efficient search and retrieval</li>
+<li>running queries and returning the results to the user interface (Kibana)</li>
+</ul>
+<h3 id='kibana'>Kibana</h3><p><a href="https://www.elastic.co/what-is/kibana">Kibana</a> is the user interface for
+viewing logs. It is responsible for:</p>
+
+<ul>
+<li>rendering the web UI</li>
+<li>parsing user queries written in Lucene/KQL into Elastic</li>
+<li>querying the Elasticsearch indices</li>
+<li>displaying the results</li>
+</ul>
 
 
   <div class='related-content'>
@@ -251,8 +314,9 @@
           <h4>How to...</h4>
 
           <ul class="govuk-list">
+            <li><a href="/manual/query-cdn-logs.html">Query CDN logs</a></li>
             <li><a href="/manual/kibana.html">Query Kibana (includes useful queries)</a></li>
-            <li><a href="/manual/logit.html">Use Logit for GOV.UK</a></li>
+            <li><a href="/manual/logit.html">View GOV.UK logs in Logit</a></li>
           </ul>
         </div>
 
