@@ -1,28 +1,27 @@
 ---
 owner_slack: "#govuk-developers"
 title: Query CDN logs
-section: CDN & Caching
+section: Logging
 layout: manual_layout
 parent: "/manual.html"
 ---
 
-The [CDN](/manual/cdn.html) log files are sent to Amazon S3 every 15 minutes
-and are stored for 120 days. The data in these log files can be queried via
-[Amazon Athena][] to gain a variety of insights into GOV.UK traffic.
+Fastly, GOV.UK's [content distribution network](/manual/cdn.html), logs
+metadata about HTTP requests to GOV.UK. Fastly sends log files to Amazon S3
+every 15 minutes, where we store them for 120 days.
 
-Previously, the log files were sent via syslog and available in real time
-in the `/var/log/cdn` directory of the `monitoring` server. Due to low use now
-we have Athena, these were [removed](https://github.com/alphagov/govuk-puppet/pull/10126),
-but the behaviour can be restored if necessary.
+You can query these logs using [Amazon
+Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html) to gain
+insights into GOV.UK traffic.
 
-[Amazon Athena]: https://aws.amazon.com/athena/
+The same Fastly logs are also available to query [in Splunk](#splunk).
 
-## Accessing Athena
+## Access Athena
 
-Amazon Athena provides the means to query the logs through an SQL syntax.
+You can use Amazon Athena to query the CDN logs by writing SQL queries.
 
-The logs appear in a database named `fastly_logs` and there are 3 logs from
-the CDN which are available as tables:
+The logs are written to a database named `fastly_logs`. There are 3 different
+services on the CDN, corresponding to 3 different tables in the database:
 
 - **bouncer** - legacy government websites that are now redirected to GOV.UK
 - **govuk_assets** - assets supporting GOV.UK pages hosted on
@@ -31,19 +30,22 @@ the CDN which are available as tables:
 - **govuk_www** - content served from www.gov.uk, mainly HTML pages with atom
   feeds and web services
 
-Athena is available through the AWS control panel and is only useful in
-the `govuk_infrastructure_production` account (as we barely use the ones for
-integration and staging). To access,
-[log into AWS](/manual/get-started.html#sign-in-to-aws), navigate to
-[Athena](https://eu-west-1.console.aws.amazon.com/athena) and select the
-`fastly_logs` database.
+You can access Athena through the AWS console in the **production** account.
 
-## Querying
+1. [Log in](/manual/get-started.html#sign-in-to-aws) to the **production** AWS
+   account
+1. Navigate to [Athena](https://eu-west-1.console.aws.amazon.com/athena)
+1. Select the `fastly_logs` database.
 
-Queries are written using an SQL dialect, [presto](https://prestodb.io/),
-AWS provides [usage documentation][query-language]. GOV.UK indexes use
-[version 1 of the Athena engine][athena-v1], which is based off
-[Presto 0.172][presto-0172].
+## Write an Athena SQL query
+
+Athena is based on the [Trino](https://trino.io/docs/current/) SQL dialect. See
+Amazon's documentation:
+
+- [Data manipulation language statements, functions and
+  operators](https://docs.aws.amazon.com/athena/latest/ug/dml-queries-functions-operators.html)
+- [Functions in Athena engine version
+  3](https://docs.aws.amazon.com/athena/latest/ug/functions.html#functions-env3)
 
 A basic query could be:
 
@@ -55,30 +57,29 @@ ORDER BY request_received DESC
 LIMIT 10
 ```
 
-Take note of the use of a date to restrict the data, this utilises a
-data [partition][] so that the query only traverses a subset of data.
+**Note the `date`, `month` and `year` fields in the `WHERE` clause.** These
+special fields represent a data [partition]. This helps the query engine to
+read just the data for the date you're interested in, instead of scanning the
+entire 120 days of data unnecessarily.
+
+[partition]: https://docs.aws.amazon.com/athena/latest/ug/partitions.html
 
 ### Always query with a partition
 
-Unless you have a good reason to do otherwise all queries to the CDN logs
-should be restricted to just the dates that you care about. Doing this makes
-the queries:
+Unless you have a good reason to run your query over the entire dataset, always
+specify just the dates that you care about. This makes your queries:
 
-- **substantially faster** - far less data needs to be traversed and there is a
-  lower chance of a query timeout
-- **substantially cheaper** - the cost of using Athena is based on the amount
-  of data that is traversed
+- **much faster** because far less data needs to be scanned
+- **more reliable** because your query is less likely to time out
+- **much cheaper** because Athena queries
+  [cost](https://aws.amazon.com/athena/pricing/#Pricing) $5 per TB of data
+  scanned
 
-[partition]: https://docs.aws.amazon.com/athena/latest/ug/partitions.html
-[query-language]: https://docs.aws.amazon.com/athena/latest/ug/functions-operators-reference-section.html
-[athena-v1]: https://docs.aws.amazon.com/athena/latest/ug/presto-functions.html#presto-functions-env1
-[presto-0172]: https://prestodb.io/docs/0.172/index.html
+## Example Athena queries
 
-## Example Queries
+This is a selection of queries to show some of the ways to query the CDN logs.
 
-This is a selection of queries put together to show some of the ways to
-query the CDN logs. You are encouraged to add to this list if you
-write useful queries for particular scenarios.
+You can add to this list if you write a useful query for a new scenario.
 
 ### How many errors were served to users in a timeframe
 
@@ -477,7 +478,7 @@ E.g.
 SUM(CASE WHEN status BETWEEN 200 AND 499 THEN request_time ELSE 0 END)
 ```
 
-## Adding a new field to the CDN logs
+## Add a new field to the CDN logs
 
 Adding a new field to the CDN logs is a half manual, half automated
 process and is [tracked as tech debt](https://trello.com/c/7pAvfM8R/167).
@@ -559,3 +560,20 @@ to your local machine and then parse each JSON blob in each of the files with a
 JSON tool (such as `JSON.parse` in Ruby) until you find the problem. Once
 identified you may need to need to contact Fastly about the
 problem or update the log formatting in Fastly to resolve the issue.
+
+## Splunk
+
+### Query CDN logs in Splunk
+
+Fastly logs are also available in [Splunk Cloud](https://gds.splunkcloud.com/)
+in the `govuk_cdn` index.
+
+Example query: [all POST requests made in the last 30
+minutes](https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3Dgovuk_cdn%20http_method%3Dpost).
+
+### Gain access to Splunk
+
+If you work on GOV.UK and do not yet have access to Splunk, you can request
+access by raising a support ticket with the GDS IT Helpdesk and asking them to
+enable Splunk for your GDS Google Workspace account with a note that you work
+on GOV.UK.
