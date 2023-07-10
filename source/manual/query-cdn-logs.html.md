@@ -573,7 +573,13 @@ minutes](https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20i
 
 ### Gain access to Splunk
 
-If you work on GOV.UK and do not yet have access to Splunk, you can request
-access by raising a support ticket with the GDS IT Helpdesk and asking them to
-enable Splunk for your GDS Google Workspace account with a note that you work
-on GOV.UK.
+You can see the logs if your account has access to GOV.UK's Splunk. If you do
+not have access to Splunk, you can request access by raising a support ticket
+with IT and asking them to enable Splunk for your Google account.  You'll need
+to:
+
+- specify "gds-006-govuk" as the Splunk SAML Group you need access to,
+- copy in the Approval Owner as outlined in the [Splunk approval
+  list](https://docs.google.com/spreadsheets/d/1qC91oySDbs993CKm214ebBvpwUT-s3hqEO-LByWnYhg/edit#gid=0),
+- include the reason why you need access and ask the for approval by replying
+  to the IT support ticket.
