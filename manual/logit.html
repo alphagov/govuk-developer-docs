@@ -221,7 +221,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/da4d6c5be9f27f409b1a120741a2b426b831b6ef">7 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/74bb92441d85a7146a9b72e554ffe8230cffd970">7 Jul 2023</a>
 </div>
 
  <h1 id='header'>View GOV.UK logs in Logit</h1> <p>GOV.UK sends application logs and origin HTTP request logs to Logit, a
@@ -348,7 +348,14 @@ with this.</p>
 <p>We store our configuration in the <a href="https://github.com/alphagov/govuk-saas-config">govuk-saas-config</a>
 repository. Any changes to the configuration should be stored in here, and they
 should be consistent across stacks.</p>
-<h2 id='retention-period'>Retention period</h2><p><a href="https://dashboard.logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/2dd89c13-a0ed-4743-9440-825e2e52329e">14 days</a>.</p>
+<h2 id='retention-period'>Retention period</h2>
+<ul>
+<li>Production: 14 days</li>
+<li>Staging: 7 days</li>
+<li>Integration: 7 days</li>
+</ul>
+<p>The retention window for an environment is configurable under the Settings page
+for the corresponding Logit stack, for users with the Stack Editor permission.</p>
 <h2 id='further-reading'>Further reading</h2><p>See <a href="/manual/logging.html">How logging works on GOV.UK</a>.</p>
 
 
