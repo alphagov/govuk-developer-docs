@@ -287,7 +287,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/da4d6c5be9f27f409b1a120741a2b426b831b6ef">7 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/077bf1294c30c8be72505674e69f47477f362b40">10 Jul 2023</a>
 </div>
 
  <h1 id='header'>Query CDN logs</h1> <p>Fastly, GOV.UK&rsquo;s <a href="/manual/cdn.html">content distribution network</a>, logs
@@ -689,10 +689,18 @@ problem or update the log formatting in Fastly to resolve the issue.</p>
 in the <code>govuk_cdn</code> index.</p>
 <p>Example query: <a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3Dgovuk_cdn%20http_method%3Dpost">all POST requests made in the last 30
 minutes</a>.</p>
-<h3 id='gain-access-to-splunk'>Gain access to Splunk</h3><p>If you work on GOV.UK and do not yet have access to Splunk, you can request
-access by raising a support ticket with the GDS IT Helpdesk and asking them to
-enable Splunk for your GDS Google Workspace account with a note that you work
-on GOV.UK.</p>
+<h3 id='gain-access-to-splunk'>Gain access to Splunk</h3><p>You can see the logs if your account has access to GOV.UK&rsquo;s Splunk. If you do
+not have access to Splunk, you can request access by raising a support ticket
+with IT and asking them to enable Splunk for your Google account.  You&rsquo;ll need
+to:</p>
+
+<ul>
+<li>specify &ldquo;gds-006-govuk&rdquo; as the Splunk SAML Group you need access to,</li>
+<li>copy in the Approval Owner as outlined in the <a href="https://docs.google.com/spreadsheets/d/1qC91oySDbs993CKm214ebBvpwUT-s3hqEO-LByWnYhg/edit#gid=0">Splunk approval
+list</a>,</li>
+<li>include the reason why you need access and ask the for approval by replying
+to the IT support ticket.</li>
+</ul>
 
 
   <div class='related-content'>
