@@ -232,7 +232,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2a82352e924a90691879fda6c0fe5db5be79fa47">14 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/236ae937829fc18c09d11ee4f6efffd62abc04cc">6 Jul 2023</a>
 </div>
 
  <h1 id='header'>Architectural deep-dive of GOV.UK</h1> <p>We can cover a lot of GOV.UK architecture by asking ourselves three questions:</p>
@@ -242,7 +242,9 @@
 <li>What happens when a publisher hits &lsquo;Publish&rsquo;?</li>
 <li>What happens when a developer deploys a change to an application?</li>
 </ol>
-<p>Refer to the <a href="/manual/architecture-shallow-dive.html">architectural summary of GOV.UK</a> for a shorter summary of GOV.UK architecture.</p>
+<p>Refer to the <a href="/manual/architecture-shallow-dive.html">architectural summary of
+GOV.UK</a> for a shorter summary of GOV.UK
+architecture.</p>
 <h2 id='what-happens-when-a-user-visits-a-page-on-gov-uk'>What happens when a user visits a page on GOV.UK?</h2><h3 id='dns'>DNS</h3><p><a href="images/dns.png" rel="noopener noreferrer"><img src="/manual/images/dns.png" alt="" /></a></p>
 <p>The browser queries a local DNS server to turn the domain name into an IP address.
 The local DNS server might be able to answer immediately from its cache. If not,
@@ -266,10 +268,9 @@ well as reducing load on GOV.UK (&lsquo;origin&rsquo;) by around 70% - provides 
 <p>Fastly uses <a href="https://varnish-cache.org/">Varnish</a> for caching, with a default cache time of 1 hour. (Read
 <a href="/manual/cdn.html">&ldquo;Our content delivery network&rdquo;</a> for more information). If Fastly
 doesn&rsquo;t have a page in its cache, it fetches the page from origin.</p>
-<p><a href="/manual/purge-cache.html">Caches can be purged</a> using the <a href="https://github.com/alphagov/cache-clearing-service">cache-clearing-service</a>, which
-tells Fastly to soft-purge (i.e. only remove the cached version once it has
-received the new version from origin). This cache clearing service is
-triggered automatically when pages are updated - more on that later.</p>
+<p><a href="/manual/purge-cache.html">Caches can be purged</a>, which tells Fastly to soft-purge (i.e.
+only remove the cached version once it has received the new version from
+origin).</p>
 <h4 id='failover'>Failover</h4><p>If a Fastly request to origin returns a 5xx response, Fastly will request
 content from the mirror, which is static HTML hosted in an S3 bucket on AWS.
 The contents of the mirror are updated daily via a <a href="https://github.com/alphagov/govuk_crawler_worker">govuk-crawler-worker</a>,
@@ -417,7 +418,6 @@ exchange, it forwards the message to its consumers. These consumers
 retrieve the content item and do something in response, such as:</p>
 
 <ul>
-<li>Clear the page&rsquo;s cache, via the cache-clearing-service</li>
 <li><a href="https://github.com/alphagov/email-alert-service/blob/main/lib/tasks/message_queues.rake">Send emails to users subscribed to that content</a>. (The
 exceptions to this are <code>travel-advice</code> &amp; <code>specialist-publisher</code>, which
 communicate directly with email-alert-api to ensure emails go out immediately)</li>

@@ -173,7 +173,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/81218bdf3d57354aec8a98414a0c41b4a0f37225">14 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/236ae937829fc18c09d11ee4f6efffd62abc04cc">6 Jul 2023</a>
 </div>
 
  <h1 id='header'>AmazonMQ: No consumers listening to queue</h1> <h2 id='check-that-there-is-at-least-one-non-idle-consumer-for-rabbitmq-queue-queue_name'>Check that there is at least one non-idle consumer for rabbitmq queue {queue_name}</h2><p>Icinga connects to AmazonMQ&rsquo;s RabbitMQ admin API to check on the activity of the
@@ -187,7 +187,7 @@ queue, meaning messages entering the queue will never be processed.</p>
 last 5 minutes. Consumers in an <code>idle</code> state are listening to the queue but are
 unable to process the messages on it.</p>
 <p>Publishing API <a href="https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/tasks/heartbeat_messages.rake">sends a heartbeat message</a> every minute to
-the following queues - <code>email-alert-service</code>, <code>cache_clearing_service-high</code> and
+the following queues - <code>email-alert-service</code> and
 <code>content_data_api</code>. This is configured via the queues bindings (e.g
 <a href="https://github.com/alphagov/email-alert-service/blob/4412a1b3b0f281733801e1631416ab02fac90e25/lib/tasks/message_queues.rake#L17">email-alert-service&rsquo;s binding</a>) matching the routing key
 used in the <a href="https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/queue_publisher.rb#L43">heartbeat</a>. This should ensure that the consumers are

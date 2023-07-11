@@ -154,7 +154,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/81218bdf3d57354aec8a98414a0c41b4a0f37225">14 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/236ae937829fc18c09d11ee4f6efffd62abc04cc">6 Jul 2023</a>
 </div>
 
  <h1 id='header'>AmazonMQ: High number of unprocessed messages</h1> <p>For information about how we use RabbitMQ on AmazonMQ, see <a href="https://docs.publishing.service.gov.uk/manual/amazonmq.html">here</a>.</p>
@@ -166,7 +166,6 @@ normal amounts on certain queues. The queues this alert applies to are:</p>
 <li><a href="https://github.com/alphagov/govuk-puppet/blob/e769c1dc74484625cf7afdfe943c08884cc7d90d/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L81-L87"><code>email_unpublishing</code></a></li>
 <li><a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L73-L79"><code>subscriber_list_details_update_major</code></a></li>
 <li><a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#65-L71"><code>subscriber_list_details_update_minor</code></a></li>
-<li><a href="https://github.com/alphagov/govuk-puppet/blob/616cae598f91406e29ed2e4fc287c71b690c55b0/modules/govuk/manifests/apps/cache_clearing_service/rabbitmq.pp#L112-L137"><code>cache_clearing_service-*</code></a> (low, medium and high)</li>
 </ul>
 <p>The plugin which implements this alert is <a href="https://github.com/alphagov/govuk-puppet/blob/80cff45935481a180dc9bfe8e2ab0ac8a0d80344/modules/icinga/files/usr/lib/nagios/plugins/check_rabbitmq_messages">here</a>.</p>
 <p>The Icinga check is performed by connecting to RabbitMQ&rsquo;s admin API and
@@ -176,9 +175,6 @@ thresholds.</p>
 <code>subscriber_list_details_update_major</code> and <code>subscriber_list_details_update_minor</code>
 queues the <a href="https://github.com/alphagov/govuk-puppet/blob/8267943e08c314e0a97742fc9443b889d4cf358a/hieradata_aws/common.yaml#L577-L578">message thresholds</a> are:
 25 for critical and 5 for warning.</p>
-<p>For <code>cache_clearing_service-*</code> queues the <a href="https://github.com/alphagov/govuk-puppet/blob/8267943e08c314e0a97742fc9443b889d4cf358a/hieradata_aws/common.yaml#L456-L457">message
-thresholds</a> are: 100,000 for critical and 80,000 for
-warning.</p>
 
 <blockquote>
 <p><strong>Note</strong></p>
