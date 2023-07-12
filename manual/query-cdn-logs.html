@@ -287,35 +287,37 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/077bf1294c30c8be72505674e69f47477f362b40">10 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2860a6740b0b9db4fea1e022f4fa991694156ae0">12 Jul 2023</a>
 </div>
 
  <h1 id='header'>Query CDN logs</h1> <p>Fastly, GOV.UK&rsquo;s <a href="/manual/cdn.html">content distribution network</a>, logs
 metadata about HTTP requests to GOV.UK. Fastly sends log files to Amazon S3
-every 15 minutes, where we store them for 120 days.</p>
+every 15 minutes, where we store them for <a href="https://www.gov.uk/help/privacy-notice#how-long-we-keep-your-data">120
+days</a>.</p>
 <p>You can query these logs using <a href="https://docs.aws.amazon.com/athena/latest/ug/what-is.html">Amazon
 Athena</a> to gain
 insights into GOV.UK traffic.</p>
-<p>The same Fastly logs are also available to query <a href="#splunk">in Splunk</a>.</p>
+<p>The same Fastly logs are also available to query <a href="#splunk">in Splunk</a>
+(excluding data.gov.uk).</p>
 <h2 id='access-athena'>Access Athena</h2><p>You can use Amazon Athena to query the CDN logs by writing SQL queries.</p>
-<p>The logs are written to a database named <code>fastly_logs</code>. There are 3 different
-services on the CDN, corresponding to 3 different tables in the database:</p>
+<p>There is a separate table for each CDN service (roughly corresponding to the
+hostname in the URL).</p>
 
 <ul>
-<li><strong>bouncer</strong> - legacy government websites that are now redirected to GOV.UK</li>
-<li><strong>govuk_assets</strong> - assets supporting GOV.UK pages hosted on
-assets.publishing.service.gov.uk, with files such as images, attachments,
-stylesheets and javascripts</li>
-<li><strong>govuk_www</strong> - content served from www.gov.uk, mainly HTML pages with atom
-feeds and web services</li>
+<li><code>fastly_logs.bouncer</code>: legacy government website domains which redirect to www.gov.uk</li>
+<li><code>fastly_logs.govuk_assets</code>: assets.publishing.service.gov.uk, which hosts
+static files such as images, attachments, CSS and JavaScript</li>
+<li><code>fastly_logs.govuk_www</code>: www.gov.uk, including most HTML content and APIs</li>
+<li><code>datagovuk.datagovuk</code>: www.data.gov.uk (DGU), the <em>Find open data</em> service</li>
 </ul>
 <p>You can access Athena through the AWS console in the <strong>production</strong> account.</p>
 
 <ol>
 <li><a href="/manual/get-started.html#sign-in-to-aws">Log in</a> to the <strong>production</strong> AWS
-account</li>
-<li>Navigate to <a href="https://eu-west-1.console.aws.amazon.com/athena">Athena</a></li>
-<li>Select the <code>fastly_logs</code> database.</li>
+account.</li>
+<li>Navigate to <a href="https://eu-west-1.console.aws.amazon.com/athena">Athena</a>.</li>
+<li>Select the relevant database (<code>fastly_logs</code> or <code>datagovuk</code>) under <em>Data</em> -&gt;
+<em>Data source</em> in the left-hand column.</li>
 </ol>
 <h2 id='write-an-athena-sql-query'>Write an Athena SQL query</h2><p>Athena is based on the <a href="https://trino.io/docs/current/">Trino</a> SQL dialect. See
 Amazon&rsquo;s documentation:</p>
