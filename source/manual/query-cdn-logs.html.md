@@ -14,28 +14,29 @@ You can query these logs using [Amazon
 Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html) to gain
 insights into GOV.UK traffic.
 
-The same Fastly logs are also available to query [in Splunk](#splunk).
+The same Fastly logs are also available to query [in Splunk](#splunk)
+(excluding data.gov.uk).
 
 ## Access Athena
 
 You can use Amazon Athena to query the CDN logs by writing SQL queries.
 
-The logs are written to a database named `fastly_logs`. There are 3 different
-services on the CDN, corresponding to 3 different tables in the database:
+There is a separate table for each CDN service (roughly corresponding to the
+hostname in the URL).
 
-- **bouncer** - legacy government websites that are now redirected to GOV.UK
-- **govuk_assets** - assets supporting GOV.UK pages hosted on
-  assets.publishing.service.gov.uk, with files such as images, attachments,
-  stylesheets and javascripts
-- **govuk_www** - content served from www.gov.uk, mainly HTML pages with atom
-  feeds and web services
+- `fastly_logs.bouncer`: legacy government website domains which redirect to www.gov.uk
+- `fastly_logs.govuk_assets`: assets.publishing.service.gov.uk, which hosts
+  static files such as images, attachments, CSS and JavaScript
+- `fastly_logs.govuk_www`: www.gov.uk, including most HTML content and APIs
+- `datagovuk.datagovuk`: www.data.gov.uk (DGU), the _Find open data_ service
 
 You can access Athena through the AWS console in the **production** account.
 
 1. [Log in](/manual/get-started.html#sign-in-to-aws) to the **production** AWS
-   account
-1. Navigate to [Athena](https://eu-west-1.console.aws.amazon.com/athena)
-1. Select the `fastly_logs` database.
+   account.
+1. Navigate to [Athena](https://eu-west-1.console.aws.amazon.com/athena).
+1. Select the relevant database (`fastly_logs` or `datagovuk`) under _Data_ ->
+   _Data source_ in the left-hand column.
 
 ## Write an Athena SQL query
 
