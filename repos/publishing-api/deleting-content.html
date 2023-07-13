@@ -216,15 +216,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/a31db300c543605c25bf407600caa97d0f8fab5f">16 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/f77d62a52954b9eda3b82e78c3d1cecbdc55d115">12 Jul 2023</a>
 </div>
 
   <h1 class="page-title">publishing-api: Deleting Documents, Editions and Links</h1>
@@ -249,7 +242,7 @@ class RemoveYourEdition &lt; ActiveRecord::Migration
   def up
     editions = Edition.where(id: 123)
 
-    Helpers::DeleteContent.destroy_supporting_objects(editions)
+    Helpers::DeleteContent.destroy_edition_supporting_objects(editions)
 
     editions.destroy_all
   end
