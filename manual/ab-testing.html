@@ -129,19 +129,12 @@
     <a href="#header"><span>How A/B testing works</span></a>
     <ul>
       <li>
-        <a href="#how-ab-testing-works"><span>How A/B testing works</span></a>
         <ul>
           <li>
             <a href="#fastly-receives-the-request"><span>Fastly receives the request</span></a>
           </li>
           <li>
-            <a href="#gov-uk-varnish-caching-layer"><span>GOV.UK (Varnish caching layer)</span></a>
-          </li>
-          <li>
             <a href="#application-layer"><span>Application layer</span></a>
-          </li>
-          <li>
-            <a href="#varnish-response"><span>Varnish (response)</span></a>
           </li>
           <li>
             <a href="#fastly-responds"><span>Fastly responds</span></a>
@@ -200,22 +193,23 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6b4e01da612a1dc3a10de02f9fcb11d8d308dd9f">7 Jul 2023</a>
 </div>
 
  <h1 id='header'>How A/B testing works</h1> <p>GOV.UK uses our <a href="https://docs.publishing.service.gov.uk/manual/cdn.html">Content Delivery Network (Fastly)</a> to run A/B and multivariate tests.</p>
 <p>For a general introduction to A/B testing from a content design perspective, see the <a href="https://bit.ly/AB-testing-GOVUK">Confluence Wiki</a>.</p>
-<p><a href="https://docs.google.com/drawings/d/e/2PACX-1vR67bcDfNDaa4buyKGKQev0xUsjcD9RzjNCjWGhr0HJtXRmSNaltPJotXjwmKUmZj0ZH_B2xAymEYbV/pub?w=1330&h=517" rel="noopener noreferrer"><img src="https://docs.google.com/drawings/d/e/2PACX-1vR67bcDfNDaa4buyKGKQev0xUsjcD9RzjNCjWGhr0HJtXRmSNaltPJotXjwmKUmZj0ZH_B2xAymEYbV/pub?w=1330&amp;h=517" alt="" /></a></p>
-<p>Source: <a href="https://docs.google.com/drawings/d/1rx4brKZBzj-9q3evkiUw2MbqwqTYWkc0Lku6u3cLXqU/edit">GOV.UK Architecture Google Drive</a></p>
-<h2 id='how-ab-testing-works'>How A/B testing works</h2><p><strong>A/B tests are only enabled for users who have opted in to analytics cookies.</strong></p>
+
+<blockquote>
+<p>A/B tests are only enabled for users who have opted in to analytics cookies.</p>
+</blockquote>
+<p>If the user is opted-in to usage cookies, but hasn&rsquo;t got an AB test cookie yet:</p>
+<p><a href="images/ab-testing/opted-in.svg" rel="noopener noreferrer"><img src="/manual/images/ab-testing/opted-in.svg" alt="" /></a></p>
+<p>If the user is opted in to usage cookies, and has already got an ABTest cookie set:</p>
+<p><a href="images/ab-testing/opted-out.svg" rel="noopener noreferrer"><img src="/manual/images/ab-testing/opted-out.svg" alt="" /></a></p>
+<p><code>req.http.GOVUK-ABTest-Example</code> is set as soon as the user is assigned a bucket, which happens for users who haven&rsquo;t got cookies yet (as well as for those who already have). <code>vcl_recv</code> where this happens can&rsquo;t set the cookie itself, because it hasn&rsquo;t got a response object to mutate yet.</p>
+<p>So if we say &ldquo;Only set the cookie if GOVUK-ABTest-Example is not already set&rdquo; then we&rsquo;ll never set the cookie.</p>
+<p>We need some way of detecting the situation where they user already had a cookie when they arrived if we want to avoid sending a Set-Cookie header in every response.</p>
 <h3 id='fastly-receives-the-request'>Fastly receives the request</h3><p>When a user requests a GOV.UK page, the request reaches Fastly&rsquo;s CDN first. If the page has A/B testing enabled, Fastly will add a <code>GOVUK-ABTest-Example</code> header to downstream requests. The header&rsquo;s value is set depending on whether a cookie called <code>ABTest-Example</code> is present in the original request:</p>
 
 <ul>
@@ -229,10 +223,8 @@
 <li><p>if the requested page is cached, the <code>vary: GOVUK-ABTest-Example</code> response header on previously cached responses will ensure that the right version is returned to the user.</p></li>
 <li><p>if not, Fastly will send the request downstream to GOV.UK (including the <code>ABTest-Example</code> header)</p></li>
 </ul>
-<h3 id='gov-uk-varnish-caching-layer'>GOV.UK (Varnish caching layer)</h3><p>Varnish tries to get a response from the cache. Because Fastly has sent the <code>GOVUK-ABTest-Example</code> header, it knows whether to return the <code>A</code> or <code>B</code> version from the cache. If there&rsquo;s nothing in the cache, Varnish forwards the request to the application server.</p>
 <h3 id='application-layer'>Application layer</h3><p>The application (for example, <a href="/repos/government-frontend.html">government-frontend</a> or <a href="/repos/collections.html">collections</a>) inspects the <code>GOVUK-ABTest-Example</code> header to determine which version of the content to return.</p>
 <p>It also adds an extra response header: <code>vary: GOVUK-ABTest-Example</code>. This instructs Fastly and Varnish to cache both versions of the page separately.</p>
-<h3 id='varnish-response'>Varnish (response)</h3><p>Varnish saves the response in the cache. The <code>vary: GOVUK-ABTest-Example</code> response header will ensure that <code>A</code> and <code>B</code> are cached separately.</p>
 <h3 id='fastly-responds'>Fastly responds</h3><p>Fastly also saves the response in the cache. The <code>vary: GOVUK-ABTest-Example</code> response header will ensure that <code>A</code> and <code>B</code> are cached separately.</p>
 <p>If the original request did not have the <code>ABTest-Example</code> cookie, Fastly will set a <code>Set-Cookie</code> header to the response based on the value of the <code>GOVUK-ABTest-Example</code> header.</p>
 <h2 id='further-reading'>Further reading</h2>
