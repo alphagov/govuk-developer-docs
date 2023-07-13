@@ -13,13 +13,21 @@ For a general introduction to A/B testing from a content design perspective, see
 
 [cdn]: https://docs.publishing.service.gov.uk/manual/cdn.html
 
-![](https://docs.google.com/drawings/d/e/2PACX-1vR67bcDfNDaa4buyKGKQev0xUsjcD9RzjNCjWGhr0HJtXRmSNaltPJotXjwmKUmZj0ZH_B2xAymEYbV/pub?w=1330&h=517)
+> A/B tests are only enabled for users who have opted in to analytics cookies.
 
-Source: [GOV.UK Architecture Google Drive](https://docs.google.com/drawings/d/1rx4brKZBzj-9q3evkiUw2MbqwqTYWkc0Lku6u3cLXqU/edit)
+If the user is opted-in to usage cookies, but hasn't got an AB test cookie yet:
 
-## How A/B testing works
+![](images/ab-testing/opted-in.svg)
 
-**A/B tests are only enabled for users who have opted in to analytics cookies.**
+If the user is opted in to usage cookies, and has already got an ABTest cookie set:
+
+![](images/ab-testing/opted-out.svg)
+
+`req.http.GOVUK-ABTest-Example` is set as soon as the user is assigned a bucket, which happens for users who haven't got cookies yet (as well as for those who already have). `vcl_recv` where this happens can't set the cookie itself, because it hasn't got a response object to mutate yet.
+
+So if we say "Only set the cookie if GOVUK-ABTest-Example is not already set" then we'll never set the cookie.
+
+We need some way of detecting the situation where they user already had a cookie when they arrived if we want to avoid sending a Set-Cookie header in every response.
 
 ### Fastly receives the request
 
@@ -38,19 +46,11 @@ Fastly will then try to get a response from its cache.
 
 [dicts]: https://docs.fastly.com/guides/edge-dictionaries/
 
-### GOV.UK (Varnish caching layer)
-
-Varnish tries to get a response from the cache. Because Fastly has sent the `GOVUK-ABTest-Example` header, it knows whether to return the `A` or `B` version from the cache. If there's nothing in the cache, Varnish forwards the request to the application server.
-
 ### Application layer
 
 The application (for example, [government-frontend](/repos/government-frontend.html) or [collections](/repos/collections.html)) inspects the `GOVUK-ABTest-Example` header to determine which version of the content to return.
 
 It also adds an extra response header: `vary: GOVUK-ABTest-Example`. This instructs Fastly and Varnish to cache both versions of the page separately.
-
-### Varnish (response)
-
-Varnish saves the response in the cache. The `vary: GOVUK-ABTest-Example` response header will ensure that `A` and `B` are cached separately.
 
 ### Fastly responds
 
