@@ -12,11 +12,12 @@ Not everyone on GOV.UK requires GitHub access, as much of what we do is in the o
 
 If you're a content designer, your request should go through Zendesk (see [example ticket](https://govuk.zendesk.com/agent/tickets/5297731/events)).
 
-If you're an engineer or contractor, ask your tech lead to follow the steps below. If you don't have a tech lead, ask in the [Technical 2nd Line Slack channel](https://gds.slack.com/archives/CADKZN519) for them to add you. You must state:
+If you're an engineer or contractor, ask your tech lead to follow the steps below. If you don't have a tech lead, [ask someone in Senior Tech](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members) to add you. You must state:
 
 - your role
 - which team you're in
 - your GitHub handle
+- which GitHub team(s) you should join ([see list](#teams-in-alphagov)
 - why you need access
 
 ## Granting GitHub access
