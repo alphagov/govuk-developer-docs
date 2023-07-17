@@ -214,17 +214,16 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Configuration for GOV.UK&rsquo;s content delivery network (CDN). You can read more about <a href="https://docs.publishing.service.gov.uk/manual/cdn.html">how GOV.UK CDN works</a> in the developer docs.</p>
+<p>Configuration for GOV.UK&rsquo;s content delivery network (CDN), <a href="https://fastly.com">Fastly</a>. It uses Fastly VCL (see <a href="https://developer.fastly.com/reference/api/vcl-services/vcl/">documentation</a>). You can read more about <a href="https://docs.publishing.service.gov.uk/manual/cdn.html">how GOV.UK CDN works</a> in the developer docs.</p>
 
 <p>ℹ️ This repo has some <a href="https://trello.com/c/y6MIgxjp">documented tech debt</a>. It doesn&rsquo;t conform to GOV.UK standards.</p>
 
-<p>⚠️ Be sure to deploy manually the changes made to all relevant environments. Check in the task output if the differences between configurations are the expected ones.</p>
+<h2 id="deployment">Deployment</h2>
 
-<h2 id="tasks">Tasks</h2>
+<p>You&rsquo;ll need to manually deploy your changes to all relevant environments, using the relevant script below.
+Note that the <code>assets-eks</code> and <code>www-eks</code> VCL templates are no longer used.</p>
 
-<p>This repo contains 3 scripts to configure our <a href="https://fastly.com">Fastly CDN</a> account.</p>
-
-<p>We are using Fastly API for all the processes (see <a href="https://developer.fastly.com/reference/api/vcl-services/vcl/">documentation</a>).</p>
+<p>After running the script, check the output to confirm that the differences between configurations are the expected ones.</p>
 
 <h3 id="deploy-service">Deploy Service</h3>
 
@@ -232,14 +231,16 @@
 
 <p>Invoked via the <a href="https://deploy.blue.production.govuk.digital/job/Deploy_CDN">CDN: deploy service</a> Jenkins job.</p>
 
-<p>This script allows you to deploy a new VSL on a number of Fastly services (see table bellow) and
-replaces the old configuration.</p>
+<p>Requires: Fastly API token with <code>global</code> access to the service you&rsquo;re deploying (e.g. <code>Production GOV.UK</code> service).</p>
+
+<p>This script allows you to deploy a new VCL on a number of Fastly services (see table below) and replaces the old configuration.</p>
 
 <table>
 <thead>
 <tr>
 <th>service name</th>
 <th>domain</th>
+<th>Service name in Fastly</th>
 <th>description</th>
 </tr>
 </thead>
@@ -247,38 +248,47 @@ replaces the old configuration.</p>
 <tr>
 <td>apt</td>
 <td>apt.publishing.service.gov.uk</td>
+<td>Production Apt</td>
 <td>GOV.UK&rsquo;s Debian package repository</td>
 </tr>
 <tr>
 <td>assets</td>
 <td>assets.publishing.service.gov.uk</td>
+<td>Production Assets ±</td>
 <td>the GOV.UK domain for uploads and static assets</td>
 </tr>
 <tr>
 <td>servicegovuk</td>
 <td>service.gov.uk</td>
+<td>Production service domain redirect</td>
 <td>redirect from <a href="https://service.gov.uk">https://service.gov.uk</a> to <a href="https://www.gov.uk">https://www.gov.uk</a>
 </td>
 </tr>
 <tr>
 <td>tldredirect</td>
 <td>gov.uk</td>
+<td>Production TLD Redirect</td>
 <td>redirect from <a href="https://gov.uk">https://gov.uk</a> to <a href="https://www.gov.uk">https://www.gov.uk</a>
 </td>
 </tr>
 <tr>
 <td>www</td>
 <td><a href="http://www.gov.uk">www.gov.uk</a></td>
+<td>Production GOV.UK ±</td>
 <td>the single government domain</td>
 </tr>
 </tbody>
 </table>
+
+<p>±  also has equivalents for Integration and Staging.</p>
 
 <h3 id="deploy-dictionaries">Deploy Dictionaries</h3>
 
 <p>Script: <a href="https://github.com/alphagov/govuk-cdn-config/blob/main/deploy-dictionaries.sh">deploy-dictionaries.sh</a></p>
 
 <p>Invoked via the <a href="https://deploy.blue.production.govuk.digital/job/Update_CDN_Dictionaries">CDN: update dictionaries</a> Jenkins job.</p>
+
+<p>Requires: Fastly API token with <code>global</code> access to the service you&rsquo;re deploying (e.g. <code>Production GOV.UK</code> service).</p>
 
 <p>Fastly provide a technology called <a href="https://docs.fastly.com/guides/edge-dictionaries/">Edge Dictionaries</a>
 which can be used to provide dynamic configuration to VCL. This script takes updates dictionaries defined in YAML files in <a href="https://github.com/alphagov/govuk-cdn-config/blob/main/configs/dictionaries">configs/dictionaries</a>. We use it for <a href="#ab-testing">A/B testing</a> and blocking IP addresses (the dictionary for this lives in <a href="https://github.com/alphagov/govuk-cdn-config-secrets/blob/master/fastly/dictionaries/config/ip_address_denylist.yaml">alphagov/govuk-cdn-config-secrets</a> - read <a href="https://docs.publishing.service.gov.uk/manual/cdn.html#banning-ip-addresses-at-the-cdn-edge">more about IP banning</a> in the docs).</p>
@@ -288,6 +298,8 @@ which can be used to provide dynamic configuration to VCL. This script takes upd
 <p>Script: <a href="https://github.com/alphagov/govuk-cdn-config/blob/main/deploy-bouncer.sh">deploy-bouncer.sh</a></p>
 
 <p>Invoked via the <a href="https://deploy.blue.production.govuk.digital/job/Bouncer_CDN/">CDN: deploy Bouncer configs</a> Jenkins job.</p>
+
+<p>Requires: Fastly API token with <code>global</code> access to &ldquo;Staging Bouncer&rdquo; or &ldquo;Production Bouncer&rdquo;.</p>
 
 <p>This configures the <code>bouncer</code> Fastly service with transitioned domains from Transition (<a href="https://docs.publishing.service.gov.uk/manual/transition-architecture.html">read about Transition here</a>). The Jenkins job is not usually run manually - it&rsquo;s triggered by the <a href="https://deploy.blue.production.govuk.digital/job/Transition_load_site_config">one of the transition Jenkins jobs</a>. Read <a href="https://docs.publishing.service.gov.uk/manual/cdn.html#bouncer39s-fastly-service">more about the Fastly service</a> in the developer docs.</p>
 
