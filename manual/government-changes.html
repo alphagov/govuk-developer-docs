@@ -211,15 +211,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/86cd33668993ecf86686048e7df3a88a82821474">9 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/423870e13bb1b68ed233a2c95069dba1ad8b1413">17 Jul 2023</a>
 </div>
 
  <h1 id='header'>Support government changes</h1> <h2 id='change-a-government-in-whitehall'>Change a government in Whitehall</h2><p>Following a General Election or other reason for governmental change the
@@ -267,15 +260,15 @@ highlighted on the page, and in search results. This feature is also known as
 be set manually.</p>
 <h4 id='reindexing-political-content-in-search'>Reindexing political content in search</h4><p>There is a Rake task to reindex all political content in search. This must be
 done after a government is closed.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake search:political
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall-admin <span class="nt">--</span> rake search:political
 </code></pre></div><h3 id='backdating'>Backdating</h3><p>If we need to backdate a government or split a single government into two
 distinct dates, we need to run a rake task to republish all political content
 from Whitehall to properly associate content with the government at it&rsquo;s first
 published date:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake election:republish_political_content
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall-admin <span class="nt">--</span> rake election:republish_political_content
 </code></pre></div><h3 id='ending-ministerial-roles-without-closing-a-government'>Ending ministerial roles without closing a government</h3><p>If we need to end all ministerial roles without explicitly closing a government,
 we can run a rake task:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake election:end_ministerial_appointments
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall-admin <span class="nt">--</span> rake election:end_ministerial_appointments
 </code></pre></div><p>This will end all ministerial roles except the Prime Minister. You might have to
 do that one manually.</p>
 <h2 id='machinery-of-government-changes'>Machinery of Government Changes</h2><p>Following machinery of government changes, developers can help content

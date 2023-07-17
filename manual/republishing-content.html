@@ -198,7 +198,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f5bf5c947592d505035178595924ff6664a5367a">17 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/423870e13bb1b68ed233a2c95069dba1ad8b1413">17 Jul 2023</a>
 </div>
 
  <h1 id='header'>Republish content</h1> <p>Sometimes it may be necessary to republish content to the Publishing API. This will refresh the content on the website.</p>
@@ -217,7 +217,7 @@
 <li><a href="https://grafana.blue.staging.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=whitehall&amp;var-Interval=$__auto_interval">staging</a></li>
 <li><a href="https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=whitehall&amp;var-Interval=$__auto_interval">production</a></li>
 </ul>
-<h3 id='to-republish-a-single-document-by-slug'>To republish a single document by slug</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake publishing_api:republish:document_by_slug[slug]
+<h3 id='to-republish-a-single-document-by-slug'>To republish a single document by slug</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall-admin <span class="nt">--</span> rake publishing_api:republish:document_by_slug[slug]
 </code></pre></div>
 <blockquote>
 <p>Replace <code>slug</code> with the document&rsquo;s slug, but not the full base path. For example the slug for <code>https://www.gov.uk/government/important-news</code> would be <code>important-news</code>.</p>
@@ -252,13 +252,13 @@
 <li>WorldwideOffice</li>
 <li>WorldwideOrganisation</li>
 </ul>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake publishing_api:bulk_republish:document_type[DocumentClass]
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall-admin <span class="nt">--</span> rake publishing_api:bulk_republish:document_type[DocumentClass]
 </code></pre></div>
 <blockquote>
 <p>Replace <code>DocumentClass</code> with the camelized (i.e. as it is written above) class name.</p>
 </blockquote>
 <h3 id='to-republish-multiple-documents'>To republish multiple documents</h3><p>For a small number of documents, use the following rake task:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2]
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall-admin <span class="nt">--</span> rake publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2]
 </code></pre></div>
 <blockquote>
 <p>Replace <code>content_id_1</code> and <code>content_id_2</code> with the content ID (i.e. UUID) for the documents to republish. You can add more than 2 content IDs.</p>
@@ -270,7 +270,7 @@
 <li>Merge and deploy the PR to the relevant environment.</li>
 <li>Run the <code>documents_by_content_ids_from_csv</code> rake task:
 <code>sh
-k exec deploy/whitehall -- rake publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]
+k exec deploy/whitehall-admin -- rake publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]
 </code></li>
 </ol>
 
@@ -282,7 +282,7 @@ k exec deploy/whitehall -- rake publishing_api:bulk_republish:documents_by_conte
 <blockquote>
 <p>Caution: this is a lot of content and will take hours to complete. If it is possible to scope the republish do so and use a different task, but if you have made a change such as something in govspeak that will affect the majority of content, this is available. Before running this job confirm with Technical 2nd Line that they are happy for you to proceed as it could cause backed up publishing queues and alerts.</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall <span class="nt">--</span> rake publishing_api:bulk_republish:all
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall-admin <span class="nt">--</span> rake publishing_api:bulk_republish:all
 </code></pre></div><h2 id='content-publisher'>Content Publisher</h2><p>If the document is in content publisher, there is a <a href="https://github.com/alphagov/content-publisher/blob/main/lib/tasks/resync.rake">resync Rake task</a> you can run.</p>
 <p>You can resync a single document by passing it a content ID and locale:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/content-publisher <span class="nt">--</span> rake resync:document[a-content-id:locale]
