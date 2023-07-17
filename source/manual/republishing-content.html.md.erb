@@ -27,7 +27,7 @@ If the documents are in Whitehall, there are Rake tasks you can run as outlined 
 
 ### To republish a single document by slug
 
-<%= RunRakeTask.links("whitehall", "publishing_api:republish:document_by_slug[slug]") %>
+<%= RunRakeTask.links("whitehall-admin", "publishing_api:republish:document_by_slug[slug]") %>
 
 > Replace `slug` with the document's slug, but not the full base path. For example the slug for `https://www.gov.uk/government/important-news` would be `important-news`.
 
@@ -62,7 +62,7 @@ To republish all instances of the following document types, run the following ra
 - WorldwideOffice
 - WorldwideOrganisation
 
-<%= RunRakeTask.links("whitehall", "publishing_api:bulk_republish:document_type[DocumentClass]") %>
+<%= RunRakeTask.links("whitehall-admin", "publishing_api:bulk_republish:document_type[DocumentClass]") %>
 
 > Replace `DocumentClass` with the camelized (i.e. as it is written above) class name.
 
@@ -70,7 +70,7 @@ To republish all instances of the following document types, run the following ra
 
 For a small number of documents, use the following rake task:
 
-<%= RunRakeTask.links("whitehall", "publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2]") %>
+<%= RunRakeTask.links("whitehall-admin", "publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2]") %>
 
 > Replace `content_id_1` and `content_id_2` with the content ID (i.e. UUID) for the documents to republish. You can add more than 2 content IDs.
 
@@ -79,7 +79,7 @@ For a significant number of documents, a CSV file should be added to the reposit
 1. Create a CSV file that contains a single column headed `content_id`. Put the content ID for each document on a separate line below this. The file should be saved in `lib/tasks/{FILENAME}.csv` and a PR raised.
 1. Merge and deploy the PR to the relevant environment.
 1. Run the `documents_by_content_ids_from_csv` rake task:
-   <%= RunRakeTask.links("whitehall", "publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]") %>
+   <%= RunRakeTask.links("whitehall-admin", "publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]") %>
    > Replace `csv_file_name` with the filename of the CSV, including the `.csv` extension.
 1. After the job has completed, remove the CSV from the repository.
 
@@ -87,7 +87,7 @@ For a significant number of documents, a CSV file should be added to the reposit
 
 > Caution: this is a lot of content and will take hours to complete. If it is possible to scope the republish do so and use a different task, but if you have made a change such as something in govspeak that will affect the majority of content, this is available. Before running this job confirm with Technical 2nd Line that they are happy for you to proceed as it could cause backed up publishing queues and alerts.
 
-<%= RunRakeTask.links("whitehall", "publishing_api:bulk_republish:all") %>
+<%= RunRakeTask.links("whitehall-admin", "publishing_api:bulk_republish:all") %>
 
 ## Content Publisher
 
