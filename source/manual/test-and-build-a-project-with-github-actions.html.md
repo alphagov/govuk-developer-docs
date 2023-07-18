@@ -100,6 +100,18 @@ sufficiently descriptive. We only should add names to steps where they are
 used to either explain a particularly cryptic set of commands or where there
 are identically appearing steps that we wish to disambiguate between.
 
+You should also avoid providing a `name` for your `test` job (see below).
+
+### Branch protection rules
+
+Pull Requests [cannot be merged][branch-rule] until the `test` job has passed.
+Your workflow should always define a job called `test`.
+
+Some automation relies on the presence of the `test` job. Whilst care has been
+taken to support custom names [in some places](https://github.com/alphagov/govuk-saas-config/pull/139),
+other places may not support them, so it is safer to just omit the `name`
+property for your `test` job.
+
 ### Prefer a single or small number of steps within a CI workflow
 
 Rather than having a number of granular steps (such as: "Lint Ruby", "Lint JS",
@@ -110,11 +122,6 @@ This is so we can:
 
 - keep CI configurations simple and consistent;
 - make it easier to replicate CI checks in a development environment.
-
-### Branch protection rules
-
-Pull Requests [cannot be merged][branch-rule] until the `test` job has passed.
-Your workflow should always define a job called `test`.
 
 ### Base your workflow on one of our documented examples
 
