@@ -141,10 +141,10 @@
             <a href="#avoid-superfluous-naming-of-workflows-jobs-and-steps"><span>Avoid superfluous naming of workflows, jobs and steps</span></a>
           </li>
           <li>
-            <a href="#prefer-a-single-or-small-number-of-steps-within-a-ci-workflow"><span>Prefer a single or small number of steps within a CI workflow</span></a>
+            <a href="#branch-protection-rules"><span>Branch protection rules</span></a>
           </li>
           <li>
-            <a href="#branch-protection-rules"><span>Branch protection rules</span></a>
+            <a href="#prefer-a-single-or-small-number-of-steps-within-a-ci-workflow"><span>Prefer a single or small number of steps within a CI workflow</span></a>
           </li>
           <li>
             <a href="#base-your-workflow-on-one-of-our-documented-examples"><span>Base your workflow on one of our documented examples</span></a>
@@ -215,7 +215,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4d8e6da4f32fba5b1114cf0d59e9265f03a29ee7">18 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f9270f311db1a0292216458604164d58ea6cda91">18 Jul 2023</a>
 </div>
 
  <h1 id='header'>Test & build a project with GitHub Actions</h1> <p><a href="https://github.com/features/actions">GitHub Actions</a> is an automated workflow
@@ -284,6 +284,13 @@ and job_id should be sufficiently explanatory.</p>
 sufficiently descriptive. We only should add names to steps where they are
 used to either explain a particularly cryptic set of commands or where there
 are identically appearing steps that we wish to disambiguate between.</p>
+<p>You should also avoid providing a <code>name</code> for your <code>test</code> job (see below).</p>
+<h3 id='branch-protection-rules'>Branch protection rules</h3><p>Pull Requests <a href="https://github.com/alphagov/govuk-saas-config/blob/4d68f59f9af61e0f62bb074abc740aa53db300c1/github/lib/configure_repo.rb#L107">cannot be merged</a> until the <code>test</code> job has passed.
+Your workflow should always define a job called <code>test</code>.</p>
+<p>Some automation relies on the presence of the <code>test</code> job. Whilst care has been
+taken to support custom names <a href="https://github.com/alphagov/govuk-saas-config/pull/139">in some places</a>,
+other places may not support them, so it is safer to just omit the <code>name</code>
+property for your <code>test</code> job.</p>
 <h3 id='prefer-a-single-or-small-number-of-steps-within-a-ci-workflow'>Prefer a single or small number of steps within a CI workflow</h3><p>Rather than having a number of granular steps (such as: &ldquo;Lint Ruby&rdquo;, &ldquo;Lint JS&rdquo;,
 &ldquo;Run Ruby tests&rdquo;, &ldquo;Run JS Tests&rdquo;) prefer a single step (such as <code>bundle exec
 rake</code>) where more of the CI task configuration is handled in application code.</p>
@@ -293,8 +300,6 @@ rake</code>) where more of the CI task configuration is handled in application c
 <li>keep CI configurations simple and consistent;</li>
 <li>make it easier to replicate CI checks in a development environment.</li>
 </ul>
-<h3 id='branch-protection-rules'>Branch protection rules</h3><p>Pull Requests <a href="https://github.com/alphagov/govuk-saas-config/blob/4d68f59f9af61e0f62bb074abc740aa53db300c1/github/lib/configure_repo.rb#L107">cannot be merged</a> until the <code>test</code> job has passed.
-Your workflow should always define a job called <code>test</code>.</p>
 <h3 id='base-your-workflow-on-one-of-our-documented-examples'>Base your workflow on one of our documented examples</h3><p>GitHub Actions currently <a href="https://github.community/t5/GitHub-Actions/Templates-for-GitHub-Actions/m-p/52811">lack templating functionality</a>
 to enable re-use of workflow configuration across projects. Therefore, in order
 to maintain consistency across GOV.UK projects, it is beneficial that we
