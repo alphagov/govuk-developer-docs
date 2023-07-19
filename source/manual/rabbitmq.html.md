@@ -13,11 +13,13 @@ Protocol][AMQP] (AMQP).
 
 ## Connecting to the RabbitMQ web control panel
 
-Run `gds govuk connect rabbitmq -e integration aws/rabbitmq` and point your
-browser at <http://127.0.0.1:15672> (also available for `staging` and `production`).
+Make sure you have the latest `gds-cli` and `govuk-connect` installed.
+
+Run `gds govuk connect amazonmq -e integration` and point your
+browser at http://127.0.0.1:<whatever> (also available for `staging` and `production`).
 
 The username for connecting to the RabbitMQ web control panel is `root` and the password
-can be decrypted from the `govuk-secrets` repo via `bundle exec rake 'eyaml:decrypt_value[integration,govuk_rabbitmq::root_password]'` (from the `puppet_aws` directory).
+can be decrypted from the `govuk-secrets` repo via `bundle exec rake 'eyaml:decrypt_value[integration,govuk_publishing_amazonmq::passwords::root]'` (from the `puppet_aws` directory).
 
 ## RabbitMQ metrics
 
