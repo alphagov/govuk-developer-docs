@@ -378,15 +378,6 @@ to find out how to deploy infrastructure changes. The stackname is `govuk` and t
 
 See the [AWS IAM users documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) for more information.
 
-Lastly, you will need to add the integration permissions provided in [GOV.UK User Reviewer][govuk-user-reviewer], for example:
-
-```yml
-aws:
-  integration: user
-```
-
-[Example PR](https://github.com/alphagov/govuk-user-reviewer/pull/924)
-
 ## 10. Access AWS for the first time
 
 If you are a frontend developer you do not need to complete this step as part of your initial setup.
