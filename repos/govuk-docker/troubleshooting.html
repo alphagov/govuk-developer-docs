@@ -201,15 +201,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/69bade9c928a85ce577984d5fcae0a83d1714df1">3 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/e99212cafd034fcabd2d5a6c52086388ac983e2e">13 Jul 2023</a>
 </div>
 
   <h1 class="page-title">govuk-docker: Troubleshooting</h1>
@@ -374,6 +367,15 @@ error Command failed with exit code 1.
     # ...
 </code></pre>
 <p>For further examples, see the PR <a href="https://github.com/alphagov/govuk-docker/pull/613">alphagov/govuk-docker#613</a>.</p>
+<h2 id="resolve-issue-with-a-projectapp-not-making">Resolve issue with a project/app not making</h2>
+<p>You may get this error when running <code>make &lt;app-name&gt;</code>.</p>
+<pre><code> =&gt; ERROR [ 2/11] RUN apt-get update -qq &amp;&amp; apt-get install -y chromium chromium-driverq
+...
+executor failed running [/bin/sh -c apt-get update -qq &amp;&amp; apt-get install -y chromium chromium-driver]: exit code: 100
+</code></pre>
+<p>This may resolve by removing orphan containers which were created in a previous run of docker-compose up, but which has since been deleted from the docker-compose.yml file</p>
+<pre><code>docker-compose down -v --rmi all --remove-orphans
+</code></pre>
 
 
             
