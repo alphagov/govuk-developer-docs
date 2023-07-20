@@ -71,33 +71,6 @@ If the `govuk_seed_crawler` cronjob fails to run:
 - The [RabbitMQ dashboard](https://grafana.blue.production.govuk.digital/dashboard/file/rabbitmq.json?refresh=10s&orgId=1) will show fewer jobs (or no jobs at all) being published to the `govuk_crawler_queue` queue.
 - [Monitoring for the `cache_public_web_acl` ACL](https://us-east-1.console.aws.amazon.com/wafv2/homev2/web-acl/cache_public_web_acl/d9033e40-69e8-4bbc-a61a-cd3c50254d04/overview?region=eu-west-1) on AWS WAF will show a reduced number of requests to the cache machines (`govuk-infra-cache-requests AllowedRequests`).
 
-## Forcing failover to the GOV.UK mirrors
-
-If Origin is unavailable, Fastly will automatically retry every request against the mirrors.
-
-To avoid Fastly traffic hitting Origin when Origin is down (potentially making the problem worse), we can [fall back to AWS CloudFront](/manual/fall-back-to-aws-cloudfront.html), which serves all content using the GOV.UK mirrors.
-
-Alternatively, we can stop [Nginx](https://www.nginx.com/) on the cache machines, which will prevent requests hitting GOV.UK applications. Fastly will automatically retry these failed requests against the mirror.
-
-SSH into each cache machine (you can increment box number after the colon to hit each one in turn):
-
-```bash
-$ gds govuk connect -e production ssh cache:1
-```
-
-Stop Nginx to force use of mirrors:
-
-```bash
-$ govuk_puppet --test --disable "fail_to_mirror task (by $USER)"
-$ sudo service nginx stop
-```
-
-When required you can re-enable puppet, which will restart Nginx:
-
-```bash
-$ govuk_puppet --test --enable
-```
-
 ## Emergency publishing content using the GOV.UK mirror
 
 The escalation on-call contact will tell you if you need to make changes to GOV.UK while Origin is unavailable. To do this, you must change content on the GOV.UK mirrors. Because the mirror is static HTML, it's hard to make broad changes to the site, like putting a banner on every page.
