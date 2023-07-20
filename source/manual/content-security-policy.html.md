@@ -11,15 +11,16 @@ injection attacks resulting from execution of malicious content in the context o
 which stylesheets, scripts and other assets are allowed to run, is sent with every request and is parsed and enacted by
 the browser.
 
-CSP can be run in two modes - *report only*, where violations of the policy are reported to a given endpoint but
-allowed to execute, and *enforcement*, where violations are blocked.
+CSP can be run in two modes - *enforce*, where violations are blocked and the violation is reported to a given endpoint
+and *report only*, where the violation is allowed to execute and a report is sent.
 
-## GOV.UK CSP History
+GOV.UK runs a CSP in enforce mode on the applications serving [www.gov.uk](https://www.gov.uk) - frontend applications
+(with the exception of Whitehall due to current work to retire its frontend rendering). This enforce mode started in
+Summer 2023, following a number of years running in report-only mode.
 
-As of 2023, GOV.UK has been working, on and off, towards adding a CSP to the public www.gov.uk website for a number of
-years and have had a *report only* CSP since 2019. As of June 2023 we have began rolling this out in *enforcement*
-and have applied it to Feedback, Finder Frontend and Smart Answers. With the other frontend apps planned to be rolled
-out Summer 2023
+Although as of July 2023, only frontend applications are running the CSP it is intended to serve the needs of both
+GOV.UK frontend and admin applications. We aspire to eventually run it across all applications and encourage teams
+that own admin applications to use it.
 
 ## How the policy is set and changed
 
@@ -40,10 +41,6 @@ to apps with a new gem release.
 [govuk_csp]: https://github.com/alphagov/govuk_app_config/blob/main/lib/govuk_app_config/govuk_content_security_policy.rb
 
 ## How violations are reported
-
-In all production-like environments (production, staging, integration), CSP is running in report only mode. In other
-environments such as development and test, CSP is running in enforcement mode to allow errors to be captured
-at an early stage.
 
 We log reports to Amazon S3 bucket which can be queried with [Athena](https://aws.amazon.com/athena/). We store them
 for 30 days. Many of the reports we receive are from browser extensions we can't control so we
