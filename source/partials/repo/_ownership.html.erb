@@ -1,10 +1,10 @@
 <% if repo.team && repo.dependencies_team &&
       repo.team != repo.dependencies_team %>
-  <strong><%= repo.team %></strong> owns the repo. <strong><%= repo.dependencies_team %></strong> is responsible for updating its dependencies.
+  <strong><%= link_to repo.team, slack_url(repo.team) %></strong> owns the repo. <strong><%= links_to repo.dependencies_team, slack_url(repo.dependencies_team) %></strong> is responsible for updating its dependencies.
 <% elsif repo.team %>
-  <%= repo.team %>
+  <%= link_to repo.team, slack_url(repo.team) %>
 <% elsif repo.dependencies_team %>
-  <%= repo.dependencies_team %>
+  <%= links_to repo.dependencies_team, slack_url(repo.dependencies_team) %>
 <% else %>
   N/A
 <% end %>
