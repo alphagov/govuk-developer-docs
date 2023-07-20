@@ -158,7 +158,7 @@ Follow the [VPN guide for Bring Your Own Devices (BYOD)](https://docs.google.com
 
 We store who has access to GOV.UK tooling in a git repo, [GOV.UK User Reviewer][govuk-user-reviewer] and use automation to alert when people should not have access. It's a private repo so you won't be able to access it until step 3 is completed.
 
-Get your tech lead to create a pull request to add you to the [tech users](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml). The repo readme specifies the [format new starters should have, with integration admin access](https://github.com/alphagov/govuk-user-reviewer/tree/main#properties-in-the-config-file). The `ssh_username` is in the format of `firstnamelastname` and is utilised in [8. Get SSH access to integration](#7-get-ssh-access-to-integration)).
+Get your tech lead to create a pull request to add you to the [tech users](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml). The repo readme specifies the [format new starters should have, with integration admin access](https://github.com/alphagov/govuk-user-reviewer/tree/main#properties-in-the-config-file). The `ssh_username` is in the format of `firstnamelastname` and is utilised in [8. Get SSH access to integration](#8-get-ssh-access-to-integration)).
 
 If you are working with us as a contractor from a supplier, please include the supplier's name in the `why_do_they_need_access` field.
 
@@ -377,15 +377,6 @@ to find out how to deploy infrastructure changes. The stackname is `govuk` and t
 `infra-security`.
 
 See the [AWS IAM users documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) for more information.
-
-Lastly, you will need to add the integration permissions provided in [GOV.UK User Reviewer][govuk-user-reviewer], for example:
-
-```yml
-aws:
-  integration: user
-```
-
-[Example PR](https://github.com/alphagov/govuk-user-reviewer/pull/924)
 
 ## 10. Access AWS for the first time
 
