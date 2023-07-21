@@ -158,3 +158,11 @@ After a deployment:
 [slides]: https://docs.google.com/presentation/d/1A0zdYHwOxV2jO_0YVsKplySXvd777pXDwn1YnETXSh8/edit
 [smokey]: https://github.com/alphagov/smokey
 [smokey-integration]: https://deploy.integration.publishing.service.gov.uk/job/Smokey/
+
+## Reverting Changes
+
+When reverting a PR you should fix forward:
+
+- Go to the existing merged PR on Github.
+- Click the revert button to open a revert PR.
+- Explain why the revert PR is needed in the description.
