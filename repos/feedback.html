@@ -273,6 +273,46 @@ via a form that will require you to identify yourself. This data is sent directl
 to the support app.</li>
 </ul>
 
+<h2 id="completed-transaction-feedback-forms">Completed Transaction feedback forms</h2>
+
+<h3 id="service-feedback">Service Feedback</h3>
+
+<p>Most of the <code>/done/completed-transaction</code> pages render a Service Feedback form. An example is: <a href="http://www.gov.uk/done/vehicle-tax">www.gov.uk/done/vehicle-tax</a>.</p>
+
+<h3 id="assisted-digital-feedback">Assisted Digital Feedback</h3>
+
+<p>There are also three assisted digital feedback forms:</p>
+
+<ul>
+<li><a href="https://www.gov.uk/done/register-flood-risk-exemption">https://www.gov.uk/done/register-flood-risk-exemption</a></li>
+<li><a href="https://www.gov.uk/done/waste-carrier-or-broker-registration">https://www.gov.uk/done/waste-carrier-or-broker-registration</a></li>
+<li><a href="https://www.gov.uk/done/register-waste-exemption">https://www.gov.uk/done/register-waste-exemption</a></li>
+</ul>
+
+<h3 id="transaction-finished">Transaction finished</h3>
+
+<p>The transaction finished page can be found here: <a href="https://www.gov.uk/done/transaction-finished">https://www.gov.uk/done/transaction-finished</a>.
+This doesn’t display a form, just content to inform the user that the transaction is finished.</p>
+
+<h3 id="where-is-the-data-sent">Where is the data sent?</h3>
+
+<p>The Service Feedback form fields also exist within the Assisted Digital Feedback form. They are foundationally the same, but Assisted Digital Feedback has some extra fields.</p>
+
+<p>The Service Feedback form data from both types of form is sent to the Support API. It can be viewed using the Support app within the Feedback Explorer.</p>
+
+<p>In addition to sending some data to the Support API, the data from the other fields (from the Assisted Digital Feedback form) plus some data from hidden fields appended using JS (<code>referrer</code> and <code>javascript_enabled</code>) are written to a Google spreadsheet.</p>
+
+<p>For submitting the Assisted Digital Feedback form, you will need to get the Google API credentials from AWS secrets/integration. To use them locally, create a .dotenv file and write them in:</p>
+
+<pre><code>GOOGLE_PRIVATE_KEY=
+GOOGLE_CLIENT_EMAIL=
+ASSISTED_DIGITAL_GOOGLE_SPREADSHEET_KEY=
+</code></pre>
+
+<p>The <code>.env</code> file is listed within the <code>.gitignore</code> file. Do not push the <code>.env</code> file to version control.</p>
+
+<p>Completed transaction feedback forms were previously rendered by the Frontend application. <a href="https://github.com/alphagov/feedback/pull/1601">Rendering was moved into this application</a> which enabled the implementation of form validation.</p>
+
 <h2 id="technical-documentation">Technical documentation</h2>
 
 <p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
