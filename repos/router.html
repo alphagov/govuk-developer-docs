@@ -251,12 +251,12 @@ but no longer exist.</li>
 interface to the underlying database and route reloading.</p>
 <h2 id="technical-documentation">Technical documentation</h2>
 <p>Recommended reading: <a href="https://golang.org/doc/code.html">How to Write Go Code</a></p>
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
 <h3 id="running-the-test-suite">Running the test suite</h3>
-<p>You can run all tests by running:</p>
+<p>You can run all tests (some of which need Docker installed) by running:</p>
 <pre><code>make test
 </code></pre>
+<p>You can also run just the unit tests or just the integration tests, using the
+<code>unit_tests</code> and <code>integration_tests</code> targets. The unit tests don&rsquo;t need Docker.</p>
 <p>The <code>trie</code> and <code>triemux</code> sub-packages have unit tests and benchmarks written
 in Go&rsquo;s own testing framework. To run them individually:</p>
 <pre><code>go test -bench=. ./trie ./triemux
@@ -265,6 +265,14 @@ in Go&rsquo;s own testing framework. To run them individually:</p>
 individual functions. Instead it has a comprehensive set of integration
 tests to exercise it&rsquo;s HTTP handling, error reporting, and performance.</p>
 <pre><code>go test ./integration_tests
+</code></pre>
+<h3 id="debug-output">Debug output</h3>
+<p>To see debug messages when running tests, set both the <code>DEBUG</code> and
+<code>DEBUG_ROUTER</code> environment variables.</p>
+<pre lang="sh"><code>export DEBUG=1 DEBUG_ROUTER=1
+</code></pre>
+<p>or equivalently for a single run:</p>
+<pre lang="sh"><code>DEBUG=1 DEBUG_ROUTER=1 make test
 </code></pre>
 <h3 id="updating-dependencies">Updating dependencies</h3>
 <p>This project uses <a href="https://github.com/golang/go/wiki/Modules">Go Modules</a> to vendor its dependencies. To update the dependencies:</p>
@@ -289,10 +297,6 @@ tests to exercise it&rsquo;s HTTP handling, error reporting, and performance.</p
 </li>
 <li>Run <code>go mod tidy</code> and <code>go mod vendor</code>. Check for any errors and commit.</li>
 </ol>
-<p>You may have to push your branch to see if this causes further errors on the Jenkins CI machines.</p>
-<h4 id="why-do-we-install-go-on-ci-machines-rather-than-cache-machines">Why do we install Go on CI machines rather than Cache machines?</h4>
-<p>Router is built on CI machines; the artefact is then <a href="https://github.com/alphagov/router/blob/main/Jenkinsfile#L68">uploaded to S3</a> for use in deployment. In  deployment, the artefact is <a href="https://github.com/alphagov/govuk-app-deployment/blob/master/router%2Fconfig%2Fdeploy.rb#L30">retrieved from S3</a> and uploaded to the cache machines prior to a restart.</p>
-<p>The updated version of golang is <a href="https://github.com/alphagov/govuk-puppet/search?q=golang">only uploaded to Jenkins and CI agents</a>.</p>
 <h3 id="further-documentation">Further documentation</h3>
 <ul>
 <li><a href="/repos/router/data-structure.html">Data structure</a></li>
