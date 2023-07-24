@@ -90,7 +90,7 @@ It is also possible but not typically done to take manual snapshots of a Documen
 We still run two MongoDB clusters:
 
 - router_backend (router)
-- mongo (content store, draft content store, licence finder)
+- mongo (content store, draft content store)
 
 Databases are backed up to S3 using mongodump, a command-line tool that creates a binary dump, in the [govuk_env_sync](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_env_sync/files/govuk_env_sync.sh).
 
