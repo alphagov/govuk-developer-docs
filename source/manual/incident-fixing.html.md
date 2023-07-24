@@ -1,6 +1,6 @@
 ---
 owner_slack: "@ana.botto"
-title: Fixing an Incident
+title: Fix an Incident
 parent: "/manual.html"
 layout: manual_layout
 type: learn
