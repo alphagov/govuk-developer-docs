@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Track click script - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics 4 scroll tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/track-click.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-scroll-tracker.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Track click script - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/track-click.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics 4 scroll tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-scroll-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Track click script" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics 4 scroll tracker" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/track-click.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-scroll-tracker.html" />
 
     
   </head>
@@ -243,100 +243,114 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b8943690532dcfead6efd40c9faee3f1c936599a">8 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/606f9f4c1ee8ce9aded5827a1dd7b510e4067726">5 Jul 2023</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Track click script</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics 4 scroll tracker</h1>
 
   
-<p>The gem includes a script that allows tracking to be added to clicked elements with relative ease. It depends upon the main analytics code to function.</p>
-<h2 id="basic-use">Basic use</h2>
-<pre lang="html"><code>&lt;a href="/link"
-  data-module="gem-track-click"
-  data-track-category="category"
-  data-track-action="action"
-  data-track-label="Foo"&gt;
-  Link
-&lt;/a&gt;
+<p>The scroll tracker can be added to pages that require scroll tracking.</p>
+<h2 id="overview">Overview</h2>
+<p>The scroll tracker is a GOVUK.Module and can be initialised by adding the relevant code to a template. Since scroll tracking is only required once on a page, it should be initialised using a meta tag in the HEAD element as shown.</p>
+<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
+  &lt;meta name="govuk:scroll-tracker" content="" data-module="ga4-scroll-tracker"/&gt;
+&lt;% end %&gt;
 </code></pre>
-<p><strong>NOTE:</strong>  According to <a href="https://support.google.com/analytics/answer/1033068">Google Analytics Help</a>, event label is optional, but recommended.</p>
-<h2 id="advanced-use">Advanced use</h2>
-<p>Adds a custom dimension of <code>dimension29</code> with a value of <code>dimension-value</code>, and a <code>value</code> of <code>9</code>.</p>
-<pre lang="html"><code>&lt;a href="/link"
-  data-module="gem-track-click"
-  data-track-category="category"
-  data-track-action="action"
-  data-track-label="label"
-  data-track-dimension="dimension-value"
-  data-track-dimension-index="29"
-  data-track-value="9"&gt;
-  Link
-&lt;/a&gt;
+<p>Note that since the scroll tracker is initialised by the <code>data-module</code> attribute, the meta <code>name</code> can be anything, we use <code>govuk:scroll-tracker</code> only for reference.</p>
+<h3 id="track-percentages">Track percentages</h3>
+<p>By default, the scroll tracker tracks by percentage scrolled. Specifically, it will make a push to the dataLayer when the user scrolls to 20%, 40%, 60%, 80% and 100% of the page height.</p>
+<p>When tracking percentages, the following data will be pushed to the dataLayer.</p>
+<pre><code>{
+  event: "event_data",
+  event_data: {
+    action: "scroll",
+    event_name: "scroll",
+    percent_scrolled: 20,
+    type: "percent"
+  }
+}
 </code></pre>
-<h2 id="track-with-arbitrary-json">Track with arbitrary JSON</h2>
-<pre lang="html"><code>&lt;a href='/link'
-  data-module='gem-track-click'
-  data-track-category='category'
-  data-track-action='1'
-  data-track-label='/'
-  data-track-options='{"dimension28": "foo", "dimension29": "bar"}'&gt;
-  Link
-&lt;/a&gt;
+<h3 id="track-headings">Track headings</h3>
+<p>The scroll tracker can be configured to track headings using the <code>data-ga4-track-type</code> option.</p>
+<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
+  &lt;meta name="govuk:scroll-tracker" content="" data-module="ga4-scroll-tracker" data-ga4-track-type="headings"/&gt;
+&lt;% end %&gt;
 </code></pre>
-<h2 id="track-more-than-one-element">Track more than one element</h2>
-<p>Specific tracking can be applied to multiple elements within a container, by applying the data module once to the parent element.</p>
-<pre lang="html"><code>&lt;div data-module="gem-track-click"&gt;
-  &lt;p&gt;This element has no tracking.&lt;/p&gt;
-  &lt;a href="/link1"
-    data-track-category="cat1"
-    data-track-action="action1"
-    data-track-label="label1"&gt;
-    This link has tracking
-  &lt;/a&gt;
-  &lt;div&gt;
-    &lt;a href="/link2"
-      data-track-category="cat2"
-      data-track-action="action2"
-      data-track-label="label2"&gt;
-      This link also has tracking
-    &lt;/a&gt;
-  &lt;/div&gt;
+<p>When tracking headings, the following data will be pushed to the dataLayer.</p>
+<pre><code>{
+  event: "event_data",
+  event_data: {
+    action: "scroll",
+    event_name: "scroll",
+    index: {
+      index_section: 2, // index of heading in headings tracked
+      index_section_count: 5 // total number of headings being tracked
+    },
+    text: "Text of heading",
+    type: "heading"
+  }
+}
+</code></pre>
+<h3 id="track-markers">Track markers</h3>
+<p>Sometimes only certain elements on a page should be tracked. This can be done by adding a marker to the required elements and configuring as shown.</p>
+<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
+  &lt;meta name="govuk:scroll-tracker" content="" data-module="ga4-scroll-tracker" data-ga4-track-type="markers"/&gt;
+&lt;% end %&gt;
+
+&lt;div data-ga4-scroll-marker&gt;
+  Some content
+&lt;/div&gt;
+
+&lt;div data-ga4-scroll-marker&gt;
+  Some other content
 &lt;/div&gt;
 </code></pre>
-<h2 id="track-links-within-content">Track links within content</h2>
-<p>Where tracking attributes cannot be applied to elements, links can be tracked with the link href as the tracking label (and other attributes set on the parent). The <code>data-track-links-only</code> attribute ensures that only link clicks are tracked (without it, any click inside the element is tracked). This is helpful where page content is not editable, e.g. content comes from the content item or a publishing tool.</p>
-<pre lang="html"><code>&lt;div data-module="gem-track-click"
-  data-track-category="category"
-  data-track-action="action"
-  data-track-links-only&gt;
-  &lt;a href="/link1"&gt;This link will be tracked&lt;/a&gt;
-  &lt;a href="/link2"&gt;
-    &lt;span&gt;This link will also be tracked even though it contains child elements&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;span&gt;This span will not be tracked&lt;/span&gt;
-&lt;/div&gt;
+<p>Any element that a marker is attached to should be short in both height and text content to be tracked well, because:</p>
+<ul>
+<li>the <code>text</code> attribute collects the full text of the element with the marker</li>
+<li>scroll tracking only happens when the marked element is fully visible to the user</li>
+</ul>
+<p>When tracking markers, the following data will be pushed to the dataLayer.</p>
+<pre><code>{
+  event: "event_data",
+  event_data: {
+    action: "scroll",
+    event_name: "scroll",
+    index: {
+      index_section: 1, // index of marker in markers tracked
+      index_section_count: 2 // total number of markers being tracked
+    },
+    text: "Some content",
+    type: "marker"
+  }
+}
 </code></pre>
-<h2 id="track-links-within-content-within-a-specific-element">Track links within content within a specific element</h2>
-<p>To apply tracking to links within a specific element within part of a page, use the <code>data-limit-to-element-class</code> attribute. This is helpful where page content is not editable, e.g. content comes from the content item or a publishing tool.</p>
-<pre lang="html"><code>&lt;div data-module="gem-track-click"
-  data-track-category="category"
-  data-track-action="action"
-  data-track-links-only
-  data-limit-to-element-class="demoBox"&gt;
-  &lt;a href="/link1"&gt;This link will not be tracked&lt;/a&gt;
-  &lt;div class="demoBox"&gt;
-    &lt;a href="/link2"&gt;This link will be tracked&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+<h2 id="adding-tracking-to-specific-pages">Adding tracking to specific pages</h2>
+<p>A single template may render multiple pages and different configurations may be required. If this is the case, configuration can be handled by the template.</p>
+<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
+  &lt;% if ["/foreign-travel-advice/benin", "/foreign-travel-advice/france"].include?(content_item.base_path) %&gt;
+    &lt;meta name="govuk:scroll-tracker" content="" data-module="ga4-scroll-tracker" data-ga4-track-type="headings" data-track-headings="['Summary']"/&gt;
+  &lt;% else %&gt;
+    &lt;meta name="govuk:scroll-tracker" content="" data-module="ga4-scroll-tracker"/&gt;
+  &lt;% end %&gt;
+&lt;% end %&gt;
 </code></pre>
+<h2 id="behaviour">Behaviour</h2>
+<p>The scroll tracker finds the position of things (percentages and headings, including the text of headings) on page load to minimise calculations when the user scrolls. This finding of positions is repeated if any of the following occur:</p>
+<ul>
+<li>the user resizes the page</li>
+<li>the height of the page changes (for example if the cookie banner is dismissed, or an accordion item is expanded). This also detects user font size or zoom level changes</li>
+</ul>
+<p>Operation:</p>
+<ul>
+<li>Tracking events are only fired once i.e. if a user scrolls up and down a page, duplicate events are not tracked.</li>
+<li>Tracking events are fired on page load for things that are immediately visible.</li>
+<li>If the user has followed a jump link, e.g. <code>https://www.gov.uk/foreign-travel-advice/spain/coronavirus#finance</code> the tracker detects this and doesn't fire tracking events until after the browser jumps to the relevant section. It also checks that the hash matches a valid element on the page, and continues as normal if it doesn't.</li>
+<li>Headings are tracked only when the whole of the heading is visible in the viewport.</li>
+<li>Headings are only tracked if they are inside the 'main' element, in order to avoid tracking headings in e.g. the cookie banner, the footer (this has been written to be extendable in future if other elements/classes are required)</li>
+<li>Hidden headings are not tracked, unless they become visible (e.g. if inside an accordion that is opened).</li>
+</ul>
 
 
             
@@ -344,8 +358,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics/track-click.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics%2Ftrack-click.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-scroll-tracker.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-ga4%2Fga4-scroll-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
