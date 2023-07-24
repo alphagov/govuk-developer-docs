@@ -23,9 +23,9 @@ The Licensing service consists of [three separately deployed applications](https
 
 ### Finding a licence
 
-Users use [Licence Finder](https://www.gov.uk/licence-finder) to locate licences on the GOV.UK frontend, but from a technical perspective this is separate from Licensify.
+Users use [Find a Licence](https://www.gov.uk/find-licences) to locate licences on the GOV.UK frontend, but from a technical perspective this is separate from Licensify.
 
-Licence Finder sends users to a "Licence" page served by [Frontend](/repos/frontend.html). Users enter their postcode and Frontend uses [Locations API](/repos/locations-api.html) to [find their local authority](https://github.com/alphagov/frontend/blob/e8effb3f7edf4f12c0f71076bfb079e985522796/app/controllers/licence_controller.rb#L87). Frontend makes a request to a Licensify API to find out whether the licence is available on GOV.UK.
+Find a Licence sends users to a "Licence" page served by [Frontend](/repos/frontend.html). Users enter their postcode and Frontend uses [Locations API](/repos/locations-api.html) to [find their local authority](https://github.com/alphagov/frontend/blob/e8effb3f7edf4f12c0f71076bfb079e985522796/app/controllers/licence_controller.rb#L87). Frontend makes a request to a Licensify API to find out whether the licence is available on GOV.UK.
 
 ### Applying for a licence
 
