@@ -8,15 +8,22 @@ type: learn
 ---
 
 This is a temporary page to tide us over as we get used to the new EKS platform.
-It will eventually be consolidated when the [GOV.UK Kubernetes docs](https://govuk-k8s-user-docs.publishing.service.gov.uk/) are absorbed into the Developer Docs.
+It will eventually be consolidated when the [GOV.UK Kubernetes docs](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/) are absorbed into the Developer Docs.
 
 ## Quick reference
 
-You need to have completed the [set up instructions](https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/) and [tested your access](https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#test-your-access).
+You need to have:
 
-The following commands assume you have `alias k=kubectl` as per the [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/), and also set the `apps` namespace as your default (`k config set-context --current --namespace=apps`).
+- completed the [set up instructions](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/)
+- [tested your access](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#test-your-access)
 
-You'll need to [set your region and context](https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#select-a-role-and-environment) as below (swapping out the environment as appropriate. Note that the `poweruser` role is required as a minimum when opening shell or rails console. `readonly` can be used for accessing logs):
+The following commands assume you have `alias k=kubectl` per the [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/), and also set the `apps` namespace as your default (`k config set-context --current --namespace=apps`).
+
+You need to:
+
+- [set your region and context](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#select-a-role-and-environment) as below
+- specify the appropriate environment (integration, staging, production)
+- use an AWS role with sufficient permissions (readonly can view logs, poweruser or administrator can run Rake tasks or open a shell)
 
 ```sh
 export AWS_REGION=eu-west-1

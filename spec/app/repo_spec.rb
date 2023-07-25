@@ -56,7 +56,6 @@ RSpec.describe Repo do
         "calculators_frontend" => {
           "apps" => %w[
             finder-frontend
-            licencefinder
             smartanswers
           ],
         },

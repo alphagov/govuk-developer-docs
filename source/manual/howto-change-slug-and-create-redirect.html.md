@@ -18,9 +18,12 @@ These Rake Tasks also reindex the entity with its new slug and republish it to
 Publishing API, which automatically handles the redirect. They all take the old
 slug and the new slug as arguments.
 
-If you have not accessed the EKS before you will need to follow [these set up instructions](https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/) first.
+If you have not accessed the EKS before you will need to follow [the set up guide](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/) first.
 
-To run a rake task you’ll need to set your region and context as below (swapping out the environment as appropriate. Note that the poweruser role is required as a minimum for running rake tasks):
+To run a Rake task you need to:
+
+- set your region and context as below, specifying the appropriate environment name (integration, staging, production)
+- use an AWS role that has the necessary permissions (poweruser or administrator)
 
 ```bash
 export AWS_REGION=eu-west-1
