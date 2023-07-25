@@ -129,19 +129,19 @@
     <a href="#header"><span>Retire an application</span></a>
     <ul>
       <li>
-        <a href="#1-remove-app-from-puppet"><span>1. Remove app from puppet</span></a>
+        <a href="#1-puppet-apps-only-remove-app-from-puppet"><span>1. (PUPPET APPS ONLY) Remove app from puppet</span></a>
       </li>
       <li>
         <a href="#2-remove-smoke-tests"><span>2. Remove smoke tests</span></a>
       </li>
       <li>
-        <a href="#3-remove-deploy-scripts"><span>3. Remove deploy scripts</span></a>
+        <a href="#3-puppet-apps-only-remove-deploy-scripts"><span>3. (PUPPET APPS ONLY) Remove deploy scripts</span></a>
       </li>
       <li>
         <a href="#4-update-release-app"><span>4. Update Release app</span></a>
       </li>
       <li>
-        <a href="#5-remove-from-deploy-jenkins"><span>5. Remove from deploy Jenkins</span></a>
+        <a href="#5-puppet-apps-only-remove-from-deploy-jenkins"><span>5. (PUPPET APPS ONLY) Remove from deploy Jenkins</span></a>
       </li>
       <li>
         <a href="#6-update-signon"><span>6. Update Signon</span></a>
@@ -159,7 +159,7 @@
         <a href="#10-drop-database"><span>10. Drop database</span></a>
       </li>
       <li>
-        <a href="#11-remove-jobs-in-ci"><span>11. Remove jobs in CI</span></a>
+        <a href="#11-puppet-apps-only-remove-jobs-in-ci"><span>11. (PUPPET APPS ONLY) Remove jobs in CI</span></a>
       </li>
       <li>
         <a href="#12-unpublish-routes"><span>12. Unpublish routes</span></a>
@@ -171,7 +171,10 @@
         <a href="#14-remove-from-heroku"><span>14. Remove from Heroku</span></a>
       </li>
       <li>
-        <a href="#15-archive-the-repo"><span>15. Archive the repo</span></a>
+        <a href="#15-eks-apps-only-remove-from-govuk-helm-charts"><span>15. (EKS APPS ONLY) Remove from govuk-helm-charts</span></a>
+      </li>
+      <li>
+        <a href="#16-archive-the-repo"><span>16. Archive the repo</span></a>
       </li>
     </ul>
   </li>
@@ -223,10 +226,14 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba9ffde55d512ce00d9bd1754c8547ff1c4dae86">21 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0a014d0fc2e56a9a387c5622d3fcb88067bd7463">25 Jul 2023</a>
 </div>
 
- <h1 id='header'>Retire an application</h1> <h2 id='1-remove-app-from-puppet'>1. Remove app from puppet</h2><p>Configure Puppet to remove the app from all servers. Change the app resource,
+ <h1 id='header'>Retire an application</h1> <p>Note: Now that we&rsquo;ve moved most of the applications to EKS, some of these
+steps are only necessary for the handful of apps being deployed by Puppet.
+The step titles now indicate whether a step is only required for Puppet or
+EKS-deployed apps.</p>
+<h2 id='1-puppet-apps-only-remove-app-from-puppet'>1. (PUPPET APPS ONLY) Remove app from puppet</h2><p>Configure Puppet to remove the app from all servers. Change the app resource,
 and any database resources to <code>ensure =&gt; absent</code>, remove any host and
 load-balancer entries, but leave the hieradata entries.</p>
 <p>See this pull request for an example:</p>
@@ -240,11 +247,11 @@ load-balancer entries, but leave the hieradata entries.</p>
 <li><a href="https://github.com/alphagov/govuk-puppet/pull/5507">https://github.com/alphagov/govuk-puppet/pull/5507</a></li>
 </ul>
 <h2 id='2-remove-smoke-tests'>2. Remove smoke tests</h2><p>Remove any <a href="https://github.com/alphagov/smokey">smokey tests</a> specific to the application.</p>
-<h2 id='3-remove-deploy-scripts'>3. Remove deploy scripts</h2><p>Remove necessary scripts from <a href="https://github.com/alphagov/govuk-app-deployment">govuk-app-deployment</a>.</p>
+<h2 id='3-puppet-apps-only-remove-deploy-scripts'>3. (PUPPET APPS ONLY) Remove deploy scripts</h2><p>Remove necessary scripts from <a href="https://github.com/alphagov/govuk-app-deployment">govuk-app-deployment</a>.</p>
 <h2 id='4-update-release-app'>4. Update Release app</h2><p>Mark the application as archived in the Release app.</p>
 <p>Edit the application in the release app (you&rsquo;ll need the <code>deploy</code> permission to
 do this), and check the <code>archived</code> checkbox. This will hide it from the UI.</p>
-<h2 id='5-remove-from-deploy-jenkins'>5. Remove from deploy Jenkins</h2><p>Remove entry from the deploy Jenkinses. This is managed
+<h2 id='5-puppet-apps-only-remove-from-deploy-jenkins'>5. (PUPPET APPS ONLY) Remove from deploy Jenkins</h2><p>Remove entry from the deploy Jenkinses. This is managed
 <a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml">through govuk-puppet</a> in the <code>common.yml</code>.</p>
 <h2 id='6-update-signon'>6. Update Signon</h2><p>Mark the application as &ldquo;retired&rdquo; in signon, if it used it.</p>
 <p>Click on the Applications tab. Find the application that is being retired and
@@ -258,14 +265,27 @@ have had public DNS entries in the <code>publishing.service.gov.uk</code> domain
 these.</p>
 <h2 id='9-update-docs'>9. Update docs</h2><p>Mark the application as <code>retired</code> in <a href="https://github.com/alphagov/govuk-developer-docs">govuk-developer-docs</a></p>
 <h2 id='10-drop-database'>10. Drop database</h2><p>If Puppet hasn&rsquo;t done it (eg for MongoDB databases), drop the database.</p>
-<h2 id='11-remove-jobs-in-ci'>11. Remove jobs in CI</h2><p>If tests were set up, go to <a href="https://ci.integration.publishing.service.gov.uk/">CI</a> and choose &ldquo;Delete Repository&rdquo; for your
+<h2 id='11-puppet-apps-only-remove-jobs-in-ci'>11. (PUPPET APPS ONLY) Remove jobs in CI</h2><p>If tests were set up, go to <a href="https://ci.integration.publishing.service.gov.uk/">CI</a> and choose &ldquo;Delete Repository&rdquo; for your
 project.</p>
 <h2 id='12-unpublish-routes'>12. Unpublish routes</h2><p>Some applications are responsible for publishing certain routes. If you&rsquo;re
 retiring a publishing application, make sure you check if any of its content
 items need to be unpublished and do it via the Publishing API.</p>
 <h2 id='13-remove-from-sentry'>13. Remove from Sentry</h2><p>Since the application has been retired, it shouldn&rsquo;t be tracked in Sentry.</p>
 <h2 id='14-remove-from-heroku'>14. Remove from Heroku</h2><p>If relevant (e.g. if Heroku was used for previews).</p>
-<h2 id='15-archive-the-repo'>15. Archive the repo</h2><p>Follow the steps at <a href="/manual/retiring-a-repo.html">Retire a repo</a>.</p>
+<h2 id='15-eks-apps-only-remove-from-govuk-helm-charts'>15. (EKS APPS ONLY) Remove from govuk-helm-charts</h2><p>Remove the app&rsquo;s entry in [govuk-helm-charts] from:</p>
+
+<ul>
+<li>/charts/app-config/values-integration.yaml</li>
+<li>/charts/app-config/values-staging.yaml</li>
+<li>/charts/app-config/values-production.yaml</li>
+<li>(if present) /charts/app-config/templates/signon-secrets-sync-configmap.yaml</li>
+<li>(if present) /charts/external-secrets/templates/<app name></li>
+</ul>
+<p>It&rsquo;s also wise to search that repo for other references to the app being retired.
+Once the PR is merged ([Example PR][]), the app pods will automatically be removed by Argo.</p>
+<p><a href="https://github.com/alphagov/govuk-helm-charts/">govuk-helm-charts</a>
+<a href="https://github.com/alphagov/govuk-helm-charts/pull/1236">Example PR</a></p>
+<h2 id='16-archive-the-repo'>16. Archive the repo</h2><p>Follow the steps at <a href="/manual/retiring-a-repo.html">Retire a repo</a>.</p>
 
 
   <div class='related-content'>
