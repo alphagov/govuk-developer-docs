@@ -34,6 +34,8 @@ Or using [GitHub’s CLI](https://cli.github.com/manual/gh_workflow_run):
 gh workflow run -R "alphagov/${REPO}" deploy.yml -F environment=${ENVIRONMENT} -F gitRef=${GIT_REF}
 ```
 
+Manual deployments are never promoted to other environments.
+
 ## Overview of the deployment process
 
 This is an example deploying an application to integration:
