@@ -6,7 +6,12 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-## 1. Remove app from puppet
+Note: Now that we've moved most of the applications to EKS, some of these
+steps are only necessary for the handful of apps being deployed by Puppet.
+The step titles now indicate whether a step is only required for Puppet or
+EKS-deployed apps.
+
+## 1. (PUPPET APPS ONLY) Remove app from puppet
 
 Configure Puppet to remove the app from all servers. Change the app resource,
 and any database resources to `ensure => absent`, remove any host and
@@ -26,7 +31,7 @@ Remove any [smokey tests][smokey] specific to the application.
 
 [smokey]: https://github.com/alphagov/smokey
 
-## 3. Remove deploy scripts
+## 3. (PUPPET APPS ONLY) Remove deploy scripts
 
 Remove necessary scripts from [govuk-app-deployment][govuk-app-deployment].
 
@@ -39,7 +44,7 @@ Mark the application as archived in the Release app.
 Edit the application in the release app (you'll need the `deploy` permission to
 do this), and check the `archived` checkbox. This will hide it from the UI.
 
-## 5. Remove from deploy Jenkins
+## 5. (PUPPET APPS ONLY) Remove from deploy Jenkins
 
 Remove entry from the deploy Jenkinses. This is managed
 [through govuk-puppet][common] in the `common.yml`.
@@ -80,7 +85,7 @@ Mark the application as `retired` in [govuk-developer-docs](https://github.com/a
 
 If Puppet hasn't done it (eg for MongoDB databases), drop the database.
 
-## 11. Remove jobs in CI
+## 11. (PUPPET APPS ONLY) Remove jobs in CI
 
 If tests were set up, go to [CI] and choose "Delete Repository" for your
 project.
@@ -101,6 +106,22 @@ Since the application has been retired, it shouldn't be tracked in Sentry.
 
 If relevant (e.g. if Heroku was used for previews).
 
-## 15. Archive the repo
+## 15. (EKS APPS ONLY) Remove from govuk-helm-charts
+
+Remove the app's entry in [govuk-helm-charts] from:
+
+- /charts/app-config/values-integration.yaml
+- /charts/app-config/values-staging.yaml
+- /charts/app-config/values-production.yaml
+- (if present) /charts/app-config/templates/signon-secrets-sync-configmap.yaml
+- (if present) /charts/external-secrets/templates/<app name>
+
+It's also wise to search that repo for other references to the app being retired.
+Once the PR is merged ([Example PR][]), the app pods will automatically be removed by Argo.
+
+[govuk-helm-charts] (https://github.com/alphagov/govuk-helm-charts/)
+[Example PR] (https://github.com/alphagov/govuk-helm-charts/pull/1236)
+
+## 16. Archive the repo
 
 Follow the steps at [Retire a repo](/manual/retiring-a-repo.html).
