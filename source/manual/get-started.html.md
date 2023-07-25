@@ -417,7 +417,7 @@ If you forget your `aws-vault` password, you must reset that password.
 
 ## 11. Set up tools to use the GOV.UK Kubernetes platform
 
-Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/).
+Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/).
 
 ## 12. Get a Signon account for integration
 
