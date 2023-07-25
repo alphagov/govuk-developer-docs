@@ -47,7 +47,7 @@ eval $(gds aws govuk-<environment-name>-poweruser -e --art 8h)
 kubectl config use-context <your-context-name>
 ```
 
-NB If you have not accessed the EKS before you will need to follow [these set up instructions](https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/) first.
+If you have not accessed the EKS cluster before, you will need to follow [the set up guide](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/) first.
 
 1. Connect to the Publishing API console: `kubectl exec -n apps -it deploy/publishing-api -- rails c`
 
