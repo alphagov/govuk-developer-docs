@@ -184,7 +184,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0f8ec128c20bb51c91ff2ab3dfc962b358b5f537">13 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f32054fb0f93ddd652e85b4f8b29673764aad02d">25 Jul 2023</a>
 </div>
 
  <h1 id='header'>Deployments</h1> <p>On GOV.UK, all applications are set up for continuous deployment to integration, with the majority also having continuous deployment configured for staging and production.  Additionally, you can manually deploy a git reference (tag, branch, or commit SHA) of an application to any environment.</p>
@@ -204,7 +204,8 @@
 </ol>
 <p>Or using <a href="https://cli.github.com/manual/gh_workflow_run">GitHub’s CLI</a>:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gh workflow run <span class="nt">-R</span> <span class="s2">"alphagov/</span><span class="k">${</span><span class="nv">REPO</span><span class="k">}</span><span class="s2">"</span> deploy.yml <span class="nt">-F</span> <span class="nv">environment</span><span class="o">=</span><span class="k">${</span><span class="nv">ENVIRONMENT</span><span class="k">}</span> <span class="nt">-F</span> <span class="nv">gitRef</span><span class="o">=</span><span class="k">${</span><span class="nv">GIT_REF</span><span class="k">}</span>
-</code></pre></div><h2 id='overview-of-the-deployment-process'>Overview of the deployment process</h2><p>This is an example deploying an application to integration:</p>
+</code></pre></div><p>Manual deployments are never promoted to other environments.</p>
+<h2 id='overview-of-the-deployment-process'>Overview of the deployment process</h2><p>This is an example deploying an application to integration:</p>
 
 <ol>
 <li>Developer merges a PR into main branch and it passes <a href="https://github.com/alphagov/whitehall/actions/workflows/ci.yml">CI</a></li>
