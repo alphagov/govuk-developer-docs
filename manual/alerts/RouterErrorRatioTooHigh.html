@@ -187,13 +187,13 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dabfc048b09fa963b1613d2800fe916422a5b721">3 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8850f668aaaeead70ba846860da48890660279a5">24 Jul 2023</a>
 </div>
 
  <h1 id='header'>Router error ratio too high</h1> <p>You can find the router request error rates on this dashboard:</p>
 
 <ul>
-<li>[5xx Router Requests][router-5x https://grafana.eks.production.govuk.digital/d/router-requests/router-request-rates-errors-durations?orgId=1 x-request-rates-grafana]</li>
+<li><a href="https://grafana.eks.production.govuk.digital/d/router-requests/router-request-rates-errors-durations">5xx Router Requests</a></li>
 </ul>
 <p>You can also view the 500+503 error rates across all applications on this dashboard:</p>
 
@@ -207,7 +207,7 @@ Use <a href="https://grafana.eks.prodution.govuk.digital/d/app-requests/app-requ
 <h2 id='potential-resolution-steps'>potential resolution steps</h2>
 <ul>
 <li>If an application has been recently updated and is returning errors it may require a rollback using the app&rsquo;s deploy github action https://github.com/alphagov/<appname>/actions/workflows/deploy.yml</li>
-<li>If your application is currently dealing with a sudden increase in load it could be that you need to scale your application. You can check the following <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/manage-app/scale-app/#scaling-your-app">documentation</a> in order to do this.</li>
+<li>If your application is currently dealing with a sudden increase in load it could be that you need to scale your application. You can check the following <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/manage-app/scale-app/#scaling-your-app">documentation</a> in order to do this.</li>
 </ul>
 
 

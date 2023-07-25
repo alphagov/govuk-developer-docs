@@ -198,7 +198,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e40517cec027aa353f9de45bf62ddf78560a64b9">15 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8850f668aaaeead70ba846860da48890660279a5">24 Jul 2023</a>
 </div>
 
  <h1 id='header'>Modify a change note in Publishing API, Content Publisher or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in Whitehall, Content Publisher and Publishing API.</p>
@@ -229,7 +229,7 @@ ed.save
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
 <span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-&lt;environment-name&gt;-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
 kubectl config use-context &lt;your-context-name&gt;
-</code></pre></div><p>NB If you have not accessed the EKS before you will need to follow <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">these set up instructions</a> first.</p>
+</code></pre></div><p>If you have not accessed the EKS cluster before, you will need to follow <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">the set up guide</a> first.</p>
 
 <ol>
 <li><p>Connect to the Publishing API console: <code>kubectl exec -n apps -it deploy/publishing-api -- rails c</code></p></li>

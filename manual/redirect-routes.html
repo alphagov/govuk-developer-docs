@@ -218,7 +218,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e6810092722c185116d6152a4a4d10c62aa6824b">14 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8850f668aaaeead70ba846860da48890660279a5">24 Jul 2023</a>
 </div>
 
  <h1 id='header'>Redirect a route</h1> <p>There are a number of different ways of applying redirects on GOV.UK.
@@ -360,7 +360,7 @@ and using non-default values for the <code>segments_mode</code>.</p>
 <p>Once the redirect is removed, the page will return a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410">410 Gone status</a>.</p>
 <h3 id='removing-a-route-completely-so-it-can-be-replaced-with-another-route'>Removing a route completely so it can be replaced with another route</h3><p>Removing a route in the previous section returns a 410 Gone status - this means that the URL can not be reused by another publication as the route is still being used.</p>
 <p>To completely remove a route requires using the Rails console for several different apps using EKS.</p>
-<p>If you have not accessed the EKS before you will need to follow <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">these set up instructions</a> first.</p>
+<p>If you have not accessed the cluster before, you will need to follow <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">the set up instructions</a> first.</p>
 <p>To access an app&rsquo;s Rails console you’ll need to set your region and context as below (swapping out the environment as appropriate):</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
 <span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>

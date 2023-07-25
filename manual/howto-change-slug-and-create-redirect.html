@@ -189,7 +189,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2b780908f5bd97da0de173c40f94e6d01cd59969">13 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8850f668aaaeead70ba846860da48890660279a5">24 Jul 2023</a>
 </div>
 
  <h1 id='header'>Change a slug and create redirect in Whitehall</h1> <h2 id='change-a-slug-and-create-a-redirect-in-whitehall'>Change a slug and create a redirect in Whitehall</h2><p>In Whitehall, we have Rake Tasks to change slugs and create redirects for
@@ -198,8 +198,13 @@ various entities: <code>Person</code>, <code>Role</code>, <code>Document</code>,
 <h3 id='rake-tasks'>Rake Tasks</h3><p>These Rake Tasks also reindex the entity with its new slug and republish it to
 Publishing API, which automatically handles the redirect. They all take the old
 slug and the new slug as arguments.</p>
-<p>If you have not accessed the EKS before you will need to follow <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">these set up instructions</a> first.</p>
-<p>To run a rake task you’ll need to set your region and context as below (swapping out the environment as appropriate. Note that the poweruser role is required as a minimum for running rake tasks):</p>
+<p>If you have not accessed the EKS before you will need to follow <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">the set up guide</a> first.</p>
+<p>To run a Rake task you need to:</p>
+
+<ul>
+<li>set your region and context as below, specifying the appropriate environment name (integration, staging, production)</li>
+<li>use an AWS role that has the necessary permissions (poweruser or administrator)</li>
+</ul>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
 <span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
 kubectl config use-context &lt;your-context-name&gt;
