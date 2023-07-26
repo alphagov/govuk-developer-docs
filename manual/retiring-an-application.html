@@ -174,7 +174,10 @@
         <a href="#15-eks-apps-only-remove-from-govuk-helm-charts"><span>15. (EKS APPS ONLY) Remove from govuk-helm-charts</span></a>
       </li>
       <li>
-        <a href="#16-archive-the-repo"><span>16. Archive the repo</span></a>
+        <a href="#17-delete-the-app39s-kubernetes-resources-if-applicable"><span>17. Delete the app’s Kubernetes resources (if applicable)</span></a>
+      </li>
+      <li>
+        <a href="#18-archive-the-repo"><span>18. Archive the repo</span></a>
       </li>
     </ul>
   </li>
@@ -226,7 +229,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0a014d0fc2e56a9a387c5622d3fcb88067bd7463">25 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bad1cb45b29fc49ecbd649262e517de6e2bcaa7f">26 Jul 2023</a>
 </div>
 
  <h1 id='header'>Retire an application</h1> <p>Note: Now that we&rsquo;ve moved most of the applications to EKS, some of these
@@ -285,7 +288,12 @@ items need to be unpublished and do it via the Publishing API.</p>
 Once the PR is merged ([Example PR][]), the app pods will automatically be removed by Argo.</p>
 <p><a href="https://github.com/alphagov/govuk-helm-charts/">govuk-helm-charts</a>
 <a href="https://github.com/alphagov/govuk-helm-charts/pull/1236">Example PR</a></p>
-<h2 id='16-archive-the-repo'>16. Archive the repo</h2><p>Follow the steps at <a href="/manual/retiring-a-repo.html">Retire a repo</a>.</p>
+<h2 id='17-delete-the-app39s-kubernetes-resources-if-applicable'>17. Delete the app&rsquo;s Kubernetes resources (if applicable)</h2><p>In the staging and production environments, deleting an Argo CD app will not <a href="https://github.com/alphagov/govuk-helm-charts/blob/c55a034/charts/app-config/templates/govuk-application.yaml#L10">automatically delete</a> the Kubernetes resources that it manages, such as <code>deployments</code>, <code>services</code>, <code>jobs</code> and <code>cronjobs</code>.</p>
+<p>You will need to list and delete these resources yourself, for example:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  kubectl get all | grep &lt;app-name&gt;
+
+  kubectl delete deploy/&lt;app-name&gt; svc/&lt;app-name&gt; job/&lt;app-name&gt;-upload-assets
+</code></pre></div><h2 id='18-archive-the-repo'>18. Archive the repo</h2><p>Follow the steps at <a href="/manual/retiring-a-repo.html">Retire a repo</a>.</p>
 
 
   <div class='related-content'>
