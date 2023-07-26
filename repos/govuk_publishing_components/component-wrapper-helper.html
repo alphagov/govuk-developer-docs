@@ -244,7 +244,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/f64d293731b0a5959c9cc2b2597ed08b7a0c77db">3 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/4968fbaa86c5e5f3435e1f036c6ea0b55912c342">25 Jul 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component wrapper helper</h1>
@@ -276,8 +276,10 @@
 </li>
 <li>
 <code>role</code> - accepts a space separated string of roles</li>
+<li>
+<code>lang</code> - accepts a language attribute value</li>
 </ul>
-<p>The helper checks that any passed <code>id</code> attribute is valid, specifically that it does not start with a number or contain whitespace or contain any characters other than letters, numbers, and <code>_</code> or <code>-</code>. It also checks that role attribute values are valid, along with some other checks detailed below.</p>
+<p>The helper checks that any passed <code>id</code> attribute is valid, specifically that it does not start with a number or contain whitespace or contain any characters other than letters, numbers, and <code>_</code> or <code>-</code>. It also checks that role and lang attribute values are valid, along with some other checks detailed below.</p>
 <h3 id="data-and-aria">Data and aria</h3>
 <p>The <code>data_attributes</code> and <code>aria</code> options must be Ruby hashes of the form that would normally be passed to the <code>tag</code> method. For example:</p>
 <pre><code>&lt;%= render "govuk_publishing_components/components/example", {
@@ -315,6 +317,9 @@
 </li>
 <li>
 <code>add_role()</code> - works the same as <code>add_class</code>
+</li>
+<li>
+<code>set_lang()</code> - works the same as <code>set_id</code>
 </li>
 </ul>
 <p>This is an example component template using some of these methods.</p>
