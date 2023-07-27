@@ -119,7 +119,7 @@ GDS has a central `gds-users` AWS account where you create your IAM User. Your [
 [iam-role-creation]: #5-get-permissions-for-aws-github-and-other-third-party-services
 [request-aws-user]: https://gds-request-an-aws-account.cloudapps.digital/
 [enable-mfa]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user
-[yubikey-aws-mfa]: /manual/using-a-yubikey.html#setting-up-aws-mfa
+[yubikey-aws-mfa]: /manual/setup-a-yubikey.html#set-up-as-an-mfa-device-for-aws
 [aws-cli-auth]: https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html#cli-authentication-user-get
 
 ## 5. Get permissions for AWS, GitHub and other third party services

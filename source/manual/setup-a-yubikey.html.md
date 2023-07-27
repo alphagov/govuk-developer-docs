@@ -1,12 +1,12 @@
 ---
 owner_slack: "#govuk-developers"
-title: Using a Yubikey
+title: Setup a Yubikey
 description: Guide for setting up and using a Yubikey
 layout: manual_layout
 section: Security
 ---
 
-## Setting up an MFA device for AWS
+## Setup as an MFA device for AWS
 
 1. Download the [Yubico Authenticator](https://www.yubico.com/products/yubico-authenticator/) app to your computer (or mobile device, if your Yubikey supports NFC).
 1. Sign in to the [`gds-users` AWS console][gds-users-aws-signin].
