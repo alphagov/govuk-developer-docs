@@ -18,14 +18,6 @@ If you're having trouble with this guide, you can ask your colleagues on the [#g
 
 ## Before you start
 
-> You must update your Slack profile to include details of:
-> - your role
-> - which team you're in
-> - your GitHub handle
-> - why you need access
->
-> This is to help people ascertain if you should have access. Your Tech Lead should also be helping to make requests to other teams for you.
-
 You should determine who your tech lead is in your team, as there are a number of steps that require their involvement.
 
 If you are on a team that does not have a tech lead, or you are the tech lead, please contact the Lead Developer in your area or email [GOV.UK senior tech](mailto:govuk-senior-tech-members@digital.cabinet-office.gov.uk) with details on who you are and what team you've joined, so that they can help.
@@ -92,7 +84,17 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 [create-gpg-key]: /manual/create-a-gpg-key.html
 [generate-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
-## 3. Set up your GitHub account
+## 3. Set up your Slack profile
+
+As part of your onboarding to GDS you will have been given access to Slack - if you've not got this please talk to your tech lead.
+
+Help others know who you are by [updating your Slack profile's 'title' field](https://slack.com/intl/en-gb/help/articles/204092246-Edit-your-profile). This should include:
+
+- your job role
+- the team you're working on
+- if relevant, the name of your supplier
+
+## 4. Set up your GitHub account
 
 1. [Login into your existing GitHub account][github-login] or [create a new GitHub account][github-signup].
 1. [Associate your GitHub account with your GDS email address][associate-email-github], which can be in addition to your personal email address.
@@ -110,7 +112,7 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 [associate-email-github]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
 [add-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 
-## 4. Set up your AWS IAM User
+## 5. Set up your AWS IAM User
 
 GDS has a central `gds-users` AWS account where you create your IAM User. Your [tech lead will then create IAM Roles][iam-role-creation] that you can assume for access to GOV.UK's AWS accounts. The [reliability engineering site][aws-account-info] has more information on how AWS accounts are structured.
 
@@ -120,13 +122,13 @@ GDS has a central `gds-users` AWS account where you create your IAM User. Your [
 1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User. You must specify your email address as the MFA device name. If you were issued a Yubikey, you can [use it as a MFA device][yubikey-aws-mfa].
 
 [aws-account-info]: https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws
-[iam-role-creation]: #5-get-permissions-for-aws-github-and-other-third-party-services
+[iam-role-creation]: #6-get-permissions-for-aws-github-and-other-third-party-services
 [request-aws-user]: https://gds-request-an-aws-account.cloudapps.digital/
 [enable-mfa]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user
 [yubikey-aws-mfa]: /manual/setup-a-yubikey.html#set-up-as-an-mfa-device-for-aws
 [aws-cli-auth]: https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html#cli-authentication-user-get
 
-## 5. Get permissions for AWS, GitHub and other third party services
+## 6. Get permissions for AWS, GitHub and other third party services
 
 Permissions to GOV.UK's AWS, GitHub, [Fastly], [Sentry] and [Pagerduty] accounts are managed by the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository (this is a private repository so will 404 before joining GOV.UK's GitHub).
 
@@ -138,7 +140,7 @@ Ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant 
 [govuk-user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 [instructions]: https://github.com/alphagov/govuk-user-reviewer#addingremoving-users
 
-## 6. Install and configure the GDS CLI
+## 7. Install and configure the GDS CLI
 
 On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS and SSH access.
 
@@ -150,7 +152,7 @@ On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS an
     brew install --cask aws-vault
     ```
 
-    The GDS CLI repository is private, so your tech lead must have first completed [step 5](#5-get-permissions-for-aws-github-and-other-third-party-services) to provide you with the necessary access.
+    The GDS CLI repository is private, so your tech lead must have first completed [step 6](#6-get-permissions-for-aws-github-and-other-third-party-services) to provide you with the necessary access.
 
 1. Test that installation was successful by running `gds --help`  and `gds govuk connect --help`.
 
@@ -195,7 +197,7 @@ gds aws govuk-integration-readonly aws s3 ls
 [gds-users-aws-signin]: https://gds-users.signin.aws.amazon.com/console
 [create-aws-access-key]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey
 
-## 7. Connect to the GDS VPN
+## 8. Connect to the GDS VPN
 
 If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to access to our infrastructure and internal services.
 
@@ -210,7 +212,7 @@ Follow the [VPN guide for Bring Your Own Devices (BYOD)](https://docs.google.com
 [gds-it-helpdesk]: https://gdshelpdesk.digital.cabinet-office.gov.uk/helpdesk/WebObjects/Helpdesk.woa
 [gds-vpn-wiki]: https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit
 
-## 8. Set up GOV.UK Docker
+## 9. Set up GOV.UK Docker
 
 We use a `govuk-docker` Docker environment for local development.
 
@@ -220,7 +222,7 @@ You can also try developing outside of Docker, using tools like [rbenv](https://
 
 [govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/README.md
 
-## 9. Get SSH access to integration
+## 10. Get SSH access to integration
 
 If you are a frontend developer you do not need to complete this step as part of your initial setup.
 
@@ -236,7 +238,7 @@ User accounts in our integration environments are managed in the [govuk-puppet][
     git clone git@github.com:alphagov/govuk-puppet.git
     ```
 
-1. Add your SSH key which you created in [step 2](#generate-a-ssh-key).
+1. Add your SSH key which you created in [step 2](#2-generate-a-ssh-key).
 
    If you do not have a YubiKey, run `more ~/.ssh/id_ed25519.pub` to retrieve your public key. The key should begin with `ssh-ed25519 AAA` and end with `== <WORK EMAIL>`. If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with `ssh-rsa AAA`. You may need to manually add the email address to the end of your key.
 
@@ -282,7 +284,7 @@ User accounts in our integration environments are managed in the [govuk-puppet][
 
 Once your pull request with your user manifest file is merged and deployed, you should test your SSH access to remote environments and servers.
 
-If you are outside of the office or on GovWiFi, you must first [connect to the GDS VPN](#4-connect-to-the-gds-vpn).
+If you are outside of the office or on GovWiFi, you must first [connect to the GDS VPN](#8-connect-to-the-gds-vpn).
 
 Test your SSH access by running:
 
@@ -310,24 +312,24 @@ Host *
 
 Note this may happen even if you don't use an rsa ssh private key - it is caused by the _host key_ which is defined by the server you connect to, not your _user key_ which you have defined.
 
-## 10. Set up tools to use the GOV.UK Kubernetes platform
+## 11. Set up tools to use the GOV.UK Kubernetes platform
 
 Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/).
 
-## 11. Get a Signon account for integration
+## 12. Get a Signon account for integration
 
 [Signon](/repos/signon.html) is the application used to control access to the GOV.UK Publishing applications.
 
 Ask your tech lead to [create an account for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new), at 'Superadmin' level with permission to access the applications that your team are likely to work on.
 
-## 12. Get access to the Release app
+## 13. Get access to the Release app
 
 [Release](/repos/release.html) is the application we use to track deployments,
 work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.
 
 Ask your tech lead to [create an account for the production Signon](https://signon.publishing.service.gov.uk/users/invitation/new), at 'Normal' level with access to the 'Release' app only. No permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html) is granted.
 
-## 13. Talk to your tech lead about supporting services you should have access to
+## 14. Talk to your tech lead about supporting services you should have access to
 
 Depending on the team you've joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access. Services you may need access to are:
 
