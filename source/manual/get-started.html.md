@@ -336,6 +336,7 @@ Depending on the team you've joined, you will likely need access to other suppor
 Now you have completed the get started process, you should look at the following supporting information:
 
 - the [architectural deep dive of GOV.UK][architectural-deep-dive]
+- GOV.UK's [conventions for Rails applications](/manual/conventions-for-rails-applications.html)
 
 [architectural-deep-dive]: /manual/architecture-deep-dive.html
 [govuk-aws-data-users-group]: /manual/set-up-aws-account.html#4-get-the-appropriate-access
