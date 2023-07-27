@@ -130,14 +130,11 @@ Ask your tech lead to follow these [instructions][] to grant you access.
 
 [instructions]: https://github.com/alphagov/govuk-user-reviewer#addingremoving-users
 
-## 4. Install GDS command line tools
+## 4. Install and configure the GDS CLI
 
-On GOV.UK we use the following command-line tools for AWS and SSH access:
+On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS and SSH access.
 
-- [`govuk-connect`](https://github.com/alphagov/govuk-connect)
-- [`gds-cli`](https://github.com/alphagov/gds-cli)
-
-1. To install these command line tools, run the following in the command line:
+1. Run the following install GDS CLI:
 
     ```bash
     brew tap alphagov/gds
@@ -147,7 +144,7 @@ On GOV.UK we use the following command-line tools for AWS and SSH access:
 
     The GDS CLI repository is private, so you must first [set up your GitHub account](#3-set-up-your-github-account).
 
-1. Test that both tools work by running `gds --help` and `gds govuk connect --help`.
+1. Test that installation was successful by running `gds --help`  and `gds govuk connect --help`.
 
     If you see a `fatal: no such path in the working tree` error, that's because you're using ZSH, which has `gds` set up as a Git alias. To solve this, you can either:
       - remove that alias by adding `unalias gds` to your `~/.zshrc`
@@ -159,9 +156,36 @@ On GOV.UK we use the following command-line tools for AWS and SSH access:
     gds config email <FIRSTNAME>.<LASTNAME>@digital.cabinet-office.gov.uk
     ```
 
-1. Run `gds config yubikey false` if you use your phone as an Multi-Factor Authentication (MFA) device.
+1. Set up AWS credentials:
 
-    Run `gds config yubikey true` if you use a Yubikey.
+    1. [Create an AWS access key][create-aws-access-key] via the [console][gds-users-aws-signin].
+    1. Run a GDS CLI command to prompt for credentials. For example `gds aws govuk-integration-readonly -l`.
+    1. Enter your Access Key ID and Secret Access Key
+    1. Enter your AWS MFA token
+    1. When prompted, save credentials to your Mac's keychain as `aws-vault` and set a password for the keychain. Save that password somewhere safe, for example in a password manager.
+
+    Here is an example of the output you'll see:
+
+    ```shell
+    $ gds aws govuk-integration-readonly -l
+    Welcome to the GDS CLI! We will now store your AWS credentials in the keychain using aws-vault.
+    Enter Access Key ID: <YOUR-ACCESS-KEY-ID>
+    Enter Secret Access Key: <YOUR-SECRET-ACCESS-KEY>
+    Added credentials to profile "gds-users" in vault
+    Successfully initialised gds-cli
+    Enter token for arn:aws:iam::123456789012:mfa/firstname.lastname@digital.cabinet-office.gov.uk: 123456
+    ```
+
+If you have a GDS-issued Yubikey, you can run `gds config yubikey true` in the GDS CLI to set GDS CLI to automatically pull the MFA code from your Yubikey.
+
+You have completed the get started process. You can now use `gds aws` to run generic [aws CLI](https://aws.amazon.com/cli/) commands by prefixing them with `gds aws <role>`. For example:
+
+```shell
+$ gds aws govuk-integration-readonly aws s3 ls
+```
+
+[gds-users-aws-signin]: https://gds-users.signin.aws.amazon.com/console
+[create-aws-access-key]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey
 
 ## 5. Connect to the GDS VPN
 
@@ -301,18 +325,6 @@ Note this may happen even if you don't use an rsa ssh private key - it is caused
 gds config yubikey true
 ```
 
-### Generate a pair of access keys
-
-You must generate an AWS access key ID and secret access key to be able to perform operations with AWS on the command line.
-
-1. Sign in to the [`gds-users` AWS console][gds-users-aws-signin].
-1. Select your email address in the top right of the screen.
-1. Select __My Security Credentials__.
-1. Select __Create access key__.
-1. Make a note of your AWS access key ID and secret access key for when you [access AWS for the first time](#8-access-aws-for-the-first-time).
-
-[gds-users-aws-signin]: https://gds-users.signin.aws.amazon.com/console
-
 ### Get access to integration infrastructure
 
 You must get access to the integration infrastructure so you can deploy to integration.
@@ -337,35 +349,7 @@ to find out how to deploy infrastructure changes. The stackname is `govuk` and t
 
 See the [AWS IAM users documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) for more information.
 
-## 10. Access AWS for the first time
 
-If you are a frontend developer you do not need to complete this step as part of your initial setup.
-
-1. Open the [GDS CLI](#3-install-gds-command-line-tools) and run `gds aws govuk-integration-readonly -l` to open the AWS console in your web browser.
-1. In the GDS CLI, enter your [AWS access key ID and secret access key](#generate-a-pair-of-access-keys).
-1. Enter your [MFA token](#set-up-multi-factor-authentication) in the command line.
-
-    Here is an example of the output you'll see:
-
-    ```shell
-    $ gds aws govuk-integration-readonly -l
-    Welcome to the GDS CLI! We will now store your AWS credentials in the keychain using aws-vault.
-    Enter Access Key ID: <YOUR-ACCESS-KEY-ID>
-    Enter Secret Access Key: <YOUR-SECRET-ACCESS-KEY>
-    Added credentials to profile "gds-users" in vault
-    Successfully initialised gds-cli
-    Enter token for arn:aws:iam::123456789012:mfa/firstname.lastname@digital.cabinet-office.gov.uk: 123456
-    ```
-
-1. When prompted, save credentials to your Mac's keychain as `aws-vault` and set a password for the keychain. Save that password somewhere safe, for example in a password manager.
-
-If you have a GDS-issued Yubikey, you can run `gds config yubikey true` in the GDS CLI to set GDS CLI to automatically pull the MFA code from your Yubikey.
-
-You have completed the get started process. You can now use `gds aws` to run generic [aws CLI](https://aws.amazon.com/cli/) commands by prefixing them with `gds aws <role>`. For example:
-
-```shell
-$ gds aws govuk-integration-readonly aws s3 ls
-```
 
 ## 11. Set up tools to use the GOV.UK Kubernetes platform
 
