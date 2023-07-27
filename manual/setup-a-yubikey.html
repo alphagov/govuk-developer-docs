@@ -1,4 +1,8 @@
 
+
+
+
+
 <!doctype html>
 <html lang="en" class="govuk-template no-js">
   <head>
@@ -6,25 +10,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: search-admin - GOV.UK Developer Documentation</title>
+    <title>Setup a Yubikey - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-admin.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/setup-a-yubikey.html">
 
-      <meta name="description" content="Everything about search-admin (Admin for GOV.UK search)" />
+      <meta name="description" content="Guide for setting up and using a Yubikey" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: search-admin - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta name="twitter:title" content="Setup a Yubikey - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/setup-a-yubikey.html" />
 
-      <meta property="og:description" content="Everything about search-admin (Admin for GOV.UK search)" />
+      <meta property="og:description" content="Guide for setting up and using a Yubikey" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: search-admin" />
+      <meta property="og:title" content="Setup a Yubikey" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/setup-a-yubikey.html" />
 
     
   </head>
@@ -71,7 +75,7 @@
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
             </li>
-            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+            <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/apps.html">Apps</a>
             </li>
             <li class="govuk-header__navigation-item">
@@ -121,15 +125,18 @@
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-                  <ul>
-    <li>
-      <a href="/repos/search-admin.html" rel="noopener" class="govuk-link">search-admin</a>
-    </li>
-    <li>
-      <ul>
-      </ul>
-    </li>
-  </ul>
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Setup a Yubikey</span></a>
+    <ul>
+      <li>
+        <a href="#setup-as-an-mfa-device-for-aws"><span>Setup as an MFA device for AWS</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 
               </nav>
             </div>
@@ -137,7 +144,8 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-              
+            
+    
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -155,8 +163,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "Apps",
-        "@id": "http://www.dev.gov.uk/apps.html"
+        "name": "Security",
+        "@id": "http://www.dev.gov.uk/manual.html#security"
       }
     }
   ]
@@ -169,113 +177,51 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#security" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Security&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#security">Security</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Application: search-admin</h1>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Admin for GOV.UK search</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/search-admin">search-admin</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/user-experience-measurement-govuk-robot-invasion">#user-experience-measurement-govuk-robot-invasion</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS (EKS)</strong></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Supporting apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://search-admin.publishing.service.gov.uk" class="govuk-link">search-admin.publishing.service.gov.uk</a></li>
-    <li><a href="https://sentry.io/govuk/app-search-admin" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/000000111?var-app=search-admin" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/search-admin" class="govuk-link">Argo CD (search-admin)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e47b1253c251c1b3cfa3cba3639254714bf538bb">27 Jul 2023</a>
 </div>
-<h2 id='example-pages-published-by-search-admin'>Example pages published by search-admin</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="http://www.birmingham.gov.uk" class="govuk-link">Birmingham City Council</a></li>
-      <li><a href="http://www.havant.gov.uk" class="govuk-link">Havant Borough Council</a></li>
-      <li><a href="http://www.harborough.gov.uk" class="govuk-link">Harborough District Council</a></li>
-      <li><a href="http://www.bromsgrove.gov.uk" class="govuk-link">Bromsgrove District Council</a></li>
-      <li><a href="http://www.centralbedfordshire.gov.uk/" class="govuk-link">Central Bedfordshire Council</a></li>
-      <li><a href="https://www.ethnicity-facts-figures.service.gov.uk" class="govuk-link">Ethnicity facts and figures</a></li>
-      <li><a href="https://getintoteaching.education.gov.uk/" class="govuk-link">Get Into Teaching</a></li>
-      <li><a href="https://www.gov.uk/alerts" class="govuk-link">Emergency Alerts</a></li>
-      <li><a href="http://www.tamworth.gov.uk" class="govuk-link">Tamworth Borough Council</a></li>
-      <li><a href="http://findyourmp.parliament.uk/" class="govuk-link">Find your MP - UK Parliament</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Manages search &ldquo;best bets&rdquo; and &ldquo;external links&rdquo; along with other search and browse data.</p>
+ <h1 id='header'>Setup a Yubikey</h1> <h2 id='setup-as-an-mfa-device-for-aws'>Setup as an MFA device for AWS</h2>
+<ol>
+<li>Download the <a href="https://www.yubico.com/products/yubico-authenticator/">Yubico Authenticator</a> app to your computer (or mobile device, if your Yubikey supports NFC).</li>
+<li>Sign in to the [<code>gds-users</code> AWS console][gds-users-aws-signin].</li>
+<li>Select the <strong>IAM</strong> service.</li>
+<li>Select <strong>Users</strong> in the left hand menu and enter your name.</li>
+<li>Select the link for your email address.</li>
+<li>Select the <strong>Security credentials</strong> tab.</li>
+<li>Select <strong>Manage</strong>, which is next to <strong>Assigned MFA device</strong>.</li>
+<li>Specify your email address as the MFA device name</li>
+<li>Select &ldquo;Authenticator app&rdquo;, not &ldquo;Security Key&rdquo;</li>
+<li>When asked to scan the QR code with your mobile device, open the Yubico Authenticator app and use that to scan the QR code. The MFA code will now be present on your Yubikey.</li>
+<li>Configure gds-cli to use the YubiKey:</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds config yubikey true
+</code></pre></div>
 
-<h2 id="screenshots">Screenshots</h2>
+  <div class='related-content'>
 
-<p><img src="https://raw.githubusercontent.com/alphagov/search-admin/main/docs/images/screenshot.png" alt="Search Admin"></p>
+    <h3>More in the Security section</h3>
 
-<h2 id="live-example">Live example</h2>
+    <div class='govuk-grid-row'>
 
-<ul>
-<li><a href="https://search-admin.publishing.service.gov.uk/">https://search-admin.publishing.service.gov.uk/</a></li>
-</ul>
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
 
-<h2 id="technical-documentation">Technical documentation</h2>
+          <ul class="govuk-list">
+            <li><a href="/manual/howto-block-arbitrary-urls.html">Block access to arbitrary URLs in the GOV.UK estate</a></li>
+            <li><a href="/manual/content-security-policy.html">Content Security Policy on GOV.UK</a></li>
+            <li><a href="/manual/pentests.html">Pentests</a></li>
+            <li><a href="/manual/web_application_firewall_rules.html">Web Application Firewall (WAF) configuration</a></li>
+          </ul>
+        </div>
 
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rake</code></p>
-
-<h3 id="external-links">External links</h3>
-
-<p>Run <code>bundle exec rake publish_external_links:publishing_api</code> to send all external links to the publishing API.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/search-admin/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+    </div>
+</div>
 
 
             
@@ -283,8 +229,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-admin.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/setup-a-yubikey.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Setup+a+Yubikey%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fsetup-a-yubikey.html%29&amp;labels=bug&amp;title=Re%3A+%27Setup+a+Yubikey%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
