@@ -128,10 +128,14 @@ GDS has a central `gds-users` AWS account where you create your IAM User. Your [
 
 ## 5. Get permissions for AWS, GitHub and other third party services
 
-Permissions to GOV.UK's AWS, GitHub, Fastly, Sentry and Pagerduty accounts are managed by the govuk-user-reviewer repository.
+Permissions to GOV.UK's AWS, GitHub, [Fastly], [Sentry] and [Pagerduty] accounts are managed by the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository (this is a private repository so will 404 before joining GOV.UK's GitHub).
 
-Ask your tech lead to follow these [instructions] to grant you access.
+Ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant you access.
 
+[Fastly]: /manual/cdn.html
+[Sentry]: /manual/sentry.html
+[Pagerduty]: /manual/pagerduty.html
+[govuk-user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 [instructions]: https://github.com/alphagov/govuk-user-reviewer#addingremoving-users
 
 ## 6. Install and configure the GDS CLI
@@ -146,7 +150,7 @@ On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS an
     brew install --cask aws-vault
     ```
 
-    The GDS CLI repository is private, so you must first [set up your GitHub account](#3-set-up-your-github-account).
+    The GDS CLI repository is private, so your tech lead must have first completed [step 5](#5-get-permissions-for-aws-github-and-other-third-party-services) to provide you with the necessary access.
 
 1. Test that installation was successful by running `gds --help`  and `gds govuk connect --help`.
 
@@ -327,7 +331,6 @@ Ask your tech lead to [create an account for the production Signon](https://sign
 
 Depending on the team you've joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access. Services you may need access to are:
 
-- [Sentry](/manual/sentry.html) - the error monitoring software we use
 - [Logit](/manual/logit.html#accessing-logit) - the software we use for access application logs, where new starters are given access to the integration environment
 - [Google Analytics](/manual/analytics.html) - the software we use to track user behaviour, typically only needed if you work on a team working frequently with analytics
 - [Zendesk](/manual/zendesk.html) - the software we use for tracking support tickets, typically access isn't needed until working as part of the [2nd line](/manual/2nd-line.html) support team
