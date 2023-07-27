@@ -210,13 +210,11 @@ Follow the [VPN guide for Bring Your Own Devices (BYOD)](https://docs.google.com
 
 ## 9. Set up GOV.UK Docker
 
-We use a `govuk-docker` Docker environment for local development.
+We use a [Docker](/manual/intro-to-docker.html) environment for local development, [GOV.UK Docker](https://github.com/alphagov/govuk-docker).
 
-To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker` GitHub repo][govuk-docker].
+To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker` GitHub repo](https://github.com/alphagov/govuk-docker#installation).
 
-You can also try developing outside of Docker, using tools like [rbenv](https://github.com/rbenv/rbenv) directly. [This approach generally works for frontend apps](/manual/local-frontend-development.html) but not for other apps with databases, etc., and is not officially supported.
-
-[govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/README.md
+If you are a frontend developer, and you are working on GOV.UK's frontend apps, there is documentation on [alterntaive local development approaches](/manual/local-frontend-development.html) that make low or no usage of GOV.UK Docker.
 
 ## 10. Get SSH access to integration
 
@@ -338,7 +336,6 @@ Depending on the team you've joined, you will likely need access to other suppor
 Now you have completed the get started process, you should look at the following supporting information:
 
 - the [architectural deep dive of GOV.UK][architectural-deep-dive]
-- [how GDS uses Docker](/manual/intro-to-docker.html)
 
 [architectural-deep-dive]: /manual/architecture-deep-dive.html
 [govuk-aws-data-users-group]: /manual/set-up-aws-account.html#4-get-the-appropriate-access
