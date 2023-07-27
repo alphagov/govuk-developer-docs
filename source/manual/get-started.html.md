@@ -126,7 +126,7 @@ GDS has a central `gds-users` AWS account where you create your IAM User. Your [
 
 Permissions to GOV.UK's AWS, GitHub, Fastly, Sentry and Pagerduty accounts are managed by the govuk-user-reviewer repository.
 
-Ask your tech lead to follow these [instructions][] to grant you access.
+Ask your tech lead to follow these [instructions] to grant you access.
 
 [instructions]: https://github.com/alphagov/govuk-user-reviewer#addingremoving-users
 
@@ -181,7 +181,7 @@ If you have a GDS-issued Yubikey, you can run `gds config yubikey true` in the G
 You have completed the get started process. You can now use `gds aws` to run generic [aws CLI](https://aws.amazon.com/cli/) commands by prefixing them with `gds aws <role>`. For example:
 
 ```shell
-$ gds aws govuk-integration-readonly aws s3 ls
+gds aws govuk-integration-readonly aws s3 ls
 ```
 
 [gds-users-aws-signin]: https://gds-users.signin.aws.amazon.com/console
