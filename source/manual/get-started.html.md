@@ -8,12 +8,9 @@ section: Learning GOV.UK
 
 > This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in [GDS][]. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.
 
-Ask your tech lead to take you through the [overview slides][overview-slides] if they have not already done so.
-
 If you're having trouble with this guide, you can ask your colleagues on the [#govuk-developers Slack channel](https://gds.slack.com/archives/CAB4Q3QBW) or using email.
 
 [GDS]: https://gds.blog.gov.uk/about/
-[overview-slides]: https://docs.google.com/presentation/d/1nAE65Og04JYNAc0VjYaUYLqNLuUOM9r3Mvo0PGFy_Zk
 [govuk-user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 
 ## Before you start
