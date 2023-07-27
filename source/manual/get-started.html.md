@@ -92,7 +92,6 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 
 1. [Login into your existing GitHub account][github-login] or [create a new GitHub account][github-signup].
 1. [Associate your GitHub account with your GDS email address][associate-email-github], which can be in addition to your personal email address.
-1. [Get added to the alphagov org and the "GOV.UK" team](https://docs.publishing.service.gov.uk/manual/github-access.html).
 1. [Add the SSH key to your GitHub account][add-ssh-key].
 1. Test that the SSH key works by running `ssh -T git@github.com`.
 1. Add your name and email to your git commits. For example:
@@ -106,6 +105,14 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 [github-signup]: https://www.github.com/signup
 [associate-email-github]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
 [add-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
+
+## 5. Get permissions for AWS, GitHub and other third party services
+
+Permissions to GOV.UK's AWS, GitHub, Fastly, Sentry and Pagerduty accounts are managed by the govuk-user-reviewer repository.
+
+Ask your tech lead to follow these [instructions][] to grant you access.
+
+[instructions]: https://github.com/alphagov/govuk-user-reviewer#addingremoving-users
 
 ## 4. Install GDS command line tools
 
@@ -155,15 +162,7 @@ Follow the [VPN guide for Bring Your Own Devices (BYOD)](https://docs.google.com
 [gds-it-helpdesk]: https://gdshelpdesk.digital.cabinet-office.gov.uk/helpdesk/WebObjects/Helpdesk.woa
 [gds-vpn-wiki]: https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit
 
-## 6. Get added to the GOV.UK user monitor system
-
-We store who has access to GOV.UK tooling in a git repo, [GOV.UK User Reviewer][govuk-user-reviewer] and use automation to alert when people should not have access. It's a private repo so you won't be able to access it until step 3 is completed.
-
-Get your tech lead to create a pull request to add you to the [tech users](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml). The repo readme specifies the [format new starters should have, with integration admin access](https://github.com/alphagov/govuk-user-reviewer/tree/main#properties-in-the-config-file). The `ssh_username` is in the format of `firstnamelastname` and is utilised in [8. Get SSH access to integration](#8-get-ssh-access-to-integration)).
-
-If you are working with us as a contractor from a supplier, please include the supplier's name in the `why_do_they_need_access` field.
-
-## 7. Set up GOV.UK Docker
+## 8. Set up GOV.UK Docker
 
 We use a `govuk-docker` Docker environment for local development.
 
