@@ -47,7 +47,7 @@ You should do these things before going on call so you're prepared.
     - [Falling back to the static mirror](/manual/fall-back-to-mirror.html)
     - [Non-emergency global banner](/manual/global-banner.html)
 
-The steps above are outlined in the [On call template Trello card](https://trello.com/c/mK6p8hH4/977-on-call-checklist), which developers should drill when given [Production Admin access](https://docs.publishing.service.gov.uk/manual/rules-for-getting-production-access.html#when-you-get-production-admin-access). Developers should speak to the 2nd line tech lead(s)
+The steps above are outlined in the [On call template Trello card](https://trello.com/c/mK6p8hH4/977-on-call-checklist), which developers should drill when given [Production Admin access](/manual/rules-for-getting-production-access.html#when-you-get-production-admin-access). Developers should speak to the 2nd line tech lead(s)
 if they have any issues with the above steps.
 
 You may also want to set to be notified for every new message in the [#govuk-incident](https://gds.slack.com/archives/CAH9L36LR) Slack channel, but this is strictly optional. People should not expect to be able to contact you on Slack during your shift. You can change your Slack notification settings by clicking “Change notifications” and selecting “All new messages”.
@@ -56,7 +56,7 @@ You may also want to set to be notified for every new message in the [#govuk-inc
 
 ### Automated monitoring
 
-We use [PagerDuty](https://docs.publishing.service.gov.uk/manual/pagerduty.html)
+We use [PagerDuty](/manual/pagerduty.html)
 for automated monitoring. You can update your [notification rules](https://support.pagerduty.com/docs/user-profile#notification-rules)
 in your PagerDuty account to notify you however you want (phone call, SMS, email,
 push notification). There are 2 ways that this might contact you:
@@ -65,11 +65,11 @@ push notification). There are 2 ways that this might contact you:
 
 Any Icinga checks that use `govuk_urgent_priority` will cause PagerDuty to be notified:
 
-- [Travel advice emails not going out](https://docs.publishing.service.gov.uk/manual/alerts/email-alerts-travel-medical.html)
-- [Overdue publications in Whitehall](https://docs.publishing.service.gov.uk/manual/alerts/whitehall-scheduled-publishing.html#overdue-publications-in-whitehall)
-- [Scheduled publications in Whitehall not queued](https://docs.publishing.service.gov.uk/manual/alerts/whitehall-scheduled-publishing.html#scheduled-publications-in-whitehall-not-queued)
-- [High nginx 5xx rate for www-origin on cache machines](https://docs.publishing.service.gov.uk/manual/alerts/high-nginx-5xx-rate.html)
-- [varnishd port not responding](https://docs.publishing.service.gov.uk/manual/alerts/varnish-port-not-responding.html)
+- [Travel advice emails not going out](/manual/alerts/email-alerts-travel-medical.html)
+- [Overdue publications in Whitehall](/manual/alerts/whitehall-scheduled-publishing.html#overdue-publications-in-whitehall)
+- [Scheduled publications in Whitehall not queued](/manual/alerts/whitehall-scheduled-publishing.html#scheduled-publications-in-whitehall-not-queued)
+- [High nginx 5xx rate for www-origin on cache machines](/manual/alerts/high-nginx-5xx-rate.html)
+- [varnishd port not responding](/manual/alerts/varnish-port-not-responding.html)
 
    You can get the most up to date list of these by searching the Puppet repo for [govuk_urgent_priority](https://github.com/alphagov/govuk-puppet/search?q=govuk_urgent_priority).
 
@@ -85,11 +85,11 @@ than using GOV.UK's internal monitoring. They are all configured in Pingdom to:
 They are useful when network access to all machines running GOV.UK is down. These
 are set up for key parts of the website such as:
 
-- [Assets](https://docs.publishing.service.gov.uk/manual/assets.html) (assets.publishing.service.gov.uk)
-- [Bouncer canary](https://docs.publishing.service.gov.uk/manual/pingdom-bouncer-canary-check.html)
-- [GOV.UK homepage](https://docs.publishing.service.gov.uk/manual/alerts/pingdom-homepage-check.html)
-- [S3 mirror](https://docs.publishing.service.gov.uk/manual/alerts/mirror-sync.html#impact) (London) and S3 Mirror Replica (Ireland)
-- [data.gov.uk](https://docs.publishing.service.gov.uk/manual/data-gov-uk-monitoring.html)
+- [Assets](/manual/assets.html) (assets.publishing.service.gov.uk)
+- [Bouncer canary](/manual/pingdom-bouncer-canary-check.html)
+- [GOV.UK homepage](/manual/alerts/pingdom-homepage-check.html)
+- [S3 mirror](/manual/alerts/mirror-sync.html#impact) (London) and S3 Mirror Replica (Ireland)
+- [data.gov.uk](/manual/data-gov-uk-monitoring.html)
 
 ### Phone calls from people
 
@@ -100,12 +100,12 @@ rota for the ‘Escalations’ contact number.
 ### Emergency publishing
 
 The GOV.UK on-call escalations contact will call you to carry this out.  See the
-[deploy an emergency banner doc](https://docs.publishing.service.gov.uk/manual/emergency-publishing.html)
+[deploy an emergency banner doc](/manual/emergency-publishing.html)
 for more information.
 
 ### Updating the homepage
 
-You might be asked to [update the homepage promotion slots](https://docs.publishing.service.gov.uk/repos/frontend/update-homepage-promotion-slots.html)
+You might be asked to [update the homepage promotion slots](/repos/frontend/update-homepage-promotion-slots.html)
 to highlight important information on GOV.UK.
 
 ## Responding to being contacted

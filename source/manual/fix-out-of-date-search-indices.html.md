@@ -39,5 +39,5 @@ communicating with Search API directly (like how whitehall updates the
 
 Run the `reindex_best_bets` rake task in search admin to resend all bets to Search API.
 
-[restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
+[restore-backups]: /manual/elasticsearch-dumps.html
 [queue]: https://github.com/alphagov/search-api/blob/main/docs/new-indexing-process.md

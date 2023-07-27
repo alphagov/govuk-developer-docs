@@ -80,7 +80,7 @@ the load.
 
         You may want to speed up the removal of terminated instances in Icinga
         by following the documentation
-        [here](https://docs.publishing.service.gov.uk/manual/remove-machines.html)
+        [here](/manual/remove-machines.html)
 
 [icinga]: /manual/icinga.html
 [ec2-home]: https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1

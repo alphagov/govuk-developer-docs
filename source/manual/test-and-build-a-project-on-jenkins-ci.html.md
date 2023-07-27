@@ -49,7 +49,7 @@ built automatically when commits are pushed.
 There is a task that can be run to add this webhook to the new repo. Find
 out more about [automatically configuring a GitHub repo][auto-config].
 
-[auto-config]: https://docs.publishing.service.gov.uk/manual/configure-github-repo.html
+[auto-config]: /manual/configure-github-repo.html
 
 ### 4. Branch indexing
 

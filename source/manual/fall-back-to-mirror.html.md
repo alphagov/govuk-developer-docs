@@ -16,7 +16,7 @@ When a user requests a GOV.UK page, Fastly retrieves that page from its cache, o
 
 Sometimes, GOV.UK Origin may time out or return a 5xx error response. When that happens, Fastly automatically fetches the page from the GOV.UK mirror instead.
 
-If Fastly goes down, we would manually [switch to AWS CloudFront](https://docs.publishing.service.gov.uk/manual/fall-back-to-aws-cloudfront.html) instead of Fastly. Where Fastly makes requests to GOV.UK Origin, AWS CloudFront instead makes all its requests to the GOV.UK mirror.
+If Fastly goes down, we would manually [switch to AWS CloudFront](/manual/fall-back-to-aws-cloudfront.html) instead of Fastly. Where Fastly makes requests to GOV.UK Origin, AWS CloudFront instead makes all its requests to the GOV.UK mirror.
 
 ## GOV.UK mirror locations and access
 
@@ -47,7 +47,7 @@ Then the [`govuk_crawler_worker`](https://github.com/alphagov/govuk_crawler_work
 
 Every hour, the [`govuk_sync_mirror`](https://github.com/alphagov/govuk-puppet/blob/86d1480c6e081313c415246063d5931af24473da/modules/govuk_crawler/manifests/init.pp#L109) script runs on the mirrorer machine. This script copies the GOV.UK HTML files from the mirrorer machine to the main `govuk-<environment>-mirror` AWS S3 bucket. AWS then copies this main bucket to the replica `govuk-<environment>-mirror-replica` S3 bucket in another region.
 
-Finally, a job is run in Google Cloud Storage (GCS) at 6:00pm the day after the original `govuk_seed_crawler`script is run. This job syncs the primary AWS S3 bucket `govuk-<environment>-mirror` to the GCS `govuk-<environment>-mirror` bucket. For more information on GCS, see the [Google Cloud Platform documentation](https://docs.publishing.service.gov.uk/manual/google-cloud-platform-gcp.html).
+Finally, a job is run in Google Cloud Storage (GCS) at 6:00pm the day after the original `govuk_seed_crawler`script is run. This job syncs the primary AWS S3 bucket `govuk-<environment>-mirror` to the GCS `govuk-<environment>-mirror` bucket. For more information on GCS, see the [Google Cloud Platform documentation](/manual/google-cloud-platform-gcp.html).
 
 The `govuk_seed_crawler` and `govuk_crawler_worker` scripts are independent of the mirrors. Stopping these scripts stops the mirror updates, but does not stop the mirrors from working.
 

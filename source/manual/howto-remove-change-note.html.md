@@ -10,7 +10,7 @@ Follow the [instructions for Whitehall](#whitehall) if removing a change note fr
 
 ## What is a change note?
 
-An Edition in Publishing API can have just one `change_note`, which is public-facing. The Publishing API creates a list of all the [change notes](https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes) from all versions of the edition and presents them to the Content Store. You can read more about this in the [Publishing API docs](https://docs.publishing.service.gov.uk/apis/publishing-api/model.html#changenote).
+An Edition in Publishing API can have just one `change_note`, which is public-facing. The Publishing API creates a list of all the [change notes](https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes) from all versions of the edition and presents them to the Content Store. You can read more about this in the [Publishing API docs](/apis/publishing-api/model.html#changenote).
 
 In Whitehall, an Edition can also have multiple editorial remarks (otherwise known as [internal notes](https://www.gov.uk/guidance/how-to-publish-on-gov-uk/creating-and-updating-pages#internal-notes)). These are visible only in Whitehall Admin.
 

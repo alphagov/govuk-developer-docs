@@ -46,7 +46,7 @@ These presentations are repeated semi-regularly at the GOV.UK Tech Fortnightly m
 - Estates, meeting rooms etc
 - News and Communities
 
-[readme]: https://docs.publishing.service.gov.uk/manual/readmes.html
+[readme]: /manual/readmes.html
 [docs-folder]: https://github.com/alphagov/publishing-api/tree/main/doc
 [plops]: https://gov-uk.atlassian.net/wiki/display/PLOPS/GOV.UK+Platform+Operations+Home
 [prod-docs]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Product+documentation

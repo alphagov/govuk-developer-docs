@@ -75,7 +75,7 @@ have had public DNS entries in the `publishing.service.gov.uk` domain.
 Follow the [instructions for DNS changes][dns-changes] in order to remove
 these.
 
-[dns-changes]: https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain
+[dns-changes]: /manual/dns.html#dns-for-the-publishingservicegovuk-domain
 
 ## 9. Update docs
 

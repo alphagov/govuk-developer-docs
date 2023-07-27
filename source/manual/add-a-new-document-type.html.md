@@ -49,4 +49,4 @@ See "[Publish special routes]" for more information.
 > Note: having a document type with `placeholder` prefix will not publish routes. Read more about [placeholder items][placeholder-items].
 
 [Publish special routes]: /manual/publish-special-routes.html
-[placeholder-items]: https://docs.publishing.service.gov.uk/repos/content-store/placeholder_item.html
+[placeholder-items]: /repos/content-store/placeholder_item.html

@@ -24,4 +24,4 @@ There are a few things to check when this occurs:
 - It could be indicative of a bigger problem. A previous cause for this has
   been misconfigured firewall configs on our vSE load balancer.
 
-[nginx_logs]: https://docs.publishing.service.gov.uk/manual/kibana.html#nginx-logs
+[nginx_logs]: /manual/kibana.html#nginx-logs

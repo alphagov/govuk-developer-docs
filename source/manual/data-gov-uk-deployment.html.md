@@ -9,7 +9,7 @@ parent: "/manual.html"
 [find]: repos/datagovuk_find
 [publish-ci]: https://travis-ci.org/alphagov/datagovuk_publish/
 [find-ci]: https://travis-ci.org/alphagov/datagovuk_find
-[heroku]: https://docs.publishing.service.gov.uk/manual/review-apps.html#header
+[heroku]: /manual/review-apps.html#header
 [publish-heroku]: https://dashboard.heroku.com/pipelines/7fb4c1c1-618e-42da-ba71-1cb0beb6c5c8
 [find-heroku]: https://dashboard.heroku.com/pipelines/0ca23219-ac0e-4d6c-9d5f-40829c6209db
 [paas]: https://docs.cloud.service.gov.uk/#set-up-command-line

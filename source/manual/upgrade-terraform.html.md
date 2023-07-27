@@ -32,7 +32,7 @@ Before/during the upgrade:
 ### Build a new Terraform package
 
 The Terraform package is built with a recipe in the [packager](https://github.com/alphagov/packager) repository.
-Follow the general instructions in [Debian packaging](https://docs.publishing.service.gov.uk/manual/debian-packaging.html)
+Follow the general instructions in [Debian packaging](/manual/debian-packaging.html)
 to create a new package and upload it to our Apt repository.
 
 For instance, this pull request creates a recipe for [Terraform 0.11.14](https://github.com/alphagov/packager/pull/172)
