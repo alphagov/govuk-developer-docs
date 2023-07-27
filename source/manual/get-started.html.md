@@ -130,7 +130,7 @@ Ask your tech lead to follow these [instructions][] to grant you access.
 
 [instructions]: https://github.com/alphagov/govuk-user-reviewer#addingremoving-users
 
-## 4. Install and configure the GDS CLI
+## 6. Install and configure the GDS CLI
 
 On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS and SSH access.
 
@@ -187,7 +187,7 @@ $ gds aws govuk-integration-readonly aws s3 ls
 [gds-users-aws-signin]: https://gds-users.signin.aws.amazon.com/console
 [create-aws-access-key]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey
 
-## 5. Connect to the GDS VPN
+## 7. Connect to the GDS VPN
 
 If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to access to our infrastructure and internal services.
 
@@ -212,7 +212,7 @@ You can also try developing outside of Docker, using tools like [rbenv](https://
 
 [govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/README.md
 
-## 8. Get SSH access to integration
+## 9. Get SSH access to integration
 
 If you are a frontend developer you do not need to complete this step as part of your initial setup.
 
@@ -302,11 +302,11 @@ Host *
 
 Note this may happen even if you don't use an rsa ssh private key - it is caused by the _host key_ which is defined by the server you connect to, not your _user key_ which you have defined.
 
-## 11. Set up tools to use the GOV.UK Kubernetes platform
+## 10. Set up tools to use the GOV.UK Kubernetes platform
 
 Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/).
 
-## 12. Get a Signon account for integration
+## 11. Get a Signon account for integration
 
 [Signon](https://docs.publishing.service.gov.uk/repos/signon.html) is the application used to control access to the
 GOV.UK Publishing applications.
@@ -314,7 +314,7 @@ GOV.UK Publishing applications.
 Ask another developer to [create an account for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new),
 at 'Superadmin' level with permission to access the applications that your team are likely to work on.
 
-## 13. Get access to the Release app
+## 12. Get access to the Release app
 
 [Release](https://docs.publishing.service.gov.uk/repos/release.html) is the application we use to track deployments,
 work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.
@@ -324,7 +324,7 @@ Signon](https://signon.publishing.service.gov.uk/users/invitation/new), at 'Norm
 the 'Release' app only. No permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html)
 is granted.
 
-## 15. Talk to your tech lead about supporting services you should have access to
+## 13. Talk to your tech lead about supporting services you should have access to
 
 Depending on the team you've joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access (or escalate to their allocated Lead Developer) to provide access. Services you may need access to are:
 
