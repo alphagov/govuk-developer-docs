@@ -89,4 +89,4 @@ If you continue to experience errors with the job after manually forcing a retry
 When retrying the mirror sync job continues to result in errors, it is advisable to wait until the mirror sync job is next scheduled to run before taking further action.
 
 [Data Transfer]: https://console.cloud.google.com/transfer/cloud/jobs
-[fallback to mirror]: https://docs.publishing.service.gov.uk/manual/fall-back-to-mirror.html
+[fallback to mirror]: /manual/fall-back-to-mirror.html

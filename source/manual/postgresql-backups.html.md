@@ -9,4 +9,4 @@ parent: "/manual.html"
 
 ## AWS RDS PostgreSQL Backups
 
-Instructions for restoring RDS databases can be found [here](https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html)
+Instructions for restoring RDS databases can be found [here](/manual/howto-backup-and-restore-in-aws-rds.html)

@@ -11,7 +11,7 @@ GOV.UK uses our [Content Delivery Network (Fastly)][cdn] to run A/B and multivar
 
 For a general introduction to A/B testing from a content design perspective, see the [Confluence Wiki](https://bit.ly/AB-testing-GOVUK).
 
-[cdn]: https://docs.publishing.service.gov.uk/manual/cdn.html
+[cdn]: /manual/cdn.html
 
 > A/B tests are only enabled for users who have opted in to analytics cookies.
 

@@ -13,7 +13,7 @@ These steps are for switching the default branch of a repo to `main`.
   - Go to the app entry from the [listing](https://release.publishing.service.gov.uk/applications/).
   - Hit the `Edit` tab.
   - Switch under the dropdown for `GitHub repository default branch`.
-1. [Set the Jenkins build number](https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html#fixing-the-build-number)  (the last `master` build +1).
+1. [Set the Jenkins build number](/manual/test-and-build-a-project-on-jenkins-ci.html#fixing-the-build-number)  (the last `master` build +1).
 1. Rebuild the latest `main` branch build which would have started automatically by Jenkins when the branch was renamed, but with the incorrect build number (and therefore is likely to have failed).
 1. [Switch your local branch](https://docs.github.com/en/github/administering-a-repository/renaming-a-branch#updating-a-local-clone-after-a-branch-name-changes), otherwise you might rebase the wrong branch by mistake!
 1. Update the [list of apps on the Trello card](https://trello.com/c/xVhGGzOE/225-change-default-branch-to-main)

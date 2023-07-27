@@ -23,7 +23,7 @@ will remain on our servers forever more, [unless you perform a workaround](#what
   - Removes the user from [Integration users][integration-users]
 1. Once these have been merged, deploy Puppet again to all environments.
 
-[what-to-do-when-someone-leaves]: https://docs.publishing.service.gov.uk/manual/encrypted-hiera-data.html#what-to-do-when-someone-leaves
+[what-to-do-when-someone-leaves]: /manual/encrypted-hiera-data.html#what-to-do-when-someone-leaves
 [manifest-path]: https://github.com/alphagov/govuk-puppet/tree/master/modules/users/manifests
 [absent-example]: https://github.com/alphagov/govuk-puppet/commit/0757bad41ed577f15c7f5d9e508f55e78c612ddb
 [integration-users]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml

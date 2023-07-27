@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-[Signon](https://docs.publishing.service.gov.uk/repos/signon.html) is the
+[Signon](/repos/signon.html) is the
 single sign-on service for our admin applications. We also use it for
 creating API accounts for GOV.UK applications.
 

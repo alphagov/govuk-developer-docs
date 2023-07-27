@@ -82,13 +82,13 @@ the [DocumentDB documentation].
 
 View the documentation on [how to backup and restore in AWS RDS].
 
-[how to backup and restore in AWS RDS]: https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html
+[how to backup and restore in AWS RDS]: /manual/howto-backup-and-restore-in-aws-rds.html
 
 ## How to resize a persistent disk
 
 If you're not sure how to do this, ask an Site Reliability Engineer to give you a walk through.
 
-See the docs: https://docs.publishing.service.gov.uk/manual/manually-resize-ebs.html.
+See the docs: /manual/manually-resize-ebs.html.
 
 ## How to replace an instance with a persistent disk
 

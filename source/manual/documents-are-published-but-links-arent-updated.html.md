@@ -15,4 +15,4 @@ To get things processed faster you can run the following Rake task on the
 Publishing API `represent_downstream:high_priority:content_id['some-content-id some-other-content-id']`,
 which will re-represent them downstream via the high priority queue.
 
-[sidekiq-queue]: https://docs.publishing.service.gov.uk/manual/sidekiq.html#sidekiq-web-aka-sidekiq-monitoring
+[sidekiq-queue]: /manual/sidekiq.html#sidekiq-web-aka-sidekiq-monitoring

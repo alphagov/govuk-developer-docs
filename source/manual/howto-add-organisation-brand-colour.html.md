@@ -40,7 +40,7 @@ Add a new entry for the organisation in [app/models/organisation_brand_colour.rb
 
 If you have modified `govuk_publishing_components`:
 
-1. Run `collections` with your local version of `govuk_publishing_components` (see [Local frontend development](https://docs.publishing.service.gov.uk/manual/local-frontend-development.html) if you need help).
+1. Run `collections` with your local version of `govuk_publishing_components` (see [Local frontend development](/manual/local-frontend-development.html) if you need help).
 2. Go to an organisation page and use Chrome's developer tools to change the brand class of an element to match, check that the required colour is applied.
 3. Create a new release of `govuk_publishing_components` and get a branch of `collections` including this deployed to integration.
 

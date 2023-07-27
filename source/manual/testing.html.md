@@ -35,7 +35,7 @@ Smoke tests are meant to be "probes": their purpose is to monitor real environme
 
 - **Probes**. A full run of Smokey is triggered [every few minutes](https://github.com/alphagov/govuk-puppet/blob/278426769a1711c622bcb67a59175f73e8f4db61/modules/govuk_jenkins/manifests/jobs/smokey.pp#L24) in every environment, causing a Slack alert if it fails. This should prompt an engineer to go and fix a problem. However, many of the probes are unreliable so they are not currently used to page people.
 
-- **Surrogate Tests**. [A subset of the probes](https://github.com/alphagov/smokey/blob/main/docs/tagging.md#app-app_name) are run as part of the [Continuous Deployment pipeline](https://docs.publishing.service.gov.uk/manual/development-pipeline.html). These can fail for reasons unrelated to the app being targeted, which is why we consider this a "surrogate" form of testing.
+- **Surrogate Tests**. [A subset of the probes](https://github.com/alphagov/smokey/blob/main/docs/tagging.md#app-app_name) are run as part of the [Continuous Deployment pipeline](/manual/development-pipeline.html). These can fail for reasons unrelated to the app being targeted, which is why we consider this a "surrogate" form of testing.
 
 [We use Sentry to monitor flakey probes](https://sentry.io/organizations/govuk/issues/?project=6370326) and identify patterns we can fix.
 
@@ -53,7 +53,7 @@ Apps that are automatically deployed all the way to Production should follow the
 
 Note that service apps have no web server to query, so [we check the process is running](https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk/files/usr/local/bin/govuk_supervised_initctl); apps should fail to start if they can’t connect to their infra ([example](https://github.com/alphagov/email-alert-service/commit/cc6123e88d1ec9542d0d19e719e8e02c37b78538)).
 
-See also: [how we reuse health check endpoints to alert about transient failures](https://docs.publishing.service.gov.uk/manual/alerts/app-healthcheck-not-ok.html).
+See also: [how we reuse health check endpoints to alert about transient failures](/manual/alerts/app-healthcheck-not-ok.html).
 
 ## Continuous Integration checks
 
@@ -75,11 +75,11 @@ Consumer (Unit tests) <---> API (Contract Test) <---> Provider (Unit tests) <---
 
 The chain can be brittle, though: it can't test incremental state changes across multiple apps - think about all the API calls and state changes involved in publishing a document on GOV.UK. End-to-end tests are an alternative way of checking for this kind of end-to-end behaviour.
 
-[Read more about how to write contract tests](https://docs.publishing.service.gov.uk/manual/pact-testing.html).
+[Read more about how to write contract tests](/manual/pact-testing.html).
 
 ### Unit, Integration, etc. Tests
 
-Most GOV.UK apps are built with Ruby on Rails and you should use specific [tools](https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html#testing-utilities) and [strategies](https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html#testing-strategies) for testing them. Some older apps use the [Minitest](https://guides.rubyonrails.org/testing.html#rails-meets-minitest) framework as they were written prior to us adopting RSpec; we have migrated some apps to RSpec ([example](https://github.com/alphagov/collections/issues/2259)) but [this should be avoided due to the effort required](https://github.com/alphagov/smart-answers/issues/5350).
+Most GOV.UK apps are built with Ruby on Rails and you should use specific [tools](/manual/conventions-for-rails-applications.html#testing-utilities) and [strategies](/manual/conventions-for-rails-applications.html#testing-strategies) for testing them. Some older apps use the [Minitest](https://guides.rubyonrails.org/testing.html#rails-meets-minitest) framework as they were written prior to us adopting RSpec; we have migrated some apps to RSpec ([example](https://github.com/alphagov/collections/issues/2259)) but [this should be avoided due to the effort required](https://github.com/alphagov/smart-answers/issues/5350).
 
 Apps that are automatically deployed all the way to Production should also follow the [guidance on tests ("safety checks") in the Continuous Deployment RFC](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md#safety-checks):
 

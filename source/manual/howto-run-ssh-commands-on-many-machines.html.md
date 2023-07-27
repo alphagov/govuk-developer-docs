@@ -28,7 +28,7 @@ All commands in this guide are written to be run from your developer laptop.
 gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache
 ```
 
-- For this to work you need to have [set up the GDS command line tools](https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools)
+- For this to work you need to have [set up the GDS command line tools](/manual/get-started.html#3-install-gds-command-line-tools)
 
 - You need to set which environment this command is running on. The example uses integration. Other options include staging and production.
 

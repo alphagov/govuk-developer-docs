@@ -49,7 +49,7 @@ diagnostic steps you could take are:
   machines][machine metrics] and the [RDS PostgeSQL database
   instance][postgres dash].
 
-[Sidekiq]: https://docs.publishing.service.gov.uk/manual/sidekiq.html
+[Sidekiq]: /manual/sidekiq.html
 [queues]: https://github.com/alphagov/email-alert-api/blob/main/config/sidekiq.yml
 [Sidekiq dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=email-alert-api&var-Queues=All&from=now-3h&to=now
 [technical dash]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_technical.json

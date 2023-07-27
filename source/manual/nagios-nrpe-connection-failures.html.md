@@ -24,7 +24,7 @@ investigate.
 >
 > In this example we use the placeholders broken-machine and monitoring.
 > To find the proper hostnames and learn how to ssh there please consult:
-> <https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html>
+> </manual/howto-ssh-to-machines.html>
 
 First verify that NRPE is running on the monitored machine:
 

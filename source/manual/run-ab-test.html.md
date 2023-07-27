@@ -39,7 +39,7 @@ Make sure you monitor your test after deployment.
 
 ## 3. Deploy and activate an A/B test
 
-To deploy and activate an A/B test, you must [set up a personal API token](https://docs.publishing.service.gov.uk/manual/cdn.html#deploying-fastly) in your Fastly account.
+To deploy and activate an A/B test, you must [set up a personal API token](/manual/cdn.html#deploying-fastly) in your Fastly account.
 
 1. Deploy the dictionary changes to each environment using the [Update_CDN_Dictionaries Jenkins job][update-cdn-dictionaries]. The API key is in the [govuk-secrets repo][govuk-secrets-fastly]. You must deploy the dictionaries to the `www` vhost.
 1. Deploy the Fastly configuration to each environment using the [Deploy_CDN Jenkins job][deploy-cdn]. Use the same parameters as the previous step. You can test the deployment on staging by visiting <https://www.staging.publishing.service.gov.uk>. Changes should appear almost immediately as there is no caching of the CDN config.

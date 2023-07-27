@@ -14,4 +14,4 @@ This means that Content Publisher is having trouble updating the data it holds o
 
 [Sentry]: [https://sentry.io/organizations/govuk/issues/?project=1242052]
 [data job]: [https://github.com/alphagov/content-publisher/blob/main/app/jobs/populate_bulk_data_job.rb]
-[console]: [https://docs.publishing.service.gov.uk/manual/get-ssh-access.html#running-a-console]
+[console]: [/manual/get-ssh-access.html#running-a-console]
