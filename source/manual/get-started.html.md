@@ -26,6 +26,10 @@ If you're having trouble with this guide, you can ask your colleagues on the [#g
 >
 > This is to help people ascertain if you should have access. Your Tech Lead should also be helping to make requests to other teams for you.
 
+You should determine who your tech lead is in your team, as there are a number of steps that require their involvement.
+
+If you are on a team that does not have a tech lead, or you are the tech lead, please contact the Lead Developer in your area or email [GOV.UK senior tech](mailto:govuk-senior-tech-members@digital.cabinet-office.gov.uk) with details on who you are and what team you've joined, so that they can help.
+
 You must have a laptop with full admin access. To check if you have full admin access, run a `sudo` command in your command line. For example, `sudo ls`.
 
 If you do not have full admin access to your laptop, ask your line manager to ask IT to provide you with a developer build on your laptop.
@@ -262,7 +266,7 @@ User accounts in our integration environments are managed in the [govuk-puppet][
 
 1. Add the name of your user manifest file (`<FIRSTNAMELASTNAME>.pp`) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera].
 
-1. Create a pull request with these changes and ask a developer in your team to review it.
+1. Create a pull request with these changes and ask your tech lead to review it.
 
     Once the pull request has been [reviewed][merging], you can merge it and the pull request will automatically deploy to the integration environment.
 
@@ -308,25 +312,20 @@ Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platf
 
 ## 11. Get a Signon account for integration
 
-[Signon](/repos/signon.html) is the application used to control access to the
-GOV.UK Publishing applications.
+[Signon](/repos/signon.html) is the application used to control access to the GOV.UK Publishing applications.
 
-Ask another developer to [create an account for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new),
-at 'Superadmin' level with permission to access the applications that your team are likely to work on.
+Ask your tech lead to [create an account for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new), at 'Superadmin' level with permission to access the applications that your team are likely to work on.
 
 ## 12. Get access to the Release app
 
 [Release](/repos/release.html) is the application we use to track deployments,
 work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.
 
-Ask someone with production access (e.g. your tech lead or buddy) to [create an account for the production
-Signon](https://signon.publishing.service.gov.uk/users/invitation/new), at 'Normal' level with access to
-the 'Release' app only. No permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html)
-is granted.
+Ask your tech lead to [create an account for the production Signon](https://signon.publishing.service.gov.uk/users/invitation/new), at 'Normal' level with access to the 'Release' app only. No permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html) is granted.
 
 ## 13. Talk to your tech lead about supporting services you should have access to
 
-Depending on the team you've joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access (or escalate to their allocated Lead Developer) to provide access. Services you may need access to are:
+Depending on the team you've joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access. Services you may need access to are:
 
 - [Sentry](/manual/sentry.html) - the error monitoring software we use
 - [Logit](/manual/logit.html#accessing-logit) - the software we use for access application logs, where new starters are given access to the integration environment
