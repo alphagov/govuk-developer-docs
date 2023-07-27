@@ -278,21 +278,6 @@ Host *
 
 Note this may happen even if you don't use an rsa ssh private key - it is caused by the _host key_ which is defined by the server you connect to, not your _user key_ which you have defined.
 
-#### Running a console
-
-Once you have SSH access into a remote environment or server, you can also open a Rails app console for a particular application so you can run commands.
-
-For example, to open a console for GOV.UK Publisher, run the following on a `backend` machine:
-
-```bash
-$ govuk_app_console publisher
-```
-
-As a shortcut, to remove the need to look up the machine class for an application, you can use the following without SSHing first:
-
-```bash
-gds govuk connect --environment integration app-console publisher
-```
 
 ## 9. Get AWS access
 
