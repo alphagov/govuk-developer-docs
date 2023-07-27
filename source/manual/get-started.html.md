@@ -90,7 +90,7 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 
 ## 3. Set up your GitHub account
 
-1. Set up a [GitHub] account (or use your existing personal account).
+1. [Login into your existing GitHub account][github-login] or [create a new GitHub account][github-signup].
 1. [Associate your GitHub account with your GDS email address][associate-email-github], which can be in addition to your personal email address.
 1. [Get added to the alphagov org and the "GOV.UK" team](https://docs.publishing.service.gov.uk/manual/github-access.html).
 1. [Add the SSH key to your GitHub account][add-ssh-key].
@@ -102,7 +102,8 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
     $ git config --global user.name "Friendly Giraffe"
     ```
 
-[GitHub]: https://www.github.com/
+[github-login]: https://www.github.com/login
+[github-signup]: https://www.github.com/signup
 [associate-email-github]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
 [add-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 
