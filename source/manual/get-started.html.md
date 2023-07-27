@@ -106,6 +106,22 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 [associate-email-github]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
 [add-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 
+## 4. Set up your AWS IAM User
+
+GDS has a central `gds-users` AWS account where you create your IAM User. Your [tech lead will then create IAM Roles][iam-role-creation] that you can assume for access to GOV.UK's AWS accounts. The [reliability engineering site][aws-account-info] has more information on how AWS accounts are structured.
+
+1. [Request a AWS IAM User][request-aws-user] for the central `gds-users` AWS account.
+1. You should receive an email when your account is created.
+1. Follow instructions in the email to sign into the `gds-users` AWS account for the first time.
+1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User. You must specify your email address as the MFA device name. If you were issued a Yubikey, you can [use it as a MFA device][yubikey-aws-mfa].
+
+[aws-account-info]: https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws
+[iam-role-creation]: #5-get-permissions-for-aws-github-and-other-third-party-services
+[request-aws-user]: https://gds-request-an-aws-account.cloudapps.digital/
+[enable-mfa]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user
+[yubikey-aws-mfa]: /manual/using-a-yubikey.html#setting-up-aws-mfa
+[aws-cli-auth]: https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html#cli-authentication-user-get
+
 ## 5. Get permissions for AWS, GitHub and other third party services
 
 Permissions to GOV.UK's AWS, GitHub, Fastly, Sentry and Pagerduty accounts are managed by the govuk-user-reviewer repository.
@@ -280,50 +296,8 @@ gds govuk connect --environment integration app-console publisher
 
 ## 9. Get AWS access
 
-If you are a frontend developer you do not need to complete this step as part of your initial setup.
 
-GDS maintains a central account for AWS access.
 
-You must have access to this GDS account to work with [govuk-aws](https://github.com/alphagov/govuk-aws) and [govuk-aws-data](https://github.com/alphagov/govuk-aws-data).
-
-The notes below are a summary - the definitive guide lives [on the reliability engineering site](https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws).
-
-### Request access to the GDS AWS account
-
-You request access to the GDS AWS account through the [Request an AWS account form](https://gds-request-an-aws-account.cloudapps.digital).
-
-Select __Request user access__ to request access to the GDS AWS account and complete the form.
-
-After submitting the form, you should receive an email to say your account creation is in progress, and later another email saying the work has been completed.
-
-### Sign in to AWS
-
-To sign in, go to [the `gds-users` AWS console][gds-users-aws-signin], and enter:
-
-- `gds-users` in __Account ID or alias__
-- your `@digital.cabinet-office.gov.uk` email address in __Username__
-- your AWS account password in __Password__
-
-### Set up Multi-Factor Authentication
-
-You must set up [Multi-Factor Authentication (MFA)][MFA] to access AWS.
-
-You may add up to 8 MFA devices. However, note that __MFA device names must be prefixed with your IAM username (usually your email address)__, otherwise you will receive a permissions error.
-
-How you set up MFA depends on whether you have a GDS-issued Yubikey or not.
-
-#### If you do not have a Yubikey
-
-Use the following instructions to set up your MFA device.
-
-1. Sign in to the [`gds-users` AWS console][gds-users-aws-signin].
-1. Select the __IAM__ service.
-1. Select __Users__ in the left hand menu and enter your name.
-1. Select the link for your email address.
-1. Select the __Security credentials__ tab.
-1. Select __Manage__, which is next to __Assigned MFA device__.
-1. Specify your email address as the entire MFA device name. Do __not__ add anything else to the name, or will receive a permissions error.
-1. Follow the instructions to set up your MFA device.
 
 #### If you have a Yubikey
 
