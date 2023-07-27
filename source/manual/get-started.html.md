@@ -408,13 +408,6 @@ You have completed the get started process. You can now use `gds aws` to run gen
 $ gds aws govuk-integration-readonly aws s3 ls
 ```
 
-### Reset your AWS vault password
-
-If you forget your `aws-vault` password, you must reset that password.
-
-1. Delete the `aws-vault` keychain by running `rm ~/Library/Keychains/aws-vault.keychain-db` in the command line.
-1. Re-initialise the `gds-cli` by opening `~/.gds/config.yml` and changing `initialised: true` to `initialised: false`.
-
 ## 11. Set up tools to use the GOV.UK Kubernetes platform
 
 Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/).
