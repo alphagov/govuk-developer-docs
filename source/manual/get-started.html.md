@@ -214,11 +214,11 @@ We use a [Docker](/manual/intro-to-docker.html) environment for local developmen
 
 To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker` GitHub repo](https://github.com/alphagov/govuk-docker#installation).
 
-If you are a frontend developer, and you are working on GOV.UK's frontend apps, there is documentation on [alterntaive local development approaches](/manual/local-frontend-development.html) that make low or no usage of GOV.UK Docker.
+> If you are a frontend developer, and you are working on GOV.UK's frontend apps, there is documentation on [alterntaive local development approaches](/manual/local-frontend-development.html) that make low or no usage of GOV.UK Docker.
 
 ## 10. Get SSH access to integration
 
-If you are a frontend developer you do not need to complete this step as part of your initial setup.
+> If you are a frontend developer you do not need to complete this step as part of your initial setup.
 
 ### Create a user to SSH into integration
 
