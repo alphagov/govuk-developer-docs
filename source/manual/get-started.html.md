@@ -325,32 +325,6 @@ Note this may happen even if you don't use an rsa ssh private key - it is caused
 gds config yubikey true
 ```
 
-### Get access to integration infrastructure
-
-You must get access to the integration infrastructure so you can deploy to integration.
-
-To get access, you must add your email address to the list of `role_user_user_arns` users in the `govuk-aws-data` GitHub repo.
-
-Open a pull request to add the following code to the `role_user_user_arns` section in the [`infra-security/integration/common.tfvars` file in the `govuk-aws-data` repo](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/integration/common.tfvars).
-
-```
-arn:aws:iam::<account-ID>:user/<firstname.lastname>@digital.cabinet-office.gov.uk
-```
-
-Use the same `<account-ID>` as other entries in the `role_user_user_arns` section.
-
-See this [example pull request](https://github.com/alphagov/govuk-aws-data/pull/758/files) for more information.
-
-After your pull request has been merged, someone with production access will need to deploy the
-`infra-security` project to integration, by assuming the `govuk-integration-admin` role.
-See [Deploy Terraform](https://docs.publishing.service.gov.uk/manual/deploying-terraform.html)
-to find out how to deploy infrastructure changes. The stackname is `govuk` and the project is
-`infra-security`.
-
-See the [AWS IAM users documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) for more information.
-
-
-
 ## 11. Set up tools to use the GOV.UK Kubernetes platform
 
 Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/).
