@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>local-links-manager: Enabling (or creating) a new service - GOV.UK Developer Documentation</title>
+    <title>local-links-manager: Local Authority Changes - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/local-links-manager/enable-or-create-service.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/local-links-manager/local-authority-changes.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="local-links-manager: Enabling (or creating) a new service - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/local-links-manager/enable-or-create-service.html" />
+      <meta name="twitter:title" content="local-links-manager: Local Authority Changes - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/local-links-manager/local-authority-changes.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="local-links-manager: Enabling (or creating) a new service" />
+      <meta property="og:title" content="local-links-manager: Local Authority Changes" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/local-links-manager/enable-or-create-service.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/local-links-manager/local-authority-changes.html" />
 
     
   </head>
@@ -193,59 +193,31 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/local-links-manager/commit/c77d5df162863ca67ede2f9f787e6ad393a89bba">19 Jan 2021</a>
+  Last updated: <a href="https://github.com/alphagov/local-links-manager/commit/cab12baa0ae9124b2f05d6781b210cdd2d50daa3">25 Jul 2023</a>
 </div>
 
-  <h1 class="page-title">local-links-manager: Enabling (or creating) a new service</h1>
+  <h1 class="page-title">local-links-manager: Local Authority Changes</h1>
 
   
-<p>From time to time, we have requests to add new LGSL codes. For this,
-you'll need to know the LGSL code, the description of the service and
-the providing tier.</p>
-<p>They are imported automatically each night from <a href="https://standards.esd.org.uk">https://standards.esd.org.uk</a> so
-we only need to enable them in this app.</p>
-<h2 id="1-check-that-the-new-service-has-been-imported-from-esd">1. Check that the new service has been imported from ESD</h2>
-<p>This happens automatically each night, but you can check that there is a <code>Service</code>
-in the database with the <code>lgsl_code</code> you're enabling.</p>
-<h2 id="2-add-to-the-csv-of-enabled-services-in-publisher">2. Add to the CSV of enabled services in Publisher:</h2>
-<p>There is a <a href="https://github.com/alphagov/publisher/blob/master/data/local_services.csv">CSV file</a>
-that contains the LGSL codes that are active on GOV.UK</p>
-<p>To add a new LGSL code:</p>
+<p>Local Links Manager is set up to edit links, and editing other aspects of Local Authorities is not really supported by the front end. Fortunately these changes do not happen often, but when they do they tend to happen in batches.</p>
+<h2 id="to-change-a-local-authoritys-details">To change a Local Authority's details</h2>
+<p>The URL can be changed in the UI, but if you need to change the slug and/or authority name, you'll have to log on to the app-console to do it.</p>
+<h2 id="to-mark-a-local-authority-as-superseded">To mark a Local Authority as superseded</h2>
+<p>Sometimes local authorities are merged (this tends to be borough/city/district councils getting rolled up into their county council, which then becomes a unitary authority). In this case, you should create a rake task that does the following:</p>
 <ul>
-<li>Add the code itself in the first column in the CSV file.</li>
-<li>Add the description in the second column.</li>
-<li>Add the providing tier in the third column.</li>
-</ul>
-<p>Providing tiers can be:</p>
+<li>Update the county council from a tier 2 (county) to a tier 3 (unitary) council (or create a new unitary council if repurposing the previous one is likely to cause problems).</li>
+<li>For each of the councils being merged:
 <ul>
-<li><code>all</code></li>
-<li><code>county/unitary</code></li>
-<li><code>district/unitary</code></li>
+<li>Set the active_end_date property to the date on which it will be (or aws, if you're doing this in retrospect) merged into the unitary authority.</li>
+<li>Set the active_note property with a text description of the merge.</li>
+<li>Set the succeeded_by_local_authority property to point to the new unitary council.</li>
+<li>(Only after the council has been merged) Download the links CSV file and attach it to the card describing the change.</li>
+<li>(Only after the council has been merged) Delete all the Link items attached to the council so that the link checker will not attempt to check them, and they will not appear in the broken links report.</li>
 </ul>
-<p>After deploying this you will need to run the rake task <code>local_transactions:fetch_and_clean</code>
-against the Publisher app.</p>
-<h2 id="3-activate-relevant-service-interactions">3. Activate relevant service interactions</h2>
-<p>You can either do this by creating a local transaction in Publisher, but this
-may show the transaction on the live site before the links are ready, so check
-with your product manager to make sure this is OK.</p>
-<p>Or use the <a href="https://github.com/alphagov/local-links-manager/blob/main/lib/tasks/service.rb"><code>service:enable</code></a> rake task instead. If
-you need to create a new service that has not been defined by the Local
-Government Association, you can specify a dummy LGSL code, along with a label
-and slug to create a new service.</p>
-<h2 id="4-add-missing-links-for-new-service-interaction">4. Add missing links for new service interaction</h2>
-<p>Run the rake task <code>import:missing_links</code>.</p>
-<h2 id="5-contentdepartment-follow-up">5. Content/department follow-up</h2>
-<p>Once all the above is done the content team and/or department can follow up by
-creating the local transaction in Publisher (if not done previously) and filling
-in the missing links in Local Links Manager.</p>
+</li>
+</ul>
+<p>Note that new Local Authorities do not have SNAC codes, only GSS codes.</p>
 
 
             
@@ -253,8 +225,8 @@ in the missing links in Local Links Manager.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/local-links-manager/blob/main/docs/enable-or-create-service.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Flocal-links-manager%2Fenable-or-create-service.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/local-links-manager/blob/main/docs/local-authority-changes.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Flocal-links-manager%2Flocal-authority-changes.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

@@ -248,7 +248,7 @@ backend servers on a single domain.</li>
 but no longer exist.</li>
 </ul>
 <p>The sister project <a href="https://github.com/alphagov/router-api"><code>router-api</code></a> provides a read/write
-interface to the underlying database and route reloading.</p>
+interface to the underlying database.</p>
 <h2 id="technical-documentation">Technical documentation</h2>
 <p>Recommended reading: <a href="https://golang.org/doc/code.html">How to Write Go Code</a></p>
 <h3 id="running-the-test-suite">Running the test suite</h3>
@@ -261,10 +261,17 @@ interface to the underlying database and route reloading.</p>
 in Go&rsquo;s own testing framework. To run them individually:</p>
 <pre><code>go test -bench=. ./trie ./triemux
 </code></pre>
-<p>The <code>router</code> itself doesn&rsquo;t really benefit from having unit tests around
-individual functions. Instead it has a comprehensive set of integration
-tests to exercise it&rsquo;s HTTP handling, error reporting, and performance.</p>
+<p>The integration tests require Docker in order to run MongoDB. They are intended
+to cover Router&rsquo;s overall request handling, error reporting and performance.</p>
 <pre><code>go test ./integration_tests
+</code></pre>
+<h3 id="lint">Lint</h3>
+<p>Checks run automatically on GitHub on PR and push. For faster feedback, you can
+install and run the <a href="https://golangci-lint.run/">linter</a> yourself, or configure
+your editor/IDE to do so. For example:</p>
+<pre lang="sh"><code>brew install golangci-lint
+</code></pre>
+<pre lang="sh"><code>make lint
 </code></pre>
 <h3 id="debug-output">Debug output</h3>
 <p>To see debug messages when running tests, set both the <code>DEBUG</code> and
@@ -276,33 +283,17 @@ tests to exercise it&rsquo;s HTTP handling, error reporting, and performance.</p
 </code></pre>
 <h3 id="updating-dependencies">Updating dependencies</h3>
 <p>This project uses <a href="https://github.com/golang/go/wiki/Modules">Go Modules</a> to vendor its dependencies. To update the dependencies:</p>
-<pre><code>go mod vendor
-</code></pre>
-<h3 id="updating-the-version-of-go">Updating the version of Go</h3>
-<p>Dependabot raises PR&rsquo;s to update the dependencies for Router. This includes raising a PR when a new version of Go is available. However to update the version of Go, it&rsquo;s necessary to do more than just merge this dependabot PR. Here is an <a href="https://github.com/alphagov/router/pull/345/files">example PR</a> with all the below changes, and here are the steps:</p>
 <ol>
-<li>Dependabot&rsquo;s PR will modify the Go version in the Dockerfile (and thus what is build in the Kubernetes engine), but you also need to update the version number in the file <code>.go-version</code>.</li>
-<li>You will also have to update the Go version in <code>go.mod</code>. This will necessitate having Go installed on your local machine, changing the version number and running in terminal <code>go mod tidy</code> and <code>go mod vendor</code> in sequence to update correctly. This may have no changes at all, but see <a href="https://github.com/alphagov/router/pull/307/commits/c0e4d753a48c71e84a3e4734389191e36bae9611">example pr</a> for a larger update. Also see <a href="#upgrading-go-modules">Upgrading Go Modules</a>.</li>
-<li>Finally you need to update the go version in <code>ci.yml</code>.</li>
-<li>Before you merge this PR, put the branch onto staging and leave it there for a couple of weekdays. Check for anything unexpected in icinga and sentry.</li>
-<li>If you are confident that the version bump is safe for production, you can merge your PR and deploy it to production. It is best to do this at a quiet time of the day (such as 7am) to minimise any potential disruption.</li>
-<li>Make sure govuk-docker is updated to match the new version. See <a href="https://github.com/alphagov/govuk-docker/pull/643/files">here</a>.</li>
+<li>Run <code>go mod tidy &amp;&amp; go mod vendor</code>.</li>
+<li>Check for any errors and commit.</li>
 </ol>
-<h4 id="upgrading-go-modules">Upgrading Go Modules</h4>
-<p>Sometimes modules will need to be manually upgraded after the above steps. This will satisfy dependencies that are old and do not use the <code>go.mod</code> file management system. Most likely you will see errors that require this when there is a failure to properly vendor <code>go.mod</code> due to an unsupported feature call in a dependency.</p>
-<p>To do this, you&rsquo;ll require GoLang installed on your machine.</p>
-<ol>
-<li>First, follow point 3 of the above <a href="#updating-the-version-of-go">guide for upgrating</a> the version of Go.</li>
-<li>If you determine through test failures that a module will need to be upgraded, in terminal at the root of <code>router</code> type in the following: <code>go get -u [repo-of-module]</code> - For example: <code>go get -u github.com/streadway/quantile</code>
-</li>
-<li>Run <code>go mod tidy</code> and <code>go mod vendor</code>. Check for any errors and commit.</li>
-</ol>
+<p>Occasionally an old module may need updating explicitly via <code>go get -u &lt;repo-of-module&gt;</code>, for example <code>go get -u github.com/streadway/quantile</code></p>
 <h3 id="further-documentation">Further documentation</h3>
 <ul>
 <li><a href="/repos/router/data-structure.html">Data structure</a></li>
 <li><a href="https://gdstechnology.blog.gov.uk/2013/12/05/building-a-new-router-for-gov-uk">Original thinking behind the router</a></li>
 <li>
-<a href="https://github.com/alphagov/router/commit/b443d3dd9cf776143eed270d01bd98d2233caea6">Example of adding a metric</a> using the <a href="https://godoc.org/github.com/dnesting/client_golang/prometheus">Go prometheus client library</a>
+<a href="https://github.com/alphagov/router/commit/b443d3d">Example of adding a metric</a> using the <a href="https://godoc.org/github.com/dnesting/client_golang/prometheus">Go prometheus client library</a>
 </li>
 </ul>
 <h2 id="licence">Licence</h2>
