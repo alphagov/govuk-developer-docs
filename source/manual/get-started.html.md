@@ -11,7 +11,6 @@ section: Learning GOV.UK
 If you're having trouble with this guide, you can ask your colleagues on the [#govuk-developers Slack channel](https://gds.slack.com/archives/CAB4Q3QBW) or using email.
 
 [GDS]: https://gds.blog.gov.uk/about/
-[govuk-user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 
 ## Before you start
 
