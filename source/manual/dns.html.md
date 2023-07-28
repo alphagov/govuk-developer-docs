@@ -122,3 +122,13 @@ Some of these are not managed by Terraform. If you can't find a configuration fi
 
 4. Update the DNS records as required.
 5. **For bonus points:** If the zone description wasn't clear, but you're certain it's safe to be updated manually, then consider changing the description field so it's clearer for the next person.
+
+## Getting Terraform Cloud access
+
+If you're a member of 2nd-line, Platform Engineering or Platform Security and Reliability, you should automatically be able to [log into Terraform Cloud](https://accounts.google.com/o/saml2/initsso?idpid=C01ppujwc&spid=738388265440&forceauthn=false) using your digital.cabinet-office.gov.uk Google account.
+
+If you're logging in for the first time, you'll need to create a password for your new Terraform Cloud account, as it exists independently of your Google Account (much like your GitHub account exists independently of the `alphagov` org). Once your account is created, you'll be able to sign in through your Google Account (SSO) and access the `govuk` organisation on Terraform cloud.
+
+If you're having trouble logging into Terraform Cloud then [Platform Engineering team](https://gds.slack.com/channels/govuk-platform-engineering) or an [owner of the GOV.UK_Terraform_Cloud_Access group](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/GOV.UK_Terraform_Cloud_Access/about) will be able to help you.
+
+[govuk-dns-tf]: https://github.com/alphagov/govuk-dns-tf
