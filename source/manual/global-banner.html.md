@@ -81,7 +81,7 @@ the underlying issue is fixed.
    clusters](https://eu-west-1.console.aws.amazon.com/elasticache/home?region=eu-west-1#/memcached/frontend-memcached-govuk)
    and press the Reboot button. The UI will ask you to confirm the request.
 1. Consider [clearing the page from the CDN
-   cache](https://docs.publishing.service.gov.uk/manual/purge-cache). Most
+   cache](/manual/purge-cache). Most
    pages expire from the CDN cache within 5 minutes so this is unlikely (though
    not impossible) to be the issue.
 

@@ -68,8 +68,8 @@ Unhandled exceptions are automatically logged to Sentry, but you can also
 [manually report something to Sentry using `GovukError.notify`][manually-report].
 This method takes an exception object, or a string.
 
-[create-apps]: https://docs.publishing.service.gov.uk/manual/setting-up-new-rails-app.html#create-the-application-in-sentry
-[docs-apps]: https://docs.publishing.service.gov.uk/apps.json
+[create-apps]: /manual/setting-up-new-rails-app.html#create-the-application-in-sentry
+[docs-apps]: /apps.json
 [govuk-saas-config]: https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L1-L12
 [rake-tasks]: https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L26-L87
 [delegator-pattern]: https://github.com/alphagov/govuk_app_config/pull/160

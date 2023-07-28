@@ -45,7 +45,7 @@ It also facilitates Mongo, DocumentDB and Elasticsearch backups described in the
 
 Besides the S3 buckets that store aforementioned full database backups, we have S3 buckets that store business critical information, for example:
 
-- [GOV.UK mirrors](https://docs.publishing.service.gov.uk/manual/fall-back-to-mirror.html)
+- [GOV.UK mirrors](/manual/fall-back-to-mirror.html)
   - A replica is also held in [Google Cloud Storage](https://github.com/alphagov/govuk-aws/tree/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/infra-google-mirror-bucket) with versioning enabled
 - GOV.UK assets (attachments)
 - Terraform state
@@ -102,7 +102,7 @@ GOV.UK search is a consumer of publishing API events. Indices can be recreated t
 
 Automated snapshots are taken hourly, retained for 2 weeks in an AWS repository that we can interact with via the Elasticsearch API.
 
-[Read more about backup and restore of Elasticsearch indices](https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html#header).
+[Read more about backup and restore of Elasticsearch indices](/manual/elasticsearch-dumps.html#header).
 
 # Graphite Whisper backups
 

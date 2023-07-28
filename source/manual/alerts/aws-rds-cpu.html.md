@@ -17,4 +17,4 @@ The first is to [access the AWS web console][] and view the statistics. These ar
 The second is to [access a `db-admin` instance][] via SSH and access the database console. Then you should be able to view the current queries in action.
 
 [access the AWS web console]: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1
-[access a `db-admin` instance]: https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html
+[access a `db-admin` instance]: /manual/howto-ssh-to-machines.html

@@ -17,7 +17,7 @@ Create a PR which adds some information (including team name and Slack channel) 
 
 Add the team name to [bin/morning_seal and bin/afternoon_seal](https://github.com/alphagov/seal/tree/main/bin) if you want two notifications a day, otherwise just pick one.
 
-Make sure that the Slack channel name has been set as the 'team' in [repos.yml in the GOV.UK Developer Docs repo](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml). This will [update this JSON endpoint](https://docs.publishing.service.gov.uk/repos.json) which is [used by the Seal](https://github.com/alphagov/seal/blob/main/lib/team_builder.rb#L97).
+Make sure that the Slack channel name has been set as the 'team' in [repos.yml in the GOV.UK Developer Docs repo](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml). This will [update this JSON endpoint](/repos.json) which is [used by the Seal](https://github.com/alphagov/seal/blob/main/lib/team_builder.rb#L97).
 
 ## Dependapanda
 
@@ -43,12 +43,12 @@ The Release App Badger informs the team if there are pull requests that have not
 
 ### Configuration
 
-In the Release app, the badger will notify teams [depending on the dependency_team](https://github.com/alphagov/release/pull/1198/files#diff-80e54224c5cd63358602f18016d42c42e208b7269bba5495cbc6a5ac3afac597R34) which is set in [repos.json](https://docs.publishing.service.gov.uk/repos.json). The `dependency_team` field in the repos.json file is [pulled from the team field](https://github.com/alphagov/govuk-developer-docs/blob/main/app/repo.rb#L168) in the [repos.yml file](https://github.com/alphagov/govuk-developer-docs/blob/a828a685cb9d475554b7144d0e13d91ac0e41337/data/repos.yml#L270) if dependency_team isn’t set. If dependency_team isn't set, the `team` in [repos.yml file](https://github.com/alphagov/govuk-developer-docs/blob/a828a685cb9d475554b7144d0e13d91ac0e41337/data/repos.yml) would need to be the name of the Slack channel that you want to post to.
+In the Release app, the badger will notify teams [depending on the dependency_team](https://github.com/alphagov/release/pull/1198/files#diff-80e54224c5cd63358602f18016d42c42e208b7269bba5495cbc6a5ac3afac597R34) which is set in [repos.json](/repos.json). The `dependency_team` field in the repos.json file is [pulled from the team field](https://github.com/alphagov/govuk-developer-docs/blob/main/app/repo.rb#L168) in the [repos.yml file](https://github.com/alphagov/govuk-developer-docs/blob/a828a685cb9d475554b7144d0e13d91ac0e41337/data/repos.yml#L270) if dependency_team isn’t set. If dependency_team isn't set, the `team` in [repos.yml file](https://github.com/alphagov/govuk-developer-docs/blob/a828a685cb9d475554b7144d0e13d91ac0e41337/data/repos.yml) would need to be the name of the Slack channel that you want to post to.
 
 ## Sentry
 
-[Sentry](https://docs.publishing.service.gov.uk/manual/sentry.html) is an error monitoring tool that we use on GOV.UK.
+[Sentry](/manual/sentry.html) is an error monitoring tool that we use on GOV.UK.
 
 ### Configuration
 
-[Please see these docs](https://docs.publishing.service.gov.uk/manual/sentry.html#slack-alerts). When creating a rule to send a notification to Slack, you may find that you need to input a channel ID as well as channel name. The ID can be found by clicking on the channel name in Slack and scrolling down until you can see the channel ID.
+[Please see these docs](/manual/sentry.html#slack-alerts). When creating a rule to send a notification to Slack, you may find that you need to input a channel ID as well as channel name. The ID can be found by clicking on the channel name in Slack and scrolling down until you can see the channel ID.

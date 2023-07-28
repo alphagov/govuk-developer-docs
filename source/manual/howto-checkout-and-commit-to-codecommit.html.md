@@ -26,7 +26,7 @@ gds aws govuk-tools-poweruser git push origin mychange
 
 ## Install dependencies and set up local environment
 
-- For this to work you need to have [set up the GDS command line tools](https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools)
+- For this to work you need to have [set up the GDS command line tools](/manual/get-started.html#3-install-gds-command-line-tools)
 
 - You will also need to install git-remote-codecommit
 
@@ -51,7 +51,7 @@ git config --global credential.UseHttpPath true
 
 ## Cloning repositories
 
-- login to the AWS console to see the available repositories using [the GDS command line tool](https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools)
+- login to the AWS console to see the available repositories using [the GDS command line tool](/manual/get-started.html#3-install-gds-command-line-tools)
 
 ```
 gds aws govuk-tools-poweruser --login

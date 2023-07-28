@@ -9,7 +9,7 @@ type: learn
 
 ### Check the number of unicorn workers currently running
 
-You will need to SSH into the machine class for your chosen application, you can find this information in the developer docs, for example, the machine class for [Smart Answers](https://docs.publishing.service.gov.uk/repos/smart-answers.html) is `calculators_frontend`
+You will need to SSH into the machine class for your chosen application, you can find this information in the developer docs, for example, the machine class for [Smart Answers](/repos/smart-answers.html) is `calculators_frontend`
 
 SSH into the machine on Integration using the command below
 

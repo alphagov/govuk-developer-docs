@@ -335,4 +335,4 @@ Notes:
 [actions-docker-services]: https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idservices
 [service-configuration]: https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idservices
 [govuk-frontend-issue]: https://github.com/alphagov/govuk-frontend/issues/1671
-[release-tag]: https://docs.publishing.service.gov.uk/manual/testing-projects.html#fixing-the-build-number
+[release-tag]: /manual/testing-projects.html#fixing-the-build-number

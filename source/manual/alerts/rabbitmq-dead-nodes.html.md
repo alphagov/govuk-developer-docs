@@ -27,9 +27,9 @@ If the dead node is not in the list, then it can be safely removed from the clus
 gds govuk connect -e production ssh aws/rabbitmq "sudo rabbitmqctl forget_cluster_node rabbit@ip-xx-xx-x-xx"
 ```
 
-[rabbitmq_doc]: https://docs.publishing.service.gov.uk/manual/rabbitmq.html
+[rabbitmq_doc]: /manual/rabbitmq.html
 [alert_check]: https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_rabbitmq/templates/check_rabbitmq_dead_nodes.cfg.erb
-[restart_an_application]: https://docs.publishing.service.gov.uk/manual/restart-application.html
+[restart_an_application]: /manual/restart-application.html
 
 ## Unhealthy nodes
 

@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-> If you need to restore an entire RDS instance please see [this manual page](https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html) instead.
+> If you need to restore an entire RDS instance please see [this manual page](/manual/howto-backup-and-restore-in-aws-rds.html) instead.
 
 ### Restoring From S3 Backups
 
@@ -50,4 +50,4 @@ sudo -iu govuk-backup tmux
 
 6. The script will inform you when it's complete. To switch between tmux windows, press `Control-B` then `n`. To disconnect from tmux, press `Control-B` then press `d`. To reconnect, run `sudo -iu govuk-backup tmux a`
 
-See the [`govuk-env-sync` manual page](https://docs.publishing.service.gov.uk/manual/govuk-env-sync.html) for more information.
+See the [`govuk-env-sync` manual page](/manual/govuk-env-sync.html) for more information.

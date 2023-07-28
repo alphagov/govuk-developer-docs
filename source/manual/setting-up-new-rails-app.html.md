@@ -9,19 +9,19 @@ parent: "/manual.html"
 [mit-license]: https://en.wikipedia.org/wiki/MIT_License
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet/blob/master/docs/adding-a-new-app.md#including-the-app-on-machines
 [govuk-puppet-jenkins]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
-[dns]: https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain
+[dns]: /manual/dns.html#dns-for-the-publishingservicegovuk-domain
 [govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
 [sentry]: https://sentry.io/settings/govuk/teams/
 [release]: https://release.publishing.service.gov.uk/applications
 [deploy-jenkins]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/
 [docs-applications]: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml
-[get-started]: https://docs.publishing.service.gov.uk/manual/get-started.html
-[linting]: https://docs.publishing.service.gov.uk/manual/configure-linting.html
-[rails-conv]: https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html
-[naming]: https://docs.publishing.service.gov.uk/manual/naming.html
-[auto-config]: https://docs.publishing.service.gov.uk/manual/configure-github-repo.html#auto-configuration
-[app-list]: https://docs.publishing.service.gov.uk/#applications
+[get-started]: /manual/get-started.html
+[linting]: /manual/configure-linting.html
+[rails-conv]: /manual/conventions-for-rails-applications.html
+[naming]: /manual/naming.html
+[auto-config]: /manual/configure-github-repo.html#auto-configuration
+[app-list]: /#applications
 [sentry-update-project-rake-task]: https://github.com/alphagov/govuk-saas-config/blob/045668beed8aebc50b876108363c8d1a25bdf80c/sentry/Rakefile#L69-L83
 
 ## Before you start
@@ -168,7 +168,7 @@ Add your Rails app to GOV.UK Docker so you can run the app locally. See an [exam
 
 ### Set up contract tests for your app
 
-If your app provides an internal API, it should have [contract tests](https://docs.publishing.service.gov.uk/manual/pact-testing.html).
+If your app provides an internal API, it should have [contract tests](/manual/pact-testing.html).
 
 ## Set up a GitHub repo for your Rails app
 
@@ -218,7 +218,7 @@ If your app is an API, you should create a `docs/api.md` file.
 
 ### Configure your Rails app for Jenkins
 
-Find out how to [set up an app in Jenkins](https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html#setting-up).
+Find out how to [set up an app in Jenkins](/manual/test-and-build-a-project-on-jenkins-ci.html#setting-up).
 
 ### Add your Rails app to GOV.UK
 
