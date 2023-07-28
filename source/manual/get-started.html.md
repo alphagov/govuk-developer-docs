@@ -128,7 +128,7 @@ GDS has a central `gds-users` AWS account where you create your IAM User. Your [
 
 Permissions to GOV.UK's AWS, GitHub, [Fastly], [Sentry] and [Pagerduty] accounts are managed by the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository (this is a private repository so will 404 before joining GOV.UK's GitHub).
 
-Ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant you access.
+Once your [AWS IAM account is created](#5-set-up-your-aws-iam-user), you can ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant you access.
 
 [Fastly]: /manual/cdn.html
 [Sentry]: /manual/sentry.html
