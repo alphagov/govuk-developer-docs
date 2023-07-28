@@ -102,6 +102,6 @@ in the job and any downstream jobs it triggers.
 [govuk-athena]: ../query-cdn-logs.html
 [aws-glue]: https://eu-west-1.console.aws.amazon.com/glue/home?region=eu-west-1#catalog:tab=crawlers
 [query-athena]: ../query-cdn-logs.html#example-queries
-[aws-login]: https://docs.publishing.service.gov.uk/manual/set-up-aws-account.html#2-sign-in-to-aws
+[aws-login]: /manual/set-up-aws-account.html#2-sign-in-to-aws
 [S3]: https://s3.console.aws.amazon.com/s3/home?region=eu-west-1#
 [infra-fastly-logs]: https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-fastly-logs/main.tf

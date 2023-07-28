@@ -31,7 +31,7 @@ This is a rough guide.  Some projects, such as Ruby, don't necessarily follow [s
 
 Another consideration is EOL. For example, if the latest version of something is version 9, and we're on version 7, but version 7 is EOL, we should update to version 8, despite version 7 being within two major versions of the latest.
 
-The two-major-releases rule allows some wiggle-room for keeping upgrade cadences manageable. Teams don't have to worry about upgrading to a new major version the moment it becomes available, but shouldn't allow themselves to fall too far behind. Teams can leverage tools such as [Dependabot](https://docs.publishing.service.gov.uk/manual/manage-ruby-dependencies.html) to automate much of the chore work.
+The two-major-releases rule allows some wiggle-room for keeping upgrade cadences manageable. Teams don't have to worry about upgrading to a new major version the moment it becomes available, but shouldn't allow themselves to fall too far behind. Teams can leverage tools such as [Dependabot](/manual/manage-ruby-dependencies.html) to automate much of the chore work.
 
 ### Prioritise dependencies over subdependencies
 

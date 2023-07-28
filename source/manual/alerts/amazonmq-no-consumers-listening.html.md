@@ -68,15 +68,15 @@ messages then this could indicate an issue with the consumer.
 
 ### Troubleshooting steps
 
-1. You could try restarting the application [on all the machines of the relevant class](https://docs.publishing.service.gov.uk/manual/howto-run-ssh-commands-on-many-machines).
+1. You could try restarting the application [on all the machines of the relevant class](/manual/howto-run-ssh-commands-on-many-machines).
    For example, to restart the email-alert-service application, you'd SSH into each `email_alert_api` machine and [restart the app](/manual/restart-application.html). After restarting, check to see if the problem is solved.
 
 2. If the issue has not resolved, we should check in the consumers application
    logs to see if any errors are being thrown.
 
-[high_unprocessed_messages]: https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-high-number-of-unprocessed-messages.html
+[high_unprocessed_messages]: /manual/alerts/amazonmq-high-number-of-unprocessed-messages.html
 [email_alert_binding]: https://github.com/alphagov/email-alert-service/blob/4412a1b3b0f281733801e1631416ab02fac90e25/lib/tasks/message_queues.rake#L17
-[amazonmq_doc]: https://docs.publishing.service.gov.uk/manual/amazonmq.html
+[amazonmq_doc]: /manual/amazonmq.html
 [check_rabbitmq_plugin]: https://github.com/alphagov/govuk-puppet/blob/eb8a04a7883d4772fa7266c909c7f40563f8f7a0/modules/icinga/files/usr/lib/nagios/plugins/check_rabbitmq_consumers
 [heartbeat_messages]: https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/tasks/heartbeat_messages.rake
 [amazonmq_grafana_dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/amazonmq.json?refresh=10s&orgId=1

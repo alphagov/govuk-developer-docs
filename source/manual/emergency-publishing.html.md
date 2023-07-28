@@ -136,7 +136,7 @@ in frontend rendering apps, in Static, or in your browser.
    the banner works on origin but not on www.gov.uk, wait 5 minutes then try
    again.
    - It is possible to [flush pages from the CDN
-     cache](https://docs.publishing.service.gov.uk/manual/purge-cache). This
+     cache](/manual/purge-cache). This
      should not be necessary unless there is a bug or misconfiguration in
      GOV.UK.
 1. Check the banner is present in the page template from Static

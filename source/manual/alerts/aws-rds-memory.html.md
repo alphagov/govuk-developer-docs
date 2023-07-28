@@ -12,4 +12,4 @@ This alert relates to memory usage of our database (RDS) instances in AWS. There
 - [Access the `db-admin` instance][] via SSH and access the database console. Then you should be able to view the current queries in action.
 
 [Access the AWS web console]: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1
-[Access the `db-admin` instance]: https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html
+[Access the `db-admin` instance]: /manual/howto-ssh-to-machines.html

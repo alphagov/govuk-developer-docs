@@ -86,13 +86,13 @@ repeat the same checks that authentication is enabled and that the application
 is still successfully processing requests.
 
 [gds-sso-gem]: https://github.com/alphagov/gds-sso
-[data sync]: https://docs.publishing.service.gov.uk/manual/alerts/data-sync.html
+[data sync]: /manual/alerts/data-sync.html
 [Omniauth]: https://github.com/omniauth/omniauth
 [gds-sso-test-user]: https://github.com/alphagov/content-store/pull/498/commits/f405ca84940efe9705ee48fc21f373dacc05da63
 [signon-integration]: http://signon.integration.publishing.service.gov.uk
 [signon-production]: http://signon.publishing.service.gov.uk
 [app-create-rake]: https://github.com/alphagov/signon/blob/main/docs/usage.md#setup-rake-tasks
-[arch-overview]: https://docs.publishing.service.gov.uk/manual/architecture.html
+[arch-overview]: /manual/architecture.html
 [api-user-production]: https://signon.publishing.service.gov.uk/api_users
 [api-user-integration]: https://signon.integration.publishing.service.gov.uk/api_users
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets

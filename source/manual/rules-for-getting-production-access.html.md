@@ -32,8 +32,8 @@ systems. It should be granted to both civil servants and contractors as needed.
 
 Access includes:
 
-- Permission to [deploy apps](https://docs.publishing.service.gov.uk/manual/development-pipeline.html#deployment) in Jenkins via the [GOV.UK Production Deploy Github team](https://github.com/orgs/alphagov/teams/gov-uk-production-deploy)
-- Permission to [merge pull requests](https://docs.publishing.service.gov.uk/manual/merge-pr.html#header) in continuously deployed applications
+- Permission to [deploy apps](/manual/development-pipeline.html#deployment) in Jenkins via the [GOV.UK Production Deploy Github team](https://github.com/orgs/alphagov/teams/gov-uk-production-deploy)
+- Permission to [merge pull requests](/manual/merge-pr.html#header) in continuously deployed applications
 - Readonly access to logging systems such as Logit, etc.
 - AWS readonly access via the `role_user_user_arns` role in [Staging](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/staging/common.tfvars) and [Production](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/production/common.tfvars)
 - "Normal" role in to GOV.UK Signon on Staging and Production (with app permissions granted as needed)
@@ -47,16 +47,16 @@ any access issues.
 Access should be granted at the discretion of the engineer's tech lead, once the engineer has the required level of security clearance (BPSS). Before approving access, tech leads should ensure that the engineer:
 
 - is aware of our processes and standards around [code review](https://gds-way.cloudapps.digital/manuals/code-review-guidelines.html)
-- understands the responsibilities that [releasing code](https://docs.publishing.service.gov.uk/manual/development-pipeline.html#deployment) brings with it
+- understands the responsibilities that [releasing code](/manual/development-pipeline.html#deployment) brings with it
 - knows how to roll back to an older release if there are any issues
-- knows [how to get help](https://docs.publishing.service.gov.uk/manual/ask-for-help.html) from someone with more access if they need it
+- knows [how to get help](/manual/ask-for-help.html) from someone with more access if they need it
 
 ### Production Admin access
 
-- Permission to read & write [production](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml) and [staging](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/staging_credentials.yaml) [hieradata](https://docs.publishing.service.gov.uk/manual/encrypted-hiera-data.html#what-to-do-when-someone-gets-production-access) in govuk-secrets using GPG
+- Permission to read & write [production](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml) and [staging](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/staging_credentials.yaml) [hieradata](/manual/encrypted-hiera-data.html#what-to-do-when-someone-gets-production-access) in govuk-secrets using GPG
 - Permission to read & write to the [password store](https://github.com/alphagov/govuk-secrets/tree/main/pass) in govuk-secrets store using [GPG](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id)
 - Access to [Production Deploy Jenkins](https://deploy.blue.production.govuk.digital/) and [Staging Deploy Jenkins](https://deploy.blue.staging.govuk.digital/) to deploy applications via the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production)
-- [SSH access](https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html) to production and staging servers via [govuk-puppet](https://github.com/alphagov/govuk-puppet)
+- [SSH access](/manual/howto-ssh-to-machines.html) to production and staging servers via [govuk-puppet](https://github.com/alphagov/govuk-puppet)
 - Privileged AWS Access in [Production](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars), [Staging](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/staging/common.tfvars) and [Tools](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/tools/common.tfvars) environments (via the `role_admin_user_arns` role)
 - [Google Cloud Platform (GCP)](/manual/google-cloud-platform-gcp.html) access to role to manage [static mirrors](/manual/fall-back-to-mirror.html) and DNS
 - Signon "Super Admin" access in production
@@ -83,7 +83,7 @@ Note that a Lead Developer or the Head of Technology is able to approve Producti
 
 Once you have Production Admin access, you'll be given the Secondary role on your next Technical 2nd line shift.
 
-After two sessions as Secondary, you will be drafted onto the 2nd line [on-call](https://docs.publishing.service.gov.uk/manual/on-call.html) rota.
+After two sessions as Secondary, you will be drafted onto the 2nd line [on-call](/manual/on-call.html) rota.
 You will also begin to fill the Primary role on some in-hours shifts.
 
 ## Temporarily revoking access

@@ -40,10 +40,10 @@ limitations in our current platform.
 
 [collections-live]: https://github.com/alphagov/govuk-docker/blob/main/projects/collections/docker-compose.yml#L41
 [component-guide]: https://components.publishing.service.gov.uk/component-guide/intervention
-[emergency-banner]: https://docs.publishing.service.gov.uk/manual/emergency-publishing.html
+[emergency-banner]: /manual/emergency-publishing.html
 [intervention]: https://components.publishing.service.gov.uk/component-guide/intervention
 [intervention-banner]: https://github.com/alphagov/collections/pull/3046
-[non-emergency-banner]: https://docs.publishing.service.gov.uk/manual/global-banner.html
+[non-emergency-banner]: /manual/global-banner.html
 [notice]: https://components.publishing.service.gov.uk/component-guide/notice
 [notice-banner]: https://github.com/alphagov/collections/pull/3172/files
 [notice-margin]: https://github.com/alphagov/government-frontend/blob/8e8b10768c360c3c10b2f013086de2455e155040/app/views/content_items/corporate_information_page.html.erb#L8-L12

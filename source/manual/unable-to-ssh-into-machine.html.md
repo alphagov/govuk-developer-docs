@@ -38,7 +38,7 @@ easier. If GOV.UK Connect is not working, or you don't have it set up for some
 other reason, you can try manually running the commands it normally runs for
 you.
 
-- [Find the class of machine you need](https://docs.publishing.service.gov.uk/apps.html).
+- [Find the class of machine you need](/apps.html).
 
 - Find [the jumpbox for the environment you need](https://github.com/alphagov/govuk-connect/blob/095d49445d25e2afe845c00b32fb35589087f292/lib/govuk_connect/cli.rb#L81).
 

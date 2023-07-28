@@ -14,7 +14,7 @@ For each world location in the world taxonomy there are a number of consistent c
 
 You can view the hierarchy of the world taxonomy in [content-tagger][taxon-tree] (requires access to content tagger on integration).
 
-[topic-taxonomy]: https://docs.publishing.service.gov.uk/manual/taxonomy.html
+[topic-taxonomy]: /manual/taxonomy.html
 [latvia-doctors]: https://www.gov.uk/government/publications/latvia-list-of-medical-facilities
 [live-latvia]: https://www.gov.uk/world/living-in-latvia
 [passports-nz]: https://www.gov.uk/world/passports-and-emergency-travel-documents-new-zealand
@@ -37,7 +37,7 @@ Unlike the topic taxonomy only content associated with [specific organisations][
 
 World taxons are rendered differently on the frontend to topic taxons. Compare <https://www.gov.uk/education/running-and-managing-a-school> with <https://www.gov.uk/world/yemen>.
 
-[topic-taxonomy]: https://docs.publishing.service.gov.uk/manual/taxonomy.html
+[topic-taxonomy]: /manual/taxonomy.html
 [content-api]: https://www.gov.uk/api/content
 [world-all]: https://www.gov.uk/api/content/world/all
 [spec-orgs]: https://github.com/alphagov/whitehall/blob/56006c6f6ba033fbe450ef91d46204499e62e337/config/worldwide_tagging_organisations.yml
@@ -89,4 +89,4 @@ The future for the world taxonomy is unclear. It is considered an undesirable pa
 
 Taxons within the world taxonomy can be edited via the same means as [editing topic taxons][edit-taxons].
 
-[edit-taxons]: https://docs.publishing.service.gov.uk/manual/taxonomy.html#editing-the-topic-taxonomy
+[edit-taxons]: /manual/taxonomy.html#editing-the-topic-taxonomy

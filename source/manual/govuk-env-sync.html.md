@@ -29,7 +29,7 @@ The environment synchronisation is achieved by granting cross-account access of 
 
 Data sanitisation (removal of sensitive data) is done by SQL scripts in the [`files/transformation_sql`][transformation-sql] directory, which are created under `/etc/govuk_env_sync/transformation_sql/` on the target machine.
 
-Data sanitisation is applied to the Integration environment for a number of data sources, including Publishing API and Email Alert API, as good security practice. It is not applied to Staging, which can [only be accessed by those who have Production access](https://docs.publishing.service.gov.uk/manual/rules-for-getting-production-access.html) and therefore have access to the Production equivalents anyway. Recreating the Production data on Staging allows us to test queries on real world data before we apply them in a Production environment.
+Data sanitisation is applied to the Integration environment for a number of data sources, including Publishing API and Email Alert API, as good security practice. It is not applied to Staging, which can [only be accessed by those who have Production access](/manual/rules-for-getting-production-access.html) and therefore have access to the Production equivalents anyway. Recreating the Production data on Staging allows us to test queries on real world data before we apply them in a Production environment.
 
 ## How it works
 

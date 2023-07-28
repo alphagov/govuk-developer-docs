@@ -31,7 +31,7 @@ parent: "/manual.html"
 [land-registry-birth]: https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/246732/0247.pdf
 [reference]: http://reference.data.gov.uk
 [time-interval-service]: https://github.com/epimorphics/IntervalServer
-[heroku]: https://docs.publishing.service.gov.uk/manual/review-apps.html#use-the-shared-heroku-account
+[heroku]: /manual/review-apps.html#use-the-shared-heroku-account
 
 The `data.gov.uk` (DGU) platform is used to publish and view datasets. A dataset contains the metadata for a collection of links to data hosted somewhere on the internet.
 

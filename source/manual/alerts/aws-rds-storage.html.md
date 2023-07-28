@@ -12,4 +12,4 @@ This alert relates to disk usage of our databases (RDS) in AWS being higher than
 - [Access the `db-admin` instance][] via SSH and access the database console. Then you should be able to view the current queries in action.
 
 [Access the AWS web console]: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1
-[Access the `db-admin` instance]: https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html
+[Access the `db-admin` instance]: /manual/howto-ssh-to-machines.html
