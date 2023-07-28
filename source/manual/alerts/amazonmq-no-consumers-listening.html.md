@@ -27,7 +27,7 @@ last 5 minutes. Consumers in an `idle` state are listening to the queue but are
 unable to process the messages on it.
 
 Publishing API [sends a heartbeat message][heartbeat_messages] every minute to
-the following queues - `email-alert-service`, `cache_clearing_service-high` and
+the following queues - `email-alert-service` and
 `content_data_api`. This is configured via the queues bindings (e.g
 [email-alert-service's binding][email_alert_binding]) matching the routing key
 used in the [heartbeat][heartbeat]. This should ensure that the consumers are

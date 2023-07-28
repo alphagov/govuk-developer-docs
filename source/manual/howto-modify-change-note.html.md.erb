@@ -39,7 +39,17 @@ Content Publisher has a [set of rake tasks](https://github.com/alphagov/content-
 
 Updating change notes in Publishing API is rarely adviseable and should ONLY be done if unable to do so from the corresponding publishing app. This is to mitigate the risk of Publishing API being overwritten by the publishing app later on. Thoroughly explore your publishing app first, to see if such functionality exists (we've documented Whitehall and Content Publisher above), and if it doesn't, consider building the feature in! However, in an emergency, you can edit the changenote directly in Publishing API.
 
-1. Connect to the Publishing API console: `govuk-connect app-console -e production publishing_api/publishing-api`
+1. Ensure your access to EKS is set up:
+
+```bash
+export AWS_REGION=eu-west-1
+eval $(gds aws govuk-<environment-name>-poweruser -e --art 8h)
+kubectl config use-context <your-context-name>
+```
+
+If you have not accessed the EKS cluster before, you will need to follow [the set up guide](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/) first.
+
+1. Connect to the Publishing API console: `kubectl exec -n apps -it deploy/publishing-api -- rails c`
 
 1. Find the document: `document = Document.find_by_content_id("YOUR_CONTENT_ID_HERE")`
 
@@ -66,7 +76,7 @@ change_note = change_notes.find_by("note LIKE ?", "%SUBSTRING OR FULL CHANGE NOT
 Update change note:
 
 ```
-change_note.update(note, "NEW NOTE")
+change_note.update(note: "NEW NOTE")
 ```
 
 Finally, [send the document downstream] using the content id.

@@ -18,9 +18,30 @@ These Rake Tasks also reindex the entity with its new slug and republish it to
 Publishing API, which automatically handles the redirect. They all take the old
 slug and the new slug as arguments.
 
-To change slug and create redirect for a `Person` use `reslug:person[OLD_SLUG,NEW_SLUG]`.
+If you have not accessed the EKS before you will need to follow [the set up guide](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/) first.
 
-To change slug and create redirect for a `Role` use `reslug:role[OLD_SLUG,NEW_SLUG]`.
+To run a Rake task you need to:
+
+- set your region and context as below, specifying the appropriate environment name (integration, staging, production)
+- use an AWS role that has the necessary permissions (poweruser or administrator)
+
+```bash
+export AWS_REGION=eu-west-1
+eval $(gds aws govuk-integration-poweruser -e --art 8h)
+kubectl config use-context <your-context-name>
+```
+
+To change slug and create redirect for a `Person` use:
+
+```bash
+kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:person[OLD_SLUG,NEW_SLUG]'
+```
+
+To change slug and create redirect for a `Role` use:
+
+```bash
+ kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:role[OLD_SLUG,NEW_SLUG]'
+ ```
 
 To change slug and create redirect for a `Document`:
 
@@ -30,15 +51,35 @@ Visit the following URL, replacing `<edition_id>` with the ID of any of a docume
 https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edition_id>/edit_slug
 ```
 
-To change slug and create redirect for a `PolicyGroup` use `reslug:policy_group[OLD_SLUG,NEW_SLUG]`.
+To change slug and create redirect for a `PolicyGroup` use:
 
-To change slug and create redirect for a `WorldLocation` use `reslug:world_location[OLD_SLUG,NEW_SLUG]`.
+```bash
+kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:policy_group[OLD_SLUG,NEW_SLUG]'
+```
 
-To change slug and create redirect for a `Organisation` use `reslug:organisation[OLD_SLUG,NEW_SLUG]`.
+To change slug and create redirect for a `WorldLocation` use:
 
-To change slug and create redirect for a `WorldwideOrganisation` use `reslug:worldwide_organisation[OLD_SLUG,NEW_SLUG]`.
+```bash
+kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:world_location[OLD_SLUG,NEW_SLUG]'
+```
 
-To change slug and create redirect for a `StatisticsAnnoucement` use `reslug:statistics_annoucement[OLD_SLUG,NEW_SLUG]`.
+To change slug and create redirect for a `Organisation` use:
+
+```bash
+kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:organisation[OLD_SLUG,NEW_SLUG]'
+```
+
+To change slug and create redirect for a `WorldwideOrganisation` use:
+
+```bash
+kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:worldwide_organisation[OLD_SLUG,NEW_SLUG]'
+```
+
+To change slug and create redirect for a `StatisticsAnnoucement` use:
+
+```bash
+kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:statistics_annoucement[OLD_SLUG,NEW_SLUG]'
+```
 
 ### Issues
 

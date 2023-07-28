@@ -70,6 +70,8 @@ cd ~/govuk/collections
 govuk-docker-up app-integration
 ```
 
+For `frontend`, if you wish to develop the CSV Preview functionality without having a local copy of Asset Manager, you will need to obtain a bearer token for Asset Manager from the [integration Signon](https://signon.integration.publishing.service.gov.uk/api_users), then add it as the value for `ASSET_MANAGER_BEARER_TOKEN` in `projects/frontend/docker-compose.yml`.
+
 ### Using startup scripts
 
 If you are making changes to certain frontend apps you can also view these changes by running the application's `./startup.sh` script - if it has one. This example is for [government-frontend], but these instructions may apply to other frontend apps.

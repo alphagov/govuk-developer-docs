@@ -34,7 +34,7 @@ will proxy asset requests to Government Frontend
 
 ## Uploaded assets
 
-[Asset Manager](repos/asset-manager.html) is an API that is called internally
+[Asset Manager](/repos/asset-manager.html) is an API that is called internally
 by [GOV.UK publishing applications](/#publishing-apps) to manage
 their uploads. It serves the uploaded assets on
 `assets.publishing.service.gov.uk`.

@@ -15,7 +15,6 @@ normal amounts on certain queues. The queues this alert applies to are:
 * [`email_unpublishing`][email_unpublishing_config]
 * [`subscriber_list_details_update_major`][email_subscriber_list_major_config]
 * [`subscriber_list_details_update_minor`][email_subscriber_list_minor_config]
-* [`cache_clearing_service-*`][cache_config] (low, medium and high)
 
 The plugin which implements this alert is [here][plugin].
 
@@ -27,10 +26,6 @@ For the `email_alert_service`,  `email_unpublishing`,
 `subscriber_list_details_update_major` and `subscriber_list_details_update_minor`
 queues the [message thresholds][email_thresholds] are:
 25 for critical and 5 for warning.
-
-For `cache_clearing_service-*` queues the [message
-thresholds][cache_clearing_thresholds] are: 100,000 for critical and 80,000 for
-warning.
 
 > **Note**
 >
@@ -46,7 +41,6 @@ For troubleshooting steps, see [here][troubleshooting_steps].
 [email_unpublishing_config]: https://github.com/alphagov/govuk-puppet/blob/e769c1dc74484625cf7afdfe943c08884cc7d90d/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L81-L87
 [email_subscriber_list_major_config]: https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L73-L79
 [email_subscriber_list_minor_config]: https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#65-L71
-[cache_config]: https://github.com/alphagov/govuk-puppet/blob/616cae598f91406e29ed2e4fc287c71b690c55b0/modules/govuk/manifests/apps/cache_clearing_service/rabbitmq.pp#L112-L137
 [troubleshooting_steps]: https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-no-consumers-listening.html#troubleshooting
 [no_consumers_listening]: https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-no-consumers-listening.html
 [rabbitmq_doc]: https://docs.publishing.service.gov.uk/manual/rabbitmq.html

@@ -13,7 +13,9 @@ We can cover a lot of GOV.UK architecture by asking ourselves three questions:
 2. What happens when a publisher hits 'Publish'?
 3. What happens when a developer deploys a change to an application?
 
-Refer to the [architectural summary of GOV.UK](/manual/architecture-shallow-dive.html) for a shorter summary of GOV.UK architecture.
+Refer to the [architectural summary of
+GOV.UK](/manual/architecture-shallow-dive.html) for a shorter summary of GOV.UK
+architecture.
 
 [GOV.UK]: https://www.gov.uk
 
@@ -60,12 +62,10 @@ Fastly uses [Varnish] for caching, with a default cache time of 1 hour. (Read
 ["Our content delivery network"][our-cdn] for more information). If Fastly
 doesn't have a page in its cache, it fetches the page from origin.
 
-[Caches can be purged][purge-cache] using the [cache-clearing-service], which
-tells Fastly to soft-purge (i.e. only remove the cached version once it has
-received the new version from origin). This cache clearing service is
-triggered automatically when pages are updated - more on that later.
+[Caches can be purged][purge-cache], which tells Fastly to soft-purge (i.e.
+only remove the cached version once it has received the new version from
+origin).
 
-[cache-clearing-service]: https://github.com/alphagov/cache-clearing-service
 [Fastly]: https://www.fastly.com/
 [our-cdn]: /manual/cdn.html
 [purge-cache]: /manual/purge-cache.html
@@ -320,7 +320,6 @@ RabbitMQ is a message broker: when a message is broadcast to a RabbitMQ
 exchange, it forwards the message to its consumers. These consumers
 retrieve the content item and do something in response, such as:
 
-- Clear the page's cache, via the cache-clearing-service
 - [Send emails to users subscribed to that content][message-queues-rake]. (The
   exceptions to this are `travel-advice` & `specialist-publisher`, which
   communicate directly with email-alert-api to ensure emails go out immediately)

@@ -52,27 +52,9 @@ A verbose commit structure isn't itself a problem, and can be merged as-is if yo
 
 ### A change from an external contributor
 
-We occasionally receive PRs from external contributors who use our code. These will come from forks of the main repository. Our test suite will not run automatically against these PRs.
+We occasionally receive PRs from external contributors who use our code. These will come from forks of the main repository. Typically this will be from someone outside GOV.UK but inside GDS, in which case you can treat it as normal (ie review it normally), except that you will have to merge when satisfied (the originator may not have permission to merge)
 
-First, review the code carefully for anything that might be malicious and damaging if run inside our infrastructure. Once you're satisfied, follow the instructions below to pull the forked branch locally, then push it to origin.
-
-```bash
-brew install hub
-
-# You will need GITHUB_TOKEN set in your environment for the next command
-
-hub pr checkout <PR-NUMBER>
-
-git push --set-upstream origin <BRANCH-NAME>
-```
-
-(where `<BRANCH-NAME>` is the name of the branch that's checked out.)
-
-This will cause the test suite to run with the original commits, which will cause GitHub to green light the original PR. Two people from GDS should review this PR. The first reviewer should approve the PR, and the second reviewer should merge.
-
-You should also thank the contributor with an amount of emoji proportional to the time they're saving GDS developers.
-
-Finally, clean up by deleting the branch you created.
+If the PR comes from outside GDS entirely, you will need to be a little more cautious. Two people from GDS should review this PR, focusing on anything that might be malicious and damaging if run inside our infrastructure. The first reviewer should approve the PR, and the second reviewer should merge. You should then thank the contributor with an amount of emoji proportional to the time they're saving GDS developers.
 
 #### Dependabot
 
@@ -98,7 +80,7 @@ If two developers worked on the same branch and individually contributed commits
 
 ## Other considerations
 
-1. When opening a PR, if you feel you don't have full confidence in your change and want a particular review from someone, it's OK to ask for that review in the PR description. For example, a puppet change might warrant a particular review from a member of the GOV.UK Platform Engineering team.
+1. When opening a PR, if you don't feel confident about your change and want a particular review from someone, it's OK to ask for that review in the PR description. For example, if you are changing a Helm template and are unfamiliar with Helm, you can ask for a review from Platform Engineering team.
 2. It's OK for someone other than the author to merge a PR, particularly if the author is not available. That person should be confident that the change doesn't have dependencies on other changes, and that it won't break `main`.
 3. If a PR is particularly good, remember to praise the author for it. Emoji are a great way of showing appreciation for a PR that fixes a problem you've been having, or implements something you've wanted to do for a while.
 4. It's sometimes OK for merges to happen when test suites are failing. This ability is limited to repository administrators and account owners, so ask them if you need them to force a merge. This is particularly useful in a catch-22 situation of two repositories with failing test suites that depend on each other.

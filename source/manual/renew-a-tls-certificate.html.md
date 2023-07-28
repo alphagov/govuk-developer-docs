@@ -8,51 +8,66 @@ parent: "/manual.html"
 
 ## Renewing the certificate for www.gov.uk
 
-The TLS certificate for www.gov.uk is managed by Fastly. Fastly will open a support
-ticket when the certificate is due for renewal. This ticket will be picked up by
-GOV.UK Platform Engineering, who will co-ordinate with Fastly to renew the
-certificate.
+The TLS certificate for www.gov.uk is managed by Fastly. If there is any action
+needed by us, for example if the requirement for verifying that we own the
+domain have changed, then Fastly will open a support ticket with us. This
+ticket will be routed to Technical 2nd-line support, who should coordinate with
+Fastly to ensure that the certificate is renewed in good time.
 
-Note that the www.gov.uk certificate is not visible anywhere in the Fastly user
-interface. It is managed entirely through Fastly support.
+> The www.gov.uk certificate does not appear in manage.fastly.com, even though
+> Fastly manages it for us.
 
-Renewing the certificate may require a TXT record on the `gov.uk` top level
-domain. This is because the certificate contains a Subject Alternate Name (SAN)
-of `DNS: gov.uk`. This TXT record needs to be requested through JISC following
-the process for [DNS for the gov.uk top level domain](/manual/dns.html#dns-for-the-gov-uk-top-level-domain).
+Occasionally, Fastly might need us to add or update a DNS record directly
+underneath the `gov.uk` domain, in order for their supplier to validate our
+ownership of the domain. If this happens, you will need to [open a ticket with
+Jisc](/manual/dns.html#dns-for-the-gov-uk-top-level-domain), who manage the
+`gov.uk.` DNS zone.
 
 Credentials for the Fastly Zendesk support site are in the [Technical 2nd Line password store](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly).
 
-## Renewing wildcard certificates
+## Renewing publishing.service.gov.uk wildcard certificates
 
-Wilcard certificates for `*.publishing.service.gov.uk`, `*.staging.publishing.service.gov.uk`
-and `*.integration.publishing.service.gov.uk` are managed by AWS ACM.
+Wildcard certificates for `*.publishing.service.gov.uk`, `*.staging.publishing.service.gov.uk`
+and `*.integration.publishing.service.gov.uk` are issued by AWS Certificate
+Manager (ACM) and should renew automatically.
 
-For AWS ACM to issue a certificate, you must prove ownership of the domain using DNS.
-DNS for publishing.service.gov.uk is managed through [govuk-dns](https://github.com/alphagov/govuk-dns).
+ACM relies on a validation DNS record being present in order to prove that we
+own the domain. If an ACM-managed certificate is nearing its expiry date, check
+the status of the certificate under ACM in the AWS web console to see whether
+ACM was able to validate the domain.
 
-AWS ACM will provide a CNAME record for you to set, which you must add to [govuk-dns-config](https://github.com/alphagov/govuk-dns-config).
-See [govuk-dns-config#398](https://github.com/alphagov/govuk-dns-config/pull/398) for an example.
+As long as the validation DNS record remains in place, AWS will renew these
+certificates automatically. You shouldn't need to do anything unless something
+goes wrong with the validation records.
 
-Once you have deployed this DNS record, AWS should issue the certificate.
+## Renewing legacy Gandi certificates
 
-So long as the DNS record remains in place AWS can renew these certificates
-automatically. You shouldn't need to do anything unless something goes wrong.
+You might come across a legacy certificate which is still issued through Gandi
+(for example signup.take-part-in-research.service.gov.uk).
 
-## Renewing Gandi certificates for third party services
+If you need to renew one of these, first consider whether you could use
+Fastly or AWS to issue the certificate so that future renewals are automatic.
+If the service is hosted on either, the answer is probably "yes".
 
-Some certificates are still issued through Gandi (for example
-signup.take-part-in-research.service.gov.uk).
+If the service is hosted by an external supplier, that supplier should be
+responsible for obtaining a certificate, even if we might have done this for
+them in the past. Talk with whoever owns the relationship with the supplier in
+order to resolve this. Platform Security and Reliability team can help you with
+this if necessary.
 
-If you need to renew one of these, first consider whether it could be issued
-automatically using Fastly or AWS ACM (if the service is hosted on either, the
-answer is probably "yes").
+⚠️  **Never transfer a private key outside the system it was generated on.**
+(This is why CSRs exist, and also why services such as AWS Certificate Manager
+won't let you see private keys that they generate for you.) If you're unsure
+how to avoid the need to send someone a private key, talk to Platform Security
+and Reliability team and they will help you find a secure alternative.
 
-If you decide that renewing the certificate is the best available option, follow
-this process:
+To renew a Gandi certificate, if it's absolutely necessary:
 
 1. [Generate a Certificate Signing Request (CSR)](generate-csr.html) for a
-   *renewal*.
+   *renewal*. The private key *must* be generated on the infrastructure which
+   will ultimately host the certificate. If the certificate is for a
+   third-party supplier, they must generate the CSR and send it to you. The
+   private key must never leave the hosting environment.
 2. Log into Gandi [using the credentials in the infra password
    store](https://github.com/alphagov/govuk-secrets/blob/master/pass/infra/gandi/govuk.gpg).
 3. Go to the account dashboard and find the list of TLS certificates on the

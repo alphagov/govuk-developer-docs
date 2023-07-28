@@ -81,7 +81,7 @@ be set manually.
 There is a Rake task to reindex all political content in search. This must be
 done after a government is closed.
 
-<%= RunRakeTask.links("whitehall", "search:political") %>
+<%= RunRakeTask.links("whitehall-admin", "search:political") %>
 
 ### Backdating
 
@@ -90,14 +90,14 @@ distinct dates, we need to run a rake task to republish all political content
 from Whitehall to properly associate content with the government at it's first
 published date:
 
-<%= RunRakeTask.links("whitehall", "election:republish_political_content") %>
+<%= RunRakeTask.links("whitehall-admin", "election:republish_political_content") %>
 
 ### Ending ministerial roles without closing a government
 
 If we need to end all ministerial roles without explicitly closing a government,
 we can run a rake task:
 
-<%= RunRakeTask.links("whitehall", "election:end_ministerial_appointments") %>
+<%= RunRakeTask.links("whitehall-admin", "election:end_ministerial_appointments") %>
 
 This will end all ministerial roles except the Prime Minister. You might have to
 do that one manually.

@@ -13,10 +13,14 @@ class Repos
   end
 
   def self.active
-    Repos.all.reject(&:retired?)
+    Repos.all.reject(&:retired?).uniq(&:repo_name)
+  end
+
+  def self.active_public
+    Repos.active.reject(&:private_repo?)
   end
 
   def self.active_apps
-    Repos.active.select(&:is_app?)
+    Repos.all.reject(&:retired?).select(&:is_app?)
   end
 end
