@@ -135,9 +135,9 @@ Once you have successfully updated the change note you can drill [removing a cha
 
 ### Drill updating homepage popular links
 
-Change the homepage popular links following [Update popular links](/manual/update_popular_links.html.md). Open a draft PR, and deploy your branch to integration. Once deployed, check your change and redeploy the previous branch to integration.
+Change the homepage popular links following [Update popular links](/manual/update_popular_links.html). Open a draft PR, and deploy your branch to integration. Once deployed, check your change and redeploy the previous branch to integration.
 
-### Update homepage promotion slots
+### Drill updating homepage promotion slots
 
 Follow the [Update homepage promotion slots](/repos/frontend/update-homepage-promotion-slots.html) instructions, using an appropriate image and text.
 Open a draft PR, and [deploy your branch to integration](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/).
