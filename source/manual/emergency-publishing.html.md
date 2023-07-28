@@ -7,172 +7,179 @@ section: Publishing
 important: true
 ---
 
-There are three types of events that would lead GOV.UK to add an emergency
-banner to the top of each page on the web site; a notable death, a national
-emergency or a local emergency.
+In emergencies, GOV.UK can display important information in a banner at the top
+of each page of the website.
 
-> **Note**
->
-> There is also [a non-emergency sitewide banner](/manual/global-banner.html), used to convey important information on GOV.UK which is not deemed emergency level information.
+> There is also [a non-emergency sitewide banner](/manual/global-banner.html),
+> used to convey important information on GOV.UK which is not deemed
+> emergency-level information.
 
-The GOV.UK on-call escalations contact will tell you when you need to publish
-an emergency banner. They will ensure that the event is legitimate and provide
-you with the text for the emergency banner. They will also tell you what type
-of event it is; you do not need to determine the type of event yourself.
+## When to deploy an emergency banner
 
-If you need to publish the emergency banner out of hours, you will be
-instructed to do so either by the GOV.UK on-call escalations contact or the
-Head of GOV.UK.
+GOV.UK publishes an emergency banner when there is:
 
-Contact numbers for those people are in the [legacy Ops manual](https://docs.google.com/document/d/17XUuPaZ5FufyXH00S9qukl6Kf3JbJtAqwHR3eOBVBpI/edit).
+- a notable death
+- a national emergency
+- a local emergency
 
-## Adding an emergency banner
+The [GOV.UK Programme Team
+on-call](https://governmentdigitalservice.pagerduty.com/schedules/PCK3XB2)
+(also known as the Senior Management Team escalations contact) will tell you if
+you need to deploy an emergency banner. This could happen outside normal office
+hours if you are on-call.
 
-### 1. Get the content you will need
+## Deploy an emergency banner
 
-The GOV.UK on-call escalations contact will supply you with:
+### 1. Obtain the content for the banner
 
-- The [emergency banner type or campaign class](#types-of-emergency-banners). Must be one of the following:
-  - `notable-death`
-  - `national-emergency`
-  - `local-emergency`
-- Text for the heading.
-- (Optional) Text for the 'short description', which is a sentence displayed under the heading. This is optional.
-- (Optional) A URL for users to find more information (it might not be provided at first). Use a relative URL if the link on the www.gov.uk domain.
-- (Optional) Link text that will be displayed for the more information URL (this will default to "More information" if you do not supply it).
+The GOV.UK Programme Team on-call will give you:
+
+- the [type of emergency banner](#types-of-emergency-banners):
+  `notable-death`, `national-emergency` or `local-emergency`
+- text for the heading
+
+They may optionally also give you:
+
+- text for the 'short description' (a sentence displayed under the heading)
+- a URL for users to find more information (a relative URL if it's on www.gov.uk)
+- alternative link text for the "More information" link
 
 ### 2. Deploy the banner
 
-The banner is deployed by running a rake task in Static. This task stores the
-banner information in Redis, which modifies the page template used by frontend
-apps.
+1. Set the banner content as environment variables in your shell.
 
-1. Set banner content as environment variables
+    > You may need to escape certain characters (including `,` and `"`) with a
+    > backslash. For example `\,` or `\"`.
 
     ```bash
     CAMPAIGN_CLASS="notable-death|national-emergency|local-emergency"
     HEADING="replace with heading"
-    SHORT_DESCRIPTION="replace with desciption"
+    SHORT_DESCRIPTION="replace with description"
     LINK="replace with link"
     LINK_TEXT="replace with link text"
     ```
 
-    > **Note**
-    >
-    > You may need to escape certain characters (including `,` and `"`) with a
-    > backslash. For example `\,` or `\"`.
-
-1. Run the rake task in the app container
+1. Run the Rake task, passing it the environment variables.
 
     ```bash
-    kubectl -n apps exec -i deploy/static -- rake "emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]"
+    kubectl -n apps exec deploy/static -- rake "emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]"
     ```
 
-### 3. Test with cache bust strings
+### 3. Check that the banner works
 
-Most GOV.UK pages have a cache TTL of 5 minutes. After deploying the emergency
-banner you should expect to see the banner appear on all GOV.UK pages within
+Most GOV.UK pages have a cache `max-age` of 5 minutes. After deploying the
+emergency banner you should expect to see the banner on all GOV.UK pages within
 10 minutes.
 
-Once the banner deployment completes, wait a minute to allow frontend
-application caches to clear, and then do a test to see if the deployment has
-succeeded.
+Once the banner deployment completes:
 
-Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
+1. Wait 1 minute to allow frontend application caches to expire.
+1. Visit a page and add a cache-bust query string (a question mark followed by
+   some random string of your choice) to the URL.
+1. Don't forget to change the URL to reflect the environment (staging,
+   production) that you are checking.
+1. Wait 10 minutes, then check that the emergency banner is visible without the
+   cache-bust string.
 
-For each page:
+You must check that:
 
-- Check the banner displays as expected
-- Double-check the information for the header, short description and link are as they should be
-- Test the link, if it is present
-- Make sure the banner colour is appropriate - black for a notable death, red for a national emergency, green for a local emergency
+- the banner displays as expected
+- the header, short description and link text are correct
+- the link (if applicable) works
+- the banner is the right colour: black for notable death, red for national
+  emergency, green for local emergency
+
+If the banner doesn't show, see [Troubleshoot the emergency banner](#troubleshoot-the-emergency-banner).
 
 #### Some example pages to check
 
-- [https://www.gov.uk/?ae00e491](https://www.gov.uk/?ae00e491) ([Integration](https://www-origin.integration.publishing.service.gov.uk/?ae00e491), [Staging](https://www-origin.staging.publishing.service.gov.uk/?ae00e491))
-- [https://www.gov.uk/financial-help-disabled?7f7992eb](https://www.gov.uk/financial-help-disabled?7f7992eb) ([Integration](https://www-origin.integration.publishing.service.gov.uk/financial-help-disabled?7f7992eb), [Staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled?7f7992eb))
-- [https://www.gov.uk/government/organisations/hm-revenue-customs?49854527](https://www.gov.uk/government/organisations/hm-revenue-customs?49854527) ([Integration](https://www-origin.integration.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527), [Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527))
-- [https://www.gov.uk/search?q=69b197b8](https://www.gov.uk/search?q=69b197b8) ([Integration](https://www-origin.integration.publishing.service.gov.uk/search?q=69b197b8), [Staging](https://www-origin.staging.publishing.service.gov.uk/search?q=69b197b8))
+- [https://www.gov.uk/](https://www.gov.uk/) ([staging](https://www-origin.staging.publishing.service.gov.uk/))
+- [https://www.gov.uk/financial-help-disabled](https://www.gov.uk/financial-help-disabled) ([staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled))
+- [https://www.gov.uk/government/organisations/hm-revenue-customs](https://www.gov.uk/government/organisations/hm-revenue-customs) ([staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs))
+- [https://www.gov.uk/search](https://www.gov.uk/search) ([staging](https://www-origin.staging.publishing.service.gov.uk/search))
 
-If the banner doesn't show, [look at the troubleshooting section](#the-banner-is-not-showing--not-clearing).
+## Remove an emergency banner
 
-Once all caches have had time to clear, check that the emergency banner is visible when accessing the same pages as before but without a cache-bust string.
-
-- [https://www.gov.uk/](https://www.gov.uk/) ([Integration](https://www-origin.integration.publishing.service.gov.uk/), [Staging](https://www-origin.staging.publishing.service.gov.uk/))
-- [https://www.gov.uk/financial-help-disabled](https://www.gov.uk/financial-help-disabled) ([Integration](https://www-origin.integration.publishing.service.gov.uk/financial-help-disabled), [Staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled))
-- [https://www.gov.uk/government/organisations/hm-revenue-customs](https://www.gov.uk/government/organisations/hm-revenue-customs) ([Integration](https://www-origin.integration.publishing.service.gov.uk/government/organisations/hm-revenue-customs), [Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs))
-- [https://www.gov.uk/search](https://www.gov.uk/search) ([Integration](https://www-origin.integration.publishing.service.gov.uk/search), [Staging](https://www-origin.staging.publishing.service.gov.uk/search))
-
----
-
-## Removing an emergency banner
-
-Run the rake task in the app container:
+Run the `emergency_banner:remove` Rake task.
 
 ```bash
-kubectl -n apps exec -i deploy/static -- rake emergency_banner:remove
+kubectl -n apps exec deploy/static -- rake emergency_banner:remove
 ```
 
 ---
 
-## Troubleshooting
+## Troubleshoot the emergency banner
 
 ### Background
 
-The information for the emergency banner is stored in Redis. [Static](https://github.com/alphagov/static) is responsible for displaying the data and we run [rake task in static](https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake) to set or delete the appropriate hash in Redis.
+- The information for the emergency banner is stored in a Redis key as a Ruby
+  hash (key-value map).
+- A [Rake task in
+  Static](https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake)
+  sets or removes the Redis key.
+- Static is responsible for reading the data from Redis and rendering a partial
+  page from a template.
+- Frontend rendering apps retrieve this partial page from Static via the
+  Slimmer library, which caches the response for up to 60 seconds.
 
 ### The banner is not showing / not clearing
 
-Usually this is because a cache has not expired or cleared properly. This can be
-at various points in our stack as well as locally in your browser. Things to try:
+Usually this is because some cached content has not yet expired. This could be
+in frontend rendering apps, in Static, or in your browser.
 
-- Make sure you are actually looking at a page on the environment you released
-  the banner. All the links in this document go to the production version of
-  GOV.UK. Remember to use the equivalent page for the environment (often staging)
-  on which you are testing/releasing the banner.
-- Test the page with `curl` to circumvent any browser-based caching.
-  Chrome seems to aggressively cache on occasion. You can also test in an
-  private browser instance.
-- It is possible that the caching layers for the GOV.UK stack have evolved and
-  we need to tweak the scripts to clear new caches that have been set up.
-- You can check if the banner is being rendered by the relevant applications
-  to narrow down the problem:
-  - Check if the banner is present in the [page template from Static](https://assets.integration.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb)
-  - Check if the banner is being rendered at [origin](https://www-origin.integration.publishing.service.gov.uk)
-- You can also try manually purging the Varnish and CDN caches:
-  1. Wait for 2 minutes after the Deploy Emergency Banner job has completed.
-    This will allow the frontend application caches to [clear automatically after 60s][slimmer-cache].
-  2. Run the "Clear CDN cache" Jenkins job
-     - [Clear CDN on Integration](https://deploy.blue.integration.govuk.digital/job/clear-cdn-cache/)
-     - [Clear CDN on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-cdn-cache/)
-     - [⚠️ Clear CDN on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-cdn-cache/)
+1. Double-check that you are looking at the right environment.
+1. Use a fresh private/Incognito window so that your testing is not affected by
+   browser state such as cookies or cache.
+1. Check whether the banner appears on www-origin
+   ([staging](https://www-origin.staging.publishing.service.gov.uk),
+   [production](https://www-origin.production.publishing.service.gov.uk)). If
+   the banner works on origin but not on www.gov.uk, wait 5 minutes then try
+   again.
+   - It is possible to [flush pages from the CDN
+     cache](https://docs.publishing.service.gov.uk/manual/purge-cache). This
+     should not be necessary unless there is a bug or misconfiguration in
+     GOV.UK.
+1. Check the banner is present in the page template from Static
+   ([staging](https://assets.staging.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb),
+   [production](https://assets.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb)).
+1. [Inspect the Redis key](#inspect-the-redis-key) to check whether the Rake
+   task stored the banner data successfully.
+1. Try forcing a [rollout of Static](/manual/deploy-static.html), to eliminate
+   any temporary state stored in Static.
+1. Try clearing the frontend memcache. Log into the AWS web console for the
+   appropriate environment, find [frontend-memcached-govuk under Elasticache,
+   Memcached
+   clusters](https://eu-west-1.console.aws.amazon.com/elasticache/home?region=eu-west-1#/memcached/frontend-memcached-govuk)
+   and press the Reboot button. The UI will ask you to confirm the request.
 
-[slimmer-cache]: https://github.com/alphagov/slimmer/blob/5b8428704f143547bdae2c7cb9a585ab77d3181b/lib/slimmer.rb#L10
+[Slimmer cache]: https://github.com/search?q=repo%3Aalphagov%2Fslimmer%20CACHE_TTL&type=code
 
-### Manually testing the Redis key
+### Inspect the Redis key
 
-You can manually check whether the data has been stored in Redis.
+You can query Redis to check whether the banner data has been stored.
 
-1. Start a Rails console for Static
+1. Open a Rails console for Static.
 
     ```bash
-    kubectl -n apps exec -i deploy/static -- rails console
+    kubectl -n apps exec -it deploy/static -- rails c
     ```
 
-1. Check the Redis key exists:
+1. Retrieve the value of the Redis key.
 
     ```rb
     Redis.new.hgetall("emergency_banner")
-
-    #> {}
     ```
 
-    In the above example, the key has not been set. A successfully set key would return a result similar to the following:
+    If an emergency banner is active, the value should look similar to:
 
     ```rb
-    Redis.new.hgetall("emergency_banner")
+    => {"campaign_class"=>"notable-death", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk", "link_text"=>"More information about the emergency"}
+    ```
 
-    #> {"campaign_class"=>"notable-death", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk", "link_text"=>"More information about the emergency"}
+    If there is no banner, the value should be empty:
+
+    ```rb
+    => {}
     ```
 
 ---
@@ -189,11 +196,11 @@ deceased and the years of their life, for example 'His Royal Highness Henry VIII
 
 #### GOV.UK Homepage
 
-![GOV.UK Homepage](images/emergency_publishing/notable-death-homepage.png)
+![Banner with large, bold, white heading text on a black background, above the the usual Welcome to GOV.UK heading](images/emergency_publishing/notable-death-homepage.png)
 
 #### Other pages
 
-![](images/emergency_publishing/notable-death.png)
+![Banner with small, bold heading text on a black background, above the breadcrumb bar and ordinary page title](images/emergency_publishing/notable-death.png)
 
 ### National emergency (level 1 or category 2)
 
@@ -201,11 +208,11 @@ A large **red** banner is displayed on all GOV.UK pages, including the homepage.
 
 #### GOV.UK Homepage
 
-![GOV.UK Homepage](images/emergency_publishing/national-emergency-homepage.png)
+![Banner with large, bold, white heading text on a red background, above the usual Welcome to GOV.UK heading](images/emergency_publishing/national-emergency-homepage.png)
 
 #### Other pages
 
-![](images/emergency_publishing/national-emergency.png)
+![Banner with small, bold heading text on a red background, above the breadcrumb bar and ordinary page title](images/emergency_publishing/national-emergency.png)
 
 ### Localised large-scale emergency (level 2 or category 1)
 
@@ -215,8 +222,8 @@ These incidents will not be processed outside of business hours.
 
 #### GOV.UK Homepage
 
-![GOV.UK Homepage](images/emergency_publishing/local-emergency_homepage.png)
+![Banner with large, bold, white heading text on a green background, above the the usual Welcome to GOV.UK heading](images/emergency_publishing/local-emergency_homepage.png)
 
 #### Other pages
 
-![](images/emergency_publishing/local-emergency.png)
+![Banner with small, bold heading text on a green background, above the breadcrumb bar and ordinary page title](images/emergency_publishing/local-emergency.png)

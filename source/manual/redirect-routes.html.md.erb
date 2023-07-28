@@ -229,20 +229,22 @@ Once the redirect is removed, the page will return a [410 Gone status](https://d
 
 Removing a route in the previous section returns a 410 Gone status - this means that the URL can not be reused by another publication as the route is still being used.
 
-To completely remove a route requires using the Rails console for several different apps using the [GDS CLI and GOV.UK Connect tools](https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-tooling).
+To completely remove a route requires using the Rails console for several different apps using EKS.
 
-To access an app's Rails console, the following command is used:
+If you have not accessed the cluster before, you will need to follow [the set up instructions](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/) first.
+
+To access an app's Rails console you’ll need to set your region and context as below (swapping out the environment as appropriate):
 
 ```bash
-gds govuk connect app-console --environment <environment> <app name>
+export AWS_REGION=eu-west-1
+eval $(gds aws govuk-integration-poweruser -e --art 8h)
+kubectl config use-context <your-context-name>
 ```
 
-Replace `<environment>` with `integration`, `staging`, or `production`; and `<app name>` with the name of the app you want to access.
-
-For example, accessing the console for the `router-api` app in `staging` would be:
+You can then access an app's Rails console using the following command:
 
 ```bash
-gds govuk connect app-console --environment staging router-api
+kubectl exec -n apps -it deploy/<app-name> -- rails c
 ```
 
 Removing the route, we need to know the slug that should be deleted. These examples use `/example-path`.

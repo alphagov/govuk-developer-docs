@@ -28,14 +28,20 @@
 
 - repo_name: authenticating-proxy
   type: Supporting apps
-  team: "#govuk-navigation-tech"
+  team: "#govuk-publishing-access-and-permissions-team"
   production_hosted_on: eks
   production_url: false
+
+- repo_name: backdrop
+  type: Utilities
+  retired: true
+  description: |
+    Backdrop was a datastore built with Python and MongoDB. It was built for the Performance Platform. It was archived in March 2021.
 
 - repo_name: bouncer
   type: Transition apps
   team: "#govuk-navigation-tech"
-  production_hosted_on: aws
+  production_hosted_on: eks
   production_url: false
 
 - repo_name: bulk-changer
@@ -72,8 +78,7 @@
 
 - repo_name: cache-clearing-service
   type: Services
-  team: "#govuk-navigation-tech"
-  production_hosted_on: eks
+  retired: true
 
 - repo_name: calculators
   type: Frontend apps
@@ -95,6 +100,12 @@
   type: Utilities
   team: "#govuk-platform-security-reliability-team"
 
+- repo_name: ckan
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: ckan-functional-tests
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
@@ -110,12 +121,30 @@
   team: "#govuk-datagovuk"
 
 - repo_name: ckanext-datagovuk
-  puppet_name: ckan
+  shortname: ckan
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
   production_hosted_on: aws
   dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
   production_url: https://ckan.publishing.service.gov.uk/
+
+- repo_name: ckanext-dcat
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
+- repo_name: ckanext-harvest
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
+- repo_name: ckanext-spatial
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
 
 - repo_name: collections
   type: Frontend apps
@@ -128,12 +157,12 @@
 
 - repo_name: collections-publisher
   type: Publishing apps
-  team: "#govuk-publishing-experience-tech"
+  team: "#govuk-publishing-on-platform-content-tech"
   production_hosted_on: eks
 
 - repo_name: contacts-admin
   type: Publishing apps
-  puppet_name: contacts
+  shortname: contacts
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
 
@@ -170,7 +199,7 @@
 
 - repo_name: content-tagger
   type: Publishing apps
-  team: "#govuk-publishing-experience-tech"
+  team: "#govuk-publishing-on-platform-content-tech"
   production_hosted_on: eks
 
 - repo_name: data-community-tech-docs
@@ -180,6 +209,12 @@
 - repo_name: datagovuk-tech-docs
   production_url: https://guidance.data.gov.uk/
   production_hosted_on: paas
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
+- repo_name: datagovuk-visual-regression-tests
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
   sentry_url: false
@@ -221,9 +256,9 @@
 - repo_name: design-principles
   type: Frontend apps
   retired: true
-  puppet_name: designprinciples
+  shortname: designprinciples
   description: |
-    A frontend app that used to render the GDS design principles as static
+    A frontend app (often referred to as "designprinciples") that used to render the GDS design principles as static
     pages.  This required developer effort to update the content so in
     November 2017 we retired the app after all the content had been replaced
     by a version managed by our publishing apps.
@@ -233,6 +268,12 @@
   private_repo: true
   team: "#data-products"
   type: Data science
+
+- repo_name: docker-collectd-plugin
+  team: "#govuk-platform-security-reliability-team"
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - repo_name: eligibility-viewer
   private_repo: true
@@ -257,6 +298,7 @@
 - repo_name: email-alert-monitoring
   type: Utilities
   team: "#tech-content-interactions-on-platform-govuk"
+  production_hosted_on: eks
   sentry_url: false
   dashboard_url: false
 
@@ -267,12 +309,12 @@
 
 - repo_name: feedback
   type: Frontend apps
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
   production_hosted_on: eks
 
 - repo_name: finder-frontend
   type: Frontend apps
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
   component_guide_url: https://finder-frontend.herokuapp.com/component-guide
   production_hosted_on: eks
 
@@ -296,7 +338,7 @@
   dashboard_url: false
 
 - repo_name: gds-sso
-  team: "#govuk-publishing-platform"
+  team: "#govuk-publishing-access-and-permissions-team"
   type: Gems
   description: OmniAuth adapter to allow apps to sign in via GOV.UK Signon.
   sentry_url: false
@@ -361,8 +403,15 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-app-deployment-private
+  private_repo: true
+  team: "#govuk-platform-security-reliability-team"
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: govuk-ask-export
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
   type: Utilities
   description: |
     A tool for exporting the user responses and metadata from Smart Survey which is used for the [https://www.gov.uk/ask](https://www.gov.uk/ask) service.
@@ -392,6 +441,23 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-cdn-config-secrets
+  private_repo: true
+  team: "#govuk-platform-security-reliability-team"
+  type: Utilities
+
+- repo_name: govuk-cdn-logs-monitor
+  type: Utilities
+  retired: true
+  description: |
+    This project monitored the CDN logs for GOV.UK, to find problems with the site. It was archived in July 2018, following RFC-93.
+
+- repo_name: govuk-ckan-charts
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: govuk-connect
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
@@ -400,17 +466,11 @@
   team: "#govuk-publishing-platform"
   type: Utilities
 
-- repo_name: govuk-content-metadata
-  private_repo: true
-  team: "#data-products"
-  type: Data science
-
 - repo_name: govuk-content-schemas
-  team: "#govuk-publishing-platform"
   type: Utilities
-  sentry_url: false
-  dashboard_url: false
   retired: true
+  description: |
+    This repo contained JSON Schema files and examples of the content that uses them on GOV.UK. It was merged into Publishing API and subsequently archived in November 2022.
 
 - repo_name: govuk-content-similarity
   retired: true
@@ -423,10 +483,6 @@
   retired: true
 
 - repo_name: govuk-data-science-workshop
-  team: "#data-products"
-  type: Data science
-
-- repo_name: govuk-datalabs-streamlit-NER
   team: "#data-products"
   type: Data science
 
@@ -450,6 +506,7 @@
 - repo_name: govuk-dependency-checker
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
+  production_hosted_on: eks
 
 - repo_name: govuk-deploy-lag-badger
   retired: true
@@ -465,7 +522,7 @@
   dashboard_url: false
 
 - repo_name: govuk-display-screen
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
   management_url: https://dashboard.heroku.com/apps/govuk-display-screen
   production_hosted_on: heroku
   type: Utilities
@@ -478,6 +535,12 @@
   description: Tasks for managing DNS records
   retired: true
   description: This and the govuk-dns-config repos were archived in favour of govuk-dns-tf.
+
+- repo_name: govuk-dns-tf
+  private_repo: true
+  team: "#govuk-platform-engineering"
+  type: Utilities
+  description: Terraform configuration for managing DNS records
 
 - repo_name: govuk-docker
   team: "#govuk-platform-security-reliability-team"
@@ -495,13 +558,8 @@
   team: "#data-products"
   type: Data science
 
-- repo_name: govuk-feedback-spam-classifier
-  private_repo: true
-  team: "#data-products"
-  type: Data science
-
 - repo_name: govuk-google-analytics
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
   type: Utilities
   description: |
     Documentation and tools for GOV.UK and others that describes
@@ -543,6 +601,10 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-knowledge-graph-search
+  team: "#data-products"
+  type: Data science
+
 - repo_name: govuk-kubernetes-cluster-user-docs
   type: Utilities
   team: "#govuk-platform-engineering"
@@ -559,17 +621,8 @@
   sentry_url: false
   dashboard_url: false
 
-- repo_name: govuk-mongodb-content
-  team: "#data-products"
-  type: Data science
-
 - repo_name: govuk-network-data
   retired: true
-  team: "#data-products"
-  type: Data science
-
-- repo_name: govuk-networks
-  private_repo: true
   team: "#data-products"
   type: Data science
 
@@ -604,11 +657,18 @@
   deploy_url: https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/deploy.sh
   sentry_url: false
   dashboard_url: false
+  production_hosted_on: aws
 
 - repo_name: govuk-related-links-recommender
   team: "#data-products"
   type: Data science
   description: Machine learning model to recommend related content
+  sentry_url: false
+  dashboard_url: false
+
+- repo_name: govuk-replatform-test-app
+  type: Utilities
+  team: "#govuk-platform-engineering"
   sentry_url: false
   dashboard_url: false
 
@@ -638,10 +698,22 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-ruby
+  team: "#govuk-platform-security-reliability-team"
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: govuk-ruby-images
   description: Base container images for GOV.UK Ruby apps
   team: "#govuk-platform-engineering"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- repo_name: govuk-s3-mirror
+  team: "#data-products"
+  type: Data science
   sentry_url: false
   dashboard_url: false
 
@@ -718,17 +790,13 @@
   sentry_url: false
   dashboard_url: false
 
-- repo_name: govuk-wuj-network-analysis
-  team: "#data-products"
-  type: Data science
-
 - repo_name: govuk_ab_analysis
   retired: true
   team: "#data-products"
   type: Data science
 
 - repo_name: govuk_ab_testing
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
   type: Gems
   sentry_url: false
   dashboard_url: false
@@ -746,7 +814,7 @@
 - repo_name: govuk_content_api
   retired: true
   type: APIs
-  puppet_name: contentapi
+  shortname: contentapi
   description: |
     API that used to store and serve published content to the rendering applications
     for display from public-facing URLs. This has now been superceded by the
@@ -755,9 +823,16 @@
 - repo_name: govuk_crawler_worker
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
+  production_hosted_on: aws
 
 - repo_name: govuk_document_types
   team: "#govuk-navigation-tech"
+  type: Gems
+  sentry_url: false
+  dashboard_url: false
+
+- repo_name: govuk_frontend_toolkit_gem
+  team: "#govuk-publishing-experience-tech"
   type: Gems
   sentry_url: false
   dashboard_url: false
@@ -771,7 +846,7 @@
 - repo_name: govuk_need_api
   retired: true
   type: APIs
-  puppet_name: need_api
+  shortname: need_api
   description: |
     A JSON read and write API for information about user needs on GOV.UK. It was a Rails
     app which was part of the GOV.UK Publishing Platform. The need information is now
@@ -843,15 +918,21 @@
   team: "#data-products"
   type: Data science
 
+- repo_name: kibana-gds
+  type: Utilities
+  retired: true
+  description: |
+    This was a wrapper that initialised Kibana behind GOV.UK's Signon. It was archived in May 2018.
+
 - repo_name: licence-finder
   type: Frontend apps
-  puppet_name: licencefinder
-  team: "#tech-content-interactions-on-platform-govuk"
-  production_hosted_on: eks
-  argo_cd_apps:
-    - licencefinder
+  retired: true
+  description: |
+    Allowed users to search for licences in their business areas. This is now handled by a
+    specialist finder. It was archived in July 2023
 
 - repo_name: licensify
+  app_name: licensify
   private_repo: true
   type: Licensing apps
   production_hosted_on: aws
@@ -859,7 +940,8 @@
   puppet_url: https://github.com/alphagov/govuk-puppet/blob/master/modules/licensify/manifests/apps/licensify.pp
   description: GOV.UK Licensing (formerly ELMS, Licence Application Tool, & Licensify)
 
-- repo_name: licensify-admin
+- repo_name: licensify
+  app_name: licensify-admin
   private_repo: true
   type: Licensing apps
   production_hosted_on: aws
@@ -867,7 +949,8 @@
   puppet_url: https://github.com/alphagov/govuk-puppet/blob/master/modules/licensify/manifests/apps/licensify_admin.pp
   description: GOV.UK Licensing (formerly ELMS, Licence Application Tool, & Licensify)
 
-- repo_name: licensify-feed
+- repo_name: licensify
+  app_name: licensify-feed
   private_repo: true
   type: Licensing apps
   production_hosted_on: aws
@@ -890,34 +973,31 @@
   team: "#tech-content-interactions-on-platform-govuk"
   production_hosted_on: eks
 
-- repo_name: lstm_segmentation
-  private_repo: true
-  team: "#data-products"
-  type: Data science
+- repo_name: logstasher
+  team: "#govuk-platform-security-reliability-team"
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - repo_name: manuals-frontend
   retired: true
   type: Frontend apps
-  team: "#govuk-navigation-tech"
-  production_hosted_on: eks
   description: |
     Used to host manuals from manuals-publisher and hmrc-manuals-api
-    (now hosted by government-frontend)
+    (now hosted by government-frontend). Archived in June 2022.
 
 - repo_name: manuals-publisher
   type: Publishing apps
   team: "#govuk-publishing-experience-tech"
-  production_hosted_on: aws
+  production_hosted_on: eks
 
 - repo_name: mapit
   retired: true
   type: APIs
-  team: "#govuk-platform-security-reliability-team"
   api_docs_url: https://mapit.mysociety.org/docs/
-  production_hosted_on: aws
   description: |
     Used to do postcode lookups for Imminence and Frontend (now
-    replaced by locations-api)
+    replaced by locations-api). Archived in October 2022.
 
 - repo_name: mapit-scripts
   retired: true
@@ -925,6 +1005,10 @@
   team: "#govuk-platform-security-reliability-team"
   production_hosted_on: aws
   description: Scripts used by mapit (now retired)
+
+- repo_name: markdown-toolbar-element
+  type: Utilities
+  team: "#govuk-publishing-experience-tech"
 
 - repo_name: maslow
   type: Publishing apps
@@ -952,6 +1036,10 @@
   description: |
     multipage-frontend was used to render travel advice pages. Those were moved
     to government-frontend in March 2017.
+
+- repo_name: nested_form
+  type: Utilities
+  team: "#govuk-publishing-experience-tech"
 
 - repo_name: omniauth-gds
   type: Gems
@@ -996,6 +1084,24 @@
   team: "#govuk-publishing-experience-tech"
   type: Utilities
 
+- repo_name: pay-pagerduty
+  team: "#govuk-platform-security-reliability-team"
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- repo_name: performanceplatform-admin
+  type: Utilities
+  retired: true
+  description: |
+    Performance Platform admin was a Flask app that allowed authorised users to update performance data on GOV.UK. It was archived in March 2021.
+
+- repo_name: performanceplatform-big-screen-view
+  type: Utilities
+  retired: true
+  description: |
+    This was an application for displaying data from the Performance Platform fullscreen on a large display. It was archived in January 2018.
+
 - repo_name: plek
   team: "#govuk-platform-security-reliability-team"
   type: Gems
@@ -1014,14 +1120,14 @@
     GOV.UK Topic Taxonomy, removing the need for Policy Publisher.
 
 - repo_name: public-asset-checker
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
   type: Utilities
   description: |
     Checks publicly hosted asset files against a known baseline and notifies the owning team if any require attention.
 
 - repo_name: publisher
   type: Publishing apps
-  team: "#govuk-publishing-experience-tech"
+  team: "#govuk-publishing-on-platform-content-tech"
   production_hosted_on: eks
 
 - repo_name: publishing-api
@@ -1041,6 +1147,10 @@
     whereas the add significant times to builds and are extremely
     complicated to debug when they break. They were retired in
     October 2022.
+
+- repo_name: puppet-aptly
+  type: Utilities
+  team: "#govuk-platform-security-reliability-team"
 
 - repo_name: puppet-gor
   retired: true
@@ -1064,11 +1174,6 @@
   sentry_url: false
   dashboard_url: false
 
-- repo_name: related-links-data
-  private_repo: true
-  team: "#data-products"
-  type: Data science
-
 - repo_name: release
   type: Supporting apps
   team: "#govuk-platform-security-reliability-team"
@@ -1091,6 +1196,11 @@
     - router-api
     - draft-router-api
 
+- repo_name: router-postgres
+  type: Supporting apps
+  team: "#govuk-navigation-tech"
+  production_url: false
+
 - repo_name: rubocop-govuk
   team: "#govuk-platform-security-reliability-team"
   type: Gems
@@ -1107,16 +1217,16 @@
 
 - repo_name: search-admin
   type: Supporting apps
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
   production_hosted_on: eks
 
 - repo_name: search-analytics
   type: Services
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
 
 - repo_name: search-api
   type: APIs
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
   production_hosted_on: eks
   production_url: https://www.gov.uk/api/search.json
 
@@ -1125,7 +1235,7 @@
   production_hosted_on: heroku
   production_url: https://search-performance-explorer.herokuapp.com/
   management_url: https://dashboard.heroku.com/apps/search-performance-explorer
-  team: "#user-experience-measurement-govuk"
+  team: "#user-experience-measurement-govuk-robot-invasion"
   type: Utilities
   sentry_url: false
   dashboard_url: false
@@ -1167,11 +1277,20 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
+  production_hosted_on: aws
 
 - repo_name: signon
   type: Supporting apps
   team: "#govuk-publishing-access-and-permissions-team"
   production_hosted_on: eks
+
+- repo_name: siteimprove_api_client
+  team: "#govuk-developers"
+  type: Gems
+  sentry_url: false
+  dashboard_url: false
+  description: |
+    Used by content-data-admin Siteimprove integration.
 
 - repo_name: slimmer
   team: "#govuk-navigation-tech"
@@ -1181,8 +1300,8 @@
 
 - repo_name: smart-answers
   type: Frontend apps
-  team: "#user-experience-measurement-govuk"
-  puppet_name: smartanswers
+  team: "#user-experience-measurement-govuk-robot-invasion"
+  shortname: smartanswers
   production_hosted_on: eks
   argo_cd_apps:
     - smartanswers
@@ -1190,6 +1309,7 @@
 - repo_name: smokey
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
+  production_hosted_on: eks
   sentry_url: false
   dashboard_url: false
 
@@ -1210,6 +1330,18 @@
   type: Publishing apps
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
+
+- repo_name: spotlight
+  type: Utilities
+  retired: true
+  description: |
+    Spotlight was a hybrid rendering app for the GOV.UK Performance Platform using Backbone and D3. It was archived in 2021.
+
+- repo_name: stagecraft
+  type: Utilities
+  retired: true
+  description: |
+    Stagecraft was built to manage the Performance Platform. It was archived in March 2021.
 
 - repo_name: static
   type: Frontend apps
@@ -1254,6 +1386,10 @@
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
 
+- repo_name: unicornherder
+  type: Utilities
+  team: "#govuk-datagovuk"
+
 - repo_name: upgrade-ruby-version
   type: Utilities
   retired: true
@@ -1270,10 +1406,24 @@
     - whitehall-frontend
   production_hosted_on: eks
 
+- repo_name: whitehall-asset-analysis
+  type: Utilities
+  team: "#govuk-publishing-experience-tech"
+  private_repo: true
+  sentry_url: false
+  dashboard_url: false
+  description: |
+    Repo for analysis scripts used to improve Whitehall asset management
+
 - repo_name: whitehall-prototype-2023
   type: Publishing apps
   team: "#govuk-publishing-experience-tech"
-  
+  production_url: https://whitehall-prototype-91f05d25216a.herokuapp.com
+  management_url: https://dashboard.heroku.com/pipelines/2f915a5e-edfd-4c90-b24d-00ed5c8c3c66
+  production_hosted_on: heroku
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: widdershins
   type: Gems
   team: "#govuk-publishing-platform"

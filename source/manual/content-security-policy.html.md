@@ -16,23 +16,26 @@ allowed to execute, and *enforcement*, where violations are blocked.
 
 ## GOV.UK CSP History
 
-As of 2022, GOV.UK has been working, on and off, towards adding a CSP to the public www.gov.uk website for a number of
-years. We have configured one that has been running on the frontend applications, in report only mode, since 2019.
-We track this incomplete implementation as [tech debt](https://trello.com/c/lxxx5XLZ/178-govuk-has-a-half-implemented-content-security-policy-csp).
+As of 2023, GOV.UK has been working, on and off, towards adding a CSP to the public www.gov.uk website for a number of
+years and have had a *report only* CSP since 2019. As of June 2023 we have began rolling this out in *enforcement*
+and have applied it to Feedback, Finder Frontend and Smart Answers. With the other frontend apps planned to be rolled
+out Summer 2023
 
-We continue to aspire to have the CSP set to enforcement mode and intend to enhance it to forbid [`unsafe-inline`][unsafe-inline]
-scripts and styles (in applicable applications) before launching it.
+## How the policy is set and changed
 
-[unsafe-inline]: https://content-security-policy.com/unsafe-inline/
+We have a global base policy that can be modified in individual applications. When you need to make modifications you
+should prefer making changes in individual applications it is something that affects all GOV.UK pages or is across
+most applications. Each frontend app has an [initialiser](https://github.com/alphagov/government-frontend/blob/main/config/initializers/csp.rb)
+which invokes the CSP setting code in the gem.
 
-## How the policy is set
+There are two approaches to apply a CSP configuration change to an individual application:
 
-GOV.UK has a base policy set in the [`govuk_app_config` gem][govuk_csp]. This policy is shared amongst GOV.UK
-applications and should contain directives that are either global or common to many applications.
+- You can apply CSP modifications to an individual controller or action ([example in Smart Answers](https://github.com/alphagov/smart-answers/blob/1a2ff1d9f430afcc7435ac9775cc44de6b0a98f1/app/controllers/smart_answers_controller.rb#L8-L12)).
+- You can apply a CSP modification to an entire application ([example in govuk_publishing_components](https://github.com/alphagov/govuk_publishing_components/blob/80791ac61e2d5b959725f6b1064a2f83a82e9bf8/spec/dummy/config/initializers/content_security_policy.rb#L23))
 
-Each frontend app has an [initialiser](https://github.com/alphagov/government-frontend/blob/main/config/initializers/csp.rb)
-which invokes the CSP setting code in the gem. Each application can make customisations to the policy for
-application/route specific needs ([example in Smart Answers](https://github.com/alphagov/smart-answers/blob/1a2ff1d9f430afcc7435ac9775cc44de6b0a98f1/app/controllers/smart_answers_controller.rb#L8-L12)).
+The base policy is set in [`govuk_app_config` gem][govuk_csp]. This policy is shared amongst GOV.UK applications and
+should only contain directives that are either global or common to many applications. This can be amended and deployed
+to apps with a new gem release.
 
 [govuk_csp]: https://github.com/alphagov/govuk_app_config/blob/main/lib/govuk_app_config/govuk_content_security_policy.rb
 
@@ -53,8 +56,9 @@ a CSP is enforced.
 
 ### Querying violations
 
-Athena is available through the AWS control panel. To access, [log into AWS](/manual/get-started.html#sign-in-to-aws),
-navigate to [Athena](https://eu-west-1.console.aws.amazon.com/athena/home?region=eu-west-1#/query-editor) and select
+Athena is available through the AWS control panel. To access, [log into AWS](/manual/get-started.html#sign-in-to-aws)
+as a poweruser or greater privilege access, navigate to
+[Athena](https://eu-west-1.console.aws.amazon.com/athena/home?region=eu-west-1#/query-editor) and select
 the `csp_reports` database. The database is available in all environments, however the production environment one is
 that only one that will have good quality data.
 

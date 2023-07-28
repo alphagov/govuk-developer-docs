@@ -84,7 +84,7 @@ URL of the country's edit page in Travel Advice Publisher and looks like
 [email-alert-monitoring]: https://github.com/alphagov/email-alert-monitoring
 [Technical 2nd Line password store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline
 [retire alert adr]: https://github.com/alphagov/email-alert-api/blob/main/docs/adr/adr-008-monitoring-and-alerting.md#removal-of-email-alert-monitoring
-[acknowledged email list]: https://github.com/alphagov/email-alert-monitoring/blob/master/lib/email_verifier.rb#L6-L14
+[acknowledged email list]: https://github.com/alphagov/email-alert-monitoring/blob/master/lib/email_verifier.rb#L8
 [gmail status]: https://www.google.co.uk/appsstatus#hl=en-GB&v=status
 [Sidekiq dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=email-alert-api&var-Interval=$__auto_interval
 [tech dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_technical.json?refresh=1m&orgId=1

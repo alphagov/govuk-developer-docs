@@ -6,7 +6,12 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-## 1. Remove app from puppet
+Note: Now that we've moved most of the applications to EKS, some of these
+steps are only necessary for the handful of apps being deployed by Puppet.
+The step titles now indicate whether a step is only required for Puppet or
+EKS-deployed apps.
+
+## 1. (PUPPET APPS ONLY) Remove app from puppet
 
 Configure Puppet to remove the app from all servers. Change the app resource,
 and any database resources to `ensure => absent`, remove any host and
@@ -26,7 +31,7 @@ Remove any [smokey tests][smokey] specific to the application.
 
 [smokey]: https://github.com/alphagov/smokey
 
-## 3. Remove deploy scripts
+## 3. (PUPPET APPS ONLY) Remove deploy scripts
 
 Remove necessary scripts from [govuk-app-deployment][govuk-app-deployment].
 
@@ -39,7 +44,7 @@ Mark the application as archived in the Release app.
 Edit the application in the release app (you'll need the `deploy` permission to
 do this), and check the `archived` checkbox. This will hide it from the UI.
 
-## 5. Remove from deploy Jenkins
+## 5. (PUPPET APPS ONLY) Remove from deploy Jenkins
 
 Remove entry from the deploy Jenkinses. This is managed
 [through govuk-puppet][common] in the `common.yml`.
@@ -56,8 +61,8 @@ retired", then save your changes.
 
 ## 7. Remove from GOV.UK Docker
 
-Remove from the [projects directory][] and any references
-in [docker compose][] or throughout the repo.
+Remove from the [projects directory] and any references
+in [docker compose] or throughout the repo.
 
 [projects directory]: https://github.com/alphagov/govuk-docker/tree/master/projects
 [docker compose]: https://github.com/alphagov/govuk-docker/blob/master/docker-compose.yml
@@ -68,28 +73,24 @@ Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the `publishing.service.gov.uk` domain.
 
 Follow the [instructions for DNS changes][dns-changes] in order to remove
-these, and ask the GOV.UK Platform Engineering team to approve any necessary Pull
-Requests.
+these.
 
 [dns-changes]: https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain
 
-## 9. Remove credentials
+## 9. Update docs
 
-Remove any hieradata credential entries for the app in [govuk-secrets][]
-(private repo).
-
-[govuk-secrets]: https://github.com/alphagov/govuk-secrets
+Mark the application as `retired` in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs)
 
 ## 10. Drop database
 
 If Puppet hasn't done it (eg for MongoDB databases), drop the database.
 
-## 11. Remove jobs in CI
+## 11. (PUPPET APPS ONLY) Remove jobs in CI
 
-If tests were set up, go to [CI][ci] and choose "Delete Repository" for your
+If tests were set up, go to [CI] and choose "Delete Repository" for your
 project.
 
-[ci]: https://ci.integration.publishing.service.gov.uk/
+[CI]: https://ci.integration.publishing.service.gov.uk/
 
 ## 12. Unpublish routes
 
@@ -105,6 +106,34 @@ Since the application has been retired, it shouldn't be tracked in Sentry.
 
 If relevant (e.g. if Heroku was used for previews).
 
-## 15. Archive the repo
+## 15. (EKS APPS ONLY) Remove from govuk-helm-charts
+
+Remove the app's entry in [govuk-helm-charts] from:
+
+- /charts/app-config/values-integration.yaml
+- /charts/app-config/values-staging.yaml
+- /charts/app-config/values-production.yaml
+- (if present) /charts/app-config/templates/signon-secrets-sync-configmap.yaml
+- (if present) /charts/external-secrets/templates/<app name>
+
+It's also wise to search that repo for other references to the app being retired.
+Once the PR is merged ([Example PR][]), the app pods will automatically be removed by Argo.
+
+[govuk-helm-charts] (https://github.com/alphagov/govuk-helm-charts/)
+[Example PR] (https://github.com/alphagov/govuk-helm-charts/pull/1236)
+
+## 17. Delete the app's Kubernetes resources (if applicable)
+
+In the staging and production environments, deleting an Argo CD app will not [automatically delete](https://github.com/alphagov/govuk-helm-charts/blob/c55a034/charts/app-config/templates/govuk-application.yaml#L10) the Kubernetes resources that it manages, such as `deployments`, `services`, `jobs` and `cronjobs`.
+
+You will need to list and delete these resources yourself, for example:
+
+```
+  kubectl get all | grep <app-name>
+
+  kubectl delete deploy/<app-name> svc/<app-name> job/<app-name>-upload-assets
+```
+
+## 18. Archive the repo
 
 Follow the steps at [Retire a repo](/manual/retiring-a-repo.html).
