@@ -255,16 +255,16 @@ User accounts in our integration environments are managed in the [govuk-puppet][
 
     ```
     # Creates the johnsmith user
-    class users::<johnsmith> {
-      govuk_user { '<johnsmith>':
+    class users::johnsmith {
+      govuk_user { 'johnsmith':
         fullname => 'John Smith',
         email    => 'john.smith@digital.cabinet-office.gov.uk',
-        ssh_key  => '<SSH-PUBLIC-KEY-VALUE>',
+        ssh_key  => 'ssh-ed25519 AAAAC37eiue0923jfwnfwle93fnwefwn john.smith@digital.cabinet-office.gov.uk',
       }
     }
     ```
 
-1. Add the name of your user manifest file (`<FIRSTNAMELASTNAME>.pp`) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera].
+1. Add the name of your user manifest file (`<firstnamelastname>.pp`) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera].
 
 1. Create a pull request with these changes and ask your tech lead to review it.
 
