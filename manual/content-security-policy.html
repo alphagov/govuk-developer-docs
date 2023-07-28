@@ -129,9 +129,6 @@
     <a href="#header"><span>Content Security Policy on GOV.UK</span></a>
     <ul>
       <li>
-        <a href="#gov-uk-csp-history"><span>GOV.UK CSP History</span></a>
-      </li>
-      <li>
         <a href="#how-the-policy-is-set-and-changed"><span>How the policy is set and changed</span></a>
       </li>
       <li>
@@ -192,19 +189,21 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/12e042a0a7e8897c4ff6a6b5397fe863026f090b">29 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/eb891304b0be3f95c4c04014f0391a30640e313c">20 Jul 2023</a>
 </div>
 
  <h1 id='header'>Content Security Policy on GOV.UK</h1> <p>Content Security Policy (CSP) is a browser standard to prevent cross-site scripting (XSS), clickjacking and other code
 injection attacks resulting from execution of malicious content in the context of another website. A policy, determining
 which stylesheets, scripts and other assets are allowed to run, is sent with every request and is parsed and enacted by
 the browser.</p>
-<p>CSP can be run in two modes - <em>report only</em>, where violations of the policy are reported to a given endpoint but
-allowed to execute, and <em>enforcement</em>, where violations are blocked.</p>
-<h2 id='gov-uk-csp-history'>GOV.UK CSP History</h2><p>As of 2023, GOV.UK has been working, on and off, towards adding a CSP to the public www.gov.uk website for a number of
-years and have had a <em>report only</em> CSP since 2019. As of June 2023 we have began rolling this out in <em>enforcement</em>
-and have applied it to Feedback, Finder Frontend and Smart Answers. With the other frontend apps planned to be rolled
-out Summer 2023</p>
+<p>CSP can be run in two modes - <em>enforce</em>, where violations are blocked and the violation is reported to a given endpoint
+and <em>report only</em>, where the violation is allowed to execute and a report is sent.</p>
+<p>GOV.UK runs a CSP in enforce mode on the applications serving <a href="https://www.gov.uk">www.gov.uk</a> - frontend applications
+(with the exception of Whitehall due to current work to retire its frontend rendering). This enforce mode started in
+Summer 2023, following a number of years running in report-only mode.</p>
+<p>Although as of July 2023, only frontend applications are running the CSP it is intended to serve the needs of both
+GOV.UK frontend and admin applications. We aspire to eventually run it across all applications and encourage teams
+that own admin applications to use it.</p>
 <h2 id='how-the-policy-is-set-and-changed'>How the policy is set and changed</h2><p>We have a global base policy that can be modified in individual applications. When you need to make modifications you
 should prefer making changes in individual applications it is something that affects all GOV.UK pages or is across
 most applications. Each frontend app has an <a href="https://github.com/alphagov/government-frontend/blob/main/config/initializers/csp.rb">initialiser</a>
@@ -218,10 +217,7 @@ which invokes the CSP setting code in the gem.</p>
 <p>The base policy is set in <a href="https://github.com/alphagov/govuk_app_config/blob/main/lib/govuk_app_config/govuk_content_security_policy.rb"><code>govuk_app_config</code> gem</a>. This policy is shared amongst GOV.UK applications and
 should only contain directives that are either global or common to many applications. This can be amended and deployed
 to apps with a new gem release.</p>
-<h2 id='how-violations-are-reported'>How violations are reported</h2><p>In all production-like environments (production, staging, integration), CSP is running in report only mode. In other
-environments such as development and test, CSP is running in enforcement mode to allow errors to be captured
-at an early stage.</p>
-<p>We log reports to Amazon S3 bucket which can be queried with <a href="https://aws.amazon.com/athena/">Athena</a>. We store them
+<h2 id='how-violations-are-reported'>How violations are reported</h2><p>We log reports to Amazon S3 bucket which can be queried with <a href="https://aws.amazon.com/athena/">Athena</a>. We store them
 for 30 days. Many of the reports we receive are from browser extensions we can&rsquo;t control so we
 <a href="https://github.com/alphagov/govuk-aws/blob/main/terraform/lambda/CspReportsToFirehose/index.mjs">filter the most prolific of them</a> from our logs.</p>
 <p>As we receive high volumes of false positive alerts, it is likely we will remove the reporting functionality once
