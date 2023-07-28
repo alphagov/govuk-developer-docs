@@ -187,18 +187,11 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/71f12062dd531bdfd107c1e5d0c6c62254a76f39">13 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
- <h1 id='header'>Scale unicorn workers</h1> <h3 id='check-the-number-of-unicorn-workers-currently-running'>Check the number of unicorn workers currently running</h3><p>You will need to SSH into the machine class for your chosen application, you can find this information in the developer docs, for example, the machine class for <a href="https://docs.publishing.service.gov.uk/repos/smart-answers.html">Smart Answers</a> is <code>calculators_frontend</code></p>
+ <h1 id='header'>Scale unicorn workers</h1> <h3 id='check-the-number-of-unicorn-workers-currently-running'>Check the number of unicorn workers currently running</h3><p>You will need to SSH into the machine class for your chosen application, you can find this information in the developer docs, for example, the machine class for <a href="/repos/smart-answers.html">Smart Answers</a> is <code>calculators_frontend</code></p>
 <p>SSH into the machine on Integration using the command below</p>
 <p><code>gds govuk connect -e integration ssh calculators_frontend</code></p>
 <p>Once connected, run the command below to get a list of the Unicorn Workers running on the machine:</p>

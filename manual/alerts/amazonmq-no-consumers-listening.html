@@ -173,7 +173,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/236ae937829fc18c09d11ee4f6efffd62abc04cc">6 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>AmazonMQ: No consumers listening to queue</h1> <h2 id='check-that-there-is-at-least-one-non-idle-consumer-for-rabbitmq-queue-queue_name'>Check that there is at least one non-idle consumer for rabbitmq queue {queue_name}</h2><p>Icinga connects to AmazonMQ&rsquo;s RabbitMQ admin API to check on the activity of the
@@ -195,7 +195,7 @@ never idle for these queues.</p>
 
 <blockquote>
 <p><strong>Note</strong></p>
-<p>You may see the <a href="https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-high-number-of-unprocessed-messages.html">high unprocessed messages</a> alert too,
+<p>You may see the <a href="/manual/alerts/amazonmq-high-number-of-unprocessed-messages.html">high unprocessed messages</a> alert too,
 as issues with consumers processing messages could then lead to a high
 backlog of messages.</p>
 </blockquote>
@@ -221,7 +221,7 @@ connection is lost).</p></li>
 messages then this could indicate an issue with the consumer.</p>
 <h3 id='troubleshooting-steps'>Troubleshooting steps</h3>
 <ol>
-<li><p>You could try restarting the application <a href="https://docs.publishing.service.gov.uk/manual/howto-run-ssh-commands-on-many-machines">on all the machines of the relevant class</a>.
+<li><p>You could try restarting the application <a href="/manual/howto-run-ssh-commands-on-many-machines">on all the machines of the relevant class</a>.
 For example, to restart the email-alert-service application, you&rsquo;d SSH into each <code>email_alert_api</code> machine and <a href="/manual/restart-application.html">restart the app</a>. After restarting, check to see if the problem is solved.</p></li>
 <li><p>If the issue has not resolved, we should check in the consumers application
 logs to see if any errors are being thrown.</p></li>

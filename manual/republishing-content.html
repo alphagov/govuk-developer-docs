@@ -198,12 +198,12 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b9960022f7940a75e761aa4e4ed49515a44f6957">20 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Republish content</h1> <p>Sometimes it may be necessary to republish content to the Publishing API. This will refresh the content on the website.</p>
 <p>For example if we make an update to <a href="https://github.com/alphagov/govspeak/">govspeak</a> and a publishing application pre-renders that content prior to its submission to Publishing API, that would require us to re-render and save new HTML for content.</p>
-<p>This process varies per app and requires <a href="https://docs.publishing.service.gov.uk/manual/rules-for-getting-production-access.html">Production access</a>.</p>
+<p>This process varies per app and requires <a href="/manual/rules-for-getting-production-access.html">Production access</a>.</p>
 <p>You may wish to test first on integration, prior to carrying out the republish in production.</p>
 <h2 id='whitehall'>Whitehall</h2><p>If the documents are in Whitehall, there are Rake tasks you can run as outlined below. Try to pick the one most focused to the scope of what you need to republish to avoid unnecessary load. You can monitor the effect on the publishing queue via these Grafana dashboards:</p>
 

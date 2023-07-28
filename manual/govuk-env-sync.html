@@ -210,15 +210,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c60fb76f7792d78d80b0271fa05608940717e4b2">10 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Environment data sync</h1> <p>The <a href="https://github.com/alphagov/govuk-puppet/tree/main/modules/govuk_env_sync">govuk_env_sync</a> data sync is used for backup and sync tasks in the <a href="/manual/environments.html">GOV.UK AWS environments</a>. It replaces the now archived <a href="https://github.com/alphagov/env-sync-and-backup">env-sync-and-backup</a> data sync.</p>
@@ -238,7 +231,7 @@
 <li>In integration, databases are <em>pushed</em> to <code>govuk-integration-database-backups</code> nightly - these are produced for developers to use <a href="/repos/govuk-docker/how-tos.html#how-to-replicate-data-locally">real data on their local machines</a>.</li>
 </ul>
 <h3 id='data-sanitisation'>Data sanitisation</h3><p>Data sanitisation (removal of sensitive data) is done by SQL scripts in the <a href="https://github.com/alphagov/govuk-puppet/tree/main/modules/govuk_env_sync/files/transformation_sql"><code>files/transformation_sql</code></a> directory, which are created under <code>/etc/govuk_env_sync/transformation_sql/</code> on the target machine.</p>
-<p>Data sanitisation is applied to the Integration environment for a number of data sources, including Publishing API and Email Alert API, as good security practice. It is not applied to Staging, which can <a href="https://docs.publishing.service.gov.uk/manual/rules-for-getting-production-access.html">only be accessed by those who have Production access</a> and therefore have access to the Production equivalents anyway. Recreating the Production data on Staging allows us to test queries on real world data before we apply them in a Production environment.</p>
+<p>Data sanitisation is applied to the Integration environment for a number of data sources, including Publishing API and Email Alert API, as good security practice. It is not applied to Staging, which can <a href="/manual/rules-for-getting-production-access.html">only be accessed by those who have Production access</a> and therefore have access to the Production equivalents anyway. Recreating the Production data on Staging allows us to test queries on real world data before we apply them in a Production environment.</p>
 <h2 id='how-it-works'>How it works</h2><p>The code is in the govuk_env_sync module in the govuk-puppet repository. Most of the logic is in the <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_env_sync/files/govuk_env_sync.sh">govuk_env_sync.sh</a> file, provided as a Puppet file resource in the <code>files</code> directory. It is created as <code>/usr/local/bin/govuk_env_sync.sh</code>. Rollout of changes to this code happens as part of the the <code>Deploy_puppet</code> Jenkins job in each environment.</p>
 <p>A <a href="https://github.com/alphagov/govuk-puppet/blob/ba370cf5970eb9023c0de5153f6acbb31aceca6b/modules/govuk_env_sync/manifests/task.pp"><code>govuk_env_sync::task</code> resource type</a> creates a configuration file and a cron job, parameterising the govuk_env_sync.sh file with the values passed to <code>govuk_env_sync::task</code>. A <a href="https://github.com/alphagov/govuk-puppet/blob/8195aa1483bc3030204e840b0b4f8a3cecab4d93/modules/govuk_env_sync/manifests/init.pp#L27"><code>create_resources(govuk_env_sync::task)</code> invocation</a> calls the <code>govuk_env_sync::task</code> for each <code>govuk_env_sync::tasks:</code> property in the hieradata.</p>
 <p>The configuration for these tasks is found in the node hieradata for the db_admin machines, for example: <a href="https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/class/integration/db_admin.yaml">hieradata_aws/class/integration/db_admin.yaml</a>. All can be found via <code>git grep govuk_env_sync::tasks</code> within the govuk-puppet repo.</p>

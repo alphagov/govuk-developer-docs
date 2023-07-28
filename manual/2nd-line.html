@@ -210,7 +210,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba9ffde55d512ce00d9bd1754c8547ff1c4dae86">21 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>2nd line</h1> <p>2nd Line is the user support function of GOV.UK. 2nd Line’s main responsibilities:</p>
@@ -249,7 +249,7 @@ The corresponding standby developer will then take your place.</p>
 <p>If your working patterns are not compatible with a 9.30am-5.30pm shift, let the Technical 2nd Line team know so they can find extra support.</p>
 <p>If you do not work a 5-day week, please talk to your delivery manager to arrange cover with another developer on your team.</p>
 <h2 id='monitoring'>Monitoring</h2><p>We have a <a href="https://govuk-2ndline-dashboard.herokuapp.com/">Technical 2nd Line dashboard</a> showing a high level overview of the state of the GOV.UK environments. You can also <a href="https://github.com/alphagov/govuk-secondline-blinken#chrome-extension">install our Chrome extension</a> if you want a permanently visible overview. You will need to be connected to the <a href="https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit">GDS VPN</a> if accessing from home.</p>
-<h3 id='icinga'>Icinga</h3><p>We use Icinga to monitor our platform across our environments (<a href="https://alert.integration.publishing.service.gov.uk/">CI/Integration</a>, <a href="https://alert.blue.staging.govuk.digital/">Staging</a>, <a href="https://alert.blue.production.govuk.digital/">Production</a>) and alert us when things go wrong. Many alerts have corresponding documentation in our <a href="https://docs.publishing.service.gov.uk/">GOV.UK developer docs</a>, detailing how to respond. <a href="https://docs.publishing.service.gov.uk/manual/icinga.html">Read more about Icinga</a>.</p>
+<h3 id='icinga'>Icinga</h3><p>We use Icinga to monitor our platform across our environments (<a href="https://alert.integration.publishing.service.gov.uk/">CI/Integration</a>, <a href="https://alert.blue.staging.govuk.digital/">Staging</a>, <a href="https://alert.blue.production.govuk.digital/">Production</a>) and alert us when things go wrong. Many alerts have corresponding documentation in our <a href="/">GOV.UK developer docs</a>, detailing how to respond. <a href="/manual/icinga.html">Read more about Icinga</a>.</p>
 <p>If you see critical alerts that aren&rsquo;t easily solved, start a thread in the #govuk-2ndline-tech Slack channel.</p>
 <p>NB: Technical 2nd Line should investigate these alerts when there is downtime; you do not necessarily have to fix them.</p>
 <h3 id='grafana'>Grafana</h3><p>We use Grafana dashboards to monitor the health of our applications and service across our environments (<a href="https://grafana.blue.integration.govuk.digital/?orgId=1">Integration</a>, <a href="https://grafana.blue.staging.govuk.digital/?orgId=1">Staging</a>, <a href="https://grafana.blue.production.govuk.digital/">Production</a>. Some useful dashboards include:</p>
@@ -259,8 +259,8 @@ The corresponding standby developer will then take your place.</p>
 <li>Sidekiq</li>
 <li>Application deployment dashboards</li>
 </ul>
-<p><a href="https://docs.publishing.service.gov.uk/manual/grafana.html">Read more about Grafana</a>.</p>
-<h3 id='pagerduty'>PagerDuty</h3><p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming unavailable or large quantities of error pages being served. We use <a href="https://governmentdigitalservice.pagerduty.com">PagerDuty</a> to notify the primary and secondary engineers on Technical 2nd Line during office hours (9:30am to 5:30pm), and on-call engineers outside of office hours. We carry out a <a href="https://docs.publishing.service.gov.uk/manual/pagerduty.html#pagerduty-drill">Pagerduty drill</a> every Wednesday morning at 10am UTC.</p>
+<p><a href="/manual/grafana.html">Read more about Grafana</a>.</p>
+<h3 id='pagerduty'>PagerDuty</h3><p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming unavailable or large quantities of error pages being served. We use <a href="https://governmentdigitalservice.pagerduty.com">PagerDuty</a> to notify the primary and secondary engineers on Technical 2nd Line during office hours (9:30am to 5:30pm), and on-call engineers outside of office hours. We carry out a <a href="/manual/pagerduty.html#pagerduty-drill">Pagerduty drill</a> every Wednesday morning at 10am UTC.</p>
 <p><a href="/manual/pagerduty.html">Read more about PagerDuty</a>.</p>
 <h2 id='incidents'>Incidents</h2><p>If there is a service outage or loss of functionality to a service (whether external or internal), or a security vulnerability is discovered, Technical 2nd Line will <a href="/manual/incident-management-guidance.html">declare an incident</a> and write up an incident report. We normally review incidents on Mondays at 2-3pm.</p>
 <h2 id='zendesk'>Zendesk</h2><p><a href="https://govuk.zendesk.com">Zendesk</a> is our support ticketing system. When not dealing with incidents and alerts, we should be working through Zendesk tickets.</p>

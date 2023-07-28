@@ -187,11 +187,11 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Fix out-of-date search indices</h1> <p>If the data in the search index is out-of-sync with the Publishing API,
-(for example, after <a href="https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html">restoring a backup</a>), then any <code>publish</code>
+(for example, after <a href="/manual/elasticsearch-dumps.html">restoring a backup</a>), then any <code>publish</code>
 and <code>unpublish</code> messages that have not been processed need to be resent.</p>
 <h2 id='govuk-index'><code>govuk</code> index</h2><p>Content in the <code>govuk</code> index is populated from the <a href="https://github.com/alphagov/search-api/blob/main/docs/new-indexing-process.md">Publishing API message queue</a>.
 Missing documents can be recovered by resending the content to the message queue, using

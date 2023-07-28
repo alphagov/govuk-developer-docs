@@ -198,11 +198,11 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Remove a change note</h1> <p>Follow the <a href="#whitehall">instructions for Whitehall</a> if removing a change note from Whitehall, otherwise follow the <a href="#other-apps">instructions for other apps</a>.</p>
-<h2 id='what-is-a-change-note'>What is a change note?</h2><p>An Edition in Publishing API can have just one <code>change_note</code>, which is public-facing. The Publishing API creates a list of all the <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a> from all versions of the edition and presents them to the Content Store. You can read more about this in the <a href="https://docs.publishing.service.gov.uk/apis/publishing-api/model.html#changenote">Publishing API docs</a>.</p>
+<h2 id='what-is-a-change-note'>What is a change note?</h2><p>An Edition in Publishing API can have just one <code>change_note</code>, which is public-facing. The Publishing API creates a list of all the <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a> from all versions of the edition and presents them to the Content Store. You can read more about this in the <a href="/apis/publishing-api/model.html#changenote">Publishing API docs</a>.</p>
 <p>In Whitehall, an Edition can also have multiple editorial remarks (otherwise known as <a href="https://www.gov.uk/guidance/how-to-publish-on-gov-uk/creating-and-updating-pages#internal-notes">internal notes</a>). These are visible only in Whitehall Admin.</p>
 <h2 id='change-note-rake-tasks'>Change note rake tasks</h2><p>Rake Tasks exist in both Publishing API and Whitehall to quickly remove change notes for a document. The tasks take a content id, content locale and the text of the change note.</p>
 <p>There are two interfaces for dry and real runs, to ensure the correct change note is being targetted before removing it.</p>

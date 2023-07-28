@@ -148,22 +148,15 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>AWS RDS Instance CPU Utilization</h1> <p>This alert relates to the AWS relational database service (RDS) CPU Utilization being higher than we would expect. We use RDS to run both PostgreSQL and MySQL databases in AWS.</p>
 <p>We use <code>db-admin</code> machines as a way of connecting to the RDS instances via a database client application. There are a number of <code>db-admin</code> machines for various RDS instances.</p>
 <p>There are two ways to check the current usage:</p>
 <p>The first is to <a href="https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1">access the AWS web console</a> and view the statistics. These are available under Amazon RDS ➡ Databases ➡ your-database-name ➡ Monitoring.</p>
-<p>The second is to <a href="https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html">access a <code>db-admin</code> instance</a> via SSH and access the database console. Then you should be able to view the current queries in action.</p>
+<p>The second is to <a href="/manual/howto-ssh-to-machines.html">access a <code>db-admin</code> instance</a> via SSH and access the database console. Then you should be able to view the current queries in action.</p>
 
 
   <div class='related-content'>

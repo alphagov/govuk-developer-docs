@@ -156,15 +156,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/06b89f88b33cae1796638055bff88668218a516f">28 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>RabbitMQ: Dead nodes in cluster</h1> <p>This can happen if one of the machines in the cluster is killed by AWS and replaced with a new machine. In this scenario, the cluster is still working, but leaving the dead node will cause problems in future. The check can be found <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_rabbitmq/templates/check_rabbitmq_dead_nodes.cfg.erb">here</a>.</p>
@@ -181,8 +174,8 @@
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo service rabbitmq-server restart
 </code></pre></div><h2 id='further-reading'>Further reading</h2>
 <ul>
-<li><a href="https://docs.publishing.service.gov.uk/manual/rabbitmq.html">How we use RabbitMQ</a></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/restart-application.html">Restart an application</a></li>
+<li><a href="/manual/rabbitmq.html">How we use RabbitMQ</a></li>
+<li><a href="/manual/restart-application.html">Restart an application</a></li>
 </ul>
 
 

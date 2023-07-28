@@ -212,7 +212,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c8930a758119b26d14ffbc95baf2fefd7596598d">13 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Out of hours support (on-call)</h1> <blockquote>
@@ -256,21 +256,21 @@ from the command line (<a href="https://docs.cloud.service.gov.uk/get_started.ht
 <li><a href="/manual/global-banner.html">Non-emergency global banner</a></li>
 </ul></li>
 </ol>
-<p>The steps above are outlined in the <a href="https://trello.com/c/mK6p8hH4/977-on-call-checklist">On call template Trello card</a>, which developers should drill when given <a href="https://docs.publishing.service.gov.uk/manual/rules-for-getting-production-access.html#when-you-get-production-admin-access">Production Admin access</a>. Developers should speak to the 2nd line tech lead(s)
+<p>The steps above are outlined in the <a href="https://trello.com/c/mK6p8hH4/977-on-call-checklist">On call template Trello card</a>, which developers should drill when given <a href="/manual/rules-for-getting-production-access.html#when-you-get-production-admin-access">Production Admin access</a>. Developers should speak to the 2nd line tech lead(s)
 if they have any issues with the above steps.</p>
 <p>You may also want to set to be notified for every new message in the <a href="https://gds.slack.com/archives/CAH9L36LR">#govuk-incident</a> Slack channel, but this is strictly optional. People should not expect to be able to contact you on Slack during your shift. You can change your Slack notification settings by clicking “Change notifications” and selecting “All new messages”.</p>
-<h2 id='things-that-may-result-in-you-being-contacted'>Things that may result in you being contacted</h2><h3 id='automated-monitoring'>Automated monitoring</h3><p>We use <a href="https://docs.publishing.service.gov.uk/manual/pagerduty.html">PagerDuty</a>
+<h2 id='things-that-may-result-in-you-being-contacted'>Things that may result in you being contacted</h2><h3 id='automated-monitoring'>Automated monitoring</h3><p>We use <a href="/manual/pagerduty.html">PagerDuty</a>
 for automated monitoring. You can update your <a href="https://support.pagerduty.com/docs/user-profile#notification-rules">notification rules</a>
 in your PagerDuty account to notify you however you want (phone call, SMS, email,
 push notification). There are 2 ways that this might contact you:</p>
 <h4 id='icinga-alerts'>Icinga alerts</h4><p>Any Icinga checks that use <code>govuk_urgent_priority</code> will cause PagerDuty to be notified:</p>
 
 <ul>
-<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/email-alerts-travel-medical.html">Travel advice emails not going out</a></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/whitehall-scheduled-publishing.html#overdue-publications-in-whitehall">Overdue publications in Whitehall</a></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/whitehall-scheduled-publishing.html#scheduled-publications-in-whitehall-not-queued">Scheduled publications in Whitehall not queued</a></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/high-nginx-5xx-rate.html">High nginx 5xx rate for www-origin on cache machines</a></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/varnish-port-not-responding.html">varnishd port not responding</a></li>
+<li><a href="/manual/alerts/email-alerts-travel-medical.html">Travel advice emails not going out</a></li>
+<li><a href="/manual/alerts/whitehall-scheduled-publishing.html#overdue-publications-in-whitehall">Overdue publications in Whitehall</a></li>
+<li><a href="/manual/alerts/whitehall-scheduled-publishing.html#scheduled-publications-in-whitehall-not-queued">Scheduled publications in Whitehall not queued</a></li>
+<li><a href="/manual/alerts/high-nginx-5xx-rate.html">High nginx 5xx rate for www-origin on cache machines</a></li>
+<li><a href="/manual/alerts/varnish-port-not-responding.html">varnishd port not responding</a></li>
 </ul>
 <p>You can get the most up to date list of these by searching the Puppet repo for <a href="https://github.com/alphagov/govuk-puppet/search?q=govuk_urgent_priority">govuk_urgent_priority</a>.</p>
 <h4 id='pingdom-alerts'>Pingdom alerts</h4><p>We have downtime checks configured in Pingdom which notify Pagerduty directly rather
@@ -285,19 +285,19 @@ than using GOV.UK&rsquo;s internal monitoring. They are all configured in Pingdo
 are set up for key parts of the website such as:</p>
 
 <ul>
-<li><a href="https://docs.publishing.service.gov.uk/manual/assets.html">Assets</a> (assets.publishing.service.gov.uk)</li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/pingdom-bouncer-canary-check.html">Bouncer canary</a></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/pingdom-homepage-check.html">GOV.UK homepage</a></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/mirror-sync.html#impact">S3 mirror</a> (London) and S3 Mirror Replica (Ireland)</li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/data-gov-uk-monitoring.html">data.gov.uk</a></li>
+<li><a href="/manual/assets.html">Assets</a> (assets.publishing.service.gov.uk)</li>
+<li><a href="/manual/pingdom-bouncer-canary-check.html">Bouncer canary</a></li>
+<li><a href="/manual/alerts/pingdom-homepage-check.html">GOV.UK homepage</a></li>
+<li><a href="/manual/alerts/mirror-sync.html#impact">S3 mirror</a> (London) and S3 Mirror Replica (Ireland)</li>
+<li><a href="/manual/data-gov-uk-monitoring.html">data.gov.uk</a></li>
 </ul>
 <h3 id='phone-calls-from-people'>Phone calls from people</h3><p>Senior members of GOV.UK may phone you if they’ve been contacted by other parts
 of government. These phone calls will generally come from the group that is on the
 rota for the ‘Escalations’ contact number.</p>
 <h3 id='emergency-publishing'>Emergency publishing</h3><p>The GOV.UK on-call escalations contact will call you to carry this out.  See the
-<a href="https://docs.publishing.service.gov.uk/manual/emergency-publishing.html">deploy an emergency banner doc</a>
+<a href="/manual/emergency-publishing.html">deploy an emergency banner doc</a>
 for more information.</p>
-<h3 id='updating-the-homepage'>Updating the homepage</h3><p>You might be asked to <a href="https://docs.publishing.service.gov.uk/repos/frontend/update-homepage-promotion-slots.html">update the homepage promotion slots</a>
+<h3 id='updating-the-homepage'>Updating the homepage</h3><p>You might be asked to <a href="/repos/frontend/update-homepage-promotion-slots.html">update the homepage promotion slots</a>
 to highlight important information on GOV.UK.</p>
 <h2 id='responding-to-being-contacted'>Responding to being contacted</h2><h3 id='automated-monitoring'>Automated monitoring</h3><p>If you&rsquo;re available to investigate the problem, acknowledge the alert in
 PagerDuty to prevent the next person being phoned.</p>

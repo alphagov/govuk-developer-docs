@@ -214,15 +214,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/afa32951220ed3be7a8bac44433be07c66cd837f">23 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Run commands on many machines</h1> <p>We used to rely heavily on Fabric scripts to help us do things like running commands on all machines in a class. This approach has been deprecated, but we still need to do those things occasionally.</p>
@@ -239,7 +232,7 @@ done
 <h2 id='breaking-the-script-down'>Breaking the script down</h2><h3 id='find-out-the-public-dns-names-of-all-cache-machines'>Find out the public DNS names of all <code>cache</code> machines</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache
 </code></pre></div>
 <ul>
-<li><p>For this to work you need to have <a href="https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools">set up the GDS command line tools</a></p></li>
+<li><p>For this to work you need to have <a href="/manual/get-started.html#3-install-gds-command-line-tools">set up the GDS command line tools</a></p></li>
 <li><p>You need to set which environment this command is running on. The example uses integration. Other options include staging and production.</p></li>
 <li><p>govuk-puppet holds <a href="https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/common.yaml#L14">a list of the applications hosted on each node type</a>.</p></li>
 </ul>

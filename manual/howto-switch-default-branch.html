@@ -180,15 +180,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d1c986c19930ff6e659830e1b3d02185ff1f0625">20 Apr 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>How to switch a Git default branch from master to main</h1> <p>These steps are for switching the default branch of a repo to <code>main</code>.</p>
@@ -202,7 +195,7 @@
 <li>Hit the <code>Edit</code> tab.</li>
 <li>Switch under the dropdown for <code>GitHub repository default branch</code>.</li>
 </ul></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html#fixing-the-build-number">Set the Jenkins build number</a>  (the last <code>master</code> build +1).</li>
+<li><a href="/manual/test-and-build-a-project-on-jenkins-ci.html#fixing-the-build-number">Set the Jenkins build number</a>  (the last <code>master</code> build +1).</li>
 <li>Rebuild the latest <code>main</code> branch build which would have started automatically by Jenkins when the branch was renamed, but with the incorrect build number (and therefore is likely to have failed).</li>
 <li><a href="https://docs.github.com/en/github/administering-a-repository/renaming-a-branch#updating-a-local-clone-after-a-branch-name-changes">Switch your local branch</a>, otherwise you might rebase the wrong branch by mistake!</li>
 <li>Update the <a href="https://trello.com/c/xVhGGzOE/225-change-default-branch-to-main">list of apps on the Trello card</a></li>

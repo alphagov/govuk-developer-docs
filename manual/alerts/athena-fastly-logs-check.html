@@ -164,15 +164,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Athena Fastly Logs Check</h1> <p>The monitoring for <code>Athena has recent results for fastly_logs {database_name}</code>
@@ -207,7 +200,7 @@ Potential causes could be: broken credentials, change in the AWS CLI tool
 syntax, or a change in the Athena API.</p>
 <h3 id='how-to-check-log-file-presence-and-validity'>How to check log file presence and validity</h3>
 <ol>
-<li><a href="https://docs.publishing.service.gov.uk/manual/set-up-aws-account.html#2-sign-in-to-aws">Sign into the AWS console</a> for the appropriate environment.</li>
+<li><a href="/manual/set-up-aws-account.html#2-sign-in-to-aws">Sign into the AWS console</a> for the appropriate environment.</li>
 <li>Browse to <a href="https://s3.console.aws.amazon.com/s3/home?region=eu-west-1#">S3</a> and find the <code>govuk-{environment}-fastly-logs</code> bucket.</li>
 <li>Navigate through the directories of the database in question to verify a
 directory exists for the current day, for example
@@ -238,7 +231,7 @@ project and this should be checked to see if it was changed recently and/or
 matches what is defined in the Fastly console.</p>
 <h3 id='how-to-check-the-quotgov-uk-fastly-logsquot-crawler'>How to check the &ldquo;GOV.UK fastly logs&rdquo; crawler</h3>
 <ol>
-<li><a href="https://docs.publishing.service.gov.uk/manual/set-up-aws-account.html#2-sign-in-to-aws">Sign into the AWS console</a> for the appropriate environment.</li>
+<li><a href="/manual/set-up-aws-account.html#2-sign-in-to-aws">Sign into the AWS console</a> for the appropriate environment.</li>
 <li>Browse to <a href="https://eu-west-1.console.aws.amazon.com/glue/home?region=eu-west-1#catalog:tab=crawlers">AWS Glue</a> and navigate to the &ldquo;Crawlers&rdquo; section.</li>
 <li>Find the crawler appropriate for the database, for example &ldquo;Assets fastly
 logs&rdquo; is for the &ldquo;govuk_assets&rdquo; database.</li>

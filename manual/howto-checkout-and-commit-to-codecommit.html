@@ -190,7 +190,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4d34f82591bebc44e64ca54eadbef53f6ffb7cc7">2 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>How to check and commit code to AWS CodeCommit</h1> <p>CodeCommit is used as a backup/mirror for our repositories in GitHub. It is regularly populated by a <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml">GitHub Action in govuk-infrastructure</a>.</p>
@@ -205,7 +205,7 @@ git commit -m "my change"
 gds aws govuk-tools-poweruser git push origin mychange
 </code></pre></div><h2 id='install-dependencies-and-set-up-local-environment'>Install dependencies and set up local environment</h2>
 <ul>
-<li><p>For this to work you need to have <a href="https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools">set up the GDS command line tools</a></p></li>
+<li><p>For this to work you need to have <a href="/manual/get-started.html#3-install-gds-command-line-tools">set up the GDS command line tools</a></p></li>
 <li><p>You will also need to install git-remote-codecommit</p></li>
 </ul>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>brew install git-remote-codecommit
@@ -224,7 +224,7 @@ git config --global credential.UseHttpPath true
     UseHttpPath = true
 </code></pre></div><h2 id='cloning-repositories'>Cloning repositories</h2>
 <ul>
-<li>login to the AWS console to see the available repositories using <a href="https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools">the GDS command line tool</a></li>
+<li>login to the AWS console to see the available repositories using <a href="/manual/get-started.html#3-install-gds-command-line-tools">the GDS command line tool</a></li>
 </ul>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser --login
 </code></pre></div>

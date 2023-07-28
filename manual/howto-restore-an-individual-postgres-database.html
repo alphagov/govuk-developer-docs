@@ -184,19 +184,12 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Restore an Individual Postgres Production Database in AWS RDS</h1> <blockquote>
-<p>If you need to restore an entire RDS instance please see <a href="https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html">this manual page</a> instead.</p>
+<p>If you need to restore an entire RDS instance please see <a href="/manual/howto-backup-and-restore-in-aws-rds.html">this manual page</a> instead.</p>
 </blockquote>
 <h3 id='restoring-from-s3-backups'>Restoring From S3 Backups</h3><p>We take nightly database backups and save them to the <code>govuk-&lt;environment&gt;-database-backups</code> S3 bucket inside a folder named after the RDS instance (for example <code>publishing-api-postgres</code>).</p>
 <p>To restore a backup from the most recent copy follow the steps below:</p>
@@ -227,7 +220,7 @@
 <li><p>Then run the command you copied previously.</p></li>
 <li><p>The script will inform you when it&rsquo;s complete. To switch between tmux windows, press <code>Control-B</code> then <code>n</code>. To disconnect from tmux, press <code>Control-B</code> then press <code>d</code>. To reconnect, run <code>sudo -iu govuk-backup tmux a</code></p></li>
 </ol>
-<p>See the <a href="https://docs.publishing.service.gov.uk/manual/govuk-env-sync.html"><code>govuk-env-sync</code> manual page</a> for more information.</p>
+<p>See the <a href="/manual/govuk-env-sync.html"><code>govuk-env-sync</code> manual page</a> for more information.</p>
 
 
   <div class='related-content'>

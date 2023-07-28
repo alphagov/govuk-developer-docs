@@ -159,21 +159,14 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Email Alert API: high latency for sidekiq queue</h1> <p>This alert triggers when there is a significant delay in the time from the
 Email Alert API system creating an email until it is sent.</p>
 <h2 id='understanding-the-alert'>Understanding the alert</h2><p>The latency value itself is a measure, in seconds, of the amount of time that
-the oldest email in the <a href="https://docs.publishing.service.gov.uk/manual/sidekiq.html">Sidekiq</a> queue has been waiting. This latency builds
+the oldest email in the <a href="/manual/sidekiq.html">Sidekiq</a> queue has been waiting. This latency builds
 up when there are more emails to send than workers to send them and this alert
 triggers once this latency reaches an alarming level.</p>
 <h2 id='impact'>Impact</h2><p>The user impact of this alert depends on the queue. A delay for the

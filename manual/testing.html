@@ -199,15 +199,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7e7df0137d9746a8b5ed9f0f3b93500bd6293c45">9 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>How we test GOV.UK</h1> <p>GOV.UK has several layers of testing:</p>
@@ -238,7 +231,7 @@
 
 <ul>
 <li><p><strong>Probes</strong>. A full run of Smokey is triggered <a href="https://github.com/alphagov/govuk-puppet/blob/278426769a1711c622bcb67a59175f73e8f4db61/modules/govuk_jenkins/manifests/jobs/smokey.pp#L24">every few minutes</a> in every environment, causing a Slack alert if it fails. This should prompt an engineer to go and fix a problem. However, many of the probes are unreliable so they are not currently used to page people.</p></li>
-<li><p><strong>Surrogate Tests</strong>. <a href="https://github.com/alphagov/smokey/blob/main/docs/tagging.md#app-app_name">A subset of the probes</a> are run as part of the <a href="https://docs.publishing.service.gov.uk/manual/development-pipeline.html">Continuous Deployment pipeline</a>. These can fail for reasons unrelated to the app being targeted, which is why we consider this a &ldquo;surrogate&rdquo; form of testing.</p></li>
+<li><p><strong>Surrogate Tests</strong>. <a href="https://github.com/alphagov/smokey/blob/main/docs/tagging.md#app-app_name">A subset of the probes</a> are run as part of the <a href="/manual/development-pipeline.html">Continuous Deployment pipeline</a>. These can fail for reasons unrelated to the app being targeted, which is why we consider this a &ldquo;surrogate&rdquo; form of testing.</p></li>
 </ul>
 <p><a href="https://sentry.io/organizations/govuk/issues/?project=6370326">We use Sentry to monitor flakey probes</a> and identify patterns we can fix.</p>
 <p><a href="https://github.com/alphagov/smokey/blob/main/docs/writing-tests.md">Read more about when and how to write Smoke tests</a>.</p>
@@ -250,7 +243,7 @@
 <li>The healthcheck covers connectivity to all systems the app uses to read or write data e.g. databases, remote file systems, remote caches.</li>
 </ul>
 <p>Note that service apps have no web server to query, so <a href="https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk/files/usr/local/bin/govuk_supervised_initctl">we check the process is running</a>; apps should fail to start if they can’t connect to their infra (<a href="https://github.com/alphagov/email-alert-service/commit/cc6123e88d1ec9542d0d19e719e8e02c37b78538">example</a>).</p>
-<p>See also: <a href="https://docs.publishing.service.gov.uk/manual/alerts/app-healthcheck-not-ok.html">how we reuse health check endpoints to alert about transient failures</a>.</p>
+<p>See also: <a href="/manual/alerts/app-healthcheck-not-ok.html">how we reuse health check endpoints to alert about transient failures</a>.</p>
 <h2 id='continuous-integration-checks'>Continuous Integration checks</h2><h3 id='contract-tests'>Contract Tests</h3><p>Also known as &ldquo;Pact Tests&rdquo;.</p>
 <p>Contract tests check that APIs exposed by one app (the &ldquo;provider&rdquo;) are compatible with other apps that use those APIs (&ldquo;consumers&rdquo;). This is done by having a set of shared tests: the tests are run by the provider and the consumers.</p>
 <p>Apps that are automatically deployed all the way to Production should follow the <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md#safety-checks">guidance on tests (“safety checks”) in the Continuous Deployment RFC</a>:</p>
@@ -261,8 +254,8 @@
 <p>Contract tests are an important part of the overall test strategy for GOV.UK. If we visually add unit and integration tests, the result is a &ldquo;chain&rdquo; of test coverage:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Consumer (Unit tests) &lt;---&gt; API (Contract Test) &lt;---&gt; Provider (Unit tests) &lt;---&gt; ...
 </code></pre></div><p>The chain can be brittle, though: it can&rsquo;t test incremental state changes across multiple apps - think about all the API calls and state changes involved in publishing a document on GOV.UK. End-to-end tests are an alternative way of checking for this kind of end-to-end behaviour.</p>
-<p><a href="https://docs.publishing.service.gov.uk/manual/pact-testing.html">Read more about how to write contract tests</a>.</p>
-<h3 id='unit-integration-etc-tests'>Unit, Integration, etc. Tests</h3><p>Most GOV.UK apps are built with Ruby on Rails and you should use specific <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html#testing-utilities">tools</a> and <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html#testing-strategies">strategies</a> for testing them. Some older apps use the <a href="https://guides.rubyonrails.org/testing.html#rails-meets-minitest">Minitest</a> framework as they were written prior to us adopting RSpec; we have migrated some apps to RSpec (<a href="https://github.com/alphagov/collections/issues/2259">example</a>) but <a href="https://github.com/alphagov/smart-answers/issues/5350">this should be avoided due to the effort required</a>.</p>
+<p><a href="/manual/pact-testing.html">Read more about how to write contract tests</a>.</p>
+<h3 id='unit-integration-etc-tests'>Unit, Integration, etc. Tests</h3><p>Most GOV.UK apps are built with Ruby on Rails and you should use specific <a href="/manual/conventions-for-rails-applications.html#testing-utilities">tools</a> and <a href="/manual/conventions-for-rails-applications.html#testing-strategies">strategies</a> for testing them. Some older apps use the <a href="https://guides.rubyonrails.org/testing.html#rails-meets-minitest">Minitest</a> framework as they were written prior to us adopting RSpec; we have migrated some apps to RSpec (<a href="https://github.com/alphagov/collections/issues/2259">example</a>) but <a href="https://github.com/alphagov/smart-answers/issues/5350">this should be avoided due to the effort required</a>.</p>
 <p>Apps that are automatically deployed all the way to Production should also follow the <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md#safety-checks">guidance on tests (&ldquo;safety checks&rdquo;) in the Continuous Deployment RFC</a>:</p>
 
 <ul>

@@ -244,7 +244,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/eb94e9dcda596af42d432b931da09641729a9d66">29 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Sentry</h1> <p><a href="https://sentry.io/govuk/">Sentry</a> is a service that collates errors that happen on GOV.UK in one
@@ -283,7 +283,7 @@ See <a href="https://sentry.io/organizations/govuk/issues/2155210524/events/aa4e
 <h2 id='how-sentry-is-integrated-on-gov-uk'>How Sentry is integrated on GOV.UK</h2><p>Projects can be created and edited in the Sentry UI, but this risks creating
 inconsistencies or missing apps. We therefore configure projects using
 <a href="https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L1-L12">govuk-saas-config</a> (and its <a href="https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L26-L87">associated rake tasks</a>, used for
-<a href="https://docs.publishing.service.gov.uk/manual/setting-up-new-rails-app.html#create-the-application-in-sentry">creating apps in Sentry</a>), which read a <a href="https://docs.publishing.service.gov.uk/apps.json">list of apps</a>
+<a href="/manual/setting-up-new-rails-app.html#create-the-application-in-sentry">creating apps in Sentry</a>), which read a <a href="/apps.json">list of apps</a>
 from govuk-developer-docs and make sure that all configuration is set up correctly.</p>
 <p>Apps are configured to talk to Sentry using the <a href="https://github.com/alphagov/govuk_app_config">govuk_app_config</a> gem,
 which interfaces with Sentry via its <a href="https://github.com/alphagov/govuk_app_config/blob/master/lib/govuk_app_config/govuk_error.rb"><code>GovukError</code> class</a>. Apps

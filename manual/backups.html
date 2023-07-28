@@ -218,7 +218,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7f98d363d5addc25a8749c3d4867fbeb21e5932e">24 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Use of backups</h1> <p>This manual provides a shared definition of a backup and documents our current use of backups summarising strategies and tools we use.</p>
@@ -241,7 +241,7 @@ The &ldquo;Earliest restorable time&rdquo; and &ldquo;Latest restorable time&rdq
 <h1 id='s3-buckets-backups'>S3 buckets backups</h1><p>Besides the S3 buckets that store aforementioned full database backups, we have S3 buckets that store business critical information, for example:</p>
 
 <ul>
-<li><a href="https://docs.publishing.service.gov.uk/manual/fall-back-to-mirror.html">GOV.UK mirrors</a>
+<li><a href="/manual/fall-back-to-mirror.html">GOV.UK mirrors</a>
 
 <ul>
 <li>A replica is also held in <a href="https://github.com/alphagov/govuk-aws/tree/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/infra-google-mirror-bucket">Google Cloud Storage</a> with versioning enabled</li>
@@ -284,7 +284,7 @@ The &ldquo;Earliest restorable time&rdquo; and &ldquo;Latest restorable time&rdq
 <h1 id='elasticsearch-backups'>Elasticsearch backups</h1><p>Elasticsearch provides the Snapshot and Restore API for creating and restoring snapshots of Elasticsearch indices. When we create a snapshot using the API, Elasticsearch creates a copy of the index and its data and stores it in the specified repository. Elasticsearch also stores metadata about the snapshot, including the index mappings, settings and aliases. These snapshots are taken <a href="https://github.com/alphagov/govuk-aws/blob/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/app-elasticsearch6/main.tf#L87-L91">overnight</a> and stored in an <a href="https://github.com/alphagov/govuk-aws/blob/c7297c0730dd4a7319e11f270e197dd52e5d8127/terraform/projects/app-elasticsearch6/register-snapshot-repository.py#L37">S3 bucket</a> to be used in the <a href="https://github.com/alphagov/govuk-puppet/blob/aa75027/modules/govuk_env_sync/files/govuk_env_sync.sh#L328-L336">environment sync process</a>.</p>
 <p>GOV.UK search is a consumer of publishing API events. Indices can be recreated to match current publishing state by republishing content.</p>
 <p>Automated snapshots are taken hourly, retained for 2 weeks in an AWS repository that we can interact with via the Elasticsearch API.</p>
-<p><a href="https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html#header">Read more about backup and restore of Elasticsearch indices</a>.</p>
+<p><a href="/manual/elasticsearch-dumps.html#header">Read more about backup and restore of Elasticsearch indices</a>.</p>
 <h1 id='graphite-whisper-backups'>Graphite Whisper backups</h1><p>Graphite is a open-source monitoring tool that stores time-series data. Whisper is a data storage format used by Graphite that is optimised for fast, reliable storage of time-series data.</p>
 <p>We use the <a href="https://github.com/alphagov/govuk-puppet/blob/648e9b95014b5fb40e9fb8da2a14c008ebf934aa/modules/govuk/manifests/node/s_graphite.pp#L117">whisper-backup script in govuk-puppet</a> to replicate the files daily to a <a href="https://github.com/alphagov/govuk-aws/blob/cb3205d8b11da3edd518924ad5ab2668627c6d48/terraform/projects/infra-graphite-backups-bucket/README.md">dedicated s3 bucket</a>. The data from production is retained for <a href="https://github.com/alphagov/govuk-aws/blob/cb3205d8b11da3edd518924ad5ab2668627c6d48/terraform/projects/infra-graphite-backups-bucket/main.tf#L23-L27">7 days</a> and for <a href="https://github.com/alphagov/govuk-aws-data/blob/7b5a2638c9d432aca5d7e09be3f990256b3a475d/data/infra-graphite-backups-bucket/integration/common.tfvars#L1">3 days</a> for non-production environments.</p>
 <h1 id='aws-backup'>AWS Backup</h1><p>We are not curreently using &ldquo;AWS Backup&rdquo; but we are reviewing the feasibility of using it in the future.</p>

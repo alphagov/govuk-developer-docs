@@ -176,12 +176,12 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Debug published documents with incorrect links</h1> <p>This can happen when the Publishing API is still working through all of the
 pages that may have changed due to dependency resolution. You can find out if
-this is a problem <a href="https://docs.publishing.service.gov.uk/manual/sidekiq.html#sidekiq-web-aka-sidekiq-monitoring">by monitoring Publishing API sidekiq queue</a>
+this is a problem <a href="/manual/sidekiq.html#sidekiq-web-aka-sidekiq-monitoring">by monitoring Publishing API sidekiq queue</a>
 and seeing if the <code>downstream_low</code> queue is high.</p>
 <p>To get things processed faster you can run the following Rake task on the
 Publishing API <code>represent_downstream:high_priority:content_id[&#39;some-content-id some-other-content-id&#39;]</code>,

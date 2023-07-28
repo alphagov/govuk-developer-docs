@@ -193,15 +193,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Upgrade Terraform</h1> <p>Terraform should be regularly upgraded. New releases happen very often, with bug fixes and improvements.
@@ -224,7 +217,7 @@ We should also keep an eye on new versions and update regularly in a similar way
 <li>Inform people of the upgrade so they can install the new binary in their laptops for code development.</li>
 </ul>
 <h3 id='build-a-new-terraform-package'>Build a new Terraform package</h3><p>The Terraform package is built with a recipe in the <a href="https://github.com/alphagov/packager">packager</a> repository.
-Follow the general instructions in <a href="https://docs.publishing.service.gov.uk/manual/debian-packaging.html">Debian packaging</a>
+Follow the general instructions in <a href="/manual/debian-packaging.html">Debian packaging</a>
 to create a new package and upload it to our Apt repository.</p>
 <p>For instance, this pull request creates a recipe for <a href="https://github.com/alphagov/packager/pull/172">Terraform 0.11.14</a>
 After merging to master, execute the <a href="https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/">build_fpm_package</a>

@@ -198,7 +198,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/db2500bb7f432a25a7d2394c218dae981a10e616">2 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Run an A/B or multivariate test</h1> <p>Before you run an A/B or multivariate test, you should read the <a href="/manual/ab-testing.html">guidance on how A/B testing works</a>.</p>
@@ -219,7 +219,7 @@ testing headers on pages that you are measuring. See this <a href="https://githu
 <li>If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a <a href="https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK">GA dimension</a> to use for your test. If you wish to run an A/B test in integration or staging you may need to ensure that analytics tracking exists in those environments.</li>
 <li>Create dictionary and A/B test files in the <a href="https://github.com/alphagov/govuk-cdn-config">govuk-cdn-config repo</a>. See an <a href="https://github.com/alphagov/govuk-cdn-config/pull/403/commits/4283c9358120360ebbfb00af4824e0571241f194">example for the dictionaries</a>. For the tests you will want to regenerate the spec files by running the script in the <a href="https://github.com/alphagov/govuk-cdn-config#making-changes-to-vcl">govuk-cdn-config README</a>, this will generate test files as seen in this <a href="https://github.com/alphagov/govuk-cdn-config/pull/403/commits/ac79b4b365e468f64e4cec35c6d22b45a90f9d16">example</a>.</li>
 </ol>
-<h2 id='3-deploy-and-activate-an-ab-test'>3. Deploy and activate an A/B test</h2><p>To deploy and activate an A/B test, you must <a href="https://docs.publishing.service.gov.uk/manual/cdn.html#deploying-fastly">set up a personal API token</a> in your Fastly account.</p>
+<h2 id='3-deploy-and-activate-an-ab-test'>3. Deploy and activate an A/B test</h2><p>To deploy and activate an A/B test, you must <a href="/manual/cdn.html#deploying-fastly">set up a personal API token</a> in your Fastly account.</p>
 
 <ol>
 <li>Deploy the dictionary changes to each environment using the <a href="https://deploy.blue.staging.govuk.digital/job/Update_CDN_Dictionaries/">Update_CDN_Dictionaries Jenkins job</a>. The API key is in the [govuk-secrets repo][govuk-secrets-fastly]. You must deploy the dictionaries to the <code>www</code> vhost.</li>

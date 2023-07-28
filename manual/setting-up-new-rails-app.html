@@ -238,15 +238,15 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/eacb6eceb08e68b5ec5ef0bdb5757dfa9937769c">23 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
- <h1 id='header'>Set up a new Rails application</h1> <h2 id='before-you-start'>Before you start</h2><p>Before you create a Ruby on Rails (“Rails”) app, you must complete all steps in the <a href="https://docs.publishing.service.gov.uk/manual/get-started.html">GOV.UK developer get started documentation</a>.</p>
+ <h1 id='header'>Set up a new Rails application</h1> <h2 id='before-you-start'>Before you start</h2><p>Before you create a Ruby on Rails (“Rails”) app, you must complete all steps in the <a href="/manual/get-started.html">GOV.UK developer get started documentation</a>.</p>
 <p>You should:</p>
 
 <ul>
-<li>develop your Rails app in line with the <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">conventions for Rails applications</a></li>
-<li>name your Rails app in line with the <a href="https://docs.publishing.service.gov.uk/manual/naming.html">conventions for naming apps</a></li>
+<li>develop your Rails app in line with the <a href="/manual/conventions-for-rails-applications.html">conventions for Rails applications</a></li>
+<li>name your Rails app in line with the <a href="/manual/naming.html">conventions for naming apps</a></li>
 </ul>
 <h2 id='create-a-new-rails-app'>Create a new Rails app</h2>
 <ol>
@@ -340,16 +340,16 @@
   <span class="n">get</span> <span class="s2">"/healthcheck/ready"</span><span class="p">,</span> <span class="ss">to: </span><span class="no">GovukHealthcheck</span><span class="p">.</span><span class="nf">rack_response</span>
 <span class="k">end</span>
 </code></pre></div></li>
-<li><p>Configure linting for your Rails app to make sure the app&rsquo;s code is consistent with other GOV.UK apps. Find out more information about <a href="https://docs.publishing.service.gov.uk/manual/configure-linting.html">configuring linting</a>.</p></li>
+<li><p>Configure linting for your Rails app to make sure the app&rsquo;s code is consistent with other GOV.UK apps. Find out more information about <a href="/manual/configure-linting.html">configuring linting</a>.</p></li>
 </ol>
 <h3 id='setting-up-a-puma-web-server'>Setting up a Puma web server</h3><p>Puma is already included in the <a href="https://github.com/alphagov/govuk_app_config">govuk_app_config</a> gem.</p>
 <p>Create a <code>config/puma.rb</code> file that contains the following code:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code>  <span class="nb">require</span> <span class="s2">"govuk_app_config/govuk_puma"</span>
   <span class="no">GovukPuma</span><span class="p">.</span><span class="nf">configure_rails</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
 </code></pre></div><h3 id='add-your-rails-app-to-gov-uk-docker'>Add your Rails app to GOV.UK Docker</h3><p>Add your Rails app to GOV.UK Docker so you can run the app locally. See an <a href="https://github.com/alphagov/govuk-docker/pull/465">example GOV.UK Docker pull request</a>.</p>
-<h3 id='set-up-contract-tests-for-your-app'>Set up contract tests for your app</h3><p>If your app provides an internal API, it should have <a href="https://docs.publishing.service.gov.uk/manual/pact-testing.html">contract tests</a>.</p>
-<h2 id='set-up-a-github-repo-for-your-rails-app'>Set up a GitHub repo for your Rails app</h2><p>When you’ve finished developing your Rails app, you can <a href="https://docs.publishing.service.gov.uk/manual/configure-github-repo.html#auto-configuration">set up a GitHub repo for your Rails app</a>.</p>
-<p>You must add a description to the <em>About</em> section in the GitHub repo, or the GOV.UK developer documentation build will break when it tries to build the <a href="https://docs.publishing.service.gov.uk/#applications">list of apps</a>.</p>
+<h3 id='set-up-contract-tests-for-your-app'>Set up contract tests for your app</h3><p>If your app provides an internal API, it should have <a href="/manual/pact-testing.html">contract tests</a>.</p>
+<h2 id='set-up-a-github-repo-for-your-rails-app'>Set up a GitHub repo for your Rails app</h2><p>When you’ve finished developing your Rails app, you can <a href="/manual/configure-github-repo.html#auto-configuration">set up a GitHub repo for your Rails app</a>.</p>
+<p>You must add a description to the <em>About</em> section in the GitHub repo, or the GOV.UK developer documentation build will break when it tries to build the <a href="/#applications">list of apps</a>.</p>
 <h3 id='add-a-software-licence'>Add a software licence</h3><p>You must add a <code>LICENCE</code> file to your project’s root folder that specifies the software licence. You should usually use the following MIT License text. Replace <YEAR> with the current year.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>The MIT License (MIT)
 
@@ -375,10 +375,10 @@ SOFTWARE.
 </code></pre></div><h3 id='replace-the-default-readme-md'>Replace the default README.md</h3><p>Change the default <code>README.md</code> file to match <a href="/manual/readmes.html#template-for-new-readmes">the standard README template</a>.</p>
 <h3 id='write-api-documentation'>Write API documentation</h3><p>If your app is an API, you should create a <code>docs/api.md</code> file.</p>
 <p><a href="https://www.gov.uk/guidance/writing-api-reference-documentation">Guidance on writing API reference documentation on GOV.UK</a>.</p>
-<h2 id='prepare-your-rails-app-to-run-in-production'>Prepare your Rails app to run in production</h2><h3 id='configure-your-rails-app-for-jenkins'>Configure your Rails app for Jenkins</h3><p>Find out how to <a href="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html#setting-up">set up an app in Jenkins</a>.</p>
+<h2 id='prepare-your-rails-app-to-run-in-production'>Prepare your Rails app to run in production</h2><h3 id='configure-your-rails-app-for-jenkins'>Configure your Rails app for Jenkins</h3><p>Find out how to <a href="/manual/test-and-build-a-project-on-jenkins-ci.html#setting-up">set up an app in Jenkins</a>.</p>
 <h3 id='add-your-rails-app-to-gov-uk'>Add your Rails app to GOV.UK</h3><p>Find out how to <a href="https://github.com/alphagov/govuk-puppet/blob/master/docs/adding-a-new-app.md#including-the-app-on-machines">add your Rails app to GOV.UK using <code>govuk-puppet</code></a>.</p>
 <h3 id='configure-your-rails-app39s-deployment'>Configure your Rails app&rsquo;s deployment</h3><p>To configure your app&rsquo;s deployment, see the <a href="https://github.com/alphagov/govuk-app-deployment">GOV.UK application deployment scripts</a>.</p>
-<h3 id='enable-external-dns'>Enable external DNS</h3><p>If you need to enable external DNS, find out how to <a href="https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain">make changes to publishing.service.gov.uk</a>.</p>
+<h3 id='enable-external-dns'>Enable external DNS</h3><p>If you need to enable external DNS, find out how to <a href="/manual/dns.html#dns-for-the-publishingservicegovuk-domain">make changes to publishing.service.gov.uk</a>.</p>
 <h3 id='add-your-app-to-the-gov-uk-developer-documentation'>Add your app to the GOV.UK developer documentation</h3><p>Open a pull request to add your Rails app to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">GOV.UK developer documentation <code>data/repos.yml</code> file</a>.</p>
 <h3 id='create-the-application-in-sentry'>Create the application in Sentry</h3><p>After you’ve added your Rails app to the GOV.UK developer documentation, run the <a href="https://github.com/alphagov/govuk-saas-config/blob/045668beed8aebc50b876108363c8d1a25bdf80c/sentry/Rakefile#L69-L83"><code>update_project</code> rake task</a> in <a href="https://github.com/alphagov/govuk-saas-config">GOV.UK SaaS Config</a> to update Sentry.</p>
 <p>From the <code>sentry</code> directory, run:</p>

@@ -209,15 +209,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0828b95687f1a25191f3453452f7687727497f60">9 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Cookie consent on GOV.UK</h1> <p>This is technical documentation for the <a href="https://www.gov.uk/">GOV.UK</a> team in the <a href="https://gds.blog.gov.uk/about/">Government Digital Service (GDS)</a>.</p>
@@ -240,7 +233,7 @@
 </code></pre></div><p>If the user clicks “Accept cookies” within the cookie banner or changes their cookie settings on the settings page, they get an additional cookie that ensures they don’t see the cookie banner again:</p>
 <div class="highlight"><pre class="highlight javascript" tabindex="0"><code><span class="nx">cookies_preferences_set</span>
 </code></pre></div><p>Users can still change their consent via the <a href="https://www.gov.uk/help/cookies">cookie settings page</a>.</p>
-<h2 id='special-cases'>Special Cases</h2><h3 id='google-analytics'>Google Analytics</h3><p>GOV.UK uses <a href="https://docs.publishing.service.gov.uk/manual/analytics.html">Google Analytics</a> to track user journeys.</p>
+<h2 id='special-cases'>Special Cases</h2><h3 id='google-analytics'>Google Analytics</h3><p>GOV.UK uses <a href="/manual/analytics.html">Google Analytics</a> to track user journeys.</p>
 <p>Unlike other cookies on GOV.UK, Google Analytics (GA) cookies are not set using our cookie helpers. GA cookies are initialised within Static. Therefore, as well as deleting the GA cookies, we also need to <a href="https://github.com/alphagov/static/commit/5407c0d14a4eecf03619c4d7463a1097368fae4d#diff-db159f6ce52141b9dd276c2150489d59a3481f6796cf644e5b3fe95aeb749c01L1">wrap the initialisation of GOVUK.Analytics</a> to ensure the cookies are not recreated.</p>
 <p>We also set the following property to disable tracking:</p>
 <div class="highlight"><pre class="highlight javascript" tabindex="0"><code><span class="nb">window</span><span class="p">[</span><span class="dl">'</span><span class="s1">ga-disable-UA-26179049-1</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span>

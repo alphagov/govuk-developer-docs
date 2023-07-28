@@ -186,18 +186,11 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bc37450ead29ae4ca162c1c12cf44e0adfca9955">2 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
- <h1 id='header'>Add authentication to an application</h1> <p>The process outlined here relies on the <a href="https://docs.publishing.service.gov.uk/manual/alerts/data-sync.html">data sync</a> to synchronise
+ <h1 id='header'>Add authentication to an application</h1> <p>The process outlined here relies on the <a href="/manual/alerts/data-sync.html">data sync</a> to synchronise
 credentials between production and staging which will mean that you will have
 to wait overnight from starting this to completing.</p>
 <h2 id='setting-up-authentication-for-your-ruby-application'>Setting up authentication for your Ruby application</h2><p>Prior to merging authentication into an existing application there are a
@@ -220,7 +213,7 @@ tests. <a href="https://github.com/alphagov/content-store/pull/498/commits/f405c
 <li>Your application will need to be registered as an application in
 <a href="/repos/signon.html">signon</a> in <a href="http://signon.publishing.service.gov.uk">production</a> and
 <a href="http://signon.integration.publishing.service.gov.uk">integration</a>. Staging is not required as it will be
-synced with production as part of the <a href="https://docs.publishing.service.gov.uk/manual/alerts/data-sync.html">data sync</a>.
+synced with production as part of the <a href="/manual/alerts/data-sync.html">data sync</a>.
 
 <ul>
 <li>Create the application in signon with a <a href="https://github.com/alphagov/signon/blob/main/docs/usage.md#setup-rake-tasks">rake task</a></li>
@@ -231,7 +224,7 @@ need authenticated access to your application.
 
 <ul>
 <li>Identify each of the applications that communicate with your application,
-the <a href="https://docs.publishing.service.gov.uk/manual/architecture.html">Architectural overview of GOV.UK applications</a> may
+the <a href="/manual/architecture.html">Architectural overview of GOV.UK applications</a> may
 help, and determine whether they need authenticated access.</li>
 <li>For each of these:
 

@@ -195,7 +195,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='removing-an-asset'>Removing an asset</h2><p>If you need to remove an asset manually from <code>assets.publishing.service.gov.uk</code>,
@@ -228,7 +228,7 @@ k exec deploy/asset-manager -- rake assets:delete[ASSET_ID]
 <ol>
 <li><p>Add a query string to the URL (e.g. <code>?cache-bust=12345</code>) to bypass the cache
 and check that the asset responds with a 404 not found.</p></li>
-<li><p>Wait 20 minutes for the cache to clear, or <a href="https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets">purge it yourself</a>.</p></li>
+<li><p>Wait 20 minutes for the cache to clear, or <a href="/manual/purge-cache.html#assets">purge it yourself</a>.</p></li>
 <li><p>Verify that the asset is not there without using query string.</p></li>
 <li><p>Request removal of the asset using the <a href="https://www.google.com/webmasters/tools/removals">Google Search Console</a>.</p></li>
 <li><p>Remove the asset from the Amazon Web Services (AWS) mirror:</p></li>

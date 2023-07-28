@@ -195,7 +195,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/471166431e236bfbf093cd4a7d4f37652206ffdd">5 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Rules for getting production access</h1> <p>In the GOV.UK programme we restrict access to production systems for new or
@@ -217,8 +217,8 @@ systems. It should be granted to both civil servants and contractors as needed.<
 <p>Access includes:</p>
 
 <ul>
-<li>Permission to <a href="https://docs.publishing.service.gov.uk/manual/development-pipeline.html#deployment">deploy apps</a> in Jenkins via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy Github team</a></li>
-<li>Permission to <a href="https://docs.publishing.service.gov.uk/manual/merge-pr.html#header">merge pull requests</a> in continuously deployed applications</li>
+<li>Permission to <a href="/manual/development-pipeline.html#deployment">deploy apps</a> in Jenkins via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy Github team</a></li>
+<li>Permission to <a href="/manual/merge-pr.html#header">merge pull requests</a> in continuously deployed applications</li>
 <li>Readonly access to logging systems such as Logit, etc.</li>
 <li>AWS readonly access via the <code>role_user_user_arns</code> role in <a href="https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/staging/common.tfvars">Staging</a> and <a href="https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/production/common.tfvars">Production</a></li>
 <li>&ldquo;Normal&rdquo; role in to GOV.UK Signon on Staging and Production (with app permissions granted as needed)</li>
@@ -230,16 +230,16 @@ any access issues.</p>
 
 <ul>
 <li>is aware of our processes and standards around <a href="https://gds-way.cloudapps.digital/manuals/code-review-guidelines.html">code review</a></li>
-<li>understands the responsibilities that <a href="https://docs.publishing.service.gov.uk/manual/development-pipeline.html#deployment">releasing code</a> brings with it</li>
+<li>understands the responsibilities that <a href="/manual/development-pipeline.html#deployment">releasing code</a> brings with it</li>
 <li>knows how to roll back to an older release if there are any issues</li>
-<li>knows <a href="https://docs.publishing.service.gov.uk/manual/ask-for-help.html">how to get help</a> from someone with more access if they need it</li>
+<li>knows <a href="/manual/ask-for-help.html">how to get help</a> from someone with more access if they need it</li>
 </ul>
 <h3 id='production-admin-access'>Production Admin access</h3>
 <ul>
-<li>Permission to read &amp; write <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml">production</a> and <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/staging_credentials.yaml">staging</a> <a href="https://docs.publishing.service.gov.uk/manual/encrypted-hiera-data.html#what-to-do-when-someone-gets-production-access">hieradata</a> in govuk-secrets using GPG</li>
+<li>Permission to read &amp; write <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml">production</a> and <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/staging_credentials.yaml">staging</a> <a href="/manual/encrypted-hiera-data.html#what-to-do-when-someone-gets-production-access">hieradata</a> in govuk-secrets using GPG</li>
 <li>Permission to read &amp; write to the <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">password store</a> in govuk-secrets store using <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id">GPG</a></li>
 <li>Access to <a href="https://deploy.blue.production.govuk.digital/">Production Deploy Jenkins</a> and <a href="https://deploy.blue.staging.govuk.digital/">Staging Deploy Jenkins</a> to deploy applications via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production GitHub team</a></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html">SSH access</a> to production and staging servers via <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a></li>
+<li><a href="/manual/howto-ssh-to-machines.html">SSH access</a> to production and staging servers via <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a></li>
 <li>Privileged AWS Access in <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars">Production</a>, <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/staging/common.tfvars">Staging</a> and <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/tools/common.tfvars">Tools</a> environments (via the <code>role_admin_user_arns</code> role)</li>
 <li><a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a> access to role to manage <a href="/manual/fall-back-to-mirror.html">static mirrors</a> and DNS</li>
 <li>Signon &ldquo;Super Admin&rdquo; access in production</li>
@@ -259,7 +259,7 @@ access to all spaces in the <a href="https://admin.cloud.service.gov.uk/organisa
 <p>At the end of your shadow shift, you will retain your Production Admin access, and will no longer need to be supervised. However, you should ensure you are careful with the new access, and seek the support of your tech lead or your team whenever you&rsquo;re in doubt.</p>
 <p>Note that a Lead Developer or the Head of Technology is able to approve Production Admin access for individuals who may not have met all of the conditions above, where there is a business case to do so.</p>
 <h2 id='rules-for-primary-secondary-and-on-call'>Rules for Primary, Secondary and On Call</h2><p>Once you have Production Admin access, you&rsquo;ll be given the Secondary role on your next Technical 2nd line shift.</p>
-<p>After two sessions as Secondary, you will be drafted onto the 2nd line <a href="https://docs.publishing.service.gov.uk/manual/on-call.html">on-call</a> rota.
+<p>After two sessions as Secondary, you will be drafted onto the 2nd line <a href="/manual/on-call.html">on-call</a> rota.
 You will also begin to fill the Primary role on some in-hours shifts.</p>
 <h2 id='temporarily-revoking-access'>Temporarily revoking access</h2><p>If you&rsquo;re absent more than 6 weeks, your access will be revoked. See <a href="https://trello.com/c/IQIV54Pc/378-leaver-name-here-tech-role">the Trello
 leaver template card</a>

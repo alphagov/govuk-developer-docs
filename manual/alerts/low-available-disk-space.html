@@ -176,15 +176,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c2b886a871824cf41f0aafd9b7063d43a03032ac">12 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>Low available disk space</h1> <p>See also: <a href="/manual/alerts/low-available-disk-inodes.html">low available disk inodes</a></p>
@@ -270,7 +263,7 @@ to run the applications (such as a growing database) you can increase capacity
 by:</p>
 
 <ol>
-<li><a href="https://docs.publishing.service.gov.uk/manual/manually-resize-ebs.html">Growing a persistent volume</a> in case of a stateful app</li>
+<li><a href="/manual/manually-resize-ebs.html">Growing a persistent volume</a> in case of a stateful app</li>
 <li>If the app is stateless and the volume ephemeral you can resize it in govuk-aws-data at data/&lt;app&gt;/&lt;env&gt;/common.tfvars and modify root_block_device_volume .You will then have to terminate the instances for them to be respawned by the autoscaling group with the new resized volume.</li>
 </ol>
 <h2 id='disk-space-used-by-logfiles'>Disk space used by logfiles</h2><p>You may discover that disk space is mostly being used up by logfiles.

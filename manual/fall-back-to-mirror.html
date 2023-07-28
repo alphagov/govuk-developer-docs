@@ -196,14 +196,14 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7d93cb73c08839134033bca963871c1d2bfa9d22">23 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>GOV.UK CDN static mirrors</h1> <p>The GOV.UK mirror is a static copy of GOV.UK.</p>
 <h2 id='when-is-the-gov-uk-mirror-used'>When is the GOV.UK mirror used?</h2><p>Most requests to GOV.UK are handled by the <a href="/manual/cdn.html">Fastly content delivery network (CDN)</a>, which sits between the user and <a href="/manual/architecture-shallow-dive.html#a-user-visits-the-gov-uk-homepage">GOV.UK Origin</a>.</p>
 <p>When a user requests a GOV.UK page, Fastly retrieves that page from its cache, or fetches the page from GOV.UK Origin if Fastly does not have the page in its cache.</p>
 <p>Sometimes, GOV.UK Origin may time out or return a 5xx error response. When that happens, Fastly automatically fetches the page from the GOV.UK mirror instead.</p>
-<p>If Fastly goes down, we would manually <a href="https://docs.publishing.service.gov.uk/manual/fall-back-to-aws-cloudfront.html">switch to AWS CloudFront</a> instead of Fastly. Where Fastly makes requests to GOV.UK Origin, AWS CloudFront instead makes all its requests to the GOV.UK mirror.</p>
+<p>If Fastly goes down, we would manually <a href="/manual/fall-back-to-aws-cloudfront.html">switch to AWS CloudFront</a> instead of Fastly. Where Fastly makes requests to GOV.UK Origin, AWS CloudFront instead makes all its requests to the GOV.UK mirror.</p>
 <h2 id='gov-uk-mirror-locations-and-access'>GOV.UK mirror locations and access</h2><p>The GOV.UK mirror is hosted in an <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html">Amazon Web Services (AWS) S3 bucket</a>. The bucket contains copies of GOV.UK HTML files. The mirror is static, meaning dynamic pages such as search pages will not work. S3 will return 403 Forbidden response for non-existent pages instead of 404, because we don&rsquo;t allow the ListBucket permission. This also affects requests for features such as Search, which are not covered by the mirrors.</p>
 <p>The term &ldquo;GOV.UK mirror&rdquo; actually refers to 3 separate mirrors:</p>
 
@@ -225,7 +225,7 @@
 <li>adds any new URLs found on those pages to the back of the RabbitMQ message queue</li>
 </ul>
 <p>Every hour, the <a href="https://github.com/alphagov/govuk-puppet/blob/86d1480c6e081313c415246063d5931af24473da/modules/govuk_crawler/manifests/init.pp#L109"><code>govuk_sync_mirror</code></a> script runs on the mirrorer machine. This script copies the GOV.UK HTML files from the mirrorer machine to the main <code>govuk-&lt;environment&gt;-mirror</code> AWS S3 bucket. AWS then copies this main bucket to the replica <code>govuk-&lt;environment&gt;-mirror-replica</code> S3 bucket in another region.</p>
-<p>Finally, a job is run in Google Cloud Storage (GCS) at 6:00pm the day after the original <code>govuk_seed_crawler</code>script is run. This job syncs the primary AWS S3 bucket <code>govuk-&lt;environment&gt;-mirror</code> to the GCS <code>govuk-&lt;environment&gt;-mirror</code> bucket. For more information on GCS, see the <a href="https://docs.publishing.service.gov.uk/manual/google-cloud-platform-gcp.html">Google Cloud Platform documentation</a>.</p>
+<p>Finally, a job is run in Google Cloud Storage (GCS) at 6:00pm the day after the original <code>govuk_seed_crawler</code>script is run. This job syncs the primary AWS S3 bucket <code>govuk-&lt;environment&gt;-mirror</code> to the GCS <code>govuk-&lt;environment&gt;-mirror</code> bucket. For more information on GCS, see the <a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform documentation</a>.</p>
 <p>The <code>govuk_seed_crawler</code> and <code>govuk_crawler_worker</code> scripts are independent of the mirrors. Stopping these scripts stops the mirror updates, but does not stop the mirrors from working.</p>
 <p>Run the following to inspect the contents of the GOV.UK mirrorer machine:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect -e production ssh mirrorer

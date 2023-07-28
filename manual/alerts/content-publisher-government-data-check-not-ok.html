@@ -148,15 +148,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6631409a7116e2e522ecb54fe0a3687adfc9728d">13 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
  <h1 id='header'>content-publisher government-data check not ok</h1> <p>This means that Content Publisher is having trouble updating the data it holds on current and previous governments. Ordinarily it reloads this data from the Publishing API every fifteen minutes and seeing this error means it hasn&rsquo;t happened in at least 6 hours. After 24 hours the cache of government data will clear and the app will stop working as expected. The following suggestions should help to isolate the problem.</p>
@@ -164,7 +157,7 @@
 <ul>
 <li>Check <a href="[https://sentry.io/organizations/govuk/issues/?project=1242052]">Sentry</a> for any recent errors that indicate reasons the job is failing</li>
 <li>Ensure there aren&rsquo;t alerts indicating the Content Publisher sidekiq process isn&rsquo;t running</li>
-<li>Run <code>PopulateBulkDataJob.perform_now</code> manually in the <a href="[https://docs.publishing.service.gov.uk/manual/get-ssh-access.html#running-a-console]">Content Publisher console</a> to see if issues occur. <a href="[https://github.com/alphagov/content-publisher/blob/main/app/jobs/populate_bulk_data_job.rb]">Link to job</a></li>
+<li>Run <code>PopulateBulkDataJob.perform_now</code> manually in the <a href="[/manual/get-ssh-access.html#running-a-console]">Content Publisher console</a> to see if issues occur. <a href="[https://github.com/alphagov/content-publisher/blob/main/app/jobs/populate_bulk_data_job.rb]">Link to job</a></li>
 </ul>
 
 
