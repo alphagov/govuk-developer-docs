@@ -252,7 +252,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/06fdf81b07f33051e4667d9ba5c2f92c6604b5f7">28 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9f8ce446fca8a4c46dcb0c44f578c30e65bd32fb">28 Jul 2023</a>
 </div>
 
  <h1 id='header'>Get started developing on GOV.UK</h1> <blockquote>
@@ -386,13 +386,10 @@ Enter token <span class="k">for </span>arn:aws:iam::123456789012:mfa/firstname.l
 <span class="nb">cd</span> ~/govuk
 git clone git@github.com:alphagov/govuk-puppet.git
 </code></pre></div></li>
-<li><p>Add your SSH key which you created in <a href="#2-generate-a-ssh-key">step 2</a>.</p></li>
-</ol>
-<p>If you do not have a YubiKey, run <code>more ~/.ssh/id_ed25519.pub</code> to retrieve your public key. The key should begin with <code>ssh-ed25519 AAA</code> and end with <code>== &lt;WORK EMAIL&gt;</code>. If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with <code>ssh-rsa AAA</code>. You may need to manually add the email address to the end of your key.</p>
-<p>If you have a YubiKey, run <code>ssh-add -L</code> to retrieve the key from your device. The key should end with <code>cardno:000000000000</code>.</p>
-
-<ol>
-<li><p>Create a user manifest file at <code>~/govuk/govuk-puppet/modules/users/manifests/&lt;FIRSTNAMELASTNAME&gt;.pp</code> with the following code:</p>
+<li><p>Add your SSH key which you created in <a href="#2-generate-a-ssh-key">step 2</a>.</p>
+<p>If you do not have a YubiKey, run <code>more ~/.ssh/id_ed25519.pub</code> to retrieve your public key. The key should begin with <code>ssh-ed25519 AAA</code>. If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with <code>ssh-rsa AAA</code>. You may need to manually add the email address to the end of your key.</p>
+<p>If you have a YubiKey, run <code>ssh-add -L</code> to retrieve the key from your device. The key should end with <code>cardno:000000000000</code>.</p></li>
+<li><p>Create a user manifest file at <code>~/govuk/govuk-puppet/modules/users/manifests/&lt;firstnamelastname&gt;.pp</code> with the following code:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># Creates the &lt;FIRSTNAMELASTNAME&gt; user
 class users::&lt;FIRSTNAMELASTNAME&gt; {
   govuk_user { '&lt;FIRSTNAMELASTNAME&gt;':
@@ -403,15 +400,15 @@ class users::&lt;FIRSTNAMELASTNAME&gt; {
 }
 </code></pre></div><p>Enter your information and SSH public key value into the file. For example:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># Creates the johnsmith user
-class users::&lt;johnsmith&gt; {
-  govuk_user { '&lt;johnsmith&gt;':
+class users::johnsmith {
+  govuk_user { 'johnsmith':
     fullname =&gt; 'John Smith',
     email    =&gt; 'john.smith@digital.cabinet-office.gov.uk',
-    ssh_key  =&gt; '&lt;SSH-PUBLIC-KEY-VALUE&gt;',
+    ssh_key  =&gt; 'ssh-ed25519 AAAAC37eiue0923jfwnfwle93fnwefwn john.smith@digital.cabinet-office.gov.uk',
   }
 }
 </code></pre></div></li>
-<li><p>Add the name of your user manifest file (<code>&lt;FIRSTNAMELASTNAME&gt;.pp</code>) into the list of <code>users::usernames</code> in <a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml"><code>hieradata_aws/integration.yaml</code></a>.</p></li>
+<li><p>Add the name of your user class (<code>&lt;firstnamelastname&gt;</code>) into the list of <code>users::usernames</code> in <a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml"><code>hieradata_aws/integration.yaml</code></a>.</p></li>
 <li><p>Create a pull request with these changes and ask your tech lead to review it.</p>
 <p>Once the pull request has been <a href="/manual/merge-pr.html">reviewed</a>, you can merge it and the pull request will automatically deploy to the integration environment.</p></li>
 </ol>
