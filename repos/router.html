@@ -236,59 +236,111 @@
 </div></dl>
     <div class="gem-c-summary__block"></div>
 </div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme">
-    <p>-# router</p>
-<p>This is a HTTP reverse proxy router built on top of <a href="https://github.com/alphagov/router/tree/master/triemux"><code>triemux</code></a>. It
-loads a routing table into memory from a MongoDB database and acts as a:</p>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<p>GOV.UK Router is an HTTP reverse proxy built on top of <a href="https://github.com/alphagov/router/tree/master/triemux"><code>triemux</code></a>. It
+loads a routing table into memory from a MongoDB database and:</p>
+
 <ul>
-<li>Reverse proxy, forwarding requests to and serving responses from multiple
-backend servers on a single domain.</li>
-<li>Redirector, serving HTTP <code>301</code> and <code>302</code> redirects to new URLs.</li>
-<li>Gone responder, serving HTTP <code>410</code> responses for resources that used to
-but no longer exist.</li>
+<li>forwards requests to backend application servers according to the path in the
+request URL</li>
+<li>serves HTTP <code>301</code> and <code>302</code> redirects for moved content and short URLs</li>
+<li>serves <code>410 Gone</code> responses for resources that no longer exist</li>
 </ul>
+
 <p>The sister project <a href="https://github.com/alphagov/router-api"><code>router-api</code></a> provides a read/write
 interface to the underlying database.</p>
+
 <h2 id="technical-documentation">Technical documentation</h2>
+
 <p>Recommended reading: <a href="https://golang.org/doc/code.html">How to Write Go Code</a></p>
-<h3 id="running-the-test-suite">Running the test suite</h3>
+
+<h3 id="run-the-test-suite">Run the test suite</h3>
+
 <p>You can run all tests (some of which need Docker installed) by running:</p>
+
 <pre><code>make test
 </code></pre>
+
 <p>You can also run just the unit tests or just the integration tests, using the
 <code>unit_tests</code> and <code>integration_tests</code> targets. The unit tests don&rsquo;t need Docker.</p>
+
 <p>The <code>trie</code> and <code>triemux</code> sub-packages have unit tests and benchmarks written
 in Go&rsquo;s own testing framework. To run them individually:</p>
+
 <pre><code>go test -bench=. ./trie ./triemux
 </code></pre>
+
 <p>The integration tests require Docker in order to run MongoDB. They are intended
 to cover Router&rsquo;s overall request handling, error reporting and performance.</p>
+
 <pre><code>go test ./integration_tests
 </code></pre>
+
 <h3 id="lint">Lint</h3>
+
 <p>Checks run automatically on GitHub on PR and push. For faster feedback, you can
 install and run the <a href="https://golangci-lint.run/">linter</a> yourself, or configure
 your editor/IDE to do so. For example:</p>
+
 <pre lang="sh"><code>brew install golangci-lint
 </code></pre>
+
 <pre lang="sh"><code>make lint
 </code></pre>
+
 <h3 id="debug-output">Debug output</h3>
+
 <p>To see debug messages when running tests, set both the <code>DEBUG</code> and
 <code>DEBUG_ROUTER</code> environment variables.</p>
+
 <pre lang="sh"><code>export DEBUG=1 DEBUG_ROUTER=1
 </code></pre>
+
 <p>or equivalently for a single run:</p>
+
 <pre lang="sh"><code>DEBUG=1 DEBUG_ROUTER=1 make test
 </code></pre>
-<h3 id="updating-dependencies">Updating dependencies</h3>
+
+<h3 id="update-the-dependencies">Update the dependencies</h3>
+
 <p>This project uses <a href="https://github.com/golang/go/wiki/Modules">Go Modules</a> to vendor its dependencies. To update the dependencies:</p>
+
 <ol>
-<li>Run <code>go mod tidy &amp;&amp; go mod vendor</code>.</li>
-<li>Check for any errors and commit.</li>
+<li>
+<p>Update all the dependencies, including test dependencies, in your working copy:</p>
+<pre lang="sh"><code>go get -t -u ./... &amp;&amp; go mod tidy &amp;&amp; go mod vendor
+</code></pre>
+</li>
+<li>
+<p>Check for any errors and commit.</p>
+<pre lang="sh"><code>git commit -- go.{mod,sum} vendor
+</code></pre>
+</li>
+<li>
+<p><a href="#run-the-test-suite">Run the Router test suite</a>. If you need to fix a
+failing test, keep your changes in separate commits to the <code>go get</code> /
+<code>go mod</code> commit.</p>
+</li>
+<li>
+<p>Run the tests for all dependencies:</p>
+<pre lang="sh"><code>go test all
+</code></pre>
+<ul>
+<li>If there are failures, look into each one and determine whether it needs
+fixing.</li>
+<li>If anything under <code>vendor/</code> needs changing then either raise a PR with
+the upstream project or revert to a set of versions that work together.
+Only <code>go get</code> and <code>go mod</code> should touch files in <code>vendor/</code>.</li>
+</ul>
+</li>
+<li>
+<p>Raise a PR.</p>
+</li>
 </ol>
-<p>Occasionally an old module may need updating explicitly via <code>go get -u &lt;repo-of-module&gt;</code>, for example <code>go get -u github.com/streadway/quantile</code></p>
+
 <h3 id="further-documentation">Further documentation</h3>
+
 <ul>
 <li><a href="/repos/router/data-structure.html">Data structure</a></li>
 <li><a href="https://gdstechnology.blog.gov.uk/2013/12/05/building-a-new-router-for-gov-uk">Original thinking behind the router</a></li>
@@ -296,9 +348,11 @@ your editor/IDE to do so. For example:</p>
 <a href="https://github.com/alphagov/router/commit/b443d3d">Example of adding a metric</a> using the <a href="https://godoc.org/github.com/dnesting/client_golang/prometheus">Go prometheus client library</a>
 </li>
 </ul>
+
 <h2 id="licence">Licence</h2>
+
 <p><a href="https://github.com/alphagov/router/blob/main/LICENCE">MIT License</a></p>
-  </div></p>
+<p></div></p>
 
 
             
