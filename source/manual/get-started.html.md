@@ -234,11 +234,11 @@ User accounts in our integration environments are managed in the [govuk-puppet][
 
 1. Add your SSH key which you created in [step 2](#2-generate-a-ssh-key).
 
-   If you do not have a YubiKey, run `more ~/.ssh/id_ed25519.pub` to retrieve your public key. The key should begin with `ssh-ed25519 AAA` and end with `== <WORK EMAIL>`. If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with `ssh-rsa AAA`. You may need to manually add the email address to the end of your key.
+    If you do not have a YubiKey, run `more ~/.ssh/id_ed25519.pub` to retrieve your public key. The key should begin with `ssh-ed25519 AAA`. If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with `ssh-rsa AAA`. You may need to manually add the email address to the end of your key.
 
-   If you have a YubiKey, run `ssh-add -L` to retrieve the key from your device. The key should end with `cardno:000000000000`.
+    If you have a YubiKey, run `ssh-add -L` to retrieve the key from your device. The key should end with `cardno:000000000000`.
 
-1. Create a user manifest file at `~/govuk/govuk-puppet/modules/users/manifests/<FIRSTNAMELASTNAME>.pp` with the following code:
+1. Create a user manifest file at `~/govuk/govuk-puppet/modules/users/manifests/<firstnamelastname>.pp` with the following code:
 
     ```
     # Creates the <FIRSTNAMELASTNAME> user
@@ -255,16 +255,16 @@ User accounts in our integration environments are managed in the [govuk-puppet][
 
     ```
     # Creates the johnsmith user
-    class users::<johnsmith> {
-      govuk_user { '<johnsmith>':
+    class users::johnsmith {
+      govuk_user { 'johnsmith':
         fullname => 'John Smith',
         email    => 'john.smith@digital.cabinet-office.gov.uk',
-        ssh_key  => '<SSH-PUBLIC-KEY-VALUE>',
+        ssh_key  => 'ssh-ed25519 AAAAC37eiue0923jfwnfwle93fnwefwn john.smith@digital.cabinet-office.gov.uk',
       }
     }
     ```
 
-1. Add the name of your user manifest file (`<FIRSTNAMELASTNAME>.pp`) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera].
+1. Add the name of your user class (`<firstnamelastname>`) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera].
 
 1. Create a pull request with these changes and ask your tech lead to review it.
 
