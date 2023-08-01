@@ -55,7 +55,7 @@ and click 'Build with Parameters':
 The GDS Way has guidelines on [how to review code](https://gds-way.cloudapps.digital/manuals/code-review-guidelines.html).
 
 Only when the tests pass and the code has been approved the Pull Request can be merged, since we've
-[configured GitHub to prevent merges](/manual/configure-github-repo.html) otherwise.
+[configured GitHub to prevent merges](/manual/github.html) otherwise.
 
 ## Check for or implement a deploy freeze
 
