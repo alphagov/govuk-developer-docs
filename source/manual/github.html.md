@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: How we use GitHub
+title: GitHub
 parent: /manual.html
 layout: manual_layout
 section: GitHub
