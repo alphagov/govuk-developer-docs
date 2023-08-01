@@ -255,6 +255,24 @@
 <p><code>kubectl get pods</code></p>
 </li>
 </ul>
+<h3 id="useful-tips">Useful tips</h3>
+<h4 id="how-to-test-chart-changes">How to test chart changes</h4>
+<p>In order to test the changes in EKS follow these steps:</p>
+<ul>
+<li>disable the auto-sync in the <code>dgu-app-of-apps</code> application.
+<ul>
+<li>edit the target revision to be the branch you want to test and manually sync it.</li>
+</ul>
+</li>
+<li>edit the revision of the branch to be the branch you want to test in the <code>ckan</code> applications (not in the <code>dgu-app-of-apps</code> space).
+<ul>
+<li>you may need to delete the app that has been updated in order to pick up the change.</li>
+</ul>
+</li>
+<li>if you make further changes to the chart you may need to manually sync the <code>dgu-app-of-apps</code>.</li>
+<li>if it is not syncing you may need to check the sync status and terminate any running processes.</li>
+<li>after testing is complete remember to turn on the auto sync in <code>dgu-app-of-apps</code>.</li>
+</ul>
   </div></p>
 
 
