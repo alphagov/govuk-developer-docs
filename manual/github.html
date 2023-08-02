@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>How we use GitHub - GOV.UK Developer Documentation</title>
+    <title>GitHub - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -19,12 +19,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="How we use GitHub - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="GitHub - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/github.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="How we use GitHub" />
+      <meta property="og:title" content="GitHub" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/github.html" />
 
@@ -126,7 +126,19 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>How we use GitHub</span></a>
+    <a href="#header"><span>GitHub</span></a>
+  </li>
+  <li>
+    <a href="#github-organisation"><span>GitHub organisation</span></a>
+  </li>
+  <li>
+    <a href="#gov-uk-teams"><span>GOV.UK teams</span></a>
+  </li>
+  <li>
+    <a href="#getting-access-to-github"><span>Getting access to GitHub</span></a>
+  </li>
+  <li>
+    <a href="#how-gov-uk-manages-its-repositories"><span>How GOV.UK manages its repositories</span></a>
   </li>
 </ul>
 
@@ -175,28 +187,71 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4a668a9352bd41f929ccaf7343081ba19a390a41">8 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/21f4ba2dc9747ca9ccb8039617a8da218eb17a87">2 Aug 2023</a>
 </div>
 
- <h1 id='header'>How we use GitHub</h1> <p>We share the <a href="https://github.com/alphagov">alphagov GitHub organisation</a> with the other teams in the
-Government Digital Service (GDS). Our GitHub organisation is on the
-Enterprise Cloud plan.</p>
-<p>This can sometimes make it hard to find repositories that belong to our team. We use
-GitHub &ldquo;topics&rdquo; to organise the repos. All repos owned by us should be tagged with
-<a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a>.</p>
-<p>If you are unable to access an alphagov repository you can contact the
-<a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/gds-github-owners">GDS Github Owners Google group</a>, where members of that group have superadmin access to give you permissions to
-contribute to a repo.</p>
-<p>We use <a href="https://github.com/alphagov/govuk-saas-config/tree/master/github">govuk-saas-config</a> to configure our repositories.</p>
-<p>Also see the <a href="https://docs.google.com/document/d/1KsYWCHSQZEwqB2NF1A7Z9rmP1s1azcZhEamaPsXAoxk/edit#heading=h.75pp7jqw5sk9">GOV.UK reliance on GitHub features doc</a> for more information.</p>
+ <h1 id='header'>GitHub</h1> <p>GOV.UK uses GitHub for version control, code deployments, authentication, CI, Dependabot and GitHub Pages. Read the &ldquo;<a href="https://docs.google.com/document/d/1KsYWCHSQZEwqB2NF1A7Z9rmP1s1azcZhEamaPsXAoxk/edit">GOV.UK reliance on GitHub features doc</a>&rdquo; Google doc for more information.</p>
+<h1 id='github-organisation'>GitHub organisation</h1><p>Our GitHub organisation is called [alphagov][https://github.com/alphagov]. We (GOV.UK) share it with other teams in the Government Digital Service (GDS).</p>
+<p>The organisation is on the Enterprise Cloud plan, which grants us access to GitHub&rsquo;s enterprise support. Only <a href="https://github.com/orgs/alphagov/people/enterprise_owners">people with enterprise permissions</a> can access enterprise support (<a href="https://docs.github.com/en/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/managing-support-entitlements-for-your-enterprise">limited to enterprise owners and up to 20 additional members</a>).</p>
+<p><a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/gds-github-owners">GDS GitHub Owners</a> have superadmin access to alphagov. You can contact them to request changes to <a href="https://docs.github.com/en/organizations/managing-organization-settings">organisation settings</a>, or to request access to an inaccessible repository (e.g. one that was created by an ex-employee).</p>
+<h1 id='gov-uk-teams'>GOV.UK teams</h1><p>There are several GOV.UK GitHub teams within alphagov, including:</p>
+
+<ul>
+<li><p><a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK</a>.
+Grants write access to GOV.UK repos, as well as integration admin access to the CI environment.</p></li>
+<li><p><a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy</a>.
+Grants the ability to merge PRs against continuously deployed apps, and the ability to <a href="/manual/rules-for-getting-production-access.html#production-deploy-access">deploy apps to staging and production</a></p></li>
+<li><p><a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a>.
+Grants admin access to GOV.UK repos, and <a href="/manual/rules-for-getting-production-access.html#production-admin-access">admin access to a number of other tools</a>.</p></li>
+<li><p>[GOV.UK Content Designers][team-covuk-content-designers].
+This team allows the user to create a branch in a GOV.UK repository and open a pull request, but only a developer can merge the request.
+Only content designers should be added to this team.</p></li>
+</ul>
+<h1 id='getting-access-to-github'>Getting access to GitHub</h1><p>Not everyone on GOV.UK requires GitHub access, as much of what we do is in the open. However, if your role requires it, you should be added to the org and the relevant team(s) through Terraform, in <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> - <em>not</em> manually added through the GitHub UI itself, as this breaks the Terraform setup.</p>
+
+<ul>
+<li>If you&rsquo;re a content designer, ask for GitHub access via Zendesk (see <a href="https://govuk.zendesk.com/agent/tickets/5297731/events">example ticket</a>)</li>
+<li>If you&rsquo;re an engineer or contractor, ask your tech lead to follow the instructions in <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> to add you.</li>
+<li>If you don&rsquo;t have a tech lead, <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members">ask someone in Senior Tech</a> to add you. You must state
+
+<ul>
+<li>your role</li>
+<li>which team you&rsquo;re in</li>
+<li>your GitHub handle</li>
+<li>which GitHub team(s) you should join (<a href="#govuk-teams">see list</a>)</li>
+<li>why you need access</li>
+</ul></li>
+</ul>
+<h1 id='how-gov-uk-manages-its-repositories'>How GOV.UK manages its repositories</h1><p>All repos owned by GOV.UK should be tagged with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> &ldquo;topic&rdquo;.</p>
+<p>All active GOV.UK repos should be added to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml</a> file in the Developer Docs. All inactive repos should be archived in GitHub and marked as retired in the repos.yml file (see &ldquo;<a href="/manual/retiring-a-repo.html">retire a repo</a>&rdquo;). We run a <a href="https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml">daily script</a> to ensure that the Developer Docs&rsquo; config is in sync with GitHub.</p>
+<p>GOV.UK repos should grant the following access to GitHub teams:</p>
+
+<ul>
+<li><a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a>: Admin access</li>
+<li><a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a>: Admin access</li>
+<li><a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK team</a> Write access</li>
+</ul>
+<p>The above is currently done manually, but <a href="https://trello.com/c/tbQjgkwR/3249-have-govuk-saas-config-grant-team-access-to-govuk-tagged-repos-3">watch this space</a>. The rest of the configuration is automated - see below.</p>
+<p>We currently use two tools for automating the configuration of our repositories:</p>
+
+<ol>
+<li><a href="https://github.com/alphagov/govuk-saas-config/blob/main/github/lib/configure_repo.rb">govuk-saas-config</a>. This runs every night and:
+
+<ul>
+<li>Applies <a href="https://help.github.com/articles/about-protected-branches">branch protection</a> rules and configures PRs to be blocked on the outcome of the <a href="/manual/test-and-build-a-project-with-github-actions.html">GitHub Action CI</a> workflow (if one exists)</li>
+<li>Retricts the merging of PRs for continuously deployed apps, so that only those with Production Deploy or Production Admin access can merge</li>
+<li>Enables vulnerability alerts and security fixes</li>
+<li>Sets up the webhook for <a href="/repos/github-trello-poster.html">GitHub Trello Poster</a></li>
+<li>Sets some other default repo settings (e.g. delete branch on merge)</li>
+</ul></li>
+<li><a href="https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/github">govuk-infrastructure</a>, which:
+
+<ul>
+<li>Gives permissions (to push to the ECR registry) to repositories that have specific tags</li>
+</ul></li>
+</ol>
+<p>The fact that we have two tools for managing GitHub resources is <a href="https://trello.com/c/mojlsebq/226-we-have-two-tools-for-managing-github-resources">recognised as technical debt</a>. The hope is to consolidate the GitHub code from govuk-saas-config into govuk-infrastructure.</p>
 
 
   <div class='related-content'>
@@ -209,7 +264,6 @@ contribute to a repo.</p>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/configure-github-repo.html">Configure a GitHub repo</a></li>
             <li><a href="/manual/howto-switch-default-branch.html">How to switch a Git default branch from master to main</a></li>
             <li><a href="/manual/make-github-repo-private.html">Make a GitHub repo private</a></li>
             <li><a href="/manual/merge-pr.html">Merge a Pull Request</a></li>
@@ -225,8 +279,8 @@ contribute to a repo.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/github.html.md.erb">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27How+we+use+GitHub%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fgithub.html%29&amp;labels=bug&amp;title=Re%3A+%27How+we+use+GitHub%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/github.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27GitHub%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fgithub.html%29&amp;labels=bug&amp;title=Re%3A+%27GitHub%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

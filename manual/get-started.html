@@ -151,10 +151,10 @@
         <a href="#3-set-up-your-slack-profile"><span>3. Set up your Slack profile</span></a>
       </li>
       <li>
-        <a href="#4-set-up-your-github-account"><span>4. Set up your GitHub account</span></a>
+        <a href="#4-set-up-your-aws-iam-user"><span>4. Set up your AWS IAM User</span></a>
       </li>
       <li>
-        <a href="#5-set-up-your-aws-iam-user"><span>5. Set up your AWS IAM User</span></a>
+        <a href="#5-set-up-your-github-account"><span>5. Set up your GitHub account</span></a>
       </li>
       <li>
         <a href="#6-get-permissions-for-aws-github-and-other-third-party-services"><span>6. Get permissions for AWS, GitHub and other third party services</span></a>
@@ -252,7 +252,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9f8ce446fca8a4c46dcb0c44f578c30e65bd32fb">28 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/28fdfcb25590ed2fa3c6af99e31e213eaa25584b">1 Aug 2023</a>
 </div>
 
  <h1 id='header'>Get started developing on GOV.UK</h1> <blockquote>
@@ -304,7 +304,15 @@
 <li>the team you&rsquo;re working on</li>
 <li>if relevant, the name of your supplier</li>
 </ul>
-<h2 id='4-set-up-your-github-account'>4. Set up your GitHub account</h2>
+<h2 id='4-set-up-your-aws-iam-user'>4. Set up your AWS IAM User</h2><p>GDS has a central <code>gds-users</code> AWS account where you create your IAM User. Your <a href="#6-get-permissions-for-aws-github-and-other-third-party-services">tech lead will then create IAM Roles</a> that you can assume for access to GOV.UK&rsquo;s AWS accounts. The <a href="https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws">reliability engineering site</a> has more information on how AWS accounts are structured.</p>
+
+<ol>
+<li><a href="https://gds-request-an-aws-account.cloudapps.digital/">Request a AWS IAM User</a> for the central <code>gds-users</code> AWS account.</li>
+<li>You should receive an email when your account is created.</li>
+<li>Follow instructions in the email to sign into the <code>gds-users</code> AWS account for the first time.</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user">Enable Multi-factor Authentication (MFA)</a> for your IAM User. You must specify your email address as the MFA device name. If you were issued a Yubikey, you can <a href="/manual/setup-a-yubikey.html#set-up-as-an-mfa-device-for-aws">use it as a MFA device</a>.</li>
+</ol>
+<h2 id='5-set-up-your-github-account'>5. Set up your GitHub account</h2>
 <ol>
 <li><a href="https://www.github.com/login">Login into your existing GitHub account</a> or <a href="https://www.github.com/signup">create a new GitHub account</a>.</li>
 <li><a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account">Associate your GitHub account with your GDS email address</a>, which can be in addition to your personal email address.</li>
@@ -315,16 +323,8 @@
 $ git config --global user.name "Friendly Giraffe"
 </code></pre></div></li>
 </ol>
-<h2 id='5-set-up-your-aws-iam-user'>5. Set up your AWS IAM User</h2><p>GDS has a central <code>gds-users</code> AWS account where you create your IAM User. Your <a href="#6-get-permissions-for-aws-github-and-other-third-party-services">tech lead will then create IAM Roles</a> that you can assume for access to GOV.UK&rsquo;s AWS accounts. The <a href="https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws">reliability engineering site</a> has more information on how AWS accounts are structured.</p>
-
-<ol>
-<li><a href="https://gds-request-an-aws-account.cloudapps.digital/">Request a AWS IAM User</a> for the central <code>gds-users</code> AWS account.</li>
-<li>You should receive an email when your account is created.</li>
-<li>Follow instructions in the email to sign into the <code>gds-users</code> AWS account for the first time.</li>
-<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user">Enable Multi-factor Authentication (MFA)</a> for your IAM User. You must specify your email address as the MFA device name. If you were issued a Yubikey, you can <a href="/manual/setup-a-yubikey.html#set-up-as-an-mfa-device-for-aws">use it as a MFA device</a>.</li>
-</ol>
-<h2 id='6-get-permissions-for-aws-github-and-other-third-party-services'>6. Get permissions for AWS, GitHub and other third party services</h2><p>Permissions to GOV.UK&rsquo;s AWS, GitHub, <a href="/manual/cdn.html">Fastly</a>, <a href="/manual/sentry.html">Sentry</a> and <a href="/manual/pagerduty.html">Pagerduty</a> accounts are managed by the <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> repository (this is a private repository so will 404 before joining GOV.UK&rsquo;s GitHub).</p>
-<p>Once your <a href="#5-set-up-your-aws-iam-user">AWS IAM account is created</a>, you can ask your tech lead to follow the <a href="https://github.com/alphagov/govuk-user-reviewer#addingremoving-users">instructions</a> in govuk-user-reviewer to grant you access.</p>
+<h2 id='6-get-permissions-for-aws-github-and-other-third-party-services'>6. Get permissions for AWS, GitHub and other third party services</h2><p>Permissions to GOV.UK&rsquo;s AWS, <a href="/manual/github.html">GitHub</a>, <a href="/manual/cdn.html">Fastly</a>, <a href="/manual/sentry.html">Sentry</a> and <a href="/manual/pagerduty.html">Pagerduty</a> accounts are managed by the <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> repository. This is a private repository so will 404 before joining GOV.UK&rsquo;s GitHub.</p>
+<p>Ask your tech lead to follow the <a href="https://github.com/alphagov/govuk-user-reviewer#addingremoving-users">instructions</a> in govuk-user-reviewer to grant you access. <em>You must complete steps 1-5 first</em>.</p>
 <h2 id='7-install-and-configure-the-gds-cli'>7. Install and configure the GDS CLI</h2><p>On GOV.UK we use the <a href="https://github.com/alphagov/gds-cli"><code>gds-cli</code></a> for AWS and SSH access.</p>
 
 <ol>
