@@ -28,7 +28,7 @@ There are several GOV.UK GitHub teams within alphagov, including:
   Grants the ability to merge PRs against continuously deployed apps, and the ability to [deploy apps to staging and production](/manual/rules-for-getting-production-access.html#production-deploy-access)
 
 - [GOV.UK Production Admin][team-govuk-production-admin].
-  Grants admin access to GOV.UK repos, and [general admin access to staging and production](/manual/rules-for-getting-production-access.html#production-admin-access).
+  Grants admin access to GOV.UK repos, and [admin access to a number of other tools](/manual/rules-for-getting-production-access.html#production-admin-access).
 
 - [GOV.UK Content Designers][team-covuk-content-designers].
   This team allows the user to create a branch in a GOV.UK repository and open a pull request, but only a developer can merge the request.
@@ -36,7 +36,7 @@ There are several GOV.UK GitHub teams within alphagov, including:
 
 # Getting access to GitHub
 
-Not everyone on GOV.UK requires GitHub access, as much of what we do is in the open. However, if your role requires it, you can be added to the org and the relevant team(s) through Terraform, in [govuk-user-reviewer][].
+Not everyone on GOV.UK requires GitHub access, as much of what we do is in the open. However, if your role requires it, you should be added to the org and the relevant team(s) through Terraform, in [govuk-user-reviewer][] - _not_ manually added through the GitHub UI itself, as this breaks the Terraform setup.
 
 - If you're a content designer, ask for GitHub access via Zendesk (see [example ticket](https://govuk.zendesk.com/agent/tickets/5297731/events))
 - If you're an engineer or contractor, ask your tech lead to follow the instructions in [govuk-user-reviewer][] to add you.
