@@ -20,7 +20,7 @@ parent: "/manual.html"
 [linting]: /manual/configure-linting.html
 [rails-conv]: /manual/conventions-for-rails-applications.html
 [naming]: /manual/naming.html
-[auto-config]: /manual/configure-github-repo.html#auto-configuration
+[auto-config]: /manual/github.html
 [app-list]: /#applications
 [sentry-update-project-rake-task]: https://github.com/alphagov/govuk-saas-config/blob/045668beed8aebc50b876108363c8d1a25bdf80c/sentry/Rakefile#L69-L83
 

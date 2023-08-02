@@ -90,7 +90,23 @@ Help others know who you are by [updating your Slack profile's 'title' field](ht
 - the team you're working on
 - if relevant, the name of your supplier
 
-## 4. Set up your GitHub account
+## 4. Set up your AWS IAM User
+
+GDS has a central `gds-users` AWS account where you create your IAM User. Your [tech lead will then create IAM Roles][iam-role-creation] that you can assume for access to GOV.UK's AWS accounts. The [reliability engineering site][aws-account-info] has more information on how AWS accounts are structured.
+
+1. [Request a AWS IAM User][request-aws-user] for the central `gds-users` AWS account.
+1. You should receive an email when your account is created.
+1. Follow instructions in the email to sign into the `gds-users` AWS account for the first time.
+1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User. You must specify your email address as the MFA device name. If you were issued a Yubikey, you can [use it as a MFA device][yubikey-aws-mfa].
+
+[aws-account-info]: https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws
+[iam-role-creation]: #6-get-permissions-for-aws-github-and-other-third-party-services
+[request-aws-user]: https://gds-request-an-aws-account.cloudapps.digital/
+[enable-mfa]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user
+[yubikey-aws-mfa]: /manual/setup-a-yubikey.html#set-up-as-an-mfa-device-for-aws
+[aws-cli-auth]: https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html#cli-authentication-user-get
+
+## 5. Set up your GitHub account
 
 1. [Login into your existing GitHub account][github-login] or [create a new GitHub account][github-signup].
 1. [Associate your GitHub account with your GDS email address][associate-email-github], which can be in addition to your personal email address.
@@ -108,29 +124,14 @@ Help others know who you are by [updating your Slack profile's 'title' field](ht
 [associate-email-github]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
 [add-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 
-## 5. Set up your AWS IAM User
-
-GDS has a central `gds-users` AWS account where you create your IAM User. Your [tech lead will then create IAM Roles][iam-role-creation] that you can assume for access to GOV.UK's AWS accounts. The [reliability engineering site][aws-account-info] has more information on how AWS accounts are structured.
-
-1. [Request a AWS IAM User][request-aws-user] for the central `gds-users` AWS account.
-1. You should receive an email when your account is created.
-1. Follow instructions in the email to sign into the `gds-users` AWS account for the first time.
-1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User. You must specify your email address as the MFA device name. If you were issued a Yubikey, you can [use it as a MFA device][yubikey-aws-mfa].
-
-[aws-account-info]: https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws
-[iam-role-creation]: #6-get-permissions-for-aws-github-and-other-third-party-services
-[request-aws-user]: https://gds-request-an-aws-account.cloudapps.digital/
-[enable-mfa]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user
-[yubikey-aws-mfa]: /manual/setup-a-yubikey.html#set-up-as-an-mfa-device-for-aws
-[aws-cli-auth]: https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html#cli-authentication-user-get
-
 ## 6. Get permissions for AWS, GitHub and other third party services
 
-Permissions to GOV.UK's AWS, GitHub, [Fastly], [Sentry] and [Pagerduty] accounts are managed by the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository (this is a private repository so will 404 before joining GOV.UK's GitHub).
+Permissions to GOV.UK's AWS, [GitHub], [Fastly], [Sentry] and [Pagerduty] accounts are managed by the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository. This is a private repository so will 404 before joining GOV.UK's GitHub.
 
-Once your [AWS IAM account is created](#5-set-up-your-aws-iam-user), you can ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant you access.
+Ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant you access. *You must complete steps 1-5 first*.
 
 [Fastly]: /manual/cdn.html
+[GitHub]: /manual/github.html
 [Sentry]: /manual/sentry.html
 [Pagerduty]: /manual/pagerduty.html
 [govuk-user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
