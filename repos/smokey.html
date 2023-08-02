@@ -264,7 +264,7 @@ instructions</a> to get started.</p>
 
 <p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
 
-<h3 id="running-the-test-suite-from-your-machine">Running the test suite from your machine</h3>
+<h3 id="run-the-test-suite-from-your-machine">Run the test suite from your machine</h3>
 
 <blockquote>
 <p><strong>You will need to be connected to the VPN to test against Integration or
@@ -297,11 +297,13 @@ bundle exec cucumber
 </ul>
 
 <p>Smokey cannot use a Signon account which has multi-factor authentication
-enabled. To test against integration/staging from your machine, you can fetch
+enabled.</p>
+
+<p>To test against integration/staging from your machine, you can fetch
 the Signon credentials for the Smokey test user:</p>
 
-<pre lang="sh"><code>k get secret smokey-signon-account -oyaml | yq .data.password
-k get secret smokey-signon-account -oyaml | yq .data.email
+<pre lang="sh"><code>k get secret smokey-signon-account -oyaml | yq .data.password | base64 -d
+k get secret smokey-signon-account -oyaml | yq .data.email | base64 -d
 </code></pre>
 
 <h2 id="further-documentation">Further documentation</h2>
