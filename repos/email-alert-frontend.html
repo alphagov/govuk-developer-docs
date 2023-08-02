@@ -284,6 +284,10 @@
 <pre><code>$ bundle exec rake
 </code></pre>
 
+<h3 id="publishing-routes">Publishing Routes</h3>
+
+<p>There are six routes provided by this app: /email-signup, /email-signup/confirm, /email/unsubscribe, /email/subscriptions, /email/authenticate and /email/manage. If you are deploying this app to a new environment, you will need to publish these routes using <a href="https://github.com/alphagov/special-route-publisher">Special Route Publisher</a></p>
+
 <h3 id="testing-account-pages">Testing account pages</h3>
 
 <p>Some pages are only accessible once a user has logged-in, using a link sent in an email. To test these pages locally, you will need to make a temporary change to the controller code to bypass authentication. If testing on a deployed branch, see the documentation on <a href="https://docs.publishing.service.gov.uk/manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html">receiving emails from in Integration and Staging</a>.</p>
