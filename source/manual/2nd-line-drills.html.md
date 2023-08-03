@@ -55,13 +55,11 @@ Make sure you can log into the following accounts:
 1. [Shared NPM account](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm)
 1. [Shared data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher)
 
-## Drill scaling up number of workers
+## Drill scaling up an application
 
-In preparation for a spike in traffic, you can increase the number of unicorn workers for an app.
+In preparation for a large spike in traffic, you can increase the number of replicas for an app.
 
-Pick an application (e.g. `smartanswers`) and drill scaling up the number of workers, by following [scale unicorn workers](/manual/scale-unicorn-workers.html).
-
-Note that you'll need to edit the `integration.yaml` file, not the `production.yaml` file as described in the docs above. And instead of merging to `main`, just build your branch directly to Integration. When you're done drilling, re-deploy the previous release and delete your branch.
+Pick an application (e.g. `smartanswers`) and try [scaling it up](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/manage-app/scale-app/) in staging. Don't forget to revert your change afterwards.
 
 ## Drill 2nd line incident processes
 
