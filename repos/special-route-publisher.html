@@ -257,9 +257,24 @@
 <pre><code>env PUBLISHING_API_BEARER_TOKEN=abc bundle exec rake publish_special_routes
 </code></pre>
 
+<p>To publish all routes for one application:</p>
+
+<pre><code>env PUBLISHING_API_BEARER_TOKEN=abc bundle exec rake publish_one_route[email-alert-frontend]
+</code></pre>
+
 <p>To publish one route:</p>
 
-<pre><code>env PUBLISHING_API_BEARER_TOKEN=abc bundle exec rake publish_one_route["/base-path"]
+<pre><code>env PUBLISHING_API_BEARER_TOKEN=abc bundle exec rake publish_one_route[/base-path]
+</code></pre>
+
+<p>To unpublish one route so it will return Gone:</p>
+
+<pre><code>env PUBLISHING_API_BEARER_TOKEN=abc bundle exec rake unpublish_one_route[/base-path]
+</code></pre>
+
+<p>To unpublish one route so it will return Redirect:</p>
+
+<pre><code>env PUBLISHING_API_BEARER_TOKEN=abc bundle exec rake unpublish_one_route[/base-path,/new-base-path]
 </code></pre>
 
 <h2 id="publishing-routes-on-eks">Publishing routes on EKS</h2>
@@ -285,7 +300,7 @@ kubectl config use-context integration
 
 <p>Use the <code>[]</code> notation to pass parameters to a task, for example:</p>
 
-<pre><code>kubectl run -napps --image 172025368201.dkr.ecr.eu-west-1.amazonaws.com/special-route-publisher ${USER/./-}-special-route-pub -- sh -c "GOVUK_APP_DOMAIN= PLEK_USE_HTTP_FOR_SINGLE_LABEL_DOMAINS=1 PUBLISHING_API_BEARER_TOKEN=$token rake publish_one_special_route['/government/history/past-chancellors']"
+<pre><code>kubectl run -napps --image 172025368201.dkr.ecr.eu-west-1.amazonaws.com/special-route-publisher ${USER/./-}-special-route-pub -- sh -c "GOVUK_APP_DOMAIN= PLEK_USE_HTTP_FOR_SINGLE_LABEL_DOMAINS=1 PUBLISHING_API_BEARER_TOKEN=$token rake publish_one_special_route[/government/history/past-chancellors]"
 </code></pre>
 
 <p>Important: finally, delete your pod when it has finished running:</p>
