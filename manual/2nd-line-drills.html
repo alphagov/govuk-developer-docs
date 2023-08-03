@@ -147,7 +147,7 @@
         <a href="#drill-logging-into-accounts"><span>Drill logging into accounts</span></a>
       </li>
       <li>
-        <a href="#drill-scaling-up-number-of-workers"><span>Drill scaling up number of workers</span></a>
+        <a href="#drill-scaling-up-an-application"><span>Drill scaling up an application</span></a>
       </li>
       <li>
         <a href="#drill-2nd-line-incident-processes"><span>Drill 2nd line incident processes</span></a>
@@ -268,7 +268,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a53e2b187487d59fbce1e19f8ba7daf20e2c4f68">28 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ab9a8519f10ea8a8326f44637a89a938371b4d9c">3 Aug 2023</a>
 </div>
 
  <h1 id='header'>2nd line drills</h1> <p>There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going <a href="/manual/on-call.html">on call</a> if you are part of the out of hours rota.</p>
@@ -306,9 +306,8 @@ You can run this in any environment, as you&rsquo;re only running <code>plan</co
 <li><a href="https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm">Shared NPM account</a></li>
 <li><a href="/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher">Shared data.gov.uk publisher account</a></li>
 </ol>
-<h2 id='drill-scaling-up-number-of-workers'>Drill scaling up number of workers</h2><p>In preparation for a spike in traffic, you can increase the number of unicorn workers for an app.</p>
-<p>Pick an application (e.g. <code>smartanswers</code>) and drill scaling up the number of workers, by following <a href="/manual/scale-unicorn-workers.html">scale unicorn workers</a>.</p>
-<p>Note that you&rsquo;ll need to edit the <code>integration.yaml</code> file, not the <code>production.yaml</code> file as described in the docs above. And instead of merging to <code>main</code>, just build your branch directly to Integration. When you&rsquo;re done drilling, re-deploy the previous release and delete your branch.</p>
+<h2 id='drill-scaling-up-an-application'>Drill scaling up an application</h2><p>In preparation for a large spike in traffic, you can increase the number of replicas for an app.</p>
+<p>Pick an application (e.g. <code>smartanswers</code>) and try <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/manage-app/scale-app/">scaling it up</a> in staging. Don&rsquo;t forget to revert your change afterwards.</p>
 <h2 id='drill-2nd-line-incident-processes'>Drill 2nd line incident processes</h2><h3 id='drill-an-end-to-end-incident'>Drill an end to end incident</h3><p>Decide on a hypothetical incident scenario, e.g. &ldquo;GOV.UK is down&rdquo;.
 Walk through the <a href="/manual/incident-management-guidance.html">incident management guidance</a>.
 Use common sense when following the steps (i.e. don&rsquo;t actually publish an incident to Statuspage or email stakeholders).</p>
@@ -351,7 +350,6 @@ Once deployed, <a href="https://www-origin.integration.govuk.digital/">check you
             <li><a href="/manual/on-call.html">Out of hours support (on-call)</a></li>
             <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
             <li><a href="/manual/rules-for-getting-production-access.html">Rules for getting production access</a></li>
-            <li><a href="/manual/scale-unicorn-workers.html">Scale unicorn workers</a></li>
             <li><a href="/manual/subject-access-requests.html">Subject Access Request (SAR)</a></li>
             <li><a href="/manual/zendesk.html">Zendesk</a></li>
           </ul>
