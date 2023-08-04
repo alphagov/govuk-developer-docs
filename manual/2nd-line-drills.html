@@ -129,9 +129,6 @@
     <a href="#header"><span>2nd line drills</span></a>
     <ul>
       <li>
-        <a href="#drill-detaching-an-instance"><span>Drill detaching an instance</span></a>
-      </li>
-      <li>
         <a href="#drill-publishing-emergency-banner"><span>Drill publishing emergency banner</span></a>
       </li>
       <li>
@@ -268,11 +265,10 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ab9a8519f10ea8a8326f44637a89a938371b4d9c">3 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/102377ea7c115703f31bf311d7e26b508f373b13">4 Aug 2023</a>
 </div>
 
  <h1 id='header'>2nd line drills</h1> <p>There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going <a href="/manual/on-call.html">on call</a> if you are part of the out of hours rota.</p>
-<h2 id='drill-detaching-an-instance'>Drill detaching an instance</h2><p>Follow the <a href="/manual/common-aws-tasks-for-2nd-line-support.html#detaching-an-instance-from-an-auto-scaling-group">Detaching an instance from an Auto Scaling Group</a> guidance.</p>
 <h2 id='drill-publishing-emergency-banner'>Drill publishing emergency banner</h2><p>Follow the <a href="/manual/emergency-publishing.html">Deploy an emergency banner</a> on Staging.</p>
 <p>You&rsquo;ll need to choose a non-serious and clearly fake news headline. For example:</p>
 
@@ -314,10 +310,10 @@ Use common sense when following the steps (i.e. don&rsquo;t actually publish an 
 <h3 id='drill-how-to-communicate-when-slack-is-down'>Drill how to communicate when Slack is down</h3><p>Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
 See &ldquo;<a href="https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp">If Slack is unavailable</a>&rdquo; for details.</p>
 <h2 id='drill-special-deployment-conditions'>Drill special deployment conditions</h2><h3 id='deploy-from-aws-codecommit-when-github-is-unavailable'>Deploy from AWS CodeCommit when Github is unavailable</h3><p>Follow the <a href="/manual/github-unavailable.html#create-and-deploy-an-image-to-ecr">Deploy when GitHub is unavailable</a> instructions.</p>
-<h3 id='drill-enabling-a-code-freeze'>Drill enabling a code freeze</h3><p>Choose a continuously-deployed app where you can make a meaningful change to the default branch, e.g. fixing a typo, or merging a Dependabot PR.</p>
-<p>Either before merging the change, or part way through the continuous deployment process, follow the instructions for <a href="/manual/development-pipeline.html#check-for-or-implement-a-deploy-freeze">implementing a deploy freeze</a> for that app.</p>
-<p>Follow the deployment pipeline in Jenkins. Confirm that no further environment deployments are triggered. For example, if you implemented the deploy freeze just after the app was deployed to Staging, confirm that the app was then not automatically deployed to Production.</p>
-<p>Remove the code freeze, then manually push the changes to all remaining environments so that they&rsquo;re in sync.</p>
+<h3 id='drill-enabling-a-code-freeze'>Drill enabling a code freeze</h3><p>Choose a continuously-deployed app where you can make a meaningful change to the default branch, such as fixing a typo or merging a Dependabot PR.</p>
+<p>Before merging the change, <a href="/manual/development-pipeline.html#check-for-or-implement-a-deploy-freeze">implement a deployment freeze</a> for that app.</p>
+<p>View the application&rsquo;s page in Argo CD in each environment to see whether a deployment happened or not.</p>
+<p>Remove the code freeze, then make sure the current version is deployed to all three environments.</p>
 <h2 id='drill-making-changes-to-user-accounts'>Drill making changes to user accounts</h2><h3 id='assign-a-user-to-their-publisher-in-data-gov-uk'>Assign a user to their publisher in data.gov.uk</h3><p><a href="/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher">Log into our shared data.gov.uk publisher account</a>. Pick a <a href="https://ckan.publishing.service.gov.uk/organization">publisher</a> to do a hypothetical walk though of <a href="/manual/data-gov-uk-2nd-line.html#assign-users-to-publishers-setting-user-permissions">Assign users to publishers</a>.</p>
 <h3 id='change-a-user39s-permissions-in-signon'>Change a user&rsquo;s permissions in Signon</h3><p>Carry out a hypothetical walk through of <a href="/manual/manage-sign-on-accounts#unsuspending-a-user">unsuspending a user</a> and <a href="/manual/manage-sign-on-accounts#resetting-a-users-2fa">resetting a user&rsquo;s 2FA</a>.</p>
 <h2 id='drill-creating-and-changing-redirects'>Drill creating and changing redirects</h2><h3 id='redirect-a-route'>Redirect a route</h3><p>On Integration or Staging, follow the <a href="/manual/redirect-routes.html#removing-a-route-created-in-the-short-url-manager">Removing a route created in the Short URL Manager</a> and <a href="/manual/redirect-routes.html#removing-a-route-completely-so-it-can-be-replaced-with-another-route">Removing a route completely so it can be replaced with another route</a> instructions.</p>
