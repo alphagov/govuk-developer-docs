@@ -6,59 +6,62 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-## Backup to AWS CodeCommit
+## AWS CodeCommit
 
-We mirror all non-archived GitHub repositories tagged with `govuk` to AWS CodeCommit. This is achieved using a ["Mirror repositories" GitHub workflow](https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml), which uses a [`github_action_mirror_repos_role` IAM role configured in Terraform](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/mirror.tf).
+We mirror all non-archived GitHub repositories tagged with `govuk` to AWS CodeCommit via the ["Mirror repositories" GitHub Actions workflow](https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml). The workflow uses the [`github_action_mirror_repos_role` IAM role](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/mirror.tf).
 
-### Checkout code in AWS CodeCommit
+### Build and deploy an app when GitHub is unavailable
 
-Since our deployment images are named via git tags, we'll need to checkout our code from AWS CodeCommit in order to make sure we're deploying the correct image and have an up-to-date copy of the code.
+If GitHub.com is down, you can still clone a GOV.UK repo from CodeCommit and
+build and deploy a container image from your workstation.
 
-Setup your local environment for [checking out code from CodeCommit](/manual/howto-checkout-and-commit-to-codecommit.html)
+Run the following commands from the root directory of the repository.
 
-## Drill creating and deploying a branch from CodeCommit
-
-If GitHub.com is down, Docker images can still be created and then deployed manually in Argo.
-
-### Create and deploy an image to ECR
-
-Ensure the following instructions are all run from the root directory of the repository.
-
-1. Follow the steps for [checking out and committing from CodeCommit](/manual/howto-checkout-and-commit-to-codecommit.html) to clone the repo.
-1. Make your changes.
-1. Name the `IMAGE_TAG` for your change, which you will then push to the ECR (Elastic Container Registry) in order to deploy the change from Argo.
+1. [Set up CodeCommit on your machine](/manual/howto-checkout-and-commit-to-codecommit.html#install-dependencies-and-set-up-local-environment) if you haven't already.
+1. Follow the [CodeCommit guide](/manual/howto-checkout-and-commit-to-codecommit.html#quick-reference-guide) to clone the repo and commit/push changes if needed.
+1. Set the image tag, image registry and image repository names that you will use by running the following commands. You don't need to modify any of the values in the commands.
 
 ```
-LOCAL_HEAD_SHA="$(git rev-parse HEAD)"
+LOCAL_HEAD_SHA=$(git rev-parse HEAD)
 IMAGE_TAG="release-${LOCAL_HEAD_SHA}"
-ECR_REGISTRY="172025368201.dkr.ecr.eu-west-1.amazonaws.com"
-REPO=$(awk -F '=' /GOVUK_APP_NAME/'{print $2}' Dockerfile)
+REGISTRY="172025368201.dkr.ecr.eu-west-1.amazonaws.com"
+REPO=$(basename "$PWD")
 ```
 
-1. Build the docker image locally with the tag named after the latest sha.
+1. Build the container image and tag it appropriately.
 
 ```
- docker build --platform linux/amd64 -f Dockerfile -t $IMAGE_TAG .
+docker build --platform linux/amd64 -t $IMAGE_TAG .
 ```
 
-1. Log in and push the image to ECR:
+1. Log into ECR and push the image:
 
 ```
-gds aws govuk-production-poweruser aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $ECR_REGISTRY
-docker push $ECR_REGISTRY/$REPO:$IMAGE_TAG
+gds aws govuk-production-poweruser aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $REGISTRY
+docker push $REGISTRY/$REPO:$IMAGE_TAG
 ```
 
-### Deploy the image to EKS using Argo
+### Deploy the image to Kubernetes using Argo CD
 
-1. Get the Admin Argo credentials by running `kubectl -n cluster-services get secret argocd-initial-admin-secret -oyaml |yq .data.password |base64 -d`
-1. Log into [Argo](https://argo.eks.integration.govuk.digital/)
-1. Search for the application you wish to deploy in the "Search applications..." search bar
-1. Select the application from the list below the search bar
-1. Select "APP DETAILS"
-1. Go to "DISABLE AUTO-SYNC" then select "ok" when prompted "Disable Auto-Sync?"
-1. Close the "APP DETAILS" menu, then select the three dots next to the Deploy object for the part of the application you'd like to redeploy. For example, `account-api-worker` would be for deploying the `account-api-workers`.
-1. Go to the "LIVE MANIFEST" and select "EDIT". Find the "image", then update it to the new image tag you'd like to deploy. (You can double-check you have the correct image name by doing a `git log` after [checking out the code from CodeCommit](/manual/howto-checkout-and-commit-to-codecommit.html)).
-1. Click "Save" and Argo will start the deployment, which should complete in under ten minutes.
+> ⚠️ This procedure will disable automatic deployments *for all applications*, not only in the environment you are working on but also in higher environments. For example, performing this procedure on integration will prevent all automatic deployments in integration, staging and production.
+
+1. Fetch the password for the Argo CD `admin` user. This varies by environment.
+
+    ```sh
+    kubectl -n cluster-services get secret argocd-initial-admin-secret -oyaml |yq .data.password |base64 -d
+    ```
+
+1. Log into Argo CD (for example in [integration](https://argo.eks.integration.govuk.digital/)).
+1. Disable auto-sync for the `app-config` application:
+    1. From the Applications page (the Argo CD homepage), choose the `app-config` application.
+    1. Press the `App Details` button near the top of the page.
+    1. Scroll down to the bottom of the page and press `Disable auto-sync`. Argo will prompt you before actually disabling auto-sync.
+1. Repeat the steps above to turn off auto-sync for the application you wish to deploy.
+1. Close the `App details` sidebar, then select the Deploy object for the component of the application you'd like to redeploy. For example, to update the Sidekiq workers for Account API, you would open up the `account-api-worker` Deploy object.
+1. Go to `Live manifest` and select `Edit`.
+1. Find the `image:` field for the `app` container. It should look something like `172025368201.dkr.ecr.eu-west-1.amazonaws.com/<app-name>:release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e`.
+1. Update the tag part of the `image:` value to the new image tag that you pushed to ECR. The part you are changing should look something like `release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e`.
+1. Click `Save`. Argo CD will start the deployment, which should complete in under ten minutes.
 
 ## Troubleshooting 403 errors from AWS
 
