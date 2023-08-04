@@ -78,13 +78,13 @@ Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#c
 
 ### Drill enabling a code freeze
 
-Choose a continuously-deployed app where you can make a meaningful change to the default branch, e.g. fixing a typo, or merging a Dependabot PR.
+Choose a continuously-deployed app where you can make a meaningful change to the default branch, such as fixing a typo or merging a Dependabot PR.
 
-Either before merging the change, or part way through the continuous deployment process, follow the instructions for [implementing a deploy freeze](/manual/development-pipeline.html#check-for-or-implement-a-deploy-freeze) for that app.
+Before merging the change, [implement a deployment freeze](/manual/development-pipeline.html#check-for-or-implement-a-deploy-freeze) for that app.
 
-Follow the deployment pipeline in Jenkins. Confirm that no further environment deployments are triggered. For example, if you implemented the deploy freeze just after the app was deployed to Staging, confirm that the app was then not automatically deployed to Production.
+View the application's page in Argo CD in each environment to see whether a deployment happened or not.
 
-Remove the code freeze, then manually push the changes to all remaining environments so that they're in sync.
+Remove the code freeze, then make sure the current version is deployed to all three environments.
 
 ## Drill making changes to user accounts
 
