@@ -9,10 +9,6 @@ type: learn
 
 There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going [on call](/manual/on-call.html) if you are part of the out of hours rota.
 
-## Drill detaching an instance
-
-Follow the [Detaching an instance from an Auto Scaling Group](/manual/common-aws-tasks-for-2nd-line-support.html#detaching-an-instance-from-an-auto-scaling-group) guidance.
-
 ## Drill publishing emergency banner
 
 Follow the [Deploy an emergency banner](/manual/emergency-publishing.html) on Staging.
