@@ -28,6 +28,19 @@ actually any pages with this document type.
 | <%= link_to supertype.name, "/document-types/#{supertype.id}.html" %> | <%= supertype.for_document_type(page.name) %> |
 <% end %>
 
+## Content schemas
+
+<% if page.schemas.any? %>
+This document type is allowed by the schema:
+
+<% page.schemas.each do |schema| %>
+- <%= link_to schema, "/content-schemas/#{schema}.html" %>
+<% end %>
+<% else %>
+This document type is not allowed by any schemas. This will mean it can't
+be published and may be deleteable.
+<% end %>
+
 <% if page.examples.any? %>
 ## Example pages
 

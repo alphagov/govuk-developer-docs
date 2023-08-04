@@ -17,4 +17,26 @@ RSpec.describe DocumentTypes do
       expect(document_type.examples.first.keys.sort).to eql(%w[link title])
     end
   end
+
+  describe "#schema_names_by_document_type" do
+    it "returns schema names by document type" do
+      schema_name = "aaib_report"
+      allow(GovukSchemas::Schema).to receive(:schema_names).and_return([schema_name])
+      allow(GovukSchemas::Schema).to receive(:find).with(notification_schema: schema_name).and_return({
+        properties: {
+          document_type: {
+            enum: %w[
+              embassies_index
+              field_of_operation
+            ],
+          },
+        },
+      }.as_json)
+
+      expect(DocumentTypes.schema_names_by_document_type).to eq({
+        embassies_index: [schema_name],
+        field_of_operation: [schema_name],
+      }.as_json)
+    end
+  end
 end
