@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Zendesk - GOV.UK Developer Documentation</title>
+    <title>Communicate when Slack is unavailable - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/zendesk.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/slack-unavailable.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Zendesk - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/zendesk.html" />
+      <meta name="twitter:title" content="Communicate when Slack is unavailable - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/slack-unavailable.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Zendesk" />
+      <meta property="og:title" content="Communicate when Slack is unavailable" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/zendesk.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/slack-unavailable.html" />
 
     
   </head>
@@ -126,42 +126,16 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Zendesk</span></a>
+    <a href="#header"><span>Communicate when Slack is unavailable</span></a>
     <ul>
       <li>
-        <a href="#get-started"><span>Get started</span></a>
+        <a href="#how-to-use-google-spaces"><span>How to use Google Spaces</span></a>
       </li>
       <li>
-        <a href="#priorities"><span>Priorities</span></a>
+        <a href="#how-to-configure-a-google-space"><span>How to configure a Google Space</span></a>
       </li>
       <li>
-        <a href="#triaging-a-ticket"><span>Triaging a ticket</span></a>
-      </li>
-      <li>
-        <a href="#passing-to-another-government-department-or-service-team"><span>Passing to another government department or service team</span></a>
-        <ul>
-          <li>
-            <a href="#service-level-agreements"><span>Service Level Agreements</span></a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#picking-up-a-ticket"><span>Picking up a ticket</span></a>
-      </li>
-      <li>
-        <a href="#data-gov-uk-tickets"><span>data.gov.uk tickets</span></a>
-      </li>
-      <li>
-        <a href="#dns-delegation-tickets"><span>DNS delegation tickets</span></a>
-      </li>
-      <li>
-        <a href="#leaver-tickets"><span>Leaver tickets</span></a>
-      </li>
-      <li>
-        <a href="#closing-a-ticket"><span>Closing a ticket</span></a>
-      </li>
-      <li>
-        <a href="#tickets-left-pending-without-a-response"><span>Tickets left pending without a response</span></a>
+        <a href="#2nd-line-google-space"><span>2nd line Google Space</span></a>
       </li>
     </ul>
   </li>
@@ -212,106 +186,37 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1e28a0445886c17d53506a14a857fba2370a7523">4 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5f4a7f444f3b9b57ba086510b0932394854d043a">7 Aug 2023</a>
 </div>
 
- <h1 id='header'>Zendesk</h1> <p>Technical 2nd Line Zendesk tickets are technical errors reported by our users, including government publishers.</p>
-<h2 id='get-started'>Get started</h2><p>See the <a href="https://docs.google.com/presentation/d/1iUbD-_uWyaNMeNj9h7Zvo9g2GWvRarg9kUh7pd0u32M/edit#slide=id.g134fafb13dc_0_0">Zendesk best practice slidedeck</a> for an overview and tour of the service.</p>
-<p><a href="https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;amp;brand_id=3194076&amp;amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;amp;theme=hc">Create an account</a>, then ask a fellow 2nd liner to assign a new ticket to
-<code>2nd/3rd Line--Zendesk Administration</code> asking to give you &ldquo;GDS Resolver Agent&rdquo; access to <code>2nd Line--GOV.UK Alerts and Issues</code>.</p>
-<p>When you&rsquo;re logged in, you should be looking at the <a href="https://govuk.zendesk.com/agent/filters/30791708"><code>2nd Line--GOV.UK Alerts and Issues</code> queue</a>.</p>
-<h2 id='priorities'>Priorities</h2><p>Work on &lsquo;High&rsquo; priority tickets first - these will have been triaged by Technical 2nd Line already, so should be
-relevant and actionable - and start with the oldest by date. If external assistance from outside 2nd
-line is required, assign them on the ticket and move on to the next ticket (keeping the ticket in the
-2nd line queue).</p>
-<p>&lsquo;Low&rsquo; priority tickets are for tickets that are <code>on-hold</code> and are not being actively worked on.</p>
-<p>New tickets are &lsquo;Normal&rsquo; priority by default and require triaging (i.e. a developer reading and categorising
-it).</p>
-<h2 id='triaging-a-ticket'>Triaging a ticket</h2><p>If you have any doubts as to the legitimacy or urgency of a ticket, it should be deferred to the delivery manager or Technical 2nd Line tech lead.</p>
-<p>Once you&rsquo;ve established that a ticket is legitimate, you should follow <a href="https://docs.google.com/presentation/d/1EotoM2CVtqlnx54Qz5bP7OyIx5c9ji_GptUuymHkBrc/edit">the process in this diagram</a>.</p>
-<p>In all cases, Technical 2nd Line will respond to the ticket, even if it is simply a note to the user saying that
-you&rsquo;ve passed their request to the relevant team.</p>
-
-<blockquote>
-<p>If you are unsure which group to triage a ticket to, you can reassign to
-<code>2nd/3rd Line--Zendesk Administration</code>, and they can help route the ticket to the
-appropriate place.</p>
-</blockquote>
-<p>Below are some of the groups we often triage tickets to:</p>
+ <h1 id='header'>Communicate when Slack is unavailable</h1> <p>If Slack has an outage, we use Google Spaces as a fallback.</p>
+<p>A &ldquo;space&rdquo; is roughly equivalent to a Slack channel, allowing async adding/removing of members, and the ability to create threads for conversation.</p>
+<p>For the equivalent of Slack&rsquo;s direct messages, use Google Chat.</p>
+<h2 id='how-to-use-google-spaces'>How to use Google Spaces</h2><p>Visit <a href="https://gmail.com">gmail.com</a> and click on &ldquo;Spaces&rdquo; on the left.
+Any spaces you are a member of will appear in a list on the left.</p>
+<p>You can click on &ldquo;Browse spaces&rdquo; to see all of the joinable spaces in the organisation, which you can &ldquo;Preview&rdquo; or &ldquo;Join&rdquo;.
+You can also <a href="#how-to-configure-a-google-space">create a new space</a>.</p>
+<h2 id='how-to-configure-a-google-space'>How to configure a Google Space</h2><p>From the <a href="#how-to-use-google-spaces">Google Spaces page</a>, click &ldquo;New space&rdquo;.</p>
 
 <ul>
-<li>Product requests - <code>3rd Line--GOV.UK Product Requests</code></li>
-<li>Content support - <code>2nd Line--GOV.UK Content Triage, Gov&#39;t</code></li>
-<li>GDPR and Privacy enquiries - <code>3rd Line--GDS Privacy</code></li>
-<li>Licensing - <code>1st Line--Licensing Support</code></li>
-<li>Security issues - <code>3rd Line--Cyber Security</code></li>
-<li>Spam - <code>2nd Line--User Support Escalation</code></li>
-<li>Signon issues - <code>3rd line--GOV.UK Content Training and Accounts</code></li>
-</ul>
-<p>If the ticket&rsquo;s subject is not descriptive of the problem (e.g. <code>Named contact</code>) then update this prior
-to triaging or working on the ticket.</p>
-<h2 id='passing-to-another-government-department-or-service-team'>Passing to another government department or service team</h2><p>Sometimes a ticket relates to a service run by another government department. To transfer the ticket:</p>
+<li>Give your space a useful name and description.</li>
+<li>Consider what the &ldquo;Space access&rdquo; should be.
 
 <ul>
-<li>click on Apply macro</li>
-<li>select Inside government &gt; Pass through</li>
-<li>select the relevant department or service</li>
+<li>By default, it is &ldquo;Restricted&rdquo;. This is roughly the equivalent of a private Slack channel.</li>
+<li>Alternatively, you can set the access to &ldquo;All of digital.cabinet-office.gov.uk&rdquo;, which allows anyone with that email address to be able to find and join it. This is roughly the equivalent of a public Slack channel.</li>
+</ul></li>
+<li>From this screen, you can invite people to join the space. You can also do so after you&rsquo;ve created the space.</li>
 </ul>
-<h3 id='service-level-agreements'>Service Level Agreements</h3><p>GOV.UK have committed to a minimum service level agreement for Technical 2nd Line.</p>
+<p>If your space is &ldquo;Restricted&rdquo;, you&rsquo;ll need to invite every relevant person, as they will be unable to find the space through &ldquo;Browse spaces&rdquo;. Rather than adding people individually, consider if there is a Google Group email address you can invite instead (e.g. a team email address if you are setting up a team space).</p>
 
 <ul>
-<li>80% of tickets get a first reply to the ticket within 2 working days</li>
-<li>80% of general enquiries (public tickets) resolved within 5 working days</li>
-<li>70% of department tickets are closed within 5 working days</li>
+<li>Google will treat the group email address as &ldquo;Invited&rdquo;, rather than &ldquo;Added&rdquo; to the space.</li>
+<li>Members of the Google group will be able to discover your space using &ldquo;Browse spaces&rdquo;.</li>
+<li>This means you won&rsquo;t have to worry about keeping your list of team members in sync with your &lsquo;space&rsquo;.</li>
 </ul>
-<p>If the volume of Zendesk tickets is overwhelming, talk to the delivery manager or Technical 2nd Line tech lead
-for assistance.</p>
-<h2 id='picking-up-a-ticket'>Picking up a ticket</h2><p>Click the &ldquo;take it&rdquo; link under &ldquo;Assignee&rdquo;, followed by &ldquo;Submit as Open&rdquo;, to formally undertake a ticket.
-If you know you cannot solve a ticket immediately, fill in a &ldquo;Public reply&rdquo; to the requester to let them
-know you’re looking into it.</p>
-<p>You can use Internal Notes to keep a log of actions you&rsquo;ve taken so far: this can make it easier for other
-staff to pick up where you left off if you&rsquo;re unable to solve the ticket yourself. Please note that departments
-can see internal notes, so don’t write anything you wouldn’t say to someone publicly.</p>
-<p>If you need more information from the user, fill in the &ldquo;Public reply&rdquo; as appropriate and click &ldquo;Submit as Pending&rdquo;.</p>
-<h2 id='data-gov-uk-tickets'>data.gov.uk tickets</h2><p>Read <a href="/manual/data-gov-uk-2nd-line.html">Common Technical 2nd Line tasks for data.gov.uk</a>, which outlines
-some of the common data.gov.uk (DGU) tickets that come in and how to fix them.
-For more thorny issues, respond to the user that you are passing this on for further
-review and assign to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk group.</p>
-<h2 id='dns-delegation-tickets'>DNS delegation tickets</h2><p>As of October 2022, Technical 2nd line may be asked to process DNS delegation requests. This used to be handled by a dedicated <code>3rd Line--GDS Reliability Engineering</code> Zendesk queue, which has now been merged into <code>2nd Line--GOV.UK Alerts and Issues</code>.</p>
-<p>The requests will look something like the following:</p>
-
-<blockquote>
-<p>Please delegate the following to <code>something.service.gov.uk</code>
-<code>nameserver1.example.com</code>
-<code>nameserver2.example.com</code></p>
-</blockquote>
-<p>We should process these as per the <a href="https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.wg0s4ugkpdpc">SRE interruptible documentation</a>.</p>
-<p>The workflow for these requests is that a requester emails a particular email address, which creates a Zendesk ticket for the GOV.UK Policy and Strategy team. The request is then signed off and routed to us. We then double-check with someone from GOV.UK Policy and Strategy that the change has been agreed, then add/change the necessary DNS records (see <a href="https://github.com/alphagov/govuk-dns-config/pull/854/files">example</a>) and respond to the requestor via the ticket.</p>
-<p>Note that some requests come directly via the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/hostmaster">hostmaster Google group</a>. If you are in any doubt about the legitimacy of a request, reassign the ticket to <code>3rd Line--Policy and Strategy</code> and add an internal note asking them.</p>
-<h2 id='leaver-tickets'>Leaver tickets</h2><p>As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have any GOV.UK access.</p>
-<p>Search for their name/email in the <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> repository.</p>
-
-<ol>
-<li>If you find a reference in <a href="https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml">config/govuk_tech.yml</a>, create a card using the <a href="https://trello.com/c/IQIV54Pc/378-leaver-tech-role">&ldquo;Leaver (tech role)&rdquo;</a> template card on the Technical 2nd Line Trello board</li>
-<li>If you don&rsquo;t find a reference - or you find a reference in the <code>govuk_non_tech.yml</code> - create a card using the <a href="https://trello.com/c/g9iK9fcL/1115-leaver-non-tech-role">&ldquo;Leaver (non tech role)&rdquo;</a> template card</li>
-</ol>
-<p>Add the card to the &ldquo;To do&rdquo; column with a due date, which will be the leaving date from the Zendesk ticket.</p>
-<p>You can then close the ticket with an internal comment which includes a link to the new Trello card.</p>
-<p>Finally, it&rsquo;s a case of working through the Trello card checklist (on or after the due date), then moving the card to Done.</p>
-<h2 id='closing-a-ticket'>Closing a ticket</h2><p>Once you&rsquo;ve resolved a ticket, click &ldquo;Submit as Solved&rdquo;. You do not need to wait for user confirmation to
-close the ticket.</p>
-<h2 id='tickets-left-pending-without-a-response'>Tickets left pending without a response</h2><p>Note that if a ticket has been pending a response for 5 or more days with no response from the
-requester, you can submit it as solved with a message telling them why and that if they still need help they
-can get in touch. Do this by clicking the &ldquo;Apply macro&rdquo; button at the bottom of the ticket screen, and
-choosing the &ldquo;GOV.UK 2nd line tech: pending for 5+ days&rdquo; option.</p>
+<h2 id='2nd-line-google-space'>2nd line Google Space</h2><p>There is a persistent <a href="https://mail.google.com/mail/u/0/#chat/space/AAAAuQLSk78">Technical 2nd Line space</a>, to which the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/2nd-line-support">Technical 2nd Line Support Google Group</a> is invited as a member. Everyone on 2nd line should therefore be able to use the 2nd line space in the event of a Slack outage.</p>
 
 
   <div class='related-content'>
@@ -326,12 +231,12 @@ choosing the &ldquo;GOV.UK 2nd line tech: pending for 5+ days&rdquo; option.</p>
             <li><a href="/manual/2nd-line.html">2nd line</a></li>
             <li><a href="/manual/2nd-line-drills.html">2nd line drills</a></li>
             <li><a href="/manual/access-to-licensing-for-third-parties.html">Access to Licensify for Third Parties</a></li>
-            <li><a href="/manual/slack-unavailable.html">Communicate when Slack is unavailable</a></li>
             <li><a href="/manual/licensing.html">Licensify - supporting licensing</a></li>
             <li><a href="/manual/on-call.html">Out of hours support (on-call)</a></li>
             <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
             <li><a href="/manual/rules-for-getting-production-access.html">Rules for getting production access</a></li>
             <li><a href="/manual/subject-access-requests.html">Subject Access Request (SAR)</a></li>
+            <li><a href="/manual/zendesk.html">Zendesk</a></li>
           </ul>
         </div>
 
@@ -359,8 +264,8 @@ choosing the &ldquo;GOV.UK 2nd line tech: pending for 5+ days&rdquo; option.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/zendesk.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Zendesk%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fzendesk.html%29&amp;labels=bug&amp;title=Re%3A+%27Zendesk%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/slack-unavailable.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Communicate+when+Slack+is+unavailable%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fslack-unavailable.html%29&amp;labels=bug&amp;title=Re%3A+%27Communicate+when+Slack+is+unavailable%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
