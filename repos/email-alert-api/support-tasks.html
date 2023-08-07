@@ -206,7 +206,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/1bef63200f673634884c29f94bb6dd977a8ebd20">20 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/9398cd01d5f2a9922cc9de3688963af440bf639e">3 Aug 2023</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Support tasks</h1>
@@ -282,9 +282,14 @@ Depending on the number of emails to send, the Rake task can take a few minutes 
 <p>You can also pass it a :active_on_datetime which will count how many active subscriptions there were at the end of the day on a particular date. The active_on_date defaults to today if not specified, and should be in ISO8601 format, for example 2022-03-03T12:12:16+00:00. The time will always be rounded to the end of the day, even if that is in the future.</p>
 <h2 id="finding-out-how-many-messages-were-sent-when-a-page-changed">Finding out how many messages were sent when a page changed</h2>
 <p>The previous rake task only gets subscriber lists that match a URL. But subscribers can match on topics/tags/links, so to get a full idea of how many people subscribe to a page:</p>
-<pre lang="bash"><code>kubectl -n apps exec -it deploy/email-alert-api -- bundle exec rake 'report:content_change_statistics[&lt;path&gt;]'
+<pre lang="bash"><code>kubectl -n apps exec -it deploy/email-alert-api -- bundle exec rake 'report:historical_content_change_statistics[&lt;path&gt;]'
 </code></pre>
 <p>This gives you a list of all the content changes that have been registered for that path - this is all the times that email-alert-api actually sent out notifications, with a breakdown for each occurence into the number of people notified immediately, in the next daily digest, and in the weekly digest.</p>
+<h2 id="finding-out-how-many-messages-would-be-sent-if-a-page-were-changed">Finding out how many messages would be sent if a page were changed</h2>
+<p>The previous rake task is only useful once emails have gone out. Occasinally you might be asked for details of how many people will be notified if a major change is published to a document. You can find that out with this task:</p>
+<pre lang="bash"><code>kubectl -n apps exec -it deploy/email-alert-api -- bundle exec rake 'report:future_content_change_statistics[&lt;path&gt;,&lt;use draft store?&gt;]'
+</code></pre>
+<p>The second parameter should be true or false depending on whether you want to use information from the draft or live content stores (note that the most common thing that will change the number of subscriber lists notified are the links and organisations, and if changed they occur immediately, and do not differ on the draft and live stores).</p>
 <h2 id="get-a-report-of-single-page-notification-subscriber-lists-by-active-subscriber-count">Get a report of single page notification subscriber lists by active subscriber count</h2>
 <p>This report provides a count of all subscriber lists with a content ID, followed by individual subscriber lists ordered by active subscriber count.</p>
 <pre lang="bash"><code>kubectl -n apps exec -it deploy/email-alert-api -- bundle exec rake 'report:single_page_notifications_top_subscriber_lists'
