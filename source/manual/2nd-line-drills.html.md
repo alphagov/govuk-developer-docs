@@ -68,7 +68,7 @@ Use common sense when following the steps (i.e. don't actually publish an incide
 ### Drill how to communicate when Slack is down
 
 Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
-See "[If Slack is unavailable](https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp)" for details.
+See [Communicate when Slack is unavailable](/manual/slack-unavailable.html#2nd-line-google-space) for details.
 
 ## Drill special deployment conditions
 
