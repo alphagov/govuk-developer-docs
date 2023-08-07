@@ -129,21 +129,13 @@
     <a href="#header"><span>Deploy when GitHub is unavailable</span></a>
     <ul>
       <li>
-        <a href="#backup-to-aws-codecommit"><span>Backup to AWS CodeCommit</span></a>
+        <a href="#aws-codecommit"><span>AWS CodeCommit</span></a>
         <ul>
           <li>
-            <a href="#checkout-code-in-aws-codecommit"><span>Checkout code in AWS CodeCommit</span></a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#drill-creating-and-deploying-a-branch-from-codecommit"><span>Drill creating and deploying a branch from CodeCommit</span></a>
-        <ul>
-          <li>
-            <a href="#create-and-deploy-an-image-to-ecr"><span>Create and deploy an image to ECR</span></a>
+            <a href="#build-and-deploy-an-app-when-github-is-unavailable"><span>Build and deploy an app when GitHub is unavailable</span></a>
           </li>
           <li>
-            <a href="#deploy-the-image-to-eks-using-argo"><span>Deploy the image to EKS using Argo</span></a>
+            <a href="#deploy-the-image-to-kubernetes-using-argo-cd"><span>Deploy the image to Kubernetes using Argo CD</span></a>
           </li>
         </ul>
       </li>
@@ -200,46 +192,57 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b9547fe878c39dab8f93fcaa076778773e6a0dc4">16 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1417cd02583371123074325b976ecd9f525fe68a">4 Aug 2023</a>
 </div>
 
- <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='backup-to-aws-codecommit'>Backup to AWS CodeCommit</h2><p>We mirror all non-archived GitHub repositories tagged with <code>govuk</code> to AWS CodeCommit. This is achieved using a <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml">&ldquo;Mirror repositories&rdquo; GitHub workflow</a>, which uses a <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/mirror.tf"><code>github_action_mirror_repos_role</code> IAM role configured in Terraform</a>.</p>
-<h3 id='checkout-code-in-aws-codecommit'>Checkout code in AWS CodeCommit</h3><p>Since our deployment images are named via git tags, we&rsquo;ll need to checkout our code from AWS CodeCommit in order to make sure we&rsquo;re deploying the correct image and have an up-to-date copy of the code.</p>
-<p>Setup your local environment for <a href="/manual/howto-checkout-and-commit-to-codecommit.html">checking out code from CodeCommit</a></p>
-<h2 id='drill-creating-and-deploying-a-branch-from-codecommit'>Drill creating and deploying a branch from CodeCommit</h2><p>If GitHub.com is down, Docker images can still be created and then deployed manually in Argo.</p>
-<h3 id='create-and-deploy-an-image-to-ecr'>Create and deploy an image to ECR</h3><p>Ensure the following instructions are all run from the root directory of the repository.</p>
+ <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='aws-codecommit'>AWS CodeCommit</h2><p>We mirror all non-archived GitHub repositories tagged with <code>govuk</code> to AWS CodeCommit via the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml">&ldquo;Mirror repositories&rdquo; GitHub Actions workflow</a>. The workflow uses the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/mirror.tf"><code>github_action_mirror_repos_role</code> IAM role</a>.</p>
+<h3 id='build-and-deploy-an-app-when-github-is-unavailable'>Build and deploy an app when GitHub is unavailable</h3><p>If GitHub.com is down, you can still clone a GOV.UK repo from CodeCommit and
+build and deploy a container image from your workstation.</p>
+<p>Run the following commands from the root directory of the repository.</p>
 
 <ol>
-<li>Follow the steps for <a href="/manual/howto-checkout-and-commit-to-codecommit.html">checking out and committing from CodeCommit</a> to clone the repo.</li>
-<li>Make your changes.</li>
-<li>Name the <code>IMAGE_TAG</code> for your change, which you will then push to the ECR (Elastic Container Registry) in order to deploy the change from Argo.</li>
+<li><a href="/manual/howto-checkout-and-commit-to-codecommit.html#install-dependencies-and-set-up-local-environment">Set up CodeCommit on your machine</a> if you haven&rsquo;t already.</li>
+<li>Follow the <a href="/manual/howto-checkout-and-commit-to-codecommit.html#quick-reference-guide">CodeCommit guide</a> to clone the repo and commit/push changes if needed.</li>
+<li>Set the image tag, image registry and image repository names that you will use by running the following commands. You don&rsquo;t need to modify any of the values in the commands.</li>
 </ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>LOCAL_HEAD_SHA="$(git rev-parse HEAD)"
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>LOCAL_HEAD_SHA=$(git rev-parse HEAD)
 IMAGE_TAG="release-${LOCAL_HEAD_SHA}"
-ECR_REGISTRY="172025368201.dkr.ecr.eu-west-1.amazonaws.com"
-REPO=$(awk -F '=' /GOVUK_APP_NAME/'{print $2}' Dockerfile)
+REGISTRY="172025368201.dkr.ecr.eu-west-1.amazonaws.com"
+REPO=$(basename "$PWD")
 </code></pre></div>
 <ol>
-<li>Build the docker image locally with the tag named after the latest sha.</li>
+<li>Build the container image and tag it appropriately.</li>
 </ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code> docker build --platform linux/amd64 -f Dockerfile -t $IMAGE_TAG .
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>docker build --platform linux/amd64 -t $IMAGE_TAG .
 </code></pre></div>
 <ol>
-<li>Log in and push the image to ECR:</li>
+<li>Log into ECR and push the image:</li>
 </ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-production-poweruser aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $ECR_REGISTRY
-docker push $ECR_REGISTRY/$REPO:$IMAGE_TAG
-</code></pre></div><h3 id='deploy-the-image-to-eks-using-argo'>Deploy the image to EKS using Argo</h3>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-production-poweruser aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $REGISTRY
+docker push $REGISTRY/$REPO:$IMAGE_TAG
+</code></pre></div><h3 id='deploy-the-image-to-kubernetes-using-argo-cd'>Deploy the image to Kubernetes using Argo CD</h3>
+<blockquote>
+<p>⚠️ This procedure will disable automatic deployments <em>for all applications</em>, not only in the environment you are working on but also in higher environments. For example, performing this procedure on integration will prevent all automatic deployments in integration, staging and production.</p>
+</blockquote>
+
 <ol>
-<li>Get the Admin Argo credentials by running <code>kubectl -n cluster-services get secret argocd-initial-admin-secret -oyaml |yq .data.password |base64 -d</code></li>
-<li>Log into <a href="https://argo.eks.integration.govuk.digital/">Argo</a></li>
-<li>Search for the application you wish to deploy in the &ldquo;Search applications&hellip;&rdquo; search bar</li>
-<li>Select the application from the list below the search bar</li>
-<li>Select &ldquo;APP DETAILS&rdquo;</li>
-<li>Go to &ldquo;DISABLE AUTO-SYNC&rdquo; then select &ldquo;ok&rdquo; when prompted &ldquo;Disable Auto-Sync?&rdquo;</li>
-<li>Close the &ldquo;APP DETAILS&rdquo; menu, then select the three dots next to the Deploy object for the part of the application you&rsquo;d like to redeploy. For example, <code>account-api-worker</code> would be for deploying the <code>account-api-workers</code>.</li>
-<li>Go to the &ldquo;LIVE MANIFEST&rdquo; and select &ldquo;EDIT&rdquo;. Find the &ldquo;image&rdquo;, then update it to the new image tag you&rsquo;d like to deploy. (You can double-check you have the correct image name by doing a <code>git log</code> after <a href="/manual/howto-checkout-and-commit-to-codecommit.html">checking out the code from CodeCommit</a>).</li>
-<li>Click &ldquo;Save&rdquo; and Argo will start the deployment, which should complete in under ten minutes.</li>
+<li><p>Fetch the password for the Argo CD <code>admin</code> user. This varies by environment.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> cluster-services get secret argocd-initial-admin-secret <span class="nt">-oyaml</span> |yq .data.password |base64 <span class="nt">-d</span>
+</code></pre></div></li>
+<li><p>Log into Argo CD (for example in <a href="https://argo.eks.integration.govuk.digital/">integration</a>).</p></li>
+<li><p>Disable auto-sync for the <code>app-config</code> application:</p>
+
+<ol>
+<li>From the Applications page (the Argo CD homepage), choose the <code>app-config</code> application.</li>
+<li>Press the <code>App Details</code> button near the top of the page.</li>
+<li>Scroll down to the bottom of the page and press <code>Disable auto-sync</code>. Argo will prompt you before actually disabling auto-sync.</li>
+</ol></li>
+<li><p>Repeat the steps above to turn off auto-sync for the application you wish to deploy.</p></li>
+<li><p>Close the <code>App details</code> sidebar, then select the Deploy object for the component of the application you&rsquo;d like to redeploy. For example, to update the Sidekiq workers for Account API, you would open up the <code>account-api-worker</code> Deploy object.</p></li>
+<li><p>Go to <code>Live manifest</code> and select <code>Edit</code>.</p></li>
+<li><p>Find the <code>image:</code> field for the <code>app</code> container. It should look something like <code>172025368201.dkr.ecr.eu-west-1.amazonaws.com/&lt;app-name&gt;:release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e</code>.</p></li>
+<li><p>Update the tag part of the <code>image:</code> value to the new image tag that you pushed to ECR. The part you are changing should look something like <code>release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e</code>.</p></li>
+<li><p>Click <code>Save</code>. Argo CD will start the deployment, which should complete in under ten minutes.</p></li>
 </ol>
 <h2 id='troubleshooting-403-errors-from-aws'>Troubleshooting 403 errors from AWS</h2><p>If running any <code>git</code> commands against CodeCommit returns a 403 response, you probably
 have expired credentials stored in your macOS keychain from a previous attempt.

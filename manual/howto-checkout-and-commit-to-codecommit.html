@@ -135,7 +135,10 @@
         <a href="#install-dependencies-and-set-up-local-environment"><span>Install dependencies and set up local environment</span></a>
       </li>
       <li>
-        <a href="#cloning-repositories"><span>Cloning repositories</span></a>
+        <a href="#clone-a-repository-from-codecommit"><span>Clone a repository from CodeCommit</span></a>
+      </li>
+      <li>
+        <a href="#find-a-repository-in-codecommit"><span>Find a repository in CodeCommit</span></a>
       </li>
       <li>
         <a href="#pushing-to-a-branch"><span>Pushing to a branch</span></a>
@@ -190,60 +193,77 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1417cd02583371123074325b976ecd9f525fe68a">4 Aug 2023</a>
 </div>
 
- <h1 id='header'>How to check and commit code to AWS CodeCommit</h1> <p>CodeCommit is used as a backup/mirror for our repositories in GitHub. It is regularly populated by a <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml">GitHub Action in govuk-infrastructure</a>.</p>
-<p>Should we need to commit code manually to CodeCommit (if GitHub is down, for example), we can leverage the access granted to us via <a href="https://github.com/alphagov/gds-cli">gds-cli</a> in order to authenticate our local user and commit code.</p>
-<h2 id='quick-reference-guide'>Quick reference guide</h2><p>The following example shows how to clone the whitehall-prototype-2023 repository, create a local branch, make a local change then push the change to a remote branch in aws codecommit. <em>You must</em> first <a href="#install-dependencies-and-set-up-local-environment">install dependencies and set up your local environment</a>.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall-prototype-2023
-cd whitehall-prototype-2023
+ <h1 id='header'>How to check and commit code to AWS CodeCommit</h1> <p>We use <a href="https://docs.aws.amazon.com/codecommit/latest/userguide/">AWS CodeCommit</a> as a backup for our GitHub repositories.</p>
+<p>The <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml"><code>mirror-repos.yml</code> GitHub Actions workflow</a> copies GitHub repositories tagged with <code>govuk</code> to CodeCommit 4 times daily Mon-Fri.</p>
+<p>Accessing CodeCommit requires AWS credentials, which you can obtain in the usual ways via <a href="https://github.com/alphagov/gds-cli">gds-cli</a>.</p>
+<h2 id='quick-reference-guide'>Quick reference guide</h2><p>This example demonstrates a simple workflow using the <code>whitehall</code> repository in CodeCommit.</p>
+
+<blockquote>
+<p>Follow <a href="#install-dependencies-and-set-up-local-environment">the installation steps</a> first.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># Clone the repo.
+gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall
+
+# Create a local branch.
+cd whitehall
 git checkout -b mybranch
+
+# Commit a change locally.
 touch mychange
-git add mychange
-git commit -m "my change"
-gds aws govuk-tools-poweruser git push origin mychange
-</code></pre></div><h2 id='install-dependencies-and-set-up-local-environment'>Install dependencies and set up local environment</h2>
-<ul>
-<li><p>For this to work you need to have <a href="/manual/get-started.html#3-install-gds-command-line-tools">set up the GDS command line tools</a></p></li>
-<li><p>You will also need to install git-remote-codecommit</p></li>
-</ul>
+git commit -m "DO NOT MERGE: testing push to CodeCommit" -- mychange
+
+# Push the branch to CodeCommit.
+gds aws govuk-tools-poweruser git push origin mybranch
+
+# Clean up by deleting the example branch we just created.
+gds aws govuk-tools-poweruser git push -d origin mybranch
+</code></pre></div><h2 id='install-dependencies-and-set-up-local-environment'>Install dependencies and set up local environment</h2><p>You need to have first <a href="/manual/get-started.html#3-install-gds-command-line-tools">set up the GDS command line tools</a>.</p>
+
+<ol>
+<li><p>Install <code>git-remote-codecommit</code>:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>brew install git-remote-codecommit
-</code></pre></div>
-<ul>
-<li>You will also need to add the below lines to your git config as per <a href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html#setting-up-https-unixes-credential-helper">AWS documentation</a></li>
-</ul>
+</code></pre></div><p>On a Linux machine, you may find it easier to install <code>git-remote-codecommit</code> via <code>pip</code>:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>pip3 install git-remote-codecommit
+</code></pre></div></li>
+<li><p>Configure your git client to use <code>git-remote-codecommit</code> to authenticate to AWS. (See <a href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html#setting-up-https-unixes-credential-helper">AWS CodeCommit docs</a> for further info.)</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>git config --global credential.helper '!aws codecommit credential-helper $@'
 git config --global credential.UseHttpPath true
-</code></pre></div>
-<ul>
-<li>You should see the following entry in the gitconfig file (<code>cat ~/.gitconfig</code>)</li>
-</ul>
+</code></pre></div><p>This should automatically add the following entry to your <code>~/.gitconfig</code> file.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>[credential]
     helper = !aws codecommit credential-helper $@
     UseHttpPath = true
-</code></pre></div><h2 id='cloning-repositories'>Cloning repositories</h2>
-<ul>
-<li>login to the AWS console to see the available repositories using <a href="/manual/get-started.html#3-install-gds-command-line-tools">the GDS command line tool</a></li>
-</ul>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser --login
-</code></pre></div>
-<ul>
-<li><p>search &ldquo;codecommit&rdquo; in the aws search bar and ensure that &ldquo;London&rdquo; is selected as the region</p></li>
-<li><p>find the repository you are wanting to clone using the repository search bar then select the &ldquo;HTTPS (GRC)&rdquo; <strong>repository url</strong></p></li>
-<li><p>open a terminal and navigate to the directory you want to clone the repository to then clone the repository using</p></li>
-</ul>
+</code></pre></div></li>
+</ol>
+<h2 id='clone-a-repository-from-codecommit'>Clone a repository from CodeCommit</h2>
+<ol>
+<li><p>In your shell, obtain AWS credentials and run <code>git clone</code> to clone the repository.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git clone &lt;repository url&gt;
-</code></pre></div>
-<ul>
-<li>an example of cloning the whitehall prototype 2023 repository looks like this</li>
-</ul>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall-prototype-2023
-</code></pre></div><h2 id='pushing-to-a-branch'>Pushing to a branch</h2>
-<ul>
-<li><p>After cloning the repository you can create local branches and make local changes as you would with a normal git repository</p></li>
-<li><p>When it comes to pushing to a remote branch prefix the git command with the GDS command line tool so the correct credentials are used to authenticate with AWS</p></li>
-</ul>
+</code></pre></div><p>For example:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall
+</code></pre></div></li>
+</ol>
+
+<blockquote>
+<p><code>git clone</code> on CodeCommit can sometimes be very slow initially. If <code>git
+clone</code> appears to hang at <code>remote:</code> or <code>remote: Enumerating objects</code>, it&rsquo;s
+worth waiting several minutes as it may start working.</p>
+</blockquote>
+<h2 id='find-a-repository-in-codecommit'>Find a repository in CodeCommit</h2><p>Repository names should exactly match those in GitHub. If you are unsure whether a given repository exists in CodeCommit, you can browse the available repositories.</p>
+
+<ol>
+<li><p>Log into the AWS console to see the available repositories using <a href="/manual/get-started.html#3-install-gds-command-line-tools">the GDS command line tool</a></p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser --login
+</code></pre></div></li>
+<li><p>Select the London (<code>eu-west-2</code>) region.</p></li>
+<li><p>Go to the CodeCommit page. You can find it via the search bar or the navigation menu.</p></li>
+<li><p>Find the repository you want to clone using the repository search bar.</p></li>
+<li><p>Select the &ldquo;HTTPS (GRC)&rdquo; repository URL.</p></li>
+</ol>
+<h2 id='pushing-to-a-branch'>Pushing to a branch</h2><p>Once you have cloned a repository from CodeCommit, you can create local branches and push changes as normal, provided you have valid AWS credentials in your shell.</p>
+<p>For example:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git push origin mybranch
 </code></pre></div>
 
