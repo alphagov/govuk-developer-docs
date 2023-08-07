@@ -1,6 +1,7 @@
+---
 name: CI
 
-on:
+"on":
   push:
     branches:
       - main
@@ -35,3 +36,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOVUK_CONTENT_SCHEMAS_PATH: tmp/publishing-api/content_schemas
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: DavidAnson/markdownlint-cli2-action@8f3516061301755c97ff833a8e933f09282cc5b5  # v11
+        with:
+          fix: true
+          globs: '**/*.md'
