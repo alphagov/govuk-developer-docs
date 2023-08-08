@@ -6,23 +6,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-sentry-monitor - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-sentry-monitor (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-sentry-monitor.html">
 
-      <meta name="description" content="Everything about govuk-sentry-monitor (Script to report the number of errors in Sentry to Graphite)" />
+      <meta name="description" content="Everything about govuk-sentry-monitor (Script to report the number of errors in Sentry to Graphite.
+The result was displayed on the Sentry dashboard and on the 2nd line dashboard.
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-sentry-monitor - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-sentry-monitor (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-sentry-monitor.html" />
 
-      <meta property="og:description" content="Everything about govuk-sentry-monitor (Script to report the number of errors in Sentry to Graphite)" />
+      <meta property="og:description" content="Everything about govuk-sentry-monitor (Script to report the number of errors in Sentry to Graphite.
+The result was displayed on the Sentry dashboard and on the 2nd line dashboard.
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-sentry-monitor" />
+      <meta property="og:title" content="Repository: govuk-sentry-monitor (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-sentry-monitor.html" />
 
@@ -174,76 +178,12 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-sentry-monitor</h1>
+  <h1 class="page-title">Repository: govuk-sentry-monitor (retired)</h1>
 
-  <p>Script to report the number of errors in Sentry to Graphite</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-sentry-monitor">govuk-sentry-monitor</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-platform-security-reliability-team">#govuk-platform-security-reliability-team</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk-sentry-monitor" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk-sentry-monitor.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Script to report the number of errors in Sentry to Graphite. The result is displayed on the <a href="https://grafana.blue.production.govuk.digital/dashboard/file/sentry_errors_across_all_environments.json">Sentry dashboard</a> and on the <a href="https://grafana.blue.production.govuk.digital/dashboard/file/2ndline_health.json">2nd line dashboard</a>.</p>
-
-<h2 id="how-it-works">How it works</h2>
-
-<ul>
-<li>The <a href="https://deploy.blue.production.govuk.digital/job/Check_Sentry_Errors/">govuk-sentry-monitor jenkins job</a> runs the <a href="https://github.com/alphagov/govuk-sentry-monitor/blob/main/Rakefile">script in the Rakefile</a> every 15 minutes</li>
-<li>The script uses the Sentry API to<a href="https://docs.sentry.io/api/projects/get-project-stats/"> fetch the stats per project</a> for the last hour</li>
-<li>The script then send the total count per app for the last hour to the Statsd process as a  <a href="http://statsd.readthedocs.io/en/v0.5.0/types.html#gauges">&ldquo;gauge&rdquo;</a>
-</li>
-<li>Statsd <a href="https://graphite.blue.production.govuk.digital/">sends the metric over to Graphite</a>, which means we can <a href="https://grafana.blue.production.govuk.digital/dashboard/file/sentry_errors_across_all_environments.json">use it in Grafana</a>
-</li>
-</ul>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Script to report the number of errors in Sentry to Graphite.
+The result was displayed on the Sentry dashboard and on the 2nd line dashboard.</p></p>
+<p><a href="https://github.com/alphagov/govuk-sentry-monitor">GitHub repository</a></p>
 
 
             

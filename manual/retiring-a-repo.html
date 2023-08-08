@@ -196,12 +196,18 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d5f2074bfe6b4baa6fe07a270a9d33f178521395">10 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b78fbad8c959022d397ba79ea1c8c407c4d31c84">8 Aug 2023</a>
 </div>
 
  <h1 id='header'>Retire a repo</h1> <h2 id='1-update-readme'>1. Update README</h2><p>Add a note to the top of the README explaining that the repo has been retired and, if applicable, what it has been replaced by.</p>
 <h2 id='2-close-open-issues-and-pull-requests'>2. Close open issues and pull requests</h2><p>Once a repository is archived all of its issues and pull requests become read-only and the authors will not be able to close them. We want to avoid giving the impression that these will eventually be acted upon. Leaving them open will also affect metrics we collect such as Dependabot statistics.</p>
-<h2 id='3-unpublish-the-github-pages-site-if-it-has-one'>3. Unpublish the GitHub pages site (if it has one)</h2><p>Archiving a repo doesn&rsquo;t unpublish the GitHub Pages site linked to the repository, so you&rsquo;ll need to do that first.</p>
+<h2 id='3-unpublish-the-github-pages-site-if-it-has-one'>3. Unpublish the GitHub pages site (if it has one)</h2><p>Archiving a repo doesn&rsquo;t affect the GitHub Pages site linked to the repository. We should retire the site carefully because it may be possible for someone else to reuse the URL.</p>
+
+<ul>
+<li>Remove any references to the URL from documentation and code</li>
+<li>Delete any DNS entries for the site if the site uses a custom domain</li>
+<li>Unpublish the GitHub Pages site</li>
+</ul>
 <h2 id='4-archive-the-repo'>4. Archive the repo</h2><p>Go into the repository settings in GitHub, and <a href="https://github.com/blog/2460-archiving-repositories">archive the repo</a>.</p>
 <h2 id='5-update-the-developer-docs'>5. Update the Developer Docs</h2><p>Mark the application as <code>retired</code> in <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">govuk-developer-docs</a>.</p>
 <h2 id='6-remove-other-references'>6. Remove other references</h2><p>Do a <a href="https://github.com/search?q=org%3Aalphagov+panopticon&amp;type=Code">search on GitHub</a> to find any references to the repository and update or remove them.</p>
