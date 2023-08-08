@@ -28,9 +28,7 @@ There's also a [flow diagram showing when you get Production Deploy and Producti
 ### Production Deploy access
 
 This level of access allows engineers to deploy code but not administer admin related
-systems. It should be granted to both civil servants and contractors as needed.
-
-Access includes:
+systems. Access includes:
 
 - Permission to [deploy apps](/manual/development-pipeline.html#deployment) in Jenkins via the [GOV.UK Production Deploy Github team](https://github.com/orgs/alphagov/teams/gov-uk-production-deploy)
 - Permission to [merge pull requests](/manual/merge-pr.html#header) in continuously deployed applications
@@ -44,8 +42,11 @@ any access issues.
 
 #### When you get Production Deploy access
 
-Access should be granted at the discretion of the engineer's tech lead, once the engineer has the required level of security clearance (BPSS). Before approving access, tech leads should ensure that the engineer:
+Access can be granted to both civil servants and contractors as needed, at the discretion of a sponsor: either the engineer's (civil servant) tech lead, or a GOV.UK Senior Technologist.
 
+Before approving access, the sponsor should ensure that the engineer:
+
+- has the required level of security clearance (BPSS)
 - is aware of our processes and standards around [code review](https://gds-way.cloudapps.digital/manuals/code-review-guidelines.html)
 - understands the responsibilities that [releasing code](/manual/development-pipeline.html#deployment) brings with it
 - knows how to roll back to an older release if there are any issues
