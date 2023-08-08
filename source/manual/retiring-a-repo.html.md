@@ -16,7 +16,11 @@ Once a repository is archived all of its issues and pull requests become read-on
 
 ## 3. Unpublish the GitHub pages site (if it has one)
 
-Archiving a repo doesn't unpublish the GitHub Pages site linked to the repository, so you'll need to do that first.
+Archiving a repo doesn't affect the GitHub Pages site linked to the repository. We should retire the site carefully because it may be possible for someone else to reuse the URL.
+
+- Remove any references to the URL from documentation and code
+- Delete any DNS entries for the site if the site uses a custom domain
+- Unpublish the GitHub Pages site
 
 ## 4. Archive the repo
 
