@@ -788,12 +788,53 @@
 
 - name: scroll tracking
   events:
-    - name: scroll tracking
-      implemented: false
+    - name: percentage scroll tracking
+      implemented: true
       priority: medium
+      tracker: scroll_tracker
+      examples:
+        - text: Search results
+          link: https://www.gov.uk/search/all?keywords=minister&order=relevance
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: scroll
+        - name: event_name
+          value: scroll
+        - name: type
+          value: percent
+        - name: percent_scrolled
+    - name: heading scroll tracking
+      implemented: true
+      priority: medium
+      tracker: scroll_tracker
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk/
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: scroll
+        - name: event_name
+          value: scroll
+        - name: index
+          value:
+          - name: index_section
+            value: index of the heading reached
+          - name: index_section_count
+            value: total number of headings being tracked
+        - name: text
+          value: text of heading reached
+        - name: section
+          value: text of heading reached
+        - name: type
+          value: heading
 
 - name: see all link
   events:
