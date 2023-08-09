@@ -101,24 +101,93 @@
 
 - name: browse
   events:
-    - name: topic browse link click
-      implemented: false
+    - name: browse (browse level 0)
+      implemented: true
       priority: medium
+      description: Tracking the top level of the browse pages.
+      examples:
+        - text: Browse level 0
+          link: https://www.gov.uk/browse
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
-    - name: page view topic page parameters
-      implemented: false
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: browse card
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+    - name: browse topic (browse level 1)
+      implemented: true
       priority: medium
+      description: Tracking the second level of the browse pages.
+      examples:
+        - text: Browse level 1
+          link: https://www.gov.uk/browse/benefits
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
-    - name: see more in this topic link click
-      implemented: false
-      priority: low
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: browse card
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+    - name: browse subtopic (browse level 2)
+      implemented: true
+      priority: medium
+      description: Tracking the final level of the browse pages.
+      examples:
+        - text: Browse level 2
+          link: https://www.gov.uk/browse/births-deaths-marriages/child
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: browse card
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+          - name: index_section
+          - name: index_section_count
+        - name: index_total
+        - name: section
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
 
 - name: call out box
   events:
