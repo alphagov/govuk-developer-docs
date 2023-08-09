@@ -11,6 +11,7 @@
 
 <% event.events.each do |page_event| %>
   <div class="event">
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
     <h2 class="govuk-heading-m analytics-heading">
       <%= page_event.name %>
     </h2>
@@ -58,5 +59,6 @@
     <div class="govuk-inset-text">
       <%= to_html(event_hash) %>
     </div>
+    <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
   </div>
 <% end %>

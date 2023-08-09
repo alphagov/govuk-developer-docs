@@ -185,6 +185,11 @@
   type: string
   redact: false
 
+- name: organisations
+  required: no
+  type: string
+  redact: false
+
 - name: percent_scrolled
   description: indicates how far down the page was scrolled, typically 20%, 40%, 60%, 80% or 100%
   value: 20, 40, 60, 80 or 100
@@ -193,10 +198,31 @@
   type: string (number)
   redact: false
 
+- name: political_status
+  required: no
+  type: string
+  redact: false
+
+- name: primary_publishing_organisation
+  required: no
+  type: string
+  redact: false
+
+- name: public_updated_at
+  required: no
+  type: string
+  redact: false
+
 - name: publishing_app
   description: application that published the content
   value: content attribute of meta tag govuk:publishing-app
   example: collections-publisher
+  required: no
+  type: string
+  redact: false
+
+- name: publishing_government
+  description: The government that was responsible for publishing a piece of content.
   required: no
   type: string
   redact: false
@@ -348,6 +374,29 @@
   required: no
   type: string
   redact: true
+
+- name: video_current_time
+  description: The current position of the video being played, in seconds.
+  required: no
+  type: string (number)
+  redact: false
+
+- name: video_duration
+  description: The length of a video, in seconds.
+  required: no
+  type: string (number)
+  redact: false
+
+- name: video_percent
+  description: Used to record when the video being played is at 0%, 25%, 50%, 75% or 100%.
+  required: no
+  type: string (number)
+  redact: false
+
+- name: world_locations
+  required: no
+  type: string
+  redact: false
 
 - name: withdrawn
   description:

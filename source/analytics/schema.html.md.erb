@@ -1,0 +1,17 @@
+<% content_for :title, create_page_title(data.analytics.navigation.schema.name) %>
+
+<h1 class="govuk-heading-l">
+  <%= data.analytics.navigation.schema.name %>
+</h1>
+
+<p class="govuk-body">
+  <%= data.analytics.navigation.schema.desc %>
+</p>
+
+<% data.analytics.schemas.each do |schema| %>
+  <h2 class="govuk-heading-m analytics-heading"><%= schema.name %></h2>
+  <% event_hash = build_event(schema.data) %>
+  <div class="govuk-inset-text">
+    <%= to_html(event_hash) %>
+  </div>
+<% end %>
