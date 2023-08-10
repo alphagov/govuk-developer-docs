@@ -229,7 +229,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba338357741d15495c5b4db8a0da22f450e042b6">10 Aug 2023</a>
 </div>
 
  <h1 id='header'>Retire an application</h1> <p>Note: Now that we&rsquo;ve moved most of the applications to EKS, some of these
@@ -266,7 +266,11 @@ in <a href="https://github.com/alphagov/govuk-docker/blob/master/docker-compose.
 have had public DNS entries in the <code>publishing.service.gov.uk</code> domain.</p>
 <p>Follow the <a href="/manual/dns.html#dns-for-the-publishingservicegovuk-domain">instructions for DNS changes</a> in order to remove
 these.</p>
-<h2 id='9-update-docs'>9. Update docs</h2><p>Mark the application as <code>retired</code> in <a href="https://github.com/alphagov/govuk-developer-docs">govuk-developer-docs</a></p>
+<h2 id='9-update-docs'>9. Update docs</h2>
+<ul>
+<li>Mark the application as <code>retired</code> in <a href="https://github.com/alphagov/govuk-developer-docs">govuk-developer-docs</a></li>
+<li>Remove the application from the <a href="/manual/architecture.html">GOV.UK architecture diagram</a></li>
+</ul>
 <h2 id='10-drop-database'>10. Drop database</h2><p>If Puppet hasn&rsquo;t done it (eg for MongoDB databases), drop the database.</p>
 <h2 id='11-puppet-apps-only-remove-jobs-in-ci'>11. (PUPPET APPS ONLY) Remove jobs in CI</h2><p>If tests were set up, go to <a href="https://ci.integration.publishing.service.gov.uk/">CI</a> and choose &ldquo;Delete Repository&rdquo; for your
 project.</p>
