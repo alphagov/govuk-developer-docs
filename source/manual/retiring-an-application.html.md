@@ -79,7 +79,8 @@ these.
 
 ## 9. Update docs
 
-Mark the application as `retired` in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs)
+- Mark the application as `retired` in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs)
+- Remove the application from the [GOV.UK architecture diagram](/manual/architecture.html)
 
 ## 10. Drop database
 
