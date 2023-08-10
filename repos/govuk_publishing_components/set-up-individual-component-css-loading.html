@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: # Set up individual component CSS loading - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Set up individual component CSS loading - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -15,12 +15,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: # Set up individual component CSS loading - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="govuk_publishing_components: Set up individual component CSS loading - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/set-up-individual-component-css-loading.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: # Set up individual component CSS loading" />
+      <meta property="og:title" content="govuk_publishing_components: Set up individual component CSS loading" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/set-up-individual-component-css-loading.html" />
 
@@ -138,7 +138,7 @@
           <li><a href="/repos/govuk_publishing_components/publishing-to-rubygems.html" rel="noopener" class="govuk-link">Publishing to RubyGems</a></li>
           <li><a href="/repos/govuk_publishing_components/pull_request_template.html" rel="noopener" class="govuk-link"># What</a></li>
           <li><a href="/repos/govuk_publishing_components/real-user-metrics.html" rel="noopener" class="govuk-link">Real User Metrics</a></li>
-          <li><a href="/repos/govuk_publishing_components/set-up-individual-component-css-loading.html" rel="noopener" class="govuk-link"># Set up individual component CSS loading</a></li>
+          <li><a href="/repos/govuk_publishing_components/set-up-individual-component-css-loading.html" rel="noopener" class="govuk-link">Set up individual component CSS loading</a></li>
           <li><a href="/repos/govuk_publishing_components/test-a-branch-of-the-gem.html" rel="noopener" class="govuk-link">Test a branch of the components gem</a></li>
           <li><a href="/repos/govuk_publishing_components/testing-components.html" rel="noopener" class="govuk-link">Testing components</a></li>
           <li><a href="/repos/govuk_publishing_components/upgrade-govuk-frontend.html" rel="noopener" class="govuk-link">Keep this gem in sync with the Design System</a></li>
@@ -244,17 +244,17 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/a6ea44b95a983305cca50ef4ae5e64152a5f36ae">4 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/ead8223cdadbc8bfbbb1903300a7dca942721663">9 Aug 2023</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: # Set up individual component CSS loading</h1>
+  <h1 class="page-title">govuk_publishing_components: Set up individual component CSS loading</h1>
 
-  <h2 id="set-up-individual-component-css-loading">Set up individual component CSS loading</h2>
+  
 <p>Set the component gem up so that rendering applications can (optionally) load each component's stylesheet individually, as described in <a href="https://github.com/alphagov/govuk-rfcs/pull/152">RFC #149</a>.</p>
-<h3 id="tldr">TL;DR</h3>
+<h2 id="tldr">TL;DR</h2>
 <p>An array for stylesheet names is set up in the rendering application using a helper. Templates can then add the names of stylesheets to the array, which is then used by the application to output all the stylesheets needed on the page.</p>
-<p>Example of rendering application upgrade: <a href="https://github.com/alphagov/frontend/pull/3342/">https://github.com/alphagov/frontend/pull/3342/</a></p>
-<h3 id="initial-set-up">Initial set up</h3>
+<p>Example of rendering application upgrade: <a href="https://github.com/alphagov/government-frontend/pull/2734">https://github.com/alphagov/government-frontend/pull/2734</a></p>
+<h2 id="initial-set-up">Initial set up</h2>
 <p>There are 3 types of stylesheet that are used across GOVUK:</p>
 <ul>
 <li>CSS from components in the gem</li>
@@ -280,27 +280,25 @@
 <p>There is also 1 generic method that takes a file path:</p>
 <pre lang="ruby"><code>add_stylesheet_path("views/dir-1/_partial.css")
 </code></pre>
-<h3 id="precompiling">Precompiling</h3>
+<h2 id="precompiling">Precompiling</h2>
 <p>Gem component stylesheets are automatically precompiled. Application component and view stylesheets should be added to the application's manifest file to be precompiled, included and served.</p>
-<h3 id="known-problems">Known problems</h3>
-<h4 id="nested-components-in-gov-uk-frontend">Nested components in GOV.UK Frontend</h4>
+<h2 id="known-problems">Known problems</h2>
+<h3 id="nested-components-in-gov-uk-frontend">Nested components in GOV.UK Frontend</h3>
 <p>GOV.UK Frontend has components that use other components - for example, both the radio button and character count component include the label component. These are deduped by GOV.UK Frontend when compiling the CSS to a single file.</p>
 <p>As this pull request includes the stylesheets for the components individually, this will mean that both the radio stylesheet and the character count stylesheet will include the label component.</p>
-<p>This shouldn't make a difference in visual appearance of the site, since the stylesheets were included in alphabetical order and continue to do so. However, it means that there still is some CSS that is unnecessarily included twice.</p>
+<p>This shouldn't make a difference in visual appearance of the site, but does mean some CSS is unnecessarily included twice.</p>
 <p>The page sizes were calculated from individual compiled CSS files, so there still is a performance improvement - but it could be further improved.</p>
 <p>Ideally there'd be a way of including only the components without including the nested components; for example, the partial for radio inputs would include both the label and radio:</p>
 <pre lang="ruby"><code>add_gem_component_stylesheet("label")
 add_gem_component_stylesheet("radio")
 </code></pre>
 <p>which would then be deduped before being added to the array of stylesheets.</p>
-<h4 id="increased-request-header-size">Increased request header size</h4>
-<p>Rails automatically adds the stylesheets on the page to the request <code>preload</code> header. This means that it gets bigger with every additional stylesheet that's added to the page. Coupled with a large Content Security Policy (CSP), this means that some pages have a header size that nginx doesn't like at all - so causes nginx to return a 502 error. This error is seen on Integration, but not locally or on Heroku.</p>
-<p>A pull request has been raised to fix this by <a href="https://github.com/alphagov/govuk-puppet/pull/11846">increasing the cache size in NGINX</a>.</p>
-<p><strong>Note:</strong></p>
-<p>We will use this feature in the <code>frontend</code> app first and review the performance impact before rolling out to other frontend apps.</p>
-<p>The increased cache size in NGINX is large enough for the loading of individual CSS assets in the <code>frontend</code> app. However, we will need to increase the cache size further before being used in other apps such as <code>government-frontend</code> that use a larger number of components, and before it is used to load individual JS assets.</p>
-<h3 id="step-by-step-changes-to-the-rendering-application">Step by step changes to the rendering application</h3>
-<p><strong>Set up the stylesheets to be precompiled</strong>. Add any app components and views in <code>app/assets/config/manifest.js</code>.</p>
+<h3 id="increased-request-header-size">Increased request header size</h3>
+<p>Starting with Rails 6.1 <a href="https://guides.rubyonrails.org/configuring.html#config-action-view-preload-links-header">preload_links_header</a> is set to <code>true</code> by default, this ensures the <code>javascript_include_tag</code> and <code>stylesheet_link_tag</code> will generate a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link">Link header</a> that preloads assets.</p>
+<p>If your application is using the individual loading of stylesheets feature and <code>preload_links_header</code> is set to <code>true</code>, you will likely see an increase in the header size for each page. This is important to be aware of as you may need to configure your web server to allow for larger header sizes, example PR - <a href="https://github.com/alphagov/govuk-puppet/pull/11846">increasing the cache size in NGINX</a>.</p>
+<h2 id="step-by-step-changes-to-the-rendering-application">Step by step changes to the rendering application</h2>
+<h3 id="set-up-the-stylesheets-to-be-precompiled">Set up the stylesheets to be precompiled</h3>
+<p>Add any app components and views in <code>app/assets/config/manifest.js</code>.</p>
 <pre lang="diff"><code>+  //= link components/_calendar.css
 +  //= link views/_homepage.css
 </code></pre>
@@ -309,16 +307,18 @@ add_gem_component_stylesheet("radio")
 - @import "govuk_publishing_components/components/action-link";
 - @import "govuk_publishing_components/components/big-number";
 </code></pre>
-<h4 id="using-the-publishing-components-gem-without-the-static-rendering-app">Using the publishing components gem without the <code>static</code> rendering app</h4>
-<p>The <code>static</code> rendering application already includes several components from the publishing components gem. To avoid requesting the same stylesheet twice, we exclude any stylesheets included in <code>static</code> by default.</p>
+<h3 id="using-the-publishing-components-gem-without-the-static-rendering-app">Using the publishing components gem without the <code>static</code> rendering app</h3>
+<p>The <code>static</code> rendering application already includes several components from the publishing components gem - <a href="https://github.com/alphagov/static/blob/main/app/assets/stylesheets/application.scss">static application.scss</a></p>
+<p>To avoid requesting the same stylesheet twice, we exclude any stylesheets included in <code>static</code> by default.</p>
 <p>If you are using the individual assets loading feature in an app that does not rely on <code>static</code>, we recommend adding the config file below in your application to ensure that the components render correctly.</p>
 <pre lang="rb"><code># config/initializers/govuk_publishing_components.rb
 GovukPublishingComponents.configure do |c|
   c.exclude_css_from_static = false
 end
 </code></pre>
-<p><strong>Add the app components and views</strong> to the array. This bit will likely take the most time - and really benefits from a comprehensive list of what pages use which templates (and template variations).</p>
-<p>Add the <code>add_view_stylesheet</code> and <code>add_app_component_stylesheet</code> to the top of each partial template that needs it:</p>
+<h4 id="add-the-app-components-and-views-to-the-stylesheet-array">Add the app components and views to the stylesheet array</h4>
+<p>This bit will likely take the most time - and really benefits from a comprehensive list of what pages use which templates (and template variations).</p>
+<p>Add the <code>add_view_stylesheet</code> and <code>add_app_component_stylesheet</code> helpers to each view, usually this will be at the top of the file.</p>
 <pre lang="rb"><code>add_view_stylesheet("homepage")
 </code></pre>
 <pre lang="rb"><code>add_app_component_stylesheet("calendar")
@@ -326,7 +326,7 @@ end
 <p>Each stylesheet that is used individually will need an extra <code>@import</code> added to allow them to use GOV.UK Frontend variables and mixins:</p>
 <pre lang="scss"><code>@import "govuk_publishing_components/individual_component_support";
 </code></pre>
-<p><strong>Hoist body content to the top of your layouts</strong></p>
+<h4 id="hoist-body-content-to-the-top-of-your-layouts">Hoist body content to the top of your layouts</h4>
 <p>This will ensure that all components and views are discovered, before <code>render_component_stylesheets</code> is called, and their respective stylesheets added inside the <code>&lt;head&gt;</code>. Otherwise, components and view partials added in body content are not rendered in time and associated stylesheets are not included.</p>
 <pre lang="rb"><code>&lt;% content_for :body do %&gt;
   &lt;main id="content"&gt;
@@ -340,7 +340,7 @@ end
 <p>Use <code>yield</code> to add body content between <code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code>:</p>
 <pre lang="rb"><code>&lt;%= yield :body %&gt;
 </code></pre>
-<p><strong>Add the stylesheets just before the closing <code>&lt;/head&gt;</code> tag of the base template</strong>:</p>
+<h5 id="add-the-stylesheets-just-before-the-closing-tag-of-the-base-template">Add the stylesheets just before the closing <code>&lt;/head&gt;</code> tag of the base template</h5>
 <pre lang="rb"><code>  &lt;head&gt;
     &lt;meta charset="utf-8" /&gt;
     &lt;%= stylesheet_link_tag 'application', :media =&gt; "all", integrity: false %&gt;
