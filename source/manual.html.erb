@@ -22,7 +22,7 @@ title: Manual
   </ul>
 <% end %>
 
-<%= partial 'partials/header' %>
+<h1 class="page-title">Manual</h1>
 
 <% manual.manual_pages_grouped_by_section.each do |section_name, pages| %>
   <h2 id='<%= section_name.parameterize %>'><%= section_name %></h2>
