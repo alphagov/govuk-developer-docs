@@ -1,8 +1,6 @@
 ---
 title: Create a new environment
 weight: 49
-last_reviewed_on: 2022-07-01
-review_in: 6 months
 ---
 
 > 🚧 This document is outdated and untested. 🚧

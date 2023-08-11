@@ -1,8 +1,6 @@
 ---
 title: Deploy a new version of the example test app, check the deployment, monitor the app on Grafana and view application logs
 weight: 20
-last_reviewed_on: 2023-03-07
-review_in: 6 months
 ---
 
 # Deploy a new version of the example test app, check the deployment, monitor the app on Grafana and view application logs

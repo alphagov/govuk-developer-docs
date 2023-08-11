@@ -1,8 +1,6 @@
 ---
 title: Get information about your app
 weight: 40.5
-last_reviewed_on: 2022-04-20
-review_in: 6 months
 ---
 
 # Get information about your app

@@ -1,8 +1,6 @@
 ---
 title: How apps are deployed
 weight: 42
-last_reviewed_on: 2022-02-01
-review_in: 6 months
 ---
 
 # How apps are deployed

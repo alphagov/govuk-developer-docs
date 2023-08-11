@@ -1,8 +1,6 @@
 ---
 title: Roll back your app
 weight: 46
-last_reviewed_on: 2022-02-01
-review_in: 6 months
 ---
 
 # Roll back your app
