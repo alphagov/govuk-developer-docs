@@ -57,23 +57,3 @@ unless ENV["SKIP_PROXY_PAGES"] == "true"
     proxy resource[:path], resource[:template], resource[:frontmatter]
   end
 end
-
-# Configuration for Analytics pages
-ignore "analytics/templates/*"
-
-page "analytics/*", layout: :analytics_layout
-
-data.analytics.events.each do |event|
-  event_name = event["name"].downcase.gsub(" ", "_")
-  proxy "analytics/event_#{event_name}.html", "analytics/templates/event.html", locals: { event: }
-end
-
-data.analytics.attributes.each do |attribute|
-  attribute_name = attribute["name"].downcase.gsub(" ", "_")
-  proxy "analytics/attribute_#{attribute_name}.html", "analytics/templates/attribute.html", locals: { attribute: }
-end
-
-data.analytics.trackers.each do |tracker|
-  tracker_name = tracker["name"].downcase.gsub(" ", "_")
-  proxy "analytics/tracker_#{tracker_name}.html", "analytics/templates/tracker.html", locals: { tracker: }
-end
