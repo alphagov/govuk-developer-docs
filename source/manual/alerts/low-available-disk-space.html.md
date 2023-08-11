@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Low available disk space
+
 See also: [low available disk inodes](low-available-disk-inodes.html)
 
 ## Low available disk space on root

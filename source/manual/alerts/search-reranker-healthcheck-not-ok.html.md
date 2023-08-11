@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Search reranker healthcheck not ok
+
 The Search API uses machine learning to rank search results based on
 analytics data.  If this alert fires, something has gone wrong with
 that process and we're serving results as they were ordered by

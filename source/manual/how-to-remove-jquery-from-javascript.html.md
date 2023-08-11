@@ -8,6 +8,8 @@ related_repos:
  - govuk_publishing_components
 ---
 
+# How to remove jQuery from JavaScript
+
 GOV.UK has a dependency on jQuery 1.12.4. This is an old and unsupported version and we are trying to remove it.
 
 This is a guide to removing jQuery from JavaScript (JS). First read the documentation for our [JS modules](https://github.com/alphagov/govuk_publishing_components/blob/master/docs/javascript-modules.md).

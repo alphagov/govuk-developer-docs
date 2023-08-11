@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# MongoDB infra commands
+
 ## Check the MongoDB version
 
 SSH into a `mongo` machine and run:

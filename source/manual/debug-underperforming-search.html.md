@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Debug underperforming search
+
 Search is one of the more load-sensitive parts of GOV.UK, as it can't
 be cached as effectively as more static pages.  There are two
 significant components involved in search: the search-api application,

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Add an Icinga passive check to a Jenkins job
+
 If you would like Icinga to raise an alert when a Jenkins job has not completed
 successfully in a while, you can add an Icinga passive check to the Jenkins job
 by configuring Puppet.

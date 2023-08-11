@@ -7,6 +7,8 @@ section: 2nd line
 type: learn
 ---
 
+# 2nd line
+
 2nd Line is the user support function of GOV.UK. 2nd Line’s main responsibilities:
 
 - Monitoring the state of the GOV.UK infrastructure

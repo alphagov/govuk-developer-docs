@@ -7,6 +7,8 @@ section: Deployment
 type: learn
 ---
 
+# The development and deployment pipeline
+
 > When responding to a security incident, you should make any code changes in private, so that you don't accidentally disclose the vulnerability. To do this, follow the instructions for [making a repo private](make-github-repo-private.html).
 
 Our development and deployment pipeline looks like this:

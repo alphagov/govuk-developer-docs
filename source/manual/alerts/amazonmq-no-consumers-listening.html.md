@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# AmazonMQ: No consumers listening to queue
+
 ## Check that there is at least one non-idle consumer for rabbitmq queue {queue_name}
 
 Icinga connects to AmazonMQ's RabbitMQ admin API to check on the activity of the

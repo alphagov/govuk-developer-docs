@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Provision machines for data science research
+
 Data science research frequently requires high-powered machines for
 limited periods of time.
 

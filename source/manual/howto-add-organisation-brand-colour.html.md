@@ -7,6 +7,8 @@ parent: "/manual.html"
 related_repos: [whitehall, government-frontend]
 ---
 
+# Add an organisation's brand colour
+
 An organisation's brand colour is used to style their organisation page (such as dividing lines, icons and link text). For example see the [DCMS organisation page](https://www.gov.uk/government/organisations/department-for-digital-culture-media-sport).
 
 The colour is set as an option under a drop down field called "brand colour" when creating or editing an [organisation page in Whitehall Publisher](https://whitehall-admin.publishing.service.gov.uk/government/admin/organisations).

@@ -1,10 +1,12 @@
 ---
-title: "Handle exemptions to the ‘Get emails about this page’ feature"
+title: Handle exemptions to the ‘Get emails about this page’ feature
 section: Emails
 layout: manual_layout
 owner_slack: "#find-and-view-govuk"
 parent: "/manual.html"
 ---
+
+# Handle exemptions to the ‘Get emails about this page’ feature
 
 The [‘get emails about this page’ button][get-emails-about-this-page] was rolled out to most Whitehall publications, consultations and detailed guides on 1 March 2022.
 

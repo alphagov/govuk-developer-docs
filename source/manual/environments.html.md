@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# GOV.UK's environments (integration, staging, production)
+
 GOV.UK has several environments with different purposes.
 
 For a quick view of what's where, you can use the [release app](https://release.publishing.service.gov.uk).

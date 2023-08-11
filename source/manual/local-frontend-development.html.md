@@ -7,6 +7,8 @@ section: Frontend
 type: learn
 ---
 
+# Local frontend development
+
 ## Running applications locally
 
 There are several ways of running applications locally when developing and you should choose the option that works best for your situation. For frontend developers, the following is recommended.

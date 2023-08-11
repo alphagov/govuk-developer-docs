@@ -7,6 +7,8 @@ section: Publishing
 important: true
 ---
 
+# Deploy non-emergency global banner
+
 A site-wide (global) banner can be activated to convey important information on
 GOV.UK which is not deemed emergency-level information. Unlike the [emergency
 banner](/manual/emergency-publishing.html), we show a user the global banner no

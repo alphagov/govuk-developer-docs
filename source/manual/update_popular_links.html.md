@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Update popular links
+
 Popular links on GOV.UK are shown in two places on the home page and in the search bar.
 
 ![Image of the popular links on the GOV.UK homepage](images/popular-links-on-homepage.jpeg)

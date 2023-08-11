@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# AmazonMQ: High number of unprocessed messages
+
 For information about how we use RabbitMQ on AmazonMQ, see [here][amazonmq_doc].
 
 We check that there is not a significant build up of messages compared to the

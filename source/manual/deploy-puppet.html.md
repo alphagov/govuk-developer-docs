@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Deploy Puppet
+
 ## Building a release
 
 > Jenkins should normally build govuk-puppet automatically on push to any branch, but unfortunately this is currently broken (May 2023).

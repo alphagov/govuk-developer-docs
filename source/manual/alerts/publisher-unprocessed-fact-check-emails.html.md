@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Publisher: Unprocessed fact-check emails
+
 As part of the [Publisher fact checking process], this alert appears if emails
 have arrived in the inbox but weren't able to be processed. This is usually
 because they're missing the identification for the edition they relate to

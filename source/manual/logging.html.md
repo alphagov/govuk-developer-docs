@@ -7,6 +7,8 @@ type: learn
 parent: "/manual.html"
 ---
 
+# How logging works on GOV.UK
+
 > **To view logs, see [View GOV.UK logs in Logit](/manual/logit.html).**
 
 ## Overview

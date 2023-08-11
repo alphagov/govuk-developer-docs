@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# mongod replication lag
+
 ### Investigating the problem
 
 Begin by [checking the Mongo cluster status](/manual/mongo-db-commands.html#check-cluster-status),

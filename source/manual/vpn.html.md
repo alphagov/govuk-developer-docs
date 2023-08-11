@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# GOV.UK and Virtual Private Networks (VPNs)
+
 ## GOV.UK and Virtual Private Networks (VPNs)
 
 As of 2023 GOV.UK does not currently use VPNs within its infrastructure. The only VPN you should encounter is the [GDS VPN][gds-vpn] which members of staff use to connect to the corporate network.

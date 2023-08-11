@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Generate a Certificate Signing Request (CSR) for GOV.UK
+
 A certificate signing request is required when buying or renewing a TLS certificate for a GOV.UK domain.
 
 ## Buying a new certificate

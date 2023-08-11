@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# ClamAV definitions out of date
+
 This could be because of a number of reasons. Check that the database is up to
 date by [logging into a backend machine][] and calling the freshclam command directly with verbose:
 

@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Runs a rake task on Search API that generates the sitemap files
+
 At 2:30am every day, a [Jenkins job][jenkins] runs a rake task on search-api
 to generate sitemap files for GOV.UK.
 

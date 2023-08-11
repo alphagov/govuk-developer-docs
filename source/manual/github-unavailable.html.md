@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Deploy when GitHub is unavailable
+
 ## AWS CodeCommit
 
 We mirror all non-archived GitHub repositories tagged with `govuk` to AWS CodeCommit via the ["Mirror repositories" GitHub Actions workflow](https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml). The workflow uses the [`github_action_mirror_repos_role` IAM role](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/mirror.tf).

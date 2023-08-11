@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Travel Advice or Drug and Medical Device email alerts not sent
+
 We expect that when new GOV.UK content is published, or when existing content
 is updated in a significant way, emails will be sent to any subscribers to
 notify them of the change.

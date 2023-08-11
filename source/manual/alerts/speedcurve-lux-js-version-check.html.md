@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# SpeedCurve LUX JavaScript version check
+
 GOV.UK makes uses of a frontend performance tool, [SpeedCurve Live User Experience (LUX)][speedcurve], this is provided by a [JavaScript file provided by govuk_publishing_components][js-file]. Typically the SpeedCurve LUX JavaScript is hosted by SpeedCurve we, however, [we host a copy ourselves][self-hosting] for security. Therefore we have to try keep our self-hosted copy up-to-date with the one SpeedCurve host.
 
 This alert fires when the version of lux.js that SpeedCurve is hosting has a different version number to what we expect. This indicates we are hosting an out of date version of lux.js, which lead to problems with the data we are recording.

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# How to switch a Git default branch from master to main
+
 These steps are for switching the default branch of a repo to `main`.
 
 1. Rename the `master` branch in GitHub to `main` for that repo. See [instructions from Github for renaming an existing default branch](https://github.com/github/renaming#renaming-existing-branches).

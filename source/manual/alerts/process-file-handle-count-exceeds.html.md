@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Process file handle count exceeds
+
 This check fails when the monitored processes use more file handles
 than the configured limit. The default limit is 500.
 

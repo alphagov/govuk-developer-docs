@@ -7,6 +7,8 @@ section: Backups
 type: learn
 ---
 
+# Use of backups
+
 This manual provides a shared definition of a backup and documents our current use of backups summarising strategies and tools we use.
 
 > A backup is a process of creating a copy of the data stored in a database and storing it in a safe location to allow data recovery in case of a disaster, system failure or human error.

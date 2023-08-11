@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-## Deployment Dashboards
+# Deployment dashboards
 
 There are a number of applications with a dashboard showing useful information for the deployment process.
 

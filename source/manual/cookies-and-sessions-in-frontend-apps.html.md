@@ -7,6 +7,8 @@ type: learn
 section: Cookies
 ---
 
+# Cookies and sessions in GOV.UK frontend apps
+
 GOV.UK frontend applications, with the exception of Licensing and Email Alert Frontend, do not currently require cookies.
 
 We configure Varnish to strip cookies for

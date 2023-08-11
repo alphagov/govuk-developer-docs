@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# AWS RDS Instance Memory Utilization
+
 This alert relates to memory usage of our database (RDS) instances in AWS. There are two ways to check the current usage:
 
 - [Access the AWS web console][] and view the statistics.

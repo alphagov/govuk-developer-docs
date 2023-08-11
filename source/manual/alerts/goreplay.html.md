@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# GoReplay (Traffic replay)
+
 [GoReplay][goreplay-gh] (previously ["gor"][rename]) is an open source tool we use
 to replay HTTP traffic from production to staging to give us greater confidence that
 our deploys are ok.

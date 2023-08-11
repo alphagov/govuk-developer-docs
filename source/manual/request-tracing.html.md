@@ -7,6 +7,8 @@ parent: "/manual.html"
 type: learn
 ---
 
+# Request tracing
+
 Request tracing makes it easier to understand how requests originating from users of publishing apps make their way through the system. For example, if a user publishes a piece of content, request tracing will "connect the dots" between that user's request and downstream requests that were made as a consequence of the publish.
 
 ## How it works

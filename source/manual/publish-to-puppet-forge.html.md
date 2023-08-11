@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Publish to Puppet Forge
+
 ## Logging in to the Forge
 
 Credentials for the GDS Operations account can be found in `packages/puppet_forge`

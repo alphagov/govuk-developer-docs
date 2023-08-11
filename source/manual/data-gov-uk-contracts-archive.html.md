@@ -7,6 +7,8 @@ type: learn
 parent: "/manual.html"
 ---
 
+# Data.gov.uk Contracts Archive
+
 ## Application
 
 Visit the [contracts archive finder](https://data.gov.uk/data/contracts-finder-archive).

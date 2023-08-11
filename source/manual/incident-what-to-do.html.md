@@ -6,6 +6,8 @@ layout: manual_layout
 section: Incidents
 ---
 
+# So, you're having an incident
+
 This [Google Doc describes what to do in case of an incident][doc].
 
 > If you are on the on-call rota, you should also prepare beforehand from info on the [Out of hours support (on-call)](/manual/on-call.html) page.

@@ -6,6 +6,8 @@ layout: manual_layout
 section: GitHub
 ---
 
+# Make a GitHub repo private
+
 In cases of an ongoing security incident, or when working on politically sensitive changes, we may want to work in private rather than public. We do this by creating a private fork of the application.
 
 ## Creating a private fork

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Merge a Pull Request
+
 There are five rules for reviewing and merging PRs, which apply to all applications:
 
 1. The `main` branch must be able to be released at any time.

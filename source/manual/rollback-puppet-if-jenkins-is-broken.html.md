@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Rollback Puppet if Jenkins is broken
+
 Sometimes, a Puppet release may break Jenkins and since Jenkins is used to
 release Puppet, there is no straight forward way to rollback Puppet.
 

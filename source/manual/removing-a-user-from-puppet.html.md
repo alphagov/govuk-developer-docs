@@ -6,6 +6,8 @@ layout: manual_layout
 section: Accounts
 ---
 
+# Remove a user from Puppet
+
 Removing a user from our infrastructure via Puppet is a 2 change process that
 requires a deploy in the middle. The first change ensures that when Puppet
 runs the user's home directory is removed; the second change removes the

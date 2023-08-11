@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Retire a repo
+
 ## 1. Update README
 
 Add a note to the top of the README explaining that the repo has been retired and, if applicable, what it has been replaced by.

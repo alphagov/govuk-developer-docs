@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# ntp drift too high
+
 The [Network Time Protocol (NTP) daemon](http://doc.ntp.org/4.1.0/ntpd.htm) (`ntpd`) is responsible for keeping system
 time synchronised with standard time servers on the Internet.
 

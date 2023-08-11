@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Conventions for Rails applications
+
 The majority of GOV.UK applications are built using [Ruby on Rails][] and over
 the years we have created a lot them. Along the way we've used a variety of
 patterns and conventions. We aim for GOV.UK apps to be [consistent in their

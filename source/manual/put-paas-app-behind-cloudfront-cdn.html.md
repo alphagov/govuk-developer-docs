@@ -5,6 +5,9 @@ parent: /manual.html
 layout: manual_layout
 section: PaaS
 ---
+
+# Put a PaaS application behind Cloudfront CDN
+
 It is possible to put an application behind a Cloudfront CDN when it is on the PaaS with a custom domain. This means you can quickly set up a new application and have it serve traffic at scale.
 
 There are instructions on how to set this up in [their docs](https://docs.cloud.service.gov.uk/deploying_services/use_a_custom_domain/#set-up-the-gov-uk-paas-cdn-route-service).

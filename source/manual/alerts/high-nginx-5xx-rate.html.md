@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# High Nginx 5xx rate
+
 You can view the 5xx logs across all machines on this dashboard:
 
 - [Nginx 5xx Requests (AWS)][nginx-5xx-grafana-aws]

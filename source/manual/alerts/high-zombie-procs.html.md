@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# High zombie procs
+
 You can check what the zombie processes are by SSHing onto the machine
 and running the command:
 

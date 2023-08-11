@@ -7,6 +7,8 @@ type: learn
 parent: "/manual.html"
 ---
 
+# Intro to GOV.UK Docker
+
 We use [govuk-docker] to help us develop stuff on GOV.UK. If you're new to Docker, this will provide useful insights into how we use it in the context of the GOV.UK stack.
 
 We're going to be doing stuff from first-principles, so what follows is a bit convoluted but it will help to explain and familiarise the concepts involved.

@@ -6,6 +6,8 @@ layout: manual_layout
 section: 2nd line
 ---
 
+# Incorrect postcode data
+
 We get our postcode data from Locations API, which uses OS Places API (Ordnance Survey) under the hood. Locations API postcodes [keep themselves up to date automatically](https://github.com/alphagov/locations-api/blob/main/docs/postcodes-added-cached-updated.md#how-postcodes-are-updated) and should never be more than about a week out of date.
 
 In case the data is incorrect, a first step would be checking the Locations API result with the OS Places API result.

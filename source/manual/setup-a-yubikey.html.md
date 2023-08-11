@@ -6,6 +6,8 @@ layout: manual_layout
 section: Security
 ---
 
+# Setup a Yubikey
+
 ## Setup as an MFA device for AWS
 
 1. Download the [Yubico Authenticator](https://www.yubico.com/products/yubico-authenticator/) app to your computer (or mobile device, if your Yubikey supports NFC).

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Rotate Fastly API Keys for Notify Emergency Alerts
+
 The GOV.UK Notify team will occasionally request GOV.UK's help rotating some Fastly API keys which they use to purge Emergency Alerts
 pages from the Fastly cache.
 

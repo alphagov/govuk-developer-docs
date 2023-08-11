@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Remove a change note
+
 Follow the [instructions for Whitehall](#whitehall) if removing a change note from Whitehall, otherwise follow the [instructions for other apps](#other-apps).
 
 ## What is a change note?

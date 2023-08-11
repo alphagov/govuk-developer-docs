@@ -7,6 +7,8 @@ section: Publishing
 related_repos: [search-api]
 ---
 
+# Make a new document type available to search
+
 Any document type that the Publishing API knows about can be added to our
 internal search. By default, all document types in internal search also get
 included in the GOV.UK sitemap, which tells external search engines about our

@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Athena Fastly Logs Check
+
 The monitoring for `Athena has recent results for fastly_logs {database_name}`
 is used to check that we can query a particular [Athena database containing
 GOV.UK CDN log data][govuk-athena]. It monitors this service by periodically

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# How we handle errors
+
 ## How we serve errors on GOV.UK
 
 When a request to GOV.UK fails, we need to handle the error in some way, so that GOV.UK does not look completely broken. Rather than embedding this into every app, we have multiple layers of error handling.

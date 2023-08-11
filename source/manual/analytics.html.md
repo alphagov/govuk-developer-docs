@@ -1,12 +1,14 @@
 ---
 owner_slack: "#govuk-frontenders"
-title: 'Analytics on GOV.UK'
+title: Analytics on GOV.UK
 section: Frontend
 layout: manual_layout
 type: learn
 parent: "/manual.html"
 related_repos: [static frontend government-frontend]
 ---
+
+# Analytics on GOV.UK
 
 GOV.UK uses Google Analytics to track user journeys through the site. The tracking
 data is available to anyone with Google Analytics Suite access for GOV.UK. You can

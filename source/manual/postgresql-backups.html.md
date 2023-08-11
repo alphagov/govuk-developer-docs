@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# PostgreSQL backups
+
 ## AWS RDS PostgreSQL Backups
 
 Instructions for restoring RDS databases can be found [here](/manual/howto-backup-and-restore-in-aws-rds.html)

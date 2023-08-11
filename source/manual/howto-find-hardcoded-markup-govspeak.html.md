@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Find hardcoded markup in GovSpeak
+
 Usually to find usage of markup we can look in our source code.
 
 For example if we wanted to see which templates use a class called 'button' you could search in GitHub.

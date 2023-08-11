@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# AWS RDS Instance Storage Utilization
+
 This alert relates to disk usage of our databases (RDS) in AWS being higher than we would expect. There are two ways to check the current usage.
 
 - [Access the AWS web console][] and view the statistics.

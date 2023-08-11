@@ -7,6 +7,8 @@ type: learn
 parent: "/manual.html"
 ---
 
+# Brakeman
+
 [Brakeman][brakeman] is a static analysis tool which checks Rails applications
 for security vulnerabilities. It is effectively a type of linter, similar to
 [rubocop][]. It is [configured to run automatically][automatic-brakeman] as

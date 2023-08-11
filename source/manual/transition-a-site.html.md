@@ -7,6 +7,8 @@ parent: "/manual.html"
 related_repos: [bouncer, transition]
 ---
 
+# Transition a site to GOV.UK
+
 When a site is going to move to GOV.UK, there are two ways that the old site
 can be redirected. They can do it themselves, or they can repoint the domain at
 us. This page is about the latter.

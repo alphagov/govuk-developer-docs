@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Domain Name System (DNS) records
+
 GOV.UK is responsible for managing several DNS zones.
 
 By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS). We use both for redundancy.

@@ -6,6 +6,8 @@ layout: manual_layout
 section: Assets
 ---
 
+# Whitehall Attachment Stuck in Uploading State
+
 In rare cases, typically when a user has uploaded a large archive of multiple files, the Whitehall backend can become stuck and not correctly update the uploading status of the file.
 
 This results in the user being unable to publish an edition due to the Whitehall frontend being convinced that the upload is still ongoing, despite any evidence to the contrary.

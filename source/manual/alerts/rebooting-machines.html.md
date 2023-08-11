@@ -7,6 +7,8 @@ parent: "/manual.html"
 important: true
 ---
 
+# Reboot a machine
+
 Under normal circumstances, most machines reboot automatically when an update is required. Some machines need to be rebooted manually.
 
 Icinga alerts state when machines need rebooting, and will tell you if it's a manual reboot and whether it can be done in-hours or should be done out-of-hours.

@@ -7,6 +7,8 @@ type: learn
 parent: "/manual.html"
 ---
 
+# How to add popular GOV.UK Slack integrations
+
 ## Seal
 
 [Seal](https://github.com/alphagov/seal) is a Slack bot that informs teams which pull requests they have open.

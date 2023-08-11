@@ -7,6 +7,8 @@ parent: "/manual.html"
 important: true
 ---
 
+# Run a rake task
+
 Rake is a task runner for Ruby. Here are the methods for running a rake task:
 
 ## Run a rake task on EKS

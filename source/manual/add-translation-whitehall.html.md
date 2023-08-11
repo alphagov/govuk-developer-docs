@@ -6,6 +6,8 @@ layout: manual_layout
 section: Publishing
 ---
 
+# Add support for a new translation in Whitehall
+
 Before starting, it’s worth checking the language tag that is being added is correct: it should be compatible with the [IETF Language Tag syntax][] and use correct [ISO 639][] codes (with optional [ISO 15924][] or [ISO 3166][] subtags where appropriate). This is important to ensure maximum compatibility with accessibility features such as screen readers. Some other useful reading includes [Rails Translation Manager][] and [Whitehall Internationalisation guide][].
 
 [IETF Language Tag syntax]: https://en.wikipedia.org/wiki/IETF_language_tag#Syntax_of_language_tags

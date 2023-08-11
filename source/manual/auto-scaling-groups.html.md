@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Manually resize ASGs (auto scaling groups)
+
 In AWS, [we use auto scaling groups][asg] to ensure we have the right number of
 machines available to handle incoming traffic.
 

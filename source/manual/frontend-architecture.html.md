@@ -11,6 +11,8 @@ related_repos:
  - govuk_publishing_components
 ---
 
+# Frontend architecture
+
 GOV.UK currently uses multiple systems to build frontends (HTML/CSS/JS).
 
 ## Current state

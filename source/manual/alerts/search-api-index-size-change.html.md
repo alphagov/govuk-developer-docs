@@ -7,6 +7,8 @@ section: Icinga alerts
 related_repos: [search-api]
 ---
 
+# Search API index size has significantly increased/decreased
+
 This alert indicates that a large number of documents have been added to or
 removed from the [search-api][search-api] search index.
 

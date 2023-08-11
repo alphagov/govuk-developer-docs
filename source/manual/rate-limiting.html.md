@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Rate Limiting
+
 Rate limiting on GOV.UK is largely handled at the infrastructure level, with one exception at the app level for finer control.
 
 ## Infrastructure

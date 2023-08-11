@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Free memory warning on backend
+
 This alert is often caused by an application slowly leaking memory, which
 isn't usually an issue for apps that are deployed/restarted frequently.
 Some less frequently deployed apps will continue to grow over time.

@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Established connections exceed
+
 This alert triggers when the number of established connections to a
 port exceeds a certain number. This can be configured for specific
 applications, but the default relates to the number of Unicorn worker

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Manage Debian packages
+
 This page explains how we manage our Debian packaging.
 
 ## Considerations before creating or importing a package

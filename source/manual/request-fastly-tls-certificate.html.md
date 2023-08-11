@@ -7,6 +7,8 @@ parent: "/manual.html"
 related_repos: [bouncer, transition]
 ---
 
+# Request Fastly TLS certificate
+
 When transitioning HTTPS domains, these are the steps to request a TLS
 certificate from Fastly.
 

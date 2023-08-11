@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Deployments
+
 On GOV.UK, all applications are set up for continuous deployment to integration, with the majority also having continuous deployment configured for staging and production.  Additionally, you can manually deploy a git reference (tag, branch, or commit SHA) of an application to any environment.
 
 Continuous integration (CI) is run on new commits on the main branch, usually from merging a pull request. If the commits pass CI, they are automatically deployed to integration. After deployment, a set of smoke tests run in integration to verify that the application still works as expected.

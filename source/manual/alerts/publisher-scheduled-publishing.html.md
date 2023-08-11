@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# More items scheduled for publication than in queue for publisher
+
 This alert means that the number of editions in the publisher database
 which are scheduled to be published in the future is different from
 the number currently in the Sidekiq queue.

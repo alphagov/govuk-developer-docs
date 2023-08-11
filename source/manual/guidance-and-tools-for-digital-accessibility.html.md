@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Guidance and tools for digital accessibility
+
 [Review guidance and tools for digital accessibility](https://www.gov.uk/guidance/guidance-and-tools-for-digital-accessibility) on how to:
 
 - meet the Public Sector Bodies Accessibility Regulations

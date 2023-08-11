@@ -7,6 +7,8 @@ parent: "/manual.html"
 important: true
 ---
 
+# Purge a page from cache
+
 ## Background
 
 [Fastly](https://www.fastly.com/products/cdn) caches HTTP resources such as

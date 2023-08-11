@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# content-publisher government-data check not ok
+
 This means that Content Publisher is having trouble updating the data it holds on current and previous governments. Ordinarily it reloads this data from the Publishing API every fifteen minutes and seeing this error means it hasn't happened in at least 6 hours. After 24 hours the cache of government data will clear and the app will stop working as expected. The following suggestions should help to isolate the problem.
 
 - Check [Sentry][] for any recent errors that indicate reasons the job is failing

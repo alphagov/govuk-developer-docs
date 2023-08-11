@@ -6,6 +6,8 @@ layout: manual_layout
 section: Infrastructure
 ---
 
+# Remove a machine
+
 Before you start, make sure that the machines you are removing are no longer
 needed for anything.
 

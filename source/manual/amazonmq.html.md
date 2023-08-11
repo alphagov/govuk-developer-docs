@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Manage AmazonMQ
+
 [RabbitMQ][RabbitMQ] is a message broker based on the [Advanced Message Queuing
 Protocol][AMQP] (AMQP). Publishing's RabbitMQ cluster is provided by AWS' [AmazonMQ][] service.
 

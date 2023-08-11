@@ -1,10 +1,12 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
-title: 'Web Application Firewall (WAF) configuration'
+title: Web Application Firewall (WAF) configuration
 section: Security
 layout: manual_layout
 parent: "/manual.html"
 ---
+
+# Web Application Firewall (WAF) configuration
 
 Web Application Firewall (WAF) rules enable blocking potentially
 malicious/suspect requests at the edge of the network before they can reach the applications.

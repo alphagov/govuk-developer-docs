@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# DDOS Detected
+
 If there is a Distributed Denial of Service (DDoS) alert in Icinga this means that
 AWS have detected a probable DDoS attack on one or more of the AWS Shield Advanced
 protected resources.

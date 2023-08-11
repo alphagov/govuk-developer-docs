@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# App isn't running the expected Ruby version
+
 We have checks to ensure that the version of Ruby the application is using is
 the same as the version specified in its `.ruby-version` file.
 

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# How to check and commit code to AWS CodeCommit
+
 We use [AWS CodeCommit](https://docs.aws.amazon.com/codecommit/latest/userguide/) as a backup for our GitHub repositories.
 
 The [`mirror-repos.yml` GitHub Actions workflow](https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml) copies GitHub repositories tagged with `govuk` to CodeCommit 4 times daily Mon-Fri.

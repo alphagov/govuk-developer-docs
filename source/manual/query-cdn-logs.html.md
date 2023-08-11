@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Query CDN logs
+
 Fastly, GOV.UK's [content distribution network](/manual/cdn.html), logs
 metadata about HTTP requests to GOV.UK. Fastly sends log files to Amazon S3
 every 15 minutes, where we store them for [120

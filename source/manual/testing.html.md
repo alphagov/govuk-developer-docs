@@ -1,11 +1,13 @@
 ---
 owner_slack: "#govuk-developers"
-title: 'How we test GOV.UK'
+title: How we test GOV.UK
 section: Testing
 type: learn
 layout: manual_layout
 parent: "/manual.html"
 ---
+
+# How we test GOV.UK
 
 GOV.UK has several layers of testing:
 

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Re-create an AWS mongo instance
+
 ## Symptom
 
 Mongo log file error similar to the below text:

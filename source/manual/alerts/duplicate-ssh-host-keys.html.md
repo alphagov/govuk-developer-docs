@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Duplicate SSH host keys
+
 This check indicates that more than one machine in an environment is
 using the same SSH host key. This is bad because it means that we can't
 verify the authenticity of a particular host and it could be used in a

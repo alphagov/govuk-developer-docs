@@ -1,10 +1,12 @@
 ---
 owner_slack: "#govuk-developers"
-title: 'Content Security Policy on GOV.UK'
+title: Content Security Policy on GOV.UK
 section: Security
 layout: manual_layout
 parent: "/manual.html"
 ---
+
+# Content Security Policy on GOV.UK
 
 Content Security Policy (CSP) is a browser standard to prevent cross-site scripting (XSS), clickjacking and other code
 injection attacks resulting from execution of malicious content in the context of another website. A policy, determining

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Restore an Individual Postgres Production Database in AWS RDS
+
 > If you need to restore an entire RDS instance please see [this manual page](/manual/howto-backup-and-restore-in-aws-rds.html) instead.
 
 ### Restoring From S3 Backups

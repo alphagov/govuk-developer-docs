@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# How to test with Assistiv Labs
+
 GOV.UK has to meet government [accessibility requirements](https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction), digital services must work on the most commonly used assistive technologies - including screen magnifiers, screen readers and speech recognition tools
 
 [Assistiv Labs](https://assistivlabs.com/) remotely connects you to real assistive technologies, like NVDA, JAWS, and Windows High Contrast Mode, using any modern web browser.

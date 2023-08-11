@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# COVID-19 Services
+
 Between March and October 2020 the GOV.UK operated three standalone
 services for the COVID-19 pandemic response:
 

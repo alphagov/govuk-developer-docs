@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Configure linting
+
 This explains how to configure [linting][] for a GOV.UK application. It is
 written with the expectation that you are configuring a
 [conventional GOV.UK Rails application][rails] although the approaches

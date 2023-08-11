@@ -8,6 +8,8 @@ section: Applications
 important: true
 ---
 
+# Node classes without redundancy
+
 Below we provide a list of node classes that are not configured to be highly available (HA). This means that short outages of these machines are architecturally considered acceptable.
 
 Installation of a critical software component on a non-redundant node class has caused an incident in the past. This happened when `pgbouncer`, required for all Postgresql database accesses at the time, was installed on `db_admin`, a single EC2 instance. That single instance became unavailable and took down Postgres in Production.

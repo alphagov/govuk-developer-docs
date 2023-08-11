@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Icinga
+
 - [Production (AWS)](https://alert.blue.production.govuk.digital)
 - [Staging (AWS)](https://alert.blue.staging.govuk.digital)
 - [Integration (AWS)](https://alert.integration.publishing.service.gov.uk)

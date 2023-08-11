@@ -6,6 +6,8 @@ layout: manual_layout
 section: Transition
 ---
 
+# Remove a site from the Transition tool
+
 Sometimes we get requests to delete sites from the [Transition tool](https://transition.publishing.service.gov.uk).
 
 ## 1. Remove site config YAML files

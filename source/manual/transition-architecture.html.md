@@ -8,6 +8,8 @@ parent: "/manual.html"
 related_repos: [bouncer, transition]
 ---
 
+# Transition architecture
+
 The Transition system is built to transition government websites to GOV.UK. The
 main work around this [happened in 2014][blog], but we still take on websites.
 

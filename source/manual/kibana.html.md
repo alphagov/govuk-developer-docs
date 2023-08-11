@@ -6,6 +6,9 @@ parent: "/manual.html"
 section: Logging
 important: true
 ---
+
+# Query Kibana (includes useful queries)
+
 All logs for GOV.UK on all environments are collected in Kibana, which you can
 access through [Logit](logit.html).
 

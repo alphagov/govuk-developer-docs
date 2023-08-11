@@ -6,7 +6,7 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
-### 'Validate_published_DNS'
+# Validate_published_DNS
 
 This alert checks that published DNS records match those defined in the
 govuk-dns-config repo.

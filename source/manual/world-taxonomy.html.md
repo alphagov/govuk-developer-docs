@@ -8,6 +8,8 @@ type: learn
 related_repos: [content-tagger]
 ---
 
+# How the world taxonomy works
+
 GOV.UK aims to organise content with a single taxonomy, [the topic taxonomy][topic-taxonomy], however due to legacy reasons there is a disassociated branch of this taxonomy known as the world taxonomy. The world taxonomy is used to tag guidance to particular world locations, for example [Latvia: doctors][latvia-doctors] is content tagged to the [Living in Latvia][live-latvia] section of the world taxonomy. The full list of world location pages can be seen on <https://www.gov.uk/world>.
 
 For each world location in the world taxonomy there are a number of consistent child entities such as [Passports][passports-nz], [Trade and Invest][trade-lt], [Coming to the UK][coming-uk], etc. This varies for some place, for example [Syria][syria]. There are also generic versions of the world location child pages that aren't tailored to a specific location, for example [Passports][passports] and [Trade and Invest][trade].

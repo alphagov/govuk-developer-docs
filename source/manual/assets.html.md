@@ -8,6 +8,8 @@ parent: "/manual.html"
 related_repos: [asset-manager, static]
 ---
 
+# Assets: how they work
+
 There are three types of asset files.
 
 **Static assets** are stylesheets (CSS), JavaScript (JS) and image files which

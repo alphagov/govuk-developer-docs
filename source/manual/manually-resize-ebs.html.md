@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Manually resize EBSs (elastic block store)
+
 In AWS, [we use Elastic Block Store (EBS)][ebs] to attach additional
 block storage to EC2 instances.
 

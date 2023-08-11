@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# MongoDB rollback
+
 ### What is a rollback
 
 Explanation from the [MongoDB

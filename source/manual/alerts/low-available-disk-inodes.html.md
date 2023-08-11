@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Low available disk inodes
+
 See also: [low available disk space](low-available-disk-space.html)
 
 This alerts means that a machine's filesystem has too many files or directories.

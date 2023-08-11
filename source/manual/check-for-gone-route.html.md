@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Check for a 'gone' route
+
 When a Whitehall document fails to appear on the frontend, and the user
 is shown a 'Gone' page, follow these instructions:
 

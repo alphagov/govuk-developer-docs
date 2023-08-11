@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Retire a gem
+
 ## 1. Ensure the gem is not used by any apps
 
 Search for references to the gem in our codebase to see if any apps are still using it:

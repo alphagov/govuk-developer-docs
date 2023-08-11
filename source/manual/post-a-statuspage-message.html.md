@@ -7,6 +7,8 @@ parent: "/manual.html"
 important: true
 ---
 
+# Post a message on the status page
+
 When something goes wrong on GOV.UK we follow our [incident management procedure][inc].
 As part of that we update our status page [status.publishing.service.gov.uk][status].
 

@@ -6,6 +6,8 @@ layout: manual_layout
 section: Frontend
 ---
 
+# Deploy a banner to certain pages
+
 This documentation should be used when we receive a request to publish a banner
 to a single, or group of pages. If you want to publish a sitewide banner then
 reference [deploy emergency banner][emergency-banner] or [deploy non-emergency

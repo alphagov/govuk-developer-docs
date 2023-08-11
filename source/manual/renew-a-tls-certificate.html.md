@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Renew a TLS certificate for GOV.UK
+
 ## Renewing the certificate for www.gov.uk
 
 The TLS certificate for www.gov.uk is managed by Fastly. If there is any action

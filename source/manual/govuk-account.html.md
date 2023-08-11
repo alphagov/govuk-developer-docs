@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# How does the GOV.UK Account work?
+
 GOV.UK uses the account service built and supported by the Digital Identity programme to give users a personalised experience.
 
 You can sign into a GOV.UK account by visiting [www.gov.uk/account](https://www.gov.uk/account).

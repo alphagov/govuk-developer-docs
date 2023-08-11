@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-## Change a slug and create a redirect in Whitehall
+# Change a slug and create redirect in Whitehall
 
 In Whitehall, we have Rake Tasks to change slugs and create redirects for
 various entities: `Person`, `Role`, `Document`, `PolicyGroup`, `WorldLocation`,

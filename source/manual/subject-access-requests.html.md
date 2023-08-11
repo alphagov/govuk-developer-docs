@@ -7,4 +7,6 @@ section: 2nd line
 type: learn
 ---
 
+# Subject Access Request (SAR)
+
 This [Google Doc describes what to do if you receive a GDPR Subject Access Request through Zendesk](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155034120/Dealing+with+Subject+Access+Requests+SAR).

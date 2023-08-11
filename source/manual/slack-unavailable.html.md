@@ -7,6 +7,8 @@ section: 2nd line
 type: learn
 ---
 
+# Communicate when Slack is unavailable
+
 If Slack has an outage, we use Google Spaces as a fallback.
 
 A "space" is roughly equivalent to a Slack channel, allowing async adding/removing of members, and the ability to create threads for conversation.

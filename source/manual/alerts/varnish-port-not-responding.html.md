@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Varnish port not responding
+
 Under high load, it is possible that the Varnish child process which handles
 connections will timeout on the healthcheck from the parent. If that happens
 and the replacement child process also fails to start, Varnish can get in a

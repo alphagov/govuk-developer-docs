@@ -6,6 +6,8 @@ layout: manual_layout
 section: Backups
 ---
 
+# Fix out-of-date search indices
+
 If the data in the search index is out-of-sync with the Publishing API,
 (for example, after [restoring a backup][restore-backups]), then any `publish`
 and `unpublish` messages that have not been processed need to be resent.

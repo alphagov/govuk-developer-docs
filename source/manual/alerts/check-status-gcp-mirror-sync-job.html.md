@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Check status of latest GCP mirror sync job
+
 This alert means that the latest mirror sync job from AWS S3 to GCP GCS Google Cloud Storage (GCS) failed. The mirror sync job exists to ensure that we have an up-to-date copy of the mirrored contents of GOV.UK from the AWS S3 bucket `govuk-production-mirror` within the same-named bucket in GCS, should we ever need to [fall back to the static mirror][fallback to mirror] hosted on GCP. The job lives within GCP Data Transfer and runs everyday at 18:00 UTC.
 
 Occasionally we see errors during the mirror sync process, such as files not being found. Previously there was no remedial action we could take on these errors as the Data Transfer API was broken, however now that it has been fixed it is straightforward to retry the failed job.

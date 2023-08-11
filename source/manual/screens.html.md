@@ -7,6 +7,8 @@ layout: manual_layout
 section: Monitoring
 ---
 
+# Screens that we have in the office
+
 ## Search screen
 
 ![Screen shot of the search screen](images/search-screen.png)

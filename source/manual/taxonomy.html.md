@@ -8,6 +8,8 @@ type: learn
 related_repos: [content-tagger]
 ---
 
+# How the topic taxonomy works
+
 The Topic Taxonomy is a classification scheme for organising and
 finding content on GOV.UK, based on its subject area.
 

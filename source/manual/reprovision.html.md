@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Reprovision a machine
+
 Make sure you are aware what the consequences will be of removing a
 machine from the rotation and consider who needs to be aware of
 potential downtime. In particular, removing a single-point-of-failure

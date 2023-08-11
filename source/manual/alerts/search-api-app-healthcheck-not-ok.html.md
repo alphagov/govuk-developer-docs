@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Search API app healthcheck not ok
+
 See also: [how healthcheck alerts work on GOV.UK](app-healthcheck-not-ok.html)
 
 ## Elasticsearch connectivity is not OK

@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# AWS LB Healthy Hosts
+
 This alert relates to the number of healthy hosts behind AWS LoadBalancing services. We use AWS ELB (Classic) and ALB services to route traffic from internet facing or internal clients to the application instances.
 
 > The type is discovered automatically in the check. If the script can't find the load balancer, the check status will be UNKNOWN.

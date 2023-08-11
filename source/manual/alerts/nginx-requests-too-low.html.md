@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Nginx requests too low
+
 We monitor the number of requests reaching our Nginx servers. We expect that
 there will be a minimum number of requests occurring and a check will alert if
 this falls below a threshold.

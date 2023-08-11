@@ -1,11 +1,13 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
-title: "Upgrade Terraform"
+title: Upgrade Terraform
 section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
 ---
+
+# Upgrade Terraform
 
 Terraform should be regularly upgraded. New releases happen very often, with bug fixes and improvements.
 Also, being too far behind the latest versions can make future upgrades and support for new provider services much harder to perform.

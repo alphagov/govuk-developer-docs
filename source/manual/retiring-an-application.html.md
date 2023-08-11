@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Retire an application
+
 Note: Now that we've moved most of the applications to EKS, some of these
 steps are only necessary for the handful of apps being deployed by Puppet.
 The step titles now indicate whether a step is only required for Puppet or

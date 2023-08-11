@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Publish a Ruby gem
+
 ## Naming
 
 In general, the gem name should be the same as the thing you require when using

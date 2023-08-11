@@ -7,6 +7,8 @@ section: 2nd line
 type: learn
 ---
 
+# 2nd line drills
+
 There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going [on call](/manual/on-call.html) if you are part of the out of hours rota.
 
 ## Drill publishing emergency banner

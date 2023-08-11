@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Add Historical Accounts
+
 ## Adding Historical Accounts to Whitehall
 
 People in Whitehall can have a biography attached to each role they have held. These are called Historical Accounts. We primarily use Historical Accounts to add information to our History of Government's [Notable People](https://www.gov.uk/government/history#notable-people) section. For example, most [past prime ministers](https://www.gov.uk/government/history/past-prime-ministers) have one.

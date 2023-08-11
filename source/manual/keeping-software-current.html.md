@@ -7,6 +7,8 @@ section: Dependencies
 type: learn
 ---
 
+# Policy on keeping software current
+
 One of our core values is to use secure and up-to-date software. This document lays out the policy for keeping our software current.
 
 ## Guiding principles

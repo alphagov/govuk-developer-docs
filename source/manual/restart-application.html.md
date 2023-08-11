@@ -6,6 +6,8 @@ layout: manual_layout
 section: Deployment
 ---
 
+# Restart an application
+
 ### Restarting one instance of an app
 
 To restart an application on one machine, SSH into the machine then

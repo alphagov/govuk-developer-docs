@@ -7,6 +7,8 @@ section: Monitoring
 type: learn
 ---
 
+# Sidekiq
+
 Many of our applications use
 [Sidekiq](https://sidekiq.org) ([see repo](https://github.com/mperham/sidekiq))
 for background job processing.

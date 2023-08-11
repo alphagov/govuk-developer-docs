@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Redis alerts
+
 We have a few monitoring checks for Redis:
 
 - memory usage

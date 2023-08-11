@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Puppet last run errors
+
 This alert triggers when there's an error while running Puppet on a machine.
 
 ### View the logs

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Block access to arbitrary URLs in the GOV.UK estate
+
 During a recent security incident it became necessary to block a GOV.UK
 section in order to prevent access to sensitive data.
 

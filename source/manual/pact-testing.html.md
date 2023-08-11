@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Pact Testing
+
 [Pact](https://docs.pact.io/) is a tool we use for *contract testing*. Contract testing involves creating a set of tests that are shared between an API (the "provider") and its users ("consumers"). Contract tests allow consumers to define a contract that it expects its provider to uphold. This means that a consumer can specify what response (both status code and body) they expect from a provider given a certain http call.
 This is useful to ensure that changes to the provider do not break the interaction between it and its consumers.
 

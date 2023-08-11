@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Backup and restore databases in AWS RDS
+
 Backups of [RDS](https://aws.amazon.com/rds/) instances are [taken
 nightly](https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance).
 They are stored in Amazon S3. SQL dumps are also taken nightly from the various

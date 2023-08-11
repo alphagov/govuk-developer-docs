@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Grafana
+
 [Grafana](https://grafana.com/) is an open-source visualisation tool.
 It does not store data, but consumes data sources to create real-time
 graphs displayed on custom dashboards. Data sources include Prometheus,

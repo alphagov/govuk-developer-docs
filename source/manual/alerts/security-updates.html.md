@@ -7,6 +7,8 @@ parent: "/manual.html"
 important: true
 ---
 
+# Outstanding security updates
+
 Machines are configured to [automatically install security updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package) on a daily basis.
 
 - This is triggered by the `/etc/cron.daily/apt` script.

@@ -7,6 +7,8 @@ section: Monitoring
 type: learn
 ---
 
+# Sentry
+
 [Sentry][] is a service that collates errors that happen on GOV.UK in one
 place, regardless of which application, what environment or what machine
 the error occurred on. It is far more convenient than logging on to

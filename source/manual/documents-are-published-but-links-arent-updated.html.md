@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Debug published documents with incorrect links
+
 This can happen when the Publishing API is still working through all of the
 pages that may have changed due to dependency resolution. You can find out if
 this is a problem [by monitoring Publishing API sidekiq queue][sidekiq-queue]

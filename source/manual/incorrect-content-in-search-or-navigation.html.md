@@ -7,6 +7,8 @@ section: Publishing
 related_repos: [search-api]
 ---
 
+# Content that doesn't show up correctly in search or list pages
+
 The Elasticsearch cluster utilised by [Search API](/repos/search-api.html) can
 get out of sync with publishing applications. This affects any part of the site
 using it, including navigation pages and related links.

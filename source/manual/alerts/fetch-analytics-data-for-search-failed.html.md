@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Fetch analytics data for search failed
+
 This checks the latest build state of [a job in production
 Jenkins](https://deploy.blue.production.govuk.digital/job/search-api-fetch-analytics-data/)
 which runs every night and updates all documents in the search index with pageview data from

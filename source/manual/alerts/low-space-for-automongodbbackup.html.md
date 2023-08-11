@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-### Running out of space for `automongodbbackup`
+# Running out of space for `automongodbbackup`
 
 The box where the backups are stored by `automongodbbackup` can sometimes run out of space.
 The `automongodbbackup` script can fail ungracefully when zipping the backup if it runs out of space. If it does, it will fail to clean up after itself so it will leave the half-zipped backup lying around. In addition to this, if it fails it won't clear older backups. You will have to remove an older backup manually as well as re-zip the latest backup.

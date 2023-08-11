@@ -5,6 +5,9 @@ section: AWS
 layout: manual_layout
 parent: "/manual.html"
 ---
+
+# Run commands on many machines
+
 We used to rely heavily on Fabric scripts to help us do things like running commands on all machines in a class. This approach has been deprecated, but we still need to do those things occasionally.
 
 > **WARNING** Please test your command before unleashing it on production machines.

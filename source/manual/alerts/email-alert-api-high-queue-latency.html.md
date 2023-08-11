@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Email Alert API: high latency for sidekiq queue
+
 This alert triggers when there is a significant delay in the time from the
 Email Alert API system creating an email until it is sent.
 

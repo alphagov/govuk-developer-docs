@@ -6,6 +6,8 @@ layout: manual_layout
 section: 2nd line
 ---
 
+# How to flush the ARP cache
+
 > These instructions should no longer be required. Please alert #govuk-platform-security-reliability-team if you have to use them.
 
 We're aware of a rare situation where our servers can find themselves with

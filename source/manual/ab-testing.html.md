@@ -7,6 +7,8 @@ section: A/B testing
 type: learn
 ---
 
+# How A/B testing works
+
 GOV.UK uses our [Content Delivery Network (Fastly)][cdn] to run A/B and multivariate tests.
 
 For a general introduction to A/B testing from a content design perspective, see the [Confluence Wiki](https://bit.ly/AB-testing-GOVUK).

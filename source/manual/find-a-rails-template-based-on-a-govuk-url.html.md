@@ -1,11 +1,14 @@
 ---
 owner_slack: "#govuk-developers"
-title: Find a rails template based on a GOV.UK URL or vice verca
+title: Find a rails template based on a GOV.UK URL or vice versa
 section: Frontend
 layout: manual_layout
 type: learn
 parent: "/manual.html"
 ---
+
+# Find a rails template based on a GOV.UK URL or vice versa
+
 When making changes to a template in one of our frontend apps it's often beneficial to see a rendered page with your change so that you can effectively test it. This can be difficult when developing within gov.uk as we have several frontend apps which control different parts of the site, sometimes overlapping in sections that they take responsibility for. This document details ways in which you can bypass this issue.
 
 ## Option 1: Use the GOV.UK browser extension

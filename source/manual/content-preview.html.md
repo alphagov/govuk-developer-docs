@@ -7,6 +7,8 @@ type: learn
 section: Publishing
 ---
 
+# How the draft stack works
+
 The "draft stack" on GOV.UK, is intended to be
 a full version of GOV.UK that includes content that has not yet been
 sent for publication. This allows content editors to preview their

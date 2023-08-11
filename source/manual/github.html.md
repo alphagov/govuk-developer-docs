@@ -7,6 +7,8 @@ section: GitHub
 type: learn
 ---
 
+# GitHub
+
 GOV.UK uses GitHub for version control, code deployments, authentication, CI, Dependabot and GitHub Pages. Read the "[GOV.UK reliance on GitHub features doc](https://docs.google.com/document/d/1KsYWCHSQZEwqB2NF1A7Z9rmP1s1azcZhEamaPsXAoxk/edit)" Google doc for more information.
 
 # GitHub organisation

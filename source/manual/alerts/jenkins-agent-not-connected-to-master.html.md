@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Jenkins agent not connected to master
+
 If the Jenkins agent is not connect to the master you can have a look at the [Jenkins Nodes UI][jenkins-nodes] and see
 if it's possible to diagnose and solve the problem from there.
 

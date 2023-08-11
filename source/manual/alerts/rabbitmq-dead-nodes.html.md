@@ -6,6 +6,7 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# RabbitMQ: Dead nodes in cluster
 
 This can happen if one of the machines in the cluster is killed by AWS and replaced with a new machine. In this scenario, the cluster is still working, but leaving the dead node will cause problems in future. The check can be found [here][alert_check].
 

@@ -7,6 +7,8 @@ type: learn
 section: Cookies
 ---
 
+# Cookie consent on GOV.UK
+
 This is technical documentation for the [GOV.UK](https://www.gov.uk/) team in the [Government Digital Service (GDS)](https://gds.blog.gov.uk/about/).
 
 ## Overview

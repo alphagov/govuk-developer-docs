@@ -6,6 +6,8 @@ section: Deployment
 parent: "/manual.html"
 ---
 
+# Switch an app off temporarily
+
 In the event of a security incident an app may need to be switched off until it can be patched.
 
 Before you begin you will need to identify:

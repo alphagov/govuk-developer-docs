@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Unicorn Herder
+
 ### 'app unicornherder running'
 
 This alert means the Unicorn Herder process has disappeared for the

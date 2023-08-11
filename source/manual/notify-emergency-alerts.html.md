@@ -8,6 +8,8 @@ section: Notify Emergency Alerts
 important: true
 ---
 
+# What is GOV.UK Notify Emergency Alerts?
+
 The Cabinet Office and the Department for Digital, Culture, Media & Sport are developing a ‘cell broadcast’ alert system to enable people whose lives are at risk in an emergency to be rapidly contacted via their mobile phone. They are currently at the testing phase and subject to successful progress, hope to launch the service soon.
 
 As part of this service, GOV.UK delegate serving [www.gov.uk/alerts](https://www.gov.uk/alerts) to the GOV.UK Notify team.

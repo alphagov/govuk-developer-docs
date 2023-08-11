@@ -6,6 +6,8 @@ layout: manual_layout
 section: 2nd line
 ---
 
+# SmartSurvey scheduled maintenance
+
 This [Wiki page describes what to do if SmartSurvey has scheduled maintenance][doc].
 
 [doc]: https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155263491/SmartSurvey+has+scheduled+maintenance

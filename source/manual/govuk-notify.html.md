@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# How we use GOV.UK Notify
+
 [GOV.UK Notify][notify] is a Government-as-a-Platform service that allows
 clients of their API to send emails, text messages and letters. We use GOV.UK
 Notify to send emails to users - both members of the public and publishers.

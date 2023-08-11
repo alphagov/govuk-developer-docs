@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Pingdom search check
+
 If [Pingdom](/manual/pingdom.html) can't retrieve the search results page, it means that while GOV.UK
 may be available, it is not possible to retrieve dynamic content. Assuming that
 the homepage check has not failed, the CDN is probably OK. It is possible for

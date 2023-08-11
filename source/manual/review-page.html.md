@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Review a page in this manual
+
 Every page in the manual has a "Last updated" value, based on the timestamp of the last commit associated with the file. The more recent the date, the more confidence the reader can have that the content is accurate.
 
 It is helpful to review a document at the point of using it, as you likely have the most context for the problem at that moment in time.

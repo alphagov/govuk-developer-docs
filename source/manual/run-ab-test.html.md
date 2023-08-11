@@ -6,6 +6,8 @@ layout: manual_layout
 section: A/B testing
 ---
 
+# Run an A/B or multivariate test
+
 Before you run an A/B or multivariate test, you should read the [guidance on how A/B testing works](/manual/ab-testing.html).
 
 ## 1. Prepare the A/B test

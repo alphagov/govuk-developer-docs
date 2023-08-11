@@ -6,6 +6,8 @@ layout: manual_layout
 section: Applications
 ---
 
+# Add authentication to an application
+
 The process outlined here relies on the [data sync][] to synchronise
 credentials between production and staging which will mean that you will have
 to wait overnight from starting this to completing.

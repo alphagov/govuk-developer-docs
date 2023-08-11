@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# GOV.UK CDN static mirrors
+
 The GOV.UK mirror is a static copy of GOV.UK.
 
 ## When is the GOV.UK mirror used?

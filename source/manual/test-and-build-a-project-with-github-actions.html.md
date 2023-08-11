@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Test & build a project with GitHub Actions
+
 [GitHub Actions](https://github.com/features/actions) is an automated workflow
 system that GOV.UK uses for [Continuous Integration (CI)][ci]. We also have
 [Jenkins](/manual/testing-projects.html) (and previously had Concourse) which

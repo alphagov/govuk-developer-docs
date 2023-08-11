@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Check process running
+
 This alert means that a process which should be running is not. It's highly likely that this process corresponds to a service.
 
 If the process doesn't correspond to a service then it will be necessary to find out more about how the process runs. Read [troubleshooting the process](#troubleshooting-the-process) at the end of this page.

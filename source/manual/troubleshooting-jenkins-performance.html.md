@@ -6,6 +6,8 @@ layout: manual_layout
 section: Testing
 ---
 
+# Troubleshoot CI Jenkins Performance
+
 There are many reasons Jenkins could perform poorly, this document attempts to
 outline some common approaches to diagnosing/monitoring and outlines steps to
 resolve common issues.

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# View GOV.UK logs in Logit
+
 GOV.UK sends application logs and origin HTTP request logs to Logit, a
 software-as-a-service log storage and retrieval system based on the
 [Elasticsearch, Logstash, Kibana

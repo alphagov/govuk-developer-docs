@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Application ownership
+
 This describes what ownership of a GOV.UK application means in practice.
 
 ## What ownership means

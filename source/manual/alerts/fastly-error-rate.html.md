@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Fastly error rate for GOV.UK
+
 We get response code reporting from Fastly (with a 15 minute delay). It
 averages out the last 15 minutes worth of 5xx errors. This is a useful
 supplementary metric to highlight low-level errors that occur over a longer

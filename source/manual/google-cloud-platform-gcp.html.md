@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Google Cloud Platform (GCP)
+
 GOV.UK uses Google Cloud Platform (GCP) for three main things:
 
 - [Static mirrors of GOV.UK](/manual/fall-back-to-mirror.html) (these are hosted in AWS and GCP).

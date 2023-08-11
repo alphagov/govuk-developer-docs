@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Grafana Dashboards
+
 This alert means there are dashboards that exist only in the database of a single Grafana instance.
 
 > Sometimes a temporary dashboard is necessary to deal with an incident. In this case, you can acknowledge the alert temporarily until the incident concludes and we're confident we won't need it again.

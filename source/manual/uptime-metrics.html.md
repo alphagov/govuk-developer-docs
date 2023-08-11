@@ -13,6 +13,8 @@ related_repos:
   - whitehall
 ---
 
+# Uptime Metrics
+
 Uptime metrics are collected for `hmrc-manuals-api`, `manuals-publisher`, `specialist-publisher`, `travel-advice-publisher` and `whitehall-admin`, they are available as [a Grafana dashboard][].
 
 They are available broken down into a day by day view, highlighted in different colours representing the level of uptime. Green means 100%, orange means above 99.31% (equivalent to 10 minutes of downtime) and red for everything else.

@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Elasticsearch cluster health
+
 Elasticsearch reports cluster health as one of three possible states, based on
 the state of its [primary and replica shards][primary-and-replica-shards].
 

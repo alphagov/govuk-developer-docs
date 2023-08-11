@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# If documents aren't live after being published
+
 If a document isn't live on GOV.UK after a publisher has published the document
 it may mean that it's got stuck somewhere.
 

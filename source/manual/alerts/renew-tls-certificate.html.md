@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Check the TLS certificate is valid and not due to expire
+
 These checks look at the validity of the TLS certificates for:
 
 * www.gov.uk at the edge (Fastly)

@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Email notifications: how they work
+
 ## High-level overview
 
 The purpose of the email notifications system is to inform users when content they are interested in is added to or changed on GOV.UK. Users can subscribe to receive updates for an area of interest, such as a topic, government department, or a set of search results. Current subscriptions to individual content items are not supported.

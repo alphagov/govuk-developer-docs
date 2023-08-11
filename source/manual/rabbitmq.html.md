@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Manage RabbitMQ
+
 [RabbitMQ][RabbitMQ] is a message broker based on the [Advanced Message Queuing
 Protocol][AMQP] (AMQP).
 

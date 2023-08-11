@@ -6,6 +6,8 @@ layout: manual_layout
 section: Infrastructure
 ---
 
+# Patch Jenkins
+
 Jenkins should be regularly patched when possible, including all plugins.
 
 ## Upgrading plugins

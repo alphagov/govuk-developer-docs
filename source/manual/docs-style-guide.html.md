@@ -7,6 +7,8 @@ type: learn
 parent: "/manual.html"
 ---
 
+# Documentation style guide
+
 ## What pages should be about
 
 Most pages will be about how to do a thing. Include just enough information to allow the reader to complete what they need to do.

@@ -6,6 +6,8 @@ layout: manual_layout
 section: Routing
 ---
 
+# Change an organisation's slug
+
 > **Note**
 >
 > For Worldwide Organisations, only steps 1 and 5 below need to be performed.

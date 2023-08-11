@@ -6,6 +6,8 @@ layout: manual_layout
 section: Backups
 ---
 
+# Restore Elasticsearch indices from backup
+
 ## Background
 
 AWS Managed Elasticsearch automatically takes hourly snapshots for backup and

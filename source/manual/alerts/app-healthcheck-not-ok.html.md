@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# App healthcheck not ok
+
 Most apps on GOV.UK have a `/healthcheck/ready` endpoint that checks if the app is "ready" to respond to requests, including things like connecting to a database ([example](https://github.com/alphagov/content-publisher/blob/8df63907dab486a54894105b829ab9ea02936b67/config/routes.rb#L115-L118)).
 
 This alert works by [making a request to the app's healthcheck endpoint](https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155) on a machine where the app runs. For most apps the endpoint is `/healthcheck/ready`; for legacy apps it's just a random page ([example](https://github.com/alphagov/govuk-puppet/blob/3f05678f36fde027efd3bbaae2421ebe04103136/modules/licensify/manifests/apps/licensify.pp#L63)).

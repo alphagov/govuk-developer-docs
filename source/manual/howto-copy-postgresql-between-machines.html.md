@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Copy PostgreSQL dump from one machine to another
+
 This document explains how to back up a PostgreSQL database from one machine
 and import it to another machine (or even another environment).
 

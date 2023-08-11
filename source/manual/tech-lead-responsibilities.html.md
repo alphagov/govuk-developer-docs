@@ -8,6 +8,8 @@ parent: "/manual.html"
 important: true
 ---
 
+# Responsibilities of a Tech Lead
+
 Tech leading is a role within a team that any developer can take up. They work closely with the product manager(s) and delivery manager(s), helping to provide their technical knowledge to support the team and guide the work. They will guide the technical direction of the mission by working with technical architects and the developers on the team.
 
 ## Identifying and planning work

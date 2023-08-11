@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Get access to Jenkins
+
 Our Jenkins installations ([deploy](https://deploy.integration.publishing.service.gov.uk/) and [CI](https://ci.integration.publishing.service.gov.uk/)) use GitHub for authentication and authorisation.
 
 - For integration admin access, you need to be added to the [GOV.UK team][]

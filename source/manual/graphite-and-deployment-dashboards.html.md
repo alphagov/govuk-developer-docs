@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Graphite and deployment dashboards
+
 ## How Graphite is used with deployment dashboards
 
 Graphite is a data storage application for time stream data that is used to store data performance data, error counts and other statistics about our servers.

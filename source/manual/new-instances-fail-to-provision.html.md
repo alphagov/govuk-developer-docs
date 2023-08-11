@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# New instances fail to provision
+
 Sometimes, it may happen that a new instance is not provisioned correctly.
 
 This can happen when an `unattended reboot` reboots the instance before all the init scripts have had time to run. This issue is more likely in Staging due to `unattended reboot` checking [every

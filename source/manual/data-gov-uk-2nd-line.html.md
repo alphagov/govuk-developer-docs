@@ -5,6 +5,9 @@ section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
 ---
+
+# Common 2nd line support tasks for data.gov.uk and CKAN
+
 [ckan-app]: repos/ckanext-datagovuk
 [ckan-api-404]: https://github.com/alphagov/govuk-puppet/blob/91471d86c0aa52aea4044835311ae9ba860281f5/modules/govuk/manifests/apps/ckan.pp#L210
 [ckan-api-docs]: https://docs.ckan.org/en/2.9/api/index.html

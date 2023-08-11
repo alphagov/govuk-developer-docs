@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# datagovuk_publish app healthcheck not ok
+
 See also: [how healthcheck alerts work on GOV.UK](app-healthcheck-not-ok.html)
 
 [datagovuk_publish](https://github.com/alphagov/datagovuk_publish)

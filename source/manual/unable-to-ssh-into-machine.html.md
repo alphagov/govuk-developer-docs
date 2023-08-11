@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Unable to SSH into a machine
+
 If you are unable to SSH into a machine, there are a number of things to check.
 
 ## SSH Key

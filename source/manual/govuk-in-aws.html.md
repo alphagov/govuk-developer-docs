@@ -7,6 +7,8 @@ type: learn
 parent: "/manual.html"
 ---
 
+# Migration to AWS
+
 To bring the GOV.UK platform in line with the [guidance detailed in the Service Manual](https://www.gov.uk/service-manual/technology/deciding-how-to-host-your-service),
 it has been migrated to [Amazon Web Services](https://aws.amazon.com/).
 

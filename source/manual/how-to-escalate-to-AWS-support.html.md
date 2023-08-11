@@ -1,12 +1,13 @@
 ---
 owner_slack: "#govuk-developers"
 title: How to raise a support ticket with AWS
-
 section: AWS
 layout: manual_layout
 type: learn
 parent: "/manual.html"
 ---
+
+# How to raise a support ticket with AWS
 
 Sign in to the AWS Management Console.
 

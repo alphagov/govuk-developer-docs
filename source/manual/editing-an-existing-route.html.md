@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Edit an existing route in the Router
+
 The Router API database is populated from the Publishing API, and also
 the deprecated router-data tool. Changes to routes should be made in
 the Publishing API as this is the authoritative source of the data,

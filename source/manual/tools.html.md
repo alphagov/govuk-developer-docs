@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Tools: Icinga, Grafana and Graphite, Kibana and friends
+
 ## Icinga
 
 [Icinga](/manual/icinga.html) is used to monitor alerts that we have set up.

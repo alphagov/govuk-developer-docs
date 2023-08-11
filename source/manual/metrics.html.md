@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Metrics
+
 Metrics are measurements of something. GOV.UK use metrics to monitor
 the service in realtime, and store these metrics over time, which can
 help to understand changes that are occurring.

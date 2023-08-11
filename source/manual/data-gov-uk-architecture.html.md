@@ -6,6 +6,9 @@ layout: manual_layout
 type: learn
 parent: "/manual.html"
 ---
+
+# Architecture of data.gov.uk
+
 [publish]: repos/datagovuk_publish
 [find]: repos/datagovuk_find
 [ckan]: repos/ckanext-datagovuk

@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# High Search API Sidekiq queue latency
+
 [Search API](/repos/search-api.html) uses Sidekiq to offload indexing work.
 
 This alert triggers when there are jobs in the Sidekiq queue that are waiting

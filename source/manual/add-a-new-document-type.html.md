@@ -6,6 +6,8 @@ layout: manual_layout
 section: Publishing
 ---
 
+# Add a new document type
+
 The [document type][] describes what a page on GOV.UK looks like.
 
 [document type]: /document-types.html

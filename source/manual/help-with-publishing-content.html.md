@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Help with publishing content
+
 When a department is publishing content that is high priority, it may be
 necessary to help them to ensure it goes out as smoothly as possible.
 

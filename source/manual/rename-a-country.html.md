@@ -6,6 +6,9 @@ layout: manual_layout
 section: Publishing
 related_repos: [travel-advice-publisher, content-tagger, whitehall]
 ---
+
+# Rename a country
+
 > **Note**
 >
 > We recommend you test out these instructions in integration and then staging before using them in production.

@@ -1,12 +1,14 @@
 ---
 owner_slack: "#govuk-frontenders"
-title: 'Google Tag Manager change process'
+title: Google Tag Manager change process
 section: Frontend
 layout: manual_layout
 type: learn
 parent: "/manual.html"
 related_repos: [govuk_publishing_components]
 ---
+
+# Google Tag Manager change process
 
 GOV.UK has implemented Google Analytics 4 (GA4) using Google Tag Manager (GTM) to track user journeys through the site. This page describes the process of making changes to GTM to support improvements to our analytics.
 

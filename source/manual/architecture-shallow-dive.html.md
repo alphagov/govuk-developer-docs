@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Architectural summary of GOV.UK
+
 The following content is a high-level summary of GOV.UK architecture, intended for both developers and non-developers to refer to.
 
 It's based on the [architectural deep-dive of GOV.UK](/manual/architecture-deep-dive.html) and describes what happens when a:

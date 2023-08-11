@@ -7,6 +7,8 @@ type: learn
 section: Publishing
 ---
 
+# Related links
+
 ## Manual
 
 Related links can be added or removed manually through [Content Tagger][].

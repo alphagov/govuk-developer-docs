@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Architecture overview of GOV.UK applications
+
 [//]: # (1 - Visit https://app.diagrams.net/#G1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm)
 [//]: # (2 - File > Embed > IFrame...)
 [//]: # (3 - Uncheck Edit / Layers / Tags)

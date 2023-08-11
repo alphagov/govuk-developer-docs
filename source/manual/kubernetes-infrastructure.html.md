@@ -7,6 +7,8 @@ parent: "/manual.html"
 type: learn
 ---
 
+# EKS/Kubernetes infrastructure
+
 This is a temporary page to tide us over as we get used to the new EKS platform.
 It will eventually be consolidated when the [GOV.UK Kubernetes docs](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/) are absorbed into the Developer Docs.
 

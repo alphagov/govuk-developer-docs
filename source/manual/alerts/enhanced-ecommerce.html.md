@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Enhanced Ecommerce ETL from Search API to Google Analytics
+
 This process is related to collection of data for analytics and is run daily to
 ensure Google Analytics (GA) is in sync with Search API. This process can be
 rerun multiple times without side effect.

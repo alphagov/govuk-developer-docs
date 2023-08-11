@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# The component system
+
 Components are packages of template, style, behaviour and documentation. Components live in your application unless needed by multiple applications, then they are shared using the [govuk_publishing_components gem](https://github.com/alphagov/govuk_publishing_components).
 
 ## Component guides

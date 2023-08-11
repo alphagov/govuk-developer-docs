@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Change in-hours time period for daylight savings
+
 We call people for different things in-hours and out-of-hours.  The
 Icinga configuration doesn't appear to accept a timezone, so we can't
 set the end of day to 17:30 Europe/London time.  This means the

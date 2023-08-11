@@ -7,6 +7,8 @@ section: 2nd line
 type: learn
 ---
 
+# Licensify - supporting licensing
+
 GOV.UK runs a Scala application ([Licensify](/repos/licensify.html)) which allows users to apply and pay for licences from local authorities and other competent authorities.
 
 ## Overview

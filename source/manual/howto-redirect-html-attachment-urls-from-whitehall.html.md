@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Redirect an HTML attachment's URL in Whitehall
+
 HtmlAttachments belong to an Edition of a Document. When an Edition is unpublished or withdrawn,
 there is an option to add a redirect to the URL. This redirect should also be applied to the Edition's
 HtmlAttachments, and the new URL sent to the PublishingAPI.

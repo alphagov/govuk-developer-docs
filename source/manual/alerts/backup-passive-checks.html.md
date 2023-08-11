@@ -4,8 +4,9 @@ title: Backup passive checks
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-
 ---
+
+# Backup passive checks
 
 These checks ensure that the backups have run within the last day (specifically
 within the last 28 hours).

@@ -7,6 +7,8 @@ section: Publishing
 important: true
 ---
 
+# Deploy an emergency banner
+
 In emergencies, GOV.UK can display important information in a banner at the top
 of each page of the website.
 

@@ -7,6 +7,8 @@ section: 2nd line
 type: learn
 ---
 
+# Zendesk
+
 Technical 2nd Line Zendesk tickets are technical errors reported by our users, including government publishers.
 
 ## Get started

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Deploy Static
+
 Before rolling out a release of Static to production, you must:
 
 1. Deploy the Static release to staging.

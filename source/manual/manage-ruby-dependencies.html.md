@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Manage Ruby dependencies with Dependabot
+
 We're [obliged to keep our software current][current]. To help with this, we use a
 service called [Dependabot][] to perform automated dependency upgrades.
 

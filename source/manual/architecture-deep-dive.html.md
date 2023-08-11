@@ -7,6 +7,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Architectural deep-dive of GOV.UK
+
 We can cover a lot of GOV.UK architecture by asking ourselves three questions:
 
 1. What happens when a user visits a page on GOV.UK?

@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Debug Nagios NRPE connection failures
+
 Nagios uses a protocol called NRPE (Nagios Remote Plugin Executor) to perform
 checks on remote machines. Monitored machines run an 'NRPE agent' which
 listens for requests to execute monitoring checks.

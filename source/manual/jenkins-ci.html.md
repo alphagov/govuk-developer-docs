@@ -7,6 +7,8 @@ type: learn
 section: Testing
 ---
 
+# Jenkins CI infrastructure
+
 ## Introduction
 
 Our CI environment provides the infrastructure and services to cover the

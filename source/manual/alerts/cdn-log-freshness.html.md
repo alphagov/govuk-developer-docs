@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# CDN logs from Fastly not appearing in S3
+
 ## Meaning and impact
 
 CDN logs from Fastly might not be getting uploaded to the

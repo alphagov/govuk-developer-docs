@@ -7,6 +7,8 @@ type: learn
 section: Incidents
 ---
 
+# Incident management guidance
+
 When something goes wrong on GOV.UK we follow the incident management procedure:
 
 - [So, you're having an incident](incident-what-to-do.html)

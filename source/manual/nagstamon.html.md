@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Use Nagstamon for monitoring Icinga
+
 ![nagstamon](images/nagstamon.png)
 
 [Nagstamon][] can access multiple Icinga instances, display the

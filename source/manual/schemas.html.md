@@ -7,6 +7,8 @@ type: learn
 section: Publishing
 ---
 
+# What data we expose as schema.org structured data
+
 [Schema.org](https://schema.org/) is a community driven vocabulary (founded by Google, Microsoft et al) that allows us to add structured data to content.
 
 Search engines such as Google and Bing use some schemas in order to process and [present results](https://developers.google.com/search/docs/data-types/article) [in different ways](https://www.bing.com/webmaster/help/marking-up-your-site-with-structured-data-3a93e731). It's also possible for other consumers such as [Google Assistant to use these](https://developers.google.com/assistant/content/faq), so it's about more than just conventional SEO.

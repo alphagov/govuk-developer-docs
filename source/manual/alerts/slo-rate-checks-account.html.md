@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# SLO Error Rate on GOV.UK Accounts has exceeded an acceptable threshold across the last 10 minutes
+
 The GOV.UK Account team has defined Service Level Objectives (SLOs) for
 reliability of the `account-api`.
 

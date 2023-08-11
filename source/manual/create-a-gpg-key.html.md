@@ -6,6 +6,8 @@ layout: manual_layout
 section: Accounts
 ---
 
+# Create a GPG key
+
 We use GPG keys to encrypt our secrets. Documentation for using your GPG key can be found [here](/manual/encrypted-hiera-data.html#common-tasks-for-handling-encrypted-hiera-data).
 
 ## Prerequisites

@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+# Check that correct users have access
+
 This alert is triggered by the [User Monitor Jenkins job][user-monitor-job]. This task [runs a script][repo] that verifies only the correct users have access to things like GitHub, Sentry, AWS, Fastly and PagerDuty.
 
 ## Investigating issues

@@ -7,6 +7,8 @@ type: learn
 parent: "/manual.html"
 ---
 
+# How to be a good buddy
+
 When a new joiner starts on GOV.UK, it's good practice for the team they are joining to assign them a "buddy" to help them get started on GOV.UK, explain it's infrastructure and provide initial support.
 
 ## What is a buddy?

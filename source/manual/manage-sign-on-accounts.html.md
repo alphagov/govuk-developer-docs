@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Manage Signon user/API accounts and access tokens
+
 [Signon](/repos/signon.html) is the
 single sign-on service for our admin applications. We also use it for
 creating API accounts for GOV.UK applications.

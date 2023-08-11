@@ -7,6 +7,8 @@ type: learn
 section: Monitoring
 ---
 
+# Pingdom Bouncer canary check
+
 This alert is raised by [Pingdom](/manual/pingdom.html) when it cannot
 reach Bouncer's canary route at <https://www.direct.gov.uk/__canary__>.
 This route queries all the database tables which Bouncer uses to serve all

@@ -7,6 +7,8 @@ type: learn
 parent: "/manual.html"
 ---
 
+# Intro to GOV.UK Docker (Advanced)
+
 In the [Intro to Docker tutorial](/manual/intro-to-docker.html) we began with a generic container running the `ruby` image, and finished with a powerful `docker-compose` command to run the [content-publisher][] tests against a Postgres DB.
 
 This tutorial is going to pick up where we left off and introduce some more advanced concepts that we make use of in [govuk-docker][]. You should be able to understand the bulk of the repo after completing this tutorial.

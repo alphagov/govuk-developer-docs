@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Set up Heroku review apps for pull requests
+
 [Review apps](https://devcenter.heroku.com/articles/github-integration-review-apps)
 allow us to automatically deploy application changes into a brand
 new Heroku app so that each Pull Request reviewer has a chance to see how it
