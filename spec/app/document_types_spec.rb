@@ -39,4 +39,27 @@ RSpec.describe DocumentTypes do
       }.as_json)
     end
   end
+
+  describe "DocumentTypes::Page.schemas" do
+    it "shifts low value schemas to the bottom of the list" do
+      allow(DocumentTypes).to receive(:schema_names_by_document_type).and_return({
+        "aaib_report": %w[
+          generic
+          generic_with_external_links
+          placeholder
+          x_something
+          z_something
+        ],
+      }.as_json)
+      page = DocumentTypes::Page.new(name: "aaib_report", total_count: nil, examples: nil)
+
+      expect(page.schemas).to eq(%w[
+        x_something
+        z_something
+        generic
+        generic_with_external_links
+        placeholder
+      ])
+    end
+  end
 end

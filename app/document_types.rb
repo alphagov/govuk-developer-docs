@@ -71,7 +71,21 @@ class DocumentTypes
     end
 
     def schemas
-      DocumentTypes.schema_names_by_document_type[name] || []
+      shift_low_value_schemas(DocumentTypes.schema_names_by_document_type[name]) || []
+    end
+
+    def shift_low_value_schemas(schemas)
+      %w[
+        generic
+        generic_with_external_links
+        placeholder
+      ].each do |low_value_schema|
+        if schemas.include?(low_value_schema)
+          schemas.delete(low_value_schema)
+          schemas.append(low_value_schema)
+        end
+      end
+      schemas
     end
   end
 end
