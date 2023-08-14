@@ -195,7 +195,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/71bdd3bb98835e53932ad985f78856ed3832ebe6">11 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/108f1d99660f9f2c95066fb5c275ae2120acbdd6">14 Aug 2023</a>
 </div>
 
  <h1 id='header'>Rules for getting production access</h1> <p>In the GOV.UK programme we restrict access to production systems for new or
@@ -213,8 +213,7 @@ clearance, probation, building secure systems with audibility etc.</p>
 <p>We have a <a href="https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing">spreadsheet documenting the full list of permissions for both access levels</a>.</p>
 <p>There&rsquo;s also a <a href="https://docs.google.com/presentation/d/10oRKrXqYki7LSFUySjb1e_FdTYGLihMKjeoH9qWC1kU/edit">flow diagram showing when you get Production Deploy and Production Admin access</a>.</p>
 <h3 id='production-deploy-access'>Production Deploy access</h3><p>This level of access allows engineers to deploy code but not administer admin related
-systems. It should be granted to both civil servants and contractors as needed.</p>
-<p>Access includes:</p>
+systems. Access includes:</p>
 
 <ul>
 <li>Permission to <a href="/manual/development-pipeline.html#deployment">deploy apps</a> in Jenkins via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy Github team</a></li>
@@ -226,9 +225,11 @@ systems. It should be granted to both civil servants and contractors as needed.<
 <p>The steps above are outlined in the <a href="https://trello.com/c/S9sex2XU/1391-govuk-production-deploy-access-for-name">GOV.UK Production Deploy template Trello card</a>, which can be copied to
 your team&rsquo;s board and carried out by developers. You can ask 2nd line for help if you have
 any access issues.</p>
-<h4 id='when-you-get-production-deploy-access'>When you get Production Deploy access</h4><p>Access should be granted at the discretion of the engineer&rsquo;s tech lead, once the engineer has the required level of security clearance (BPSS). Before approving access, tech leads should ensure that the engineer:</p>
+<h4 id='when-you-get-production-deploy-access'>When you get Production Deploy access</h4><p>Access can be granted to both civil servants and contractors as needed, at the discretion of a sponsor: either the engineer&rsquo;s (civil servant) tech lead, or a GOV.UK Senior Technologist.</p>
+<p>Before approving access, the sponsor should ensure that the engineer:</p>
 
 <ul>
+<li>has the required level of security clearance (BPSS)</li>
 <li>is aware of our processes and standards around <a href="https://gds-way.cloudapps.digital/manuals/code-review-guidelines.html">code review</a></li>
 <li>understands the responsibilities that <a href="/manual/development-pipeline.html#deployment">releasing code</a> brings with it</li>
 <li>knows how to roll back to an older release if there are any issues</li>
