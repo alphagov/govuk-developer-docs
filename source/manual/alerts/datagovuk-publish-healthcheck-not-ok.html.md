@@ -1,7 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
 title: datagovuk_publish app healthcheck not ok
-parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 ---
