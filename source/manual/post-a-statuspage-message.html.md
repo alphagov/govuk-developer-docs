@@ -11,9 +11,6 @@ When something goes wrong on GOV.UK, we follow our [incident management procedur
 As part of that, we update our status page [status.publishing.service.gov.uk][status].
 
 The page is managed using a third party service called [Statuspage][sp].
-This is what the [Statuspage admin interface][man] looks like:
-
-![](images/create-new-incident.png)
 
 ## Access StatusPage
 
