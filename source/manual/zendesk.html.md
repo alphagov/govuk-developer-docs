@@ -18,6 +18,12 @@ See the [Zendesk best practice slidedeck](https://docs.google.com/presentation/d
 
 When you're logged in, you should be looking at the [`2nd Line--GOV.UK Alerts and Issues` queue][zendesk-queue].
 
+## Useful views and searches
+
+* [Tickets assigned to "2nd Line - GOV.UK Alerts and Issues"](https://govuk.zendesk.com/agent/filters/30791708)
+* As above, but [filtered subset of just "New" and "Open" tickets](https://govuk.zendesk.com/agent/search/1?copy&type=ticket&q=group%3A2nd%20Line%20-%20GOV.UK%20Alerts%20and%20Issues%20status%3Cpending)
+* [Tickets you have commented on](https://govuk.zendesk.com/agent/search/1?type=ticket&q=commenter%3Ame)
+
 ## Priorities
 
 Work on 'High' priority tickets first - these will have been triaged by Technical 2nd Line already, so should be
