@@ -129,22 +129,16 @@
     <a href="#header"><span>Post a message on the status page</span></a>
     <ul>
       <li>
-        <a href="#incident-name"><span>Incident Name</span></a>
+        <a href="#access-statuspage"><span>Access StatusPage</span></a>
       </li>
       <li>
-        <a href="#incident-status-and-message"><span>Incident Status and Message</span></a>
+        <a href="#create-an-incident"><span>Create an Incident</span></a>
         <ul>
           <li>
-            <a href="#quotinvestigatingquot-status"><span>“Investigating” status</span></a>
+            <a href="#incident-name"><span>Incident Name</span></a>
           </li>
           <li>
-            <a href="#quotidentifiedquot-status"><span>“Identified” status</span></a>
-          </li>
-          <li>
-            <a href="#quotmonitoringquot-status"><span>“Monitoring” status</span></a>
-          </li>
-          <li>
-            <a href="#quotresolvedquot-status"><span>“Resolved” status</span></a>
+            <a href="#incident-status"><span>Incident Status</span></a>
           </li>
         </ul>
       </li>
@@ -200,27 +194,20 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cdaa7f23043fded0f87e75136c00c72e78b59887">6 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0e4119eae3317158940cbb30aa62bc4cd5798125">15 Aug 2023</a>
 </div>
 
- <h1 id='header'>Post a message on the status page</h1> <p>When something goes wrong on GOV.UK we follow our <a href="/manual/incident-management-guidance.html">incident management procedure</a>.
-As part of that we update our status page <a href="https://status.publishing.service.gov.uk">status.publishing.service.gov.uk</a>.</p>
+ <h1 id='header'>Post a message on the status page</h1> <p>When something goes wrong on GOV.UK, we follow our <a href="/manual/incident-management-guidance.html">incident management procedure</a>.
+As part of that, we update our status page <a href="https://status.publishing.service.gov.uk">status.publishing.service.gov.uk</a>.</p>
 <p>The page is managed using a third party service called <a href="https://statuspage.io">Statuspage</a>.</p>
-<p>Use <a href="https://manage.statuspage.io">manage.statuspage.io</a> to post messages. The Technical 2nd Line delivery manager can grant you access.</p>
-<p>Remember: government publishers are the main audience of the page, although it may also be used publicly depending on the incident.
+<h2 id='access-statuspage'>Access StatusPage</h2><p>Use <a href="https://manage.statuspage.io">manage.statuspage.io</a> to post messages.</p>
+<p>You should be able to log in using your Google account.</p>
+<p>If you don’t have access, ask on <code>#govuk-2ndline-tech</code> for help.</p>
+<h2 id='create-an-incident'>Create an Incident</h2><p>Remember: government publishers are the main audience of the page, although it may also be used publicly depending on the incident.
 Users will want to know what isn&rsquo;t working, and how long it will take to fix. Write in non-technical language.
-Use the pre-written templates, they&rsquo;ve been proof-read and can be customised to most situations.</p>
-<p>This is what the <a href="https://manage.statuspage.io">Statuspage admin interface</a> looks like:</p>
-<p><a href="images/create-new-incident.png" rel="noopener noreferrer"><img src="/manual/images/create-new-incident.png" alt="" /></a></p>
-<h2 id='incident-name'>Incident Name</h2><p>This is to say which application is affected and what the fault is. You <em>can</em> update
+Use the pre-written templates below: they&rsquo;ve been proof-read and can be customised to most situations.</p>
+<h3 id='incident-name'>Incident Name</h3><p>This is to say which application is affected and what the fault is. You <em>can</em> update
 the name, but make sure it&rsquo;s consistent enough to track throughout the stages of the incident.</p>
 <p>Example names:</p>
 
@@ -239,8 +226,8 @@ the name, but make sure it&rsquo;s consistent enough to track throughout the sta
 <blockquote>
 <p>Search isn&rsquo;t working on GOV.UK</p>
 </blockquote>
-<h2 id='incident-status-and-message'>Incident Status and Message</h2><p>When you list an incident, you&rsquo;ll need to select an &lsquo;incident status&rsquo;.</p>
-<h3 id='quotinvestigatingquot-status'>&ldquo;Investigating&rdquo; status</h3><p>Provide reassurance to publishers that we know about a problem and are working to diagnose it.</p>
+<h3 id='incident-status'>Incident Status</h3><p>When you list an incident, you&rsquo;ll need to select an &lsquo;incident status&rsquo;.</p>
+<h4 id='quotinvestigatingquot-status'>&ldquo;Investigating&rdquo; status</h4><p>Provide reassurance to publishers that we know about a problem and are working to diagnose it.</p>
 <p>Example messages:</p>
 
 <blockquote>
@@ -258,7 +245,7 @@ the name, but make sure it&rsquo;s consistent enough to track throughout the sta
 <blockquote>
 <p>We&rsquo;re looking into a problem that means email alerts aren&rsquo;t being sent out as quickly as they should. We&rsquo;ll update this page as soon as we know what&rsquo;s causing it.</p>
 </blockquote>
-<h3 id='quotidentifiedquot-status'>&ldquo;Identified&rdquo; status</h3><p>This is where we state that we&rsquo;ve found the problem.
+<h4 id='quotidentifiedquot-status'>&ldquo;Identified&rdquo; status</h4><p>This is where we state that we&rsquo;ve found the problem.
 Explain what the problem is in as simple terms as possible, and an estimated time to fix.</p>
 <p>Example messages:</p>
 
@@ -271,7 +258,7 @@ Explain what the problem is in as simple terms as possible, and an estimated tim
 <blockquote>
 <p>We&rsquo;ve found out what&rsquo;s causing the delay to email alerts. There was an error which made the email queue artificially long. We expect it to take one hour to fix.</p>
 </blockquote>
-<h3 id='quotmonitoringquot-status'>&ldquo;Monitoring&rdquo; status</h3><p>We&rsquo;ve fixed the issue - but are keeping an eye on it to make sure it&rsquo;s properly resolved.
+<h4 id='quotmonitoringquot-status'>&ldquo;Monitoring&rdquo; status</h4><p>We&rsquo;ve fixed the issue - but are keeping an eye on it to make sure it&rsquo;s properly resolved.
 State whether there will be a delay to the fix being visible, e.g. &ldquo;This should start functioning normally again in 20 minutes&rdquo;.</p>
 <p>Example messages:</p>
 
@@ -284,7 +271,7 @@ State whether there will be a delay to the fix being visible, e.g. &ldquo;This s
 <blockquote>
 <p>We&rsquo;ve fixed the problem that was delaying email alerts. We&rsquo;re going to keep an eye on it for the next 2 hours to make sure it’s resolved.</p>
 </blockquote>
-<h3 id='quotresolvedquot-status'>&ldquo;Resolved&rdquo; status</h3><p>We&rsquo;ve fixed the issue and everything is back to normal. The incident is closed.</p>
+<h4 id='quotresolvedquot-status'>&ldquo;Resolved&rdquo; status</h4><p>We&rsquo;ve fixed the issue and everything is back to normal. The incident is closed.</p>
 <p>Example messages:</p>
 
 <blockquote>
