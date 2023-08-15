@@ -255,9 +255,6 @@ Populate the <code>data/schedules.csv</code> and <code>data/users.csv</code> fil
 (it will complain about not being able to read <code>/data/rota.csv</code>, but you can ignore that for now):</p>
 <pre><code>bundle exec ./bin/schedule -u -s
 </code></pre>
-<p>Create a dummy bank holidays file (otherwise the scripts will fail):</p>
-<pre><code>echo &#39;{ &quot;events&quot;: [] }&#39; &gt; data/bank-holidays.json 
-</code></pre>
 <p>In <code>data/schedules.csv</code>, remove any schedules that are outside of your department, then add a <code>Type</code> column to the end. Each row should have a <code>Type</code> value of either <code>in_hours</code>, <code>out_of_hours</code>. If a given schedule is for both in-hours and out-of-hours, you&rsquo;ll need to run the scheduler twice, swapping out <code>in_hours</code> for <code>out_of_hours</code> and updating all the names.</p>
 <h2 id="usage">Usage</h2>
 <p>Run with <code>--help</code> for usage:</p>
