@@ -91,7 +91,6 @@ GOV.UK also manages DNS zones for some non-`gov.uk` domains.
 
 These include (but are not limited to):
 
-- `independent-commission.uk`
 - `independent-inquiry.uk`
 - `public-inquiry.uk`
 - `royal-commission.uk`
