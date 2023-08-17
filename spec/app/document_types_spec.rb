@@ -17,4 +17,49 @@ RSpec.describe DocumentTypes do
       expect(document_type.examples.first.keys.sort).to eql(%w[link title])
     end
   end
+
+  describe "#schema_names_by_document_type" do
+    it "returns schema names by document type" do
+      schema_name = "aaib_report"
+      allow(GovukSchemas::Schema).to receive(:schema_names).and_return([schema_name])
+      allow(GovukSchemas::Schema).to receive(:find).with(notification_schema: schema_name).and_return({
+        properties: {
+          document_type: {
+            enum: %w[
+              embassies_index
+              field_of_operation
+            ],
+          },
+        },
+      }.as_json)
+
+      expect(DocumentTypes.schema_names_by_document_type).to eq({
+        embassies_index: [schema_name],
+        field_of_operation: [schema_name],
+      }.as_json)
+    end
+  end
+
+  describe "DocumentTypes::Page.schemas" do
+    it "shifts low value schemas to the bottom of the list" do
+      allow(DocumentTypes).to receive(:schema_names_by_document_type).and_return({
+        "aaib_report": %w[
+          generic
+          generic_with_external_links
+          placeholder
+          x_something
+          z_something
+        ],
+      }.as_json)
+      page = DocumentTypes::Page.new(name: "aaib_report", total_count: nil, examples: nil)
+
+      expect(page.schemas).to eq(%w[
+        x_something
+        z_something
+        generic
+        generic_with_external_links
+        placeholder
+      ])
+    end
+  end
 end

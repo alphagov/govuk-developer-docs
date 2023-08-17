@@ -33,6 +33,21 @@ class DocumentTypes
     YAML.load_file("data/rendering-apps.yml", aliases: true)
   end
 
+  def self.schema_names_by_document_type
+    @schema_names_by_document_type ||= GovukSchemas::Schema.schema_names.each_with_object({}) do |schema_name, memo|
+      # Notification schema is used as that is the only schema type that is currently generated for every type
+      schema = GovukSchemas::Schema.find(notification_schema: schema_name)
+      document_types = schema.dig("properties", "document_type", "enum")
+
+      raise "Expected #{schema_name} to have a document_type property with an enum" unless document_types
+
+      document_types.each do |document_type|
+        memo[document_type] ||= []
+        memo[document_type] << schema_name
+      end
+    end
+  end
+
   class Page
     attr_reader :name, :total_count, :examples
 
@@ -53,6 +68,24 @@ class DocumentTypes
 
     def search_url
       "https://www.gov.uk/api/search.json?filter_content_store_document_type=#{name}&count=10"
+    end
+
+    def schemas
+      shift_low_value_schemas(DocumentTypes.schema_names_by_document_type[name]) || []
+    end
+
+    def shift_low_value_schemas(schemas)
+      %w[
+        generic
+        generic_with_external_links
+        placeholder
+      ].each do |low_value_schema|
+        if schemas.include?(low_value_schema)
+          schemas.delete(low_value_schema)
+          schemas.append(low_value_schema)
+        end
+      end
+      schemas
     end
   end
 end
