@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Edition Workflow - GOV.UK Developer Documentation</title>
+    <title>whitehall: Whitehall Content Audit Trail - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/edition_workflow.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/auditing.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Edition Workflow - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/edition_workflow.html" />
+      <meta name="twitter:title" content="whitehall: Whitehall Content Audit Trail - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/auditing.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Edition Workflow" />
+      <meta property="og:title" content="whitehall: Whitehall Content Audit Trail" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/edition_workflow.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/auditing.html" />
 
     
   </head>
@@ -214,97 +214,29 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/74404b89b0c1c27c0d2ff195b49b2dc3a36fe3d5">21 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/c8800850c18c07d36ac210c96453eb859d438b28">17 Aug 2023</a>
 </div>
 
-  <h1 class="page-title">whitehall: Edition Workflow</h1>
+  <h1 class="page-title">whitehall: Whitehall Content Audit Trail</h1>
 
   
-<p>(See also <a href="/repos/whitehall/edition_model.html">Edition model</a> for more on the model objects involved)</p>
-<p>Editions will be in one of a number of states. The state machine for them is located in <a href="https://github.com/alphagov/whitehall/blob/main/app/models/edition/workflow.rb">workflow.rb</a>. This configures the possible transitions between states, resulting in this:</p>
-<p><img src="https://raw.githubusercontent.com/alphagov/whitehall/main/docs/diagrams/edition_state_transitions.png" alt="Transitions graph"></p>
-<p>Note that a <code>Document</code> has no state, there is just state inferred by the various <code>Edition</code>s.  This diagram doesn't show the effect of multiple editions - sometimes a state transition involves superseding an existing edition and replacing it with a new one, with its own state.</p>
-<h2 id="unpublishing-withdrawal">Unpublishing / Withdrawal</h2>
-<p>Some status is also controlled by the presence or otherwise of a related <code>Unpublishing</code> record. These are created during the <code>withdraw</code> and <code>unpublish</code> transitions. Editors trigger these in the <a href="https://github.com/alphagov/whitehall/blob/main/app/controllers/admin/edition_workflow_controller.rb"><code>EditionWorkflowController</code></a>. The three options for Unpublishing or Withdrawing correspond to an <a href="https://github.com/alphagov/whitehall/blob/main/app/models/unpublishing_reason.rb"><code>UnpublishingReason</code></a>, each of which control the behaviour of a document when visited by a user:</p>
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>State</th>
-<th>Requires explanation?</th>
-<th>Requires URL?</th>
-<th>Redirects?</th>
-<th>Shows original content?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><code>PublishedInError</code></td>
-<td><code>draft</code></td>
-<td>No</td>
-<td>No</td>
-<td>If provided</td>
-<td>No</td>
-</tr>
-<tr>
-<td>4</td>
-<td><code>Consolidated</code></td>
-<td><code>draft</code></td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-</tr>
-<tr>
-<td>5</td>
-<td><code>Withdrawn</code></td>
-<td><code>withdrawn</code></td>
-<td>Yes</td>
-<td>No</td>
-<td>No</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-<p>If a document has an edition in one of the <code>Edition::PUBLICLY_VISIBLE_STATES</code> (<code>published</code> or <code>withdrawn</code>), Whitehall's <code>DocumentsController</code> will render it. If an <code>Unpublishing</code> exists, the withdrawal notice will be rendered near the top of the page as well.</p>
-<p>If a document does not have an edition in one of these states, it will use the <code>Unpublishing</code> to determine the response. If the <code>Unpublishing</code> is a redirect, ie a <code>Consolidated</code> <code>Unpublishing</code>, it will redirect to the alternative url. Otherwise it will render the <code>unpublished</code> view.</p>
-<p>The <code>PublishingApiUnpublishingWorker</code> uses the above to decide what to do with an <code>Unpublishing</code> when sending the content to the Publishing API. It will always call the <code>unpublish</code> endpoint, with one of the following types:</p>
-<table>
-<thead>
-<tr>
-<th>Unpublishing type</th>
-<th>Publishing API unpublishing type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>PublishedInError</code> with alternative url</td>
-<td><code>redirect</code></td>
-</tr>
-<tr>
-<td>
-<code>PublishedInError</code> without alternative url</td>
-<td><code>gone</code></td>
-</tr>
-<tr>
-<td><code>PublishedInError</code></td>
-<td><code>gone</code></td>
-</tr>
-<tr>
-<td><code>Consolidated</code></td>
-<td><code>redirect</code></td>
-</tr>
-<tr>
-<td><code>Withdrawn</code></td>
-<td><code>withdrawn</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="linkcheckerapi">LinkCheckerAPI</h2>
-<p>The <code>link-checker-api</code> has been integrated on the show page for Editions. It extracts all links from within any GovSpeak fields and sends them to the <code>/batch</code> endpoint of the API. In this request it also sends across a <code>webhook_callback</code> which then populates any information about broken/warning links. More reading about the endpoints can be found <a href="https://docs.publishing.service.gov.uk/apis/link-checker-api.html">here</a></p>
+<p>Some content types in Whitehall are versioned so that we are able to explain how a content item reached its current state. At time of writing, the versioned content types are:</p>
+<ul>
+<li>Document Editions</li>
+<li>Worldwide Organisations</li>
+</ul>
+<p>Versioning behaviour is implemented in the <a href="https://github.com/alphagov/whitehall/blob/main/app/models/audit_trail.rb">audit trail module</a>.</p>
+<p>Every time an auditable model is created or updated, the audit trail module adds a new record to the versions table. The version data includes the type and ID of the auditable model, the user ID of the user who triggered the event, if available (for updates performed via Rake tasks or queue workers this may not be possible), the new state of the model, and a timestamp. Note that user IDs are tracked in the <code>whodunnit</code> column, which is an idea borrowed from the <a href="https://github.com/paper-trail-gem/paper_trail">Paper Trail rails gem</a>.</p>
+<p>The <code>whodunnit</code> value is populated by fetching the user from the <a href="https://github.com/alphagov/whitehall/blob/main/app/models/current.rb">Current model</a>. The <code>Current</code> model extends the Active Support <code>CurrentAttributes</code> <a href="https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html">class</a>, which provides convenient access to global request data in a thread-safe manner.</p>
+<h2 id="useful-code-snippets">Useful Code Snippets</h2>
+<pre lang="ruby"><code># Get the latest version of an edition
+edition.versions.last
+#&lt;Version:0x00007f237b75bd40 id: 6796161, item_type: "Edition", item_id: 853413, event: "update", whodunnit: "xxx", object: nil, created_at: Fri, 09 Dec 2022 10:51:41.000000000 GMT +00:00, state: "published"&gt;
+</code></pre>
+<pre lang="ruby"><code># Get the previous version from a version
+versions.previous
+#&lt;Version:0x00007f237b75bd40 id: 6618274, item_type: "Edition", item_id: 853413, event: "update", whodunnit: "xxx", object: nil, created_at: Fri, 02 Dec 2022 10:51:41.000000000 GMT +00:00, state: "published"&gt;
+</code></pre>
 
 
             
@@ -312,8 +244,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/edition_workflow.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fedition_workflow.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/auditing.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fauditing.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
