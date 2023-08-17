@@ -331,6 +331,7 @@ An example of redirecting a HMRC manual section to another section would be to r
 
 [campaign-sites-section]: #redirects-from-campaign-sites
 
-The campaigns platform is a WordPress site managed by dxw. Redirects from a
-`*.campaign.gov.uk` site require a support ticket. Currently, Inderjeet Singh or
-Kelvin Gan can raise a ticket.
+The campaigns platform is a WordPress site managed by GDS (Business, Priority
+Response and Campaigns team) and supported by dxw. Redirects from a
+`*.campaign.gov.uk` site require a support ticket. You should contact
+[govuk.campaigns@digital.cabinet-office.gov.uk](mailto:govuk.campaigns@digital.cabinet-office.gov.uk) to raise a support ticket.
