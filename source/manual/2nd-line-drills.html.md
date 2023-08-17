@@ -55,7 +55,9 @@ Make sure you can log into the following accounts:
 
 In preparation for a large spike in traffic, you can increase the number of replicas for an app.
 
-Pick an application (e.g. `smartanswers`) and try [scaling it up](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/manage-app/scale-app/) in staging. Don't forget to revert your change afterwards.
+Pick an application and try [scaling it up](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/manage-app/scale-app/) in staging. Don't forget to revert your change afterwards.
+
+Example PR - [Increase content store replica count in staging](https://github.com/alphagov/govuk-helm-charts/pull/1254)
 
 ## Drill 2nd line incident processes
 
