@@ -31,6 +31,7 @@ for applying redirects to most GOV.UK content:
   You'll need to [apply a redirect from within the relevant publishing app][apply-redirect-from-publishing-app-section].
 
 ## Manually apply a redirect from any publishing app
+
 [apply-redirect-from-publishing-app-section]: #manually-apply-a-redirect-from-any-publishing-app
 
 The preferred method of creating redirects is to use the publishing app that
@@ -102,6 +103,7 @@ When Content Store is updated with a new route, it
 You should now be redirected when you visit the route in your browser.
 
 ### Manually re-present the content item in Publishing API
+
 [represent-content-item-section]: #manually-re-present-the-content-item-in-publishing-api
 
 Sometimes, Publishing API and Content Store can end up out of sync
@@ -126,6 +128,7 @@ unpublishing.edition.content_id
 ```
 
 ### Manually register a route in Content Store
+
 [register-redirect-from-content-store-section]: #manually-register-a-route-in-content-store
 
 Sometimes, our publishing platform prevents the creation of
@@ -146,6 +149,7 @@ ContentItem.find_by(base_path: "/old-path-to-be-redirected").route_set.register!
 ```
 
 ### Manually apply a redirect in Router API
+
 [apply-redirect-in-router-api-section]: #manually-apply-a-redirect-in-router-api
 
 You might need to urgently apply a redirect, and Publishing API
@@ -167,6 +171,7 @@ API afterwards, as a republish could easily undo any changes you've
 made.
 
 ## Find out if the route exists
+
 [check-route-exists-section]: #find-out-if-the-route-exists
 
 Open a router-api console:
@@ -185,6 +190,7 @@ If a route is found, and it has the handler `redirect`, then there is
 already a redirect in place.
 
 ## Find out which app owns the route
+
 [find-owning-app]: #find-out-which-app-owns-the-route
 
 Open a Content Store console:
@@ -200,6 +206,7 @@ ContentItem.find_by(base_path: "/path-to-item").publishing_app
 ```
 
 ## Redirect using the Short URL Manager
+
 [short-url-manager-section]: #redirect-using-the-short-url-manager
 
 If the redirect is from a URL that is not a currently-published content item,
@@ -219,6 +226,7 @@ and using non-default values for the `segments_mode`.
 [short-url-manager-permissions]: https://github.com/alphagov/short-url-manager/#permissions
 
 ### Removing a route created in the Short URL Manager
+
 [short-url-manager-section-remove-route]: #removing-a-route-created-in-the-short-url-manager
 
 A Short URL route can be deleted from the `View short URL request` view in the UI of Short URL Manager.
@@ -312,6 +320,7 @@ Route.find('579a109cd068b406250014e4').destroy
 The deleted routes will take effect after a short delay (for Router instances to poll and apply updates).
 
 ## Redirects for HMRC manuals
+
 [hmrc-manuals-section]: #redirects-for-hmrc-manuals
 
 There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be [found in the hmrc-manuals-api repo](https://github.com/alphagov/hmrc-manuals-api/tree/main/lib/tasks).
@@ -319,6 +328,7 @@ There are rake tasks for redirecting HMRC manuals and HMRC manual sections, whic
 An example of redirecting a HMRC manual section to another section would be to run `redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug]`
 
 ## Redirects from campaign sites
+
 [campaign-sites-section]: #redirects-from-campaign-sites
 
 The campaigns platform is a WordPress site managed by dxw. Redirects from a
