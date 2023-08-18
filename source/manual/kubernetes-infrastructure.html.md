@@ -17,8 +17,6 @@ You need to have:
 - completed the [set up instructions](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/)
 - [tested your access](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#test-your-access)
 
-The following commands assume you have `alias k=kubectl` per the [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/), and also set the `apps` namespace as your default (`k config set-context --current --namespace=apps`).
-
 You need to:
 
 - [set your region and context](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#select-a-role-and-environment) as below
@@ -29,6 +27,8 @@ You need to:
 export AWS_REGION=eu-west-1
 eval $(gds aws govuk-integration-poweruser -e --art 8h)
 ```
+
+The following commands assume you have `alias k=kubectl` per the [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/), and also set the `apps` namespace as your default (`k config set-context --current --namespace=apps`).
 
 - To access logs for an app:
     - `k logs deploy/account-api`
