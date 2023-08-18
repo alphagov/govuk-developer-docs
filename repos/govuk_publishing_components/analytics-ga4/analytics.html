@@ -246,13 +246,13 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/a92417e22c08090e65b430811b4044580f41d46c">17 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/83a847c59e358fcb60aa72c6df820a78e21d7999">18 Aug 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 and Google Tag Manager</h1>
 
   
-<p>This document describes the use of Google Tag Manager (GTM) with Google Analytics 4 (GA4) on GOV.UK Publishing.</p>
+<p>This document describes the use of Google Tag Manager (GTM) with Google Analytics 4 (GA4) on GOV.UK Publishing. Further information on our data schemas can be found in our <a href="https://docs.publishing.service.gov.uk/analytics/">Implementation record</a>.</p>
 <p>No analytics code is initialised and no data is gathered without user consent.</p>
 <h2 id="general-approach">General approach</h2>
 <p>We pass three types of data to GA4.</p>
@@ -295,6 +295,14 @@ window.GOVUK.analyticsGa4.analyticsModules = window.GOVUK.analyticsGa4.analytics
 <p>When cookie consent is given, <code>init-ga4.js</code> looks through the <code>analyticsModules</code> object for anything with an <code>init</code> function, and executes them if found. This means that analytics code will not be executed unless consent is given, and gives a standard way to add more analytics code without additional initialisation.</p>
 <h3 id="code-structure-for-modules">Code structure for Modules</h3>
 <p>Where analytics code is required as a <a href="/repos/govuk_publishing_components/javascript-modules.html">GOV.UK JavaScript Module</a>, the code structure for the <a href="/repos/govuk_publishing_components/javascript-modules.html">existing model for deferred loading</a> should be used.</p>
+<h3 id="core-code">Core code</h3>
+<p>General analytics code and reused functions are kept in <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-core.js">ga4-core.js</a>.</p>
+<p>This includes the code that initialises Google Tag Manager and pushes data to the dataLayer, as well as shared functions for link and ecommerce tracking.</p>
+<h3 id="code-in-other-applications">Code in other applications</h3>
+<p>While our aim is to keep the majority of the analytics code in <code>govuk_publishing_components</code> it makes sense to put analytics code specific to a certain page in the application that renders that page. GA4 analytics documentation can also be found in the following applications.</p>
+<ul>
+<li><a href="https://github.com/alphagov/finder-frontend/tree/main/docs/analytics-ga4">finder-frontend</a></li>
+</ul>
 <h2 id="data-schemas">Data schemas</h2>
 <p>All of the data sent to GTM is based on a common schema.</p>
 <pre><code>{

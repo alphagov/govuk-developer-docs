@@ -195,7 +195,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/db5f71ac812c9efdee676cdf3cd715229eece48d">18 Aug 2023</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='removing-an-asset'>Removing an asset</h2><p>If you need to remove an asset manually from <code>assets.publishing.service.gov.uk</code>,
@@ -231,12 +231,7 @@ and check that the asset responds with a 404 not found.</p></li>
 <li><p>Wait 20 minutes for the cache to clear, or <a href="/manual/purge-cache.html#assets">purge it yourself</a>.</p></li>
 <li><p>Verify that the asset is not there without using query string.</p></li>
 <li><p>Request removal of the asset using the <a href="https://www.google.com/webmasters/tools/removals">Google Search Console</a>.</p></li>
-<li><p>Remove the asset from the Amazon Web Services (AWS) mirror:</p></li>
-</ol>
-<p><code>gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/&lt;slug&gt;</code></p>
-
-<ol>
-<li>Remove the asset from the Google Cloud Platform (GCP) mirror:
+<li><p>Remove the asset from the Google Cloud Platform (GCP) mirror:</p>
 
 <ul>
 <li>Log into the <a href="https://console.cloud.google.com/">GCP console</a>.</li>
@@ -246,7 +241,9 @@ organisation.</li>
 bucket</a>.</li>
 <li>Navigate to the file, then delete it.</li>
 </ul></li>
+<li><p>Remove the asset from the Amazon Web Services (AWS) mirror:</p></li>
 </ol>
+<p><code>gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/&lt;slug&gt;</code></p>
 <h2 id='redirecting-an-asset'>Redirecting an asset</h2><p>Sometimes it might be necessary to manually redirect an asset, for example if
 an associated document wasn&rsquo;t unpublished correctly. There are some Rake tasks
 available for this:</p>

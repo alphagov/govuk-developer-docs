@@ -246,7 +246,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/069ef775442ea4279da55a2673aa21fd549eaa5d">8 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/83a847c59e358fcb60aa72c6df820a78e21d7999">18 Aug 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Trackers</h1>
@@ -254,22 +254,26 @@
   
 <p>For tracking different kinds of data on GOV.UK we have built several different trackers. Each type of tracking is handled by a separate script, but some code is shared between them as they often do similar things.</p>
 <p>Most of the trackers work by adding a <code>data-module</code> attribute to an element along with additional data attributes to provide specific tracking information. Some components have this already built into their code, which is usually activated using a <code>ga4_tracking: true</code> option.</p>
+<h2 id="auto-tracking">Auto tracking</h2>
+<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-auto-tracker.md">auto tracker</a> is used to cause an event to occur as soon as a page has finished loading (but after a page view). This is used to track significant moments in journeys, such as the successful completion of a smart answer, or an error.</p>
+<h2 id="ecommerce-tracker">Ecommerce tracker</h2>
+<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-ecommerce-tracker.md">ecommerce tracker</a> is used to track things like search results within a finder.</p>
+<h2 id="event-tracking">Event tracking</h2>
+<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-event-tracker.md">event tracker</a> handles tracking on buttons or other interactive elements, such as tabs and details elements.</p>
+<h2 id="form-tracker">Form tracker</h2>
+<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-form-tracker.md">form tracker</a> is designed to capture data about a form when it has been submitted.</p>
 <h2 id="link-tracking">Link tracking</h2>
 <p>There are several types of link tracking. To distinguish them and simplify the code, we define them as follows.</p>
 <ul>
 <li>the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-link-tracker.md">link tracker</a> handles link clicks with data attributes added to specific links, or to parent elements of groups of links</li>
 <li>the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-specialist-link-tracker.md">specialist link tracker</a>automatically tracks clicks on 'special' links, such as external links, download links and mailto links</li>
 </ul>
-<h2 id="event-tracking">Event tracking</h2>
-<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-event-tracker.md">event tracker</a> handles tracking on buttons or other interactive elements, such as tabs and details elements.</p>
-<h2 id="auto-tracking">Auto tracking</h2>
-<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-auto-tracker.md">auto tracker</a> is used to cause an event to occur as soon as a page has finished loading (but after a page view). This is used to track significant moments in journeys, such as the successful completion of a smart answer, or an error.</p>
-<h2 id="ecommerce-tracker">Ecommerce tracker</h2>
-<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-ecommerce-tracker.md">ecommerce tracker</a> is used to track things like search results within a finder.</p>
-<h2 id="form-tracker">Form tracker</h2>
-<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-form-tracker.md">form tracker</a> is designed to capture data about a form when it has been submitted.</p>
+<h2 id="scroll-tracker">Scroll tracker</h2>
+<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-scroll-tracker.md">scroll tracker</a> tracks how much of a page has been viewed.</p>
 <h2 id="smart-answer-results-tracker">Smart answer results tracker</h2>
 <p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-smart-answer-results-tracker.md">smart answer results tracker</a> has been built specifically to track the Cost of Living smart answer.</p>
+<h2 id="video-tracker">Video tracker</h2>
+<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-video-tracker.md">video tracker</a> tracks video views.</p>
 
 
             
