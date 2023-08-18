@@ -208,7 +208,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8850f668aaaeead70ba846860da48890660279a5">24 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/81c59688674e76fce87b99c15690ae9d789041e4">17 Aug 2023</a>
 </div>
 
  <h1 id='header'>EKS/Kubernetes infrastructure</h1> <p>This is a temporary page to tide us over as we get used to the new EKS platform.
@@ -219,7 +219,6 @@ It will eventually be consolidated when the <a href="https://govuk-kubernetes-cl
 <li>completed the <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">set up instructions</a></li>
 <li><a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#test-your-access">tested your access</a></li>
 </ul>
-<p>The following commands assume you have <code>alias k=kubectl</code> per the <a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">kubectl cheatsheet</a>, and also set the <code>apps</code> namespace as your default (<code>k config set-context --current --namespace=apps</code>).</p>
 <p>You need to:</p>
 
 <ul>
@@ -229,7 +228,8 @@ It will eventually be consolidated when the <a href="https://govuk-kubernetes-cl
 </ul>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
 <span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
-</code></pre></div>
+</code></pre></div><p>The following commands assume you have <code>alias k=kubectl</code> per the <a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">kubectl cheatsheet</a>, and also set the <code>apps</code> namespace as your default (<code>k config set-context --current --namespace=apps</code>).</p>
+
 <ul>
 <li>To access logs for an app:
 
