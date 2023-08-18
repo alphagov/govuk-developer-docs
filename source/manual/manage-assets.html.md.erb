@@ -41,10 +41,6 @@ follow these steps:
 
 1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals).
 
-1. Remove the asset from the Amazon Web Services (AWS) mirror:
-
-   `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
-
 1. Remove the asset from the Google Cloud Platform (GCP) mirror:
    - Log into the [GCP console](https://console.cloud.google.com/).
    - Go to the `GOVUK Production` project under the `DIGITAL.CABINET-OFFICE.GOV.UK`
@@ -52,6 +48,10 @@ follow these steps:
    - Select `Cloud Storage -> Browser`, go to the [`govuk-production-mirror`
      bucket][govuk-production-mirror-gcp].
    - Navigate to the file, then delete it.
+
+1. Remove the asset from the Amazon Web Services (AWS) mirror:
+
+   `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
 
 [clear-cache]: /manual/purge-cache.html#assets
 [govuk-production-mirror-gcp]: https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&project=govuk-production
