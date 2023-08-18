@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Search setup guide - GOV.UK Developer Documentation</title>
+    <title>whitehall: Search Indexing - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/search_setup_guide.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/search_indexing.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Search setup guide - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/search_setup_guide.html" />
+      <meta name="twitter:title" content="whitehall: Search Indexing - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/search_indexing.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Search setup guide" />
+      <meta property="og:title" content="whitehall: Search Indexing" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/search_setup_guide.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/search_indexing.html" />
 
     
   </head>
@@ -137,7 +137,7 @@
           <li><a href="/repos/whitehall/legacy_css.html" rel="noopener" class="govuk-link">Deprecated: Whitehall Legacy CSS Styleguide</a></li>
           <li><a href="/repos/whitehall/legacy_javascript.html" rel="noopener" class="govuk-link">Deprecated: Whitehall Legacy JavaScript</a></li>
           <li><a href="/repos/whitehall/link_checker_api_integration.html" rel="noopener" class="govuk-link">Link Checker API Integrations</a></li>
-          <li><a href="/repos/whitehall/search_setup_guide.html" rel="noopener" class="govuk-link">Search setup guide</a></li>
+          <li><a href="/repos/whitehall/search_indexing.html" rel="noopener" class="govuk-link">Search Indexing</a></li>
           <li><a href="/repos/whitehall/timestamps.html" rel="noopener" class="govuk-link">Timestamps</a></li>
           <li><a href="/repos/whitehall/tips_for_local_development.html" rel="noopener" class="govuk-link">Tips for working on whitehall locally</a></li>
           <li><a href="/repos/whitehall/troubleshooting.html" rel="noopener" class="govuk-link"># Whitehall troubleshooting</a></li>
@@ -213,38 +213,70 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/78bc2e0cc036e9c27eeb68c0655dbb4081de034e">25 Nov 2019</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/1a49f0e2d6e7cd208dc243f3e5c4c4470f2fcbd6">17 Aug 2023</a>
 </div>
 
-  <h1 class="page-title">whitehall: Search setup guide</h1>
+  <h1 class="page-title">whitehall: Search Indexing</h1>
 
   
-<h2 id="setup-search-locally">Setup search locally</h2>
+<p>Whitehall interacts directly with the Search API, unlike other publishing apps which leave Publishing API to manage indexing.</p>
 <p>The Whitehall app relies on
 <a href="https://github.com/alphagov/rummager">Rummager</a> for document
 indexing, and the
 <a href="https://github.com/alphagov/frontend">GOV.UK frontend application</a> to
-serve results.</p>
-<h2 id="rebuilding-whitehall-search-index">Rebuilding Whitehall search index</h2>
+serve results. The Whitehall search index is called 'government'.</p>
+<h2 id="search-indexing-paths">Search indexing paths</h2>
+<p>There are currently two paths through which Whitehall searchable classes are indexed.
+For a list of searchable classes, please refer to <code>RummagerPresenters.searchable_classes</code>
+(in <a href="https://github.com/alphagov/whitehall/blob/main/app/presenters/rummager_presenters.rb">app/presenters/rummager_presenters.rb</a>).
+Each of these searchable models includes the <a href="https://github.com/alphagov/whitehall/blob/main/app/models/searchable.rb">Searchable</a> module,
+which provides the base search indexing behaviour. Bear in mind that some classes may override its methods.</p>
+<h3 id="indexing-editions">Indexing Editions</h3>
+<p>Indexing for searchable classes that inherit from <code>Edition</code> is triggered via the
+<code>ServiceListeners::SearchIndexer</code> listening to the <code>force_publish</code> and <code>publish</code>
+events. Since <code>Edition</code> sets the <code>index_after</code> key in its searchable options hash to
+<code>[]</code>, classes inheriting from it don't trigger indexing when saved. The listeners
+are configured in <a href="https://github.com/alphagov/whitehall/blob/main/config/initializers/edition_services.rb">config/initializers/edition_services.rb</a>.</p>
+<p>Not all editions can be indexed (e.g. they may not be available in English - at
+present Gov.UK search does not support non-English content). In cases where the
+edition was previously searchable but isn't any longer, the indexer will remove
+the record from the search index. It also handles edge cases such as a changing
+publication type or re-indexing the contents of a document collection.</p>
+<p>To trigger indexing for an instance of these classes in unit/integration tests,
+create an instance in a valid publishing state ('submitted', 'rejected') and
+call <code>EditionService.new(your_instance).perform!</code>.</p>
+<h3 id="indexing-other-content">Indexing Other Content</h3>
+<p>Indexing for additional searchable classes is triggered by save. This behaviour
+is defined in <code>Searchable.searchable_options</code>, where the <code>index_after</code> is set to
+<code>:save</code> as a default.</p>
+<p>To trigger indexing for an instance of these classes in unit/integration tests,
+create an instance in a valid publishing state ('submitted', 'rejected') and
+call <code>save!</code> on it.</p>
+<h2 id="search-indexing-options">Search indexing options</h2>
+<p>The <code>Searchable</code> module provides a <code>searchable</code> class method which consuming classes
+can use to configure search behaviour. The <code>searchable</code> method accepts a hash of the
+fields that each class intends to send to the index, interleaved with configuration
+options. These are the current options:</p>
+<ul>
+<li>
+<code>index_after</code>: the Active Record callback that triggers adding an item to the search index</li>
+<li>
+<code>unindex_after</code>: the Active Record callback that triggers removal from the search index</li>
+<li>
+<code>only</code>: an Active Record query that is used by the <code>Searchable</code> module to prevent indexing of records that are not part of the query result set. This query is executed in the <code>Searchable.can_index_in_search?</code> method.</li>
+</ul>
+<h2 id="setup-search-locally">Setup search locally</h2>
 <p>The easiest way to get a search index is to replicate it from the Integration
 environment.  This will not contain local changes to your content, but will be
 enough for many tests. To fetch the replica, use the <code>replicate-elasticsearch.sh</code>
 script from <code>govuk-docker</code> (as documented in <a href="https://github.com/alphagov/govuk-docker#how-to-replicate-data-locally">its README</a>).
 If you need to have local changes in your dev environment copied into the
 search index, you will actually need to rebuild the search index.</p>
-<p>The whitehall search index is called 'government'. Rebuilding of the whitehall
-search index can now be done with a bulk data dump. This also supports
+<p>Rebuilding of the 'government' search index can now be done with a bulk data dump. This also supports
 construction of a new detached index and seamless switchover from the
 existing to the new index. There are two parts to this process, a
-<code>rummager_export.rb</code> script in whitehall which dumps the whitehall data to
+<code>rummager_export.rb</code> script in Whitehall which dumps the data to
 STDOUT, and a <code>bulk_load</code> script in rummager which accepts that data on STDIN
 and loads it into rummager.</p>
 <p>The <code>bulk_load</code> script also takes care of constructing the new offline index,
@@ -270,23 +302,6 @@ bundle exec ./script/rummager_export.rb --detailed &gt; detailed.dump
 </code></pre>
 </li>
 </ol>
-<h2 id="search-indexing-paths">Search indexing paths</h2>
-<p>There are currently two paths for whitehall searchable classes to be indexed.
-For a list of searchable classes, please refer to <code>Whitehall.edition_classes</code>
-(in <a href="https://github.com/alphagov/whitehall/blob/main/lib/whitehall.rb">lib/whitehall.rb</a>).</p>
-<p>Indexing for searchable classes that inherit from <code>Edition</code> is triggered via the
-<code>ServiceListeners::SearchIndexer</code> listening to the <code>force_publish</code> and <code>publish</code>
-events. Since <code>Edition</code> sets the <code>index_after</code> key in its searchable options hash to
-<code>[]</code>, classes inheriting from it don't trigger indexing when saved.</p>
-<p>To trigger indexing for an instance of these classes in unit/integration tests,
-create an instance in a valid publishing state ('submitted', 'rejected') and
-call <code>EditionService.new(your_instance).perform!</code>.</p>
-<p>Indexing for additional searchable classes is triggered by save. This behaviour
-is defined in <code>Searchable.searchable_options</code>, where the <code>index_after</code> is set to
-<code>:save</code> as a default.</p>
-<p>To trigger indexing for an instance of these classes in unit/integration tests,
-create an instance in a valid publishing state ('submitted', 'rejected') and
-call <code>save!</code> on it.</p>
 
 
             
@@ -294,8 +309,8 @@ call <code>save!</code> on it.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/search_setup_guide.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fsearch_setup_guide.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/search_indexing.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fsearch_indexing.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
