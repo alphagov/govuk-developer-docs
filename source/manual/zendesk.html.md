@@ -110,11 +110,11 @@ The requests will look something like the following:
 > `nameserver1.example.com`
 > `nameserver2.example.com`
 
-We should process these as per the [SRE interruptible documentation](https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.wg0s4ugkpdpc).
-
 The workflow for these requests is that a requester emails a particular email address, which creates a Zendesk ticket for the GOV.UK Policy and Strategy team. The request is then signed off and routed to us. We then double-check with someone from GOV.UK Policy and Strategy that the change has been agreed, then add/change the necessary DNS records (see [example](https://github.com/alphagov/govuk-dns-config/pull/854/files)) and respond to the requestor via the ticket.
 
 Note that some requests come directly via the [hostmaster Google group](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/hostmaster). If you are in any doubt about the legitimacy of a request, reassign the ticket to `3rd Line--Policy and Strategy` and add an internal note asking them.
+
+For actioning these requests, [read our DNS documentation](/manual/dns.html).
 
 ## Leaver tickets
 
