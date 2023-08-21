@@ -291,15 +291,15 @@ your editor/IDE to do so. For example:</p>
 
 <h3 id="debug-output">Debug output</h3>
 
-<p>To see debug messages when running tests, set both the <code>DEBUG</code> and
-<code>DEBUG_ROUTER</code> environment variables.</p>
+<p>To see debug messages when running tests, set both the <code>ROUTER_DEBUG</code> and
+<code>ROUTER_DEBUG_TESTS</code> environment variables:</p>
 
-<pre lang="sh"><code>export DEBUG=1 DEBUG_ROUTER=1
+<pre lang="sh"><code>export ROUTER_DEBUG=1 ROUTER_DEBUG_TESTS=1
 </code></pre>
 
 <p>or equivalently for a single run:</p>
 
-<pre lang="sh"><code>DEBUG=1 DEBUG_ROUTER=1 make test
+<pre lang="sh"><code>ROUTER_DEBUG=1 ROUTER_DEBUG_TESTS=1 make test
 </code></pre>
 
 <h3 id="update-the-dependencies">Update the dependencies</h3>
@@ -309,7 +309,7 @@ your editor/IDE to do so. For example:</p>
 <ol>
 <li>
 <p>Update all the dependencies, including test dependencies, in your working copy:</p>
-<pre lang="sh"><code>go get -t -u ./... &amp;&amp; go mod tidy &amp;&amp; go mod vendor
+<pre lang="sh"><code>make update_deps
 </code></pre>
 </li>
 <li>

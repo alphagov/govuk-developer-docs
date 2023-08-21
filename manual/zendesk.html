@@ -158,6 +158,9 @@
         <a href="#dns-delegation-tickets"><span>DNS delegation tickets</span></a>
       </li>
       <li>
+        <a href="#automated-requests-from-amazon-acm-or-aws-certificate-manager"><span>Automated requests from Amazon ACM or AWS Certificate Manager</span></a>
+      </li>
+      <li>
         <a href="#leaver-tickets"><span>Leaver tickets</span></a>
       </li>
       <li>
@@ -216,7 +219,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bcd8abb75e40ce9349a4722ea830f16bf80898e6">21 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7a8e7af2aeb3e01764e5e5c9d22443a5c6f8fa0a">21 Aug 2023</a>
 </div>
 
  <h1 id='header'>Zendesk</h1> <p>Technical 2nd Line Zendesk tickets are technical errors reported by our users, including government publishers.</p>
@@ -298,6 +301,7 @@ review and assign to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk 
 <p>The workflow for these requests is that a requester emails a particular email address, which creates a Zendesk ticket for the GOV.UK Policy and Strategy team. The request is then signed off and routed to us. We then double-check with someone from GOV.UK Policy and Strategy that the change has been agreed, then add/change the necessary DNS records (see <a href="https://github.com/alphagov/govuk-dns-config/pull/854/files">example</a>) and respond to the requestor via the ticket.</p>
 <p>Note that some requests come directly via the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/hostmaster">hostmaster Google group</a>. If you are in any doubt about the legitimacy of a request, reassign the ticket to <code>3rd Line--Policy and Strategy</code> and add an internal note asking them.</p>
 <p>For actioning these requests, <a href="/manual/dns.html">read our DNS documentation</a>.</p>
+<h2 id='automated-requests-from-amazon-acm-or-aws-certificate-manager'>Automated requests from Amazon ACM or AWS Certificate Manager</h2><p>Please refer to the <a href="https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.91quw0ws3zim">SRE interruptible documentation</a>.</p>
 <h2 id='leaver-tickets'>Leaver tickets</h2><p>As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have any GOV.UK access.</p>
 <p>Search for their name/email in the <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> repository.</p>
 
