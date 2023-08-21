@@ -205,10 +205,10 @@
     MongoDB to PostgreSQL. On integration, we have two versions of content-store
     running side-by-side, one on each database. The proxy sits in front of them,
     forwards all incoming requests to its PRIMARY_UPSTREAM (currently the MongoDB
-    version) and returns that response, but also replays the request to its 
+    version) and returns that response, but also replays the request to its
     SECONDARY_UPSTREAM (currently the PostgreSQL version). This allows us to
     compare the responses from both versions in order to satisfy ourselves that
-    the two are completely equivalent and address any differences, before we 
+    the two are completely equivalent and address any differences, before we
     migrate production.
 
 - repo_name: content-tagger
@@ -1405,7 +1405,6 @@
   team: "#govuk-publishing-experience-tech"
   argo_cd_apps:
     - whitehall-admin
-    - whitehall-frontend
   production_hosted_on: eks
 
 - repo_name: whitehall-asset-analysis

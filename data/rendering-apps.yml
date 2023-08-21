@@ -2,7 +2,7 @@
 #```ruby
 # require 'yaml'
 #
-# docs = ContentItem.distinct(:document_type).map do |document_type|
+# docs = ContentItem.distinct(:document_type).sort.map do |document_type|
 #   {
 #     name: document_type,
 #     apps: ContentItem
@@ -20,16 +20,16 @@
 - :name: about
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: about_our_services
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: access_and_opening
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: accessible_documents_policy
+  :apps:
+  - government-frontend
+- :name: ai_assurance_portfolio_technique
   :apps:
   - government-frontend
 - :name: animal_disease_case
@@ -62,10 +62,9 @@
 - :name: complaints_procedure
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: completed_transaction
   :apps:
-  - frontend
+  - feedback
 - :name: consultation_outcome
   :apps:
   - government-frontend
@@ -78,7 +77,6 @@
 - :name: corporate_report
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: correspondence
   :apps:
   - government-frontend
@@ -88,21 +86,15 @@
 - :name: decision
   :apps:
   - government-frontend
-  - whitehall-frontend
-- :name: detailed_guidance
-  :apps:
-  - whitehall-frontend
 - :name: detailed_guide
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: dfid_research_output
   :apps:
   - government-frontend
 - :name: document_collection
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: drcf_digital_markets_research
   :apps:
   - government-frontend
@@ -112,6 +104,9 @@
 - :name: email_alert_signup
   :apps:
   - email-alert-frontend
+- :name: embassies_index
+  :apps:
+  - collections
 - :name: employment_appeal_tribunal_decision
   :apps:
   - government-frontend
@@ -132,12 +127,14 @@
   - government-frontend
 - :name: field_of_operation
   :apps:
-  - whitehall-frontend
+  - government-frontend
+- :name: fields_of_operation
+  :apps:
+  - government-frontend
 - :name: finder
   :apps:
   - finder-frontend
   - collections
-  - whitehall-frontend
 - :name: finder_email_signup
   :apps:
   - finder-frontend
@@ -150,7 +147,6 @@
 - :name: form
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: get_involved
   :apps:
   - government-frontend
@@ -167,7 +163,6 @@
 - :name: guidance
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: guide
   :apps:
   - government-frontend
@@ -175,6 +170,12 @@
   :apps:
   - government-frontend
   - frontend
+- :name: historic_appointment
+  :apps:
+  - collections
+- :name: historic_appointments
+  :apps:
+  - collections
 - :name: history
   :apps:
   - government-frontend
@@ -187,33 +188,27 @@
 - :name: homepage
   :apps:
   - frontend
+- :name: how_government_works
+  :apps:
+  - government-frontend
 - :name: html_publication
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: impact_assessment
   :apps:
   - government-frontend
 - :name: independent_report
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: international_development_fund
   :apps:
   - government-frontend
 - :name: international_treaty
   :apps:
   - government-frontend
-  - whitehall-frontend
-- :name: knowledge_alpha
+- :name: licence_transaction
   :apps:
   - frontend
-- :name: licence
-  :apps:
-  - frontend
-- :name: license_finder
-  :apps:
-  - licencefinder
 - :name: local_transaction
   :apps:
   - frontend
@@ -234,10 +229,12 @@
 - :name: map
   :apps:
   - government-frontend
+- :name: marine_equipment_approved_recommendation
+  :apps:
+  - government-frontend
 - :name: media_enquiries
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: medical_safety_alert
   :apps:
   - government-frontend
@@ -249,7 +246,7 @@
   - collections
 - :name: ministers_index
   :apps:
-  - whitehall-frontend
+  - collections
 - :name: modern_slavery_statement
   :apps:
   - government-frontend
@@ -265,24 +262,18 @@
 - :name: need
   :apps:
   - info-frontend
-- :name: news_article
-  :apps:
-  - whitehall-frontend
 - :name: news_story
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: notice
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: official
   :apps:
   - government-frontend
 - :name: official_statistics
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: official_statistics_announcement
   :apps:
   - government-frontend
@@ -298,81 +289,54 @@
 - :name: organisation
   :apps:
   - collections
-  - whitehall-frontend
 - :name: our_energy_use
   :apps:
   - government-frontend
 - :name: our_governance
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: person
   :apps:
   - collections
-  - whitehall-frontend
 - :name: personal_information_charter
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: petitions_and_campaigns
   :apps:
   - government-frontend
 - :name: place
   :apps:
   - frontend
-- :name: placeholder
-  :apps:
-  - whitehall-frontend
-- :name: placeholder_ministerial_role
-  :apps:
-  - whitehall-frontend
-- :name: placeholder_person
-  :apps:
-  - whitehall-frontend
 - :name: placeholder_policy
   :apps:
   - finder-frontend
-- :name: placeholder_world_location_news_page
-  :apps:
-  - whitehall-frontend
-- :name: placeholder_worldwide_organisation
-  :apps:
-  - whitehall-frontend
-- :name: policy_area
-  :apps:
-  - whitehall-frontend
 - :name: policy_paper
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: press_release
   :apps:
   - government-frontend
 - :name: procurement
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: product_safety_alert_report_recall
   :apps:
   - government-frontend
 - :name: promotional
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: protected_food_drink_name
   :apps:
   - government-frontend
 - :name: publication_scheme
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: raib_report
   :apps:
   - government-frontend
 - :name: recruitment
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: redirect
   :apps:
   -
@@ -382,7 +346,6 @@
 - :name: research
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: research_for_development_output
   :apps:
   - government-frontend
@@ -425,14 +388,12 @@
 - :name: social_media_use
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: special_route
   :apps:
   - static
   - frontend
   - search-api
   - content-store
-  - whitehall-frontend
   - collections
   - account-api
   - feedback
@@ -445,18 +406,15 @@
 - :name: speech
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: staff_update
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: standard
   :apps:
   - government-frontend
 - :name: statistical_data_set
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: statistics
   :apps:
   - government-frontend
@@ -466,7 +424,6 @@
 - :name: statutory_guidance
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: statutory_instrument
   :apps:
   - government-frontend
@@ -485,14 +442,12 @@
 - :name: terms_of_reference
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: topic
   :apps:
   - collections
 - :name: topical_event
   :apps:
   - collections
-  - whitehall-frontend
 - :name: topical_event_about_page
   :apps:
   - government-frontend
@@ -502,41 +457,36 @@
 - :name: transparency
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: travel_advice
   :apps:
   - government-frontend
 - :name: travel_advice_index
   :apps:
   - frontend
-- :name: uk_market_conformity_assessment_body
-  :apps:
-  - government-frontend
-- :name: unpublishing
-  :apps:
-  - government-frontend
 - :name: utaac_decision
   :apps:
   - government-frontend
 - :name: welsh_language_scheme
   :apps:
   - government-frontend
-  - whitehall-frontend
 - :name: working_group
   :apps:
   - government-frontend
-- :name: world_location
+- :name: world_index
   :apps:
-  - whitehall-frontend
+  - collections
 - :name: world_location_news
   :apps:
   - collections
 - :name: world_news_story
   :apps:
   - government-frontend
+- :name: worldwide_office
+  :apps:
+  - government-frontend
 - :name: worldwide_organisation
   :apps:
-  - whitehall-frontend
+  - government-frontend
 - :name: written_statement
   :apps:
   - government-frontend
