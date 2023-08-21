@@ -11,7 +11,7 @@ GOV.UK uses GitHub for version control, code deployments, authentication, CI, De
 
 # GitHub organisation
 
-Our GitHub organisation is called [alphagov][https://github.com/alphagov]. We (GOV.UK) share it with other teams in the Government Digital Service (GDS).
+Our GitHub organisation is called [alphagov](https://github.com/alphagov). We (GOV.UK) share it with other teams in the Government Digital Service (GDS).
 
 The organisation is on the Enterprise Cloud plan, which grants us access to GitHub's enterprise support. Only [people with enterprise permissions](https://github.com/orgs/alphagov/people/enterprise_owners) can access enterprise support ([limited to enterprise owners and up to 20 additional members](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/managing-support-entitlements-for-your-enterprise)).
 
@@ -30,16 +30,16 @@ There are several GOV.UK GitHub teams within alphagov, including:
 - [GOV.UK Production Admin][team-govuk-production-admin].
   Grants admin access to GOV.UK repos, and [admin access to a number of other tools](/manual/rules-for-getting-production-access.html#production-admin-access).
 
-- [GOV.UK Content Designers][team-covuk-content-designers].
+- [GOV.UK Content Designers][team-govuk-content-designers].
   This team allows the user to create a branch in a GOV.UK repository and open a pull request, but only a developer can merge the request.
   Only content designers should be added to this team.
 
 # Getting access to GitHub
 
-Not everyone on GOV.UK requires GitHub access, as much of what we do is in the open. However, if your role requires it, you should be added to the org and the relevant team(s) through Terraform, in [govuk-user-reviewer][] - _not_ manually added through the GitHub UI itself, as this breaks the Terraform setup.
+Not everyone on GOV.UK requires GitHub access, as much of what we do is in the open. However, if your role requires it, you should be added to the org and the relevant team(s) through Terraform, in [govuk-user-reviewer][govuk-user-reviewer] - _not_ manually added through the GitHub UI itself, as this breaks the Terraform setup.
 
 - If you're a content designer, ask for GitHub access via Zendesk (see [example ticket](https://govuk.zendesk.com/agent/tickets/5297731/events))
-- If you're an engineer or contractor, ask your tech lead to follow the instructions in [govuk-user-reviewer][] to add you.
+- If you're an engineer or contractor, ask your tech lead to follow the instructions in [govuk-user-reviewer][govuk-user-reviewer] to add you.
 - If you don't have a tech lead, [ask someone in Senior Tech](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members) to add you. You must state
   - your role
   - which team you're in
