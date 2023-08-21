@@ -9,7 +9,7 @@
 </p>
 
 <ul class="govuk-list govuk-list--bullet">
-  <% data.analytics.trackers.each do |tracker| %>
+  <% data.analytics.trackers.sort_by(&:name).each do |tracker| %>
     <li>
       <a href="tracker_<%= urlize(tracker.name) %>.html" class="govuk-link">
         <%= tracker.name %>
