@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Video_percent attribute data | GOV.UK GA4 Implementation record</title>
+  <title>Video event data | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_video_percent.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/event_video.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_video_percent.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/event_video.html" />
   <script src="/javascripts/cookie-consent.js"></script>
 </head>
 
@@ -138,80 +138,117 @@
         </div>
         <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
           
-<h1 class="govuk-heading-l">
-  <span class="govuk-caption-l">Attribute</span>
-  video_percent
+<h1 class="govuk-heading-l analytics-heading">
+  <span class="govuk-caption-l">Event</span>
+  video
 </h1>
 
-<dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Name
-      </dt>
-      <dd class="govuk-summary-list__value">
-          video_percent
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Description
-      </dt>
-      <dd class="govuk-summary-list__value">
-          Used to record when the video being played is at 0%, 25%, 50%, 75% or 100%.
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Value
-      </dt>
-      <dd class="govuk-summary-list__value">
-          
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Example
-      </dt>
-      <dd class="govuk-summary-list__value">
-          
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Required
-      </dt>
-      <dd class="govuk-summary-list__value">
-          false
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Type
-      </dt>
-      <dd class="govuk-summary-list__value">
-          string (number)
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Redact
-      </dt>
-      <dd class="govuk-summary-list__value">
-          <a href="/analytics/pii.html" class="govuk-link">false</a>
-      </dd>
-    </div>
 
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Used by
-    </dt>
-    <dd class="govuk-summary-list__value">
-                  <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video start)<br/>
-                  <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video progress)<br/>
-                  <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video complete)<br/>
-    </dd>
+  <div class="event">
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    <h2 class="govuk-heading-m analytics-heading">
+      Video start
+    </h2>
+
+    <p class="govuk-body">
+      Priority
+      <strong class="govuk-tag govuk-tag--yellow">
+        medium
+      </strong>
+
+    </p>
+
+      <p class="govuk-body">
+        Fired when a video is first played.
+      </p>
+
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_video_tracker.html" class="govuk-link">video_tracker</a>.
+          </p>
+
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/guidance/help-and-support-with-tax-credits" class="govuk-link">HMRC videos for tax credits</a>
+          </li>
+      </ul>
+
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+    <div class="govuk-inset-text">
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: start</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: video_start</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: title of the video</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: video</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li><li><a href='/analytics/attribute_video_current_time.html' class='govuk-link'>video_current_time</a>: 0</li><li><a href='/analytics/attribute_video_duration.html' class='govuk-link'>video_duration</a>: string (number)</li><li><a href='/analytics/attribute_video_percent.html' class='govuk-link'>video_percent</a>: 0</li></ul></li></ul>
+    </div>
+    <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
   </div>
-</dl>
+  <div class="event">
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    <h2 class="govuk-heading-m analytics-heading">
+      Video progress
+    </h2>
+
+    <p class="govuk-body">
+      Priority
+      <strong class="govuk-tag govuk-tag--yellow">
+        medium
+      </strong>
+
+    </p>
+
+      <p class="govuk-body">
+        Fired when the video playback reaches 25, 50 or 75 percent.
+      </p>
+
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_video_tracker.html" class="govuk-link">video_tracker</a>.
+          </p>
+
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/guidance/help-and-support-with-tax-credits" class="govuk-link">HMRC videos for tax credits</a>
+          </li>
+      </ul>
+
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+    <div class="govuk-inset-text">
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: progress</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: video_progress</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: title of the video</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: video</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li><li><a href='/analytics/attribute_video_current_time.html' class='govuk-link'>video_current_time</a>: string (number)</li><li><a href='/analytics/attribute_video_duration.html' class='govuk-link'>video_duration</a>: string (number)</li><li><a href='/analytics/attribute_video_percent.html' class='govuk-link'>video_percent</a>: string (number)</li></ul></li></ul>
+    </div>
+    <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
+  </div>
+  <div class="event">
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    <h2 class="govuk-heading-m analytics-heading">
+      Video complete
+    </h2>
+
+    <p class="govuk-body">
+      Priority
+      <strong class="govuk-tag govuk-tag--yellow">
+        medium
+      </strong>
+
+    </p>
+
+      <p class="govuk-body">
+        Fired when the video playback reaches the end.
+      </p>
+
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_video_tracker.html" class="govuk-link">video_tracker</a>.
+          </p>
+
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/guidance/help-and-support-with-tax-credits" class="govuk-link">HMRC videos for tax credits</a>
+          </li>
+      </ul>
+
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+    <div class="govuk-inset-text">
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: complete</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: video_complete</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: title of the video</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: video</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li><li><a href='/analytics/attribute_video_current_time.html' class='govuk-link'>video_current_time</a>: string (number)</li><li><a href='/analytics/attribute_video_duration.html' class='govuk-link'>video_duration</a>: string (number)</li><li><a href='/analytics/attribute_video_percent.html' class='govuk-link'>video_percent</a>: 100</li></ul></li></ul>
+    </div>
+    <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
+  </div>
 
         </div>
       </div>
