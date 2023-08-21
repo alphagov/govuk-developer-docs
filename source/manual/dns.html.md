@@ -87,15 +87,11 @@ Technical 2nd Line should be notified of any planned changes via email.
 
 ## DNS for non-`gov.uk` domains
 
-GOV.UK also manages DNS zones for some non-`gov.uk` domains.
+GOV.UK also manages DNS zones for some non-`gov.uk` domains (e.g. `independent-inquiry.uk`).
 
-These include (but are not limited to):
+These should mostly be managed in Terraform: each domain should have its own zone configuration file in [govuk-dns-tf][].
 
-- `independent-inquiry.uk`
-- `public-inquiry.uk`
-- `royal-commission.uk`
-
-Some of these are not managed by Terraform. If you can't find a configuration file for the zone in [govuk-dns-tf][], then you'll need to update it manually in the AWS console.
+If a non-GOV.UK domain is missing a configuration file, then it has not been migrated to Terraform yet (Platform Engineering have a [card to migrate the remaining ones](https://trello.com/c/JLMsPUrp/996-import-manually-managed-dns-zones-into-terraform)). These domains need updating manually in the AWS console as follows:
 
 1. Login to the **production** AWS console.
 
@@ -115,11 +111,12 @@ Some of these are not managed by Terraform. If you can't find a configuration fi
 
     This is a clear indicator that it's safe to update these records manually and they won't be overwritten by Terraform.
 
-    However if it's something like this, then you shouldn't update it manually:
+    However if it's something like this, then you shouldn't update it manually (go back and find the zone config file in govuk-dns-tf):
 
     > Managed by Terraform
 
 4. Update the DNS records as required.
+
 5. **For bonus points:** If the zone description wasn't clear, but you're certain it's safe to be updated manually, then consider changing the description field so it's clearer for the next person.
 
 ## Getting Terraform Cloud access
