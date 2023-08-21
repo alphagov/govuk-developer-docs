@@ -146,9 +146,6 @@
       <li>
         <a href="#dns-for-non-gov-uk-domains"><span>DNS for non-gov.uk domains</span></a>
       </li>
-      <li>
-        <a href="#getting-terraform-cloud-access"><span>Getting Terraform Cloud access</span></a>
-      </li>
     </ul>
   </li>
 </ul>
@@ -199,7 +196,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/82d1955829138b7356c77403023798179e7b3bcc">16 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/62ce5a6a9c11152e668426b87ca429506f45ed12">21 Aug 2023</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones.</p>
@@ -258,15 +255,9 @@ Instead, it has A records that point directly to anycast virtual IP addresses (V
 means we do not need to make a request to Jisc if we want to change CDN
 providers. We can just change where the CNAME points to.</li>
 </ul>
-<h2 id='dns-for-non-gov-uk-domains'>DNS for non-<code>gov.uk</code> domains</h2><p>GOV.UK also manages DNS zones for some non-<code>gov.uk</code> domains.</p>
-<p>These include (but are not limited to):</p>
-
-<ul>
-<li><code>independent-inquiry.uk</code></li>
-<li><code>public-inquiry.uk</code></li>
-<li><code>royal-commission.uk</code></li>
-</ul>
-<p>Some of these are not managed by Terraform. If you can&rsquo;t find a configuration file for the zone in <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a>, then you&rsquo;ll need to update it manually in the AWS console.</p>
+<h2 id='dns-for-non-gov-uk-domains'>DNS for non-<code>gov.uk</code> domains</h2><p>GOV.UK also manages DNS zones for some non-<code>gov.uk</code> domains (e.g. <code>independent-inquiry.uk</code>).</p>
+<p>These should mostly be managed in Terraform: each domain should have its own zone configuration file in <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a>.</p>
+<p>If a non-GOV.UK domain is missing a configuration file, then it has not been migrated to Terraform yet (Platform Engineering have a <a href="https://trello.com/c/JLMsPUrp/996-import-manually-managed-dns-zones-into-terraform">card to migrate the remaining ones</a>). These domains need updating manually in the AWS console as follows:</p>
 
 <ol>
 <li><p>Login to the <strong>production</strong> AWS console.</p>
@@ -281,7 +272,7 @@ providers. We can just change where the CNAME points to.</li>
 <p>This zone is managed manually using the AWS console (i.e. click-ops). It&rsquo;s not managed by Terraform.</p>
 </blockquote>
 <p>This is a clear indicator that it&rsquo;s safe to update these records manually and they won&rsquo;t be overwritten by Terraform.</p>
-<p>However if it&rsquo;s something like this, then you shouldn&rsquo;t update it manually:</p>
+<p>However if it&rsquo;s something like this, then you shouldn&rsquo;t update it manually (go back and find the zone config file in govuk-dns-tf):</p>
 
 <blockquote>
 <p>Managed by Terraform</p>
@@ -289,9 +280,6 @@ providers. We can just change where the CNAME points to.</li>
 <li><p>Update the DNS records as required.</p></li>
 <li><p><strong>For bonus points:</strong> If the zone description wasn&rsquo;t clear, but you&rsquo;re certain it&rsquo;s safe to be updated manually, then consider changing the description field so it&rsquo;s clearer for the next person.</p></li>
 </ol>
-<h2 id='getting-terraform-cloud-access'>Getting Terraform Cloud access</h2><p>If you&rsquo;re a member of 2nd-line, Platform Engineering or Platform Security and Reliability, you should automatically be able to <a href="https://accounts.google.com/o/saml2/initsso?idpid=C01ppujwc&amp;spid=738388265440&amp;forceauthn=false">log into Terraform Cloud</a> using your digital.cabinet-office.gov.uk Google account.</p>
-<p>If you&rsquo;re logging in for the first time, you&rsquo;ll need to create a password for your new Terraform Cloud account, as it exists independently of your Google Account (much like your GitHub account exists independently of the <code>alphagov</code> org). Once your account is created, you&rsquo;ll be able to sign in through your Google Account (SSO) and access the <code>govuk</code> organisation on Terraform cloud.</p>
-<p>If you&rsquo;re having trouble logging into Terraform Cloud then <a href="https://gds.slack.com/channels/govuk-platform-engineering">Platform Engineering team</a> or an <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/GOV.UK_Terraform_Cloud_Access/about">owner of the GOV.UK_Terraform_Cloud_Access group</a> will be able to help you.</p>
 
 
   <div class='related-content'>

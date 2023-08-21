@@ -216,7 +216,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8ec753a39e8f2f02a6decd0c2727d37e778d6f56">15 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bcd8abb75e40ce9349a4722ea830f16bf80898e6">21 Aug 2023</a>
 </div>
 
  <h1 id='header'>Zendesk</h1> <p>Technical 2nd Line Zendesk tickets are technical errors reported by our users, including government publishers.</p>
@@ -295,9 +295,9 @@ review and assign to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk 
 <code>nameserver1.example.com</code>
 <code>nameserver2.example.com</code></p>
 </blockquote>
-<p>We should process these as per the <a href="https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.wg0s4ugkpdpc">SRE interruptible documentation</a>.</p>
 <p>The workflow for these requests is that a requester emails a particular email address, which creates a Zendesk ticket for the GOV.UK Policy and Strategy team. The request is then signed off and routed to us. We then double-check with someone from GOV.UK Policy and Strategy that the change has been agreed, then add/change the necessary DNS records (see <a href="https://github.com/alphagov/govuk-dns-config/pull/854/files">example</a>) and respond to the requestor via the ticket.</p>
 <p>Note that some requests come directly via the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/hostmaster">hostmaster Google group</a>. If you are in any doubt about the legitimacy of a request, reassign the ticket to <code>3rd Line--Policy and Strategy</code> and add an internal note asking them.</p>
+<p>For actioning these requests, <a href="/manual/dns.html">read our DNS documentation</a>.</p>
 <h2 id='leaver-tickets'>Leaver tickets</h2><p>As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have any GOV.UK access.</p>
 <p>Search for their name/email in the <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> repository.</p>
 
