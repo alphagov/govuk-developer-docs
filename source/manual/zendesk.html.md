@@ -116,6 +116,10 @@ Note that some requests come directly via the [hostmaster Google group](https://
 
 For actioning these requests, [read our DNS documentation](/manual/dns.html).
 
+## Automated requests from Amazon ACM or AWS Certificate Manager
+
+Please refer to the [SRE interruptible documentation](https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.91quw0ws3zim).
+
 ## Leaver tickets
 
 As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have any GOV.UK access.
