@@ -6,15 +6,11 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-## Building a release
+## Build a release
 
-> Jenkins should normally build govuk-puppet automatically on push to any branch, but unfortunately this is currently broken (May 2023).
->
-> To work around this, go to [govuk-puppet in CI Jenkins](https://ci.integration.publishing.service.gov.uk/job/govuk-puppet/) and choose `Scan Repository Now` from the left-hand column.
->
-> You will usually need to do this twice: once to make the pre-merge checks run against your branch and again to build the release after you have merged your PR.
+[Jenkins](https://ci.integration.publishing.service.gov.uk/job/govuk-puppet/) builds govuk-puppet automatically on push to any branch.
 
-## Deploying a branch
+## Deploy a branch
 
 Before merging your PR, it's recommended that you deploy the change to
 Integration in order to test it works on real infrastructure. Go to [the
@@ -24,7 +20,7 @@ deploy.
 
 [deploy-puppet]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/
 
-## Deploying a release
+## Deploy a release
 
 You can deploy Puppet to Staging and Production using the following steps:
 
@@ -64,7 +60,7 @@ downtime caused by a service restarting on all nodes of a given
 class at the same time. You should still be careful though, because
 some services take longer to restart than others.
 
-## Preventing service restarts
+## Prevent service restarts
 
 It may occassionally be neccessary to trick Puppet into not restarting a
 service, if it is a single point of failure and doing so would cause a
