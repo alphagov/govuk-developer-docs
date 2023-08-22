@@ -129,19 +129,19 @@
     <a href="#header"><span>Deploy Puppet</span></a>
     <ul>
       <li>
-        <a href="#building-a-release"><span>Building a release</span></a>
+        <a href="#build-a-release"><span>Build a release</span></a>
       </li>
       <li>
-        <a href="#deploying-a-branch"><span>Deploying a branch</span></a>
+        <a href="#deploy-a-branch"><span>Deploy a branch</span></a>
       </li>
       <li>
-        <a href="#deploying-a-release"><span>Deploying a release</span></a>
+        <a href="#deploy-a-release"><span>Deploy a release</span></a>
       </li>
       <li>
         <a href="#convergence"><span>Convergence</span></a>
       </li>
       <li>
-        <a href="#preventing-service-restarts"><span>Preventing service restarts</span></a>
+        <a href="#prevent-service-restarts"><span>Prevent service restarts</span></a>
       </li>
     </ul>
   </li>
@@ -193,21 +193,16 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a0cbf96346266b2dc9f204f4126b2a6b04c8d645">24 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a44e1f0998617235802b115523682c4a9566c0cd">22 Aug 2023</a>
 </div>
 
- <h1 id='header'>Deploy Puppet</h1> <h2 id='building-a-release'>Building a release</h2>
-<blockquote>
-<p>Jenkins should normally build govuk-puppet automatically on push to any branch, but unfortunately this is currently broken (May 2023).</p>
-<p>To work around this, go to <a href="https://ci.integration.publishing.service.gov.uk/job/govuk-puppet/">govuk-puppet in CI Jenkins</a> and choose <code>Scan Repository Now</code> from the left-hand column.</p>
-<p>You will usually need to do this twice: once to make the pre-merge checks run against your branch and again to build the release after you have merged your PR.</p>
-</blockquote>
-<h2 id='deploying-a-branch'>Deploying a branch</h2><p>Before merging your PR, it&rsquo;s recommended that you deploy the change to
+ <h1 id='header'>Deploy Puppet</h1> <h2 id='build-a-release'>Build a release</h2><p><a href="https://ci.integration.publishing.service.gov.uk/job/govuk-puppet/">Jenkins</a> builds govuk-puppet automatically on push to any branch.</p>
+<h2 id='deploy-a-branch'>Deploy a branch</h2><p>Before merging your PR, it&rsquo;s recommended that you deploy the change to
 Integration in order to test it works on real infrastructure. Go to <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/">the
 <code>Deploy_Puppet</code> job in Jenkins</a> and click ‘Build with
 Parameters’. The <code>TAG</code> field should contain the name of the branch you wish to
 deploy.</p>
-<h2 id='deploying-a-release'>Deploying a release</h2><p>You can deploy Puppet to Staging and Production using the following steps:</p>
+<h2 id='deploy-a-release'>Deploy a release</h2><p>You can deploy Puppet to Staging and Production using the following steps:</p>
 
 <ol>
 <li>In the <a href="https://release.publishing.service.gov.uk/applications/puppet">Release app</a>, select the release tag and review
@@ -236,7 +231,7 @@ diff what classes of machines the change will affect, <a href="/manual/howto-run
 downtime caused by a service restarting on all nodes of a given
 class at the same time. You should still be careful though, because
 some services take longer to restart than others.</p>
-<h2 id='preventing-service-restarts'>Preventing service restarts</h2><p>It may occassionally be neccessary to trick Puppet into not restarting a
+<h2 id='prevent-service-restarts'>Prevent service restarts</h2><p>It may occassionally be neccessary to trick Puppet into not restarting a
 service, if it is a single point of failure and doing so would cause a
 brief outage, e.g. MySQL.</p>
 
