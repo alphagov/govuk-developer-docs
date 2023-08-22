@@ -257,6 +257,15 @@ interface to the underlying database.</p>
 
 <h3 id="run-the-test-suite">Run the test suite</h3>
 
+<p>Checks run automatically on GitHub on PR and push. For faster feedback, you can
+run the tests locally.</p>
+
+<p>The lint check uses <a href="https://golangci-lint.run/">golangci-lint</a>, which you can
+install via Homebrew or your favourite package manager:</p>
+
+<pre lang="sh"><code>brew install golangci-lint
+</code></pre>
+
 <p>You can run all tests (some of which need Docker installed) by running:</p>
 
 <pre><code>make test
@@ -265,28 +274,18 @@ interface to the underlying database.</p>
 <p>You can also run just the unit tests or just the integration tests, using the
 <code>unit_tests</code> and <code>integration_tests</code> targets. The unit tests don&rsquo;t need Docker.</p>
 
-<p>The <code>trie</code> and <code>triemux</code> sub-packages have unit tests and benchmarks written
-in Go&rsquo;s own testing framework. To run them individually:</p>
+<p>The <code>trie</code> and <code>triemux</code> packages have unit tests. To run these on their own:</p>
 
 <pre><code>go test -bench=. ./trie ./triemux
 </code></pre>
 
-<p>The integration tests require Docker in order to run MongoDB. They are intended
+<p>The integration tests need Docker in order to run MongoDB. They are intended
 to cover Router&rsquo;s overall request handling, error reporting and performance.</p>
 
-<pre><code>go test ./integration_tests
-</code></pre>
+<p>You can use <code>--ginkgo.focus &lt;partial regex&gt;</code> to run a subset of the integration
+tests, for example:</p>
 
-<h3 id="lint">Lint</h3>
-
-<p>Checks run automatically on GitHub on PR and push. For faster feedback, you can
-install and run the <a href="https://golangci-lint.run/">linter</a> yourself, or configure
-your editor/IDE to do so. For example:</p>
-
-<pre lang="sh"><code>brew install golangci-lint
-</code></pre>
-
-<pre lang="sh"><code>make lint
+<pre><code>go test ./integration_tests -v --ginkgo.focus 'redirect should preserve the query string'
 </code></pre>
 
 <h3 id="debug-output">Debug output</h3>
