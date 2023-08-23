@@ -107,6 +107,10 @@ This command will wait until the database is ready, and then exit without any ou
 
 ### 6. Modify the restored database instance
 
+If you are doing this as a drill you can update the `db_instance_identifier` to something distinguishable so that it is easier to find later in the list of databases in AWS, for example:
+
+* db_instance_identifier = <your_initials>-<DB_Instance_Identifier>
+
 ```
 gds-cli aws govuk-<environment>-admin aws rds modify-db-instance --db-instance-identifier restored-${db_instance_identifier} --vpc-security-group-ids ${vpc_security_group_id} --db-parameter-group-name ${db_parameter_group_name}
 ```
@@ -190,6 +194,25 @@ Apply these changes with the following command:
 
 ```
 gds-cli aws govuk-<environment>-admin aws route53 change-resource-record-sets --hosted-zone-id ${next_hosted_zone_id} --change-batch file:///var/tmp/update_dns.json
+```
+
+The output should look something like:
+
+```
+{
+    "ChangeInfo": {
+        "Id": "/change/C1045684TR3O47QOC1T6",
+        "Status": "INSYNC",
+        "SubmittedAt": "2023-08-23T15:16:15.298000+00:00",
+        "Comment": "Manual DB restore"
+    }
+}
+```
+
+It can take a couple of minutes for the change to be applied and you might have the status `PENDING`. You can check the status by running:
+
+```
+gds-cli aws govuk-<environment>-admin aws route53 get-change --id /change/<ChangeInfo_Id>
 ```
 
 The restore is now finished!
