@@ -225,22 +225,38 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/115c2b2ccf897e51f35ff6b104cc4415c73a30ea">9 Jul 2021</a>
+  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/6a359a0a5d3d487b304c1f4c3356c2d41b10b649">23 Aug 2023</a>
 </div>
 
   <h1 class="page-title">smart-answers: ## Publishing</h1>
 
   <h3 id="publishing">Publishing</h3>
-<p>Changes to smart answer pages need to be sent to the Publishing API for them to appear on GOV.UK.</p>
-<p>The <a href="https://github.com/alphagov/smart-answers/blob/main/lib/tasks/publishing_api.rake">rake task <code>publishing_api:sync_all</code></a> needs to be run once you have deployed your changes in each environment and can be done in <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=smartanswers&amp;MACHINE_CLASS=calculators_frontend&amp;RAKE_TASK=publishing_api:sync_all">Jenkins</a>.</p>
+<p>Changes to smart answer landing (or start) pages need to be sent to the Publishing API for them to appear on GOV.UK.</p>
+<p>You will need the flow <code>name</code> and <code>content_id</code>, both of which can be found in the relevant Flow file, e.g. <code>ReportALostOrStolenPassportFlow</code>.</p>
+<p>The <a href="https://github.com/alphagov/smart-answers/blob/main/lib/tasks/publishing_api.rake">rake task <code>publishing_api:sync[FLOW_NAME]</code></a> exists for this purpose, and needs to be run once you have deployed your changes. It can be run via Kubernetes as follows:</p>
+<pre lang="bash"><code># For each ENVIRONMENT [integration, staging, production]...
+
+# Ensure you are using the correct ENVIRONMENT
+kubectl config use-context govuk-ENVIRONMENT
+kubectl config current-context
+
+# Get a temporary AWS token
+export AWS_REGION=eu-west-1
+eval $(gds aws govuk-ENVIRONMENT-poweruser -e --art 8h)
+
+# Check the current value for your change in publishing-api
+kubectl -n apps exec -it deploy/publishing-api -- rails c
+Document.find_by(content_id: CONTENT_ID).editions.last
+
+# Run the rake task
+kubectl -n apps exec deploy/smartanswers -- rake 'publishing_api:sync[FLOW_NAME]'
+
+# Make sure your changes have been updated correctly
+kubectl -n apps exec -it deploy/publishing-api -- rails c
+Document.find_by(content_id: CONTENT_ID).editions.last
+</code></pre>
+<p>If you have made multiple changes to a number of flows, there is also the <a href="https://github.com/alphagov/smart-answers/blob/main/lib/tasks/publishing_api.rake">rake task <code>publishing_api:sync_all</code></a> which sync's all flows with the Publishing API. It can be run as above substituting <code>publishing_api:sync[FLOW_NAME]</code> with <code>publishing_api:sync_all</code>.</p>
 
 
             
