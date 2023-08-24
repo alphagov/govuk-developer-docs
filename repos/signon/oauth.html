@@ -189,7 +189,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/3634928c4951fe1ab2f51649c16e762e708e2d4e">29 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/f244f56bf5d9806e4f983074601cb1dfb1737314">24 Aug 2023</a>
 </div>
 
   <h1 class="page-title">signon: Signon and OAuth2</h1>
@@ -261,6 +261,7 @@ and provide an access token for validation.</p>
 the refresh token process will need to be followed. (for section 5.2, the
 expires_in value will always be sent and end-user facing clients MUST be
 able to interpret it and follow the refresh process)</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/signon/main/docs/diagrams/signon-sign-in-from-whitehall-publisher.svg" alt="A sequence diagram showing the HTTP requests when a user signs in from Whitehall Publisher">.</p>
 <h3 id="api-requests">API requests</h3>
 <p>For API requests, we use the Implicit grant type:</p>
 <p>API clients will be issued an access token in advance generated through a
