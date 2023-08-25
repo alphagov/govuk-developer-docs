@@ -130,6 +130,17 @@
     <ul>
       <li>
         <a href="#quick-reference"><span>Quick reference</span></a>
+        <ul>
+          <li>
+            <a href="#common-tasks"><span>Common tasks</span></a>
+          </li>
+          <li>
+            <a href="#set-your-aws-environment-and-role"><span>Set your AWS environment and role</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#prerequisites"><span>Prerequisites</span></a>
       </li>
       <li>
         <a href="#whats-staying-and-going"><span>What’s staying and going?</span></a>
@@ -208,52 +219,64 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/81c59688674e76fce87b99c15690ae9d789041e4">17 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4f46ecd14c8732844be488c9955c9270eb84a8cf">25 Aug 2023</a>
 </div>
 
  <h1 id='header'>EKS/Kubernetes infrastructure</h1> <p>This is a temporary page to tide us over as we get used to the new EKS platform.
 It will eventually be consolidated when the <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/">GOV.UK Kubernetes docs</a> are absorbed into the Developer Docs.</p>
-<h2 id='quick-reference'>Quick reference</h2><p>You need to have:</p>
-
-<ul>
-<li>completed the <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">set up instructions</a></li>
-<li><a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#test-your-access">tested your access</a></li>
-</ul>
-<p>You need to:</p>
-
-<ul>
-<li><a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#select-a-role-and-environment">set your region and context</a> as below</li>
-<li>specify the appropriate environment (integration, staging, production)</li>
-<li>use an AWS role with sufficient permissions (readonly can view logs, poweruser or administrator can run Rake tasks or open a shell)</li>
-</ul>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
-<span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
-</code></pre></div><p>The following commands assume you have <code>alias k=kubectl</code> per the <a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">kubectl cheatsheet</a>, and also set the <code>apps</code> namespace as your default (<code>k config set-context --current --namespace=apps</code>).</p>
-
+<h2 id='quick-reference'>Quick reference</h2><p>This section assumes you satisfy all the <a href="#prerequisites">prerequisites</a>.</p>
+<h3 id='common-tasks'>Common tasks</h3>
 <ul>
 <li>To access logs for an app:
 
 <ul>
 <li><code>k logs deploy/account-api</code></li>
 </ul></li>
-<li>To open a rails console:
+<li>To open a <a href="https://andycroll.com/ruby/play-in-a-sandbox-in-production/">read-only rails console</a>:
 
 <ul>
-<li><code>k -n apps exec -it deploy/router-api -- rails c</code></li>
+<li><code>k exec -it deploy/router-api -- rails c --sandbox</code></li>
+</ul></li>
+<li>To open a normal rails console:
+
+<ul>
+<li><code>k exec -it deploy/router-api -- rails c</code></li>
 </ul></li>
 <li>To open a shell:
 
 <ul>
-<li><code>k -n apps exec -it deploy/government-frontend -- bash</code></li>
+<li><code>k exec -it deploy/government-frontend -- bash</code></li>
 </ul></li>
 <li>To open a shell on Router:
 
 <ul>
-<li><code>k -n apps exec -it deploy/router -c nginx</code></li>
+<li><code>k exec -it deploy/router -c nginx</code></li>
 </ul></li>
 </ul>
 <p>Read more about each command further on in the document.</p>
-<h2 id='whats-staying-and-going'>What’s staying and going?</h2><p>All front-end traffic and back-end publisher traffic is now on Kubernetes (EKS) instead of EC2.</p>
+<h3 id='set-your-aws-environment-and-role'>Set your AWS environment and role</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="c"># set the correct kubectl context (`k config get-contexts` to see available ones)</span>
+k config use-context integration
+<span class="c"># set the appropriate AWS environment (integration/staging/production) and role (see below)</span>
+<span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
+</code></pre></div><p>Use an AWS role with sufficient permissions:</p>
+
+<ul>
+<li>readonly can view logs</li>
+<li>poweruser can run Rake tasks or open a shell</li>
+<li>administrator gives full access (you&rsquo;ll rarely need this)</li>
+</ul>
+<p>See <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/">full instructions for more detail</a>.</p>
+<h2 id='prerequisites'>Prerequisites</h2><p>You need to have:</p>
+
+<ul>
+<li>completed the <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">set up instructions</a></li>
+<li><a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#test-your-access">tested your access</a></li>
+</ul>
+<p>The following commands also assume you have set the recommended aliases (see the <a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">kubectl cheatsheet</a>), default contexts and globals:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">alias </span><span class="nv">k</span><span class="o">=</span>kubectl
+k config set-context <span class="nt">--current</span> <span class="nt">--namespace</span><span class="o">=</span>apps
+<span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
+</code></pre></div><h2 id='whats-staying-and-going'>What’s staying and going?</h2><p>All front-end traffic and back-end publisher traffic is now on Kubernetes (EKS) instead of EC2.</p>
 <p>Some things haven&rsquo;t yet been replatformed, and some things will remain unchanged - see <a href="https://docs.google.com/document/d/1R8C3BtvhqTXEga4C3_KxTopjWuYVbiEgKiikTyRXXiA/edit">what stays/goes/changes with Platform Engineering</a>.</p>
 <h2 id='app-deployments'>App deployments</h2>
 <ul>
