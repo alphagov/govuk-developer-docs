@@ -111,6 +111,7 @@ The Kubernetes `ExternalSecret` defines the mapping between the AWS Secrets Mana
         - extract:
             key: govuk/<APPNAME>/<SECRETNAME>
     ```
+
     Where `<APPNAME>` is the name of the app and `<SECRETNAME>` is the name of the secret.
 
     Make sure the `<DESCRIPTION>` is consistent with the description you created in the AWS Secrets Manager. If the `ExternalSecret` uses `dataFrom.extract`, then the description should also document the fields expected in the YAML structure.

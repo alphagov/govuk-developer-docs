@@ -66,6 +66,7 @@ The [`ecr` module](https://github.com/alphagov/govuk-infrastructure/tree/main/te
     gds aws govuk-<ENVIRONMENT>-admin -- \
       terraform apply -var-file ../variables/<ENVIRONMENT>/ecr.tfvars
     ```
+
     `<ENVIRONMENT>` is the environment type you defined in the earlier step.
 
 ### 2. Deploy the `cluster-infrastructure` module
@@ -83,6 +84,7 @@ The [`cluster-infrastructure` module](https://github.com/alphagov/govuk-infrastr
     gds aws govuk-<ENVIRONMENT>-admin -- \
       terraform apply
     ```
+
     `<ENVIRONMENT>` is the environment type you defined in the earlier step.
 
 #### Delete the `aws-auth` configmap
@@ -112,6 +114,7 @@ The [`govuk-publishing-infrastructure` module](https://github.com/alphagov/govuk
     gds aws govuk-<ENVIRONMENT>-admin -- \
       terraform apply
     ```
+
     `<ENVIRONMENT>` is the environment type you defined in the earlier step.
 
 ### 4. Deploy the `cluster-services` module
@@ -129,6 +132,7 @@ The [`cluster-services` module](https://github.com/alphagov/govuk-infrastructure
     gds aws govuk-<ENVIRONMENT>-admin -- \
       terraform apply
     ```
+
     `<ENVIRONMENT>` is the environment type you defined in the earlier step.
 
 ## Check the environment is working

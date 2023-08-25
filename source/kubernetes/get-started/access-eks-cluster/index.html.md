@@ -50,6 +50,7 @@ The readonly role:
   eval $(gds aws govuk-<govuk-environment>-<role> -e --art 8h)
   export AWS_REGION=eu-west-1
   ```
+
   where:
   - `<govuk-environment>` is the GOV.UK environment that you want to get credentials for and will be `test`, `integration`, `staging`, or `production`
   - `<role>` is the appropriate role and will be `admin`, `poweruser` or `readonly`
@@ -91,6 +92,7 @@ To switch clusters:
      eval $(gds aws govuk-<govuk-environment>-<role> -e --art 8h)
      export AWS_REGION=eu-west-1
      ```
+
     where:
     - `<govuk-environment>` is the GOV.UK environment that you want to get credentials for and will be `test`, `integration`, `staging`, or `production`
     - `<role>` is the appropriate role and will be `admin`, `poweruser` or `readonly`
