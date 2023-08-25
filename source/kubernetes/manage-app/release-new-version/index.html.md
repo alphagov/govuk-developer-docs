@@ -1,8 +1,6 @@
 ---
 title: How a new version of an app is released
 weight: 45
-last_reviewed_on: 2022-05-12
-review_in: 6 months
 ---
 
 # How a new version of an app is released

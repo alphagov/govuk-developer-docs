@@ -1,8 +1,6 @@
 ---
 title: Tutorials
 weight: 20
-last_reviewed_on: 2023-03-07
-review_in: 6 months
 ---
 
 # Tutorials

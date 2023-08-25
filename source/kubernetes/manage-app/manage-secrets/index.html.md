@@ -1,8 +1,6 @@
 ---
 title: Add secrets to your app
 weight: 48
-last_reviewed_on: 2022-07-12
-review_in: 6 months
 ---
 
 # Add secrets to your app

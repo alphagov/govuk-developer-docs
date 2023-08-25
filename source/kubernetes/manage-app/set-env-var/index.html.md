@@ -1,8 +1,6 @@
 ---
 title: Set environment variables for your app
 weight: 43
-last_reviewed_on: 2023-04-18
-review_in: 6 months
 ---
 
 # Set or change an environment variable for your app

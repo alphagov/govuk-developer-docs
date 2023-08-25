@@ -1,8 +1,6 @@
 ---
 title: GOV.UK Kubernetes cluster documentation for developers
 weight: 1
-last_reviewed_on: 2023-07-24
-review_in: 6 months
 ---
 
 # GOV.UK Kubernetes cluster documentation for developers

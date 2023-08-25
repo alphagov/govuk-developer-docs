@@ -1,8 +1,6 @@
 ---
 title: Contact GOV.UK Platform Engineering team
 weight: 100
-last_reviewed_on: 2023-05-24
-review_in: 6 months
 ---
 
 # GOV.UK Platform Engineering team

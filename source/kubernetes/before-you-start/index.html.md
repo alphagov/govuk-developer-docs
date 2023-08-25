@@ -1,8 +1,6 @@
 ---
 title: Before you start
 weight: 10
-last_reviewed_on: 2022-02-11
-review_in: 6 months
 ---
 
 # Before you start
