@@ -1,6 +1,7 @@
 ---
 title: Manage your app
 weight: 40
+layout: multipage_layout
 ---
 
 # Manage your app

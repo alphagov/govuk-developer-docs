@@ -1,6 +1,7 @@
 ---
 title: Before you start
 weight: 10
+layout: multipage_layout
 ---
 
 # Before you start

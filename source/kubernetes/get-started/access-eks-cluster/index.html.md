@@ -1,6 +1,7 @@
 ---
 title: Access EKS cluster
 weight: 22
+layout: multipage_layout
 ---
 
 # Access EKS cluster

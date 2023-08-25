@@ -1,6 +1,7 @@
 ---
 title: Scale your app
 weight: 44
+layout: multipage_layout
 ---
 
 # Scale your app

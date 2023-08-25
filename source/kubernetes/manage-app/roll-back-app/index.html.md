@@ -1,6 +1,7 @@
 ---
 title: Roll back your app
 weight: 46
+layout: multipage_layout
 ---
 
 # Roll back your app

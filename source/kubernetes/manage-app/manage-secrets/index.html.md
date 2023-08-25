@@ -1,6 +1,7 @@
 ---
 title: Add secrets to your app
 weight: 48
+layout: multipage_layout
 ---
 
 # Add secrets to your app

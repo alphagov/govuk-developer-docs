@@ -1,6 +1,7 @@
 ---
 title: Deploy a new version of the example test app, check the deployment, monitor the app on Grafana and view application logs
 weight: 20
+layout: multipage_layout
 ---
 
 # Deploy a new version of the example test app, check the deployment, monitor the app on Grafana and view application logs

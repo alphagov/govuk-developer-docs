@@ -1,6 +1,7 @@
 ---
 title: How a new version of an app is released
 weight: 45
+layout: multipage_layout
 ---
 
 # How a new version of an app is released
