@@ -18,7 +18,9 @@ This section assumes you satisfy all the [prerequisites](#prerequisites).
 
 - To access logs for an app:
     - `k logs deploy/account-api`
-- To open a rails console:
+- To open a [read-only rails console](https://andycroll.com/ruby/play-in-a-sandbox-in-production/):
+    - `k exec -it deploy/router-api -- rails c --sandbox`
+- To open a normal rails console:
     - `k exec -it deploy/router-api -- rails c`
 - To open a shell:
     - `k exec -it deploy/government-frontend -- bash`
