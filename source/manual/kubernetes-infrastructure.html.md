@@ -12,34 +12,52 @@ It will eventually be consolidated when the [GOV.UK Kubernetes docs](https://gov
 
 ## Quick reference
 
+This section assumes you satisfy all the [prerequisites](#prerequisites).
+
+### Common tasks
+
+- To access logs for an app:
+    - `k logs deploy/account-api`
+- To open a rails console:
+    - `k exec -it deploy/router-api -- rails c`
+- To open a shell:
+    - `k exec -it deploy/government-frontend -- bash`
+- To open a shell on Router:
+    - `k exec -it deploy/router -c nginx`
+
+Read more about each command further on in the document.
+
+### Set your AWS environment and role
+
+```sh
+# set the correct kubectl context (`k config get-contexts` to see available ones)
+k config use-context integration
+# set the appropriate AWS environment (integration/staging/production) and role (see below)
+eval $(gds aws govuk-integration-poweruser -e --art 8h)
+```
+
+Use an AWS role with sufficient permissions:
+
+- readonly can view logs
+- poweruser can run Rake tasks or open a shell
+- administrator gives full access (you'll rarely need this)
+
+See [full instructions for more detail](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/).
+
+## Prerequisites
+
 You need to have:
 
 - completed the [set up instructions](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/)
 - [tested your access](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#test-your-access)
 
-You need to:
-
-- [set your region and context](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#select-a-role-and-environment) as below
-- specify the appropriate environment (integration, staging, production)
-- use an AWS role with sufficient permissions (readonly can view logs, poweruser or administrator can run Rake tasks or open a shell)
+The following commands also assume you have set the recommended aliases (see the [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)), default contexts and globals:
 
 ```sh
+alias k=kubectl
+k config set-context --current --namespace=apps
 export AWS_REGION=eu-west-1
-eval $(gds aws govuk-integration-poweruser -e --art 8h)
 ```
-
-The following commands assume you have `alias k=kubectl` per the [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/), and also set the `apps` namespace as your default (`k config set-context --current --namespace=apps`).
-
-- To access logs for an app:
-    - `k logs deploy/account-api`
-- To open a rails console:
-    - `k -n apps exec -it deploy/router-api -- rails c`
-- To open a shell:
-    - `k -n apps exec -it deploy/government-frontend -- bash`
-- To open a shell on Router:
-    - `k -n apps exec -it deploy/router -c nginx`
-
-Read more about each command further on in the document.
 
 ## What’s staying and going?
 
