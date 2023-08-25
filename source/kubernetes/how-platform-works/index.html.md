@@ -1,6 +1,7 @@
 ---
 title: How the platform works
 weight: 60
+layout: multipage_layout
 ---
 
 # How the platform works

@@ -1,6 +1,7 @@
 ---
 title: Manage state in your app
 weight: 41
+layout: multipage_layout
 ---
 
 # Manage state in your app

@@ -1,6 +1,7 @@
 ---
 title: Tutorials
 weight: 20
+layout: multipage_layout
 ---
 
 # Tutorials

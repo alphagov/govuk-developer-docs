@@ -1,6 +1,7 @@
 ---
 title: How apps are deployed
 weight: 42
+layout: multipage_layout
 ---
 
 # How apps are deployed

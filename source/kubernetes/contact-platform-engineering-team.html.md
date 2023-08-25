@@ -1,6 +1,7 @@
 ---
 title: Contact GOV.UK Platform Engineering team
 weight: 100
+layout: multipage_layout
 ---
 
 # GOV.UK Platform Engineering team

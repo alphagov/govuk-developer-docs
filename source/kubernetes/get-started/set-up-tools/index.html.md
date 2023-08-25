@@ -1,6 +1,7 @@
 ---
 title: Set up tools
 weight: 21
+layout: multipage_layout
 ---
 
 # Set up tools to use the GOV.UK Kubernetes platform

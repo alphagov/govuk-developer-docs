@@ -1,6 +1,7 @@
 ---
 title: Get started
 weight: 20
+layout: multipage_layout
 ---
 
 # Get started

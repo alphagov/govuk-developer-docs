@@ -1,6 +1,7 @@
 ---
 title: Fix your app
 weight: 51
+layout: multipage_layout
 ---
 
 # Fix your app

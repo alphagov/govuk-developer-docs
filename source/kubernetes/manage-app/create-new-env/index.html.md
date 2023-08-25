@@ -1,6 +1,7 @@
 ---
 title: Create a new environment
 weight: 49
+layout: multipage_layout
 ---
 
 > 🚧 This document is outdated and untested. 🚧

@@ -1,6 +1,7 @@
 ---
 title: Set environment variables for your app
 weight: 43
+layout: multipage_layout
 ---
 
 # Set or change an environment variable for your app

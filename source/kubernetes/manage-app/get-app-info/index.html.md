@@ -1,6 +1,7 @@
 ---
 title: Get information about your app
 weight: 40.5
+layout: multipage_layout
 ---
 
 # Get information about your app
