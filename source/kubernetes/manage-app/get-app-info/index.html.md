@@ -32,6 +32,7 @@ To describe an app deployment, run:
 ```sh
 kubectl -n <namespace> describe deployment <deployment>
 ```
+
 The output includes information like the pod template, the containers, and the environment variables.
 
 ## List all pods in an app

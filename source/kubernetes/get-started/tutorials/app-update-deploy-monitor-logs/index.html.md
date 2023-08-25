@@ -9,7 +9,7 @@ review_in: 6 months
 
 This tutorial will teach you how to deploy changes to an app and how to view application metrics and logs.
 
-In this tutorial, you will make a change to the example test app to print your message in the application output and view the message in the application logs. Later, you will make HTTP requests to the example test app and simulate responses with different status codes and view those response metics in Grafana. 
+In this tutorial, you will make a change to the example test app to print your message in the application output and view the message in the application logs. Later, you will make HTTP requests to the example test app and simulate responses with different status codes and view those response metics in Grafana.
 
 1. Update the example test app with your message
 
@@ -37,13 +37,13 @@ In this tutorial, you will make a change to the example test app to print your m
 
 1. View the messages in your text file in the logs
 
-    One of the outputs of the page will be an identifier which you can use to see the output of your deployment in the logs - 
+    One of the outputs of the page will be an identifier which you can use to see the output of your deployment in the logs -
 
     `Version: 1660815896. Hello, the time is 2022-09-08 15:00:00 +0000, you requested a 200 status response`
 
     Using the identifier - `1660815896` in this request -
 
-    `https://kibana.logit.io/s/42f4d2d5-e9ce-451f-8ffc-cdb25bd624f8/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-4d,to:now))&_a=(columns:!(_source),filters:!(),index:'8ac115c0-aac1-11e8-88ea-0383c11b333a',interval:auto,query:(language:kuery,query:"1660815896"),sort:!())` 
+    `https://kibana.logit.io/s/42f4d2d5-e9ce-451f-8ffc-cdb25bd624f8/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-4d,to:now))&_a=(columns:!(_source),filters:!(),index:'8ac115c0-aac1-11e8-88ea-0383c11b333a',interval:auto,query:(language:kuery,query:"1660815896"),sort:!())`
 
     Will bring up a page for logs relevant to your app deployment.
 

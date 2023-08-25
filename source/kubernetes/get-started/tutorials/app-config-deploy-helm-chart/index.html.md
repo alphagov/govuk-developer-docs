@@ -9,13 +9,13 @@ review_in: 6 months
 
 This tutorial aims to guide you through the process of updating an applications configuration in the govuk-helm-charts repository. You will be updating the configuration of an example test app, deploy and verify your changes.
 
-The govuk-helm-chart repository contains configuration for how an app is deployed into an environment, for example CPU and memory allocation for pods, environment variable values, health check configuration etc. 
+The govuk-helm-chart repository contains configuration for how an app is deployed into an environment, for example CPU and memory allocation for pods, environment variable values, health check configuration etc.
 
 1. Update the example test app configuration
 
     1. Clone the [govuk-helm-charts repository](https://github.com/alphagov/govuk-helm-charts.git).
     1. Create a new branch to add your changes.
-    1. Locate the `govuk-replatform-test-app` values in [govuk-helm-charts repository](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/values-integration.yaml). 
+    1. Locate the `govuk-replatform-test-app` values in [govuk-helm-charts repository](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/values-integration.yaml).
     (Please note that `app-config/ci/integration-values.yml` is symlinked to `values-integration.yaml`, you just need to make changes in one of the files.)
     1. Add your `ENV_MESSAGE_<your name>` environment variable value with your own message.
 
