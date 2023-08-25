@@ -1,8 +1,6 @@
 ---
 title: Access EKS cluster
 weight: 22
-last_reviewed_on: 2022-02-01
-review_in: 6 months
 ---
 
 # Access EKS cluster

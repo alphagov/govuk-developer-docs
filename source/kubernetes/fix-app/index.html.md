@@ -1,8 +1,6 @@
 ---
 title: Fix your app
 weight: 51
-last_reviewed_on: 2023-01-05
-review_in: 6 months
 ---
 
 # Fix your app

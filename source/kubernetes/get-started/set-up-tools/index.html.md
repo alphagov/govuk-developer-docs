@@ -1,8 +1,6 @@
 ---
 title: Set up tools
 weight: 21
-last_reviewed_on: 2022-02-01
-review_in: 6 months
 ---
 
 # Set up tools to use the GOV.UK Kubernetes platform

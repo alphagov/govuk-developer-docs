@@ -1,8 +1,6 @@
 ---
 title: Scale your app
 weight: 44
-last_reviewed_on: 2022-08-01
-review_in: 6 months
 ---
 
 # Scale your app

@@ -1,8 +1,6 @@
 ---
 title: Manage state in your app
 weight: 41
-last_reviewed_on: 2022-02-01
-review_in: 6 months
 ---
 
 # Manage state in your app

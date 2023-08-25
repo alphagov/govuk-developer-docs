@@ -1,8 +1,6 @@
 ---
 title: How the platform works
 weight: 60
-last_reviewed_on: 2022-02-01
-review_in: 6 months
 ---
 
 # How the platform works
