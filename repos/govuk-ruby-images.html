@@ -233,6 +233,15 @@ FROM ghcr.io/alphagov/govuk-ruby-base:3.0
 # your app image steps here
 </code></pre>
 
+<h2 id="common-problems-and-resolutions">Common problems and resolutions</h2>
+
+<p><code>ERROR: failed to solve: cannot copy to non-directory: /var/lib/docker/overlay2/.../merged/app/tmp</code></p>
+
+<p>Add <code>tmp/</code> to your <code>.dockerignore</code>. This is necessary because we symlink
+<code>$APP_HOME/tmp</code> to <code>/tmp</code> as a workaround for some badly-behaved gems that
+assume they can write to <code>Path.join(Rails.root, 'tmp')</code> so that we can run with
+<code>readOnlyRootFilesystem</code>.</p>
+
 <h2 id="managing-ruby-versions">Managing Ruby versions</h2>
 
 <p>Ruby version information is kept in the <a href="https://github.com/alphagov/govuk-ruby-images/blob/main/versions/">versions</a> directory. Each file in this directory is a shell script containing three variables that define a Ruby version:</p>
