@@ -212,11 +212,23 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>This is a very simple test app used to help devs familiarise themselves with the new GOVUK tech stack.</p>
+<p>This is a very simple test app to help GOV.UK developers familiarise themselves with the new Kubernetes-based hosting.</p>
 
 <h2 id="how-to-use-this-app">How to use this app</h2>
 
-<p>Naviagate to the test app url on your browser and set the status parameter as the status response you want, e.g. <!-- raw HTML omitted -->?status=200</p>
+<p>Navigate to the test app url on your browser and set the status parameter as the status response you want, e.g. <!-- raw HTML omitted -->?status=200</p>
+
+<h2 id="run-the-app-locally">Run the app locally</h2>
+
+<p>The app is intended to run on the GOV.UK Kubernetes clusters, but it is also possible to run it locally.</p>
+
+<pre lang="sh"><code>docker build -t govuk-replatform-test-app .
+</code></pre>
+
+<pre lang="sh"><code>docker run --rm -p3000:3000 -p9394:9394 govuk-replatform-test-app
+</code></pre>
+
+<p>You should then be able to browse the web app on <a href="http://localhost:3000/">http://localhost:3000/</a> and the Prometheus metrics on <a href="http://localhost:9394/metrics">http://localhost:9394/metrics</a>.</p>
 <p></div></p>
 
 
