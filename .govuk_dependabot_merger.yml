@@ -1,9 +1,27 @@
 api_version: 1
 auto_merge:
+  - dependency: govuk_app_config
+    allowed_semver_bumps:
+      - patch
+      - minor
+  - dependency: govuk_personalisation
+    allowed_semver_bumps:
+      - patch
   - dependency: govuk_publishing_components
     allowed_semver_bumps:
       - patch
       - minor
+  - dependency: govuk_schemas
+    allowed_semver_bumps:
+      - patch
+      - minor
+  - dependency: govuk_tech_docs
+    allowed_semver_bumps:
+      - patch
+      - minor
+  - dependency: middleman-search-gds
+    allowed_semver_bumps:
+      - patch
   - dependency: rubocop-govuk
     allowed_semver_bumps:
       - patch
