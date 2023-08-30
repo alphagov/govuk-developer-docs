@@ -225,27 +225,19 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/0e3cb45f8179083d56308ce35e28782261f4d7e8">26 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/ebcb2a3c2060eb4e64f60837da9166cd9f6d59e7">24 Aug 2023</a>
 </div>
 
   <h1 class="page-title">smart-answers: How to retire a Smart Answer</h1>
 
   
-<p>The process to retire a published Smart Answer involves using a <a href="#removing-the-content-item">rake task</a> to update on GOV.UK the content item that represents the Smart Answer flow, and then <a href="#remove-smart-answer-code">removing the code</a> for the Smart Answer.</p>
+<p>Retiring a published Smart Answer involves using a <a href="#removing-the-content-item">rake task</a> to update the content item that represents the Smart Answer flow, and then <a href="#remove-smart-answer-code">removing the code</a>.</p>
 <h2 id="removing-the-content-item">Removing the content item</h2>
-<p>Before removing a Smart Answer you will need the content_id for the Smart
-Answer. These can be found in the
-<code>app/flows/&lt;\smart-answer&gt;_flow.rb</code> file of the Smart Answer that
-is being retired. For redirecting or replacing a Smart Answer you will also
-need to know the paths of these pages these are based off the <code>name</code> attribute
+<p>Before removing a Smart Answer you will need its content_id. This is found in the relevant
+<code>app/flows/&lt;\smart-answer&gt;_flow.rb</code> file.</p>
+<p>For redirecting or replacing a Smart Answer you will also
+need to know the paths of the pages, which are based off the <code>name</code> attribute
 of the <code>app/flows/&lt;\smart-answer&gt;_flow.rb</code> file. For example, for
 the Marriage Abroad Smart Answer the path is <code>/marriage-abroad</code>.</p>
 <blockquote>
@@ -264,42 +256,38 @@ Smart Answer you'd run the following command:</p>
 <h3 id="showing-users-a-page-to-indicate-the-content-is-no-longer-available">Showing users a page to indicate the content is no longer available</h3>
 <p>If there is not content to replace the Smart Answer then the convention is to
 serve a page that indicates there used to be content but isn't anymore (a 410
-gone HTTP response). An example of how to perform this is:</p>
+gone HTTP response). To do this you'd run the following command:</p>
 <pre><code>bundle exec rake publishing_api:unpublish_gone[&lt;content_id&gt;]
 </code></pre>
 <blockquote>
-<p>It is possible to remove the Smart Answer and rather than serve a 410 Gone
-page instead serve a 404 Not Found, which misleads visitors to the page that
-content had never been published there. This can be done by using the
-<code>publishing_api:unpublish_vanish</code> task instead of the gone equivalent. This
-task should only be used in exceptional circumstances for example an
-accidental early publishing of content with a sensitive URL.</p>
+<p>In exceptional circumstances, for example after accidental publishing, it is possible to remove the Smart Answer and serve
+a 404 Not Found response (instead of a 410 Gone response) which misleadingly implies that content had never been published
+there. This can be done by using the <code>publishing_api:unpublish_vanish</code> task instead.</p>
 </blockquote>
 <h3 id="replace-a-smart-answer-with-a-different-content-type">Replace a Smart Answer with a different content type</h3>
 <p>Sometimes there will be a need to replace a Smart Answer with a different type
-of content, typically these have been transactions, answers and start pages
-that can be published through <a href="https://github.com/alphagov/publisher">Publisher</a>.</p>
-<p>The next step is to perform a temporary removal of the Smart Answer page(s) to
-be replaced. You can use the <a href="#showing-users-a-page-to-indicate-the-content-is-no-longer-available">aforementioned <code>publishing_api:unpublish_gone</code>
-task</a>
+of content, typically these have been transactions, answers or start pages
+which are published through <a href="https://github.com/alphagov/publisher">Publisher</a>.</p>
+<p>Before a new piece of content can be recreated with the same URL, you will need to perform a
+temporary removal of the Smart Answer page(s) to be replaced. You can use the
+<a href="#showing-users-a-page-to-indicate-the-content-is-no-longer-available"><code>publishing_api:unpublish_gone</code> task</a>
 to perform this.</p>
 <p>You can then run a rake task command to reserve the path(s) used by the Smart
 Answer for a different publishing application. For example, to reserve the
 Marriage Abroad start page for Publisher you can perform the following command:</p>
 <pre><code>bundle exec rake "publishing_api:change_owning_application[/marriage-abroad,publisher]"
 </code></pre>
-<p>Once this is complete you can then create a new piece of content with the URL
-the Smart Answer page previously used.</p>
+<p>You can then create a new piece of content with the URL previously used by the Smart Answer.</p>
 <blockquote>
 <p>NOTE: Start pages once existed in Publisher, and artefacts may persist in Publisher's
 database with current Smart Answer slugs. This may prevent a Smart Answer being replaced
-by a new document type as Publisher is still reserving the slug. [You will need to delete
-the old artefact]<a href="https://github.com/alphagov/publisher/pull/1474/files">https://github.com/alphagov/publisher/pull/1474/files</a>), once confirmed
+by a new document type as Publisher is still reserving the slug. <a href="https://github.com/alphagov/publisher/pull/1474/files">You will need to delete
+the old artefact</a>, once confirmed
 it is no longer needed.</p>
 </blockquote>
 <h2 id="remove-smart-answer-code">Remove Smart Answer code</h2>
 <p>Remove all the files and directories associated with the individual Smart
-Answer and their associated tests, examples of common files:</p>
+Answer and their associated tests. Examples of common files are:</p>
 <ul>
 <li>Flow class files
 <ul>
