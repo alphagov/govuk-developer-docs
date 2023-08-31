@@ -134,6 +134,9 @@
       <li>
         <a href="#overview-of-the-deployment-process"><span>Overview of the deployment process</span></a>
       </li>
+      <li>
+        <a href="#troubleshooting"><span>Troubleshooting</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -184,7 +187,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f32054fb0f93ddd652e85b4f8b29673764aad02d">25 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5afb25633c1ca980f380c9c207abb244ae95da29">31 Aug 2023</a>
 </div>
 
  <h1 id='header'>Deployments</h1> <p>On GOV.UK, all applications are set up for continuous deployment to integration, with the majority also having continuous deployment configured for staging and production.  Additionally, you can manually deploy a git reference (tag, branch, or commit SHA) of an application to any environment.</p>
@@ -235,8 +238,17 @@
 <ol>
 <li>Runs smoke tests for the app</li>
 <li>Checks if deployment should be promoted</li>
-<li>If so, sends a webhook to Argo Workflows (in production) to trigger deploy-image for the next environment</li>
+<li>If so, sends a webhook to Argo Workflows (in production) to trigger deploy-image for the next environment.</li>
 </ol></li>
+</ol>
+<h2 id='troubleshooting'>Troubleshooting</h2><p>If your release does not make it to production:</p>
+
+<ol>
+<li>Updates on status of Argo workflows are posted in #govuk-deploy-alerts.</li>
+<li>Click on View workflow for your failed deployment.</li>
+<li>You may be presented with am ugly login error, in which case try logging out, logging in and then clicking the view workflow button again.</li>
+<li>The argo workflow will display a list of steps. To investigate the reason for failure, click on the failed job, and from the summary panel click on LOGS.</li>
+<li>If the failure is due to a flakey smokey test, you can hit the RESUBMIT button for the full workflow.</li>
 </ol>
 
 
