@@ -20,40 +20,18 @@ The CDN is responsible for retrying requests against the [static mirror](/manual
 
 Most of the CDN config is versioned and scripted:
 
-- [govuk-cdn-config](https://github.com/alphagov/govuk-cdn-config/)
-- [govuk-cdn-config-secrets](https://github.com/alphagov/govuk-cdn-config-secrets)
+- [govuk-fastly]
+- [govuk-fastly-secrets]
 
-Some configuration isn't scripted, such as logging. The www, bouncer and assets services send logs to S3 which can be [queried](/manual/query-cdn-logs.html). These logging endpoints are configured directly in the Fastly UI.
+The www, bouncer and assets services send logs to S3 which can be [queried](/manual/query-cdn-logs.html).
+These logging endpoints are configured via [the secrets repo](https://github.com/alphagov/govuk-fastly-secrets/blob/a5cc9a5d25d014679a669a3ca4cb636d05409738/secrets.yaml#L62-L105)
 
 ### Deploying Fastly
 
-To deploy Fastly, you'll need to run the `Deploy_CDN` job on the relevant Jenkins environment: [integration][integration_cdn], [staging][staging_cdn] or [production][production_cdn]. This job deploys the public and secret CDN configuration referenced above.
-
-Note that there are two configurations: one for `www` and one for `assets`.
-Choose the correct `vhost` for the configuration you'd like to deploy.
-
-You'll need to provide a `FASTLY_API_KEY`. To do this:
-
-1. Log into your Fastly account.
-1. Click on "Account", under your name in the top right corner.
-1. Click "[Personal API tokens](https://manage.fastly.com/account/personal/tokens)"
-1. Click "Create Token"
-
-Then follow the steps to create a token with the minimum privileges required for the task at hand:
-
-1. The token name is unimportant; you'll be deleting it shortly.
-1. For "Service Access", choose the service you'll be deploying,
-   e.g. "Integration GOV.UK" (for `www`) or "Integration Assets" (for `assets`).
-1. For "Scope", you'll need to pick "Global API access" (i.e. the most permissive)
-1. Under "Expiration", choose tomorrow's date
-1. Click "Create Token"
-
-You can now copy and paste the token into the `FASTLY_API_KEY` in the Jenkins job.
-Once you've run the job successfully, you can delete the token.
-
-[integration_cdn]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_CDN/
-[staging_cdn]: https://deploy.blue.staging.govuk.digital/job/Deploy_CDN/
-[production_cdn]: https://deploy.blue.production.govuk.digital/job/Deploy_CDN/
+1. Make your changes in the [govuk-fastly]() or [govuk-fastly-secrets]() repositories and open a PR
+2. Once the PR has been merged, check the proposed changes in the Terraform Cloud console
+  * Check the `fastly-vcl-diff` post-plan task to view a diff of your VCL changes
+3. If you are happy with your changes, confirm the plan and wait for Terraform Cloud to deploy your changes
 
 ## Fastly Caching
 
@@ -69,7 +47,7 @@ We also set a grace period of 24 hours. So if the homepage server is down, we'll
 
 These are the GET request status codes that Varnish caches automatically: 200, 203, 300, 301, 302, 404 or 410. (See the [Varnish docs](https://varnish-cache.org/docs/2.1/reference/vcl.html#variables) for more detail.)
 
-We have added to these - see the [GOV.UK CDN Config repo](https://github.com/alphagov/govuk-cdn-config/) VCL for [special handling of certain status codes](https://github.com/alphagov/govuk-cdn-config/blob/c37856f5cb463d204ef3926828f35204721eb7e9/vcl_templates/www.vcl.erb#L408-L416), and for the most up-to-date version of what we're running in Fastly. Refer to the Varnish 2.1 documentation when looking at the VCL code.
+We have added to these - see the [GOV.UK CDN Config repo](https://github.com/alphagov/govuk-fastly/) VCL for [special handling of certain status codes](https://github.com/alphagov/govuk-cdn-config/blob/c37856f5cb463d204ef3926828f35204721eb7e9/vcl_templates/www.vcl.erb#L408-L416), and for the most up-to-date version of what we're running in Fastly. Refer to the Varnish 2.1 documentation when looking at the VCL code.
 
 ### Conditional request caching
 
@@ -108,7 +86,7 @@ See the Varnish/Fastly docs for what these mean. Check out the Fastly [debugging
 
 Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific IP addresses (otherwise anyone would be able to purge the cache).
 
-[vcl_config]: https://github.com/alphagov/govuk-cdn-config/
+[vcl_config]: https://github.com/alphagov/govuk-fastly/
 
 ## Fastly's IP ranges and our access controls on origin servers
 
@@ -138,7 +116,7 @@ Banning IPs shouldn't be taken lightly because many users can share the same IP 
 
 You can change the list of banned IP addresses by modifying the [YAML config file][ip_ban_config] and [deploying the configuration][dictionary_deploy].
 
-[ip_ban_config]: https://github.com/alphagov/govuk-cdn-config-secrets/blob/master/fastly/dictionaries/config/ip_address_denylist.yaml
+[ip_ban_config]: https://github.com/alphagov/govuk-fastly-secrets/blob/45381b4e0af022dfb4ba51c485551e023c2e2e12/dictionaries.yaml#L4
 
 ### Block requests based on their JA3 signature
 
@@ -146,7 +124,7 @@ You can change the list of banned IP addresses by modifying the [YAML config fil
 
 Much like the IP addresses logic above, we're able to block traffic based on its JA3 signature. To do this:
 
-1) Update the [JA3 signature denylist dictionary](https://github.com/alphagov/govuk-cdn-config-secrets/blob/main/fastly/dictionaries/config/ja3_signature_denylist.yaml)
+1) Update the [JA3 signature denylist dictionary](https://github.com/alphagov/govuk-fastly-secrets/blob/45381b4e0af022dfb4ba51c485551e023c2e2e12/dictionaries.yaml#L1-L3)
 2) [Deploy the dictionary][dictionary_deploy] to the `www` and `assets` services.
 
 Note that banning JA3s is potentially risky. If we get it wrong, we could ban a legitimate browser version.
@@ -155,7 +133,7 @@ Note that banning JA3s is potentially risky. If we get it wrong, we could ban a 
 
 As well as blocking based on source IP address or JA3 fingerprint, we can also block abusive traffic based on headers, URL paths or any arbitrary criteria about the request that we can specify using VCL. This requires care and testing, but can be nonetheless a valueable incident response tool for mitigating DoS and spam attacks.
 
-We have a mechanism for including VCL code from the private `govuk-cdn-config-secrets` repo into the Fastly config, so that mitigations we make during an attack are not published to the public repo for the attacker to see and work around. An example of this is [alphagov/govuk-cdn-secrets#133](https://github.com/alphagov/govuk-cdn-config-secrets/pull/133/files).
+We have a mechanism for including VCL code from the private `govuk-cdn-config-secrets` repo into the Fastly config, so that mitigations we make during an attack are not published to the public repo for the attacker to see and work around. An example of this [can be found here](https://github.com/alphagov/govuk-fastly-secrets/blob/45381b4e0af022dfb4ba51c485551e023c2e2e12/secrets.yaml#L27-L35).
 
 ### Block traffic using the AWS WAF
 
@@ -191,4 +169,6 @@ They have created a map which we access using `bouncer-cdn.production.govuk.serv
 
 Domains do not need to be added to the "Production Bouncer" Fastly service like they used to be.
 
-[dictionary_deploy]: https://deploy.blue.production.govuk.digital/job/Update_CDN_Dictionaries/build
+[dictionary_deploy]: https://app.terraform.io/app/govuk/workspaces/govuk-fastly-secrets
+[govuk-fastly]: https://github.com/alphagov/govuk-fastly
+[govuk-fastly-secrets]: https://github.com/alphagov/govuk-fastly-secrets
