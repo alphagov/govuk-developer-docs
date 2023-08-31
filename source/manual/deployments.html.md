@@ -56,4 +56,14 @@ This is an example deploying an application to integration:
 1. Argo CD triggers the ["post-sync" workflow](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/post-sync/workflow.yaml) in [Argo Workflows in integration](https://argo-workflows.eks.integration.govuk.digital/workflows/apps)
     1. Runs smoke tests for the app
     1. Checks if deployment should be promoted
-    1. If so, sends a webhook to Argo Workflows (in production) to trigger deploy-image for the next environment
+    1. If so, sends a webhook to Argo Workflows (in production) to trigger deploy-image for the next environment.
+
+## Troubleshooting
+
+If your release does not make it to production:
+
+1. Updates on status of Argo workflows are posted in #govuk-deploy-alerts.
+2. Click on View workflow for your failed deployment.
+3. You may be presented with am ugly login error, in which case try logging out, logging in and then clicking the view workflow button again.
+4. The argo workflow will display a list of steps. To investigate the reason for failure, click on the failed job, and from the summary panel click on LOGS.
+5. If the failure is due to a flakey smokey test, you can hit the RESUBMIT button for the full workflow.
