@@ -189,7 +189,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/router/commit/30288348ff932473974c59e568e69b02ad06bd53">17 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/router/commit/e71b5433f699f99d46e6817b972c118d6a702987">4 Sep 2023</a>
 </div>
 
   <h1 class="page-title">router: ADR 001 - How we migrate Router/Router-API from Mongo to Postgres</h1>
@@ -230,7 +230,12 @@
 <li>Harder to clean up</li>
 </ul>
 <h2 id="status">Status</h2>
-<p>Accepted</p>
+<p><del>Accepted</del></p>
+<p>Reverted</p>
+<p>On recommendation from the Tech Lead of the Platform Engineering team</p>
+<blockquote>
+<p>For simplicity, we came to the conclusion that assuming that the separate postgres version of router-api is running in the background already, and is fully up to date (as in, all changes before it went "live" are synced, plus anything new after the fact), then there is no reason for Router to not just be delivered as normal.</p>
+</blockquote>
 
 
             
