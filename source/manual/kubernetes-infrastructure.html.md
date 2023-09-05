@@ -8,7 +8,7 @@ type: learn
 ---
 
 This is a temporary page to tide us over as we get used to the new EKS platform.
-It will eventually be consolidated when the [GOV.UK Kubernetes docs](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/) are absorbed into the Developer Docs.
+It will eventually be removed and everything consolidated into the [Kubernetes section of the Developer Docs](/kubernetes).
 
 ## Quick reference
 
@@ -44,14 +44,14 @@ Use an AWS role with sufficient permissions:
 - poweruser can run Rake tasks or open a shell
 - administrator gives full access (you'll rarely need this)
 
-See [full instructions for more detail](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/).
+See [full instructions for more detail](/kubernetes/get-started/access-eks-cluster/).
 
 ## Prerequisites
 
 You need to have:
 
-- completed the [set up instructions](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/)
-- [tested your access](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#test-your-access)
+- completed the [set up instructions](/kubernetes/get-started/set-up-tools/)
+- [tested your access](/kubernetes/get-started/access-eks-cluster/#test-your-access)
 
 The following commands also assume you have set the recommended aliases (see the [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)), default contexts and globals:
 
