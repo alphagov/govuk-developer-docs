@@ -10,7 +10,7 @@ There is a backup Content Delivery Network (CDN) that can be used if Fastly is d
 This backup CDN is currently provided by AWS CloudFront.
 
 > **Important** The failover CloudFront distribution does not have feature parity with the primary Fastly service.
-> Most features will continue to work, including search, smart answers, and postcode lookups. Some features, including
+> [Most features](https://docs.google.com/document/d/17_dfWvKNmqyLX1h_PPY6_Cd6IggrrSsP-Peh2De6JQk/edit) will continue to work, including search, smart answers, and postcode lookups. Some features, including
 > A/B testing, will not work.
 
 ## Fail over checklist
