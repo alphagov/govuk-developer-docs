@@ -7,6 +7,8 @@ type: learn
 parent: "/manual.html"
 ---
 
+> This service is no longer available and was superseded by a new [Contracts Finder](https://www.gov.uk/contracts-finder) designed and operated by the Crown Commercial Service.
+
 ## Application
 
 Visit the [contracts archive finder](https://data.gov.uk/data/contracts-finder-archive).
