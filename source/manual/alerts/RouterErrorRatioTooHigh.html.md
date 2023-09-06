@@ -32,4 +32,4 @@ Use [this][app-5xx-error-rates-grafana] dashboard to check which applications ha
 [router-5xx-request-rates-grafana]: https://grafana.eks.integration.govuk.digital/d/router-requests/router-request-rates-errors-durations?orgId=1&var-namespace=apps&var-backend_app=All&var-quantile=0.99&var-error_status=500&var-error_status=503&var-error_status=504
 [app-5xx-error-rates-grafana]: https://grafana.eks.prodution.govuk.digital/d/app-requests/app-request-rates-errors-durations?orgId=1&refresh=1m&var-namespace=apps&var-app=All&var-quantile=All&var-error_status=500&var-error_status=503
 [prod-kibana]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover
-[scale-app]: https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/manage-app/scale-app/#scaling-your-app
+[scale-app]: /kubernetes/manage-app/scale-app/#scaling-your-app

@@ -1,0 +1,42 @@
+<% last_updated_banner = capture do %>
+  <%= partial 'partials/last_updated' %>
+<% end %>
+
+<% html = "#{last_updated_banner} #{yield}" %>
+<% content_for :page_description, Snippet.generate(html) %>
+<%
+  directory_name = current_page.path.split("/").first
+  resources = sitemap.resources.select do |r|
+    r.path.start_with?(directory_name)
+  end
+  content_for :sidebar do
+%>
+  <%= multi_page_table_of_contents(resources, current_page, config, html) %>
+<% end %>
+
+<% wrap_layout :core do %>
+  <%= html %>
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+      'use strict'
+      /*
+        Cannot use `$(document).ready` on next line as jQuery has not loaded
+        yet. But we can use jQuery in the callback.
+      */
+      window.addEventListener('load', function () {
+        try {
+          new GOVUK.Modules.InPageNavigation().start($("html"));
+        }
+        catch (error) {
+          /* Fail without causing other JS in the page to break */
+          console.log("Error calling GOVUK's InPageNavigation module", error);
+        }
+      })
+    }());
+  </script>
+<% end %>
