@@ -51,6 +51,6 @@ For each application a PR is raised for (either manually or via bulk-changer), y
 1. The PR should be safe to merge.
 
 [bulk-changer]: https://github.com/alphagov/bulk-changer
-[checking the logs]: https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/manage-app/get-app-info/#view-app-logs
+[checking the logs]: /kubernetes/manage-app/get-app-info/#view-app-logs
 [Grafana Integration]: https://grafana.eks.integration.govuk.digital/?orgId=1&search=open&q=app+request+rates
 [Sentry Projects]: https://govuk.sentry.io/projects/

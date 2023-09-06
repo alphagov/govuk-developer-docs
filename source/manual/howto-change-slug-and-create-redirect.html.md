@@ -18,7 +18,7 @@ These Rake Tasks also reindex the entity with its new slug and republish it to
 Publishing API, which automatically handles the redirect. They all take the old
 slug and the new slug as arguments.
 
-If you have not accessed the EKS before you will need to follow [the set up guide](https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/) first.
+If you have not accessed the EKS before you will need to follow [the set up guide](/kubernetes/get-started/set-up-tools/) first.
 
 To run a Rake task you need to:
 
