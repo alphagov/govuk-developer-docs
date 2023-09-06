@@ -249,7 +249,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/67aabcd456f45bb028e701eb839c62e84c6ef497">30 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/bb599c2a80dba0242ff919fb656193a47c85a665">6 Sep 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Real User Metrics</h1>
@@ -275,8 +275,8 @@
 <h3 id="customer-id">Customer ID</h3>
 <p>The customer ID is an identifier for the site using LUX, not for the user visiting the site. It won't change from page to page, or from visitor to visitor.</p>
 <p>When loading <code>lux.js</code> from SpeedCurve's CDN, the customer ID is appended to the end of the URI as a query string. The script looks for a script in the DOM with a source of <code>lux.js</code>, and from that extracts the customer ID.</p>
-<p>Rails adds a fingerprint to the URI which means that <code>lux.js</code> becomes (for example) <code>lux.self-7137780d5344a93190a2c698cd660619d4197420b9b1ef963b639a825a6aa5ff.js</code> and the script can't find itself.</p>
-<p>Because of this the customer ID needs to be set at the end of the <code>lux.js</code> file:</p>
+<p>Rails adds a fingerprint to the URI which means that <code>lux.js</code> becomes (for example) <code>lux.self-7137780d5344a93190a2c698cd660619d4197420b9b1ef963b639a825a6aa5ff.js</code> and the script can't find itself. Because of this that part of the script would fail. Instead, we modify the <code>getCustomerId()</code> function to simply return <code>LUX.customerid</code>.</p>
+<p>Because of this the customer ID needs to be set in the <code>lux.js</code> file:</p>
 <pre lang="javascript"><code>LUX.customerid = 47044334
 </code></pre>
 <h3 id="sending-information">Sending information</h3>
