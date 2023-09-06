@@ -76,13 +76,16 @@
               <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
             </li>
             <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/apps.html">Apps</a>
             </li>
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/repos.html">Repos</a>
-            </li>
-            <li class="govuk-header__navigation-item">
-              <a class="govuk-header__link" href="/manual.html">Manual</a>
             </li>
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
@@ -252,7 +255,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/28fdfcb25590ed2fa3c6af99e31e213eaa25584b">1 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec01fb1564b3bb2cf9e0ea1cde531c20c6f03ff3">5 Sep 2023</a>
 </div>
 
  <h1 id='header'>Get started developing on GOV.UK</h1> <blockquote>
@@ -425,7 +428,7 @@ class users::johnsmith {
   HostkeyAlgorithms +ssh-rsa
   PubkeyAcceptedAlgorithms +ssh-rsa
 </code></pre></div><p>Note this may happen even if you don&rsquo;t use an rsa ssh private key - it is caused by the <em>host key</em> which is defined by the server you connect to, not your <em>user key</em> which you have defined.</p>
-<h2 id='11-set-up-tools-to-use-the-gov-uk-kubernetes-platform'>11. Set up tools to use the GOV.UK Kubernetes platform</h2><p>Follow <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">the instructions for setting up tools to use the GOV.UK Kubernetes platform</a>.</p>
+<h2 id='11-set-up-tools-to-use-the-gov-uk-kubernetes-platform'>11. Set up tools to use the GOV.UK Kubernetes platform</h2><p>Follow <a href="/kubernetes/get-started/set-up-tools/">the instructions for setting up tools to use the GOV.UK Kubernetes platform</a>.</p>
 <h2 id='12-get-a-signon-account-for-integration'>12. Get a Signon account for integration</h2><p><a href="/repos/signon.html">Signon</a> is the application used to control access to the GOV.UK Publishing applications.</p>
 <p>Ask your tech lead to <a href="https://signon.integration.publishing.service.gov.uk/users/invitation/new">create an account for the integration Signon</a>, at &lsquo;Superadmin&rsquo; level with permission to access the applications that your team are likely to work on.</p>
 <h2 id='13-get-access-to-the-release-app'>13. Get access to the Release app</h2><p><a href="/repos/release.html">Release</a> is the application we use to track deployments,

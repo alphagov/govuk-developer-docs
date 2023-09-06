@@ -73,14 +73,17 @@
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
             </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/apps.html">Apps</a>
             </li>
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/repos.html">Repos</a>
-            </li>
-            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
-              <a class="govuk-header__link" href="/manual.html">Manual</a>
             </li>
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
@@ -189,7 +192,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8850f668aaaeead70ba846860da48890660279a5">24 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec01fb1564b3bb2cf9e0ea1cde531c20c6f03ff3">5 Sep 2023</a>
 </div>
 
  <h1 id='header'>Change a slug and create redirect in Whitehall</h1> <h2 id='change-a-slug-and-create-a-redirect-in-whitehall'>Change a slug and create a redirect in Whitehall</h2><p>In Whitehall, we have Rake Tasks to change slugs and create redirects for
@@ -198,7 +201,7 @@ various entities: <code>Person</code>, <code>Role</code>, <code>Document</code>,
 <h3 id='rake-tasks'>Rake Tasks</h3><p>These Rake Tasks also reindex the entity with its new slug and republish it to
 Publishing API, which automatically handles the redirect. They all take the old
 slug and the new slug as arguments.</p>
-<p>If you have not accessed the EKS before you will need to follow <a href="https://govuk-kubernetes-cluster-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">the set up guide</a> first.</p>
+<p>If you have not accessed the EKS before you will need to follow <a href="/kubernetes/get-started/set-up-tools/">the set up guide</a> first.</p>
 <p>To run a Rake task you need to:</p>
 
 <ul>
