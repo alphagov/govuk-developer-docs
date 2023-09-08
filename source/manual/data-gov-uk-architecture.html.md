@@ -37,7 +37,7 @@ The `data.gov.uk` (DGU) platform is used to publish and view datasets. A dataset
 
 ## Architectural overview of data.gov.uk
 
-![](/manual/images/dgu-architecture.png)
+![](/manual/images/2023-dgu-architecture.png)
 
 The original for this diagram is available on the [Platform Health Google Drive](https://drive.google.com/open?id=1xnwgUBrwnQI2aIfZ0FT8nBQ-pERNRo2r) and can be edited with draw.io.
 
@@ -78,8 +78,6 @@ cf routes
 cf env publish-data-beta-production
 ```
 
-We use [GOV.UK Signon][signon] for user authentication in [Publish Data][publish], with the app in each environment linked to the corresponding instance of [GOV.UK Signon][signon]. See the Publish ADR for more info.
-
 ## [CKAN]
 
-[CKAN] is hosted on AWS and is maintained/deployed in the same way as most other GOV.UK applications.
+[CKAN] is hosted on AWS EKS and is maintained/deployed in the same way as most other GOV.UK applications.
