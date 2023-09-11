@@ -138,6 +138,9 @@
         <a href="#nomenclature"><span>Nomenclature</span></a>
       </li>
       <li>
+        <a href="#how-gov-uk-projects-are-added-to-sentry"><span>How GOV.UK projects are added to Sentry</span></a>
+      </li>
+      <li>
         <a href="#how-sentry-is-integrated-on-gov-uk"><span>How Sentry is integrated on GOV.UK</span></a>
       </li>
       <li>
@@ -247,7 +250,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/04478e3bcfb5da3b8d4bc3f9b21aa4b9bc0fa4a1">11 Sep 2023</a>
 </div>
 
  <h1 id='header'>Sentry</h1> <p><a href="https://sentry.io/govuk/">Sentry</a> is a service that collates errors that happen on GOV.UK in one
@@ -283,12 +286,14 @@ whether errors are grouped under the same issue.</li>
 such as stack trace, arguments, server IP and error message.
 See <a href="https://sentry.io/organizations/govuk/issues/2155210524/events/aa4edd05a94c4d14b07d4c754a13c788/">example</a>.</li>
 </ul>
-<h2 id='how-sentry-is-integrated-on-gov-uk'>How Sentry is integrated on GOV.UK</h2><p>Projects can be created and edited in the Sentry UI, but this risks creating
+<h2 id='how-gov-uk-projects-are-added-to-sentry'>How GOV.UK projects are added to Sentry</h2><p>Projects can be created and edited in the Sentry UI, but this risks creating
 inconsistencies or missing apps. We therefore configure projects using
-<a href="https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L1-L12">govuk-saas-config</a> (and its <a href="https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L26-L87">associated rake tasks</a>, used for
-<a href="/manual/setting-up-new-rails-app.html#create-the-application-in-sentry">creating apps in Sentry</a>), which read a <a href="/apps.json">list of apps</a>
-from govuk-developer-docs and make sure that all configuration is set up correctly.</p>
-<p>Apps are configured to talk to Sentry using the <a href="https://github.com/alphagov/govuk_app_config">govuk_app_config</a> gem,
+Terraform.</p>
+<p><a href="https://github.com/alphagov/govuk-user-reviewer/blob/main/terraform/saas/sentry.tf">Teams are managed in govuk-user-reviewer</a>,
+and <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/sentry/locals.tf">projects are managed in govuk-infrastructure</a>.</p>
+<p>To create a new team or project, edit the respective terraform and run a
+plan and apply of the project in Terraform Cloud.</p>
+<h2 id='how-sentry-is-integrated-on-gov-uk'>How Sentry is integrated on GOV.UK</h2><p>Apps are configured to talk to Sentry using the <a href="https://github.com/alphagov/govuk_app_config">govuk_app_config</a> gem,
 which interfaces with Sentry via its <a href="https://github.com/alphagov/govuk_app_config/blob/master/lib/govuk_app_config/govuk_error.rb"><code>GovukError</code> class</a>. Apps
 call <code>GovukError.configure</code> - see <a href="https://github.com/alphagov/email-alert-api/blob/main/config/initializers/govuk_error.rb">example</a>. This
 uses the <a href="https://github.com/alphagov/govuk_app_config/pull/160">delegator pattern</a> to proxy requests to the
