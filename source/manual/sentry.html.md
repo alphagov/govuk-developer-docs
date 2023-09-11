@@ -49,13 +49,19 @@ Your tech lead should raise a PR to give you Sentry access in the [govuk_tech.ym
 [example-issue]: https://sentry.io/organizations/govuk/issues/2150349125/?project=202259&query=is%3Aunresolved
 [example-error]: https://sentry.io/organizations/govuk/issues/2155210524/events/aa4edd05a94c4d14b07d4c754a13c788/
 
-## How Sentry is integrated on GOV.UK
+## How GOV.UK projects are added to Sentry
 
 Projects can be created and edited in the Sentry UI, but this risks creating
 inconsistencies or missing apps. We therefore configure projects using
-[govuk-saas-config][] (and its [associated rake tasks][rake-tasks], used for
-[creating apps in Sentry][create-apps]), which read a [list of apps][docs-apps]
-from govuk-developer-docs and make sure that all configuration is set up correctly.
+Terraform.
+
+[Teams are managed in govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer/blob/main/terraform/saas/sentry.tf),
+and [projects are managed in govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/sentry/locals.tf).
+
+To create a new team or project, edit the respective terraform and run a
+plan and apply of the project in Terraform Cloud.
+
+## How Sentry is integrated on GOV.UK
 
 Apps are configured to talk to Sentry using the [govuk_app_config][] gem,
 which interfaces with Sentry via its [`GovukError` class][govukerror]. Apps
@@ -68,10 +74,6 @@ Unhandled exceptions are automatically logged to Sentry, but you can also
 [manually report something to Sentry using `GovukError.notify`][manually-report].
 This method takes an exception object, or a string.
 
-[create-apps]: /manual/setting-up-new-rails-app.html#create-the-application-in-sentry
-[docs-apps]: /apps.json
-[govuk-saas-config]: https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L1-L12
-[rake-tasks]: https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L26-L87
 [delegator-pattern]: https://github.com/alphagov/govuk_app_config/pull/160
 [sentry-ruby]: https://github.com/getsentry/sentry-ruby/tree/master/sentry-raven
 [govuk_app_config]: https://github.com/alphagov/govuk_app_config
