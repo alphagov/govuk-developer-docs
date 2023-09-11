@@ -36,7 +36,7 @@ There are several GOV.UK GitHub teams within alphagov, including:
 
 # Getting access to GitHub
 
-Not everyone on GOV.UK requires GitHub access, as much of what we do is in the open. However, if your role requires it, you should be added to the org and the relevant team(s) through Terraform, in [govuk-user-reviewer][govuk-user-reviewer] - _not_ manually added through the GitHub UI itself, as this breaks the Terraform setup.
+Not everyone on GOV.UK requires GitHub access, as much of what we do is in the open. However, if your role requires it, you should be added to the org and the relevant team(s) through Terraform, in [govuk-user-reviewer][govuk-user-reviewer] - _not_ manually added through the GitHub UI itself, as this breaks the Terraform setup. Note that you will be sent an invitation email and will have to accept the invite before you are added to the organisation.
 
 - If you're a content designer, ask for GitHub access via Zendesk (see [example ticket](https://govuk.zendesk.com/agent/tickets/5297731/events))
 - If you're an engineer or contractor, ask your tech lead to follow the instructions in [govuk-user-reviewer][govuk-user-reviewer] to add you.
