@@ -47,21 +47,25 @@ Not everyone on GOV.UK requires GitHub access, as much of what we do is in the o
   - which GitHub team(s) you should join ([see list](#govuk-teams))
   - why you need access
 
-# How GOV.UK manages its repositories
+# GOV.UK repos
 
-All repos owned by GOV.UK should be tagged with the [`govuk`](https://github.com/search?q=topic:govuk) "topic".
+## Create and configure a new GOV.UK repo
 
-All active GOV.UK repos should be added to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the Developer Docs. All inactive repos should be archived in GitHub and marked as retired in the repos.yml file (see "[retire a repo](/manual/retiring-a-repo.html)"). We run a [daily script](https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml) to ensure that the Developer Docs' config is in sync with GitHub.
+When creating a new GOV.UK repo, you must ensure it:
 
-GOV.UK repos should grant the following access to GitHub teams:
+- has a well written README (see [READMEs for GOV.UK applications](/manual/readmes.html), or the [GDS Way guidance](https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes) for general repositories)
+- is tagged with the [`govuk`](https://github.com/search?q=topic:govuk) "topic"
+- is added to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the Developer Docs. We run a [daily script](https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml) to ensure that the Developer Docs' config is in sync with GitHub.
+- grants the following access to GitHub teams:
+  - [GOV.UK CI Bots][team-govuk-ci-bots]: Admin access
+  - [GOV.UK Production Admin][team-govuk-production-admin]: Admin access
+  - [GOV.UK team][team-govuk]: Write access
 
-- [GOV.UK CI Bots][team-govuk-ci-bots]: Admin access
-- [GOV.UK Production Admin][team-govuk-production-admin]: Admin access
-- [GOV.UK team][team-govuk] Write access
+The team access currently needs applying manually, but [watch this space](https://trello.com/c/tbQjgkwR/3249-have-govuk-saas-config-grant-team-access-to-govuk-tagged-repos-3). The rest of the configuration is automated - see below.
 
-The above is currently done manually, but [watch this space](https://trello.com/c/tbQjgkwR/3249-have-govuk-saas-config-grant-team-access-to-govuk-tagged-repos-3). The rest of the configuration is automated - see below.
+## How GOV.UK automates its repository settings
 
-We currently use two tools for automating the configuration of our repositories:
+We currently use two tools for this:
 
 1. [govuk-saas-config](https://github.com/alphagov/govuk-saas-config/blob/main/github/lib/configure_repo.rb). This runs every night and:
   - Applies [branch protection](https://help.github.com/articles/about-protected-branches) rules and configures PRs to be blocked on the outcome of the [GitHub Action CI](/manual/test-and-build-a-project-with-github-actions.html) workflow (if one exists)
