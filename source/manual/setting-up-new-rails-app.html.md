@@ -238,17 +238,8 @@ Open a pull request to add your Rails app to the [GOV.UK developer documentation
 
 ### Create the application in Sentry
 
-After you’ve added your Rails app to the GOV.UK developer documentation, run the [`update_project` rake task][sentry-update-project-rake-task] in [GOV.UK SaaS Config][govuk-saas-config] to update Sentry.
-
-From the `sentry` directory, run:
-
-```
-SENTRY_AUTH_TOKEN="token_value" bundle exec rake update_project[APP_NAME]
-```
-
-You'll need to [create a Sentry auth token](https://sentry.io/settings/account/api/auth-tokens/) first. Make sure it has the `project:write` scope. You can delete the token once you've successfully run the rake task.
-
-The rake task will create a 'project' for the app under the team name denoted by the app's `team` in the Developer Docs. If the team does not exist in Sentry yet, you can manually create it in the Sentry UI. If the Sentry team name does not match the Slack channel `team` name used in the Developer Docs, you can temporarily rename it so that it matches what the rake task expects, and then change it back later.
+After you’ve added your Rails app to the GOV.UK developer documentation,
+[add the project to Sentry](/manual/sentry.html#how-govuk-projects-are-added-to-sentry).
 
 ### Add your Rails app to Release app
 
