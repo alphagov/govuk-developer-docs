@@ -241,7 +241,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/04478e3bcfb5da3b8d4bc3f9b21aa4b9bc0fa4a1">11 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a9d367853ec75ec2cd236594f4fb1cfc0a2e346a">1 Aug 2023</a>
 </div>
 
  <h1 id='header'>Set up a new Rails application</h1> <h2 id='before-you-start'>Before you start</h2><p>Before you create a Ruby on Rails (“Rails”) app, you must complete all steps in the <a href="/manual/get-started.html">GOV.UK developer get started documentation</a>.</p>
@@ -383,8 +383,11 @@ SOFTWARE.
 <h3 id='configure-your-rails-app39s-deployment'>Configure your Rails app&rsquo;s deployment</h3><p>To configure your app&rsquo;s deployment, see the <a href="https://github.com/alphagov/govuk-app-deployment">GOV.UK application deployment scripts</a>.</p>
 <h3 id='enable-external-dns'>Enable external DNS</h3><p>If you need to enable external DNS, find out how to <a href="/manual/dns.html#dns-for-the-publishingservicegovuk-domain">make changes to publishing.service.gov.uk</a>.</p>
 <h3 id='add-your-app-to-the-gov-uk-developer-documentation'>Add your app to the GOV.UK developer documentation</h3><p>Open a pull request to add your Rails app to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">GOV.UK developer documentation <code>data/repos.yml</code> file</a>.</p>
-<h3 id='create-the-application-in-sentry'>Create the application in Sentry</h3><p>After you’ve added your Rails app to the GOV.UK developer documentation,
-<a href="/manual/sentry.html#how-govuk-projects-are-added-to-sentry">add the project to Sentry</a>.</p>
+<h3 id='create-the-application-in-sentry'>Create the application in Sentry</h3><p>After you’ve added your Rails app to the GOV.UK developer documentation, run the <a href="https://github.com/alphagov/govuk-saas-config/blob/045668beed8aebc50b876108363c8d1a25bdf80c/sentry/Rakefile#L69-L83"><code>update_project</code> rake task</a> in <a href="https://github.com/alphagov/govuk-saas-config">GOV.UK SaaS Config</a> to update Sentry.</p>
+<p>From the <code>sentry</code> directory, run:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>SENTRY_AUTH_TOKEN="token_value" bundle exec rake update_project[APP_NAME]
+</code></pre></div><p>You&rsquo;ll need to <a href="https://sentry.io/settings/account/api/auth-tokens/">create a Sentry auth token</a> first. Make sure it has the <code>project:write</code> scope. You can delete the token once you&rsquo;ve successfully run the rake task.</p>
+<p>The rake task will create a &lsquo;project&rsquo; for the app under the team name denoted by the app&rsquo;s <code>team</code> in the Developer Docs. If the team does not exist in Sentry yet, you can manually create it in the Sentry UI. If the Sentry team name does not match the Slack channel <code>team</code> name used in the Developer Docs, you can temporarily rename it so that it matches what the rake task expects, and then change it back later.</p>
 <h3 id='add-your-rails-app-to-release-app'>Add your Rails app to Release app</h3><p>Add your Rails app to the <a href="https://release.publishing.service.gov.uk/applications">Release</a> app and select <strong>Create</strong>.</p>
 <h3 id='run-the-deploy_app-job'>Run the Deploy_App job</h3><p>Run the <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">Deploy_App job</a>.</p>
 <p>Use the <code>with_migrations</code> option if your Rails app has a database.</p>
