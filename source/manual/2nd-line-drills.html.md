@@ -30,12 +30,11 @@ You can run this in any environment, as you're only running `plan` - not `apply`
 
 On Integration or Staging, follow the [Restore an RDS instance via the AWS CLI](/manual/howto-backup-and-restore-in-aws-rds.html#restore-an-rds-instance-via-the-aws-cli) instructions for an app of your choice.
 
-## Force failover to GOV.UK mirror and Emergency publishing using the GOV.UK mirror
+## Emergency publishing using the GOV.UK mirror
 
 1. Warn in `#govuk-2ndline-tech` that you're about to do this, as it will lead to a spike in alerts and will also break continuous deployment for a while (due to Smokey failures).
-1. Follow the [Forcing failover to the GOV.UK mirrors](/manual/fall-back-to-mirror.html#forcing-failover-to-the-gov-uk-mirrors) instructions on Integration or Staging.
-1. To verify that it worked, visit a page at random and [purge the page from cache](/manual/purge-cache.html). Reload the page, to see the 'mirrored' version of the content. NB: you wouldn't do this in a real incident, as we'd want to serve Fastly's cached version for as long as possible.
-1. Undo your changes to have Nginx handling requests again.
+1. Follow the [Emergency publishing content using the GOV.UK mirror](/manual/fall-back-to-mirror.html#emergency-publishing-content-using-the-gov-uk-mirror) instructions on Integration or Staging.
+1. To verify that it worked, ???
 
 ## Drill logging into accounts
 
