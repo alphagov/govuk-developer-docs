@@ -141,7 +141,15 @@
     <a href="#getting-access-to-github"><span>Getting access to GitHub</span></a>
   </li>
   <li>
-    <a href="#how-gov-uk-manages-its-repositories"><span>How GOV.UK manages its repositories</span></a>
+    <a href="#gov-uk-repos"><span>GOV.UK repos</span></a>
+    <ul>
+      <li>
+        <a href="#create-and-configure-a-new-gov-uk-repo"><span>Create and configure a new GOV.UK repo</span></a>
+      </li>
+      <li>
+        <a href="#how-gov-uk-automates-its-repository-settings"><span>How GOV.UK automates its repository settings</span></a>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -191,7 +199,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2ae2d3016bccdf57bb078dcb252a60f84fc8c7d0">11 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b3cf38bbd43c26be4723ad2c9312f75ca0ceb6c4">11 Sep 2023</a>
 </div>
 
  <h1 id='header'>GitHub</h1> <p>GOV.UK uses GitHub for version control, code deployments, authentication, CI, Dependabot and GitHub Pages. Read the &ldquo;<a href="https://docs.google.com/document/d/1KsYWCHSQZEwqB2NF1A7Z9rmP1s1azcZhEamaPsXAoxk/edit">GOV.UK reliance on GitHub features doc</a>&rdquo; Google doc for more information.</p>
@@ -226,17 +234,22 @@ Only content designers should be added to this team.</p></li>
 <li>why you need access</li>
 </ul></li>
 </ul>
-<h1 id='how-gov-uk-manages-its-repositories'>How GOV.UK manages its repositories</h1><p>All repos owned by GOV.UK should be tagged with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> &ldquo;topic&rdquo;.</p>
-<p>All active GOV.UK repos should be added to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml</a> file in the Developer Docs. All inactive repos should be archived in GitHub and marked as retired in the repos.yml file (see &ldquo;<a href="/manual/retiring-a-repo.html">retire a repo</a>&rdquo;). We run a <a href="https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml">daily script</a> to ensure that the Developer Docs&rsquo; config is in sync with GitHub.</p>
-<p>GOV.UK repos should grant the following access to GitHub teams:</p>
+<h1 id='gov-uk-repos'>GOV.UK repos</h1><h2 id='create-and-configure-a-new-gov-uk-repo'>Create and configure a new GOV.UK repo</h2><p>When creating a new GOV.UK repo, you must ensure it:</p>
+
+<ul>
+<li>has a well written README (see <a href="/manual/readmes.html">READMEs for GOV.UK applications</a>, or the <a href="https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes">GDS Way guidance</a> for general repositories)</li>
+<li>is tagged with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> &ldquo;topic&rdquo;</li>
+<li>is added to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml</a> file in the Developer Docs. We run a <a href="https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml">daily script</a> to ensure that the Developer Docs&rsquo; config is in sync with GitHub.</li>
+<li>grants the following access to GitHub teams:
 
 <ul>
 <li><a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a>: Admin access</li>
 <li><a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a>: Admin access</li>
-<li><a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK team</a> Write access</li>
+<li><a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK team</a>: Write access</li>
+</ul></li>
 </ul>
-<p>The above is currently done manually, but <a href="https://trello.com/c/tbQjgkwR/3249-have-govuk-saas-config-grant-team-access-to-govuk-tagged-repos-3">watch this space</a>. The rest of the configuration is automated - see below.</p>
-<p>We currently use two tools for automating the configuration of our repositories:</p>
+<p>The team access currently needs applying manually, but <a href="https://trello.com/c/tbQjgkwR/3249-have-govuk-saas-config-grant-team-access-to-govuk-tagged-repos-3">watch this space</a>. The rest of the configuration is automated - see below.</p>
+<h2 id='how-gov-uk-automates-its-repository-settings'>How GOV.UK automates its repository settings</h2><p>We currently use two tools for this:</p>
 
 <ol>
 <li><a href="https://github.com/alphagov/govuk-saas-config/blob/main/github/lib/configure_repo.rb">govuk-saas-config</a>. This runs every night and:
