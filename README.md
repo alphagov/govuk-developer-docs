@@ -39,6 +39,12 @@ Disabling proxy pages means you'll get a "Not Found" error if you try to access 
 bundle exec rake
 ```
 
+### Running the app
+
+```
+./startup.sh
+```
+
 ### Updating the template
 
 You can pull down the latest version of the Tech Docs template by running:
