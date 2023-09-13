@@ -205,15 +205,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/001b12723a2a61054303feede5d5924a6e6c3b4a">28 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/45cf857e31714b6604e1f068db6e67ef6bfc3108">13 Sep 2023</a>
 </div>
 
   <h1 class="page-title">govuk-infrastructure: Content Delivery Network (CDN) - Fastly</h1>
@@ -242,12 +235,7 @@ You should use the same domain that you have chosen above. Make a note of the ne
 <li>Create a pull request in the <a href="https://github.com/alphagov/govuk-cdn-config-secrets">GitHub repo</a>
 with a new service under <code>www-eks</code>. You can use this previous <a href="https://github.com/alphagov/govuk-cdn-config-secrets/pull/151">pull request</a>
 as example.</li>
-<li>The Fastly CDN service is currently configured by running the Jenkins <code>Deploy_CDN</code>
-job in the relevant EC2 Jenkins instance of the particular GOV.UK environment
-where you want to deploy. You should deploy your changes by running <code>www-eks</code>
-vhost version of that job. Further details on how to deploy deploy CDN changes
-are available <a href="https://docs.publishing.service.gov.uk/manual/cdn.html">here</a>
-</li>
+<li>See <a href="https://docs.publishing.service.gov.uk/manual/cdn.html#deploying-fastly">how to deploy Fastly</a>.</li>
 </ol>
 
 
