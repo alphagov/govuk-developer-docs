@@ -199,15 +199,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/cb8bd86eab4b8ed7c69e0a6644382987b5a43a63">6 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/7379c66762bac9f3a8e53340e0fbc664e7ba4a3f">13 Sep 2023</a>
 </div>
 
   <h1 class="page-title">account-api: API documentation</h1>
@@ -235,9 +228,6 @@ management. This API is not for other government services.</p>
 <li><a href="#get-usermatch-by-email"><code>GET /user/match-by-email</code></a></li>
 <li><a href="#get-apiattributes"><code>GET /api/attributes</code></a></li>
 <li><a href="#patch-apiattributes"><code>PATCH /api/attributes</code></a></li>
-<li><a href="#get-apiemail-subscriptionssubscription_name"><code>GET /api/email-subscriptions/:subscription_name</code></a></li>
-<li><a href="#put-apiemail-subscriptionssubscription_name"><code>PUT /api/email-subscriptions/:subscription_name</code></a></li>
-<li><a href="#delete-apiemail-subscriptionssubscription_name"><code>DELETE /api/email-subscriptions/:subscription_name</code></a></li>
 <li><a href="#put-apioidc-userssubject_identifier"><code>PUT /api/oidc-users/:subject_identifier</code></a></li>
 <li><a href="#delete-apioidc-userssubject_identifier"><code>DELETE /api/oidc-users/:subject_identifier</code></a></li>
 <li><a href="#get-apipersonalisationcheck-email-subscription"><code>GET /api/personalisation/check-email-subscription</code></a></li>
@@ -674,164 +664,6 @@ an appropriate message with a single API call.</p>
     "govuk_account_session": "YWNjZXNzLXRva2Vu.cmVmcmVzaC10b2tlbg=="
 }
 </code></pre>
-<h3 id="get-apiemail-subscriptionssubscription_name"><code>GET /api/email-subscriptions/:subscription_name</code></h3>
-<p>Get the details of a named email subscription</p>
-<h4 id="request-headers">Request headers</h4>
-<ul>
-<li>
-<code>GOVUK-Account-Session</code>
-<ul>
-<li>the user's session identifier</li>
-</ul>
-</li>
-</ul>
-<h4 id="request-parameters">Request parameters</h4>
-<ul>
-<li>
-<code>subscription_name</code>
-<ul>
-<li>the name of the subscription</li>
-</ul>
-</li>
-</ul>
-<h4 id="json-response-fields">JSON response fields</h4>
-<ul>
-<li>
-<code>govuk_account_session</code> <em>(optional)</em>
-<ul>
-<li>a new session identifier</li>
-</ul>
-</li>
-<li>
-<code>email_subscription</code>
-<ul>
-<li>details of the subscription</li>
-</ul>
-</li>
-</ul>
-<h4 id="response-codes">Response codes</h4>
-<ul>
-<li>404 if there is no such subscription (or if it has been deleted)</li>
-<li>401 if the session identifier is invalid</li>
-<li>200 otherwise</li>
-</ul>
-<h4 id="example-request-response">Example request / response</h4>
-<p>Request (with gds-api-adapters):</p>
-<pre lang="ruby"><code>GdsApi.account_api.get_email_subscription(
-    name: "some-subscription",
-    govuk_account_session: "session-identifier",
-)
-</code></pre>
-<pre lang="json"><code>{
-    "govuk_account_session": "YWNjZXNzLXRva2Vu.cmVmcmVzaC10b2tlbg==",
-    "email_subscription": {
-      "name": "some-subscription",
-      "topic_slug": "subscriber-list-slug",
-      "email_alert_api_subscription_id": "cd5f6972-faf3-4f1c-bb76-3774b0a389f0"
-    },
-}
-</code></pre>
-<h3 id="put-apiemail-subscriptionssubscription_name"><code>PUT /api/email-subscriptions/:subscription_name</code></h3>
-<p>Create or update a named email subscription</p>
-<h4 id="request-headers">Request headers</h4>
-<ul>
-<li>
-<code>GOVUK-Account-Session</code>
-<ul>
-<li>the user's session identifier</li>
-</ul>
-</li>
-</ul>
-<h4 id="request-parameters">Request parameters</h4>
-<ul>
-<li>
-<code>subscription_name</code>
-<ul>
-<li>the name of the subscription</li>
-</ul>
-</li>
-</ul>
-<h4 id="json-request-parameters">JSON request parameters</h4>
-<ul>
-<li>
-<code>topic_slug</code>
-<ul>
-<li>the email-alert-api topic slug</li>
-</ul>
-</li>
-</ul>
-<h4 id="json-response-fields">JSON response fields</h4>
-<ul>
-<li>
-<code>govuk_account_session</code> <em>(optional)</em>
-<ul>
-<li>a new session identifier</li>
-</ul>
-</li>
-<li>
-<code>email_subscription</code>
-<ul>
-<li>details of the subscription</li>
-</ul>
-</li>
-</ul>
-<h4 id="response-codes">Response codes</h4>
-<ul>
-<li>422 if the <code>topic_slug</code> parameter is missing</li>
-<li>401 if the session identifier is invalid</li>
-<li>200 otherwise</li>
-</ul>
-<h4 id="example-request-response">Example request / response</h4>
-<p>Request (with gds-api-adapters):</p>
-<pre lang="ruby"><code>GdsApi.account_api.put_email_subscription(
-    name: "some-subscription",
-    topic_slug: "subscriber-list-slug",
-    govuk_account_session: "session-identifier",
-)
-</code></pre>
-<pre lang="json"><code>{
-    "govuk_account_session": "YWNjZXNzLXRva2Vu.cmVmcmVzaC10b2tlbg==",
-    "email_subscription": {
-      "name": "some-subscription",
-      "topic_slug": "subscriber-list-slug",
-      "email_alert_api_subscription_id": "96ae61d6-c2a1-48cb-8e67-da9d105ae381"
-    },
-}
-</code></pre>
-<h3 id="delete-apiemail-subscriptionssubscription_name"><code>DELETE /api/email-subscriptions/:subscription_name</code></h3>
-<p>Cancel and remove a named email subscription</p>
-<h4 id="request-headers">Request headers</h4>
-<ul>
-<li>
-<code>GOVUK-Account-Session</code>
-<ul>
-<li>the user's session identifier</li>
-</ul>
-</li>
-</ul>
-<h4 id="request-parameters">Request parameters</h4>
-<ul>
-<li>
-<code>subscription_name</code>
-<ul>
-<li>the name of the subscription</li>
-</ul>
-</li>
-</ul>
-<h4 id="response-codes">Response codes</h4>
-<ul>
-<li>404 if there is no such subscription (or if it has been deleted)</li>
-<li>401 if the session identifier is invalid</li>
-<li>204 otherwise</li>
-</ul>
-<h4 id="example-request-response">Example request / response</h4>
-<p>Request (with gds-api-adapters):</p>
-<pre lang="ruby"><code>GdsApi.account_api.delete_email_subscription(
-    name: "some-subscription",
-    govuk_account_session: "session-identifier",
-)
-</code></pre>
-<p>Response is status code only.</p>
 <h3 id="put-apioidc-userssubject_identifier"><code>PUT /api/oidc-users/:subject_identifier</code></h3>
 <p>Update an account and its email subscriptions by subject identifier.
 This endpoint requires the <code>update_protected_attributes</code> scope.</p>
