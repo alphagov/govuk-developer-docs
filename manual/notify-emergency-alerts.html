@@ -186,15 +186,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f69281846e999be06e347d350c856e27589323fb">21 Sep 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d6468edb5781e39a8dc6af575650c4e77d6117d6">13 Sep 2023</a>
 </div>
 
  <h1 id='header'>What is GOV.UK Notify Emergency Alerts?</h1> <p>The Cabinet Office and the Department for Digital, Culture, Media &amp; Sport are developing a ‘cell broadcast’ alert system to enable people whose lives are at risk in an emergency to be rapidly contacted via their mobile phone. They are currently at the testing phase and subject to successful progress, hope to launch the service soon.</p>
@@ -207,11 +200,8 @@
 <li><a href="https://manage.fastly.com/configure/services/4b340CyOhAgINR9eKMH83h/versions/549/origins">Fastly&rsquo;s Production configuration</a> points at Notify&rsquo;s Production environment.</li>
 </ul>
 <p>Requests to /alerts (or to anything beginning with <code>/alerts/</code>) hit GOV.UK&rsquo;s CDN (Fastly), but no other bits of GOV.UK&rsquo;s infrastructure.</p>
-<p>This custom host is set up to use <a href="https://docs.fastly.com/en/guides/shielding">Fastly Shielding</a>, which helps to
-protect the Notify&rsquo;s origin servers from traffic spikes.</p>
-<p>The setup of the custom host in Fastly is currently done by hand by the GOV.UK team.
-Whilst VCL is usually overwritten when deploying govuk-cdn-config, these particular changes are
-<a href="https://github.com/alphagov/govuk-cdn-config/pull/321">automatically merged with the govuk-cdn-config VCL</a> so that they persist.</p>
+<p>This is configured in govuk-fastly, by <a href="https://github.com/alphagov/govuk-fastly/blob/ffd54b5c495a6daad6f6a774d53296924cb4e784/modules/www/service.tf#L70-L73">dynamically selecting the backend</a> from the <a href="https://github.com/alphagov/govuk-fastly-secrets/blob/fbf5333dafdca0250d67c043b15750a6b160de6a/secrets.yaml#L58-L61">list of backends in govuk-fastly-secrets</a>.</p>
+<p>We <a href="https://github.com/alphagov/govuk-fastly-secrets/blob/fbf5333dafdca0250d67c043b15750a6b160de6a/secrets.yaml#L58-L61">only have one backend</a>, at the time of writing. Backends have <a href="https://github.com/alphagov/govuk-fastly/blob/ffd54b5c495a6daad6f6a774d53296924cb4e784/modules/www/service.tf#L83">POP shield enabled by default</a>.</p>
 <h2 id='api-keys'>API Keys</h2><p>Notify have three Fastly API keys with <a href="https://developer.fastly.com/reference/api/auth/#scopes"><code>purge_select</code> scope</a>, one for
 integration, staging and production. These allow them to purge individual pages or surrogate keys from the cache. Note that the scope
 of these keys is not restricted to <code>/alerts</code> - in principle they could be used to purge any page from the cache. We trust Notify to take
