@@ -1,25 +1,25 @@
 ---
-owner_slack: "#govuk-notify-emergency-alerts"
-title: What is GOV.UK Notify Emergency Alerts?
+owner_slack: "#emergency-alerts"
+title: What are Emergency Alerts?
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-section: Notify Emergency Alerts
+section: Emergency Alerts
 important: true
 ---
 
 The Cabinet Office and the Department for Digital, Culture, Media & Sport are developing a ‘cell broadcast’ alert system to enable people whose lives are at risk in an emergency to be rapidly contacted via their mobile phone. They are currently at the testing phase and subject to successful progress, hope to launch the service soon.
 
-As part of this service, GOV.UK delegate serving [www.gov.uk/alerts](https://www.gov.uk/alerts) to the GOV.UK Notify team.
+As part of this service, GOV.UK delegate serving [www.gov.uk/alerts](https://www.gov.uk/alerts) to the Emergency Alerts team.
 
 How does www.gov.uk/alerts work?
 --------------------------------
 
-We have a custom host in Fastly for /alerts which points at an AWS CloudFront CDN which is managed by the GOV.UK Notify team. Each GOV.UK environment points at a different custom host:
+We have a custom host in Fastly for /alerts which points at an AWS CloudFront CDN which is managed by the Emergency Alerts team. Each GOV.UK environment points at a different custom host:
 
-- [Fastly's Integration configuration](https://manage.fastly.com/configure/services/4mENG6RJL8sxnvgPUMRDz2/versions/275/origins) points at Notify's Preview environment;
-- [Fastly's Staging configuration](https://manage.fastly.com/configure/services/13QQKEZBSrBFyfxYGzjHPZ/versions/854/origins) points at Notify's Staging environment; and
-- [Fastly's Production configuration](https://manage.fastly.com/configure/services/4b340CyOhAgINR9eKMH83h/versions/549/origins) points at Notify's Production environment.
+- [Fastly's Integration configuration](https://manage.fastly.com/configure/services/4mENG6RJL8sxnvgPUMRDz2/versions/275/origins) points at Emergency Alerts' Preview environment;
+- [Fastly's Staging configuration](https://manage.fastly.com/configure/services/13QQKEZBSrBFyfxYGzjHPZ/versions/854/origins) points at Emergency Alerts' Staging environment; and
+- [Fastly's Production configuration](https://manage.fastly.com/configure/services/4b340CyOhAgINR9eKMH83h/versions/549/origins) points at Emergency Alerts' Production environment.
 
 Requests to /alerts (or to anything beginning with `/alerts/`) hit GOV.UK's CDN (Fastly), but no other bits of GOV.UK's infrastructure.
 
@@ -30,10 +30,10 @@ We [only have one backend](https://github.com/alphagov/govuk-fastly-secrets/blob
 API Keys
 --------
 
-Notify have three Fastly API keys with [`purge_select` scope](https://developer.fastly.com/reference/api/auth/#scopes), one for
+Emergency Alerts have three Fastly API keys with [`purge_select` scope](https://developer.fastly.com/reference/api/auth/#scopes), one for
 integration, staging and production. These allow them to purge individual pages or surrogate keys from the cache. Note that the scope
-of these keys is not restricted to `/alerts` - in principle they could be used to purge any page from the cache. We trust Notify to take
+of these keys is not restricted to `/alerts` - in principle they could be used to purge any page from the cache. We trust Emergency Alerts to take
 appropriate care with these credentials.
 
-The API keys are not configured to expire, but it is good practice to rotate them regularly. The Notify team will instigate API key rotations,
-see [Rotate Fastly API Keys for Notify Emergency Alerts](/manual/how-to-rotate-fastly-api-keys-for-notify-emergency-alerts.html).
+The API keys are not configured to expire, but it is good practice to rotate them regularly. The Emergency Alerts team will instigate API key rotations,
+see [Rotate Fastly API Keys for Emergency Alerts](/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html).
