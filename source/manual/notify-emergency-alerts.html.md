@@ -23,12 +23,9 @@ We have a custom host in Fastly for /alerts which points at an AWS CloudFront CD
 
 Requests to /alerts (or to anything beginning with `/alerts/`) hit GOV.UK's CDN (Fastly), but no other bits of GOV.UK's infrastructure.
 
-This custom host is set up to use [Fastly Shielding](https://docs.fastly.com/en/guides/shielding), which helps to
-protect the Notify's origin servers from traffic spikes.
+This is configured in govuk-fastly, by [dynamically selecting the backend](https://github.com/alphagov/govuk-fastly/blob/ffd54b5c495a6daad6f6a774d53296924cb4e784/modules/www/service.tf#L70-L73) from the [list of backends in govuk-fastly-secrets](https://github.com/alphagov/govuk-fastly-secrets/blob/fbf5333dafdca0250d67c043b15750a6b160de6a/secrets.yaml#L58-L61).
 
-The setup of the custom host in Fastly is currently done by hand by the GOV.UK team.
-Whilst VCL is usually overwritten when deploying govuk-cdn-config, these particular changes are
-[automatically merged with the govuk-cdn-config VCL](https://github.com/alphagov/govuk-cdn-config/pull/321) so that they persist.
+We [only have one backend](https://github.com/alphagov/govuk-fastly-secrets/blob/fbf5333dafdca0250d67c043b15750a6b160de6a/secrets.yaml#L58-L61), at the time of writing. Backends have [POP shield enabled by default](https://github.com/alphagov/govuk-fastly/blob/ffd54b5c495a6daad6f6a774d53296924cb4e784/modules/www/service.tf#L83).
 
 API Keys
 --------
