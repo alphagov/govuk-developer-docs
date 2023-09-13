@@ -13,7 +13,11 @@ You can use the [GOV.UK Docker environment](https://github.com/alphagov/govuk-do
 
 **Use GOV.UK Docker to run any commands that follow.**
 
-### Before running the app
+### Running the app
+
+```
+./startup.sh
+```
 
 The docs include pages pulled from other GitHub repositories. By default, all these "proxy" pages are pulled when you start the app, which can lead to rate limit error. Using a GitHub API token avoids this.
 
