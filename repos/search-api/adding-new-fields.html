@@ -219,15 +219,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/search-api/commit/2675a59c7c82a1000f9ac0baf9fa3f97fc68fa26">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/search-api/commit/b8d6896b209768af6fd19bed0f444831044d658c">1 Sep 2023</a>
 </div>
 
   <h1 class="page-title">search-api: Adding new fields to a document type</h1>
@@ -251,6 +244,8 @@
 <p>In order for the new field to work as expected, you will need to run a Jenkins job on all environments. The job is "Search reindex with new schema" (<a href="https://deploy.integration.publishing.service.gov.uk/job/search_api_reindex_with_new_schema/">Link to integration version of task</a>), and will run the <code>search:migrate_schema</code> rake task. It can take over 2 hours to complete.</p>
 <p>This job will block other rake tasks from being run for 15 minutes to an hour.</p>
 <p><a href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html#how-to-reindex-an-elasticsearch-index">Read more about re-indexing the elasticsearch indexes here</a>.</p>
+<p>If you consider the change low risk and are only adding new fields for which content doesn't yet exist, you can run the <code>search:update_schema</code> task. This task will attempt to update the Elasticsearch index schema in place without requiring a re-index.
+If you have made any changes which affect existing fields, Elasticsearch will reject the change and a full re-index will be required.</p>
 <h3 id="troubleshooting">Troubleshooting</h3>
 <h4 id="the-new-field-doesnt-show-up">The new field doesn't show up</h4>
 <p>For the new elasticsearch configuration to take effect, you need to manually rebuild the search indexes.</p>
