@@ -131,7 +131,6 @@
           <li><a href="/repos/content-store/access-limited-content-items.html" rel="noopener" class="govuk-link">Access-limited content items</a></li>
           <li><a href="/repos/content-store/content-store-api.html" rel="noopener" class="govuk-link">Content Store API</a></li>
           <li><a href="/repos/content-store/gone_item.html" rel="noopener" class="govuk-link"># Gone items</a></li>
-          <li><a href="/repos/content-store/placeholder_item.html" rel="noopener" class="govuk-link"># Placeholder items</a></li>
           <li><a href="/repos/content-store/publish_intents.html" rel="noopener" class="govuk-link">Publish intents</a></li>
           <li><a href="/repos/content-store/redirect_item.html" rel="noopener" class="govuk-link"># Redirect items</a></li>
           <li><a href="/repos/content-store/route_registration.html" rel="noopener" class="govuk-link"># Registering routes with the router.</a></li>
@@ -197,15 +196,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/content-store/commit/54e139472e8d44b93bbd1a8616f9959bc3ff24d3">31 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/content-store/commit/bbe2fdad0de0d5df40c78948e72ce9bd083fdbda">12 Sep 2023</a>
 </div>
 
   <h1 class="page-title">content-store: # Registering routes with the router.</h1>
@@ -235,9 +227,6 @@ subpath of the <code>base_path</code>, or the <code>base_path</code> with an ext
 /foo/subpath (prefix) =&gt; frontend
 /foo/other/path (exact) =&gt; frontend
 </code></pre>
-<h3 id="placeholder-items">Placeholder items</h3>
-<p>Items with a schema_name starting with "placeholder" will not have the routes
-registered with the router.</p>
 <h3 id="redirects-for-subpaths">Redirects for subpaths</h3>
 <p>The content store can also create redirects for paths under the base_path.  This is intended to support
 cases where the structure within a piece of content has changed (eg a part of a guide no longer exists.)</p>
