@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>account-api: Tombstone records - GOV.UK Developer Documentation</title>
+    <title>account-api: One Login to GOV.UK pipeline - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/account-api/adr/004-tombstone-records.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/account-api/one-login-pipeline.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="account-api: Tombstone records - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/account-api/adr/004-tombstone-records.html" />
+      <meta name="twitter:title" content="account-api: One Login to GOV.UK pipeline - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/account-api/one-login-pipeline.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="account-api: Tombstone records" />
+      <meta property="og:title" content="account-api: One Login to GOV.UK pipeline" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/account-api/adr/004-tombstone-records.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/account-api/one-login-pipeline.html" />
 
     
   </head>
@@ -200,50 +200,49 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/d50ae94b30ba5dc56949169bdf406a8551e88458">27 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/3930d739f848add98644d2159c555858273bf72f">18 Sep 2023</a>
 </div>
 
-  <h1 class="page-title">account-api: Tombstone records</h1>
+  <h1 class="page-title">account-api: One Login to GOV.UK pipeline</h1>
 
   
-<h2 id="background">Background</h2>
-<p>A <a href="https://github.com/alphagov/account-api/blob/main/app/models/tombstone.rb"><code>Tombstone</code> record</a>
-is created whenever an <code>OidcUser</code> is deleted.</p>
-<p>When this app was originally built it was the canonical place for storing user accounts and data,
-so the <code>OidcUser</code> records represented every active account, and the <code>Tombstone</code> records represented
-every deleted account. This made sense, as the pages and features for users to set up and manage
-their accounts were spread between DI (<code>account.gov.uk</code>) and GOV.UK (<code>www.gov.uk</code>).</p>
-<p>As more services start using DI's GOV.UK Sign In this structure makes less sense. GOV.UK Sign In
-has records for all the users and knows which services someone has used, so it's more useful to
-move all the account management pages to be part of GOV.UK Sign In and treat GOV.UK the same as
-any other service - as an OIDC relying party.</p>
-<p>This means that account API no longer has records for every sigle user that's created a GOV.UK
-account and so we don't need to keep a record of every deleted account.</p>
-<h2 id="decision">Decision</h2>
-<p>We have decided to:</p>
-<ol>
-<li>Allow multiple tombstone records to exist for the same <code>sub</code>[<a href="https://github.com/alphagov/account-api/pull/421">1</a>]</li>
-<li>Delete tombstone records that are older than 30 days[<a href="https://github.com/alphagov/account-api/pull/422">2</a>]</li>
-</ol>
-<p>This will allow us to delete <code>OidcUser</code> records that aren't being used for anything on GOV.UK to
-reduce the amount of personal data we're storing.</p>
-<p>Currently the only use for the GOV.UK account on GOV.UK is to subscribe to email notifications.
-We will initially use the same logic as in email alert API[<a href="https://github.com/alphagov/email-alert-api/pull/1756">3</a>] to delete GOV.UK accounts which
-have had no active subscriptions for longer than 28 days.</p>
-<h2 id="consequences">Consequences</h2>
-<p>We will no longer be able to measure the total number of GOV.UK accounts by adding the counts of
-<code>OidcUser</code> and <code>Tombstone</code> records in this app's database.</p>
-<p>This information is still available from the Authentication team in Digital Identity and as more
-services onboard the records in this app would have no longer represented the total count of all
-GOV.UK accounts anyway.</p>
+<p>One Login is an OpenID Connect (OIDC) provider, which GOV.UK accounts are based on. Currently the only thing that a GOV.UK account handles is email alert subscriptions. Subscriptions are handled in two ways, one that requires a GOV.UK account, one that does not. (As of time of writing, there are 2.5 million subscribers using the old no-account method, 211,000 using the new account-based method).</p>
+<p>So a user who has subscribed to email alerts will create records in 3 places if an account is required:</p>
+<ul>
+<li>A One Login account record in One Login</li>
+<li>An account record in account-api</li>
+<li>A subscriber record in email-alert-api</li>
+</ul>
+<p>…but only one (a subscriber record in email-alert-api) if an account is not required (this is the magic-email path)</p>
+<p>Therefore not all Subscriber records in email-alert-api will have a corresponding account record in account-api, but currently all account-api records have a corresponding subscriber record in email-alert-api.</p>
+<h2 id="how-email-alert-records-are-created">How Email Alert records are created</h2>
+<p>There are a series of paths in email-alert-frontend which end up with an email subscription being made. The exact path depends on the component used for signup, and how that component is configured.</p>
+<h3 id="single-page-notification-button-component">Single Page Notification Button Component</h3>
+<p>This component is the more complicated, and renders as a box with a bell icon and text inside. It’s progressively enhanced with the ability to query whether the user already has a subscription (in which case it allows them to cancel it).</p>
+<p>If the user is logged in, this component calls the account api endpoint /api/personalisation/check-email-subscription from the browser, passing it the base path of the current page. If the logged-in user already has a subscription to that page, it will alter the action of the button to unsubscribe.</p>
+<p>The behaviour of the button when pressed depends on the skip_account parameter passed to the component. If true, the button acts to create a subscription by POSTing to the email-alert-frontend endpoint /email-signup with the details of the subscription to be created in the request body. This causes a magic-email subscription to be created (ie one with no account-api record)</p>
+<p>If skip_account is false, though, the button POSTs to the email-alert frontend endpoint /email/subscriptions/single-page/new . This endpoint requires the user to be logged in with a One Login account. If they are not logged in, it will redirect them to a login/create account page (after which they’ll be directed back). If logged in, it calls the email-alert-api methods “authenticate_subscriber_by_govuk_account” and “get_subscriptions” to get the existing subscriptions for that account holder for that page, then toggles that subscription (if it doesn’t exist, it will make one. If it already exists, it will end it).</p>
+<h3 id="subscription-links-gem-component">Subscription Links Gem Component</h3>
+<p>This component is a simple link that creates a subscription with a GET to /email-signup passing the link as a query parameter. This causes a magic-email subscription to be created (ie one with no account-api record)</p>
+<h3 id="application-specified-subscription-links">Application-specified Subscription Links</h3>
+<p>These links aren’t in a component, and are generated by Collections and Finder Frontend. They GET the email-alert-frontend endpoint /email/subscriptions/new, which again requires the user to be logged in with a One Login account, and will redirect them to login/create an account if they do not already have one. It then calls the email-alert-api methods “link_subscriber_to_govuk_account” and “subscribe” to create the subscription. This is not a toggle, as with the single page notification button - it will not unsubscribe an existing subscription.</p>
+<h2 id="how-account-records-are-created">How Account records are created</h2>
+<p>When one of the email alert paths above requires an account but doesn’t find it, it redirects the user to the One Login endpoint “<a href="https://signin.account.gov.uk/sign-in-or-create%E2%80%9D">https://signin.account.gov.uk/sign-in-or-create”</a>. The One Login account is logged into or created at that point, and then the user is redirected back to the /callback endpoint on account-api that creates the account-api record and then redirects to the subscription path with the user already logged in.</p>
+<h2 id="how-email-alert-account-records-are-updated">How Email Alert / Account records are updated</h2>
+<p>When a user is logged into their One Login account (at home.account.gov.uk/your-services), they can see a list of services attached to that account. If one of them is GOV.UK email subscriptions, there is a link to <a href="https://www.gov.uk/email/manage?from=your-services">https://www.gov.uk/email/manage?from=your-services</a>, which is the email management page on email-alert-frontend. This is a simple link, but the query parameter tells email-alert-frontend that the user is already logged in.</p>
+<p>Moving to the security tab, the user gets the option to change their email address, their password, and to delete their account.</p>
+<ul>
+<li>Email address changes should affect Account API / Email Alerts (they should change where the email alerts go to)</li>
+<li>Password changes <strong>should not</strong> affect GOV.UK (as an OIDC relying party, we shouldn't be privy to password information from the provider)</li>
+<li>Deleting the account should affect Account API / Email Alerts (they should remove both the account and the subscriber record, and any subscriptions attached to the subscriber)</li>
+</ul>
+<h3 id="email-address-changes">Email Address Changes:</h3>
+<p>When the user changes the email address in One Login a direct call is made to the account api PUT /api/oidc_users, which causes the user to be looked up by the OneLogin subject_identifier field (or created, if it doesn’t exist). Then the email and verified email fields are updated (these appear to be the only fields that <em>can</em> be updated by this call). Problems can occur if the subject_identifier for a user has changed in One Login - then we’ll try to create a new account api record with the new subject_identifier, but it will fail to create because the email field has to be unique. Emails also have to be unique in One Login, so theoretically this shouldn’t happen, but if a user is deleted in One Login but not in Account API, it can.</p>
+<p>Once the account API record has been changed, a call is made from account API to email alert API to update the attached email alert api subscriber record (if one exists).</p>
+<h3 id="one-login-account-deletions">One Login Account Deletions:</h3>
+<p>When an account is deleted (either by user or support agent) in One Login, a pub/sub message is created, then picked up by a service which makes the call to the account api DELETE /api/oidc_users/. This causes the user to be looked up by the OneLogin subject_identifier. If it exists, a call is made to email alert api to unsubscribe the subscriber record (making it eligible for historic account deletion). After that, the Account API account record is destroyed.</p>
+<p>If the service call to Account API fails, the message goes into a Dead Letter Queue, which causes the One Login team to get an alert by email (they then go and manually investigate the problem). If the call between Account API and Email Alert API fails, we are notified by Sentry.</p>
 
 
             
@@ -251,8 +250,8 @@ GOV.UK accounts anyway.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/account-api/blob/main/docs/adr/004-tombstone-records.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Faccount-api%2Fadr%2F004-tombstone-records.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/account-api/blob/main/docs/one-login-pipeline.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Faccount-api%2Fone-login-pipeline.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

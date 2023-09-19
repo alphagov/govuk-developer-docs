@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>account-api: Digital Identity - GOV.UK Developer Documentation</title>
+    <title>account-api: One Login - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/account-api/digital-identity.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/account-api/one-login.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="account-api: Digital Identity - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/account-api/digital-identity.html" />
+      <meta name="twitter:title" content="account-api: One Login - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/account-api/one-login.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="account-api: Digital Identity" />
+      <meta property="og:title" content="account-api: One Login" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/account-api/digital-identity.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/account-api/one-login.html" />
 
     
   </head>
@@ -129,7 +129,8 @@
     <li>
       <ul>
           <li><a href="/repos/account-api/api.html" rel="noopener" class="govuk-link">API documentation</a></li>
-          <li><a href="/repos/account-api/digital-identity.html" rel="noopener" class="govuk-link">Digital Identity</a></li>
+          <li><a href="/repos/account-api/one-login-pipeline.html" rel="noopener" class="govuk-link">One Login to GOV.UK pipeline</a></li>
+          <li><a href="/repos/account-api/one-login.html" rel="noopener" class="govuk-link">One Login</a></li>
           <li class="subdir__heading">adr</li>
           <ul class="subdir__menu">
               <li><a href="/repos/account-api/adr/001-flash-messages.html" rel="noopener" class="govuk-link">001-flash-messages</a></li>
@@ -199,48 +200,41 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/240088b8c40bcdc1fd57654039ff0f93159a5d11">10 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/3930d739f848add98644d2159c555858273bf72f">18 Sep 2023</a>
 </div>
 
-  <h1 class="page-title">account-api: Digital Identity</h1>
+  <h1 class="page-title">account-api: One Login</h1>
 
   
 <p>This document gets into some of the details of the integration with
-Digital Identity, and where it can go wrong.  For a high-level
+One Login, and where it can go wrong.  For a high-level
 overview, see <a href="https://docs.publishing.service.gov.uk/manual/govuk-account.html">the developer docs</a>.</p>
 <h2 id="big-picture">Big picture</h2>
 <p>The <a href="https://github.com/alphagov/account-api/blob/main/app/models/oidc_user.rb"><code>OidcUser</code> model</a>, which represents a user who has
-authenticated via Digital Identity, holds four special pieces of data:</p>
+authenticated via One Login, holds four special pieces of data:</p>
 <ul>
 <li>
 <p>The <code>sub</code>, or "subject identifier", is a unique identifier assigned
-by Digital Identity when the account is created, and never changes.
+by One Login when the account is created, and never changes.
 Other data, like an email address, can change: so this is what we
 use to identify users.</p>
 </li>
 <li>
 <p>The <code>legacy_sub</code> is the user's subject identifier from the old
 <a href="https://github.com/alphagov/govuk-account-manager-prototype/">account manager prototype</a>.  Only accounts which were created
-before the Digital Identity migration have this set.  We use this to
+before the One Login migration have this set.  We use this to
 join up old data.</p>
 </li>
 <li>
 <p>The <code>email</code> is the user's current email address.  It is set by
-Digital Identity calling the <code>/api/oidc-users/:subject_identifier</code>
+One Login calling the <code>/api/oidc-users/:subject_identifier</code>
 endpoint.</p>
 </li>
 <li>
 <p>The <code>email_verified</code> is a boolean denoting whether the user's email
-address is verified.  It is set by Digital Identity calling the
-<code>/api/oidc-users/:subject_identifier</code> endpoint.  As Digital Identity
+address is verified.  It is set by One Login calling the
+<code>/api/oidc-users/:subject_identifier</code> endpoint.  As One Login
 require immediate verification of email addresses, this is always
 true.</p>
 </li>
@@ -249,27 +243,29 @@ true.</p>
 Identity:</p>
 <ul>
 <li>
-<p>When a user is updated or deleted, Digital Identity call the
+<p>When a user is updated or deleted, One Login call the
 endpoints in <a href="https://github.com/alphagov/account-api/blob/main/app/controllers/internal/oidc_users_controller.rb"><code>Internal::OidcUsersController</code></a>.</p>
 </li>
 <li>
-<p>When a user logs in, we call Digital Identity from the
+<p>When a user logs in, we call One Login from the
 <a href="https://github.com/alphagov/account-api/blob/main/app/controllers/internal/authentication_controller.rb"><code>Internal::AuthenticationController</code></a>.</p>
 </li>
 </ul>
+<p>These calls can affect both Account API and Email Alert API, read
+more about the [One Login to GOV.UK pipeline][one-login-pipeline].</p>
 <h2 id="errors">Errors</h2>
 <p>This is a non-exhaustive list of problems that could be due to
-something breaking with the Digital Identity integration.</p>
-<p>Firstly, check if the problem is on the Digital Identity side:</p>
+something breaking with the One Login integration.</p>
+<p>Firstly, check if the problem is on the One Login side:</p>
 <ul>
 <li>If the user got the problem on <code>https://account.gov.uk</code> (or some
-subdomain of that), then it's Digital Identity.</li>
+subdomain of that), then it's One Login.</li>
 <li>If account-api is persistently unable to connect to
-<code>https://oidc.account.gov.uk</code>, then it's Digital Identity.</li>
+<code>https://oidc.account.gov.uk</code>, then it's One Login.</li>
 </ul>
-<p>If the problem is on the Digital Identity side, or if you need support
+<p>If the problem is on the One Login side, or if you need support
 from them, ask for help in <code>#di-authentication</code> on Slack.</p>
-<p>If the problem is not clearly to do with Digital Identity, read on.</p>
+<p>If the problem is not clearly to do with One Login, read on.</p>
 <h3 id="email-address-out-of-date">Email address out of date</h3>
 <p>Find out from the user what the email address should be and what it's
 currently showing as.</p>
@@ -280,7 +276,7 @@ currently showing as.</p>
 trying to change to:</p>
 <pre lang="ruby"><code>other_user = OidcUser.find_by(email: "desired new email address")
 </code></pre>
-<p>Digital Identity enforces that email addresses are unique, so we
+<p>One Login enforces that email addresses are unique, so we
 shouldn't ever have two users with the same email address.</p>
 <p>If there is another user with the desired email address, something may
 have gone wrong with updating <em>their</em> user record, which will have to
@@ -308,11 +304,11 @@ DETAIL:  Key (email)=(email@example.com) already exists.
 </code></pre>
 <h4 id="there-is-no-relevant-error">There is no relevant error</h4>
 <p>If a user has the wrong email address and there is no relevant error,
-then Digital Identity may not have called the
+then One Login may not have called the
 <code>/api/oidc-users/:subject_identifier</code> endpoint, or their call may have
 failed due to some error which wasn't reported.</p>
 <p>Check Kibana to see if the call was made and what the response code
-was.  If the call wasn't made at all, contact Digital Identity for
+was.  If the call wasn't made at all, contact One Login for
 support.</p>
 <h3 id="cant-log-in">Can't log in</h3>
 <p>Find out from the user what the email address they've used for their
@@ -322,7 +318,7 @@ account is.</p>
 </code></pre>
 <h4 id="cant-log-in-for-the-first-time">Can't log in for the first time</h4>
 <p>When a user first logs in, we create an <code>OidcUser</code> record just holding
-their subject identifier, and query Digital Identity for their email
+their subject identifier, and query One Login for their email
 address.</p>
 <p>So if there is no <code>OidcUser</code> record with the email address, this
 process may have failed.</p>
@@ -333,7 +329,7 @@ identifier:</p>
 DETAIL:  Key (sub)=(foo) already exists.
 </code></pre>
 <p>This should never happen in production.</p>
-<p>As subject identifiers come from Digital Identity, contact them for
+<p>As subject identifiers come from One Login, contact them for
 support and give the duplicate subject identifier (<code>foo</code> in the
 example above).</p>
 <h5 id="check-sentry-for-capturedsensitiveexception-events">Check Sentry for <code>CapturedSensitiveException</code> events</h5>
@@ -354,7 +350,7 @@ app/controllers/internal/authentication_controller.rb:22:in `callback'
 destroyed.  This record holds the subject identifier, and we use it to
 end any active sessions that user still has.</p>
 <p>If a user logs into an account that has a subject identifier with a
-corresponding <code>Tombstone</code> record, Digital Identity have re-used a
+corresponding <code>Tombstone</code> record, One Login have re-used a
 subject identifier, or un-deleted the account.  We currently assume
 this does not happen.</p>
 <p>Removing the <code>Tombstone</code> record will allow the user to log in.  But if
@@ -364,11 +360,11 @@ will be lost.</p>
 <p>Ask the <code>#di-authentication</code> channel in Slack whether their service is
 up, and ask if they are seeing an elevated rate of invalid
 authorization codes or access tokens from GOV.UK.</p>
-<p>If Digital Identity are experiencing a problem, we just have to wait
+<p>If One Login are experiencing a problem, we just have to wait
 for them to fix it.</p>
 <p>Otherwise, we have a bug in account-api, or perhaps elsewhere in the
 GOV.UK stack.  One thing to try would be to clear our cached copy of
-the Digital Identity OIDC configuration:</p>
+the One Login OIDC configuration:</p>
 <pre lang="ruby"><code>Rails.cache.clear
 </code></pre>
 
@@ -378,8 +374,8 @@ the Digital Identity OIDC configuration:</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/account-api/blob/main/docs/digital-identity.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Faccount-api%2Fdigital-identity.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/account-api/blob/main/docs/one-login.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Faccount-api%2Fone-login.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
