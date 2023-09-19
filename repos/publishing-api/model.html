@@ -219,15 +219,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/5623f0945a683d16c9f8d67f241fa157dadb8fe9">15 Apr 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/af5f7bc09dd5a7a7dff9cda2ddeaa959f52688e1">7 Aug 2023</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's Model</h1>
@@ -333,7 +326,7 @@ be "draft", "published", "unpublished" or "superseded".</li>
 an edition is.</li>
 <li>
 <code>content_store</code> - indicates whether an edition is intended for draft, live or
-no content store.</li>
+no content store (for <a href="#substitution">substituted</a> or superseded editions).</li>
 </ul>
 <p>Documents that have an edition with a "live" <code>content_store</code> value will have
 the corresponding edition presented on the live content store.
