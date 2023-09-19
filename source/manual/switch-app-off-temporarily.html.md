@@ -13,8 +13,6 @@ Before you begin you will need to identify:
 - which machine class the application runs on
 - how many machines of that class there are
 
-See the [SSH into machines docs for more information](/manual/howto-ssh-to-machines.html#usage)
-
 1. SSH into the first machine:
 
    ```bash
