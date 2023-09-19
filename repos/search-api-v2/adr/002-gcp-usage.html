@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: search-api-v2 - GOV.UK Developer Documentation</title>
+    <title>search-api-v2: ADR 002: Google Cloud Platform Usage - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-api-v2.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/002-gcp-usage.html">
 
-      <meta name="description" content="Everything about search-api-v2 (Future API to search for content on GOV.UK (not yet live))" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: search-api-v2 - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2.html" />
+      <meta name="twitter:title" content="search-api-v2: ADR 002: Google Cloud Platform Usage - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/002-gcp-usage.html" />
 
-      <meta property="og:description" content="Everything about search-api-v2 (Future API to search for content on GOV.UK (not yet live))" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: search-api-v2" />
+      <meta property="og:title" content="search-api-v2: ADR 002: Google Cloud Platform Usage" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/002-gcp-usage.html" />
 
     
   </head>
@@ -167,6 +165,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "search-api-v2",
+        "@id": "http://www.dev.gov.uk/repos/search-api-v2.html"
+      }
     }
   ]
 }
@@ -175,74 +181,63 @@
 <div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/search-api-v2.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;search-api-v2&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;3&quot;},&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/search-api-v2.html">search-api-v2</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Application: search-api-v2</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Future API to search for content on GOV.UK (not yet live)</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/search-api-v2">search-api-v2</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-search-improvement">#govuk-search-improvement</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS (EKS)</strong></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">APIs</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-search-api-v2" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/000000111?var-app=search-api-v2" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/search-api-v2" class="govuk-link">Argo CD (search-api-v2)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/search-api-v2/commit/18a6d579269d500174ebfebd4523d81bf76f72e6">19 Sep 2023</a>
 </div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Future API to search for content on GOV.UK (not yet live)</p>
-<p></div></p>
+  <h1 class="page-title">search-api-v2: ADR 002: Google Cloud Platform Usage</h1>
+
+  
+<p>2023-09-14</p>
+<h2 id="context">Context</h2>
+<p>As part GOV.UK site search improvements, there is a need to orchestrate the export, transform and import
+of Google Analytics data into a new search engine.</p>
+<p>The search engine doesn't currently support direct import of GA4 format data (though this may become available in future) so requires export into a cut down staged format in BigQuery or Cloud Storage which can them be imported into the search engine.</p>
+<p>Cloud libraries provide the mechanisms for exporting BigQuery data and importing the data into the search engine so any code required is predominantly to orchestrate that process.</p>
+<h2 id="considered-options">Considered options</h2>
+<h3 id="scheduled">Scheduled</h3>
+<p><img src="https://raw.githubusercontent.com/alphagov/search-api-v2/main/docs/adr/images/002-gcp-scheduled.drawio.svg" alt="GCP Scheduled"></p>
+<ul>
+<li>Cloud Scheduler is used to providec GCP based CRON scheduled triggering.</li>
+<li>Cloud Functions are used to provide lightweight execution of Python or Ruby code to orchestrate GCP Cloud Libraries for BigQuery export of GA4 data (into staged format expected by the search engine) and search engine import of that data.</li>
+</ul>
+<h3 id="event-triggered">Event Triggered</h3>
+<p><img src="https://raw.githubusercontent.com/alphagov/search-api-v2/main/docs/adr/images/002-gcp-event-triggered.drawio.svg" alt="GCP Event Triggered"></p>
+<ul>
+<li>Cloud Logging is used to monitor completion GA4 Export to BigQuery.</li>
+<li>PubSub is used for asynch messaging of GA4 data export completion and Staging data completion</li>
+<li>Cloud Functions are used to provide lightweight execution of Python or Ruby code to orchestrate GCP Cloud Libraries for BigQuery export of GA4 data (into staged format expected by the search engine) and search engine import of that data.</li>
+</ul>
+<h3 id="workflow">Workflow</h3>
+<p><img src="https://raw.githubusercontent.com/alphagov/search-api-v2/main/docs/adr/images/002-gcp-workflow.drawio.svg" alt="GCP Workflow"></p>
+<ul>
+<li>Cloud Composer is used to provide end to end workflow orchestration</li>
+</ul>
+<h2 id="decision-drivers">Decision drivers</h2>
+<ol>
+<li>One of the objectives of search improvements is to minimise maintenance overheads and the complexity of managing search so though an event-triggered solution may be more graceful, we don't want to over-engineer a solution which may be more complex to maintain</li>
+<li>Cost of full blown data workflow services such as Cloud Composer can be significantly more than lightweight options such as Cloud Functions</li>
+<li>The completion timing of daily GA4 Export is unpredictable so can't be guaranteed to complete</li>
+<li>Event triggering would support more frequent export/import of data including Intraday GA4 data, minimising the latency for events being imported and available in the search engine</li>
+<li>The latency requirements of reflecting recent events in the search engine is not near-real time and will ultimately always be dependent on the time the search engine takes to train and tune it's models which may not be in our control</li>
+</ol>
+<h2 id="decision">Decision</h2>
+<p>In discussions between @richardTowers and Matt Gregory on 14th Sept 2023 it was agreed to implement Scheduled option with sufficient headroom for GA4 export completion and to use Python for orchestration code due to function and cloud library support</p>
+<p>An Event triggered option would be more graceful but potentially over-engineering at this stage based on data import frequency and latency requirements</p>
+<p>A full blown workflow approach would be costly and with no existing capability in GOV.UK would likely add to maintenance overheads</p>
+<h2 id="status">Status</h2>
+<p>Decided</p>
 
 
             
@@ -250,8 +245,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-api-v2.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/search-api-v2/blob/main/docs/adr/002-gcp-usage.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-api-v2%2Fadr%2F002-gcp-usage.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
