@@ -200,7 +200,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/4cf7de2e85bb6323bf04fca7d4234bc81a4c6154">10 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/67878fb4177274722b181dbf072f04d56fdf5600">19 Sep 2023</a>
 </div>
 
   <h1 class="page-title">finder-frontend: Google Analytics 4 finder tracker</h1>
@@ -210,8 +210,8 @@
 <h2 id="basic-use">Basic use</h2>
 <pre lang="html"><code>&lt;form id="myForm"&gt;
   &lt;div data-ga4-filter-container&gt;
-    &lt;div data-ga4-section="Topics"&gt;
-        &lt;select data-ga4-change-category="update-filter select"&gt;
+    &lt;div data-ga4-filter-parent&gt;
+        &lt;select data-ga4-change-category="update-filter select" data-ga4-section="Topic"&gt;
             &lt;option value="1"&gt;Default option&lt;/option&gt;
             &lt;option value="2"&gt;Option 1&lt;/option&gt;
             &lt;option value="3"&gt;Option 2&lt;/option&gt;
@@ -236,7 +236,7 @@ myForm.addEventListener('change', function(event) {
 <li>
 <p>On the finder results page, tag your elements with the appropriate <code>data</code> attributes.</p>
 <p>a. Tag the parent <code>&lt;div&gt;</code> or wrapper element for your filters with <code>data-ga4-filter-container</code>. This tells our code where to look for filter sections, so that we can set an <code>index_section</code> for each filter.</p>
-<p>b. Tag each filter's wrapper element with a <code>data-ga4-section</code> attribute. This key can also be populated with a string value, which will be used to populate the <code>section</code> value of our GTM object. For example, on a "Topics" filter <code>&lt;div&gt;</code> you could add <code>data-ga4-section="Topics"</code> or just <code>data-ga4-section</code>.</p>
+<p>b. Tag each filter's wrapper element with a <code>data-ga4-filter-parent</code> attribute, so that indexes can be set. Tag each individual filter with <code>data-ga4-section="Topics"</code> to populate the GA4 section value for that filter.</p>
 <p>c. Tag each element of the form that can trigger a <code>change</code> event with a <code>data-ga4-change-category</code>. This will contain some metadata about what the change is. The current categories are: <code>update-filter</code>, <code>update-sort</code>, <code>clear-all-filters</code> and <code>update-keyword</code>. As well as this, add the type of element that the filter is (further details on what types are tracked is documented below.) This assists with our tracker extracting the value of the filter. For example, a <code>&lt;select&gt;</code> element that updates a filter would have <code>data-ga4-change-category="update-filter select"</code>. A search box would have <code>data-ga4-change-category="update-keyword text"</code>.</p>
 </li>
 <li>
