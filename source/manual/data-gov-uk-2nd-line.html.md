@@ -42,8 +42,8 @@ fix it - open a PR to resolve the problem.
 There are three environments for CKAN:
 
 - [Production][dgu-ckan]
-- [Staging](https://ckan.staging.publishing.service.gov.uk)
-- [Integration](https://ckan.integration.publishing.service.gov.uk)
+- [Staging](https://ckan.eks.staging.govuk.digital)
+- [Integration](https://ckan.eks.integration.govuk.digital)
 
 ## Monitoring data.gov.uk
 
