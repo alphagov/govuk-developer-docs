@@ -218,7 +218,7 @@
         </ul>
       </li>
       <li>
-        <a href="#connecting-to-ckan-via-ssh"><span>Connecting to CKAN via SSH</span></a>
+        <a href="#connecting-to-ckan-via-kubectl-exec"><span>Connecting to CKAN via kubectl exec</span></a>
         <ul>
           <li>
             <a href="#initialising-the-database"><span>Initialising the database</span></a>
@@ -287,6 +287,9 @@
           </li>
           <li>
             <a href="#restarting-the-harvest-service"><span>Restarting the harvest service</span></a>
+          </li>
+          <li>
+            <a href="#managing-cronjob-pods"><span>Managing cronjob pods</span></a>
           </li>
           <li>
             <a href="#the-csw-endpoint"><span>The csw endpoint</span></a>
@@ -371,15 +374,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b27d4142a58f00881912b766565be9ac01c6ff92">13 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/61c7bda34261b3406dc3e67b27dbdf7baa647815">8 Sep 2023</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
@@ -570,34 +566,33 @@ https://data.gov.uk/api/3/action/package_search?q=name:population-of-england-and
 <p>Publishers <strong>must</strong> select the correct &lsquo;Schema Vocabulary&rsquo; for their organogram dataset (i.e. one of the two &lsquo;organisation structure&rsquo; values) in order for the upload option to become available and for the conversion script to run.</p>
 </blockquote>
 <h3 id='dataset-analytics-requests'>Dataset Analytics requests</h3><p>If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk queue.</p>
-<h2 id='connecting-to-ckan-via-ssh'>Connecting to CKAN via SSH</h2><p>For commands not available via the user interface you must SSH onto a CKAN machine. You can use <a href="/manual/howto-ssh-to-machines.html">the govuk connect cli</a> to do this, eg:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect -e integration ssh ckan
-</code></pre></div><p>Most of the commands to interact with CKAN use the <code>ckan</code> CLI.  Some of these
-commands take a path to the config file with the <code>-c</code> option, which is located at
-<code>/var/ckan/ckan.ini</code> in our deployments.</p>
-<p>Once connected to the <code>ckan</code> machine, the commands should be run from within the <code>/var</code> directory as follows:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan [COMMAND]
-</code></pre></div><h3 id='initialising-the-database'>Initialising the database</h3><p>There may be times when you need to start with an empty database (e.g. on integration).
+<h2 id='connecting-to-ckan-via-kubectl-exec'>Connecting to CKAN via kubectl exec</h2><p>For commands not available via the user interface you must exec onto a CKAN pod:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/ckan-ckan -n datagovuk -- bash
+</code></pre></div><p>Most of the commands to interact with CKAN use the <code>ckan</code> CLI.</p>
+<p>Once connected to the <code>ckan</code> pod, the commands can be run using the <code>ckan</code> CLI, a list of them can be discovered:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan [COMMAND]
+</code></pre></div><p>If you need to view the CKAN configuration it is located at <code>/config/production.ini</code> which has been set to the <code>CKAN_INI</code> environment variable.</p>
+<h3 id='initialising-the-database'>Initialising the database</h3><p>There may be times when you need to start with an empty database (e.g. on integration).
 The following commands will create the relevant schema for core CKAN and the harvesting
 extension on integration.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan db init
-sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester initdb
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan db init
+ckan harvester initdb
 </code></pre></div><h3 id='accessing-the-database'>Accessing the database</h3><p>To access the CKAN database to run queries on the <code>ckan_db_admin</code> machine:</p>
 <p>Get the password for <code>aws_db_admin</code>: <code>sudo cat /root/.pgpass</code></p>
 <p>Supply the password when prompted: <code>psql -U aws_db_admin -h ckan-postgres -p 5432 ckan_production</code></p>
-<h3 id='creating-a-system-administrator-account'>Creating a system administrator account</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan sysadmin add USERNAME email=EMAIL_ADDRESS
+<h3 id='creating-a-system-administrator-account'>Creating a system administrator account</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan sysadmin add USERNAME email=EMAIL_ADDRESS
 </code></pre></div><p>You&rsquo;ll be prompted twice for a password.</p>
-<h3 id='removing-a-system-administrator-account'>Removing a system administrator account</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan sysadmin remove USERNAME
-</code></pre></div><h3 id='listing-users'>Listing users</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user list
-</code></pre></div><h3 id='viewing-a-user'>Viewing a user</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user show USERNAME
-</code></pre></div><h3 id='adding-a-user'>Adding a user</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user add USERNAME email=EMAIL_ADDRESS
-</code></pre></div><h3 id='removing-a-user'>Removing a user</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user remove USERNAME
-</code></pre></div><h3 id='changing-a-user39s-password'>Changing a user&rsquo;s password</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user setpass USERNAME
+<h3 id='removing-a-system-administrator-account'>Removing a system administrator account</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan sysadmin remove USERNAME
+</code></pre></div><h3 id='listing-users'>Listing users</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan user list
+</code></pre></div><h3 id='viewing-a-user'>Viewing a user</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan user show USERNAME
+</code></pre></div><h3 id='adding-a-user'>Adding a user</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan user add USERNAME email=EMAIL_ADDRESS
+</code></pre></div><h3 id='removing-a-user'>Removing a user</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan user remove USERNAME
+</code></pre></div><h3 id='changing-a-user39s-password'>Changing a user&rsquo;s password</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan user setpass USERNAME
 </code></pre></div><h3 id='changing-a-publisher-organisation-name'>Changing a publisher (organisation) name</h3><p>Change the name in the CKAN UI then reindex that publisher:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index rebuild [PUBLISHER]
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan search-index rebuild [PUBLISHER]
 </code></pre></div><h3 id='purging-a-dataset'>Purging a dataset</h3><p>Where commands mention DATASET_NAME, this should either be the slug for the dataset, or the
 UUID.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan dataset purge DATASET_NAME
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan dataset purge DATASET_NAME
 </code></pre></div><h3 id='bulk-deleting-datasets'>Bulk deleting datasets</h3><p>This needs to be done on the CKAN machine, since <a href="https://github.com/alphagov/govuk-puppet/blob/91471d86c0aa52aea4044835311ae9ba860281f5/modules/govuk/manifests/apps/ckan.pp#L210">the deletion API is protected from external access</a>. Your API key is required, which can be obtained from your user profile in the CKAN web interface. Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: &lt;your_api_key&gt;" http://localhost:&lt;ckan_port&gt;/api/3/action/package_delete; done &lt; list_of_ids.txt
 </code></pre></div><p>After deleting or purging a dataset, it will take up to 10 minutes to update on data.gov.uk, due to the sync process.</p>
@@ -619,19 +614,19 @@ UUID.</p>
 </ol>
 <h3 id='rebuilding-the-search-index'>Rebuilding the search index</h3><p>CKAN uses Solr for its search index, and occasionally you may need to refresh the index, or rebuild it from scratch.</p>
 <p>Refresh the entire search index (this adds/removes datasets, but does not clear the index first):</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index rebuild -r
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan search-index rebuild -r
 </code></pre></div><p>Rebuild the entire search index (this deletes the index before re-indexing begins):</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index rebuild
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan search-index rebuild
 </code></pre></div>
 <blockquote>
 <p>Rebuilding the entire search index immediately removes all records from the search before re-indexing begins. No datasets will be served from the <code>package_search</code> API endpoint until the re-index has completed. This command should therefore only be used as a last resort since it will cause the sync process to assume there is no data for a period of time.</p>
 </blockquote>
 <p>Only reindex those packages that are not currently indexed:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index -o rebuild
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan search-index -o rebuild
 </code></pre></div><h2 id='harvesting'>Harvesting</h2><p>Harvesting is where data is automatically imported to data.gov.uk without a publisher having to manually enter it via the web interface. This can be set to run automatically at specified periods, or run manually on-demand.</p>
 <p>Although harvesters can mostly be managed from the <a href="https://data.gov.uk/harvest">user interface</a>, it can be easier to perform these tasks from the command line.</p>
 <h3 id='listing-current-harvest-jobs'>Listing current harvest jobs</h3><p>This returns a list of currently running jobs, including the JOB_ID needed to cancel jobs.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester jobs
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan harvester jobs
 </code></pre></div><p>It may be faster to run a SQL query to get the ID of a specific harvest job.
 You can do this by running the command from <a href="#accessing-the-database">Accessing the database</a>
 and passing a <code>-c</code> argument:</p>
@@ -644,7 +639,7 @@ and passing a <code>-c</code> argument:</p>
 <li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a &lsquo;sysadmin&rsquo; user (see above for credentials).</li>
 <li>Click the &lsquo;Harvest&rsquo; button and find the relevant harvester.</li>
 <li>You will see a list of the datasets imported by this harvest source.</li>
-<li>Click the &lsquo;Manage&rsquo; button to get the status.</li>
+<li>Click the &lsquo;Admin&rsquo; button to get the status.</li>
 <li>A summary of the current status will be shown.  Individual runs (and any error messages) can be accessed from the &lsquo;Jobs&rsquo; tab.</li>
 </ol>
 <h3 id='restart-a-harvest-job'>Restart a harvest job</h3>
@@ -655,10 +650,8 @@ and passing a <code>-c</code> argument:</p>
 <p>If the harvest job is hanging and the &lsquo;Stop&rsquo; button is not responding, you&rsquo;ll have to log on to the <code>ckan</code> machine to restart it:</p>
 
 <ol>
-<li>SSH into the ckan machine as above</li>
-<li>Assume the deploy user - <code>sudo su deploy</code></li>
-<li>Activate the virtual environment - <code>. /var/apps/ckan/venv3/bin/activate</code></li>
-<li>Run the harvest job manually - <code>ckan -c /var/ckan/ckan.ini harvester run-test &lt;harvest source&gt;</code>
+<li>Exec into the ckan pod as above</li>
+<li>Run the harvest job manually - <code>ckan harvester run-test &lt;harvest source&gt;</code>
 
 <ul>
 <li>where <code>harvest source</code> is from the url of the harvest source page, e.g. <code>defra-metadata-catalogue-harvest</code></li>
@@ -672,7 +665,7 @@ and passing a <code>-c</code> argument:</p>
 <p>Sometimes a harvest job can get stuck and not complete, and can&rsquo;t be cancelled through the UI.
 You can get the <code>JOB_ID</code> from the harvest dashboard under &ldquo;Last Harvest Job&rdquo; (or from <a href="#listing-current-harvest-jobs">Listing current harvest jobs</a>).</p>
 <p>Cancel the job by running:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester job-abort JOB_ID
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan harvester job-abort JOB_ID
 </code></pre></div><p>This can also be done by running SQL:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>&lt;psql_ckan_production_command&gt; -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
 </code></pre></div><h3 id='purging-all-currently-queued-tasks'>Purging all currently queued tasks</h3><p>If there&rsquo;s a schedule clash and the system is too busy, it may be necessary to purge the queues used in the various stages of harvesting.</p>
@@ -681,54 +674,48 @@ You can get the <code>JOB_ID</code> from the harvest dashboard under &ldquo;Last
 <p><strong>WARNING</strong></p>
 <p>This command will empty the Redis queues</p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester purge-queues
-</code></pre></div><h3 id='restarting-the-harvest-service'>Restarting the harvest service</h3><p>The harvesting process runs as a single threaded program. If any harvesting
-process crashes by raising an exception, it&rsquo;ll take out the entire process. Upstart is configured to restart the process automatically, but if the service keeps crashing, Upstart will decide it&rsquo;s unhealthy and stop it after a while.</p>
-<p>You can check whether the process is still running by checking if entries are
-still being written to the log file on the <code>ckan</code> machine:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect <span class="nt">-e</span> production ssh ckan
-<span class="nv">$ </span><span class="nb">sudo tail</span> <span class="nt">-f</span> /var/log/ckan/procfile_harvester_fetch_consumer.err.log
-</code></pre></div><p>Or you can check that the services are all showing as <code>started</code> on the <code>ckan</code>
-machine:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl list | <span class="nb">grep </span>harvester
-</code></pre></div><p>If any of the services are not showing as <code>started</code>, you&rsquo;ll need to restart
-them. There are &lsquo;gather&rsquo; and &lsquo;fetch&rsquo; jobs that may need restarting:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan harvester purge-queues
+</code></pre></div><h3 id='restarting-the-harvest-service'>Restarting the harvest service</h3><p>The harvesting process runs as single pod. If the harvesting process crashes, the pod will terminate and a new pod should automatically
+be started. If the pod continues to crash you will probably need to look at the pod to investigate what is going on, it could be something like it is using an incorrect image or not connecting to the solr service.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl describe pod deploy/ckan-ckan <span class="nt">-n</span> datagovuk
+</code></pre></div><p>You can also check whether the process is still running by checking the logs on the <code>ckan-gather</code> and <code>ckan-fetch</code> pods:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl logs deploy/ckan-gather <span class="nt">-n</span> datagovuk
+<span class="nv">$ </span>kubectl logs deploy/ckan-fetch <span class="nt">-n</span> datagovuk
+</code></pre></div><p>Or you can check that the pods are all showing as <code>running</code>:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl get pods <span class="nt">-n</span> datagovuk | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"ckan-gather|ckan-fetch"</span>
+</code></pre></div><p>If any of the pods are not showing as <code>Running</code>, you may need to investigate why they are not Running. It is best to use the <code>kubectl describe</code> command to give you an idea as to the cause of the error:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl describe pod deploy/ckan-gather <span class="nt">-n</span> datagovuk<span class="s2">"
+</span></code></pre></div><p>This will give you some information on the health of the pod, one reason for a pod to fail is because it is not picking up the latest image in which case you can check that the relevant image has been pushed up by visiting these pages:</p>
+<p>CKAN - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan
+PYCSW - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw
+Solr - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr</p>
 <p>&lsquo;Gather&rsquo; jobs retrieve the identifiers of the updated datasets and create jobs
-in the fetch queue. To restart, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl restart harvester_gather_consumer-procfile-worker
+in the fetch queue. To restart a failing pod just delete it:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl delete pod deploy/ckan-gather <span class="nt">-n</span> datagovuk
 </code></pre></div><p>&lsquo;Fetch&rsquo; jobs retrieve the datasets from the remote source and perform the relevant
-updates in CKAN. To restart, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl restart harvester_fetch_consumer-procfile-worker
-</code></pre></div><p>Alternatively, if the server has stopped, you can restart it with <code>initctl</code>.
-You must ensure it&rsquo;s safe to restart the process first, by checking if the harvest is still running.</p>
-<p>To check the status of both harvesters:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl list | <span class="nb">grep </span>harvester_gather_consumer-procfile-worker_child | <span class="nb">grep </span>start
-<span class="nv">$ </span><span class="nb">sudo </span>initctl list | <span class="nb">grep </span>harvester_fetch_consumer-procfile-worker_child | <span class="nb">grep </span>start
-</code></pre></div><p>If either are not running you can restart the gather harvester using the following commands:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl stop harvester_gather_consumer-procfile
-<span class="nv">$ </span><span class="nb">sudo </span>initctl start harvester_gather_consumer-procfile
-</code></pre></div><p>and fetch harvesters using the following commands:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl stop harvester_fetch_consumer-procfile
-<span class="nv">$ </span><span class="nb">sudo </span>initctl start harvester_fetch_consumer-procfile
+updates in CKAN. To restart a failing pod just delete it:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl delete pod deploy/ckan-fetch <span class="nt">-n</span> datagovuk
+</code></pre></div><h3 id='managing-cronjob-pods'>Managing cronjob pods</h3><p>There are a number of cronjob pods which run periodically, you can give the list of cronjob pods using this command:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl get cronjobs <span class="nt">-n</span> datagovuk
+</code></pre></div><p>Sometimes they will get into a state where they are hanging. If this happens check their health by running a <code>kubectl describe</code>:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl describe cronjob/ckan-harvester-run <span class="nt">-n</span> datagovuk
+</code></pre></div><p>When running a <code>kubectl get pods -n datagovuk</code> command to view all running pods you will be able to see all completed and running pods. If there are a number of running cronjob pods they might be hanging due to things like a failure to pull the image. In this case you should delete the cronjob so that it gets redeployed rather than remove the pod as this will simply recreate the pod and not clear up the hanging pods.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl delete cronjob ckan-harvester-run <span class="nt">-n</span> datagovuk
 </code></pre></div><h3 id='the-csw-endpoint'>The <code>csw</code> endpoint</h3><p>The <code>csw</code> endpoint is available at <a href="https://data.gov.uk/csw">https://data.gov.uk/csw</a> which redirects to
  <a href="https://ckan.publishing.service.gov.uk/csw">https://ckan.publishing.service.gov.uk/csw</a>.</p>
 <h4 id='csw-endpoint-unavailable'><code>csw</code> endpoint unavailable</h4><p>If it is not showing xml with an error <code>Missing keyword: service</code> you can check
-that it&rsquo;s running on the <code>ckan</code> machine:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>service pycsw_web-procfile-worker status
-pycsw_web-procfile-worker start/running
-
-<span class="nv">$ $ </span>ps aux | <span class="nb">grep </span>pycsw
-root     29503  0.0  0.0  59652  2040 ?        Ss   06:04   0:00 <span class="nb">sudo</span> <span class="nt">-u</span> deploy <span class="nt">-E</span> sh <span class="nt">-c</span> <span class="nv">PATH</span><span class="o">=</span>/usr/lib/rbenv/shims:<span class="nv">$PATH</span> <span class="nb">exec  </span>unicornherder <span class="nt">--gunicorn-bin</span> ./venv/bin/gunicorn <span class="nt">-p</span> /var/run/ckan/pycsw_unicornherder.pid <span class="nt">--</span> ckanext.datagovuk.pycsw_wsgi <span class="nt">--bind</span> localhost:<span class="k">${</span><span class="nv">PYCSW_PORT</span><span class="k">}</span> <span class="nt">--timeout</span> <span class="k">${</span><span class="nv">GUNICORN_TIMEOUT</span><span class="k">}</span> <span class="nt">--workers</span> <span class="k">${</span><span class="nv">GUNICORN_WORKER_PROCESSES</span><span class="k">}</span> <span class="nt">--log-file</span> /var/log/ckan/pycsw.out.log <span class="nt">--error-logfile</span> /var/log/ckan/pycsw.err.log 2&gt;&gt;<span class="s1">'/var/log/ckan/procfile_pycsw_web.err.log'</span> 1&gt;&gt;<span class="s1">'/var/log/ckan/procfile_pycsw_web.out.log'</span>
-...
-</code></pre></div><p>If no running processes are found then you can restart it using this command:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>service pycsw_web-procfile_worker restart
-</code></pre></div><p>It is worth checking the <code>pycsw</code> logs to investigate why it failed:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">tail</span> <span class="nt">-f</span> /var/log/ckan/pycsw.err.log
+that the <code>pycsw</code> pod is running:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl get pods <span class="nt">-n</span> datagovuk | <span class="nb">grep </span>pycsw
+</code></pre></div><p>If no running pods are found then you can start investigating why by running this command:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl describe deploy/ckan-pycsw <span class="nt">-n</span> datagovuk
+</code></pre></div><p>Delete the <code>pycsw</code> pod if it is not clear why it is failing as this can sometimes help it restart successfully.</p>
+<p>It is worth checking the <code>pycsw</code> logs to investigate why it failed:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl logs deploy/ckan-pycsw <span class="nt">-n</span> datagovuk
 </code></pre></div><p>You can get a summary of <code>csw</code> records available from this url <a href="https://ckan.publishing.service.gov.uk/csw?service=CSW&version=2.0.2&request=GetRecords&typenames=csw:Record&elementsetname=brief">https://ckan.publishing.service.gov.uk/csw?service=CSW&amp;version=2.0.2&amp;request=GetRecords&amp;typenames=csw:Record&amp;elementsetname=brief</a></p>
-<h4 id='syncing-the-csw-records-with-ckan-datasets'>Syncing the <code>csw</code> records with <code>ckan</code> datasets</h4><p>Normally the sync between <code>csw</code> and <code>ckan</code> will start at 6 each day, but in
+<h4 id='syncing-the-csw-records-with-ckan-datasets'>Syncing the <code>csw</code> records with <code>ckan</code> datasets</h4><p>Normally the sync between <code>csw</code> and <code>ckan</code> will start at 6am each day, but in
 case it should fail or if the sync needs to happen sooner you can manually
 trigger the sync after Solr has been reindexed.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan ckan-pycsw load <span class="nt">-p</span> /var/ckan/pycsw.cfg <span class="nt">-u</span> http://localhost:3220
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>ckan ckan-pycsw load <span class="nt">-p</span> /config/pycsw.cfg <span class="nt">-u</span> http://ckan-ckan:5000
 </code></pre></div><h2 id='map-previews'>Map previews</h2><p>Map previews on data.gov.uk have been deprecated. Map preview links are no longer available and existing map preview pages will have a note about them being deprecated.</p>
 <p>The Ordanance Survey API that sat behind this service was turned off. We also conducted an audit of the use of map previews, which showed that less than 1% of requests were to map preview datasets and of the 6% of map preview datasets available on DGU, only 2% were working as expected.</p>
 <h2 id='register-a-brownfield-dataset'>Register a brownfield dataset</h2><p>See the <a href="https://docs.google.com/document/d/1SxzN9Ihat75TXo-fMwFqW_qBS-bPKHRs-a-tAO-qA1c/edit?usp=sharing">supporting manual</a>.</p>

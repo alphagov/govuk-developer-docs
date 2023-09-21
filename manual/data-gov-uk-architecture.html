@@ -193,11 +193,11 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9f3c1579fa35cb90016988c1a647d35d17a5167a">8 Sep 2023</a>
 </div>
 
  <h1 id='header'>Architecture of data.gov.uk</h1> <p>The <code>data.gov.uk</code> (DGU) platform is used to publish and view datasets. A dataset contains the metadata for a collection of links to data hosted somewhere on the internet.</p>
-<h2 id='architectural-overview-of-data-gov-uk'>Architectural overview of data.gov.uk</h2><p><a href="/manual/images/dgu-architecture.png" rel="noopener noreferrer"><img src="/manual/images/dgu-architecture.png" alt="" /></a></p>
+<h2 id='architectural-overview-of-data-gov-uk'>Architectural overview of data.gov.uk</h2><p><a href="/manual/images/2023-dgu-architecture.png" rel="noopener noreferrer"><img src="/manual/images/2023-dgu-architecture.png" alt="" /></a></p>
 <p>The original for this diagram is available on the <a href="https://drive.google.com/open?id=1xnwgUBrwnQI2aIfZ0FT8nBQ-pERNRo2r">Platform Health Google Drive</a> and can be edited with draw.io.</p>
 <h2 id='data-gov-uk-services'>data.gov.uk Services</h2><p>Services owned by data.gov.uk</p>
 
@@ -232,8 +232,7 @@ who are currently Airbus Defence &amp; Space.</p>
 cf services
 cf routes
 cf env publish-data-beta-production
-</code></pre></div><p>We use <a href="/manual/manage-sign-on-accounts.html">GOV.UK Signon</a> for user authentication in <a href="/repos/datagovuk_publish.html">Publish Data</a>, with the app in each environment linked to the corresponding instance of <a href="/manual/manage-sign-on-accounts.html">GOV.UK Signon</a>. See the Publish ADR for more info.</p>
-<h2 id='ckan'><a href="/repos/ckanext-datagovuk.html">CKAN</a></h2><p><a href="/repos/ckanext-datagovuk.html">CKAN</a> is hosted on AWS and is maintained/deployed in the same way as most other GOV.UK applications.</p>
+</code></pre></div><h2 id='ckan'><a href="/repos/ckanext-datagovuk.html">CKAN</a></h2><p><a href="/repos/ckanext-datagovuk.html">CKAN</a> is hosted on AWS EKS and is maintained/deployed in the same way as most other GOV.UK applications.</p>
 
 
   <div class='related-content'>
