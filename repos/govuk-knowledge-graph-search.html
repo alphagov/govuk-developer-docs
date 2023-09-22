@@ -339,6 +339,36 @@ etc.</li>
 <p>We use <a href="https://docs.cypress.io">Cypress</a>, which is installed automatically on installing the <code>dev</code> npm packages. If Chrome is installed on your system it should be as simple as running <code>npx cypress open</code> for the interactive version and <code>npx cypress run</code> for the command-line version.</p>
 <p>To run a single test file , use <code>--spec</code>. For instance:</p>
 <p><code>cypress run --spec cypress/e2e/url.cy.ts</code></p>
+<h2 id="deployment">Deployment</h2>
+<h3 id="staging-deployment">Staging Deployment</h3>
+<p>Staging deployment is triggered automatically whenever a pull request is merged into the main branch.</p>
+<p>This is made possible by the deploy-staging GitHub Action.</p>
+<p>Steps:</p>
+<ol>
+<li>Create your feature/fix on a new branch.</li>
+<li>Create a PR targeting the main branch.</li>
+<li>Ensure the PR passes all the CI checks and has been approved</li>
+<li>Merge</li>
+<li>The action will deploy the changes. CloudRun revisions that have been deployed automatically start with the &ldquo;main-&rdquo; prefix.</li>
+</ol>
+<p>Manually:
+You can also trigger the workflow manually in the actions tab of the repo, by selecting the &ldquo;deploy-staging&rdquo; workflow.</p>
+<h3 id="production-deployment">Production Deployment</h3>
+<p>Production deployments have to be triggered manually for security reasons.</p>
+<ol>
+<li>After testing the changes in the staging environment, create a PR of the main branch against the production branch.</li>
+<li>Review and approve the PR.</li>
+<li>Merge the PR.</li>
+<li>Wait for completion of the <code>create-release-tag</code> GitHub Action. It will create a new release and a tag in the GitHub repository for every production deployment.</li>
+<li>Once the release appears in the repository, manually run the production-deploy workflow. Select the <code>latest</code> tag from the <code>production</code> branch.</li>
+<li>(Optional) Write a custom description for the release in Github.</li>
+</ol>
+<h3 id="please-note">Please note:</h3>
+<ul>
+<li>Deployments from local machine should be limited to the development environment.</li>
+<li>The deploy-staging GitHub Action will run again during the PR from main to production. This is expected and won&rsquo;t cause issues.</li>
+<li>There may be a slight delay (usually less than a minute) before the new release appears in the repository after the create-release-tag action has completed.</li>
+</ul>
 <h2 id="deployment-steps">Deployment Steps</h2>
 <ol>
 <li>Go to production site <a href="https://govgraphsearch.dev/">https://govgraphsearch.dev/</a> and view the source.</li>
