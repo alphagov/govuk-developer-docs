@@ -79,6 +79,8 @@ Accessing machines using SSH in production and staging requires Production Admin
 
 The machine classes you will need are `licensing_frontend` and `licensing_backend`. You will need to be on the VPN.
 
+Connect to the instance by running, for example, `gds govuk connect -e production ssh licensing_backend`.
+
 The files most relevant to the Licensify applications can be found in:
 
 * Application: `/data/vhost/licensify`
