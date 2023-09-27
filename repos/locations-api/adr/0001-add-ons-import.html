@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: locations-api - GOV.UK Developer Documentation</title>
+    <title>locations-api: 1. Add ONS Postcode Data Import - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/locations-api.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/locations-api/adr/0001-add-ons-import.html">
 
-      <meta name="description" content="Everything about locations-api (An interface between GOV.UK's frontend applications and external APIs involved in location based services.)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: locations-api - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/locations-api.html" />
+      <meta name="twitter:title" content="locations-api: 1. Add ONS Postcode Data Import - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/locations-api/adr/0001-add-ons-import.html" />
 
-      <meta property="og:description" content="Everything about locations-api (An interface between GOV.UK's frontend applications and external APIs involved in location based services.)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: locations-api" />
+      <meta property="og:title" content="locations-api: 1. Add ONS Postcode Data Import" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/locations-api.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/locations-api/adr/0001-add-ons-import.html" />
 
     
   </head>
@@ -169,6 +167,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "locations-api",
+        "@id": "http://www.dev.gov.uk/repos/locations-api.html"
+      }
     }
   ]
 }
@@ -177,111 +183,59 @@
 <div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/locations-api.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;locations-api&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;3&quot;},&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/locations-api.html">locations-api</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Application: locations-api</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>An interface between GOV.UK&rsquo;s frontend applications and external APIs involved in location based services.</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/locations-api">locations-api</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/tech-content-interactions-on-platform-govuk">#tech-content-interactions-on-platform-govuk</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS (EKS)</strong></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">APIs</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-locations-api" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/000000111?var-app=locations-api" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/locations-api" class="govuk-link">Argo CD (locations-api)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/locations-api/commit/4098e81675bc4e2471dbe5996860114908370088">9 May 2023</a>
 </div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Acts as an interface between GOV.UK&rsquo;s frontend applications and external APIs involved in location based services (e.g. postcode lookups).</p>
+  <h1 class="page-title">locations-api: 1. Add ONS Postcode Data Import</h1>
 
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p>To run all tests and linters:</p>
-
-<pre><code>bundle exec rake
-</code></pre>
-
-<p>To run all tests:</p>
-
-<pre><code>bundle exec rake test
-</code></pre>
-
-<p>To run a single rspec file:</p>
-
-<pre><code>bundle exec rspec spec/my_spec.rb
-</code></pre>
-
-<p>To run all linters:</p>
-
-<pre><code>bundle exec rake lint
-</code></pre>
-
-<h3 id="further-documentation">Further documentation</h3>
-
+  
+<p>Date: 2023-05-09</p>
+<h2 id="status">Status</h2>
+<p>Open</p>
+<h2 id="context">Context</h2>
+<p>Locations API is supposed to be an exhaustive list of postcodes, but because the underlying API (OS Places API) is a list of addresses, postcodes which aren't the primary postcode for an address in the OS Places API database won't ever appear. So Locations API can't support Large User Postcodes (LUPs), or Retired Postcodes.</p>
+<p>The nature of data in Imminence means that a lot of LUPs are provided as the contact information for places in Imminence, and without LUPs in the Locations API we can neither geocode nor search by these postcodes. The current workaround is to manually look up the Longitude and Latitude of the postcode in the Office of National Statistics Postcode Data (ONSPD) file, which contains information as a CSV list of postcodes, and critically includes both LUPs and retired postcodes. This is not possible for content second liners, and not easy for technical second liners, so second line tickets generated by these problems are hard to resolve without toil work on the part of a handful of specialists.</p>
+<p>It also means we cannot support end users who only have retired postcodes for their addresses (more common than expected, because it seems the communications around postcode retirement are often missed).</p>
+<h2 id="decision">Decision</h2>
+<p>The ONSPD file is updated on average around two to three times a year (exact update intervals may vary), and has a well understood and open structure (a CSV file also available as multiple smaller CSV files) which has not changed since 2017. We do not expect it to change in the near future. Given this apparent stability and the fact that the data after import will be stable even if the file format changes, we will import it into the postcode table in Locations API. If the file format does change, we will be able to use the last import until we can update our import methods.</p>
+<p>To differentiate these ONSPD imported records from OS Places API records, two fields will be added to the database</p>
 <ul>
-<li><a href="/repos/locations-api/postcodes-added-cached-updated.html">How postcodes are added, cached and updated</a></li>
-<li><a href="/repos/locations-api/os-places-api.html">OS Places API</a></li>
+<li>a source field, an enum which will record where the data comes from, and</li>
+<li>a retired field, a boolean field which will note whether the postcode is active (false) or retired (true).</li>
 </ul>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/locations-api/blob/main/LICENCE">MIT LICENCE</a>.</p>
-<p></div></p>
+<p>The rest of the ONSPD data for a postcode will be stored in the results field in a JSON structure, the same way we currently store for OS Places API-derived data, but with a simpler structure:</p>
+<pre><code>[
+  {
+    "ONS" =&gt; {
+      "AVG_LNG" =&gt; &lt;Longitude from ONSPD file&gt;.
+      "AVG_LAT" =&gt; &lt;Latitude from ONSPD file&gt;.
+      "TYPE" =&gt; &lt;"L" (Large User Postcode) or "S" (a small, "normal" postcode)&gt;.
+      "DOTERM" =&gt; &lt;Date the postcode was terminated in YYYYMM format as in the ONSPD file&gt;,
+    }
+  }
+]
+</code></pre>
+<p>(Here naming the array element by its source - ONS - is a little redundant, but matches the way OS Places array elements are named with their ultimate source - DPA or LPI)</p>
+<p>We will create import workers to handle the import. A rake task will be created which, given the URL of an ONSPD zip file, will schedule a download worker job. The download worker will retrieve the zip file and extract the smaller CSV files, putting them in an S3 bucket. It will then schedule import worker jobs for each CSV file. These jobs will read the CSV, comparing it with the existing database. Where a postcode apppears in the CSV but is not in the current database, it will create a simplified record for it, with the source marked as ONSPD and the retired flag set appropriately. These workers will not override any record that has been retrieved from the OS Places API.</p>
+<p>The OS Places API crawler will be updated so that it will not attempt to retrieve information for any postcode whose record source is ONSPD unless it is marked as both not retired (from the active field) and not an LUP (from the simplified record). This will prevent us from bombarding OS Places API with requests for invalid postcodes, while at the same time attempting to get improved information for any postcode that should be in OS Places API.</p>
+<p>The GDS Api Adapter methods which call Locations API will be updated to understand how to use the new structures.</p>
+<p>We will run a data migration for existing OS Places records to populate the source/retired flag.</p>
+<h2 id="consequences">Consequences</h2>
+<p>We can update Imminence to allow geocoding by LUPs and retired postcodes (with warnings for the imminence admin users that those postcodes might need updating), reducing maintenance for Imminence datasets which currently require longitude/latitude overrides and generating fewer 2nd line tickets.</p>
+<p>We can provide lookups by LUPs and retired postcodes, reducing confusion in Licence, LLM, and Imminence lookups.</p>
+<p>We can (if it is decided useful) return end-user notifications that a postcode is retired in the frontend searches that use Locations API.</p>
 
 
             
@@ -289,8 +243,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Flocations-api.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/locations-api/blob/main/docs/adr/0001-add-ons-import.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Flocations-api%2Fadr%2F0001-add-ons-import.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
