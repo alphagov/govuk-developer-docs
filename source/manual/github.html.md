@@ -47,6 +47,10 @@ Not everyone on GOV.UK requires GitHub access, as much of what we do is in the o
   - which GitHub team(s) you should join ([see list](#govuk-teams))
   - why you need access
 
+## Removing access to GitHub
+
+Users are removed from the GitHub organisation when their entry in [govuk-user-reviewer][govuk-user-reviewer] is deleted.
+
 # GOV.UK repos
 
 ## Create and configure a new GOV.UK repo
