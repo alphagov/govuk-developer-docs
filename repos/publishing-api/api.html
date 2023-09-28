@@ -219,15 +219,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/63c97394a956d91808e5ec9ad6cda9b9c387fecc">21 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/ec0a9f0c5ff310133ca8d70395a284e8eda39957">12 Sep 2023</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -261,7 +254,6 @@ message queue for other apps (e.g. <code>email-alert-service</code>) to consume.
 <li><a href="#delete-pathsbase_path"><code>DELETE /paths/:base_path</code></a></li>
 <li><a href="#put-publish-intentbase_path"><code>PUT /publish-intent(/*base_path)</code></a></li>
 <li><a href="#delete-publish-intentbase_path"><code>DELETE /publish-intent(/*base_path)</code></a></li>
-<li><a href="#get-debugcontent_id"><code>GET /debug/:content_id</code></a></li>
 </ul>
 <h3 id="optimistic-locking-previous_version">Optimistic locking (<code>previous_version</code>)</h3>
 <p>All PUT and POST endpoints take an optional JSON attribute <code>previous_version</code>
@@ -1345,26 +1337,6 @@ normal.</p>
 <li>The <code>PublishingIntent</code> for the passed in base_path is removed from the
 content-store.</li>
 </ul>
-<h2 id="get-debugcontent_id"><code>GET /debug/:content_id</code></h2>
-<p>Displays debug information for <code>content_id</code>.</p>
-<h3 id="path-parameters">Path parameters:</h3>
-<ul>
-<li>
-<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
-<ul>
-<li>Identifies the document to debug.</li>
-</ul>
-</li>
-</ul>
-<h3 id="usage">Usage:</h3>
-<pre><code>  ssh publishing-api-1.integration -CNL 8888:127.0.0.1:3093
-</code></pre>
-<p>And then open <a href="http://localhost:8888/debug/f141fa95-0d79-4aed-8429-ed223a8f106a">http://localhost:8888/debug/f141fa95-0d79-4aed-8429-ed223a8f106a</a></p>
-<p>Alternatively add the following host to your hosts file:</p>
-<pre><code>  127.0.0.1 publishing-api.integration.publishing.service.gov.uk
-</code></pre>
-<p>And then open
-<a href="http://publishing-api.integration.publishing.service.gov.uk:8888/debug/f141fa95-0d79-4aed-8429-ed223a8f106a">http://publishing-api.integration.publishing.service.gov.uk:8888/debug/f141fa95-0d79-4aed-8429-ed223a8f106a</a></p>
 
 
             
