@@ -21,5 +21,7 @@ parent: "/manual.html"
 
 If you'd like to explore further, read the [architectural deep-dive](/manual/architecture-deep-dive.html).
 
+A more recent architecture diagram, created for the publishing teams, is available at <https://app.mural.co/t/govuk1422/m/govuk1422/1694525134284/5fea5844e36344eb1bc98c20cd0755d2a0c2266e>.
+
 [src]: https://drive.google.com/open?id=1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm
 [arch-folder]: https://drive.google.com/drive/folders/1xIjPkD_MSKMR65FbDAb-ToXy2GmBcaJ5
