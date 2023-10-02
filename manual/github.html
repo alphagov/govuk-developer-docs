@@ -204,7 +204,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c9beaf622c90117e1e3c77b7de602cd323c0fa22">28 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2f2f7e5a2e6e41c143b5aeb107b1a9cdd70995cb">2 Oct 2023</a>
 </div>
 
  <h1 id='header'>GitHub</h1> <p>GOV.UK uses GitHub for version control, code deployments, authentication, CI, Dependabot and GitHub Pages. Read the &ldquo;<a href="https://docs.google.com/document/d/1KsYWCHSQZEwqB2NF1A7Z9rmP1s1azcZhEamaPsXAoxk/edit">GOV.UK reliance on GitHub features doc</a>&rdquo; Google doc for more information.</p>
@@ -246,7 +246,7 @@ Only content designers should be added to this team.</p></li>
 <li>has a well written README (see <a href="/manual/readmes.html">READMEs for GOV.UK applications</a>, or the <a href="https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes">GDS Way guidance</a> for general repositories)</li>
 <li>is tagged with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> &ldquo;topic&rdquo;</li>
 <li>is added to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml</a> file in the Developer Docs. We run a <a href="https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml">daily script</a> to ensure that the Developer Docs&rsquo; config is in sync with GitHub.</li>
-<li>grants the following access to GitHub teams:
+<li>In <a href="https://app.terraform.io/app/govuk/workspaces/GitHub/runs">Terraform Cloud</a> start a new run and apply changes to grant access to the following GitHub teams:
 
 <ul>
 <li><a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a>: Admin access</li>
@@ -254,7 +254,6 @@ Only content designers should be added to this team.</p></li>
 <li><a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK team</a>: Write access</li>
 </ul></li>
 </ul>
-<p>The team access currently needs applying manually, but <a href="https://trello.com/c/tbQjgkwR/3249-have-govuk-saas-config-grant-team-access-to-govuk-tagged-repos-3">watch this space</a>. The rest of the configuration is automated - see below.</p>
 <h2 id='how-gov-uk-automates-its-repository-settings'>How GOV.UK automates its repository settings</h2><p>We currently use two tools for this:</p>
 
 <ol>
