@@ -60,12 +60,10 @@ When creating a new GOV.UK repo, you must ensure it:
 - has a well written README (see [READMEs for GOV.UK applications](/manual/readmes.html), or the [GDS Way guidance](https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes) for general repositories)
 - is tagged with the [`govuk`](https://github.com/search?q=topic:govuk) "topic"
 - is added to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the Developer Docs. We run a [daily script](https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml) to ensure that the Developer Docs' config is in sync with GitHub.
-- grants the following access to GitHub teams:
+- In [Terraform Cloud](https://app.terraform.io/app/govuk/workspaces/GitHub/runs) start a new run and apply changes to grant access to the following GitHub teams:
   - [GOV.UK CI Bots][team-govuk-ci-bots]: Admin access
   - [GOV.UK Production Admin][team-govuk-production-admin]: Admin access
   - [GOV.UK team][team-govuk]: Write access
-
-The team access currently needs applying manually, but [watch this space](https://trello.com/c/tbQjgkwR/3249-have-govuk-saas-config-grant-team-access-to-govuk-tagged-repos-3). The rest of the configuration is automated - see below.
 
 ## How GOV.UK automates its repository settings
 
