@@ -28,9 +28,6 @@ Source diagram in the [GOV.UK architecture folder][arch-folder].
 ### Components
 
 - [transition][] is the admin app that departments use to transition.
-- [transition-config][] contains YAML files to configure transitioning
-  websites. It's imported into the Transition database by the
-  [Transition_load_site_config job][config-import].
 - The [cloudwatch / athena / lambda][infra-fastly-logs] trio process the logs
   from Fastly to produce the statistics. Those are then loaded into Transition
   by the [Transition_load_all_data job][stats-import].
@@ -40,9 +37,6 @@ Source diagram in the [GOV.UK architecture folder][arch-folder].
 
 ## Transition data sources
 
-Site configuration is automatically imported every hour via
-[a Jenkins job][config-import] from [transition-config][].
-
 Traffic data is automatically imported every day via [a Jenkins
 job][stats-import].  This import puts a high load on the database. CDN logs
 for the "Production Bouncer" Fastly service are sent (by Fastly) to the
@@ -50,8 +44,6 @@ for the "Production Bouncer" Fastly service are sent (by Fastly) to the
 defined in the [infra-fastly-logs][] Terraform project.
 
 [transition]: /repos/transition.html
-[config-import]: https://deploy.blue.production.govuk.digital/job/Transition_load_site_config
-[transition-config]: https://github.com/alphagov/transition-config
 [stats-import]: https://deploy.blue.production.govuk.digital/job/Transition_load_all_data/
 [infra-fastly-logs]: https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-fastly-logs
 

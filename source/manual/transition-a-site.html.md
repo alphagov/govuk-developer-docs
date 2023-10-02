@@ -11,7 +11,7 @@ When a site is going to move to GOV.UK, there are two ways that the old site
 can be redirected. They can do it themselves, or they can repoint the domain at
 us. This page is about the latter.
 
-The [Transition][] app exists to allow editing of mapping of old URLs to pages
+The [Transition][] app exists to allow old URLs to be mapped to pages
 on GOV.UK. These mappings are stored in a database and used by [Bouncer][] to
 handle requests to those old domains.
 
@@ -20,16 +20,29 @@ it, or changing the configuration of an existing site in the Transition app.
 
 ## Changing the configuration of a site that is already in the Transition app
 
-The [transition-config README][transition-config] gives more details on how to
-edit the relevant [transition configuration file].
-
-[transition configuration file]: https://github.com/alphagov/transition-config/tree/main/data/transition-sites
+If you have the Site Manager permission for Transition, you will see an Edit button on each site page (for example, [the site page for Department for Education's old domain](https://transition.publishing.service.gov.uk/sites/dfe)). This form will allow you to change the configuration of the site.
 
 ## Checklist for transitioning a new site
 
+### Prerequisites
+
+Before you start, you need to know:
+
+- the domain name being transitioned and any aliases
+- the organisation that owns the site (and any additional organisations that should have access)
+- the new homepage for the old site - often this is the organisation's page on GOV.UK, but sometimes it can be a different page on GOV.UK
+
+The organisation that owns the site determines several things:
+
+- where the site is found in the Transition app
+- who has access to edit and create mappings for the site
+- what organisation name and branding is used on pages served by Bouncer for URLs which aren't redirected
+
+Extra organisations can be added later.
+
 ### 1) Add a site to the Transition app
 
-Follow the instructions in the [transition-config README][transition-config].
+If you have the Site Manager permission for Transition, you will see an "Add a transition site" button on each organisation page (for example, [Department for Education’s organisation page](https://transition.integration.publishing.service.gov.uk/organisations/department-for-education). Follow the instructions on that form to add a site.
 
 ### 2) Consider AKA domains
 
@@ -86,7 +99,7 @@ There are lots of file formats we don't want to provide mappings for, like
 static assets, images, or common spammy/malicious crawlers. These can be
 stripped using the [strip_mappings.sh][smsh] script.
 
-[smsh]: https://github.com/alphagov/transition-config/blob/main/tools/strip_mappings.sh
+[smsh]: https://github.com/alphagov/transition/blob/main/tools/strip_mappings.sh
 
 #### Query parameter analysis
 
@@ -96,10 +109,10 @@ parameter names and then add them to the site configuration file in
 significantly changes the content seen on the old site and/or it would be
 mapped to a different new URL.
 
-There are some transition-config scripts to help analyse query param usage:
+There are some transition scripts to help analyse query param usage:
 
-- [analyse_query_params.sh](https://github.com/alphagov/transition-config/blob/main/tools/analyse_query_params.sh)
-- [analyse_query_usage.sh](https://github.com/alphagov/transition-config/blob/main/tools/analyse_query_usage.sh)
+- [analyse_query_params.sh](https://github.com/alphagov/transition/blob/main/tools/analyse_query_params.sh)
+- [analyse_query_usage.sh](https://github.com/alphagov/transition/blob/main/tools/analyse_query_usage.sh)
 
 Some common examples of significant parameters:
 
@@ -163,7 +176,7 @@ For security reasons, *.gov.uk subdomains are delegated upon request. When the s
 
 We need to:
 
-1. Obtain the TXT record by submitting Fastly support request. You will need to provide 'Production bouncer' service ID and the subdomain you want to add. See an [example of support request](https://support.fastly.com/hc/en-us/requests/700875).
+1. Obtain the TXT record by submitting a Fastly support request. You will need to provide the 'Production bouncer' service ID and the subdomain you want to add. See an [example of support request](https://support.fastly.com/hc/en-us/requests/700875).
 
 2. Add the DNS record to [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf) and apply terraform configuration.
 
@@ -199,10 +212,11 @@ There are two things that need to be responded to:
 
 ## Further reading
 
+> The documents below may contain outdated information.
+
 The transition checklist covers the whole process of transitioning a site from the technical side. There’s a [full version for complex sites](https://docs.google.com/document/d/1SiBwYtV_d_D9pPcqzpqvRWs0kscUtB7yqxN8Ub_uRSA/edit) and a [slightly simplified one](https://docs.google.com/document/d/1gIJBUuPaZqtYsrgwqMBSrU4lpr2e93tuhQcgylnSHb4/edit) - we probably only need the simpler one for upcoming transitions.
 
 [Transition]: /repos/transition.html
 [Bouncer]: /repos/bouncer.html
-[transition-config]: https://github.com/alphagov/transition-config/blob/main/README.md
 [request a Fastly TLS certificate]: /manual/request-fastly-tls-certificate.html
 [code change]: https://github.com/alphagov/govuk-dns-tf/compare/0cf283b6...18471c36
