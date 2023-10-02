@@ -10,8 +10,6 @@ This alert means that a process which should be running is not. It's highly like
 
 If the process doesn't correspond to a service then it will be necessary to find out more about how the process runs. Read [troubleshooting the process](#troubleshooting-the-process) at the end of this page.
 
-If the alert is accompanied by a `<app-name> app unicornherder not running` alert, then [fix that first](/manual/alerts/unicorn-herder.html) (it should automatically solve this alert too).
-
 ## Check the status of the service
 
 ```bash
