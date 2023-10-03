@@ -155,7 +155,25 @@ advance, and to be lowered to 300 seconds (5 minutes). It can be raised
 again once everyone is happy there is no need to switch back - normally
 the day after.
 
-### 8) Point the domain at us
+### 8) Add the domain to Fastly
+
+#### Verify the subdomain (for a *.gov.uk subdomain only)
+
+For security reasons, *.gov.uk subdomains are delegated upon request. When the steps below are not completed, there will be a `Domain 'gov.uk' is owned by another customer` error when the terraform apply command runs.
+
+We need to:
+
+1. Obtain the TXT record by submitting Fastly support request. You will need to provide 'Production bouncer' service ID and the subdomain you want to add. See an [example of support request](https://support.fastly.com/hc/en-us/requests/700875).
+
+2. Add the DNS record to [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf) and apply terraform configuration.
+
+  It's not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with `_fastly` as a proof of ownership. See an [example code change][code change].
+
+#### Apply govuk-fastly terraform configuration
+
+Manually trigger govuk-fastly 'Plan and apply' run in [Terraform Cloud UI](https://app.terraform.io/app/govuk/workspaces/govuk-fastly/runs). Review the plan with changes to `module.bouncer-production.fastly_service_vcl.service` and apply the configuration.
+
+### 9) Point the domain at us
 
 Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a `CNAME`
@@ -171,7 +189,7 @@ You'll need to create a TLS certificate in Fastly for HTTPS domains, otherwise
 users will see a certificate error when being redirected from an external
 HTTPS URL to GOV.UK via Bouncer. Read how to [request a Fastly TLS certificate][]
 
-### 9) Get the organisation to monitor the traffic data in the Transition app
+### 10) Get the organisation to monitor the traffic data in the Transition app
 
 There are two things that need to be responded to:
 
@@ -187,3 +205,4 @@ The transition checklist covers the whole process of transitioning a site from t
 [Bouncer]: /repos/bouncer.html
 [transition-config]: https://github.com/alphagov/transition-config/blob/main/README.md
 [request a Fastly TLS certificate]: /manual/request-fastly-tls-certificate.html
+[code change]: https://github.com/alphagov/govuk-dns-tf/compare/0cf283b6...18471c36
