@@ -159,10 +159,13 @@
             <a href="#7-get-the-organisation-to-lower-the-ttl-on-the-dns-records-a-day-ahead"><span>7) Get the organisation to lower the TTL on the DNS records a day ahead</span></a>
           </li>
           <li>
-            <a href="#8-point-the-domain-at-us"><span>8) Point the domain at us</span></a>
+            <a href="#8-add-the-domain-to-fastly"><span>8) Add the domain to Fastly</span></a>
           </li>
           <li>
-            <a href="#9-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app"><span>9) Get the organisation to monitor the traffic data in the Transition app</span></a>
+            <a href="#9-point-the-domain-at-us"><span>9) Point the domain at us</span></a>
+          </li>
+          <li>
+            <a href="#10-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app"><span>10) Get the organisation to monitor the traffic data in the Transition app</span></a>
           </li>
         </ul>
       </li>
@@ -218,15 +221,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/190a9e55d7f82368fadcde51b0e3718ca205873a">12 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9b18d9f81c2dde734a488016b23bdf52374f3fb0">3 Oct 2023</a>
 </div>
 
  <h1 id='header'>Transition a site to GOV.UK</h1> <p>When a site is going to move to GOV.UK, there are two ways that the old site
@@ -330,7 +326,16 @@ impression to stakeholders. We normally ask for this to be done a day in
 advance, and to be lowered to 300 seconds (5 minutes). It can be raised
 again once everyone is happy there is no need to switch back - normally
 the day after.</p>
-<h3 id='8-point-the-domain-at-us'>8) Point the domain at us</h3><p>Once the site has been imported successfully, the domain can be pointed
+<h3 id='8-add-the-domain-to-fastly'>8) Add the domain to Fastly</h3><h4 id='verify-the-subdomain-for-a-gov-uk-subdomain-only'>Verify the subdomain (for a *.gov.uk subdomain only)</h4><p>For security reasons, *.gov.uk subdomains are delegated upon request. When the steps below are not completed, there will be a <code>Domain &#39;gov.uk&#39; is owned by another customer</code> error when the terraform apply command runs.</p>
+<p>We need to:</p>
+
+<ol>
+<li><p>Obtain the TXT record by submitting Fastly support request. You will need to provide &lsquo;Production bouncer&rsquo; service ID and the subdomain you want to add. See an <a href="https://support.fastly.com/hc/en-us/requests/700875">example of support request</a>.</p></li>
+<li><p>Add the DNS record to <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a> and apply terraform configuration.</p></li>
+</ol>
+<p>It&rsquo;s not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with <code>_fastly</code> as a proof of ownership. See an <a href="https://github.com/alphagov/govuk-dns-tf/compare/0cf283b6...18471c36">example code change</a>.</p>
+<h4 id='apply-govuk-fastly-terraform-configuration'>Apply govuk-fastly terraform configuration</h4><p>Manually trigger govuk-fastly &lsquo;Plan and apply&rsquo; run in <a href="https://app.terraform.io/app/govuk/workspaces/govuk-fastly/runs">Terraform Cloud UI</a>. Review the plan with changes to <code>module.bouncer-production.fastly_service_vcl.service</code> and apply the configuration.</p>
+<h3 id='9-point-the-domain-at-us'>9) Point the domain at us</h3><p>Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a <code>CNAME</code>
 record, this is <code>bouncer-cdn.production.govuk.service.gov.uk</code>.
 Domains at the root of their zone can&rsquo;t use <code>CNAME</code> records, so must use
@@ -341,7 +346,7 @@ addresses</a>.</p>
 <p>You&rsquo;ll need to create a TLS certificate in Fastly for HTTPS domains, otherwise
 users will see a certificate error when being redirected from an external
 HTTPS URL to GOV.UK via Bouncer. Read how to <a href="/manual/request-fastly-tls-certificate.html">request a Fastly TLS certificate</a></p>
-<h3 id='9-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app'>9) Get the organisation to monitor the traffic data in the Transition app</h3><p>There are two things that need to be responded to:</p>
+<h3 id='10-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app'>10) Get the organisation to monitor the traffic data in the Transition app</h3><p>There are two things that need to be responded to:</p>
 
 <ul>
 <li>high numbers of 404s - this means a mapping is missing</li>
