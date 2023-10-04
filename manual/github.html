@@ -151,9 +151,6 @@
       <li>
         <a href="#create-and-configure-a-new-gov-uk-repo"><span>Create and configure a new GOV.UK repo</span></a>
       </li>
-      <li>
-        <a href="#how-gov-uk-automates-its-repository-settings"><span>How GOV.UK automates its repository settings</span></a>
-      </li>
     </ul>
   </li>
 </ul>
@@ -204,7 +201,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2f2f7e5a2e6e41c143b5aeb107b1a9cdd70995cb">2 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/736f37123b8d7df69211296909592c09c782748a">4 Oct 2023</a>
 </div>
 
  <h1 id='header'>GitHub</h1> <p>GOV.UK uses GitHub for version control, code deployments, authentication, CI, Dependabot and GitHub Pages. Read the &ldquo;<a href="https://docs.google.com/document/d/1KsYWCHSQZEwqB2NF1A7Z9rmP1s1azcZhEamaPsXAoxk/edit">GOV.UK reliance on GitHub features doc</a>&rdquo; Google doc for more information.</p>
@@ -244,20 +241,24 @@ Only content designers should be added to this team.</p></li>
 
 <ul>
 <li>has a well written README (see <a href="/manual/readmes.html">READMEs for GOV.UK applications</a>, or the <a href="https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes">GDS Way guidance</a> for general repositories)</li>
-<li>is tagged with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> &ldquo;topic&rdquo;</li>
-<li>is added to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml</a> file in the Developer Docs. We run a <a href="https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml">daily script</a> to ensure that the Developer Docs&rsquo; config is in sync with GitHub.</li>
-<li>In <a href="https://app.terraform.io/app/govuk/workspaces/GitHub/runs">Terraform Cloud</a> start a new run and apply changes to grant access to the following GitHub teams:
+<li>is tagged with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> topic</li>
+<li>is added to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml</a> file in the Developer Docs.
 
 <ul>
-<li><a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a>: Admin access</li>
-<li><a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a>: Admin access</li>
-<li><a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK team</a>: Write access</li>
+<li>We run a <a href="https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml">daily script</a> to ensure that the Developer Docs&rsquo; config is in sync with GitHub.</li>
 </ul></li>
 </ul>
-<h2 id='how-gov-uk-automates-its-repository-settings'>How GOV.UK automates its repository settings</h2><p>We currently use two tools for this:</p>
+<p>You&rsquo;ll then need to <a href="https://app.terraform.io/app/govuk/workspaces/GitHub/runs">plan and apply the GitHub workspace in Terraform Cloud</a>:</p>
 
-<ol>
-<li><a href="https://github.com/alphagov/govuk-saas-config/blob/main/github/lib/configure_repo.rb">govuk-saas-config</a>. This runs every night and:
+<ul>
+<li>This updates the collaborators to the <a href="https://github.com/alphagov/govuk-infrastructure/blob/83ff43c4e55f3d3273644e80897b58fd351f566a/terraform/deployments/github/main.tf#L76-L112">default teams and access levels</a>.
+
+<ul>
+<li>If your repository access is sensitive, it should be tagged with the <a href="https://github.com/search?q=topic:govuk-sensitive-access"><code>govuk-sensitive-access</code></a> topic to avoid this automation: you would then need to manually manage its collaborators.</li>
+</ul></li>
+<li>It also gives permissions to push to the ECR registry, to repositories that have the <a href="https://github.com/search?q=user%3Aalphagov+topic%3Acontainer&amp;type=repositories"><code>container</code></a> topic.</li>
+</ul>
+<p>Finally, you should run the <a href="https://github.com/alphagov/govuk-saas-config/actions/workflows/configure-github.yml">&ldquo;Configure GitHub&rdquo; action in govuk-saas-config</a>. This:</p>
 
 <ul>
 <li>Applies <a href="https://help.github.com/articles/about-protected-branches">branch protection</a> rules and configures PRs to be blocked on the outcome of the <a href="/manual/test-and-build-a-project-with-github-actions.html">GitHub Action CI</a> workflow (if one exists)</li>
@@ -265,13 +266,7 @@ Only content designers should be added to this team.</p></li>
 <li>Enables vulnerability alerts and security fixes</li>
 <li>Sets up the webhook for <a href="/repos/github-trello-poster.html">GitHub Trello Poster</a></li>
 <li>Sets some other default repo settings (e.g. delete branch on merge)</li>
-</ul></li>
-<li><a href="https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/github">govuk-infrastructure</a>, which:
-
-<ul>
-<li>Gives permissions (to push to the ECR registry) to repositories that have specific tags</li>
-</ul></li>
-</ol>
+</ul>
 <p>The fact that we have two tools for managing GitHub resources is <a href="https://trello.com/c/mojlsebq/226-we-have-two-tools-for-managing-github-resources">recognised as technical debt</a>. The hope is to consolidate the GitHub code from govuk-saas-config into govuk-infrastructure.</p>
 
 
