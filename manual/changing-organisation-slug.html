@@ -137,16 +137,13 @@
             <a href="#1-change-the-organisation39s-slug-in-whitehall"><span>1. Change the organisation’s slug in Whitehall</span></a>
           </li>
           <li>
-            <a href="#2-update-the-organisation-in-transitiontransition-config"><span>2. Update the organisation in transition/transition-config:</span></a>
+            <a href="#2-update-the-organisation-slug-in-manuals-publisher"><span>2. Update the organisation slug in Manuals Publisher</span></a>
           </li>
           <li>
-            <a href="#3-update-the-organisation-slug-in-manuals-publisher"><span>3. Update the organisation slug in Manuals Publisher</span></a>
+            <a href="#3-sync-the-organisations-with-signon"><span>3. Sync the organisations with Signon</span></a>
           </li>
           <li>
-            <a href="#4-sync-the-organisations-with-signon"><span>4. Sync the organisations with Signon</span></a>
-          </li>
-          <li>
-            <a href="#5-update-any-best-bet-searches-in-search-admin"><span>5. Update any best bet searches in Search Admin</span></a>
+            <a href="#4-update-any-best-bet-searches-in-search-admin"><span>4. Update any best bet searches in Search Admin</span></a>
           </li>
         </ul>
       </li>
@@ -199,15 +196,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/57deb57e734b7e9687ffe1734a152c6a56510191">19 Jul 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4117f73583d24e2e666b5a8ea84a63ceb0092593">2 Oct 2023</a>
 </div>
 
  <h1 id='header'>Change an organisation's slug</h1> <blockquote>
@@ -223,26 +213,17 @@ multiple apps.</p>
 <li><a href="https://github.com/alphagov/whitehall/blob/900ab57004bb350eea409d06176e424bc9df0180/lib/tasks/reslugging.rake#L146">Worldwide Organisation</a>: <code>rake reslug:worldwide_organisation[&#39;old-slug&#39;,&#39;new-slug&#39;]</code></li>
 </ul>
 <p>Note: it&rsquo;s important that single-quotes are used in the tasks otherwise they will fail.</p>
-<h3 id='2-update-the-organisation-in-transitiontransition-config'>2. Update the organisation in transition/transition-config:</h3><p>The <a href="https://github.com/alphagov/transition-config">transition-config repo</a> may
-contain slugs. Change any references to the old slug:</p>
-
-<ul>
-<li><a href="https://github.com/alphagov/transition-config/search?utf8=%E2%9C%93&amp;q=old-slug">Search the codebase for the slug</a></li>
-<li>Update the slugs</li>
-<li>Open a pull request, and get it reviewed and merged</li>
-</ul>
-<p>Merging will trigger the changes to be imported automatically.</p>
-<h3 id='3-update-the-organisation-slug-in-manuals-publisher'>3. Update the organisation slug in Manuals Publisher</h3><p>Find out if any manuals are published by this organisation, by running the
+<h3 id='2-update-the-organisation-slug-in-manuals-publisher'>2. Update the organisation slug in Manuals Publisher</h3><p>Find out if any manuals are published by this organisation, by running the
 following in the Manuals Publisher Rails console:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">ManualRecord</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">organisation_slug: </span><span class="s2">"old-slug"</span><span class="p">).</span><span class="nf">exists?</span>
 </code></pre></div><p>If there are, create a migration to update the slugs. Republish all affected
 manuals after deploying your change.</p>
-<h3 id='4-sync-the-organisations-with-signon'>4. Sync the organisations with Signon</h3><p><a href="https://signon.publishing.service.gov.uk/">Signon</a> assigns users to organisations. This is used by apps such as
+<h3 id='3-sync-the-organisations-with-signon'>3. Sync the organisations with Signon</h3><p><a href="https://signon.publishing.service.gov.uk/">Signon</a> assigns users to organisations. This is used by apps such as
 Whitehall for authorisation.</p>
 <p>To sync all organisations from Whitehall to Signon, run the Signon rake task
 <code>rake organisations:fetch</code>. Users may have to log out and in again to pick up
 permissions for the renamed organisation.</p>
-<h3 id='5-update-any-best-bet-searches-in-search-admin'>5. Update any best bet searches in Search Admin</h3><p>Search the best bets in <a href="https://search-admin.publishing.service.gov.uk/">search-admin</a> for references to the old
+<h3 id='4-update-any-best-bet-searches-in-search-admin'>4. Update any best bet searches in Search Admin</h3><p>Search the best bets in <a href="https://search-admin.publishing.service.gov.uk/">search-admin</a> for references to the old
 organisation name and update them.</p>
 
 

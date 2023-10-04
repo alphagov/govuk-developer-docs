@@ -235,7 +235,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/236ae937829fc18c09d11ee4f6efffd62abc04cc">6 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4117f73583d24e2e666b5a8ea84a63ceb0092593">2 Oct 2023</a>
 </div>
 
  <h1 id='header'>Architectural deep-dive of GOV.UK</h1> <p>We can cover a lot of GOV.UK architecture by asking ourselves three questions:</p>
@@ -289,8 +289,7 @@ and saving the output to disk.</p>
 uploaded directly to Fastly via <a href="https://github.com/alphagov/govuk-cdn-config">govuk-cdn-config</a>.</p>
 <p>Other redirects that happen at the Fastly level include <a href="https://github.com/alphagov/bouncer">bouncer</a>: a GOV.UK
 application responsible for redirecting traffic from old pre-GOV.UK websites.
-This is configured via <a href="https://github.com/alphagov/transition">transition</a> and <a href="https://github.com/alphagov/transition-config">transition-config</a>. Read
-<a href="/manual/transition-architecture.html">Transition architecture</a> for more detail.</p>
+This is configured via <a href="https://github.com/alphagov/transition">transition</a>. Read <a href="/manual/transition-architecture.html">Transition architecture</a> for more detail.</p>
 <h3 id='routing-on-gov-uk'>Routing on GOV.UK</h3><h4 id='getting-to-the-39router39-application'>Getting to the &lsquo;router&rsquo; application</h4><p><a href="images/load-balancer.png" rel="noopener noreferrer"><img src="/manual/images/load-balancer.png" alt="" /></a></p>
 <p>Some requests make it through the CDN and cache layers to &lsquo;origin&rsquo;. Origin is
 a stack of computers in the cloud - in this case, AWS - and its entry point is

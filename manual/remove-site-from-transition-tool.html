@@ -132,13 +132,10 @@
     <a href="#header"><span>Remove a site from the Transition tool</span></a>
     <ul>
       <li>
-        <a href="#1-remove-site-config-yaml-files"><span>1. Remove site config YAML files</span></a>
+        <a href="#1-remove-the-site-from-transition-using-the-delete-functionality"><span>1. Remove the site from Transition using the Delete functionality</span></a>
       </li>
       <li>
-        <a href="#2-run-rake-task"><span>2. Run rake task</span></a>
-      </li>
-      <li>
-        <a href="#3-check-that-the-site-is-no-longer-recognised-by-the-transition-tool"><span>3. Check that the site is no longer recognised by the Transition tool</span></a>
+        <a href="#2-check-that-the-site-is-no-longer-recognised-by-the-transition-tool"><span>2. Check that the site is no longer recognised by the Transition tool</span></a>
       </li>
     </ul>
   </li>
@@ -189,22 +186,13 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8336230c1ccdce667c1b17d5285306cd7d1ad91b">17 Aug 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4117f73583d24e2e666b5a8ea84a63ceb0092593">2 Oct 2023</a>
 </div>
 
  <h1 id='header'>Remove a site from the Transition tool</h1> <p>Sometimes we get requests to delete sites from the <a href="https://transition.publishing.service.gov.uk">Transition tool</a>.</p>
-<h2 id='1-remove-site-config-yaml-files'>1. Remove site config YAML files</h2><p>Sites that appear in the Transition tool are configured in YAML in the <a href="https://github.com/alphagov/transition-config">alphagov/transition-config</a> repo. To remove one, <code>git rm</code> it from the <code>data/transition-sites</code> directory. There&rsquo;s <a href="https://github.com/alphagov/transition-config/pull/1306">some prior art</a>.</p>
-<h2 id='2-run-rake-task'>2. Run rake task</h2><p>Once your changes have been merged, run the <code>import:revert:sites[site_abbr]</code> Rake on the Transition app with the site abbreviation that you want to delete. This task will only work for sites with zero mappings and zero hits - i.e. no associated data beyond that which was created by importing the site YAML file. It <a href="https://deploy.blue.production.govuk.digital/job/Transition_load_site_config/">triggers the <code>transition_load_site_config</code> Jenkins job</a> to update the Transition tool&rsquo;s loaded site config.</p>
-<p>To remove a redirect with existing mappings or hits, use the <code>import:revert_entirely_unsafe[site_abbr]</code> Rake task.</p>
-<h2 id='3-check-that-the-site-is-no-longer-recognised-by-the-transition-tool'>3. Check that the site is no longer recognised by the Transition tool</h2><p>When all caches have cleared, the host will not appear in <a href="https://transition.publishing.service.gov.uk/hosts">hosts.json</a>.</p>
+<h2 id='1-remove-the-site-from-transition-using-the-delete-functionality'>1. Remove the site from Transition using the Delete functionality</h2><p>If you have the Site Manager permission for Transition, you will see a &ldquo;Delete&rdquo; link on each site page. You&rsquo;ll have to confirm the deletion before any action is taken.</p>
+<h2 id='2-check-that-the-site-is-no-longer-recognised-by-the-transition-tool'>2. Check that the site is no longer recognised by the Transition tool</h2><p>When all caches have cleared, the host will not appear in <a href="https://transition.publishing.service.gov.uk/hosts">hosts.json</a>.</p>
 
 
   <div class='related-content'>

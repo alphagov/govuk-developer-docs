@@ -240,8 +240,7 @@
 </ul></p>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Rails app for managing the transition of websites to GOV.UK. Specifically, it&rsquo;s for the production of and handling
-of mappings for use with <a href="https://github.com/alphagov/bouncer">Bouncer</a>.</p>
+<p>Rails app for managing the transition of websites to GOV.UK. Specifically, it&rsquo;s for adding and deleting sites, hostnames, and mappings for use with <a href="https://github.com/alphagov/bouncer">Bouncer</a>.</p>
 
 <h2 id="technical-documentation">Technical documentation</h2>
 
@@ -266,14 +265,9 @@ of mappings for use with <a href="https://github.com/alphagov/bouncer">Bouncer</
 <p>Available at /style, the guide documents how transition is using bootstrap, where the app has diverged from default
 styles and any custom styles needed to fill in the gaps.</p>
 
-<h3 id="adding-data">Adding data</h3>
+<h2 id="adding-a-new-site">Adding a new site</h2>
 
-<p>You can add new URLs and update existing configurations for sites and organisations within the Transition app using the <a href="https://github.com/alphagov/transition-config">Transition config</a> repo.</p>
-
-<p>To import locally, clone the config repo into <code>data/</code> and then run:</p>
-
-<pre><code>bundle exec rake import:all:orgs_sites_hosts
-</code></pre>
+<p>Follow the instructions in the <a href="https://docs.publishing.service.gov.uk/manual/transition-a-site.html">GOV.UK  Developer docs</a></p>
 
 <h2 id="example-application-urls">Example application URLs</h2>
 
@@ -286,6 +280,10 @@ styles and any custom styles needed to fill in the gaps.</p>
 <li><a href="https://transition.staging.publishing.service.gov.uk/sites/aaib/mappings/import_batches/new">https://transition.staging.publishing.service.gov.uk/sites/aaib/mappings/import_batches/new</a></li>
 <li><a href="https://transition.staging.publishing.service.gov.uk/sites/aaib/hits/summary">https://transition.staging.publishing.service.gov.uk/sites/aaib/hits/summary</a></li>
 </ul>
+
+<h2 id="glossary-of-terms">Glossary of terms</h2>
+
+<p>A glossary of the terms used can be found in this <a href="https://insidegovuk.blog.gov.uk/2014/03/17/transition-technical-glossary/">blog post</a>.</p>
 
 <h2 id="licence">Licence</h2>
 

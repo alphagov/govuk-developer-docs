@@ -138,6 +138,9 @@
         <a href="#checklist-for-transitioning-a-new-site"><span>Checklist for transitioning a new site</span></a>
         <ul>
           <li>
+            <a href="#prerequisites"><span>Prerequisites</span></a>
+          </li>
+          <li>
             <a href="#1-add-a-site-to-the-transition-app"><span>1) Add a site to the Transition app</span></a>
           </li>
           <li>
@@ -222,20 +225,34 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9b18d9f81c2dde734a488016b23bdf52374f3fb0">3 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4117f73583d24e2e666b5a8ea84a63ceb0092593">2 Oct 2023</a>
 </div>
 
  <h1 id='header'>Transition a site to GOV.UK</h1> <p>When a site is going to move to GOV.UK, there are two ways that the old site
 can be redirected. They can do it themselves, or they can repoint the domain at
 us. This page is about the latter.</p>
-<p>The <a href="/repos/transition.html">Transition</a> app exists to allow editing of mapping of old URLs to pages
+<p>The <a href="/repos/transition.html">Transition</a> app exists to allow old URLs to be mapped to pages
 on GOV.UK. These mappings are stored in a database and used by <a href="/repos/bouncer.html">Bouncer</a> to
 handle requests to those old domains.</p>
 <p>This page covers adding a site so that we can handle traffic to
 it, or changing the configuration of an existing site in the Transition app.</p>
-<h2 id='changing-the-configuration-of-a-site-that-is-already-in-the-transition-app'>Changing the configuration of a site that is already in the Transition app</h2><p>The <a href="https://github.com/alphagov/transition-config/blob/main/README.md">transition-config README</a> gives more details on how to
-edit the relevant <a href="https://github.com/alphagov/transition-config/tree/main/data/transition-sites">transition configuration file</a>.</p>
-<h2 id='checklist-for-transitioning-a-new-site'>Checklist for transitioning a new site</h2><h3 id='1-add-a-site-to-the-transition-app'>1) Add a site to the Transition app</h3><p>Follow the instructions in the <a href="https://github.com/alphagov/transition-config/blob/main/README.md">transition-config README</a>.</p>
+<h2 id='changing-the-configuration-of-a-site-that-is-already-in-the-transition-app'>Changing the configuration of a site that is already in the Transition app</h2><p>If you have the Site Manager permission for Transition, you will see an Edit button on each site page (for example, <a href="https://transition.publishing.service.gov.uk/sites/dfe">the site page for Department for Education&rsquo;s old domain</a>). This form will allow you to change the configuration of the site.</p>
+<h2 id='checklist-for-transitioning-a-new-site'>Checklist for transitioning a new site</h2><h3 id='prerequisites'>Prerequisites</h3><p>Before you start, you need to know:</p>
+
+<ul>
+<li>the domain name being transitioned and any aliases</li>
+<li>the organisation that owns the site (and any additional organisations that should have access)</li>
+<li>the new homepage for the old site - often this is the organisation&rsquo;s page on GOV.UK, but sometimes it can be a different page on GOV.UK</li>
+</ul>
+<p>The organisation that owns the site determines several things:</p>
+
+<ul>
+<li>where the site is found in the Transition app</li>
+<li>who has access to edit and create mappings for the site</li>
+<li>what organisation name and branding is used on pages served by Bouncer for URLs which aren&rsquo;t redirected</li>
+</ul>
+<p>Extra organisations can be added later.</p>
+<h3 id='1-add-a-site-to-the-transition-app'>1) Add a site to the Transition app</h3><p>If you have the Site Manager permission for Transition, you will see an &ldquo;Add a transition site&rdquo; button on each organisation page (for example, <a href="https://transition.integration.publishing.service.gov.uk/organisations/department-for-education">Department for Education’s organisation page</a>. Follow the instructions on that form to add a site.</p>
 <h3 id='2-consider-aka-domains'>2) Consider AKA domains</h3><p>If the department want to use the side-by-side browser to preview how their
 redirects will appear after transitioning they will need to set up AKA domains.</p>
 <p>They will need one new CNAME DNS entry for each domain/subdomain they wish to
@@ -271,17 +288,17 @@ might take several hours. This will give you a list of URLs for a domain:</p>
 </blockquote>
 <h3 id='4-clean-up-urls'>4) Clean up URLs</h3><h4 id='strip-paths-and-pattern'>Strip paths and pattern</h4><p>There are lots of file formats we don&rsquo;t want to provide mappings for, like
 static assets, images, or common spammy/malicious crawlers. These can be
-stripped using the <a href="https://github.com/alphagov/transition-config/blob/main/tools/strip_mappings.sh">strip_mappings.sh</a> script.</p>
+stripped using the <a href="https://github.com/alphagov/transition/blob/main/tools/strip_mappings.sh">strip_mappings.sh</a> script.</p>
 <h4 id='query-parameter-analysis'>Query parameter analysis</h4><p>From your set of URLs, you can attempt to identify significant query string
 parameter names and then add them to the site configuration file in
 <code>transition-config</code>. A query string parameter is considered significant if it
 significantly changes the content seen on the old site and/or it would be
 mapped to a different new URL.</p>
-<p>There are some transition-config scripts to help analyse query param usage:</p>
+<p>There are some transition scripts to help analyse query param usage:</p>
 
 <ul>
-<li><a href="https://github.com/alphagov/transition-config/blob/main/tools/analyse_query_params.sh">analyse_query_params.sh</a></li>
-<li><a href="https://github.com/alphagov/transition-config/blob/main/tools/analyse_query_usage.sh">analyse_query_usage.sh</a></li>
+<li><a href="https://github.com/alphagov/transition/blob/main/tools/analyse_query_params.sh">analyse_query_params.sh</a></li>
+<li><a href="https://github.com/alphagov/transition/blob/main/tools/analyse_query_usage.sh">analyse_query_usage.sh</a></li>
 </ul>
 <p>Some common examples of significant parameters:</p>
 
@@ -330,7 +347,7 @@ the day after.</p>
 <p>We need to:</p>
 
 <ol>
-<li><p>Obtain the TXT record by submitting Fastly support request. You will need to provide &lsquo;Production bouncer&rsquo; service ID and the subdomain you want to add. See an <a href="https://support.fastly.com/hc/en-us/requests/700875">example of support request</a>.</p></li>
+<li><p>Obtain the TXT record by submitting a Fastly support request. You will need to provide the &lsquo;Production bouncer&rsquo; service ID and the subdomain you want to add. See an <a href="https://support.fastly.com/hc/en-us/requests/700875">example of support request</a>.</p></li>
 <li><p>Add the DNS record to <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a> and apply terraform configuration.</p></li>
 </ol>
 <p>It&rsquo;s not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with <code>_fastly</code> as a proof of ownership. See an <a href="https://github.com/alphagov/govuk-dns-tf/compare/0cf283b6...18471c36">example code change</a>.</p>
@@ -353,7 +370,11 @@ HTTPS URL to GOV.UK via Bouncer. Read how to <a href="/manual/request-fastly-tls
 <li>high numbers hitting 410s - this means the old page is popular and
 should perhaps be redirected instead</li>
 </ul>
-<h2 id='further-reading'>Further reading</h2><p>The transition checklist covers the whole process of transitioning a site from the technical side. There’s a <a href="https://docs.google.com/document/d/1SiBwYtV_d_D9pPcqzpqvRWs0kscUtB7yqxN8Ub_uRSA/edit">full version for complex sites</a> and a <a href="https://docs.google.com/document/d/1gIJBUuPaZqtYsrgwqMBSrU4lpr2e93tuhQcgylnSHb4/edit">slightly simplified one</a> - we probably only need the simpler one for upcoming transitions.</p>
+<h2 id='further-reading'>Further reading</h2>
+<blockquote>
+<p>The documents below may contain outdated information.</p>
+</blockquote>
+<p>The transition checklist covers the whole process of transitioning a site from the technical side. There’s a <a href="https://docs.google.com/document/d/1SiBwYtV_d_D9pPcqzpqvRWs0kscUtB7yqxN8Ub_uRSA/edit">full version for complex sites</a> and a <a href="https://docs.google.com/document/d/1gIJBUuPaZqtYsrgwqMBSrU4lpr2e93tuhQcgylnSHb4/edit">slightly simplified one</a> - we probably only need the simpler one for upcoming transitions.</p>
 
 
   <div class='related-content'>

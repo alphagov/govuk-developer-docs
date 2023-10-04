@@ -200,7 +200,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/82fc47f3f82bca009df0b6138335456dee86a17d">15 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4117f73583d24e2e666b5a8ea84a63ceb0092593">2 Oct 2023</a>
 </div>
 
  <h1 id='header'>Transition architecture</h1> <p>The Transition system is built to transition government websites to GOV.UK. The
@@ -212,9 +212,6 @@ on GitHub</a>.</p>
 <h3 id='components'>Components</h3>
 <ul>
 <li><a href="/repos/transition.html">transition</a> is the admin app that departments use to transition.</li>
-<li><a href="https://github.com/alphagov/transition-config">transition-config</a> contains YAML files to configure transitioning
-websites. It&rsquo;s imported into the Transition database by the
-<a href="https://deploy.blue.production.govuk.digital/job/Transition_load_site_config">Transition_load_site_config job</a>.</li>
 <li>The <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-fastly-logs">cloudwatch / athena / lambda</a> trio process the logs
 from Fastly to produce the statistics. Those are then loaded into Transition
 by the <a href="https://deploy.blue.production.govuk.digital/job/Transition_load_all_data/">Transition_load_all_data job</a>.</li>
@@ -222,9 +219,7 @@ by the <a href="https://deploy.blue.production.govuk.digital/job/Transition_load
 <li><a href="https://github.com/alphagov/govuk-cdn-config">govuk-cdn-config</a> contains the script that the <a href="https://deploy.blue.production.govuk.digital/job/Bouncer_CDN/">Bouncer_CDN job</a> uses
 to send the <a href="https://transition.publishing.service.gov.uk/hosts.json">hosts from transition</a> to Fastly.</li>
 </ul>
-<h2 id='transition-data-sources'>Transition data sources</h2><p>Site configuration is automatically imported every hour via
-<a href="https://deploy.blue.production.govuk.digital/job/Transition_load_site_config">a Jenkins job</a> from <a href="https://github.com/alphagov/transition-config">transition-config</a>.</p>
-<p>Traffic data is automatically imported every day via <a href="https://deploy.blue.production.govuk.digital/job/Transition_load_all_data/">a Jenkins
+<h2 id='transition-data-sources'>Transition data sources</h2><p>Traffic data is automatically imported every day via <a href="https://deploy.blue.production.govuk.digital/job/Transition_load_all_data/">a Jenkins
 job</a>.  This import puts a high load on the database. CDN logs
 for the &ldquo;Production Bouncer&rdquo; Fastly service are sent (by Fastly) to the
 <code>govuk-production-fastly-logs</code> S3 bucket and processed by a lambda function
