@@ -58,25 +58,23 @@ Users are removed from the GitHub organisation when their entry in [govuk-user-r
 When creating a new GOV.UK repo, you must ensure it:
 
 - has a well written README (see [READMEs for GOV.UK applications](/manual/readmes.html), or the [GDS Way guidance](https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes) for general repositories)
-- is tagged with the [`govuk`](https://github.com/search?q=topic:govuk) "topic"
-- is added to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the Developer Docs. We run a [daily script](https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml) to ensure that the Developer Docs' config is in sync with GitHub.
-- In [Terraform Cloud](https://app.terraform.io/app/govuk/workspaces/GitHub/runs) start a new run and apply changes to grant access to the following GitHub teams:
-  - [GOV.UK CI Bots][team-govuk-ci-bots]: Admin access
-  - [GOV.UK Production Admin][team-govuk-production-admin]: Admin access
-  - [GOV.UK team][team-govuk]: Write access
+- is tagged with the [`govuk`](https://github.com/search?q=topic:govuk) topic
+- is added to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the Developer Docs.
+  - We run a [daily script](https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml) to ensure that the Developer Docs' config is in sync with GitHub.
 
-## How GOV.UK automates its repository settings
+You'll then need to [plan and apply the GitHub workspace in Terraform Cloud](https://app.terraform.io/app/govuk/workspaces/GitHub/runs):
 
-We currently use two tools for this:
+- This updates the collaborators to the [default teams and access levels](https://github.com/alphagov/govuk-infrastructure/blob/83ff43c4e55f3d3273644e80897b58fd351f566a/terraform/deployments/github/main.tf#L76-L112).
+  - If your repository access is sensitive, it should be tagged with the [`govuk-sensitive-access`](https://github.com/search?q=topic:govuk-sensitive-access) topic to avoid this automation: you would then need to manually manage its collaborators.
+- It also gives permissions to push to the ECR registry, to repositories that have the [`container`](https://github.com/search?q=user%3Aalphagov+topic%3Acontainer&type=repositories) topic.
 
-1. [govuk-saas-config](https://github.com/alphagov/govuk-saas-config/blob/main/github/lib/configure_repo.rb). This runs every night and:
-  - Applies [branch protection](https://help.github.com/articles/about-protected-branches) rules and configures PRs to be blocked on the outcome of the [GitHub Action CI](/manual/test-and-build-a-project-with-github-actions.html) workflow (if one exists)
-  - Retricts the merging of PRs for continuously deployed apps, so that only those with Production Deploy or Production Admin access can merge
-  - Enables vulnerability alerts and security fixes
-  - Sets up the webhook for [GitHub Trello Poster](/repos/github-trello-poster.html)
-  - Sets some other default repo settings (e.g. delete branch on merge)
-2. [govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/github), which:
-  - Gives permissions (to push to the ECR registry) to repositories that have specific tags
+Finally, you should run the ["Configure GitHub" action in govuk-saas-config](https://github.com/alphagov/govuk-saas-config/actions/workflows/configure-github.yml). This:
+
+- Applies [branch protection](https://help.github.com/articles/about-protected-branches) rules and configures PRs to be blocked on the outcome of the [GitHub Action CI](/manual/test-and-build-a-project-with-github-actions.html) workflow (if one exists)
+- Retricts the merging of PRs for continuously deployed apps, so that only those with Production Deploy or Production Admin access can merge
+- Enables vulnerability alerts and security fixes
+- Sets up the webhook for [GitHub Trello Poster](/repos/github-trello-poster.html)
+- Sets some other default repo settings (e.g. delete branch on merge)
 
 The fact that we have two tools for managing GitHub resources is [recognised as technical debt](https://trello.com/c/mojlsebq/226-we-have-two-tools-for-managing-github-resources). The hope is to consolidate the GitHub code from govuk-saas-config into govuk-infrastructure.
 
