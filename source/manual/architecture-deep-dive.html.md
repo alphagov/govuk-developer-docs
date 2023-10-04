@@ -94,14 +94,12 @@ uploaded directly to Fastly via [govuk-cdn-config].
 
 Other redirects that happen at the Fastly level include [bouncer]: a GOV.UK
 application responsible for redirecting traffic from old pre-GOV.UK websites.
-This is configured via [transition] and [transition-config]. Read
-[Transition architecture] for more detail.
+This is configured via [transition]. Read [Transition architecture] for more detail.
 
 [bouncer]: https://github.com/alphagov/bouncer
 [govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
 [Transition architecture]: /manual/transition-architecture.html
 [transition]: https://github.com/alphagov/transition
-[transition-config]: https://github.com/alphagov/transition-config
 
 ### Routing on GOV.UK
 
