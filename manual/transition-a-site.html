@@ -225,7 +225,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4117f73583d24e2e666b5a8ea84a63ceb0092593">2 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d6366d143b5325174832bdb2d1a339e2cc0f0a03">5 Oct 2023</a>
 </div>
 
  <h1 id='header'>Transition a site to GOV.UK</h1> <p>When a site is going to move to GOV.UK, there are two ways that the old site
@@ -290,10 +290,9 @@ might take several hours. This will give you a list of URLs for a domain:</p>
 static assets, images, or common spammy/malicious crawlers. These can be
 stripped using the <a href="https://github.com/alphagov/transition/blob/main/tools/strip_mappings.sh">strip_mappings.sh</a> script.</p>
 <h4 id='query-parameter-analysis'>Query parameter analysis</h4><p>From your set of URLs, you can attempt to identify significant query string
-parameter names and then add them to the site configuration file in
-<code>transition-config</code>. A query string parameter is considered significant if it
-significantly changes the content seen on the old site and/or it would be
-mapped to a different new URL.</p>
+parameter names and then add them to the site configuration. A query string
+parameter is considered significant if it significantly changes the content
+seen on the old site and/or it would be mapped to a different new URL.</p>
 <p>There are some transition scripts to help analyse query param usage:</p>
 
 <ul>

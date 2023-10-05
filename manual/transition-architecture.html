@@ -132,12 +132,7 @@
     <a href="#header"><span>Transition architecture</span></a>
     <ul>
       <li>
-        <a href="#high-level-overview"><span>High level overview</span></a>
-        <ul>
-          <li>
-            <a href="#components"><span>Components</span></a>
-          </li>
-        </ul>
+        <a href="#components"><span>Components</span></a>
       </li>
       <li>
         <a href="#transition-data-sources"><span>Transition data sources</span></a>
@@ -200,16 +195,14 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4117f73583d24e2e666b5a8ea84a63ceb0092593">2 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d6366d143b5325174832bdb2d1a339e2cc0f0a03">5 Oct 2023</a>
 </div>
 
  <h1 id='header'>Transition architecture</h1> <p>The Transition system is built to transition government websites to GOV.UK. The
 main work around this <a href="https://insidegovuk.blog.gov.uk/2014/12/19/300-websites-to-just-1-in-15-months">happened in 2014</a>, but we still take on websites.</p>
 <p>All the repositories involved in transition have been <a href="https://github.com/search?q=topic%3Agovuk-transition+org%3Aalphagov">tagged with govuk-transition
 on GitHub</a>.</p>
-<h2 id='high-level-overview'>High level overview</h2><p><a href="images/transition-architecture.png" rel="noopener noreferrer"><img src="/manual/images/transition-architecture.png" alt="Overview of the elements involved in transition" /></a></p>
-<p>Source diagram in the <a href="https://drive.google.com/drive/folders/0B7zRJZy-BNyUS2lMMzJHLUpYM00">GOV.UK architecture folder</a>.</p>
-<h3 id='components'>Components</h3>
+<h2 id='components'>Components</h2>
 <ul>
 <li><a href="/repos/transition.html">transition</a> is the admin app that departments use to transition.</li>
 <li>The <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-fastly-logs">cloudwatch / athena / lambda</a> trio process the logs
