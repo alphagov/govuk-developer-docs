@@ -17,15 +17,7 @@ on GitHub][repos].
 [blog]: https://insidegovuk.blog.gov.uk/2014/12/19/300-websites-to-just-1-in-15-months
 [repos]: https://github.com/search?q=topic%3Agovuk-transition+org%3Aalphagov
 
-## High level overview
-
-![Overview of the elements involved in transition](images/transition-architecture.png)
-
-Source diagram in the [GOV.UK architecture folder][arch-folder].
-
-[arch-folder]: https://drive.google.com/drive/folders/0B7zRJZy-BNyUS2lMMzJHLUpYM00
-
-### Components
+## Components
 
 - [transition][] is the admin app that departments use to transition.
 - The [cloudwatch / athena / lambda][infra-fastly-logs] trio process the logs
