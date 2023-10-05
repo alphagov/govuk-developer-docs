@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: transition-config - GOV.UK Developer Documentation</title>
+    <title>Repository: transition-config (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,13 +16,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: transition-config - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: transition-config (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/transition-config.html" />
 
       <meta property="og:description" content="Everything about transition-config (Site configuration for redirecting transitioning sites to GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: transition-config" />
+      <meta property="og:title" content="Repository: transition-config (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/transition-config.html" />
 
@@ -177,216 +177,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: transition-config</h1>
-
-  <p>Site configuration for redirecting transitioning sites to GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/transition-config">transition-config</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-publishing-platform">#govuk-publishing-platform</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Transition apps</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme">
-    <p>Oct 2023: This application has now been retired. The Publishing Platform team have created an interface allowing users to add, edit and delete sites
-directly in the Transition app. This makes the process more intuitive and simplifies the technical architecture of GOV.UK.</p></p>
-
-<p>This repository holds two things:</p>
-
-<ol>
-<li>
-<a href="https://github.com/alphagov/transition-config/blob/main/data/transition-sites"><code>data/transition-sites</code></a> - Configuration for sites being redirected to GOV.UK. This configuration is automatically loaded into the <a href="https://github.com/alphagov/transition">Transition app</a>
-</li>
-<li>
-<a href="https://github.com/alphagov/transition-config/blob/main/tools/"><code>tools/</code></a> - Miscellaneous scripts for updating tna_timestamps, configuring root domain redirects and generating mappings.</li>
-</ol>
-
-<h2 id="adding-a-new-site">Adding a new site</h2>
-
-<h3 id="prerequisites">Prerequisites</h3>
-
-<p>Before you start, you need to know:</p>
-
-<ul>
-<li>the domain name being transitioned and any aliases</li>
-<li>the organisation that owns the site (and any additional organisations that should have access)</li>
-<li>the new homepage for the old site - often this is the organisation&rsquo;s page on GOV.UK, but sometimes it can be a different page on GOV.UK</li>
-</ul>
-
-<h3 id="create-the-site-yaml-file">Create the site yaml file</h3>
-
-<p>Substitute each argument and then run the following rake task (you may need to run <code>bundle install</code> first):</p>
-
-<pre><code>rake new_site[abbr,whitehall_slug,host]
-</code></pre>
-
-<p>for example:</p>
-
-<pre><code>rake new_site["phe_chimat, public-health-england, www.chimat.org.uk"]
-</code></pre>
-
-<p><code>abbr</code> should be of the form:</p>
-
-<pre><code>&lt;owning_organisation_abbreviation&gt;_&lt;abbreviated_site_name&gt;
-</code></pre>
-
-<p>Example for the &ldquo;Obesity West Midlands&rdquo; site which is owned by Public Health England:</p>
-
-<pre><code>phe_obesitywm
-</code></pre>
-
-<p>The <code>abbr</code> is used in the URL for the site in the transition app. It is used as the primary key for a site and so shouldn&rsquo;t be changed once imported into the transition app, or a duplicate site will be created.</p>
-
-<p><code>whitehall_slug</code> is the GOV.UK slug of the organisation that owns the site. This determines several things:</p>
-
-<ul>
-<li>where the site is found in the Transition app</li>
-<li>who has access to edit and create mappings for the site</li>
-<li>what organisation name and branding is used on pages served by Bouncer for URLs which aren&rsquo;t redirected</li>
-</ul>
-
-<p>Extra organisations can be added later.</p>
-
-<p><code>host</code> will be one of the hostnames that the site has, for example:</p>
-
-<pre><code>www.example.com
-</code></pre>
-
-<p>Aside: extra hostnames can be added later.</p>
-
-<h3 id="adding-extra-config-to-the-site">Adding extra config to the site</h3>
-
-<p>The generated file only contains fields which are absolutely required.</p>
-
-<p>Check that the <code>tna_timestamp</code> field is set. The rake task will try to find the latest archive by scraping the National Archives site, but this doesn&rsquo;t always work. You can find a list of the timestamps the National Archives have by going to their site, for example: <a href="http://webarchive.nationalarchives.gov.uk/*/http://download.cabinetoffice.gov.uk%3E">here are the timestamps for this Cabinet Office site</a>.</p>
-
-<p>If the site has not been crawled by the National Archives, you can <a href="https://github.com/alphagov/transition-config/search?q=tna_timestamp%3A+20201010101010+%23+Stub+timestamp+-+site+not+in+TNA&amp;unscoped_q=tna_timestamp%3A+20201010101010+%23+Stub+timestamp+-+site+not+in+TNA">follow prior art</a> and set a stub timestamp:</p>
-
-<pre><code>tna_timestamp: 20201010101010 # Stub timestamp - site not in TNA
-</code></pre>
-
-<p>Some of the optional fields are frequently used:</p>
-
-<ul>
-<li>
-<code>aliases</code> - Almost every site will require aliases to cover the host name with/without <code>www.</code> (depending on which host was used in the <code>host</code> field)</li>
-<li>
-<code>options</code> - used to specify when a site&rsquo;s URLs have significant querystring parameters</li>
-<li>
-<code>extra_organisation_slugs</code> - used to enable members of other organisations to edit the mappings</li>
-</ul>
-
-<p>See the <a href="#site-configuration">Site configuration</a> for more details about these and other fields.</p>
-
-<h3 id="run-the-validation-checks">Run the validation checks</h3>
-
-<p>These perform some cursory validations of the site configuration files.</p>
-
-<pre><code>bundle exec rake validate:all
-</code></pre>
-
-<p>An option for a more thorough test of the config is to import it into the Transition app in development.</p>
-
-<h3 id="open-a-pull-request">Open a Pull Request</h3>
-
-<p>Commit the changes, push the branch and open a Pull Request.</p>
-
-<h3 id="import-the-site-to-transition">Import the site to Transition</h3>
-
-<p>Once merged, wait for the site to be imported into the Transition app. This currently happens automatically on the hour via a job on deploy.production and deploy.integration Jenkins&rsquo; during working hours. It can also be triggered manually by running:</p>
-
-<p><a href="https://deploy.integration.publishing.service.gov.uk/job/Transition_load_site_config/">Transition: load site config</a></p>
-
-<h2 id="site-configuration">Site configuration</h2>
-
-<p>Each site is configured using a yaml file in the <code>data/transition-sites</code> directory:</p>
-
-<p>Required:</p>
-
-<ul>
-<li>
-<code>whitehall_slug</code> — the slug used in Whitehall for the organisation which owns the site. Used for branding in Bouncer and access control in Transition.</li>
-<li>
-<code>site</code> — friendly name for the site</li>
-<li>
-<code>host</code> — primary hostname for site</li>
-<li>
-<code>tna_timestamp</code> — timestamp of the last good National Archives capture. eg 20131002172858</li>
-<li>
-<code>homepage</code> — URL for new site, used to redirect &lsquo;/&rsquo;. Must include the &lsquo;http&rsquo; or &lsquo;https&rsquo;.</li>
-</ul>
-
-<p>Optional:</p>
-
-<ul>
-<li>
-<code>homepage_title</code> — site title for 404/410 pages. Defaults to organisation title. Should fit into the sentence: &ldquo;Visit the new [title] site at [furl or homepage]&rdquo;</li>
-<li>
-<code>extra_organisation_slugs</code> — additional organisations which own this site. Used for access control in Transition.</li>
-<li>
-<code>homepage_furl</code> — friendly URL displayed on 404/410 pages. Should redirect to the <code>homepage</code>. Doesn&rsquo;t need to include &lsquo;http&rsquo; or &lsquo;https&rsquo;.</li>
-<li>
-<code>aliases</code> — list of alias domains</li>
-<li>
-<code>global</code> — set a global redirect or archive for all paths. There are two expected values for this:
-<ul>
-<li>
-<code>=410</code> - this is a global archive, all site URLs will show a page saying the site has been archived</li>
-<li>
-<code>=301 &lt;url&gt;</code> - this is a global redirect, all site URLs will redirect to the given URL</li>
-</ul>
-<p></li>
-<li>
-<code>css</code> — a css class which determines the logo and brand colour used on 404/410 pages</li>
-<li>
-<code>options</code> — used to list significant querystrings for canonicalisation like this: <code>--query-string first:second:third</code>. A significant querystring parameter is one which on the old website changes the content in a meaningful way - which we might therefore need to map to a different place. <strong>Query string parameters should be specified in lowercase; uppercase parameters will not be preserved during canonicalisation.</strong>
-</li>
-<li>
-<code>global_redirect_append_path</code> — should the path the user supplied be appended
-to the URL for the global redirect?</li>
-<li>
-<code>special_redirect_strategy</code> — when the transition is partial, some tools or content will be left behind and managed by the previous supplier. This setting can be one of:
-<ul>
-<li>
-<code>via_aka</code> - the supplier is redirecting some paths to our aka domain.</li>
-<li>
-<code>supplier</code> - the supplier is managing redirects to gov.uk. No traffic comes through Bouncer for this site.</li>
-</ul>
-</li>
-</ul>
-<h2 id="glossary-of-terms">Glossary of terms</h2>
-<p>A glossary of the terms used can be found in this <a href="https://insidegovuk.blog.gov.uk/2014/03/17/transition-technical-glossary/">blog post</a>.</p>
-<h2 id="licence">Licence</h2>
-<p><a href="https://github.com/alphagov/transition-config/blob/main/LICENCE">MIT License</a></p>
-  </div></p>
+  <h1 class="page-title">Repository: transition-config (retired)</h1>
+
+  <p>This application is retired.</p>
+<p><p>Site configuration for redirecting transitioning sites to GOV.UK</p></p>
+<p><a href="https://github.com/alphagov/transition-config">GitHub repository</a></p>
 
 
             
