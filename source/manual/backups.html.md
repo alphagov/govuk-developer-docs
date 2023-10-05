@@ -109,17 +109,3 @@ Automated snapshots are taken hourly, retained for 2 weeks in an AWS repository 
 Graphite is a open-source monitoring tool that stores time-series data. Whisper is a data storage format used by Graphite that is optimised for fast, reliable storage of time-series data.
 
 We use the [whisper-backup script in govuk-puppet](https://github.com/alphagov/govuk-puppet/blob/648e9b95014b5fb40e9fb8da2a14c008ebf934aa/modules/govuk/manifests/node/s_graphite.pp#L117) to replicate the files daily to a [dedicated s3 bucket](https://github.com/alphagov/govuk-aws/blob/cb3205d8b11da3edd518924ad5ab2668627c6d48/terraform/projects/infra-graphite-backups-bucket/README.md). The data from production is retained for [7 days](https://github.com/alphagov/govuk-aws/blob/cb3205d8b11da3edd518924ad5ab2668627c6d48/terraform/projects/infra-graphite-backups-bucket/main.tf#L23-L27) and for [3 days](https://github.com/alphagov/govuk-aws-data/blob/7b5a2638c9d432aca5d7e09be3f990256b3a475d/data/infra-graphite-backups-bucket/integration/common.tfvars#L1) for non-production environments.
-
-# AWS Backup
-
-We are not curreently using "AWS Backup" but we are reviewing the feasibility of using it in the future.
-
-AWS Backup is a fully managed backup service. It allows you to centrally manage backups across multiple AWS services and on-premises resources from a single console. It is possible to automate and manage backups for resources like Amazon RDS databases, Amazon DynamoDB tables.
-
-AWS Backup provides a number of benefits, including:
-
-- simplified backup management
-- automated backups process and schedule
-- flexible backup policies such as retention periods and backup frequency
-- incremental backups: AWS Backup supports incremental backups, which means that only the changes made since the last backup are backed up, reducing backup times and storage costs
-- cross-region backups: AWS Backup allows you to back up resources across multiple regions, making it easier to protect against regional outages
