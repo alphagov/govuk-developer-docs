@@ -104,10 +104,9 @@ stripped using the [strip_mappings.sh][smsh] script.
 #### Query parameter analysis
 
 From your set of URLs, you can attempt to identify significant query string
-parameter names and then add them to the site configuration file in
-`transition-config`. A query string parameter is considered significant if it
-significantly changes the content seen on the old site and/or it would be
-mapped to a different new URL.
+parameter names and then add them to the site configuration. A query string
+parameter is considered significant if it significantly changes the content
+seen on the old site and/or it would be mapped to a different new URL.
 
 There are some transition scripts to help analyse query param usage:
 
