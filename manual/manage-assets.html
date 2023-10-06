@@ -139,11 +139,6 @@
       </li>
       <li>
         <a href="#uploading-an-asset"><span>Uploading an asset</span></a>
-        <ul>
-          <li>
-            <a href="#large-attachments"><span>Large attachments</span></a>
-          </li>
-        </ul>
       </li>
       <li>
         <a href="#replacing-an-asset"><span>Replacing an asset</span></a>
@@ -198,7 +193,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/db5f71ac812c9efdee676cdf3cd715229eece48d">18 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4402dd18319f3e5c4a2a3cc1b173f71517569374">6 Oct 2023</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='removing-an-asset'>Removing an asset</h2><p>If you need to remove an asset manually from <code>assets.publishing.service.gov.uk</code>,
@@ -267,12 +262,7 @@ asset to a backend machine:</p>
 </code></pre></div><p>Note the <code>basepath</code> the script outputs. This should be appended to the asset
 host, for example:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://assets.publishing.service.gov.uk/media/57358658ed915d58bd000000/my_file.jpg
-</code></pre></div><h3 id='large-attachments'>Large attachments</h3><p>Sometimes publishers ask us to help them upload very large attachments to
-documents in Whitehall because they see timeouts when they try to upload the
-document themselves.</p>
-<p>The simplest way to do this is to upload a small file (in Whitehall) and then
-<a href="#replacing-an-asset">replace the file in Asset Manager</a>.</p>
-<h2 id='replacing-an-asset'>Replacing an asset</h2><p>If you need to replace the file of an existing attachment without
+</code></pre></div><h2 id='replacing-an-asset'>Replacing an asset</h2><p>If you need to replace the file of an existing attachment without
 changing the URL, follow these steps:</p>
 
 <ol>

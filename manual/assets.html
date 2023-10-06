@@ -140,6 +140,9 @@
           <li>
             <a href="#how-uploaded-assets-are-stored-and-served"><span>How uploaded assets are stored and served</span></a>
           </li>
+          <li>
+            <a href="#file-size-limit"><span>File size limit</span></a>
+          </li>
         </ul>
       </li>
       <li>
@@ -195,7 +198,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a0fe5dbbf0fe430b9bc43a04da5e03487d74c8ae">25 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fb628e24b23d547cc4fa6ad187cb4ef6866bea68">6 Oct 2023</a>
 </div>
 
  <h1 id='header'>Assets: how they work</h1> <p>There are three types of asset files.</p>
@@ -231,6 +234,10 @@ or page is shown for assets that are not finished scanning.</li>
 the replacement. Currently only Whitehall and Specialist Publisher support
 this.</li>
 </ul>
+<h3 id='file-size-limit'>File size limit</h3><p>There is a <a href="https://github.com/alphagov/govuk-helm-charts/blob/2e565071865d5e7b64bd1b961c2cdc69cbc04927/charts/asset-manager/templates/nginx-configmap.yaml#L145">hard limit of 500 MB</a> for assets.</p>
+<p>Publishers may see timeouts if they attempt to upload very large attachments.
+In the past, we&rsquo;ve worked around this by uploading a small file (in Whitehall) and
+then <a href="https://docs.publishing.service.gov.uk/manual/manage-assets.html#replacing-an-asset">replacing the file in Asset Manager</a>.</p>
 <h2 id='static-templates'>Static templates</h2><p>The templates that Static hosts are used by
 <a href="/#frontend-apps">GOV.UK frontend applications</a> to render consistent aspects
 of GOV.UK pages. Production instances of GOV.UK applications access these by
