@@ -57,9 +57,9 @@ In this example, the command will run in its entirety on each host in turn. Some
 
 ## StrictHostKeyChecking
 
-Over time machines will be recycled and will eventually reuse their hostnames. If you've previously logged into a different machine with the same host name, then you may run into the [SSH known hosts changed issue](/manual/unable-to-ssh-into-machine.html#ssh-known-hosts-changed).
+Over time machines will be recycled and will eventually reuse their hostnames. If you've previously logged into a different machine with the same host name, then you may run into the SSH known hosts changed issue
 
-If you're in a hurry and need to skip this check, then add `-oStrictHostKeyChecking=no` to your command:
+To skip this check, then add `-oStrictHostKeyChecking=no` to your command:
 
 ```
 for host in $(gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache)
