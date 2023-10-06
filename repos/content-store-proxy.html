@@ -264,16 +264,26 @@ migrate production.</p>
 
 <p>It will forward all incoming requests to the given <code>PRIMARY_UPSTREAM</code> and <code>SECONDARY_UPSTREAM</code> URLs in parallel, and return the primary response. Once both upstream responses have been received, it will log a line comparing the two, e.g.</p>
 
-<pre><code>&gt; curl http://localhost:4567/api/content/government/ministers
+<pre><code>&gt; curl http://localhost:4567/api/content/government/publications/care-act-statutory-guidance/care-and-support-statutory-guidance
 ...
 
-[2023-05-05T14:37:49.086053 #1430397]  INFO -- : stats: {:primary_response=&gt;{:status=&gt;200, :body_size=&gt;3343568, :time=&gt;0.541455142}, :secondary_response=&gt;{:status=&gt;200, :body_size=&gt;532778, :time=&gt;0.128399933}, :first_difference=&gt;{:position=&gt;187, :context=&gt;["4.000+00:00", "4.000Z\",\"lo"]}}
+{"timestamp":"2023-10-05T12:00:56Z","level":"info","method":"GET","path":"/api/content/government/publications/care-act-statutory-guidance/care-and-support-statutory-guidance","query_string":"","stats":{"primary_response":{"status":200,"body_size":1773132,"time":0.095294816},"secondary_response":{"status":200,"body_size":1773132,"time":0.101621268},"first_difference":"N/A","different_keys":"N/A"}}
 
 </code></pre>
 
-<p>In this line, <code>:context</code> gives you the 5 characters either side of the first difference detected in the two response bodies. This has always been (so far) a difference in UTC timezone representation between MongoDB and PostgreSQL, but it&rsquo;s there just for info in case anything else comes up.</p>
-
 <p>Any errors on the secondary response are ignored and do not interfere with the primary response.</p>
+
+<h2 id="detailed-response-comparison-and-cpu-load">Detailed Response Comparison and CPU-load</h2>
+
+<p>Note: comparing the responses is CPU-intensive, and so must be used with care on highly-contended environments like production. For a given percentage of requests, a full comparison will be run which will populate the <code>first_difference</code> and <code>different_keys</code> keys. The percentage is controlled by the environment variable <code>COMPARISON_SAMPLE_PCT</code>. The default value for this is <code>0</code> - to compare, say, one in ten requests you would supply <code>COMPARISON_SAMPLE_PCT=10</code>.</p>
+
+<p>The full comparison looks like this:</p>
+
+<pre><code>{"timestamp":"2023-10-06T09:50:42Z","level":"warn","method":"GET","path":"/content/foreign-travel-advice","query_string":"","stats":{"primary_response":{"status":200,"body_size":327029,"time":0.180271175},"secondary_response":{"status":200,"body_size":327018,"time":0.132149683},"first_difference":{"position":181900,"context":["vice/czech-","vice/gabon\""]},"different_keys":["links","updated_at"]}}
+</code></pre>
+
+<p><code>first_difference</code> gives the index of the first character which differs between the two responses, and the five characters either side of that position in each response.
+<code>different_keys</code> gives the names of all top-level keys in the two JSON structures which have different values.</p>
 
 <h1 id="to-run">To run</h1>
 
