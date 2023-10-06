@@ -218,7 +218,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8d0e378ad687ec335922ec6f057acf7694ef54b6">20 Sep 2023</a>
 </div>
 
  <h1 id='header'>Run commands on many machines</h1> <p>We used to rely heavily on Fabric scripts to help us do things like running commands on all machines in a class. This approach has been deprecated, but we still need to do those things occasionally.</p>
@@ -247,8 +247,8 @@ done
 </code></pre></div><p>This connects to the current <code>host</code> specified in the for loop, via the <code>integration</code> jumpbox.</p>
 <p>The <code>--</code> separator is used to tell govuk-connect to send all the arguments afterwards to <code>ssh</code>. The command to run on the remote host is provided after that.</p>
 <p>In this example, the command will run in its entirety on each host in turn. Sometimes this can take a while, but has the benefit of the operator being able to watch for any errors.</p>
-<h2 id='stricthostkeychecking'>StrictHostKeyChecking</h2><p>Over time machines will be recycled and will eventually reuse their hostnames. If you&rsquo;ve previously logged into a different machine with the same host name, then you may run into the <a href="/manual/unable-to-ssh-into-machine.html#ssh-known-hosts-changed">SSH known hosts changed issue</a>.</p>
-<p>If you&rsquo;re in a hurry and need to skip this check, then add <code>-oStrictHostKeyChecking=no</code> to your command:</p>
+<h2 id='stricthostkeychecking'>StrictHostKeyChecking</h2><p>Over time machines will be recycled and will eventually reuse their hostnames. If you&rsquo;ve previously logged into a different machine with the same host name, then you may run into the SSH known hosts changed issue</p>
+<p>To skip this check, then add <code>-oStrictHostKeyChecking=no</code> to your command:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>for host in $(gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache)
 do
    gds govuk connect ssh -e integration $host -- -oStrictHostKeyChecking=no govuk_puppet --enable
@@ -303,7 +303,6 @@ done
           <ul class="govuk-list">
             <li><a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a></li>
             <li><a href="/manual/howto-checkout-and-commit-to-codecommit.html">How to check and commit code to AWS CodeCommit</a></li>
-            <li><a href="/manual/howto-ssh-to-machines.html">SSH into machines</a></li>
           </ul>
         </div>
 

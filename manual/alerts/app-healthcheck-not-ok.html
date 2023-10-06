@@ -166,7 +166,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c2bfee3b38758cc5d99048235e008a10df326b14">18 Sep 2023</a>
 </div>
 
  <h1 id='header'>App healthcheck not ok</h1> <p>Most apps on GOV.UK have a <code>/healthcheck/ready</code> endpoint that checks if the app is &ldquo;ready&rdquo; to respond to requests, including things like connecting to a database (<a href="https://github.com/alphagov/content-publisher/blob/8df63907dab486a54894105b829ab9ea02936b67/config/routes.rb#L115-L118">example</a>).</p>
@@ -224,7 +224,6 @@ select * from users;
 </code></pre></div><h2 id='sidekiq-redis-check'>Sidekiq / Redis Check</h2><p>This means that the Sidekiq workers can&rsquo;t connect to Redis.</p>
 
 <ul>
-<li>Check for any <a href="/manual/alerts/redis.html">Redis alerts</a>.</li>
 <li>Check for network connectivity to Redis.</li>
 </ul>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># SSH on to a machine with the problem
