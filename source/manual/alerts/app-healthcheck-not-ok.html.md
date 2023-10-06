@@ -70,7 +70,6 @@ select * from users;
 
 This means that the Sidekiq workers can't connect to Redis.
 
-- Check for any [Redis alerts](redis.html).
 - Check for network connectivity to Redis.
 
 ```
