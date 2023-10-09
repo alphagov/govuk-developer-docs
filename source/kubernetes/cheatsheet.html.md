@@ -1,20 +1,16 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
-title: EKS/Kubernetes infrastructure
-section: Infrastructure
-layout: manual_layout
-parent: "/manual.html"
-type: learn
+title: EKS/Kubernetes GOV.UK cheatsheet
+layout: multipage_layout
+weight: 5
 ---
 
-This is a temporary page to tide us over as we get used to the new EKS platform.
-It will eventually be removed and everything consolidated into the [Kubernetes section of the Developer Docs](/kubernetes).
+# EKS/Kubernetes GOV.UK cheatsheet
 
-## Quick reference
+This is a quick summary of the most useful commands and guidance for interacting with GOV.UK's EKS platform.
 
-This section assumes you satisfy all the [prerequisites](#prerequisites).
+This page assumes you have completed the [set up instructions](/kubernetes/get-started/set-up-tools/), [tested your access](/kubernetes/get-started/access-eks-cluster/#test-your-access) and set up the [recommended aliases](#recommended-aliases).
 
-### Common tasks
+## Common tasks
 
 - To access logs for an app:
     - `k logs deploy/account-api`
@@ -29,7 +25,7 @@ This section assumes you satisfy all the [prerequisites](#prerequisites).
 
 Read more about each command further on in the document.
 
-### Set your AWS environment and role
+## Set your AWS environment and role
 
 ```sh
 # set the correct kubectl context (`k config get-contexts` to see available ones)
@@ -46,14 +42,9 @@ Use an AWS role with sufficient permissions:
 
 See [full instructions for more detail](/kubernetes/get-started/access-eks-cluster/).
 
-## Prerequisites
+## Recommended aliases
 
-You need to have:
-
-- completed the [set up instructions](/kubernetes/get-started/set-up-tools/)
-- [tested your access](/kubernetes/get-started/access-eks-cluster/#test-your-access)
-
-The following commands also assume you have set the recommended aliases (see the [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)), default contexts and globals:
+Prior to using kubectl, you'll need to set the recommended aliases (see the [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)), default contexts and globals:
 
 ```sh
 alias k=kubectl
@@ -81,8 +72,7 @@ Some things haven't yet been replatformed, and some things will remain unchanged
 
 ## CDN and DNS deployments
 
-- [DNS rollouts](/manual/dns.html) are via [Terraform Cloud](/manual/terraform-cloud.html)
-- Fastly CDN config rollouts are still via Jenkins for now.
+- [DNS rollouts](/manual/dns.html) and [Fastly CDN config rollouts](/repos/govuk-fastly.html) are now via [Terraform Cloud](/manual/terraform-cloud.html)
 
 ## Smokey
 
@@ -94,11 +84,7 @@ The Smokey cronjob keeps the last 3 successes and the last 3 failures.
 - The Technical 2nd Line Dashboard will be kept up to date as we improve our dashboards. It's worth bookmarking <https://govuk-2ndline-dashboard.herokuapp.com/>
 - The detailed Sidekiq dashboard is not yet available for EKS (the [old one](https://sidekiq-monitoring.integration.govuk.digital/publishing-api/queues) still looks at EC2) but you can see queue lengths and age-of-oldest-job on the [Sidekiq Grafana dashboard](https://grafana.eks.production.govuk.digital/d/sidekiq-queues).
 - Dashboards are on <https://grafana.eks.production.govuk.digital/> and no longer require VPN. Don’t get confused by the [old Grafana](https://grafana.production.govuk.digital/), which will show mostly empty graphs about the old EC2 setup.
-- Most Icinga alerts are irrelevant now, **except for**:
-    - “scheduled publications in Whitehall not queued” / “overdue publications in Whitehall”
-    - “Travel Advice email alert check” / “Medical Safety Email alert check”
-    - Anything to do with crawler/mirrors
-    - Anything to do with Licensify
+- Most Icinga alerts are irrelevant now, **except for a few**, which are all listed on the 2nd line dashboard.
 
 ## Fetch logs
 
