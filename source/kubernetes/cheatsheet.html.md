@@ -84,11 +84,7 @@ The Smokey cronjob keeps the last 3 successes and the last 3 failures.
 - The Technical 2nd Line Dashboard will be kept up to date as we improve our dashboards. It's worth bookmarking <https://govuk-2ndline-dashboard.herokuapp.com/>
 - The detailed Sidekiq dashboard is not yet available for EKS (the [old one](https://sidekiq-monitoring.integration.govuk.digital/publishing-api/queues) still looks at EC2) but you can see queue lengths and age-of-oldest-job on the [Sidekiq Grafana dashboard](https://grafana.eks.production.govuk.digital/d/sidekiq-queues).
 - Dashboards are on <https://grafana.eks.production.govuk.digital/> and no longer require VPN. Don’t get confused by the [old Grafana](https://grafana.production.govuk.digital/), which will show mostly empty graphs about the old EC2 setup.
-- Most Icinga alerts are irrelevant now, **except for**:
-    - “scheduled publications in Whitehall not queued” / “overdue publications in Whitehall”
-    - “Travel Advice email alert check” / “Medical Safety Email alert check”
-    - Anything to do with crawler/mirrors
-    - Anything to do with Licensify
+- Most Icinga alerts are irrelevant now, **except for a few**, which are all listed on the 2nd line dashboard.
 
 ## Fetch logs
 
