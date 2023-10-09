@@ -72,8 +72,7 @@ Some things haven't yet been replatformed, and some things will remain unchanged
 
 ## CDN and DNS deployments
 
-- [DNS rollouts](/manual/dns.html) are via [Terraform Cloud](/manual/terraform-cloud.html)
-- Fastly CDN config rollouts are still via Jenkins for now.
+- [DNS rollouts](/manual/dns.html) and [Fastly CDN config rollouts](/repos/govuk-fastly.html) are now via [Terraform Cloud](/manual/terraform-cloud.html)
 
 ## Smokey
 
