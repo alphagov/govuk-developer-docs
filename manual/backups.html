@@ -218,7 +218,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4e9cdf3f24151ec3f39dddb0e764fda0e51b4f98">5 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/59ca7bf9a5ce5b8f497d83b4438ec5c08454c881">10 Oct 2023</a>
 </div>
 
  <h1 id='header'>Use of backups</h1> <p>This manual provides a shared definition of a backup and documents our current use of backups summarising strategies and tools we use.</p>
@@ -250,6 +250,7 @@ The &ldquo;Earliest restorable time&rdquo; and &ldquo;Latest restorable time&rdq
 <li>Terraform state</li>
 <li>Data.gov.uk organograms</li>
 </ul>
+<p>Backups have encryption at rest enabled. <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingEncryption.html">AWS enables S3 encryption at rest by default</a>.</p>
 <h2 id='s3-versioning'>S3 versioning</h2><p>S3 have a versioning feature, which allows you to keep multiple versions of an object in the same bucket. We have versioning enabled in some buckets, which allows both:</p>
 
 <ul>
