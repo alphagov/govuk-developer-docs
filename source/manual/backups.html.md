@@ -51,6 +51,8 @@ Besides the S3 buckets that store aforementioned full database backups, we have 
 - Terraform state
 - Data.gov.uk organograms
 
+Backups have encryption at rest enabled. [AWS enables S3 encryption at rest by default](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingEncryption.html).
+
 ## S3 versioning
 
 S3 have a versioning feature, which allows you to keep multiple versions of an object in the same bucket. We have versioning enabled in some buckets, which allows both:
