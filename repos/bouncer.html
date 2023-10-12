@@ -258,41 +258,53 @@
 <p>In order to test the redirect feature of this app, you can use a special <code>bouncer-redirect.dev.gov.uk</code> domain. We will create a mapping from this fake domain to GOV.UK.</p>
 
 <ol>
-<li>
-<p><strong>Setup <a href="https://github.com/alphagov/transition">the Transition repo</a>.</strong></p>
-</li>
-<li>
-<p><strong>Run the following command in the Transition repo.</strong></p>
-</li>
+<li><strong>Setup <a href="https://github.com/alphagov/transition">the Transition repo</a>.</strong></li>
 </ol>
 
-<pre><code>bundle exec rake import:all:orgs_sites_hosts
-</code></pre>
+<p>One of the seeded organisations will be &ldquo;Cabinet Office&rdquo;, which we will use in the next step.</p>
 
-<p>One of the created organisations will be &ldquo;cabinet-office&rdquo;, which we will use in the next step.</p>
-
-<ol start="3">
-<li><strong>Create a temporary site file in the Transition repo.</strong></li>
+<ol start="2">
+<li><strong>In the Transition app, <a href="http://transition.dev.gov.uk/organisations/cabinet-office">under the Cabinet Office organisation</a>, add a new site.</strong></li>
 </ol>
 
-<pre><code>site: bouncer-redirect
-whitehall_slug: cabinet-office
-homepage: https://www.gov.uk
-tna_timestamp: 20141104112824
-host: bouncer-redirect.dev.gov.uk
-global: =301 https://www.gov.uk
-</code></pre>
-
-<ol start="4">
-<li><strong>Run the following command in the Transition repo.</strong></li>
-</ol>
-
-<pre><code>bundle exec rake 'import:org_sites_hosts[&lt;path-to-file&gt;]'
-</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Abbreviated name:</strong></td>
+<td>bouncer-redirect</td>
+</tr>
+<tr>
+<td><strong>TNA timestamp:</strong></td>
+<td>20141104112824</td>
+</tr>
+<tr>
+<td><strong>Homepage:</strong></td>
+<td><a href="https://www.gov.uk">https://www.gov.uk</a></td>
+</tr>
+<tr>
+<td><strong>Hostname:</strong></td>
+<td>bouncer-redirect.dev.gov.uk</td>
+</tr>
+<tr>
+<td><strong>Global type:</strong></td>
+<td>Redirect</td>
+</tr>
+<tr>
+<td><strong>&hellip; with Global new URL:</strong></td>
+<td><a href="https://www.gov.uk">https://www.gov.uk</a></td>
+</tr>
+</tbody>
+</table>
 
 <p>This will create the site in the shared Transition / Bouncer DB.</p>
 
-<ol start="5">
+<ol start="3">
 <li><strong>Start the Bouncer app and go to bouncer-redirect.dev.gov.uk.</strong></li>
 </ol>
 
