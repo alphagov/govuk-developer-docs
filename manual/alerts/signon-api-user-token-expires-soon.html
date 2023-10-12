@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Expiring API tokens in Signon - GOV.UK Developer Documentation</title>
+    <title>Signon API User Token Expires Soon - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/alerts/expiring-api-tokens-in-signon.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/alerts/signon-api-user-token-expires-soon.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Expiring API tokens in Signon - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/alerts/expiring-api-tokens-in-signon.html" />
+      <meta name="twitter:title" content="Signon API User Token Expires Soon - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/alerts/signon-api-user-token-expires-soon.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Expiring API tokens in Signon" />
+      <meta property="og:title" content="Signon API User Token Expires Soon" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/alerts/expiring-api-tokens-in-signon.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/alerts/signon-api-user-token-expires-soon.html" />
 
     
   </head>
@@ -129,7 +129,18 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Expiring API tokens in Signon</span></a>
+    <a href="#header"><span>Signon API User Token Expires Soon</span></a>
+    <ul>
+      <li>
+        <a href="#updating-the-tokens-immediately"><span>Updating the tokens immediately</span></a>
+      </li>
+      <li>
+        <a href="#revoke-the-old-token"><span>Revoke the old token</span></a>
+      </li>
+      <li>
+        <a href="#special-cases"><span>Special Cases</span></a>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -140,42 +151,53 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-                <div class="information-callout">
-      This page describes what to do in case of an
-      <a href='https://docs.publishing.service.gov.uk/manual/tools.html#icinga'>Icinga alert</a>.
-      For more information you could
-      <a href='https://github.com/alphagov/govuk-puppet/search?utf8=%E2%9C%93&q=expiring-api-tokens-in-signon'>
-        search the govuk-puppet repo for the source of the alert
-      </a>
-    </div>
-
+            
     
-   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Alertmanager alerts",
+        "@id": "http://www.dev.gov.uk/manual.html#alertmanager-alerts"
+      }
+    }
+  ]
+}
+</script>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bd55573083477d8d9f95db40b42ebbae5ed6ee89">15 Nov 2022</a>
+<div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#alertmanager-alerts" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Alertmanager alerts&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#alertmanager-alerts">Alertmanager alerts</a>
+        </li>
+  </ol>
+</div>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/eda61e8e6685a87223d8ed9e571d674ea9c7f861">9 Oct 2023</a>
 </div>
 
- <h1 id='header'>Expiring API tokens in Signon</h1> <p>One or more tokens for API Users are about to expire. You should rotate
+ <h1 id='header'>Signon API User Token Expires Soon</h1> <p>One or more tokens for API Users are about to expire. You should rotate
 expiring tokens to ensure the associated application keeps working.</p>
 
-<blockquote>
-<p>If the tokens are
-<code>New London: Trade Tariff Admin (PaaS) token for New London: Trade Tariff Backend (PaaS)</code>
-see <a href="https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin">Trade Tariff Admin on the Wiki</a></p>
-</blockquote>
-<p>As a working example, let&rsquo;s say we have an alert like <em>Content Publisher token
-for Publishing API expires in X days</em>. In this example, the API User is
-<em>Content Publisher</em> and the application is <em>Publishing API</em>.</p>
-
 <ul>
-<li>First login to <a href="https://signon.publishing.service.gov.uk/api_users">Signon</a>, go to API Users and click on the API User.</li>
+<li>First login to <a href="https://signon.publishing.service.gov.uk/api_users">Signon</a>, go to API Users and click on the appropriate API User.</li>
 </ul>
 
 <blockquote>
@@ -185,54 +207,35 @@ click the <em>Revoke</em> button to remove it and there&rsquo;s no need to conti
 </blockquote>
 
 <ul>
-<li>Click <em>Add application token</em>, select the application and click <em>Create
-access token</em>.</li>
-<li>Copy the new token and prepare to replace it in <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>.</li>
+<li><p>Click <em>Add application token</em>, select the application and click <em>Create
+access token</em>.</p></li>
+<li><p>At this point the new token is created, and will be picked up automatically by a job that runs once a day (around 1am) to sync tokens to the applications in Kubernetes. If you want to check that the token has been updated, you can wait until the next day and query the app: <code>kubectl -n apps exec -it deploy/&lt;your-app-name&gt; -- printenv | grep BEARER_TOKEN</code>, then find the relevant token in the output and compare the first and last 8 characters with the hidden token shown in Signon.</p></li>
 </ul>
-
-<blockquote>
-<p>How to do the last step depends on the application, but it should be
-something like <code>rake &#39;eyaml:edit[integration,apps]&#39;</code> within the <code>puppet_aws</code> directory, depending on the
-environment you&rsquo;re working on. Some tokens are not configured in the &lsquo;app&rsquo; namespace - for these
-run <code>rake &#39;eyaml:edit[integration]&#39;</code></p>
-</blockquote>
+<h2 id='updating-the-tokens-immediately'>Updating the tokens immediately</h2><p>If the tokens have actually expired, or need to be rotated immediately in an emergency, you won&rsquo;t want to wait for the daily sync. You can request it to run immediately:</p>
 
 <ul>
-<li>Find a line like <code>govuk::apps::content_publisher::publishing_api_bearer_token...</code>. To find the relevant line, it may be useful to search for the first few characters shown of the existing token on signon.</li>
-<li>Replace the long string within <code>GPG[xxxxxx]</code> with the new token.</li>
-<li>Make a PR with your change and once it is merged deploy the change with
-Puppet.</li>
+<li><code>kubectl create job --from cronjob/signon-sync-token-secrets-to-k8s signon-token-sync-$USER</code></li>
+<li>You will then need to restart the relevant app to pick up the new token: <code>k rollout restart deploy/&lt;your-app-name&gt;</code></li>
 </ul>
-
-<blockquote>
-<p>Changes to govuk-secrets do not automatically trigger a Puppet deploy. One
-way to work around this is to <a href="https://deploy.production.govuk.digital/job/Deploy_Puppet/">rebuild the last release</a> in the appropriate
-environment. You then need to wait for Puppet to run on each of the affected machines.</p>
-</blockquote>
-
-<ul>
-<li>Once puppet has been deployed you can check the new token is there by sshing into a machine and running a command such as <code>govuk_setenv content-publisher env | grep -i TOKEN_YOU_ARE_ROTATING</code></li>
-<li>Check the app can still access the remote application APIs with the new token.</li>
-<li>Check the new token works (see below)</li>
-<li>If all this has been done, and puppet has been run on all the machines, you can <em>Revoke</em> the old token in Signon.</li>
-</ul>
+<p>At this point you can check that the app has the new token as above.</p>
+<h2 id='revoke-the-old-token'>Revoke the old token</h2><p>Once the new token is in place, you should check that it can be used:</p>
 
 <blockquote>
 <p>How to check the new token works depends on the application. One way to check
 the token works is to manually open a console for the application and call
 one of the remote APIs using <a href="https://github.com/alphagov/gds-api-adapters/blob/master/lib/gds_api.rb">gds-api-adapters</a>.</p>
 <p>For example, to open a console you can run</p>
-<p><code>gds govuk connect -e integration app-console content-data-api</code></p>
-<p>The api call could be something like</p>
-<p><code>gds_api = GdsApi::Router.new(Plek.new.find(&quot;router-api&quot;), bearer_token: ENV[&quot;ROUTER_API_BEARER_TOKEN&quot;])</code></p>
-<p><code>gds_api.get_route(&quot;/foo&quot;)</code></p>
+<p><code>kubectl -n apps exec -it deploy/&lt;your-app-name&gt; -- rails c</code></p>
+<p>The api call could be something like (example here with Publishing API)</p>
+<p><code>gds_api = GdsApi::PublisingApi.new(Plek.new.find(&quot;publishing-api&quot;), bearer_token: ENV[&quot;PUBLISHING_API_BEARER_TOKEN&quot;])</code></p>
+<p><code>gds_api.lookup_content_id(base_path: &quot;/&quot;)</code></p>
 <p>If the token works, then the above should get us something other than an unauthorised error.
 You could test this out by setting up <code>gds_api</code> with an incorrect token, e.g. <code>bearer_token: &quot;NOT_THE_REAL_TOKEN&quot;</code>
 and checking that this gives a different response to when it is set up with the new token.</p>
 </blockquote>
-<p>Finally, most applications should automatically restart when Puppet updates the
-token on each machine, but you may need to <a href="/manual/restart-application.html">do this manually</a> so
-that it picks up the new token from the environment.</p>
+<p>Once you&rsquo;ve confirmed that the new token can be used, go back to <a href="https://signon.publishing.service.gov.uk/api_users">Signon</a> and revoke the old token.</p>
+<h2 id='special-cases'>Special Cases</h2><p>If the tokens are for <code>New London: Trade Tariff Admin (PaaS) token for New London: Trade Tariff Backend (PaaS)</code> see <a href="https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin">Trade Tariff Admin on the Wiki</a></p>
+<p>If the tokens are for the <code>Signon API Client (permission and suspension updater)</code> you should contact the permissions team.</p>
 
 
   <div class='related-content'>
@@ -245,8 +248,8 @@ that it picks up the new token from the environment.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/alerts/expiring-api-tokens-in-signon.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Expiring+API+tokens+in+Signon%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Falerts%2Fexpiring-api-tokens-in-signon.html%29&amp;labels=bug&amp;title=Re%3A+%27Expiring+API+tokens+in+Signon%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/alerts/signon-api-user-token-expires-soon.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Signon+API+User+Token+Expires+Soon%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Falerts%2Fsignon-api-user-token-expires-soon.html%29&amp;labels=bug&amp;title=Re%3A+%27Signon+API+User+Token+Expires+Soon%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
