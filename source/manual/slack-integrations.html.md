@@ -15,7 +15,7 @@ parent: "/manual.html"
 
 Create a PR which adds some information (including team name and Slack channel) to [alphagov.yml in the Seal repo](https://github.com/alphagov/seal/blob/main/config/alphagov.yml). The Slack channel name does not need to match the team name.
 
-Add the team name to [bin/morning_seal and bin/afternoon_seal](https://github.com/alphagov/seal/tree/main/bin) if you want two notifications a day, otherwise just pick one.
+Add the team name to [Morning Seal and Afternoon Seal](https://github.com/alphagov/seal/tree/main/.github/workflows) if you want two notifications a day, otherwise just pick one.
 
 Make sure that the Slack channel name has been set as the 'team' in [repos.yml in the GOV.UK Developer Docs repo](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml). This will [update this JSON endpoint](/repos.json) which is [used by the Seal](https://github.com/alphagov/seal/blob/main/lib/team_builder.rb#L97).
 
@@ -25,7 +25,7 @@ Dependapanda is a Slack bot which posts a list of open Dependabot Pull Requests 
 
 ### Configuration
 
-The process is the same as [configuring the Seal](/manual/slack-integrations.html#configuration). However, the team name will need to be added into [bin/dependapanda.sh](https://github.com/alphagov/seal/blob/main/bin/dependapanda.sh) as opposed to the morning/afternoon Seal files.
+The process is the same as [configuring the Seal](/manual/slack-integrations.html#configuration). However, the team name will need to be added into [Dependapanda](https://github.com/alphagov/seal/blob/main/.github/workflows/dependapanda.yml) as opposed to the morning/afternoon Seal files.
 
 [More information about the Seal can be found in Seal’s Github Readme](https://github.com/alphagov/seal/tree/main).
 
