@@ -245,7 +245,7 @@
 
 <h3 id="config">Config</h3>
 
-<p>Fork the repo and add/change the config files that relate to your github organisation. For example, the alphagov config file is located at <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">config/alphagov.yml</a> and the config for scheduled daily visits can be found in <a href="https://github.com/alphagov/seal/blob/main/bin">bin</a></p>
+<p>Fork the repo and add/change the config files that relate to your github organisation. For example, the alphagov config file is located at <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">config/alphagov.yml</a> and the config for scheduled daily visits can be found in <a href="https://github.com/alphagov/seal/blob/main/.github/workflows">.github/workflows</a></p>
 
 <p>Include your team&rsquo;s name, repos and the Slack channel you want to post to.</p>
 
@@ -284,33 +284,33 @@ export SEAL_QUOTES="Everyone should have the opportunity to learn. Don't be afra
 </li>
 </ul>
 
-<h3 id="bash-scripts">Bash scripts</h3>
+<h3 id="github-actions">GitHub Actions</h3>
 
-<p>You will find several bash scripts in the bin directory, such as morning_seal.sh, afternoon_seal.sh, and dependapanda.sh. These scripts are responsible for running the Seal at different times of the day and for different purposes:</p>
+<p>This repository now utilizes GitHub Actions for automated Slack notifications. The workflows are defined in the <code>.github/workflows</code> directory and perform various tasks at different times of the day:</p>
 
 <ul>
 <li>
-<a href="https://github.com/alphagov/seal/blob/main/bin/morning_seal.sh">morning_seal.sh</a>: Runs the Seal bot in the morning, posting about old and recent pull requests by team members and also quotes.</li>
+<a href="https://github.com/alphagov/seal/blob/main/.github/workflows/morning_seal.yml">Morning Seal</a>: Runs the Seal bot in the morning, posting about old and recent pull requests by team members and also quotes.</li>
 <li>
-<a href="https://github.com/alphagov/seal/blob/main/bin/afternoon_seal.sh">afternoon_seal.sh</a>: Runs the Seal bot in the afternoon, posting quotes.</li>
+<a href="https://github.com/alphagov/seal/blob/main/.github/workflows/afternoon_seal.yml">Afternoon Seal</a>: Runs the Seal bot in the afternoon, posting quotes.</li>
 <li>
-<a href="https://github.com/alphagov/seal/blob/main/bin/dependapanda.sh">dependapanda.sh</a>: Runs the Dependapanda bot in the morning, posting about Dependabot pull requests and security information.</li>
+<a href="https://github.com/alphagov/seal/blob/main/.github/workflows/dependapanda.yml">Dependapanda</a>: Runs the Dependapanda bot in the morning, posting about Dependabot pull requests and security information.</li>
 </ul>
 
-<p>To customize when and which bots post to your team channel, add or remove your team name in the bash scripts above. The team name should correspond to a key in <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">config/alphagov.yml</a>, which should have a <code>channel</code> property denoting the name of your team&rsquo;s Slack channel.</p>
+<p>The Morning Seal and Dependapanda workflows run every weekday morning, while the Afternoon Seal workflow runs every weekday afternoon.</p>
+
+<p>To customize which bots post to your team channel, add or remove your team name in the workflows above. The team name should correspond to a key in <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">config/alphagov.yml</a>, which should have a <code>channel</code> property denoting the name of your team&rsquo;s Slack channel.</p>
 
 <p>The <code>channel</code> property should match a channel name in the <a href="https://docs.publishing.service.gov.uk/repos.html#repos-by-team">list of repos by ownership in the Developer Docs</a>, otherwise Dependapanda won&rsquo;t know which repos to notify your channel about.</p>
 
 <h3 id="local-testing">Local testing</h3>
 
-<p>To test the script, create a private Slack channel e.g. &ldquo;#angry-seal-bot-test-abc&rdquo; and update <code>@team_channel</code> on <a href="https://github.com/alphagov/seal/blob/main/lib/slack_poster.rb#L120">this line in slack_poster.rb</a> to the one you created (also remove the <code>if</code> statement).
-Then log in to Heroku (credentials can be found in <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>) and under the &ldquo;Deploy&rdquo; tab, you can deploy your branch which should be in the drop down list of branches in the &ldquo;Manual deploy&rdquo; section. Under the &ldquo;More&rdquo; drop down located in the top right, select &ldquo;Run console&rdquo; where you can run <code>./bin/seal_runner.rb your_team_name</code>, and you should see the post in your test channel (assuming you have included it in the list of teams in <a href="https://github.com/alphagov/seal/blob/main/bin/morning_seal.sh">morning_seal.sh</a>).</p>
+<p>To test the script, create a private Slack channel e.g. &ldquo;#angry-seal-bot-test-abc&rdquo; and update <code>@team_channel</code> on <a href="https://github.com/alphagov/seal/blob/main/lib/slack_poster.rb#L103">this line in slack_poster.rb</a> to the one you created, you&rsquo;ll also need a <code>DEVELOPMENT</code> env set to <code>true</code>.
+You can then run the <a href="https://github.com/alphagov/seal/actions">GitHub Action</a> selecting your branch and you should see the post in your test channel.</p>
 
-<p>If you don&rsquo;t want to post github pull requests but a random quote from your team&rsquo;s quotes config, run <code>./bin/seal_runner.rb your_team_name quotes</code></p>
+<p>If you don&rsquo;t want to post to Slack you can add a <code>DRY: true</code> env to your workflow and the output will only show in the logs.</p>
 
 <h3 id="slack-configuration">Slack configuration</h3>
-
-<p>The morning_seal.sh and dependapanda.sh scripts run every weekday morning, while the afternoon_seal.sh script runs every weekday afternoon. The scheduler is at <a href="https://scheduler.heroku.com/dashboard">https://scheduler.heroku.com/dashboard</a>, and the command to run is bin/seal_runner.rb your_team_name bot_animal.</p>
 
 <p>You should also set up the following custom emojis in Slack:</p>
 
@@ -332,7 +332,7 @@ Then log in to Heroku (credentials can be found in <a href="https://github.com/a
 
 <h2 id="deployment">Deployment</h2>
 
-<p>Heroku will deploy the main branch automatically.</p>
+<p>All of the code runs in GitHub Actions and does not need deploying.</p>
 
 <h2 id="how-to-run-the-tests">How to run the tests?</h2>
 
