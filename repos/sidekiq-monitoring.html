@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: sidekiq-monitoring - GOV.UK Developer Documentation</title>
+    <title>Repository: sidekiq-monitoring (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,13 +16,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: sidekiq-monitoring - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: sidekiq-monitoring (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/sidekiq-monitoring.html" />
 
       <meta property="og:description" content="Everything about sidekiq-monitoring (Sidekiq monitoring web applications configured as standalone apps for GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: sidekiq-monitoring" />
+      <meta property="og:title" content="Repository: sidekiq-monitoring (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/sidekiq-monitoring.html" />
 
@@ -177,108 +177,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Application: sidekiq-monitoring</h1>
+  <h1 class="page-title">Repository: sidekiq-monitoring (retired)</h1>
 
-  <p>Sidekiq monitoring web applications configured as standalone apps for GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/sidekiq-monitoring">sidekiq-monitoring</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-publishing-platform">#govuk-publishing-platform</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS (EC2)</strong>, on the <strong>backend</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/sidekiq_monitoring.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/sidekiq-monitoring/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Sidekiq monitoring is a web application that uses <a href="http://sidekiq.org">Sidekiq’s</a> <a href="https://github.com/mperham/sidekiq/wiki/Monitoring#standalone">monitoring tool</a> to monitor multiple <a href="http://sidekiq.org">Sidekiq</a> configurations used throughout <a href="https://www.gov.uk">GOV.UK</a>.</p>
-
-<p>Sidekiq holds its Redis configuration globally so we have to run a separate Rack server for each application. These are defined in the <a href="https://github.com/alphagov/sidekiq-monitoring/blob/main/Procfile">Procfile</a>.</p>
-
-<h2 id="prerequisites">Prerequisites</h2>
-
-<ul>
-<li><a href="http://git-scm.com">Git</a></li>
-<li><a href="https://www.ruby-lang.org">Ruby</a></li>
-<li><a href="http://bundler.io">Bundler</a></li>
-<li><a href="http://redis.io">Redis</a></li>
-</ul>
-
-<h2 id="installation">Installation</h2>
-
-<p>Clone the repository:</p>
-
-<pre lang="sh"><code>$ git clone git@github.com:alphagov/sidekiq-monitoring.git
-</code></pre>
-
-<p>Setup the application:</p>
-
-<pre lang="sh"><code>$ ./bin/setup
-</code></pre>
-
-<h2 id="configuration">Configuration</h2>
-
-<p>The application takes its Redis configuration from the environment. It expects keys to be prefixed with the identifier of the application to be monitored. A &lsquo;dummy&rsquo; application would require <code>DUMMY_REDIS_HOST</code> and <code>DUMMY_REDIS_PORT</code>.</p>
-
-<h2 id="usage">Usage</h2>
-
-<p>To monitor a specific application:</p>
-
-<pre lang="sh"><code>$ ./bin/foreman run publisher
-</code></pre>
-
-<p>To monitor all applications:</p>
-
-<pre lang="sh"><code>$ ./bin/foreman start
-</code></pre>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/sidekiq-monitoring/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Sidekiq monitoring web applications configured as standalone apps for GOV.UK</p></p>
+<p><a href="https://github.com/alphagov/sidekiq-monitoring">GitHub repository</a></p>
 
 
             
