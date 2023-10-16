@@ -248,15 +248,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/45661bd69fd73644e22871604df46de40ec391dd">22 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/9cb954bf5f90fc792a85c1093f3153fe4b114996">13 Oct 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 form tracker</h1>
@@ -299,6 +292,7 @@
   }
 }
 </code></pre>
+<p>When a form is submitted with an empty input value, the tracker will set the <code>text</code> value in the dataLayer to <code>"No answer given"</code>. If you require empty input to be sent as <code>undefined</code> instead, add the <code>data-ga4-form-no-answer-undefined</code> attribute to the form.</p>
 
 
             
