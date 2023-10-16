@@ -132,13 +132,13 @@
     <a href="#header"><span>Router error ratio too high</span></a>
     <ul>
       <li>
-        <a href="#description"><span>description</span></a>
+        <a href="#description"><span>Description</span></a>
       </li>
       <li>
-        <a href="#impact"><span>impact</span></a>
+        <a href="#impact"><span>Impact</span></a>
       </li>
       <li>
-        <a href="#potential-resolution-steps"><span>potential resolution steps</span></a>
+        <a href="#potential-resolution-steps"><span>Potential resolution steps</span></a>
       </li>
     </ul>
   </li>
@@ -190,7 +190,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec01fb1564b3bb2cf9e0ea1cde531c20c6f03ff3">5 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/10ff5bb8ca4ed1f3660cb13f7863a992d444c4c8">16 Oct 2023</a>
 </div>
 
  <h1 id='header'>Router error ratio too high</h1> <p>You can find the router request error rates on this dashboard:</p>
@@ -201,15 +201,15 @@
 <p>You can also view the 500+503 error rates across all applications on this dashboard:</p>
 
 <ul>
-<li><a href="https://grafana.eks.prodution.govuk.digital/d/app-requests/app-request-rates-errors-durations?orgId=1&amp;refresh=1m&amp;var-namespace=apps&amp;var-app=All&amp;var-quantile=All&amp;var-error_status=500&amp;var-error_status=503">5xx app Requests</a></li>
+<li><a href="https://grafana.eks.production.govuk.digital/d/app-requests/app-request-rates-errors-durations?orgId=1&amp;refresh=1m&amp;var-namespace=apps&amp;var-app=All&amp;var-quantile=All&amp;var-error_status=500&amp;var-error_status=503">5xx app Requests</a></li>
 </ul>
-<h2 id='description'>description</h2><p>This alert will fire when the ratio of requests in an error state are above the threshold of 1 in 10.
-The configuration of the alert can be found [here][https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/router.yaml]</p>
-<h2 id='impact'>impact</h2><p>Router deals with requests to the rails applications which means that both publishers and/or end users could be seeing errors depending on which application is returning errors.
-Use <a href="https://grafana.eks.prodution.govuk.digital/d/app-requests/app-request-rates-errors-durations?orgId=1&amp;refresh=1m&amp;var-namespace=apps&amp;var-app=All&amp;var-quantile=All&amp;var-error_status=500&amp;var-error_status=503">this</a> dashboard to check which applications have been erroring recently then look in <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover">Kibana</a> for more detailed look into the specific log messages.</p>
-<h2 id='potential-resolution-steps'>potential resolution steps</h2>
+<h2 id='description'>Description</h2><p>This alert will fire when the ratio of requests in an error state are above the threshold of 1 in 10.
+The configuration of the alert can be found <a href="https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/router.yaml">here</a></p>
+<h2 id='impact'>Impact</h2><p>Router deals with requests to the rails applications which means that both publishers and/or end users could be seeing errors depending on which application is returning errors.
+Use <a href="https://grafana.eks.production.govuk.digital/d/app-requests/app-request-rates-errors-durations?orgId=1&amp;refresh=1m&amp;var-namespace=apps&amp;var-app=All&amp;var-quantile=All&amp;var-error_status=500&amp;var-error_status=503">this</a> dashboard to check which applications have been erroring recently then look in <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover">Kibana</a> for more detailed look into the specific log messages.</p>
+<h2 id='potential-resolution-steps'>Potential resolution steps</h2>
 <ul>
-<li>If an application has been recently updated and is returning errors it may require a rollback using the app&rsquo;s deploy github action https://github.com/alphagov/<appname>/actions/workflows/deploy.yml</li>
+<li>If an application has been recently updated and is returning errors it may require a rollback using the app&rsquo;s deploy github action <code>https://github.com/alphagov/&lt;appname&gt;/actions/workflows/deploy.yml</code></li>
 <li>If your application is currently dealing with a sudden increase in load it could be that you need to scale your application. You can check the following <a href="/kubernetes/manage-app/scale-app/#scaling-your-app">documentation</a> in order to do this.</li>
 </ul>
 
