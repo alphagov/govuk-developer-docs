@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Cookies on the implementation record | GOV.UK GA4 Implementation record</title>
+  <title>Ab_test attribute data | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/cookies.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_ab_test.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/cookies.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_ab_test.html" />
   <script src="/javascripts/cookie-consent.js"></script>
 </head>
 
@@ -137,93 +137,78 @@
           </ul>
         </div>
         <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
-          <div id="cookie-page-notice" class="cookie-page-notice">
-  
-<div class="gem-c-success-alert govuk-notification-banner govuk-notification-banner--success" role="alert" tabindex="-1" aria-labelledby="govuk-notification-banner-title-c608c1f8" data-module="initial-focus">
-  <div class="govuk-notification-banner__header">
-    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title-c608c1f8">Success</h2>
-  </div>
-  <div class="govuk-notification-banner__content">
-      <p class="govuk-body gem-c-success-alert__message">Cookie preferences updated</p>
-  </div>
-</div>
-<p></div></p>
-
+          
 <h1 class="govuk-heading-l">
-  Cookies on the implementation record
+  <span class="govuk-caption-l">Attribute</span>
+  ab_test
 </h1>
 
-<p class="govuk-body">Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
+<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Name
+      </dt>
+      <dd class="govuk-summary-list__value">
+          ab_test
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Description
+      </dt>
+      <dd class="govuk-summary-list__value">
+          Used in the page_view object to record whether an ab test is running on the page.
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Value
+      </dt>
+      <dd class="govuk-summary-list__value">
+          content attribute of meta tag govuk:ab-test
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Example
+      </dt>
+      <dd class="govuk-summary-list__value">
+          BankHolidaysTest:Z
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Required
+      </dt>
+      <dd class="govuk-summary-list__value">
+          false
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Type
+      </dt>
+      <dd class="govuk-summary-list__value">
+          string
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Redact
+      </dt>
+      <dd class="govuk-summary-list__value">
+          <a href="/analytics/pii.html" class="govuk-link">false</a>
+      </dd>
+    </div>
 
-<p class="govuk-body">We use cookies to collect and store information about how you use this site, such as the pages you visit.</p>
-
-<p class="govuk-body">This page has a brief explanation of each type of cookie we use.</p>
-
-<form data-module="cookie-settings">
-  <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-      <h2 class="govuk-fieldset__heading">
-        Cookie settings
-      </h2>
-    </legend>
-    <p class="govuk-body">We use 2 types of cookie. You can choose which cookies you&rsquo;re happy for us to use.</p>
-
-
-    <div class="govuk-form-group govuk-!-margin-bottom-6">
-  <fieldset class="govuk-fieldset" aria-describedby="hint-4d4fae61">
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-        
-        <h2 class="govuk-fieldset__heading">Cookies that measure website use</h2>
-</legend>
-      
-<div id="hint-4d4fae61" class="gem-c-hint govuk-hint">
-        <p class="govuk-body govuk-hint">We use Google Analytics cookies to measure how you use this site.</p>
-      <p class="govuk-body govuk-hint">These cookies collect information about:</p>
-      <ul class="govuk-list--bullet govuk-hint">
-        <li>how you got to these sites</li>
-        <li>the pages you visit and how long you spend on each page</li>
-        <li>what you click on while you&rsquo;re visiting these sites</li>
-      </ul>
-      <p class="govuk-body govuk-hint">We do not allow Google to use or share the data about how you use these sites.</p>
-
-</div>
-
-
-    <div class="govuk-radios">
-          <div class="gem-c-radio govuk-radios__item">
-            <input type="radio" name="cookie-consent" id="cookie-consent-0" value="true" class="govuk-radios__input" />
-            
-  <label for="cookie-consent-0" class="gem-c-label govuk-label govuk-radios__label">Use cookies that measure my website use</label>
-
-
-</div>
-
-          <div class="gem-c-radio govuk-radios__item">
-            <input type="radio" name="cookie-consent" id="cookie-consent-1" value="false" class="govuk-radios__input" />
-            
-  <label for="cookie-consent-1" class="gem-c-label govuk-label govuk-radios__label">Do not use cookies that measure my website use</label>
-
-
-</div>
-
-</div>
-</fieldset></div>
-  </fieldset>
-
-  <h2 class="gem-c-heading govuk-heading-s   govuk-!-margin-bottom-2">
-  Strictly necessary cookies
-</h2>
-
-  <p class="govuk-body">These essential cookies do things like remember your progress through a form (for example a licence application)</p>
-  <p class="govuk-body">They always need to be on.</p>
-
-  
-
-
-  <button class="gem-c-button govuk-button js-set-cookie-consent" type="submit">Save changes</button>
-
-  
-</form>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Used by
+    </dt>
+    <dd class="govuk-summary-list__value">
+    </dd>
+  </div>
+</dl>
 
         </div>
       </div>
