@@ -237,19 +237,25 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>This provides an API for updating the routes used by the <a href="https://github.com/alphagov/router/">router</a>.</p>
+<p>Router API provides an API for updating the routes used by
+<a href="https://github.com/alphagov/router/">Router</a>.</p>
 
 <h2 id="technical-documentation">Technical documentation</h2>
 
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
+<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app
+conventions</a>.</p>
 
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
+<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker
+environment</a> to run the application
+and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage
+instructions</a> to get started.</p>
 
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
+<h3 id="run-the-test-suite">Run the test suite</h3>
 
-<h3 id="running-the-test-suite">Running the test suite</h3>
+<p>If you are not using govuk-docker, you will need a MongoDB instance running at
+<code>$TEST_MONGODB_URI</code> (which defaults to localhost) to run some of the tests.</p>
 
-<pre><code>bundle exec rake
+<pre lang="sh"><code>bundle exec rake
 </code></pre>
 
 <h2 id="further-documentation">Further documentation</h2>
@@ -257,6 +263,14 @@
 <ul>
 <li><a href="/repos/router-api/api-endpoints.html">API Endpoints</a></li>
 </ul>
+
+<h2 id="team">Team</h2>
+
+<p><a href="https://github.com/orgs/alphagov/teams/gov-uk-platform-engineering">GOV.UK Platform
+Engineering</a>
+team looks after this repo. If you&rsquo;re inside GDS, you can find us in
+<a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a> or view our <a href="https://trello.com/b/u4FCzm53/">kanban
+board</a>.</p>
 
 <h2 id="licence">Licence</h2>
 
