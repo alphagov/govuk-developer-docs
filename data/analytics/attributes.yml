@@ -1,3 +1,11 @@
+- name: ab_test
+  description: Used in the page_view object to record whether an ab test is running on the page.
+  value: content attribute of meta tag govuk:ab-test
+  example: BankHolidaysTest:Z
+  required: no
+  type: string
+  redact: false
+
 - name: action
   description: Shows the kind of thing the user has done.
   value:
@@ -7,8 +15,8 @@
   redact: false
 
 - name: browse_topic
-  description: Used in the page_view object to record the content section
-  value: content attribute of meta tag govuk:section
+  description: Used in the page_view object to record the parent browse topic for the page
+  value: content attribute of meta tag govuk:ga4-browse-topic
   example: working at sea
   required: no
   type: string
@@ -18,6 +26,22 @@
   description:
   value: content attribute of meta tag govuk:content-id
   example: a6bb0fc8-753f-4732-aabc-ff727dcf1262
+  required: no
+  type: string
+  redact: false
+
+- name: cookie_banner
+  description: Used in the page_view object to record the presence of the cookie banner "You have accepted cookies" element on the page
+  value: true/undefined depending on the presence of data-ga4-cookie-banner on the page
+  example: "true"
+  required: no
+  type: string (boolean)
+  redact: false
+
+- name: devolved_nations_banner
+  description: Used in the page_view object to record the countries listed in a devolved nations banner on the page
+  value: The value of data-ga4-devolved-nations-banner on the page
+  example: "England, Scotland, Wales"
   required: no
   type: string
   redact: false
@@ -41,6 +65,14 @@
   description: A Google Analytics ecommerce object, containing an array named 'items' that contains details of the results/links on the page.
   required: no
   type: object
+  redact: false
+
+- name: emergency_banner
+  description: Used in the page_view object to record the presence of the emergency_banner on the page
+  value: true/undefined depending on the presence of data-ga4-emergency-banner on the page
+  example: "true"
+  required: no
+  type: string (boolean)
   redact: false
 
 - name: event
@@ -120,6 +152,14 @@
   type: string (number)
   redact: false
 
+- name: intervention
+  description: Used in the page_view object to record the presence of an intervention banner on the page
+  value: true/undefined depending on the presence of data-ga4-intervention-banner on the page
+  example: "true"
+  required: no
+  type: string (boolean)
+  redact: false
+
 - name: item_id
   description: The URL path of the clicked result.
   required: yes
@@ -185,7 +225,31 @@
   type: string
   redact: false
 
+- name: navigation_list_type
+  description: Used in the page view object to record the type of page being shown in browse, either 'curated' or 'alphabetical'
+  value: content attribute of meta tag govuk:navigation_list_type
+  example: curated
+  required: no
+  type: string
+  redact: false
+
+- name: navigation_page_type
+  description: Used in the page_view object to record the navigation page type. This meta tag is populated on topic pages (mainstream browse, specialist topic, and taxonomy topics) to identify which level it is in the topic structure. It's also used for tracking step by step navigation sidebars e.g. 'Primary step by step shown' or 'Secondary step by step shown'.
+  value: content attribute of meta tag govuk:navigation_page_type
+  example: Browse level 2
+  required: no
+  type: string
+  redact: false
+
 - name: organisations
+  required: no
+  type: string
+  redact: false
+
+- name: phase_banner
+  description: Used in the page_view object to record the presence of a phase banner on the page
+  value: alpha/beta/undefined depending on the value of data-ga4-phase-banner on the page
+  example: "beta"
   required: no
   type: string
   redact: false
@@ -227,6 +291,14 @@
   type: string
   redact: false
 
+- name: query_string
+  description: Used in the page_view object to record the presence of a query_string in the URL
+  value: The query string in the URL
+  example: "keywords=Hello+World&sort=relevance"
+  required: no
+  type: string
+  redact: true
+
 - name: referrer
   description: The page the user was on before coming to this page.
   value: document.referrer
@@ -257,6 +329,14 @@
   type: string
   redact: false
 
+- name: search_term
+  description: Used in the page_view object to record the presence of a search term in the URL
+  value: The value of 'keywords' in the URL query string
+  example: "Hello World"
+  required: no
+  type: string
+  redact: true
+
 - name: section
   alias: section_event_data
   description: Used within the event_data object to identify where on the page an event occurred. Could be the area (header, footer) or a specific heading.
@@ -273,10 +353,26 @@
   type: string
   redact: false
 
+- name: spelling_suggestion
+  description: Used in the page_view object to record the presence of spelling suggestions on finder pages
+  value: content attribute of meta tag govuk:spelling-suggestion
+  example: "Tax"
+  required: no
+  type: string
+  redact: false
+
 - name: status_code
   description:
   value: HTTP response status code
   example: 200, 404
+  required: no
+  type: string
+  redact: false
+
+- name: step_navs
+  description: Used in the page_view object to record the id of the step nav that is related to the page
+  value: content attribute of meta tag govuk:stepnavs
+  example: e01e924b-9c7c-4c71-8241-66a575c2f61f
   required: no
   type: string
   redact: false
@@ -391,6 +487,14 @@
   description: Used to record when the video being played is at 0%, 25%, 50%, 75% or 100%.
   required: no
   type: string (number)
+  redact: false
+
+- name: viewport_size
+  description: Used in the page_view object to record the browser viewport size.
+  value: Browser viewport size in widthxlength format.
+  example: 1920x1080
+  required: no
+  type: string
   redact: false
 
 - name: world_locations
