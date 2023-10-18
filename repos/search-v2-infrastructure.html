@@ -236,71 +236,40 @@
 
 <p>IaC definitions for GOV.UK Search v2</p>
 
-<p>This repository contains Terraform resource definitions to set up Google Cloud&rsquo;s Vertex AI Search
+<p>This repository contains Terraform resource definitions to provision Google Cloud&rsquo;s Vertex AI Search
 (also previously known as &ldquo;Gen App Builder&rdquo; or in the APIs as &ldquo;Discovery Engine&rdquo;) for use as a
-search engine for GOV.UK through <a href="https://github.com/alphagov/search-api-v2"><code>search-api-v2</code></a>, and to set up a data
-pipeline for analytics events to feed into the search engine model.</p>
+search engine for GOV.UK through <a href="https://github.com/alphagov/search-api-v2">search-api-v2</a>, and to
+set up a data pipeline for analytics events to feed into the search engine model.</p>
 
-<p>It is applied through a set of Terraform Cloud workspaces (one per environment).</p>
-
-<h2 id="prerequisites">Prerequisites</h2>
-
-<h3 id="google-cloud-platform">Google Cloud Platform</h3>
-
-<p>This Terraform configuration operates on a per-project level in GCP, which means some prior manual
-setup is required before the configuration can be applied. For an environment named <code>example</code>, you
-will need the following items set up:</p>
+<p>To that end, the following modules are part of this repository:</p>
 
 <ul>
-<li>A Google Cloud Platform project (<code>search-api-v2-example</code>) with billing enabled</li>
-<li>A service account within the project (<code>search-api-v2-example-tf</code>)
-<ul>
-<li><em>TODO: List roles/permissions required for service account</em></li>
+<li>
+<a href="https://github.com/alphagov/search-v2-infrastructure/blob/main/terraform/meta/"><code>terraform/meta</code></a>: Bootstrap Terraform Cloud project/workspaces, GCP projects,
+and workload federation between the two (applied locally with Terraform Cloud state)</li>
+<li>
+<a href="https://github.com/alphagov/search-v2-infrastructure/blob/main/terraform/discovery_engine/"><code>terraform/discovery_engine</code></a>: Set up Discovery Engine resources,
+service accounts and keys, and AWS Secrets Manager secrets consumed by the Kubernetes platform for
+an individual environment for <code>search-api-v2</code> (applied once per environment through Terraform
+Cloud)</li>
 </ul>
-<p></li>
-</ul>
+
+<h2 id="working-on-this-repository">Working on this repository</h2>
+
+<p>The workspace can be run as a <a href="https://containers.dev/">devcontainer</a>, which includes <code>terraform</code>
+and <code>gcloud</code> CLI tooling enabling log in to these providers. This is useful for working on and
+applying the <a href="https://github.com/alphagov/search-v2-infrastructure/blob/main/terraform/meta/"><code>terraform/meta</code></a> module, which is intended to be run locally by an
+engineer with the required Google and Terraform Cloud access to bootstrap the initial set of
+resources. You can also run plans for other modules locally.</p>
+
 <blockquote>
-<p><strong>Note</strong>
-In addition, Vertex AI Search currently (October 2023) requires an extra step of manually
-accepting terms and conditions through the Console UI that cannot be performed programatically,
-and API calls will fail until this is done. We expect this to change in the near future.</p>
+<p><strong>Warning</strong>
+A gitignored .terraform.credentials.d directory is included in the repository, which is mounted
+into the devcontainer&rsquo;s home folder for terraform login to store Terraform Cloud tokens into (so
+they persist across container rebuilds). This directory will contain sensitive information, so do
+not stop it being gitignored or force any files within to be checked in.</p>
 </blockquote>
-<h3 id="terraform-cloud">Terraform Cloud</h3>
-<p>For an environment named <code>example</code>, you will need the following items set up:</p>
-<ul>
-<li>A workspace (<code>search-v2-infrastructure-example</code>) in the <code>govuk-search-api-v2</code> project, with the
-following variables:
-<ul>
-<li>
-<code>GOOGLE_CREDENTIALS</code> environment variable configured to the GCP project&rsquo;s service account
-credentials from above (see <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started#using-terraform-cloud-as-the-backend">Google provider documentation</a>)</li>
-<li>
-<code>gcp_project_id</code> Terraform variable set to the GCP project name (<code>search-api-v2-example</code>)</li>
-</ul>
-</li>
-</ul>
-<h2 id="terraform-configuration-files">Terraform configuration files</h2>
-<ul>
-<li>
-<code>main.tf</code>: General Terraform and provider configuration and activates the required GCP APIs
-(prerequisite for other resources)</li>
-<li>
-<code>discovery_engine.tf</code>: Sets up Discovery Engine resources</li>
-<li>
-<code>service_accounts.tf</code>: Sets up service accounts for <code>search-api-v2</code> to access Discovery Engine</li>
-</ul>
-<blockquote>
-<p><strong>Note</strong>
-The Discovery Engine resources are managed through the <a href="https://registry.terraform.io/providers/Mastercard/restapi/latest">RestAPI provider</a>
-due to the Google provider not offering first party Terraform resources yet (as of October 2023).</p>
-</blockquote>
-<h2 id="development-containers">Development containers</h2>
-<p>The workspace can be run as a devcontainer which includes Terraform and the <code>gcloud</code> CLI. A
-gitignored <code>.terraform.credentials.d</code> directory is included in the repository, which is mounted into
-the devcontainer&rsquo;s home folder for <code>terraform login</code> to store Terraform Cloud tokens into (so they
-persist across container rebuilds). This directory will contain sensitive information, so do not
-stop it being gitignored or force any files within to be checked in.</p>
-  </div></p>
+<p></div></p>
 
 
             
