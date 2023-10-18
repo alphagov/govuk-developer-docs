@@ -191,15 +191,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/17f234dd4edd405b45bd9f9040e9652ea0aed70c">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/2c6ffbeaf5d98ea5345e35284b5c94d5ad76bcf1">18 Oct 2023</a>
 </div>
 
   <h1 class="page-title">signon: Usage Documentation</h1>
@@ -214,13 +207,6 @@ home_uri="https://myapp.com" redirect_uri="https://myapp.com/auth/gds/callback"
 (normally via <a href="http://github.com/alphagov/gds-sso">GDS-SSO</a>).</p>
 <p>You can then add the ID and secret to the app's <code>ENV</code> using your preferred
 method.</p>
-<p>To create a new user, use the following syntax:</p>
-<pre lang="sh"><code>rake users:create name='First Last' email=user@example.com \
-applications=Comma,Seperated,ListOf,Application,Names* \
-[github=username] [twitter=username]
-</code></pre>
-<p>* You can also set the applications in a comma separated list via an
-<code>ENV['applications']</code> variable if you prefer.</p>
 <h2 id="access-tokens">Access Tokens</h2>
 <p>You may also need to create an access token, so one application can identify
 itself to another. Say, for instance, you have an API that requires
