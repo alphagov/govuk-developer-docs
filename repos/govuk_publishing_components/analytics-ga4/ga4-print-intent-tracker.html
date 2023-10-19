@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Publishing to RubyGems - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics 4 print intent tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/publishing-to-rubygems.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-print-intent-tracker.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Publishing to RubyGems - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/publishing-to-rubygems.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics 4 print intent tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-print-intent-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Publishing to RubyGems" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics 4 print intent tracker" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/publishing-to-rubygems.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-print-intent-tracker.html" />
 
     
   </head>
@@ -250,69 +250,26 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/5b335cc25044eb5ad0434ba391ef86de0d74588d">24 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/2b45e41a1ba01793184dd314aba311e0288e26f5">5 Oct 2023</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Publishing to RubyGems</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics 4 print intent tracker</h1>
 
   
-<p>Before publishing a new version <a href="https://github.com/alphagov/govuk_publishing_components/pulls?q=is%3Apr+is%3Aopen+review%3Aapproved">check the open and approved pull requests</a> and reach out to the authors to see if you can get their work published in the same release.</p>
-<p>You should also post a message to <code>#govuk-frontenders</code> on slack to ask if anyone else has a change that they would like to be included in the new version.</p>
-<ol>
-<li>
-<p>Checkout <strong>main</strong> and pull latest changes.</p>
-</li>
-<li>
-<p>Create and checkout a new branch (<code>release-[version-number]</code>).
-The version number is determined by looking at the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/CHANGELOG.md">current "Unreleased" changes in CHANGELOG</a> and updating the previous release number depending on the kind of entries:</p>
-</li>
-</ol>
-<ul>
-<li>
-<code>Breaking changes</code> corresponds to a <code>major</code> (1.X.X) change.</li>
-<li>
-<code>New features</code> corresponds to a <code>minor</code> (X.1.X) change.</li>
-<li>
-<code>Fixes</code> corresponds to a <code>patch</code> (X.X.1) change.</li>
-</ul>
-<p>For example if the previous version is <code>2.3.0</code> and there are entries for <code>Breaking changes</code> then the new release should be <code>3.0.0</code>.</p>
-<p>See <a href="https://semver.org/">Semantic Versioning</a> for more information.</p>
-<ol start="3">
-<li>
-<p>Update <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/CHANGELOG.md"><code>CHANGELOG.md</code></a> "Unreleased" heading with the new version number and <a href="https://github.com/alphagov/govuk_publishing_components/commits/main">review the latest commits</a> to make sure the latest changes are correctly reflected in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/(/CHANGELOG.md)">CHANGELOG</a>.</p>
-</li>
-<li>
-<p>Update <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/lib/govuk_publishing_components/version.rb"><code>lib/govuk_publishing_components/version.rb</code></a> version with the new version number.</p>
-</li>
-<li>
-<p>Run <code>bundle install &amp;&amp; yarn install</code> to ensure you have the latest dependencies installed.</p>
-</li>
-<li>
-<p>Commit changes. These should include updates in the following files:</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/CHANGELOG.md"><code>CHANGELOG.md</code></a></li>
-<li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/lib/govuk_publishing_components/version.rb"><code>lib/govuk_publishing_components/version.rb</code></a></li>
-<li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/Gemfile.lock"><code>Gemfile.lock</code></a></li>
-</ul>
-<ol start="7">
-<li>
-<p>Create a pull request and copy the changelog text for the current version in the pull request description.</p>
-</li>
-<li>
-<p>Once the pull request is approved, merge into the <code>main</code> branch. This action will trigger the CI to publish the new version to RubyGems. A <a href="https://github.com/dependabot">dependabot</a> pull request will automatically be raised in frontend applications.</p>
-</li>
-</ol>
-<p>See an <a href="https://github.com/alphagov/govuk_publishing_components/pull/873/files">example pull request</a> for publishing a new version to RubyGems.</p>
+<p>This script tracks when the user opens the print prompt in their browser, e.g. when pressing Ctrl/Cmd + P or going to File &gt; Print.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>Assuming that consent has been given, the print intent tracker is launched automatically by <code>init-ga4.js</code>, as there is a function in that file which automatically runs the <code>init()</code> function on anything namespaced under <code>window.GOVUK.analyticsGa4.analyticsModules</code>.</p>
+<p>When initialised, a <code>beforeprint</code> event listener is added to the JavaScript <code>window</code>. If the <code>beforeprint</code> event is fired, the following dataLayer object is sent to GA4:</p>
+<pre lang="JSON"><code>{
+  "event": "event_data",
+  "event_data": {
+    "event_name": "print_intent",
+    "type": "print intent",
+    "method": "browser print"
+  }
+}
+</code></pre>
 
 
             
@@ -320,8 +277,8 @@ The version number is determined by looking at the <a href="https://github.com/a
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/publishing-to-rubygems.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fpublishing-to-rubygems.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-print-intent-tracker.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-ga4%2Fga4-print-intent-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
