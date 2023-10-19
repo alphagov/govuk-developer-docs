@@ -191,15 +191,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/e454b4694aafadab2655b9cb1040e59acb317ce8">13 Apr 2021</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/0ca2cbd267ec86f6ac58125bb492692e4f37dd4f">19 Oct 2023</a>
 </div>
 
   <h1 class="page-title">signon: Troubleshooting</h1>
@@ -220,8 +213,8 @@
 <p>This method is preferred as you do not need to open a Rails console on a production system.</p>
 <p>If the email was sent in the last 7 days, it can be retrieved by searching for the user's email address in the <a href="https://www.notifications.service.gov.uk/services/51c6b7b7-f7dc-421c-9105-7b73774cfb43">GOV.UK Notify dashboard</a>.</p>
 <h4 id="rails-console">Rails console</h4>
-<p>First, open a Rails console:</p>
-<pre><code>gds govuk c app-console -e &lt;environment&gt; signon
+<p>First, open a Rails console - you will need to <a href="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html#set-your-aws-environment-and-role">configure your EKS access</a>:</p>
+<pre><code>kubectl exec -it deploy/signon -- rails c
 </code></pre>
 <p>Run the following to obtain a token:</p>
 <pre lang="ruby"><code>token = User.find_by(email: "name@example.com").send_reset_password_instructions
