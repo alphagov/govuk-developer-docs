@@ -264,10 +264,10 @@ resources. You can also run plans for other modules locally.</p>
 
 <blockquote>
 <p><strong>Warning</strong>
-A gitignored .terraform.credentials.d directory is included in the repository, which is mounted
-into the devcontainer&rsquo;s home folder for terraform login to store Terraform Cloud tokens into (so
-they persist across container rebuilds). This directory will contain sensitive information, so do
-not stop it being gitignored or force any files within to be checked in.</p>
+Gitignored <code>.terraform.credentials.d</code> and <code>.google.credentials.d</code> directories are included in the
+repository, which are mounted into the devcontainer&rsquo;s home folder for <code>terraform login</code>/<code>gcloud login</code> to store credentials into (so they persist across container rebuilds). These directories
+will contain sensitive information, so do not stop them being gitignored or force any files within
+to be checked in.</p>
 </blockquote>
 <p></div></p>
 
