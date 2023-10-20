@@ -238,7 +238,13 @@ If a user is asking for data that is no longer publicly available, e.g. a withdr
 
 It can be useful to access the [CKAN API][ckan-api-docs] when debugging or resolving issues. Note that the responses may be different depending on your access permissions.
 
-Queries can use the package ID or name (the slug) e.g.
+Where relevant, the number of results returned defaults to 10. Use a rows parameter to change this:
+
+```
+https://data.gov.uk/api/action/package_search?fq=organization%3Acabinet-office&rows=200
+```
+
+Queries can use the package ID or name (the slug):
 
 ```
 https://data.gov.uk/api/3/action/package_search?q=id:1e465255-7c45-4860-bf4b-991c151d4ce7
@@ -281,6 +287,9 @@ There's some [API documentation][dgu-api-docs] aimed at general users of data.go
 
 # View a publisher record
  https://data.gov.uk/api/3/action/organization_show?id=government-digital-service
+
+# List datasets from a specific publisher
+ https://data.gov.uk/api/3/action/package_search?q=organization:hull-city-council
 ```
 
 ## Organogram publishing
