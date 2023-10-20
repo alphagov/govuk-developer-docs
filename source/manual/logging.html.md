@@ -107,3 +107,6 @@ viewing logs. It is responsible for:
 - parsing user queries written in Lucene/KQL into Elastic
 - querying the Elasticsearch indices
 - displaying the results
+
+### Vulnerability Scanners
+Please check this internal documentation what to do with suspected [Vulnerability Scanners](https://docs.google.com/document/d/1BZ_SBPuZmO8pseniqj1tlq7pss9iU3JslqQHp_JS9Wg/edit#heading=h.17fwpvs3mt0x) 
