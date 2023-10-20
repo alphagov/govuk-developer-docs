@@ -1,5 +1,5 @@
 ---
-owner_slack: "#data-products"
+owner_slack: "#govuk-publishing-on-platform-content-tech"
 title: Related links
 parent: "/manual.html"
 layout: manual_layout
@@ -14,11 +14,11 @@ To do this, you can click on the **Edit a page** link at the top and enter the
 base path of the content item you need to edit. You will then see a section
 titled **Related content items** where you can add, edit or remove related links.
 
-It's important to note that the automatically generated related links are
-contained in the section titled **Suggested related content items**. Related
-links in this section can be re-ordered or removed, but no new links can be
-added here. The links in this section (if any) will only be shown if there are no
-manually-curated links in the **Related content items** section.
+Automatically generated related links are contained in the section titled
+**Suggested related content items**. Related links in this section can be
+re-ordered or removed, but no new links can be added here. The links in this
+section (if any) will only be shown if there are no manually-curated links in the
+**Related content items** section.
 
 If a request comes in a from a content designer to edit the related links of a
 page, you can send them to Content Tagger so they can edit the links
@@ -29,11 +29,13 @@ links using Content Tagger.
 
 ## Automatic
 
+Note that the "automatic related links" pipeline outlined below has been broken since the end of 2022 and the [machine learning service is now archived](https://github.com/alphagov/govuk-related-links-recommender/pull/218). "Suggested related content items" in Content Tagger will therefore gradually fall out of date.
+
 ### Overview
 
-Since July 2019, related links on GOV.UK have been supplemented by links generated through an automated machine learning pipeline. The first job in this pipeline uses data on how pages are linked together (the structural network) and analytics from users' behaviour on the site (the functional network) to create a set of most relevant related links for a subset of pages.
+From July 2019 until late 2022, related links on GOV.UK were supplemented by links generated through an automated machine learning pipeline.
 
-Once these links have been created, a second job ingests the links via the Publishing API to be shown to users navigating the site.
+The first job in this pipeline used data on how pages are linked together (the structural network) and analytics from users' behaviour on the site (the functional network) to create a set of most relevant related links for a subset of pages. Once these links had been created, a second job ingested the links via the Publishing API to be shown to users navigating the site.
 
 The code for the process of generating and ingesting related links can be found in the [govuk-related-links-recommender repository on GitHub](https://github.com/alphagov/govuk-related-links-recommender).
 
