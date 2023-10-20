@@ -16,7 +16,7 @@ module HTTP
     uri = URI.parse(url)
 
     faraday = Faraday.new(url: uri) do |conn|
-      conn.response :logger
+      conn.response :logger, nil, { headers: false }
       conn.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
       conn.use Octokit::Response::RaiseError
       conn.response :json, content_type: /\bjson$/
