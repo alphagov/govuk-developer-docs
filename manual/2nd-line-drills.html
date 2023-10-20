@@ -271,7 +271,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/755d7048690775b9ccd3db78cbdeaf754cfcd38c">6 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e2bff05887c57f1ac73c39f189ea2267f688ce38">20 Oct 2023</a>
 </div>
 
  <h1 id='header'>2nd line drills</h1> <p>There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going <a href="/manual/on-call.html">on call</a> if you are part of the out of hours rota.</p>
@@ -299,14 +299,13 @@ You can run this in any environment, as you&rsquo;re only running <code>plan</co
 
 <ol>
 <li><a href="/manual/common-aws-tasks-for-2nd-line-support.html#logging-into-aws">The AWS Console</a></li>
-<li>Your individual Fastly account</li>
-<li>Your individual Statuspage account</li>
-<li>Your individual Logit account</li>
+<li>Your individual <a href="https://manage.fastly.com/">Fastly account</a></li>
+<li>Your individual <a href="https://manage.statuspage.io/login">Statuspage account</a></li>
+<li>Your individual <a href="https://dashboard.logit.io/sign-in">Logit account</a></li>
 <li><a href="/manual/heroku.html">Shared Heroku account</a></li>
-<li><a href="/manual/data-gov-uk-2nd-line.html">Shared CKAN account</a></li>
-<li><a href="/manual/publishing-a-ruby-gem.html">Shared Rubygems account</a></li>
+<li><a href="/manual/data-gov-uk-2nd-line.html">Shared CKAN/data.gov.uk publisher account</a></li>
+<li><a href="https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/packages/rubygems.gpg">Shared Rubygems account</a></li>
 <li><a href="https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm">Shared NPM account</a></li>
-<li><a href="/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher">Shared data.gov.uk publisher account</a></li>
 </ol>
 <h2 id='drill-scaling-up-an-application'>Drill scaling up an application</h2><p>In preparation for a large spike in traffic, you can increase the number of replicas for an app.</p>
 <p>Pick an application and try <a href="/kubernetes/manage-app/scale-app/">scaling it up</a> in staging. Don&rsquo;t forget to revert your change afterwards.</p>
