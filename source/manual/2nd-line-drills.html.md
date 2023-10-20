@@ -42,14 +42,13 @@ On Integration or Staging, follow the [Restore an RDS instance via the AWS CLI](
 Make sure you can log into the following accounts:
 
 1. [The AWS Console](/manual/common-aws-tasks-for-2nd-line-support.html#logging-into-aws)
-1. Your individual Fastly account
-1. Your individual Statuspage account
-1. Your individual Logit account
+1. Your individual [Fastly account](https://manage.fastly.com/)
+1. Your individual [Statuspage account](https://manage.statuspage.io/login)
+1. Your individual [Logit account](https://dashboard.logit.io/sign-in)
 1. [Shared Heroku account](/manual/heroku.html)
-1. [Shared CKAN account](/manual/data-gov-uk-2nd-line.html)
-1. [Shared Rubygems account](/manual/publishing-a-ruby-gem.html)
+1. [Shared CKAN/data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html)
+1. [Shared Rubygems account](https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/packages/rubygems.gpg)
 1. [Shared NPM account](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm)
-1. [Shared data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher)
 
 ## Drill scaling up an application
 
