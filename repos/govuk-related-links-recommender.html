@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-related-links-recommender - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-related-links-recommender (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,13 +16,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-related-links-recommender - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-related-links-recommender (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-related-links-recommender.html" />
 
       <meta property="og:description" content="Everything about govuk-related-links-recommender (Machine learning model to recommend related content)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-related-links-recommender" />
+      <meta property="og:title" content="Repository: govuk-related-links-recommender (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-related-links-recommender.html" />
 
@@ -177,208 +177,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-related-links-recommender</h1>
+  <h1 class="page-title">Repository: govuk-related-links-recommender (retired)</h1>
 
-  <p>Machine learning model to recommend related content</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-related-links-recommender">govuk-related-links-recommender</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/data-products">#data-products</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Data science</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Main things this repo does:</p>
-
-<ol>
-<li>Training an ML model for creating suggested related links like these (on the right sidebar) <a href="https://www.gov.uk/government/collections/health-certificates-for-animal-and-animal-product-imports-to-great-britain">https://www.gov.uk/government/collections/health-certificates-for-animal-and-animal-product-imports-to-great-britain</a>
-</li>
-<li>Getting suggested recommended links from the trained model</li>
-<li>Uploading the model, data, logs and recommended links to aws</li>
-<li>Feeding links from AWS to the publishing api</li>
-</ol>
-
-<p>More details here: <a href="https://docs.publishing.service.gov.uk/manual/related-links.html">https://docs.publishing.service.gov.uk/manual/related-links.html</a></p>
-
-<h2 id="project-organization">Project Organization</h2>
-
-<pre><code>├── LICENSE
-├── Makefile           &lt;- Makefile with commands like `make data` or `make train`
-├── README.md          &lt;- The top-level README for developers using this project.
-├── data
-│   ├── external       &lt;- Data from third party sources.
-│   ├── interim        &lt;- Intermediate data that has been transformed.
-│   ├── processed      &lt;- The final, canonical data sets for modeling.
-│   └── raw            &lt;- The original, immutable data dump.
-│
-├── docs               &lt;- A default Sphinx project; see sphinx-doc.org for details
-│
-├── models             &lt;- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          &lt;- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── references         &lt;- Data dictionaries, manuals, and all other explanatory materials.
-│
-├── reports            &lt;- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        &lt;- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   &lt;- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze &gt; requirements.txt`
-│
-├── setup.py           &lt;- makes project pip installable (pip install -e .) so src can be imported
-├── src                &lt;- Source code for use in this project.
-│   ├── __init__.py    &lt;- Makes src a Python module
-│   │
-│   ├── data           &lt;- Scripts to download or generate data
-│   │   └── make_dataset.py
-│   │
-│   ├── features       &lt;- Scripts to turn raw data into features for modeling
-│   │   └── build_features.py
-│   │
-│   ├── models         &lt;- Scripts to train models and then use trained models to make
-│   │   │                 predictions
-│   │   ├── predict_model.py
-│   │   └── train_model.py
-│   │
-│   └── visualization  &lt;- Scripts to create exploratory and results oriented visualizations
-│       └── visualize.py
-│
-└── tox.ini            &lt;- tox file with settings for running tox; see tox.testrun.org
-</code></pre>
-<p><hr>
-&lt;!&ndash; raw HTML omitted &ndash;&gt;
-<h2 id="python-environment">Python environment</h2>
-<p>Need to set and activate environment variables before running pipeline. To run the make_functional_edges_and_weights.py
-script, use command line to <code>export GOOGLE_APPLICATION_CREDENTIALS=&#39;path/to/GOV-UK BigQuery analytics-fa2ed548d98c.json&#39;</code></p>
-<p>Environment variables are also used to locate data and model directories: DATA_DIR and MODEL_DIR.
-Make sure these are activated before running data pipeline.</p>
-<h2 id="config">Config</h2>
-<h3 id="preprocessing-config">Preprocessing config</h3>
-<p><code>src/config/preprocessing-config.yml</code></p>
-<p>Set the names for the structural (hyperlink) and functional (user movement) graphs/networks output csvs, from/to dates for GA data, if you want to use intraday data (cheap and quick!), and where the mongodb instance containing the content store is serving from</p>
-<h3 id="node2vec-config">Node2vec config</h3>
-<p><code>src/config/node2vec-config.yml</code></p>
-<p>Set whether you want to use weighted edges in node2vec (weights=user movement), various hyperparameters and output filenames for the model and embeddings</p>
-<h3 id="important-output-file-names">Important: Output file names</h3>
-<p>The names of the files that get uploaded to AWS (and ingested into the content api) are hardcoded in <code>run_link_generation</code> and <code>run_link_ingestion</code>.
-So any other file name (ie youve changed it in <code>node2vec-config.yml</code>) won&rsquo;t get picked up.</p>
-<h2 id="running-the-complete-pipeline-high-level">Running the complete pipeline (high level)</h2>
-<h3 id="run-link-generation">Run link generation</h3>
-<p><code>run_link_generation.sh</code></p>
-<ol>
-<li>Downloads content store backup from aws</li>
-<li>sets up mongodb of content store</li>
-<li>Runs <code>run_all.py</code> (see below for the contents of that)</li>
-<li>Uploads to aws</li>
-</ol>
-<h3 id="run-link-ingestion">Run link ingestion</h3>
-<p><code>run_link_ingestion.sh</code></p>
-<ol>
-<li>Feeds links from AWS to the publishing api</li>
-</ol>
-<h2 id="running-the-pipeline-low-level">Running the pipeline (low level)</h2>
-<p>Here&rsquo;s a run through of what <code>run.py</code> does:</p>
-<h3 id="get-the-functional-network">Get the functional network</h3>
-<p><code>src/datapreprocessing/make_functional_edges_and_weights.py</code></p>
-<p>The functional network is how users move around gov.uk. Function queries <code>govuk-bigquery-analytics</code> for a list of source and destination content ids and a count of how many times users made that transition. Outputs a csv of weighted source-destination pairs. See <code>src/config/preprocessing-config.yml</code>
-for settings. Runs quickly. Runs cheaply if you use <code>use_intraday: True</code> in the config.</p>
-<h3 id="get-the-structural-network">Get the structural network</h3>
-<p><code>src/data_preprocessing/get_content_store_data.py</code></p>
-<p>The structural network is the network of hyperlinks in gov.uk. Function assumes there is a mongodb instance containing the content store on the ip and port configured in <code>src/config/preprocessing-config.yml</code></p>
-<p>Extracts all the links from content store content. Outputs csv of unweighted source - destination pairs. Seems extremely faffy and takes a long time.</p>
-<p>How to set up mongodb instance locally: <a href="https://github.com/ukgovdatascience/govuk-mongodb-content">https://github.com/ukgovdatascience/govuk-mongodb-content</a></p>
-<h3 id="create-functional-structural-network">Create functional + structural network</h3>
-<p><code>src/features/make_weighted_network.py</code></p>
-<p>Concatenates the structural and functional edgelists. Untravelled edges (ie from the structural network) get assigned <code>weight = 1</code>. Everything else has <code>weight = n users that travelled that edge</code></p>
-<p>Outputs csv of unique weighted source-destination pairs</p>
-<h3 id="training-node2vec">Training node2vec</h3>
-<p><code>src/models/train_node2vec_model</code></p>
-<p>Config in <code>src/config/node2vec-config.yml</code>. Trains the model and saves the embeddings and model.</p>
-<h3 id="predict-links">Predict links</h3>
-<p><code>src/models/predict_related_links</code></p>
-<p>Gets the top 5 most similar nodes for every node (not explicitly excluded in the <code>source_exclusions_that_are_not_linked_from.yml</code> ) ! Filters out results subject to lots of uncertainty (ie low user traversal). Outputs a csv</p>
-<h2 id="rules-for-displaying-automated-related-links">Rules for displaying automated related links</h2>
-<p><strong>Do-not-display-automated-related-links-from these-pages</strong></p>
-<ul>
-<li>items with curated related links (ordered-related-items)</li>
-<li>document_type==&ldquo;fatality_notice&rdquo;</li>
-<li>document_type==&ldquo;smart_answer&rdquo; [except we have previously identified these looking for string matches]</li>
-</ul>
-<pre><code>(~related_links.link.str.contains(&quot;/y/&quot;)) &amp;
-                              (~related_links.link.str.endswith(&quot;/y&quot;)) &amp;
-                              (~related_links.link.str.contains(&quot;/no/&quot;)) &amp;
-                              (~related_links.link.str.endswith(&quot;/no&quot;)) &amp;
-                              (~related_links.link.str.contains(&quot;/education/&quot;))
-</code></pre>
-<ul>
-<li>&lsquo;/contact-student-finance-england&rsquo;</li>
-<li>&lsquo;/student-finance-forms&rsquo;</li>
-<li>&lsquo;/funding-for-postgraduate-study&rsquo;</li>
-<li>&lsquo;/advanced-learner-loan&rsquo;</li>
-<li>&lsquo;/teacher-training-funding&rsquo;</li>
-<li>&lsquo;/extra-money-pay-university&rsquo;</li>
-<li>&lsquo;/nhs-bursaries&rsquo;</li>
-<li>&lsquo;/travel-grants-students-england&rsquo;</li>
-<li>&lsquo;/career-development-loans&rsquo;</li>
-<li>&lsquo;/care-to-learn&rsquo;</li>
-<li>&lsquo;/dance-drama-awards&rsquo;</li>
-<li>&lsquo;/social-work-bursaries&rsquo;</li>
-<li>&lsquo;/apply-for-bankruptcy&rsquo;</li>
-<li>&lsquo;/view-driving-licence&rsquo;</li>
-<li>&lsquo;/being-taken-to-employment-tribunal-by-employee&rsquo;</li>
-<li>&lsquo;/employment-tribunals&rsquo;</li>
-<li>&lsquo;/staying-uk-eu-citizen&rsquo;</li>
-<li>&lsquo;/report-driving-medical-condition&rsquo;</li>
-<li>&lsquo;/check-flood-risk&rsquo;</li>
-</ul>
-<p><strong>do-not-suggest-these-links-from-other-pages</strong></p>
-<ul>
-<li>document_type is in this list: [&ldquo;consultation_outcome&rdquo;,
-&ldquo;closed_consultation&rdquo;,
-&ldquo;open_consultation&rdquo;,
-&ldquo;fatality_notice&rdquo;]</li>
-<li>&lsquo;/apply-for-bankruptcy&rsquo;</li>
-<li>&lsquo;/view-driving-licence&rsquo;</li>
-<li>&lsquo;/being-taken-to-employment-tribunal-by-employee&rsquo;</li>
-<li>&lsquo;/employment-tribunals&rsquo;</li>
-<li>&lsquo;/staying-uk-eu-citizen&rsquo;</li>
-<li>&lsquo;/report-driving-medical-condition&rsquo;</li>
-<li>&lsquo;/check-flood-risk&rsquo; (edited)</li>
-</ul>
-<h2 id="licence">Licence</h2>
-<p><a href="https://github.com/alphagov/govuk-related-links-recommender/blob/main/LICENCE">MIT License</a></p>
-  </div></p>
+  <p>This application is retired.</p>
+<p><p>Machine learning model to recommend related content</p></p>
+<p><a href="https://github.com/alphagov/govuk-related-links-recommender">GitHub repository</a></p>
 
 
             

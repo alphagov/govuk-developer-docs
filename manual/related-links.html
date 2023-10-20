@@ -197,32 +197,26 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/33b1a9015321493069a4cf0a5fc1a834a549d805">20 Oct 2023</a>
 </div>
 
  <h1 id='header'>Related links</h1> <h2 id='manual'>Manual</h2><p>Related links can be added or removed manually through <a href="https://content-tagger.publishing.service.gov.uk">Content Tagger</a>.
 To do this, you can click on the <strong>Edit a page</strong> link at the top and enter the
 base path of the content item you need to edit. You will then see a section
 titled <strong>Related content items</strong> where you can add, edit or remove related links.</p>
-<p>It&rsquo;s important to note that the automatically generated related links are
-contained in the section titled <strong>Suggested related content items</strong>. Related
-links in this section can be re-ordered or removed, but no new links can be
-added here. The links in this section (if any) will only be shown if there are no
-manually-curated links in the <strong>Related content items</strong> section.</p>
+<p>Automatically generated related links are contained in the section titled
+<strong>Suggested related content items</strong>. Related links in this section can be
+re-ordered or removed, but no new links can be added here. The links in this
+section (if any) will only be shown if there are no manually-curated links in the
+<strong>Related content items</strong> section.</p>
 <p>If a request comes in a from a content designer to edit the related links of a
 page, you can send them to Content Tagger so they can edit the links
 themselves. You may also wish to point them to this guidance for managing related
 links using Content Tagger.</p>
-<h2 id='automatic'>Automatic</h2><h3 id='overview'>Overview</h3><p>Since July 2019, related links on GOV.UK have been supplemented by links generated through an automated machine learning pipeline. The first job in this pipeline uses data on how pages are linked together (the structural network) and analytics from users&rsquo; behaviour on the site (the functional network) to create a set of most relevant related links for a subset of pages.</p>
-<p>Once these links have been created, a second job ingests the links via the Publishing API to be shown to users navigating the site.</p>
+<h2 id='automatic'>Automatic</h2><p>Note that the &ldquo;automatic related links&rdquo; pipeline outlined below has been broken since the end of 2022 and the <a href="https://github.com/alphagov/govuk-related-links-recommender/pull/218">machine learning service is now archived</a>. &ldquo;Suggested related content items&rdquo; in Content Tagger will therefore gradually fall out of date.</p>
+<h3 id='overview'>Overview</h3><p>From July 2019 until late 2022, related links on GOV.UK were supplemented by links generated through an automated machine learning pipeline.</p>
+<p>The first job in this pipeline used data on how pages are linked together (the structural network) and analytics from users&rsquo; behaviour on the site (the functional network) to create a set of most relevant related links for a subset of pages. Once these links had been created, a second job ingested the links via the Publishing API to be shown to users navigating the site.</p>
 <p>The code for the process of generating and ingesting related links can be found in the <a href="https://github.com/alphagov/govuk-related-links-recommender">govuk-related-links-recommender repository on GitHub</a>.</p>
 <h3 id='when-we-show-the-new-related-links'>When we show the new related links</h3><p>Machine learning generated related links are created exclusively for Whitehall content, with a number of measures in place to ensure that we always show manually curated links set by publishers.</p>
 
