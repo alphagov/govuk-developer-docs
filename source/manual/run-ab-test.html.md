@@ -35,32 +35,25 @@ Make sure you monitor your test after deployment.
 1. Write the A/B test. Use the information in the [govuk_ab_testing gem][govuk_ab_testing] to understand how to serve different versions to your users.
 1. Add your test to the [A/B test register][register].
 1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test. If you wish to run an A/B test in integration or staging you may need to ensure that analytics tracking exists in those environments.
-1. Create dictionary and A/B test files in the [govuk-cdn-config repo][govuk-cdn-config]. See an [example for the dictionaries][dictionary-config-example]. For the tests you will want to regenerate the spec files by running the script in the [govuk-cdn-config README][link-to-readme-script], this will generate test files as seen in this [example][spec-files-generated-example].
+1. Add your test to the [ab_tests configuration file][ab-tests-file] in the [govuk-fastly][govuk-fastly] repo and remove the relevant [dictionary config][dictionary-config]. See [an example pull request updating this config][pull-request-example].
 
 ## 3. Deploy and activate an A/B test
 
-To deploy and activate an A/B test, you must [set up a personal API token](/manual/cdn.html#deploying-fastly) in your Fastly account.
-
-1. Deploy the dictionary changes to each environment using the [Update_CDN_Dictionaries Jenkins job][update-cdn-dictionaries]. The API key is in the [govuk-secrets repo][govuk-secrets-fastly]. You must deploy the dictionaries to the `www` vhost.
-1. Deploy the Fastly configuration to each environment using the [Deploy_CDN Jenkins job][deploy-cdn]. Use the same parameters as the previous step. You can test the deployment on staging by visiting <https://www.staging.publishing.service.gov.uk>. Changes should appear almost immediately as there is no caching of the CDN config.
-1. To activate or deactivate the test, or to change the B percentage, update your test in [the govuk-cdn-config repo][govuk-cdn-config] and deploy the dictionaries.
+1. Deploy the dictionary changes to each environment using [Terraform Cloud][terraform-cloud] (Note that Terraform Cloud's VCL diff display is poor. To see a better diff, check the fastly-vcl-diff post-plan task on your run page)
+1. To activate or deactivate the test, or to change the percentages, update your test in [the govuk-fastly repo][govuk-fastly] and deploy the terraform.
 
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
-[dictionaries-readme]: https://github.com/alphagov/govuk-cdn-config#fastly-dictionaries
-[dictionary-config-example]: https://github.com/alphagov/govuk-cdn-config/pull/403/commits/4283c9358120360ebbfb00af4824e0571241f194
-[spec-files-generated-example]: https://github.com/alphagov/govuk-cdn-config/pull/403/commits/ac79b4b365e468f64e4cec35c6d22b45a90f9d16
+[pull-request-example]: https://github.com/alphagov/govuk-fastly/pull/22
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
-[link-to-readme-script]: https://github.com/alphagov/govuk-cdn-config#making-changes-to-vcl
 
 ## 4. Remove the A/B test
 
-1. Remove your test from the [ab_tests configuration file][configuration-file] in the [govuk-cdn-config][govuk-cdn-config] repo and remove the dictionary files.
-1. Deploy the Fastly configuration to each environment using the [Deploy_CDN Jenkins job][deploy-cdn]. Set the `vhost` to `www`. The credentials are in the [`govuk-secrets` repo](https://github.com/alphagov/govuk-secrets).
-1. Deploy the `govuk-cdn-config` changes to each environment using the [Update_CDN_Dictionaries Jenkins job][update-cdn-dictionaries]. Use the same parameters as the previous step.
+1. Remove your test from the [ab_tests configuration file][ab-tests-file] in the [govuk-fastly][govuk-fastly] repo and remove the relevant [dictionary config][dictionary-config].
+1. Deploy the Fastly configuration using [Terraform Cloud][terraform-cloud] (Note that Terraform Cloud's VCL diff display is poor. To see a better diff, check the fastly-vcl-diff post-plan task on your run page)
 1. Mark the end date in the [A/B test register][register].
 
-[govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
-[configuration-file]: https://github.com/alphagov/govuk-cdn-config/blob/master/ab_tests/ab_tests.yaml
-[update-cdn-dictionaries]: https://deploy.blue.staging.govuk.digital/job/Update_CDN_Dictionaries/
-[deploy-cdn]: https://deploy.blue.staging.govuk.digital/job/Deploy_CDN/
+[govuk-fastly]: https://github.com/alphagov/govuk-fastly
+[terraform-cloud]: https://app.terraform.io/app/govuk/workspaces/govuk-fastly
+[ab-tests-file]: https://github.com/alphagov/govuk-fastly/blob/main/ab_tests.yaml
+[dictionary-config]: https://github.com/alphagov/govuk-fastly/blob/main/dictionaries.yaml
 [register]: https://docs.google.com/spreadsheets/d/1h4vGXzIbhOWwUzourPLIc8WM-iU1b6WYOVDOZxmU1Uo/edit
