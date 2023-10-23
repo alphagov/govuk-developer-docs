@@ -561,18 +561,18 @@
         - name: type
           value: email
         - name: url
-    - name: attachment links
-      implemented: false
+    - name: file attachment links
+      implemented: true
       priority: medium
       description: 'Links on our guidance pages that contain file attachments, such as https://www.gov.uk/government/publications/equality-act-guidance'
-      tracker: specialist_link_tracker
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
       - name: event_data
         value:
         - name: event_name
-          value: navigation
+          value: file_download
         - name: external
         - name: link_domain
         - name: link_path_parts
