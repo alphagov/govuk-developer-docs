@@ -132,10 +132,10 @@
     <a href="#header"><span>Retire a repo</span></a>
     <ul>
       <li>
-        <a href="#1-update-readme"><span>1. Update README</span></a>
+        <a href="#1-update-the-readme"><span>1. Update the README</span></a>
       </li>
       <li>
-        <a href="#2-close-open-issues-and-pull-requests"><span>2. Close open issues and pull requests</span></a>
+        <a href="#2-close-all-issues-and-pull-requests"><span>2. Close all issues and pull requests</span></a>
       </li>
       <li>
         <a href="#3-unpublish-the-github-pages-site-if-it-has-one"><span>3. Unpublish the GitHub pages site (if it has one)</span></a>
@@ -147,7 +147,7 @@
         <a href="#5-update-the-developer-docs"><span>5. Update the Developer Docs</span></a>
       </li>
       <li>
-        <a href="#6-remove-other-references"><span>6. Remove other references</span></a>
+        <a href="#6-remove-references"><span>6. Remove references</span></a>
       </li>
     </ul>
   </li>
@@ -199,21 +199,38 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b78fbad8c959022d397ba79ea1c8c407c4d31c84">8 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2b8e7ae020186ec4c351bd41e6dc8abcbaec1769">20 Oct 2023</a>
 </div>
 
- <h1 id='header'>Retire a repo</h1> <h2 id='1-update-readme'>1. Update README</h2><p>Add a note to the top of the README explaining that the repo has been retired and, if applicable, what it has been replaced by.</p>
-<h2 id='2-close-open-issues-and-pull-requests'>2. Close open issues and pull requests</h2><p>Once a repository is archived all of its issues and pull requests become read-only and the authors will not be able to close them. We want to avoid giving the impression that these will eventually be acted upon. Leaving them open will also affect metrics we collect such as Dependabot statistics.</p>
-<h2 id='3-unpublish-the-github-pages-site-if-it-has-one'>3. Unpublish the GitHub pages site (if it has one)</h2><p>Archiving a repo doesn&rsquo;t affect the GitHub Pages site linked to the repository. We should retire the site carefully because it may be possible for someone else to reuse the URL.</p>
+ <h1 id='header'>Retire a repo</h1> <h2 id='1-update-the-readme'>1. Update the README</h2><p>Add a note to the top of the README explaining that the repo has been retired and, if applicable, what has replaced it.</p>
+<p>In some cases it <em>may</em> be appropriate to skip this step if:</p>
 
 <ul>
-<li>Remove any references to the URL from documentation and code</li>
-<li>Delete any DNS entries for the site if the site uses a custom domain</li>
-<li>Unpublish the GitHub Pages site</li>
+<li>the repo is already disused and has been for a long time</li>
+<li>the repo is private and not widely known within the organisation</li>
+<li>there isn&rsquo;t a replacement, so there&rsquo;s no need to point the reader towards something else</li>
 </ul>
+<h2 id='2-close-all-issues-and-pull-requests'>2. Close all issues and pull requests</h2><p>This is necessary because GitHub does not automatically close or archive PRs/issues when archiving a repo. For example, if an old PR is still open when the repo is archived, its author will be unable to close it and it will forever remain on their <code>github.com/pulls</code> page.</p>
+<p>If there are more than a handful of open issues/PRs, consider using the <a href="https://cli.github.com/">GitHub CLI tool</a> (<code>gh pr</code>, <code>gh issue</code>).</p>
+<h2 id='3-unpublish-the-github-pages-site-if-it-has-one'>3. Unpublish the GitHub pages site (if it has one)</h2><p>Archiving a repo does not remove its GitHub Pages site (if any). The site stays up but the settings become read-only.</p>
+<p>⚠️ Take care when unpublishing a GitHub Pages site which has a custom domain. If you leave a dangling DNS record pointing at GitHub, it will likely be hijacked by spammers (or worse).</p>
+
+<ol>
+<li>Check whether the site has any custom domains configured. This is under Settings, Pages, Custom domain in the GitHub web UI. <strong>Do not remove the custom domain.</strong></li>
+<li>Remove any <a href="/manual/dns.html">DNS records</a> that point to the site, if the site uses a custom domain.</li>
+<li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/unpublishing-a-github-pages-site">Unpublish the GitHub Pages site</a>.</li>
+</ol>
 <h2 id='4-archive-the-repo'>4. Archive the repo</h2><p>Go into the repository settings in GitHub, and <a href="https://github.com/blog/2460-archiving-repositories">archive the repo</a>.</p>
-<h2 id='5-update-the-developer-docs'>5. Update the Developer Docs</h2><p>Mark the application as <code>retired</code> in <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">govuk-developer-docs</a>.</p>
-<h2 id='6-remove-other-references'>6. Remove other references</h2><p>Do a <a href="https://github.com/search?q=org%3Aalphagov+panopticon&amp;type=Code">search on GitHub</a> to find any references to the repository and update or remove them.</p>
+<h2 id='5-update-the-developer-docs'>5. Update the Developer Docs</h2><p>If the repo is listed in <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">govuk-developer-docs</a>, mark the application as <code>retired</code>.</p>
+<p>If the repo wasn&rsquo;t already listed in Developer Docs then don&rsquo;t add it.</p>
+<p>(<a href="https://github.com/alphagov/govuk-developer-docs/issues/4259">#4259</a> would eliminate this toil if fixed.)</p>
+<h2 id='6-remove-references'>6. Remove references</h2><p><a href="https://github.com/search?q=org%3Aalphagov+panopticon&amp;type=Code">Search GitHub</a> for any references to the repository and update or remove them as appropriate.</p>
+<p>You should search for:</p>
+
+<ul>
+<li>the repo name</li>
+<li>links to the GitHub Pages site, if there was one</li>
+</ul>
 
 
   <div class='related-content'>
