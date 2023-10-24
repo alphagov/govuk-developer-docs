@@ -273,6 +273,13 @@ migrate production.</p>
 
 <p>Any errors on the secondary response are ignored and do not interfere with the primary response.</p>
 
+<h2 id="secondary-response-timeouts">Secondary response timeouts</h2>
+
+<p>As the secondary response is never served to the user, but the proxy has to wait for both responses to complete before it can compare them, it&rsquo;s possible that a very slow secondary upstream can still lead to downstream ill-effects.</p>
+
+<p>So a timeout can be set on the secondary response only, using the environment variable <code>SECONDARY_TIMEOUT_SECONDS=(float or integer)</code>.  If the secondary response takes longer than this many seconds,
+it will be ignored, and logged as <code>"secondary_response": null</code>, with a log level of <code>"info"</code>.</p>
+
 <h2 id="detailed-response-comparison-and-cpu-load">Detailed Response Comparison and CPU-load</h2>
 
 <p>Note: comparing the responses is CPU-intensive, and so must be used with care on highly-contended environments like production. For a given percentage of requests, a full comparison will be run which will populate the <code>first_difference</code> and <code>different_keys</code> keys. The percentage is controlled by the environment variable <code>COMPARISON_SAMPLE_PCT</code>. The default value for this is <code>0</code> - to compare, say, one in ten requests you would supply <code>COMPARISON_SAMPLE_PCT=10</code>.</p>
