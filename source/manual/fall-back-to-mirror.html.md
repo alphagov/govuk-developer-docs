@@ -26,7 +26,7 @@ We use multiple mirrors across various AWS regions and GCP to ensure redundancy 
 
 If [Fastly, our primary CDN](/manual/cdn.html), cannot fetch a page from our backend servers (becuase of a timeout or a 5xx error), then Fastly will attempt to serve a page from a mirror in order of priority.
 
-## How are the mirrors populated
+## How are the mirrors populated?
 
 Every day the [govuk-mirror-sync cronjob (configured in govuk-helm-charts)][govuk-mirror-sync configuration] crawls the www and assets domains, saves pages and assets to disk and then uploads the files to the primary S3 bucket. The [govuk-mirror] repository contains the code responsible for crawling and saving pages to disk.
 
@@ -34,7 +34,7 @@ S3 Replication automatically copies any changes from the primary S3 bucket to th
 
 GCP Storage Transfer Service copies any changes from the primary S3 bucket to the tertiary GCS bucket.
 
-## What is not covered by mirrors
+## What is not covered by mirrors?
 
 Certain page types aren't included in the mirrors:
 
