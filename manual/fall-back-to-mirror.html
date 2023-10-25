@@ -138,10 +138,10 @@
         <a href="#when-is-the-gov-uk-mirror-used"><span>When is the GOV.UK mirror used?</span></a>
       </li>
       <li>
-        <a href="#how-are-the-mirrors-populated"><span>How are the mirrors populated</span></a>
+        <a href="#how-are-the-mirrors-populated"><span>How are the mirrors populated?</span></a>
       </li>
       <li>
-        <a href="#what-is-not-covered-by-mirrors"><span>What is not covered by mirrors</span></a>
+        <a href="#what-is-not-covered-by-mirrors"><span>What is not covered by mirrors?</span></a>
       </li>
       <li>
         <a href="#troubleshooting"><span>Troubleshooting</span></a>
@@ -196,7 +196,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/79e1628fac83d4024ae2c8da7442bed3117f7370">20 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2e832179a717f6ec9448a401a750d9800732a2b2">25 Oct 2023</a>
 </div>
 
  <h1 id='header'>GOV.UK content mirrors</h1> <p>A GOV.UK mirror is a static copy of pages and assets hosted on www.gov.uk or assets.publishing.service.gov.uk (or equivalent domains in integration and staging). A mirror includes:</p>
@@ -215,17 +215,18 @@
 </ol>
 <p>We use multiple mirrors across various AWS regions and GCP to ensure redundancy and increase availability.</p>
 <h2 id='when-is-the-gov-uk-mirror-used'>When is the GOV.UK mirror used?</h2><p>If <a href="/manual/cdn.html">Fastly, our primary CDN</a>, cannot fetch a page from our backend servers (becuase of a timeout or a 5xx error), then Fastly will attempt to serve a page from a mirror in order of priority.</p>
-<h2 id='how-are-the-mirrors-populated'>How are the mirrors populated</h2><p>Every day the <a href="https://github.com/alphagov/govuk-helm-charts/blob/main/charts/govuk-jobs/templates/govuk-mirror-sync-cronjob.yaml">govuk-mirror-sync</a> cronjob crawls the www and assets domains, saves pages and assets to disk and then uploads the files to the primary S3 bucket. The <a href="https://github.com/alphagov/govuk-mirror">govuk-mirror</a> repository contains the code responsible for crawling and saving pages to disk.</p>
+<h2 id='how-are-the-mirrors-populated'>How are the mirrors populated?</h2><p>Every day the <a href="https://github.com/alphagov/govuk-helm-charts/blob/main/charts/govuk-jobs/templates/govuk-mirror-sync-cronjob.yaml">govuk-mirror-sync cronjob</a> crawls the www and assets domains, saves pages and assets to disk and then uploads the files to the primary S3 bucket. The <a href="https://github.com/alphagov/govuk-mirror">govuk-mirror</a> repository contains the code responsible for crawling and saving pages to disk.</p>
 <p>S3 Replication automatically copies any changes from the primary S3 bucket to the secondary S3 bucket. This is configured in <a href="https://github.com/alphagov/govuk-aws/blob/2053b554/terraform/projects/infra-mirror-bucket/main.tf#L197">govuk-aws</a>.</p>
 <p>GCP Storage Transfer Service copies any changes from the primary S3 bucket to the tertiary GCS bucket.</p>
-<h2 id='what-is-not-covered-by-mirrors'>What is not covered by mirrors</h2><p>Certain page types aren&rsquo;t included in the mirrors:</p>
+<h2 id='what-is-not-covered-by-mirrors'>What is not covered by mirrors?</h2><p>Certain page types aren&rsquo;t included in the mirrors:</p>
 
 <ul>
 <li>Smart answer pages (as the govuk-mirror crawler doesn&rsquo;t support following form links)</li>
 <li><a href="https://github.com/alphagov/govuk-helm-charts/pull/1337">CSV preview pages</a></li>
 </ul>
-<h2 id='troubleshooting'>Troubleshooting</h2><p>Check the logs of the govuk-mirror-sync job to see there are any errors during crawling, saving pages or uploading to S3.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2><p>Check the <a href="https://argo.eks.production.govuk.digital/applications/cluster-services/govuk-jobs?view=tree&amp;orphaned=false&amp;resource=name%3Agovuk-mirror-sync">logs of the govuk-mirror-sync job in Argo</a> to see there are any errors during crawling, saving pages or uploading to S3.</p>
 <p>Check buckets in AWS S3 or GCP to see if they are populated.</p>
+<p>You can fetch pages directly from the mirrors by specifying the <code>Backend-Override</code> header, e.g. <code>curl -H &#39;Backend-Override: mirrorS3&#39; https://www.gov.uk</code>. The <a href="https://github.com/alphagov/govuk-fastly/blob/68427d372df05fd23c6851cfbea610845c6c3997/modules/www/www.vcl.tftpl#L258-L289">allowed values</a> are <code>mirrorS3</code>, <code>mirrorS3Replica</code> and <code>mirrorGCS</code>.</p>
 
 
   <div class='related-content'>
