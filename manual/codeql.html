@@ -132,7 +132,7 @@
     <a href="#header"><span>CodeQL</span></a>
     <ul>
       <li>
-        <a href="#adding-codeql-to-a-project"><span>Adding CodeQL to a project</span></a>
+        <a href="#add-codeql-to-a-project"><span>Add CodeQL to a project</span></a>
       </li>
       <li>
         <a href="#where-to-find-security-alerts"><span>Where to find Security Alerts</span></a>
@@ -190,23 +190,21 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b8118982eb30321db1acb2ce491597c659e77d41">24 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8683fc0d7708db22e8a210a376c06163f9eb5a5c">25 Oct 2023</a>
 </div>
 
- <h1 id='header'>CodeQL</h1> <p><a href="https://codeql.github.com/">CodeQL</a> is a Static Application Security Testing (SAST) tool which checks for vulnerability signatures in a repositories codebase. It is <a href="https://github.com/alphagov/govuk-infrastructure/pull/936">configured as a reusable workflow</a> and should be included as a job in the CI pipeline of all GOV.UK repositories. A reusable workflow design was selected to that enhancements to the scanning process can be managed centrally.</p>
-<h2 id='adding-codeql-to-a-project'>Adding CodeQL to a project</h2><p>To use the CodeQL reusable workflow, add the following job to the jobs section of your CI workflow:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  name: CodeQL SAST scan
-  uses: alphagov/govuk-infrastructure/.github/workflows/codeql-analysis.yml@main
-  permissions:
-    security-events: write
-</code></pre></div><h2 id='where-to-find-security-alerts'>Where to find Security Alerts</h2><p>To find the security alerts for a repo, first go to the Security tab of the repo and then the Code Scanning option under the Vulnerability Alerts in the sub menu. This is where all <a href="https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository">alerts can be found</a>.</p>
-<p>Additionally, when a PR is created, CodeQL scans the diff to identify vulnerabilities in the new code. <a href="https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/triaging-code-scanning-alerts-in-pull-requests#code-scanning-results-check">These can be found</a> on the Checks tab of the PR. Select Code Scanning Results and then CodeQL.</p>
-<h2 id='dealing-with-security-alerts'>Dealing with Security Alerts</h2><p>The initial configuration of CodeQL means that only vulnerabilities of a high severity and high precission are identified. This is to reduce the number of false positive alerts and prevent wastage of developer time.</p>
-<p>Additionally, it will not fail the test when vulnerabilities are found, it will only create an alert and move on. This is to ensure that progress is not interrupted by false positives.</p>
-<p>Alerts can be resovled either by fixing the identified vulnerability or by dismissing the alert as a false positive. More details on this can be found in the <a href="https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository">CodeQL documentation</a>.</p>
+ <h1 id='header'>CodeQL</h1> <p><a href="https://codeql.github.com/">CodeQL</a> is a Static Application Security Testing (SAST) tool which checks for vulnerability signatures in a repository&rsquo;s codebase. It is <a href="https://github.com/alphagov/govuk-infrastructure/pull/936">configured as a reusable workflow</a> and should be included as a job in the CI pipeline of all GOV.UK repositories. A reusable workflow design was selected so that enhancements to the scanning process can be managed centrally.</p>
+<h2 id='add-codeql-to-a-project'>Add CodeQL to a project</h2><p>To use the CodeQL reusable workflow, add the following job to the <code>jobs</code> section of your CI workflow:</p>
+<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="na">codeql-sast</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">CodeQL SAST scan</span>
+  <span class="na">uses</span><span class="pi">:</span> <span class="s">alphagov/govuk-infrastructure/.github/workflows/codeql-analysis.yml@main</span>
+  <span class="na">permissions</span><span class="pi">:</span>
+    <span class="na">security-events</span><span class="pi">:</span> <span class="s">write</span>
+</code></pre></div><h2 id='where-to-find-security-alerts'>Where to find Security Alerts</h2><p>To find the security alerts for a repo, first go to the Security tab of the repo and then the Code Scanning option under the Vulnerability Alerts in the sub menu. This is where <a href="https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository">all alerts</a> can be found.</p>
+<p>Additionally, when a PR is created, CodeQL scans the diff to identify vulnerabilities in the new code. These <a href="https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/triaging-code-scanning-alerts-in-pull-requests#code-scanning-results-check">PR specific alerts</a> can be found on the Checks tab of the PR: select &ldquo;Code scanning results&rdquo; and then &ldquo;CodeQL&rdquo;.</p>
+<h2 id='dealing-with-security-alerts'>Dealing with Security Alerts</h2><p>Currently, CodeQL is configured to <a href="https://github.com/alphagov/govuk-infrastructure/blob/f9c3b2bddf407d78c04552563a4ba23a89c8af61/.github/workflows/codeql-analysis.yml#L24-L35">only identify vulnerabilities of a high severity and high precision</a>. Additionally, it will not fail the test when vulnerabilities are found: it will only create an alert and move on. This is to reduce the number of false positives and avoid wasting developer time. Over time, we intend to tune the dial to make CodeQL more strict.</p>
 <p>CodeQL will provide a recommendation on how to resolve a vulnerability along with references for additional research.</p>
-<p>If you do decide to ignore a warning, you must include a note outlining why
-it is a false positive and not a security vulnerability.</p>
+<p>Alerts can be resolved either by fixing the identified vulnerability or by dismissing the alert as a false positive. More details on this can be found in the <a href="https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository">CodeQL documentation</a>. If you do decide to ignore a warning, you must include a note outlining why it is a false positive and not a security vulnerability.</p>
 
 
   <div class='related-content'>
