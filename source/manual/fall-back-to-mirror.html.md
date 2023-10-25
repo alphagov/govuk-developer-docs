@@ -28,7 +28,7 @@ If [Fastly, our primary CDN](/manual/cdn.html), cannot fetch a page from our bac
 
 ## How are the mirrors populated?
 
-Every day the [govuk-mirror-sync cronjob (configured in govuk-helm-charts)][govuk-mirror-sync configuration] crawls the www and assets domains, saves pages and assets to disk and then uploads the files to the primary S3 bucket. The [govuk-mirror] repository contains the code responsible for crawling and saving pages to disk.
+Every day the [govuk-mirror-sync cronjob][govuk-mirror-sync configuration] crawls the www and assets domains, saves pages and assets to disk and then uploads the files to the primary S3 bucket. The [govuk-mirror] repository contains the code responsible for crawling and saving pages to disk.
 
 S3 Replication automatically copies any changes from the primary S3 bucket to the secondary S3 bucket. This is configured in [govuk-aws].
 
@@ -43,7 +43,7 @@ Certain page types aren't included in the mirrors:
 
 ## Troubleshooting
 
-Check the logs of the [govuk-mirror-sync job in Argo][govuk-mirror-sync job] to see there are any errors during crawling, saving pages or uploading to S3.
+Check the [logs of the govuk-mirror-sync job in Argo][govuk-mirror-sync job] to see there are any errors during crawling, saving pages or uploading to S3.
 
 Check buckets in AWS S3 or GCP to see if they are populated.
 
