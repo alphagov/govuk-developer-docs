@@ -47,6 +47,8 @@ Check the logs of the [govuk-mirror-sync job in Argo][govuk-mirror-sync job] to 
 
 Check buckets in AWS S3 or GCP to see if they are populated.
 
+You can fetch pages directly from the mirrors by specifying the `Backend-Override` header, e.g. `curl -H 'Backend-Override: mirrorS3' https://www.gov.uk`. The [allowed values](https://github.com/alphagov/govuk-fastly/blob/68427d372df05fd23c6851cfbea610845c6c3997/modules/www/www.vcl.tftpl#L258-L289) are `mirrorS3`, `mirrorS3Replica` and `mirrorGCS`.
+
 [govuk-aws]: https://github.com/alphagov/govuk-aws/blob/2053b554/terraform/projects/infra-mirror-bucket/main.tf#L197
 [govuk-mirror]: https://github.com/alphagov/govuk-mirror
 [govuk-mirror-sync configuration]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/govuk-jobs/templates/govuk-mirror-sync-cronjob.yaml
