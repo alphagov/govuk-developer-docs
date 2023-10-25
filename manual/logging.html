@@ -155,6 +155,9 @@
           <li>
             <a href="#kibana"><span>Kibana</span></a>
           </li>
+          <li>
+            <a href="#vulnerability-scanners"><span>Vulnerability Scanners</span></a>
+          </li>
         </ul>
       </li>
     </ul>
@@ -207,7 +210,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/da4d6c5be9f27f409b1a120741a2b426b831b6ef">7 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5fe3d81405f22de09d465cb505d8d73d1d465346">20 Oct 2023</a>
 </div>
 
  <h1 id='header'>How logging works on GOV.UK</h1> <blockquote>
@@ -298,6 +301,9 @@ viewing logs. It is responsible for:</p>
 <li>querying the Elasticsearch indices</li>
 <li>displaying the results</li>
 </ul>
+<h3 id='vulnerability-scanners'>Vulnerability Scanners</h3><p>Occasionally you may see some logs that look suspicious. For example, see the <code>controller</code> part of the following made up example:</p>
+<p><code>http_request_duration_seconds_count { action=&quot;1&quot;, container=&quot;app&quot;, controller=&quot;../../../../../etc/passwd&quot;, endpoint=&quot;metrics&quot;, job=&quot;govuk&quot;, namespace=&quot;apps&quot;, pod=&quot;static-abc123-de7f&quot; }</code></p>
+<p>This sort of thing often originates from vulnerability scanners and isn&rsquo;t necessarily something to worry about. However, you should consider <em>how</em> such activity ended up leaking into your logs, and whether or not there&rsquo;s anything you could/should do to patch it up. Read our <a href="https://docs.google.com/document/d/1BZ_SBPuZmO8pseniqj1tlq7pss9iU3JslqQHp_JS9Wg/edit#heading=h.17fwpvs3mt0x">internal guidance on the issue</a>.</p>
 
 
   <div class='related-content'>
