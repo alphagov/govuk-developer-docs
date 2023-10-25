@@ -255,9 +255,19 @@
 
 <h2 id="whats-in-this-repo">What&rsquo;s in this repo</h2>
 
-<p>The govuk-infrastructure repo contains Terraform modules for turning up an EKS Kubernetes cluster for GOV.UK.</p>
+<p>The govuk-infrastructure repo contains:</p>
 
-<p>Also included are reusable workflows for running the code scanning tools Rubocop, Brakeman and the CodeQL Static Application Security Tests (SAST).</p>
+<ul>
+<li>
+<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/"><code>terraform/</code></a>: Terraform modules for turning up an Kubernetes
+cluster on EKS for GOV.UK.</li>
+<li>
+<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/images/"><code>images/</code></a>: Container image definitions for utilities such as the <em>toolbox</em> image.</li>
+<li>
+<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/"><code>.github/</code></a>: GitHub Actions and workflows used by other GOV.UK
+repos, for example release automation, test runners and security analysis
+tools.</li>
+</ul>
 
 <h3 id="whats-not-in-this-repo">What&rsquo;s not in this repo</h3>
 
@@ -276,23 +286,10 @@ cd terraform/
 tfenv install
 </code></pre>
 
-<p>To use the code scans reusable workflow, add the following job to the jobs section of your CI workflow:</p>
+<h2 id="pre-commit-hooks">Pre-commit hooks</h2>
 
-<pre lang="yaml"><code>codeql-sast:
-  name: CodeQL SAST scan
-  uses: alphagov/govuk-infrastructure/.github/workflows/codeql-analysis.yml@main
-  permissions:
-    security-events: write
-</code></pre>
-
-<h2 id="working-on-this-repo">Working on this repo</h2>
-
-<p>We have some <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.pre-commit-config.yaml">recommended pre-commit hooks</a>. If
-you&rsquo;re making changes to this repo, please <a href="https://pre-commit.com/#install">install the pre-commit
-hooks</a> on your machine.</p>
-
-<p>See <a href="https://github.com/alphagov/gds-pre-commit">alphagov/gds-pre-commit</a> for
-more recommendations on using pre-commit.</p>
+<p>We have some <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.pre-commit-config.yaml">recommended pre-commit hooks</a>. You need
+to <a href="https://pre-commit.com/#install">install <code>pre-commit</code></a> for these to run.</p>
 
 <h2 id="documentation">Documentation</h2>
 
