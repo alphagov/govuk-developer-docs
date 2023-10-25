@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Find hardcoded markup in GovSpeak - GOV.UK Developer Documentation</title>
+    <title>Find usage of Govspeak in content - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -19,12 +19,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Find hardcoded markup in GovSpeak - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Find usage of Govspeak in content - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/howto-find-hardcoded-markup-govspeak.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Find hardcoded markup in GovSpeak" />
+      <meta property="og:title" content="Find usage of Govspeak in content" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/howto-find-hardcoded-markup-govspeak.html" />
 
@@ -129,25 +129,16 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Find hardcoded markup in GovSpeak</span></a>
+    <a href="#header"><span>Find usage of Govspeak in content</span></a>
     <ul>
       <li>
-        <a href="#searching-the-content-store-via-jenkins"><span>Searching the Content Store via Jenkins</span></a>
+        <a href="#searching-for-raw-govspeak-in-whitehall"><span>Searching for raw Govspeak in Whitehall</span></a>
       </li>
       <li>
-        <a href="#searching-the-publishing-api"><span>Searching the Publishing API</span></a>
-      </li>
-      <li>
-        <a href="#example-commands"><span>Example commands</span></a>
+        <a href="#searching-for-converted-html-in-publishing-api"><span>Searching for converted HTML in Publishing API</span></a>
         <ul>
           <li>
-            <a href="#find-39call-to-action39"><span>Find ‘call to action’</span></a>
-          </li>
-          <li>
-            <a href="#find-youtube-links"><span>Find YouTube links</span></a>
-          </li>
-          <li>
-            <a href="#find-hardcoded-buttons"><span>Find hardcoded buttons</span></a>
+            <a href="#example-commands"><span>Example commands</span></a>
           </li>
         </ul>
       </li>
@@ -200,32 +191,26 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/70d39067c876a7eedc50a1648cad0dcac2a1bffb">17 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1b7707780a4042f944c3b06a13229061d9ba4611">25 Oct 2023</a>
 </div>
 
- <h1 id='header'>Find hardcoded markup in GovSpeak</h1> <p>Usually to find usage of markup we can look in our source code.</p>
-<p>For example if we wanted to see which templates use a class called &lsquo;button&rsquo; you could search in GitHub.</p>
-<p>However <a href="https://govspeak-preview.publishing.service.gov.uk">GovSpeak</a> (our variant of Markdown) includes markup such as buttons that will be in published content.</p>
-<p>So, with this in mind you&rsquo;ll need to search all published content.</p>
-<h2 id='searching-the-content-store-via-jenkins'>Searching the Content Store via Jenkins</h2><p>See the Content Team&rsquo;s instruction on the wiki: <a href="https://gov-uk.atlassian.net/wiki/spaces/CC/pages/1314488405/Find+instances+of+a+keyword+on+GOV.UK">Find instances of a keyword on GOV.UK</a></p>
-<h2 id='searching-the-publishing-api'>Searching the Publishing API</h2><p>First make sure you can SSH into our integration environment, you can follow the <a href="/manual/get-started.html">Getting Started</a> guide.</p>
-<p>Now if everything is setup you can ssh onto the machine with the publishing api using:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>ssh publishing-api-1.staging
-</code></pre></div><p>Then to get access to the console for the <a href="https://github.com/alphagov/publishing-api">publishing-api</a> so you can execute commands do the following:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>govuk_app_console publishing-api
-</code></pre></div><h2 id='example-commands'>Example commands</h2><p>Here&rsquo;s some example commands you can run, feel free to modify the regex for your specific usecase (and add more here if you fancy :))</p>
+ <h1 id='header'>Find usage of Govspeak in content</h1> <p><a href="https://govspeak-preview.publishing.service.gov.uk">Govspeak</a> is an extension for Markdown used in GOV.UK&rsquo;s publishing applications.</p>
+<p>After making a change to the Govspeak gem, you may need to republish content that uses that markdown.</p>
+<p>In nearly all cases, Govspeak is converted to HTML within the publishing application before being sent to Publishing API. This means there are two options for finding affected content: searching for raw Govspeak within the publishing application or converted HTML in Publishing API.</p>
+<h2 id='searching-for-raw-govspeak-in-whitehall'>Searching for raw Govspeak in Whitehall</h2><p>There is a rake task to find published content that matches a regular expression:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>rake 'reporting:matching_docs[regex]'
+</code></pre></div><p>Replace <code>regex</code> with an escaped version of the regular expression. This should be run on a <code>whitehall-admin</code> pod using the instructions in <a href="https://docs.publishing.service.gov.uk/manual/running-rake-tasks.html#run-a-rake-task-on-eks">Run a rake task on EKS</a>.</p>
+<p>For example, to find all uses of inline attachments contained within steps, you would use the following regex:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>^s[0-9]+\..*?\[AttachmentLink:.*?\].*$
+</code></pre></div><p>This is escaped and used in the rake task as follows:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>rake 'reporting:matching_docs[s\[0-9\]+\\..*?\\\[AttachmentLink:.*?\\\].*$]'
+</code></pre></div><h2 id='searching-for-converted-html-in-publishing-api'>Searching for converted HTML in Publishing API</h2><p>Follow the instructions to <a href="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html#common-tasks">open a Rails console</a> for Publishing API.</p>
+<h3 id='example-commands'>Example commands</h3><p>Here&rsquo;s some example commands you can run, feel free to modify the regex for your specific usecase (and add more here if you fancy :))</p>
 <p>This will take a few minutes to execute since it&rsquo;s iterating over a lot of editions!</p>
-<h3 id='find-39call-to-action39'>Find &lsquo;call to action&rsquo;</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/class=\\"call-to-action/</span> <span class="p">}</span>
-</code></pre></div><h3 id='find-youtube-links'>Find YouTube links</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/href=\\"https:\/\/www.youtube.com\/watch?v=/</span> <span class="p">}</span>
-</code></pre></div><h3 id='find-hardcoded-buttons'>Find hardcoded buttons</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/class=\\"button/</span> <span class="p">}</span>
+<h4 id='find-39call-to-action39'>Find &lsquo;call to action&rsquo;</h4><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/class=\\"call-to-action/</span> <span class="p">}</span>
+</code></pre></div><h4 id='find-youtube-links'>Find YouTube links</h4><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/href=\\"https:\/\/www.youtube.com\/watch?v=/</span> <span class="p">}</span>
+</code></pre></div><h4 id='find-hardcoded-buttons'>Find hardcoded buttons</h4><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/class=\\"button/</span> <span class="p">}</span>
 </code></pre></div>
 
   <div class='related-content'>
@@ -283,7 +268,7 @@
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-find-hardcoded-markup-govspeak.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Find+hardcoded+markup+in+GovSpeak%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-find-hardcoded-markup-govspeak.html%29&amp;labels=bug&amp;title=Re%3A+%27Find+hardcoded+markup+in+GovSpeak%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Find+usage+of+Govspeak+in+content%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-find-hardcoded-markup-govspeak.html%29&amp;labels=bug&amp;title=Re%3A+%27Find+usage+of+Govspeak+in+content%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
