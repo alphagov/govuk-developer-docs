@@ -5,7 +5,7 @@ section: Frontend
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-related_repos: [static frontend government-frontend]
+related_repos: [static, frontend, government-frontend]
 ---
 
 GOV.UK uses Google Analytics to track user journeys through the site. The tracking
