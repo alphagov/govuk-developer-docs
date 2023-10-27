@@ -90,7 +90,7 @@ private
   def client
     @client ||= begin
       stack = Faraday::RackBuilder.new do |builder|
-        builder.response :logger
+        builder.response :logger, nil, { headers: false }
         builder.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
         builder.use Octokit::Response::RaiseError
         builder.use Faraday::Request::Retry, exceptions: Faraday::Request::Retry::DEFAULT_EXCEPTIONS + [Octokit::ServerError]
