@@ -181,7 +181,7 @@
             <a href="#resolving-an-issue"><span>Resolving an issue</span></a>
           </li>
           <li>
-            <a href="#ignoring-an-issue"><span>Ignoring an issue</span></a>
+            <a href="#archiving-or-ignoring-an-issue"><span>Archiving (or ignoring) an issue</span></a>
           </li>
           <li>
             <a href="#commenting-on-an-issue"><span>Commenting on an issue</span></a>
@@ -250,7 +250,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/04478e3bcfb5da3b8d4bc3f9b21aa4b9bc0fa4a1">11 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/88773dde6965315fc26a56f60c9618aecaf5f225">1 Nov 2023</a>
 </div>
 
  <h1 id='header'>Sentry</h1> <p><a href="https://sentry.io/govuk/">Sentry</a> is a service that collates errors that happen on GOV.UK in one
@@ -395,7 +395,7 @@ once.</p>
 that they can be alerted to new and high-volume issues and prioritise them.
 Multiple teams are allowed to set up alerts for the same projects.</p>
 <h2 id='sentry-issue-actions'>Sentry issue actions</h2><p>In the Sentry UI, you can merge related issues together, resolve issues, or
-ignore issues (permanently or for a set time period).</p>
+archive issues (permanently or for a set time period).</p>
 <h3 id='merging-sentry-issues'>Merging Sentry issues</h3><p>Duplicate issues can be merged by going into the project view, checking the
 boxes associated with each issue, and clicking &ldquo;Merge&rdquo;. This should be done very
 carefully, as issues cannot be unmerged once they are merged, and the issues are
@@ -409,13 +409,15 @@ scroll to the bottom of the page to see the &ldquo;Event grouping information&rd
 click the &ldquo;Resolve&rdquo; button. This removes it from the default Sentry UI, making it
 less noisy, but also has the advantage of marking it as a regression and emailing
 you if the issue occurs again.</p>
-<h3 id='ignoring-an-issue'>Ignoring an issue</h3><p>When you&rsquo;ve identified an issue and written it up as a Trello card, or are
-actively working on fixing it, it can be unhelpful for the issue to keep
-accumulating events (and potentially spamming your Slack channel). In these cases,
-you should <a href="#commenting-on-an-issue">comment on the issue</a> with a link to your card or PR,
-then ignore the issue. You should also set the &ldquo;Assignee&rdquo; to yourself.</p>
-<p>You can either click &ldquo;Ignore&rdquo; to ignore it permanently, or click the arrow next to
-it to ignore for a set time, e.g. 1 week. You can also un-ignore an issue later.</p>
+<h3 id='archiving-or-ignoring-an-issue'>Archiving (or ignoring) an issue</h3><p>You can &ldquo;Archive&rdquo; something for a set period of time - this option used to
+be called &ldquo;Ignore&rdquo; in Sentry. Archiving an issue for a set period of time can be
+useful if you&rsquo;ve identified an issue and written it up as a Trello card (or are
+actively working on fixing it), as it prevents Sentry from accumulating events
+and potentially spamming your Slack channel.</p>
+<p>In these cases, you should <a href="#commenting-on-an-issue">comment on the issue</a> with a link to
+your card or PR, then archive the issue for a set period . You should also set the
+&ldquo;Assignee&rdquo; to yourself.</p>
+<p>You can always un-archive an issue later if needed.</p>
 <h3 id='commenting-on-an-issue'>Commenting on an issue</h3><p>Click on the issue, then on the &ldquo;Activity&rdquo; tab, where you can leave a comment.
 Comments support markdown.</p>
 <h3 id='deleting-and-discarding-an-issue'>Deleting and discarding an issue</h3><p>If you&rsquo;ve identified an issue that is high-volume, but is unlikely to be fixed any
