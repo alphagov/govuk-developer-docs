@@ -200,15 +200,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/934f134886296e23fb421862c7040510a1fb93f6">26 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/f7aa98cc08925a36770e80514b11388b029a2b92">31 Oct 2023</a>
 </div>
 
   <h1 class="page-title">account-api: Rake Tasks</h1>
@@ -246,8 +239,8 @@ exists for deletion, and the user's OICD sub</p>
 <pre lang="ruby"><code>support:delete_user:dry_run[email_address]
 </code></pre>
 <h3 id="deleting-a-user">Deleting a user</h3>
-<p>This will delete the user, and confirm the user's
-OICD sub</p>
+<p>This will delete the user, and confirm the user's OICD sub. Deleting a user
+will also remove any email subscriptions they may have in Email Alert API.</p>
 <pre lang="ruby"><code>support:delete_user:real[email_address]
 </code></pre>
 <h3 id="confirm-if-a-user-previously-existed-by-oicd-sub">Confirm if a user previously existed by OICD sub</h3>
