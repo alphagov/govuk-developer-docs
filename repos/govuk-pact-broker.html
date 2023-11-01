@@ -241,11 +241,17 @@
 allows Pact Broker to be run on unicorn server on the
 <a href="https://docs.cloud.service.gov.uk/">GOV.UK PAAS</a>.</p>
 
-<p>It is used by projects such as <a href="https://github.com/alphagov/publishing-api">Publishing API</a>,
+<p>As PaaS is being decommissioned later this year, we are currently migrating
+Pact Broker to Heroku, and so this repo also contains a <code>Dockerfile</code> and
+associated <code>heroku.yml</code> file to allow it to run there. After the migration is
+complete, the leftover pieces of the old wrapper (<code>config.ru</code>, <code>Gemfile</code>,
+<code>Procfile</code>, etc.) will be removed from this repo.</p>
+
+<p>Pact Broker is used by projects such as <a href="https://github.com/alphagov/publishing-api">Publishing API</a>,
 <a href="https://github.com/alphagov/gds-api-adapters">GDS API Adapters</a> and <a href="https://github.com/alphagov/content-store">Content Store</a> for
 contract testing.</p>
 
-<h2 id="getting-started">Getting started</h2>
+<h2 id="getting-started-legacy-version">Getting started (legacy version)</h2>
 
 <h3 id="install-dependencies">Install dependencies</h3>
 

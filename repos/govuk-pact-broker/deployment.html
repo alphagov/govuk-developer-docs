@@ -189,20 +189,14 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-pact-broker/commit/9c4d179b205cc8d7d437e44b8b1e7266020c8422">22 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-pact-broker/commit/97c346d85c894717edd7d79bf9603c1a8448e7aa">1 Nov 2023</a>
 </div>
 
   <h1 class="page-title">govuk-pact-broker: Deployment</h1>
 
   
+<h2 id="legacy-instance-on-paas">Legacy instance (on PaaS)</h2>
 <p>You'll need a cloud foundry account for <a href="https://docs.cloud.service.gov.uk/">GOV.UK PAAS</a> and
 be in the <code>govuk_development</code> organisation with access to the <code>sandbox</code> space.</p>
 <p>From there you should be able to see this app (<code>pact-broker</code>) by running:</p>
@@ -211,6 +205,9 @@ be in the <code>govuk_development</code> organisation with access to the <code>s
 <p>Then when you have made your changes you can push a new deployment with:</p>
 <pre><code>$ cf push pact-broker
 </code></pre>
+<h2 id="new-instance-on-heroku">New instance (on Heroku)</h2>
+<p>This instance is automatically deployed whenever a new commit is pushed.
+Logs can be found in <a href="https://dashboard.heroku.com/apps/govuk-pact-broker">the Heroku dashboard for this project</a>.</p>
 
 
             
