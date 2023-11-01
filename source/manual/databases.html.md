@@ -28,10 +28,26 @@ ElasticSearch is hosted in [AWS's OpenSearch service](https://eu-west-1.console.
 
 ## DB admin
 
-We use "DB admin" machines to perform operations on the hosted databases. DB Admin machines are responsible for running the nightly [environment data sync](/manual/govuk-env-sync.html), so that production data gets copied to Staging and Integration. In PostgreSQL's case, the DB Admin machine is also responsible for [creating the database and users](https://github.com/alphagov/govuk-puppet/blob/d55621eb71c734dd27583e088cd1ffd633bdc721/modules/govuk/manifests/node/s_content_publisher_db_admin.pp#L43-L44) in the RDS instance (this needs to be [done by hand in MySQL](/repos/govuk-puppet/create-mysql-db-and-users.html)).
+Until November 2023, we used to use `db_admin` bastion hosts for tasks such as:
 
-Each Postgres/MySQL app has its own DB admin node named after the app, e.g. `content_publisher_db_admin`. The node is [defined in govuk-puppet](https://github.com/alphagov/govuk-puppet/blob/d55621eb71c734dd27583e088cd1ffd633bdc721/modules/govuk/manifests/node/s_content_publisher_db_admin.pp#L24), with root database credentials defined in govuk-secrets (`puppet_aws/hieradata/blue/{ENV}_credentials.yaml`). Note that the application uses different credentials to connect to the database (username [defined in the app](https://github.com/alphagov/content-publisher/blob/f81952ba9f999b06d81e6d79fed9ea1d9372e145/config/database.yml#L19), password defined in govuk-secrets in `puppet_aws/hieradata/apps/{ENV}_credentials.yaml`).
+- running backups/restores
+- copying production data to the staging and integration environments
+- managing Postgres user accounts via Puppet
 
-For Mongo databases, there is the [`db_admin` node](https://github.com/alphagov/govuk-puppet/blob/3047076651d6a7790bacf2c40277220e97ac53f9/modules/govuk/manifests/node/s_db_admin.pp#L5), which used to manage the relational databases too.
+We no longer run these db_admin bastion instances.
 
-There is no DB admin machine for ElasticSearch (there is a `search_admin_db_admin` machine, but this is the DB admin machine for the Search Admin application, which uses MySQL). Instead, the `search` node itself is [responsible for its own environment syncing](https://github.com/alphagov/govuk-puppet/blob/df7d619ea8ab96e1a6086a384e7d5fdada68a7fe/modules/govuk/manifests/node/s_search.pp#L18). Every DB admin machine (and `search` node) uses the same [environment sync script](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_env_sync/files/govuk_env_sync.sh).
+The jobs that used to run on db_admin instances now run as Kubernetes cronjobs, configured in the [db-backup](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/db-backup) and [search-index-env-sync](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/search-index-env-sync) charts. You can view job status in the Argo CD web UI (and of course `kubectl` on the command line).
+
+### Open a database commmand-line session
+
+For a Rails app:
+
+```sh
+k exec deploy/content-publisher -it -- rails db -p
+```
+
+For a non-Rails app:
+
+```sh
+k exec deploy/bouncer -it -- sh -c 'psql $DATABASE_URL'
+```
