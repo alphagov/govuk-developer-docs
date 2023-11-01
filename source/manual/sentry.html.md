@@ -236,7 +236,7 @@ Multiple teams are allowed to set up alerts for the same projects.
 ## Sentry issue actions
 
 In the Sentry UI, you can merge related issues together, resolve issues, or
-ignore issues (permanently or for a set time period).
+archive issues (permanently or for a set time period).
 
 ### Merging Sentry issues
 
@@ -258,16 +258,19 @@ click the "Resolve" button. This removes it from the default Sentry UI, making i
 less noisy, but also has the advantage of marking it as a regression and emailing
 you if the issue occurs again.
 
-### Ignoring an issue
+### Archiving (or ignoring) an issue
 
-When you've identified an issue and written it up as a Trello card, or are
-actively working on fixing it, it can be unhelpful for the issue to keep
-accumulating events (and potentially spamming your Slack channel). In these cases,
-you should [comment on the issue][anchor-comment] with a link to your card or PR,
-then ignore the issue. You should also set the "Assignee" to yourself.
+You can "Archive" something for a set period of time - this option used to
+be called "Ignore" in Sentry. Archiving an issue for a set period of time can be
+useful if you've identified an issue and written it up as a Trello card (or are
+actively working on fixing it), as it prevents Sentry from accumulating events
+and potentially spamming your Slack channel.
 
-You can either click "Ignore" to ignore it permanently, or click the arrow next to
-it to ignore for a set time, e.g. 1 week. You can also un-ignore an issue later.
+In these cases, you should [comment on the issue][anchor-comment] with a link to
+your card or PR, then archive the issue for a set period . You should also set the
+"Assignee" to yourself.
+
+You can always un-archive an issue later if needed.
 
 ### Commenting on an issue
 
