@@ -531,6 +531,9 @@
       implemented: true
       priority: high
       description: When a link is followed to a page outside of www.gov.uk.
+      examples:
+        - text: Apply for a passport ('Start now' button)
+          link: https://www.gov.uk/apply-renew-passport
       tracker: specialist_link_tracker
       data:
       - name: event
@@ -552,6 +555,9 @@
       implemented: true
       priority: high
       description: When a link is followed to an asset such as a PDF.
+      examples:
+        - text: 2023 Government Chemist Conference presentations and recordings (links in the 'all presentation slides' section)
+          link: https://www.gov.uk/government/news/the-2023-government-chemist-conference-presentations
       tracker: specialist_link_tracker
       data:
       - name: event
@@ -561,6 +567,7 @@
         - name: event_name
           value: file_download
         - name: external
+          value: "true"
         - name: link_domain
         - name: link_path_parts
         - name: method
@@ -572,6 +579,9 @@
       implemented: true
       priority: low
       description: 'When a link points to an email address using mailto:'
+      examples:
+        - text: Attorney General's Office ('Contact AGO' section)
+          link: https://www.gov.uk/government/organisations/attorney-generals-office
       tracker: specialist_link_tracker
       data:
       - name: event
@@ -582,7 +592,6 @@
           value: navigation
         - name: external
           value: '"true"'
-        - name: link_domain
         - name: link_path_parts
         - name: method
         - name: text
@@ -592,7 +601,10 @@
     - name: file attachment links
       implemented: true
       priority: medium
-      description: 'Links on our guidance pages that contain file attachments, such as https://www.gov.uk/government/publications/equality-act-guidance'
+      description: Links on our guidance pages that contain file attachments, such as .zip files.
+      examples:
+        - text: Lasting power of attorney forms
+          link: https://www.gov.uk/government/publications/make-a-lasting-power-of-attorney
       tracker: link_tracker
       data:
       - name: event
