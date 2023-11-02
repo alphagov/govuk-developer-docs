@@ -49,7 +49,34 @@
           - name: index_section_count
         - name: action
           value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
-
+    - name: Accordion links
+      implemented: true
+      priority: high
+      description: When links within accordion sections are clicked.
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: accordion
+        - name: url
+        - name: text
+          value: Text of the link
+        - name: index
+          value:
+          - name: index_link
+          - name: index_section
+          - name: index_section_count
+        - name: index_total
+        - name: section
+        - name: external
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
 - name: banners
   events:
     - name: banner shown
