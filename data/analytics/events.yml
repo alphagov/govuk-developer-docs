@@ -336,6 +336,7 @@
         value: event_data
 
 - name: feedback
+  description: Tracking the 'is this page useful?' component at the bottom of every GOV.UK page.
   events:
     - name: Is this page useful? Yes
       implemented: true
@@ -394,7 +395,7 @@
     - name: Send me the survey
       implemented: true
       priority: medium
-      description:
+      description: Clicking the 'send me the survey' button after choosing 'No'
       tracker: event_tracker
       data:
       - name: event
@@ -412,7 +413,7 @@
     - name: Send
       implemented: true
       priority: medium
-      description:
+      description: Clicking the 'send' button after choosing 'Report a problem with this page'
       tracker: event_tracker
       data:
       - name: event
