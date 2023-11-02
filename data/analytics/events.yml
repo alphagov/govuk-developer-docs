@@ -1661,10 +1661,10 @@
       priority: high
       description: When a tab is selected.
       examples:
-        - text: Tax your vehicle
-          link: https://www.gov.uk/vehicle-tax
         - text: Bank holidays
           link: https://www.gov.uk/bank-holidays
+        - text: Tax your vehicle
+          link: https://www.gov.uk/vehicle-tax
       tracker: event_tracker
       data:
       - name: event
@@ -1676,7 +1676,7 @@
         - name: type
           value: tabs
         - name: url
-          value: tab identifier/url hash e.g. "#scotland"
+          value: url path and hash (tab identifier) e.g. "/bank-holidays#scotland"
         - name: text
           value: text of the selected tab
         - name: index
