@@ -9,10 +9,17 @@
   <p class="govuk-body"><%= event.description %></p>
 <% end %>
 
-<% event.events.each do |page_event| %>
+<h2 class="govuk-heading-m analytics-heading">Contents</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <% event.events.each_with_index do |event, index| %>
+    <li><a href="#heading-<%= index %>" class="govuk-link"><%= event.name %></a></li>
+  <% end %>
+</ul>
+
+<% event.events.each_with_index do |page_event, index| %>
   <div class="event">
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-    <h2 class="govuk-heading-m analytics-heading">
+    <h2 class="govuk-heading-m analytics-heading" id="heading-<%= index %>">
       <%= page_event.name %>
     </h2>
 
