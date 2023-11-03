@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>search-api-v2: ADR 002: Google Cloud Platform Usage - GOV.UK Developer Documentation</title>
+    <title>search-api-v2: ADR 004: Which documents to index - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/002-gcp-usage.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/004-which-documents-to-index.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="search-api-v2: ADR 002: Google Cloud Platform Usage - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/002-gcp-usage.html" />
+      <meta name="twitter:title" content="search-api-v2: ADR 004: Which documents to index - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/004-which-documents-to-index.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="search-api-v2: ADR 002: Google Cloud Platform Usage" />
+      <meta property="og:title" content="search-api-v2: ADR 004: Which documents to index" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/002-gcp-usage.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/004-which-documents-to-index.html" />
 
     
   </head>
@@ -196,51 +196,54 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/search-api-v2/commit/18a6d579269d500174ebfebd4523d81bf76f72e6">19 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/search-api-v2/commit/abdfc69df93050574356d135401375ad5b5b6bb3">2 Nov 2023</a>
 </div>
 
-  <h1 class="page-title">search-api-v2: ADR 002: Google Cloud Platform Usage</h1>
+  <h1 class="page-title">search-api-v2: ADR 004: Which documents to index</h1>
 
   
-<p>2023-09-14</p>
+<p>2023-11-02</p>
 <h2 id="context">Context</h2>
-<p>As part GOV.UK site search improvements, there is a need to orchestrate the export, transform and import
-of Google Analytics data into a new search engine.</p>
-<p>The search engine doesn't currently support direct import of GA4 format data (though this may become available in future) so requires export into a cut down staged format in BigQuery or Cloud Storage which can them be imported into the search engine.</p>
-<p>Cloud libraries provide the mechanisms for exporting BigQuery data and importing the data into the search engine so any code required is predominantly to orchestrate that process.</p>
+<p>Not every document that is on the Publishing API should be searchable. At the moment, documents are
+excluded from search for reasons such as:</p>
+<ul>
+<li>They are not in English (the existing search cannot cope well with other languages, and we want to
+replicate the existing behaviour for now until we are ready to iterate)</li>
+<li>They are not "individually identifiable", i.e. they are nested subdocuments of a parent document
+and don't have their own URL</li>
+<li>Their types are explicitly blocklisted from being indexed because having these kinds of documents
+show up in search wouldn't be helpful (e.g. <code>redirect</code>s), or their contents are indexed as part of
+a related primary document (e.g. <code>html_publication</code>)</li>
+</ul>
 <h2 id="considered-options">Considered options</h2>
-<h3 id="scheduled">Scheduled</h3>
-<p><img src="https://raw.githubusercontent.com/alphagov/search-api-v2/main/docs/adr/images/002-gcp-scheduled.drawio.svg" alt="GCP Scheduled"></p>
-<ul>
-<li>Cloud Scheduler is used to providec GCP based CRON scheduled triggering.</li>
-<li>Cloud Functions are used to provide lightweight execution of Python or Ruby code to orchestrate GCP Cloud Libraries for BigQuery export of GA4 data (into staged format expected by the search engine) and search engine import of that data.</li>
-</ul>
-<h3 id="event-triggered">Event Triggered</h3>
-<p><img src="https://raw.githubusercontent.com/alphagov/search-api-v2/main/docs/adr/images/002-gcp-event-triggered.drawio.svg" alt="GCP Event Triggered"></p>
-<ul>
-<li>Cloud Logging is used to monitor completion GA4 Export to BigQuery.</li>
-<li>PubSub is used for asynch messaging of GA4 data export completion and Staging data completion</li>
-<li>Cloud Functions are used to provide lightweight execution of Python or Ruby code to orchestrate GCP Cloud Libraries for BigQuery export of GA4 data (into staged format expected by the search engine) and search engine import of that data.</li>
-</ul>
-<h3 id="workflow">Workflow</h3>
-<p><img src="https://raw.githubusercontent.com/alphagov/search-api-v2/main/docs/adr/images/002-gcp-workflow.drawio.svg" alt="GCP Workflow"></p>
-<ul>
-<li>Cloud Composer is used to provide end to end workflow orchestration</li>
-</ul>
-<h2 id="decision-drivers">Decision drivers</h2>
-<ol>
-<li>One of the objectives of search improvements is to minimise maintenance overheads and the complexity of managing search so though an event-triggered solution may be more graceful, we don't want to over-engineer a solution which may be more complex to maintain</li>
-<li>Cost of full blown data workflow services such as Cloud Composer can be significantly more than lightweight options such as Cloud Functions</li>
-<li>The completion timing of daily GA4 Export is unpredictable so can't be guaranteed to complete</li>
-<li>Event triggering would support more frequent export/import of data including Intraday GA4 data, minimising the latency for events being imported and available in the search engine</li>
-<li>The latency requirements of reflecting recent events in the search engine is not near-real time and will ultimately always be dependent on the time the search engine takes to train and tune it's models which may not be in our control</li>
-</ol>
+<p>We have considered replicating the existing logic as closely as possible, but this is complicated by
+the fact that content currently finds its way into search through two separate pathways (Publishing
+API message queue and legacy Whitehall push-based API), with the deciding logic residing across
+several applications.</p>
+<p>We have considered adding a dependency on the existing <code>search-api</code>, either in terms of logic or
+data ("does this document exist in Elasticsearch?"), but this would add undesirable coupling to the
+old API.</p>
+<p>Instead, a thorough analysis of existing data and document types across the GOV.UK estate has led us
+to simplify the approach to that outlined in "Decision".</p>
 <h2 id="decision">Decision</h2>
-<p>In discussions between @richardTowers and Matt Gregory on 14th Sept 2023 it was agreed to implement Scheduled option with sufficient headroom for GA4 export completion and to use Python for orchestration code due to function and cloud library support</p>
-<p>An Event triggered option would be more graceful but potentially over-engineering at this stage based on data import frequency and latency requirements</p>
-<p>A full blown workflow approach would be costly and with no existing capability in GOV.UK would likely add to maintenance overheads</p>
+<p>Content coming through from Publishing API will be indexed if and only if:</p>
+<ul>
+<li>it has a locale of <code>en</code>, <strong>and</strong>
+</li>
+<li>it is addressable (has a <code>base_path</code> or <code>details.url</code>), <strong>and</strong>
+</li>
+<li>its document type does not start with "placeholder", <strong>and</strong>
+</li>
+<li>either of the following apply:
+<ul>
+<li>its document type is not on an explicit blocklist (based on existing search behaviour), <strong>or</strong>
+</li>
+<li>its base_path is on an explicit allowlist (based on existing configuration in <code>search-api</code>)</li>
+</ul>
+</li>
+</ul>
 <h2 id="status">Status</h2>
-<p>Decided</p>
+<p>Accepted.</p>
 
 
             
@@ -248,8 +251,8 @@ of Google Analytics data into a new search engine.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/search-api-v2/blob/main/docs/adr/002-gcp-usage.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-api-v2%2Fadr%2F002-gcp-usage.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/search-api-v2/blob/main/docs/adr/004-which-documents-to-index.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-api-v2%2Fadr%2F004-which-documents-to-index.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
