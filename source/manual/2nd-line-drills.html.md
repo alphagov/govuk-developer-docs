@@ -142,4 +142,4 @@ Once deployed, [check your change](https://www-origin.integration.govuk.digital/
 
 Warn in `#govuk-2ndline-tech` that you're about to do this, because our failover CDN does not have full feature parity with our primary one.
 
-Follow the [Fall back to AWS CloudFront](/manual/fall-back-to-aws-cloudfront.html.md) instructions for staging only.
+Follow the [Fall back to AWS CloudFront](/manual/fall-back-to-aws-cloudfront.html) instructions for staging only.
