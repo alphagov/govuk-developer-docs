@@ -46,10 +46,12 @@ anyone else being phoned.
 
 To trigger the drill manually, follow these steps:
 
+1. Ask someone in the #platform-engineering team in order to run the pagerduty drill.
+
 1. Exec onto the alertmanager box after logging onto the production cluster:
 
     ```shell
-    $ k exec -it alertmanager-kube-prometheus-stack-alertmanager-0  -n monitoring -- sh
+    $ kubectl exec -it alertmanager-kube-prometheus-stack-alertmanager-0  -n monitoring -- sh
     ```
 
 1. Create the pagerduty drill alert, update the end datetime field to be about 5 minutes from when you create the alert before creating the alert:
