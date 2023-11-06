@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-on-platform-content-tech"
+owner_slack: "#govuk-publishing-mainstream-experience-tech"
 title: Related links
 parent: "/manual.html"
 layout: manual_layout
