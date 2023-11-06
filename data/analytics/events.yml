@@ -1367,10 +1367,11 @@
         - name: action
           value: start
         - name: external
-          value: false
+          value: "false"
         - name: link_domain
         - name: link_path_parts
         - name: tool_name
+        - name: method
     - name: submit question
       implemented: true
       priority: high
@@ -1441,7 +1442,7 @@
         - name: action
           value: change response
         - name: external
-          value: false
+          value: "false"
         - name: method
         - name: link_domain
         - name: link_path_parts
@@ -1508,13 +1509,16 @@
       data:
       - name: event
         value: search_results
+      - name: event_data
+        value:
+        - name: external
       - name: search_results
         value:
         - name: ecommerce
           value:
           - name: items
         - name: event_name
-          value: view_item_list
+          value: select_item
         - name: results
     - name: start again link click
       implemented: true
@@ -1539,7 +1543,7 @@
         - name: action
           value: start again
         - name: external
-          value: false
+          value: "false"
         - name: method
         - name: link_domain
         - name: link_path_parts
