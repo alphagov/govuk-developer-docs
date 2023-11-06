@@ -78,11 +78,14 @@ NB: Technical 2nd Line should investigate these alerts when there is nothing mor
 
 ### Grafana
 
-We use Grafana dashboards to monitor the health of our applications and service across our environments ([Integration](https://grafana.blue.integration.govuk.digital/?orgId=1), [Staging](https://grafana.blue.staging.govuk.digital/?orgId=1), [Production](https://grafana.blue.production.govuk.digital/). Some useful dashboards include:
+We use Grafana dashboards to monitor the health of our applications and service across our environments:
 
-- Second line, which includes data from our Origin health and Edge health dashboards
-- Sidekiq
-- Application deployment dashboards
+- [Integration EKS](https://grafana.eks.integration.govuk.digital/?orgId=1)
+- [Staging EKS](https://grafana.eks.staging.govuk.digital/?orgId=1)
+- [Production EKS](https://grafana.eks.production.govuk.digital/?orgId=1)
+- [Integration EC2](https://grafana.blue.integration.govuk.digital/?orgId=1)
+- [Staging EC2](https://grafana.blue.staging.govuk.digital/?orgId=1)
+- [Production EC2](https://grafana.blue.production.govuk.digital/)
 
 [Read more about Grafana](/manual/grafana.html).
 
