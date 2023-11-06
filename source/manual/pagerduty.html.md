@@ -29,13 +29,12 @@ See the [Pagerduty documentation on how to schedule an override](https://support
 ## PagerDuty drill
 
 Every week we test PagerDuty to make sure it can phone to alert us to
-any issues. This happens every Wednesday morning at 10am UTC.
+any issues. This happens every Wednesday morning at 10am BST.
 
-Cron creates a file on disk. Icinga raises a critical alert when that
-file exists with an Icinga contact group set so that PagerDuty is
-notified. After a short amount of time, cron will remove the file to
-resolve the alert. The [code that does this is in
-Puppet](https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/pagerduty_drill.pp).
+Prometheus is currently firing a constant `Watchdog` alert, which fires all the time so that
+developers can see the that prometheus is integrated with alertmanager. In the
+[alertmanager configs](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/templates/alertmanager-config.tpl#L79-L85)
+the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am BST every Wednesday.
 
 You don't need to take any action for this alert. The primary in-office
 Technical 2nd Line developer should escalate the call to the secondary who should escalate
@@ -47,22 +46,24 @@ anyone else being phoned.
 
 To trigger the drill manually, follow these steps:
 
-1. SSH onto the monitoring box:
+1. Ask someone in the #platform-engineering team in order to run the pagerduty drill.
+
+1. Exec onto the alertmanager box after logging onto the production cluster:
 
     ```shell
-    $ gds govuk connect -e production ssh aws/monitoring
+    $ kubectl exec -it alertmanager-kube-prometheus-stack-alertmanager-0  -n monitoring -- sh
     ```
 
-1. Generate the file that the Icinga monitor looks for which triggers the alert:
+1. Create the pagerduty drill alert, update the end datetime field to be about 5 minutes from when you create the alert before creating the alert:
 
     ```shell
-    $ sudo touch /var/run/pagerduty_drill
+    $ amtool --alertmanager.url=http://localhost:9093 alert add --end <end of alert datetime in the form: 2023-11-03T15:59:00-00:00> alertname="PagerDuty test drill. Developers: escalate this alert. SMT: resolve this alert." severity='page'
     ```
 
-1. Delete the file once the test drill is triggered:
+1. Query the alerts to ensure that it is being triggered:
 
     ```shell
-    sudo rm /var/run/pagerduty_drill
+    $ amtool --alertmanager.url=http://localhost:9093 alert query 'alertname=PagerDuty test drill. Developers: escalate this alert. SMT: resolve'
     ```
 
 ### Add your Pagerduty rota to Google calendar
