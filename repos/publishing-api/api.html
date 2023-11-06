@@ -220,7 +220,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/ec0a9f0c5ff310133ca8d70395a284e8eda39957">12 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/d2bdb4da72a4ca9b0ee69cf778493ea535c2519e">6 Nov 2023</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -277,7 +277,7 @@ edition of a different at the base_path this edition is using.</p>
 or the blocking edition are of a "substitutable" document type, upon the
 publish of the draft, the blocking item will be unpublished.</p>
 <h2 id="put-v2contentcontent_id"><code>PUT /v2/content/:content_id</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_from_the_Whitehall_application_to_create_a_content_item_at_/test-item_given_/test-item_has_been_reserved_by_the_Publisher_application">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_from_the_Whitehall_application_to_create_a_content_item_at_/test-item_given_/test-item_has_been_reserved_by_the_Publisher_application">Request/Response detail</a></p>
 <p>Used to create or update a draft edition of a document. It will restrict
 creation if there is different document with a draft edition using the same
 <code>base_path</code>. Uses <a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
@@ -491,7 +491,7 @@ exists) a draft redirect will be created.</li>
 redirects.</li>
 </ul>
 <h2 id="post-v2contentcontent_idpublish"><code>POST /v2/content/:content_id/publish</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_publish_request_for_version_3_given_the_content_item_bed722e6-db68-43e5-9079-063f623335a7_is_at_version_3">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_publish_request_for_version_3_given_the_content_item_bed722e6-db68-43e5-9079-063f623335a7_is_at_version_3">Request/Response detail</a></p>
 <p>Transitions an edition from a draft state to a published state. The edition
 will be presented in the live content store. Uses
 <a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
@@ -607,7 +607,7 @@ edition</li>
 recursive chain of links) will be updated in the live content store.</li>
 </ul>
 <h2 id="post-v2contentcontent_idunpublish"><code>POST /v2/content/:content_id/unpublish</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#an_unpublish_request_given_a_published_content_item_exists_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#an_unpublish_request_given_a_published_content_item_exists_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
 <p>Transitions an edition of a document into an unpublished state. The edition will
 be updated or removed from the live content store depending on the unpublishing
 type. Uses <a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
@@ -727,7 +727,7 @@ recursive chain of links) will be updated in the live content store.</li>
 </li>
 </ul>
 <h2 id="post-v2contentcontent_iddiscard-draft"><code>POST /v2/content/:content_id/discard-draft</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_discard_draft_content_given_a_content_item_exists_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_discard_draft_content_given_a_content_item_exists_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
 <p>Deletes a draft edition of a document. Replaces the draft content item on
 the draft content store with the published item, if one exists. Uses
 <a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
@@ -765,7 +765,7 @@ the draft content store with the published item, if one exists. Uses
 <li>If a published edition exists it will be added to the draft content store.</li>
 </ul>
 <h2 id="get-v2content"><code>GET /v2/content</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get_entries_request_given_a_content_item_exists_in_multiple_locales_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get_entries_request_given_a_content_item_exists_in_multiple_locales_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
 <p>Retrieves a paginated list of editions for the provided query string
 parameters. If editions exists in both a published and a draft for a document
 and a state has been specified, the draft is returned.</p>
@@ -858,7 +858,7 @@ where * indicates a field within details, e.g. <code>details.internal_name</code
 </li>
 </ul>
 <h2 id="get-v2contentcontent_id"><code>GET /v2/content/:content_id</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_return_the_content_item_given_a_content_item_exists_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_return_the_content_item_given_a_content_item_exists_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
 <p>Retrieves a single edition of a document for a <code>content_id</code> and <code>locale</code>. By
 default the most recent edition is returned, which may be a draft.</p>
 <p>If the returned item is in the draft state, <a href="#warnings">warnings</a> may be
@@ -891,7 +891,7 @@ included within the response.</p>
 </li>
 </ul>
 <h2 id="patch-v2linkscontent_id"><code>PATCH /v2/links/:content_id</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_update_the_linkset_at_version_3_given_the_linkset_for_bed722e6-db68-43e5-9079-063f623335a7_is_at_version_3">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_update_the_linkset_at_version_3_given_the_linkset_for_bed722e6-db68-43e5-9079-063f623335a7_is_at_version_3">Request/Response detail</a></p>
 <p>Creates or updates a set of links for the given <code>content_id</code>. Link sets can be
 created before or after the <a href="#put_v2contentcontent-id">PUT request</a> for the
 content. These are tied to documents solely by matching <code>content_id</code> and they
@@ -950,7 +950,7 @@ matching the <code>content_id</code> on the draft content store.</li>
 matching the <code>content_id</code> on the live content store.</li>
 </ul>
 <h2 id="get-v2linkscontent_id"><code>GET /v2/links/:content_id</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get-links_request_given_empty_links_exist_for_content_id_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get-links_request_given_empty_links_exist_for_content_id_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
 <p>Retrieves only the <a href="/repos/publishing-api/link-expansion.html">link set links</a> for the given <code>content_id</code>.
 Returns arrays of <code>content_id</code>s representing documents. These are grouped by
 <code>link_type</code>. The ordering of the returned links matches the ordering when they
@@ -965,7 +965,7 @@ were created.</p>
 </li>
 </ul>
 <h2 id="get-v2expanded-linkscontent_id"><code>GET /v2/expanded-links/:content_id</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get-expanded-links_request_given_empty_links_exist_for_content_id_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get-expanded-links_request_given_empty_links_exist_for_content_id_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
 <p>Retrieves the expanded link set for the given <code>content_id</code>. Returns arrays of
 details for each linked edition in groupings of <code>link_type</code>.</p>
 <p>To ensure fast performance the result for this is pulled from a database which
@@ -1012,7 +1012,7 @@ response but could make the request slow</li>
 </li>
 </ul>
 <h2 id="get-v2linkedcontent_id"><code>GET /v2/linked/:content_id</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_return_the_items_linked_to_it_given_no_content_exists">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_return_the_items_linked_to_it_given_no_content_exists">Request/Response detail</a></p>
 <p>Retrieves all editions that have <a href="/repos/publishing-api/link-expansion.html">link set links</a> to the given <code>content_id</code>
 for some <code>link_type</code>.</p>
 <h3 id="path-parameters">Path parameters</h3>
@@ -1045,7 +1045,7 @@ state, title, user_facing_version, update_type, state</li>
 </li>
 </ul>
 <h2 id="get-v2linkables"><code>GET /v2/linkables</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get_linkables_request_given_there_is_content_with_format_'topic'">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get_linkables_request_given_there_is_content_with_format_'topic'">Request/Response detail</a></p>
 <p>Returns abridged versions of all editions matching the given
 <code>document_type</code>. Returns <code>title</code>, <code>content_id</code>, <code>publication_state</code>, <code>base_path</code>
 from the document and edition. It also adds a special field <code>internal_name</code>,
@@ -1177,7 +1177,7 @@ mapping of <code>content_id</code> to <code>links</code> hash.</p>
 </li>
 </ul>
 <h2 id="post-lookup-by-base-path"><code>POST /lookup-by-base-path</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_/lookup-by-base-path-request_given_there_are_live_content_items_with_base_paths_/foo_and_/bar">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_/lookup-by-base-path-request_given_there_are_live_content_items_with_base_paths_/foo_and_/bar">Request/Response detail</a></p>
 <p>Retrieves live editions for a given collection of base paths. Returns
 a mapping of <code>base_path</code> to <code>content_id</code>.</p>
 <h3 id="post-parameters">POST parameters:</h3>
@@ -1200,7 +1200,7 @@ a mapping of <code>base_path</code> to <code>content_id</code>.</p>
 </li>
 </ul>
 <h2 id="put-pathsbase_path"><code>PUT /paths/:base_path</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_put_a_path_given_no_content_exists">Request/response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_put_a_path_given_no_content_exists">Request/response detail</a></p>
 <p>Reserves a path for a publishing application. Returns success or failure only.</p>
 <h3 id="path-parameters">Path parameters</h3>
 <ul>
@@ -1266,7 +1266,7 @@ fail.</li>
 publishing_app, the command will fail.</li>
 </ul>
 <h2 id="put-publish-intentbase_path"><code>PUT /publish-intent(/*base_path)</code></h2>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_create_a_publish_intent_given_no_content_exists">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_create_a_publish_intent_given_no_content_exists">Request/Response detail</a></p>
 <p>Used to create or update a publishing intent for a particular base_path and
 reserve the base path in the publishing-api. A publishing intent sets when the
 cache should expire for a piece of content.</p>
@@ -1322,7 +1322,7 @@ expire for a <code>base_path</code>.</li>
 <p>Used to delete the publishing intent for a particular <code>base_path</code>. Removing a
 publishing intent means that the content will continue to be cached as
 normal.</p>
-<p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_delete_a_publish_intent_given_no_content_exists">Request/Response detail</a></p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_delete_a_publish_intent_given_no_content_exists">Request/Response detail</a></p>
 <h3 id="path-parameters">Path parameters</h3>
 <ul>
 <li>
