@@ -15,7 +15,7 @@ Nginx [sets a `GOVUK-Request-Id` HTTP header] on the initial request. Apps then 
 
 For the most part, [gds-api-adapters][] handles this for you. The adapters read the `HTTP_GOVUK_REQUEST_ID` header and forward this onto backend services. A search can then be carried out against log files for a single request id to see all of the backend service requests that were made in consequence to the originating request.
 
-For example, the nginx logs in `/var/log/nginx/<service>-json.event.access.log`will include a `govuk_request_id` field. You can also filter on `govuk_request_id` in [Kibana][].
+For example, the nginx logs in `/var/log/nginx/<service>-json.event.access.log`will include a `govuk_request_id` field. You can also filter on `govuk_request_id` in Logit [Kibana][].
 
 [sets a `GOVUK-Request-Id` HTTP header]: https://github.com/alphagov/govuk-puppet/blob/05af15200690afdeb0f5a48c73601c3cabbadeae/modules/nginx/templates/proxy-vhost.conf#L7-L25
 [gds-api-adapters]: https://github.com/alphagov/gds-api-adapters

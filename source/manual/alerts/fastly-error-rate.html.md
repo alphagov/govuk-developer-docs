@@ -43,7 +43,7 @@ collectd likely cannot talk to Fastly so restart collectd.
 $ sudo service collectd restart
 ```
 
-To prove collectd is the problem, use this query in Kibana:
+To prove collectd is the problem, use this query in Logit Kibana:
 
 ```rb
 syslog_hostname:monitoring-1.management AND syslog_program:collectd

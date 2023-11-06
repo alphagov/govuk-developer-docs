@@ -44,7 +44,7 @@ diagnostic steps you could take are:
   the rate emails are being sent at and look at broader view of Email Alert API
   status;
 * check whether workers are raising errors to [Sentry];
-* check [Kibana] to see the Sidekiq logs for Email Alert API;
+* check Logit [Kibana] to see the Sidekiq logs for Email Alert API;
 * you can investigate the health of the [underlying application
   machines][machine metrics] and the [RDS PostgeSQL database
   instance][postgres dash].

@@ -86,7 +86,7 @@ RSpec.describe Repo do
     end
   end
 
-  describe "kibana_url" do
+  describe "logit_kibana_url" do
     let(:production_hosted_on) { nil }
     let(:environment) { nil }
     let(:app) do
@@ -96,7 +96,7 @@ RSpec.describe Repo do
         "production_hosted_on" => production_hosted_on,
       )
     end
-    subject(:kibana_url) { app.kibana_url }
+    subject(:logit_kibana_url) { app.logit_kibana_url }
 
     describe "hosted on EKS" do
       let(:production_hosted_on) { "eks" }
@@ -111,7 +111,7 @@ RSpec.describe Repo do
     end
   end
 
-  describe "kibana_worker_url" do
+  describe "logit_kibana_worker_url" do
     let(:production_hosted_on) { nil }
     let(:environment) { nil }
     let(:app) do
@@ -121,7 +121,7 @@ RSpec.describe Repo do
         "production_hosted_on" => production_hosted_on,
       )
     end
-    subject(:kibana_worker_url) { app.kibana_worker_url }
+    subject(:logit_kibana_worker_url) { app.logit_kibana_worker_url }
 
     describe "hosted on EKS" do
       let(:production_hosted_on) { "eks" }

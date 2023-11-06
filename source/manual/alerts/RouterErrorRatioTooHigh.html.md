@@ -22,7 +22,7 @@ The configuration of the alert can be found [here](https://github.com/alphagov/g
 ## Impact
 
 Router deals with requests to the rails applications which means that both publishers and/or end users could be seeing errors depending on which application is returning errors.
-Use [this][app-5xx-error-rates-grafana] dashboard to check which applications have been erroring recently then look in [Kibana][prod-kibana] for more detailed look into the specific log messages.
+Use [this][app-5xx-error-rates-grafana] dashboard to check which applications have been erroring recently then look in Logit [Kibana][prod-kibana] for more detailed look into the specific log messages.
 
 ## Potential resolution steps
 

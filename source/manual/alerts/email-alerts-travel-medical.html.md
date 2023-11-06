@@ -19,7 +19,7 @@ sent out via this alert have been received.
 
 ## Finding out more details about the failed check
 
-Open this [Kibana Search][kibana last 24 hours] to see potentially undelivered
+Open this Logit [Kibana Search][kibana last 24 hours] to see potentially undelivered
 alerts in the last 24 hours (note the same alerts will appear on each run, so
 you might see the same alert more than once in this log view)
 
@@ -47,7 +47,7 @@ advice and medical safety alerts, and see if the email has been received.
 * whether the change was a result of a new type of medical safety content
   sub-type, this was the previous cause of an [incident][checkbox-incident] and
   is recorded as [GOV.UK Tech Debt][checkbox tech debt];
-* check the [Kibana logs][] and [Sentry][] for any errors or clues;
+* check the Logit [Kibana logs][] and [Sentry][] for any errors or clues;
 * if all else fails you may need to investigate the Email Alert API database
   to determine whether the content change was received and what state it is in.
 

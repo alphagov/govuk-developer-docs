@@ -116,16 +116,16 @@ class Repo
     repo_data["dashboard_url"] || default_url
   end
 
-  def kibana_url
-    return if repo_data["kibana_url"] == false
+  def logit_kibana_url
+    return if repo_data["logit_kibana_url"] == false
 
-    kibana_url_for(app: app_name, hours: 3)
+    logit_kibana_url_for(app: app_name, hours: 3)
   end
 
-  def kibana_worker_url
-    return if repo_data["kibana_worker_url"] == false
+  def logit_kibana_worker_url
+    return if repo_data["logit_kibana_worker_url"] == false
 
-    kibana_url_for(app: "#{app_name}-worker", hours: 3, include: %w[level message])
+    logit_kibana_url_for(app: "#{app_name}-worker", hours: 3, include: %w[level message])
   end
 
   def api_docs_url
@@ -169,7 +169,7 @@ class Repo
 
 private
 
-  def kibana_url_for(app:, hours: 3, include: %w[level request status message])
+  def logit_kibana_url_for(app:, hours: 3, include: %w[level request status message])
     if production_hosted_on_eks?
       "https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-#{hours}h,to:now))&_a=(columns:!(#{include.join(',')}),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:#{app}'),sort:!())"
     else

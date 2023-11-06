@@ -98,10 +98,10 @@ engine and storage/retrieval system. It is responsible for:
 - indexing the stored logs for efficient search and retrieval
 - running queries and returning the results to the user interface (Kibana)
 
-### Kibana
+### Logit
 
 [Kibana](https://www.elastic.co/what-is/kibana) is the user interface for
-viewing logs. It is responsible for:
+viewing logs that have been shipped to Logit. It is responsible for:
 
 - rendering the web UI
 - parsing user queries written in Lucene/KQL into Elastic

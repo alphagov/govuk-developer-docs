@@ -8,8 +8,8 @@ links = [
   (link_to("API docs", repo.api_docs_url, class: "govuk-link") if repo.api_docs_url),
   (link_to("Component guide", repo.component_guide_url, class: "govuk-link") if repo.component_guide_url),
   (link_to("Metrics dashboard", repo.metrics_dashboard_url, class: "govuk-link") if repo.metrics_dashboard_url),
-  (link_to("Kibana App Logs (Production, last 3 hours)", repo.kibana_url, class: "govuk-link") if repo.kibana_url),
-  (link_to("Kibana Worker Logs (Production, last 3 hours)", repo.kibana_worker_url, class: "govuk-link") if repo.kibana_worker_url),
+  (link_to("Logit (Kibana) App Logs (Production, last 3 hours)", repo.logit_kibana_url, class: "govuk-link") if repo.logit_kibana_url),
+  (link_to("Logit (Kibana) Worker Logs (Production, last 3 hours)", repo.logit_kibana_worker_url, class: "govuk-link") if repo.logit_kibana_worker_url),
 ]
 
 links += repo.argo_cd_urls.map do |argo_cd_app_name, argo_cd_url|

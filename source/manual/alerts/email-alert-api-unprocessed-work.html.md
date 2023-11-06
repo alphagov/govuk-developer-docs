@@ -39,7 +39,7 @@ Things to check:
 
 * Check the [Sidekiq dashboard] for worker failures.
 
-* Check [Kibana] for errors - use ```@fields.worker: <worker class>``` for the query.
+* Check Logit [Kibana] for errors - use ```@fields.worker: <worker class>``` for the query.
 
 * Check the [Email Alert API Technical dashboard] for performance issues.
 

@@ -10,7 +10,7 @@ We monitor the number of requests reaching our Nginx servers. We expect that
 there will be a minimum number of requests occurring and a check will alert if
 this falls below a threshold.
 
-[View the Nginx logs in Kibana][nginx_logs] or view the impacted application dashboard on
+[View the Nginx logs in Logit Kibana][nginx_logs] or view the impacted application dashboard on
 Grafana.
 
 There are a few things to check when this occurs:
