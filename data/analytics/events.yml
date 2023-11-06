@@ -1634,6 +1634,37 @@
 
 - name: super navigation header
   events:
+    - name: Crown icon link
+      implemented: true
+      priority: high
+      description: When the crown link to the homepage is clicked.
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: header menu bar
+        - name: url
+          value: https://www.gov.uk
+        - name: index
+          value:
+          - name: index_link
+          - name: index_section
+          - name: index_section_count
+        - name: index_total
+        - name: section
+          value: Logo
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
     - name: Header menu bar buttons
       implemented: true
       priority: high
@@ -1664,7 +1695,7 @@
     - name: link clicks
       implemented: true
       priority: high
-      description: Triggered when the GOVUK logo, a header "menu" section link, or a link under the search component is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
+      description: Triggered when a header "menu" section link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
       examples:
         - text: GOV.UK homepage
           link: https://www.gov.uk
@@ -1681,11 +1712,8 @@
         - name: index
           value:
           - name: index_section
-            value: The section that this link is in (Menu is 1, Search is 2)
           - name: index_link
-            value: The position of the link within its section. GOVUK Logo has an index of 0.
           - name: index_section_count
-            value: 2 (Menu and Search)
         - name: index_total
         - name: link_domain
         - name: link_path_parts
