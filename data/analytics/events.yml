@@ -480,8 +480,11 @@
     - name: Link clicks
       implemented: true
       priority: medium
-      description:
-      tracker:
+      description: Tracking links on the homepage.
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
@@ -498,6 +501,12 @@
           - name: index_section_count
         - name: index_total
         - name: section
+        - name: url
+        - name: text
+        - name: external
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
 
 - name: html attachments
   events:
