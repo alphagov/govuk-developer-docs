@@ -68,14 +68,6 @@ If you do not work a 5-day week, please talk to your delivery manager to arrange
 
 We have a [Technical 2nd Line dashboard][] showing a high level overview of the state of the GOV.UK environments. You can also [install our Chrome extension][] if you want a permanently visible overview. You will need to be connected to the [GDS VPN][gds-vpn] if accessing from home.
 
-### Icinga
-
-We use Icinga to monitor our platform across our environments ([CI/Integration][], [Staging][], [Production][]) and alert us when things go wrong. Many alerts have corresponding documentation in our [GOV.UK developer docs][], detailing how to respond. [Read more about Icinga][].
-
-If you see critical alerts that aren't easily solved, start a thread in the #govuk-2ndline-tech Slack channel.
-
-NB: Technical 2nd Line should investigate these alerts when there is nothing more urgent happening; you do not necessarily have to fix them.
-
 ### Grafana
 
 We use Grafana dashboards to monitor the health of our applications and service across our environments:
@@ -150,7 +142,6 @@ Follow these Slack channels while working on Technical 2nd Line:
 [Staging]: https://alert.blue.staging.govuk.digital/
 [Production]: https://alert.blue.production.govuk.digital/
 [GOV.UK developer docs]: /
-[Read more about Icinga]: /manual/icinga.html
 [Alerts which don't add value]: https://trello.com/c/A3mKmh5s/583-this-column-is-to-record-the-same-alerts-are-coming-up-again-and-again-but-cant-action-when-it-spikes
 [Ongoing issues, useful Info & unexplained events]: https://trello.com/c/TwquoCfW/316-readme
 [Missing documentation]: https://trello.com/c/owAK2OjY/1009-please-use-this-column-to-record-any-missing-documentation-you-notice-and-were-not-able-to-add-during-your-shift
