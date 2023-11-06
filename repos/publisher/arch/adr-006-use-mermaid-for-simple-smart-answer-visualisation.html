@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publisher: Decision record: Why "Service sign in" is its own format - GOV.UK Developer Documentation</title>
+    <title>publisher: ADR 006 - Use Mermaid for Simple Smart Answer Visualisation - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-002-service-sign-in-new-format.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-006-use-mermaid-for-simple-smart-answer-visualisation.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publisher: Decision record: Why &quot;Service sign in&quot; is its own format - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-002-service-sign-in-new-format.html" />
+      <meta name="twitter:title" content="publisher: ADR 006 - Use Mermaid for Simple Smart Answer Visualisation - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-006-use-mermaid-for-simple-smart-answer-visualisation.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publisher: Decision record: Why &quot;Service sign in&quot; is its own format" />
+      <meta property="og:title" content="publisher: ADR 006 - Use Mermaid for Simple Smart Answer Visualisation" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-002-service-sign-in-new-format.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-006-use-mermaid-for-simple-smart-answer-visualisation.html" />
 
     
   </head>
@@ -197,58 +197,90 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publisher/commit/d950ddfbd22c87f2954dc46eadec3feab0d63967">24 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publisher/commit/ddfd0c5b681a97a9bd39b30a3eeef9892fd11b14">20 Oct 2023</a>
 </div>
 
-  <h1 class="page-title">publisher: Decision record: Why "Service sign in" is its own format</h1>
+  <h1 class="page-title">publisher: ADR 006 - Use Mermaid for Simple Smart Answer Visualisation</h1>
 
   
+<h2 id="status">Status</h2>
+<p>Proposed</p>
 <h2 id="context">Context</h2>
-<p>The Q3 Start Pages mission goal was to make it easier for users to choose a sign
-in option in order to access a service.  It was decided that a page should sit
-in between the transaction/guide page and the service which allows users to
-select a sign in option such as GOV.UK Verify or Government Gateway, or to
-register for a new account (henceforth know as the service sign in page).</p>
-<p>We initially looked at whether we could use an existing format to house this page.
-At first glance, it felt that transaction pages might be a suitable place for
-it, as it would be tailored to the transaction.  Alternatively we could create a
-new format for this page.</p>
+<p>Following user research it was identified that Content Designers (CDs) were struggling to understand the flow of a smart answer, communicate this with colleagues and confidently edit it. They typically use third party tools to visualise smart answers that have complex flows. According to the user research, CDs would prefer to do this within Mainstream Publisher.</p>
+<p>A list of potential features were derived from the user research:</p>
+<ul>
+<li>Diagram that shows the full flow of questions, answers and outcomes.</li>
+<li>Illustrate the path from each answer to the next node (question/outcome)</li>
+<li>Flow lines and node boxes are in a sensible order to not create additional cognitive load</li>
+<li>Questions, answers and outcome boxes look different e.g. different shape/colours</li>
+<li>Interactive e.g. user can select a question/outcome and the flow to/from it, is highlighted</li>
+</ul>
+<p>We carried out a spike to identify viable diagramming tools that meet the above requirements. The potential need for the diagram to be interactive limited our scope to Javascript based diagramming tools, which will allow us to modify the diagrams dynamically.</p>
+<p>We evaluated the following options:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Option</th>
+<th align="center">Decision</th>
+<th align="center">Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://mermaid.js.org/">Mermaid</a></td>
+<td align="center">Yes</td>
+<td align="center">Open source, visualisation library that supports flowcharts, is easily configurable, and implementable</td>
+</tr>
+<tr>
+<td align="left">Build our own visualisation tool</td>
+<td align="center">No</td>
+<td align="center">Problem not novel enough to require a bespoke solution</td>
+</tr>
+<tr>
+<td align="left"><a href="https://d3js.org/">D3</a></td>
+<td align="center">No</td>
+<td align="center">Doesn't specifically cover flow diagrams, so not fit for our purpose</td>
+</tr>
+<tr>
+<td align="left"><a href="https://flowchart.js.org/">Flowchart.js</a></td>
+<td align="center">No</td>
+<td align="center">Standalone visualisation generator, not possible to integrate into our application</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.jointjs.com/">JointJS</a></td>
+<td align="center">No</td>
+<td align="center">Not open source, $1,495 per licence</td>
+</tr>
+<tr>
+<td align="left"><a href="https://graphviz.org/">Graphviz</a></td>
+<td align="center">No</td>
+<td align="center">Graph visualisation is not quite what we need for our purpose</td>
+</tr>
+<tr>
+<td align="left"><a href="https://gojs.net/latest/index.html">GoJS</a></td>
+<td align="center">No</td>
+<td align="center">No open source, $6,990 for 3 developer licences</td>
+</tr>
+<tr>
+<td align="left"><a href="https://kroki.io/">Kroki</a></td>
+<td align="center">No</td>
+<td align="center">Unified API wrapper around a suite of visualisation libraries. This is not functionality that we require.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="decision">Decision</h2>
-<p>We ruled out incorporating service sign in pages into the transaction format for
-a few reasons.  Firstly, we realised that service sign pages could also be
-linked to from guides, as content designers sometimes embed start buttons in to
-them, so including them in the transaction format only wouldn't be suitable for
-guides.  Secondly, we felt that the scope of this mission did not include
-consolidating any product debt around transactions, which would be required in
-order to incorporate service sign pages, so it wasn't appropriate to follow this
-route.  Additionally, we knew from the outset that building a UI to support
-service sign in pages wasn't in scope for this mission, and in order to deliver
-a decent user experience for content designers we would probably need to alter
-the transaction UI.</p>
-<p>In order to have the flexibility of linking to service sign
-in pages from more than one format, and better handle the need for additional
-pages related to service sign in (e.g. create new account page) we decided to
-create a <code>service_sign_in</code> format.  We also made the decision that the format
-should house up to two pages; a required <code>choose_sign_in</code> page which contains
-the options that the user can choose from, and an optional <code>create_new_account</code>
-page which allows users to make a decision about which account they should sign
-up for.  We did consider creating a separate format for <code>create_new_account</code>
-however we felt that at the current time there is no need for a standalone page
-for this.</p>
+<p>Having performed a high level review of a variety of visualisation libraries, we have decided to use mermaid.js.</p>
+<p>It has the right balance of simplicity and functionality that we require. It is also possible to customise the presentation of the visualisations.</p>
+<p>We tested implementation of mermaid.js in a standalone project using the api, and were able to render the diagram within a html page. We also ran the webpack demo which demonstrates the use of mermaid.js as a dependency.</p>
+<p>We foresee a few limitations;</p>
+<ul>
+<li>The auto-positioning of the nodes (question/outcome boxes) is something we do not have control of i.e Mermaid rearranges their position depending on how the flowchart evolves</li>
+<li>Connecting lines do not always render in a visually appropriate way i.e sometimes they sit behind boxes or can overlap with other lines.</li>
+</ul>
 <h2 id="consequences">Consequences</h2>
-<p>If we explored the user needs met by abusing the guide format, and consolidated
-hacky usage of other formats into transactions to meet those needs, it may make
-more sense to have a less flexible format or extension to transactions which
-could potentially make the publisher workflow easier and allow consistent
-iterations to start pages as a product.</p>
+<p>To be able to integrate mermaid.js into Publisher, we will need to build a data translation service, that takes the flow as described in the data model, and converts this into the mermaid.js syntax.
+This is the largest remaining uncertainty, however, this concern is not specific to mermaid.js, and would have to tackled for any of the above visualisation libraries.</p>
 
 
             
@@ -256,8 +288,8 @@ iterations to start pages as a product.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-002-service-sign-in-new-format.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-002-service-sign-in-new-format.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-006-use-mermaid-for-simple-smart-answer-visualisation.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-006-use-mermaid-for-simple-smart-answer-visualisation.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

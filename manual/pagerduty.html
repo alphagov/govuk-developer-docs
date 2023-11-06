@@ -194,15 +194,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9018f0c5a286e9b20b7d470e1d9d9f8fcb30d142">6 Nov 2023</a>
 </div>
 
  <h1 id='header'>PagerDuty</h1> <p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming
@@ -221,12 +214,11 @@ them, otherwise they will be escalated further. NB, Technical 2nd Line shadowers
 <h2 id='creating-a-schedule-override'>Creating a schedule override</h2><p>There are times where developers need to make rota swaps or cover Technical 2nd Line last minute.
 See the <a href="https://support.pagerduty.com/docs/edit-schedules#create-overrides">Pagerduty documentation on how to schedule an override</a>.</p>
 <h2 id='pagerduty-drill'>PagerDuty drill</h2><p>Every week we test PagerDuty to make sure it can phone to alert us to
-any issues. This happens every Wednesday morning at 10am UTC.</p>
-<p>Cron creates a file on disk. Icinga raises a critical alert when that
-file exists with an Icinga contact group set so that PagerDuty is
-notified. After a short amount of time, cron will remove the file to
-resolve the alert. The <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/pagerduty_drill.pp">code that does this is in
-Puppet</a>.</p>
+any issues. This happens every Wednesday morning at 10am BST.</p>
+<p>Prometheus is currently firing a constant <code>Watchdog</code> alert, which fires all the time so that
+developers can see the that prometheus is integrated with alertmanager. In the
+<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/templates/alertmanager-config.tpl#L79-L85">alertmanager configs</a>
+the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am BST every Wednesday.</p>
 <p>You don&rsquo;t need to take any action for this alert. The primary in-office
 Technical 2nd Line developer should escalate the call to the secondary who should escalate
 it to &ldquo;escalations&rdquo; to ensure that phone redirection is working. The
@@ -235,14 +227,15 @@ anyone else being phoned.</p>
 <h3 id='triggering-the-drill-manually'>Triggering the drill manually</h3><p>To trigger the drill manually, follow these steps:</p>
 
 <ol>
-<li><p>SSH onto the monitoring box:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect <span class="nt">-e</span> production ssh aws/monitoring
+<li><p>Ask someone in the #platform-engineering team in order to run the pagerduty drill.</p></li>
+<li><p>Exec onto the alertmanager box after logging onto the production cluster:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl <span class="nb">exec</span> <span class="nt">-it</span> alertmanager-kube-prometheus-stack-alertmanager-0  <span class="nt">-n</span> monitoring <span class="nt">--</span> sh
 </code></pre></div></li>
-<li><p>Generate the file that the Icinga monitor looks for which triggers the alert:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo touch</span> /var/run/pagerduty_drill
+<li><p>Create the pagerduty drill alert, update the end datetime field to be about 5 minutes from when you create the alert before creating the alert:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>amtool <span class="nt">--alertmanager</span>.url<span class="o">=</span>http://localhost:9093 alert add <span class="nt">--end</span> &lt;end of alert datetime <span class="k">in </span>the form: 2023-11-03T15:59:00-00:00&gt; <span class="nv">alertname</span><span class="o">=</span><span class="s2">"PagerDuty test drill. Developers: escalate this alert. SMT: resolve this alert."</span> <span class="nv">severity</span><span class="o">=</span><span class="s1">'page'</span>
 </code></pre></div></li>
-<li><p>Delete the file once the test drill is triggered:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">sudo rm</span> /var/run/pagerduty_drill
+<li><p>Query the alerts to ensure that it is being triggered:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>amtool <span class="nt">--alertmanager</span>.url<span class="o">=</span>http://localhost:9093 alert query <span class="s1">'alertname=PagerDuty test drill. Developers: escalate this alert. SMT: resolve'</span>
 </code></pre></div></li>
 </ol>
 <h3 id='add-your-pagerduty-rota-to-google-calendar'>Add your Pagerduty rota to Google calendar</h3><p>You can sync your Pagerduty with Google Calendar so you can see your Technical 2nd Line and
