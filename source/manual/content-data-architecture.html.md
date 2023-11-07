@@ -105,7 +105,7 @@ This process is responsible for updating information about GOV.UK content from t
 
 An overview of the process is as follows:
 
-- Publishing API publishes messages about content changes to the [AmazonMQ content-data-api queue](https://grafana.blue.production.govuk.digital/dashboard/file/aws-amazonmq.json?refresh=10s&orgId=1)
+- Publishing API publishes messages about content changes to the [AmazonMQ content-data-api queue](https://grafana.eks.production.govuk.digital/d/mq/)
 - Content Data API subscribes to this queue using a [consumer process][]
 - The consumer process then creates [Sidekiq jobs][] (using Redis as a job management store) to ingest these messages via a rake task
 
