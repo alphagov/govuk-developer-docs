@@ -225,17 +225,48 @@
       - name: event
         value: event_data
 
-- name: contents link
+- name: contents list
   events:
     - name: link click
-      implemented: false
+      implemented: true
+      description: Tracking links on the contents list for the page or section.
       priority: medium
+      examples:
+        - text: Jobseeker's allowance (links to new pages)
+          link: https://www.gov.uk/jobseekers-allowance
+        - text: Cost of living payments (anchor links to same page)
+          link: https://www.gov.uk/guidance/cost-of-living-payment
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation (link to new page) or select_content (anchor link to same page)
+        - name: type
+          value: contents list
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: section
+          value: Contents
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
     - name: back to contents link click
       implemented: false
       priority: low
+      description: Tracks the 'contents' link to return to the contents list, appearing either at the bottom of the left hand column or in an element fixed to the bottom of the page.
+      examples:
+        - text: Cost of living payments (fixed to bottom of page)
+          link: https://www.gov.uk/guidance/cost-of-living-payment
+        - text: Budget 2016 (bottom of left hand column)
+          link: https://www.gov.uk/government/publications/budget-2016-documents/budget-2016
       data:
       - name: event
         value: event_data
