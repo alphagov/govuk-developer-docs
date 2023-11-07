@@ -199,15 +199,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8e1e37290bc4a5cf0842a4ca32f6e43244ec7734">5 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/42bc23a9edea3ade37c28d2166627052688162c5">7 Nov 2023</a>
 </div>
 
  <h1 id='header'>Content Data architecture</h1> <p><a href="https://content-data.publishing.service.gov.uk/content">Content Data</a> is a service that allows organisations to view performance and content metrics about GOV.UK pages they maintain, so that they can manage their content effectively over time. The data helps them decide what content to improve and prioritise.</p>
@@ -278,7 +271,7 @@
 <p>An overview of the process is as follows:</p>
 
 <ul>
-<li>Publishing API publishes messages about content changes to the <a href="https://grafana.blue.production.govuk.digital/dashboard/file/aws-amazonmq.json?refresh=10s&amp;orgId=1">AmazonMQ content-data-api queue</a></li>
+<li>Publishing API publishes messages about content changes to the <a href="https://grafana.eks.production.govuk.digital/d/mq/">AmazonMQ content-data-api queue</a></li>
 <li>Content Data API subscribes to this queue using a <a href="https://github.com/alphagov/content-data-api/blob/main/lib/tasks/publishing_api_consumer.rake#L3-L7">consumer process</a></li>
 <li>The consumer process then creates <a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq-queue-length-max-delay?orgId=1&amp;var-namespace=apps&amp;var-app=content-data-api-worker">Sidekiq jobs</a> (using Redis as a job management store) to ingest these messages via a rake task</li>
 </ul>
