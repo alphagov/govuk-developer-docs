@@ -91,7 +91,7 @@ connecting to the RabbitMQ control panel (see above).
 [AmazonMQ]: https://aws.amazon.com/amazon-mq/
 [RabbitMQ]: https://www.rabbitmq.com/
 [AMQP]: https://www.rabbitmq.com/tutorials/amqp-concepts.html
-[amazonmq-dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/amazonmq.json?refresh=10s&orgId=1
+[amazonmq-dashboard]: https://grafana.eks.production.govuk.digital/d/mq/
 [rabbitmq_overview]: https://github.com/alphagov/govuk_message_queue_consumer#Nomenclature
 [create_queues]: https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L9
 [publishing_api_publishes_message]: https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L26
