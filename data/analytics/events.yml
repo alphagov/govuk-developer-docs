@@ -709,8 +709,8 @@
       implemented: true
       priority: medium
       examples:
-      - text: Licence lookup
-        link: https://www.gov.uk/food-business-registration/westminster
+      - text: Tattoo, piercing and electrolysis licence (the 'change location' link)
+        link: https://www.gov.uk/find-licences/tattooists-piercing-and-electrolysis-licence-scotland/edinburgh
       tracker: link_tracker
       data:
       - name: event
@@ -722,14 +722,16 @@
         - name: action
           value: change response
         - name: external
-          value: '"true"'
         - name: method
         - name: section
         - name: text
         - name: tool_name
         - name: type
+        - name: link_domain
+        - name: link_path_parts
     - name: information click
       implemented: true
+      description: Tracks clicks from the results page, for example the 'go to council website' button.
       priority: medium
       examples:
       - text: Council lookup complete page
@@ -756,12 +758,11 @@
           - name: index_link
         - name: index_total
         - name: link_domain
-        - name: link_path_parts
         - name: method
-        - name: section
         - name: text
         - name: tool_name
         - name: type
+        - name: url
 
 - name: miscellaneous
   events:
