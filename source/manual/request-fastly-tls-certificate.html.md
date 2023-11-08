@@ -7,8 +7,7 @@ parent: "/manual.html"
 related_repos: [bouncer, transition]
 ---
 
-When transitioning HTTPS domains, these are the steps to request a TLS
-certificate from Fastly.
+When transitioning HTTPS domains, these are the steps to request a TLS certificate from Fastly.
 
 1. Login to Fastly. If you need access, speak to a member of the senior tech team. You will need "TLS management" permissions.
 
@@ -38,7 +37,7 @@ certificate from Fastly.
    dig <your-domain-name> +short
    ```
 
-   **gds_bouncer** - for any domain name which resolves to:
+   **bouncer.gds.map.fastly.net** - for any domain name which resolves to:
 
    ```
    - bouncer-cdn.production.govuk.service.gov.uk
@@ -46,7 +45,7 @@ certificate from Fastly.
    - 151.101.2.30, 151.101.66.30, 151.101.130.30, 151.101.194.30
    ```
 
-   **govuk** - for any domain name which resolves to:
+   **www-gov-uk.map.fastly.net** - for any domain name which resolves to:
 
    ```
    - backend.production.alphagov.co.uk
