@@ -6,8 +6,6 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-Sometimes you may have references (in logs or in a [locksmith log file](/manual/alerts/rebooting-machines.html#checking-locking-status)) to an EC2 instance by its internal name (for example ip-10-13-4-254.eu-west-1.compute.internal), and need to work out what it is.
-
 The numbers after IP are the internal IP address in AWS, which will allow you to narrow down where it should be:
 
 1. You can tell which environment it's in by looking at the first two octets of the IP (because we use /16s for environments) - production uses 10.13.0.0/16
