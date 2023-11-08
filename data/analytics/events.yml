@@ -874,6 +874,35 @@
         - name: withdrawn
         - name: world_locations
 
+- name: previous and next
+  events:
+    - name: previous and next
+      implemented: true
+      priority: medium
+      description:
+      examples:
+        - text: Buy a rod fishing licence
+          link: https://www.gov.uk/fishing-licences/types-of-licences-and-rod-limits
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: previous and next
+        - name: url
+        - name: text
+        - name: section
+          value: Either "Previous" or "Next"
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+
 - name: print page
   events:
     - name: print page
