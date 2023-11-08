@@ -68,7 +68,6 @@ Any Icinga checks that use `govuk_urgent_priority` will cause PagerDuty to be no
 - [Overdue publications in Whitehall](/manual/alerts/whitehall-scheduled-publishing.html#overdue-publications-in-whitehall)
 - [Scheduled publications in Whitehall not queued](/manual/alerts/whitehall-scheduled-publishing.html#scheduled-publications-in-whitehall-not-queued)
 - [High nginx 5xx rate for www-origin on cache machines](/manual/alerts/high-nginx-5xx-rate.html)
-- [varnishd port not responding](/manual/alerts/varnish-port-not-responding.html)
 
    You can get the most up to date list of these by searching the Puppet repo for [govuk_urgent_priority](https://github.com/alphagov/govuk-puppet/search?q=govuk_urgent_priority).
 
