@@ -178,19 +178,11 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/768fcef02d78c8364c18f94cabb2e2b372d7d65b">5 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/42a1c0305b1bfed7a22520918c3aa693b1751fcd">8 Nov 2023</a>
 </div>
 
- <h1 id='header'>Request Fastly TLS certificate</h1> <p>When transitioning HTTPS domains, these are the steps to request a TLS
-certificate from Fastly.</p>
+ <h1 id='header'>Request Fastly TLS certificate</h1> <p>When transitioning HTTPS domains, these are the steps to request a TLS certificate from Fastly.</p>
 
 <ol>
 <li><p>Login to Fastly. If you need access, speak to a member of the senior tech team. You will need &ldquo;TLS management&rdquo; permissions.</p></li>
@@ -215,11 +207,11 @@ certificate from Fastly.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   ping &lt;your-domain-name&gt;
 </code></pre></div><p>or</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   dig &lt;your-domain-name&gt; +short
-</code></pre></div><p><strong>gds_bouncer</strong> - for any domain name which resolves to:</p>
+</code></pre></div><p><strong>bouncer.gds.map.fastly.net</strong> - for any domain name which resolves to:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   - bouncer-cdn.production.govuk.service.gov.uk
    - bouncer.gds.map.fastly.net
    - 151.101.2.30, 151.101.66.30, 151.101.130.30, 151.101.194.30
-</code></pre></div><p><strong>govuk</strong> - for any domain name which resolves to:</p>
+</code></pre></div><p><strong>www-gov-uk.map.fastly.net</strong> - for any domain name which resolves to:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   - backend.production.alphagov.co.uk
    - redirector-cdn.production.govuk.service.gov.uk
    - redirector-cdn-ssl-businesslink.production.govuk.service.gov.uk
