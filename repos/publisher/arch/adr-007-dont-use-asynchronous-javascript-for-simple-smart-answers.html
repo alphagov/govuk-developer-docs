@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: search-admin - GOV.UK Developer Documentation</title>
+    <title>publisher: ADR007 – Don’t use asynchronous javascript for simple smart answers - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-admin.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-007-dont-use-asynchronous-javascript-for-simple-smart-answers.html">
 
-      <meta name="description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: search-admin - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta name="twitter:title" content="publisher: ADR007 – Don’t use asynchronous javascript for simple smart answers - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-007-dont-use-asynchronous-javascript-for-simple-smart-answers.html" />
 
-      <meta property="og:description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: search-admin" />
+      <meta property="og:title" content="publisher: ADR007 – Don’t use asynchronous javascript for simple smart answers" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-007-dont-use-asynchronous-javascript-for-simple-smart-answers.html" />
 
     
   </head>
@@ -126,10 +124,22 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                   <ul>
     <li>
-      <a href="/repos/search-admin.html" rel="noopener" class="govuk-link">search-admin</a>
+      <a href="/repos/publisher.html" rel="noopener" class="govuk-link">publisher</a>
     </li>
     <li>
       <ul>
+          <li><a href="/repos/publisher/fact-checking.html" rel="noopener" class="govuk-link">Fact Checking</a></li>
+          <li><a href="/repos/publisher/simple-smart-answer.html" rel="noopener" class="govuk-link">Simple Smart Answer</a></li>
+          <li class="subdir__heading">arch</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/publisher/arch/adr-001-service-sign-in-pages-not-linked-to-with-content-id.html" rel="noopener" class="govuk-link">Decision record: Why Service sign in pages aren't linked to from transaction pages using a content id</a></li>
+              <li><a href="/repos/publisher/arch/adr-002-service-sign-in-new-format.html" rel="noopener" class="govuk-link">Decision record: Why "Service sign in" is its own format</a></li>
+              <li><a href="/repos/publisher/arch/adr-003-using-rake-to-create-service-sign-in-pages.html" rel="noopener" class="govuk-link">Decision record: Why "Service sign in" pages are created using rake tasks</a></li>
+              <li><a href="/repos/publisher/arch/adr-004-rendering-service-sign-in-from-government-frontend.html" rel="noopener" class="govuk-link">Decision record: Rendering Service Sign In pages using Government Frontend</a></li>
+              <li><a href="/repos/publisher/arch/adr-005-forking-frontend-components-from-govuk-frontend.html" rel="noopener" class="govuk-link">Decision record: Forking frontend components from GOV.UK Frontend</a></li>
+              <li><a href="/repos/publisher/arch/adr-006-use-mermaid-for-simple-smart-answer-visualisation.html" rel="noopener" class="govuk-link">ADR 006 - Use Mermaid for Simple Smart Answer Visualisation</a></li>
+              <li><a href="/repos/publisher/arch/adr-007-dont-use-asynchronous-javascript-for-simple-smart-answers.html" rel="noopener" class="govuk-link">ADR007 – Don’t use asynchronous javascript for simple smart answers</a></li>
+          </ul>
       </ul>
     </li>
   </ul>
@@ -161,6 +171,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "publisher",
+        "@id": "http://www.dev.gov.uk/repos/publisher.html"
+      }
     }
   ]
 }
@@ -169,116 +187,45 @@
 <div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/publisher.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;publisher&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/publisher.html">publisher</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Application: search-admin</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Admin for GOV.UK search</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/search-admin">search-admin</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/user-experience-measurement-govuk-robot-invasion">#user-experience-measurement-govuk-robot-invasion</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS (EKS)</strong></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Supporting apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://search-admin.publishing.service.gov.uk" class="govuk-link">search-admin.publishing.service.gov.uk</a></li>
-    <li><a href="https://sentry.io/govuk/app-search-admin" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/000000111?var-app=search-admin" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/search-admin" class="govuk-link">Argo CD (search-admin)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/publisher/commit/ff1db7fc08c8df749bb5118cbf498375adfb2293">7 Nov 2023</a>
 </div>
-<h2 id='example-pages-published-by-search-admin'>Example pages published by search-admin</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="http://www.hyndburnbc.gov.uk" class="govuk-link">Hyndburn Borough Council</a></li>
-      <li><a href="http://www.stevenage.gov.uk" class="govuk-link">Stevenage Borough Council</a></li>
-      <li><a href="https://www.lewes-eastbourne.gov.uk" class="govuk-link">Lewes District Council</a></li>
-      <li><a href="https://find-a-professional-service-abroad.service.csd.fcdo.gov.uk/find?serviceType=lawyers" class="govuk-link">Find a lawyer abroad</a></li>
-      <li><a href="http://www.redbridge.gov.uk/" class="govuk-link">London Borough of Redbridge Council</a></li>
-      <li><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/coronavirus-vaccination/" class="govuk-link">Book a coronavirus vaccination - NHS</a></li>
-      <li><a href="http://www.calderdale.gov.uk" class="govuk-link">Calderdale Metropolitan Borough Council</a></li>
-      <li><a href="http://www.cravendc.gov.uk" class="govuk-link">Craven District Council</a></li>
-      <li><a href="http://www.northumberland.gov.uk" class="govuk-link">Northumberland County Council</a></li>
-      <li><a href="http://www.e-lindsey.gov.uk" class="govuk-link">East Lindsey District Council</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Manages search &ldquo;best bets&rdquo; and &ldquo;external links&rdquo; along with other search and browse data.</p>
+  <h1 class="page-title">publisher: ADR007 – Don’t use asynchronous javascript for simple smart answers</h1>
 
-<h2 id="screenshots">Screenshots</h2>
-
-<p><img src="https://raw.githubusercontent.com/alphagov/search-admin/main/docs/images/screenshot.png" alt="Search Admin"></p>
-
-<h2 id="live-example">Live example</h2>
-
+  
+<p>Date 2023-11-06</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="context">Context</h2>
+<p>There was some work to make the Mainstream publisher user interface more user friendly around 2015 by introducing an asynchronous post back mechanism that posted current edit state to the server without posting the page and requiring a page refresh.</p>
+<p>This commit comment explains that at the time, Simple Smart Answers (SSA) was excluded from the work
+<a href="https://github.com/alphagov/publisher/pull/358/commits/74e4d135d9619cf799935b8ca2ea45cffc62f2d3">https://github.com/alphagov/publisher/pull/358/commits/74e4d135d9619cf799935b8ca2ea45cffc62f2d3</a></p>
+<blockquote>
+<p><strong>Don't save simple smart answers using ajax</strong>. Javascript form construction is too complex to handle validation
+without a full page reload, at least for now.</p>
+</blockquote>
+<p>This has been revisited recently as users have requested the asynchronous postback feature to be added to Simple Smart Answers.</p>
+<p>Similar to Guides (which are made up of smaller components called Parts), SSA also need a separate module that handles its own smaller components (Nodes) more gracefully. This will allow us to use Snackbars with SSA and validations will be handled correctly in all parts of the SSA form, following current convention the module could be called ajax_save_with_nodes.js</p>
+<p>It was decided that the effort to create a well tested ajax_save_with_nodes.js module for SSA, is not something we have capacity for within the team at this time. Although there is benefit for the users to have features such as Snackbars, there is a possibility that we may be moving Publisher over to the GDS Design System, where Javascript is not permitted, meaning Snackbars may end up being removed from publisher entirely, making the effort redundant.</p>
+<h2 id="decision">Decision</h2>
+<p>We will not implement asynchronous javascript saves for the simple smart answers content type in publisher</p>
+<h2 id="consequences">Consequences</h2>
 <ul>
-<li><a href="https://search-admin.publishing.service.gov.uk/">https://search-admin.publishing.service.gov.uk/</a></li>
+<li>The Simple Smart Answers content type will continue to do a full post back on save</li>
+<li>Additional work that depends on the async postback will be archived, for example retaining scroll position on save</li>
 </ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rake</code></p>
-
-<h3 id="external-links">External links</h3>
-
-<p>Run <code>bundle exec rake publish_external_links:publishing_api</code> to send all external links to the publishing API.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/search-admin/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
 
 
             
@@ -286,8 +233,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-admin.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-007-dont-use-asynchronous-javascript-for-simple-smart-answers.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-007-dont-use-asynchronous-javascript-for-simple-smart-answers.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
