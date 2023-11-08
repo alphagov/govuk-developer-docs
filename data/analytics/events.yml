@@ -903,14 +903,14 @@
         - name: link_domain
         - name: link_path_parts
 
-- name: print page
+- name: printing
   events:
-    - name: print page
+    - name: print page button
       implemented: true
       priority: low
       description: When a 'print this page' button is used
       examples:
-        - text: Page with print button
+        - text: Register a trust as a trustee
           link: https://www.gov.uk/guidance/register-a-trust-as-a-trustee
       tracker: event_tracker
       data:
@@ -928,6 +928,47 @@
         - name: type
           value: print page
         - name: text
+    - name: print page dialog
+      implemented: true
+      priority: low
+      description: Tracks when the browser print dialog is opened by the user, for example through the browser File->Print menu.
+      tracker: print_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: print_page
+        - name: type
+          value: print page
+        - name: method
+          value: browser print
+    - name: view printable version
+      implemented: true
+      priority: low
+      description: Tracking links to a printable version of a multi page guide
+      examples:
+        - text: Buy a rod fishing licence
+          link: https://www.gov.uk/fishing-licences/types-of-licences-and-rod-limits
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: print page
+        - name: url
+        - name: text
+        - name: section
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
 
 - name: related navigation
   description: Events gathered in the contextual sidebar, contextual footer and related navigation components.
