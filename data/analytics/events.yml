@@ -1058,12 +1058,52 @@
 
 - name: see all link
   events:
-    - name: see all link click
-      implemented: false
+    - name: see all link click (in page)
+      implemented: true
       priority: medium
+      description: Tracks clicks on the see all link when that link goes to another part of the same page.
+      examples:
+        - text: Cost of Living payments (click on 'See all updates')
+          link: https://www.gov.uk/guidance/cost-of-living-payment
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: select_content
+        - name: type
+          value: content history
+        - name: text
+        - name: section
+        - name: action
+          value: Either "opened" or "closed"
+    - name: see all link click (to another page)
+      implemented: true
+      priority: medium
+      description: Tracks clicks on the see all link when that link goes to a different page.
+      examples:
+        - text: Air passenger duty
+          link: https://www.gov.uk/hmrc-internal-manuals/air-passenger-duty
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: opened
+        - name: event_name
+          value: navigation
+        - name: external
+          value: "false"
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: section
+        - name: type
+          value: content history
+        - name: text
+        - name: url
 
 - name: search
   events:
