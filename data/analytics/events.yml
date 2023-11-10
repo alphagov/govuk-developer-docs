@@ -1987,6 +1987,40 @@
           - name: index_section
           - name: index_section_count
 
+- name: taxonomy pages
+  events:
+    - name: taxonomy page links
+      implemented: true
+      priority: medium
+      description:
+      examples:
+        - text: Parenting, childcare and children's services
+          link: https://www.gov.uk/childcare-parenting
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: "false"
+        - name: index
+          value:
+          - name: index_link
+          - name: index_section
+          - name: index_section_count
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: section
+        - name: text
+        - name: type
+          value: document list/organisation logo/subtopic list/see all
+        - name: url
+
 - name: video
   events:
     - name: Video start
