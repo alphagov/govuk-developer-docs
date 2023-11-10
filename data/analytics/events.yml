@@ -178,19 +178,24 @@
         - name: index
           value:
           - name: index_link
+          - name: index_section
+          - name: index_section_count
         - name: index_total
         - name: external
           value: "false"
         - name: method
         - name: link_domain
         - name: link_path_parts
+        - name: section
     - name: browse subtopic (browse level 2)
       implemented: true
       priority: medium
       description: Tracking the final level of the browse pages.
       examples:
-        - text: Browse level 2
+        - text: Browse level 2 (A to Z)
           link: https://www.gov.uk/browse/births-deaths-marriages/child
+        - text: Browse level 2 (curated)
+          link: https://www.gov.uk/browse/births-deaths-marriages/marriage-divorce
       tracker: link_tracker
       data:
       - name: event
@@ -200,7 +205,7 @@
         - name: event_name
           value: navigation
         - name: type
-          value: browse card
+          value: browse list
         - name: url
         - name: text
         - name: index
@@ -210,6 +215,7 @@
           - name: index_section_count
         - name: index_total
         - name: section
+          value: Either name of the section or "A to Z"
         - name: external
           value: "false"
         - name: method
