@@ -1084,14 +1084,12 @@
         - name: external
 
 - name: scroll tracking
+  description: Scroll tracking is currently not being used on any pages on GOV.UK.
   events:
     - name: percentage scroll tracking
       implemented: true
       priority: medium
       tracker: scroll_tracker
-      examples:
-        - text: Search results
-          link: https://www.gov.uk/search/all?keywords=minister&order=relevance
       data:
       - name: event
         value: event_data
@@ -1108,9 +1106,6 @@
       implemented: true
       priority: medium
       tracker: scroll_tracker
-      examples:
-        - text: GOV.UK homepage
-          link: https://www.gov.uk/
       data:
       - name: event
         value: event_data
@@ -1132,6 +1127,30 @@
           value: text of heading reached
         - name: type
           value: heading
+    - name: marker scroll tracking
+      implemented: true
+      priority: medium
+      description: Tracks when a user scrolls to a custom marker that has been placed on any HTML element on the page, such as a specific heading or paragraph. Generally used where scroll tracking is required on some headings, but not all.
+      tracker: scroll_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: scroll
+        - name: event_name
+          value: scroll
+        - name: index
+          value:
+          - name: index_section
+            value: index of the marker reached
+          - name: index_section_count
+            value: total number of markers being tracked
+        - name: text
+        - name: section
+        - name: type
+          value: marker
 
 - name: see all link
   events:
