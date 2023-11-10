@@ -340,31 +340,102 @@
         - name: method
 
 - name: email subscriptions
+  description: Tracking email subscriptions across GOV.UK, for example from search results or topic pages.
   events:
-    - name: get emails about this page link click
-      implemented: false
+    - name: get emails about this page
+      implemented: true
       priority: medium
+      examples:
+        - text: Welfare topic page (start of email subscription journey)
+          link: https://www.gov.uk/welfare
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
-    - name: change how often you get emails
-      implemented: false
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: "false"
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: section
+        - name: text
+        - name: type
+          value: subscribe
+        - name: url
+    - name: responses
+      implemented: true
       priority: medium
+      description: Tracks when questions are answered throughout the email subscriptions journey, for example 'how often do you want to receive emails?'. Note that some questions do not include options other than to continue, for example the 'Confirm you want to get emails' question is asked towards the end of the journey, but only has 'Confirm' or 'cancel' as options.
+      tracker: form_tracker
       data:
       - name: event
         value: event_data
-    - name: unsubscribe
-      implemented: false
+      - name: event_data
+        value:
+        - name: action
+          value: continue/save/unsubscribe
+        - name: event_name
+          value: form_response
+        - name: section
+          value: The text of the question, for example 'What do you want to get emails about?'
+        - name: text
+          value: The question option selected, or PII redacted text value
+        - name: tool_name
+          value: Get emails from GOV.UK
+        - name: type
+          value: email subscription
+    - name: form error
+      implemented: true
       priority: medium
+      description: Tracks form errors in questions asked, for example if options are given and a user does not choose one before attempting to continue.
+      tracker: auto_tracker
       data:
       - name: event
         value: event_data
-    - name: unsubscribe from everything
-      implemented: false
+      - name: event_data
+        value:
+        - name: action
+          value: error
+        - name: event_name
+          value: form_error
+        - name: section
+          value: The text of the question, for example 'What do you want to get emails about?'
+        - name: text
+          value: The text of the error message
+        - name: tool_name
+          value: Get emails from GOV.UK
+        - name: type
+          value: email subscription
+    - name: form completion
+      implemented: true
       priority: medium
+      description: Occurs when a user successfully completes an email subscription journey
+      tracker: auto_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: complete
+        - name: event_name
+          value: form_complete
+        - name: section
+          value: Manage your GOV.UK email subscriptions
+        - name: text
+          value: You've successfully subscribed to emails about (subject)
+        - name: tool_name
+          value: Get emails from GOV.UK
+        - name: type
+          value: email subscription
 
 - name: feedback
   description: Tracking the 'is this page useful?' component at the bottom of every GOV.UK page.
