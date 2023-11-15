@@ -49,7 +49,34 @@
           - name: index_section_count
         - name: action
           value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
-
+    - name: Accordion links
+      implemented: true
+      priority: high
+      description: When links within accordion sections are clicked.
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: accordion
+        - name: url
+        - name: text
+          value: Text of the link
+        - name: index
+          value:
+          - name: index_link
+          - name: index_section
+          - name: index_section_count
+        - name: index_total
+        - name: section
+        - name: external
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
 - name: banners
   events:
     - name: banner shown
@@ -96,7 +123,7 @@
         - name: method
         - name: text
         - name: type
-          value: breadcrumbs
+          value: breadcrumb
         - name: url
 
 - name: browse
@@ -151,19 +178,24 @@
         - name: index
           value:
           - name: index_link
+          - name: index_section
+          - name: index_section_count
         - name: index_total
         - name: external
           value: "false"
         - name: method
         - name: link_domain
         - name: link_path_parts
+        - name: section
     - name: browse subtopic (browse level 2)
       implemented: true
       priority: medium
       description: Tracking the final level of the browse pages.
       examples:
-        - text: Browse level 2
+        - text: Browse level 2 (A to Z)
           link: https://www.gov.uk/browse/births-deaths-marriages/child
+        - text: Browse level 2 (curated)
+          link: https://www.gov.uk/browse/births-deaths-marriages/marriage-divorce
       tracker: link_tracker
       data:
       - name: event
@@ -173,7 +205,7 @@
         - name: event_name
           value: navigation
         - name: type
-          value: browse card
+          value: browse list
         - name: url
         - name: text
         - name: index
@@ -183,6 +215,7 @@
           - name: index_section_count
         - name: index_total
         - name: section
+          value: Either name of the section or "A to Z"
         - name: external
           value: "false"
         - name: method
@@ -198,17 +231,48 @@
       - name: event
         value: event_data
 
-- name: contents link
+- name: contents list
   events:
     - name: link click
-      implemented: false
+      implemented: true
+      description: Tracking links on the contents list for the page or section.
       priority: medium
+      examples:
+        - text: Jobseeker's allowance (links to new pages)
+          link: https://www.gov.uk/jobseekers-allowance
+        - text: Cost of living payments (anchor links to same page)
+          link: https://www.gov.uk/guidance/cost-of-living-payment
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation (link to new page) or select_content (anchor link to same page)
+        - name: type
+          value: contents list
+        - name: url
+        - name: text
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: section
+          value: Contents
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
     - name: back to contents link click
       implemented: false
       priority: low
+      description: Tracks the 'contents' link to return to the contents list, appearing either at the bottom of the left hand column or in an element fixed to the bottom of the page.
+      examples:
+        - text: Cost of living payments (fixed to bottom of page)
+          link: https://www.gov.uk/guidance/cost-of-living-payment
+        - text: Budget 2016 (bottom of left hand column)
+          link: https://www.gov.uk/government/publications/budget-2016-documents/budget-2016
       data:
       - name: event
         value: event_data
@@ -228,8 +292,8 @@
       implemented: true
       priority: medium
       examples:
-        - text: Search pages
-          link: https://www.gov.uk/search/all?keywords=minister&order=relevance
+        - text: Research and statistics
+          link: https://www.gov.uk/search/research-and-statistics
       tracker: link_tracker
       data:
       - name: event
@@ -248,7 +312,7 @@
         - name: index_total
         - name: section
         - name: external
-          value: false
+          value: "false"
         - name: link_domain
         - name: link_path_parts
         - name: method
@@ -276,39 +340,111 @@
         - name: index_total
         - name: section
         - name: external
-          value: false
+          value: "false"
         - name: link_domain
         - name: link_path_parts
         - name: method
 
 - name: email subscriptions
+  description: Tracking email subscriptions across GOV.UK, for example from search results or topic pages.
   events:
-    - name: get emails about this page link click
-      implemented: false
+    - name: get emails about this page
+      implemented: true
       priority: medium
+      examples:
+        - text: Welfare topic page (start of email subscription journey)
+          link: https://www.gov.uk/welfare
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
-    - name: change how often you get emails
-      implemented: false
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: "false"
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: section
+        - name: text
+        - name: type
+          value: subscribe
+        - name: url
+    - name: responses
+      implemented: true
       priority: medium
+      description: Tracks when questions are answered throughout the email subscriptions journey, for example 'how often do you want to receive emails?'. Note that some questions do not include options other than to continue, for example the 'Confirm you want to get emails' question is asked towards the end of the journey, but only has 'Confirm' or 'cancel' as options.
+      tracker: form_tracker
       data:
       - name: event
         value: event_data
-    - name: unsubscribe
-      implemented: false
+      - name: event_data
+        value:
+        - name: action
+          value: continue/save/unsubscribe
+        - name: event_name
+          value: form_response
+        - name: section
+          value: The text of the question, for example 'What do you want to get emails about?'
+        - name: text
+          value: The question option selected, or PII redacted text value
+        - name: tool_name
+          value: Get emails from GOV.UK
+        - name: type
+          value: email subscription
+    - name: form error
+      implemented: true
       priority: medium
+      description: Tracks form errors in questions asked, for example if options are given and a user does not choose one before attempting to continue.
+      tracker: auto_tracker
       data:
       - name: event
         value: event_data
-    - name: unsubscribe from everything
-      implemented: false
+      - name: event_data
+        value:
+        - name: action
+          value: error
+        - name: event_name
+          value: form_error
+        - name: section
+          value: The text of the question, for example 'What do you want to get emails about?'
+        - name: text
+          value: The text of the error message
+        - name: tool_name
+          value: Get emails from GOV.UK
+        - name: type
+          value: email subscription
+    - name: form completion
+      implemented: true
       priority: medium
+      description: Occurs when a user successfully completes an email subscription journey
+      tracker: auto_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: complete
+        - name: event_name
+          value: form_complete
+        - name: section
+          value: Manage your GOV.UK email subscriptions
+        - name: text
+          value: You've successfully subscribed to emails about (subject)
+        - name: tool_name
+          value: Get emails from GOV.UK
+        - name: type
+          value: email subscription
 
 - name: feedback
+  description: Tracking the 'is this page useful?' component at the bottom of every GOV.UK page.
   events:
     - name: Is this page useful? Yes
       implemented: true
@@ -367,7 +503,7 @@
     - name: Send me the survey
       implemented: true
       priority: medium
-      description:
+      description: Clicking the 'send me the survey' button after choosing 'No'
       tracker: event_tracker
       data:
       - name: event
@@ -385,7 +521,7 @@
     - name: Send
       implemented: true
       priority: medium
-      description:
+      description: Clicking the 'send' button after choosing 'Report a problem with this page'
       tracker: event_tracker
       data:
       - name: event
@@ -426,7 +562,7 @@
           - name: index_link
             value: The position of the link within its section.
           - name: index_section_count
-            value: 5
+            value: "5"
         - name: index_total
         - name: link_domain
         - name: link_path_parts
@@ -436,7 +572,7 @@
           value: footer
         - name: url
         - name: section
-          value: One of "Topics", "Government Activity", "Support Links", "Licence", or "Copyright"
+          value: One of "Services and information", "Government Activity", "Support Links", "Licence", or "Copyright"
 
 - name: forms
   events:
@@ -452,8 +588,11 @@
     - name: Link clicks
       implemented: true
       priority: medium
-      description:
-      tracker:
+      description: Tracking links on the homepage.
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk
+      tracker: link_tracker
       data:
       - name: event
         value: event_data
@@ -470,6 +609,12 @@
           - name: index_section_count
         - name: index_total
         - name: section
+        - name: url
+        - name: text
+        - name: external
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
 
 - name: html attachments
   events:
@@ -503,6 +648,9 @@
       implemented: true
       priority: high
       description: When a link is followed to a page outside of www.gov.uk.
+      examples:
+        - text: Apply for a passport ('Start now' button)
+          link: https://www.gov.uk/apply-renew-passport
       tracker: specialist_link_tracker
       data:
       - name: event
@@ -524,6 +672,9 @@
       implemented: true
       priority: high
       description: When a link is followed to an asset such as a PDF.
+      examples:
+        - text: 2023 Government Chemist Conference presentations and recordings (links in the 'all presentation slides' section)
+          link: https://www.gov.uk/government/news/the-2023-government-chemist-conference-presentations
       tracker: specialist_link_tracker
       data:
       - name: event
@@ -533,6 +684,7 @@
         - name: event_name
           value: file_download
         - name: external
+          value: "true"
         - name: link_domain
         - name: link_path_parts
         - name: method
@@ -544,6 +696,9 @@
       implemented: true
       priority: low
       description: 'When a link points to an email address using mailto:'
+      examples:
+        - text: Attorney General's Office ('Contact AGO' section)
+          link: https://www.gov.uk/government/organisations/attorney-generals-office
       tracker: specialist_link_tracker
       data:
       - name: event
@@ -554,7 +709,6 @@
           value: navigation
         - name: external
           value: '"true"'
-        - name: link_domain
         - name: link_path_parts
         - name: method
         - name: text
@@ -564,7 +718,10 @@
     - name: file attachment links
       implemented: true
       priority: medium
-      description: 'Links on our guidance pages that contain file attachments, such as https://www.gov.uk/government/publications/equality-act-guidance'
+      description: Links on our guidance pages that contain file attachments, such as .zip files.
+      examples:
+        - text: Lasting power of attorney forms
+          link: https://www.gov.uk/government/publications/make-a-lasting-power-of-attorney
       tracker: link_tracker
       data:
       - name: event
@@ -660,8 +817,8 @@
       implemented: true
       priority: medium
       examples:
-      - text: Licence lookup
-        link: https://www.gov.uk/food-business-registration/westminster
+      - text: Tattoo, piercing and electrolysis licence (the 'change location' link)
+        link: https://www.gov.uk/find-licences/tattooists-piercing-and-electrolysis-licence-scotland/edinburgh
       tracker: link_tracker
       data:
       - name: event
@@ -673,14 +830,16 @@
         - name: action
           value: change response
         - name: external
-          value: '"true"'
         - name: method
         - name: section
         - name: text
         - name: tool_name
         - name: type
+        - name: link_domain
+        - name: link_path_parts
     - name: information click
       implemented: true
+      description: Tracks clicks from the results page, for example the 'go to council website' button.
       priority: medium
       examples:
       - text: Council lookup complete page
@@ -707,12 +866,11 @@
           - name: index_link
         - name: index_total
         - name: link_domain
-        - name: link_path_parts
         - name: method
-        - name: section
         - name: text
         - name: tool_name
         - name: type
+        - name: url
 
 - name: miscellaneous
   events:
@@ -735,18 +893,6 @@
       - name: event
         value: event_data
     - name: see all updates link click
-      implemented: false
-      priority: low
-      data:
-      - name: event
-        value: event_data
-    - name: view printable version of page
-      implemented: false
-      priority: low
-      data:
-      - name: event
-        value: event_data
-    - name: video
       implemented: false
       priority: low
       data:
@@ -793,14 +939,43 @@
         - name: withdrawn
         - name: world_locations
 
-- name: print page
+- name: previous and next
   events:
-    - name: print page
+    - name: previous and next
+      implemented: true
+      priority: medium
+      description:
+      examples:
+        - text: Buy a rod fishing licence
+          link: https://www.gov.uk/fishing-licences/types-of-licences-and-rod-limits
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: previous and next
+        - name: url
+        - name: text
+        - name: section
+          value: Either "Previous" or "Next"
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+
+- name: printing
+  events:
+    - name: print page button
       implemented: true
       priority: low
       description: When a 'print this page' button is used
       examples:
-        - text: Page with print button
+        - text: Register a trust as a trustee
           link: https://www.gov.uk/guidance/register-a-trust-as-a-trustee
       tracker: event_tracker
       data:
@@ -818,6 +993,47 @@
         - name: type
           value: print page
         - name: text
+    - name: print page dialog
+      implemented: true
+      priority: low
+      description: Tracks when the browser print dialog is opened by the user, for example through the browser File->Print menu.
+      tracker: print_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: print_page
+        - name: type
+          value: print page
+        - name: method
+          value: browser print
+    - name: view printable version
+      implemented: true
+      priority: low
+      description: Tracking links to a printable version of a multi page guide
+      examples:
+        - text: Buy a rod fishing licence
+          link: https://www.gov.uk/fishing-licences/types-of-licences-and-rod-limits
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: print page
+        - name: url
+        - name: text
+        - name: section
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
 
 - name: related navigation
   description: Events gathered in the contextual sidebar, contextual footer and related navigation components.
@@ -856,14 +1072,12 @@
         - name: external
 
 - name: scroll tracking
+  description: Scroll tracking is currently not being used on any pages on GOV.UK.
   events:
     - name: percentage scroll tracking
       implemented: true
       priority: medium
       tracker: scroll_tracker
-      examples:
-        - text: Search results
-          link: https://www.gov.uk/search/all?keywords=minister&order=relevance
       data:
       - name: event
         value: event_data
@@ -880,9 +1094,6 @@
       implemented: true
       priority: medium
       tracker: scroll_tracker
-      examples:
-        - text: GOV.UK homepage
-          link: https://www.gov.uk/
       data:
       - name: event
         value: event_data
@@ -904,15 +1115,79 @@
           value: text of heading reached
         - name: type
           value: heading
-
-- name: see all link
-  events:
-    - name: see all link click
-      implemented: false
+    - name: marker scroll tracking
+      implemented: true
       priority: medium
+      description: Tracks when a user scrolls to a custom marker that has been placed on any HTML element on the page, such as a specific heading or paragraph. Generally used where scroll tracking is required on some headings, but not all.
+      tracker: scroll_tracker
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: scroll
+        - name: event_name
+          value: scroll
+        - name: index
+          value:
+          - name: index_section
+            value: index of the marker reached
+          - name: index_section_count
+            value: total number of markers being tracked
+        - name: text
+        - name: section
+        - name: type
+          value: marker
+
+- name: see all link
+  events:
+    - name: see all link click (in page)
+      implemented: true
+      priority: medium
+      description: Tracks clicks on the see all link when that link goes to another part of the same page.
+      examples:
+        - text: Cost of Living payments (click on 'See all updates')
+          link: https://www.gov.uk/guidance/cost-of-living-payment
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: select_content
+        - name: type
+          value: content history
+        - name: text
+        - name: section
+        - name: action
+          value: Either "opened" or "closed"
+    - name: see all link click (to another page)
+      implemented: true
+      priority: medium
+      description: Tracks clicks on the see all link when that link goes to a different page.
+      examples:
+        - text: Air passenger duty
+          link: https://www.gov.uk/hmrc-internal-manuals/air-passenger-duty
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: opened
+        - name: event_name
+          value: navigation
+        - name: external
+          value: "false"
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: section
+        - name: type
+          value: content history
+        - name: text
+        - name: url
 
 - name: search
   events:
@@ -1067,7 +1342,7 @@
         - name: event_name
           value: navigation
         - name: external
-          value: true
+          value: "true"
         - name: index
           value:
           - name: index_link
@@ -1093,9 +1368,9 @@
       - name: event_data
         value:
         - name: event_name
-          value: share
+          value: navigation
         - name: external
-          value: true
+          value: "true"
         - name: index
           value:
           - name: index_link
@@ -1105,7 +1380,7 @@
         - name: method
         - name: text
         - name: type
-          value: share this page
+          value: share page
         - name: url
 
 - name: simple smart answers
@@ -1318,10 +1593,11 @@
         - name: action
           value: start
         - name: external
-          value: false
+          value: "false"
         - name: link_domain
         - name: link_path_parts
         - name: tool_name
+        - name: method
     - name: submit question
       implemented: true
       priority: high
@@ -1392,7 +1668,7 @@
         - name: action
           value: change response
         - name: external
-          value: false
+          value: "false"
         - name: method
         - name: link_domain
         - name: link_path_parts
@@ -1459,13 +1735,16 @@
       data:
       - name: event
         value: search_results
+      - name: event_data
+        value:
+        - name: external
       - name: search_results
         value:
         - name: ecommerce
           value:
           - name: items
         - name: event_name
-          value: view_item_list
+          value: select_item
         - name: results
     - name: start again link click
       implemented: true
@@ -1490,7 +1769,7 @@
         - name: action
           value: start again
         - name: external
-          value: false
+          value: "false"
         - name: method
         - name: link_domain
         - name: link_path_parts
@@ -1519,6 +1798,7 @@
           value:
           - name: index_section
           - name: index_section_count
+        - name: index_total
         - name: text
           value: title of the opened/closed step
         - name: type
@@ -1544,8 +1824,9 @@
           value:
           - name: index_section
             value: '0'
+          - name: index_section_count
         - name: text
-          value: Show all steps
+          value: Show/Hide all steps
         - name: type
           value: "step by step"
     - name: link clicks
@@ -1569,6 +1850,7 @@
           - name: index_section
           - name: index_link
             value: The position of the link within this section.
+          - name: index_section_count
         - name: index_total
         - name: link_domain
         - name: link_path_parts
@@ -1591,6 +1873,37 @@
 
 - name: super navigation header
   events:
+    - name: Crown icon link
+      implemented: true
+      priority: high
+      description: When the crown link to the homepage is clicked.
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: header menu bar
+        - name: url
+          value: https://www.gov.uk
+        - name: index
+          value:
+          - name: index_link
+          - name: index_section
+          - name: index_section_count
+        - name: index_total
+        - name: section
+          value: Logo
+        - name: external
+          value: "false"
+        - name: method
+        - name: link_domain
     - name: Header menu bar buttons
       implemented: true
       priority: high
@@ -1621,7 +1934,7 @@
     - name: link clicks
       implemented: true
       priority: high
-      description: Triggered when the GOVUK logo, a header "menu" section link, or a link under the search component is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
+      description: Triggered when a header "menu" section link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
       examples:
         - text: GOV.UK homepage
           link: https://www.gov.uk
@@ -1638,11 +1951,8 @@
         - name: index
           value:
           - name: index_section
-            value: The section that this link is in (Menu is 1, Search is 2)
           - name: index_link
-            value: The position of the link within its section. GOVUK Logo has an index of 0.
           - name: index_section_count
-            value: 2 (Menu and Search)
         - name: index_total
         - name: link_domain
         - name: link_path_parts
@@ -1661,10 +1971,10 @@
       priority: high
       description: When a tab is selected.
       examples:
-        - text: Tax your vehicle
-          link: https://www.gov.uk/vehicle-tax
         - text: Bank holidays
           link: https://www.gov.uk/bank-holidays
+        - text: Tax your vehicle
+          link: https://www.gov.uk/vehicle-tax
       tracker: event_tracker
       data:
       - name: event
@@ -1676,13 +1986,47 @@
         - name: type
           value: tabs
         - name: url
-          value: tab identifier/url hash e.g. "#scotland"
+          value: url path and hash (tab identifier) e.g. "/bank-holidays#scotland"
         - name: text
           value: text of the selected tab
         - name: index
           value:
           - name: index_section
           - name: index_section_count
+
+- name: taxonomy pages
+  events:
+    - name: taxonomy page links
+      implemented: true
+      priority: medium
+      description:
+      examples:
+        - text: Parenting, childcare and children's services
+          link: https://www.gov.uk/childcare-parenting
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: "false"
+        - name: index
+          value:
+          - name: index_link
+          - name: index_section
+          - name: index_section_count
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: section
+        - name: text
+        - name: type
+          value: document list/organisation logo/subtopic list/see all
+        - name: url
 
 - name: video
   events:
