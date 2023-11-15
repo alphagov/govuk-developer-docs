@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Print page event data | GOV.UK GA4 Implementation record</title>
+  <title>Contents list event data | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/event_print_page.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/event_contents_list.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/event_print_page.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/event_contents_list.html" />
   <script src="/javascripts/cookie-consent.js"></script>
 </head>
 
@@ -140,14 +140,55 @@
           
 <h1 class="govuk-heading-l analytics-heading">
   <span class="govuk-caption-l">Event</span>
-  print page
+  contents list
 </h1>
 
 
+<h2 class="govuk-heading-m analytics-heading">Contents</h2>
+<ul class="govuk-list govuk-list--bullet">
+    <li><a href="#heading-0" class="govuk-link">link click</a></li>
+    <li><a href="#heading-1" class="govuk-link">back to contents link click</a></li>
+</ul>
+
   <div class="event">
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-    <h2 class="govuk-heading-m analytics-heading">
-      print page
+    <h2 class="govuk-heading-m analytics-heading" id="heading-0">
+      link click
+    </h2>
+
+    <p class="govuk-body">
+      Priority
+      <strong class="govuk-tag govuk-tag--yellow">
+        medium
+      </strong>
+
+    </p>
+
+      <p class="govuk-body">
+        Tracking links on the contents list for the page or section.
+      </p>
+
+
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/jobseekers-allowance" class="govuk-link">Jobseeker's allowance (links to new pages)</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/guidance/cost-of-living-payment" class="govuk-link">Cost of living payments (anchor links to same page)</a>
+          </li>
+      </ul>
+
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+    <div class="govuk-inset-text">
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: navigation (link to new page) or select_content (anchor link to same page)</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: false</li><li>index: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_index_link.html' class='govuk-link'>index_link</a>: number</li></ul></li><li><a href='/analytics/attribute_index_total.html' class='govuk-link'>index_total</a>: string (number)</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html' class='govuk-link'>link_path_parts</a>: object</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: Contents</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: contents list</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li></ul></li></ul>
+    </div>
+    <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
+  </div>
+  <div class="event">
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    <h2 class="govuk-heading-m analytics-heading" id="heading-1">
+      back to contents link click
     </h2>
 
     <p class="govuk-body">
@@ -156,26 +197,27 @@
         low
       </strong>
 
+        <strong class="govuk-tag">Not yet implemented</strong>
     </p>
 
       <p class="govuk-body">
-        When a 'print this page' button is used
+        Tracks the 'contents' link to return to the contents list, appearing either at the bottom of the left hand column or in an element fixed to the bottom of the page.
       </p>
 
-          <p class="govuk-body">
-            This event is tracked by the <a href="/analytics/tracker_event_tracker.html" class="govuk-link">event_tracker</a>.
-          </p>
 
       <h3 class="govuk-heading-s">Examples</h3>
       <ul class="govuk-list govuk-list--bullet">
           <li>
-            <a href="https://www.gov.uk/guidance/register-a-trust-as-a-trustee" class="govuk-link">Page with print button</a>
+            <a href="https://www.gov.uk/guidance/cost-of-living-payment" class="govuk-link">Cost of living payments (fixed to bottom of page)</a>
+          </li>
+          <li>
+            <a href="https://www.gov.uk/government/publications/budget-2016-documents/budget-2016" class="govuk-link">Budget 2016 (bottom of left hand column)</a>
           </li>
       </ul>
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: print_page</li><li>index: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_index_link.html' class='govuk-link'>index_link</a>: number</li></ul></li><li><a href='/analytics/attribute_index_total.html' class='govuk-link'>index_total</a>: string (number)</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: print page</li></ul></li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
     </div>
     <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
   </div>

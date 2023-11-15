@@ -143,11 +143,20 @@
   email subscriptions
 </h1>
 
+  <p class="govuk-body">Tracking email subscriptions across GOV.UK, for example from search results or topic pages.</p>
+
+<h2 class="govuk-heading-m analytics-heading">Contents</h2>
+<ul class="govuk-list govuk-list--bullet">
+    <li><a href="#heading-0" class="govuk-link">get emails about this page</a></li>
+    <li><a href="#heading-1" class="govuk-link">responses</a></li>
+    <li><a href="#heading-2" class="govuk-link">form error</a></li>
+    <li><a href="#heading-3" class="govuk-link">form completion</a></li>
+</ul>
 
   <div class="event">
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-    <h2 class="govuk-heading-m analytics-heading">
-      get emails about this page link click
+    <h2 class="govuk-heading-m analytics-heading" id="heading-0">
+      get emails about this page
     </h2>
 
     <p class="govuk-body">
@@ -156,22 +165,30 @@
         medium
       </strong>
 
-        <strong class="govuk-tag">Not yet implemented</strong>
     </p>
 
 
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_link_tracker.html" class="govuk-link">link_tracker</a>.
+          </p>
 
+      <h3 class="govuk-heading-s">Examples</h3>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="https://www.gov.uk/welfare" class="govuk-link">Welfare topic page (start of email subscription journey)</a>
+          </li>
+      </ul>
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: navigation</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: false</li><li>index: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_index_link.html' class='govuk-link'>index_link</a>: number</li></ul></li><li><a href='/analytics/attribute_index_total.html' class='govuk-link'>index_total</a>: string (number)</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html' class='govuk-link'>link_path_parts</a>: object</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: subscribe</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li></ul></li></ul>
     </div>
     <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
   </div>
   <div class="event">
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-    <h2 class="govuk-heading-m analytics-heading">
-      change how often you get emails
+    <h2 class="govuk-heading-m analytics-heading" id="heading-1">
+      responses
     </h2>
 
     <p class="govuk-body">
@@ -180,22 +197,27 @@
         medium
       </strong>
 
-        <strong class="govuk-tag">Not yet implemented</strong>
     </p>
 
+      <p class="govuk-body">
+        Tracks when questions are answered throughout the email subscriptions journey, for example 'how often do you want to receive emails?'. Note that some questions do not include options other than to continue, for example the 'Confirm you want to get emails' question is asked towards the end of the journey, but only has 'Confirm' or 'cancel' as options.
+      </p>
 
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_form_tracker.html" class="govuk-link">form_tracker</a>.
+          </p>
 
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: continue/save/unsubscribe</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: form_response</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: The text of the question, for example 'What do you want to get emails about?'</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: The question option selected, or PII redacted text value</li><li><a href='/analytics/attribute_tool_name.html' class='govuk-link'>tool_name</a>: Get emails from GOV.UK</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: email subscription</li></ul></li></ul>
     </div>
     <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
   </div>
   <div class="event">
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-    <h2 class="govuk-heading-m analytics-heading">
-      unsubscribe
+    <h2 class="govuk-heading-m analytics-heading" id="heading-2">
+      form error
     </h2>
 
     <p class="govuk-body">
@@ -204,22 +226,27 @@
         medium
       </strong>
 
-        <strong class="govuk-tag">Not yet implemented</strong>
     </p>
 
+      <p class="govuk-body">
+        Tracks form errors in questions asked, for example if options are given and a user does not choose one before attempting to continue.
+      </p>
 
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_auto_tracker.html" class="govuk-link">auto_tracker</a>.
+          </p>
 
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: error</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: form_error</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: The text of the question, for example 'What do you want to get emails about?'</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: The text of the error message</li><li><a href='/analytics/attribute_tool_name.html' class='govuk-link'>tool_name</a>: Get emails from GOV.UK</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: email subscription</li></ul></li></ul>
     </div>
     <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
   </div>
   <div class="event">
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-    <h2 class="govuk-heading-m analytics-heading">
-      unsubscribe from everything
+    <h2 class="govuk-heading-m analytics-heading" id="heading-3">
+      form completion
     </h2>
 
     <p class="govuk-body">
@@ -228,15 +255,20 @@
         medium
       </strong>
 
-        <strong class="govuk-tag">Not yet implemented</strong>
     </p>
 
+      <p class="govuk-body">
+        Occurs when a user successfully completes an email subscription journey
+      </p>
 
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_auto_tracker.html" class="govuk-link">auto_tracker</a>.
+          </p>
 
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: complete</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: form_complete</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: Manage your GOV.UK email subscriptions</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: You've successfully subscribed to emails about (subject)</li><li><a href='/analytics/attribute_tool_name.html' class='govuk-link'>tool_name</a>: Get emails from GOV.UK</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: email subscription</li></ul></li></ul>
     </div>
     <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
   </div>

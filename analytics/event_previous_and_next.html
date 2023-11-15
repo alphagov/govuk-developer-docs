@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>See all link event data | GOV.UK GA4 Implementation record</title>
+  <title>Previous and next event data | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/event_see_all_link.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/event_previous_and_next.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/event_see_all_link.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/event_previous_and_next.html" />
   <script src="/javascripts/cookie-consent.js"></script>
 </head>
 
@@ -140,20 +140,19 @@
           
 <h1 class="govuk-heading-l analytics-heading">
   <span class="govuk-caption-l">Event</span>
-  see all link
+  previous and next
 </h1>
 
 
 <h2 class="govuk-heading-m analytics-heading">Contents</h2>
 <ul class="govuk-list govuk-list--bullet">
-    <li><a href="#heading-0" class="govuk-link">see all link click (in page)</a></li>
-    <li><a href="#heading-1" class="govuk-link">see all link click (to another page)</a></li>
+    <li><a href="#heading-0" class="govuk-link">previous and next</a></li>
 </ul>
 
   <div class="event">
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
     <h2 class="govuk-heading-m analytics-heading" id="heading-0">
-      see all link click (in page)
+      previous and next
     </h2>
 
     <p class="govuk-body">
@@ -164,53 +163,21 @@
 
     </p>
 
-      <p class="govuk-body">
-        Tracks clicks on the see all link when that link goes to another part of the same page.
-      </p>
 
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_link_tracker.html" class="govuk-link">link_tracker</a>.
+          </p>
 
       <h3 class="govuk-heading-s">Examples</h3>
       <ul class="govuk-list govuk-list--bullet">
           <li>
-            <a href="https://www.gov.uk/guidance/cost-of-living-payment" class="govuk-link">Cost of Living payments (click on 'See all updates')</a>
+            <a href="https://www.gov.uk/fishing-licences/types-of-licences-and-rod-limits" class="govuk-link">Buy a rod fishing licence</a>
           </li>
       </ul>
 
     <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
     <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: Either "opened" or "closed"</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: select_content</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: content history</li></ul></li></ul>
-    </div>
-    <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
-  </div>
-  <div class="event">
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-    <h2 class="govuk-heading-m analytics-heading" id="heading-1">
-      see all link click (to another page)
-    </h2>
-
-    <p class="govuk-body">
-      Priority
-      <strong class="govuk-tag govuk-tag--yellow">
-        medium
-      </strong>
-
-    </p>
-
-      <p class="govuk-body">
-        Tracks clicks on the see all link when that link goes to a different page.
-      </p>
-
-
-      <h3 class="govuk-heading-s">Examples</h3>
-      <ul class="govuk-list govuk-list--bullet">
-          <li>
-            <a href="https://www.gov.uk/hmrc-internal-manuals/air-passenger-duty" class="govuk-link">Air passenger duty</a>
-          </li>
-      </ul>
-
-    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
-    <div class="govuk-inset-text">
-      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: opened</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: navigation</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: false</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html' class='govuk-link'>link_path_parts</a>: object</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: content history</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li></ul></li></ul>
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: navigation</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: false</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: string</li><li><a href='/analytics/attribute_link_path_parts.html' class='govuk-link'>link_path_parts</a>: object</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: Either "Previous" or "Next"</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: previous and next</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li></ul></li></ul>
     </div>
     <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
   </div>
