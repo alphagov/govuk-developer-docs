@@ -251,14 +251,14 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/2b45e41a1ba01793184dd314aba311e0288e26f5">5 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/fe7c231868e7ac288e58dd1520851c1a6f81678b">15 Nov 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Trackers</h1>
 
   
 <p>For tracking different kinds of data on GOV.UK we have built several different trackers. Each type of tracking is handled by a separate script, but some code is shared between them as they often do similar things.</p>
-<p>Most of the trackers work by adding a <code>data-module</code> attribute to an element along with additional data attributes to provide specific tracking information. Some components have this already built into their code, which is usually activated using a <code>ga4_tracking: true</code> option.</p>
+<p>Most of the trackers work by adding a <code>data-module</code> attribute to an element along with additional data attributes to provide specific tracking information. Some components have this already built into their code by default. These components should also include a <code>disable_ga4</code> option as a failsafe.</p>
 <h2 id="auto-tracking">Auto tracking</h2>
 <p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-auto-tracker.md">auto tracker</a> is used to cause an event to occur as soon as a page has finished loading (but after a page view). This is used to track significant moments in journeys, such as the successful completion of a smart answer, or an error.</p>
 <h2 id="ecommerce-tracker">Ecommerce tracker</h2>
