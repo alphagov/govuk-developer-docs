@@ -11,7 +11,9 @@ pages from the Fastly cache.
 
 The process should be roughly:
 
-* Make sure you can clone [Emergency Alerts secrets repository](https://github.com/alphagov/emergency-alerts-credentials/) (it's private, so you may need to be added)
+* Get the GPG Public Key of one of the Emergency Alerts team who will be making the change they can get that using `gpg --armor --export '<public key id>'` they can find the id using `gpg --list-signatures`
+* Add that public key to your gpg keyring `gpg --import` then paste in the public key block and press CTRL-D, you can then copy down the key id
+* Get the name of that public key using `gpg --list-signatures`
 * Sign in to Fastly using the Emergency Alerts account [(credentials in govuk-secrets)](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/notify_emergency_alerts_account.gpg) (private repository)
 * Visit [Account / Personal API tokens](https://manage.fastly.com/account/personal/tokens) in Fastly
 * Search for "GOV.UK Emergency Alerts /alerts" to find the current keys (If you cannot find it it may still be referred to as "GOV.UK Notify /alerts")
@@ -25,6 +27,9 @@ The process should be roughly:
 ![Screenshot of the Fastly user interface for configuring an API key](/manual/images/fastly-api-key-emergency-alerts.png)
 
 * Click Create Token
-* From the notifications-credentials repository, run `PASSWORD_STORE_DIR=$(pwd) pass insert credentials/fastly/${ENVIRONMENT}/api_key` to encrypt the api_key for the Emergency Alerts team
-* Once you've updated the API keys for all the environments, raise a PR with the Emergency Alerts team
-* Once the Emergency Alerts team have confirmed that they have deployed the new API keys no longer need the old keys, use the Fastly user interface to delete the old keys
+* Using the GPG ID of the Emergency Alerts team you got before `gpg --armor --encrypt --recipient '<public key id>'` then paste in the new token (or tokens) and press CTRL-D
+* Send the generated PGP MESSAGE to the Emergency Alerts team member
+* That team member can then log into the relevant AWS environment (preview, staging, production) and update the relevant `fastly-api-key` in Parameter Store within AWS Systems Manager
+* In the emergency-alerts-credentials repository, run `PASSWORD_STORE_DIR=$(pwd) pass insert credentials/paas/${ENVIRONMENT}/environment-variables` to encrypt the `GOVUK_ALERTS_FASTLY_API_KEY` for the Emergency Alerts team
+* Emergency Alerts should then test the relevant key is working correctly by rebuilding the public alerts site for that environment
+* Once the Emergency Alerts team have confirmed that they have deployed the new API keys and they are working, use the Fastly user interface to delete the old keys
