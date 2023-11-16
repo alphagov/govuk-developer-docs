@@ -139,6 +139,11 @@
       </li>
       <li>
         <a href="#db-admin"><span>DB admin</span></a>
+        <ul>
+          <li>
+            <a href="#open-a-database-commmand-line-session"><span>Open a database commmand-line session</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -190,7 +195,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3c2cbfa60d964c780d06b28440d84a57785f22a8">1 Nov 2023</a>
 </div>
 
  <h1 id='header'>Databases on GOV.UK</h1> <p>Many GOV.UK applications use a database. See our <a href="https://docs.google.com/spreadsheets/d/1rBZeeaT9XevaRvstMjw2YsbSsoB7IqgWjpJz5oAO9nM/edit#gid=1368371571">spreadsheet of applications and database engines</a> for details.</p>
@@ -201,11 +206,20 @@
 <p>Each Postgres and MySQL database runs in its own RDS instance. Whilst RDS instances are capable of hosting multiple databases, we decided to grant each database its own instance in <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-143-split-database-instances.md">RFC-143</a>.</p>
 <p>Mongo databases are hosted either in DocumentDB clusters (managed by AWS) or MongoDB clusters (managed by us on self-hosted EC2 instances). On production, there is currently one DocumentDB cluster for Licensify and one &lsquo;shared&rsquo; DocumentDB cluster, each with three instances. There is also one Mongo cluster of three EC2s. We have agreed that <a href="/repos/govuk-aws/architecture/decisions/0038-mongo_replacement_by_documentdb.html">we should move apps from MongoDB to DocumentDB</a>.</p>
 <p>ElasticSearch is hosted in <a href="https://eu-west-1.console.aws.amazon.com/esv3/home?region=eu-west-1#opensearch/domains">AWS&rsquo;s OpenSearch service</a>. It has <a href="https://github.com/alphagov/govuk-aws/blob/6b5f78824bb14f5f6aaa7f7d269915b7831a13c3/terraform/projects/app-elasticsearch6/main.tf#L186-L193">two types of node</a> - &ldquo;master&rdquo; and &ldquo;data&rdquo; (instance).</p>
-<h2 id='db-admin'>DB admin</h2><p>We use &ldquo;DB admin&rdquo; machines to perform operations on the hosted databases. DB Admin machines are responsible for running the nightly <a href="/manual/govuk-env-sync.html">environment data sync</a>, so that production data gets copied to Staging and Integration. In PostgreSQL&rsquo;s case, the DB Admin machine is also responsible for <a href="https://github.com/alphagov/govuk-puppet/blob/d55621eb71c734dd27583e088cd1ffd633bdc721/modules/govuk/manifests/node/s_content_publisher_db_admin.pp#L43-L44">creating the database and users</a> in the RDS instance (this needs to be <a href="/repos/govuk-puppet/create-mysql-db-and-users.html">done by hand in MySQL</a>).</p>
-<p>Each Postgres/MySQL app has its own DB admin node named after the app, e.g. <code>content_publisher_db_admin</code>. The node is <a href="https://github.com/alphagov/govuk-puppet/blob/d55621eb71c734dd27583e088cd1ffd633bdc721/modules/govuk/manifests/node/s_content_publisher_db_admin.pp#L24">defined in govuk-puppet</a>, with root database credentials defined in govuk-secrets (<code>puppet_aws/hieradata/blue/{ENV}_credentials.yaml</code>). Note that the application uses different credentials to connect to the database (username <a href="https://github.com/alphagov/content-publisher/blob/f81952ba9f999b06d81e6d79fed9ea1d9372e145/config/database.yml#L19">defined in the app</a>, password defined in govuk-secrets in <code>puppet_aws/hieradata/apps/{ENV}_credentials.yaml</code>).</p>
-<p>For Mongo databases, there is the <a href="https://github.com/alphagov/govuk-puppet/blob/3047076651d6a7790bacf2c40277220e97ac53f9/modules/govuk/manifests/node/s_db_admin.pp#L5"><code>db_admin</code> node</a>, which used to manage the relational databases too.</p>
-<p>There is no DB admin machine for ElasticSearch (there is a <code>search_admin_db_admin</code> machine, but this is the DB admin machine for the Search Admin application, which uses MySQL). Instead, the <code>search</code> node itself is <a href="https://github.com/alphagov/govuk-puppet/blob/df7d619ea8ab96e1a6086a384e7d5fdada68a7fe/modules/govuk/manifests/node/s_search.pp#L18">responsible for its own environment syncing</a>. Every DB admin machine (and <code>search</code> node) uses the same <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_env_sync/files/govuk_env_sync.sh">environment sync script</a>.</p>
+<h2 id='db-admin'>DB admin</h2><p>Until November 2023, we used to use <code>db_admin</code> bastion hosts for tasks such as:</p>
 
+<ul>
+<li>running backups/restores</li>
+<li>copying production data to the staging and integration environments</li>
+<li>managing Postgres user accounts via Puppet</li>
+</ul>
+<p>We no longer run these db_admin bastion instances.</p>
+<p>The jobs that used to run on db_admin instances now run as Kubernetes cronjobs, configured in the <a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/db-backup">db-backup</a> and <a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/search-index-env-sync">search-index-env-sync</a> charts. You can view job status in the Argo CD web UI (and of course <code>kubectl</code> on the command line).</p>
+<h3 id='open-a-database-commmand-line-session'>Open a database commmand-line session</h3><p>For a Rails app:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/content-publisher <span class="nt">-it</span> <span class="nt">--</span> rails db <span class="nt">-p</span>
+</code></pre></div><p>For a non-Rails app:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/bouncer <span class="nt">-it</span> <span class="nt">--</span> sh <span class="nt">-c</span> <span class="s1">'psql $DATABASE_URL'</span>
+</code></pre></div>
 
   <div class='related-content'>
 
