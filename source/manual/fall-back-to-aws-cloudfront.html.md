@@ -40,9 +40,11 @@ This backup CDN is currently provided by AWS CloudFront.
 
       ```bash
       # www-cdn.production.govuk.service.gov.uk
-      gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='www.gov.uk'].DomainName | [0]"
+      gds aws govuk-production-readonly aws cloudfront list-distributions \
+        --query "DistributionList.Items[?Aliases.Items[0]=='www.gov.uk'].DomainName | [0]"
       # assets.publishing.service.gov.uk
-      gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='assets.publishing.service.gov.uk'].DomainName | [0]"
+      gds aws govuk-production-readonly aws cloudfront list-distributions \
+        --query "DistributionList.Items[?Aliases.Items[0]=='assets.publishing.service.gov.uk'].DomainName | [0]"
       ```
 
   - For **staging**, these two domains are `www.staging.publishing.service.gov.uk` and `assets.staging.publishing.service.gov.uk`
@@ -50,9 +52,11 @@ This backup CDN is currently provided by AWS CloudFront.
 
       ```bash
       # www.staging.publishing.service.gov.uk
-      gds aws govuk-staging-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='www.staging.publishing.service.gov.uk'].DomainName | [0]"
+      gds aws govuk-staging-readonly aws cloudfront list-distributions \
+        --query "DistributionList.Items[?Aliases.Items[0]=='www.staging.publishing.service.gov.uk'].DomainName | [0]"
       # assets.staging.publishing.service.gov.uk
-      gds aws govuk-staging-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='assets.staging.publishing.service.gov.uk'].DomainName | [0]"
+      gds aws govuk-staging-readonly aws cloudfront list-distributions \
+        --query "DistributionList.Items[?Aliases.Items[0]=='assets.staging.publishing.service.gov.uk'].DomainName | [0]"
       ```
 
   - In either case, the records should look like `d0000000000000.cloudfront.net.` (with 0s replaced with letters and numbers)
