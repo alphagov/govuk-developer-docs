@@ -71,5 +71,5 @@ This backup CDN is currently provided by AWS CloudFront.
   - Terraform Cloud should automatically perform a plan when your PR is merged, but the apply will require manual approval - you can do this in the [govuk-dns-tf workspace](https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf)
 - Once you've failed over, keep a close eye on Fastly's status
 - As soon as you are confident that Fastly has recovered
-  - Manually set each of the `CNAME` records you changed above back to `www-gov-uk.map.fastly.net`
+  - Manually set each of the `CNAME` records you changed above back to `www-gov-uk.map.fastly.net.`
   - If you previously raised a PR in [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf), raise another PR to revert your changes and restore the old records. Get it approved, merged and approve the Terraform apply via the [govuk-dns-tf workspace](https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf) on Terraform Cloud.
