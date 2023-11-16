@@ -184,22 +184,28 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/755d7048690775b9ccd3db78cbdeaf754cfcd38c">6 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c3d507df452a03f229620da4765352b1f4b96ec0">16 Nov 2023</a>
 </div>
 
  <h1 id='header'>Fall back to AWS CloudFront</h1> <p>There is a backup Content Delivery Network (CDN) that can be used if Fastly is down.
 This backup CDN is currently provided by AWS CloudFront.</p>
 
 <blockquote>
-<p><strong>Important</strong> The failover CloudFront distribution does not have feature parity with the primary Fastly service.
+<p><strong>Important</strong>: The failover CloudFront distribution does not have feature parity with the primary Fastly service.
 <a href="https://docs.google.com/document/d/17_dfWvKNmqyLX1h_PPY6_Cd6IggrrSsP-Peh2De6JQk/edit">Most features</a> will continue to work, including search, smart answers, and postcode lookups. Some features, including
 A/B testing, will not work.</p>
 </blockquote>
 <h2 id='fail-over-checklist'>Fail over checklist</h2>
 <blockquote>
-<p>The last time we needed to initiate a CDN failover, we found that Terraform does not work reliably when Fastly is
+<p>Note: The last time we needed to initiate a CDN failover, we found that Terraform does not work reliably when Fastly is
 having a major incident. The situation might have changed since then, but it is still recommended to perform the
 failover manually, before attempting to update our Terraform configuration.</p>
+</blockquote>
+
+<!-- Force separation between these two blockquotes -->
+
+<blockquote>
+<p>Note: These steps will have you make changes to our production environment. This is because all of our domains, including the domains for our staging and integration environments, are configured in the production environment.</p>
 </blockquote>
 
 <ul>
@@ -207,7 +213,7 @@ failover manually, before attempting to update our Terraform configuration.</p>
 and keep an eye on twitter - if there&rsquo;s a major Fastly outage there will be a lot of noise)</li>
 <li>Escalate to GOV.UK SMT as soon as you begin to consider failing over</li>
 <li>Sign in to the AWS console as an admin (<code>gds aws govuk-production-admin -l</code>, or however you prefer to sign in to AWS)</li>
-<li>Sign in to <a href="https://console.cloud.google.com/home/dashboard?project=govuk-production">the GCP console</a></li>
+<li>Sign in to <a href="https://console.cloud.google.com/home/dashboard?project=govuk-production">the <code>govuk-production</code> project on GCP console</a></li>
 <li>For <strong>production</strong>, open the following four pages as separate tabs:
 
 <ul>
@@ -231,23 +237,31 @@ and keep an eye on twitter - if there&rsquo;s a major Fastly outage there will b
 <li>You can also get the <code>CNAME</code>s to use for the secondary CDN from the AWS CLI:</li>
 </ul>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>  <span class="c"># www-cdn.production.govuk.service.gov.uk</span>
-  gds aws govuk-production-readonly aws cloudfront list-distributions <span class="nt">--query</span> <span class="s2">"DistributionList.Items[?Aliases.Items[0]=='www.gov.uk'].DomainName | [0]"</span>
+  gds aws govuk-production-readonly aws cloudfront list-distributions <span class="se">\</span>
+    <span class="nt">--query</span> <span class="s2">"DistributionList.Items[?Aliases.Items[0]=='www.gov.uk'].DomainName | [0]"</span>
   <span class="c"># assets.publishing.service.gov.uk</span>
-  gds aws govuk-production-readonly aws cloudfront list-distributions <span class="nt">--query</span> <span class="s2">"DistributionList.Items[?Aliases.Items[0]=='assets.publishing.service.gov.uk'].DomainName | [0]"</span>
+  gds aws govuk-production-readonly aws cloudfront list-distributions <span class="se">\</span>
+    <span class="nt">--query</span> <span class="s2">"DistributionList.Items[?Aliases.Items[0]=='assets.publishing.service.gov.uk'].DomainName | [0]"</span>
 </code></pre></div>
 <ul>
 <li>For <strong>staging</strong>, these two domains are <code>www.staging.publishing.service.gov.uk</code> and <code>assets.staging.publishing.service.gov.uk</code></li>
 <li>You can get the <code>CNAME</code>s to use for the secondary CDN from the AWS CLI:</li>
 </ul>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>  <span class="c"># www.staging.publishing.service.gov.uk</span>
-  gds aws govuk-staging-readonly aws cloudfront list-distributions <span class="nt">--query</span> <span class="s2">"DistributionList.Items[?Aliases.Items[0]=='www.staging.publishing.service.gov.uk'].DomainName | [0]"</span>
+  gds aws govuk-staging-readonly aws cloudfront list-distributions <span class="se">\</span>
+    <span class="nt">--query</span> <span class="s2">"DistributionList.Items[?Aliases.Items[0]=='www.staging.publishing.service.gov.uk'].DomainName | [0]"</span>
   <span class="c"># assets.staging.publishing.service.gov.uk</span>
-  gds aws govuk-staging-readonly aws cloudfront list-distributions <span class="nt">--query</span> <span class="s2">"DistributionList.Items[?Aliases.Items[0]=='assets.staging.publishing.service.gov.uk'].DomainName | [0]"</span>
+  gds aws govuk-staging-readonly aws cloudfront list-distributions <span class="se">\</span>
+    <span class="nt">--query</span> <span class="s2">"DistributionList.Items[?Aliases.Items[0]=='assets.staging.publishing.service.gov.uk'].DomainName | [0]"</span>
 </code></pre></div>
 <ul>
 <li>In either case, the records should look like <code>d0000000000000.cloudfront.net.</code> (with 0s replaced with letters and numbers)</li>
 </ul></li>
-<li><p>Manually update the <code>CNAME</code> records for both domains in both GCP and AWS, via the tabs you opened in your web browser earlier</p></li>
+<li><p>Manually update the <code>CNAME</code> records for both domains in both GCP and AWS, via the tabs you opened in your web browser earlier</p>
+
+<ul>
+<li>Change the canonical name from <code>www-gov-uk.map.fastly.net.</code> to the CloudFront domain name you found before, including the trailing period (e.g. <code>d0000000000000.cloudfront.net.</code>)</li>
+</ul></li>
 <li><p><strong>On production only</strong>, after performing the manual failover, you should also update our infrastructure-as-code to match the changes you just made:</p>
 
 <ul>
@@ -258,7 +272,7 @@ and keep an eye on twitter - if there&rsquo;s a major Fastly outage there will b
 <li><p>As soon as you are confident that Fastly has recovered</p>
 
 <ul>
-<li>Manually set each of the <code>CNAME</code> records you changed above back to <code>www-gov-uk.map.fastly.net</code></li>
+<li>Manually set each of the <code>CNAME</code> records you changed above back to <code>www-gov-uk.map.fastly.net.</code></li>
 <li>If you previously raised a PR in <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a>, raise another PR to revert your changes and restore the old records. Get it approved, merged and approve the Terraform apply via the <a href="https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf">govuk-dns-tf workspace</a> on Terraform Cloud.</li>
 </ul></li>
 </ul>

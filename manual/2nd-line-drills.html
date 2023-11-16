@@ -271,7 +271,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/adea87c239ed21d3dcc012c8de1cd70405a05955">4 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d1f1cabb11ebf22ca689aa2f2cf8add9a53d8822">16 Nov 2023</a>
 </div>
 
  <h1 id='header'>2nd line drills</h1> <p>There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going <a href="/manual/on-call.html">on call</a> if you are part of the out of hours rota.</p>
@@ -335,8 +335,14 @@ Once you have successfully updated the change note you can drill <a href="/manua
 <h3 id='drill-updating-homepage-promotion-slots'>Drill updating homepage promotion slots</h3><p>Follow the <a href="/repos/frontend/update-homepage-promotion-slots.html">Update homepage promotion slots</a> instructions, using an appropriate image and text.
 Open a draft PR, and <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">deploy your branch to integration</a>.
 Once deployed, <a href="https://www-origin.integration.govuk.digital/">check your change</a> and redeploy the previous branch to integration.</p>
-<h2 id='drill-cdn-failover'>Drill CDN failover</h2><p>Warn in <code>#govuk-2ndline-tech</code> that you&rsquo;re about to do this, because our failover CDN does not have full feature parity with our primary one.</p>
-<p>Follow the <a href="/manual/fall-back-to-aws-cloudfront.html">Fall back to AWS CloudFront</a> instructions for staging only.</p>
+<h2 id='drill-cdn-failover'>Drill CDN failover</h2>
+<ol>
+<li>Warn in <code>#govuk-2ndline-tech</code> that you&rsquo;re about to do this, because our failover CDN does not have full feature parity with our primary one.</li>
+<li>Ensure that you are connected to the VPN before starting.</li>
+<li>Follow the <a href="/manual/fall-back-to-aws-cloudfront.html">Fall back to AWS CloudFront</a> instructions for staging only.</li>
+<li>Check if <a href="https://www.staging.publishing.service.gov.uk">GOV.UK Staging</a> still works correctly after performing the failover.</li>
+<li>Revert your changes when finished.</li>
+</ol>
 
 
   <div class='related-content'>
