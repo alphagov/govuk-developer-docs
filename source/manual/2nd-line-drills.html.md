@@ -140,6 +140,8 @@ Once deployed, [check your change](https://www-origin.integration.govuk.digital/
 
 ## Drill CDN failover
 
-Warn in `#govuk-2ndline-tech` that you're about to do this, because our failover CDN does not have full feature parity with our primary one.
-
-Follow the [Fall back to AWS CloudFront](/manual/fall-back-to-aws-cloudfront.html) instructions for staging only.
+1. Warn in `#govuk-2ndline-tech` that you're about to do this, because our failover CDN does not have full feature parity with our primary one.
+1. Ensure that you are connected to the VPN before starting.
+1. Follow the [Fall back to AWS CloudFront](/manual/fall-back-to-aws-cloudfront.html) instructions for staging only.
+1. Check if [GOV.UK Staging](https://www.staging.publishing.service.gov.uk) still works correctly after performing the failover.
+1. Revert your changes when finished.
