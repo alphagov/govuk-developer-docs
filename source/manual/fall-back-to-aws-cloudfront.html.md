@@ -61,6 +61,7 @@ This backup CDN is currently provided by AWS CloudFront.
 
   - In either case, the records should look like `d0000000000000.cloudfront.net.` (with 0s replaced with letters and numbers)
 - Manually update the `CNAME` records for both domains in both GCP and AWS, via the tabs you opened in your web browser earlier
+  - Change the canonical name from `www-gov-uk.map.fastly.net.` to the CloudFront domain name you found before, including the trailing period (e.g. `d0000000000000.cloudfront.net.`)
 - **On production only**, after performing the manual failover, you should also update our infrastructure-as-code to match the changes you just made:
   - Merge [the PR to Failover to AWS CloudFront](https://github.com/alphagov/govuk-dns-tf/pull/69)
   - Terraform Cloud should automatically perform a plan when your PR is merged, but the apply will require manual approval - you can do this in the [govuk-dns-tf workspace](https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf)
