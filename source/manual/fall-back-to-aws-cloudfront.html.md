@@ -9,21 +9,25 @@ parent: "/manual.html"
 There is a backup Content Delivery Network (CDN) that can be used if Fastly is down.
 This backup CDN is currently provided by AWS CloudFront.
 
-> **Important** The failover CloudFront distribution does not have feature parity with the primary Fastly service.
+> **Important**: The failover CloudFront distribution does not have feature parity with the primary Fastly service.
 > [Most features](https://docs.google.com/document/d/17_dfWvKNmqyLX1h_PPY6_Cd6IggrrSsP-Peh2De6JQk/edit) will continue to work, including search, smart answers, and postcode lookups. Some features, including
 > A/B testing, will not work.
 
 ## Fail over checklist
 
-> The last time we needed to initiate a CDN failover, we found that Terraform does not work reliably when Fastly is
+> Note: The last time we needed to initiate a CDN failover, we found that Terraform does not work reliably when Fastly is
 > having a major incident. The situation might have changed since then, but it is still recommended to perform the
 > failover manually, before attempting to update our Terraform configuration.
+
+<!-- Force separation between these two blockquotes -->
+
+> Note: These steps will have you make changes to our production environment. This is because all of our domains, including the domains for our staging and integration environments, are configured in the production environment.
 
 - Confirm that Fastly is the cause of the incident (check [https://status.fastly.com/](https://status.fastly.com/)
   and keep an eye on twitter - if there's a major Fastly outage there will be a lot of noise)
 - Escalate to GOV.UK SMT as soon as you begin to consider failing over
 - Sign in to the AWS console as an admin (`gds aws govuk-production-admin -l`, or however you prefer to sign in to AWS)
-- Sign in to [the GCP console](https://console.cloud.google.com/home/dashboard?project=govuk-production)
+- Sign in to [the `govuk-production` project on GCP console](https://console.cloud.google.com/home/dashboard?project=govuk-production)
 - For **production**, open the following four pages as separate tabs:
   - [GCP Cloud DNS www-cdn.production.govuk.service.gov.uk](https://console.cloud.google.com/net-services/dns/zones/govuk-service-gov-uk/rrsets/www-cdn.production.govuk.service.gov.uk./CNAME/edit?project=govuk-production)
   - [AWS Route 53 govuk.service.gov.uk](https://console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z22RPYZA77J620)
