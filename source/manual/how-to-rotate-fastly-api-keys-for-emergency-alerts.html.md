@@ -30,6 +30,7 @@ The process should be roughly:
 * Using the GPG ID of the Emergency Alerts team you got before `gpg --armor --encrypt --recipient '<public key id>'` then paste in the new token (or tokens) and press CTRL-D
 * Send the generated PGP MESSAGE to the Emergency Alerts team member
 * That team member can then log into the relevant AWS environment (preview, staging, production) and update the relevant `fastly-api-key` in Parameter Store within AWS Systems Manager
+* After that the Emergency Alerts team member should log into the AWS ECS console and restart the app eas-app-govuk-alerts within the eas-app-cluster 
 * In the emergency-alerts-credentials repository, run `PASSWORD_STORE_DIR=$(pwd) pass insert credentials/paas/${ENVIRONMENT}/environment-variables` to encrypt the `GOVUK_ALERTS_FASTLY_API_KEY` for the Emergency Alerts team
-* Emergency Alerts should then test the relevant key is working correctly by rebuilding the public alerts site for that environment
+* Emergency Alerts should then test the relevant key is working correctly by rebuilding the public alerts site for that environment (it will automatically rebuild after the container app restarts)
 * Once the Emergency Alerts team have confirmed that they have deployed the new API keys and they are working, use the Fastly user interface to delete the old keys
