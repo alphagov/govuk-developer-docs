@@ -11,9 +11,6 @@ pages from the Fastly cache.
 
 The process should be roughly:
 
-* Get the GPG Public Key of one of the Emergency Alerts team who will be making the change they can get that using `gpg --armor --export '<public key id>'` they can find the id using `gpg --list-signatures`
-* Add that public key to your gpg keyring `gpg --import` then paste in the public key block and press CTRL-D, you can then copy down the key id
-* Get the name of that public key using `gpg --list-signatures`
 * Sign in to Fastly using the Emergency Alerts account [(credentials in govuk-secrets)](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/notify_emergency_alerts_account.gpg) (private repository)
 * Visit [Account / Personal API tokens](https://manage.fastly.com/account/personal/tokens) in Fastly
 * Search for "GOV.UK Emergency Alerts /alerts" to find the current keys (If you cannot find it it may still be referred to as "GOV.UK Notify /alerts")
