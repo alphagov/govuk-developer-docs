@@ -35,5 +35,5 @@ integration, staging and production. These allow them to purge individual pages 
 of these keys is not restricted to `/alerts` - in principle they could be used to purge any page from the cache. We trust the Emergency
 Alerts team to take appropriate care with these credentials.
 
-The API keys are not configured to expire, but it is good practice to rotate them regularly. The Emergenct Alerts team will instigate API key rotations,
+The API keys are not configured to expire, but it is good practice to rotate them regularly. The Emergency Alerts team will instigate API key rotations,
 see [Rotate Fastly API Keys for Emergency Alerts](/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html).
