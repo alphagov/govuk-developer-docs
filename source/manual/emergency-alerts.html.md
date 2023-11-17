@@ -8,7 +8,7 @@ section: Emergency Alerts
 important: true
 ---
 
-The Cabinet Office COBR Unit and the Department for Science, Innovation and Technology have developed an emergency alert system to enable people whose lives are at risk in an emergency to be rapidly contacted via their mobile phone. It is currently in the trial phase following a successful national test message.  it was originally developed by the GOV.UK Notify team and is now managed and maintained by the GOV.UK Emergency Alerts team.
+The Cabinet Office [COBR](https://www.instituteforgovernment.org.uk/explainer/cobr-cobra) Unit and the Department for Science, Innovation and Technology have developed an emergency alert system to enable people whose lives are at risk in an emergency to be rapidly contacted via their mobile phone. It is currently in the trial phase following a successful national test message. It was originally developed by the GOV.UK Notify team and is now managed and maintained by the GOV.UK Emergency Alerts team.
 
 As part of this service, GOV.UK delegate serving [www.gov.uk/alerts](https://www.gov.uk/alerts) to the GOV.UK Emergency Alerts team.
 
