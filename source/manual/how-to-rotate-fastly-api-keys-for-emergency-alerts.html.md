@@ -29,8 +29,7 @@ The process should be roughly:
 
 The Emergency Alerts team member will then:
 
-* That team member can then log into the relevant AWS environment (preview, staging, production) and update the relevant `fastly-api-key` in Parameter Store within AWS Systems Manager
-* Emergency Alerts team should log into the AWS ECS console and navigate to the service eas-app-govuk-alerts within the eas-app-cluster
-* Emergency Alerts team can then stop the running task within the eas-app-govuk-alerts dwiserviceapp.  That should then be restarted and will pull in the new credentials
-* Emergency Alerts team should then test the relevant key is working correctly by rebuilding the public alerts site for that environment (it will automatically rebuild after the container app restarts)
-* Once the Emergency Alerts team have confirmed that they have deployed the new API keys and they are working, use the Fastly user interface to delete the old keys
+* Log into the relevant AWS environment (preview, staging, production) and update the relevant `fastly-api-key` in Parameter Store within AWS Systems Manager
+* Log into the AWS ECS console and navigate to the service eas-app-govuk-alerts within the eas-app-cluster
+* Stop the running task within the eas-app-govuk-alerts dwiserviceapp. (That should then be restarted and will pull in the new credentials).
+* Test the relevant key is working correctly by rebuilding the public alerts site for that environment. (It will automatically rebuild after the container app restarts).
