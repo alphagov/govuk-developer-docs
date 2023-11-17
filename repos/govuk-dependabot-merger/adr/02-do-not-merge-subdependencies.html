@@ -133,6 +133,7 @@
               <li><a href="/repos/govuk-dependabot-merger/adr/01-limited-team-access.html" rel="noopener" class="govuk-link">ADR 1: Limited team access to avoid privilege escalation</a></li>
               <li><a href="/repos/govuk-dependabot-merger/adr/02-do-not-merge-subdependencies.html" rel="noopener" class="govuk-link">ADR 2: Do not merge subdependency updates</a></li>
               <li><a href="/repos/govuk-dependabot-merger/adr/03-access-token-scope.html" rel="noopener" class="govuk-link">ADR 3: Access Token Scope</a></li>
+              <li><a href="/repos/govuk-dependabot-merger/adr/04-ignore-subdependencies.html" rel="noopener" class="govuk-link">ADR 4: Ignore subdependencies</a></li>
           </ul>
       </ul>
     </li>
@@ -193,12 +194,15 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-dependabot-merger/commit/feb24f73ca529f1651bd11642f1a15d7f9d46ccc">24 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-dependabot-merger/commit/2d72ef6fda42bc5e4d98e9bb314e6199f736d6a2">17 Nov 2023</a>
 </div>
 
   <h1 class="page-title">govuk-dependabot-merger: ADR 2: Do not merge subdependency updates</h1>
 
   
+<blockquote>
+<p>EDIT: this is superseded by <a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/docs/adr/04-ignore-subdependencies.md">ADR 4</a>.</p>
+</blockquote>
 <p>Date: 2023-07-24</p>
 <h2 id="context">Context</h2>
 <p>When Dependabot raises a PR to bump a dependency, it is not necessarily constrained to just that dependency.</p>
