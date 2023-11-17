@@ -78,14 +78,14 @@
         - name: link_domain
         - name: link_path_parts
 - name: banners
-  description: "Note that the presence of banners is tracked via our Pageview tracker."
+  description: Note that the presence of banners is tracked via our Pageview tracker.
   events:
     - name: link click
       description: Clicking a link within a banner
       examples:
         - text: The "BETA" banner on this page contains the link "find out what beta means"
           link: https://www.gov.uk/hmrc-internal-manuals/debt-management-and-banking
-      implemented: false
+      implemented: true
       priority: medium
       data:
       - name: event
@@ -110,11 +110,11 @@
         - name: link_domain
         - name: link_path_parts
     - name: dismiss button
-      description: Clicking a dismiss button to hide the banner
+      description: Event that occurs when a user clicks a dismiss button to hide an intervention, survey, or cookie banner.
       examples:
         - text: After accepting cookies, click "Hide this message"
           link: https://www.gov.uk/
-      implemented: false
+      implemented: true
       priority: medium
       data:
       - name: event
@@ -124,7 +124,7 @@
         - name: event_name
           value: select_content
         - name: type
-          value: banner type e.g. intervention/phase/cookie banner
+          value: banner type e.g. intervention/survey/cookie banner
         - name: text
           value: text of the link
         - name: section
