@@ -1,49 +1,26 @@
 ---
-title: Access EKS cluster
+title: Access an EKS cluster
 weight: 22
 layout: multipage_layout
 ---
 
-# Access EKS cluster
+# Access a GOV.UK EKS cluster
 
-You must access the GOV.UK Kubernetes platform [Elastic Kubernetes Service cluster](https://kubernetes.io/docs/concepts/overview/components/) to use the platform.
+There are 3 GOV.UK clusters: integration, staging and production. These correspond to the integration, staging and production GOV.UK environments, which belong to the integration, staging and production AWS accounts respectively.
 
-To access the cluster, you must have:
+## Prerequisites
 
-- [installed gds-cli](https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools)
-- [obtained access to AWS](https://docs.publishing.service.gov.uk/manual/get-started.html#7-get-aws-access)
-- [accessed AWS](https://docs.publishing.service.gov.uk/manual/get-started.html#8-access-aws-for-the-first-time) using `gds-cli`
+This document assumes that you have already followed the steps in [Get started developing on GOV.UK](https://docs.publishing.service.gov.uk/manual/get-started.html).
 
-You must select a role and environment to make sure you gain access to the right cluster.
+## Obtain AWS credentials for your role in the cluster's AWS account
 
-## Select a role and environment
+1. Choose the [AWS IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) that you will use to access the cluster:
 
-An [AWS Identity and Access Management (IAM) role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) is an IAM identity that has specific permissions.
+    - `admin`: has read-write access to everything in the cluster, including secrets
+    - `poweruser`: has read-write access to everything in the `apps` namespace, but cannot view or modify secrets
+    - `readonly`: can read everything in the `apps` namespace, except for secrets
 
-You must select one of the following roles to access the cluster:
-
-- admin
-- poweruser
-- readonly
-
-The admin role:
-
-- has read-write access to a specific cluster in a specific environment
-- can view everything in that cluster including secrets
-
-The poweruser role:
-
-- has read-write access to a specific namespace in a specific cluster in a specific environment
-- can view everything in that namespace excluding secrets
-
-The readonly role:
-
-- has readonly access to a specific cluster in a specific environment
-- can view everything in that cluster excluding secrets
-
-1. Open the `gds-cli`.
-
-1. Run the following to export the AWS credentials for the appropriate GOV.UK environment and role:
+1. Obtain AWS credentials using `gds-cli` for the desired GOV.UK environment and role:
 
   ```sh
   eval $(gds aws govuk-<govuk-environment>-<role> -e --art 8h)
@@ -51,10 +28,10 @@ The readonly role:
   ```
 
   where:
-  - `<govuk-environment>` is the GOV.UK environment that you want to get credentials for and will be `test`, `integration`, `staging`, or `production`
-  - `<role>` is the appropriate role and will be `admin`, `poweruser` or `readonly`
+  - `<govuk-environment>` is `integration`, `staging`, or `production`
+  - `<role>` is `admin`, `poweruser`, or `readonly`
 
-## Test your access
+## Access a cluster for the first time
 
 1. If it's your first time accessing the cluster through kubectl, add the `govuk` cluster to your kubectl configuration in `~/.kube/config`:
 
@@ -62,30 +39,31 @@ The readonly role:
     aws eks update-kubeconfig --name govuk
     ```
 
-1. To make it easier to switch between clusters, namespaces or users, edit your kubectl configuration (usually located at `~/.kube/config`) and rename the new context with a more human readable context name.
+1. To make it easier to switch between clusters, namespaces or users, you can rename the new context to match the name of the environment:
 
-    To do this, edit the `name` field of the last context in the kubectl configuration. For example, you can set the `name` to `<govuk-environment>`.
+    Edit the `name` field of the last context in `~/.kube/config`. For example, for the staging environment you could set `name` to `govuk-staging`.
 
     See the [Kubernetes documentation on configuring access to multiple clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) for more information.
 
-1. To check that you have access to the cluster, run:
+1. Check that you can access the cluster:
 
     ```sh
     kubectl config use-context <govuk-environment>
-    kubectl cluster-info
+    kubectl get deploy/frontend
     ```
 
-    If you have access, you should get information about the GOV.UK EKS cluster control plane, like in the following example:
+    You should see output similar to:
 
-    ```sh
-    Kubernetes control plane is https://{GOVUK_CLUSTER_ADDRESS}.{AWS_REGION}.eks.amazonaws.com
+    ```
+    NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+    frontend   2/2     2            2           399d
     ```
 
-## Switching clusters
+## Access a cluster that you have accessed before
 
-To switch clusters:
+To switch to a cluster that you have previously configured in `~/.kube/config` as above:
 
-1. Run the export AWS credentials command in the `gds-cli`, selecting the appropriate GOV.UK environment and role:
+1. Obtain AWS credentials using `gds-cli` for the desired GOV.UK environment and role:
 
      ```sh
      eval $(gds aws govuk-<govuk-environment>-<role> -e --art 8h)
@@ -93,16 +71,16 @@ To switch clusters:
      ```
 
     where:
-    - `<govuk-environment>` is the GOV.UK environment that you want to get credentials for and will be `test`, `integration`, `staging`, or `production`
-    - `<role>` is the appropriate role and will be `admin`, `poweruser` or `readonly`
+    - `<govuk-environment>` is `integration`, `staging`, or `production`
+    - `<role>` is `admin`, `poweruser`, or `readonly`
 
-1. Switch to the correct kubectl context:
+1. Switch to the corresponding kubectl context:
 
      ```sh
      kubectl config use-context <govuk-environment>
      ```
 
-    You can get a list of context by running:
+    You can list the available contexts by running:
 
      ```sh
      kubectl config get-contexts
