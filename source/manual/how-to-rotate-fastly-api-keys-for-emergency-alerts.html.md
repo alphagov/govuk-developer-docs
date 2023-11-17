@@ -13,7 +13,7 @@ The process should be roughly:
 
 * Sign in to Fastly using the Emergency Alerts account [(credentials in govuk-secrets)](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/notify_emergency_alerts_account.gpg) (private repository)
 * Visit [Account / Personal API tokens](https://manage.fastly.com/account/personal/tokens) in Fastly
-* Search for "GOV.UK Emergency Alerts /alerts" to find the current keys (If you cannot find it it may still be referred to as "GOV.UK Notify /alerts")
+* Search for "GOV.UK Emergency Alerts /alerts" to find the current keys
 * Click Create Token
 * Re-enter the account password
 * Name the token using the pattern `GOV.UK Emergency Alerts /alerts $ENVIRONMENT $YEAR`
