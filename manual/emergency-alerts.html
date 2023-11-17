@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>What is GOV.UK Notify Emergency Alerts? - GOV.UK Developer Documentation</title>
+    <title>What is GOV.UK Emergency Alerts? - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/notify-emergency-alerts.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/emergency-alerts.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="What is GOV.UK Notify Emergency Alerts? - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/notify-emergency-alerts.html" />
+      <meta name="twitter:title" content="What is GOV.UK Emergency Alerts? - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/emergency-alerts.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="What is GOV.UK Notify Emergency Alerts?" />
+      <meta property="og:title" content="What is GOV.UK Emergency Alerts?" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/notify-emergency-alerts.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/emergency-alerts.html" />
 
     
   </head>
@@ -129,7 +129,7 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>What is GOV.UK Notify Emergency Alerts?</span></a>
+    <a href="#header"><span>What is GOV.UK Emergency Alerts?</span></a>
     <ul>
       <li>
         <a href="#how-does-www-gov-ukalerts-work"><span>How does www.gov.uk/alerts work?</span></a>
@@ -167,8 +167,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "Notify Emergency Alerts",
-        "@id": "http://www.dev.gov.uk/manual.html#notify-emergency-alerts"
+        "name": "Emergency Alerts",
+        "@id": "http://www.dev.gov.uk/manual.html#emergency-alerts"
       }
     }
   ]
@@ -181,38 +181,38 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#notify-emergency-alerts" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Notify Emergency Alerts&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#notify-emergency-alerts">Notify Emergency Alerts</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#emergency-alerts" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Emergency Alerts&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#emergency-alerts">Emergency Alerts</a>
         </li>
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d6468edb5781e39a8dc6af575650c4e77d6117d6">13 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/feb9255e0c457df572efcb10c78a0419790448b1">17 Nov 2023</a>
 </div>
 
- <h1 id='header'>What is GOV.UK Notify Emergency Alerts?</h1> <p>The Cabinet Office and the Department for Digital, Culture, Media &amp; Sport are developing a ‘cell broadcast’ alert system to enable people whose lives are at risk in an emergency to be rapidly contacted via their mobile phone. They are currently at the testing phase and subject to successful progress, hope to launch the service soon.</p>
-<p>As part of this service, GOV.UK delegate serving <a href="https://www.gov.uk/alerts">www.gov.uk/alerts</a> to the GOV.UK Notify team.</p>
-<h2 id='how-does-www-gov-ukalerts-work'>How does www.gov.uk/alerts work?</h2><p>We have a custom host in Fastly for /alerts which points at an AWS CloudFront CDN which is managed by the GOV.UK Notify team. Each GOV.UK environment points at a different custom host:</p>
+ <h1 id='header'>What is GOV.UK Emergency Alerts?</h1> <p>The Cabinet Office <a href="https://www.instituteforgovernment.org.uk/explainer/cobr-cobra">COBR</a> Unit and the Department for Science, Innovation and Technology have developed an emergency alert system to enable people whose lives are at risk in an emergency to be rapidly contacted via their mobile phone. It is currently in the trial phase following a successful national test message. It was originally developed by the GOV.UK Notify team and is now managed and maintained by the GOV.UK Emergency Alerts team.</p>
+<p>As part of this service, GOV.UK delegate serving <a href="https://www.gov.uk/alerts">www.gov.uk/alerts</a> to the GOV.UK Emergency Alerts team.</p>
+<h2 id='how-does-www-gov-ukalerts-work'>How does www.gov.uk/alerts work?</h2><p>We have a custom host in Fastly for /alerts which points at an AWS CloudFront CDN which is managed by the GOV.UK Emergency Alerts team. Each GOV.UK environment points at a different custom host:</p>
 
 <ul>
-<li><a href="https://manage.fastly.com/configure/services/4mENG6RJL8sxnvgPUMRDz2/versions/275/origins">Fastly&rsquo;s Integration configuration</a> points at Notify&rsquo;s Preview environment;</li>
-<li><a href="https://manage.fastly.com/configure/services/13QQKEZBSrBFyfxYGzjHPZ/versions/854/origins">Fastly&rsquo;s Staging configuration</a> points at Notify&rsquo;s Staging environment; and</li>
-<li><a href="https://manage.fastly.com/configure/services/4b340CyOhAgINR9eKMH83h/versions/549/origins">Fastly&rsquo;s Production configuration</a> points at Notify&rsquo;s Production environment.</li>
+<li><a href="https://manage.fastly.com/configure/services/4mENG6RJL8sxnvgPUMRDz2/versions/275/origins">Fastly&rsquo;s Integration configuration</a> points at Emergency Alerts Preview environment;</li>
+<li><a href="https://manage.fastly.com/configure/services/13QQKEZBSrBFyfxYGzjHPZ/versions/854/origins">Fastly&rsquo;s Staging configuration</a> points at Emergency Alerts Staging environment; and</li>
+<li><a href="https://manage.fastly.com/configure/services/4b340CyOhAgINR9eKMH83h/versions/549/origins">Fastly&rsquo;s Production configuration</a> points at Emergency Alerts Production environment.</li>
 </ul>
 <p>Requests to /alerts (or to anything beginning with <code>/alerts/</code>) hit GOV.UK&rsquo;s CDN (Fastly), but no other bits of GOV.UK&rsquo;s infrastructure.</p>
 <p>This is configured in govuk-fastly, by <a href="https://github.com/alphagov/govuk-fastly/blob/ffd54b5c495a6daad6f6a774d53296924cb4e784/modules/www/service.tf#L70-L73">dynamically selecting the backend</a> from the <a href="https://github.com/alphagov/govuk-fastly-secrets/blob/fbf5333dafdca0250d67c043b15750a6b160de6a/secrets.yaml#L58-L61">list of backends in govuk-fastly-secrets</a>.</p>
 <p>We <a href="https://github.com/alphagov/govuk-fastly-secrets/blob/fbf5333dafdca0250d67c043b15750a6b160de6a/secrets.yaml#L58-L61">only have one backend</a>, at the time of writing. Backends have <a href="https://github.com/alphagov/govuk-fastly/blob/ffd54b5c495a6daad6f6a774d53296924cb4e784/modules/www/service.tf#L83">POP shield enabled by default</a>.</p>
-<h2 id='api-keys'>API Keys</h2><p>Notify have three Fastly API keys with <a href="https://developer.fastly.com/reference/api/auth/#scopes"><code>purge_select</code> scope</a>, one for
+<h2 id='api-keys'>API Keys</h2><p>Emergency Alerts have three Fastly API keys with <a href="https://developer.fastly.com/reference/api/auth/#scopes"><code>purge_select</code> scope</a>, one for
 integration, staging and production. These allow them to purge individual pages or surrogate keys from the cache. Note that the scope
-of these keys is not restricted to <code>/alerts</code> - in principle they could be used to purge any page from the cache. We trust Notify to take
-appropriate care with these credentials.</p>
-<p>The API keys are not configured to expire, but it is good practice to rotate them regularly. The Notify team will instigate API key rotations,
-see <a href="/manual/how-to-rotate-fastly-api-keys-for-notify-emergency-alerts.html">Rotate Fastly API Keys for Notify Emergency Alerts</a>.</p>
+of these keys is not restricted to <code>/alerts</code> - in principle they could be used to purge any page from the cache. We trust the Emergency
+Alerts team to take appropriate care with these credentials.</p>
+<p>The API keys are not configured to expire, but it is good practice to rotate them regularly. The Emergency Alerts team will instigate API key rotations,
+see <a href="/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html">Rotate Fastly API Keys for Emergency Alerts</a>.</p>
 
 
   <div class='related-content'>
 
-    <h3>More in the Notify Emergency Alerts section</h3>
+    <h3>More in the Emergency Alerts section</h3>
 
     <div class='govuk-grid-row'>
 
@@ -220,7 +220,7 @@ see <a href="/manual/how-to-rotate-fastly-api-keys-for-notify-emergency-alerts.h
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/how-to-rotate-fastly-api-keys-for-notify-emergency-alerts.html">Rotate Fastly API Keys for Notify Emergency Alerts</a></li>
+            <li><a href="/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html">Rotate Fastly API Keys for Emergency Alerts</a></li>
           </ul>
         </div>
 
@@ -233,8 +233,8 @@ see <a href="/manual/how-to-rotate-fastly-api-keys-for-notify-emergency-alerts.h
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/notify-emergency-alerts.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27What+is+GOV.UK+Notify+Emergency+Alerts%3F%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fnotify-emergency-alerts.html%29&amp;labels=bug&amp;title=Re%3A+%27What+is+GOV.UK+Notify+Emergency+Alerts%3F%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/emergency-alerts.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27What+is+GOV.UK+Emergency+Alerts%3F%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Femergency-alerts.html%29&amp;labels=bug&amp;title=Re%3A+%27What+is+GOV.UK+Emergency+Alerts%3F%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Rotate Fastly API Keys for Notify Emergency Alerts - GOV.UK Developer Documentation</title>
+    <title>Rotate Fastly API Keys for Emergency Alerts - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/how-to-rotate-fastly-api-keys-for-notify-emergency-alerts.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Rotate Fastly API Keys for Notify Emergency Alerts - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/how-to-rotate-fastly-api-keys-for-notify-emergency-alerts.html" />
+      <meta name="twitter:title" content="Rotate Fastly API Keys for Emergency Alerts - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Rotate Fastly API Keys for Notify Emergency Alerts" />
+      <meta property="og:title" content="Rotate Fastly API Keys for Emergency Alerts" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/how-to-rotate-fastly-api-keys-for-notify-emergency-alerts.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html" />
 
     
   </head>
@@ -129,7 +129,7 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Rotate Fastly API Keys for Notify Emergency Alerts</span></a>
+    <a href="#header"><span>Rotate Fastly API Keys for Emergency Alerts</span></a>
   </li>
 </ul>
 
@@ -159,8 +159,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "Notify Emergency Alerts",
-        "@id": "http://www.dev.gov.uk/manual.html#notify-emergency-alerts"
+        "name": "Emergency Alerts",
+        "@id": "http://www.dev.gov.uk/manual.html#emergency-alerts"
       }
     }
   ]
@@ -173,34 +173,26 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#notify-emergency-alerts" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Notify Emergency Alerts&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#notify-emergency-alerts">Notify Emergency Alerts</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#emergency-alerts" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Emergency Alerts&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#emergency-alerts">Emergency Alerts</a>
         </li>
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b66e83b5edd1b7eb8e96e39d0b5b00dbf46f7c36">17 Nov 2023</a>
 </div>
 
- <h1 id='header'>Rotate Fastly API Keys for Notify Emergency Alerts</h1> <p>The GOV.UK Notify team will occasionally request GOV.UK&rsquo;s help rotating some Fastly API keys which they use to purge Emergency Alerts
+ <h1 id='header'>Rotate Fastly API Keys for Emergency Alerts</h1> <p>The GOV.UK Emergency Alerts team will occasionally request GOV.UK&rsquo;s help rotating some Fastly API keys which they use to purge Emergency Alerts
 pages from the Fastly cache.</p>
 <p>The process should be roughly:</p>
 
 <ul>
-<li>Make sure you can clone <a href="https://github.com/alphagov/notifications-credentials/">Notify&rsquo;s secrets repository</a> (it&rsquo;s private, so you may need to be added)</li>
-<li>Sign in to Fastly using the Notify Emergency Alerts account <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/notify_emergency_alerts_account.gpg">(credentials in govuk-secrets)</a> (private repository)</li>
+<li>Sign in to Fastly using the Emergency Alerts account <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/notify_emergency_alerts_account.gpg">(credentials in govuk-secrets)</a> (private repository)</li>
 <li>Visit <a href="https://manage.fastly.com/account/personal/tokens">Account / Personal API tokens</a> in Fastly</li>
-<li>Search for &ldquo;GOV.UK Notify /alerts&rdquo; to find the current keys</li>
+<li>Search for &ldquo;GOV.UK Emergency Alerts /alerts&rdquo; to find the current keys</li>
 <li>Click Create Token</li>
 <li>Re-enter the account password</li>
-<li>Name the token using the pattern <code>GOV.UK Notify /alerts $ENVIRONMENT $YEAR</code></li>
+<li>Name the token using the pattern <code>GOV.UK Emergency Alerts /alerts $ENVIRONMENT $YEAR</code></li>
 <li>Choose the specific service <code>$ENVIRONMENT GOV.UK</code></li>
 <li>Select only purge select as the Scope</li>
 <li>Select &ldquo;Never expire&rdquo; for the expiration</li>
@@ -208,23 +200,30 @@ pages from the Fastly cache.</p>
 <p><a href="/manual/images/fastly-api-key-emergency-alerts.png" rel="noopener noreferrer"><img src="/manual/images/fastly-api-key-emergency-alerts.png" alt="Screenshot of the Fastly user interface for configuring an API key" /></a></p>
 
 <ul>
-<li>Click Create Token</li>
-<li>From the notifications-credentials repository, run <code>PASSWORD_STORE_DIR=$(pwd) pass insert credentials/fastly/${ENVIRONMENT}/api_key</code> to encrypt the api_key for the Notify team</li>
-<li>Once you&rsquo;ve updated the API keys for all the environments, raise a PR <a href="https://github.com/alphagov/notifications-credentials/pull/213">like this original PR</a> with the Notify team</li>
-<li>Once the Notify team have confirmed that they have deployed the new API keys no longer need the old keys, use the Fastly user interface to delete the old keys</li>
+<li>Copy the token value and <a href="https://docs.publishing.service.gov.uk/manual/send-secret-using-gcp.html">send it to the Emergency Alerts team member securely</a>.</li>
+<li>Repeat for each environment requested. (You may wish to send all of the tokens across in one go, to save on the overhead).</li>
+<li>Once the Emergency Alerts team have confirmed that the new API keys are working (see below), you should delete the old keys via the Fastly UI.</li>
+</ul>
+<p>The Emergency Alerts team member will then:</p>
+
+<ul>
+<li>Log into the relevant AWS environment (preview, staging, production) and update the relevant <code>fastly-api-key</code> in Parameter Store within AWS Systems Manager</li>
+<li>Log into the AWS ECS console and navigate to the service eas-app-govuk-alerts within the eas-app-cluster</li>
+<li>Stop the running task within the eas-app-govuk-alerts dwiserviceapp. (That should then be restarted and will pull in the new credentials).</li>
+<li>Test the relevant key is working correctly by rebuilding the public alerts site for that environment. (It will automatically rebuild after the container app restarts).</li>
 </ul>
 
 
   <div class='related-content'>
 
-    <h3>More in the Notify Emergency Alerts section</h3>
+    <h3>More in the Emergency Alerts section</h3>
 
     <div class='govuk-grid-row'>
         <div class='govuk-grid-column-one-half'>
           <h4>Learn</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/notify-emergency-alerts.html">What is GOV.UK Notify Emergency Alerts?</a></li>
+            <li><a href="/manual/emergency-alerts.html">What is GOV.UK Emergency Alerts?</a></li>
           </ul>
         </div>
 
@@ -238,8 +237,8 @@ pages from the Fastly cache.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/how-to-rotate-fastly-api-keys-for-notify-emergency-alerts.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Rotate+Fastly+API+Keys+for+Notify+Emergency+Alerts%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhow-to-rotate-fastly-api-keys-for-notify-emergency-alerts.html%29&amp;labels=bug&amp;title=Re%3A+%27Rotate+Fastly+API+Keys+for+Notify+Emergency+Alerts%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Rotate+Fastly+API+Keys+for+Emergency+Alerts%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhow-to-rotate-fastly-api-keys-for-emergency-alerts.html%29&amp;labels=bug&amp;title=Re%3A+%27Rotate+Fastly+API+Keys+for+Emergency+Alerts%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
