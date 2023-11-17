@@ -23,7 +23,9 @@ The process should be roughly:
 
 ![Screenshot of the Fastly user interface for configuring an API key](/manual/images/fastly-api-key-emergency-alerts.png)
 
-* Click Create Token
+* Copy the token value and [send it to the Emergency Alerts team member securely](https://docs.publishing.service.gov.uk/manual/send-secret-using-gcp.html).
+* Repeat for each environment requested. (You may wish to send all of the tokens across in one go, to save on the overhead).
+* Once the Emergency Alerts team have confirmed that the new API keys are working (see below), you should delete the old keys via the Fastly UI.
 * Using the GPG ID of the Emergency Alerts team you got before `gpg --armor --encrypt --recipient '<public key id>'` then paste in the new token (or tokens) and press CTRL-D
 * Send the generated PGP MESSAGE to the Emergency Alerts team member
 * That team member can then log into the relevant AWS environment (preview, staging, production) and update the relevant `fastly-api-key` in Parameter Store within AWS Systems Manager
