@@ -12,7 +12,7 @@
   </li>
 
   <li>
-    For elements within the content of a page, tracking should be controllable. Specifically, tracking should be disabled on <a href="https://components.publishing.service.gov.uk/component-guide" class="govuk-link">components</a> by default and then enabled with the 'ga4_tracking: true' option. This provides the flexibility to disable tracking in the unforeseen event of some kind of tracking collision or duplication.
+    For elements within the content of a page, tracking should be controllable. Specifically, tracking should be enabled on <a href="https://components.publishing.service.gov.uk/component-guide" class="govuk-link">components</a> by default but disabled with a 'disable_ga4' option. This provides the flexibility to disable tracking in the unforeseen event of some kind of tracking collision or duplication.
   </li>
 
   <li>
@@ -21,3 +21,5 @@
 </ul>
 
 <p class="govuk-body">Enabling tracking should be as simple as possible. For this reason, tracking should be handled internally by components unless external data is required, that is, unless something unique must be passed from the application to the component to track it correctly.</p>
+
+<p class="govuk-body">During the development phase of the GA4 migration our approach with components was not to enable tracking by default, but to have a 'ga4_tracking' option that allowed tracking to be enabled. This allowed us greater control during testing and deployment.</p>
