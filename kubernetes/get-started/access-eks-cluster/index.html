@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Access EKS cluster - GOV.UK Developer Documentation</title>
+    <title>Access an EKS cluster - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,12 +16,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Access EKS cluster - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Access an EKS cluster - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/kubernetes/get-started/access-eks-cluster/" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Access EKS cluster" />
+      <meta property="og:title" content="Access an EKS cluster" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/kubernetes/get-started/access-eks-cluster/" />
 
@@ -213,16 +213,19 @@
     </ul>
   </li>
   <li>
-    <a href="/kubernetes/get-started/access-eks-cluster/"><span>Access EKS cluster</span></a>
+    <a href="/kubernetes/get-started/access-eks-cluster/"><span>Access a GOV.UK EKS cluster</span></a>
     <ul>
       <li>
-        <a href="/kubernetes/get-started/access-eks-cluster/#select-a-role-and-environment"><span>Select a role and environment</span></a>
+        <a href="/kubernetes/get-started/access-eks-cluster/#prerequisites"><span>Prerequisites</span></a>
       </li>
       <li>
-        <a href="/kubernetes/get-started/access-eks-cluster/#test-your-access"><span>Test your access</span></a>
+        <a href="/kubernetes/get-started/access-eks-cluster/#obtain-aws-credentials-for-your-role-in-the-cluster39s-aws-account"><span>Obtain AWS credentials for your role in the cluster’s AWS account</span></a>
       </li>
       <li>
-        <a href="/kubernetes/get-started/access-eks-cluster/#switching-clusters"><span>Switching clusters</span></a>
+        <a href="/kubernetes/get-started/access-eks-cluster/#access-a-cluster-for-the-first-time"><span>Access a cluster for the first time</span></a>
+      </li>
+      <li>
+        <a href="/kubernetes/get-started/access-eks-cluster/#access-a-cluster-that-you-have-accessed-before"><span>Access a cluster that you have accessed before</span></a>
       </li>
     </ul>
   </li>
@@ -510,84 +513,58 @@
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9b4c82b11b975c1e4c4a5a156afa58696bd26d83">25 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/de52138d1998a59c2e2370b5b5f3bad26889e7ac">17 Nov 2023</a>
 </div>
 
- <h1 id='access-eks-cluster'>Access EKS cluster</h1><p>You must access the GOV.UK Kubernetes platform <a href="https://kubernetes.io/docs/concepts/overview/components/">Elastic Kubernetes Service cluster</a> to use the platform.</p>
-<p>To access the cluster, you must have:</p>
-
-<ul>
-<li><a href="https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools">installed gds-cli</a></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/get-started.html#7-get-aws-access">obtained access to AWS</a></li>
-<li><a href="https://docs.publishing.service.gov.uk/manual/get-started.html#8-access-aws-for-the-first-time">accessed AWS</a> using <code>gds-cli</code></li>
-</ul>
-<p>You must select a role and environment to make sure you gain access to the right cluster.</p>
-<h2 id='select-a-role-and-environment'>Select a role and environment</h2><p>An <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">AWS Identity and Access Management (IAM) role</a> is an IAM identity that has specific permissions.</p>
-<p>You must select one of the following roles to access the cluster:</p>
-
-<ul>
-<li>admin</li>
-<li>poweruser</li>
-<li>readonly</li>
-</ul>
-<p>The admin role:</p>
-
-<ul>
-<li>has read-write access to a specific cluster in a specific environment</li>
-<li>can view everything in that cluster including secrets</li>
-</ul>
-<p>The poweruser role:</p>
-
-<ul>
-<li>has read-write access to a specific namespace in a specific cluster in a specific environment</li>
-<li>can view everything in that namespace excluding secrets</li>
-</ul>
-<p>The readonly role:</p>
-
-<ul>
-<li>has readonly access to a specific cluster in a specific environment</li>
-<li>can view everything in that cluster excluding secrets</li>
-</ul>
-
+ <h1 id='access-a-gov-uk-eks-cluster'>Access a GOV.UK EKS cluster</h1><p>There are 3 GOV.UK clusters: integration, staging and production. These correspond to the integration, staging and production GOV.UK environments, which belong to the integration, staging and production AWS accounts respectively.</p>
+<h2 id='prerequisites'>Prerequisites</h2><p>This document assumes that you have already followed the steps in <a href="https://docs.publishing.service.gov.uk/manual/get-started.html">Get started developing on GOV.UK</a>.</p>
+<h2 id='obtain-aws-credentials-for-your-role-in-the-cluster39s-aws-account'>Obtain AWS credentials for your role in the cluster&rsquo;s AWS account</h2>
 <ol>
-<li><p>Open the <code>gds-cli</code>.</p></li>
-<li><p>Run the following to export the AWS credentials for the appropriate GOV.UK environment and role:</p></li>
+<li>Choose the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">AWS IAM role</a> that you will use to access the cluster:</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>- `admin`: has read-write access to everything in the cluster, including secrets
+- `poweruser`: has read-write access to everything in the `apps` namespace, but cannot view or modify secrets
+- `readonly`: can read everything in the `apps` namespace, except for secrets
+</code></pre></div>
+<ol>
+<li>Obtain AWS credentials using <code>gds-cli</code> for the desired GOV.UK environment and role:</li>
 </ol>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>  <span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-&lt;govuk-environment&gt;-&lt;role&gt; <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
   <span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
 </code></pre></div><p>where:
-  - <code>&lt;govuk-environment&gt;</code> is the GOV.UK environment that you want to get credentials for and will be <code>test</code>, <code>integration</code>, <code>staging</code>, or <code>production</code>
-  - <code>&lt;role&gt;</code> is the appropriate role and will be <code>admin</code>, <code>poweruser</code> or <code>readonly</code></p>
-<h2 id='test-your-access'>Test your access</h2>
+  - <code>&lt;govuk-environment&gt;</code> is <code>integration</code>, <code>staging</code>, or <code>production</code>
+  - <code>&lt;role&gt;</code> is <code>admin</code>, <code>poweruser</code>, or <code>readonly</code></p>
+<h2 id='access-a-cluster-for-the-first-time'>Access a cluster for the first time</h2>
 <ol>
 <li><p>If it&rsquo;s your first time accessing the cluster through kubectl, add the <code>govuk</code> cluster to your kubectl configuration in <code>~/.kube/config</code>:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>aws eks update-kubeconfig <span class="nt">--name</span> govuk
 </code></pre></div></li>
-<li><p>To make it easier to switch between clusters, namespaces or users, edit your kubectl configuration (usually located at <code>~/.kube/config</code>) and rename the new context with a more human readable context name.</p>
-<p>To do this, edit the <code>name</code> field of the last context in the kubectl configuration. For example, you can set the <code>name</code> to <code>&lt;govuk-environment&gt;</code>.</p>
+<li><p>To make it easier to switch between clusters, namespaces or users, you can rename the new context to match the name of the environment:</p>
+<p>Edit the <code>name</code> field of the last context in <code>~/.kube/config</code>. For example, for the staging environment you could set <code>name</code> to <code>govuk-staging</code>.</p>
 <p>See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">Kubernetes documentation on configuring access to multiple clusters</a> for more information.</p></li>
-<li><p>To check that you have access to the cluster, run:</p>
+<li><p>Check that you can access the cluster:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl config use-context &lt;govuk-environment&gt;
-kubectl cluster-info
-</code></pre></div><p>If you have access, you should get information about the GOV.UK EKS cluster control plane, like in the following example:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>Kubernetes control plane is https://<span class="o">{</span>GOVUK_CLUSTER_ADDRESS<span class="o">}</span>.<span class="o">{</span>AWS_REGION<span class="o">}</span>.eks.amazonaws.com
+kubectl get deploy/frontend
+</code></pre></div><p>You should see output similar to:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+frontend   2/2     2            2           399d
 </code></pre></div></li>
 </ol>
-<h2 id='switching-clusters'>Switching clusters</h2><p>To switch clusters:</p>
+<h2 id='access-a-cluster-that-you-have-accessed-before'>Access a cluster that you have accessed before</h2><p>To switch to a cluster that you have previously configured in <code>~/.kube/config</code> as above:</p>
 
 <ol>
-<li><p>Run the export AWS credentials command in the <code>gds-cli</code>, selecting the appropriate GOV.UK environment and role:</p>
+<li><p>Obtain AWS credentials using <code>gds-cli</code> for the desired GOV.UK environment and role:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code> <span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-&lt;govuk-environment&gt;-&lt;role&gt; <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
  <span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
 </code></pre></div><p>where:</p>
 
 <ul>
-<li><code>&lt;govuk-environment&gt;</code> is the GOV.UK environment that you want to get credentials for and will be <code>test</code>, <code>integration</code>, <code>staging</code>, or <code>production</code></li>
-<li><code>&lt;role&gt;</code> is the appropriate role and will be <code>admin</code>, <code>poweruser</code> or <code>readonly</code></li>
+<li><code>&lt;govuk-environment&gt;</code> is <code>integration</code>, <code>staging</code>, or <code>production</code></li>
+<li><code>&lt;role&gt;</code> is <code>admin</code>, <code>poweruser</code>, or <code>readonly</code></li>
 </ul></li>
-<li><p>Switch to the correct kubectl context:</p>
+<li><p>Switch to the corresponding kubectl context:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code> kubectl config use-context &lt;govuk-environment&gt;
-</code></pre></div><p>You can get a list of context by running:</p>
+</code></pre></div><p>You can list the available contexts by running:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code> kubectl config get-contexts
 </code></pre></div></li>
 </ol>
@@ -622,7 +599,7 @@ kubectl cluster-info
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/kubernetes/get-started/access-eks-cluster/index.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Access+EKS+cluster%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fkubernetes%2Fget-started%2Faccess-eks-cluster%2F%29&amp;labels=bug&amp;title=Re%3A+%27Access+EKS+cluster%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Access+an+EKS+cluster%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fkubernetes%2Fget-started%2Faccess-eks-cluster%2F%29&amp;labels=bug&amp;title=Re%3A+%27Access+an+EKS+cluster%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
