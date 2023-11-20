@@ -1253,16 +1253,16 @@
       data:
       - name: event
         value: search_results
-      - name: event_name
-        value: view_item_list
-      - name: results
-      - name: sort
-      - name: term
       - name: search_results
         value:
         - name: ecommerce
           value:
           - name: items
+        - name: event_name
+          value: view_item_list
+        - name: results
+        - name: sort
+        - name: term
     - name: search boxes
       implemented: true
       priority: medium
@@ -1336,14 +1336,7 @@
         - name: index
           value:
           - name: index_section
-          - name: index_link
           - name: index_section_count
-    - name: filter click
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
     - name: filter added/removed
       implemented: true
       priority: low
@@ -1368,14 +1361,7 @@
         - name: index
           value:
           - name: index_section
-          - name: index_link
           - name: index_section_count
-    - name: organisations link click
-      implemented: false
-      priority: low
-      data:
-      - name: event
-        value: event_data
 
 - name: share this page
   events:
