@@ -78,19 +78,60 @@
         - name: link_domain
         - name: link_path_parts
 - name: banners
+  description: Note that the presence of banners is tracked via our Pageview tracker.
   events:
-    - name: banner shown
-      implemented: false
-      priority: medium
-      data:
-      - name: event
-        value: event_data
     - name: link click
-      implemented: false
+      description: Clicking a link within a banner
+      examples:
+        - text: The "BETA" banner on this page contains the link "find out what beta means"
+          link: https://www.gov.uk/hmrc-internal-manuals/debt-management-and-banking
+      implemented: true
       priority: medium
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: banner type e.g. intervention/phase/cookie banner
+        - name: url
+        - name: text
+          value: Text of the link
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: section
+          value: title of the banner
+        - name: external
+        - name: method
+        - name: link_domain
+        - name: link_path_parts
+    - name: dismiss button
+      description: Event that occurs when a user clicks a dismiss button to hide an intervention, survey, or cookie banner.
+      examples:
+        - text: After accepting cookies, click "Hide this message"
+          link: https://www.gov.uk/
+      implemented: true
+      priority: medium
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: select_content
+        - name: type
+          value: banner type e.g. intervention/survey/cookie banner
+        - name: text
+          value: text of the link
+        - name: section
+          value: title of the banner
+        - name: action
+          value: closed
+
 
 - name: breadcrumbs
   events:
@@ -911,24 +952,35 @@
         value: page_view
       - name: page_view
         value:
+        - name: ab_test
         - name: browse_topic
         - name: content_id
+        - name: cookie_banner
+        - name: devolved_nations_banner
         - name: document_type
         - name: dynamic
+        - name: emergency_banner
         - name: first_published_at
         - name: history
+        - name: intervention
         - name: language
         - name: location
+        - name: navigation_list_type
+        - name: navigation_page_type
         - name: organisations
         - name: political_status
         - name: primary_publishing_organisation
         - name: public_updated_at
         - name: publishing_app
         - name: publishing_government
+        - name: query_string
         - name: referrer
         - name: rendering_app
         - name: schema_name
+        - name: search_term
+        - name: spelling_suggestion
         - name: status_code
+        - name: step_navs
         - name: taxonomy_all
         - name: taxonomy_all_ids
         - name: taxonomy_level1
@@ -936,6 +988,7 @@
         - name: taxonomy_main_id
         - name: title
         - name: updated_at
+        - name: viewport_size
         - name: withdrawn
         - name: world_locations
 
