@@ -12,14 +12,14 @@
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-api-v2.html">
 
-      <meta name="description" content="Everything about search-api-v2 (Future API to search for content on GOV.UK (not yet live))" />
+      <meta name="description" content="Everything about search-api-v2 (API and synchronisation worker for general site search on GOV.UK)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta name="twitter:title" content="Application: search-api-v2 - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2.html" />
 
-      <meta property="og:description" content="Everything about search-api-v2 (Future API to search for content on GOV.UK (not yet live))" />
+      <meta property="og:description" content="Everything about search-api-v2 (API and synchronisation worker for general site search on GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
       <meta property="og:title" content="Application: search-api-v2" />
@@ -131,6 +131,7 @@
     <li>
       <ul>
           <li><a href="/repos/search-api-v2/development_tips.html" rel="noopener" class="govuk-link">Development Tips</a></li>
+          <li><a href="/repos/search-api-v2/engine_customisation.html" rel="noopener" class="govuk-link">Engine customisation</a></li>
           <li><a href="/repos/search-api-v2/search_api_compatibility.html" rel="noopener" class="govuk-link">Search API compatibility</a></li>
           <li class="subdir__heading">adr</li>
           <ul class="subdir__menu">
@@ -188,7 +189,7 @@
   
   <h1 class="page-title">Application: search-api-v2</h1>
 
-  <p>Future API to search for content on GOV.UK (not yet live)</p>
+  <p>API and synchronisation worker for general site search on GOV.UK</p>
 
 <div class="gem-c-summary-list  ">
 
@@ -244,7 +245,99 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Future API to search for content on GOV.UK (not yet live)</p>
+<p>API and synchronisation worker for general site search on GOV.UK</p>
+
+<p>This application powers the new site search for GOV.UK using Google Cloud Platform (GCP)&lsquo;s <a href="https://cloud.google.com/generative-ai-app-builder/docs/introduction">Vertex
+AI Search</a> (&ldquo;Discovery Engine&rdquo;) product as its underlying search engine. It provides
+two core pieces of functionality:</p>
+
+<ul>
+<li>An API that is &ldquo;minimally compatible&rdquo; with the existing <code>search-api</code> REST interface to the extent
+necessary to power the <a href="https://www.gov.uk/search/all">&ldquo;site search&rdquo; (<code>/search/all</code>) finder</a>.</li>
+<li>A synchonisation worker that receives content updates from the Publishing API message queue and
+updates the Discovery Engine dataset accordingly</li>
+</ul>
+
+<h2 id="local-development">Local development</h2>
+
+<p>The official way of running this application locally is through <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker</a>, where
+a project is defined for it. Because this application is deeply integrated with a SaaS product, you
+will have to have access to a GCP Discovery Engine engine to be able to do anything more meaningful
+than running the test suite.</p>
+
+<p>If you work on the GOV.UK team, you should be able to add a development engine for yourself through
+<a href="https://github.com/alphagov/search-v2-infrastructure"><code>search-v2-infrastructure</code></a> and configure your local setup accordingly.</p>
+
+<p>Otherwise, you can create your own Discovery Engine engine in GCP and provide the engine&rsquo;s serving
+config path and datastore branch.</p>
+
+<p>You can then run the application from within the <code>govuk-docker</code> repository directory as follows:</p>
+
+<pre lang="bash"><code># Add these to your "dotfiles" for convenience, or just export them in your terminal session if you
+# prefer:
+export DISCOVERY_ENGINE_SERVING_CONFIG=...
+export DISCOVERY_ENGINE_DATASTORE_BRANCH=...
+
+make search-api-v2
+govuk-docker up -d search-api-v2-app # or search-api-v2-lite if you just want to run tests
+</code></pre>
+
+<h2 id="design-goals-and-search-api-v2-vs-search-api">Design goals and <code>search-api-v2</code> vs <code>search-api</code>
+</h2>
+
+<p>Our primary product goal was to improve the quality of search results for the majority of GOV.UK
+users.</p>
+
+<p>The existing search powers a significant number of use cases within GOV.UK, including numerous
+user-facing &ldquo;finder&rdquo; pages handled by <a href="https://github.com/alphagov/finder-frontend">Finder Frontend</a> (among them the
+<code>/search/all</code> finder that handles <em>the</em> main search page which we usually refer to as &ldquo;site
+search&rdquo;), but also acts as a very general &ldquo;everything but the kitchen sink&rdquo; API for retrieving
+content by a set of criteria.</p>
+
+<p>We established that attempting to migrate all of these use cases with over a decade of accumulated
+logic and edge cases would distract us from our primary goal and be a poor fit for a next-generation
+search product anyway (the overwhelming majority of non-&ldquo;site search&rdquo; queries being trivial content
+retrieval filtered by certain attributes that could be handled by a relational database).</p>
+
+<p>We therefore made a tactical decision to focus on &ldquo;site search&rdquo; only and find the minimal subset of
+the existing API contract that is necessary to render search results in this context, and update
+<a href="https://github.com/alphagov/finder-frontend">Finder Frontend</a> to call our new application if and only if the user is using the
+general &ldquo;site search&rdquo; finder.</p>
+
+<p>Nothing in this application precludes more use cases being migrated to it in the future, but for the
+time being, it is intentionally not a complete replacement for <a href="https://github.com/alphagov/search-api">Search API</a> (despite the
+&ldquo;v2&rdquo; name).</p>
+
+<p>See <a href="/repos/search-api-v2/search_api_compatibility.html">Search API compatibility</a> for more information about our
+compatibility design choices.</p>
+
+<h2 id="vertex-vs-discovery-engine">&ldquo;Vertex&rdquo; vs &ldquo;Discovery Engine&rdquo;</h2>
+
+<p>The marketing name of the search product we use (<em>Google Vertex AI Search and Conversation</em>) has
+undergone several changes while this application was first developed, and some concepts have
+different naming in the Google Cloud Platform UI compared to the actual underlying APIs themselves.</p>
+
+<p>We have chosen to exclusively use the more stable API naming (<em>Discovery Engine</em>, <em>engine</em> instead
+of <em>app</em>, etc.) throughout the codebase and documentation to avoid having to rename things as the
+product reached general availability, but you may see the terms &ldquo;Vertex&rdquo; or &ldquo;Vertex Search&rdquo; as well
+as some other marketing terms used in some project artefacts.</p>
+
+<h2 id="related-projects">Related projects</h2>
+
+<ul>
+<li>
+<a href="https://github.com/alphagov/finder-frontend"><code>finder-frontend</code></a>: Displays results from this application&rsquo;s API depending on
+the &ldquo;finder&rdquo; in use and some other conditions</li>
+<li>
+<a href="https://github.com/alphagov/search-api"><code>search-api</code></a>: The original Search API, a subset of which this application&rsquo;s API
+replicates</li>
+<li>
+<a href="https://github.com/alphagov/search-v2-infrastructure"><code>search-v2-infrastructure</code></a>: Provisions infrastructure for Discovery
+Engine including cloud resources and event ingestion for continuous training of the search
+engine</li>
+<li>
+<a href="https://github.com/alphagov/search-v2-evaluator"><code>search-v2-evaluator</code></a>: Internal tool to test and rate search results</li>
+</ul>
 <p></div></p>
 
 
