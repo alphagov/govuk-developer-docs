@@ -130,9 +130,6 @@
     </li>
     <li>
       <ul>
-          <li><a href="/repos/govuk-pact-broker/deployment.html" rel="noopener" class="govuk-link">Deployment</a></li>
-          <li><a href="/repos/govuk-pact-broker/infrastructure.html" rel="noopener" class="govuk-link">Infrastructure</a></li>
-          <li><a href="/repos/govuk-pact-broker/versioning.html" rel="noopener" class="govuk-link">Versioning</a></li>
       </ul>
     </li>
   </ul>
@@ -239,54 +236,18 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>This repo is a thin wrapper around the <a href="https://github.com/bethesque/pact_broker">Pact Broker Gem</a> that
-allows Pact Broker to be run on unicorn server on the
-<a href="https://docs.cloud.service.gov.uk/">GOV.UK PAAS</a>.</p>
+<p>This repo contains a minimal configuration to allow the
+<a href="https://hub.docker.com/r/pactfoundation/pact-broker">pactfoundation/pact-broker</a>
+Docker image to run on Heroku.</p>
 
-<p>As PaaS is being decommissioned later this year, we are currently migrating
-Pact Broker to Heroku, and so this repo also contains a <code>Dockerfile</code> and
-associated <code>heroku.yml</code> file to allow it to run there. After the migration is
-complete, the leftover pieces of the old wrapper (<code>config.ru</code>, <code>Gemfile</code>,
-<code>Procfile</code>, etc.) will be removed from this repo.</p>
+<p>This repo is automatically deployed to Heroku whenever a new commit is
+pushed to the <code>main</code> branch. Logs can be found in
+<a href="https://dashboard.heroku.com/apps/govuk-pact-broker">the Heroku dashboard for this project</a>.</p>
 
-<p>Pact Broker is used by projects such as <a href="https://github.com/alphagov/publishing-api">Publishing API</a>,
-<a href="https://github.com/alphagov/gds-api-adapters">GDS API Adapters</a> and <a href="https://github.com/alphagov/content-store">Content Store</a> for
-contract testing.</p>
-
-<h2 id="getting-started-legacy-version">Getting started (legacy version)</h2>
-
-<h3 id="install-dependencies">Install dependencies</h3>
-
-<pre><code>$ bundle install
-</code></pre>
-
-<h3 id="create-a-postgresql-database">Create a PostgreSQL database</h3>
-
-<pre><code>$ psql postgres
-&gt; create database pact_broker;
-&gt; CREATE USER pact_broker WITH PASSWORD 'pact_broker';
-&gt; GRANT ALL PRIVILEGES ON DATABASE pact_broker to pact_broker;
-</code></pre>
-
-<h3 id="set-up-environment-variables">Set up environment variables</h3>
-
-<pre><code>$ export AUTH_USERNAME=username
-$ export AUTH_PASSWORD=password
-$ export DATABASE_URL=postgresql://pact_broker@localhost/pact_broker
-</code></pre>
-
-<h3 id="run-the-app">Run the app</h3>
-
-<pre><code>$ bundle exec unicorn
-</code></pre>
-
-<h2 id="further-documentation">Further documentation</h2>
-
-<ul>
-<li><a href="/repos/govuk-pact-broker/infrastructure.html">Infrastructure</a></li>
-<li><a href="/repos/govuk-pact-broker/deployment.html">Deployment</a></li>
-<li><a href="/repos/govuk-pact-broker/versioning.html">Versioning</a></li>
-</ul>
+<p>Pact Broker is used by projects such as
+<a href="https://github.com/alphagov/publishing-api">Publishing API</a>,
+<a href="https://github.com/alphagov/gds-api-adapters">GDS API Adapters</a> and
+<a href="https://github.com/alphagov/content-store">Content Store</a> for contract testing.</p>
 
 <h2 id="licence">Licence</h2>
 
