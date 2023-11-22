@@ -250,15 +250,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/758a07c2c9af79d99a843a00689cfa70e79fb1fc">27 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/56389f51bb2522518fd26111ac945f9a8144c687">22 Nov 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 event tracker</h1>
@@ -298,22 +291,10 @@
 </code></pre>
 <p>The value for <code>text</code> will be determined based on the text of the element, or a value can be passed to override this in the <code>data-ga4-event</code> attribute.</p>
 <h2 id="advanced-use">Advanced use</h2>
-<p>In some scenarios we use components that cannot be modified directly (i.e. unable to place the <code>data-ga4-event</code> attribute on the element as shown in the 'Basic use' section). In these cases, we attach the necessary data attributes for tracking by passing an argument containing our data attributes to the render method.</p>
-<p>Many components already accept data attributes in this way (see the <a href="https://components.publishing.service.gov.uk/component-guide">component guide</a> for examples) but some, like the accordion, are more complicated.</p>
-<h3 id="overview">Overview</h3>
-<p>To track clicks on the 'Show/hide all sections' accordion link, use the <code>ga4_tracking</code> option as shown.</p>
-<pre lang="erb"><code>&lt;div data-module="ga4-event-tracker"&gt;
-  &lt;%= render 'govuk_publishing_components/components/accordion', {
-    ga4_tracking: true,
-    items: []
-  } %&gt;
-&lt;/div&gt;
-</code></pre>
-<h3 id="detailed-guide">Detailed guide</h3>
-<p>In some situations we want to track dynamic elements like the 'Show/hide all sections' links on accordions. This is complicated by the element being created and updated dynamically using JavaScript and the need to track the state of the element when clicked (to record whether it was opened or closed).</p>
-<p>It is also complicated by the fact that the JavaScript that creates this element is imported from <code>govuk-frontend</code> and therefore can't be modified directly. In order to get attributes onto this link, we have to do the following.</p>
+<p>Sometimes it isn't possible to use the event tracker as shown above as the requirements are more complicated. For example when tracking dynamic elements like the 'Show/hide all sections' links on accordions. In this situation tracking has to be built into the component itself.</p>
+<p>This is because the element being tracked is created and updated dynamically using JavaScript, and the state of the element and the data to be recorded changes on interaction (i.e. whether it was opened or closed).</p>
+<p>This is further complicated as the JavaScript that creates this element is imported from <code>govuk-frontend</code> and therefore can't be modified directly. In order to get attributes onto this link, we have to do the following.</p>
 <ul>
-<li>Enable tracking for an accordion using the <code>ga4_tracking</code> option</li>
 <li>the 'Show/hide all' link is created by <code>govuk-frontend</code> JavaScript</li>
 <li>the accordion JavaScript checks for <code>ga4-event-tracker</code>
 <ul>

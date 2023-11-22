@@ -251,7 +251,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/83a847c59e358fcb60aa72c6df820a78e21d7999">18 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6e4260059a55d0f4eea89df8d82271d3515f671b">22 Nov 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 and Google Tag Manager</h1>
@@ -308,6 +308,10 @@ window.GOVUK.analyticsGa4.analyticsModules = window.GOVUK.analyticsGa4.analytics
 <ul>
 <li><a href="https://github.com/alphagov/finder-frontend/tree/main/docs/analytics-ga4">finder-frontend</a></li>
 </ul>
+<h3 id="code-in-components">Code in components</h3>
+<p>Often tracking will need to be built into components, either using an <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-all-trackers.md">existing tracker</a> or some custom code, or a combination of both.</p>
+<p>Where component tracking needs additional data to be passed (for example <code>index</code> or <code>section</code> values to show where the component is on a page) this should be built into the component and the data required documented in the component guide.</p>
+<p>Where component tracking can be entirely self contained (i.e. nothing needs to be passed) tracking should be enabled by default, but a <code>disable_ga4</code> option should be included and documented to allow the tracking to be disabled if required. See the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/views/govuk_publishing_components/components/_tabs.html.erb#L11">tabs component</a> for an example.</p>
 <h2 id="data-schemas">Data schemas</h2>
 <p>All of the data sent to GTM is based on a common schema.</p>
 <pre><code>{
