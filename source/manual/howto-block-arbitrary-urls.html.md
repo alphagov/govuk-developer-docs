@@ -58,5 +58,5 @@ In order to block `<LEAK_URL>` on `<INSTANCE_CLASS>` in `<GOVUK_ENVIRONMENT>`:
 
 1. Finally, [re-enable Puppet on each machine](/manual/howto-run-ssh-commands-on-many-machines.html#enable-puppet) of the `<INSTANCE_CLASS>`
 
-- [Digital ocean]: https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms
-- [Linode]: https://www.linode.com/docs/web-servers/nginx/how-to-configure-nginx/#location-blocks
+- [DigitalOcean](https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms)
+- [Linode](https://www.linode.com/docs/web-servers/nginx/how-to-configure-nginx/#location-blocks)
