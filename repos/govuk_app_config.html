@@ -379,6 +379,20 @@ allow JSON format logs and <code>Govuk-Request-Id</code> to be visible.</p>
 <p>For development logs, in order to see the production style logs, developers should
 set <code>GOVUK_RAILS_JSON_LOGGING</code>in <code>govuk-docker</code> -&gt; <code>docker-compose</code> files.</p>
 
+<h3 id="logger-configuration">Logger configuration</h3>
+
+<p>To include additional custom fields in your Rails logs, you can declare them
+within a <code>GovukJsonLogging.configure</code> block in a <code>config/initializers/</code> file.</p>
+
+<p>Example of adding a key/value to log entries based on a request header:</p>
+
+<pre lang="ruby"><code>GovukJsonLogging.configure do
+  add_custom_fields do |fields|
+    fields[:govuk_custom_field] = request.headers["GOVUK-Custom-Header"]
+  end
+end
+</code></pre>
+
 <h2 id="content-security-policy-generation">Content Security Policy generation</h2>
 
 <p>For frontend apps, configuration can be added to generate and serve a
