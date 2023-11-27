@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Google Analytics 4 scroll tracker - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Data schemas - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-scroll-tracker.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-schemas.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics 4 scroll tracker - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-scroll-tracker.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Data schemas - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-schemas.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Google Analytics 4 scroll tracker" />
+      <meta property="og:title" content="govuk_publishing_components: Data schemas" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-scroll-tracker.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-schemas.html" />
 
     
   </head>
@@ -253,118 +253,51 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/7876f524d16ba52017c4494963e7682f49ef5a15">18 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/e0579378188bb2425760c892800bd363b60e5568">16 Nov 2023</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Google Analytics 4 scroll tracker</h1>
+  <h1 class="page-title">govuk_publishing_components: Data schemas</h1>
 
   
-<p>The scroll tracker can be added to pages that require scroll tracking.</p>
-<h2 id="overview">Overview</h2>
-<p>The scroll tracker is a GOVUK.Module and can be initialised by adding the relevant code to a template. Since scroll tracking is only required once on a page, it should be initialised using a meta tag in the HEAD element as shown.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;meta name="govuk:scroll-tracker" content="" data-module="ga4-scroll-tracker"/&gt;
-&lt;% end %&gt;
+<p>Our event and ecommerce schemas are defined in <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-schemas.js">ga4-schemas.js</a>. These schemas define the content and structure for data that is pushed to the dataLayer.</p>
+<p>The schemas have been written to allow data to be collected from data attributes on HTML elements without it needing to conform exactly to the schema. This means that:</p>
+<ul>
+<li>the entire schema does not have to be included in data attributes</li>
+<li>nested attributes in the schema do not have to be nested in data attributes</li>
+<li>attributes in data attributes that are not part of the schema will be ignored</li>
+<li>if the structure of the schema needs to change, or new attributes need to be added, this can be done centrally in the schemas file, instead of having to update hundreds of data attributes across the site</li>
+</ul>
+<p>For example, if an event to be picked up by the event tracker only requires a few attributes, it can be defined in a data attribute as follows.</p>
+<pre lang="HTML"><code>&lt;div data-ga4-event='{ "section": "hello", "index_link": "1", "not_in_the_schema": "4" }'&gt;&lt;/div&gt;
 </code></pre>
-<p>Note that since the scroll tracker is initialised by the <code>data-module</code> attribute, the meta <code>name</code> can be anything, we use <code>govuk:scroll-tracker</code> only for reference.</p>
-<h3 id="track-percentages">Track percentages</h3>
-<p>By default, the scroll tracker tracks by percentage scrolled. Specifically, it will make a push to the dataLayer when the user scrolls to 20%, 40%, 60%, 80% and 100% of the page height.</p>
-<p>When tracking percentages, the following data will be pushed to the dataLayer.</p>
-<pre><code>{
+<p>The event tracker will read this attribute and pass it to the schemas, where it will be checked and inserted into a copy of the schema to create the following for the dataLayer. Note that the <code>index_link</code> attribute has been nested automatically inside the <code>index</code> attribute. The <code>event</code> attribute is set automatically by each tracker according to its own configuration.</p>
+<pre lang="JavaScript"><code>{
   event: "event_data",
   event_data: {
-    action: "scroll",
-    event_name: "scroll",
-    percent_scrolled: 20,
-    type: "percent"
-  }
-}
-</code></pre>
-<h3 id="track-headings">Track headings</h3>
-<p>The scroll tracker can be configured to track headings using the <code>data-ga4-track-type</code> option.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;meta name="govuk:scroll-tracker" content="" data-module="ga4-scroll-tracker" data-ga4-track-type="headings"/&gt;
-&lt;% end %&gt;
-</code></pre>
-<p>When tracking headings, the following data will be pushed to the dataLayer.</p>
-<pre><code>{
-  event: "event_data",
-  event_data: {
-    action: "scroll",
-    event_name: "scroll",
+    event_name: undefined,
+    type: undefined,
+    url: undefined,
+    text: undefined,
     index: {
-      index_section: 2, // index of heading in headings tracked
-      index_section_count: 5 // total number of headings being tracked
+      index_link: "1",
+      index_section: undefined,
+      index_section_count: undefined
     },
-    text: "Text of heading",
-    section: "Text of heading",
-    type: "heading"
+    index_total: undefined,
+    section: "hello",
+    action: undefined,
+    external: undefined,
+    method: undefined,
+    link_domain: undefined,
+    link_path_parts: undefined,
+    tool_name: undefined,
+    percent_scrolled: undefined,
+    video_current_time: undefined,
+    video_duration: undefined,
+    video_percent: undefined
   }
 }
 </code></pre>
-<h3 id="track-markers">Track markers</h3>
-<p>Sometimes only certain elements on a page should be tracked. This can be done by adding a marker to the required elements and configuring as shown.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;meta name="govuk:scroll-tracker" content="" data-module="ga4-scroll-tracker" data-ga4-track-type="markers"/&gt;
-&lt;% end %&gt;
-
-&lt;div data-ga4-scroll-marker&gt;
-  Some content
-&lt;/div&gt;
-
-&lt;div data-ga4-scroll-marker&gt;
-  Some other content
-&lt;/div&gt;
-</code></pre>
-<p>Any element that a marker is attached to should be short in both height and text content to be tracked well, because:</p>
-<ul>
-<li>the <code>text</code> attribute collects the full text of the element with the marker</li>
-<li>scroll tracking only happens when the marked element is fully visible to the user</li>
-</ul>
-<p>When tracking markers, the following data will be pushed to the dataLayer.</p>
-<pre><code>{
-  event: "event_data",
-  event_data: {
-    action: "scroll",
-    event_name: "scroll",
-    index: {
-      index_section: 1, // index of marker in markers tracked
-      index_section_count: 2 // total number of markers being tracked
-    },
-    text: "Some content",
-    section: "Some content",
-    type: "marker"
-  }
-}
-</code></pre>
-<h2 id="adding-tracking-to-specific-pages">Adding tracking to specific pages</h2>
-<p>A single template may render multiple pages and different configurations may be required. If this is the case, configuration can be handled by the template.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;% if ["/foreign-travel-advice/benin", "/foreign-travel-advice/france"].include?(content_item.base_path) %&gt;
-    &lt;meta name="govuk:scroll-tracker" content="" data-module="ga4-scroll-tracker" data-ga4-track-type="headings" data-track-headings="['Summary']"/&gt;
-  &lt;% else %&gt;
-    &lt;meta name="govuk:scroll-tracker" content="" data-module="ga4-scroll-tracker"/&gt;
-  &lt;% end %&gt;
-&lt;% end %&gt;
-</code></pre>
-<h2 id="tracking-dynamic-pages">Tracking dynamic pages</h2>
-<p>Dynamically updated pages like the search pages present a challenge for scroll tracking. Since scroll events are only recorded once, if the page content changes and users have already scrolled, those scroll events will not fire again even though the page has changed.</p>
-<p>It is possible to 'reset' the behaviour of the scroll tracker on dynamic pages by creating an event called <code>dynamic-page-update</code>. This is used on the <a href="https://github.com/alphagov/finder-frontend/pull/3129/files#diff-fe1355439297aa459f871621b4f95627ea330655c7c6eb08ef10bda7ab66c0feR510">search pages</a> where the event is fired when the page is updated with new search results. Once this has happened previously tracked scroll positions will be tracked again.</p>
-<h2 id="behaviour">Behaviour</h2>
-<p>The scroll tracker finds the position of things (percentages and headings, including the text of headings) on page load to minimise calculations when the user scrolls. This finding of positions is repeated if any of the following occur:</p>
-<ul>
-<li>the user resizes the page</li>
-<li>the height of the page changes (for example if the cookie banner is dismissed, or an accordion item is expanded). This also detects user font size or zoom level changes</li>
-</ul>
-<p>Operation:</p>
-<ul>
-<li>Tracking events are only fired once i.e. if a user scrolls up and down a page, duplicate events are not tracked.</li>
-<li>Tracking events are fired on page load for things that are immediately visible.</li>
-<li>If the user has followed a jump link, e.g. <code>https://www.gov.uk/foreign-travel-advice/spain/coronavirus#finance</code> the tracker detects this and doesn't fire tracking events until after the browser jumps to the relevant section. It also checks that the hash matches a valid element on the page, and continues as normal if it doesn't.</li>
-<li>Headings are tracked only when the whole of the heading is visible in the viewport.</li>
-<li>Headings are only tracked if they are inside the 'main' element, in order to avoid tracking headings in e.g. the cookie banner, the footer (this has been written to be extendable in future if other elements/classes are required)</li>
-<li>Hidden headings are not tracked, unless they become visible (e.g. if inside an accordion that is opened).</li>
-</ul>
 
 
             
@@ -372,8 +305,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-scroll-tracker.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-ga4%2Fga4-scroll-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-schemas.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-ga4%2Fga4-schemas.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

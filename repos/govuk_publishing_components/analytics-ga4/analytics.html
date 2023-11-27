@@ -161,6 +161,7 @@
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-form-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 form tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 link tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-print-intent-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 print intent tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-schemas.html" rel="noopener" class="govuk-link">Data schemas</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-scroll-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 scroll tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-smart-answer-results-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 smart answer results (Cost of Living) tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-specialist-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics Specialist Link Tracker</a></li>
@@ -179,6 +180,7 @@
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-form-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 form tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 link tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-print-intent-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 print intent tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-schemas.html" rel="noopener" class="govuk-link">Data schemas</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-scroll-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 scroll tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-smart-answer-results-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 smart answer results (Cost of Living) tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-specialist-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics Specialist Link Tracker</a></li>
@@ -251,13 +253,13 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6e4260059a55d0f4eea89df8d82271d3515f671b">22 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/e0579378188bb2425760c892800bd363b60e5568">16 Nov 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 and Google Tag Manager</h1>
 
   
-<p>This document describes the use of Google Tag Manager (GTM) with Google Analytics 4 (GA4) on GOV.UK Publishing. Further information on our data schemas can be found in our <a href="https://docs.publishing.service.gov.uk/analytics/">Implementation record</a>.</p>
+<p>This document describes the use of Google Tag Manager (GTM) with Google Analytics 4 (GA4) on GOV.UK Publishing. Further information can be found in our <a href="https://docs.publishing.service.gov.uk/analytics/">Implementation record</a>.</p>
 <p>No analytics code is initialised and no data is gathered without user consent.</p>
 <h2 id="general-approach">General approach</h2>
 <p>We pass three types of data to GA4.</p>
@@ -325,7 +327,7 @@ window.GOVUK.analyticsGa4.analyticsModules = window.GOVUK.analyticsGa4.analytics
 <p><code>page</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-page-views.js">ga4-page-views script</a>.</p>
 <p><code>event_data</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-schemas.js">ga4-schemas script</a> and used in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-event-tracker.js">ga4-event-tracker script</a>.</p>
 <p><code>search_results</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.js">ga4-ecommerce-tracker script</a>.</p>
-<p>For more details of our data schema, see our <a href="https://docs.publishing.service.gov.uk/analytics/">implementation record</a>.</p>
+<p>For more details of how our data schemas work, read our <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-schemas.md">data schemas documentation</a> or for the structure read our <a href="https://docs.publishing.service.gov.uk/analytics/">Implementation record</a>.</p>
 <h2 id="how-the-datalayer-works">How the dataLayer works</h2>
 <p>GTM's dataLayer has two elements - an array and an object. <code>window.dataLayer = []</code> is executed when the page loads.</p>
 <p>GOV.UK JavaScript (JS) pushes objects to the dataLayer array when certain things happen e.g. when the page loads, or a user clicks on a certain type of link. Once that happens GTM takes over. It reads the latest object in the array and passes the data found into the dataLayer object. Importantly, it only adds to the object, so data can persist from previous array pushes.</p>
