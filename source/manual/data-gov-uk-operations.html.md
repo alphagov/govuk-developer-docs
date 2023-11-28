@@ -57,7 +57,7 @@ Now run `kubectl exec deploy/datagovuk-publish -n datagovuk -- bundle exec sidek
 
 #### Updating Zendesk password for Find
 
-The contact form on Find uses the Zendesk API to create new tickets.  If the account password expires, it will need updating in secrets on the PaaS.
+The contact form on Find uses the Zendesk API to create new tickets.  If the account password expires, it will need updating in secrets on the AWS secrets manager.
 
 The following example is for staging.
 
