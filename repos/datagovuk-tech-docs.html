@@ -301,30 +301,10 @@ access it if they are given the link.</p>
 
 <h2 id="building-and-deploying">Building and Deploying</h2>
 
-<p>The generated documentation is hosted on the <a href="https://www.cloud.service.gov.uk/">GOV.UK PaaS</a>.</p>
+<p>The generated documentation is hosted on GitHub Pages.</p>
 
-<p>Deployment is a manual process. First, make sure you have and up-to-date copy
-of the repository. Next, you&rsquo;ll need to build the static HTML files:</p>
-
-<pre><code>bundle exec middleman build
-</code></pre>
-
-<p>This will create a <code>build</code> subfolder in the application folder which contains
-the HTML and asset files ready to be published.</p>
-
-<p>To publish the changes, make sure you have the <a href="https://docs.cloud.service.gov.uk/get_started.html#set-up-the-cloud-foundry-command-line">Cloud Foundry command line
-tools</a> installed, then <a href="https://docs.cloud.service.gov.uk/get_started.html#sign-in-to-cloud-foundry">sign in to Cloud Foundry</a>, using
-the Ireland location.</p>
-
-<p>From the menus that are displayed once you&rsquo;ve logged in, select the
-<code>gds-data-gov-uk</code> organisation, and the <code>data-gov-uk</code> space.</p>
-
-<p>Finally, deploy your changes by running:</p>
-
-<p><code>cf push -f manifest.yml</code></p>
-
-<p>The documentation is cached by CloudFront, so it may take some time for the
-updates to appear after deployment.</p>
+<p>Deployment is an automatic process. Once a PR is merged the <code>deploy</code> pipeline will deploy the site to
+GitHub Pages and create a commit on the <a href="https://github.com/alphagov/datagovuk-tech-docs/tree/gh-pages">gh-pages</a> branch.</p>
 <p></div></p>
 
 
