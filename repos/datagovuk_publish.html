@@ -246,19 +246,29 @@
 
 <p>This repository contains the beta-stage publishing component of data.gov.uk.</p>
 
-<h1 id="deployment">Deployment</h1>
+<h2 id="deployment">Deployment</h2>
 
 <p>Continuous Integration has been setup using Github Actions.</p>
 
 <ul>
 <li>Tests are run on pull requests.</li>
-<li>Deployments to Staging happen automatically when marging branches into the <code>main</code> branch.</li>
+<li>Deployments to Integration happen automatically when marging branches into the <code>main</code> branch.</li>
 <li>In order to carry out a release to production a developer in the govuk team will need to create a release tag with a  leading <code>v</code> and <a href="https://docs.github.com/en/actions/managing-workflow-runs/reviewing-deployments">approve</a> of the deployment in Github Actions.</li>
 </ul>
 
-<p>Further information about the deploying to PaaS are in the developer documents here:</p>
+<h3 id="integration">Integration</h3>
 
-<p><a href="https://docs.publishing.service.gov.uk/manual/data-gov-uk-deployment.html#paas-staging-and-production-environments">https://docs.publishing.service.gov.uk/manual/data-gov-uk-deployment.html#paas-staging-and-production-environments</a></p>
+<p>To deploy to integration merge a PR into <code>main</code>.</p>
+
+<h3 id="staging-production">Staging &amp; Production</h3>
+
+<p>To deploy to staging/production you need to tag the release, the tag needs to be in this format - <code>v9.9.9</code> where 9 is a number and the leading <code>v</code> is required. E.g. <code>v0.1.11</code> is valid, <code>0.1.11</code> is not.</p>
+
+<p>This will create a PR on <a href="https://github.com/alphagov/govuk-dgu-charts/pulls">govuk-dgu-charts</a> which you should be able to approve and merge into main for testing.</p>
+
+<p>Test that your changes are working in staging by looking at the publish pod logs for evidence of jobs being processed.</p>
+
+<p>Then merge in the production release PR.</p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 
@@ -277,7 +287,14 @@
 
 <p>Most of these can be installed with Homebrew on a Mac.</p>
 
-<h2 id="developing-on-a-mac-with-a-local-ckan-installation">Developing on a Mac with a local CKAN installation</h2>
+<h2 id="how-to-run-this-repo-locally">How to run this repo locally</h2>
+
+<p>There are currently 2 ways to run this repo locally:</p>
+
+<ol>
+<li>Via  <a href="https://github.com/alphagov/govuk-dgu-charts">govuk-dgu-charts</a> - An end to end setup from ckan to opensearch to Find. This is the presently most supported means for running Find and is recommended for local development. Instructions for how to setup and run Find this way available on the linked repo.</li>
+<li>Manual installation. Instructions for this below. (needs CKAN running)</li>
+</ol>
 
 <h3 id="install-requirements-for-this-app-using-homebrew">Install requirements for this app using Homebrew</h3>
 
@@ -351,14 +368,6 @@ bin/rails runner CKAN::V26::PackageSyncWorker.new.perform
 </code></pre>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
-
-<h3 id="running-commands-on-paas">Running commands on PaaS</h3>
-
-<p>If you need to run commands on Staging or Production PaaS you will need to run this command first -</p>
-
-<p><code>/tmp/lifecycle/shell</code></p>
-
-<p>Further information can be found here - <a href="https://docs.cloud.service.gov.uk/troubleshooting.html#connecting-with-ssh">https://docs.cloud.service.gov.uk/troubleshooting.html#connecting-with-ssh</a></p>
 
 <h3 id="flush-redis">Flush Redis</h3>
 

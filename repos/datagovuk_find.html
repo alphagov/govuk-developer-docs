@@ -242,10 +242,10 @@
 
 <h2 id="how-to-run-this-repo-locally">How to run this repo locally</h2>
 
-<p>There are currently 2 ways to run this repo locally:</p>
+<p>There are currently 3 ways to run this repo locally:</p>
 
 <ol>
-<li>Via  <a href="https://github.com/alphagov/docker-ckan">docker-ckan</a> - An end to end setup from ckan to opensearch to Find. This is the presently most supported means for running Find and is recommended for local development. Instructions for how to setup and run Find this way available on the linked repo.</li>
+<li>Via  <a href="https://github.com/alphagov/govuk-dgu-charts">govuk-dgu-charts</a> - An end to end setup from ckan to opensearch to Find. This is the presently most supported means for running Find and is recommended for local development. Instructions for how to setup and run Find this way available on the linked repo.</li>
 <li>Manual installation. Instructions for this below.</li>
 <li>Via <a href="https://github.com/alphagov/govuk-docker">govuk-docker</a> - You can <code>make</code> Find as you would any other repo supported by govuk-docker using this method. This is the quickest means to setup Find however this will not give you a complete visual setup and is primarily for running tests.</li>
 </ol>
@@ -283,60 +283,23 @@
 
 <ul>
 <li>Tests are run on pull requests.</li>
-<li>Deployments to Staging happen automatically when marging branches into the <code>main</code> branch.</li>
+<li>Deployments to Integration happen automatically when marging branches into the <code>main</code> branch.</li>
 <li>In order to carry out a release to production a developer in the govuk team will need to create a release tag with a  leading <code>v</code> and <a href="https://docs.github.com/en/actions/managing-workflow-runs/reviewing-deployments">approve</a> of the deployment in Github Actions.</li>
 </ul>
 
-<p>Further information about the deploying to PaaS are in the developer documents here:</p>
+<h3 id="integration">Integration</h3>
 
-<p><a href="https://docs.publishing.service.gov.uk/manual/data-gov-uk-deployment.html#paas-staging-and-production-environments">https://docs.publishing.service.gov.uk/manual/data-gov-uk-deployment.html#paas-staging-and-production-environments</a></p>
+<p>To deploy to integration merge a PR into <code>main</code>.</p>
 
-<h3 id="staging">Staging</h3>
+<h3 id="staging-production">Staging &amp; Production</h3>
 
-<p>To deploy to staging merge a PR into <code>main</code>.</p>
+<p>To deploy to staging/production you need to tag the release, the tag needs to be in this format - <code>v9.9.9</code> where 9 is a number and the leading <code>v</code> is required. E.g. <code>v0.1.11</code> is valid, <code>0.1.11</code> is not.</p>
 
-<p>Test that your changes are working here - <a href="https://find-data-beta-staging.cloudapps.digital">https://find-data-beta-staging.cloudapps.digital</a> before releasing to Production.</p>
+<p>This will create a PR on <a href="https://github.com/alphagov/govuk-dgu-charts/pulls">govuk-dgu-charts</a> which you should be able to approve and merge into main for testing.</p>
 
-<p>(There is also <a href="https://staging.data.gov.uk">https://staging.data.gov.uk</a> but it currently has an <a href="https://github.com/alphagov/paas-ip-authentication-route-service/pull/10">authentication configuration issue</a>).</p>
+<p>Test that your changes are working in staging - <a href="https://staging.data.gov.uk">https://staging.data.gov.uk</a> before releasing to Production.</p>
 
-<h3 id="production">Production</h3>
-
-<p>To deploy to production you need to tag the release, the tag needs to be in this format - <code>v9.9.9</code> where 9 is a number and the leading <code>v</code> is required. E.g. <code>v0.1.11</code> is valid, <code>0.1.11</code> is not.</p>
-
-<p>Then the deployment needs to be <a href="https://docs.github.com/en/actions/managing-workflow-runs/reviewing-deployments">approved</a>.</p>
-
-<h2 id="developing-against-production-opensearch">Developing against production opensearch</h2>
-
-<p>Grab the full URL (including HTTP Basic username and password) from the paas.
-You can do this with <code>cf env find-data-beta</code>.</p>
-
-<p>Open up an SSH tunnel to allow access to the opensearch instance:</p>
-
-<pre><code>cf ssh -N -L &lt;es-port&gt;:&lt;es-host&gt;:&lt;es-port&gt; find-data-beta
-</code></pre>
-
-<p>You can use any port you like for the local connection (i.e., the first <code>&lt;es-port&gt;</code>)
-but I would recommend using the same port as the remote side to reduce confusion.</p>
-
-<p>Set the following environment variables (via direnv or other method of your choice):</p>
-
-<ul>
-<li><code>ES_HOST="https://&lt;username&gt;:&lt;password&gt;@localhost:&lt;es-port&gt;"</code></li>
-<li><code>ES_INDEX="datasets-production"</code></li>
-</ul>
-
-<p>If you&rsquo;re using direnv you&rsquo;ll need to add <code>export </code> in front of those lines in
-your <code>.envrc</code>.</p>
-
-<p>After (re)starting your Rails server, any requests to your local instance will
-behave the same as production.</p>
-
-<p>If you&rsquo;re having connection issues, try opening new tabs in your terminal to
-ensure all your environment variables are cleared and refreshed.</p>
-
-<h2 id="testing-on-docker-ckan">Testing on docker ckan</h2>
-
-<p>Source the <code>bin/setup-docker-test.sh</code> script in order to set up the environment variables for testing and install chrome on the debian docker container.</p>
+<p>Then merge in the production release PR.</p>
 
 <h2 id="example-application-urls">Example application URLs</h2>
 
