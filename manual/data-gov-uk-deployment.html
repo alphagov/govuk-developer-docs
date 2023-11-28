@@ -138,10 +138,10 @@
             <a href="#continuous-integration"><span>Continuous Integration</span></a>
           </li>
           <li>
-            <a href="#paas-integration-staging-and-production-environments"><span>PaaS Integration, Staging and Production Environments</span></a>
+            <a href="#integration-staging-and-production-environments"><span>Integration, Staging and Production Environments</span></a>
           </li>
           <li>
-            <a href="#set-up-interactive-ssh-session"><span>Set up interactive SSH session</span></a>
+            <a href="#staging-amp-production"><span>Staging & Production</span></a>
           </li>
         </ul>
       </li>
@@ -203,56 +203,20 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/09fc20ff3d01628005fd52d2816175e6798a2f84">8 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/aabae31aaa9a3daa2e4358a907faa2f71d4e6452">28 Nov 2023</a>
 </div>
 
- <h1 id='header'>Deployments for data.gov.uk</h1> <h2 id='find-and-publish-rails-apps'>Find and Publish (Rails Apps)</h2><h3 id='continuous-integration'>Continuous Integration</h3><p>Github Actions is configured for both <a href="https://travis-ci.org/alphagov/datagovuk_publish/">Publish (CI)</a> and <a href="https://travis-ci.org/alphagov/datagovuk_find">Find (CI)</a> according to <code>.github/workflows/ci.yml</code> file in each repo. Find PRs should automatically build a <a href="/manual/review-apps.html#header">Heroku Review App</a>, which can be accessed from the PR page on GitHub.</p>
-<h3 id='paas-integration-staging-and-production-environments'>PaaS Integration, Staging and Production Environments</h3><p><a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> are provisioned on <a href="https://docs.cloud.service.gov.uk/#set-up-command-line">GOV.UK PaaS</a>. Each app repo
-contains a set of manifests that specify the container settings for when it&rsquo;s
-deployed.</p>
-<p>The deployment for both apps in Staging and Production can be triggered automatically via GitHub flow, or all environments can be manually deployed via command line tools.</p>
-<p>You will need to log in to the <code>gds-data-gov-uk</code> org to get access to the correct space, if you don&rsquo;t have access contact the #paas team slack channel.</p>
-<h4 id='pre-requisite-for-manual-deployment-'>Pre-requisite for manual deployment -</h4><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>## run once to install the plugin
-cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
-cf install-plugin autopilot -r CF-Community -f
-</code></pre></div><h4 id='integration'>Integration</h4><p>Log in to <code>data-gov-uk-staging</code> space for integration deployments.</p>
-<p>Deployment to integration requires manual deployment</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>## manually deploy the publish app
-cf zero-downtime-push publish-data-beta-staging-worker -f staging-worker-manifest.yml
-
-## manually deploy the find app
-cf zero-downtime-push find-data-beta-integration -f integration-manifest.yml
-</code></pre></div><h4 id='staging'>Staging</h4><p>Log in to <code>data-gov-uk-staging</code> space for staging deployments.</p>
-<p>The deployment to staging is triggered when a PR gets merged into master. You
-can check the <a href="https://github.com/alphagov/datagovuk_find/actions">Github actions logs of the <code>master</code> build for Find</a> and <a href="https://github.com/alphagov/datagovuk_publish/actions">Github actions logs of the <code>master</code> build for Publish</a> to see progress.</p>
-<p>You can check the deployment on <a href="https://staging.data.gov.uk/">staging.data.gov.uk</a></p>
-<p>The process to manually deploy is as follows -</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>## manually deploy the publish app
-cf zero-downtime-push publish-data-beta-staging-worker -f staging-worker-manifest.yml
-
-## manually deploy the find app
-cf zero-downtime-push find-data-beta-staging -f staging-manifest.yml
-</code></pre></div><h4 id='production'>Production</h4><p>Log in to <code>data-gov-uk</code> space for production deployments.</p>
-<p>The deployment to production is triggered when a <a href="https://github.com/alphagov/datagovuk_find/releases">new release</a> with an appropriate version
-number is created in GitHub.</p>
-<p>To create a new release, provide a new version number, release title and description. The version number must include the leading &lsquo;v&rsquo; to trigger a deployment, for example: <code>v1.0.0</code></p>
-<p>This deployment behaviour is defined in [Publish&rsquo;s ci.yml] and in [Find&rsquo;s ci.yml].</p>
-<p>The process to manually deploy is as follows -</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>## manually deploy the publish app
-cf zero-downtime-push publish-data-beta-production-worker -f production-worker-manifest.yml
-
-## manually deploy the find app
-cf zero-downtime-push find-data-beta -f production-manifest.yml
-</code></pre></div><p>There are <a href="https://github.com/alphagov/datagovuk_publish/tree/main/scripts">some scripts available for datagovuk_publish</a> which can run a deploy for you, for example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cd datagovuk_publish
-$ git pull
-$ ./scripts/deploy-staging.sh
-$ ./scripts/deploy-production.sh
-</code></pre></div><p>For more advanced uses of the PaaS that are not covered in the PaaS internal documentation (e.g. provisioning an app using a buildpack that is not Ruby or Java), refer to the <a href="https://docs.cloudfoundry.org">Cloud Foundry documentation</a>.</p>
-<h3 id='set-up-interactive-ssh-session'>Set up interactive SSH session</h3><p>You may need this to run things such as rake tasks:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>/tmp/lifecycle/shell
-</code></pre></div><p>You need to run this every time you start an SSH session.</p>
-<p>For more information, refer to the <a href="https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html#ssh-env">Cloud Foundry documentation on SSH Session Environment</a>.</p>
+ <h1 id='header'>Deployments for data.gov.uk</h1> <h2 id='find-and-publish-rails-apps'>Find and Publish (Rails Apps)</h2><h3 id='continuous-integration'>Continuous Integration</h3><p>Github Actions is configured for both <a href="https://github.com/alphagov/datagovuk_publish/tree/main/.github/workflows">Publish (CI)</a> and <a href="https://github.com/alphagov/datagovuk_find/tree/main/.github/workflows">Find (CI)</a>.</p>
+<h3 id='integration-staging-and-production-environments'>Integration, Staging and Production Environments</h3><p><a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> uses some of GOV.UK kubernetes platform, which includes <a href="https://argo.eks.integration.govuk.digital/applications/datagovuk">Argo</a> for managing the application stack.</p>
+<p>The deployment for both apps in Integration, Staging and Production are triggered automatically via GitHub flow.</p>
+<h4 id='integration'>Integration</h4><p>To deploy to integration merge a PR into <code>main</code>.</p>
+<h3 id='staging-amp-production'>Staging &amp; Production</h3><p>To deploy to staging/production you need to tag the release, the tag needs to be in this format - <code>v9.9.9</code> where 9 is a number and the leading <code>v</code> is required. E.g. <code>v0.1.11</code> is valid, <code>0.1.11</code> is not.</p>
+<p>This will create a PR on <a href="https://github.com/alphagov/govuk-dgu-charts/pulls">govuk-dgu-charts</a> which you should be able to approve and merge into main for testing.</p>
+<p>Test that your changes are working in staging - https://staging.data.gov.uk before releasing to Production.</p>
+<p>Then merge in the production release PR.</p>
+<p>All tagged releases can be viewed on these links for their respective applications:</p>
+<p>Publish - https://github.com/alphagov/datagovuk_publish/pkgs/container/datagovuk_publish
+Find - https://github.com/alphagov/datagovuk_find/pkgs/container/datagovuk_find</p>
 <h2 id='ckan'>CKAN</h2><p><a href="https://github.com/alphagov/ckanext-datagovuk">CKAN</a> uses some of GOV.UK kubernetes platform, which includes <a href="https://argo.eks.integration.govuk.digital/applications/ckan">Argo</a> for managing the application stack and <a href="https://github.com/alphagov/ckanext-datagovuk/actions">Github Actions</a> for CI.</p>
 <p>Deployments for ckan are initiated via updates to <a href="https://github.com/alphagov/ckanext-datagovuk">ckanext-datagovuk</a>, whenever a ckan extension is updated the <a href="https://github.com/alphagov/ckanext-datagovuk/blob/main/bin/install-dependencies.sh">install-dependencies</a> file will need an update with the relevant extensions (eg. spatial, harvest, dcat) commit or version number.</p>
 <p>After merging a pull request into the <code>main</code> branch, the build images will be created for CKAN, PYCSW and Solr and a pull request will be opened on the <a href="https://github.com/alphagov/govuk-ckan-charts/pulls">CKAN charts</a> github repository which will require an approval and merge into the <code>main</code> branch by a developer.</p>
