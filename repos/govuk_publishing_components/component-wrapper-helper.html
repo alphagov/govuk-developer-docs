@@ -253,7 +253,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/4968fbaa86c5e5f3435e1f036c6ea0b55912c342">25 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/2518638ebd212dbddbc2bc0ade8fc5af63f10632">28 Nov 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component wrapper helper</h1>
@@ -304,7 +304,7 @@
 <p>The helper checks that passed aria attributes are valid, based on a hard coded list.</p>
 <h3 id="classes">Classes</h3>
 <p>Classes can be passed to components. To prevent breaking <a href="/repos/govuk_publishing_components/component_principles.html">component isolation</a>, passed classes should only be used for JavaScript hooks and not styling. All component styling should be included only in the component itself.</p>
-<p>Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code> or <code>govuk-</code> are also permitted, but should only be used within the component and not passed to it.</p>
+<p>Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code>, <code>app-c-</code> or <code>govuk-</code> are also permitted, but should only be used within the component and not passed to it.</p>
 <pre><code>&lt;%= render "govuk_publishing_components/components/example", {
   classes: "js-example"
 } %&gt;
