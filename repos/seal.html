@@ -249,7 +249,7 @@
 
 <p>Fork the repo and add/change the config files that relate to your github organisation. For example, the alphagov config file is located at <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">config/alphagov.yml</a> and the config for scheduled daily visits can be found in <a href="https://github.com/alphagov/seal/blob/main/.github/workflows">.github/workflows</a></p>
 
-<p>Include your team&rsquo;s name, repos and the Slack channel you want to post to.</p>
+<p>Include your team&rsquo;s name, repositories, and the Slack channel you want to post to. The Seal doesn&rsquo;t currently support private repos, but you can fork this repo and use your own token with your preferred permissions if that&rsquo;s required.</p>
 
 <blockquote>
 <p>If your team is part of the GOV.UK programme, you do not need to add a list of repos to config/alphagov.yml.
@@ -276,7 +276,7 @@ export GITHUB_SECURITY_ALERTS=true
 export GITHUB_EXCLUDE_LABELS="[DO NOT MERGE],Don't merge,DO NOT MERGE,Waiting on factcheck,wip"
 export GITHUB_REPOS="myapp,anotherrepo" # Repos you want to be notified about
 export COMPACT=true # Use a more compact version of the seal output
-export SEAL_QUOTES="Everyone should have the opportunity to learn. Don't be afraid to pick up stories on things you don't understand and ask for help with them.,Try to pair when possible."
+export SEAL_QUOTES="Everyone should have the opportunity to learn. Don't be afraid to pick up stories on things you don't understand and ask for help with them. Try to pair when possible."
 </code></pre>
 
 <ul>
@@ -314,7 +314,7 @@ You can then run the <a href="https://github.com/alphagov/seal/actions">GitHub A
 
 <h3 id="slack-configuration">Slack configuration</h3>
 
-<p>You should also set up the following custom emojis in Slack:</p>
+<!-- raw HTML omitted -->
 
 <ul>
 <li>:informative_seal:</li>
@@ -330,7 +330,7 @@ You can then run the <a href="https://github.com/alphagov/seal/actions">GitHub A
 <li>:manatea:</li>
 </ul>
 
-<p>You can use the images in images/emojis that have the corresponding names.</p>
+<!-- raw HTML omitted -->
 
 <h2 id="deployment">Deployment</h2>
 
