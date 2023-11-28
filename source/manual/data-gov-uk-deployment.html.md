@@ -9,7 +9,6 @@ parent: "/manual.html"
 [find]: repos/datagovuk_find
 [publish-ci]: https://github.com/alphagov/datagovuk_publish/tree/main/.github/workflows
 [find-ci]: https://github.com/alphagov/datagovuk_find/tree/main/.github/workflows
-[paas]: https://docs.cloud.service.gov.uk/#set-up-command-line
 [staging]: http://test.data.gov.uk
 [cf-docs]: https://docs.cloudfoundry.org
 [jenkins]: /manual/jenkins-ci.html
