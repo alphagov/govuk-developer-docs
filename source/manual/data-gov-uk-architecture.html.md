@@ -9,7 +9,6 @@ parent: "/manual.html"
 [publish]: repos/datagovuk_publish
 [find]: repos/datagovuk_find
 [ckan]: repos/ckanext-datagovuk
-[paas]: https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas
 [signon]: manual/manage-sign-on-accounts
 [deployment]: manual/data-gov-uk-deployment
 [monitoring]: manual/data-gov-uk-monitoring
@@ -37,7 +36,7 @@ The `data.gov.uk` (DGU) platform is used to publish and view datasets. A dataset
 
 ## Architectural overview of data.gov.uk
 
-![](/manual/images/2023-dgu-architecture.png)
+![](/manual/images/2023-dgu-eks-architecture.png)
 
 The original for this diagram is available on the [Platform Health Google Drive](https://drive.google.com/open?id=1xnwgUBrwnQI2aIfZ0FT8nBQ-pERNRo2r) and can be edited with draw.io.
 
@@ -67,17 +66,6 @@ Services with data.gov.uk sub-domains, but owned by other departments
 > should contact the [maintainers of this resource](http://environment.data.gov.uk/ds/partners/index.jsp#/contactus),
 > who are currently Airbus Defence & Space.
 
-## [Publish] and [Find]
+## [CKAN], [Publish] and [Find]
 
-[Publish] and [Find] are provisioned on [GOV.UK Paas][paas]. The [deployment] and [monitoring] pages explain this in more detail, but you can use the following commands to get an overview.
-
-```
-cf apps
-cf services
-cf routes
-cf env publish-data-beta-production
-```
-
-## [CKAN]
-
-[CKAN] is hosted on AWS EKS and is maintained/deployed in the same way as most other GOV.UK applications.
+[CKAN], [Publish] and [Find] are hosted on AWS EKS and is maintained/deployed in the same way as most other GOV.UK applications.
