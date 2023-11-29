@@ -236,11 +236,12 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
+<p>The accessible autocomplete is a component that helps users choose answers from a list you provide. You can also use it to make the answers you get from users more consistent.</p>
+
+<p>If you&rsquo;re asking users to provide their country or territory, the <a href="https://github.com/alphagov/govuk-country-and-territory-autocomplete/blob/main/README.md">govuk-country-and-territory-autocomplete</a> might be more appropriate.</p>
+
 <p><a href="http://npm.im/accessible-autocomplete"><img src="https://img.shields.io/npm/v/accessible-autocomplete.svg" alt="npm version"></a>
-<a href="https://travis-ci.org/alphagov/accessible-autocomplete"><img src="https://travis-ci.org/alphagov/accessible-autocomplete.svg?branch=master" alt="Build Status"></a>
-<a href="https://coveralls.io/github/alphagov/accessible-autocomplete?branch=master"><img src="https://coveralls.io/repos/github/alphagov/accessible-autocomplete/badge.svg?branch=master" alt="Coverage Status"></a>
 <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"></a>
-<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/alphagov/accessible-autocomplete.svg" alt="Greenkeeper badge"></a>
 <a href="https://unpkg.com/accessible-autocomplete/dist/accessible-autocomplete.min.js"><img src="http://img.badgesize.io/https://unpkg.com/accessible-autocomplete/dist/accessible-autocomplete.min.js?compression=gzip" alt="gzip size"></a></p>
 
 <p><a href="https://saucelabs.com/u/tvararu-alphagov"><img src="https://saucelabs.com/browser-matrix/tvararu-alphagov.svg" alt="Sauce Labs Build Status"></a></p>
@@ -255,338 +256,230 @@
 <li>
 <strong>User experience</strong>: Supporting a wide variety of user needs.</li>
 <li>
-<strong>Compatibility</strong>: Working with as many browsers, devices, and assistive technologies as possible.</li>
+<strong>Compatibility</strong>: Working with <a href="https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices#browsers-to-test-in">recommended browsers</a> and <a href="https://www.gov.uk/service-manual/technology/testing-with-assistive-technologies#which-assistive-technologies-to-test-with">assistive technologies</a>.</li>
 </ul>
 
 <p><a href="https://alphagov.github.io/accessible-autocomplete/examples/">Try out the examples!</a></p>
-
+<p><hr>
+<h2 id="support">Support</h2>
+<p>The GOV.UK Design System team maintains the accessible autocomplete as a standalone component. However, we’re only able to put in minimal work to support it.</p>
+<p><a href="https://github.com/alphagov/accessible-autocomplete/issues/532">Read about our plans to maintain this component</a>.</p>
+<p><a href="https://github.com/alphagov/accessible-autocomplete/issues/430">Read more about the types of support we can provide</a>.</p>
+<hr>
 <h2 id="installation-usage">Installation / usage</h2>
-
 <h3 id="using-npm-and-a-module-system">Using npm and a module system</h3>
-
 <p>Install it by running:</p>
-
 <pre lang="bash"><code>npm install --save accessible-autocomplete
 </code></pre>
-
 <p>The <code>accessibleAutocomplete</code> function will render an autocomplete <code>&lt;input&gt;</code> and its accompanying suggestions and <code>aria-live</code> region. Your page should provide a <code>&lt;label&gt;</code> and a container element:</p>
-
-<pre lang="html"><code>&lt;label for="my-autocomplete"&gt;Select your country&lt;/label&gt;
-&lt;div id="my-autocomplete-container"&gt;&lt;/div&gt;
+<pre lang="html"><code>&lt;label for=&quot;my-autocomplete&quot;&gt;Select your country&lt;/label&gt;
+&lt;div id=&quot;my-autocomplete-container&quot;&gt;&lt;/div&gt;
 </code></pre>
-
 <p>Then import it using a module system like Browserify / Webpack / Rollup, and call the <code>accessibleAutocomplete</code> function, providing an array of values:</p>
-
-<pre lang="js"><code>import accessibleAutocomplete from 'accessible-autocomplete'
-
-const countries = [
-  'France',
-  'Germany',
-  'United Kingdom'
-]
-
-accessibleAutocomplete({
-  element: document.querySelector('#my-autocomplete-container'),
-  id: 'my-autocomplete', // To match it to the existing &lt;label&gt;.
+<pre lang="js"><code>import accessibleAutocomplete from &#39;accessible-autocomplete&#39;</p>
+<p>const countries = [
+  &#39;France&#39;,
+  &#39;Germany&#39;,
+  &#39;United Kingdom&#39;
+]</p>
+<p>accessibleAutocomplete({
+  element: document.querySelector(&#39;#my-autocomplete-container&#39;),
+  id: &#39;my-autocomplete&#39;, // To match it to the existing &lt;label&gt;.
   source: countries
 })
 </code></pre>
-
 <p>If you want to use it as a replacement for a <code>&lt;select&gt;</code> element, read the <a href="#progressive-enhancement">Progressive enhancement</a> section.</p>
-
 <h3 id="as-a-plain-javascript-module">As a plain JavaScript module</h3>
-
 <p>You can copy the <a href="https://github.com/alphagov/accessible-autocomplete-multiselect/blob/main/dist/accessible-autocomplete.min.js">dist/accessible-autocomplete.min.js</a> file to your JavaScript folder and import it into the browser:</p>
-
-<pre lang="html"><code>&lt;script type="text/javascript" src="assets/js/accessible-autocomplete.min.js"&gt;&lt;/script&gt;
+<pre lang="html"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;assets/js/accessible-autocomplete.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-
 <h3 id="styling-the-autocomplete">Styling the autocomplete</h3>
-
 <p>A stylesheet is included with the package at <a href="https://github.com/alphagov/accessible-autocomplete-multiselect/blob/main/dist/accessible-autocomplete.min.css">dist/accessible-autocomplete.min.css</a>.</p>
-
 <p>You can copy it to your stylesheets folder and import it into the browser:</p>
-
-<pre lang="html"><code>&lt;link rel="stylesheet" href="assets/css/accessible-autocomplete.min.css" /&gt;
+<pre lang="html"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/accessible-autocomplete.min.css&quot; /&gt;
 </code></pre>
-
 <p>You can also import it using Sass:</p>
-
-<pre lang="css"><code>@import "accessible-autocomplete";
+<pre lang="css"><code>@import &quot;accessible-autocomplete&quot;;
 </code></pre>
-
 <h3 id="using-with-preact">Using with Preact</h3>
-
 <p>If you already use Preact in your application, you can import a bundle that will use that:</p>
-
-<pre lang="js"><code>import preact from 'preact'
-import Autocomplete from 'accessible-autocomplete/preact'
-
-preact.render(
-  &lt;Autocomplete id='autocomplete' source={suggest} /&gt;,
-  document.querySelector('#container')
+<pre lang="js"><code>import preact from &#39;preact&#39;
+import Autocomplete from &#39;accessible-autocomplete/preact&#39;</p>
+<p>preact.render(
+  &lt;Autocomplete id=&#39;autocomplete&#39; source={suggest} /&gt;,
+  document.querySelector(&#39;#container&#39;)
 )
 </code></pre>
-
 <p><a href="https://alphagov.github.io/accessible-autocomplete/examples/preact/">Try out the Preact example!</a></p>
-
 <h3 id="using-with-react">Using with React</h3>
-
 <p>If you already use React in your application, you can import a bundle that will use that:</p>
-
-<pre lang="js"><code>import React from 'react'
-import ReactDOM from 'react-dom'
-import Autocomplete from 'accessible-autocomplete/react'
-
-ReactDOM.render(
-  &lt;Autocomplete id='autocomplete' source={suggest} /&gt;,
-  document.querySelector('#container')
+<pre lang="js"><code>import React from &#39;react&#39;
+import ReactDOM from &#39;react-dom&#39;
+import Autocomplete from &#39;accessible-autocomplete/react&#39;</p>
+<p>ReactDOM.render(
+  &lt;Autocomplete id=&#39;autocomplete&#39; source={suggest} /&gt;,
+  document.querySelector(&#39;#container&#39;)
 )
 </code></pre>
-
 <p><a href="https://alphagov.github.io/accessible-autocomplete/examples/react/">Try out the React example!</a></p>
-
 <h4 id="react-versions">React versions</h4>
-
 <p>React v15.5.4 has been tested to work with the Accessible Autocomplete - although make sure to check
 out <a href="https://github.com/alphagov/accessible-autocomplete/issues">documented issues</a>.</p>
-
 <p>React v15.6.2 and 16.0 have been incompletely tested with the Accessible Autocomplete: while no undocumented issues were found, we recommend you carry out thorough testing if you wish to use these or later versions of React.</p>
-
 <h2 id="api-documentation">API documentation</h2>
-
 <h3 id="required-options">Required options</h3>
-
 <h4 id="element"><code>element</code></h4>
-
 <p>Type: <code>HTMLElement</code></p>
-
 <p>The container element in which the autocomplete will be rendered in.</p>
-
 <h4 id="id"><code>id</code></h4>
-
 <p>Type: <code>string</code></p>
-
 <p>The <code>id</code> to assign to the autocomplete input field, to use with a <code>&lt;label for=id&gt;</code>. Not required if using <code>enhanceSelectElement</code>.</p>
-
 <h4 id="source"><code>source</code></h4>
-
 <p>Type: <code>Array | Function</code></p>
-
 <p>An array of values to search when the user types in the input field, or a function to take what the user types and call a callback function with the results to be displayed.</p>
-
 <p>An example of an array of values:</p>
-
 <pre lang="js"><code>const countries = [
-  'France',
-  'Germany',
-  'United Kingdom'
+  &#39;France&#39;,
+  &#39;Germany&#39;,
+  &#39;United Kingdom&#39;
 ]
 </code></pre>
-
 <p>If <code>source</code> is a function, the arguments are: <code>query: string, populateResults: Function</code></p>
-
 <p>Similar to the <a href="https://github.com/corejavascript/typeahead.js/blob/47d46b40cb834d8285ac9328c4b436e5eccf7197/doc/jquery_typeahead.md#datasets"><code>source</code> argument for typeahead.js</a>, a backing data source for suggestions. <code>query</code> is what gets typed into the input field, which will callback to <code>populateResults</code> synchronously with the array of string results to display in the menu.</p>
-
 <p>An example of a simple suggestion engine:</p>
-
 <pre lang="js"><code>function suggest (query, populateResults) {
   const results = [
-    'France',
-    'Germany',
-    'United Kingdom'
+    &#39;France&#39;,
+    &#39;Germany&#39;,
+    &#39;United Kingdom&#39;
   ]
   const filteredResults = results.filter(result =&gt; result.indexOf(query) !== -1)
   populateResults(filteredResults)
 }
 </code></pre>
-
 <h3 id="other-options">Other options</h3>
-
+<h4 id="menuattributes-default-">
+<code>menuAttributes</code> (default: <code>{}</code>)</h4>
+<p>Type: <code>Object</code></p>
+<p>Sets html attributes and their values on the <code>menu</code>. Useful for adding <code>aria-labelledby</code> and setting to the value of the <code>id</code> attribute on your existing label, to provide context to an assistive technology user.</p>
 <h4 id="autoselect-default-false">
 <code>autoselect</code> (default: <code>false</code>)</h4>
-
 <p>Type: <code>Boolean</code></p>
-
 <p>Set to true to highlight the first option when the user types in something and receives results. Pressing enter will select it.</p>
-
 <h4 id="confirmonblur-default-true">
 <code>confirmOnBlur</code> (default: <code>true</code>)</h4>
-
 <p>Type: <code>Boolean</code></p>
-
 <p>The autocomplete will confirm the currently selected option when the user clicks outside of the component. Set to <code>false</code> to disable.</p>
-
 <h4 id="cssnamespace-default-autocomplete">
-<code>cssNamespace</code> (default: <code>'autocomplete'</code>)</h4>
-
+<code>cssNamespace</code> (default: <code>&#39;autocomplete&#39;</code>)</h4>
 <p>Type: <code>string</code></p>
-
 <p>Use this property to override the <a href="http://getbem.com/">BEM</a> block name that the JavaScript component will use. You will need to rewrite the CSS class names to use your specified block name.</p>
-
 <h4 id="defaultvalue-default-">
-<code>defaultValue</code> (default: <code>''</code>)</h4>
-
+<code>defaultValue</code> (default: <code>&#39;&#39;</code>)</h4>
 <p>Type: <code>string</code></p>
-
 <p>Specify a string to prefill the autocomplete with.</p>
-
 <h4 id="displaymenu-default-inline">
-<code>displayMenu</code> (default: <code>'inline'</code>)</h4>
-
-<p>Type: <code>'inline' | 'overlay'</code></p>
-
+<code>displayMenu</code> (default: <code>&#39;inline&#39;</code>)</h4>
+<p>Type: <code>&#39;inline&#39; | &#39;overlay&#39;</code></p>
 <p>You can set this property to specify the way the menu should appear, whether inline or as an overlay.</p>
-
 <h4 id="minlength-default-0">
 <code>minLength</code> (default: <code>0</code>)</h4>
-
 <p>Type: <code>number</code></p>
-
 <p>The minimum number of characters that should be entered before the autocomplete will attempt to suggest options. When the query length is under this, the aria status region will also provide helpful text to the user informing them they should type in more.</p>
-
 <h4 id="name-default-input-autocomplete">
-<code>name</code> (default: <code>'input-autocomplete'</code>)</h4>
-
+<code>name</code> (default: <code>&#39;input-autocomplete&#39;</code>)</h4>
 <p>Type: <code>string</code></p>
-
 <p>The <code>name</code> for the autocomplete input field, to use with a parent <code>&lt;form&gt;</code>.</p>
-
 <h4 id="onconfirm-default-">
 <code>onConfirm</code> (default: <code>() =&gt; {}</code>)</h4>
-
 <p>Type: <code>Function</code></p>
-
 <p>Arguments: <code>confirmed: Object</code></p>
-
 <p>This function will be called when the user confirms an option, with the option they&rsquo;ve confirmed.</p>
-
 <h4 id="placeholder-default-warning-not-recommended-warning">
-<code>placeholder</code> (default: <code>''</code>) :warning: not recommended :warning:</h4>
-
+<code>placeholder</code> (default: <code>&#39;&#39;</code>) :warning: not recommended :warning:</h4>
 <p>Type: <code>string</code></p>
-
 <p>This option will populate the <code>placeholder</code> attribute on the input element.</p>
-
-<p>We think <a href="http://adamsilver.io/articles/placeholders-are-problematic/">placeholders have usability issues</a> and that there are <a href="https://govuk-elements.herokuapp.com/form-elements/#form-hint-text">better alternatives to input placeholder text</a>, so we do not recommend using this option.</p>
-
+<p>We think <a href="http://adamsilver.io/articles/placeholders-are-problematic/">placeholders have usability issues</a> and that there are <a href="https://design-system.service.gov.uk/components/text-input/#hint-text">better alternatives to input placeholder text</a>, so we do not recommend using this option.</p>
 <h4 id="required-default-false">
 <code>required</code> (default: <code>false</code>)</h4>
-
 <p>Type: <code>Boolean</code></p>
-
 <p>The input field will be rendered with a <code>required</code> attribute, see <a href="https://www.w3.org/TR/html5/forms.html#the-required-attribute">W3C <code>required</code> attribute definition</a>.</p>
-
 <h4 id="showallvalues-default-false">
 <code>showAllValues</code> (default: <code>false</code>)</h4>
-
 <p>Type: <code>Boolean</code></p>
-
 <p>If this is set to <code>true</code>, all values are shown when the user clicks the input. This is similar
 to a default dropdown, so the autocomplete is rendered with a dropdown arrow to convey
 this behaviour.</p>
-
 <h4 id="shownooptionsfound-default-true">
 <code>showNoOptionsFound</code> (default: <code>true</code>)</h4>
-
 <p>Type: <code>Boolean</code></p>
-
 <p>The autocomplete will display a &ldquo;No results found&rdquo; template when there are no results. Set to <code>false</code> to disable.</p>
-
 <h4 id="templates-default-undefined">
 <code>templates</code> (default: <code>undefined</code>)</h4>
-
 <p>Type:</p>
-
 <pre lang="js"><code>{
   inputValue: Function,
   suggestion: Function
 }
 </code></pre>
-
 <p>This object defines templates (functions) that are used for displaying parts of the autocomplete.</p>
-
 <p><code>inputValue</code> is a function that receives one argument, the currently selected suggestion. It returns the string value to be inserted into the input.</p>
-
-<p><code>suggestion</code> is a function that receives one argument, a suggestion to be displayed. It is used when rendering suggestions, and should return a string, which can contain HTML. :warning: <strong>Caution:</strong> because this function allows you to output arbitrary HTML, you should <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">make sure it&rsquo;s trusted</a>, and accessible.</p>
-
-<h4 id="dropdownarrow-default-a-rectangle-pointing-down">
-<code>dropdownArrow</code> (default: A rectangle pointing down)</h4>
-
+<p><code>suggestion</code> is a function that receives one argument, a suggestion to be displayed. It is used when rendering suggestions, and should return a string, which can contain HTML.</p>
+<p>:warning: <strong>Caution:</strong> because this function allows you to output arbitrary HTML, you should <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">make sure it&rsquo;s trusted</a>, and accessible.</p>
+<p>If your template includes child elements with defined foreground or background colours, check they display correctly in forced colors modes. For example, Windows high contrast mode.</p>
+<h4 id="dropdownarrow-default-a-triangle-pointing-down">
+<code>dropdownArrow</code> (default: A triangle pointing down)</h4>
 <p>Type: <code>Function</code></p>
-
-<p>A function that gets passed an object with the property <code>className</code> (<code>{ className: '' }</code>) and should return a string of HTML or a (P)React element. :warning: <strong>Caution:</strong> because this function allows you to output arbitrary HTML, you should <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">make sure it&rsquo;s trusted</a>, and accessible.</p>
-
+<p>A function that gets passed an object with the property <code>className</code> (<code>{ className: &#39;&#39; }</code>) and should return a string of HTML or a (P)React element. :warning: <strong>Caution:</strong> because this function allows you to output arbitrary HTML, you should <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">make sure it&rsquo;s trusted</a>, and accessible.</p>
 <h3 id="internationalization">Internationalization</h3>
-
 <h4 id="tnoresults-default-no-results-found">
-<code>tNoResults</code> (default: <code>() =&gt; 'No results found'</code>)</h4>
-
+<code>tNoResults</code> (default: <code>() =&gt; &#39;No results found&#39;</code>)</h4>
 <p>Type: <code>Function</code></p>
-
 <p>A function that receives no arguments and should return the text used in the dropdown to indicate that there are no results.</p>
-
-<h4 id="tstatusquerytooshort-default-minquerylength-type-in-minquerylength-or-more-characters-for-results-">
-<code>tStatusQueryTooShort</code> (default: <code>(minQueryLength) =&gt; `Type in ${minQueryLength} or more characters for results.`</code>)</h4>
-
+<h4 id="tstatusquerytooshort-default-minquerylength-type-in-minquerylength-or-more-characters-for-results">
+<code>tStatusQueryTooShort</code> (default: <code>(minQueryLength) =&gt; <code>Type in ${minQueryLength} or more characters for results</code></code>)</h4>
 <p>Type: <code>Function</code></p>
-
 <p>A function that receives one argument that indicates the minimal amount of characters needed for the dropdown to trigger and should return the text used in the accessibility hint to indicate that the query is too short.</p>
-
-<h4 id="tstatusnoresults-default-no-search-results-">
-<code>tStatusNoResults</code> (default: <code>() =&gt; 'No search results.'</code>)</h4>
-
+<h4 id="tstatusnoresults-default-no-search-results">
+<code>tStatusNoResults</code> (default: <code>() =&gt; &#39;No search results&#39;</code>)</h4>
 <p>Type: <code>Function</code></p>
-
 <p>A function that receives no arguments and should return the text that is used in the accessibility hint to indicate that there are no results.</p>
-
-<h4 id="tstatusselectedoption-default-selectedoption-length-index-selectedoption-index-1-of-length-is-selected-">
-<code>tStatusSelectedOption</code> (default: <code>(selectedOption, length, index) =&gt; `${selectedOption} (${index + 1} of ${length}) is selected.`</code>)</h4>
-
+<h4 id="tstatusselectedoption-default-selectedoption-length-index-selectedoption-index-1-of-length-is-highlighted">
+<code>tStatusSelectedOption</code> (default: <code>(selectedOption, length, index) =&gt; <code>${selectedOption} ${index + 1} of ${length} is highlighted</code></code>)</h4>
 <p>Type: <code>Function</code></p>
-
 <p>A function that receives two arguments, the selectedOption and the amount of available options, and it should return the text used in the accessibility hint to indicate which option is selected.</p>
-
 <h4 id="tstatusresults"><code>tStatusResults</code></h4>
-
 <p>Default:</p>
-
 <pre lang="js"><code>(length, contentSelectedOption) =&gt; {
   const words = {
-    result: (length === 1) ? 'result' : 'results',
-    is: (length === 1) ? 'is' : 'are'
-  }
-
-  return &lt;span&gt;{length} {words.result} {words.is} available. {contentSelectedOption}&lt;/span&gt;
+    result: (length === 1) ? &#39;result&#39; : &#39;results&#39;,
+    is: (length === 1) ? &#39;is&#39; : &#39;are&#39;
+  }</p>
+<p>return &lt;span&gt;{length} {words.result} {words.is} available. {contentSelectedOption}&lt;/span&gt;
 }
 </code></pre>
-
 <p>Type: <code>Function</code></p>
-
 <p>A function that receives two arguments, the count of available options and the return value of <code>tStatusSelectedOption</code>, and should return the text used in the accessibility hint to indicate which options are available and which is selected.</p>
-
+<h4 id="tassistivehint-default-when-autocomplete-results-are-available-use-up-and-down-arrows-to-review-and-enter-to-select-touch-device-users-explore-by-touch-or-with-swipe-gestures-">
+<code>tAssistiveHint</code> (default: <code>() =&gt; &#39;When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.&#39;</code>)</h4>
+<p>Type: <code>Function</code></p>
+<p>A function that receives no arguments and should return the text to be assigned as the aria description of the html <code>input</code> element, via the <code>aria-describedby</code> attribute.
+This text is intended as an initial instruction to the assistive tech user. The <code>aria-describedby</code> attribute is automatically removed once user input is detected, in order to reduce screen reader verbosity.</p>
 <h2 id="progressive-enhancement">Progressive enhancement</h2>
-
 <p>If your autocomplete is meant to select from a small list of options (a few hundred), we strongly suggest that you render a <code>&lt;select&gt;</code> menu on the server, and use progressive enhancement.</p>
-
 <p>If you have the following HTML:</p>
-
-<pre lang="html"><code>&lt;select id="location-picker"&gt;
-  &lt;option value="fr"&gt;France&lt;/option&gt;
-  &lt;option value="de"&gt;Germany&lt;/option&gt;
-  &lt;option value="gb"&gt;United Kingdom&lt;/option&gt;
+<pre lang="html"><code>&lt;select id=&quot;location-picker&quot;&gt;
+  &lt;option value=&quot;fr&quot;&gt;France&lt;/option&gt;
+  &lt;option value=&quot;de&quot;&gt;Germany&lt;/option&gt;
+  &lt;option value=&quot;gb&quot;&gt;United Kingdom&lt;/option&gt;
 &lt;/select&gt;
 </code></pre>
-
 <p>You can use the <code>accessibleAutocomplete.enhanceSelectElement</code> function to enhance it into an autocomplete:</p>
-
 <pre lang="js"><code>accessibleAutocomplete.enhanceSelectElement({
-  selectElement: document.querySelector('#location-picker')
+  selectElement: document.querySelector(&#39;#location-picker&#39;)
 })
 </code></pre>
-
 <p>This will:</p>
-
 <ul>
 <li>Place an autocomplete input field after the specified <code>&lt;select&gt;</code>
 </li>
@@ -596,7 +489,7 @@ this behaviour.</p>
 </li>
 <li>Default the autocomplete <code>id</code> to the <code>&lt;select&gt;</code>&lsquo;s <code>id</code>
 </li>
-<li>Default the autocomplete <code>name</code> attribute to <code>''</code> to prevent it being included in form submissions</li>
+<li>Default the autocomplete <code>name</code> attribute to <code>&#39;&#39;</code> to prevent it being included in form submissions</li>
 <li>Default the autocomplete <code>source</code> to use existing <code>&lt;option&gt;</code>s from the <code>&lt;select&gt;</code>
 </li>
 <li>Hide the <code>&lt;select&gt;</code> using inline <code>display: none</code>
@@ -606,48 +499,34 @@ this behaviour.</p>
 <li>Upon confirming a value in the autocomplete, update the original <code>&lt;select&gt;</code>
 </li>
 </ul>
-
 <p>This function takes the same options as <code>accessibleAutocomplete</code>, with the only difference being that it uses <code>selectElement</code> instead of <code>element</code>, which needs to be an instance of <code>HTMLSelectElement</code>.</p>
-
 <blockquote>
 <p><strong>Note</strong>: The <code>accessibleAutocomplete.enhanceSelectElement</code> function is fairly light and wraps the public API for <code>accessibleAutocomplete</code>. If your use case doesn&rsquo;t fit the above defaults, try <a href="https://github.com/alphagov/accessible-autocomplete-multiselect/blob/main/src/wrapper.js">reading the source</a> and seeing if you can write your own.</p>
 </blockquote>
-
 <h3 id="null-options">Null options</h3>
-
 <p>If your <code>&lt;select&gt;</code> element has a &ldquo;null&rdquo; option - a default option with no value - then you can pass a <code>defaultValue</code> option to <code>enhanceSelectElement</code> which will replace the label of this option when it is selected.</p>
-
 <p>With the following HTML:</p>
-
-<pre lang="html"><code>&lt;select id="location-picker"&gt;
-  &lt;option value=""&gt;Select a country&lt;/option&gt;
-  &lt;option value="fr"&gt;France&lt;/option&gt;
-  &lt;option value="de"&gt;Germany&lt;/option&gt;
-  &lt;option value="gb"&gt;United Kingdom&lt;/option&gt;
+<pre lang="html"><code>&lt;select id=&quot;location-picker&quot;&gt;
+  &lt;option value=&quot;&quot;&gt;Select a country&lt;/option&gt;
+  &lt;option value=&quot;fr&quot;&gt;France&lt;/option&gt;
+  &lt;option value=&quot;de&quot;&gt;Germany&lt;/option&gt;
+  &lt;option value=&quot;gb&quot;&gt;United Kingdom&lt;/option&gt;
 &lt;/select&gt;
 </code></pre>
-
-<p>Then passing a <code>defaultValue</code> option of <code>''</code> will then leave the autocomplete blank if the null option is selected.</p>
-
+<p>Then passing a <code>defaultValue</code> option of <code>&#39;&#39;</code> will then leave the autocomplete blank if the null option is selected.</p>
 <pre lang="js"><code>accessibleAutocomplete.enhanceSelectElement({
-  defaultValue: '',
-  selectElement: document.querySelector('#location-picker')
+  defaultValue: &#39;&#39;,
+  selectElement: document.querySelector(&#39;#location-picker&#39;)
 })
 </code></pre>
-
-<p>Any null options will also be filtered out of the options used to populate the <code>source</code> of the autocomplete element. To preserve options with no value in the autcomplete then pass a <code>preserveNullOptions</code> flag of <code>true</code> to <code>enhanceSelectElement</code>.</p>
-
+<p>Any null options will also be filtered out of the options used to populate the <code>source</code> of the autocomplete element. To preserve options with no value in the autocomplete, then pass a <code>preserveNullOptions</code> flag of <code>true</code> to <code>enhanceSelectElement</code>.</p>
 <h2 id="analytics-and-tracking">Analytics and tracking</h2>
-
 <p>The following events get triggered on the input element during the life cycle of the autocomplete:</p>
-
 <ul>
 <li>
 <code>onConfirm</code> - This function will be called when the user confirms an option, with the option they&rsquo;ve chosen.</li>
 </ul>
-
 <p>Example usage:</p>
-
 <pre lang="js"><code>accessibleAutocomplete({
   // additional options
   onConfirm: (val) =&gt; {
@@ -655,11 +534,8 @@ this behaviour.</p>
   }
 })
 </code></pre>
-
 <h2 id="why-another-autocomplete">Why another autocomplete?</h2>
-
 <p><code>accessible-autocomplete</code> was built after studying many existing solutions and prototyping patches to fix user experience or accessibility issues. It draws heavy inspiration from the following (and a lot of others):</p>
-
 <ul>
 <li>
 <a href="http://ljwatson.github.io/design-patterns/autocomplete/index.html">ljwatson/design-patterns</a>: great accessible experience</li>
@@ -668,17 +544,12 @@ this behaviour.</p>
 <li>
 <a href="https://github.com/JamieAppleseed/selectToAutocomplete">JamieAppleseed/selectToAutocomplete</a>: ease of use</li>
 </ul>
-
 <h2 id="developing-locally">Developing locally</h2>
-
 <p>Check out the <a href="https://github.com/alphagov/accessible-autocomplete-multiselect/blob/main/CONTRIBUTING.md">CONTRIBUTING</a> guide for instructions.</p>
-
 <p>If you want to help and want to get more familiar with the codebase, try starting with the <a href="https://github.com/alphagov/accessible-autocomplete/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+for+beginners%22">&ldquo;good for beginners&rdquo;</a> issues.</p>
-
 <h2 id="license">License</h2>
-
 <p><a href="https://github.com/alphagov/accessible-autocomplete-multiselect/blob/main/LICENSE.txt">MIT</a>.</p>
-<p></div></p>
+  </div></p>
 
 
             
