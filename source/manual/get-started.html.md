@@ -284,13 +284,13 @@ If you are outside of the office or on GovWiFi, you must first [connect to the G
 Test your SSH access by running:
 
 ```bash
-gds govuk connect --environment integration ssh backend
+gds govuk connect --environment integration ssh jumpbox
 ```
 
 If you see an error `Permission denied`, check the message shown later, similar to: `The SSH username used was: jsmith` - if this is not the user you specified in the puppet config above, you need to specify a username:
 
 ```bash
-USER=jaysmith gds govuk connect --environment integration ssh backend
+USER=jaysmith gds govuk connect --environment integration ssh jumpbox
 ```
 
 (or you can `export USER=jaysmith` separately to set it for a shell session)
