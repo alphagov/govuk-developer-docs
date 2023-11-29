@@ -64,11 +64,9 @@ Example query: `source_host: "gds-data-gov-uk.data-gov-uk.find-data-beta" && acc
 
 You can monitor the number of jobs in each queue using the following.
 
-First, follow the instructions on [logging into the paas](/manual/data-gov-uk-operations)
-
 ```
-cf ssh publish-data-beta-production-worker
-/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
+rails console
 >>> Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
 ```
 
@@ -201,24 +199,24 @@ Determine the number of datasets in CKAN using the API:
 Determine the number of datasets in the Publish Postgres database using the Rails console.
 
 ```
-cf ssh publish-data-beta-production
-/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
+rails console
 >>> Dataset.count
 ```
 
 If these numbers match, but the number of datasets served on data.gov.uk is still different, identify the number of published datasets in the Postgres database:
 
 ```
-cf ssh publish-data-beta-production
-/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
+rails console
 >>> Dataset.published.count
 ```
 
 All datasets that are available through the CKAN API will be marked as public in the Postgres database. Therefore, if you get a different number of datasets, you should mark them all as published in the Postgres database.
 
 ```
-cf ssh publish-data-beta-production
-/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
+rails console
 >>> Dataset.update(status: 'published')
 ```
 
