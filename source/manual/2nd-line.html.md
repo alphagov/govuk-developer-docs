@@ -1,23 +1,25 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
-title: 2nd line
+title: Technical 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
 ---
 
-2nd Line is the user support function of GOV.UK. 2nd Line’s main responsibilities:
+Technical 2nd Line is the user support function of GOV.UK.
+
+Technical 2nd Line’s main responsibilities are:
 
 - Monitoring the state of the GOV.UK infrastructure
 - Investigating and responding to technical bug reports
 - Taking on urgent work or work that doesn’t necessarily belong in any team
 
-You’ll be set up in [PagerDuty](/manual/2nd-line#pagerduty) so that you can be called if there are any urgent alerts during working hours. 2nd Line shifts are a great opportunity to learn about the GOV.UK stack.
+You’ll be set up in [PagerDuty](/manual/2nd-line#pagerduty) so that you can be called if there are any urgent alerts during working hours. Technical 2nd Line shifts are a great opportunity to learn about the GOV.UK stack.
 
 Every Monday, at least 2 people from GOV.UK - a Primary and Secondary, and usually a Shadow - join the team to work on Technical 2nd Line. There are also standbys for the Primary and Secondary.
 
-All of these roles can be fulfilled by developers and SREs, whereas only some can be fulfilled by front-end developers, junior technologists and apprentices. See [role specific policies](#role-specific-policies) for details.
+All of these roles can be fulfilled by developers and Site Reliability Engineers (SREs), whereas only some can be fulfilled by frontend developers, junior technologists and apprentices. See [role specific policies](#role-specific-policies) for details.
 
 > Technical 2nd Line takes priority over the work you do in your usual team.
 
@@ -25,7 +27,7 @@ Shifts start at 9:30 and end at 17:30. [You can check the Technical 2nd Line rot
 
 [2ndline-rota]: https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1297388378.
 
-You are required to attend a daily morning standup with your paired 2nd Line partner and the 2nd Line team. There’s a short retrospective at the handover meeting at the end of your shift.
+You are required to attend a daily morning standup with your paired 2nd Line partner and the Technical 2nd Line team. There’s a short retrospective at the handover meeting at the end of your shift.
 
 Standby developers are not expected to attend the standups or the incoming handover. If they're called onto the shift, they should attend the next standup, and may wish to attend the outgoing handover at the end of the shift.
 
@@ -45,7 +47,7 @@ See the [2nd line roles and Production Access flow diagram](https://docs.google.
 
 ## Shift swaps, working patterns and sickness
 
-2nd Line takes priority over the work you do in your usual team. It also takes priority over things like All Staff events, which you will be unable to attend in person, though can attend remotely (if possible) provided you keep on top of Zendesk and alerts. Note that standby developers can attend such events in person, but must be contactable by phone and able to access their laptop at short notice.
+Technical 2nd Line takes priority over the work you do in your usual team. It also takes priority over things like All Staff events, which you will be unable to attend in person, though can attend remotely (if possible) provided you keep on top of Zendesk and alerts. Note that standby developers can attend such events in person, but must be contactable by phone and able to access their laptop at short notice.
 
 If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.
 
@@ -72,7 +74,7 @@ We use Icinga to monitor our platform across our environments ([CI/Integration][
 
 If you see critical alerts that aren't easily solved, start a thread in the #govuk-2ndline-tech Slack channel.
 
-NB: Technical 2nd Line should investigate these alerts when there is downtime; you do not necessarily have to fix them.
+NB: Technical 2nd Line should investigate these alerts when there is nothing more urgent happening; you do not necessarily have to fix them.
 
 ### Grafana
 
@@ -108,13 +110,13 @@ We use the [GOV.UK Technical 2nd Line Trello board][] to capture pieces of work 
 - Setting up production access
 - Recording technical issues
 
-The board is reviewed during the weekly 2nd Line handover meeting where developers can talk the next team through any new cards and oustanding issues.
+The board is reviewed during the weekly Technical 2nd Line handover meeting, where developers can talk the next team through any new cards and oustanding issues.
 
-It is your responsibility to help maintain this board so that it is up to date for the next 2nd Line team.
+It's your responsibility to help keep this board up to date for the next 2nd Line team.
 
-At the start of your 2nd Line shift you should:
+At the start of your Technical 2nd Line shift you should:
 
-- Read through the cards under [Ongoing issues, useful Info & unexplained events](https://trello.com/c/TwquoCfW/316-readme) so that you are aware of any ongoing problems that have already been identified. You should try to investigate these issues when there is downtime. At the end of your shift please comment on cards as to whether you saw this issue/alert. This will help the 2nd Line leads review them over a longer period of time and identify any stale cards
+- Read through the cards under [Ongoing issues, useful Info & unexplained events](https://trello.com/c/TwquoCfW/316-readme) so that you're aware of any ongoing problems that have already been identified. You should try to investigate these issues when there is nothing more urgent happening. At the end of your shift please comment on cards as to whether you saw this issue/alert. This will help the Technical 2nd Line leads review them over a longer period of time and identify any stale cards
 
 When creating a new card please include:
 
@@ -124,7 +126,7 @@ When creating a new card please include:
 - Links to related Zendesk tickets and suggested reply to users
 - Any investigation you have done so far/steps you have taken as a workaround
 
-This will help inform developers, Technical 2nd Line tech lead(s), and the GOV.UK Site Reliability Engineers (SREs) about known issues.
+This will help inform developers, Technical 2nd Line tech lead(s), and the GOV.UK SREs about known issues.
 
 ## Slack channels
 
