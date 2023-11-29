@@ -57,8 +57,9 @@ Users are removed from the GitHub organisation when their entry in [govuk-user-r
 
 When creating a new GOV.UK repo, you must ensure it:
 
-- has a well written README (see [READMEs for GOV.UK applications](/manual/readmes.html), or the [GDS Way guidance](https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes) for general repositories)
+- has a well-written README (see [READMEs for GOV.UK applications](/manual/readmes.html), or the [GDS Way guidance](https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes) for general repositories)
 - is tagged with the [`govuk`](https://github.com/search?q=topic:govuk) topic
+- has [Dependency Review](/manual/dependency-review.html) and [CodeQL](/manual/codeql.html) scans in its CI pipeline
 - is added to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the Developer Docs.
   - We run a [daily script](https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml) to ensure that the Developer Docs' config is in sync with GitHub.
 
@@ -71,7 +72,7 @@ You'll then need to [plan and apply the GitHub workspace in Terraform Cloud](htt
 Finally, you should run the ["Configure GitHub" action in govuk-saas-config](https://github.com/alphagov/govuk-saas-config/actions/workflows/configure-github.yml). This:
 
 - Applies [branch protection](https://help.github.com/articles/about-protected-branches) rules and configures PRs to be blocked on the outcome of the [GitHub Action CI](/manual/test-and-build-a-project-with-github-actions.html) workflow (if one exists)
-- Retricts the merging of PRs for continuously deployed apps, so that only those with Production Deploy or Production Admin access can merge
+- Restricts the merging of PRs for continuously deployed apps, so that only those with Production Deploy or Production Admin access can merge
 - Enables vulnerability alerts and security fixes
 - Sets up the webhook for [GitHub Trello Poster](/repos/github-trello-poster.html)
 - Sets some other default repo settings (e.g. delete branch on merge)
