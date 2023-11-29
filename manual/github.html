@@ -201,7 +201,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/736f37123b8d7df69211296909592c09c782748a">4 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5c91869d3b5c3bb774fd1a53af1a8fd1f468d2ad">27 Nov 2023</a>
 </div>
 
  <h1 id='header'>GitHub</h1> <p>GOV.UK uses GitHub for version control, code deployments, authentication, CI, Dependabot and GitHub Pages. Read the &ldquo;<a href="https://docs.google.com/document/d/1KsYWCHSQZEwqB2NF1A7Z9rmP1s1azcZhEamaPsXAoxk/edit">GOV.UK reliance on GitHub features doc</a>&rdquo; Google doc for more information.</p>
@@ -240,8 +240,9 @@ Only content designers should be added to this team.</p></li>
 <h1 id='gov-uk-repos'>GOV.UK repos</h1><h2 id='create-and-configure-a-new-gov-uk-repo'>Create and configure a new GOV.UK repo</h2><p>When creating a new GOV.UK repo, you must ensure it:</p>
 
 <ul>
-<li>has a well written README (see <a href="/manual/readmes.html">READMEs for GOV.UK applications</a>, or the <a href="https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes">GDS Way guidance</a> for general repositories)</li>
+<li>has a well-written README (see <a href="/manual/readmes.html">READMEs for GOV.UK applications</a>, or the <a href="https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes">GDS Way guidance</a> for general repositories)</li>
 <li>is tagged with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> topic</li>
+<li>has <a href="/manual/dependency-review.html">Dependency Review</a> and <a href="/manual/codeql.html">CodeQL</a> scans in its CI pipeline</li>
 <li>is added to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml</a> file in the Developer Docs.
 
 <ul>
@@ -262,7 +263,7 @@ Only content designers should be added to this team.</p></li>
 
 <ul>
 <li>Applies <a href="https://help.github.com/articles/about-protected-branches">branch protection</a> rules and configures PRs to be blocked on the outcome of the <a href="/manual/test-and-build-a-project-with-github-actions.html">GitHub Action CI</a> workflow (if one exists)</li>
-<li>Retricts the merging of PRs for continuously deployed apps, so that only those with Production Deploy or Production Admin access can merge</li>
+<li>Restricts the merging of PRs for continuously deployed apps, so that only those with Production Deploy or Production Admin access can merge</li>
 <li>Enables vulnerability alerts and security fixes</li>
 <li>Sets up the webhook for <a href="/repos/github-trello-poster.html">GitHub Trello Poster</a></li>
 <li>Sets some other default repo settings (e.g. delete branch on merge)</li>
