@@ -16,6 +16,16 @@ on:
     - cron: "0 9-19 * * 1-5"
 
 jobs:
+  codeql-sast:
+    name: CodeQL SAST scan
+    uses: alphagov/govuk-infrastructure/.github/workflows/codeql-analysis.yml@main
+    permissions:
+      security-events: write
+
+  dependency-review:
+    name: Dependency Review scan
+    uses: alphagov/govuk-infrastructure/.github/workflows/dependency-review.yml@main
+  
   test-ruby:
     name: Test Ruby
     runs-on: ubuntu-latest
