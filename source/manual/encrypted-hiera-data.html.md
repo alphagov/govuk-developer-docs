@@ -538,7 +538,11 @@ Check keys are not expired by running the following:
 cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | cut -f 1 -d " " | xargs -I{} -n1 gpg --list-options show-unusable-subkeys --list-keys {}
 ```
 
-You can check the output for any keys that may have expired. (Or pipe the output into grep ` | grep expired`)
+You can check the output for any keys that may have expired, or pipe the output into grep:
+
+```
+| grep expired
+```
 
 If a key has expired, it's possible that your local copy of the key is out of date. Follow the steps below, and if that doesn't resolve the issue, contact the owner and ask them to extend the expiry date or renew their key, then repeat the steps below.
 
