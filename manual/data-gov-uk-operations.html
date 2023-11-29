@@ -189,7 +189,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3e302ebe9e52acce373c3e9d522b0d4267447393">28 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1a439961872ade0649e839c3de4192369abaa5aa">28 Nov 2023</a>
 </div>
 
  <h1 id='header'>Operation of data.gov.uk</h1> <h2 id='accessing-data-gov-uk'>Accessing data.gov.uk</h2><h3 id='datagovuk-kubernetes-cluster'>Datagovuk kubernetes cluster</h3><p>Publish and Find are hosted on the same AWS cluster as GOV.UK but in its own namespace - <code>datagovuk</code></p>
@@ -215,7 +215,7 @@ kubectl exec deploy/datagovuk-publish -n datagovuk -- rails search:reindex
 kubectl exec deploy/datagovuk-publish -n datagovuk -- rails runner CKAN::V26::CKANOrgSyncWorker.new.perform
 kubectl exec deploy/datagovuk-publish -n datagovuk -- rails runner CKAN::V26::PackageSyncWorker.new.perform
 </code></pre></div><p>Now run <code>kubectl exec deploy/datagovuk-publish -n datagovuk -- bundle exec sidekiq</code> and see the logs.</p>
-<h4 id='updating-zendesk-password-for-find'>Updating Zendesk password for Find</h4><p>The contact form on Find uses the Zendesk API to create new tickets.  If the account password expires, it will need updating in secrets on the PaaS.</p>
+<h4 id='updating-zendesk-password-for-find'>Updating Zendesk password for Find</h4><p>The contact form on Find uses the Zendesk API to create new tickets.  If the account password expires, it will need updating in secrets on the AWS secrets manager.</p>
 <p>The following example is for staging.</p>
 <p>Get the existing credentials (username and password) from AWS secrets manager under <code>govuk/dgu/datagovuk</code>:</p>
 <p>Log into Zendesk using the username and password obtained from the previous step.  Reset the password through the UI and copy the password to the clipboard.</p>

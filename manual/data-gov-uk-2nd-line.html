@@ -375,7 +375,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8b6fa75b49000085449b186852592f5d05226d77">20 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bfa567f47cf18a24e0852f5ec9fddf6aa7863da7">28 Nov 2023</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
@@ -401,9 +401,8 @@ fix it - open a PR to resolve the problem.</p>
 <h3 id='log-it'>Log.it</h3><p>Each application sends logs to <a href="https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74">Logit</a>. <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> use the corresponding <a href="https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service">PaaS Service</a>.
 Example query: <code>source_host: &quot;gds-data-gov-uk.data-gov-uk.find-data-beta&quot; &amp;&amp; access.response_code: 500</code>.</p>
 <h3 id='sidekiq-publish'>Sidekiq (<a href="/repos/datagovuk_publish.html">Publish</a>)</h3><p>You can monitor the number of jobs in each queue using the following.</p>
-<p>First, follow the instructions on <a href="/manual/data-gov-uk-operations">logging into the paas</a></p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production-worker
-/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
+rails console
 &gt;&gt;&gt; Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
 </code></pre></div><h3 id='analytics'>Analytics</h3><p>Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.</p>
 <h2 id='logging-into-the-publisher'>Logging into the publisher</h2><p>You can log into <a href="https://ckan.publishing.service.gov.uk">CKAN</a> using a shared 2nd line account. The credentials are available in <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">govuk-secrets</a> under <a href="https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/datagovuk/ckan.gpg">datagovuk/ckan</a>.</p>
@@ -503,16 +502,16 @@ associated with their account:</p>
 <h3 id='different-number-of-datasets-in-ckan-to-data-gov-uk'>Different number of datasets in CKAN to data.gov.uk</h3><p>Determine the number of datasets in CKAN using the API:</p>
 <p><a href="https://data.gov.uk/api/3/search/dataset">https://data.gov.uk/api/3/search/dataset</a></p>
 <p>Determine the number of datasets in the Publish Postgres database using the Rails console.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production
-/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
+rails console
 &gt;&gt;&gt; Dataset.count
 </code></pre></div><p>If these numbers match, but the number of datasets served on data.gov.uk is still different, identify the number of published datasets in the Postgres database:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production
-/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
+rails console
 &gt;&gt;&gt; Dataset.published.count
 </code></pre></div><p>All datasets that are available through the CKAN API will be marked as public in the Postgres database. Therefore, if you get a different number of datasets, you should mark them all as published in the Postgres database.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production
-/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
+rails console
 &gt;&gt;&gt; Dataset.update(status: 'published')
 </code></pre></div><p>A <a href="/manual/data-gov-uk-operations.html#reindexing-find">reindex</a> is then needed to update the status with the Elastic instance that serves data.gov.uk.</p>
 <h3 id='datasets-published-in-ckan-are-not-appearing-on-data-gov-uk'>Datasets published in CKAN are not appearing on data.gov.uk</h3><p>Check the Sidekiq queue (see <a href="/manual/data-gov-uk-monitoring.html#sidekiq-publish">monitoring section</a>) to ensure the queue length is not too long.  You should not see more jobs than the number of datasets in CKAN.</p>
