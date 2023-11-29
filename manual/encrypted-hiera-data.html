@@ -245,15 +245,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/aa89510d4198fc826b8c28202d675e952246eeee">17 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1c644a0268ad68a2e2cd66231f91b62ac5611d69">29 Nov 2023</a>
 </div>
 
  <h1 id='header'>Handle encrypted hieradata</h1> <p><a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> is a key-value lookup tool
@@ -638,8 +631,9 @@ You can import all public keys with the following command:</p>
 </code></pre></div><p>Otherwise, this error may be due to an expired key or subkey.</p>
 <p>Check keys are not expired by running the following:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | cut -f 1 -d " " | xargs -I{} -n1 gpg --list-options show-unusable-subkeys --list-keys {}
-</code></pre></div><p>You can check the output for any keys that may have expired. (Or pipe the output into grep <code>| grep expired</code>)</p>
-<p>If a key has expired, it&rsquo;s possible that your local copy of the key is out of date. Follow the steps below, and if that doesn&rsquo;t resolve the issue, contact the owner and ask them to extend the expiry date or renew their key, then repeat the steps below.</p>
+</code></pre></div><p>You can check the output for any keys that may have expired, or pipe the output into grep:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>| grep expired
+</code></pre></div><p>If a key has expired, it&rsquo;s possible that your local copy of the key is out of date. Follow the steps below, and if that doesn&rsquo;t resolve the issue, contact the owner and ask them to extend the expiry date or renew their key, then repeat the steps below.</p>
 <h4 id='get-someone39s-latest-gpg-key'>Get someone&rsquo;s latest GPG key</h4><p>Pull the latest version of the <code>govuk-secrets</code> repo, then import all keys again.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cd ~/govuk/govuk-secrets
 git pull
