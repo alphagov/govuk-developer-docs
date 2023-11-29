@@ -255,7 +255,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec01fb1564b3bb2cf9e0ea1cde531c20c6f03ff3">5 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1e464d0b8433fd3afe04663f6261f5a3672332d0">23 Nov 2023</a>
 </div>
 
  <h1 id='header'>Get started developing on GOV.UK</h1> <blockquote>
@@ -418,9 +418,9 @@ class users::johnsmith {
 <h3 id='access-remote-environments-and-server'>Access remote environments and server</h3><p>Once your pull request with your user manifest file is merged and deployed, you should test your SSH access to remote environments and servers.</p>
 <p>If you are outside of the office or on GovWiFi, you must first <a href="#8-connect-to-the-gds-vpn">connect to the GDS VPN</a>.</p>
 <p>Test your SSH access by running:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">--environment</span> integration ssh backend
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">--environment</span> integration ssh jumpbox
 </code></pre></div><p>If you see an error <code>Permission denied</code>, check the message shown later, similar to: <code>The SSH username used was: jsmith</code> - if this is not the user you specified in the puppet config above, you need to specify a username:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">USER</span><span class="o">=</span>jaysmith gds govuk connect <span class="nt">--environment</span> integration ssh backend
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">USER</span><span class="o">=</span>jaysmith gds govuk connect <span class="nt">--environment</span> integration ssh jumpbox
 </code></pre></div><p>(or you can <code>export USER=jaysmith</code> separately to set it for a shell session)</p>
 <p>If you see an error similar to <code>no matching host key type found. Their offer: ssh-rsa,ssh-dss</code> you will have to change your ssh configuration - this is an issue with OSX Ventura (and possibly other operating systems) - see <a href="https://stackoverflow.com/questions/74215881/visual-studio-2022-wont-connect-via-ssh-on-macos-after-upgrading-to-ventura">this StackOverflow issue</a></p>
 <p>You need to add the following into your ssh config (e.g. <code>~/.ssh/config</code>):</p>
