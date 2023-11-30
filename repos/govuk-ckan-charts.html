@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-ckan-charts - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-ckan-charts (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,13 +16,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-ckan-charts - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-ckan-charts (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-ckan-charts.html" />
 
       <meta property="og:description" content="Everything about govuk-ckan-charts ()" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-ckan-charts" />
+      <meta property="og:title" content="Repository: govuk-ckan-charts (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-ckan-charts.html" />
 
@@ -177,125 +177,10 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-ckan-charts</h1>
+  <h1 class="page-title">Repository: govuk-ckan-charts (retired)</h1>
 
-  <div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-ckan-charts">govuk-ckan-charts</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-datagovuk">#govuk-datagovuk</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">data.gov.uk apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-ckan-charts')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-ckan-charts-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme">
-    <h3 id="quickstart-for-local-development-cluster">Quickstart for local development cluster</h3>
-<ul>
-<li>use k3d framework</li>
-</ul>
-<p><a href="https://k3d.io/v5.4.6/">k3d</a> so that we don&rsquo;t need to worry about creating an ingress controller. This will be more aligned with how we run the cluster on EKS as that manages the ingress for us.</p>
-<ul>
-<li>we will need to create a registry so that we can push locally built images to it and we will want to access it</li>
-</ul>
-<p><code>k3d cluster create local-ckan --api-port 6550 -p &quot;8081:80@loadbalancer&quot; --registry-create local-registry</code></p>
-<ul>
-<li>before building the image you will need to find the port that the registry is running on</li>
-</ul>
-<p><code>docker ps -f name=local-registry</code></p>
-<ul>
-<li>build the docker image with the tag matching the port of the registry</li>
-</ul>
-<p><code>docker build -t localhost:53492/ckan:2.9.7 -f Dockerfile .</code></p>
-<ul>
-<li>update the values.yaml so that the entry in the helm chart for the ckan image should match the registry name and port -</li>
-</ul>
-<p><code>image: local-registry:53492/ckan:2.9.7</code></p>
-<ul>
-<li>To use a nice url update <code>/etc/hosts</code>
-</li>
-</ul>
-<p>Add <code>dev.data.gov.uk</code> after kubernetes.docker.internal on the sameline in the <code>/etc/hosts</code> file</p>
-<ul>
-<li>
-<p>Creating the cluster</p>
-<ul>
-<li>Start by applying <code>super-secret.yaml</code>
-</li>
-</ul>
-<p><code>kubectl apply -f super-secret.yaml</code></p>
-<ul>
-<li>Then install the helm chart</li>
-</ul>
-<p><code>helm install ckan-test ./charts/ckan/</code></p>
-<ul>
-<li>See the cluster being created and running</li>
-</ul>
-<p><code>kubectl get pods</code></p>
-</li>
-</ul>
-<h3 id="useful-tips">Useful tips</h3>
-<h4 id="how-to-test-chart-changes">How to test chart changes</h4>
-<p>In order to test the changes in EKS follow these steps:</p>
-<ul>
-<li>disable the auto-sync in the <code>dgu-app-of-apps</code> application.
-<ul>
-<li>edit the target revision to be the branch you want to test and manually sync it.</li>
-</ul>
-</li>
-<li>edit the revision of the branch to be the branch you want to test in the <code>ckan</code> applications (not in the <code>dgu-app-of-apps</code> space).
-<ul>
-<li>you may need to delete the app that has been updated in order to pick up the change.</li>
-</ul>
-</li>
-<li>if you make further changes to the chart you may need to manually sync the <code>dgu-app-of-apps</code>.</li>
-<li>if it is not syncing you may need to check the sync status and terminate any running processes.</li>
-<li>after testing is complete remember to turn on the auto sync in <code>dgu-app-of-apps</code>.</li>
-</ul>
-  </div></p>
+  <p>This application is retired.</p>
+<p><a href="https://github.com/alphagov/govuk-ckan-charts">GitHub repository</a></p>
 
 
             
