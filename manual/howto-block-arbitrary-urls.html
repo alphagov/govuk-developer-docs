@@ -179,7 +179,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fa4369508e6cff0bddf97faf70e9d09feef3e0c4">26 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8ba8fa1c8bd7e70b0d526fca8f97bcd97283f48a">4 Dec 2023</a>
 </div>
 
  <h1 id='header'>Block access to arbitrary URLs in the GOV.UK estate</h1> <p>During a recent security incident it became necessary to block a GOV.UK
@@ -211,7 +211,7 @@ to the server block, forcing to return <code>403 FORBIDDEN</code>, e.g.</p></li>
      }
    }
 </code></pre></div><p>Location blocks are not limited to absolute paths, but can also include regular expressions if prefixed by the <code>~</code> operator.
-   See the additional external documentation [here][Digital ocean] and [here][Linode] for examples.</p>
+   See the additional external documentation [here][Digital ocean] and <a href="https://www.linode.com/docs/web-servers/nginx/how-to-configure-nginx/#location-blocks">here</a> for examples.</p>
 
 <blockquote>
 <p>Note:</p>
@@ -234,11 +234,6 @@ changes are required (<a href="https://github.com/alphagov/govuk-puppet/pull/948
 Alternatively, changes to the app may remove the offending content.</p></li>
 <li><p>Finally, <a href="/manual/howto-run-ssh-commands-on-many-machines.html#enable-puppet">re-enable Puppet on each machine</a> of the <code>&lt;INSTANCE_CLASS&gt;</code></p></li>
 </ol>
-
-<ul>
-<li><a href="https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms">DigitalOcean</a></li>
-<li><a href="https://www.linode.com/docs/web-servers/nginx/how-to-configure-nginx/#location-blocks">Linode</a></li>
-</ul>
 
 
   <div class='related-content'>
