@@ -252,8 +252,15 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/ead8223cdadbc8bfbbb1903300a7dca942721663">9 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/8bd7d68b3967452b7f1bf174be05d62a5211f2a9">24 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Set up individual component CSS loading</h1>
@@ -359,6 +366,9 @@ end
     %&gt;
   &lt;/head&gt;
 </code></pre>
+<h3 id="check-stylesheets-are-loading-individually">Check stylesheets are loading individually</h3>
+<p>When the setup is complete, only the component stylesheets required to render the page are requested. For example, the screenshot below displays network activity for a <a href="https://www.gov.uk/browse/benefits">browse page e.g. benefits</a> and shows separate network requests for the <code>browse</code>, <code>lead-paragraph</code> and <code>cards</code> stylesheets:</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk_publishing_components/main/docs/images/individual-stylesheets.png" alt="Network requests for individual stylesheets"></p>
 <h2 id="why">Why</h2>
 <p>See <a href="https://github.com/alphagov/govuk-rfcs/pull/152">RFC #149</a> for more details about this approach.</p>
 

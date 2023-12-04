@@ -210,7 +210,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/9398cd01d5f2a9922cc9de3688963af440bf639e">3 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/447518c3d0bd45f8f6300750b9d7386b1bd5049b">1 Dec 2023</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Support tasks</h1>
@@ -227,7 +227,7 @@ their own service using Govdelivery. We do not have access to this.</p>
 </blockquote>
 <p>If it is not possible for changes to be managed by the user, it is
 possible for changes to be made manually. The following rake tasks should be
-run using the <code>kubectl</code> command, as described in the <a href="https://docs.publishing.service.gov.uk/manual/kubernetes-infrastructure.html">EKS documentation</a>.</p>
+run using the <code>kubectl</code> command, as described in the <a href="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html">EKS documentation</a>.</p>
 <h2 id="change-a-subscribers-email-address">Change a subscriber's email address</h2>
 <p>This task changes a subscriber's email address.</p>
 <pre lang="bash"><code>$ kubectl -n apps exec -it deploy/email-alert-api -- bundle exec rake support:change_email_address[&lt;old_email_address&gt;, &lt;new_email_address&gt;]
