@@ -228,6 +228,30 @@
         - name: link_domain
         - name: link_path_parts
         - name: section
+    - name: action link (browse level 1)
+      implemented: true
+      priority: low
+      description: Tracks the action links shown on only some browse pages.
+      examples:
+        - text: Benefits
+          link: https://www.gov.uk/browse/benefits
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: action
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: external
+        - name: link_domain
+        - name: method
     - name: browse subtopic (browse level 2)
       implemented: true
       priority: medium
