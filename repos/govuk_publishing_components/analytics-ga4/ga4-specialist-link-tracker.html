@@ -253,7 +253,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/e6d900bffd348a4e258353483850685de98ec170">24 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/a6218d4e9938c4198e7c1e2a53097a62714a1b5a">30 Nov 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics Specialist Link Tracker</h1>
@@ -307,29 +307,25 @@ window.GOVUK.analyticsGa4.linkTracker.init()
 <pre lang="JavaScript"><code>//= require ./analytics-ga4/ga4-link-tracker
 
 window.GOVUK.analyticsGa4.linkTracker.init({
-    internalDomains: ['www.gov.uk'],
-    internalDownloadPaths: ['/government/uploads/', '/downloads/'],
-    dedicatedDownloadDomains: ['assets.publishing.service.gov.uk', 'dropbox.com'],
+  internalDomains: ['www.gov.uk'],
+  internalDownloadPaths: ['/government/uploads/', '/downloads/'],
+  dedicatedDownloadDomains: ['assets.publishing.service.gov.uk', 'dropbox.com'],
 })
 
 </code></pre>
 <p><code>&lt;a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf"&gt;A Quick Guide to the Government’s Healthy Eating Recommendations&lt;/a&gt;</code></p>
 <p>In the example above, on a left click of the link, the following would be pushed to the dataLayer, using the <code>eventSchema</code> found in <code>ga4-schemas.js</code>:</p>
 <pre lang="JSON"><code>{
-    "event": "event_data",
-    "event_data": {
-        "event_name": "file_download",
-        "type": "generic download",
-        "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf",
-        "text": "A Quick Guide to the Government’s Healthy Eating Recommendations",
-        "index": null,
-        "index_total": null,
-        "section": null,
-        "action": null,
-        "external": "true",
-        "method": "primary click",
-        "link_domain": "https://assets.publishing.service.gov.uk",
-    }
+  "event": "event_data",
+  "event_data": {
+    "event_name": "file_download",
+    "type": "generic download",
+    "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf",
+    "text": "A Quick Guide to the Government’s Healthy Eating Recommendations",
+    "external": "true",
+    "method": "primary click",
+    "link_domain": "https://assets.publishing.service.gov.uk",
+  }
 }
 </code></pre>
 <p>Preview links would turn <code>type</code> to <code>preview</code>.</p>
