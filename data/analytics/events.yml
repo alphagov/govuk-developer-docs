@@ -76,7 +76,6 @@
         - name: external
         - name: method
         - name: link_domain
-        - name: link_path_parts
 - name: banners
   description: Note that the presence of banners is tracked via our Pageview tracker.
   events:
@@ -108,7 +107,6 @@
         - name: external
         - name: method
         - name: link_domain
-        - name: link_path_parts
     - name: dismiss button
       description: Event that occurs when a user clicks a dismiss button to hide an intervention, survey, or cookie banner.
       examples:
@@ -160,7 +158,6 @@
             value: The position of the link within the breadcrumbs from left to right.
         - name: index_total
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -196,7 +193,6 @@
           value: "false"
         - name: method
         - name: link_domain
-        - name: link_path_parts
     - name: browse topic (browse level 1)
       implemented: true
       priority: medium
@@ -226,8 +222,31 @@
           value: "false"
         - name: method
         - name: link_domain
-        - name: link_path_parts
         - name: section
+    - name: action link (browse level 1)
+      implemented: true
+      priority: low
+      description: Tracks the action links shown on only some browse pages.
+      examples:
+        - text: Benefits
+          link: https://www.gov.uk/browse/benefits
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: action
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: external
+        - name: link_domain
+        - name: method
     - name: browse subtopic (browse level 2)
       implemented: true
       priority: medium
@@ -261,7 +280,6 @@
           value: "false"
         - name: method
         - name: link_domain
-        - name: link_path_parts
 
 - name: call out box
   events:
@@ -304,7 +322,6 @@
           value: "false"
         - name: method
         - name: link_domain
-        - name: link_path_parts
     - name: back to contents link click
       implemented: false
       priority: low
@@ -355,7 +372,6 @@
         - name: external
           value: "false"
         - name: link_domain
-        - name: link_path_parts
         - name: method
     - name: rss subscriptions
       implemented: true
@@ -383,7 +399,6 @@
         - name: external
           value: "false"
         - name: link_domain
-        - name: link_path_parts
         - name: method
 
 - name: email subscriptions
@@ -410,7 +425,6 @@
           - name: index_link
         - name: index_total
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: section
         - name: text
@@ -606,7 +620,6 @@
             value: "5"
         - name: index_total
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -655,7 +668,6 @@
         - name: external
         - name: method
         - name: link_domain
-        - name: link_path_parts
 
 - name: html attachments
   events:
@@ -676,7 +688,6 @@
           value: navigation
         - name: external
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -703,7 +714,6 @@
         - name: external
           value: '"true"'
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -727,7 +737,6 @@
         - name: external
           value: "true"
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -750,7 +759,6 @@
           value: navigation
         - name: external
           value: '"true"'
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -773,7 +781,6 @@
           value: file_download
         - name: external
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -877,7 +884,6 @@
         - name: tool_name
         - name: type
         - name: link_domain
-        - name: link_path_parts
     - name: information click
       implemented: true
       description: Tracks clicks from the results page, for example the 'go to council website' button.
@@ -1019,7 +1025,6 @@
           value: "false"
         - name: method
         - name: link_domain
-        - name: link_path_parts
 
 - name: printing
   events:
@@ -1086,7 +1091,6 @@
           value: "false"
         - name: method
         - name: link_domain
-        - name: link_path_parts
 
 - name: related navigation
   description: Events gathered in the contextual sidebar, contextual footer and related navigation components.
@@ -1120,7 +1124,6 @@
         - name: url
           value: href attribute of link
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: external
 
@@ -1234,7 +1237,6 @@
         - name: external
           value: "false"
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: section
         - name: type
@@ -1387,7 +1389,6 @@
           - name: index_link
         - name: index_total
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -1415,7 +1416,6 @@
           - name: index_link
         - name: index_total
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -1450,7 +1450,6 @@
         - name: external
           value: false
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: tool_name
     - name: submit question
@@ -1526,7 +1525,6 @@
           value: false
         - name: method
         - name: link_domain
-        - name: link_path_parts
         - name: tool_name
     - name: simple smart answer complete
       implemented: true
@@ -1576,7 +1574,6 @@
         - name: external
         - name: method
         - name: link_domain
-        - name: link_path_parts
         - name: tool_name
     - name: start again link click
       implemented: true
@@ -1603,7 +1600,6 @@
           value: false
         - name: method
         - name: link_domain
-        - name: link_path_parts
         - name: tool_name
 
 - name: smart answers
@@ -1634,7 +1630,6 @@
         - name: external
           value: "false"
         - name: link_domain
-        - name: link_path_parts
         - name: tool_name
         - name: method
     - name: submit question
@@ -1710,7 +1705,6 @@
           value: "false"
         - name: method
         - name: link_domain
-        - name: link_path_parts
         - name: tool_name
     - name: smart answer complete
       implemented: true
@@ -1762,7 +1756,6 @@
         - name: external
         - name: method
         - name: link_domain
-        - name: link_path_parts
         - name: tool_name
     - name: results ecommerce list views and click
       implemented: true
@@ -1811,7 +1804,6 @@
           value: "false"
         - name: method
         - name: link_domain
-        - name: link_path_parts
         - name: tool_name
 
 - name: step by step navigation
@@ -1892,7 +1884,6 @@
           - name: index_section_count
         - name: index_total
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -1994,7 +1985,6 @@
           - name: index_section_count
         - name: index_total
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: text
         - name: type
@@ -2059,7 +2049,6 @@
           - name: index_section_count
         - name: index_total
         - name: link_domain
-        - name: link_path_parts
         - name: method
         - name: section
         - name: text
