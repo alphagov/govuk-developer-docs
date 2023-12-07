@@ -35,4 +35,4 @@ We have been assured by Assistiv Labs that the Virtual Machine (VM) is deleted w
 
 You should also make sure you understand how using the service affects any other requirements for your service, such as PCI (Payment Card Industry) compliance, and assess any additional risks. You can speak to your service's information assurance lead or the GDS Privacy Team for specific guidance.
 
-[Read more within the GDS Way](https://gds-way.cloudapps.digital/manuals/accessibility.html#testing-with-assistive-technologies)
+[Read more within the GDS Way](https://gds-way.digital.cabinet-office.gov.uk/manuals/accessibility.html#testing-with-assistive-technologies)

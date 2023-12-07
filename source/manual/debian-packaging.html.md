@@ -25,7 +25,7 @@ Adding a package should be motivated by
 security or architecture requirements and aim to minimise unnecessary
 dependencies.
 
-Additional guidance can be found in the [GDS way](https://gds-way.cloudapps.digital/standards/tracking-dependencies.html#dependency-management-tools)
+Additional guidance can be found in the [GDS way](https://gds-way.digital.cabinet-office.gov.uk/standards/tracking-dependencies.html#dependency-management-tools)
 as well as the [service manual](https://www.gov.uk/service-manual/technology/managing-software-dependencies#how-to-work-with-third-party-code).
 
 If you are satisfied that adding a local or third party package via aptly is the

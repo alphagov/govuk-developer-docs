@@ -51,7 +51,7 @@ After running `bundle install` you can test the linting by running
 
 ## Linting JavaScript and SCSS
 
-We follow the [GDS Way](https://gds-way.cloudapps.digital/) guidance
+We follow the [GDS Way](https://gds-way.digital.cabinet-office.gov.uk/) guidance
 on linting [Javascript][gds-way-js] and [CSS][gds-way-css].
 
 To configure this for a Rails application you will need to install
@@ -98,8 +98,8 @@ You can now test the linting by running `yarn run lint`.
 To finish up you should add `node_modules` and `yarn-error.log` to
 your `.gitignore` file.
 
-[gds-way-js]: https://gds-way.cloudapps.digital/manuals/programming-languages/js.html#linting
-[gds-way-css]: https://gds-way.cloudapps.digital/manuals/programming-languages/css.html#linting
+[gds-way-js]: https://gds-way.digital.cabinet-office.gov.uk/manuals/programming-languages/js.html#linting
+[gds-way-css]: https://gds-way.digital.cabinet-office.gov.uk/manuals/programming-languages/css.html#linting
 [standardx]: https://github.com/standard/standardx
 [stylelint-config-gds]: https://github.com/alphagov/stylelint-config-gds
 [yarn-install]: https://classic.yarnpkg.com/en/docs/install/
