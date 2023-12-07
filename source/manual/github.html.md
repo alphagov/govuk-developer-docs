@@ -57,7 +57,7 @@ Users are removed from the GitHub organisation when their entry in [govuk-user-r
 
 When creating a new GOV.UK repo, you must ensure it:
 
-- has a well-written README (see [READMEs for GOV.UK applications](/manual/readmes.html), or the [GDS Way guidance](https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes) for general repositories)
+- has a well-written README (see [READMEs for GOV.UK applications](/manual/readmes.html), or the [GDS Way guidance](https://gds-way.digital.cabinet-office.gov.uk/manuals/readme-guidance.html#writing-readmes) for general repositories)
 - is tagged with the [`govuk`](https://github.com/search?q=topic:govuk) topic
 - has [Dependency Review](/manual/dependency-review.html) and [CodeQL](/manual/codeql.html) scans in its CI pipeline
 - is added to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the Developer Docs.
