@@ -52,7 +52,7 @@ and click 'Build with Parameters':
 
 ## Get someone to review your Pull Request
 
-The GDS Way has guidelines on [how to review code](https://gds-way.cloudapps.digital/manuals/code-review-guidelines.html).
+The GDS Way has guidelines on [how to review code](https://gds-way.digital.cabinet-office.gov.uk/manuals/code-review-guidelines.html).
 
 Only when the tests pass and the code has been approved the Pull Request can be merged, since we've
 [configured GitHub to prevent merges](/manual/github.html) otherwise.
