@@ -385,6 +385,13 @@ OK
 (integer) 0
 </code></pre>
 
+<h3 id="delete-the-index-on-opensearch">Delete the index on opensearch</h3>
+
+<p>If when attempting to run <code>bin/rails search:reindex</code> you get <code>An alias can not be assigned to index of the same name. Please delete index 'datasets-development' before continuing</code>, then you should run the following command on the publish pod before running the search reindex:</p>
+
+<pre><code>$ curl -XDELETE $ES_HOST/datasets-development
+</code></pre>
+
 <h3 id="running-the-packagesyncworker-sidekiq-job-attempts-to-sync-non-existent-data">Running the PackageSyncWorker sidekiq job attempts to sync non existent data</h3>
 
 <p>When running this sidekiq job it returns errors in the terminal such as:</p>
