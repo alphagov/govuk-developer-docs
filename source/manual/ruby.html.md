@@ -28,12 +28,6 @@ We use [bulk-changer][] to automatically raise pull requests in GOV.UK repositor
 
 For applications, you will usually need to change the ruby version in two places - in .ruby-version (which is used by rbenv), and in Dockerfile (which is used during deployment)
 
-It's advised not to use your personal GitHub account to create the access token required by the script, as another developer will need to approve the PRs. You can use [govuk-ci GitHub account](https://github.com/govuk-ci). The login credentials for the account can be fetched from [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/main/pass) with:
-
-```
-PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass github/govuk-ci
-```
-
 #### Manually raising a PR
 
 You can also create your own branch, update the two files as above, and raise a PR.
