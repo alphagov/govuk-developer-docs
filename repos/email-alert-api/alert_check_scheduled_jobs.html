@@ -210,7 +210,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/ddd5608a372635bdc6daaa0a99aed7c8eb1309b2">14 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/a9e2265e73a6896716f3fb85a87d3fefa65e44e3">4 Dec 2023</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Alert Check Scheduled Jobs</h1>
@@ -229,6 +229,32 @@
 <p>It is possible that a given travel advice item or medical alert might be updated more than once in two days, but there's no way to know about that through the Search API (we can only find out the last update to a given page). In this case we can only check that emails were delivered after the last public update. The 1 hour lag before an alert becomes checkable plus the 15 minute update frequency means that if a change happens between 60 and 75 minutes after the previous change the system can only confirms that emails were sent out for the most recent update, and if further proof of the previous update is needed a developer will have to check that manually. If the change happens later than 75 minutes, both changes will have been checked by separate runs of the job.</p>
 <h2 id="dependencies">Dependencies</h2>
 <p>This system depends on the Search API structure, so radical changes to the search API's results format may cause problems.</p>
+<h2 id="manual-checking">Manual Checking</h2>
+<p>There is a rake task to create a subscriber to both the medical and travel alerts. In production this account will persist, but if you want to use it in integration you will need to run the task before testing, because integration can only send to one email, and the email anonymisation process during database syncing will remove that one email address.</p>
+<pre><code>kubectl config use-context govuk-&lt;ENVIRONMENT&gt;
+kubectl -n apps deploy/email-alert-api -- rake 'alert_listeners:verify_or_create'
+</code></pre>
+<p>The listener subscribers receive emails into google group accounts:</p>
+<ul>
+<li>Production: <a href="mailto:email-alert-api-alert-listener@digital.cabinet-office.gov.uk">email-alert-api-alert-listener@digital.cabinet-office.gov.uk</a>
+</li>
+<li>Staging: <a href="mailto:email-alert-api-staging@digital.cabinet-office-gov.uk">email-alert-api-staging@digital.cabinet-office-gov.uk</a>
+</li>
+<li>Integration: <a href="mailto:email-alert-api-integration@digital.cabinet-office-gov.uk">email-alert-api-integration@digital.cabinet-office-gov.uk</a>
+</li>
+</ul>
+<p>See also <a href="/repos/email-alert-api/receiving-emails-from-email-alert-api-in-integration-and-staging.html">Receive emails from Email Alert API in Integration and Staging</a></p>
+<h2 id="testing">Testing</h2>
+<p>To test the alert in integration, you will need to run the task above (to create the listener), then create a medical alert or travel advice update, and wait one hour. You should see no alert initially (because hopefully the integration listener account will have received the email). To trigger the alert, first find out the content id of the alert  you have just publised, then open the console and update the emails for that</p>
+<pre><code>kubectl config use-context govuk-integration
+kubectl -n apps deploy/email-alert-api -- rails c
+
+(Rails console)
+&gt; emails = Email.where(content_id: &lt;your content id&gt; notify_status: "delivered")
+&gt; emails.each { |eml| eml.notify_status = nil; eml.save }
+&gt; AlertCheckWorker.new.perform(&lt;your document type, either "medical_safety_alert" or "travel_advice|&gt;)
+</code></pre>
+<p>This will clear the delivered status for the email, and run the alert check worker. Prometheus should collect the metrics after a minute, and set off the alert.</p>
 
 
             
