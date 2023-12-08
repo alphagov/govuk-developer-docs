@@ -200,7 +200,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/67878fb4177274722b181dbf072f04d56fdf5600">19 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/0107e65a56f583e15eae5eb9e94b5a32457a8b11">6 Dec 2023</a>
 </div>
 
   <h1 class="page-title">finder-frontend: Google Analytics 4 finder tracker</h1>
@@ -267,7 +267,7 @@ For example if the event target is a checkbox, <code>&lt;input type="checkbox" d
 <p>Our date filters have <code>data-ga4-change-category="update-filter text"</code> on them. The value we grab is the text that is input into its text field. If the text is an empty string, we treat this as a "Filter removed" event, as this means the date was removed. If text is available in the text box, we treat this as a "Filter added" event.</p>
 <h3 id="search-keyword-changes-">Search keyword changes (<code>&lt;input type="text"&gt;</code>)</h3>
 <p>Search boxes have <code>data-ga4-change-category="update-keyword text"</code> on them. The value we grab on change is the text that was input into the text box.  Regardless if text is available in the text box, we always treat it as a "search" event. This is because an empty search box is still as search event but it just searches for everything in our database.</p>
-<p>We apply the maximum level of PII removal on the user input.</p>
+<p>The search value is sanitised with PII removal, + characters converted to spaces, spaces and new lines trimmed, and downcasing.</p>
 <h3 id="clear-all-filters-button">Clear all filters button</h3>
 <p>On mobile, there is a "Clear all filters" button. This triggers a <code>change</code> event on the whole <code>&lt;form&gt;</code> element when clicked. Therefore, we have added <code>data-ga4-change-category="clear-all-filters"</code> on the parent <code>&lt;form&gt;</code> in our finders. The value pushed to GTM is hard coded in <code>Ga4FinderTracker</code> as "Clear all filters", so an element type is not passed through to <code>data-ga4-change-category</code> as we don't need to do any value extraction.</p>
 <h2 id="example-gtm-objects">Example GTM Objects</h2>
