@@ -192,7 +192,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec01fb1564b3bb2cf9e0ea1cde531c20c6f03ff3">5 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a1e2785b0ffb4566983aa71e904a5df91d4953a5">8 Dec 2023</a>
 </div>
 
  <h1 id='header'>Add a new Ruby version</h1> <p>The <a href="https://www.ruby-lang.org/en/">Ruby language</a> is a core part of GOV.UK - most of our applications are written in it.</p>
@@ -206,9 +206,7 @@
 </ul>
 <h3 id='updating-the-ruby-version-in-apps'>Updating the Ruby version in apps</h3><h4 id='automatically-raising-prs'>Automatically raising PRs</h4><p>We use <a href="https://github.com/alphagov/bulk-changer">bulk-changer</a> to automatically raise pull requests in GOV.UK repositories to update Ruby applications. Please note, we manage the <a href="/manual/publishing-a-ruby-gem.html#ruby-version-compatibility">Ruby version in gems</a> differently to applications.</p>
 <p>For applications, you will usually need to change the ruby version in two places - in .ruby-version (which is used by rbenv), and in Dockerfile (which is used during deployment)</p>
-<p>It&rsquo;s advised not to use your personal GitHub account to create the access token required by the script, as another developer will need to approve the PRs. You can use <a href="https://github.com/govuk-ci">govuk-ci GitHub account</a>. The login credentials for the account can be fetched from <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">govuk-secrets</a> with:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass github/govuk-ci
-</code></pre></div><h4 id='manually-raising-a-pr'>Manually raising a PR</h4><p>You can also create your own branch, update the two files as above, and raise a PR.</p>
+<h4 id='manually-raising-a-pr'>Manually raising a PR</h4><p>You can also create your own branch, update the two files as above, and raise a PR.</p>
 <h4 id='updating-individual-applications'>Updating individual applications</h4><p>For each application a PR is raised for (either manually or via bulk-changer), you should test the changes before merge, as follows:</p>
 
 <ol>
