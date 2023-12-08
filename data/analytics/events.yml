@@ -1283,7 +1283,7 @@
         - name: type
           value: finder
         - name: text
-          value: the search query
+          value: the search query. The value is sanitised with PII removal, + characters converted to spaces, spaces and new lines trimmed, and downcasing.
         - name: section
           value: the heading that the search box is under
         - name: url
