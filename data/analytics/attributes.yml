@@ -322,7 +322,7 @@
 
 - name: search_term
   description: Used in the page_view object to record the presence of a search term in the URL
-  value: The value of 'keywords' in the URL query string
+  value: The value of 'keywords' in the URL query string. The value is sanitised with PII removal, + characters converted to spaces, spaces and new lines trimmed, and downcasing.
   example: "Hello World"
   required: no
   type: string
@@ -409,7 +409,7 @@
   redact: false
 
 - name: term
-  description: The search term.
+  description: The search term. The value is sanitised with PII removal, + characters converted to spaces, spaces and new lines trimmed, and downcasing.
   value:
   example: "Pension"
   required: yes
