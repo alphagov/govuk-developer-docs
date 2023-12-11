@@ -93,4 +93,4 @@ This should resolve itself over time, but if you need to process the content
 change more quickly, run `represent_downstream:high_priority:content_id[CONTENT_ID]`
 to put it in the high priority queue,
 
-[grafana-queue-volumes]: https://grafana.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=publishing-api&var-Queues=All&from=now-30m&to=now
+[grafana-queue-volumes]: https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1

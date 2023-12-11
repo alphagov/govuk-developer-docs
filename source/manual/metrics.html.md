@@ -68,4 +68,4 @@ govuk-puppet once you are happy with it. Adding the dashboard to
 govuk-puppet means that it can be easily kept in sync between
 environments.
 
-[grafana-aws]: https://grafana.production.govuk.digital/
+[grafana-aws]: https://grafana.eks.production.govuk.digital/

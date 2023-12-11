@@ -97,7 +97,7 @@ on Integration, and check that it works as expected.
 ### Sidekiq Grafana Dashboard
 
 You can also monitor Sidekiq queue lengths using [this Grafana
-dashboard](https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json). It
+dashboard](https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay). It
 is available in all environments.
 
 ### Sidekiq from the console
