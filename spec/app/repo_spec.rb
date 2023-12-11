@@ -9,6 +9,16 @@ RSpec.describe Repo do
     end
   end
 
+  describe "is_gem?" do
+    it "returns true if assiged type is Gems" do
+      expect(Repo.new({ "type" => "Gems" }).is_gem?).to be(true)
+    end
+
+    it "returns false if assigned type isn't Gems" do
+      expect(Repo.new({ "type" => "Utilities" }).is_gem?).to be(false)
+    end
+  end
+
   describe "app_name" do
     it "returns repo_name if app_name not specified" do
       expect(Repo.new({ "repo_name" => "foo" }).app_name).to eq("foo")
