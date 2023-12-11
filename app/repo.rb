@@ -62,6 +62,10 @@ class Repo
     repo_data["retired"]
   end
 
+  def is_gem?
+    repo_data["type"] == "Gems"
+  end
+
   def private_repo?
     repo_data["private_repo"]
   end
