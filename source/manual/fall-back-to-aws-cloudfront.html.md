@@ -21,19 +21,19 @@ This backup CDN is currently provided by AWS CloudFront.
 
 <!-- Force separation between these two blockquotes -->
 
-> Note: These steps will have you make changes to our production environment. This is because all of our domains, including the domains for our staging and integration environments, are configured in the production environment.
+> Note: These steps will have you make changes to our production environment. This is because our DNS records and domains for our integration and staging environments are configured in our AWS and GCP production accounts.
 
 - Confirm that Fastly is the cause of the incident (check [https://status.fastly.com/](https://status.fastly.com/)
   and keep an eye on twitter - if there's a major Fastly outage there will be a lot of noise)
 - Escalate to GOV.UK SMT as soon as you begin to consider failing over
 - Sign in to the AWS console as an admin (`gds aws govuk-production-admin -l`, or however you prefer to sign in to AWS)
 - Sign in to [the `govuk-production` project on GCP console](https://console.cloud.google.com/home/dashboard?project=govuk-production)
-- For **production**, open the following four pages as separate tabs:
+- For **production DNS records**, open the following four pages as separate tabs:
   - [GCP Cloud DNS www-cdn.production.govuk.service.gov.uk](https://console.cloud.google.com/net-services/dns/zones/govuk-service-gov-uk/rrsets/www-cdn.production.govuk.service.gov.uk./CNAME/edit?project=govuk-production)
   - [AWS Route 53 govuk.service.gov.uk](https://console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z22RPYZA77J620)
   - [GCP Cloud DNS assets.publishing.service.gov.uk](https://console.cloud.google.com/net-services/dns/zones/publishing-service-gov-uk/rrsets/assets.publishing.service.gov.uk./CNAME/edit?project=govuk-production)
   - [AWS Route 53 publishing.service.gov.uk](https://console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z3SBFBO09PD5HF)
-- For **staging**, open the following three pages as separate tabs:
+- For **staging DNS records**, open the following three pages as separate tabs:
   - [GCP Cloud DNS www.staging.publishing.service.gov.uk](https://console.cloud.google.com/net-services/dns/zones/publishing-service-gov-uk/rrsets/www.staging.publishing.service.gov.uk./CNAME/edit-standard?project=govuk-production)
   - [GCP Cloud DNS assets.staging.publishing.service.gov.uk](https://console.cloud.google.com/net-services/dns/zones/publishing-service-gov-uk/rrsets/assets.staging.publishing.service.gov.uk./CNAME/edit-standard?project=govuk-production)
   - [AWS Route 53 publishing.service.gov.uk](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z3SBFBO09PD5HF)
