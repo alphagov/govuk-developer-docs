@@ -16,6 +16,10 @@ class Repos
     Repos.all.reject(&:retired?).uniq(&:repo_name)
   end
 
+  def self.active_gems
+    Repos.all.reject(&:retired?).select(&:is_gem?).uniq(&:repo_name)
+  end
+
   def self.active_public
     Repos.active.reject(&:private_repo?)
   end
