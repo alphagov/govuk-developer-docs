@@ -192,7 +192,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec01fb1564b3bb2cf9e0ea1cde531c20c6f03ff3">5 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/84d4ddeb064334198bf8badd38ab4bd31cd41dca">11 Dec 2023</a>
 </div>
 
  <h1 id='header'>Change a slug and create redirect in Whitehall</h1> <h2 id='change-a-slug-and-create-a-redirect-in-whitehall'>Change a slug and create a redirect in Whitehall</h2><p>In Whitehall, we have Rake Tasks to change slugs and create redirects for
@@ -230,7 +230,7 @@ kubectl config use-context &lt;your-context-name&gt;
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps deploy/whitehall-admin <span class="nt">--</span> rake <span class="s1">'reslug:statistics_annoucement[OLD_SLUG,NEW_SLUG]'</span>
 </code></pre></div><h3 id='issues'>Issues</h3><p>If you run a task and find the redirect has worked but the new location returns
 a 404, it&rsquo;s likely because the republish command is languishing in the
-low-priority queue (<a href="https://grafana.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=publishing-api&amp;var-Queues=All&amp;from=now-30m&amp;to=now">check queue volumes in Grafana</a>).
+low-priority queue (<a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1">check queue volumes in Grafana</a>).
 Whitehall appears to put the redirect in the low-priority queue, so there can
 be a delay between the redirect being applied and the content being republished.</p>
 <p>This should resolve itself over time, but if you need to process the content

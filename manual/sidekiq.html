@@ -200,15 +200,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6631409a7116e2e522ecb54fe0a3687adfc9728d">13 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/84d4ddeb064334198bf8badd38ab4bd31cd41dca">11 Dec 2023</a>
 </div>
 
  <h1 id='header'>Sidekiq</h1> <p>Many of our applications use
@@ -271,7 +264,7 @@ sidekiq-monitoring application. Add one for your application in
 <h4 id='test-that-the-configuration-works-on-integration'>Test that the configuration works on Integration</h4><p>Once changes are merged and deployed to Integration, you can
 access your <a href="monitor-sidekiq-workers.html">sidekiq monitoring</a> instance running
 on Integration, and check that it works as expected.</p>
-<h3 id='sidekiq-grafana-dashboard'>Sidekiq Grafana Dashboard</h3><p>You can also monitor Sidekiq queue lengths using <a href="https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json">this Grafana
+<h3 id='sidekiq-grafana-dashboard'>Sidekiq Grafana Dashboard</h3><p>You can also monitor Sidekiq queue lengths using <a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay">this Grafana
 dashboard</a>. It
 is available in all environments.</p>
 <h3 id='sidekiq-from-the-console'>Sidekiq from the console</h3><p>Where possible you should use Sidekiq&rsquo;s web interface or Grafana to view Sidekiq
