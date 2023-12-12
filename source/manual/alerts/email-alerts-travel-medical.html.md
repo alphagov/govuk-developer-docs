@@ -1,8 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
 title: Travel Advice or Drug and Medical Device email alerts not sent
-section: Icinga alerts
-subsection: Email alerts
+section: Pagerduty alerts
 layout: manual_layout
 parent: "/manual.html"
 ---
@@ -12,60 +11,55 @@ is updated in a significant way, emails will be sent to any subscribers to
 notify them of the change.
 
 We actively monitor this for [medical safety alerts][] and [travel advice
-updates][] with the [Medical safety alerts check][medical safety check] and
-[Travel advice alerts check][travel advice check], these are configured in
-[email-alert-monitoring][].
+alerts][] with scheduled jobs running in [email-alert-api][].
 
-These checks determine a list of content that we expect subscribers to have
-been emailed. We use a Gmail account which is subscribed to all travel advice
-and medical safety alerts to check whether an email has been received within a
-sufficient time period, if not the checks will fail.
+These jobs determine a list of content that we expect subscribers to have
+been emailed. We use the Notify system's callback to record whether emails
+sent out via this alert have been received.
 
-## Determining why the check failed
+## Finding out more details about the failed check
 
-Use the "Console Output" of the Jenkins job for this check to determine the
-reason the job failed.
+Open this [Kibana Search][kibana last 24 hours] to see potentially undelivered
+alerts in the last 24 hours (note the same alerts will appear on each run, so
+you might see the same alert more than once in this log view)
 
-Assuming it has failed due to not being able to find emails there should be a
-list of email subjects that were expected to exist.
+This will get you the Content ID and Path of the alert, and visiting the path
+on GOV.UK will get you the title of the alert.
 
 ## Verifying whether the email was received
 
-To verify if the Gmail account has received the email or not you can log into
-the Gmail account, `govuk_email_check@digital.cabinet-office.gov.uk`, using
-the credentials in the [Technical 2nd Line password store][] under
-`google-accounts/govuk_email_check@digital.cabinet-office.gov.uk`. Then you can
-use the previously noted subjects to try identify the email(s).
+To verify if the Gmail account has received the email or not you can join the
+google group 'Email Alert API Alert Listener', which is subscribed to all travel
+advice and medical safety alerts, and see if the email has been received.
 
-This check has been susceptible to a number of false positive scenarios in the
-past (there are [plans][retire alert adr] to retire this check due, in part,
-to it's fragility), examples of these are:
+## Troubleshooting
 
-* the email contents didn't exactly match what was searched for due to the
-  content being edited, these can be resolved by updating the [acknowledged email
-  list][] and re-running the Jenkins job;
-* Gmail decided the email was spam;
-* Gmail experienced service problems which delayed email receiving
-  ([status dashboard][gmail status]).
-
-## Troubleshooting emails that were not received
-
-If you have verified that the email hasn't been received you should then
-investigate was the email sent. Some avenues to explore are:
-
+* If an email matching the details in the logs has been received by the google
+  account, it is possible that a false alarm has occurred. Check to see if there
+  is a Notify outage. (NOTIFY STATUS PAGE)
+* Using the Content ID from the logs, get send/delivery statistics from
+  email-alert-api using the [email statistics rake task][] in email-alert-api
+  to determine whether there was a problem sending the emails to Notify, or
+  problems returned from Notify after it attempted to deliver them.
 * determine whether Email Alert API has a backlog of work to do using the
   [Sidekiq dashboard][] and [Email Alert API Technical
   dashboard][tech dashboard] - the email may just be delayed;
 * whether the change was a result of a new type of medical safety content
   sub-type, this was the previous cause of an [incident][checkbox-incident] and
   is recorded as [GOV.UK Tech Debt][checkbox tech debt];
-* check whether the email was sent as a [courtesy copy][] to
-  determine if Email Alert API processed the change;
-* verify whether Notify sent the expected email using [the `support:view_emails`
-  rake task][view_emails task];
 * check the [Kibana logs][] and [Sentry][] for any errors or clues;
 * if all else fails you may need to investigate the Email Alert API database
   to determine whether the content change was received and what state it is in.
+
+## Resending medical safety emails
+
+If you need to force the sending of a travel advice email alert, run the
+`email_alerts:trigger[PUT_EDITION_ID_HERE]` rake task in Travel Advice
+Publisher.
+
+The edition ID of the travel advice content item can be found in the
+URL of the country's edit page in Travel Advice Publisher and looks like
+`fedc13e231ccd7d63e1abf65`.
 
 ## Resending travel advice emails
 
@@ -78,19 +72,13 @@ URL of the country's edit page in Travel Advice Publisher and looks like
 `fedc13e231ccd7d63e1abf65`.
 
 [medical safety alerts]: https://www.gov.uk/drug-device-alerts
-[travel advice updates]: https://www.gov.uk/foreign-travel-advice
-[medical safety check]: https://deploy.blue.production.govuk.digital/job/medical-safety-email-alert-check/
-[travel advice check]: https://deploy.blue.production.govuk.digital/job/travel-advice-email-alert-check/
-[email-alert-monitoring]: https://github.com/alphagov/email-alert-monitoring
-[Technical 2nd Line password store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline
-[retire alert adr]: https://github.com/alphagov/email-alert-api/blob/main/docs/adr/adr-008-monitoring-and-alerting.md#removal-of-email-alert-monitoring
-[acknowledged email list]: https://github.com/alphagov/email-alert-monitoring/blob/master/lib/email_verifier.rb#L8
-[gmail status]: https://www.google.co.uk/appsstatus#hl=en-GB&v=status
+[travel advice alerts]: https://www.gov.uk/foreign-travel-advice
+[email-alert-api]: https://github.com/alphagov/email-alert-api
+[kibana last 24 hours]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/view/4147d5b0-99f8-11ee-aed3-9b7debb07809?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-24h%2Cto%3Anow))
+[email statistics rake task]: /repos/email-alert-api/alert_check_scheduled_jobs.html#support-tasks
 [Sidekiq dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=email-alert-api&var-Interval=$__auto_interval
 [tech dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_technical.json?refresh=1m&orgId=1
 [checkbox-incident]: https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#
 [checkbox tech debt]: https://trello.com/c/v2ees2fD/199-all-checkbox-is-misleading-for-finderemailsignups
-[courtesy copy]: /manual/email-notifications-how-they-work.html#useful-resources
-[view_emails task]: https://github.com/alphagov/email-alert-api/blob/main/docs/support-tasks.md#view-subscribers-recent-emails
 [Kibana logs]: https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/goto/43fc79ee47ac49f248e0f29a174be240
 [Sentry]: https://sentry.io/organizations/govuk/issues/?project=202220&statsPeriod=12h
