@@ -4,10 +4,7 @@ title: Migrate to Dart Sass from LibSass
 parent: "/manual.html"
 layout: manual_layout
 section: Frontend
-# type: learn
 ---
-
-# Migrate to Dart Sass from LibSass
 
 ## What is Dart Sass?
 
