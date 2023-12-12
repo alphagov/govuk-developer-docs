@@ -252,15 +252,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/8bd7d68b3967452b7f1bf174be05d62a5211f2a9">24 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/ccb42dfc6b9f3ae5aecf81c24c97d8e0e77af4e6">1 Nov 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Set up individual component CSS loading</h1>
@@ -313,15 +306,21 @@ add_gem_component_stylesheet("radio")
 <p>Starting with Rails 6.1 <a href="https://guides.rubyonrails.org/configuring.html#config-action-view-preload-links-header">preload_links_header</a> is set to <code>true</code> by default, this ensures the <code>javascript_include_tag</code> and <code>stylesheet_link_tag</code> will generate a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link">Link header</a> that preloads assets.</p>
 <p>If your application is using the individual loading of stylesheets feature and <code>preload_links_header</code> is set to <code>true</code>, you will likely see an increase in the header size for each page. This is important to be aware of as you may need to configure your web server to allow for larger header sizes, example PR - <a href="https://github.com/alphagov/govuk-puppet/pull/11846">increasing the cache size in NGINX</a>.</p>
 <h2 id="step-by-step-changes-to-the-rendering-application">Step by step changes to the rendering application</h2>
-<h3 id="set-up-the-stylesheets-to-be-precompiled">Set up the stylesheets to be precompiled</h3>
-<p>Add any app components and views in <code>app/assets/config/manifest.js</code>.</p>
-<pre lang="diff"><code>+  //= link components/_calendar.css
-+  //= link views/_homepage.css
+<h3 id="add-stylesheets-to-be-precompiled">Add stylesheets to be precompiled</h3>
+<p>Add stylesheet paths in <code>app/assets/config/govuk_publishing_components_sassc-rails_manifest.js</code>:</p>
+<pre lang="diff"><code>+  //= link govuk_publishing_components/components/_accordion.css
++  //= link govuk_publishing_components/components/_action-link.css
++  //= link govuk_publishing_components/components/_attachment.css
++  //= link govuk_publishing_components/components/_attachment-link.css
+   ...
 </code></pre>
+<p><strong>Note</strong>, that while GOV.UK Publishing Components supports applications which include both LibSass or Dart Sass, you'll need to add and remove stylesheet paths in the Sprockets manifest as detailed above.</p>
 <p>Remove gem component imports from <code>app/assets/stylesheets/application.scss</code>:</p>
 <pre lang="diff"><code>- @import "govuk_publishing_components/components/accordion";
 - @import "govuk_publishing_components/components/action-link";
-- @import "govuk_publishing_components/components/big-number";
+- @import "govuk_publishing_components/components/attachment";
+- @import "govuk_publishing_components/components/attachment-link";
+  ...
 </code></pre>
 <h3 id="using-the-publishing-components-gem-without-the-static-rendering-app">Using the publishing components gem without the <code>static</code> rendering app</h3>
 <p>The <code>static</code> rendering application already includes several components from the publishing components gem - <a href="https://github.com/alphagov/static/blob/main/app/assets/stylesheets/application.scss">static application.scss</a></p>
