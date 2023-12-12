@@ -105,7 +105,7 @@ The Kubernetes `ExternalSecret` defines the mapping between the AWS Secrets Mana
         name: aws-secretsmanager
         kind: ClusterSecretStore
       target:
-        name: <APPNAME>
+        name: <APPNAME-SECRETNAME>
       dataFrom:
         - extract:
             key: govuk/<APPNAME>/<SECRETNAME>
