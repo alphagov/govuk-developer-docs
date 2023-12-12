@@ -1,0 +1,461 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Migrate to Dart Sass from LibSass - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/migrate-to-dart-sass-from-libsass.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Migrate to Dart Sass from LibSass - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/migrate-to-dart-sass-from-libsass.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Migrate to Dart Sass from LibSass" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/migrate-to-dart-sass-from-libsass.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Migrate to Dart Sass from LibSass</span></a>
+  </li>
+  <li>
+    <a href="#migrate-to-dart-sass-from-libsass"><span>Migrate to Dart Sass from LibSass</span></a>
+    <ul>
+      <li>
+        <a href="#what-is-dart-sass"><span>What is Dart Sass?</span></a>
+      </li>
+      <li>
+        <a href="#why-migrate-from-libsass"><span>Why migrate from LibSass?</span></a>
+      </li>
+      <li>
+        <a href="#installation"><span>Installation</span></a>
+      </li>
+      <li>
+        <a href="#configuration"><span>Configuration</span></a>
+        <ul>
+          <li>
+            <a href="#create-a-builds-folder"><span>Create a builds folder</span></a>
+          </li>
+          <li>
+            <a href="#ignoring-files"><span>Ignoring files</span></a>
+          </li>
+          <li>
+            <a href="#update-the-manifest-file"><span>Update the manifest file</span></a>
+          </li>
+          <li>
+            <a href="#add-an-initializer"><span>Add an initializer</span></a>
+          </li>
+          <li>
+            <a href="#delete-unused-sass-configuration"><span>Delete unused Sass configuration</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#builds"><span>Builds</span></a>
+      </li>
+      <li>
+        <a href="#configuring-build-options"><span>Configuring build options</span></a>
+      </li>
+      <li>
+        <a href="#watch-mode"><span>Watch mode</span></a>
+        <ul>
+          <li>
+            <a href="#digests"><span>Digests</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#troubleshooting"><span>Troubleshooting</span></a>
+        <ul>
+          <li>
+            <a href="#other-issues"><span>Other issues</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#pull-requests"><span>Pull requests</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Frontend",
+        "@id": "http://www.dev.gov.uk/manual.html#frontend"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#frontend" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Frontend&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#frontend">Frontend</a>
+        </li>
+  </ol>
+</div>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e95adfcafe487ec9ec2fd71e35d27f2deb19c4e3">18 Sep 2023</a>
+</div>
+
+ <h1 id='header'>Migrate to Dart Sass from LibSass</h1> <h1 id='migrate-to-dart-sass-from-libsass'>Migrate to Dart Sass from LibSass</h1><h2 id='what-is-dart-sass'>What is Dart Sass?</h2><p><a href="https://sass-lang.com/dart-sass/">Dart Sass is the primary implementation</a> of <a href="https://sass-lang.com/">Sass</a>, which means it gets new features before any other implementation.</p>
+<h2 id='why-migrate-from-libsass'>Why migrate from LibSass?</h2><p>LibSass is now <a href="https://sass-lang.com/blog/libsass-is-deprecated/">deprecated</a>.</p>
+<h2 id='installation'>Installation</h2>
+<ol>
+<li>Update your <code>Gemfile</code> to replace <code>sassc-rails</code> with <code>dartsass-rails</code> and run <code>bundle install</code> (or with Docker: <code>govuk-docker-run bundle install</code>)</li>
+</ol>
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gi">+ gem "dartsass-rails"
+</span><span class="gd">- gem "sassc-rails"
+</span></code></pre></div><p><strong>Note</strong>, some dependencies of <code>sassc-rails</code> might be needed in your application. For example, <code>tilt</code> or <code>sprockets-rails</code> in which case you should manually add these dependencies to your <code>Gemfile</code>.</p>
+<h2 id='configuration'>Configuration</h2><h3 id='create-a-builds-folder'>Create a builds folder</h3><p>Create a <code>builds</code> folder: <code>app/assets/builds</code> and add a file named <code>.keep</code> in the corresponding folder.</p>
+<h3 id='ignoring-files'>Ignoring files</h3><p>Update <code>.gitignore</code> to ignore all files in the <code>builds</code> folder , but not <code>.keep</code>.</p>
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gi">+ /app/assets/builds
++ !/app/assets/builds/.keep
+</span></code></pre></div><h3 id='update-the-manifest-file'>Update the manifest file</h3><p>Remove references to CSS files from the Sprockets manifest file: <code>app/assets/config/manifest.js</code>.</p>
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gd">- //= link application.css
+- //= link components/_component-1.css
+- //= link components/_component-2.css
+- //= link components/_component-3.css
+- //= link components/_component-4.css
+- //= link views/_view-1.css
+- //= link views/_view-2.css
+- //= link views/_view-3.css
+- //= link views/_view-4.css
+</span>  ...
+</code></pre></div><p>Add a <code>link_tree</code> directive to link all files in all subdirectories of the <code>builds</code> folder.</p>
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gi">+ //= link_tree ../builds
+</span></code></pre></div><h3 id='add-an-initializer'>Add an initializer</h3><p>Add an initializer which holds all Sass entry points. The hash key is the relative path to a Sass file in <code>app/assets/stylesheets/</code> and the hash value will be the name of the file output to <code>app/assets/builds/</code>. <strong>Note</strong>, if your application uses <a href="https://github.com/alphagov/govuk_publishing_components">GOV.UK Publishing Components</a>, and the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/set-up-individual-component-css-loading.md">stylesheets are individually loaded</a>, you will need to merge all entry points, including those from your application and those from GOV.UK Publishing Components).</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">APP_STYLESHEETS</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"application.scss"</span> <span class="o">=&gt;</span> <span class="s2">"application.css"</span><span class="p">,</span>
+  <span class="s2">"components/_component-1.scss"</span> <span class="o">=&gt;</span> <span class="s2">"components/_component-1.css"</span><span class="p">,</span>
+  <span class="s2">"components/_component-2.scss"</span> <span class="o">=&gt;</span> <span class="s2">"components/_component-2.css"</span><span class="p">,</span>
+  <span class="s2">"components/_component-3.scss"</span> <span class="o">=&gt;</span> <span class="s2">"components/_component-3.css"</span><span class="p">,</span>
+  <span class="s2">"components/_component-4.scss"</span> <span class="o">=&gt;</span> <span class="s2">"components/_component-4.css"</span><span class="p">,</span>
+  <span class="s2">"views/_view-1.scss"</span> <span class="o">=&gt;</span> <span class="s2">"views/_view-1.css"</span><span class="p">,</span>
+  <span class="s2">"views/_view-2.scss"</span> <span class="o">=&gt;</span> <span class="s2">"views/_view-2.css"</span><span class="p">,</span>
+  <span class="s2">"views/_view-3.scss"</span> <span class="o">=&gt;</span> <span class="s2">"views/_view-3.css"</span><span class="p">,</span>
+  <span class="s2">"views/_view-4.scss"</span> <span class="o">=&gt;</span> <span class="s2">"views/_view-4.css"</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">all_stylesheets</span> <span class="o">=</span> <span class="no">APP_STYLESHEETS</span><span class="p">.</span><span class="nf">merge</span><span class="p">(</span><span class="no">GovukPublishingComponents</span><span class="o">::</span><span class="no">Config</span><span class="p">.</span><span class="nf">all_stylesheets</span><span class="p">)</span>
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">dartsass</span><span class="p">.</span><span class="nf">builds</span> <span class="o">=</span> <span class="n">all_stylesheets</span>
+</code></pre></div><p><strong>Note</strong>, if stylesheets are not individually loaded, there’s no need to add a <code>builds</code> initializer since <a href="https://github.com/rails/dartsass-rails#configuring-builds">by default</a>, <code>app/assets/stylesheets/application.scss</code> will be compiled.</p>
+<h3 id='delete-unused-sass-configuration'>Delete unused Sass configuration</h3><p>Delete Sass configuration previously added for <code>sassc-rails</code>.</p>
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gd">- config.sass.style = :compressed
+- config.sass.line_comments = false
+</span>  ...
+</code></pre></div><h2 id='builds'>Builds</h2><p><code>dartsass:build</code> is linked to <code>assets:precompile</code>. When <code>assets:precompile</code> is run, it triggers the compilation of Sass files, which are generated in the <code>/app/assets/builds</code> directory. They are then processed by Sprockets.</p>
+<h2 id='configuring-build-options'>Configuring build options</h2><p>See <a href="https://github.com/rails/dartsass-rails#configuring-build-options">configuring build options</a> and <a href="https://sass-lang.com/documentation/cli/dart-sass/">Dart Sass Command-Line Interface</a></p>
+<h2 id='watch-mode'>Watch mode</h2><p>When you&rsquo;re developing your application, you can run Sass in watch mode, so stylesheets are continuously updated when Sass files are changed.</p>
+
+<ol>
+<li>Add <code>bin/dev</code></li>
+</ol>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="c1">#!/usr/bin/env sh</span>
+   <span class="k">if</span> <span class="o">!</span> <span class="n">gem</span> <span class="n">list</span> <span class="n">foreman</span> <span class="o">-</span><span class="n">i</span> <span class="o">--</span><span class="n">silent</span><span class="p">;</span> <span class="k">then</span>
+     <span class="n">echo</span> <span class="s2">"Installing foreman..."</span>
+     <span class="n">gem</span> <span class="n">install</span> <span class="n">foreman</span>
+   <span class="n">fi</span>
+   <span class="nb">exec</span> <span class="n">foreman</span> <span class="n">start</span> <span class="o">-</span><span class="n">f</span> <span class="no">Procfile</span><span class="p">.</span><span class="nf">dev</span> <span class="s2">"$@"</span>
+</code></pre></div>
+<ol>
+<li>Add (or update) <code>procfile.dev</code></li>
+</ol>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="ss">web: </span><span class="n">bin</span><span class="o">/</span><span class="n">rails</span> <span class="n">server</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">3070</span>
+   <span class="ss">css: </span><span class="n">bin</span><span class="o">/</span><span class="n">rails</span> <span class="n">dartsass</span><span class="ss">:watch</span>
+</code></pre></div><p><strong>Note</strong>, the port number should match the one previously specified, in <code>startup.sh</code> and or <code>docker-compose.yml</code>, for running your Rails server.</p>
+
+<ol>
+<li>Update <code>startup.sh</code></li>
+</ol>
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code>   if [[ $1 == "--live" ]] ; then
+     GOVUK_APP_DOMAIN=www.gov.uk \
+     GOVUK_WEBSITE_ROOT=https://www.gov.uk \
+     GOVUK_PROXY_STATIC_ENABLED=true \
+     PLEK_SERVICE_CONTENT_STORE_URI=${PLEK_SERVICE_CONTENT_STORE_URI-https://www.gov.uk/api} \
+     PLEK_SERVICE_STATIC_URI=${PLEK_SERVICE_STATIC_URI-https://assets.publishing.service.gov.uk} \
+     PLEK_SERVICE_SEARCH_API_URI=${PLEK_SERVICE_SEARCH_API_URI-https://www.gov.uk/api} \
+   - bundle exec rails s -p 3070
+   + ./bin/dev
+   else
+     ...
+</code></pre></div>
+<ol>
+<li>In Docker, update <code>docker-compose.yml</code></li>
+</ol>
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code>     expose:
+   -  - "3000"
+   - command: bin/rails s --restart
+   +  - "3070"
+   + command: ./bin/dev
+     ...
+</code></pre></div><h3 id='digests'>Digests</h3><p>To see the latest stylesheet changes when developing your application, if running Sass in watch mode, you&rsquo;ll have to turn off digests. Update <code>config/environments/development.rb</code> to add</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>  <span class="n">config</span><span class="p">.</span><span class="nf">assets</span><span class="p">.</span><span class="nf">digest</span> <span class="o">=</span> <span class="kp">false</span>
+</code></pre></div><p>See <a href="https://guides.rubyonrails.org/asset_pipeline.html#turning-digests-off">3.2 Turning Digests Off - The Asset Pipeline — Ruby on Rails Guides</a>.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2><p>See <a href="https://github.com/rails/dartsass-rails#troubleshooting">common issues</a>.</p>
+<h3 id='other-issues'>Other issues</h3><h4 id='globs'>Globs</h4><p>Any form of pattern matching added for importing Sass files will not work. Sass files needs to be imported individually.</p>
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gd">- @import "modules/*";
+</span><span class="gi">+ @import "modules/module-1";
++ @import "modules/module-2";
++ @import "modules/module-3";
++ @import "modules/module-4";
+</span>  ...
+</code></pre></div><h4 id='asset-helpers'>Asset helpers</h4><p>Asset helpers no longer work in <code>dartsass-rails</code>. Replace occurrences of the <code>image-url</code> and <code>asset-url</code> helpers with the <code>url()</code> CSS function. See <a href="https://github.com/rails/dartsass-rails/issues/18">asset_url helpers don&rsquo;t work - issue #18 - rails/dartsass-rails</a>.</p>
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="err">.my-image</span> {
+<span class="gd">- background-image: image-url("path/to/my/image.svg");
+</span><span class="gi">+ background-image: url("path/to/my/image.svg");
+</span>  background-color: transparent;
+  ...
+<span class="err">}</span>
+</code></pre></div><h4 id='asset-paths'>Asset paths</h4><p>If you are using <a href="https://github.com/alphagov/govuk-frontend">GOV.UK Frontend</a> in your application you might need to add <a href="https://github.com/alphagov/govuk-frontend/blob/main/packages/govuk-frontend/src/govuk/settings/_assets.scss">asset handlers</a> to ensure fonts and images are correctly referenced. See <a href="https://frontend.design-system.service.gov.uk/importing-css-assets-and-javascript/#if-you-have-your-own-folder-structure">if you have your own folder structure</a>.</p>
+<div class="highlight"><pre class="highlight scss" tabindex="0"><code><span class="k">@function</span> <span class="nf">app-image-url</span><span class="p">(</span><span class="nv">$filename</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">@return</span> <span class="sx">url("</span><span class="si">#{</span><span class="nv">$filename</span><span class="si">}</span><span class="sx">")</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$govuk-image-url-function</span><span class="p">:</span> <span class="s2">"app-image-url"</span><span class="p">;</span>
+</code></pre></div><h2 id='pull-requests'>Pull requests</h2>
+<ul>
+<li><a href="https://github.com/alphagov/govuk_publishing_components/pull/3726">GOV.UK Publishing Components</a></li>
+<li><a href="https://github.com/alphagov/email-alert-frontend/pull/1655">Email Alert Frontend</a></li>
+<li><a href="https://github.com/alphagov/static/pull/3190">Static</a></li>
+</ul>
+
+
+  <div class='related-content'>
+
+    <h3>More in the Frontend section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/analytics.html">Analytics on GOV.UK</a></li>
+            <li><a href="/manual/find-a-rails-template-based-on-a-govuk-url.html">Find a rails template based on a GOV.UK URL or vice verca</a></li>
+            <li><a href="/manual/frontend-architecture.html">Frontend architecture</a></li>
+            <li><a href="/manual/gtm-change-process.html">Google Tag Manager change process</a></li>
+            <li><a href="/manual/guidance-and-tools-for-digital-accessibility.html">Guidance and tools for digital accessibility</a></li>
+            <li><a href="/manual/local-frontend-development.html">Local frontend development</a></li>
+            <li><a href="/manual/components.html">The component system</a></li>
+            <li><a href="/manual/browser-support.html">Which browsers we support</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/deploy-banner-to-certain-pages.html">Deploy a banner to certain pages</a></li>
+            <li><a href="/manual/how-to-remove-jquery-from-javascript.html">How to remove jQuery from JavaScript</a></li>
+            <li><a href="/manual/how-to-test-with-assitive-technology.html.html">How to test with Assistiv Labs</a></li>
+            <li><a href="/manual/frontend-performance.html">Track frontend performance with SpeedCurve</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/migrate-to-dart-sass-from-libsass.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Migrate+to+Dart+Sass+from+LibSass%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fmigrate-to-dart-sass-from-libsass.html%29&amp;labels=bug&amp;title=Re%3A+%27Migrate+to+Dart+Sass+from+LibSass%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
