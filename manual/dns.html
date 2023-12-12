@@ -199,11 +199,11 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/62ce5a6a9c11152e668426b87ca429506f45ed12">21 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6692899c8d4a114391a5dfcc5b146fb606bd052f">12 Dec 2023</a>
 </div>
 
- <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones.</p>
-<p>By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS). We use both for redundancy.</p>
+ <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones. For documentation on updating DNS, see the <a href="https://drive.google.com/drive/search?q=-%20type:document%20title:%22Tech%202nd%20Line%20-%20Handle%20Tickets%20on%20DNS%20Change%20request%20hostmaster%40%22">DNS change request and hostmaster</a> doc for Technical 2nd Line.</p>
+<p>In most cases, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS). See <a href="https://github.com/alphagov/govuk-dns-tf#amazon-route53-vs-google-cloud">Amazon Route53 vs Google Cloud in the govuk-dns-tf README</a></p>
 <p>As of December 2022, there are 61 hosted zones. A list is retrievable from a terminal using:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-production-poweruser -- aws route53 list-hosted-zones | grep Name
 </code></pre></div><p>Some individual records within these zones are managed by other teams.</p>
@@ -215,7 +215,7 @@ We maintain records which point to Bouncer so that these URLs redirect.</li>
 <li><code>publishing.service.gov.uk</code> and <code>govuk.service.gov.uk</code> are where GOV.UK lives.</li>
 </ul>
 <h2 id='dns-for-service-gov-uk-domains'>DNS for <code>*.service.gov.uk</code> domains</h2><p>GOV.UK Technical 2nd Line are responsible for delegating DNS to other government services.
-Note that we <strong>do not</strong> manage any other DNS records: if you get a request concerning anything other than <code>NS</code> records, it should be rejected. See the <a href="https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.wg0s4ugkpdpc">SRE interruptible documentation</a> for details.</p>
+Note that we <strong>do not</strong> manage any other DNS records: if you get a request concerning anything other than <code>NS</code> records, it should be rejected.</p>
 <p>When you&rsquo;ve verified the authenticity of the request as per the SRE docs above, you should:</p>
 
 <ol>
@@ -259,30 +259,7 @@ means we do not need to make a request to Jisc if we want to change CDN
 providers. We can just change where the CNAME points to.</li>
 </ul>
 <h2 id='dns-for-non-gov-uk-domains'>DNS for non-<code>gov.uk</code> domains</h2><p>GOV.UK also manages DNS zones for some non-<code>gov.uk</code> domains (e.g. <code>independent-inquiry.uk</code>).</p>
-<p>These should mostly be managed in Terraform: each domain should have its own zone configuration file in <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a>.</p>
-<p>If a non-GOV.UK domain is missing a configuration file, then it has not been migrated to Terraform yet (Platform Engineering have a <a href="https://trello.com/c/JLMsPUrp/996-import-manually-managed-dns-zones-into-terraform">card to migrate the remaining ones</a>). These domains need updating manually in the AWS console as follows:</p>
-
-<ol>
-<li><p>Login to the <strong>production</strong> AWS console.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ gds aws govuk-production-poweruser -l
-</code></pre></div></li>
-<li><p>Go to <a href="https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones">Route 53 &gt; Hosted zones</a> and select the zone for the domain you need to update.</p>
-<p>For example, if you&rsquo;ve been asked to delegate <code>example.independent-inquiry.uk</code> you&rsquo;ll need the <code>independent-inquiry.uk</code> zone.</p></li>
-<li><p>Expand the &lsquo;Hosted zone details&rsquo; and look for any useful comments in the description field.</p>
-<p>For example, the description will hopefully be something like:</p>
-
-<blockquote>
-<p>This zone is managed manually using the AWS console (i.e. click-ops). It&rsquo;s not managed by Terraform.</p>
-</blockquote>
-<p>This is a clear indicator that it&rsquo;s safe to update these records manually and they won&rsquo;t be overwritten by Terraform.</p>
-<p>However if it&rsquo;s something like this, then you shouldn&rsquo;t update it manually (go back and find the zone config file in govuk-dns-tf):</p>
-
-<blockquote>
-<p>Managed by Terraform</p>
-</blockquote></li>
-<li><p>Update the DNS records as required.</p></li>
-<li><p><strong>For bonus points:</strong> If the zone description wasn&rsquo;t clear, but you&rsquo;re certain it&rsquo;s safe to be updated manually, then consider changing the description field so it&rsquo;s clearer for the next person.</p></li>
-</ol>
+<p>These should be managed in Terraform, with each domain having its own zone configuration file in <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a>.</p>
 
 
   <div class='related-content'>
