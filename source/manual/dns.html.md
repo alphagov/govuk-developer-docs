@@ -7,9 +7,9 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-GOV.UK is responsible for managing several DNS zones.
+GOV.UK is responsible for managing several DNS zones. For documentation on updating DNS, see the [DNS change request and hostmaster](https://drive.google.com/drive/search?q=-%20type:document%20title:%22Tech%202nd%20Line%20-%20Handle%20Tickets%20on%20DNS%20Change%20request%20hostmaster%40%22) doc for Technical 2nd Line.
 
-By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS). We use both for redundancy.
+In most cases, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS). See [Amazon Route53 vs Google Cloud in the govuk-dns-tf README](https://github.com/alphagov/govuk-dns-tf#amazon-route53-vs-google-cloud)
 
 As of December 2022, there are 61 hosted zones. A list is retrievable from a terminal using:
 
@@ -30,7 +30,7 @@ We use a few domains:
 ## DNS for `*.service.gov.uk` domains
 
 GOV.UK Technical 2nd Line are responsible for delegating DNS to other government services.
-Note that we __do not__ manage any other DNS records: if you get a request concerning anything other than `NS` records, it should be rejected. See the [SRE interruptible documentation](https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.wg0s4ugkpdpc) for details.
+Note that we __do not__ manage any other DNS records: if you get a request concerning anything other than `NS` records, it should be rejected.
 
 When you've verified the authenticity of the request as per the SRE docs above, you should:
 
@@ -89,34 +89,6 @@ Technical 2nd Line should be notified of any planned changes via email.
 
 GOV.UK also manages DNS zones for some non-`gov.uk` domains (e.g. `independent-inquiry.uk`).
 
-These should mostly be managed in Terraform: each domain should have its own zone configuration file in [govuk-dns-tf][].
-
-If a non-GOV.UK domain is missing a configuration file, then it has not been migrated to Terraform yet (Platform Engineering have a [card to migrate the remaining ones](https://trello.com/c/JLMsPUrp/996-import-manually-managed-dns-zones-into-terraform)). These domains need updating manually in the AWS console as follows:
-
-1. Login to the **production** AWS console.
-
-    ```
-    $ gds aws govuk-production-poweruser -l
-    ```
-
-2. Go to [Route 53 > Hosted zones](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones) and select the zone for the domain you need to update.
-
-    For example, if you've been asked to delegate `example.independent-inquiry.uk` you'll need the `independent-inquiry.uk` zone.
-
-3. Expand the 'Hosted zone details' and look for any useful comments in the description field.
-
-    For example, the description will hopefully be something like:
-
-    > This zone is managed manually using the AWS console (i.e. click-ops). It's not managed by Terraform.
-
-    This is a clear indicator that it's safe to update these records manually and they won't be overwritten by Terraform.
-
-    However if it's something like this, then you shouldn't update it manually (go back and find the zone config file in govuk-dns-tf):
-
-    > Managed by Terraform
-
-4. Update the DNS records as required.
-
-5. **For bonus points:** If the zone description wasn't clear, but you're certain it's safe to be updated manually, then consider changing the description field so it's clearer for the next person.
+These should be managed in Terraform, with each domain having its own zone configuration file in [govuk-dns-tf][].
 
 [govuk-dns-tf]: https://github.com/alphagov/govuk-dns-tf
