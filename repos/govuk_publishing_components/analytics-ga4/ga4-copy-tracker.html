@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: # Auditing - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics 4 copy tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/auditing.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-copy-tracker.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: # Auditing - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/auditing.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics 4 copy tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-copy-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: # Auditing" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics 4 copy tracker" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/auditing.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-copy-tracker.html" />
 
     
   </head>
@@ -254,81 +254,34 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0992139c20bc6996a91d2d12e0c58b8ba0a85133">27 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/a0d170b8690e9fc04b1acbb4afb18660e053be26">13 Dec 2023</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: # Auditing</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics 4 copy tracker</h1>
 
-  <h2 id="auditing">Auditing</h2>
-<p>The component guide includes some auditing of components and applications that can provide useful information. It can be found at <code>/component-guide/audit</code>.</p>
-<p>It is designed to be run locally as it gets information about applications and how they use components from local files. <strong>If your local copy of an application is not up to date the information reported by the auditing may be incorrect</strong>.</p>
-<h3 id="purpose">Purpose</h3>
-<p>The aim of the auditing is to provide information about our components and how they are used in frontend applications on GOV.UK. This includes warnings about possible problems with how we are using our component individual asset model. This includes:</p>
+  
+<p>This script creates an event when text is copied from a GOV.UK page. When initialised, it adds an event listener to the page for the <code>copy</code> event. An event will be fired if the following are true:</p>
 <ul>
-<li>where an application is using a component but has not included required assets</li>
-<li>where an application is not using a component but has included unneeded assets</li>
+<li>some text has been selected</li>
+<li>the selected text is not inside an INPUT or TEXTAREA</li>
 </ul>
-<p>In some cases an application may use a component but not include its assets. This is usually because the assets are already included globally in <code>static</code>. For example, at time of writing the action link component is being used in <code>collections</code> and also in the site header, so the Sass for the component is included only in <code>static</code>, to prevent duplication. The auditing checks this and suppresses any warnings for missing assets in applications where they are already included in <code>static</code>.</p>
-<p>The auditing also includes other warnings, such as:</p>
-<ul>
-<li>where applications contain jQuery</li>
-<li>where applications are overriding component styles</li>
-<li>where applications are using components that don't exist</li>
-</ul>
-<h3 id="how-it-works">How it works</h3>
-<p>The auditing has three main areas. Depending on where the component guide is being run, some of this information will not be available.</p>
-<ol>
-<li>component information (determined from the gem, always available)</li>
-<li>how the current application is using components (if viewing the component guide inside an application)</li>
-<li>how all applications are using components (if viewing the component guide running locally in standalone mode, alongside the code for the other applications)</li>
-</ol>
-<p>All information is determined by the auditing code performing regular expression matches on files that it can access. This means that when the auditing is running locally it is only as up to date as the repositories on your machine. This also means it can be quite slow to load, as it's doing a lot of things.</p>
-<p>The auditing knows what to show based on two values - <code>@in_application</code> and <code>@other_applications</code>. They determine whether the auditing page includes the tab for 'Applications', and whether the 'Components by application' section of the 'Components' tab is shown.</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Remote/local application</th>
-<th>Gem running remotely</th>
-<th>Gem running locally</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>@in_application</code></td>
-<td>true</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr>
-<td><code>@other_applications</code></td>
-<td>false</td>
-<td>false</td>
-<td>true</td>
-</tr>
-<tr>
-<td>Applications tab</td>
-<td>Shows info for this app</td>
-<td>Not shown</td>
-<td>Shows info for all apps</td>
-</tr>
-<tr>
-<td>Components by application</td>
-<td>Not shown</td>
-<td>Not shown</td>
-<td>Shown</td>
-</tr>
-</tbody>
-</table>
-<p>Note that the combination of true/true for both <code>@in_application</code> and <code>@other_applications</code> shouldn't be possible - if the gem is inside an application, it can't access other applications.</p>
+<p>The second check is based around concerns over PII. Text copied from the body of a GOV.UK page should not include PII, but text inside a text input is written by users, and therefore could contain PII. Note that if text is selected spanning multiple elements including a text input, the browser automatically does not include the text from inputs.</p>
+<p>When a 'valid' copy event occurs, the following is sent to the dataLayer.</p>
+<pre lang="JSON"><code>{
+  "event": "event_data",
+  "event_data": {
+    "event_name": "copy",
+    "type": "copy",
+    "action": "copy",
+    "method": "browser copy",
+    "text": "Some copied text",
+    "length": 245
+  }
+}
+</code></pre>
+<p>The <code>text</code> attribute contains the first 30 characters of the copied text, with PII removed.</p>
+<p>The <code>length</code> attribute shows the original number of characters that were copied.</p>
 
 
             
@@ -336,8 +289,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/auditing.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fauditing.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-copy-tracker.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-ga4%2Fga4-copy-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

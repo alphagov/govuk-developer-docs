@@ -156,6 +156,7 @@
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-all-trackers.html" rel="noopener" class="govuk-link">Trackers</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-auto-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 auto tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-copy-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 copy tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-form-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 form tracker</a></li>
@@ -175,6 +176,7 @@
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-all-trackers.html" rel="noopener" class="govuk-link">Trackers</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-auto-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 auto tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-copy-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 copy tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-form-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 form tracker</a></li>
@@ -253,7 +255,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/fe7c231868e7ac288e58dd1520851c1a6f81678b">15 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/a0d170b8690e9fc04b1acbb4afb18660e053be26">13 Dec 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Trackers</h1>
@@ -261,15 +263,17 @@
   
 <p>For tracking different kinds of data on GOV.UK we have built several different trackers. Each type of tracking is handled by a separate script, but some code is shared between them as they often do similar things.</p>
 <p>Most of the trackers work by adding a <code>data-module</code> attribute to an element along with additional data attributes to provide specific tracking information. Some components have this already built into their code by default. These components should also include a <code>disable_ga4</code> option as a failsafe.</p>
-<h2 id="auto-tracking">Auto tracking</h2>
+<h2 id="auto-tracker">Auto tracker</h2>
 <p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-auto-tracker.md">auto tracker</a> is used to cause an event to occur as soon as a page has finished loading (but after a page view). This is used to track significant moments in journeys, such as the successful completion of a smart answer, or an error.</p>
+<h2 id="copy-tracker">Copy tracker</h2>
+<p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-copy-tracker.md">copy tracker</a> fires an event when text is copied from a page.</p>
 <h2 id="ecommerce-tracker">Ecommerce tracker</h2>
 <p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-ecommerce-tracker.md">ecommerce tracker</a> is used to track things like search results within a finder.</p>
-<h2 id="event-tracking">Event tracking</h2>
+<h2 id="event-tracker">Event tracker</h2>
 <p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-event-tracker.md">event tracker</a> handles tracking on buttons or other interactive elements, such as tabs and details elements.</p>
 <h2 id="form-tracker">Form tracker</h2>
 <p>The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-form-tracker.md">form tracker</a> is designed to capture data about a form when it has been submitted.</p>
-<h2 id="link-tracking">Link tracking</h2>
+<h2 id="link-tracker">Link tracker</h2>
 <p>There are several types of link tracking. To distinguish them and simplify the code, we define them as follows.</p>
 <ul>
 <li>the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-link-tracker.md">link tracker</a> handles link clicks with data attributes added to specific links, or to parent elements of groups of links</li>
