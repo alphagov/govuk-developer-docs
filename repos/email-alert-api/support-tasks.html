@@ -210,7 +210,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/447518c3d0bd45f8f6300750b9d7386b1bd5049b">1 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/4cbecd3e91d9b4d5365552f8214c415be9cb38a0">12 Dec 2023</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Support tasks</h1>
@@ -301,6 +301,9 @@ Depending on the number of emails to send, the Rake task can take a few minutes 
 <p>By default output is limited to only show the top 25 lists by active subscriber count. However
 that can be overridden to increase or decrease the output number.</p>
 <pre lang="bash"><code>kubectl -n apps exec -it deploy/email-alert-api -- bundle exec rake 'report:single_page_notifications_top_subscriber_lists[5]'
+</code></pre>
+<h2 id="find-out-sentdelivered-stats-for-a-specific-content-id">Find out sent/delivered stats for a specific Content ID:</h2>
+<pre lang="bash"><code>kubectl -n apps exec it deploy/email-alert-api -- bundle exec rake 'support:emails:stats_for_content_id[&lt;CONTENT ID&gt;,&lt;START_DATE (optional)&gt;,&lt;END_DATE (optional)&gt;]'
 </code></pre>
 
 

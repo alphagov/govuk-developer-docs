@@ -210,7 +210,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/a9e2265e73a6896716f3fb85a87d3fefa65e44e3">4 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/4cbecd3e91d9b4d5365552f8214c415be9cb38a0">12 Dec 2023</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Alert Check Scheduled Jobs</h1>
@@ -255,6 +255,11 @@ kubectl -n apps deploy/email-alert-api -- rails c
 &gt; AlertCheckWorker.new.perform(&lt;your document type, either "medical_safety_alert" or "travel_advice|&gt;)
 </code></pre>
 <p>This will clear the delivered status for the email, and run the alert check worker. Prometheus should collect the metrics after a minute, and set off the alert.</p>
+<h2 id="support-tasks">Support Tasks</h2>
+<p>To check the emails sent out for a specific Content ID (if an alert goes off), you can use this task:</p>
+<pre><code>kubectl config use-context govuk-&lt;ENVIRONMENT&gt;
+kubectl -n apps deploy/email-alert-api -- rake 'support:emails:stats_for_content_id[&lt;CONTENT ID&gt;,&lt;START_DATE (optional)&gt;,&lt;END_DATE (optional)&gt;]'
+</code></pre>
 
 
             
