@@ -513,7 +513,7 @@
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9b4c82b11b975c1e4c4a5a156afa58696bd26d83">25 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/060949a99ec4946c29a28380ee56474384baafe8">12 Dec 2023</a>
 </div>
 
  <h1 id='add-secrets-to-your-app'>Add secrets to your app</h1><p>You can add new <a href="https://kubernetes.io/docs/concepts/configuration/secret/">secrets</a> to your app on the GOV.UK Kubernetes platform.</p>
@@ -593,7 +593,7 @@
     <span class="na">name</span><span class="pi">:</span> <span class="s">aws-secretsmanager</span>
     <span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterSecretStore</span>
   <span class="na">target</span><span class="pi">:</span>
-    <span class="na">name</span><span class="pi">:</span> <span class="s">&lt;APPNAME&gt;</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">&lt;APPNAME-SECRETNAME&gt;</span>
   <span class="na">dataFrom</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="na">extract</span><span class="pi">:</span>
         <span class="na">key</span><span class="pi">:</span> <span class="s">govuk/&lt;APPNAME&gt;/&lt;SECRETNAME&gt;</span>
