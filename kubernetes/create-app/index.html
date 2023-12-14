@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Get information about your app - GOV.UK Developer Documentation</title>
+    <title>Create a new application on the GOV.UK Kubernetes Platform - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/kubernetes/manage-app/get-app-info/">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/kubernetes/create-app/">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Get information about your app - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/kubernetes/manage-app/get-app-info/" />
+      <meta name="twitter:title" content="Create a new application on the GOV.UK Kubernetes Platform - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/kubernetes/create-app/" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Get information about your app" />
+      <meta property="og:title" content="Create a new application on the GOV.UK Kubernetes Platform" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/kubernetes/manage-app/get-app-info/" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/kubernetes/create-app/" />
 
     
   </head>
@@ -555,55 +555,71 @@
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9b4c82b11b975c1e4c4a5a156afa58696bd26d83">25 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b03627804e403179d82ae5b742e32f2aed0426db">17 Oct 2023</a>
 </div>
 
- <h1 id='get-information-about-your-app'>Get information about your app</h1><p>You can get information about your app, your app deployment, and the pods and containers in your app.</p>
-<p>Most of the following examples use the Kubernetes command-line tool, <code>kubectl</code>.</p>
-<h2 id='choose-and-set-a-namespace'>Choose and set a namespace</h2><p>All the GOV.UK applications are in the <code>apps</code> namespace. You can avoid having to specify this (<code>-n apps</code>) in every <code>kubectl</code> command by setting <code>apps</code> as your default namespace:</p>
-<p><code>kubectl config set-context --current --namespace=apps</code></p>
-<h2 id='get-a-list-of-all-deployed-apps-in-a-namespace'>Get a list of all deployed apps in a namespace</h2><p>To get a list of all deployed apps, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps get deployments
-</code></pre></div><h2 id='describe-an-app-deployment'>Describe an app deployment</h2><p>To describe an app deployment, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> &lt;namespace&gt; describe deployment &lt;deployment&gt;
-</code></pre></div><p>The output includes information like the pod template, the containers, and the environment variables.</p>
-<h2 id='list-all-pods-in-an-app'>List all pods in an app</h2><p>To list all pods running in an app, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> &lt;namespace&gt; get pods
-</code></pre></div><h2 id='describe-a-pod'>Describe a pod</h2><p>To describe a pod in an app, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> &lt;namespace&gt; describe pod &lt;pod&gt;
-</code></pre></div><p>The output includes information on everything that Kubernetes uses to run the pod, for example:</p>
+ <h1 id='create-a-new-application'>Create a new application</h1><h2 id='assumptions'>Assumptions</h2><p>This guide assumes the following:</p>
 
 <ul>
-<li>pod image</li>
-<li>pod host</li>
-<li>resource limits</li>
-<li>readiness checks</li>
-<li>environment variables</li>
+<li>You have completed all the steps in the <a href="/manual/get-started.html">&ldquo;get started&rdquo; guide</a> of the developer docs</li>
+<li>You are deploying an application named <code>example</code> (make sure to replace this with your
+application name in all steps as needed)</li>
+<li>You have pushed the application source code to a Github repository under the <code>alphagov</code>
+organisation with the <code>govuk</code> and <code>container</code> labels applied (this triggers setup of a number of
+Github Actions secrets from the organisation and permissions required for workflows)</li>
+<li>You have a Sentry project configured for your application (through <code>govuk-infrastructure</code>)</li>
 </ul>
-<h2 id='view-app-logs'>View app logs</h2><p>To view the logs of all running containers in a specific pod, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> &lt;namespace&gt; logs &lt;pod&gt;
-</code></pre></div><p>To view the logs of a specific container for a pod, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> &lt;namespace&gt; logs &lt;pod&gt; <span class="nt">-c</span> &lt;container&gt;
-</code></pre></div><p>To view the logs for all containers in a given app deployment, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl logs <span class="nt">-n</span> apps deploy/&lt;deployment&gt; &lt;container&gt;
-</code></pre></div><p>You can also view logs in <a href="https://logit.io/">Logit</a>.</p>
+<h2 id='allow-your-application-to-be-built-as-a-docker-image'>Allow your application to be built as a Docker image</h2><p>Add a <code>Dockerfile</code> to your application. If your application is written in Ruby, this should normally
+be based on the <a href="https://github.com/alphagov/govuk-ruby-images">GOV.UK Ruby Images</a>. This should do everything necessary to create a
+standalone image for your application.</p>
 
-<ol>
-<li>Access Logit by following the <a href="https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit">Reliability Engineering documentation on getting started with Logit</a>.</li>
-<li>In the Logit dashboard, find the EKS stack you want to view the logs for. For example <strong>GOV.UK INTEGRATION EKS</strong>.</li>
-<li>Select <strong>LAUNCH KIBANA</strong> in the appropriate EKS stack.</li>
-</ol>
-<p>You can filter the logs in Logit by app, pod, container and other parameters.</p>
-<h2 id='view-kubernetes-events'>View Kubernetes events</h2><p>An event is any action that Kubernetes takes. For example, starting a container in a pod.</p>
-<p>Viewing Kubernetes events is helpful for debugging an app.</p>
-<p>To see Kubernetes events for a namespace, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> &lt;namespace&gt; get events
-</code></pre></div><p>To get events for a specific Kubernetes resource, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps get events <span class="nt">--field-selector</span><span class="o">=</span>involvedObject.name<span class="o">=</span>&lt;resource&gt;
-</code></pre></div><p>For example, to get events for the pod <code>publisher-7795bd698-v6bfc</code>, run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps get events <span class="nt">--field-selector</span><span class="o">=</span>involvedObject.name<span class="o">=</span>publisher-7795bd698-v6bfc
-</code></pre></div><h2 id='further-information'>Further information</h2><p>For more information on <code>kubectl</code>, see the <a href="https://kubernetes.io/docs/reference/kubectl/">Kubernetes kubectl documentation</a>.</p>
-<p>For more information on Logit, see the <a href="https://reliability-engineering.cloudapps.digital/logging.html#logging">Reliability Engineering documentation on logging</a>.</p>
+<blockquote>
+<p><strong>Note</strong>
+The best way to establish what you need to do is to find an existing GOV.UK application similar to
+yours, and adapt its <code>Dockerfile</code>.</p>
+</blockquote>
+<h2 id='add-github-actions-workflows'>Add Github Actions workflows</h2><p>You will need to add (at least) the following workflows:</p>
+
+<ul>
+<li><code>CI</code> (to test your application)</li>
+<li><code>release</code> (to create new releases and version tags)</li>
+<li><code>deploy</code> (to build/push an image and trigger deployment by updating image tags)</li>
+</ul>
+<p>Your Continuous Integration (CI) workflow will depend on the linting and testing needs of your
+application, but will act as a dependency for further workflows to block deployment in case of
+failure.</p>
+<p>For the <code>release</code> and <code>deploy</code> workflows, you can copy the workflow definitions from an existing
+GOV.UK application (in <code>.github/workflows</code>).</p>
+<h2 id='add-image-tag-files-to-govuk-helm-charts'>Add image tag files to <code>govuk-helm-charts</code></h2><p><a href="https://github.com/alphagov/govuk-helm-charts">GOV.UK Helm Charts</a> uses image tag files to keep
+track of the image tag deployed into each environment. Add an initial image tag file named after
+your application into the <code>image-tags</code> folder for each of the four environments, i.e.
+<code>charts/app-config/image-tags/{test,integration,staging/production}/example</code>:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>image_tag: latest
+automatic_deploys_enabled: true
+promote_deployment: false
+</code></pre></div><h2 id='add-initial-secrets-to-aws-secrets-manager'>Add initial secrets to AWS Secrets Manager</h2><h3 id='sentry'>Sentry</h3><p>In order to set up Sentry for your app, you will need a <em>DSN</em> from the Sentry UI. This must be
+manually added as a key/value pair to the <code>govuk/common/sentry</code> secret in all three environments.</p>
+<h2 id='add-app-to-app-config-chart-values'>Add app to <code>app-config</code> chart values</h2><h3 id='start-with-integration'>Start with integration</h3><p>Start off by adding your app to the integration environment by adding it to the array of application
+Helm chart values in <code>charts/app-config/values-integration.yaml</code>. This can be as simple as:</p>
+<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">example</span>
+</code></pre></div><p>This will use the <a href="https://github.com/alphagov/govuk-helm-charts/blob/main/charts/generic-govuk-app/">generic-govuk-app</a> Helm chart to set up your application. You can
+find the default values in <code>values.yaml</code> in the chart folder, and amend your configuration&rsquo;s
+<code>helmValues</code> value to override them.</p>
+<p>For example, if your app needs a <code>RETICULATE_SPLINES</code> environment variable set to &ldquo;1&rdquo; in a given
+environment, your integration configuration could look like this:</p>
+<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">example</span>
+  <span class="na">helmValues</span><span class="pi">:</span>
+    <span class="na">extraEnv</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">RETICULATE_SPLINES</span>
+        <span class="na">value</span><span class="pi">:</span> <span class="m">1</span>
+</code></pre></div><p>There are configuration options available for a wide range of different needs your application may
+have, from mounting volumes to disabling the default asset upload.</p>
+<h3 id='validate-your-deployment'>Validate your deployment</h3><p>You can now trigger your Deploy Github action to push an image to AWS ECS, and visit <a href="https://argo.eks.integration.govuk.digital/applications">Integration
+Argo CD</a>. After a short wait, your new application will be available to find on the
+dashboard.</p>
+<h3 id='continue-with-the-other-environments'>Continue with the other environments</h3><p>Repeat the steps above for the other environments&rsquo; values files (<code>values-staging.yaml</code> and
+<code>values-production.yaml</code>).</p>
+<h2 id='congratulations'>Congratulations!</h2><p>You&rsquo;ve deployed an application to the Kubernetes platform!</p>
 
   <script>
     /*
@@ -634,8 +650,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/kubernetes/manage-app/get-app-info/index.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Get+information+about+your+app%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fkubernetes%2Fmanage-app%2Fget-app-info%2F%29&amp;labels=bug&amp;title=Re%3A+%27Get+information+about+your+app%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/kubernetes/create-app/index.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Create+a+new+application+on+the+GOV.UK+Kubernetes+Platform%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fkubernetes%2Fcreate-app%2F%29&amp;labels=bug&amp;title=Re%3A+%27Create+a+new+application+on+the+GOV.UK+Kubernetes+Platform%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
