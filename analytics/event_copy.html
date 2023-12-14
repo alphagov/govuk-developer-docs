@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Video_duration attribute data | GOV.UK GA4 Implementation record</title>
+  <title>Copy event data | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_video_duration.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/event_copy.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_video_duration.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/event_copy.html" />
   <script src="/javascripts/cookie-consent.js"></script>
 </head>
 
@@ -138,80 +138,46 @@
         </div>
         <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
           
-<h1 class="govuk-heading-l">
-  <span class="govuk-caption-l">Attribute</span>
-  video_duration
+<h1 class="govuk-heading-l analytics-heading">
+  <span class="govuk-caption-l">Event</span>
+  copy
 </h1>
 
-<dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Name
-      </dt>
-      <dd class="govuk-summary-list__value">
-          video_duration
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Description
-      </dt>
-      <dd class="govuk-summary-list__value">
-          The length of a video, in seconds.
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Value
-      </dt>
-      <dd class="govuk-summary-list__value">
-          
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Example
-      </dt>
-      <dd class="govuk-summary-list__value">
-          
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Required
-      </dt>
-      <dd class="govuk-summary-list__value">
-          false
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Type
-      </dt>
-      <dd class="govuk-summary-list__value">
-          string (number)
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Redact
-      </dt>
-      <dd class="govuk-summary-list__value">
-          <a href="/analytics/pii.html" class="govuk-link">false</a>
-      </dd>
-    </div>
 
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Used by
-    </dt>
-    <dd class="govuk-summary-list__value">
-                  <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video start)<br/>
-                  <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video progress)<br/>
-                  <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video complete)<br/>
-    </dd>
+<h2 class="govuk-heading-m analytics-heading">Contents</h2>
+<ul class="govuk-list govuk-list--bullet">
+    <li><a href="#heading-0" class="govuk-link">copy text</a></li>
+</ul>
+
+  <div class="event">
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    <h2 class="govuk-heading-m analytics-heading" id="heading-0">
+      copy text
+    </h2>
+
+    <p class="govuk-body">
+      Priority
+      <strong class="govuk-tag govuk-tag--green">
+        low
+      </strong>
+
+    </p>
+
+      <p class="govuk-body">
+        Tracks when a user has copied text from a page.
+      </p>
+
+          <p class="govuk-body">
+            This event is tracked by the <a href="/analytics/tracker_copy_tracker.html" class="govuk-link">copy_tracker</a>.
+          </p>
+
+
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+    <div class="govuk-inset-text">
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: copy</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: copy</li><li><a href='/analytics/attribute_length.html' class='govuk-link'>length</a>: The original length of the copied text, after the removal of extra spaces, line breaks, and PII</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: browser copy</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: The first 30 characters of the copied text</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: copy</li></ul></li></ul>
+    </div>
+    <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
   </div>
-</dl>
 
         </div>
       </div>

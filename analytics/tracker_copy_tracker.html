@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Attributes | GOV.UK GA4 Implementation record</title>
+  <title>Copy tracker | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/attributes.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/tracker_copy_tracker.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/attributes.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/tracker_copy_tracker.html" />
   <script src="/javascripts/cookie-consent.js"></script>
 </head>
 
@@ -137,359 +137,40 @@
           </ul>
         </div>
         <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
-          <h1 class="govuk-heading-l">
-  Attributes
+          
+<h1 class="govuk-heading-l">
+  <span class="govuk-caption-l">Tracker</span>
+  Copy tracker
 </h1>
 
-<p class="govuk-body">
-  Attributes are the key value pairs of data inside events. Attributes are often used by more than one event.
+  <p class="govuk-body">Tracks when users copy text from a GOV.UK page.</p>
 
-Events use the following attributes:
-
-</p>
-
-<ul class="govuk-list govuk-list--bullet">
-    <li>
-      <a href="attribute_ab_test.html" class="govuk-link">
-        ab_test
-      </a>
-    </li>
-    <li>
-      <a href="attribute_action.html" class="govuk-link">
-        action
-      </a>
-    </li>
-    <li>
-      <a href="attribute_browse_topic.html" class="govuk-link">
-        browse_topic
-      </a>
-    </li>
-    <li>
-      <a href="attribute_content_id.html" class="govuk-link">
-        content_id
-      </a>
-    </li>
-    <li>
-      <a href="attribute_cookie_banner.html" class="govuk-link">
-        cookie_banner
-      </a>
-    </li>
-    <li>
-      <a href="attribute_devolved_nations_banner.html" class="govuk-link">
-        devolved_nations_banner
-      </a>
-    </li>
-    <li>
-      <a href="attribute_document_type.html" class="govuk-link">
-        document_type
-      </a>
-    </li>
-    <li>
-      <a href="attribute_dynamic.html" class="govuk-link">
-        dynamic
-      </a>
-    </li>
-    <li>
-      <a href="attribute_ecommerce.html" class="govuk-link">
-        ecommerce
-      </a>
-    </li>
-    <li>
-      <a href="attribute_emergency_banner.html" class="govuk-link">
-        emergency_banner
-      </a>
-    </li>
-    <li>
-      <a href="attribute_event.html" class="govuk-link">
-        event
-      </a>
-    </li>
-    <li>
-      <a href="attribute_event_name.html" class="govuk-link">
-        event_name
-      </a>
-    </li>
-    <li>
-      <a href="attribute_external.html" class="govuk-link">
-        external
-      </a>
-    </li>
-    <li>
-      <a href="attribute_first_published_at.html" class="govuk-link">
-        first_published_at
-      </a>
-    </li>
-    <li>
-      <a href="attribute_history.html" class="govuk-link">
-        history
-      </a>
-    </li>
-    <li>
-      <a href="attribute_index_(ecommerce).html" class="govuk-link">
-        index (ecommerce)
-      </a>
-    </li>
-    <li>
-      <a href="attribute_index_link.html" class="govuk-link">
-        index_link
-      </a>
-    </li>
-    <li>
-      <a href="attribute_index_section.html" class="govuk-link">
-        index_section
-      </a>
-    </li>
-    <li>
-      <a href="attribute_index_section_count.html" class="govuk-link">
-        index_section_count
-      </a>
-    </li>
-    <li>
-      <a href="attribute_index_total.html" class="govuk-link">
-        index_total
-      </a>
-    </li>
-    <li>
-      <a href="attribute_intervention.html" class="govuk-link">
-        intervention
-      </a>
-    </li>
-    <li>
-      <a href="attribute_item_id.html" class="govuk-link">
-        item_id
-      </a>
-    </li>
-    <li>
-      <a href="attribute_item_list_name.html" class="govuk-link">
-        item_list_name
-      </a>
-    </li>
-    <li>
-      <a href="attribute_item_name.html" class="govuk-link">
-        item_name
-      </a>
-    </li>
-    <li>
-      <a href="attribute_items.html" class="govuk-link">
-        items
-      </a>
-    </li>
-    <li>
-      <a href="attribute_language.html" class="govuk-link">
-        language
-      </a>
-    </li>
-    <li>
-      <a href="attribute_length.html" class="govuk-link">
-        length
-      </a>
-    </li>
-    <li>
-      <a href="attribute_link_domain.html" class="govuk-link">
-        link_domain
-      </a>
-    </li>
-    <li>
-      <a href="attribute_location.html" class="govuk-link">
-        location
-      </a>
-    </li>
-    <li>
-      <a href="attribute_method.html" class="govuk-link">
-        method
-      </a>
-    </li>
-    <li>
-      <a href="attribute_navigation_list_type.html" class="govuk-link">
-        navigation_list_type
-      </a>
-    </li>
-    <li>
-      <a href="attribute_navigation_page_type.html" class="govuk-link">
-        navigation_page_type
-      </a>
-    </li>
-    <li>
-      <a href="attribute_organisations.html" class="govuk-link">
-        organisations
-      </a>
-    </li>
-    <li>
-      <a href="attribute_percent_scrolled.html" class="govuk-link">
-        percent_scrolled
-      </a>
-    </li>
-    <li>
-      <a href="attribute_phase_banner.html" class="govuk-link">
-        phase_banner
-      </a>
-    </li>
-    <li>
-      <a href="attribute_political_status.html" class="govuk-link">
-        political_status
-      </a>
-    </li>
-    <li>
-      <a href="attribute_primary_publishing_organisation.html" class="govuk-link">
-        primary_publishing_organisation
-      </a>
-    </li>
-    <li>
-      <a href="attribute_public_updated_at.html" class="govuk-link">
-        public_updated_at
-      </a>
-    </li>
-    <li>
-      <a href="attribute_publishing_app.html" class="govuk-link">
-        publishing_app
-      </a>
-    </li>
-    <li>
-      <a href="attribute_publishing_government.html" class="govuk-link">
-        publishing_government
-      </a>
-    </li>
-    <li>
-      <a href="attribute_query_string.html" class="govuk-link">
-        query_string
-      </a>
-    </li>
-    <li>
-      <a href="attribute_referrer.html" class="govuk-link">
-        referrer
-      </a>
-    </li>
-    <li>
-      <a href="attribute_rendering_app.html" class="govuk-link">
-        rendering_app
-      </a>
-    </li>
-    <li>
-      <a href="attribute_results.html" class="govuk-link">
-        results
-      </a>
-    </li>
-    <li>
-      <a href="attribute_schema_name.html" class="govuk-link">
-        schema_name
-      </a>
-    </li>
-    <li>
-      <a href="attribute_search_term.html" class="govuk-link">
-        search_term
-      </a>
-    </li>
-    <li>
-      <a href="attribute_section.html" class="govuk-link">
-        section
-      </a>
-    </li>
-    <li>
-      <a href="attribute_sort.html" class="govuk-link">
-        sort
-      </a>
-    </li>
-    <li>
-      <a href="attribute_spelling_suggestion.html" class="govuk-link">
-        spelling_suggestion
-      </a>
-    </li>
-    <li>
-      <a href="attribute_status_code.html" class="govuk-link">
-        status_code
-      </a>
-    </li>
-    <li>
-      <a href="attribute_step_navs.html" class="govuk-link">
-        step_navs
-      </a>
-    </li>
-    <li>
-      <a href="attribute_taxonomy_all.html" class="govuk-link">
-        taxonomy_all
-      </a>
-    </li>
-    <li>
-      <a href="attribute_taxonomy_all_ids.html" class="govuk-link">
-        taxonomy_all_ids
-      </a>
-    </li>
-    <li>
-      <a href="attribute_taxonomy_level1.html" class="govuk-link">
-        taxonomy_level1
-      </a>
-    </li>
-    <li>
-      <a href="attribute_taxonomy_main.html" class="govuk-link">
-        taxonomy_main
-      </a>
-    </li>
-    <li>
-      <a href="attribute_taxonomy_main_id.html" class="govuk-link">
-        taxonomy_main_id
-      </a>
-    </li>
-    <li>
-      <a href="attribute_term.html" class="govuk-link">
-        term
-      </a>
-    </li>
-    <li>
-      <a href="attribute_text.html" class="govuk-link">
-        text
-      </a>
-    </li>
-    <li>
-      <a href="attribute_title.html" class="govuk-link">
-        title
-      </a>
-    </li>
-    <li>
-      <a href="attribute_tool_name.html" class="govuk-link">
-        tool_name
-      </a>
-    </li>
-    <li>
-      <a href="attribute_type.html" class="govuk-link">
-        type
-      </a>
-    </li>
-    <li>
-      <a href="attribute_updated_at.html" class="govuk-link">
-        updated_at
-      </a>
-    </li>
-    <li>
-      <a href="attribute_url.html" class="govuk-link">
-        url
-      </a>
-    </li>
-    <li>
-      <a href="attribute_video_current_time.html" class="govuk-link">
-        video_current_time
-      </a>
-    </li>
-    <li>
-      <a href="attribute_video_percent.html" class="govuk-link">
-        video_percent
-      </a>
-    </li>
-    <li>
-      <a href="attribute_viewport_size.html" class="govuk-link">
-        viewport_size
-      </a>
-    </li>
-    <li>
-      <a href="attribute_withdrawn.html" class="govuk-link">
-        withdrawn
-      </a>
-    </li>
-    <li>
-      <a href="attribute_world_locations.html" class="govuk-link">
-        world_locations
-      </a>
-    </li>
-</ul>
+<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Technical documentation
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-copy-tracker.md" class="govuk-link">copy_tracker</a>
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Tracker code
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-copy-tracker.js" class="govuk-link">copy_tracker code</a>
+      </dd>
+    </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Used by
+    </dt>
+    <dd class="govuk-summary-list__value">
+            <a href="/analytics/event_copy.html" class="govuk-link">copy</a> (copy text)<br/>
+    </dd>
+  </div>
+</dl>
 
         </div>
       </div>

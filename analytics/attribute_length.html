@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Event attribute data | GOV.UK GA4 Implementation record</title>
+  <title>Length attribute data | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_event.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_length.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_event.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_length.html" />
   <script src="/javascripts/cookie-consent.js"></script>
 </head>
 
@@ -140,7 +140,7 @@
           
 <h1 class="govuk-heading-l">
   <span class="govuk-caption-l">Attribute</span>
-  event
+  length
 </h1>
 
 <dl class="govuk-summary-list">
@@ -149,7 +149,7 @@
         Name
       </dt>
       <dd class="govuk-summary-list__value">
-          event
+          length
       </dd>
     </div>
     <div class="govuk-summary-list__row">
@@ -157,7 +157,7 @@
         Description
       </dt>
       <dd class="govuk-summary-list__value">
-          Needed by Google to contain a specific thing to cause a trigger to happen.
+          The length of something. This could be the number of seconds in a video, or the number of characters in a string.
       </dd>
     </div>
     <div class="govuk-summary-list__row">
@@ -173,7 +173,7 @@
         Example
       </dt>
       <dd class="govuk-summary-list__value">
-          page_view, event_data
+          
       </dd>
     </div>
     <div class="govuk-summary-list__row">
@@ -189,7 +189,7 @@
         Type
       </dt>
       <dd class="govuk-summary-list__value">
-          string
+          string (number)
       </dd>
     </div>
     <div class="govuk-summary-list__row">
@@ -206,94 +206,10 @@
       Used by
     </dt>
     <dd class="govuk-summary-list__value">
-                <a href="/analytics/event_accordion.html" class="govuk-link">accordion</a> (Accordion section)<br/>
-                <a href="/analytics/event_accordion.html" class="govuk-link">accordion</a> (Show all sections)<br/>
-                <a href="/analytics/event_accordion.html" class="govuk-link">accordion</a> (Accordion links)<br/>
-                <a href="/analytics/event_banners.html" class="govuk-link">banners</a> (link click)<br/>
-                <a href="/analytics/event_banners.html" class="govuk-link">banners</a> (dismiss button)<br/>
-                <a href="/analytics/event_breadcrumbs.html" class="govuk-link">breadcrumbs</a> (link clicks)<br/>
-                <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (browse (browse level 0))<br/>
-                <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (browse topic (browse level 1))<br/>
-                <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (action link (browse level 1))<br/>
-                <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (browse subtopic (browse level 2))<br/>
-                <a href="/analytics/event_call_out_box.html" class="govuk-link">call out box</a> (call out box link click)<br/>
-                <a href="/analytics/event_contents_list.html" class="govuk-link">contents list</a> (link click)<br/>
-                <a href="/analytics/event_contents_list.html" class="govuk-link">contents list</a> (back to contents link click)<br/>
-                <a href="/analytics/event_copy.html" class="govuk-link">copy</a> (copy text)<br/>
-                <a href="/analytics/event_details_elements.html" class="govuk-link">details elements</a> (details expanded/collapsed)<br/>
-                <a href="/analytics/event_email_alerts_and_rss_subscriptions.html" class="govuk-link">email alerts and rss subscriptions</a> (email alerts)<br/>
-                <a href="/analytics/event_email_alerts_and_rss_subscriptions.html" class="govuk-link">email alerts and rss subscriptions</a> (rss subscriptions)<br/>
-                <a href="/analytics/event_email_subscriptions.html" class="govuk-link">email subscriptions</a> (get emails about this page)<br/>
-                <a href="/analytics/event_email_subscriptions.html" class="govuk-link">email subscriptions</a> (responses)<br/>
-                <a href="/analytics/event_email_subscriptions.html" class="govuk-link">email subscriptions</a> (form error)<br/>
-                <a href="/analytics/event_email_subscriptions.html" class="govuk-link">email subscriptions</a> (form completion)<br/>
-                <a href="/analytics/event_feedback.html" class="govuk-link">feedback</a> (Is this page useful? Yes)<br/>
-                <a href="/analytics/event_feedback.html" class="govuk-link">feedback</a> (Is this page useful? No)<br/>
-                <a href="/analytics/event_feedback.html" class="govuk-link">feedback</a> (Report a problem with this page)<br/>
-                <a href="/analytics/event_feedback.html" class="govuk-link">feedback</a> (Send me the survey)<br/>
-                <a href="/analytics/event_feedback.html" class="govuk-link">feedback</a> (Send)<br/>
-                <a href="/analytics/event_footer.html" class="govuk-link">footer</a> (link clicks)<br/>
-                <a href="/analytics/event_forms.html" class="govuk-link">forms</a> (form success alert)<br/>
-                <a href="/analytics/event_homepage.html" class="govuk-link">homepage</a> (Link clicks)<br/>
-                <a href="/analytics/event_html_attachments.html" class="govuk-link">html attachments</a> (link clicks)<br/>
-                <a href="/analytics/event_links.html" class="govuk-link">links</a> (External links)<br/>
-                <a href="/analytics/event_links.html" class="govuk-link">links</a> (Download links)<br/>
-                <a href="/analytics/event_links.html" class="govuk-link">links</a> (mailto links)<br/>
-                <a href="/analytics/event_links.html" class="govuk-link">links</a> (file attachment links)<br/>
-                <a href="/analytics/event_local_lookup.html" class="govuk-link">local lookup</a> (form submit)<br/>
-                <a href="/analytics/event_local_lookup.html" class="govuk-link">local lookup</a> (form error)<br/>
-                <a href="/analytics/event_local_lookup.html" class="govuk-link">local lookup</a> (form complete)<br/>
-                <a href="/analytics/event_local_lookup.html" class="govuk-link">local lookup</a> (change response)<br/>
-                <a href="/analytics/event_local_lookup.html" class="govuk-link">local lookup</a> (information click)<br/>
-                <a href="/analytics/event_miscellaneous.html" class="govuk-link">miscellaneous</a> (javascript error)<br/>
-                <a href="/analytics/event_miscellaneous.html" class="govuk-link">miscellaneous</a> (webchat)<br/>
-                <a href="/analytics/event_miscellaneous.html" class="govuk-link">miscellaneous</a> (accessible format request)<br/>
-                <a href="/analytics/event_miscellaneous.html" class="govuk-link">miscellaneous</a> (see all updates link click)<br/>
-                <a href="/analytics/event_page_view.html" class="govuk-link">page view</a> (Page view)<br/>
-                <a href="/analytics/event_previous_and_next.html" class="govuk-link">previous and next</a> (previous and next)<br/>
-                <a href="/analytics/event_printing.html" class="govuk-link">printing</a> (print page button)<br/>
-                <a href="/analytics/event_printing.html" class="govuk-link">printing</a> (print page dialog)<br/>
-                <a href="/analytics/event_printing.html" class="govuk-link">printing</a> (view printable version)<br/>
-                <a href="/analytics/event_related_navigation.html" class="govuk-link">related navigation</a> (related Navigation)<br/>
-                <a href="/analytics/event_scroll_tracking.html" class="govuk-link">scroll tracking</a> (percentage scroll tracking)<br/>
-                <a href="/analytics/event_scroll_tracking.html" class="govuk-link">scroll tracking</a> (heading scroll tracking)<br/>
-                <a href="/analytics/event_scroll_tracking.html" class="govuk-link">scroll tracking</a> (marker scroll tracking)<br/>
-                <a href="/analytics/event_see_all_link.html" class="govuk-link">see all link</a> (see all link click (in page))<br/>
-                <a href="/analytics/event_see_all_link.html" class="govuk-link">see all link</a> (see all link click (to another page))<br/>
-                <a href="/analytics/event_search.html" class="govuk-link">search</a> (search results/ecommerce product list views)<br/>
-                <a href="/analytics/event_search.html" class="govuk-link">search</a> (search boxes)<br/>
-                <a href="/analytics/event_search.html" class="govuk-link">search</a> (ecommerce product clicks)<br/>
-                <a href="/analytics/event_search.html" class="govuk-link">search</a> (filters open/closed)<br/>
-                <a href="/analytics/event_search.html" class="govuk-link">search</a> (filter added/removed)<br/>
-                <a href="/analytics/event_share_this_page.html" class="govuk-link">share this page</a> (follow us)<br/>
-                <a href="/analytics/event_share_this_page.html" class="govuk-link">share this page</a> (share this page)<br/>
-                <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (simple smart answer start)<br/>
-                <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (submit question)<br/>
-                <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (form error)<br/>
-                <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (change answer)<br/>
-                <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (simple smart answer complete)<br/>
-                <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (results link click)<br/>
-                <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (start again link click)<br/>
-                <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (smart answer start)<br/>
-                <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (submit question)<br/>
-                <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (form error)<br/>
-                <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (change answer)<br/>
-                <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (smart answer complete)<br/>
-                <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (results link click)<br/>
-                <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (results ecommerce list views and click)<br/>
-                <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (start again link click)<br/>
-                <a href="/analytics/event_step_by_step_navigation.html" class="govuk-link">step by step navigation</a> (Open/close step)<br/>
-                <a href="/analytics/event_step_by_step_navigation.html" class="govuk-link">step by step navigation</a> (Show/hide all steps)<br/>
-                <a href="/analytics/event_step_by_step_navigation.html" class="govuk-link">step by step navigation</a> (link clicks)<br/>
-                <a href="/analytics/event_super_breadcrumb.html" class="govuk-link">super breadcrumb</a> (link click)<br/>
-                <a href="/analytics/event_super_navigation_header.html" class="govuk-link">super navigation header</a> (Crown icon link)<br/>
-                <a href="/analytics/event_super_navigation_header.html" class="govuk-link">super navigation header</a> (Header menu bar buttons)<br/>
-                <a href="/analytics/event_super_navigation_header.html" class="govuk-link">super navigation header</a> (link clicks)<br/>
-                <a href="/analytics/event_tabs.html" class="govuk-link">tabs</a> (Tab interaction)<br/>
-                <a href="/analytics/event_taxonomy_pages.html" class="govuk-link">taxonomy pages</a> (taxonomy page links)<br/>
-                <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video start)<br/>
-                <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video progress)<br/>
-                <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video complete)<br/>
+                  <a href="/analytics/event_copy.html" class="govuk-link">copy</a> (copy text)<br/>
+                  <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video start)<br/>
+                  <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video progress)<br/>
+                  <a href="/analytics/event_video.html" class="govuk-link">video</a> (Video complete)<br/>
     </dd>
   </div>
 </dl>
