@@ -130,7 +130,6 @@
         - name: action
           value: closed
 
-
 - name: breadcrumbs
   events:
     - name: link clicks
@@ -334,6 +333,31 @@
       data:
       - name: event
         value: event_data
+
+- name: copy
+  events:
+    - name: copy text
+      implemented: true
+      priority: low
+      description: Tracks when a user has copied text from a page.
+      tracker: copy_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: copy
+        - name: type
+          value: copy
+        - name: action
+          value: copy
+        - name: method
+          value: browser copy
+        - name: text
+          value: The first 30 characters of the copied text
+        - name: length
+          value: The original length of the copied text, after the removal of extra spaces, line breaks, and PII
 
 - name: details elements
   events:
