@@ -11,26 +11,15 @@ parent: "/manual.html"
 If you need to remove an asset manually from `assets.publishing.service.gov.uk`,
 follow these steps:
 
-1. Identify whether the asset was published using Whitehall or another application.
-
-   > An example Whitehall asset URL is `https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/12345/filename.pdf`.
-   >
-   > An example non-Whitehall asset URL is `https://assets.publishing.service.gov.uk/media/abcd1234efgh/filename.pdf`.
-
-   Decide if the asset can be marked as deleted or whether all traces need to be
+1. Decide if the asset can be marked as deleted or whether all traces need to be
    removed (e.g. if it contains secret information). If all traces need to be
    removed, append `,true` in the square brackets when running the rake tasks
    below.
 
-   To mark the file as deleted, run one of the following Rake tasks:
+     To mark the file as deleted, run the following Rake task:
 
-   Whitehall Assets, where `LEGACY_URL_PATH` is the document slug, i.e. `/government/uploads/system/uploads/attachment_data/file/12345/filename.pdf`
-   for the example above. The square brackets are part of the command, so don't remove them:
-   <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[LEGACY_URL_PATH]") %>
-
-   Other Assets, where `ASSET_ID` is the asset ID, i.e. `abcd1234efgh` from the
-   example above (keep the square brackets):
-   <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID]") %>
+     The square brackets are part of the command, so don't remove them:
+     <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID]") %>
 
 1. Add a query string to the URL (e.g. `?cache-bust=12345`) to bypass the cache
    and check that the asset responds with a 404 not found.
@@ -63,7 +52,6 @@ an associated document wasn't unpublished correctly. There are some Rake tasks
 available for this:
 
 <%= RunRakeTask.links("asset-manager", "assets:redirect[ASSET_ID,REDIRECT_URL]") %>
-<%= RunRakeTask.links("asset-manager", "assets:whitehall_redirect[LEGACY_URL_PATH,REDIRECT_URL]") %>
 
 ## Uploading an asset
 
@@ -117,8 +105,6 @@ changing the URL, follow these steps:
 
     ```ruby
     asset = Asset.find("asset-id-from-url") # e.g. `57a9c52b40f0b608a700000a`
-    # or for a Whitehall asset:
-    asset = WhitehallAsset.find_by(legacy_url_path: '/government/uploads/system/uploads/attachment_data/file/id/path.ext')
     ```
 
 0. Check the asset is what you think it is.
@@ -131,13 +117,14 @@ changing the URL, follow these steps:
     asset.save!
     ```
 
-0. For a Whitehall attachment, update the file size in Whitehall, where 123 is the new attachment size in bytes:
+0. For a Whitehall pdf-attachments, update the file size and page count in Whitehall, where 123 is the new attachment size in bytes:
 
    ```sh
-   $ gds govuk connect app-console -e <environment> whitehall_backend/whitehall
+   $ kubectl exec -n apps -it deploy/whitehall-admin -- rails c
    ```
 
    ```ruby
-   attachment = Attachment.find_by(attachment_data_id: asset-id-from-url) # e.g. 123456
-   attachment.attachment_data.update(file_size: 123, number_of_pages: 28)
+   asset = Asset.where(asset_manager_id: asset-id-from-url).first # e.g. 123456
+   attachment_data = asset.assetable
+   attachment_data.update(file_size: 123, number_of_pages: 28)
    ```
