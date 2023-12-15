@@ -97,7 +97,11 @@ GDS has a central `gds-users` AWS account where you create your IAM User. Your [
 1. [Request a AWS IAM User][request-aws-user] for the central `gds-users` AWS account.
 1. You should receive an email when your account is created.
 1. Follow instructions in the email to sign into the `gds-users` AWS account for the first time.
-1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User. You must specify your email address as the MFA device name. If you were issued a Yubikey, you can [use it as a MFA device][yubikey-aws-mfa].
+1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User.
+
+***Important - You must specify your email address as the MFA device name.***
+
+If you were issued a Yubikey, you can [use it as a MFA device][yubikey-aws-mfa].
 
 [aws-account-info]: https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws
 [iam-role-creation]: #6-get-permissions-for-aws-github-and-other-third-party-services
