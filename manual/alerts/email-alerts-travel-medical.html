@@ -196,7 +196,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/51279a9b0f1fe3deeb50c4cfe449200edf78481d">12 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/efe8f10a3910a9dc8197b14a3e8a24ab62aef67b">18 Dec 2023</a>
 </div>
 
  <h1 id='header'>Travel Advice or Drug and Medical Device email alerts not sent</h1> <p>We expect that when new GOV.UK content is published, or when existing content
@@ -225,7 +225,7 @@ email-alert-api using the <a href="/repos/email-alert-api/alert_check_scheduled_
 to determine whether there was a problem sending the emails to Notify, or
 problems returned from Notify after it attempted to deliver them.</li>
 <li>determine whether Email Alert API has a backlog of work to do using the
-<a href="https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=email-alert-api&amp;var-Interval=$__auto_interval">Sidekiq dashboard</a> and <a href="https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_technical.json?refresh=1m&amp;orgId=1">Email Alert API Technical
+<a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&amp;var-namespace=apps&amp;var-app=email-alert-api-worker&amp;from=now-24h&amp;to=now">Sidekiq dashboard</a> and <a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&amp;refresh=1m&amp;var-namespace=apps&amp;var-app=email-alert-api&amp;var-error_status=All&amp;from=now-24h&amp;to=now">Email Alert API Technical
 dashboard</a> - the email may just be delayed;</li>
 <li>whether the change was a result of a new type of medical safety content
 sub-type, this was the previous cause of an <a href="https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#">incident</a> and
