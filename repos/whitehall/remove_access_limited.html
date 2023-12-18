@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Tips for working on whitehall locally - GOV.UK Developer Documentation</title>
+    <title>whitehall: Access limited - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/tips_for_local_development.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/remove_access_limited.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Tips for working on whitehall locally - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/tips_for_local_development.html" />
+      <meta name="twitter:title" content="whitehall: Access limited - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/remove_access_limited.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Tips for working on whitehall locally" />
+      <meta property="og:title" content="whitehall: Access limited" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/tips_for_local_development.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/remove_access_limited.html" />
 
     
   </head>
@@ -219,67 +219,25 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/9feaafe457a9e8db636f1bd234184cafd7fd6b00">18 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/1837946210e86059ca06c15a3862be624c4c2b3e">18 Dec 2023</a>
 </div>
 
-  <h1 class="page-title">whitehall: Tips for working on whitehall locally</h1>
+  <h1 class="page-title">whitehall: Access limited</h1>
 
   
-<h2 id="installing-whitehall-gems-locally">Installing Whitehall gems locally</h2>
-<p>Sometimes it’s useful to install Whitehall on bare metal, outside of the standard <code>govuk-docker</code> environment.</p>
-<p>Annoyingly, just running <code>bundle install</code> can result in an error where it fails to install the <code>mysql2</code> gem. It tries to build it but fails when it can’t find some required system libraries.</p>
-<h3 id="this-can-be-resolved-by">This can be resolved by:</h3>
-<ol>
-<li><code>brew install mysql2 openssl@3</code></li>
-<li>Add the following to <code>~/.bundle/config</code>:</li>
-</ol>
-<pre lang="jsx"><code>BUNDLE_BUILD__MYSQL2: "--with-opt-dir=/opt/homebrew/opt/openssl@3 --with-ldflags=-L/opt/homebrew/Cellar/zstd/1.5.2/lib"
+<p>Whitehall offers an “access limiting” feature on editions. This makes documents that are sensitive only viewable by the
+owning organisation while in draft. This works by checking the edition organisations ids against the user's organisation id.</p>
+<p>The access limited attribute can be set on the edition edit page. It is a check box near the bottom of the page.</p>
+<h1 id="know-user-issues-and-fixes">Know user issues and fixes</h1>
+<p>Sometimes users set an edition to be access limited, but are not members of the owning organisation so they can no longer
+view the document, in this case (if the user agrees) we can make the document un-access-limited so it is viewable by everyone,
+and it can be edited again.</p>
+<p>A rake task was introduced to aid 2nd-line to temporarily remove the access.
+It can be be used in the following way:</p>
+<pre><code># Given an Edition of ID 12345
+rake remove_access_limiting[12345]
 </code></pre>
-<ol>
-<li>
-<code>bundle install</code> should now succeed.</li>
-</ol>
-<p><strong>Note:</strong> this assumes you’re on an M1 Mac, where <code>brew --prefix</code> is <code>/opt/homebrew</code>. The paths will be different on Intel Macs, but hopefully the logic is the same.</p>
-<h2 id="running-linters-locally">Running linters locally</h2>
-<p>Once you have the gems running you can run the ruby and javascript linters without using docker:</p>
-<pre><code>bundle exec rake lint
-</code></pre>
-<p>This is a good idea before pushing, unless you have an IDE that checks linters, or you have run a full test suite (which also runs them inside docker)</p>
-<h2 id="running-an-individual-test-file">Running an individual test file</h2>
-<pre><code>govuk-docker-run bundle exec rake test TEST=path/to/test/file
-</code></pre>
-<pre><code>govuk-docker-run cucumber path/to/cucumber/test
-</code></pre>
-<h2 id="changing-local-user-permissions-flags">Changing local user permissions / flags</h2>
-<p>User permissions double in some cases as feature flags - see <a href="https://github.com/alphagov/whitehall/blob/main/app/models/user.rb#LL16C7-L16C7">Permissions in the User model</a> for valid permission values</p>
-<p>So if you want to view the next release UI, you need to be logged in as a user with the "Preview next release" permission.</p>
-<p>To change permissions on a dev machine, run the following to open a rails console:</p>
-<pre lang="bash"><code>govuk-docker run whitehall-lite rails console
-</code></pre>
-<p>In development you are logged in as the first user - in the console you can find that user and see their permissions:</p>
-<pre lang="rb"><code>&gt; user = User::first()
-&gt; user.permissions
- ["Editor", "GDS Editor", "Import CSVs", "signin"]
-</code></pre>
-<p>You can, for example, add the "Preview next release" permission as follows:</p>
-<pre lang="rb"><code>&gt; user = User::first()
-&gt; user.permissions &lt;&lt;= User::Permissions::PREVIEW_NEXT_RELEASE
-&gt; user.save!
-</code></pre>
-<p>Similarly you can remove permissions by removing them from user.permissions:</p>
-<pre lang="rb"><code>&gt; user = User::first()
-&gt; user.permissions.reject! { |p| p == User::Permissions::PREVIEW_NEXT_RELEASE }
-&gt; user.save!
-</code></pre>
-<p>If you reload a Whitehall page in your browser, the new permissions should be used immediately.</p>
 
 
             
@@ -287,8 +245,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/tips_for_local_development.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Ftips_for_local_development.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/remove_access_limited.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fremove_access_limited.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
