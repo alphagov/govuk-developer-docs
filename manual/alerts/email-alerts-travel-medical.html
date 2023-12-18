@@ -132,13 +132,16 @@
     <a href="#header"><span>Travel Advice or Drug and Medical Device email alerts not sent</span></a>
     <ul>
       <li>
-        <a href="#determining-why-the-check-failed"><span>Determining why the check failed</span></a>
+        <a href="#finding-out-more-details-about-the-failed-check"><span>Finding out more details about the failed check</span></a>
       </li>
       <li>
         <a href="#verifying-whether-the-email-was-received"><span>Verifying whether the email was received</span></a>
       </li>
       <li>
-        <a href="#troubleshooting-emails-that-were-not-received"><span>Troubleshooting emails that were not received</span></a>
+        <a href="#troubleshooting"><span>Troubleshooting</span></a>
+      </li>
+      <li>
+        <a href="#resending-medical-safety-emails"><span>Resending medical safety emails</span></a>
       </li>
       <li>
         <a href="#resending-travel-advice-emails"><span>Resending travel advice emails</span></a>
@@ -154,71 +157,89 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-                <div class="information-callout">
-      This page describes what to do in case of an
-      <a href='https://docs.publishing.service.gov.uk/manual/tools.html#icinga'>Icinga alert</a>.
-      For more information you could
-      <a href='https://github.com/alphagov/govuk-puppet/search?utf8=%E2%9C%93&q=email-alerts-travel-medical'>
-        search the govuk-puppet repo for the source of the alert
-      </a>
-    </div>
-
+            
     
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Pagerduty alerts",
+        "@id": "http://www.dev.gov.uk/manual.html#pagerduty-alerts"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#pagerduty-alerts" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Pagerduty alerts&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#pagerduty-alerts">Pagerduty alerts</a>
+        </li>
+  </ol>
+</div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/457820dd991f1762cbb2af16e342160ea4002406">20 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/51279a9b0f1fe3deeb50c4cfe449200edf78481d">12 Dec 2023</a>
 </div>
 
  <h1 id='header'>Travel Advice or Drug and Medical Device email alerts not sent</h1> <p>We expect that when new GOV.UK content is published, or when existing content
 is updated in a significant way, emails will be sent to any subscribers to
 notify them of the change.</p>
 <p>We actively monitor this for <a href="https://www.gov.uk/drug-device-alerts">medical safety alerts</a> and <a href="https://www.gov.uk/foreign-travel-advice">travel advice
-updates</a> with the <a href="https://deploy.blue.production.govuk.digital/job/medical-safety-email-alert-check/">Medical safety alerts check</a> and
-<a href="https://deploy.blue.production.govuk.digital/job/travel-advice-email-alert-check/">Travel advice alerts check</a>, these are configured in
-<a href="https://github.com/alphagov/email-alert-monitoring">email-alert-monitoring</a>.</p>
-<p>These checks determine a list of content that we expect subscribers to have
-been emailed. We use a Gmail account which is subscribed to all travel advice
-and medical safety alerts to check whether an email has been received within a
-sufficient time period, if not the checks will fail.</p>
-<h2 id='determining-why-the-check-failed'>Determining why the check failed</h2><p>Use the &ldquo;Console Output&rdquo; of the Jenkins job for this check to determine the
-reason the job failed.</p>
-<p>Assuming it has failed due to not being able to find emails there should be a
-list of email subjects that were expected to exist.</p>
-<h2 id='verifying-whether-the-email-was-received'>Verifying whether the email was received</h2><p>To verify if the Gmail account has received the email or not you can log into
-the Gmail account, <code>govuk_email_check@digital.cabinet-office.gov.uk</code>, using
-the credentials in the <a href="https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline">Technical 2nd Line password store</a> under
-<code>google-accounts/govuk_email_check@digital.cabinet-office.gov.uk</code>. Then you can
-use the previously noted subjects to try identify the email(s).</p>
-<p>This check has been susceptible to a number of false positive scenarios in the
-past (there are <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/adr/adr-008-monitoring-and-alerting.md#removal-of-email-alert-monitoring">plans</a> to retire this check due, in part,
-to it&rsquo;s fragility), examples of these are:</p>
-
+alerts</a> with scheduled jobs running in <a href="https://github.com/alphagov/email-alert-api">email-alert-api</a>.</p>
+<p>These jobs determine a list of content that we expect subscribers to have
+been emailed. We use the Notify system&rsquo;s callback to record whether emails
+sent out via this alert have been received.</p>
+<h2 id='finding-out-more-details-about-the-failed-check'>Finding out more details about the failed check</h2><p>Open this <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/view/4147d5b0-99f8-11ee-aed3-9b7debb07809?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-24h%2Cto%3Anow))">Kibana Search</a> to see potentially undelivered
+alerts in the last 24 hours (note the same alerts will appear on each run, so
+you might see the same alert more than once in this log view)</p>
+<p>This will get you the Content ID and Path of the alert, and visiting the path
+on GOV.UK will get you the title of the alert.</p>
+<h2 id='verifying-whether-the-email-was-received'>Verifying whether the email was received</h2><p>To verify if the Gmail account has received the email or not you can join the
+google group &lsquo;Email Alert API Alert Listener&rsquo;, which is subscribed to all travel
+advice and medical safety alerts, and see if the email has been received.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2>
 <ul>
-<li>the email contents didn&rsquo;t exactly match what was searched for due to the
-content being edited, these can be resolved by updating the <a href="https://github.com/alphagov/email-alert-monitoring/blob/master/lib/email_verifier.rb#L8">acknowledged email
-list</a> and re-running the Jenkins job;</li>
-<li>Gmail decided the email was spam;</li>
-<li>Gmail experienced service problems which delayed email receiving
-(<a href="https://www.google.co.uk/appsstatus#hl=en-GB&amp;v=status">status dashboard</a>).</li>
-</ul>
-<h2 id='troubleshooting-emails-that-were-not-received'>Troubleshooting emails that were not received</h2><p>If you have verified that the email hasn&rsquo;t been received you should then
-investigate was the email sent. Some avenues to explore are:</p>
-
-<ul>
+<li>If an email matching the details in the logs has been received by the google
+account, it is possible that a false alarm has occurred. Check to see if there
+is a Notify outage. (NOTIFY STATUS PAGE)</li>
+<li>Using the Content ID from the logs, get send/delivery statistics from
+email-alert-api using the <a href="/repos/email-alert-api/alert_check_scheduled_jobs.html#support-tasks">email statistics rake task</a> in email-alert-api
+to determine whether there was a problem sending the emails to Notify, or
+problems returned from Notify after it attempted to deliver them.</li>
 <li>determine whether Email Alert API has a backlog of work to do using the
 <a href="https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=email-alert-api&amp;var-Interval=$__auto_interval">Sidekiq dashboard</a> and <a href="https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_technical.json?refresh=1m&amp;orgId=1">Email Alert API Technical
 dashboard</a> - the email may just be delayed;</li>
 <li>whether the change was a result of a new type of medical safety content
 sub-type, this was the previous cause of an <a href="https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#">incident</a> and
 is recorded as <a href="https://trello.com/c/v2ees2fD/199-all-checkbox-is-misleading-for-finderemailsignups">GOV.UK Tech Debt</a>;</li>
-<li>check whether the email was sent as a <a href="/manual/email-notifications-how-they-work.html#useful-resources">courtesy copy</a> to
-determine if Email Alert API processed the change;</li>
-<li>verify whether Notify sent the expected email using <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/support-tasks.md#view-subscribers-recent-emails">the <code>support:view_emails</code>
-rake task</a>;</li>
 <li>check the <a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/goto/43fc79ee47ac49f248e0f29a174be240">Kibana logs</a> and <a href="https://sentry.io/organizations/govuk/issues/?project=202220&amp;statsPeriod=12h">Sentry</a> for any errors or clues;</li>
 <li>if all else fails you may need to investigate the Email Alert API database
 to determine whether the content change was received and what state it is in.</li>
 </ul>
+<h2 id='resending-medical-safety-emails'>Resending medical safety emails</h2><p>If you need to force the sending of a travel advice email alert, run the
+<code>email_alerts:trigger[PUT_EDITION_ID_HERE]</code> rake task in Travel Advice
+Publisher.</p>
+<p>The edition ID of the travel advice content item can be found in the
+URL of the country&rsquo;s edit page in Travel Advice Publisher and looks like
+<code>fedc13e231ccd7d63e1abf65</code>.</p>
 <h2 id='resending-travel-advice-emails'>Resending travel advice emails</h2><p>If you need to force the sending of a travel advice email alert, run the
 <code>email_alerts:trigger[PUT_EDITION_ID_HERE]</code> rake task in Travel Advice
 Publisher.</p>
@@ -229,20 +250,18 @@ URL of the country&rsquo;s edit page in Travel Advice Publisher and looks like
 
   <div class='related-content'>
 
-    <h3>More in the Icinga alerts section</h3>
+    <h3>More in the Pagerduty alerts section</h3>
 
     <div class='govuk-grid-row'>
 
-
         <div class='govuk-grid-column-one-half'>
-          <h4>Related alerts...</h4>
+          <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/alerts/email-alert-api-high-queue-latency.html">Email Alert API: high latency for sidekiq queue</a></li>
-            <li><a href="/manual/alerts/email-alert-api-unprocessed-work.html">Email Alert API: Unprocessed work</a></li>
-            <li><a href="/manual/alerts/publisher-unprocessed-fact-check-emails.html">Publisher: Unprocessed fact-check emails</a></li>
+            <li><a href="/manual/alerts/RouterErrorRatioTooHigh.html">Router error ratio too high</a></li>
           </ul>
         </div>
+
     </div>
 </div>
 
