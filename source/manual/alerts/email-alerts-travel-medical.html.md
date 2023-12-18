@@ -76,8 +76,8 @@ URL of the country's edit page in Travel Advice Publisher and looks like
 [email-alert-api]: https://github.com/alphagov/email-alert-api
 [kibana last 24 hours]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/view/4147d5b0-99f8-11ee-aed3-9b7debb07809?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-24h%2Cto%3Anow))
 [email statistics rake task]: /repos/email-alert-api/alert_check_scheduled_jobs.html#support-tasks
-[Sidekiq dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=email-alert-api&var-Interval=$__auto_interval
-[tech dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_technical.json?refresh=1m&orgId=1
+[Sidekiq dashboard]: https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&var-namespace=apps&var-app=email-alert-api-worker&from=now-24h&to=now
+[tech dashboard]: https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&refresh=1m&var-namespace=apps&var-app=email-alert-api&var-error_status=All&from=now-24h&to=now
 [checkbox-incident]: https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#
 [checkbox tech debt]: https://trello.com/c/v2ees2fD/199-all-checkbox-is-misleading-for-finderemailsignups
 [Kibana logs]: https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/goto/43fc79ee47ac49f248e0f29a174be240
