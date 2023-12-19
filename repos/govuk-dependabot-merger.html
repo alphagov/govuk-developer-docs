@@ -243,17 +243,13 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<blockquote>
-<p>This repository is a <strong>Work In Progress</strong> and should not yet be used in production.</p>
-</blockquote>
-
 <p>This repository runs a daily GitHub action that automatically approves and merges certain Dependabot PRs for opted-in GOV.UK repos, according to <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-156-auto-merge-internal-prs.md">strict criteria set out in RFC-156</a>, summarised below:</p>
 
 <blockquote>
 <p>This service should ONLY be used to merge internal dependencies (excluding &lsquo;major&rsquo; version updates). It should also only be enabled on repos which have sufficient test coverage (such as continuously deployed apps, as these have to reach 95% coverage). Deviate from the guidance at your own risk.</p>
 </blockquote>
 
-<p>Note that govuk-dependabot-merger will avoid merging a PR if it has a failing GitHub Action CI build called <code>test</code>, <a href="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-with-github-actions.html#branch-protection-rules">as per convention</a>. It will also avoid running altogether on weekends and bank holidays.</p>
+<p>Note that govuk-dependabot-merger will avoid merging a PR if it has a failing GitHub Action CI build called <code>test-ruby</code>, <a href="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-with-github-actions.html#branch-protection-rules">as per convention</a>. It will also avoid running altogether on weekends and bank holidays.</p>
 
 <h2 id="usage">Usage</h2>
 
@@ -295,6 +291,7 @@ auto_merge:
 <li><a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/docs/adr/01-limited-team-access.md">ADR 1: Limited team access to avoid privilege escalation</a></li>
 <li><a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/docs/adr/02-do-not-merge-subdependencies.md">ADR 2: Do not merge subdependency updates</a></li>
 <li><a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/docs/adr/03-access-token-scope.md">ADR 3: GitHub Access Token scope</a></li>
+<li><a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/docs/adr/04-ignore-subdependencies.md">ADR 4: Ignore subdependencies</a></li>
 </ul>
 
 <h2 id="licence">Licence</h2>
