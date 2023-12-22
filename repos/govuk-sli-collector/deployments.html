@@ -188,7 +188,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-sli-collector/commit/5499632729a3ec90934fb9e8aaadd93f03103cf3">21 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-sli-collector/commit/3eec3a25f77be7a81c54f768512ee60acb02c305">21 Dec 2023</a>
 </div>
 
   <h1 class="page-title">govuk-sli-collector: Deployments</h1>
@@ -197,10 +197,12 @@
 <h2 id="target-environment">Target environment</h2>
 <p>This project only runs in production and only has the one target environment for deployments.</p>
 <p>For this reason, deployment promotion between environments has no meaning for this project.</p>
+<h2 id="automatic-deployment">Automatic deployment</h2>
+<p><strong>This project requires manual deployment.</strong> (This is because the automatic deployment Github user, <code>govuk-ci</code>, doesn't have permission to deploy directly to production since it's designed to deploy to integration and take advantage of deployment promotion.)</p>
+<p>As with our other projects, when changes are merged, a new release tag is created. As we're deploying manually, there's technically no need to wait for that to complete, but it does make the action log easier to follow if we deploy releases.</p>
 <h2 id="how-deployment-works">How deployment works</h2>
 <p>Since the project is run from a scheduled task (a K8s <code>CronJob</code>), its deployment process differs slightly from that of our apps and some details might prove useful to be aware of if they're not already familiar to you.</p>
 <p>Everytime it's run on its schedule, a new Pod will pull a new copy of this project's Docker image from ECR. This differs from the way apps work in that an app's long-running Pods are reprovisioned with the new image once, during the deployment itself.</p>
-<p>As with our other projects, when changes are merged, a new release tag is created and in turn, the changes will be deployed automatically.</p>
 <h2 id="deploying-to-integration">Deploying to integration</h2>
 <p>Because the scheduled task only usually runs in production, some changes are required to enable a version to be deployed to integration (e.g. for testing),</p>
 <ul>
