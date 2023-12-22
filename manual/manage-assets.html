@@ -193,40 +193,25 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4402dd18319f3e5c4a2a3cc1b173f71517569374">6 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5e39a3e7196857591b848e7571ed25580d3bc7e9">15 Dec 2023</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='removing-an-asset'>Removing an asset</h2><p>If you need to remove an asset manually from <code>assets.publishing.service.gov.uk</code>,
 follow these steps:</p>
 
 <ol>
-<li>Identify whether the asset was published using Whitehall or another application.</li>
-</ol>
-
-<blockquote>
-<p>An example Whitehall asset URL is <code>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/12345/filename.pdf</code>.</p>
-<p>An example non-Whitehall asset URL is <code>https://assets.publishing.service.gov.uk/media/abcd1234efgh/filename.pdf</code>.</p>
-</blockquote>
-<p>Decide if the asset can be marked as deleted or whether all traces need to be
-   removed (e.g. if it contains secret information). If all traces need to be
-   removed, append <code>,true</code> in the square brackets when running the rake tasks
-   below.</p>
-<p>To mark the file as deleted, run one of the following Rake tasks:</p>
-<p>Whitehall Assets, where <code>LEGACY_URL_PATH</code> is the document slug, i.e. <code>/government/uploads/system/uploads/attachment_data/file/12345/filename.pdf</code>
-   for the example above. The square brackets are part of the command, so don&rsquo;t remove them:
-   <code>sh
-k exec deploy/asset-manager -- rake assets:whitehall_delete[LEGACY_URL_PATH]
-</code></p>
-<p>Other Assets, where <code>ASSET_ID</code> is the asset ID, i.e. <code>abcd1234efgh</code> from the
-   example above (keep the square brackets):
-   <code>sh
+<li><p>Decide if the asset can be marked as deleted or whether all traces need to be
+removed (e.g. if it contains secret information). If all traces need to be
+removed, append <code>,true</code> in the square brackets when running the rake tasks
+below.</p>
+<p>To mark the file as deleted, run the following Rake task:</p>
+<p>The square brackets are part of the command, so don&rsquo;t remove them:
+ <code>sh
 k exec deploy/asset-manager -- rake assets:delete[ASSET_ID]
-</code></p>
-
-<ol>
+</code></p></li>
 <li><p>Add a query string to the URL (e.g. <code>?cache-bust=12345</code>) to bypass the cache
 and check that the asset responds with a 404 not found.</p></li>
-<li><p>Wait 20 minutes for the cache to clear, or <a href="/manual/purge-cache.html#assets">purge it yourself</a>.</p></li>
+<li><p>Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache].</p></li>
 <li><p>Verify that the asset is not there without using query string.</p></li>
 <li><p>Request removal of the asset using the <a href="https://www.google.com/webmasters/tools/removals">Google Search Console</a>.</p></li>
 <li><p>Remove the asset from the Google Cloud Platform (GCP) mirror:</p>
@@ -235,18 +220,19 @@ and check that the asset responds with a 404 not found.</p></li>
 <li>Log into the <a href="https://console.cloud.google.com/">GCP console</a>.</li>
 <li>Go to the <code>GOVUK Production</code> project under the <code>DIGITAL.CABINET-OFFICE.GOV.UK</code>
 organisation.</li>
-<li>Select <code>Cloud Storage -&gt; Browser</code>, go to the <a href="https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&amp;project=govuk-production"><code>govuk-production-mirror</code>
-bucket</a>.</li>
+<li>Select <code>Cloud Storage -&gt; Browser</code>, go to the [<code>govuk-production-mirror</code>
+bucket][govuk-production-mirror-gcp].</li>
 <li>Navigate to the file, then delete it.</li>
 </ul></li>
 <li><p>Remove the asset from the Amazon Web Services (AWS) mirror:</p></li>
 </ol>
 <p><code>gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/&lt;slug&gt;</code></p>
+<p>[clear-cache]: /manual/purge-cache.html#assets
+[govuk-production-mirror-gcp]: https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&amp;project=govuk-production</p>
 <h2 id='redirecting-an-asset'>Redirecting an asset</h2><p>Sometimes it might be necessary to manually redirect an asset, for example if
 an associated document wasn&rsquo;t unpublished correctly. There are some Rake tasks
 available for this:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:redirect[ASSET_ID,REDIRECT_URL]
-</code></pre></div><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:whitehall_redirect[LEGACY_URL_PATH,REDIRECT_URL]
 </code></pre></div><h2 id='uploading-an-asset'>Uploading an asset</h2><p>Some publishing apps such as <a href="/repos/publisher.html">Mainstream Publisher</a> do
 not provide the facility for editors to upload assets such as images and PDFs.
 In these rare cases, we can upload assets to asset-manager manually and give
@@ -275,8 +261,6 @@ changing the URL, follow these steps:</p>
 </code></pre></div></li>
 <li><p>Find the asset:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">asset</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"asset-id-from-url"</span><span class="p">)</span> <span class="c1"># e.g. `57a9c52b40f0b608a700000a`</span>
-<span class="c1"># or for a Whitehall asset:</span>
-<span class="n">asset</span> <span class="o">=</span> <span class="no">WhitehallAsset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">legacy_url_path: </span><span class="s1">'/government/uploads/system/uploads/attachment_data/file/id/path.ext'</span><span class="p">)</span>
 </code></pre></div></li>
 <li><p>Check the asset is what you think it is.</p></li>
 <li><p>Replace the file (change 123 to the new attachment size in bytes):</p>
@@ -284,11 +268,12 @@ changing the URL, follow these steps:</p>
 <span class="n">asset</span><span class="p">.</span><span class="nf">file</span> <span class="o">=</span> <span class="no">Pathname</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"/tmp/filename.ext"</span><span class="p">).</span><span class="nf">open</span>
 <span class="n">asset</span><span class="p">.</span><span class="nf">save!</span>
 </code></pre></div></li>
-<li><p>For a Whitehall attachment, update the file size in Whitehall, where 123 is the new attachment size in bytes:</p></li>
+<li><p>For a Whitehall pdf-attachments, update the file size and page count in Whitehall, where 123 is the new attachment size in bytes:</p></li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>gds govuk connect app-console <span class="nt">-e</span> &lt;environment&gt; whitehall_backend/whitehall
-</code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">attachment</span> <span class="o">=</span> <span class="no">Attachment</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">attachment_data_id: </span><span class="n">asset</span><span class="o">-</span><span class="nb">id</span><span class="o">-</span><span class="n">from</span><span class="o">-</span><span class="n">url</span><span class="p">)</span> <span class="c1"># e.g. 123456</span>
-   <span class="n">attachment</span><span class="p">.</span><span class="nf">attachment_data</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">file_size: </span><span class="mi">123</span><span class="p">,</span> <span class="ss">number_of_pages: </span><span class="mi">28</span><span class="p">)</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps <span class="nt">-it</span> deploy/whitehall-admin <span class="nt">--</span> rails c
+</code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">asset</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">asset_manager_id: </span><span class="n">asset</span><span class="o">-</span><span class="nb">id</span><span class="o">-</span><span class="n">from</span><span class="o">-</span><span class="n">url</span><span class="p">).</span><span class="nf">first</span> <span class="c1"># e.g. 123456</span>
+   <span class="n">attachment_data</span> <span class="o">=</span> <span class="n">asset</span><span class="p">.</span><span class="nf">assetable</span>
+   <span class="n">attachment_data</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">file_size: </span><span class="mi">123</span><span class="p">,</span> <span class="ss">number_of_pages: </span><span class="mi">28</span><span class="p">)</span>
 </code></pre></div>
 
   <div class='related-content'>
@@ -304,13 +289,6 @@ changing the URL, follow these steps:</p>
           </ul>
         </div>
 
-        <div class='govuk-grid-column-one-half'>
-          <h4>How to...</h4>
-
-          <ul class="govuk-list">
-            <li><a href="/manual/whitehall-file-stuck-uploading.html">Whitehall Attachment Stuck in Uploading State</a></li>
-          </ul>
-        </div>
 
     </div>
 </div>
