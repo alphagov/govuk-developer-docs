@@ -14,7 +14,7 @@ service called [Dependabot][] to perform automated dependency upgrades.
 number of PRs it opens, and therefore the number of deployments and effort required to
 keep our apps up to date.
 
-### Reviewing Dependabot PRs
+## Reviewing Dependabot PRs
 
 Dependabot updates occur relatively soon after a new version is published, which means
 there’s a risk of updating to a rogue version. Some updates also contain breaking
@@ -41,9 +41,9 @@ If this is the first update the dependency has had in a while, or if this is an 
 
 For these reasons we’re not planning to enable auto-merge for Dependabot PRs for external dependencies.
 
-### Managing Dependabot
+## Managing Dependabot
 
-#### Add Dependabot to a repo
+### Add Dependabot to a repo
 
 Any GOV.UK developer with production access can enable GitHub for a repo.
 
@@ -53,17 +53,17 @@ Any GOV.UK developer with production access can enable GitHub for a repo.
 1. Click "Enable Dependabot".
 1. To configure Dependabot, a PR will need to be created that adds a configuration file. In [RFC #126](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md#custom-configuration) it was decided that a custom configutation would be used for GOV.UK applications. Once you have written a `.github/dependabot.yml` configuration file, create a pull request and merge this into the repo. Dependabot will automatically run following the merge.
 
-#### Ask Dependabot to bump dependencies
+### Ask Dependabot to bump dependencies
 
 By default Dependabot will bump dependencies at the frequency specified in the configuration file, but you can ask it to bump manually:
 
 Go to your project in GitHub and click on "Insights", then "Dependency graph", then "Dependabot", then "Last checked X minutes ago" next to the package manager of choice (e.g. Gemfile). Then you can click "Check for updates".
 
-#### Audit Dependabot PRs
+### Audit Dependabot PRs
 
 We have the [seal][app] to monitor outstanding Dependabot PRs on GDS repos.
 
-### Security
+## Security
 
 There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot can only update the repositories that we [explicitly allow on GitHub][access]. This prevents code changes to other repos. Secondly, we've [set up branch protection](/manual/github.html) for all repos with the `govuk` label. This prevents Dependabot from writing directly to main.
 
