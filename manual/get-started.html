@@ -255,7 +255,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b827438521235ce10555af9814ecaffd52f12322">27 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b8286f4dadb3e44fb9c2ae3eab89ff4c03d2483b">27 Dec 2023</a>
 </div>
 
  <h1 id='header'>Get started developing on GOV.UK</h1> <blockquote>
@@ -275,31 +275,28 @@
 
 <ol>
 <li><p>Create a GPG key as per the <a href="/manual/create-a-gpg-key.html">Create a GPG Key</a> documentation.</p></li>
-<li><p>Add the following to the <code>~/.gnupg/gpg-agent.conf</code> file:</p></li>
-</ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   enable-ssh-support
-   pinentry-program /usr/local/bin/pinentry-mac
-   default-cache-ttl 60
-   max-cache-ttl 120
-</code></pre></div>
-<ol>
-<li>Add the following to your <code>~/.zprofile</code> file:</li>
-</ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   export GPG_TTY=$(tty)
-   export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-   gpgconf --launch gpg-agent
-</code></pre></div>
-<ol>
+<li><p>Add the following to the <code>~/.gnupg/gpg-agent.conf</code> file:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>enable-ssh-support
+pinentry-program /usr/local/bin/pinentry-mac
+default-cache-ttl 60
+max-cache-ttl 120
+</code></pre></div></li>
+<li><p>Add the following to your <code>~/.zprofile</code> file:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+</code></pre></div></li>
 <li><p>Run <code>killall gpg-agent</code> to stop any running <code>gpg-agent</code> processes.</p></li>
 <li><p>Run <code>ssh-add -L</code>. This will output your public SSH key, which should end <code>cardno:000000000000</code> (indicating it is from a YubiKey).</p></li>
 </ol>
 <h3 id='if-you-do-not-have-a-yubikey'>If you do not have a YubiKey</h3>
 <ol>
-<li><p><a href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Generate a new SSH key for your laptop and add it to the ssh-agent</a> for your GitHub account.</p></li>
-<li><p>Add the following code into your <code>.zshrc</code>, <code>~/.bash_profile</code>, or equivalent so that it is persistent between restarts:</p></li>
+<li><p><a href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Generate a new SSH key for your laptop and add it to the ssh-agent</a>.</p></li>
+<li><p>Add the following code into your <code>.zshrc</code>, <code>~/.bash_profile</code>, or equivalent so that it is persistent between restarts:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ /usr/bin/ssh-add -K &lt;YOUR-PRIVATE-KEY&gt;
+</code></pre></div></li>
 </ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   $ /usr/bin/ssh-add -K &lt;YOUR-PRIVATE-KEY&gt;
-</code></pre></div><h2 id='3-set-up-your-slack-profile'>3. Set up your Slack profile</h2><p>As part of your onboarding to GDS you will have been given access to Slack - if you&rsquo;ve not got this please talk to your tech lead.</p>
+<h2 id='3-set-up-your-slack-profile'>3. Set up your Slack profile</h2><p>As part of your onboarding to GDS you will have been given access to Slack - if you&rsquo;ve not got this please talk to your tech lead.</p>
 <p>Help others know who you are by <a href="https://slack.com/intl/en-gb/help/articles/204092246-Edit-your-profile">updating your Slack profile&rsquo;s &lsquo;title&rsquo; field</a>. This should include:</p>
 
 <ul>
