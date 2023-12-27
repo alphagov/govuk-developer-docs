@@ -65,4 +65,4 @@ We have the [seal](/repos/seal.html) to monitor outstanding Dependabot PRs on GD
 
 ## Security
 
-There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot can only update the repositories that we [explicitly allow on GitHub](https://github.com/organizations/alphagov/settings/installations/87197). This prevents code changes to other repos. Secondly, we've [set up branch protection](/manual/github.html) for all repos with the `govuk` label. This prevents Dependabot from writing directly to main.
+We've [set up branch protection](/manual/github.html) for all repos with the `govuk` label. This prevents Dependabot from writing directly to main.
