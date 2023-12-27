@@ -172,4 +172,4 @@ for the corresponding Logit stack, for users with the Stack Editor permission.
 
 See [How logging works on GOV.UK](/manual/logging.html).
 
-[GOV.UK Senior Tech]: https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members
+[GOV.UK Senior Tech]: /manual/ask-for-help.html#contact-senior-tech

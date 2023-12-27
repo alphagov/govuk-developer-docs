@@ -72,4 +72,4 @@ production.
 
 See [Fastly's documentation on purging](https://developer.fastly.com/learning/concepts/purging/).
 
-[senior tech team]: https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members
+[senior tech team]: /manual/ask-for-help.html#contact-senior-tech

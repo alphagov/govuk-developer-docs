@@ -14,7 +14,7 @@ GitHub Actions is the preferred platform for GOV.UK CI usage where the wider
 platform integration of Jenkins is not required.
 
 **If your workflow requires the use of secrets, please talk to
-[GOV.UK senior tech](mailto:govuk-senior-tech-members@digital.cabinet-office.gov.uk)
+[GOV.UK senior tech](/manual/ask-for-help.html#contact-senior-tech)
 before deploying it.** This is to help GOV.UK establish consistent and
 effective secret management for GitHub Actions across the wider alphagov
 GitHub organisation.
@@ -236,7 +236,7 @@ Notes:
 - For a real world example of this workflow, see [govuk_admin_template][].
 - The `ALPHAGOV_RUBYGEMS_API_KEY` secret is an organisation secret that is added
   to individual repositories by a GitHub Admin. Please talk to
-  [GOV.UK Senior Tech](mailto:govuk-senior-tech-members@digital.cabinet-office.gov.uk)
+  [GOV.UK Senior Tech](/manual/ask-for-help.html#contact-senior-tech)
   for this to be added to a repo.
 
 ### GOV.UK Rails application with Postgres, Redis, Yarn and GOV.UK Content Schemas dependencies
