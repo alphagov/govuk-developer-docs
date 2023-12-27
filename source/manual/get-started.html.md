@@ -48,20 +48,20 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 
 1. Add the following to the `~/.gnupg/gpg-agent.conf` file:
 
-   ```
-   enable-ssh-support
-   pinentry-program /usr/local/bin/pinentry-mac
-   default-cache-ttl 60
-   max-cache-ttl 120
-   ```
+    ```
+    enable-ssh-support
+    pinentry-program /usr/local/bin/pinentry-mac
+    default-cache-ttl 60
+    max-cache-ttl 120
+    ```
 
 1. Add the following to your `~/.zprofile` file:
 
-   ```
-   export GPG_TTY=$(tty)
-   export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-   gpgconf --launch gpg-agent
-   ```
+    ```
+    export GPG_TTY=$(tty)
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    gpgconf --launch gpg-agent
+    ```
 
 1. Run `killall gpg-agent` to stop any running `gpg-agent` processes.
 
@@ -69,13 +69,13 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 
 ### If you do not have a YubiKey
 
-1. [Generate a new SSH key for your laptop and add it to the ssh-agent][generate-ssh-key] for your GitHub account.
+1. [Generate a new SSH key for your laptop and add it to the ssh-agent][generate-ssh-key].
 
 1. Add the following code into your `.zshrc`, `~/.bash_profile`, or equivalent so that it is persistent between restarts:
 
-   ```
-   $ /usr/bin/ssh-add -K <YOUR-PRIVATE-KEY>
-   ```
+    ```
+    $ /usr/bin/ssh-add -K <YOUR-PRIVATE-KEY>
+    ```
 
 [create-gpg-key]: /manual/create-a-gpg-key.html
 [generate-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
