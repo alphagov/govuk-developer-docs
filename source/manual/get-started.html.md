@@ -16,7 +16,7 @@ If you're having trouble with this guide, you can ask your colleagues on the [#g
 
 You should determine who your tech lead is in your team, as there are a number of steps that require their involvement.
 
-If you are on a team that does not have a tech lead, or you are the tech lead, please contact the Lead Developer in your area or email [GOV.UK senior tech](mailto:govuk-senior-tech-members@digital.cabinet-office.gov.uk) with details on who you are and what team you've joined, so that they can help.
+If you are on a team that does not have a tech lead, or you are the tech lead, please contact the Lead Developer in your area or email [GOV.UK senior tech](/manual/ask-for-help.html#contact-senior-tech) with details on who you are and what team you've joined, so that they can help.
 
 You must have a laptop with full admin access. To check if you have full admin access, run a `sudo` command in your command line. For example, `sudo ls`.
 
