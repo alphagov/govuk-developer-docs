@@ -7,10 +7,10 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-We're [obliged to keep our software current][current]. To help with this, we use a
-service called [Dependabot][] to perform automated dependency upgrades.
+We're [obliged to keep our software current](/manual/keeping-software-current.html). To help with this, we use a
+service called Dependabot to perform automated dependency upgrades.
 
-[RFC 126][] describes the custom configuration we have for Dependabot to reduce the
+[RFC 126](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md) describes the custom configuration we have for Dependabot to reduce the
 number of PRs it opens, and therefore the number of deployments and effort required to
 keep our apps up to date.
 
@@ -61,16 +61,8 @@ Go to your project in GitHub and click on "Insights", then "Dependency graph", t
 
 ### Audit Dependabot PRs
 
-We have the [seal][app] to monitor outstanding Dependabot PRs on GDS repos.
+We have the [seal](/repos/seal.html) to monitor outstanding Dependabot PRs on GDS repos.
 
 ## Security
 
-There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot can only update the repositories that we [explicitly allow on GitHub][access]. This prevents code changes to other repos. Secondly, we've [set up branch protection](/manual/github.html) for all repos with the `govuk` label. This prevents Dependabot from writing directly to main.
-
-[RFC 126]: https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md
-[ext]: /manual/merge-pr.html
-[access]: https://github.com/organizations/alphagov/settings/installations/87197
-[current]: /manual/keeping-software-current.html
-[Dependabot]: https://dependabot.com
-[admin]: https://app.dependabot.com/accounts/alphagov/repos
-[app]: /repos/seal.html
+There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot can only update the repositories that we [explicitly allow on GitHub](https://github.com/organizations/alphagov/settings/installations/87197). This prevents code changes to other repos. Secondly, we've [set up branch protection](/manual/github.html) for all repos with the `govuk` label. This prevents Dependabot from writing directly to main.
