@@ -40,7 +40,7 @@ Not everyone on GOV.UK requires GitHub access, as much of what we do is in the o
 
 - If you're a content designer, ask for GitHub access via Zendesk (see [example ticket](https://govuk.zendesk.com/agent/tickets/5297731/events))
 - If you're an engineer or contractor, ask your tech lead to follow the instructions in [govuk-user-reviewer][govuk-user-reviewer] to add you.
-- If you don't have a tech lead, [ask someone in Senior Tech](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members) to add you. You must state
+- If you don't have a tech lead, [ask someone in Senior Tech](/manual/ask-for-help.html#contact-senior-tech) to add you. You must state
   - your role
   - which team you're in
   - your GitHub handle
