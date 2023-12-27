@@ -8,7 +8,7 @@ parent: "/manual.html"
 ---
 
 We're [obliged to keep our software current](/manual/keeping-software-current.html). To help with this, we use a
-service called Dependabot (by GitHub) to open automated dependency upgrade PRs, and we use an in-house tool called the [Seal](/repos/seal.html) to notify us of Dependabot PRs that have not yet been merged.
+service called Dependabot (by GitHub) to open automated dependency upgrade PRs, and we use an in-house tool called the [Seal](/repos/seal.html) to notify us of Dependabot PRs that have not yet been merged. We also have an in-house tool, [govuk-dependabot-merger](https://github.com/alphagov/govuk-dependabot-merger), for automatically merging [certain Dependabot PRs](#auto-merging-dependabot-prs).
 
 ## Reviewing Dependabot PRs
 
@@ -55,6 +55,12 @@ To configure Dependabot, a PR will need to be created that adds a configuration 
 By default Dependabot will bump dependencies at the frequency specified in the configuration file, but you can ask it to bump manually:
 
 Go to your project in GitHub and click on "Insights", then "Dependency graph", then "Dependabot", then "Last checked X minutes ago" next to the package manager of choice (e.g. Gemfile). Then you can click "Check for updates".
+
+## Auto merging Dependabot PRs
+
+We have a [govuk-dependabot-merger](https://github.com/alphagov/govuk-dependabot-merger) service that can auto-merge certain Dependabot PRs, outlined in [RFC-156](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-156-auto-merge-internal-prs.md).
+
+Repos that wish to opt in to this service must have a `.govuk_dependabot_merger.yml` file at the root of the repository, configured as per the govuk-dependabot-merger README instructions. They must then be added to the [repos_opted_in.yml](https://github.com/alphagov/govuk-dependabot-merger/blob/main/config/repos_opted_in.yml) list in govuk-dependabot-merger.
 
 ## Security
 
