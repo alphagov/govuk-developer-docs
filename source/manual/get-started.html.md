@@ -69,7 +69,7 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 
 ### If you do not have a YubiKey
 
-1. [Generate a new SSH key for your laptop and add it to the ssh-agent][generate-ssh-key] for your GitHub account.
+1. [Generate a new SSH key for your laptop and add it to the ssh-agent][generate-ssh-key].
 
 1. Add the following code into your `.zshrc`, `~/.bash_profile`, or equivalent so that it is persistent between restarts:
 
