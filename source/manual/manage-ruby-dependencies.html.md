@@ -8,11 +8,7 @@ parent: "/manual.html"
 ---
 
 We're [obliged to keep our software current](/manual/keeping-software-current.html). To help with this, we use a
-service called Dependabot to perform automated dependency upgrades.
-
-[RFC 126](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md) describes the custom configuration we have for Dependabot to reduce the
-number of PRs it opens, and therefore the number of deployments and effort required to
-keep our apps up to date.
+service called Dependabot (by GitHub) to open automated dependency upgrade PRs, and we use an in-house tool called the [Seal](/repos/seal.html) to notify us of Dependabot PRs that have not yet been merged.
 
 ## Reviewing Dependabot PRs
 
@@ -51,17 +47,14 @@ Any GOV.UK developer with production access can enable GitHub for a repo.
 1. Choose the "Dependency graph" menu item.
 1. Select the "Dependabot" tab.
 1. Click "Enable Dependabot".
-1. To configure Dependabot, a PR will need to be created that adds a configuration file. In [RFC #126](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md#custom-configuration) it was decided that a custom configutation would be used for GOV.UK applications. Once you have written a `.github/dependabot.yml` configuration file, create a pull request and merge this into the repo. Dependabot will automatically run following the merge.
+
+To configure Dependabot, a PR will need to be created that adds a configuration file (`.github/dependabot.yml`). In [RFC #126](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md#custom-configuration) it was decided that a custom configuration would be used for GOV.UK applications, but this inadvertently disabled some security updates, so was reversed in [RFC-153](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-153-remove-allowlists-from-dependabot-configs.md), and configuration is now largely limited to specifying the package ecosystem and schedule ([example](https://github.com/alphagov/support-api/blob/070b2f3f8f97e5c3c7a21ec126e42bde54b89e6a/.github/dependabot.yml)).
 
 ### Ask Dependabot to bump dependencies
 
 By default Dependabot will bump dependencies at the frequency specified in the configuration file, but you can ask it to bump manually:
 
 Go to your project in GitHub and click on "Insights", then "Dependency graph", then "Dependabot", then "Last checked X minutes ago" next to the package manager of choice (e.g. Gemfile). Then you can click "Check for updates".
-
-### Audit Dependabot PRs
-
-We have the [seal](/repos/seal.html) to monitor outstanding Dependabot PRs on GDS repos.
 
 ## Security
 
