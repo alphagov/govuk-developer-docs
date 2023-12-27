@@ -7,14 +7,10 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-We're [obliged to keep our software current][current]. To help with this, we use a
-service called [Dependabot][] to perform automated dependency upgrades.
+We're [obliged to keep our software current](/manual/keeping-software-current.html). To help with this, we use a
+service called Dependabot (by GitHub) to open automated dependency upgrade PRs, and we use an in-house tool called the [Seal](/repos/seal.html) to notify us of Dependabot PRs that have not yet been merged. We also have an in-house tool, [govuk-dependabot-merger](https://github.com/alphagov/govuk-dependabot-merger), for automatically merging [certain Dependabot PRs](#auto-merging-dependabot-prs).
 
-[RFC 126][] describes the custom configuration we have for Dependabot to reduce the
-number of PRs it opens, and therefore the number of deployments and effort required to
-keep our apps up to date.
-
-### Reviewing Dependabot PRs
+## Reviewing Dependabot PRs
 
 Dependabot updates occur relatively soon after a new version is published, which means
 there’s a risk of updating to a rogue version. Some updates also contain breaking
@@ -41,9 +37,9 @@ If this is the first update the dependency has had in a while, or if this is an 
 
 For these reasons we’re not planning to enable auto-merge for Dependabot PRs for external dependencies.
 
-### Managing Dependabot
+## Managing Dependabot
 
-#### Add Dependabot to a repo
+### Add Dependabot to a repo
 
 Any GOV.UK developer with production access can enable GitHub for a repo.
 
@@ -51,26 +47,21 @@ Any GOV.UK developer with production access can enable GitHub for a repo.
 1. Choose the "Dependency graph" menu item.
 1. Select the "Dependabot" tab.
 1. Click "Enable Dependabot".
-1. To configure Dependabot, a PR will need to be created that adds a configuration file. In [RFC #126](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md#custom-configuration) it was decided that a custom configutation would be used for GOV.UK applications. Once you have written a `.github/dependabot.yml` configuration file, create a pull request and merge this into the repo. Dependabot will automatically run following the merge.
 
-#### Ask Dependabot to bump dependencies
+To configure Dependabot, a PR will need to be created that adds a configuration file (`.github/dependabot.yml`). In [RFC #126](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md#custom-configuration) it was decided that a custom configuration would be used for GOV.UK applications, but this inadvertently disabled some security updates, so was reversed in [RFC-153](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-153-remove-allowlists-from-dependabot-configs.md), and configuration is now largely limited to specifying the package ecosystem and schedule ([example](https://github.com/alphagov/support-api/blob/070b2f3f8f97e5c3c7a21ec126e42bde54b89e6a/.github/dependabot.yml)).
+
+### Ask Dependabot to bump dependencies
 
 By default Dependabot will bump dependencies at the frequency specified in the configuration file, but you can ask it to bump manually:
 
 Go to your project in GitHub and click on "Insights", then "Dependency graph", then "Dependabot", then "Last checked X minutes ago" next to the package manager of choice (e.g. Gemfile). Then you can click "Check for updates".
 
-#### Audit Dependabot PRs
+## Auto merging Dependabot PRs
 
-We have the [seal][app] to monitor outstanding Dependabot PRs on GDS repos.
+We have a [govuk-dependabot-merger](https://github.com/alphagov/govuk-dependabot-merger) service that can auto-merge certain Dependabot PRs, outlined in [RFC-156](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-156-auto-merge-internal-prs.md).
 
-### Security
+Repos that wish to opt in to this service must have a `.govuk_dependabot_merger.yml` file at the root of the repository, configured as per the govuk-dependabot-merger README instructions. They must then be added to the [repos_opted_in.yml](https://github.com/alphagov/govuk-dependabot-merger/blob/main/config/repos_opted_in.yml) list in govuk-dependabot-merger.
 
-There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot can only update the repositories that we [explicitly allow on GitHub][access]. This prevents code changes to other repos. Secondly, we've [set up branch protection](/manual/github.html) for all repos with the `govuk` label. This prevents Dependabot from writing directly to main.
+## Security
 
-[RFC 126]: https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md
-[ext]: /manual/merge-pr.html
-[access]: https://github.com/organizations/alphagov/settings/installations/87197
-[current]: /manual/keeping-software-current.html
-[Dependabot]: https://dependabot.com
-[admin]: https://app.dependabot.com/accounts/alphagov/repos
-[app]: /repos/seal.html
+We've [set up branch protection](/manual/github.html) for all repos with the `govuk` label. This prevents Dependabot from writing directly to main.
