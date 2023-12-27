@@ -195,15 +195,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4297ae73380728aaf9ecb54867724f4861573c08">2 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b827438521235ce10555af9814ecaffd52f12322">27 Dec 2023</a>
 </div>
 
  <h1 id='header'>Purge a page from cache</h1> <h2 id='background'>Background</h2><p><a href="https://www.fastly.com/products/cdn">Fastly</a> caches HTTP resources such as
@@ -239,7 +232,7 @@ someone is handling the matter.</p>
 
 <ol>
 <li>Log into <a href="https://manage.fastly.com/">https://manage.fastly.com/</a>. If you don&rsquo;t have an account, ask
-your tech lead or a member of the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members">senior tech team</a>.</li>
+your tech lead or a member of the <a href="/manual/ask-for-help.html#contact-senior-tech">senior tech team</a>.</li>
 <li>Under <a href="https://manage.fastly.com/services/all">All services</a>, choose the
 appropriate service. For example, <code>Production GOV.UK</code> for www.gov.uk or
 <code>Production Assets</code> for assets.publishing.service.gov.uk.</li>
@@ -248,7 +241,7 @@ appropriate service. For example, <code>Production GOV.UK</code> for www.gov.uk 
 <li>Enter the full path of the resource to purge (that is, everything after the
 hostname in the URL) and choose Purge.</li>
 </ol>
-<h2 id='purging-all-objects-from-the-fastly-cdn'>Purging all objects from the Fastly CDN</h2><p>If possible, check with a member of the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members">senior tech team</a> before doing this in
+<h2 id='purging-all-objects-from-the-fastly-cdn'>Purging all objects from the Fastly CDN</h2><p>If possible, check with a member of the <a href="/manual/ask-for-help.html#contact-senior-tech">senior tech team</a> before doing this in
 production.</p>
 
 <ol>
