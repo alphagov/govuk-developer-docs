@@ -223,11 +223,11 @@ To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker
 
 > If you are a frontend developer, and you are working on GOV.UK's frontend apps, there is documentation on [alterntaive local development approaches](/manual/local-frontend-development.html) that make low or no usage of GOV.UK Docker.
 
-## 10. Get SSH access to integration
+## 10. Get SSH access to EC2 integration
 
-> If you are a frontend developer you do not need to complete this step as part of your initial setup.
+> This step is only necessary if you require access to [applications hosted on EC2](/apps.html#apps-by-host) or are beginning your first Technical 2nd Line shift. Check with your tech lead first. If you are a frontend developer you do not need to complete this step as part of your initial setup.
 
-### Create a user to SSH into integration
+### Create a user to SSH into EC2 integration
 
 User accounts in our integration environments are managed in the [govuk-puppet][] repository.
 
