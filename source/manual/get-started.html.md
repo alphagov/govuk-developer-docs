@@ -200,7 +200,9 @@ gds aws govuk-integration-readonly aws s3 ls
 
 ## 8. Connect to the GDS VPN
 
-If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to access to our infrastructure and internal services.
+> This step is only necessary if you are a civil servant, require access to [applications hosted on EC2](/apps.html#apps-by-host) or are beginning your first Technical 2nd Line shift. Check with your tech lead first.
+
+If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to access to our old infrastructure (e.g. SSH into EC2 instances or use Jenkins) and some other internal Cabinet Office services (e.g. SOP and the intranet).
 
 ###  For GDS issued MacBooks
 
