@@ -180,10 +180,10 @@
         <a href="#9-set-up-gov-uk-docker"><span>9. Set up GOV.UK Docker</span></a>
       </li>
       <li>
-        <a href="#10-get-ssh-access-to-integration"><span>10. Get SSH access to integration</span></a>
+        <a href="#10-get-ssh-access-to-ec2-integration"><span>10. Get SSH access to EC2 integration</span></a>
         <ul>
           <li>
-            <a href="#create-a-user-to-ssh-into-integration"><span>Create a user to SSH into integration</span></a>
+            <a href="#create-a-user-to-ssh-into-ec2-integration"><span>Create a user to SSH into EC2 integration</span></a>
           </li>
           <li>
             <a href="#access-remote-environments-and-server"><span>Access remote environments and server</span></a>
@@ -194,10 +194,10 @@
         <a href="#11-set-up-tools-to-use-the-gov-uk-kubernetes-platform"><span>11. Set up tools to use the GOV.UK Kubernetes platform</span></a>
       </li>
       <li>
-        <a href="#12-get-a-signon-account-for-integration"><span>12. Get a Signon account for integration</span></a>
+        <a href="#12-get-signon-accounts"><span>12. Get Signon accounts</span></a>
       </li>
       <li>
-        <a href="#13-get-access-to-the-release-app"><span>13. Get access to the Release app</span></a>
+        <a href="#13-get-familiar-with-the-release-app"><span>13. Get familiar with the Release app</span></a>
       </li>
       <li>
         <a href="#14-talk-to-your-tech-lead-about-supporting-services-you-should-have-access-to"><span>14. Talk to your tech lead about supporting services you should have access to</span></a>
@@ -255,7 +255,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b8286f4dadb3e44fb9c2ae3eab89ff4c03d2483b">27 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0c2d983f0257489bcbad99664cf2712381563321">28 Dec 2023</a>
 </div>
 
  <h1 id='header'>Get started developing on GOV.UK</h1> <blockquote>
@@ -367,7 +367,11 @@ Enter token <span class="k">for </span>arn:aws:iam::123456789012:mfa/firstname.l
 <p>If you have a GDS-issued Yubikey, you can run <code>gds config yubikey true</code> in the GDS CLI to set GDS CLI to automatically pull the MFA code from your Yubikey.</p>
 <p>You have completed the get started process. You can now use <code>gds aws</code> to run generic <a href="https://aws.amazon.com/cli/">aws CLI</a> commands by prefixing them with <code>gds aws &lt;role&gt;</code>. For example:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-readonly aws s3 <span class="nb">ls</span>
-</code></pre></div><h2 id='8-connect-to-the-gds-vpn'>8. Connect to the GDS VPN</h2><p>If you&rsquo;re outside of the office or on <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi">GovWiFi</a>, you must connect to the GDS VPN to access to our infrastructure and internal services.</p>
+</code></pre></div><h2 id='8-connect-to-the-gds-vpn'>8. Connect to the GDS VPN</h2>
+<blockquote>
+<p>This step is only necessary if you are a civil servant, require access to <a href="/apps.html#apps-by-host">applications hosted on EC2</a> or are beginning your first Technical 2nd Line shift. Check with your tech lead first.</p>
+</blockquote>
+<p>If you&rsquo;re outside of the office or on <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi">GovWiFi</a>, you must connect to the GDS VPN to access to our old infrastructure (e.g. SSH into EC2 instances or use Jenkins) and some other internal Cabinet Office services (e.g. SOP and the intranet).</p>
 <h3 id='for-gds-issued-macbooks'> For GDS issued MacBooks</h3><p>Follow the <a href="https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit">GDS guidance on how to sign into the GDS VPN using Google credentials</a>.</p>
 <h3 id='for-bring-your-own-devices-byod'> For Bring Your Own Devices (BYOD)</h3><p>Follow the <a href="https://docs.google.com/document/d/150JX1xiWdXY29ahcYUMb05Si-hEAZvtkGAKojT9Rjis/edit#">VPN guide for Bring Your Own Devices (BYOD)</a></p>
 <h2 id='9-set-up-gov-uk-docker'>9. Set up GOV.UK Docker</h2><p>We use a <a href="/manual/intro-to-docker.html">Docker</a> environment for local development, <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker</a>.</p>
@@ -376,11 +380,11 @@ Enter token <span class="k">for </span>arn:aws:iam::123456789012:mfa/firstname.l
 <blockquote>
 <p>If you are a frontend developer, and you are working on GOV.UK&rsquo;s frontend apps, there is documentation on <a href="/manual/local-frontend-development.html">alterntaive local development approaches</a> that make low or no usage of GOV.UK Docker.</p>
 </blockquote>
-<h2 id='10-get-ssh-access-to-integration'>10. Get SSH access to integration</h2>
+<h2 id='10-get-ssh-access-to-ec2-integration'>10. Get SSH access to EC2 integration</h2>
 <blockquote>
-<p>If you are a frontend developer you do not need to complete this step as part of your initial setup.</p>
+<p>This step is only necessary if you require access to <a href="/apps.html#apps-by-host">applications hosted on EC2</a> or are beginning your first Technical 2nd Line shift. Check with your tech lead first. If you are a frontend developer you do not need to complete this step as part of your initial setup.</p>
 </blockquote>
-<h3 id='create-a-user-to-ssh-into-integration'>Create a user to SSH into integration</h3><p>User accounts in our integration environments are managed in the <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a> repository.</p>
+<h3 id='create-a-user-to-ssh-into-ec2-integration'>Create a user to SSH into EC2 integration</h3><p>User accounts in our integration environments are managed in the <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a> repository.</p>
 
 <ol>
 <li><p>Run the following command to create a <code>govuk</code> folder in your home directory and clone the <code>govuk-puppet</code> GitHub repo:</p>
@@ -428,11 +432,19 @@ class users::johnsmith {
   PubkeyAcceptedAlgorithms +ssh-rsa
 </code></pre></div><p>Note this may happen even if you don&rsquo;t use an rsa ssh private key - it is caused by the <em>host key</em> which is defined by the server you connect to, not your <em>user key</em> which you have defined.</p>
 <h2 id='11-set-up-tools-to-use-the-gov-uk-kubernetes-platform'>11. Set up tools to use the GOV.UK Kubernetes platform</h2><p>Follow <a href="/kubernetes/get-started/set-up-tools/">the instructions for setting up tools to use the GOV.UK Kubernetes platform</a>.</p>
-<h2 id='12-get-a-signon-account-for-integration'>12. Get a Signon account for integration</h2><p><a href="/repos/signon.html">Signon</a> is the application used to control access to the GOV.UK Publishing applications.</p>
-<p>Ask your tech lead to <a href="https://signon.integration.publishing.service.gov.uk/users/invitation/new">create an account for the integration Signon</a>, at &lsquo;Superadmin&rsquo; level with permission to access the applications that your team are likely to work on.</p>
-<h2 id='13-get-access-to-the-release-app'>13. Get access to the Release app</h2><p><a href="/repos/release.html">Release</a> is the application we use to track deployments,
+<h2 id='12-get-signon-accounts'>12. Get Signon accounts</h2><p><a href="/repos/signon.html">Signon</a> is the application used to control access to the GOV.UK Publishing applications.</p>
+<p>Ask your tech lead to give you the following access:</p>
+
+<ul>
+<li>&lsquo;Superadmin&rsquo; level with permission to access the applications that your team are likely to work on <a href="https://signon.integration.publishing.service.gov.uk/users/invitation/new">for the integration Signon</a>.</li>
+<li>&lsquo;Normal&rsquo; level with access to the &lsquo;Release&rsquo; app only (no permissions should be given for other applications, until <a href="/manual/rules-for-getting-production-access.html">production access</a> is granted) <a href="https://signon.publishing.service.gov.uk/users/invitation/new">for the production Signon</a>. Note that this will automatically grant you access to the <a href="https://signon.staging.publishing.service.gov.uk/">staging Signon</a> environment once the nightly <a href="/manual/govuk-env-sync.html">env sync</a> has completed.</li>
+</ul>
+<h2 id='13-get-familiar-with-the-release-app'>13. Get familiar with the Release app</h2><p><a href="/repos/release.html">Release</a> is the application we use to track deployments,
 work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.</p>
-<p>Ask your tech lead to <a href="https://signon.publishing.service.gov.uk/users/invitation/new">create an account for the production Signon</a>, at &lsquo;Normal&rsquo; level with access to the &lsquo;Release&rsquo; app only. No permissions should be given for other applications, until <a href="/manual/rules-for-getting-production-access.html">production access</a> is granted.</p>
+
+<blockquote>
+<p>Your tech lead will have granted access to the Release app in the step above.</p>
+</blockquote>
 <h2 id='14-talk-to-your-tech-lead-about-supporting-services-you-should-have-access-to'>14. Talk to your tech lead about supporting services you should have access to</h2><p>Depending on the team you&rsquo;ve joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access. Services you may need access to are:</p>
 
 <ul>
