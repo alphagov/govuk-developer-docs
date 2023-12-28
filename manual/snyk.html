@@ -190,7 +190,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/00638be2d6d37944bd9f2479d2a5c5e79d2d5392">18 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/db17480d6d2b6a4a6bacc075220183306431c109">28 Dec 2023</a>
 </div>
 
  <h1 id='header'>SNYK</h1> <p><a href="https://snyk.io/">SNYK</a> is a software testing tool which provides a number of different scan types. Initially, it has been configured to provide Static Application Security Testing (SAST) which checks for vulnerability signatures in a repository&rsquo;s codebase and Software Composition Analysis (SCA) which cross references all the included software packages in a project against a CVE (common vulnerabilities and exposures) database to ensure none are vulnerable to any known issues. It is <a href="https://github.com/alphagov/govuk-infrastructure/pull/1016">configured as a reusable workflow</a> and should be included as a job in the CI pipeline of all GOV.UK repositories. A reusable workflow design was selected so that enhancements to the scanning process can be managed centrally.</p>
@@ -199,7 +199,7 @@
   <span class="na">name</span><span class="pi">:</span> <span class="s">SNYK Security Analysis</span>
   <span class="na">uses</span><span class="pi">:</span> <span class="s">alphagov/govuk-infrastructure/.github/workflows/snyk-security.yml@main</span>
   <span class="na">secrets</span><span class="pi">:</span> <span class="s">inherit</span>
-</code></pre></div><h2 id='where-to-find-security-alerts'>Where to find Security Alerts</h2><p>The scan outputs the scan alerts in JSON format and then saves the JSON file as an artifact after the action completes. Artifacts can be found on the &ldquo;run&rdquo; page of a workflow. Read the [downloading a workflow][download-wf] page for details on retrieving this file.</p>
+</code></pre></div><h2 id='where-to-find-security-alerts'>Where to find Security Alerts</h2><p>The scan outputs the scan alerts in JSON format and then saves the JSON file as an artifact after the action completes. Artifacts can be found on the &ldquo;run&rdquo; page of a workflow. Read the <a href="https://docs.github.com/en/actions/managing-workflow-runs/downloading-workflow-artifacts">downloading a workflow</a> page for details on retrieving this file.</p>
 <h2 id='dealing-with-security-alerts'>Dealing with Security Alerts</h2><p>Currently, SNYK is configured to <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/snyk-security.yml#L20">only identify vulnerabilities of a high severity</a>. Additionally, it will not fail the test when vulnerabilities are found: it will only raise an alert and move on. This is to reduce the number of false positives and avoid wasting developer time. Over time, we intend to tune the dial to make SNYK more strict.</p>
 <p>Alerts can be resolved either by fixing the identified vulnerability or by dismissing the alert as a false positive in the .snyk file of the project. More details on this can be found in the <a href="https://docs.snyk.io/scan-using-snyk/policies/the-.snyk-file">SNYK documentation</a>. If you do decide to ignore a warning, you must include a note outlining why it is a false positive and not a security vulnerability.</p>
 
