@@ -200,7 +200,9 @@ gds aws govuk-integration-readonly aws s3 ls
 
 ## 8. Connect to the GDS VPN
 
-If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to access to our infrastructure and internal services.
+> This step is only necessary if you are a civil servant, require access to [applications hosted on EC2](/apps.html#apps-by-host) or are beginning your first Technical 2nd Line shift. Check with your tech lead first.
+
+If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to access to our old infrastructure (e.g. SSH into EC2 instances or use Jenkins) and some other internal Cabinet Office services (e.g. SOP and the intranet).
 
 ###  For GDS issued MacBooks
 
@@ -221,11 +223,11 @@ To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker
 
 > If you are a frontend developer, and you are working on GOV.UK's frontend apps, there is documentation on [alterntaive local development approaches](/manual/local-frontend-development.html) that make low or no usage of GOV.UK Docker.
 
-## 10. Get SSH access to integration
+## 10. Get SSH access to EC2 integration
 
-> If you are a frontend developer you do not need to complete this step as part of your initial setup.
+> This step is only necessary if you require access to [applications hosted on EC2](/apps.html#apps-by-host) or are beginning your first Technical 2nd Line shift. Check with your tech lead first. If you are a frontend developer you do not need to complete this step as part of your initial setup.
 
-### Create a user to SSH into integration
+### Create a user to SSH into EC2 integration
 
 User accounts in our integration environments are managed in the [govuk-puppet][] repository.
 
@@ -315,18 +317,21 @@ Note this may happen even if you don't use an rsa ssh private key - it is caused
 
 Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](/kubernetes/get-started/set-up-tools/).
 
-## 12. Get a Signon account for integration
+## 12. Get Signon accounts
 
 [Signon](/repos/signon.html) is the application used to control access to the GOV.UK Publishing applications.
 
-Ask your tech lead to [create an account for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new), at 'Superadmin' level with permission to access the applications that your team are likely to work on.
+Ask your tech lead to give you the following access:
 
-## 13. Get access to the Release app
+- 'Superadmin' level with permission to access the applications that your team are likely to work on [for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new).
+- 'Normal' level with access to the 'Release' app only (no permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html) is granted) [for the production Signon](https://signon.publishing.service.gov.uk/users/invitation/new). Note that this will automatically grant you access to the [staging Signon](https://signon.staging.publishing.service.gov.uk/) environment once the nightly [env sync](/manual/govuk-env-sync.html) has completed.
+
+## 13. Get familiar with the Release app
 
 [Release](/repos/release.html) is the application we use to track deployments,
 work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.
 
-Ask your tech lead to [create an account for the production Signon](https://signon.publishing.service.gov.uk/users/invitation/new), at 'Normal' level with access to the 'Release' app only. No permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html) is granted.
+> Your tech lead will have granted access to the Release app in the step above.
 
 ## 14. Talk to your tech lead about supporting services you should have access to
 
