@@ -27,7 +27,7 @@ snyk-security:
 
 The scan outputs the scan alerts in JSON format and then saves the JSON file as an artifact after the action completes. Artifacts can be found on the "run" page of a workflow. Read the [downloading a workflow][download-wf] page for details on retrieving this file.
 
-[downloading-wf]: https://docs.github.com/en/actions/managing-workflow-runs/downloading-workflow-artifacts
+[download-wf]: https://docs.github.com/en/actions/managing-workflow-runs/downloading-workflow-artifacts
 
 ## Dealing with Security Alerts
 
