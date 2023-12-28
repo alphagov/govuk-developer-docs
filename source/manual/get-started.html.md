@@ -317,18 +317,21 @@ Note this may happen even if you don't use an rsa ssh private key - it is caused
 
 Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](/kubernetes/get-started/set-up-tools/).
 
-## 12. Get a Signon account for integration
+## 12. Get Signon accounts
 
 [Signon](/repos/signon.html) is the application used to control access to the GOV.UK Publishing applications.
 
-Ask your tech lead to [create an account for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new), at 'Superadmin' level with permission to access the applications that your team are likely to work on.
+Ask your tech lead to give you the following access:
 
-## 13. Get access to the Release app
+- 'Superadmin' level with permission to access the applications that your team are likely to work on [for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new).
+- 'Normal' level with access to the 'Release' app only (no permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html) is granted) [for the production Signon](https://signon.publishing.service.gov.uk/users/invitation/new). Note that this will automatically grant you access to the [staging Signon](https://signon.staging.publishing.service.gov.uk/) environment once the nightly [env sync](/manual/govuk-env-sync.html) has completed.
+
+## 13. Get familiar with the Release app
 
 [Release](/repos/release.html) is the application we use to track deployments,
 work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.
 
-Ask your tech lead to [create an account for the production Signon](https://signon.publishing.service.gov.uk/users/invitation/new), at 'Normal' level with access to the 'Release' app only. No permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html) is granted.
+> Your tech lead will have granted access to the Release app in the step above.
 
 ## 14. Talk to your tech lead about supporting services you should have access to
 
