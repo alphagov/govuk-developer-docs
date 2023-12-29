@@ -52,3 +52,14 @@ In the Release app, the badger will notify teams [depending on the dependency_te
 ### Configuration
 
 [Please see these docs](/manual/sentry.html#slack-alerts). When creating a rule to send a notification to Slack, you may find that you need to input a channel ID as well as channel name. The ID can be found by clicking on the channel name in Slack and scrolling down until you can see the channel ID.
+
+## CI Bot
+
+We must ensure all our repositories undergo regular security scans to establish a fundamental level of security awareness, effectively addressing vulnerabilities in both our code and third-party dependencies and mitigating the risk of Common Vulnerabilities and Exposures (CVEs).
+
+To facilitate this, the CI Bot informs teams about missing scans in their repos' CI pipelines. It is currently configured to check if repos have [CodeQL(SAST)](https://docs.publishing.service.gov.uk/manual/codeql.html),[Dependency Review (SCA)](https://docs.publishing.service.gov.uk/manual/dependency-review.html) and [SNYK](https://docs.publishing.service.gov.uk/manual/snyk.html) scans.
+
+### Configuration
+
+These scans must be included as jobs in the CI pipeline of [all GOV.UK repositories](https://docs.publishing.service.gov.uk/manual/github.html#create-and-configure-a-new-gov-uk-repo).
+It's essential to ensure that every repository has these scans. If there's a compelling reason to exclude a repository from this check, please modify the [ignored_ci_repos.yml](https://github.com/alphagov/seal/blob/main/ignored_ci_repos.yml) file in the Seal repository. Ensure that any exclusions are accompanied by a well-justified reason.
