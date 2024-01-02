@@ -6,23 +6,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk_seed_crawler - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk_seed_crawler (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_seed_crawler.html">
 
-      <meta name="description" content="Everything about govuk_seed_crawler ()" />
+      <meta name="description" content="Everything about govuk_seed_crawler (Was used (in conjunction with govuk_crawler_worker) to crawl and take a local
+copy of GOV.UK, to synchronise upstream with the S3 and GCP mirrors.
+Replaced by govuk-mirror in October 2023.
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk_seed_crawler - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk_seed_crawler (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_seed_crawler.html" />
 
-      <meta property="og:description" content="Everything about govuk_seed_crawler ()" />
+      <meta property="og:description" content="Everything about govuk_seed_crawler (Was used (in conjunction with govuk_crawler_worker) to crawl and take a local
+copy of GOV.UK, to synchronise upstream with the S3 and GCP mirrors.
+Replaced by govuk-mirror in October 2023.
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk_seed_crawler" />
+      <meta property="og:title" content="Repository: govuk_seed_crawler (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_seed_crawler.html" />
 
@@ -177,115 +183,13 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk_seed_crawler</h1>
+  <h1 class="page-title">Repository: govuk_seed_crawler (retired)</h1>
 
-  <div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk_seed_crawler">govuk_seed_crawler</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Gems</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk_seed_crawler" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk_seed_crawler.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk_seed_crawler')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk_seed_crawler-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>This gem retrieves a list of seed URLs from the GOV.UK sitemap and adds them to RabbitMQ
-so that the <a href="https://github.com/alphagov/govuk_crawler_worker">crawler</a> can consume them.</p>
-
-<h2 id="installation">Installation</h2>
-
-<p>Add this line to your application&rsquo;s Gemfile:</p>
-
-<pre><code>gem 'govuk_seed_crawler'
-</code></pre>
-
-<p>And then execute:</p>
-
-<pre><code>$ bundle
-</code></pre>
-
-<p>Or install it yourself as:</p>
-
-<pre><code>$ gem install govuk_seed_crawler
-</code></pre>
-
-<h2 id="usage">Usage</h2>
-
-<p>To run with the RabbitMQ connection defaults:</p>
-
-<pre lang="bash"><code>bundle exec seed-crawler https://www.gov.uk/
-</code></pre>
-
-<p>Run with <code>--help</code> to see a list of options:</p>
-
-<pre lang="bash"><code>bundle exec seed-crawler --help
-</code></pre>
-
-<h2 id="deployment">Deployment</h2>
-
-<p>The gem is automatically deployed to RubyGems when the gem <a href="https://github.com/alphagov/govuk_seed_crawler/blob/main/lib/govuk_seed_crawler/version.rb">version</a> is updated on <code>main</code>. (Don&rsquo;t forget to add to the <a href="https://github.com/alphagov/govuk_seed_crawler/blob/main/CHANGELOG.md">CHANGELOG</a>!</p>
-
-<p>For the new gem version to be used on GOV.UK, you&rsquo;ll need to update the <a href="https://github.com/alphagov/govuk-puppet/blob/c5112961e9c3063f077d2de2ffa887b00466c623/modules/govuk_crawler/manifests/init.pp#L142-L150">reference in govuk-puppet</a>.</p>
-
-<h2 id="contributing">Contributing</h2>
-
-<ol>
-<li>Fork it ( <a href="http://github.com/%7Bmy-github-username%7D/govuk_seed_crawler/fork">http://github.com/{my-github-username}/govuk_seed_crawler/fork</a> )</li>
-<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
-<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
-<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
-<li>Create new Pull Request</li>
-</ol>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/govuk_seed_crawler/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Was used (in conjunction with govuk_crawler_worker) to crawl and take a local
+copy of GOV.UK, to synchronise upstream with the S3 and GCP mirrors.
+Replaced by govuk-mirror in October 2023.</p></p>
+<p><a href="https://github.com/alphagov/govuk_seed_crawler">GitHub repository</a></p>
 
 
             

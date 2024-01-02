@@ -6,23 +6,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: govuk_crawler_worker - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk_crawler_worker (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_crawler_worker.html">
 
-      <meta name="description" content="Everything about govuk_crawler_worker (A worker that will consume GOV.UK URLs from a message queue and crawl them, saving the output to disk)" />
+      <meta name="description" content="Everything about govuk_crawler_worker (Was used (in conjunction with govuk_seed_crawler) to crawl and take a local
+copy of GOV.UK, to synchronise upstream with the S3 and GCP mirrors.
+Replaced by govuk-mirror in October 2023.
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: govuk_crawler_worker - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk_crawler_worker (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_crawler_worker.html" />
 
-      <meta property="og:description" content="Everything about govuk_crawler_worker (A worker that will consume GOV.UK URLs from a message queue and crawl them, saving the output to disk)" />
+      <meta property="og:description" content="Everything about govuk_crawler_worker (Was used (in conjunction with govuk_seed_crawler) to crawl and take a local
+copy of GOV.UK, to synchronise upstream with the S3 and GCP mirrors.
+Replaced by govuk-mirror in October 2023.
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: govuk_crawler_worker" />
+      <meta property="og:title" content="Repository: govuk_crawler_worker (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_crawler_worker.html" />
 
@@ -177,134 +183,13 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Application: govuk_crawler_worker</h1>
+  <h1 class="page-title">Repository: govuk_crawler_worker (retired)</h1>
 
-  <p>A worker that will consume GOV.UK URLs from a message queue and crawl them, saving the output to disk</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk_crawler_worker">govuk_crawler_worker</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS (EC2)</strong>, on the <strong>Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk_crawler_worker" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/govuk_crawler_worker.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/govuk_crawler_worker/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk_crawler_worker.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk_crawler_worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk_crawler_worker-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p><a href="http://travis-ci.org/alphagov/govuk_crawler_worker"><img src="https://travis-ci.org/alphagov/govuk_crawler_worker.svg?branch=master" alt="continuous integration status"></a></p>
-
-<p>This is a worker that will consume <a href="https://www.gov.uk/">GOV.UK</a> URLs
-from a message queue and crawl them, saving the output to disk.</p>
-
-<h2 id="requirements">Requirements</h2>
-
-<p>To run this worker you will need:</p>
-
-<ul>
-<li>Go 1.7.1</li>
-<li><a href="https://www.rabbitmq.com/">RabbitMQ</a></li>
-<li><a href="http://redis.io/">Redis</a></li>
-</ul>
-
-<h2 id="development">Development</h2>
-
-<p>You can run the tests locally by running <code>make</code>.</p>
-
-<p>This project uses <a href="https://github.com/tools/godep">Godep</a> to manage it&rsquo;s dependencies.  If you have a
-working <a href="http://golang.org">Go</a> development setup, you should be able to install
-<a href="https://github.com/tools/godep">Godep</a> by running:</p>
-
-<pre><code>go get github.com/tools/godep
-</code></pre>
-
-<h2 id="running">Running</h2>
-
-<p>To run the worker you&rsquo;ll first need to build it using <code>go build</code> to
-generate a binary. You can then run the built binary directly using
-<code>./govuk_crawler_worker</code>. All configuration is injected using
-environment varibles. For details on this look at the <code>main.go</code> file.</p>
-
-<h2 id="how-it-works">How it works</h2>
-
-<p>This is a message queue worker that will consume URLs from a queue and
-crawl them, saving the output to disk. Whilst this is the main reason
-for this worker to exist it has a few activities that it covers before
-the page gets written to disk.</p>
-
-<h3 id="workflow">Workflow</h3>
-
-<p>The workflow for the worker can be defined as the following set of
-steps:</p>
-
-<ol>
-<li>Read a URL from the queue, e.g. <a href="https://www.gov.uk/bank-holidays">https://www.gov.uk/bank-holidays</a>
-</li>
-<li>Crawl the recieved URL</li>
-<li>Write the body of the crawled URL to disk</li>
-<li>Extract any matching URLs from the HTML body of the crawled URL</li>
-<li>Publish the extracted URLs to the worker&rsquo;s own exchange</li>
-<li>Acknowledge that the URL has been crawled</li>
-</ol>
-
-<h3 id="the-interface">The Interface</h3>
-
-<p>The public interface for the worker is the exchange labelled
-<strong>govuk_crawler_exchange</strong>. When the worker starts it creates this
-exchange and binds it to it&rsquo;s own queue for consumption.</p>
-
-<p>If you provide user credentials for RabbitMQ that aren&rsquo;t on the root
-vhost <code>/</code>, you may wish to bind a global exchange yourself for easier
-publishing by other applications.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/govuk_crawler_worker/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Was used (in conjunction with govuk_seed_crawler) to crawl and take a local
+copy of GOV.UK, to synchronise upstream with the S3 and GCP mirrors.
+Replaced by govuk-mirror in October 2023.</p></p>
+<p><a href="https://github.com/alphagov/govuk_crawler_worker">GitHub repository</a></p>
 
 
             

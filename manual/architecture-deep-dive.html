@@ -235,7 +235,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4117f73583d24e2e666b5a8ea84a63ceb0092593">2 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1a56fa92eff7cc91b8baaaf9369d5402fe417ab0">2 Jan 2024</a>
 </div>
 
  <h1 id='header'>Architectural deep-dive of GOV.UK</h1> <p>We can cover a lot of GOV.UK architecture by asking ourselves three questions:</p>
@@ -276,12 +276,12 @@ only remove the cached version once it has received the new version from
 origin).</p>
 <h4 id='failover'>Failover</h4><p>If a Fastly request to origin returns a 5xx response, Fastly will request
 content from the mirror, which is static HTML hosted in an S3 bucket on AWS.
-The contents of the mirror are updated daily via a <a href="https://github.com/alphagov/govuk_crawler_worker">govuk-crawler-worker</a>,
+The contents of the mirror are updated daily via the <a href="https://github.com/alphagov/govuk-mirror">govuk-mirror</a> crawler,
 which recursively crawls GOV.UK URLs from a message queue, visiting the pages
 and saving the output to disk.</p>
 
 <ul>
-<li>Read more about <a href="/manual/fall-back-to-mirror.html">fallback to the static mirrors</a>.</li>
+<li>Read more about <a href="/manual/fall-back-to-mirror.html">fallback to the static mirrors</a> and how the mirrors are populated.</li>
 <li>Read more about <a href="/manual/errors.html">how errors are handled on GOV.UK</a>.</li>
 </ul>
 <h4 id='routing-on-the-cdn'>Routing on the CDN</h4><p>As well as for caching, Varnish is used for the redirection from <code>gov.uk</code> to
