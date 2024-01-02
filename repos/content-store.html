@@ -251,28 +251,6 @@
 <p>The Content Store is a database of almost all published content on GOV.UK.
 See the <a href="/repos/content-store/content-store-api.html">Content Store API</a> for basic usage.</p>
 
-<h2 id="deployment-in-current-transitional-state">Deployment in current transitional state</h2>
-
-<p>For most of 2023, Publishing Platform team have been working on migrating Content Store from MongoDB to PostgreSQL on Amazon&rsquo;s RDS service. This work is nearing completion, but at the moment there is a non-standard setup for deploying any changes.</p>
-
-<ul>
-<li>The <code>main</code> branch is currently <em>not in use by any deployed application</em>
-</li>
-<li>The <code>content-store</code> and <code>draft-content-store</code> applications in all environments are using a container name of <code>content-store</code>, but that must be manually built from the <code>port-to-postgresql</code> branch</li>
-<li>There is no automatic build promotion - deployments must be manually done for each environment.</li>
-</ul>
-
-<p>If you need to deploy Content Store, make sure that you:</p>
-
-<ul>
-<li>base any pull requests off the <code>port-to-postgresql</code> branch (see PR #1085)</li>
-<li>merge any pull requests into the <code>port-to-postgresql</code> branch</li>
-<li>deploy to each environment by running the <a href="https://github.com/alphagov/content-store/actions/workflows/deploy.yml">Deploy workflow</a>
-</li>
-<li>specify <code>port-to-postgresql</code> as the &ldquo;Commit, tag or branch name to deploy&rdquo;</li>
-<li>specify <code>content-store</code> as the &ldquo;ECR repo name to push image to&rdquo;</li>
-</ul>
-
 <h2 id="technical-documentation">Technical documentation</h2>
 
 <p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
