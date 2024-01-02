@@ -38,7 +38,6 @@ task :verify_deployable_apps do
 
   intentionally_missing =
     %w[
-      govuk_crawler_worker
       smokey
       kibana-gds
       sidekiq-monitoring
