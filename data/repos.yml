@@ -881,7 +881,11 @@
 - repo_name: govuk_crawler_worker
   team: "#govuk-platform-engineering"
   type: Utilities
-  production_hosted_on: aws
+  retired: true
+  description: |
+    Was used (in conjunction with govuk_seed_crawler) to crawl and take a local
+    copy of GOV.UK, to synchronise upstream with the S3 and GCP mirrors.
+    Replaced by govuk-mirror in October 2023.
 
 - repo_name: govuk_document_types
   team: "#govuk-navigation-tech"
@@ -930,6 +934,11 @@
 - repo_name: govuk_seed_crawler
   team: "#govuk-platform-engineering"
   type: Gems
+  retired: true
+  description: |
+    Was used (in conjunction with govuk_crawler_worker) to crawl and take a local
+    copy of GOV.UK, to synchronise upstream with the S3 and GCP mirrors.
+    Replaced by govuk-mirror in October 2023.
 
 - repo_name: govuk_sidekiq
   team: "#govuk-publishing-platform"
