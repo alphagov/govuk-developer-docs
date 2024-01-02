@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-google-analytics - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-google-analytics (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -14,21 +14,21 @@
 
       <meta name="description" content="Everything about govuk-google-analytics (Documentation and tools for GOV.UK and others that describes
 the approach taken when converting from Universal Analytics (UA)
-to Google Analytics 4 (GA4).
+to Google Analytics 4 (GA4). Retired in Jan 2024, content moved to govuk-developer-docs
 )" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-google-analytics - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-google-analytics (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics.html" />
 
       <meta property="og:description" content="Everything about govuk-google-analytics (Documentation and tools for GOV.UK and others that describes
 the approach taken when converting from Universal Analytics (UA)
-to Google Analytics 4 (GA4).
+to Google Analytics 4 (GA4). Retired in Jan 2024, content moved to govuk-developer-docs
 )" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-google-analytics" />
+      <meta property="og:title" content="Repository: govuk-google-analytics (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics.html" />
 
@@ -376,77 +376,13 @@ to Google Analytics 4 (GA4).
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-google-analytics</h1>
+  <h1 class="page-title">Repository: govuk-google-analytics (retired)</h1>
 
-  <p>Documentation and tools for GOV.UK and others that describes
+  <p>This application is retired.</p>
+<p><p>Documentation and tools for GOV.UK and others that describes
 the approach taken when converting from Universal Analytics (UA)
-to Google Analytics 4 (GA4).</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-google-analytics">govuk-google-analytics</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/analytics_team">#analytics_team</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk-google-analytics" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk-google-analytics.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-google-analytics')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-google-analytics-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Google Tag Manager(GTM) is a tag management system that lets users configure and instantly deploy tags. Almost anyone - with the right access permissions - will be able (and encouraged) to make changes to the GTM configuration by creating new versions as befits the needs. Although GTM is fairly robust in preventing tag configuration errors, breaking changes may still occur.</p>
-
-<p>We want to ensure that changes made to the GTM configuration do not cause adverse effects, so we have decided to create and maintain a backup, in this repo, that is isolated from the GTM from which we can recover to a working state should the need arise.</p>
-
-<h2 id="documentation">Documentation</h2>
-
-<p>Our current implementation is documented at <a href="https://alphagov.github.io/govuk-google-analytics">https://alphagov.github.io/govuk-google-analytics</a>.</p>
-
-<p>To modify this documentation, see <code>docs/README.md</code>.</p>
-<p></div></p>
+to Google Analytics 4 (GA4). Retired in Jan 2024, content moved to govuk-developer-docs</p></p>
+<p><a href="https://github.com/alphagov/govuk-google-analytics">GitHub repository</a></p>
 
 
             
