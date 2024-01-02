@@ -285,6 +285,20 @@ auto_merge:
 <pre><code>bundle exec rspec
 </code></pre>
 
+<h3 id="using-the-merger-locally">Using the merger locally</h3>
+
+<p>The repo expects an <code>AUTO_MERGE_TOKEN</code> environment variable to be defined. This should be a GitHub API token <a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/docs/adr/03-access-token-scope.md">with sufficient scope</a>.</p>
+
+<p>You can then run the merger with:</p>
+
+<pre><code>bundle exec ruby bin/merge_dependabot_prs.rb
+</code></pre>
+
+<p>The repo also ships with a &ldquo;doctor&rdquo; script to help you to debug individual PRs and why they did or did not auto-merge.</p>
+
+<pre><code>bundle exec ruby bin/pr_doctor.rb https://github.com/alphagov/content-data-api/pull/1996
+</code></pre>
+
 <h3 id="further-documentation">Further documentation</h3>
 
 <ul>
