@@ -3,6 +3,9 @@ layout: core
 title: Dashboard
 source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/dashboard.yml
 ---
+<% content_for :head do %>
+  <%= partial 'partials/cookie_wrapper' %>
+<% end %>
 
 <% content_for :sidebar do %>
   <ul>
