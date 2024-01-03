@@ -17,36 +17,13 @@
   <% meta_tags.opengraph_tags.each do |property, content| %>
     <%= tag :meta, property: property, content: content %>
   <% end %>
-  <script src="/javascripts/cookie-consent.js"></script>
+  <%= partial 'partials/cookie_wrapper' %>
 </head>
 
 <body class="govuk-template__body ">
   <script>
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
   </script>
-
-  <div id="cookiebanner" class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on GOV.UK GA4 Implementation record">
-    <div class="govuk-cookie-banner__message govuk-width-container">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
-          <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on GOV.UK GA4 Implementation record</h2>
-          <div class="govuk-cookie-banner__content">
-            <p class="govuk-body">We use some essential cookies to make this service work.</p>
-            <p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
-          </div>
-        </div>
-      </div>
-      <div class="govuk-button-group">
-        <button value="accept" type="button" name="cookies" class="govuk-button" data-module="govuk-button" onclick="window.GOVUK.gtm.acceptCookies()">
-          Accept analytics cookies
-        </button>
-        <button value="reject" type="button" name="cookies" class="govuk-button" data-module="govuk-button" onClick="window.GOVUK.gtm.denyCookies()">
-          Reject analytics cookies
-        </button>
-        <a class="govuk-link" href="/analytics/cookies.html">View cookies</a>
-      </div>
-    </div>
-  </div>
 
   <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
 
