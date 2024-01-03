@@ -6,41 +6,47 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: content-store-proxy - GOV.UK Developer Documentation</title>
+    <title>Repository: content-store-proxy (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/content-store-proxy.html">
 
       <meta name="description" content="Everything about content-store-proxy (A temporary proxy to aid with the migration of content-store from
-MongoDB to PostgreSQL. On integration, we have two versions of content-store
-running side-by-side, one on each database. The proxy sits in front of them,
-forwards all incoming requests to its PRIMARY_UPSTREAM (currently the MongoDB
-version) and returns that response, but also replays the request to its
-SECONDARY_UPSTREAM (currently the PostgreSQL version). This allows us to
-compare the responses from both versions in order to satisfy ourselves that
-the two are completely equivalent and address any differences, before we
-migrate production.
+MongoDB to PostgreSQL. We had two versions of content-store
+running side-by-side, one using each database. The proxy sat in front of them,
+forwarding all incoming requests to its PRIMARY_UPSTREAM (at first the MongoDB
+version, later PostgreSQL) and returned that response. It also replayed the 
+request to its SECONDARY_UPSTREAM (at first the PostgreSQL version, later 
+MongoDB). This allowed us to compare the responses from both versions to 
+satisfy ourselves that the two were completely equivalent and address any 
+differences, before we migrated production.
+
+The migration was completed in December 2023, and the proxy repo was archived
+on 3rd Jan 2024.
 )" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: content-store-proxy - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: content-store-proxy (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/content-store-proxy.html" />
 
       <meta property="og:description" content="Everything about content-store-proxy (A temporary proxy to aid with the migration of content-store from
-MongoDB to PostgreSQL. On integration, we have two versions of content-store
-running side-by-side, one on each database. The proxy sits in front of them,
-forwards all incoming requests to its PRIMARY_UPSTREAM (currently the MongoDB
-version) and returns that response, but also replays the request to its
-SECONDARY_UPSTREAM (currently the PostgreSQL version). This allows us to
-compare the responses from both versions in order to satisfy ourselves that
-the two are completely equivalent and address any differences, before we
-migrate production.
+MongoDB to PostgreSQL. We had two versions of content-store
+running side-by-side, one using each database. The proxy sat in front of them,
+forwarding all incoming requests to its PRIMARY_UPSTREAM (at first the MongoDB
+version, later PostgreSQL) and returned that response. It also replayed the 
+request to its SECONDARY_UPSTREAM (at first the PostgreSQL version, later 
+MongoDB). This allowed us to compare the responses from both versions to 
+satisfy ourselves that the two were completely equivalent and address any 
+differences, before we migrated production.
+
+The migration was completed in December 2023, and the proxy repo was archived
+on 3rd Jan 2024.
 )" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: content-store-proxy" />
+      <meta property="og:title" content="Repository: content-store-proxy (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/content-store-proxy.html" />
 
@@ -195,121 +201,21 @@ migrate production.
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: content-store-proxy</h1>
+  <h1 class="page-title">Repository: content-store-proxy (retired)</h1>
 
-  <p>A temporary proxy to aid with the migration of content-store from
-MongoDB to PostgreSQL. On integration, we have two versions of content-store
-running side-by-side, one on each database. The proxy sits in front of them,
-forwards all incoming requests to its PRIMARY_UPSTREAM (currently the MongoDB
-version) and returns that response, but also replays the request to its
-SECONDARY_UPSTREAM (currently the PostgreSQL version). This allows us to
-compare the responses from both versions in order to satisfy ourselves that
-the two are completely equivalent and address any differences, before we
-migrate production.</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/content-store-proxy">content-store-proxy</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-publishing-platform">#govuk-publishing-platform</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">APIs</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-content-store-proxy" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/content-store-proxy.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:content-store-proxy')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:content-store-proxy-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Mirroring proxy to enable dual-running of MongoDB &amp; PostgreSQL versions of content-store during migration</p>
-
-<p>It will forward all incoming requests to the given <code>PRIMARY_UPSTREAM</code> and <code>SECONDARY_UPSTREAM</code> URLs in parallel, and return the primary response. Once both upstream responses have been received, it will log a line comparing the two, e.g.</p>
-
-<pre><code>&gt; curl http://localhost:4567/api/content/government/publications/care-act-statutory-guidance/care-and-support-statutory-guidance
-...
-
-{"timestamp":"2023-10-05T12:00:56Z","level":"info","method":"GET","path":"/api/content/government/publications/care-act-statutory-guidance/care-and-support-statutory-guidance","query_string":"","stats":{"primary_response":{"status":200,"body_size":1773132,"time":0.095294816},"secondary_response":{"status":200,"body_size":1773132,"time":0.101621268},"first_difference":"N/A","different_keys":"N/A"}}
-
-</code></pre>
-
-<p>Any errors on the secondary response are ignored and do not interfere with the primary response.</p>
-
-<h2 id="secondary-response-timeouts">Secondary response timeouts</h2>
-
-<p>As the secondary response is never served to the user, but the proxy has to wait for both responses to complete before it can compare them, it&rsquo;s possible that a very slow secondary upstream can still lead to downstream ill-effects.</p>
-
-<p>So a timeout can be set on the secondary response only, using the environment variable <code>SECONDARY_TIMEOUT_SECONDS=(float or integer)</code>.  If the secondary response takes longer than this many seconds,
-it will be ignored, and logged as <code>"secondary_response": null</code>, with a log level of <code>"info"</code>.</p>
-
-<h2 id="detailed-response-comparison-and-cpu-load">Detailed Response Comparison and CPU-load</h2>
-
-<p>Note: comparing the responses is CPU-intensive, and so must be used with care on highly-contended environments like production. For a given percentage of requests, a full comparison will be run which will populate the <code>first_difference</code> and <code>different_keys</code> keys. The percentage is controlled by the environment variable <code>COMPARISON_SAMPLE_PCT</code>. The default value for this is <code>0</code> - to compare, say, one in ten requests you would supply <code>COMPARISON_SAMPLE_PCT=10</code>.</p>
-
-<p>The full comparison looks like this:</p>
-
-<pre><code>{"timestamp":"2023-10-06T09:50:42Z","level":"warn","method":"GET","path":"/content/foreign-travel-advice","query_string":"","stats":{"primary_response":{"status":200,"body_size":327029,"time":0.180271175},"secondary_response":{"status":200,"body_size":327018,"time":0.132149683},"first_difference":{"position":181900,"context":["vice/czech-","vice/gabon\""]},"different_keys":["links","updated_at"]}}
-</code></pre>
-
-<p><code>first_difference</code> gives the index of the first character which differs between the two responses, and the five characters either side of that position in each response.
-<code>different_keys</code> gives the names of all top-level keys in the two JSON structures which have different values.</p>
-
-<h1 id="to-run">To run</h1>
-
-<p>On your <em>local host</em>, run:</p>
-
-<pre><code>PRIMARY_UPSTREAM=http://content-store.dev.gov.uk SECONDARY_UPSTREAM=http://content-store-on-postgresql.dev.gov.uk bundle exec rackup config.rb -p4567 
-</code></pre>
-
-<p>This will create a proxy server at <a href="http://localhost:4567/">http://localhost:4567/</a> , which will forward all requests to both of the upstream services, and return the primary upstream response.</p>
-
-<p>For instance, given the example upstream URLs above, this request:</p>
-
-<pre><code>curl http://localhost:4567/api/content/
-</code></pre>
-
-<p>will forward to  <a href="http://content-store.dev.gov.uk/api/content/">http://content-store.dev.gov.uk/api/content/</a> (primary) and <a href="http://content-store-on-postgresql.dev.gov.uk/api/content/">http://content-store-on-postgresql.dev.gov.uk/api/content/</a>, and return the primary response.</p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>A temporary proxy to aid with the migration of content-store from
+MongoDB to PostgreSQL. We had two versions of content-store
+running side-by-side, one using each database. The proxy sat in front of them,
+forwarding all incoming requests to its PRIMARY_UPSTREAM (at first the MongoDB
+version, later PostgreSQL) and returned that response. It also replayed the
+request to its SECONDARY_UPSTREAM (at first the PostgreSQL version, later
+MongoDB). This allowed us to compare the responses from both versions to
+satisfy ourselves that the two were completely equivalent and address any
+differences, before we migrated production.</p>
+<p>The migration was completed in December 2023, and the proxy repo was archived
+on 3rd Jan 2024.</p></p>
+<p><a href="https://github.com/alphagov/content-store-proxy">GitHub repository</a></p>
 
 
             
