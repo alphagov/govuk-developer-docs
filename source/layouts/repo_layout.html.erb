@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= partial 'partials/cookie_wrapper' %>
+<% end %>
+
 <% content_for :sidebar do %>
   <ul>
     <li>
@@ -28,7 +32,7 @@
         <%
               end # end of `docs_subdirs` iteration
             end # end of add_imported_docs lambda definition
-  
+
             imported_docs = GitHubRepoFetcher.instance.docs(repo.repo_name)
             unless imported_docs.nil? || imported_docs.empty?
               add_imported_docs.call(imported_docs)
