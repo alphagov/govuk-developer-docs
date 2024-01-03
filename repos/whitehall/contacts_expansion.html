@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Tips for working on whitehall locally - GOV.UK Developer Documentation</title>
+    <title>whitehall: How does Whitehall handle contact expansion in govspeak? - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/tips_for_local_development.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/contacts_expansion.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Tips for working on whitehall locally - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/tips_for_local_development.html" />
+      <meta name="twitter:title" content="whitehall: How does Whitehall handle contact expansion in govspeak? - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/contacts_expansion.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Tips for working on whitehall locally" />
+      <meta property="og:title" content="whitehall: How does Whitehall handle contact expansion in govspeak?" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/tips_for_local_development.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/contacts_expansion.html" />
 
     
   </head>
@@ -218,67 +218,42 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/9feaafe457a9e8db636f1bd234184cafd7fd6b00">18 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/bcbf5dfb49775441002e698c311aad69101db047">23 Nov 2023</a>
 </div>
 
-  <h1 class="page-title">whitehall: Tips for working on whitehall locally</h1>
+  <h1 class="page-title">whitehall: How does Whitehall handle contact expansion in govspeak?</h1>
 
   
-<h2 id="installing-whitehall-gems-locally">Installing Whitehall gems locally</h2>
-<p>Sometimes it’s useful to install Whitehall on bare metal, outside of the standard <code>govuk-docker</code> environment.</p>
-<p>Annoyingly, just running <code>bundle install</code> can result in an error where it fails to install the <code>mysql2</code> gem. It tries to build it but fails when it can’t find some required system libraries.</p>
-<h3 id="this-can-be-resolved-by">This can be resolved by:</h3>
+<p>See also:</p>
+<ul>
+<li><a href="https://gov-uk.atlassian.net/wiki/spaces/WH/pages/17989791/Proposal+How+to+handle+dynamic+govspeak+elements">Proposal: How to handle dynamic govspeak elements (2014)</a></li>
+<li><a href="https://github.com/alphagov/whitehall/pull/2009">https://github.com/alphagov/whitehall/pull/2009</a></li>
+</ul>
+<h2 id="context">Context</h2>
+<p>Whitehall allows publishers to reference contact information inline in govspeak, using syntax like this:</p>
+<pre><code>You can send a letter to the Government Digital Service at:
+
+[Contact:1858]
+</code></pre>
+<p>This will be automatically expanded to the full address (The White Chapel Building, 10 Whitechapel High Street…) when the document is published.</p>
+<p>If the user puts an ID that doesn't exist in the [Contact:XXX] expression, it will be silently removed from the output.</p>
+<p>Any documents referencing this contact will be automatically republished whenever the contact is updated.</p>
+<p>If a contact is deleted, documents referencing that contact won't be automatically updated, but when they're next published they'll switch to silently removing the contact block, as the ID is no longer referenced. This is probably a bug, but it hasn't been noticed because contacts are rarely deleted.</p>
+<p>A similar approach is used to allow editions to link to other editions which are still in draft, and automatically handle updates to the URL path (/ slug).</p>
+<h2 id="how-does-a-document-know-which-contacts-it-references">How does a document know which contacts it references?</h2>
+<p>There's a <a href="https://github.com/alphagov/whitehall/blob/3b933df9ae/lib/govspeak/contacts_extractor.rb#L12">ContactsExtractor</a> class, which scans govspeak for elements matching the <a href="https://github.com/alphagov/whitehall/blob/3b933df9ae/lib/govspeak/embedded_content_patterns.rb#L3">/[Contact:([0-9]+)]/</a> regex.</p>
+<p>This is used to pull out a list of dependant contacts, which are stored on the Edition by the <a href="https://github.com/alphagov/whitehall/blob/3b933df9ae/app/services/service_listeners/edition_dependencies_populator.rb#L10">EditionDependenciesPopulator</a>. This code is <a href="https://github.com/alphagov/whitehall/blob/3b933df9ae/config/initializers/edition_services.rb#L21-L23">subscribed to publish / withdraw events</a>.</p>
+<p>When an Edition is published, we call <a href="https://github.com/alphagov/whitehall/blob/3b933df9ae/app/helpers/govspeak_helper.rb#L119C23-L119C23">render_embedded_contacts</a>, which <a href="https://github.com/alphagov/whitehall/blob/3b933df9ae/app/helpers/govspeak_helper.rb#L167-L173">finds the dependencies again</a> and expands them.</p>
+<p>Ultimately, the Edition model has <a href="https://github.com/alphagov/whitehall/blob/3b933df9ae/app/models/edition.rb#L45C13-L45C35">a has_many relationship with Contacts through an EditionDependencies table</a>.</p>
+<h2 id="how-does-the-code-know-to-republish-dependant-documents-when-a-contact-changes">How does the code know to republish dependant documents when a contact changes?</h2>
+<p>There's a <a href="https://github.com/alphagov/whitehall/blob/3b933df9ae/lib/dependable.rb#L1">Dependable module</a>, which adds a "has_many :dependent_editions" relation to models.</p>
+<p>The Contact model <a href="https://github.com/alphagov/whitehall/blob/3b933df9ae/app/models/contact.rb#L17C17-L17C45">has an after_update callback</a> which calls <a href="https://github.com/alphagov/whitehall/blob/3b933df9ae/lib/dependable.rb#L12-L19">republish_dependent_editions</a> (provided by the Dependable module). This sends each dependent edition to publishing-api, which involves expanding the contacts in govspeak.</p>
+<h2 id="notes-on-this-architecture">Notes on this architecture</h2>
 <ol>
-<li><code>brew install mysql2 openssl@3</code></li>
-<li>Add the following to <code>~/.bundle/config</code>:</li>
+<li>Changes to contacts which trigger updates to dependent Editions don't appear in the history of those Editions - there are no change notes, or records of any kind showing the change.</li>
+<li>Contacts themselves aren't edition-able, so there's no way to create a circular dependency (although there is for linked draft editions, but that's a separate topic)</li>
 </ol>
-<pre lang="jsx"><code>BUNDLE_BUILD__MYSQL2: "--with-opt-dir=/opt/homebrew/opt/openssl@3 --with-ldflags=-L/opt/homebrew/Cellar/zstd/1.5.2/lib"
-</code></pre>
-<ol>
-<li>
-<code>bundle install</code> should now succeed.</li>
-</ol>
-<p><strong>Note:</strong> this assumes you’re on an M1 Mac, where <code>brew --prefix</code> is <code>/opt/homebrew</code>. The paths will be different on Intel Macs, but hopefully the logic is the same.</p>
-<h2 id="running-linters-locally">Running linters locally</h2>
-<p>Once you have the gems running you can run the ruby and javascript linters without using docker:</p>
-<pre><code>bundle exec rake lint
-</code></pre>
-<p>This is a good idea before pushing, unless you have an IDE that checks linters, or you have run a full test suite (which also runs them inside docker)</p>
-<h2 id="running-an-individual-test-file">Running an individual test file</h2>
-<pre><code>govuk-docker-run bundle exec rake test TEST=path/to/test/file
-</code></pre>
-<pre><code>govuk-docker-run cucumber path/to/cucumber/test
-</code></pre>
-<h2 id="changing-local-user-permissions-flags">Changing local user permissions / flags</h2>
-<p>User permissions double in some cases as feature flags - see <a href="https://github.com/alphagov/whitehall/blob/main/app/models/user.rb#LL16C7-L16C7">Permissions in the User model</a> for valid permission values</p>
-<p>So if you want to view the next release UI, you need to be logged in as a user with the "Preview next release" permission.</p>
-<p>To change permissions on a dev machine, run the following to open a rails console:</p>
-<pre lang="bash"><code>govuk-docker run whitehall-lite rails console
-</code></pre>
-<p>In development you are logged in as the first user - in the console you can find that user and see their permissions:</p>
-<pre lang="rb"><code>&gt; user = User::first()
-&gt; user.permissions
- ["Editor", "GDS Editor", "Import CSVs", "signin"]
-</code></pre>
-<p>You can, for example, add the "Preview next release" permission as follows:</p>
-<pre lang="rb"><code>&gt; user = User::first()
-&gt; user.permissions &lt;&lt;= User::Permissions::PREVIEW_NEXT_RELEASE
-&gt; user.save!
-</code></pre>
-<p>Similarly you can remove permissions by removing them from user.permissions:</p>
-<pre lang="rb"><code>&gt; user = User::first()
-&gt; user.permissions.reject! { |p| p == User::Permissions::PREVIEW_NEXT_RELEASE }
-&gt; user.save!
-</code></pre>
-<p>If you reload a Whitehall page in your browser, the new permissions should be used immediately.</p>
 
 
             
@@ -286,8 +261,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/tips_for_local_development.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Ftips_for_local_development.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/contacts_expansion.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fcontacts_expansion.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
