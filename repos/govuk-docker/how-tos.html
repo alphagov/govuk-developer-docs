@@ -205,7 +205,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/11ee28f98c021cebe66317699df076de47f606b8">4 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/c8d085c05e6fe24332e98d1b13fc322b69ca9daf">4 Jan 2024</a>
 </div>
 
   <h1 class="page-title">govuk-docker: How To's</h1>
@@ -249,7 +249,7 @@ gds aws govuk-integration-poweruser --assume-role-ttl 180m ./bin/replicate-postg
 gds aws govuk-integration-readonly --assume-role-ttl 180m ./bin/replicate-postgresql.sh content-publisher
 </code></pre>
 <p>All the scripts, other than <code>replicate-elasticsearch.sh</code>, take the name of the app to replicate data for.</p>
-<p>Draft data can be replicated with <code>replicate-mongodb.sh draft-content-store</code> and <code>replicate-mongodb.sh draft-router</code>.</p>
+<p>Draft data can be replicated with <code>replicate-postgresql.sh draft-content-store</code> and <code>replicate-mongodb.sh draft-router</code>.</p>
 <p>If you want to download data without importing it, set the <code>SKIP_IMPORT</code> environment variable (to anything).</p>
 <h2 id="how-to-set-environment-variables">How to: set environment variables</h2>
 <p>While most environment variables should be set in the config for a project, sometimes it's necessary to set assign one or more variables at the point of running a command, such as a Rake task. This can be done using <code>env</code> e.g.</p>
