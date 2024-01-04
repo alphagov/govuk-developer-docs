@@ -197,7 +197,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/search-api-v2/commit/ab0d9789fbb45153e3ff76b053905a0a835e658f">24 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/search-api-v2/commit/e1c265be15c0a61b2bedff5627b46af11589ca4f">4 Jan 2024</a>
 </div>
 
   <h1 class="page-title">search-api-v2: Development Tips</h1>
@@ -209,7 +209,7 @@ to add a new integration test JSON fixture.</p>
 <p><strong>Solution</strong>: Obtain a Rails console on integration <code>publishing-api</code> and execute the following:</p>
 <pre lang="ruby"><code>edition = Document.find_by(content_id: "&lt;CONTENT-UUID&gt;").live
 payload = DownstreamPayload.new(edition, "12345").message_queue_payload # "12345" is the payload ID
-payload.to_json
+puts payload.to_json
 </code></pre>
 
 
