@@ -265,22 +265,18 @@ updates the Discovery Engine dataset accordingly</li>
 <p>The official way of running this application locally is through <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker</a>, where
 a project is defined for it. Because this application is deeply integrated with a SaaS product, you
 will have to have access to a GCP Discovery Engine engine to be able to do anything more meaningful
-than running the test suite.</p>
+than running the test suite. <code>govuk-docker</code> will do this for you by configuring the <code>DISCOVERY_ENGINE_SERVING_CONFIG</code> and <code>DISCOVERY_ENGINE_DATASTORE_BRANCH</code> environment variables your in local set-up to point to integration.</p>
 
-<p>If you work on the GOV.UK team, you should be able to add a development engine for yourself through
-<a href="https://github.com/alphagov/search-v2-infrastructure"><code>search-v2-infrastructure</code></a> and configure your local setup accordingly.</p>
+<p>You can run the application from within the <code>govuk-docker</code> repository directory as follows:</p>
 
-<p>Otherwise, you can create your own Discovery Engine engine in GCP and provide the engine&rsquo;s serving
-config path and datastore branch.</p>
+<h3 id="building-search-api-v2">Building search-api-v2</h3>
 
-<p>You can then run the application from within the <code>govuk-docker</code> repository directory as follows:</p>
+<pre lang="bash"><code>make search-api-v2
+</code></pre>
 
-<pre lang="bash"><code># Add these to your "dotfiles" for convenience, or just export them in your terminal session if you
-# prefer:
-export DISCOVERY_ENGINE_SERVING_CONFIG=...
-export DISCOVERY_ENGINE_DATASTORE_BRANCH=...
+<h3 id="running-search-api-v2">Running search-api-v2</h3>
 
-make search-api-v2
+<pre lang="bash"><code>gcloud auth application-default login
 govuk-docker up -d search-api-v2-app # or search-api-v2-lite if you just want to run tests
 </code></pre>
 
