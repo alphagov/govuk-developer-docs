@@ -20,59 +20,70 @@ layout: core
       </h2>
     </legend>
 
-    <div class="cookie-settings__confirmation" data-cookie-confirmation="true">
-      <%= GovukPublishingComponents.render("govuk_publishing_components/components/success_alert", {
-        message: data.cookies.cookies.success
+    <div class="cookie-js-info">
+      <div class="cookie-settings__confirmation" data-cookie-confirmation="true">
+        <%= GovukPublishingComponents.render("govuk_publishing_components/components/success_alert", {
+          message: data.cookies.cookies.success
+        }) %>
+      </div>
+
+      <p class="govuk-body"><%= data.cookies.cookies.types %></p>
+
+      <% cookies_usage_hint = capture do %>
+        <% data.cookies.cookies.hints.each do |hint| %>
+          <p class="govuk-body govuk-hint"><%= hint %></p>
+        <% end %>
+        <ul class="govuk-list--bullet govuk-hint">
+          <% data.cookies.cookies.hints_list.each do |item| %>
+            <li><%= item %></li>
+          <% end %>
+        </ul>
+        <p class="govuk-body govuk-hint"><%= data.cookies.cookies.hint %></p>
+      <% end %>
+
+      <%= GovukPublishingComponents.render("govuk_publishing_components/components/radio", {
+        heading: data.cookies.cookies.cookies_usage,
+        heading_size: "s",
+        hint: cookies_usage_hint.html_safe,
+        name: "cookies-usage",
+        id_prefix: "cookies-usage",
+        items: [
+          {
+            value: "on",
+            text: data.cookies.cookies.cookies_on
+          },
+          {
+            value: "off",
+            text: data.cookies.cookies.cookies_off
+          }
+        ]
+      }) %>
+
+      <%= GovukPublishingComponents.render("govuk_publishing_components/components/heading", {
+        text: data.cookies.cookies.strictly,
+        heading_level: 2,
+        font_size: "s",
+        margin_bottom: 2
+      }) %>
+
+      <% data.cookies.cookies.strictly_desc.each do |item| %>
+        <p class="govuk-body"><%= item %></p>
+      <% end %>
+
+      <%= GovukPublishingComponents.render("govuk_publishing_components/components/button", {
+        text: data.cookies.cookies.save,
+        type: "submit",
+        classes: "js-set-cookie-consent"
       }) %>
     </div>
-
-    <p class="govuk-body"><%= data.cookies.cookies.types %></p>
-
-    <% cookies_usage_hint = capture do %>
-      <% data.cookies.cookies.hints.each do |hint| %>
-        <p class="govuk-body govuk-hint"><%= hint %></p>
-      <% end %>
-      <ul class="govuk-list--bullet govuk-hint">
-        <% data.cookies.cookies.hints_list.each do |item| %>
-          <li><%= item %></li>
-        <% end %>
-      </ul>
-      <p class="govuk-body govuk-hint"><%= data.cookies.cookies.hint %></p>
-    <% end %>
-
-    <%= GovukPublishingComponents.render("govuk_publishing_components/components/radio", {
-      heading: data.cookies.cookies.cookies_usage,
-      heading_size: "s",
-      hint: cookies_usage_hint.html_safe,
-      name: "cookies-usage",
-      id_prefix: "cookies-usage",
-      items: [
-        {
-          value: "on",
-          text: data.cookies.cookies.cookies_on
-        },
-        {
-          value: "off",
-          text: data.cookies.cookies.cookies_off
-        }
-      ]
-    }) %>
   </fieldset>
 
-  <%= GovukPublishingComponents.render("govuk_publishing_components/components/heading", {
-    text: data.cookies.cookies.strictly,
-    heading_level: 2,
-    font_size: "s",
-    margin_bottom: 2
-  }) %>
-
-  <% data.cookies.cookies.strictly_desc.each do |item| %>
-    <p class="govuk-body"><%= item %></p>
-  <% end %>
-
-  <%= GovukPublishingComponents.render("govuk_publishing_components/components/button", {
-    text: data.cookies.cookies.save,
-    type: "submit",
-    classes: "js-set-cookie-consent"
-  }) %>
+  <div class="cookie-nojs-info">
+    <p><% data.cookies.cookies.nojs.overview %></p>
+    <ul class="govuk-list--bullet">
+      <% data.cookies.cookies.nojs.list.each do |item| %>
+        <li><%= item %></li>
+      <% end %>
+    </ul>
+  </div>
 </form>
