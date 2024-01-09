@@ -35,7 +35,7 @@ hours if you are on-call.
 The GOV.UK Programme Team on-call will give you:
 
 - the [type of emergency banner](#types-of-emergency-banners):
-  `notable-death`, `national-emergency` or `local-emergency`
+  notable death, national emergency or local emergency.
 - text for the heading
 
 They may optionally also give you:
@@ -46,24 +46,13 @@ They may optionally also give you:
 
 ### 2. Deploy the banner
 
-1. Set the banner content as environment variables in your shell.
+Navigate to one of the following locations in Whitehall Publisher and enter the details as provided:
 
-    > You may need to escape certain characters (including `,` and `"`) with a
-    > backslash. For example `\,` or `\"`.
+- [Integration](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/emergency_banner)
+- [Staging](https://whitehall-admin.staging.publishing.service.gov.uk/government/admin/emergency_banner)
+- [Production](https://whitehall-admin.publishing.service.gov.uk/government/admin/emergency_banner)
 
-    ```bash
-    CAMPAIGN_CLASS="notable-death|national-emergency|local-emergency"
-    HEADING="replace with heading"
-    SHORT_DESCRIPTION="replace with description"
-    LINK="replace with link"
-    LINK_TEXT="replace with link text"
-    ```
-
-1. Run the Rake task, passing it the environment variables.
-
-    ```bash
-    kubectl -n apps exec deploy/static -- rake "emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]"
-    ```
+> You must have GDS Admin permission for Whitehall Publisher in order to deploy the emergency banner.
 
 ### 3. Check that the banner works
 
@@ -100,11 +89,13 @@ If the banner doesn't show, see [Troubleshoot the emergency banner](#troubleshoo
 
 ## Remove an emergency banner
 
-Run the `emergency_banner:remove` Rake task.
+Navigate to one of the following locations in Whitehall Publisher and press the "Remove banner" button:
 
-```bash
-kubectl -n apps exec deploy/static -- rake emergency_banner:remove
-```
+- [Integration](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/emergency_banner)
+- [Staging](https://whitehall-admin.staging.publishing.service.gov.uk/government/admin/emergency_banner)
+- [Production](https://whitehall-admin.publishing.service.gov.uk/government/admin/emergency_banner)
+
+> You must have GDS Admin permission for Whitehall Publisher in order to remove the emergency banner.
 
 ---
 
@@ -114,8 +105,8 @@ kubectl -n apps exec deploy/static -- rake emergency_banner:remove
 
 - The information for the emergency banner is stored in a Redis key as a Ruby
   hash (key-value map).
-- A [Rake task in
-  Static](https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake)
+- A [controller in
+  Whitehall](https://github.com/alphagov/whitehall/blob/main/app/controllers/admin/emergency_banner_controller.rb)
   sets or removes the Redis key.
 - Static is responsible for reading the data from Redis and rendering a partial
   page from a template.
@@ -142,8 +133,8 @@ in frontend rendering apps, in Static, or in your browser.
 1. Check the banner is present in the page template from Static
    ([staging](https://assets.staging.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb),
    [production](https://assets.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb)).
-1. [Inspect the Redis key](#inspect-the-redis-key) to check whether the Rake
-   task stored the banner data successfully.
+1. [Inspect the Redis key](#inspect-the-redis-key) to check whether the banner
+   data was stored successfully.
 1. Try forcing a [rollout of Static](/manual/deploy-static.html), to eliminate
    any temporary state stored in Static.
 1. Try clearing the frontend memcache. Log into the AWS web console for the
