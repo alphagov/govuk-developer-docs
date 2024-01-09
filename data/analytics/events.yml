@@ -363,11 +363,28 @@
 - name: details elements
   events:
     - name: details expanded/collapsed
-      implemented: false
+      implemented: true
       priority: medium
+      examples:
+        - text: Government organisations
+          link: https://www.gov.uk/government/organisations
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: opened/closed
+        - name: event_name
+          value: select_content
+        - name: index
+          value:
+          - name: index_section
+          - name: index_section_count
+        - name: section
+        - name: text
+        - name: type
+          value: detail
 
 - name: email alerts and rss subscriptions
   events:
