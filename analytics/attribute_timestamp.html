@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Data schemas | GOV.UK GA4 Implementation record</title>
+  <title>Timestamp attribute data | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/schema.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_timestamp.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/schema.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_timestamp.html" />
   <script src="/javascripts/cookie-consent.js"></script>
 </head>
 
@@ -137,26 +137,78 @@
           </ul>
         </div>
         <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
-          <h1 class="govuk-heading-l">
-  Data schemas
+          
+<h1 class="govuk-heading-l">
+  <span class="govuk-caption-l">Attribute</span>
+  timestamp
 </h1>
 
-<p class="govuk-body">
-  This page shows our complete schemas for our different events.
+<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Name
+      </dt>
+      <dd class="govuk-summary-list__value">
+          timestamp
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Description
+      </dt>
+      <dd class="govuk-summary-list__value">
+          The user's unix timestamp during a dataLayer push. Performance Analysts use this to sort dataLayer pushes from a user in a sequential order.
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Value
+      </dt>
+      <dd class="govuk-summary-list__value">
+          
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Example
+      </dt>
+      <dd class="govuk-summary-list__value">
+          1704796270204
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Required
+      </dt>
+      <dd class="govuk-summary-list__value">
+          false
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Type
+      </dt>
+      <dd class="govuk-summary-list__value">
+          string
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Redact
+      </dt>
+      <dd class="govuk-summary-list__value">
+          <a href="/analytics/pii.html" class="govuk-link">false</a>
+      </dd>
+    </div>
 
-</p>
-<p><h2 class="govuk-heading-m analytics-heading">event schema</h2>
-  <div class="govuk-inset-text">
-    <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_action.html' class='govuk-link'>action</a>: undefined</li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: undefined</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: undefined</li><li>index: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_index_link.html' class='govuk-link'>index_link</a>: undefined</li><li><a href='/analytics/attribute_index_section.html' class='govuk-link'>index_section</a>: undefined</li><li><a href='/analytics/attribute_index_section_count.html' class='govuk-link'>index_section_count</a>: undefined</li></ul></li><li><a href='/analytics/attribute_index_total.html' class='govuk-link'>index_total</a>: undefined</li><li><a href='/analytics/attribute_length.html' class='govuk-link'>length</a>: undefined</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: undefined</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: undefined</li><li><a href='/analytics/attribute_percent_scrolled.html' class='govuk-link'>percent_scrolled</a>: undefined</li><li><a href='/analytics/attribute_section.html' class='govuk-link'>section</a>: undefined</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: undefined</li><li><a href='/analytics/attribute_tool_name.html' class='govuk-link'>tool_name</a>: undefined</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: undefined</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: undefined</li><li><a href='/analytics/attribute_video_current_time.html' class='govuk-link'>video_current_time</a>: undefined</li><li><a href='/analytics/attribute_video_percent.html' class='govuk-link'>video_percent</a>: undefined</li></ul></li><li><a href='/analytics/attribute_timestamp.html' class='govuk-link'>timestamp</a>: (user&rsquo;s unix timestamp)</li></ul>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Used by
+    </dt>
+    <dd class="govuk-summary-list__value">
+    </dd>
   </div>
-  <h2 class="govuk-heading-m analytics-heading">page view schema</h2>
-  <div class="govuk-inset-text">
-    <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: page_view</li><li>page_view: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_ab_test.html' class='govuk-link'>ab_test</a>: undefined</li><li><a href='/analytics/attribute_browse_topic.html' class='govuk-link'>browse_topic</a>: undefined</li><li><a href='/analytics/attribute_content_id.html' class='govuk-link'>content_id</a>: undefined</li><li><a href='/analytics/attribute_cookie_banner.html' class='govuk-link'>cookie_banner</a>: undefined</li><li><a href='/analytics/attribute_devolved_nations_banner.html' class='govuk-link'>devolved_nations_banner</a>: undefined</li><li><a href='/analytics/attribute_document_type.html' class='govuk-link'>document_type</a>: undefined</li><li><a href='/analytics/attribute_dynamic.html' class='govuk-link'>dynamic</a>: undefined</li><li><a href='/analytics/attribute_emergency_banner.html' class='govuk-link'>emergency_banner</a>: undefined</li><li><a href='/analytics/attribute_first_published_at.html' class='govuk-link'>first_published_at</a>: undefined</li><li><a href='/analytics/attribute_history.html' class='govuk-link'>history</a>: undefined</li><li><a href='/analytics/attribute_intervention.html' class='govuk-link'>intervention</a>: undefined</li><li><a href='/analytics/attribute_language.html' class='govuk-link'>language</a>: undefined</li><li><a href='/analytics/attribute_location.html' class='govuk-link'>location</a>: undefined</li><li><a href='/analytics/attribute_navigation_list_type.html' class='govuk-link'>navigation_list_type</a>: undefined</li><li><a href='/analytics/attribute_navigation_page_type.html' class='govuk-link'>navigation_page_type</a>: undefined</li><li><a href='/analytics/attribute_organisations.html' class='govuk-link'>organisations</a>: undefined</li><li><a href='/analytics/attribute_phase_banner.html' class='govuk-link'>phase_banner</a>: undefined</li><li><a href='/analytics/attribute_political_status.html' class='govuk-link'>political_status</a>: undefined</li><li><a href='/analytics/attribute_primary_publishing_organisation.html' class='govuk-link'>primary_publishing_organisation</a>: undefined</li><li><a href='/analytics/attribute_public_updated_at.html' class='govuk-link'>public_updated_at</a>: undefined</li><li><a href='/analytics/attribute_publishing_app.html' class='govuk-link'>publishing_app</a>: undefined</li><li><a href='/analytics/attribute_publishing_government.html' class='govuk-link'>publishing_government</a>: undefined</li><li><a href='/analytics/attribute_query_string.html' class='govuk-link'>query_string</a>: undefined</li><li><a href='/analytics/attribute_referrer.html' class='govuk-link'>referrer</a>: undefined</li><li><a href='/analytics/attribute_rendering_app.html' class='govuk-link'>rendering_app</a>: undefined</li><li><a href='/analytics/attribute_schema_name.html' class='govuk-link'>schema_name</a>: undefined</li><li><a href='/analytics/attribute_search_term.html' class='govuk-link'>search_term</a>: undefined</li><li><a href='/analytics/attribute_spelling_suggestion.html' class='govuk-link'>spelling_suggestion</a>: undefined</li><li><a href='/analytics/attribute_status_code.html' class='govuk-link'>status_code</a>: undefined</li><li><a href='/analytics/attribute_step_navs.html' class='govuk-link'>step_navs</a>: undefined</li><li><a href='/analytics/attribute_taxonomy_all.html' class='govuk-link'>taxonomy_all</a>: undefined</li><li><a href='/analytics/attribute_taxonomy_all_ids.html' class='govuk-link'>taxonomy_all_ids</a>: undefined</li><li><a href='/analytics/attribute_taxonomy_level1.html' class='govuk-link'>taxonomy_level1</a>: undefined</li><li><a href='/analytics/attribute_taxonomy_main.html' class='govuk-link'>taxonomy_main</a>: undefined</li><li><a href='/analytics/attribute_taxonomy_main_id.html' class='govuk-link'>taxonomy_main_id</a>: undefined</li><li><a href='/analytics/attribute_title.html' class='govuk-link'>title</a>: undefined</li><li><a href='/analytics/attribute_updated_at.html' class='govuk-link'>updated_at</a>: undefined</li><li><a href='/analytics/attribute_viewport_size.html' class='govuk-link'>viewport_size</a>: undefined</li><li><a href='/analytics/attribute_withdrawn.html' class='govuk-link'>withdrawn</a>: undefined</li><li><a href='/analytics/attribute_world_locations.html' class='govuk-link'>world_locations</a>: undefined</li></ul></li><li><a href='/analytics/attribute_timestamp.html' class='govuk-link'>timestamp</a>: (user&rsquo;s unix timestamp)</li></ul>
-  </div>
-  <h2 class="govuk-heading-m analytics-heading">ecommerce schema</h2>
-  <div class="govuk-inset-text">
-    <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: search_results</li><li>search_results: <ul class='govuk-list indented-list'><li>ecommerce: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_items.html' class='govuk-link'>items</a>: undefined</li></ul></li><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: select_item / view_item_list</li><li><a href='/analytics/attribute_results.html' class='govuk-link'>results</a>: undefined</li><li><a href='/analytics/attribute_sort.html' class='govuk-link'>sort</a>: undefined</li><li><a href='/analytics/attribute_term.html' class='govuk-link'>term</a>: undefined</li></ul></li><li><a href='/analytics/attribute_timestamp.html' class='govuk-link'>timestamp</a>: (user&rsquo;s unix timestamp)</li></ul>
-  </div></p>
+</dl>
 
         </div>
       </div>
