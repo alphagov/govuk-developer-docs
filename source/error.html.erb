@@ -5,6 +5,10 @@ hide_from_sitemap: true
 index: false
 ---
 
+<% content_for :head do %>
+  <%= partial 'partials/cookie_wrapper' %>
+<% end %>
+
 <%= partial "partials/header" %>
 
 If you entered a web address, please check it was correct.
