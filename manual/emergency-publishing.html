@@ -229,7 +229,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7352f4f4fd9ef8bff6178793421f5fa0c102df01">9 Jan 2024</a>
 </div>
 
  <h1 id='header'>Deploy an emergency banner</h1> <p>In emergencies, GOV.UK can display important information in a banner at the top
@@ -256,7 +256,7 @@ hours if you are on-call.</p>
 
 <ul>
 <li>the <a href="#types-of-emergency-banners">type of emergency banner</a>:
-<code>notable-death</code>, <code>national-emergency</code> or <code>local-emergency</code></li>
+notable death, national emergency or local emergency.</li>
 <li>text for the heading</li>
 </ul>
 <p>They may optionally also give you:</p>
@@ -266,24 +266,17 @@ hours if you are on-call.</p>
 <li>a URL for users to find more information (a relative URL if it&rsquo;s on www.gov.uk)</li>
 <li>alternative link text for the &ldquo;More information&rdquo; link</li>
 </ul>
-<h3 id='2-deploy-the-banner'>2. Deploy the banner</h3>
-<ol>
-<li><p>Set the banner content as environment variables in your shell.</p>
+<h3 id='2-deploy-the-banner'>2. Deploy the banner</h3><p>Navigate to one of the following locations in Whitehall Publisher and enter the details as provided:</p>
+
+<ul>
+<li><a href="https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/emergency_banner">Integration</a></li>
+<li><a href="https://whitehall-admin.staging.publishing.service.gov.uk/government/admin/emergency_banner">Staging</a></li>
+<li><a href="https://whitehall-admin.publishing.service.gov.uk/government/admin/emergency_banner">Production</a></li>
+</ul>
 
 <blockquote>
-<p>You may need to escape certain characters (including <code>,</code> and <code>&quot;</code>) with a
-backslash. For example <code>\,</code> or <code>\&quot;</code>.</p>
+<p>You must have GDS Admin permission for Whitehall Publisher in order to deploy the emergency banner.</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">CAMPAIGN_CLASS</span><span class="o">=</span><span class="s2">"notable-death|national-emergency|local-emergency"</span>
-<span class="nv">HEADING</span><span class="o">=</span><span class="s2">"replace with heading"</span>
-<span class="nv">SHORT_DESCRIPTION</span><span class="o">=</span><span class="s2">"replace with description"</span>
-<span class="nv">LINK</span><span class="o">=</span><span class="s2">"replace with link"</span>
-<span class="nv">LINK_TEXT</span><span class="o">=</span><span class="s2">"replace with link text"</span>
-</code></pre></div></li>
-<li><p>Run the Rake task, passing it the environment variables.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec </span>deploy/static <span class="nt">--</span> rake <span class="s2">"emergency_banner:deploy[</span><span class="nv">$CAMPAIGN_CLASS</span><span class="s2">,</span><span class="nv">$HEADING</span><span class="s2">,</span><span class="nv">$SHORT_DESCRIPTION</span><span class="s2">,</span><span class="nv">$LINK</span><span class="s2">,</span><span class="nv">$LINK_TEXT</span><span class="s2">]"</span>
-</code></pre></div></li>
-</ol>
 <h3 id='3-check-that-the-banner-works'>3. Check that the banner works</h3><p>Most GOV.UK pages have a cache <code>max-age</code> of 5 minutes. After deploying the
 emergency banner you should expect to see the banner on all GOV.UK pages within
 10 minutes.</p>
@@ -315,16 +308,25 @@ emergency, green for local emergency</li>
 <li><a href="https://www.gov.uk/government/organisations/hm-revenue-customs">https://www.gov.uk/government/organisations/hm-revenue-customs</a> (<a href="https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs">staging</a>)</li>
 <li><a href="https://www.gov.uk/search">https://www.gov.uk/search</a> (<a href="https://www-origin.staging.publishing.service.gov.uk/search">staging</a>)</li>
 </ul>
-<h2 id='remove-an-emergency-banner'>Remove an emergency banner</h2><p>Run the <code>emergency_banner:remove</code> Rake task.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec </span>deploy/static <span class="nt">--</span> rake emergency_banner:remove
-</code></pre></div>
+<h2 id='remove-an-emergency-banner'>Remove an emergency banner</h2><p>Navigate to one of the following locations in Whitehall Publisher and press the &ldquo;Remove banner&rdquo; button:</p>
+
+<ul>
+<li><a href="https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/emergency_banner">Integration</a></li>
+<li><a href="https://whitehall-admin.staging.publishing.service.gov.uk/government/admin/emergency_banner">Staging</a></li>
+<li><a href="https://whitehall-admin.publishing.service.gov.uk/government/admin/emergency_banner">Production</a></li>
+</ul>
+
+<blockquote>
+<p>You must have GDS Admin permission for Whitehall Publisher in order to remove the emergency banner.</p>
+</blockquote>
+
 <hr>
 <h2 id='troubleshoot-the-emergency-banner'>Troubleshoot the emergency banner</h2><h3 id='background'>Background</h3>
 <ul>
 <li>The information for the emergency banner is stored in a Redis key as a Ruby
 hash (key-value map).</li>
-<li>A <a href="https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake">Rake task in
-Static</a>
+<li>A <a href="https://github.com/alphagov/whitehall/blob/main/app/controllers/admin/emergency_banner_controller.rb">controller in
+Whitehall</a>
 sets or removes the Redis key.</li>
 <li>Static is responsible for reading the data from Redis and rendering a partial
 page from a template.</li>
@@ -353,8 +355,8 @@ GOV.UK.</li>
 <li>Check the banner is present in the page template from Static
 (<a href="https://assets.staging.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb">staging</a>,
 <a href="https://assets.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb">production</a>).</li>
-<li><a href="#inspect-the-redis-key">Inspect the Redis key</a> to check whether the Rake
-task stored the banner data successfully.</li>
+<li><a href="#inspect-the-redis-key">Inspect the Redis key</a> to check whether the banner
+data was stored successfully.</li>
 <li>Try forcing a <a href="/manual/deploy-static.html">rollout of Static</a>, to eliminate
 any temporary state stored in Static.</li>
 <li>Try clearing the frontend memcache. Log into the AWS web console for the
