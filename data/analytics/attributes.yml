@@ -438,6 +438,13 @@
   type: string
   redact: true
 
+- name: timestamp
+  description: The user's unix timestamp during a dataLayer push. Performance Analysts use this to sort dataLayer pushes from a user in a sequential order.
+  example: "1704796270204"
+  required: no
+  type: string
+  redact: false
+
 - name: type
   description: Relates to the top level attribute of event_name but contains a value that we have defined.
   example:
