@@ -1,0 +1,11 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    <% markup = capture do %>
+      <%= partial 'partials/cookie_banner' %>
+    <% end %>
+    var markup = `<%= markup.squish %>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>

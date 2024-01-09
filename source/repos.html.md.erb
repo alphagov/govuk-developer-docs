@@ -2,6 +2,10 @@
 title: All GOV.UK repositories
 ---
 
+<% content_for :head do %>
+  <%= partial 'partials/cookie_wrapper' %>
+<% end %>
+
 # All GOV.UK repositories
 
 GOV.UK maintains at least <%= Repos.active.size %> repositories including apps, services, gems and documentation.
