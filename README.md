@@ -37,6 +37,16 @@ env SKIP_PROXY_PAGES=true ./startup.sh
 
 Disabling proxy pages means you'll get a "Not Found" error if you try to access them locally.
 
+You can test the GitHub OAuth aspects of the Developer Docs by running the startup script above in one shell, and then running the following in another shell:
+
+```
+OAUTH2_PROXY_CLIENT_ID=abc123456 OAUTH2_PROXY_CLIENT_SECRET=def789101112 ./startup_local_auth.sh
+```
+
+You'll need to swap out the client ID and secret. Create an OAuth app at <https://github.com/settings/developers>, with a Homepage URL of <http://localhost:8088> and an Authorization Callback URL of <http://localhost:8088/oauth2/callback>.
+
+Try visiting `http://localhost:8088/private/example.html` and you'll be prompted to sign in with GitHub.
+
 ### Testing the app
 
 ```
