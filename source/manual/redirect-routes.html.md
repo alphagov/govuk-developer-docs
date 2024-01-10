@@ -269,7 +269,7 @@ In `publishing-api`, delete the reservation that makes sure that the route can't
 PathReservation.find_by(base_path: "/example-path").delete
 ```
 
-In `content-store` _and_ the `content-store-draft`, remove the content item that used in inhabit the URL:
+In `content-store` _and_ the `draft-content-store`, remove the content item that used in inhabit the URL:
 
 ```ruby
 ContentItem.find_by(base_path: "/example-path").delete
