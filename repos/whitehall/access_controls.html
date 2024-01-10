@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Link Checker API Integrations - GOV.UK Developer Documentation</title>
+    <title>whitehall: Access controls for editions - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/link_checker_api_integration.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/access_controls.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Link Checker API Integrations - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/link_checker_api_integration.html" />
+      <meta name="twitter:title" content="whitehall: Access controls for editions - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/access_controls.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Link Checker API Integrations" />
+      <meta property="og:title" content="whitehall: Access controls for editions" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/link_checker_api_integration.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/access_controls.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -229,30 +229,27 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/de2799bd1ee5d54003bbba8266f886cbdc71205e">4 Dec 2017</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/63c01b79ba5865587705878e761504ee6da86608">10 Jan 2024</a>
 </div>
 
-  <h1 class="page-title">whitehall: Link Checker API Integrations</h1>
+  <h1 class="page-title">whitehall: Access controls for editions</h1>
 
   
-<p>Links on an edition are checked using the <a href="https://github.com/alphagov/link-checker-api/blob/master/docs/api.md">LinkChecker API</a>. Links are checked when the <code>Check Links</code> button is clicked on the edition show page. This fires off a request to the Link Checker API using the <a href="https://github.com/alphagov/link-checker-api/blob/master/docs/api.md#post-batch"><code>/create_batch</code></a> endpoint. Once this has checked all the links present in the edition it makes a callback with a <a href="https://github.com/alphagov/link-checker-api/blob/master/docs/api.md#batchreport-entity"><code>batch_report</code></a> that gets saved as a <code>LinkCheckerApiReport</code>.</p>
-<h2 id="models">Models</h2>
-<h3 id="linkcheckerapireports">LinkCheckerApiReports</h3>
-<p>The <code>LinkCheckerApiReports</code> are returned by the API contain a <a href="https://github.com/alphagov/link-checker-api/blob/master/docs/api.md#linkreport-entity">report</a> of all the links present in an edition.</p>
-<h3 id="linkcheckerapireportlinks">LinkCheckerApiReportLinks</h3>
-<p>These are saved as <code>LinkCheckerApiReportLinks</code>. These contain <a href="https://github.com/alphagov/link-checker-api/blob/master/docs/api.md#linkreport-entity">information</a> on the warnings or errors on the links, including a <code>suggested_fix</code>.</p>
-<p>The <code>LinkCheckerApiReport</code> is displayed on the admin page with a list of the broken links found on the edition.</p>
-<h2 id="workers">Workers</h2>
-<p>The <code>CheckAllOrganisationsLinksWorker</code> is a scheduled worker that runs nightly at 2 a.m. it queues up individual link checking tasks for each organisation using <code>CheckOrganisationLinksWorker</code></p>
-<p><code>CheckOrganisationLinksWorker</code> uses the <a href="https://github.com/alphagov/whitehall/blob/master/app/services/link_checker_api_service.rb#L10">LinkCheckerApiService#check_links</a> calls the <a href="https://github.com/alphagov/link-checker-api/blob/master/docs/api.md#post-batch"><code>create batch endpoint</code></a> in the LinkCheckerApi. The callback and the subsequent link check report creation happen as per the on-demand check.</p>
+<p>Publishers can limit access for a document on current editions edit page. This is used to keep sensitive data private prior to the publication
+of documents.</p>
+<p>When access is limited, only users that belong one of the lead or supporting organisations assigned to the document will be able to access it.</p>
+<p>On 2ndline, we often get requests involving documents which have limited access. These tend to fall into 2 categories:</p>
+<ul>
+<li>A Publisher has limited the access to the document but limited it to the wrong organisation</li>
+<li>There is an issue/bug with a document that has limited access</li>
+</ul>
+<p>Previously we have dealt with these requests by investigating the issues via console.</p>
+<p>GDS Admins can now update access control for these documents by searching for the document on the document search page and clicking the "Edit access" link.</p>
+<p>This page allows you to update the editions associated organisations and/or remove limited access completely. If you make changes on this
+page you will be required to provide an editorial remark that will be used to audit the change.</p>
+<p>If you need to investigate an issue with the document you can add temporarily gain access to the document by adding GDS as a supporting organisation, then removing it
+once you've completed your investigation.</p>
 
 
             
@@ -260,8 +257,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/link_checker_api_integration.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Flink_checker_api_integration.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/access_controls.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Faccess_controls.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
