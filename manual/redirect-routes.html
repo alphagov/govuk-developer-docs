@@ -231,7 +231,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec01fb1564b3bb2cf9e0ea1cde531c20c6f03ff3">5 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/87c10b3970f6a0b0d63941842fb71e9a8ae4b01b">10 Jan 2024</a>
 </div>
 
  <h1 id='header'>Redirect a route</h1> <p>There are a number of different ways of applying redirects on GOV.UK.
@@ -385,7 +385,7 @@ kubectl config use-context &lt;your-context-name&gt;
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Route</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">incoming_path: </span><span class="s2">"/example-path"</span><span class="p">).</span><span class="nf">delete</span>
 </code></pre></div><p>In <code>publishing-api</code>, delete the reservation that makes sure that the route can&rsquo;t be used by any other app:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">PathReservation</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">base_path: </span><span class="s2">"/example-path"</span><span class="p">).</span><span class="nf">delete</span>
-</code></pre></div><p>In <code>content-store</code> <em>and</em> the <code>content-store-draft</code>, remove the content item that used in inhabit the URL:</p>
+</code></pre></div><p>In <code>content-store</code> <em>and</em> <code>draft-content-store</code>, remove the content item that used to inhabit the URL:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">ContentItem</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">base_path: </span><span class="s2">"/example-path"</span><span class="p">).</span><span class="nf">delete</span>
 </code></pre></div><p>You should now be able to replace the route with another one.
 For documents published in Mainstream Publisher, update and republish the content that should now sit at <code>/example-path</code>.</p>
