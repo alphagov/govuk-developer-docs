@@ -219,15 +219,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/3ed51279ba5bf2f324e8677b1df9fd8c33f56811">27 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/b9376ab528dcf5a05faa6d8908d7eaf21bd4ba67">8 Jan 2024</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Available endpoints</h1>
@@ -290,6 +283,18 @@ for subscriptions to individual pages or pieces of guidance.</li>
 <p>Gets the stored subscriber list with the given ID.</p>
 <p>It will respond with the JSON response for the <code>GET</code> call above.</p>
 <p>Returns a <code>404 Not Found</code> if there is no such list.</p>
+<h3 id="get-subscriber-listsmetricspath"><code>GET /subscriber-lists/metrics/*path</code></h3>
+<p>Looks for a subscriber list with a matching path and returns the
+active subscriber list count (or 0 if the list is empty or does
+not exist), and performs a content change query on the path and
+also returns that value (or 0 if the path doesn't generate email
+alerts or there are no subscribers):</p>
+<pre lang="json"><code>{
+  "subscriber_list_count": 12,
+  "all_notify_count": 26
+}
+</code></pre>
+<p>Always returns 200.</p>
 <h3 id="patch-subscriber-listsxxx"><code>PATCH /subscriber-lists/xxx</code></h3>
 <p>Update data that helps describe the subscriber list, such as the title.
 It requires at least one parameter to update.</p>
