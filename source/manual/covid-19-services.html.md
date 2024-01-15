@@ -30,7 +30,6 @@ a copy.
 
 - [Original GitHub Repository](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form)
 - [Information on how to bring this service back to life](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/master/docs/how-to-bring-back-this-service.md)
-- [PaaS deployment YAML file](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/76ba8ce4e6b08bc2a7c3cc6acb9cdaea35530933/concourse/tasks/deploy-to-govuk-paas.yml) for [restoring the PaaS infrastructure](#restoring-the-paas-infrastructure)
 - [Concourse pipeline YAML definition file](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/master/concourse/pipeline.yml) for restoring the Concourse pipeline
 - Here are screenshots of the [required settings](https://drive.google.com/file/d/1kNoWpiF494Yng6HNc_wz2R_WyRpFs6y8/view?usp=sharing) and [optional settings](https://drive.google.com/file/d/12gs79eNyy7CUb3fmOTcpaSNojdX0LME8/view?usp=sharing) to recreate the Pingdom check
 - [Restoring the Sentry error monitor](https://drive.google.com/file/d/1olTHkQwwq0mlMWsg3BOyjwFy2xhuzcf9/view?usp=sharing)
@@ -75,20 +74,6 @@ gds aws govuk-production-poweruser aws s3api head-object --bucket govuk-producti
 - [Smart Answers GitHub Repository](https://github.com/alphagov/smart-answers/blob/main/lib/smart_answer_flows/find-coronavirus-support.rb)
 - [Original GitHub Repository](https://github.com/alphagov/govuk-coronavirus-find-support)
 - [Restoring the AWS infrastructure](https://github.com/alphagov/covid-engineering/pull/890)
-
-## Restoring the PaaS infrastructure
-
-Details on how to restore or recreate the PaaS infrastructure can be
-found [here](https://docs.cloud.service.gov.uk/#gov-uk-platform-as-a-service).
-
-Here are a series of screenshots that may assist with the recreation process:
-
-- [Organisations](https://drive.google.com/file/d/1K_2GYVEMFkhSIbMeH1vnh2kooawih-RK/view?usp=sharing)
-- [govuk-development-overview](https://drive.google.com/file/d/12HnBN-LYlXZXQS_voLkBfjUOXhMSy7fc/view?usp=sharing)
-- [Applications](https://drive.google.com/file/d/1lapanTMiEpDtJcOtcQrSX0fTp6CsdbjA/view?usp=sharing)
-- [Backing services](https://drive.google.com/file/d/1vd6JtUJxPqTz6kC4ShjkxL4SPa11Pqu4/view?usp=sharing)
-- [Business volunteer service](https://drive.google.com/file/d/1chsWl-MyAZKH00mrxFhkMCC0W35i7EMW/view?usp=sharing)
-- [Vulnerable people service](https://drive.google.com/file/d/17s-uCd1lvrzIkRqOebOgigM7jp0Vm07R/view?usp=sharing)
 
 ## Restoring the PagerDuty alert
 

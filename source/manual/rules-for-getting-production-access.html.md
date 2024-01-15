@@ -61,8 +61,6 @@ Before approving access, the sponsor should ensure that the engineer:
 - [Google Cloud Platform (GCP)](/manual/google-cloud-platform-gcp.html) access to role to manage [static mirrors](/manual/fall-back-to-mirror.html) and DNS
 - Signon "Super Admin" access in production
 - `engineer` and "Access all services" permissions in Fastly
-- GOV.UK PaaS [Space developer](https://docs.cloud.service.gov.uk/orgs_spaces_users.html#space-developer) and `Org manager`
-  access to all spaces in the [govuk_development](https://admin.cloud.service.gov.uk/organisations/f8718311-b9a4-49d3-b1c7-7c5345a74e35) and [data-gov-uk](https://admin.cloud.service.gov.uk/organisations/39c3d2c5-8809-4dcf-8cd6-a8f62923a295/users) organisations
 - [Sentry](https://sentry.io/settings/govuk/members/) "Admin" role to administer teams and projects
 
 The steps above are outlined in the [GOV.UK Production Admin template Trello card](https://trello.com/c/GIHPZi2o/382-production-admin-access-for-2nd-line), which is normally given whilst on 2nd line.
