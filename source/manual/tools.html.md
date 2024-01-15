@@ -60,12 +60,6 @@ Check out some of the [useful Kibana queries](kibana.html) to get an idea of wha
 
 Logs are sent to Kibana using [Filebeat](logging.html#filebeat).
 
-## Prometheus, Grafana and AlertManager for COVID-19 Forms
-
-The three coronavirus forms are hosted on the GOV.UK PaaS, so have had to diverge from the usual built-in GOV.UK infrastructure monitoring stack. Instead, these make use of the [GDS Prometheus for PaaS](https://reliability-engineering.cloudapps.digital/monitoring-alerts.html#metrics-and-alerting) service, with alerts routed through AlertManager and graphs displayed using Grafana.
-
-For more detailed information, read the [COVID-19 Services "alerting" page section](/manual/covid-19-services.html#alerting).
-
 ## On the blog
 
 - [Monitoring the GOV.UK infrastructure](https://gdstechnology.blog.gov.uk/2016/03/30/monitoring-the-gov-uk-infrastructure/)

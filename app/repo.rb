@@ -132,11 +132,7 @@ class Repo
   def deploy_url
     return if repo_data["deploy_url"] == false || [nil, "none", "heroku", "eks"].include?(production_hosted_on)
 
-    if production_hosted_on == "paas"
-      repo_data["deploy_url"]
-    else
-      "https://github.com/alphagov/govuk-app-deployment/blob/master/#{repo_name}/config/deploy.rb"
-    end
+    "https://github.com/alphagov/govuk-app-deployment/blob/master/#{repo_name}/config/deploy.rb"
   end
 
   def dashboard_url
