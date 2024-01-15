@@ -159,9 +159,6 @@
         <a href="#kibana"><span>Kibana</span></a>
       </li>
       <li>
-        <a href="#prometheus-grafana-and-alertmanager-for-covid-19-forms"><span>Prometheus, Grafana and AlertManager for COVID-19 Forms</span></a>
-      </li>
-      <li>
         <a href="#on-the-blog"><span>On the blog</span></a>
       </li>
     </ul>
@@ -214,7 +211,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1cf82f706e530da1c234a52f94ee2eded1b3ef67">15 Jan 2024</a>
 </div>
 
  <h1 id='header'>Tools: Icinga, Grafana and Graphite, Kibana and friends</h1> <h2 id='icinga'>Icinga</h2><p><a href="/manual/icinga.html">Icinga</a> is used to monitor alerts that we have set up.</p>
@@ -241,8 +238,6 @@ Some useful targets are:</p>
 <p>You can tweak the time range manually with the drop down at the top or by dragging on the timeline.</p>
 <p>Check out some of the <a href="/manual/kibana.html">useful Kibana queries</a> to get an idea of what&rsquo;s possible.</p>
 <p>Logs are sent to Kibana using <a href="/manual/logging.html#filebeat">Filebeat</a>.</p>
-<h2 id='prometheus-grafana-and-alertmanager-for-covid-19-forms'>Prometheus, Grafana and AlertManager for COVID-19 Forms</h2><p>The three coronavirus forms are hosted on the GOV.UK PaaS, so have had to diverge from the usual built-in GOV.UK infrastructure monitoring stack. Instead, these make use of the <a href="https://reliability-engineering.cloudapps.digital/monitoring-alerts.html#metrics-and-alerting">GDS Prometheus for PaaS</a> service, with alerts routed through AlertManager and graphs displayed using Grafana.</p>
-<p>For more detailed information, read the <a href="/manual/covid-19-services.html#alerting">COVID-19 Services &ldquo;alerting&rdquo; page section</a>.</p>
 <h2 id='on-the-blog'>On the blog</h2>
 <ul>
 <li><a href="https://gdstechnology.blog.gov.uk/2016/03/30/monitoring-the-gov-uk-infrastructure/">Monitoring the GOV.UK infrastructure</a></li>

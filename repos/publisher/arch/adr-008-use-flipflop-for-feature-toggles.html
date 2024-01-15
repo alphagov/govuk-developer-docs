@@ -1,9 +1,5 @@
 
 
-
-
-
-
 <!doctype html>
 <html lang="en" class="govuk-template no-js">
   <head>
@@ -11,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Restrict PaaS applications to GDS office IPs - GOV.UK Developer Documentation</title>
+    <title>publisher: ADR008 - Use Flipflop for feature toggles - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/restrict-paas-applications-to-gds-office-ips.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-008-use-flipflop-for-feature-toggles.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Restrict PaaS applications to GDS office IPs - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/restrict-paas-applications-to-gds-office-ips.html" />
+      <meta name="twitter:title" content="publisher: ADR008 - Use Flipflop for feature toggles - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-008-use-flipflop-for-feature-toggles.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Restrict PaaS applications to GDS office IPs" />
+      <meta property="og:title" content="publisher: ADR008 - Use Flipflop for feature toggles" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/restrict-paas-applications-to-gds-office-ips.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-008-use-flipflop-for-feature-toggles.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -83,13 +79,13 @@
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
             </li>
-            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+            <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/manual.html">Manual</a>
             </li>
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
             </li>
-            <li class="govuk-header__navigation-item">
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
               <a class="govuk-header__link" href="/apps.html">Apps</a>
             </li>
             <li class="govuk-header__navigation-item">
@@ -136,13 +132,28 @@
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
-  <ul>
-  <li>
-    <a href="#header"><span>Restrict PaaS applications to GDS office IPs</span></a>
-  </li>
-</ul>
-
+                  <ul>
+    <li>
+      <a href="/repos/publisher.html" rel="noopener" class="govuk-link">publisher</a>
+    </li>
+    <li>
+      <ul>
+          <li><a href="/repos/publisher/fact-checking.html" rel="noopener" class="govuk-link">Fact Checking</a></li>
+          <li><a href="/repos/publisher/simple-smart-answer.html" rel="noopener" class="govuk-link">Simple Smart Answer</a></li>
+          <li class="subdir__heading">arch</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/publisher/arch/adr-001-service-sign-in-pages-not-linked-to-with-content-id.html" rel="noopener" class="govuk-link">Decision record: Why Service sign in pages aren't linked to from transaction pages using a content id</a></li>
+              <li><a href="/repos/publisher/arch/adr-002-service-sign-in-new-format.html" rel="noopener" class="govuk-link">Decision record: Why "Service sign in" is its own format</a></li>
+              <li><a href="/repos/publisher/arch/adr-003-using-rake-to-create-service-sign-in-pages.html" rel="noopener" class="govuk-link">Decision record: Why "Service sign in" pages are created using rake tasks</a></li>
+              <li><a href="/repos/publisher/arch/adr-004-rendering-service-sign-in-from-government-frontend.html" rel="noopener" class="govuk-link">Decision record: Rendering Service Sign In pages using Government Frontend</a></li>
+              <li><a href="/repos/publisher/arch/adr-005-forking-frontend-components-from-govuk-frontend.html" rel="noopener" class="govuk-link">Decision record: Forking frontend components from GOV.UK Frontend</a></li>
+              <li><a href="/repos/publisher/arch/adr-006-use-mermaid-for-simple-smart-answer-visualisation.html" rel="noopener" class="govuk-link">ADR 006 - Use Mermaid for Simple Smart Answer Visualisation</a></li>
+              <li><a href="/repos/publisher/arch/adr-007-dont-use-asynchronous-javascript-for-simple-smart-answers.html" rel="noopener" class="govuk-link">ADR007 – Don’t use asynchronous javascript for simple smart answers</a></li>
+              <li><a href="/repos/publisher/arch/adr-008-use-flipflop-for-feature-toggles.html" rel="noopener" class="govuk-link">ADR008 - Use Flipflop for feature toggles</a></li>
+          </ul>
+      </ul>
+    </li>
+  </ul>
 
               </nav>
             </div>
@@ -150,8 +161,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+              
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -169,8 +179,16 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "PaaS",
-        "@id": "http://www.dev.gov.uk/manual.html#paas"
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "publisher",
+        "@id": "http://www.dev.gov.uk/repos/publisher.html"
       }
     }
   ]
@@ -180,48 +198,36 @@
 <div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#paas" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;PaaS&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#paas">PaaS</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/publisher.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;publisher&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/publisher.html">publisher</a>
         </li>
   </ol>
 </div>
-   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/publisher/commit/e68fe73791411c6711a3961a8e0de542c3451621">15 Jan 2024</a>
 </div>
 
- <h1 id='header'>Restrict PaaS applications to GDS office IPs</h1> <p>When deploying applications to the PaaS, it is possible to limit access to the application to GDS office IPs only.</p>
-<p>You need to create your application on the PaaS and then bind the route to the <a href="https://github.com/alphagov/govuk-paas-office-ip-router">GOV.UK PaaS Office IP route service</a>. The route service safelists GDS office IPs and will pass requests from office IPs through to your application on the PaaS.</p>
-<p>To bind the route to your application to the route service, do the following:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf bind-route-service cloudapps.digital govuk-paas-office-ip-router-service --hostname APP_NAME
-</code></pre></div><p>Comprehensive documentation can be found in the <a href="https://docs.cloud.service.gov.uk/deploying_services/route_services/#example-route-service-to-add-ip-address-authentication">PaaS tech docs</a>.</p>
+  <h1 class="page-title">publisher: ADR008 - Use Flipflop for feature toggles</h1>
 
-
-  <div class='related-content'>
-
-    <h3>More in the PaaS section</h3>
-
-    <div class='govuk-grid-row'>
-
-        <div class='govuk-grid-column-one-half'>
-          <h4>How to...</h4>
-
-          <ul class="govuk-list">
-            <li><a href="/manual/put-paas-app-behind-cloudfront-cdn.html">Put a PaaS application behind Cloudfront CDN</a></li>
-          </ul>
-        </div>
-
-    </div>
-</div>
+  
+<p>Date 2024-01-12</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="context">Context</h2>
+<p>As part of the migration of Mainstream Publisher away from Bootstrap and towards the GOV.UK Design System, we wish to be able to have work-in-progress changes viewable in deployed environments (integration/staging/production) without impacting the majority of users. As part of <a href="https://trello.com/c/uNr9SzAE/599-spike-learn-about-the-flipflop-library">this spike</a> we investigated the use of <a href="https://github.com/voormedia/flipflop">Flipflop</a>, a gem for feature toggles in Rails applications, and which was <a href="https://github.com/alphagov/whitehall/pull/8446">recently introduced into Whitehall</a>.</p>
+<p>Flipflop provides a dashboard for viewing the status of toggles at the path <code>/flipflop</code>. By default this page is disabled in "production" (which for us would mean all deployed environments), but since we are not planning on putting anything sensitive behind the toggles we have chosen to remove that restriction and make the dashboard always available.</p>
+<p>Flipflop provides several different "strategies" for managing toggle status, which summarise to some form of database or cookies. In terms of databases, Active Record, Sequel, and Redis are supported. Since Mainstream Publisher uses MongoDB, which is not supported, we will not be able to store feature toggles in the database (Mainstream Publisher does also connect to a Redis instance, but we have not investigated using that). This leaves us with Cookies as the means to toggle features.</p>
+<h2 id="decision">Decision</h2>
+<p>We will use Flipflop for feature-toggling within Mainstream Publisher, and the dashboard for toggling features on and off will be available in all environments (users will only be able to toggle features on and off for themselves).</p>
+<h2 id="consequences">Consequences</h2>
+<p>By not restricting access to the toggles dashboard, any user would be able to enable/disable a toggle for themselves. This should not be an issue, since this would just mean a user could potentially view work-in-progress changes for transitioning pages to the design system.</p>
+<p>Without storing toggle status in a database, changing a toggle's status will either be per-user, dynamic, (which each user would be able to do dynamically, using the dashboard), or globally, static, by changing the default value in the <code>config/features.rb</code> file (which would require a run through of the deployment pipeline whenever this is changed).</p>
 
 
             
@@ -229,8 +235,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/restrict-paas-applications-to-gds-office-ips.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Restrict+PaaS+applications+to+GDS+office+IPs%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Frestrict-paas-applications-to-gds-office-ips.html%29&amp;labels=bug&amp;title=Re%3A+%27Restrict+PaaS+applications+to+GDS+office+IPs%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-008-use-flipflop-for-feature-toggles.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-008-use-flipflop-for-feature-toggles.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
