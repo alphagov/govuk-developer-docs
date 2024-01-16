@@ -120,9 +120,9 @@ associated with their account:
 11. Click 'Update profile'.
 12. Reply to the user to tell them that their email address has been changed, what the new password you set is and strongly advise them to change the password when they log in.
 
-> Email addresses in CKAN are case-sensitive, and this can cause problems. 
+> Email addresses in CKAN are case-sensitive, and this can cause problems.
 >
-> For example, if a user enters a lowercase email address into [the reset password form](https://ckan.publishing.service.gov.uk/user/reset), but their stored email address is mixed case, they won't receive the email. If this happens, tell them how it is stored and ask them to enter it with exactly the same case. 
+> For example, if a user enters a lowercase email address into [the reset password form](https://ckan.publishing.service.gov.uk/user/reset), but their stored email address is mixed case, they won't receive the email. If this happens, tell them how it is stored and ask them to enter it with exactly the same case.
 
 ### Updating a user account name
 
