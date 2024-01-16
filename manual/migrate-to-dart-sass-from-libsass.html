@@ -148,6 +148,9 @@
         <a href="#why-migrate-from-libsass"><span>Why migrate from LibSass?</span></a>
       </li>
       <li>
+        <a href="#prerequisites"><span>Prerequisites</span></a>
+      </li>
+      <li>
         <a href="#installation"><span>Installation</span></a>
       </li>
       <li>
@@ -245,11 +248,12 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f542687122a49d67fa1fbca2a195722febb9c97a">12 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/578ce4a27246833dd7fa48cb80e855211fc926ad">16 Jan 2024</a>
 </div>
 
  <h1 id='header'>Migrate to Dart Sass from LibSass</h1> <h2 id='what-is-dart-sass'>What is Dart Sass?</h2><p><a href="https://sass-lang.com/dart-sass/">Dart Sass is the primary implementation</a> of <a href="https://sass-lang.com/">Sass</a>, which means it gets new features before any other implementation.</p>
 <h2 id='why-migrate-from-libsass'>Why migrate from LibSass?</h2><p>LibSass is now <a href="https://sass-lang.com/blog/libsass-is-deprecated/">deprecated</a>.</p>
+<h2 id='prerequisites'>Prerequisites</h2><p>Applications which use <a href="https://github.com/alphagov/govuk_publishing_components">GOV.UK Publishing Components</a> should bundle version <a href="https://rubygems.org/gems/govuk_publishing_components">37.1.1</a> or above.</p>
 <h2 id='installation'>Installation</h2>
 <ol>
 <li>Update your <code>Gemfile</code> to replace <code>sassc-rails</code> with <code>dartsass-rails</code> and run <code>bundle install</code> (or with Docker: <code>govuk-docker-run bundle install</code>)</li>
@@ -259,9 +263,9 @@
 </span></code></pre></div><p><strong>Note</strong>, some dependencies of <code>sassc-rails</code> might be needed in your application. For example, <code>tilt</code> or <code>sprockets-rails</code> in which case you should manually add these dependencies to your <code>Gemfile</code>.</p>
 <h2 id='configuration'>Configuration</h2><h3 id='create-a-builds-folder'>Create a builds folder</h3><p>Create a <code>builds</code> folder: <code>app/assets/builds</code> and add a file named <code>.keep</code> in the corresponding folder.</p>
 <h3 id='ignoring-files'>Ignoring files</h3><p>Update <code>.gitignore</code> to ignore all files in the <code>builds</code> folder , but not <code>.keep</code>.</p>
-<div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gi">+ /app/assets/builds
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gi">+ /app/assets/builds/*
 + !/app/assets/builds/.keep
-</span></code></pre></div><h3 id='update-the-manifest-file'>Update the manifest file</h3><p>Remove references to CSS files from the Sprockets manifest file: <code>app/assets/config/manifest.js</code>.</p>
+</span></code></pre></div><h3 id='update-the-manifest-file'>Update the manifest file</h3><p>Delete references to your application CSS files from the Sprockets manifest file: <code>app/assets/config/manifest.js</code>.</p>
 <div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gd">- //= link application.css
 - //= link components/_component-1.css
 - //= link components/_component-2.css
@@ -272,24 +276,33 @@
 - //= link views/_view-3.css
 - //= link views/_view-4.css
 </span>  ...
-</code></pre></div><p>Add a <code>link_tree</code> directive to link all files in all subdirectories of the <code>builds</code> folder.</p>
+</code></pre></div><p><strong>Note</strong>, do not delete references to vendor CSS files (stylesheets placed in the <code>vendor/assets</code> folder) to ensure they are processed by Sprockets.</p>
+<p>Add a <code>link_tree</code> directive to link all files in all subdirectories of the <code>builds</code> folder.</p>
 <div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gi">+ //= link_tree ../builds
-</span></code></pre></div><h3 id='add-an-initializer'>Add an initializer</h3><p>Add an initializer which holds all Sass entry points. The hash key is the relative path to a Sass file in <code>app/assets/stylesheets/</code> and the hash value will be the name of the file output to <code>app/assets/builds/</code>. <strong>Note</strong>, if your application uses <a href="https://github.com/alphagov/govuk_publishing_components">GOV.UK Publishing Components</a>, and the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/set-up-individual-component-css-loading.md">stylesheets are individually loaded</a>, you will need to merge all entry points, including those from your application and those from GOV.UK Publishing Components).</p>
+</span></code></pre></div><h3 id='add-an-initializer'>Add an initializer</h3><p>If your stylesheets are not individually loaded, or if your application serves only one stylesheet, there’s no need to add a <code>builds</code> initializer since <a href="https://github.com/rails/dartsass-rails#configuring-builds">by default</a>, <code>app/assets/stylesheets/application.scss</code> will be compiled.</p>
+<p>Otherwise, create an initializer: <code>config/initializers/dartsass.rb</code>. This file will include all Sass entry points and build options.</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">dartsass</span><span class="p">.</span><span class="nf">builds</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"application.scss"</span> <span class="o">=&gt;</span> <span class="s2">"application.css"</span><span class="p">,</span>
+  <span class="s2">"components/_component-1.scss"</span> <span class="o">=&gt;</span> <span class="s2">"components/_component-1.css"</span><span class="p">,</span>
+  <span class="s2">"components/_component-2.scss"</span> <span class="o">=&gt;</span> <span class="s2">"components/_component-2.css"</span><span class="p">,</span>
+  <span class="s2">"views/_view-1.scss"</span> <span class="o">=&gt;</span> <span class="s2">"views/_view-1.css"</span><span class="p">,</span>
+  <span class="s2">"views/_view-2.scss"</span> <span class="o">=&gt;</span> <span class="s2">"views/_view-2.css"</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div><p>The hash key is the relative path to a Sass file in <code>app/assets/stylesheets/</code> and the hash value will be the name of the file output to <code>app/assets/builds/</code>.</p>
+<p><strong>Note</strong>, if your application uses GOV.UK Publishing Components, and the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/set-up-individual-component-css-loading.md">stylesheets are individually loaded</a>, you will need to merge all entry points, including those from your application and those from GOV.UK Publishing Components.</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">APP_STYLESHEETS</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"application.scss"</span> <span class="o">=&gt;</span> <span class="s2">"application.css"</span><span class="p">,</span>
   <span class="s2">"components/_component-1.scss"</span> <span class="o">=&gt;</span> <span class="s2">"components/_component-1.css"</span><span class="p">,</span>
   <span class="s2">"components/_component-2.scss"</span> <span class="o">=&gt;</span> <span class="s2">"components/_component-2.css"</span><span class="p">,</span>
-  <span class="s2">"components/_component-3.scss"</span> <span class="o">=&gt;</span> <span class="s2">"components/_component-3.css"</span><span class="p">,</span>
-  <span class="s2">"components/_component-4.scss"</span> <span class="o">=&gt;</span> <span class="s2">"components/_component-4.css"</span><span class="p">,</span>
   <span class="s2">"views/_view-1.scss"</span> <span class="o">=&gt;</span> <span class="s2">"views/_view-1.css"</span><span class="p">,</span>
   <span class="s2">"views/_view-2.scss"</span> <span class="o">=&gt;</span> <span class="s2">"views/_view-2.css"</span><span class="p">,</span>
-  <span class="s2">"views/_view-3.scss"</span> <span class="o">=&gt;</span> <span class="s2">"views/_view-3.css"</span><span class="p">,</span>
-  <span class="s2">"views/_view-4.scss"</span> <span class="o">=&gt;</span> <span class="s2">"views/_view-4.css"</span><span class="p">,</span>
-<span class="p">}</span>
+<span class="p">}.</span><span class="nf">freeze</span>
+
 <span class="n">all_stylesheets</span> <span class="o">=</span> <span class="no">APP_STYLESHEETS</span><span class="p">.</span><span class="nf">merge</span><span class="p">(</span><span class="no">GovukPublishingComponents</span><span class="o">::</span><span class="no">Config</span><span class="p">.</span><span class="nf">all_stylesheets</span><span class="p">)</span>
 <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">dartsass</span><span class="p">.</span><span class="nf">builds</span> <span class="o">=</span> <span class="n">all_stylesheets</span>
-</code></pre></div><p><strong>Note</strong>, if stylesheets are not individually loaded, there’s no need to add a <code>builds</code> initializer since <a href="https://github.com/rails/dartsass-rails#configuring-builds">by default</a>, <code>app/assets/stylesheets/application.scss</code> will be compiled.</p>
-<h3 id='delete-unused-sass-configuration'>Delete unused Sass configuration</h3><p>Delete Sass configuration previously added for <code>sassc-rails</code>.</p>
+</code></pre></div><p>Also, the initializer should <a href="#configuring-build-options">configure build options</a>, incorporating the <code>--quiet-deps</code> option which tells Sass to suppress dependency deprecation warnings.</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">dartsass</span><span class="p">.</span><span class="nf">build_options</span> <span class="o">&lt;&lt;</span> <span class="s2">" --quiet-deps"</span>
+</code></pre></div><h3 id='delete-unused-sass-configuration'>Delete unused Sass configuration</h3><p>Delete Sass configuration previously added for <code>sassc-rails</code>. Update <code>config/environments/production.rb</code> to delete</p>
 <div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gd">- config.sass.style = :compressed
 - config.sass.line_comments = false
 </span>  ...
@@ -300,46 +313,47 @@
 <ol>
 <li>Add <code>bin/dev</code></li>
 </ol>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="c1">#!/usr/bin/env sh</span>
-   <span class="k">if</span> <span class="o">!</span> <span class="n">gem</span> <span class="n">list</span> <span class="n">foreman</span> <span class="o">-</span><span class="n">i</span> <span class="o">--</span><span class="n">silent</span><span class="p">;</span> <span class="k">then</span>
-     <span class="n">echo</span> <span class="s2">"Installing foreman..."</span>
-     <span class="n">gem</span> <span class="n">install</span> <span class="n">foreman</span>
-   <span class="n">fi</span>
-   <span class="nb">exec</span> <span class="n">foreman</span> <span class="n">start</span> <span class="o">-</span><span class="n">f</span> <span class="no">Procfile</span><span class="p">.</span><span class="nf">dev</span> <span class="s2">"$@"</span>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="c1">#!/usr/bin/env sh</span>
+<span class="k">if</span> <span class="o">!</span> <span class="n">gem</span> <span class="n">list</span> <span class="n">foreman</span> <span class="o">-</span><span class="n">i</span> <span class="o">--</span><span class="n">silent</span><span class="p">;</span> <span class="k">then</span>
+  <span class="n">echo</span> <span class="s2">"Installing foreman..."</span>
+  <span class="n">gem</span> <span class="n">install</span> <span class="n">foreman</span>
+<span class="n">fi</span>
+<span class="nb">exec</span> <span class="n">foreman</span> <span class="n">start</span> <span class="o">-</span><span class="n">f</span> <span class="no">Procfile</span><span class="p">.</span><span class="nf">dev</span> <span class="s2">"$@"</span>
 </code></pre></div>
 <ol>
 <li>Add (or update) <code>procfile.dev</code></li>
 </ol>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="ss">web: </span><span class="n">bin</span><span class="o">/</span><span class="n">rails</span> <span class="n">server</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">3070</span>
-   <span class="ss">css: </span><span class="n">bin</span><span class="o">/</span><span class="n">rails</span> <span class="n">dartsass</span><span class="ss">:watch</span>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="ss">web: </span><span class="n">bin</span><span class="o">/</span><span class="n">rails</span> <span class="n">server</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">3070</span>
+<span class="ss">css: </span><span class="n">bin</span><span class="o">/</span><span class="n">rails</span> <span class="n">dartsass</span><span class="ss">:watch</span>
 </code></pre></div><p><strong>Note</strong>, the port number should match the one previously specified, in <code>startup.sh</code> and or <code>docker-compose.yml</code>, for running your Rails server.</p>
 
 <ol>
 <li>Update <code>startup.sh</code></li>
 </ol>
-<div class="highlight"><pre class="highlight diff" tabindex="0"><code>   if [[ $1 == "--live" ]] ; then
-     GOVUK_APP_DOMAIN=www.gov.uk \
-     GOVUK_WEBSITE_ROOT=https://www.gov.uk \
-     GOVUK_PROXY_STATIC_ENABLED=true \
-     PLEK_SERVICE_CONTENT_STORE_URI=${PLEK_SERVICE_CONTENT_STORE_URI-https://www.gov.uk/api} \
-     PLEK_SERVICE_STATIC_URI=${PLEK_SERVICE_STATIC_URI-https://assets.publishing.service.gov.uk} \
-     PLEK_SERVICE_SEARCH_API_URI=${PLEK_SERVICE_SEARCH_API_URI-https://www.gov.uk/api} \
-   - bundle exec rails s -p 3070
-   + ./bin/dev
-   else
-     ...
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="p">if [[ $1 == "--live" ]] ; then
+</span>  GOVUK_APP_DOMAIN=www.gov.uk \
+  GOVUK_WEBSITE_ROOT=https://www.gov.uk \
+  GOVUK_PROXY_STATIC_ENABLED=true \
+  PLEK_SERVICE_CONTENT_STORE_URI=${PLEK_SERVICE_CONTENT_STORE_URI-https://www.gov.uk/api} \
+  PLEK_SERVICE_STATIC_URI=${PLEK_SERVICE_STATIC_URI-https://assets.publishing.service.gov.uk} \
+  PLEK_SERVICE_SEARCH_API_URI=${PLEK_SERVICE_SEARCH_API_URI-https://www.gov.uk/api} \
+<span class="gd">- bundle exec rails s -p 3070
+</span><span class="gi">+ ./bin/dev
+</span><span class="p">else
+</span>  ...
 </code></pre></div>
 <ol>
 <li>In Docker, update <code>docker-compose.yml</code></li>
 </ol>
-<div class="highlight"><pre class="highlight diff" tabindex="0"><code>     expose:
-   -  - "3000"
-   - command: bin/rails s --restart
-   +  - "3070"
-   + command: ./bin/dev
-     ...
-</code></pre></div><h3 id='digests'>Digests</h3><p>To see the latest stylesheet changes when developing your application, if running Sass in watch mode, you&rsquo;ll have to turn off digests. Update <code>config/environments/development.rb</code> to add</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>  <span class="n">config</span><span class="p">.</span><span class="nf">assets</span><span class="p">.</span><span class="nf">digest</span> <span class="o">=</span> <span class="kp">false</span>
+<div class="highlight"><pre class="highlight diff" tabindex="0"><code>  expose:
+<span class="gd">-  - "3000"
+- command: bin/rails s --restart
+</span><span class="gi">+  - "3070"
++ command: ./bin/dev
+</span>  ...
+</code></pre></div><p><strong>Note</strong>, you might see a &lsquo;permission denied&rsquo; error when executing <code>startup.sh</code>. If this occurs, you&rsquo;ll need to modify the permissions for <code>bin/dev</code>. Navigate to the directory where the <code>bin/dev</code> script is located. Once you&rsquo;ve identified the script, use the <code>chmod</code> command to modify its permissions. For instance, to grant execute permission for the owner, you can use <code>chmod u+x bin/dev</code>.</p>
+<h3 id='digests'>Digests</h3><p>To see the latest stylesheet changes when developing your application, if running Sass in watch mode, you&rsquo;ll have to turn off digests. Update <code>config/environments/development.rb</code> to add</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">config</span><span class="p">.</span><span class="nf">assets</span><span class="p">.</span><span class="nf">digest</span> <span class="o">=</span> <span class="kp">false</span>
 </code></pre></div><p>See <a href="https://guides.rubyonrails.org/asset_pipeline.html#turning-digests-off">3.2 Turning Digests Off - The Asset Pipeline — Ruby on Rails Guides</a>.</p>
 <h2 id='troubleshooting'>Troubleshooting</h2><p>See <a href="https://github.com/rails/dartsass-rails#troubleshooting">common issues</a>.</p>
 <h3 id='other-issues'>Other issues</h3><h4 id='globs'>Globs</h4><p>Any form of pattern matching added for importing Sass files will not work. Sass files needs to be imported individually.</p>
@@ -365,7 +379,10 @@
 </code></pre></div><h2 id='pull-requests'>Pull requests</h2>
 <ul>
 <li><a href="https://github.com/alphagov/govuk_publishing_components/pull/3726">GOV.UK Publishing Components</a></li>
+<li><a href="https://github.com/alphagov/collections/pull/3447">Collections</a></li>
 <li><a href="https://github.com/alphagov/email-alert-frontend/pull/1655">Email Alert Frontend</a></li>
+<li><a href="https://github.com/alphagov/frontend/pull/3908">Frontend</a></li>
+<li><a href="https://github.com/alphagov/smart-answers/pull/6634">Smart Answers</a></li>
 <li><a href="https://github.com/alphagov/static/pull/3190">Static</a></li>
 </ul>
 
