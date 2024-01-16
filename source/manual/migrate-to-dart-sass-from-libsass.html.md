@@ -14,6 +14,10 @@ section: Frontend
 
 LibSass is now [deprecated](https://sass-lang.com/blog/libsass-is-deprecated/).
 
+## Prerequisites
+
+Applications which use [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components) should bundle version [37.1.1](https://rubygems.org/gems/govuk_publishing_components) or above.
+
 ## Installation
 
 1. Update your `Gemfile` to replace `sassc-rails` with `dartsass-rails` and run `bundle install` (or with Docker: `govuk-docker-run bundle install`)
@@ -36,13 +40,13 @@ Create a `builds` folder: `app/assets/builds` and add a file named `.keep` in th
 Update `.gitignore` to ignore all files in the `builds` folder , but not `.keep`.
 
 ```diff
-+ /app/assets/builds
++ /app/assets/builds/*
 + !/app/assets/builds/.keep
 ```
 
 ### Update the manifest file
 
-Remove references to CSS files from the Sprockets manifest file: `app/assets/config/manifest.js`.
+Delete references to your application CSS files from the Sprockets manifest file: `app/assets/config/manifest.js`.
 
 ```diff
 - //= link application.css
@@ -57,6 +61,8 @@ Remove references to CSS files from the Sprockets manifest file: `app/assets/con
   ...
 ```
 
+**Note**, do not delete references to vendor CSS files (stylesheets placed in the `vendor/assets` folder) to ensure they are processed by Sprockets.
+
 Add a `link_tree` directive to link all files in all subdirectories of the `builds` folder.
 
 ```diff
@@ -65,29 +71,46 @@ Add a `link_tree` directive to link all files in all subdirectories of the `buil
 
 ### Add an initializer
 
-Add an initializer which holds all Sass entry points. The hash key is the relative path to a Sass file in `app/assets/stylesheets/` and the hash value will be the name of the file output to `app/assets/builds/`. **Note**, if your application uses [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components), and the [stylesheets are individually loaded](https://github.com/alphagov/govuk_publishing_components/blob/main/docs/set-up-individual-component-css-loading.md), you will need to merge all entry points, including those from your application and those from GOV.UK Publishing Components).
+If your stylesheets are not individually loaded, or if your application serves only one stylesheet, there’s no need to add a `builds` initializer since [by default](https://github.com/rails/dartsass-rails#configuring-builds), `app/assets/stylesheets/application.scss` will be compiled.
+
+Otherwise, create an initializer: `config/initializers/dartsass.rb`. This file will include all Sass entry points and build options.
+
+```ruby
+Rails.application.config.dartsass.builds = {
+  "application.scss" => "application.css",
+  "components/_component-1.scss" => "components/_component-1.css",
+  "components/_component-2.scss" => "components/_component-2.css",
+  "views/_view-1.scss" => "views/_view-1.css",
+  "views/_view-2.scss" => "views/_view-2.css",
+}
+```
+
+The hash key is the relative path to a Sass file in `app/assets/stylesheets/` and the hash value will be the name of the file output to `app/assets/builds/`.
+
+**Note**, if your application uses GOV.UK Publishing Components, and the [stylesheets are individually loaded](https://github.com/alphagov/govuk_publishing_components/blob/main/docs/set-up-individual-component-css-loading.md), you will need to merge all entry points, including those from your application and those from GOV.UK Publishing Components.
 
 ```ruby
 APP_STYLESHEETS = {
   "application.scss" => "application.css",
   "components/_component-1.scss" => "components/_component-1.css",
   "components/_component-2.scss" => "components/_component-2.css",
-  "components/_component-3.scss" => "components/_component-3.css",
-  "components/_component-4.scss" => "components/_component-4.css",
   "views/_view-1.scss" => "views/_view-1.css",
   "views/_view-2.scss" => "views/_view-2.css",
-  "views/_view-3.scss" => "views/_view-3.css",
-  "views/_view-4.scss" => "views/_view-4.css",
-}
+}.freeze
+
 all_stylesheets = APP_STYLESHEETS.merge(GovukPublishingComponents::Config.all_stylesheets)
 Rails.application.config.dartsass.builds = all_stylesheets
 ```
 
-**Note**, if stylesheets are not individually loaded, there’s no need to add a `builds` initializer since [by default](https://github.com/rails/dartsass-rails#configuring-builds), `app/assets/stylesheets/application.scss` will be compiled.
+Also, the initializer should [configure build options](#configuring-build-options), incorporating the `--quiet-deps` option which tells Sass to suppress dependency deprecation warnings.
+
+```ruby
+Rails.application.config.dartsass.build_options << " --quiet-deps"
+```
 
 ### Delete unused Sass configuration
 
-Delete Sass configuration previously added for `sassc-rails`.
+Delete Sass configuration previously added for `sassc-rails`. Update `config/environments/production.rb` to delete
 
 ```diff
 - config.sass.style = :compressed
@@ -109,57 +132,59 @@ When you're developing your application, you can run Sass in watch mode, so styl
 
 1. Add `bin/dev`
 
-   ```ruby
-   #!/usr/bin/env sh
-   if ! gem list foreman -i --silent; then
-     echo "Installing foreman..."
-     gem install foreman
-   fi
-   exec foreman start -f Procfile.dev "$@"
-   ```
+```ruby
+#!/usr/bin/env sh
+if ! gem list foreman -i --silent; then
+  echo "Installing foreman..."
+  gem install foreman
+fi
+exec foreman start -f Procfile.dev "$@"
+```
 
 2. Add (or update) `procfile.dev`
 
-   ```ruby
-   web: bin/rails server -p 3070
-   css: bin/rails dartsass:watch
-   ```
+```ruby
+web: bin/rails server -p 3070
+css: bin/rails dartsass:watch
+```
 
-  **Note**, the port number should match the one previously specified, in `startup.sh` and or `docker-compose.yml`, for running your Rails server.
+**Note**, the port number should match the one previously specified, in `startup.sh` and or `docker-compose.yml`, for running your Rails server.
 
 3. Update `startup.sh`
 
-   ```diff
-   if [[ $1 == "--live" ]] ; then
-     GOVUK_APP_DOMAIN=www.gov.uk \
-     GOVUK_WEBSITE_ROOT=https://www.gov.uk \
-     GOVUK_PROXY_STATIC_ENABLED=true \
-     PLEK_SERVICE_CONTENT_STORE_URI=${PLEK_SERVICE_CONTENT_STORE_URI-https://www.gov.uk/api} \
-     PLEK_SERVICE_STATIC_URI=${PLEK_SERVICE_STATIC_URI-https://assets.publishing.service.gov.uk} \
-     PLEK_SERVICE_SEARCH_API_URI=${PLEK_SERVICE_SEARCH_API_URI-https://www.gov.uk/api} \
-   - bundle exec rails s -p 3070
-   + ./bin/dev
-   else
-     ...
-   ```
+```diff
+if [[ $1 == "--live" ]] ; then
+  GOVUK_APP_DOMAIN=www.gov.uk \
+  GOVUK_WEBSITE_ROOT=https://www.gov.uk \
+  GOVUK_PROXY_STATIC_ENABLED=true \
+  PLEK_SERVICE_CONTENT_STORE_URI=${PLEK_SERVICE_CONTENT_STORE_URI-https://www.gov.uk/api} \
+  PLEK_SERVICE_STATIC_URI=${PLEK_SERVICE_STATIC_URI-https://assets.publishing.service.gov.uk} \
+  PLEK_SERVICE_SEARCH_API_URI=${PLEK_SERVICE_SEARCH_API_URI-https://www.gov.uk/api} \
+- bundle exec rails s -p 3070
++ ./bin/dev
+else
+  ...
+```
 
 4. In Docker, update `docker-compose.yml`
 
-   ```diff
-     expose:
-   -  - "3000"
-   - command: bin/rails s --restart
-   +  - "3070"
-   + command: ./bin/dev
-     ...
-   ```
+```diff
+  expose:
+-  - "3000"
+- command: bin/rails s --restart
++  - "3070"
++ command: ./bin/dev
+  ...
+```
+
+**Note**, you might see a 'permission denied' error when executing `startup.sh`. If this occurs, you'll need to modify the permissions for `bin/dev`. Navigate to the directory where the `bin/dev` script is located. Once you've identified the script, use the `chmod` command to modify its permissions. For instance, to grant execute permission for the owner, you can use `chmod u+x bin/dev`.
 
 ### Digests
 
 To see the latest stylesheet changes when developing your application, if running Sass in watch mode, you'll have to turn off digests. Update `config/environments/development.rb` to add
 
 ```ruby
-  config.assets.digest = false
+config.assets.digest = false
 ```
 
 See [3.2 Turning Digests Off - The Asset Pipeline — Ruby on Rails Guides](https://guides.rubyonrails.org/asset_pipeline.html#turning-digests-off).
@@ -211,5 +236,8 @@ $govuk-image-url-function: "app-image-url";
 ## Pull requests
 
 - [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components/pull/3726)
+- [Collections](https://github.com/alphagov/collections/pull/3447)
 - [Email Alert Frontend](https://github.com/alphagov/email-alert-frontend/pull/1655)
+- [Frontend](https://github.com/alphagov/frontend/pull/3908)
+- [Smart Answers](https://github.com/alphagov/smart-answers/pull/6634)
 - [Static](https://github.com/alphagov/static/pull/3190)
