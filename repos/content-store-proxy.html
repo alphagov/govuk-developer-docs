@@ -17,10 +17,10 @@
 MongoDB to PostgreSQL. We had two versions of content-store
 running side-by-side, one using each database. The proxy sat in front of them,
 forwarding all incoming requests to its PRIMARY_UPSTREAM (at first the MongoDB
-version, later PostgreSQL) and returned that response. It also replayed the 
-request to its SECONDARY_UPSTREAM (at first the PostgreSQL version, later 
-MongoDB). This allowed us to compare the responses from both versions to 
-satisfy ourselves that the two were completely equivalent and address any 
+version, later PostgreSQL) and returned that response. It also replayed the
+request to its SECONDARY_UPSTREAM (at first the PostgreSQL version, later
+MongoDB). This allowed us to compare the responses from both versions to
+satisfy ourselves that the two were completely equivalent and address any
 differences, before we migrated production.
 
 The migration was completed in December 2023, and the proxy repo was archived
@@ -36,10 +36,10 @@ on 3rd Jan 2024.
 MongoDB to PostgreSQL. We had two versions of content-store
 running side-by-side, one using each database. The proxy sat in front of them,
 forwarding all incoming requests to its PRIMARY_UPSTREAM (at first the MongoDB
-version, later PostgreSQL) and returned that response. It also replayed the 
-request to its SECONDARY_UPSTREAM (at first the PostgreSQL version, later 
-MongoDB). This allowed us to compare the responses from both versions to 
-satisfy ourselves that the two were completely equivalent and address any 
+version, later PostgreSQL) and returned that response. It also replayed the
+request to its SECONDARY_UPSTREAM (at first the PostgreSQL version, later
+MongoDB). This allowed us to compare the responses from both versions to
+satisfy ourselves that the two were completely equivalent and address any
 differences, before we migrated production.
 
 The migration was completed in December 2023, and the proxy repo was archived
