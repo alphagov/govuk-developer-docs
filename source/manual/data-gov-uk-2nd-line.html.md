@@ -91,7 +91,7 @@ A 'sysadmin' has admin rights across all organisations.
 
 ### Finding a user
 
-When logged in as a `sysadmin` you can access a [user list](https://ckan.publishing.service.gov.uk/user). This is useful where a publisher does not know their username or no longer has access to their registered email account.
+When logged in as a `sysadmin` you can access a [user list](https://ckan.publishing.service.gov.uk/user). This is useful where a user does not know their username or no longer has access to their registered email account - it is searchable by email address even though that's not obvious.
 
 ### Creating a user account
 
@@ -100,7 +100,7 @@ There are two methods to create a new user account:
 1. An organisation's 'admin' user can [follow these instructions](https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins) to invite new users to create an account. This is the preferred approach, as the organisation admin is best placed to know whether the new user should be given access.
 2. A 'sysadmin' user (e.g. Technical 2nd Line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
   - Follow the instructions to [assign users to publishers](#assigning-users-to-publishers-setting-user-permissions) inputting the user's email address instead of their username.
-  - An invite email is generated and sent to the publisher.
+  - An invite email is generated and sent to the user.
 
 ### Updating a user's email address
 
@@ -119,6 +119,10 @@ associated with their account:
 10. Set a new password for the user.
 11. Click 'Update profile'.
 12. Reply to the user to tell them that their email address has been changed, what the new password you set is and strongly advise them to change the password when they log in.
+
+> Email addresses in CKAN are case-sensitive, and this can cause problems.
+>
+> For example, if a user enters a lowercase email address into [the reset password form](https://ckan.publishing.service.gov.uk/user/reset), but their stored email address is mixed case, they won't receive the email. If this happens, tell them how it is stored and ask them to enter it with exactly the same case.
 
 ### Updating a user account name
 
@@ -160,7 +164,7 @@ A log of publisher activity on a dataset is available by inserting `/activity` i
 
 Users are not permitted to remove their own datasets. There are a [limited number of circumstances](https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data) in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.
 
-Datasets are never hard-deleted (known as "purged" in CKAN), instead they are marked as "withdrawn" (a soft-deletion), which removes them from the public-facing site but allows them to be viewed through the CKAN publishing interface. Soft-deleted datasets can be undeleted.
+Datasets are never hard-deleted (known as "purged" in CKAN), instead they are given the state "deleted" (a soft-deletion), which removes them from the public-facing site but allows them to be viewed through the CKAN publishing interface. Soft-deleted datasets can be undeleted.
 
 > Before making any deletions, check that the person making the request actually belongs to the organisation which owns the document (or are from a superseding department, e.g. someone from BEIS could request withdrawal of a dataset published by BIS).
 
