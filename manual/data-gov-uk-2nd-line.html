@@ -385,7 +385,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bfa567f47cf18a24e0852f5ec9fddf6aa7863da7">28 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1f649976a5bb0d25525afffb2c13ffa7b5359016">16 Jan 2024</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
@@ -421,7 +421,7 @@ rails console
 organisations, with either the &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; role for each organisation.</p>
 <p>&lsquo;Admin&rsquo; users can add/remove users from their own organisation.</p>
 <p>A &lsquo;sysadmin&rsquo; has admin rights across all organisations.</p>
-<h3 id='finding-a-user'>Finding a user</h3><p>When logged in as a <code>sysadmin</code> you can access a <a href="https://ckan.publishing.service.gov.uk/user">user list</a>. This is useful where a publisher does not know their username or no longer has access to their registered email account.</p>
+<h3 id='finding-a-user'>Finding a user</h3><p>When logged in as a <code>sysadmin</code> you can access a <a href="https://ckan.publishing.service.gov.uk/user">user list</a>. This is useful where a user does not know their username or no longer has access to their registered email account - it is searchable by email address even though that&rsquo;s not obvious.</p>
 <h3 id='creating-a-user-account'>Creating a user account</h3><p>There are two methods to create a new user account:</p>
 
 <ol>
@@ -430,7 +430,7 @@ organisations, with either the &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; role 
 
 <ul>
 <li>Follow the instructions to <a href="#assigning-users-to-publishers-setting-user-permissions">assign users to publishers</a> inputting the user&rsquo;s email address instead of their username.</li>
-<li>An invite email is generated and sent to the publisher.</li>
+<li>An invite email is generated and sent to the user.</li>
 </ul></li>
 </ol>
 <h3 id='updating-a-user39s-email-address'>Updating a user&rsquo;s email address</h3><p>If a user has changed their email address (and so cannot log in) you can update the email address
@@ -450,6 +450,11 @@ associated with their account:</p>
 <li>Click &lsquo;Update profile&rsquo;.</li>
 <li>Reply to the user to tell them that their email address has been changed, what the new password you set is and strongly advise them to change the password when they log in.</li>
 </ol>
+
+<blockquote>
+<p>Email addresses in CKAN are case-sensitive, and this can cause problems.</p>
+<p>For example, if a user enters a lowercase email address into <a href="https://ckan.publishing.service.gov.uk/user/reset">the reset password form</a>, but their stored email address is mixed case, they won&rsquo;t receive the email. If this happens, tell them how it is stored and ask them to enter it with exactly the same case.</p>
+</blockquote>
 <h3 id='updating-a-user-account-name'>Updating a user account name</h3><p>Historical usernames with non-alphanumeric or uppercase characters are no longer valid, and so users cannot log in to change their password. Usernames can only be changed directly in the database:</p>
 
 <ol>
@@ -482,7 +487,7 @@ associated with their account:</p>
 </blockquote>
 <h2 id='datasets'>Datasets</h2><h3 id='viewing-a-log-of-dataset-activity'>Viewing a log of dataset activity</h3><p>A log of publisher activity on a dataset is available by inserting <code>/activity</code> into the dataset&rsquo;s URL, such as https://ckan.publishing.service.gov.uk/dataset/activity/monthly_statistics_of_building_materials_and_components.</p>
 <h3 id='deleting-or-withdrawing-a-dataset'>Deleting (or withdrawing) a dataset</h3><p>Users are not permitted to remove their own datasets. There are a <a href="https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data">limited number of circumstances</a> in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.</p>
-<p>Datasets are never hard-deleted (known as &ldquo;purged&rdquo; in CKAN), instead they are marked as &ldquo;withdrawn&rdquo; (a soft-deletion), which removes them from the public-facing site but allows them to be viewed through the CKAN publishing interface. Soft-deleted datasets can be undeleted.</p>
+<p>Datasets are never hard-deleted (known as &ldquo;purged&rdquo; in CKAN), instead they are given the state &ldquo;deleted&rdquo; (a soft-deletion), which removes them from the public-facing site but allows them to be viewed through the CKAN publishing interface. Soft-deleted datasets can be undeleted.</p>
 
 <blockquote>
 <p>Before making any deletions, check that the person making the request actually belongs to the organisation which owns the document (or are from a superseding department, e.g. someone from BEIS could request withdrawal of a dataset published by BIS).</p>
