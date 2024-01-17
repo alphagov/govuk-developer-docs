@@ -200,7 +200,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/smokey/commit/20792b536d4ade5474006e4d9d911ea98744b693">4 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/bc7f7b2571c74155fce77f843dbe2d6f10d6f061">17 Jan 2024</a>
 </div>
 
   <h1 class="page-title">smokey: Deployment</h1>
@@ -211,8 +211,9 @@
 <ul>
 <li>Navigate to the <a href="https://github.com/alphagov/smokey/actions/workflows/deploy.yml">Deploy GitHub Action</a> tab on the repo</li>
 <li>Click “Run workflow” and enter the name of the branch under "Commit, tag or branch name to deploy". (NB: leave the "Use workflow from" option set as main)</li>
-<li>Wait for the <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/smokey">"sync status" in Argo CD</a> to update (it will take several minutes)</li>
-<li>Wait for a Smokey run to be triggered (happens every 10 minutes), or trigger one by clicking the <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/smokey?node=batch%2FCronJob%2Fapps%2Fsmokey%2F0&amp;orphaned=false&amp;resource=">three dots by the 'smokey' cronjob -&gt; Create Job</a>.</li>
+<li>Wait for the Deploy job to succeed</li>
+<li>Wait for the <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/smokey">"sync status" in Argo CD</a> to update (it will take several minutes) - or speed things along by clicking the "Sync" button at the top of the page</li>
+<li>Wait for a Smokey run to be triggered (happens every 10 minutes), or speed things along by clicking the <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/smokey?node=batch%2FCronJob%2Fapps%2Fsmokey%2F0&amp;orphaned=false&amp;resource=">three dots by the 'smokey' cronjob -&gt; Create Job</a>.</li>
 <li>Check the results from the logs</li>
 </ul>
 <p>If the build passes, you can merge, and Argo CD will automatically update itself back to <code>main</code>.</p>
