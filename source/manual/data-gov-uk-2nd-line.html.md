@@ -13,6 +13,7 @@ parent: "/manual.html"
 [dgu-docs]: https://guidance.data.gov.uk
 [find]: repos/datagovuk_find
 [govuk-connect]: manual/howto-ssh-to-machines
+[Grafana]: https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&refresh=1m&var-namespace=datagovuk&var-app=All&var-error_status=All
 [logit]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3
 [pagerduty]: https://govuk.pagerduty.com/
 [pingdom]: /manual/pingdom
@@ -58,6 +59,10 @@ There are three environments for CKAN:
 
 Each application sends logs to [Logit]. [ckan][ckan-app], [Publish] and [Find] also send their logs here.
 Example query: `kubernetes.namespace: datagovuk AND kubernetes.container.name: find AND message: "status=404"`.
+
+### Grafana
+
+You can see the dashboard showing some metrics of datagovuk apps, [ckan][ckan-app], [Publish] and [Find], on [Grafana].
 
 ### Sidekiq ([Publish])
 
