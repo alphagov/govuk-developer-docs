@@ -13,8 +13,7 @@ parent: "/manual.html"
 [dgu-docs]: https://guidance.data.gov.uk
 [find]: repos/datagovuk_find
 [govuk-connect]: manual/howto-ssh-to-machines
-[logit]: https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74
-[logit-paas]: https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service
+[logit]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3
 [pagerduty]: https://govuk.pagerduty.com/
 [pingdom]: /manual/pingdom
 [publish]: repos/datagovuk_publish
@@ -57,8 +56,8 @@ There are three environments for CKAN:
 
 ### Log.it
 
-Each application sends logs to [Logit]. [Publish] and [Find] use the corresponding [PaaS Service][logit-paas].
-Example query: `source_host: "gds-data-gov-uk.data-gov-uk.find-data-beta" && access.response_code: 500`.
+Each application sends logs to [Logit]. [ckan][ckan-app], [Publish] and [Find] also send their logs here.
+Example query: `kubernetes.namespace: datagovuk AND kubernetes.container.name: find AND message: "status=404"`.
 
 ### Sidekiq ([Publish])
 
