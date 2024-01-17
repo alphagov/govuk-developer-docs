@@ -385,7 +385,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1f649976a5bb0d25525afffb2c13ffa7b5359016">16 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f1c42391052bd34c78b8dcc1d2a5c1950e0b6921">17 Jan 2024</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
@@ -408,8 +408,8 @@ fix it - open a PR to resolve the problem.</p>
 </ul>
 <h2 id='monitoring-data-gov-uk'>Monitoring data.gov.uk</h2><h3 id='pingdom'>Pingdom</h3><p><a href="/manual/pingdom">Pingdom</a> monitors <code>https://data.gov.uk</code> uptime and alerts <a href="https://govuk.pagerduty.com/">PagerDuty</a> when downtime is detected.</p>
 <h3 id='sentry'>Sentry</h3><p><a href="https://sentry.io/govuk/">Sentry</a> monitors application errors. The Sentry pages for each app can be found on the <a href="/repos/datagovuk_find.html">Find</a> and <a href="/repos/datagovuk_publish.html">Publish</a> app pages.</p>
-<h3 id='log-it'>Log.it</h3><p>Each application sends logs to <a href="https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74">Logit</a>. <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> use the corresponding <a href="https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service">PaaS Service</a>.
-Example query: <code>source_host: &quot;gds-data-gov-uk.data-gov-uk.find-data-beta&quot; &amp;&amp; access.response_code: 500</code>.</p>
+<h3 id='log-it'>Log.it</h3><p>Each application sends logs to <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3">Logit</a>. <a href="/repos/ckanext-datagovuk.html">ckan</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> also send their logs here.
+Example query: <code>kubernetes.namespace: datagovuk AND kubernetes.container.name: find AND message: &quot;status=404&quot;</code>.</p>
 <h3 id='sidekiq-publish'>Sidekiq (<a href="/repos/datagovuk_publish.html">Publish</a>)</h3><p>You can monitor the number of jobs in each queue using the following.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
 rails console
