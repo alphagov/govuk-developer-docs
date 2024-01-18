@@ -388,7 +388,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3a8f014143e26bee579c401ce7fd3247b07d5c21">17 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/374b516d80064cd0da2e432e50d65d7e3397b0ca">18 Jan 2024</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
@@ -600,10 +600,9 @@ The following commands will create the relevant schema for core CKAN and the har
 extension on integration.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan db init
 ckan harvester initdb
-</code></pre></div><h3 id='accessing-the-database'>Accessing the database</h3><p>To access the CKAN database to run queries on the <code>ckan_db_admin</code> machine:</p>
-<p>Get the password for <code>aws_db_admin</code>: <code>sudo cat /root/.pgpass</code></p>
-<p>Supply the password when prompted: <code>psql -U aws_db_admin -h ckan-postgres -p 5432 ckan_production</code></p>
-<h3 id='creating-a-system-administrator-account'>Creating a system administrator account</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan sysadmin add USERNAME email=EMAIL_ADDRESS
+</code></pre></div><h3 id='accessing-the-database'>Accessing the database</h3><p>To open a PostgreSQL console to run queries on the CKAN database from a CKAN pod:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>psql $CKAN_SQLALCHEMY_URL
+</code></pre></div><h3 id='creating-a-system-administrator-account'>Creating a system administrator account</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan sysadmin add USERNAME email=EMAIL_ADDRESS
 </code></pre></div><p>You&rsquo;ll be prompted twice for a password.</p>
 <h3 id='removing-a-system-administrator-account'>Removing a system administrator account</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan sysadmin remove USERNAME
 </code></pre></div><h3 id='listing-users'>Listing users</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan user list

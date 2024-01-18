@@ -205,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3c2cbfa60d964c780d06b28440d84a57785f22a8">1 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/374b516d80064cd0da2e432e50d65d7e3397b0ca">18 Jan 2024</a>
 </div>
 
  <h1 id='header'>Databases on GOV.UK</h1> <p>Many GOV.UK applications use a database. See our <a href="https://docs.google.com/spreadsheets/d/1rBZeeaT9XevaRvstMjw2YsbSsoB7IqgWjpJz5oAO9nM/edit#gid=1368371571">spreadsheet of applications and database engines</a> for details.</p>
@@ -229,6 +229,8 @@
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/content-publisher <span class="nt">-it</span> <span class="nt">--</span> rails db <span class="nt">-p</span>
 </code></pre></div><p>For a non-Rails app:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/bouncer <span class="nt">-it</span> <span class="nt">--</span> sh <span class="nt">-c</span> <span class="s1">'psql $DATABASE_URL'</span>
+</code></pre></div><p>For the data.gov.uk CKAN Postgres database:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-n</span> datagovuk deploy/ckan-ckan <span class="nt">-it</span> <span class="nt">--</span> sh <span class="nt">-c</span> <span class="s1">'psql $CKAN_SQLALCHEMY_URL'</span>
 </code></pre></div>
 
   <div class='related-content'>
