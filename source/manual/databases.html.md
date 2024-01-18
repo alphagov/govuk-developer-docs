@@ -51,3 +51,9 @@ For a non-Rails app:
 ```sh
 k exec deploy/bouncer -it -- sh -c 'psql $DATABASE_URL'
 ```
+
+For the data.gov.uk CKAN Postgres database:
+
+```sh
+k exec -n datagovuk deploy/ckan-ckan -it -- sh -c 'psql $CKAN_SQLALCHEMY_URL'
+```
