@@ -197,15 +197,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/hmrc-manuals-api/commit/af3296fb8e5233ef74efb9fd0b4af8a3673a0546">23 Feb 2021</a>
+  Last updated: <a href="https://github.com/alphagov/hmrc-manuals-api/commit/1b205340821f6939655acfe7ea225c0c74e87687">17 Jan 2024</a>
 </div>
 
   <h1 class="page-title">hmrc-manuals-api: HMRC Manuals API - Extended Documentation</h1>
@@ -367,12 +360,6 @@ integration asset domain (<code>assets-origin.integration.publishing.service.gov
 users to find.</p>
 <h3 id="how-tagging-works">How tagging works</h3>
 <p>Use the <a href="https://github.com/alphagov/content-tagger">content-tagger</a> app to add topic tags to manuals.</p>
-<h2 id="removing-published-manuals">Removing published manuals</h2>
-<p>The API endpoints of the app do not cover removal of manuals. There is a rake task for this purpose. Removal means replacing the published manual with a 410 Gone document. As manuals can have sections underneath them removal does the same for each section that is a child of the manual.</p>
-<p>The rake task is invoked as follows:</p>
-<pre><code>$ cd /var/apps/hmrc-manuals-api
-$ sudo -u deploy govuk_setenv hmrc-manuals-api bundle exec rake remove_hmrc_manuals[slug-to-remove-1,slug-to-remove-2,...,slug-to-remove-n]
-</code></pre>
 <h2 id="testing-publishing-in-gov-uk-docker">Testing publishing in GOV.UK Docker</h2>
 <p>You can use the JSON examples of requests for testing publishing in development,
 for example with cURL from the root directory of the repository:</p>
@@ -390,21 +377,40 @@ for example with cURL from the root directory of the repository:</p>
 accepted. To test publishing to our Integration or Staging environments you would
 need a real token for the right environment.</p>
 <h2 id="managing-manuals-and-sections-with-rake">Managing manuals and sections with rake</h2>
-<p>HMRC Manuals API contains <a href="https://github.com/alphagov/hmrc-manuals-api/tree/master/lib/tasks">rake tasks</a>
-for removing manuals and sections and redirecting sections. These can be run using the <a href="https://docs.publishing.service.gov.uk/manual/running-rake-tasks.html">rake Jenkins job</a>. Where the examples below require a slug as a parameter, this is the last part of the URL without a leading slash, for example given the URL '<a href="https://www.gov.uk/hmrc-internal-manuals/guidance-audit-customs-values">https://www.gov.uk/hmrc-internal-manuals/guidance-audit-customs-values</a>' the slug would be 'guidance-audit-customs-values'</p>
+<p>The API endpoints of the app do not cover removal of manuals. There are rake tasks for this purpose.</p>
+<p>These rake tasks can be run by following <a href="https://docs.publishing.service.gov.uk/manual/running-rake-tasks.html#run-a-rake-task-on-eks">this documentation</a>.</p>
+<blockquote>
+<p>The slugs can be determined from the URL:</p>
+<p>For a manual, a URL of <code>https://www.gov.uk/hmrc-internal-manuals/vat-input-tax</code> would have a <code>manual-slug</code> of <code>vat-input-tax</code>.</p>
+<p>For a section, a URL of <code>https://www.gov.uk/hmrc-internal-manuals/vat-input-tax/vit31100</code> would have a <code>manual-slug</code> of <code>vat-input-tax</code> and a <code>section-slug</code> of <code>vit31100</code>.</p>
+</blockquote>
+<h3 id="remove-an-entire-manual">Remove an entire manual</h3>
+<p>To completely remove one or multiple manuals and all of their sections, run the <code>remove_hmrc_manuals</code> task. Removal means replacing the published manual and sections with 410 Gone responses.</p>
+<p>For example, to remove a single manual and all of its sections:</p>
+<pre><code>rake 'remove_hmrc_manuals[manual-slug]'
+</code></pre>
+<p>For example, to remove a multiple manuals and all of their sections:</p>
+<pre><code>rake 'remove_hmrc_manuals[manual-slug-1,manual-slug-2]'
+</code></pre>
+<blockquote>
+<p>There is no limit to the number of manuals that can be included in this task.</p>
+</blockquote>
 <h3 id="redirect-a-section-back-to-the-parent-manual">Redirect a section back to the parent manual</h3>
-<p>To redirect a section back to the parent manual:</p>
-<pre><code>bundle exec rake redirect_hmrc_section_to_parent_manual[manual-slug,section-slug,section-slug]
+<p>To redirect sections back to the parent manual, run the <code>redirect_hmrc_section_to_parent_manual</code> task with the slug of the manual, followed by the slug(s) of the sections you wish to redirect.</p>
+<p>For example, redirecting a single section:</p>
+<pre><code>rake 'redirect_hmrc_section_to_parent_manual[manual-slug,section-slug]'
+</code></pre>
+<p>For example, redirecting multiple sections:</p>
+<pre><code>rake 'redirect_hmrc_section_to_parent_manual[manual-slug,section-slug-1,section-slug-2]'
 </code></pre>
 <h3 id="remove-a-section">Remove a section</h3>
-<p>Alternatively to remove the section (this makes it a 'gone' route):</p>
-<pre><code>bundle exec rake remove_hmrc_sections[manual-slug,section-slug,section-slug]
+<p>To completely remove a section, run the <code>remove_hmrc_sections</code> task with the slug(s) of the sections you wish to remove. Removal means replacing the published sections with 410 Gone responses. For example:</p>
+<p>For example, removing a single section:</p>
+<pre><code>rake 'remove_hmrc_sections[manual-slug,section-slug]'
 </code></pre>
-<h3 id="remove-a-manual">Remove a manual</h3>
-<p>To completely remove a manual:</p>
-<pre><code>bundle exec rake remove_hmrc_manuals[manual-slug,manual-slug]
+<p>For example,removing multiple sections:</p>
+<pre><code>rake 'remove_hmrc_sections[manual-slug,section-slug-1,section-slug-2]'
 </code></pre>
-<p>This will remove the manuals provided as arguments and all sections within those manuals.</p>
 
 
             
