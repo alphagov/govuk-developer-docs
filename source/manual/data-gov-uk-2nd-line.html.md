@@ -349,11 +349,11 @@ ckan harvester initdb
 
 ### Accessing the database
 
-To access the CKAN database to run queries on the `ckan_db_admin` machine:
+To open a PostgreSQL console to run queries on the CKAN database from a CKAN pod:
 
-Get the password for `aws_db_admin`: `sudo cat /root/.pgpass`
-
-Supply the password when prompted: `psql -U aws_db_admin -h ckan-postgres -p 5432 ckan_production`
+```
+psql $CKAN_SQLALCHEMY_URL
+```
 
 ### Creating a system administrator account
 
