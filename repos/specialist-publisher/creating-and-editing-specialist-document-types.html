@@ -216,30 +216,20 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/67091357608766f6de2b536ca2b8c1b4ef22f2f8">3 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/72c7e26de4d3a85a17e2460fad4675e2b27e4e01">10 Jan 2024</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating or editing specialist document types</h1>
 
   
 <p>To create or edit a new specialist document you will have to make changes to this
-application, <a href="https://github.com/alphagov/govuk-content-schemas">govuk-content-schemas</a> and
-<a href="https://github.com/alphagov/search-api">search-api</a>. You will not have to make any changes to frontend
+application, <a href="https://github.com/alphagov/publishing-api">publishing-api</a> and <a href="https://github.com/alphagov/search-api">search-api</a>. You will not have to make any changes to frontend
 applications.</p>
 <h1 id="creating-a-specialist-document-type">
 <strong>Creating</strong> a specialist document type</h1>
-<h2 id="1-add-a-schema-to-govuk-content-schemas">1. Add a schema to govuk-content-schemas</h2>
-<p>See example <a href="https://github.com/alphagov/govuk-content-schemas/pull/1077">PR for adding <code>product_safety_alert</code></a>.
-Note: this is a link to a PR in the now-archived content schemas repo. Content schemas have now been moved to publishing api.
-Please update this document when an example for publishing api is available.</p>
+<h2 id="1-add-a-schema-to-publishing-api">1. Add a schema to Publishing API</h2>
+<p>See <a href="https://github.com/alphagov/publishing-api/pull/2589/files">example PR here</a></p>
 <ol>
 <li>Add the format to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/specialist_document.jsonnet#L2:L33">this list</a> and to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/allowed_document_types.yml">this list</a>
 </li>
@@ -287,21 +277,28 @@ irb(main):002:0&gt; SecureRandom.uuid
 <li><a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/specialist_presenter.rb">specialist_presenter.rb</a></li>
 </ul>
 <h2 id="4-configure-the-email-sign-up-page">4. Configure the email sign up page</h2>
-<p>The email sign up page is rendered by <a href="https://github.com/alphagov/finder-frontend">Finder Frontend</a> using the configuration in the new schema added to specialist publisher.</p>
+<p>The email sign up page is rendered by <a href="https://github.com/alphagov/finder-frontend">Finder Frontend</a> using the configuration in the new schema added to specialist publisher. The schema should specify <code>email_filter_by</code> and <code>email_filter_facets</code> (e.g. <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/documents/schemas/cma_cases.json#L29">cma-cases</a>).</p>
 <p>If your email sign up page should have checkboxes (e.g. <a href="https://www.gov.uk/cma-cases/email-signup">cma-cases</a>), you will need to edit email-alert-api by adding the new tags to <a href="https://github.com/alphagov/email-alert-api/blob/3e0018510ea85f5d561e2865ad149832b94688a1/lib/valid_tags.rb#L2">valid_tags.rb</a>.</p>
 <h2 id="5-deploy-and-publish">5. Deploy and publish</h2>
 <p>To deploy:</p>
 <ol>
-<li>Deploy Specialist Publisher and Search API (and govuk-content-schemas if you haven't already).</li>
+<li>Deploy Publishing API (if you haven't already), Specialist Publisher and Search API.</li>
+</ol>
+<ul>
+<li>Ensure you deploy Publishing API first, to avoid schema validation errors.</li>
+<li>Also deploy Email Alert API if you have made changes to it.</li>
+</ul>
+<ol start="2">
 <li>
 <a href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html#how-to-reindex-an-elasticsearch-index">Reindex the govuk Elasticsearch index</a>.</li>
 </ol>
 <ul>
 <li>This takes around 30-45 minutes on Production, or 3-4 hours on Integration.</li>
-<li>NB: reindexing shouldn't really be necessary; Elasticsearch will dynamically create the field mappings the first time a new document of this type is published. In other words, if you publish a new document type, the finder will work and it will return the relevant documents even without a reindex. However, the filters on the finder would not work, as this reindexing job also builds the filters for the finder, so we have to run the job.</li>
+<li>Alternatively, run <code>search:update_schema</code> for a shorter run. Make sure the this is run before any documents are published, otherwise a full reindex will be required.</li>
+<li>NB: reindexing shouldn't really be necessary; Elasticsearch will dynamically create the field mappings the first time a new document of this type is published. In other words, if you publish a new document type, the finder will work and it will return the relevant documents even without a reindex. However, <strong>the filters on the finder would not work</strong>, as this reindexing job also builds the filters for the finder, so we have to run the job.</li>
 </ul>
 <ol start="3">
-<li>Use the "Run rake task" Jenkins job to run <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app on a backend machine.</li>
+<li>Publish the finder; run the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
 </ol>
 <h2 id="6-permissions">6. Permissions</h2>
 <p>Specialist Publisher grants access to the publishing interface for your new document type to the following Signon users:</p>
