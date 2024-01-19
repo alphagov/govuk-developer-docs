@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publisher: Decision record: Forking frontend components from GOV.UK Frontend - GOV.UK Developer Documentation</title>
+    <title>publisher: # Querying the database - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-005-forking-frontend-components-from-govuk-frontend.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/database-querying.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publisher: Decision record: Forking frontend components from GOV.UK Frontend - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-005-forking-frontend-components-from-govuk-frontend.html" />
+      <meta name="twitter:title" content="publisher: # Querying the database - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/database-querying.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publisher: Decision record: Forking frontend components from GOV.UK Frontend" />
+      <meta property="og:title" content="publisher: # Querying the database" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-005-forking-frontend-components-from-govuk-frontend.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/database-querying.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -210,45 +210,40 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publisher/commit/d950ddfbd22c87f2954dc46eadec3feab0d63967">24 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publisher/commit/5a4f7f626468f414392a98c48a1d05a80b353536">18 Jan 2024</a>
 </div>
 
-  <h1 class="page-title">publisher: Decision record: Forking frontend components from GOV.UK Frontend</h1>
+  <h1 class="page-title">publisher: # Querying the database</h1>
 
-  
-<h2 id="context">Context</h2>
-<p>We needed to add radio buttons to Government Frontend so that users can make a
-choice on the Service Sign In <code>choose_sign_in</code> page. The new
-<a href="https://github.com/alphagov/govuk-frontend">GOV.UK Frontend</a> project has a
-component for radio buttons, as does <a href="https://github.com/alphagov/govuk_elements">GOV.UK Elements</a>,
-so we needed to make a decision about which one to use.</p>
-<h2 id="decision">Decision</h2>
-<p>GOV.UK Elements is quite an old project that hasn't been kept up to date, and
-there have been issues in the past where it has conflicted with existing CSS in
-other GOV.UK projects. As such, the general recommendation is that <a href="https://docs.google.com/document/d/1ZQ3qfMAdGQWIt5oklvKDhhGfYb-4bct75ZwVPUbnN2k/edit">GOV.UK
-Elements shouldn't be used</a>
-for new GOV.UK projects.</p>
-<p>GOV.UK Frontend is expected to be the standard for future frontend work, and so
-ideally any new components should be
-<a href="https://docs.publishing.service.gov.uk/manual/components.html#building-components">built to meet its conventions</a>
-so that in future GOV.UK will be compatible with it. However, GOV.UK Frontend is
-currently in alpha and not suitable for production use. In order to use it and
-future-proof the frontend for this format, we forked the current alpha build of
-GOV.UK Frontend and tested it ourselves before using in Government Frontend.
-This has been done in such a way that files are isolated and can be updated to
-use the GOV.UK Frontend project in the future, removing the need for our own CSS
-and instead relying on the upstream.</p>
-<h2 id="consequences">Consequences</h2>
-<p>As we are using a fork of GOV.UK Frontend we may not always be using the most
-up-to-date version.</p>
+  <h2 id="querying-the-database">Querying the database</h2>
+<p>Publisher uses MongoDB for its data storage (technically, it only uses MongoDB when running locally—on AWS it uses DocumentDB, which is "Mongo-compatible"). There are two ways of querying the data stored in the database:</p>
+<ol>
+<li>using <a href="https://www.mongodb.com/docs/mongoid/current/">Mongoid</a>
+</li>
+<li>using a Mongo shell.</li>
+</ol>
+<p>The GOV.UK developer docs document <a href="https://docs.publishing.service.gov.uk/manual/databases.html#open-a-database-commmand-line-session">how to open a database command-line session</a> of a Rails application deployed to k8s, but this doesn't work for Publisher, as attempting to run the specified command results in an exception.</p>
+<p>To query the database, first <a href="https://docs.publishing.service.gov.uk/kubernetes/get-started/access-eks-cluster/#access-a-cluster-that-you-have-accessed-before">establish access to the k8s cluster</a>, then <a href="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html#open-a-rails-console">open a rails console</a> on one of the publisher pods.</p>
+<h3 id="querying-using-mongoid">Querying using Mongoid</h3>
+<p>Mongoid is "the officially supported object-document mapper (ODM) for MongoDB in Ruby". It can be used to query the database using Rails models.</p>
+<p>From within the Rails console, query the data using <a href="https://www.mongodb.com/docs/mongoid/current/reference/queries/">Mongoid</a>. For example:</p>
+<pre lang="shell"><code>Edition.first
+=&gt; #&lt;GuideEdition _id: ...&gt;
+</code></pre>
+<p>returns the first edition in the database, as a Rails model object.</p>
+<h3 id="querying-using-a-mongo-shell">Querying using a Mongo shell</h3>
+<p>One thing to be aware of with this technique, is that Publisher's database is actually shared with other apps, so there is data within it that does not belong to Publisher—don't be surprised when querying if you see collections that you don't recognise.</p>
+<p>From within the Rails console, query the data using the Mongo shell:</p>
+<pre lang="ruby"><code>client = Mongo::Client.new(ENV["MONGODB_URI"])
+db = client.database
+
+db.collection_names
+=&gt;
+  ["artefacts",
+    ...
+  ]
+</code></pre>
 
 
             
@@ -256,8 +251,8 @@ up-to-date version.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-005-forking-frontend-components-from-govuk-frontend.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-005-forking-frontend-components-from-govuk-frontend.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/database-querying.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Fdatabase-querying.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
