@@ -148,6 +148,9 @@
         <a href="#content-publisher"><span>Content Publisher</span></a>
       </li>
       <li>
+        <a href="#other-publishing-apps"><span>Other Publishing Apps</span></a>
+      </li>
+      <li>
         <a href="#publishing-api"><span>Publishing API</span></a>
         <ul>
           <li>
@@ -211,7 +214,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec01fb1564b3bb2cf9e0ea1cde531c20c6f03ff3">5 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/68bc6c367ce0865b241d7ee6f700cb3a2cf68bd3">19 Jan 2024</a>
 </div>
 
  <h1 id='header'>Modify a change note in Publishing API, Content Publisher or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in Whitehall, Content Publisher and Publishing API.</p>
@@ -234,6 +237,8 @@ ed.save
 ed.state = "published"
 ed.save
 </code></pre></div><h2 id='content-publisher'>Content Publisher</h2><p>Content Publisher has a <a href="https://github.com/alphagov/content-publisher/blob/main/lib/tasks/change_history.rake">set of rake tasks</a> for adding, deleting and editing change notes.</p>
+<h2 id='other-publishing-apps'>Other Publishing Apps</h2><p>The other publishing apps do not currently provide an automated means of updating a change note, and therefore unfortunately direct modification via the Rails console is required before republishing the document.</p>
+<p>The exception to this is Specialist Publisher, which does not have its own database. Specialist Publisher persists all of its data straight to Publishing API, so <a href="#publishing-api">the steps documented below</a> for updating a change note there can be followed.</p>
 <h2 id='publishing-api'>Publishing API</h2><p>Updating change notes in Publishing API is rarely adviseable and should ONLY be done if unable to do so from the corresponding publishing app. This is to mitigate the risk of Publishing API being overwritten by the publishing app later on. Thoroughly explore your publishing app first, to see if such functionality exists (we&rsquo;ve documented Whitehall and Content Publisher above), and if it doesn&rsquo;t, consider building the feature in! However, in an emergency, you can edit the changenote directly in Publishing API.</p>
 
 <ol>
