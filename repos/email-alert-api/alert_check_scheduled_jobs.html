@@ -220,7 +220,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/4cbecd3e91d9b4d5365552f8214c415be9cb38a0">12 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/d17456818c633e04dffe6f17a0ab727d04c35d06">18 Jan 2024</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Alert Check Scheduled Jobs</h1>
@@ -235,6 +235,8 @@
 <li>created at least one hour ago (very new alerts are excluded)</li>
 <li>created no more than 2 days ago (older alerts are excluded)</li>
 </ul>
+<h2 id="fallback-to-active-polling">Fallback to active polling</h2>
+<p>As a backup in case there are no emails with a notify_status of "delivered" (this can happen if the callback url from notify gets mass-blocked), the system will explicitly poll Notify for the status of emails related to the alert. It will poll up to a hundred different emails, and only if none of them have been delivered will the alert state be set.</p>
 <h2 id="multiple-changes-to-a-content-item">Multiple changes to a content item</h2>
 <p>It is possible that a given travel advice item or medical alert might be updated more than once in two days, but there's no way to know about that through the Search API (we can only find out the last update to a given page). In this case we can only check that emails were delivered after the last public update. The 1 hour lag before an alert becomes checkable plus the 15 minute update frequency means that if a change happens between 60 and 75 minutes after the previous change the system can only confirms that emails were sent out for the most recent update, and if further proof of the previous update is needed a developer will have to check that manually. If the change happens later than 75 minutes, both changes will have been checked by separate runs of the job.</p>
 <h2 id="dependencies">Dependencies</h2>
@@ -260,11 +262,10 @@ kubectl -n apps deploy/email-alert-api -- rake 'alert_listeners:verify_or_create
 kubectl -n apps deploy/email-alert-api -- rails c
 
 (Rails console)
-&gt; emails = Email.where(content_id: &lt;your content id&gt; notify_status: "delivered")
-&gt; emails.each { |eml| eml.notify_status = nil; eml.save }
-&gt; AlertCheckWorker.new.perform(&lt;your document type, either "medical_safety_alert" or "travel_advice|&gt;)
+&gt; Email.where(content_id: &lt;your content id&gt;).delete_all
+&gt; PollingAlertCheckWorker.new.perform(&lt;your document type, either "medical_safety_alert" or "travel_advice|&gt;)
 </code></pre>
-<p>This will clear the delivered status for the email, and run the alert check worker. Prometheus should collect the metrics after a minute, and set off the alert.</p>
+<p>The alert check worker will find no emails with notify status "delivered", and nothing to actively poll (no emails with notify status nil), and will set the alert metric. Prometheus should collect the metrics after a minute, and set off the alert.</p>
 <h2 id="support-tasks">Support Tasks</h2>
 <p>To check the emails sent out for a specific Content ID (if an alert goes off), you can use this task:</p>
 <pre><code>kubectl config use-context govuk-&lt;ENVIRONMENT&gt;
