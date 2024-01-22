@@ -134,6 +134,14 @@ The files most relevant to the Licensify applications can be found in:
 * Logs: `/var/log/licensify`
 * Config: `/etc/licensify`
 
+### Relaunching containers
+
+If you want to relaunch an existing deployment, you can either kill the pods (so Kubernetes will replace them), or for more predictable behaviour, you should use the rollout restart command:
+
+```
+kubectl -n apps rollout restart deployment/licensify-admin
+```
+
 ## Accessing MongoDB
 
 **(This secretion needs updating)**
@@ -167,6 +175,8 @@ Per-environment overrides are set in the shared `app-config` Chart:
 * [Values for Production](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml)
 
 Secrets are stored in [AWS Secrets Manager](https://eu-west-1.console.aws.amazon.com/secretsmanager/secret?name=govuk%2Flicensify&region=eu-west-1) in the relevant account environment, under `govuk/licensify`.
+
+If you change the config or secrets, you may need to relaunch or re-deploy the app in order for it to see the new changes.
 
 ## Updating Helm Charts
 
