@@ -21,65 +21,112 @@ The source code is hosted on GitHub at [alphagov/licensify](https://github.com/a
 
 Licensify uses an Elasticsearch / Logstash / Kibana system hosted by Logit.io for its logs.
 
-If you haven't already got access to GDS' Logit account, you'll need to [follow the instructions in the Reliability Engineering documentation to create an account in Logit](https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit).
+If you haven't already got access to the GDS LogIt account, you'll need to [follow the instructions in the Reliability Engineering documentation to create an account in Logit](https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit).
 
-## Accessing the VPN
+## Creating new Builds
 
-This is a prerequisite for accessing Jenkins (which is used for deployments), and for SSH-ing onto instances.
+Licensify is built into Docker container images with Github Actions Workflows.
 
-Follow [the VPN guidance for non-GDS devices ("BYOD")](https://docs.google.com/document/d/150JX1xiWdXY29ahcYUMb05Si-hEAZvtkGAKojT9Rjis/edit)
-to set up the VPN. You will need to sign into your `@digital.cabinet-office.gov.uk` Google account to access this document.
+If you have access to merge code into main, you will have access to start builds that, once completed, will push container images into AWS ECR (Elastic Container Registry) and then trigger ArgoCD to start a deployment.
 
-## Deploying code with Jenkins
+## Deploying builds with ArgoCD
 
-Licensify is built and deployed using Jenkins. There are four relevant Jenkins instances:
+Licensify is deployed by ArgoCD. In GOV.UK, we have an ArgoCD instance for each environment.
 
-1. [CI Jenkins](https://ci.integration.publishing.service.gov.uk/job/licensify/) automatically builds releases from the main branch
-2. [Integration Deploy Jenkins](https://deploy.integration.publishing.service.gov.uk/) deploys releases to integration
-3. [Staging Deploy Jenkins](https://deploy.blue.staging.govuk.digital/) deploys releases to staging
-4. [Production Deploy Jenkins](https://deploy.blue.production.govuk.digital/) deploys releases to production
+* [Licensify in ArgoCD for Integration](https://argo.eks.integration.govuk.digital/applications/licensify)
+* [icensify in ArgoCD for Staging](https://argo.eks.staging.govuk.digital/applications/licensify)
+* [icensify in ArgoCD for Production](https://argo.eks.production.govuk.digital/applications/licensify)
 
-Access to Jenkins is controlled through GitHub teams. Users in the "GOV.UK" team have full access to the CI and
-Integration Jenkins instances, and read only access to the Staging and Production Jenkins instances. Users in the "
-GOV.UK Production Admin" team have full access in all environments.
+Authentication is with Github SSO, and Access is granted via membership of the following Github groups:
 
-Usually, GOV.UK developers coordinate deployments through these Jenkins instances using
-[the Release app](https://release.publishing.service.gov.uk/applications). This shows which releases are deployed to
-which environments, and has useful buttons to take you to the correct Jenkins instance.
+* alphagov:gov-uk
+* alphagov:gov-uk-production-deploy
 
-Access to the Release app is controlled through [GOV.UK Signon](https://github.com/alphagov/signon). If you don't have access, you can request it from the
-GOV.UK developers.
+To manage deployments in Production, you need to be a member of `alphagov:gov-uk-production-deploy`.
 
-The process for building a new release and promoting it through the three
-environments is as follows:
+By default, a successful build on the main branch in Github will notify Argo to start a new deployment. From Argo, you can see an overview of the Kubernetes resources and their current state.
 
-1. When a PR/branch is merged into main, this starts a new build of main on the CI Jenkins. This produces the
-   necessary artefacts to deploy Licensify. Each build is given a build number.
-1. Jenkins will deploy the new build automatically to integration using the
-   [integration Jenkins job](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/)
-1. To complete the deployment to integration, you need to ensure that the Deploy App job has run for each of the apps:
-   1. [licensify (Integration)](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify)
-   1. [licensify-admin (Integration)](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-admin)
-   1. [licensify-feed (Integration)](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed)
-1. Manually confirm that the frontend and backend of Licensing are working on Integration before deploying to Staging
-1. To deploy to staging, you must manually trigger the Deploy App Jenkins job 3 times, once for each of the Licensify
-   components.
-   1. [licensify (Staging)](https://deploy.blue.staging.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify)
-   1. [licensify-admin (Staging)](https://deploy.blue.staging.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-admin)
-   1. [licensify-feed (Staging)](https://deploy.blue.staging.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed)
-1. Manually confirm that the frontend and backend of Licensing are working on Staging before deploying to Production
-1. Follow the same procedure as for staging to deploy to production using the production Jenkins:
-   1. [licensify (Production)](https://deploy.blue.production.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify)
-   1. [licensify-admin (Production)](https://deploy.blue.production.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-admin)
-   1. [licensify-feed (Production)](https://deploy.blue.production.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed)
+## Using Kubernetes
 
-## Accessing machines using SSH
+The licensing application stack is now orchestrated on Kubernetes clusters (running on AWS EKS). 
 
-Accessing machines using SSH in production and staging requires Production Admin Access. Third parties are usually only given Production Deploy Access, which only allows SSH in the integration environment.
+### Getting Accesss
+To interact with the Kubernetes cluster, you will need to authenticate via the AWS CLI. For more help on how to set up the necessary CLI tools, read [Set up tools to use the GOV.UK Kubernetes platform
+](https://docs.publishing.service.gov.uk/kubernetes/get-started/set-up-tools/).
 
-The machine classes you will need are `licensing_frontend` and `licensing_backend`. You will need to be on the VPN.
+Access to GDS AWS accounts is managed via GDS Users. You can request a user via the [self-service tool](https://gds-request-an-aws-account.cloudapps.digital/) if you have a @digital-cabinet-office.gov.uk email address. Once you have a user, ask a GOV.UK Tech Lead to be given the necessary roles in [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer).
 
-Connect to the instance by running, for example, `gds govuk connect -e production ssh licensing_backend`.
+Once you have the necessary permissions and access, you can continue.
+
+The easiest way to do this is with the GDS CLI. You can either chain your commands onto the GDS CLI:
+```
+gds aws govuk-integration-admin -- aws sts get-caller-identity
+```
+
+...or you can use the `-e` flag with the GDS CLI to export an AWS session into your terminal:
+```
+gds aws govuk-integration-admin -e
+```
+
+If you can't use the GDS CLI, you can use the `aws-vault exec` command with your manually-created AWS tokens instead:
+```
+aws-vault exec govuk-integration -- aws sts get-caller-identity
+```
+
+Once you're authenticated with AWS, you can check your connection to Kubernetes:
+```
+gds aws govuk-integration-admin --  kubectl cluster-info
+```
+
+If this works, you can now use `kubectl` to manage the apps in the cluster. We'll assume from this point on that you're authenticated in your shell or are piping the subsequent commands onto the GDS CLI as demonstrated above.
+
+### Observing Apps on Kubernetes
+
+The licensing resources all share a common label: `app.kubernetes.io/part-of=licensify` - you can use this as a filter for most commands to find it among the other apps running in the GOV.UK `apps` namespace.
+
+To observe all the licensing deployments on the cluster: 
+```
+kubectl -n apps get deploy -l app.kubernetes.io/part-of=licensify
+```
+
+You should receive a response like: 
+```
+NAME                 READY   UP-TO-DATE   AVAILABLE   AGE
+clamav               1/1     1            1           11d
+licensify-admin      1/1     1            1           11d
+licensify-feed       1/1     1            1           11d
+licensify-frontend   1/1     1            1           11d
+```
+
+To view more details about one of the deployments:
+```
+kubectl -n apps describe deploy licensify-admin
+````
+
+To view the logs from a deployment:
+```
+kubectl -n apps logs deploy/licensify-admin
+```
+
+You can reuse most of the above commands to view information about the individual pods, for example:
+
+```
+kubectl -n apps get pods -l app.kubernetes.io/part-of=licensify
+```
+
+### Accessing live containers
+
+Since the application has been migrated onto Kubernetes, we no longer have a concept of SSH access. Instead, you can exec commands directly on the relevant containers, including an interactive Bash or Shell session:
+
+```
+kubectl -n apps exec -it deploy/licensify-admin -- bash
+```
+
+If you want to access a specific pod, substitute the deployment for one of the pod names:
+
+```
+kubectl -n apps exec -it pod/licensify-admin-5dcf84545-58b9k -- bash
+```
 
 The files most relevant to the Licensify applications can be found in:
 
@@ -88,6 +135,8 @@ The files most relevant to the Licensify applications can be found in:
 * Config: `/etc/licensify`
 
 ## Accessing MongoDB
+
+**(This secretion needs updating)**
 
 Licensify uses a MongoDB cluster hosted by AWS (DocumentDB). The database hosts in use by a particular Licensify instance can be found in `/etc/licensing/gds-licensing-config.properties` on the `licensing_backend` machines, in the `mongo.database.*` keys.
 
@@ -106,3 +155,19 @@ Enter password: REDACTED
 
 …
 ```
+
+## Managing Config and Secrets
+
+Configuration defaults are declared in the `values.yaml` file in [govuk-helm-charts](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/licensify).
+
+Per-environment overrides are set in the shared `app-config` Chart:
+
+* [Values for Integration](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-integration.yaml)
+* [Values for Staging](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-staging.yaml)
+* [Values for Production](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml)
+
+Secrets are stored in [AWS Secrets Manager](https://eu-west-1.console.aws.amazon.com/secretsmanager/secret?name=govuk%2Flicensify&region=eu-west-1) in the relevant account environment, under `govuk/licensify`.
+
+## Updating Helm Charts
+
+If you need to change the way any of the licensing components speak to each other, you will want to update the Helm Charts. These are stored in the [govuk-helm-charts](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/licensify) Repository.
