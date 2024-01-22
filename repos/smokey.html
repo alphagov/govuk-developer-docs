@@ -312,6 +312,9 @@ bundle exec cucumber
 <code>SIGNON_PASSWORD</code>: password of a Signon user in $ENVIRONMENT</li>
 <li>
 <code>RATE_LIMIT_TOKEN</code>: (optional) a token used to bypass rate limiting if present on apps.</li>
+<li>
+<code>GOVUK_PROXY_PROFILE</code> (optional) name of profile to use in govuk_proxy.rb. See <a href="#proxy">proxy tests</a>
+</li>
 </ul>
 
 <p>Smokey cannot use a Signon account which has multi-factor authentication
@@ -322,6 +325,30 @@ the Signon credentials for the Smokey test user:</p>
 
 <pre lang="sh"><code>k get secret smokey-signon-account -oyaml | yq .data.password | base64 -d
 k get secret smokey-signon-account -oyaml | yq .data.email | base64 -d
+</code></pre>
+
+<h3 id="proxy-tests">Proxy tests</h3>
+
+<p>The Smokey test suite can be told to run against our primary CDN (Fastly), our failover CDN (Cloudfront), or any one of the GOV.UK mirrors. To do so, you&rsquo;ll need to run the proxy in a separate process, and ensure you specify the <code>GOVUK_PROXY_PROFILE</code> environment variable.</p>
+
+<p>Example of running Smokey tests against the main GOV.UK mirror:</p>
+
+<pre lang="shell"><code>shell1$ env GOVUK_PROXY_PROFILE=mirrorS3 ruby govuk_proxy_runner.rb
+
+shell2$ env GOVUK_PROXY_PROFILE=mirrorS3 ENVIRONMENT=production bundle exec cucumber --tags="@worksonmirror"
+</code></pre>
+
+<p>Example of running Smokey tests against the failover CDN (NB: the &lsquo;secret&rsquo; Cloudfront value can be <a href="https://github.com/alphagov/govuk-dns-tf/pull/69">found in govuk-dns-tf</a>):</p>
+
+<pre lang="shell"><code>shell1$ env GOVUK_PROXY_PROFILE=failoverCDN FAILOVER_CDN_HOST="secret.cloudfront.net" ruby govuk_proxy_runner.rb
+
+shell2$ env GOVUK_PROXY_PROFILE=failoverCDN ENVIRONMENT=production bundle exec cucumber --tags="not @notreplatforming and not @notcloudfront"
+</code></pre>
+
+<p>Debug mode for checking you&rsquo;re setting headers correctly:</p>
+
+<pre lang="shell"><code>env GOVUK_PROXY_PROFILE=debug ruby govuk_proxy_runner.rb
+# Visit http://127.0.0.1:8080/ to see your request headers
 </code></pre>
 
 <h2 id="further-documentation">Further documentation</h2>
