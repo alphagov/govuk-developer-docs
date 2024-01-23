@@ -21,13 +21,15 @@ The source code is hosted on GitHub at [alphagov/licensify](https://github.com/a
 
 Licensify uses an Elasticsearch / Logstash / Kibana system hosted by Logit.io for its logs.
 
-If you haven't already got access to the GDS LogIt account, you'll need to [follow the instructions in the Reliability Engineering documentation to create an account in Logit](https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit).
+If you haven't already got access to the GDS Logit account, you'll need to [follow the instructions in the Reliability Engineering documentation to create an account in Logit](https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit).
 
 ## Creating new Builds
 
 Licensify is built into Docker container images with Github Actions Workflows.
 
 If you have access to merge code into main, you will have access to start builds that, once completed, will push container images into AWS ECR (Elastic Container Registry) and then trigger ArgoCD to start a deployment.
+
+Merges to the `main` branch will automatically trigger a build that deploys into Integration. In order to deploy into Staging or Production, you will need to trigger those deploys manually.
 
 ## Deploying builds with ArgoCD
 
@@ -144,7 +146,7 @@ kubectl -n apps rollout restart deployment/licensify-admin
 
 ## Accessing MongoDB
 
-**(This secretion needs updating)**
+**(This section needs updating)**
 
 Licensify uses a MongoDB cluster hosted by AWS (DocumentDB). The database hosts in use by a particular Licensify instance can be found in `/etc/licensing/gds-licensing-config.properties` on the `licensing_backend` machines, in the `mongo.database.*` keys.
 
@@ -163,21 +165,3 @@ Enter password: REDACTED
 
 …
 ```
-
-## Managing Config and Secrets
-
-Configuration defaults are declared in the `values.yaml` file in [govuk-helm-charts](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/licensify).
-
-Per-environment overrides are set in the shared `app-config` Chart:
-
-* [Values for Integration](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-integration.yaml)
-* [Values for Staging](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-staging.yaml)
-* [Values for Production](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml)
-
-Secrets are stored in [AWS Secrets Manager](https://eu-west-1.console.aws.amazon.com/secretsmanager/secret?name=govuk%2Flicensify&region=eu-west-1) in the relevant account environment, under `govuk/licensify`.
-
-If you change the config or secrets, you may need to relaunch or re-deploy the app in order for it to see the new changes.
-
-## Updating Helm Charts
-
-If you need to change the way any of the licensing components speak to each other, you will want to update the Helm Charts. These are stored in the [govuk-helm-charts](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/licensify) Repository.
