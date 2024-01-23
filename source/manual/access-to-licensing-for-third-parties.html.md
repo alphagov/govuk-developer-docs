@@ -61,22 +61,22 @@ Access to GDS AWS accounts is managed via GDS Users. You can request a user via 
 Once you have the necessary permissions and access, you can continue.
 
 The easiest way to do this is with the GDS CLI. You can either chain your commands onto the GDS CLI:
-```
+```sh
 gds aws govuk-integration-admin -- aws sts get-caller-identity
 ```
 
 ...or you can use the `-e` flag with the GDS CLI to export an AWS session into your terminal:
-```
+```sh
 gds aws govuk-integration-admin -e
 ```
 
 If you can't use the GDS CLI, you can use the `aws-vault exec` command with your manually-created AWS tokens instead:
-```
+```sh
 aws-vault exec govuk-integration -- aws sts get-caller-identity
 ```
 
 Once you're authenticated with AWS, you can check your connection to Kubernetes:
-```
+```sh
 gds aws govuk-integration-admin --  kubectl cluster-info
 ```
 
@@ -84,11 +84,15 @@ If this works, you can now use `kubectl` to manage the apps in the cluster. We'l
 
 ### Observing Apps on Kubernetes
 
-The licensing resources all share a common label: `app.kubernetes.io/part-of=licensify` - you can use this as a filter for most commands to find it among the other apps running in the GOV.UK `apps` namespace.
+The licensing resources all exist in their own `licensify` namespace, but also carry a set of labels to identify them. You can use these as filters for most commands to find certain deployments, pods or services running within the same namespace:
+```txt
+app.kubernetes.io/name=licensify-admin
+app.kubernetes.io/part-of=licensify
+```
 
 To observe all the licensing deployments on the cluster: 
-```
-kubectl -n apps get deploy -l app.kubernetes.io/part-of=licensify
+```sh
+kubectl -n licensify get deploy -l app.kubernetes.io/part-of=licensify
 ```
 
 You should receive a response like: 
@@ -101,33 +105,33 @@ licensify-frontend   1/1     1            1           11d
 ```
 
 To view more details about one of the deployments:
-```
-kubectl -n apps describe deploy licensify-admin
+```sh
+kubectl -n licensify describe deploy licensify-admin
 ````
 
 To view the logs from a deployment:
-```
-kubectl -n apps logs deploy/licensify-admin
+```sh
+kubectl -n licensify logs deploy/licensify-admin
 ```
 
 You can reuse most of the above commands to view information about the individual pods, for example:
 
-```
-kubectl -n apps get pods -l app.kubernetes.io/part-of=licensify
+```sh
+kubectl -n licensify get pods -l app.kubernetes.io/part-of=licensify
 ```
 
 ### Accessing live containers
 
 Since the application has been migrated onto Kubernetes, we no longer have a concept of SSH access. Instead, you can exec commands directly on the relevant containers, including an interactive Bash or Shell session:
 
-```
-kubectl -n apps exec -it deploy/licensify-admin -- bash
+```sh
+kubectl -n licensify exec -it deploy/licensify-admin -- bash
 ```
 
 If you want to access a specific pod, substitute the deployment for one of the pod names:
 
-```
-kubectl -n apps exec -it pod/licensify-admin-5dcf84545-58b9k -- bash
+```sh
+kubectl -n licensify exec -it pod/licensify-admin-5dcf84545-58b9k -- bash
 ```
 
 The files most relevant to the Licensify applications can be found in:
@@ -140,8 +144,8 @@ The files most relevant to the Licensify applications can be found in:
 
 If you want to relaunch an existing deployment, you can either kill the pods (so Kubernetes will replace them), or for more predictable behaviour, you should use the rollout restart command:
 
-```
-kubectl -n apps rollout restart deployment/licensify-admin
+```sh
+kubectl -n licensify rollout restart deployment/licensify-admin
 ```
 
 ## Accessing MongoDB
