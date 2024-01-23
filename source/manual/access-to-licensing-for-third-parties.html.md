@@ -50,9 +50,10 @@ By default, a successful build on the main branch in Github will notify Argo to 
 
 ## Using Kubernetes
 
-The licensing application stack is now orchestrated on Kubernetes clusters (running on AWS EKS). 
+The licensing application stack is now orchestrated on Kubernetes clusters (running on AWS EKS).
 
 ### Getting Accesss
+
 To interact with the Kubernetes cluster, you will need to authenticate via the AWS CLI. For more help on how to set up the necessary CLI tools, read [Set up tools to use the GOV.UK Kubernetes platform
 ](https://docs.publishing.service.gov.uk/kubernetes/get-started/set-up-tools/).
 
@@ -61,21 +62,25 @@ Access to GDS AWS accounts is managed via GDS Users. You can request a user via 
 Once you have the necessary permissions and access, you can continue.
 
 The easiest way to do this is with the GDS CLI. You can either chain your commands onto the GDS CLI:
+
 ```sh
 gds aws govuk-integration-admin -- aws sts get-caller-identity
 ```
 
 ...or you can use the `-e` flag with the GDS CLI to export an AWS session into your terminal:
+
 ```sh
 gds aws govuk-integration-admin -e
 ```
 
 If you can't use the GDS CLI, you can use the `aws-vault exec` command with your manually-created AWS tokens instead:
+
 ```sh
 aws-vault exec govuk-integration -- aws sts get-caller-identity
 ```
 
 Once you're authenticated with AWS, you can check your connection to Kubernetes:
+
 ```sh
 gds aws govuk-integration-admin --  kubectl cluster-info
 ```
@@ -85,17 +90,20 @@ If this works, you can now use `kubectl` to manage the apps in the cluster. We'l
 ### Observing Apps on Kubernetes
 
 The licensing resources all exist in their own `licensify` namespace, but also carry a set of labels to identify them. You can use these as filters for most commands to find certain deployments, pods or services running within the same namespace:
+
 ```txt
 app.kubernetes.io/name=licensify-admin
 app.kubernetes.io/part-of=licensify
 ```
 
-To observe all the licensing deployments on the cluster: 
+To observe all the licensing deployments on the cluster:
+
 ```sh
 kubectl -n licensify get deploy -l app.kubernetes.io/part-of=licensify
 ```
 
-You should receive a response like: 
+You should receive a response like:
+
 ```
 NAME                 READY   UP-TO-DATE   AVAILABLE   AGE
 clamav               1/1     1            1           11d
@@ -105,11 +113,13 @@ licensify-frontend   1/1     1            1           11d
 ```
 
 To view more details about one of the deployments:
+
 ```sh
 kubectl -n licensify describe deploy licensify-admin
 ````
 
 To view the logs from a deployment:
+
 ```sh
 kubectl -n licensify logs deploy/licensify-admin
 ```
@@ -150,7 +160,8 @@ kubectl -n licensify rollout restart deployment/licensify-admin
 
 ## Accessing MongoDB
 
-**(This section needs updating)**
+> **Note: This section may need updating**  
+> Since the change to Kubernetes, this procedure may no longer work or be a reliable means for accessing the Database.
 
 Licensify uses a MongoDB cluster hosted by AWS (DocumentDB). The database hosts in use by a particular Licensify instance can be found in `/etc/licensing/gds-licensing-config.properties` on the `licensing_backend` machines, in the `mongo.database.*` keys.
 
