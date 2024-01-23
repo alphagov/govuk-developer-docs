@@ -200,34 +200,22 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/travel-advice-publisher/commit/9cb4241408e58baa892c99ee4e8295bcf987760a">23 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/travel-advice-publisher/commit/dd858202ffc3006a4db673c0bea7b1b4e5e8f48c">23 Jan 2024</a>
 </div>
 
   <h1 class="page-title">travel-advice-publisher: Error Monitoring for Travel Advice Alerts</h1>
 
   
 <ul>
-<li>An email alert monitoring script
+<li>Confirming email delivery
 <ul>
-<li><a href="https://github.com/alphagov/email-alert-monitoring/">https://github.com/alphagov/email-alert-monitoring/</a></li>
-<li>This runs once every hour on the Production deploy server</li>
-<li>It checks <a href="https://www.gov.uk/api/foreign-travel-advice.json">https://www.gov.uk/api/foreign-travel-advice.json</a> and
-looks for all country updates within a specific window (from 2 days
-ago to 1 hour ago)</li>
-<li>It then checks a dedicated inbox that has been subscribed to all
-travel alerts</li>
-<li>If an expected update isn't present in the inbox, an urgent alert is
-shown in Icinga</li>
-<li>This urgent alert triggers a phone call to the 2nd line/on called<br>
-support team</li>
+<li>a job runs every 15 mins in email-alert-api</li>
+<li>if it's an hour since a travel advice alert was created and no
+emails have been delivered for that alert, the 2nd line/on call
+team are paged.</li>
+<li>More details: <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/alert_check_scheduled_jobs.md">https://github.com/alphagov/email-alert-api/blob/main/docs/alert_check_scheduled_jobs.md</a>
+</li>
 </ul>
 </li>
 <li>Application error monitoring in Sentry</li>
