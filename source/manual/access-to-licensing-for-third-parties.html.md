@@ -23,30 +23,21 @@ Licensify uses an Elasticsearch / Logstash / Kibana system hosted by Logit.io fo
 
 If you haven't already got access to the GDS Logit account, you'll need to [follow the instructions in the Reliability Engineering documentation to create an account in Logit](https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit).
 
-## Creating new Builds
+## Testing
 
-Licensify is built into Docker container images with Github Actions Workflows.
+The GitHub Actions [`CI` workflow](https://github.com/alphagov/licensify/actions/workflows/ci.yml) runs unit and integration tests for Licensify. This runs automatically on every commit pushed to GitHub and when PRs are merged in to the main branch.
 
-If you have access to merge code into main, you will have access to start builds that, once completed, will push container images into AWS ECR (Elastic Container Registry) and then trigger ArgoCD to start a deployment.
+## Releases
 
-Merges to the `main` branch will automatically trigger a build that deploys into Integration. In order to deploy into Staging or Production, you will need to trigger those deploys manually.
+When a PR is merged into main and that merge commit sucessful passes, the GitHub Actions [`Release` workflow](https://github.com/alphagov/licensify/actions/workflows/release.yml) runs and creates a new release for that merge commit. The name scheme for release follows the `v<number>` format, where <number> is incremented for each release.
 
-## Deploying builds with ArgoCD
+## Building an image and deployment
 
-Licensify is deployed by ArgoCD. In GOV.UK, we have an ArgoCD instance for each environment.
+When a new Release is created, the GitHub Actions [`Deploy` workflow](https://github.com/alphagov/licensify/actions/workflows/deploy.yml) builds a new container image, pushes the image into a private AWS ECR (Elastic Container Registry) and triggers a deployment in the Kubernetes cluster.
 
-* [Licensify in ArgoCD for Integration](https://argo.eks.integration.govuk.digital/applications/licensify)
-* [Licensify in ArgoCD for Staging](https://argo.eks.staging.govuk.digital/applications/licensify)
-* [Licensify in ArgoCD for Production](https://argo.eks.production.govuk.digital/applications/licensify)
+Every new release is automatically deployed to integration.
 
-Authentication is with Github SSO, and Access is granted via membership of the following Github groups:
-
-* alphagov:gov-uk
-* alphagov:gov-uk-production-deploy
-
-To manage deployments in Production, you need to be a member of `alphagov:gov-uk-production-deploy`.
-
-By default, a successful build on the main branch in Github will notify Argo to start a new deployment. From Argo, you can see an overview of the Kubernetes resources and their current state.
+To deploy to staging or production, you need to manually trigger the [`Deploy` workflow](https://github.com/alphagov/licensify/actions/workflows/deploy.yml). This can be done via the GitHub Web UI by selecting "Run workflow" in the top right corner above the list of workflow runs. Enter the release name you wish to deploy e.g. `v24` into the field labelled "Commit, tag or branch name to deploy", then select the "Environment to deploy to" and then select "Run workflow".
 
 ## Using Kubernetes
 
@@ -64,13 +55,13 @@ Once you have the necessary permissions and access, you can continue.
 The easiest way to do this is with the GDS CLI. You can either chain your commands onto the GDS CLI:
 
 ```sh
-gds aws govuk-integration-admin -- aws sts get-caller-identity
+gds aws govuk-integration-licensinguser -- aws sts get-caller-identity
 ```
 
 ...or you can use the `-e` flag with the GDS CLI to export an AWS session into your terminal:
 
 ```sh
-gds aws govuk-integration-admin -e
+gds aws govuk-integration-licensinguser -e
 ```
 
 If you can't use the GDS CLI, you can use the `aws-vault exec` command with your manually-created AWS tokens instead:
@@ -82,7 +73,7 @@ aws-vault exec govuk-integration -- aws sts get-caller-identity
 Once you're authenticated with AWS, you can check your connection to Kubernetes:
 
 ```sh
-gds aws govuk-integration-admin --  kubectl cluster-info
+gds aws govuk-integration-licensinguser --  kubectl cluster-info
 ```
 
 If this works, you can now use `kubectl` to manage the apps in the cluster. We'll assume from this point on that you're authenticated in your shell or are piping the subsequent commands onto the GDS CLI as demonstrated above.
@@ -99,7 +90,7 @@ app.kubernetes.io/part-of=licensify
 To observe all the licensing deployments on the cluster:
 
 ```sh
-kubectl -n licensify get deploy -l app.kubernetes.io/part-of=licensify
+kubectl -n licensify get deploy
 ```
 
 You should receive a response like:
@@ -115,7 +106,7 @@ licensify-frontend   1/1     1            1           11d
 To view more details about one of the deployments:
 
 ```sh
-kubectl -n licensify describe deploy licensify-admin
+kubectl -n licensify describe deploy/licensify-admin
 ````
 
 To view the logs from a deployment:
@@ -127,7 +118,7 @@ kubectl -n licensify logs deploy/licensify-admin
 You can reuse most of the above commands to view information about the individual pods, for example:
 
 ```sh
-kubectl -n licensify get pods -l app.kubernetes.io/part-of=licensify
+kubectl -n licensify get pods
 ```
 
 ### Accessing live containers
@@ -149,14 +140,6 @@ The files most relevant to the Licensify applications can be found in:
 * Application: `/data/vhost/licensify`
 * Logs: `/var/log/licensify`
 * Config: `/etc/licensify`
-
-### Relaunching containers
-
-If you want to relaunch an existing deployment, you can either kill the pods (so Kubernetes will replace them), or for more predictable behaviour, you should use the rollout restart command:
-
-```sh
-kubectl -n licensify rollout restart deployment/licensify-admin
-```
 
 ## Accessing MongoDB
 
