@@ -7,23 +7,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: email-alert-monitoring - GOV.UK Developer Documentation</title>
+    <title>Application: email-alert-monitoring (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/email-alert-monitoring.html">
 
-      <meta name="description" content="Everything about email-alert-monitoring (Script run by Jenkins that verifies GOV.UK email alerts have been sent)" />
+      <meta name="description" content="Everything about email-alert-monitoring (Was used to check that Medical Safety and Travel Advice email alerts were
+being delivered.
+Replaced by internal checks in email-alert-api in January 2024.
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: email-alert-monitoring - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Application: email-alert-monitoring (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-monitoring.html" />
 
-      <meta property="og:description" content="Everything about email-alert-monitoring (Script run by Jenkins that verifies GOV.UK email alerts have been sent)" />
+      <meta property="og:description" content="Everything about email-alert-monitoring (Was used to check that Medical Safety and Travel Advice email alerts were
+being delivered.
+Replaced by internal checks in email-alert-api in January 2024.
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: email-alert-monitoring" />
+      <meta property="og:title" content="Application: email-alert-monitoring (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-monitoring.html" />
 
@@ -187,162 +193,13 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Application: email-alert-monitoring</h1>
+  <h1 class="page-title">Application: email-alert-monitoring (retired)</h1>
 
-  <p>Script run by Jenkins that verifies GOV.UK email alerts have been sent</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/email-alert-monitoring">email-alert-monitoring</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/tech-content-interactions-on-platform-govuk">#tech-content-interactions-on-platform-govuk</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS (EKS)</strong></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:email-alert-monitoring'),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:email-alert-monitoring-worker'),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/email-alert-monitoring" class="govuk-link">Argo CD (email-alert-monitoring)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>GOV.UK provides email alerts. This repo provides scripts that verify that
-emails have been sent for certain publications.</p>
-
-<p>Currently the script looks at <a href="https://www.gov.uk/drug-device-alerts">drug and medical advice
-alerts</a> and <a href="https://www.gov.uk/foreign-travel-advice">foreign travel advice
-alerts</a>.</p>
-
-<p>We validate each email has been sent by Notify
-(<a href="mailto:gov.uk.email@notifications.service.gov.uk">gov.uk.email@notifications.service.gov.uk</a>) and received by our own
-<a href="mailto:govuk_email_check@digital.cabinet-office.gov.uk">govuk_email_check@digital.cabinet-office.gov.uk</a> email box.</p>
-
-<h3 id="medical-safety-alerts">Medical safety alerts</h3>
-
-<p>An email address has been subscribed to these alerts (via <a href="https://www.gov.uk/drug-device-alerts/email-signup">the email signup page</a>).</p>
-
-<p>Every hour, we look at <a href="https://www.gov.uk/drug-device-alerts.atom">the public RSS feed for alerts</a>. We then check the
-email address has received an email for these publications via the
-<a href="https://developers.google.com/gmail/api/">Google Gmail API</a>.</p>
-
-<h3 id="travel-advice-alerts">Travel advice alerts</h3>
-
-<p>An email address has been subscribed to these alerts (via <a href="https://www.gov.uk/foreign-travel-advice/email-signup">the email signup page</a>).</p>
-
-<p>Every hour, we look at <a href="https://www.gov.uk/api/content/foreign-travel-advice">the content store feed for alerts</a>. We then
-check the email address has received an email for these publications via
-the <a href="https://developers.google.com/gmail/api/">Google Gmail API</a>.</p>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<h3 id="running">Running</h3>
-
-<p><code>bundle exec rake run_medical_alerts</code> for the medical safety alert checker</p>
-
-<p><code>bundle exec rake run_travel_alerts</code> for the travel advice alert checker</p>
-
-<p>Both rake tasks will exit normally and not output anything if everything
-is OK.</p>
-
-<p>If they find that some alerts have not been sent out, they will print the
-missing alerts and exit with a non-zero exit code. When reported to Icinga
-by Jenkins, this will alert developers.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rspec</code></p>
-
-<h3 id="testing-the-alert-checks">Testing the alert checks</h3>
-
-<ol>
-<li>Let 2nd line know that you&rsquo;re testing changes to these alerts.</li>
-<li>In the inbox (<a href="mailto:govuk_email_check@digital.cabinet-office.gov.uk">govuk_email_check@digital.cabinet-office.gov.uk</a>) for whichever
-alert type you&rsquo;re checking, delete an email that was received during the
-inspection period. For Medical Safety alerts this is the the 5 most recent
-over an hour old (see <a href="https://github.com/alphagov/email-alert-monitoring/blob/master/lib/email_search/medical_safety.rb#L16-L17">here</a>) and for Travel Advice
-this is all updates between 150 minutes to 2 days old (see <a href="https://github.com/alphagov/travel-advice-publisher/blob/master/app/controllers/healthcheck_controller.rb#L25-L26">here</a>). The credentials for the email account are in the 2nd line
-pass store -
-<code>pass/2ndline/google-accounts/govuk_email_check@digital.cabinet-office.gov.uk</code>.</li>
-<li>In production Jenkins, either run the <a href="https://deploy.blue.production.govuk.digital/job/medical-safety-email-alert-check/">MedicalSafetyEmailAlertCheck</a> or
-<a href="https://deploy.blue.production.govuk.digital/job/travel-advice-email-alert-check/">TravelAdviceEmailAlertCheck</a>. This should fail and output an error message
-reporting the absence of the deleted email.</li>
-<li>Check the alert is triggered correctly in <a href="https://alert.blue.production.govuk.digital/cgi-bin/icinga/status.cgi?host=all&amp;type=detail&amp;servicestatustypes=16&amp;hoststatustypes=3&amp;serviceprops=2097162">Icinga</a>.</li>
-<li>If testing the Travel advice check we would expect PagerDuty to notify
-whoevers on call (in hours this would be the devs on 2nd line).</li>
-<li>Back in the inbox, restore the email from trash.</li>
-<li>Rerun the Jenkins job you ran in step 3.</li>
-<li>Everything should be green.</li>
-</ol>
-
-<h3 id="regenerating-google-oauth-credentials">Regenerating Google OAuth credentials</h3>
-
-<p>The <code>GOOGLE_OAUTH_CREDENTIALS</code> environment variable contains a JSON
-representation of the OAuth credentials used to connect to the email
-account to check for email alerts.</p>
-
-<p>If these credentials stop working (for example, they are revoked), they
-can be regenerated using the following steps:</p>
-
-<ol>
-<li>Log in to the Google account that will be checked for email alerts.
-For best results, do this in a private browsing window.</li>
-<li>Run <code>bundle exec rake get_oauth_url</code> to get a Google authorisation
-URL.</li>
-<li>Visit this URL in the browser window from step 1.</li>
-<li>Allow permission for this app to log into the relevant email account.</li>
-<li>The browser will redirect to a non-existent localhost URL - copy the
-contents of the <code>code</code> query string parameter from this URL.</li>
-<li>Run <code>bundle exec rake get_oauth_token[&lt;code&gt;]</code>, where <code>&lt;code&gt;</code> is
-the code you extracted in step 5.</li>
-<li>Copy the output of the command and replace the existing credentials
-in <a href="https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/hieradata/production_credentials.yaml">aws production hierdata</a>.</li>
-</ol>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/email-alert-monitoring/blob/main/LICENCE.txt">MIT License</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Was used to check that Medical Safety and Travel Advice email alerts were
+being delivered.
+Replaced by internal checks in email-alert-api in January 2024.</p></p>
+<p><a href="https://github.com/alphagov/email-alert-monitoring">GitHub repository</a></p>
 
 
             
