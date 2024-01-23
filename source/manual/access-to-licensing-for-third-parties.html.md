@@ -36,8 +36,8 @@ Merges to the `main` branch will automatically trigger a build that deploys into
 Licensify is deployed by ArgoCD. In GOV.UK, we have an ArgoCD instance for each environment.
 
 * [Licensify in ArgoCD for Integration](https://argo.eks.integration.govuk.digital/applications/licensify)
-* [icensify in ArgoCD for Staging](https://argo.eks.staging.govuk.digital/applications/licensify)
-* [icensify in ArgoCD for Production](https://argo.eks.production.govuk.digital/applications/licensify)
+* [Licensify in ArgoCD for Staging](https://argo.eks.staging.govuk.digital/applications/licensify)
+* [Licensify in ArgoCD for Production](https://argo.eks.production.govuk.digital/applications/licensify)
 
 Authentication is with Github SSO, and Access is granted via membership of the following Github groups:
 
@@ -57,7 +57,7 @@ The licensing application stack is now orchestrated on Kubernetes clusters (runn
 To interact with the Kubernetes cluster, you will need to authenticate via the AWS CLI. For more help on how to set up the necessary CLI tools, read [Set up tools to use the GOV.UK Kubernetes platform
 ](https://docs.publishing.service.gov.uk/kubernetes/get-started/set-up-tools/).
 
-Access to GDS AWS accounts is managed via GDS Users. You can request a user via the [self-service tool](https://gds-request-an-aws-account.cloudapps.digital/) if you have a @digital-cabinet-office.gov.uk email address. Once you have a user, ask a GOV.UK Tech Lead to be given the necessary roles in [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer).
+Access to GDS AWS accounts is managed via GDS Users. You can request a user via the [self-service tool](https://gds-request-an-aws-account.cloudapps.digital/) if you have a `@digital-cabinet-office.gov.uk` email address. Once you have a user, ask a GOV.UK Tech Lead to be given the necessary roles in [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer).
 
 Once you have the necessary permissions and access, you can continue.
 
