@@ -154,6 +154,9 @@
         <a href="#purging-all-objects-from-the-fastly-cdn"><span>Purging all objects from the Fastly CDN</span></a>
       </li>
       <li>
+        <a href="#purge-a-page-from-the-standby-cloudfront-cdn"><span>Purge a page from the standby CloudFront CDN</span></a>
+      </li>
+      <li>
         <a href="#further-reading"><span>Further reading</span></a>
       </li>
     </ul>
@@ -206,7 +209,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b827438521235ce10555af9814ecaffd52f12322">27 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/de89d910df5ced4681d76f14cebfa21342241ea2">24 Jan 2024</a>
 </div>
 
  <h1 id='header'>Purge a page from cache</h1> <h2 id='background'>Background</h2><p><a href="https://www.fastly.com/products/cdn">Fastly</a> caches HTTP resources such as
@@ -262,6 +265,23 @@ appropriate service. For example, <code>Production GOV.UK</code> for www.gov.uk 
 <li>From the &ldquo;Purge&rdquo; drop-down button near the top left of the page, choose
 &ldquo;Purge all&rdquo;.</li>
 <li>The UI will ask you for confirmation before issuing the purge request.</li>
+</ol>
+<h2 id='purge-a-page-from-the-standby-cloudfront-cdn'>Purge a page from the standby CloudFront CDN</h2><p>In addition to our primary CDN (Fastly), we also have a standby CDN set up on
+CloudFront. This standby CDN is only intended to be used during a Fastly
+outage, so there&rsquo;s a limited number of situations in which you would need to
+purge its cache.</p>
+<p>If an item urgently needs to be removed from the cache, you can create an
+invalidation from the AWS console.</p>
+
+<ol>
+<li>Log into the AWS console with <code>gds aws govuk-production-poweruser -l</code>.</li>
+<li>Under the <a href="https://us-east-1.console.aws.amazon.com/cloudfront/v4/home?region=eu-west-1#/distributions">CloudFront distributions page</a>,
+choose the appropriate distribution: <code>WWW</code> for www.gov.uk or <code>Assets</code> for assets.publishing.service.gov.uk.</li>
+<li>Select the &ldquo;Invalidations&rdquo; tab, and click &ldquo;Create invalidation&rdquo;.</li>
+<li>Enter the full paths of all resources to purge (that is, everything after
+the hostname in the URL). You can optionally use wildcards (<code>*</code>). To purge
+all objects, enter the path <code>/*</code>.</li>
+<li>Click &ldquo;Create invalidation&rdquo;.</li>
 </ol>
 <h2 id='further-reading'>Further reading</h2><p>See <a href="https://developer.fastly.com/learning/concepts/purging/">Fastly&rsquo;s documentation on purging</a>.</p>
 
