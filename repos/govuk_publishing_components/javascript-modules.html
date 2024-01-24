@@ -264,15 +264,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0646b2b87a7ce11c1d9363358c903e7054c02595">9 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/260f5fa6d8b02b4f647eb56e93e629ffda1bb2b1">24 Jan 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: # JavaScript Modules</h1>
@@ -307,7 +300,7 @@ GOVUK.modules.start($container)
   this.$module = $module
   var consentCookie = window.GOVUK.getConsentCookie()
 
-  if (consentCookie &amp;&amp; consentCookie.settings) {
+  if (consentCookie &amp;&amp; consentCookie.usage) {
     this.startModule()
   } else {
     this.startModule = this.startModule.bind(this)
