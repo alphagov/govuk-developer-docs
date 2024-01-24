@@ -61,7 +61,7 @@ gds aws govuk-integration-licensinguser -- aws sts get-caller-identity
 ...or you can use the `-e` flag with the GDS CLI to export an AWS session into your terminal:
 
 ```sh
-gds aws govuk-integration-licensinguser -e
+eval $(gds aws govuk-integration-licensinguser -e --art 8h)
 ```
 
 If you can't use the GDS CLI, you can use the `aws-vault exec` command with your manually-created AWS tokens instead:
@@ -81,7 +81,7 @@ aws-vault exec govuk-integration -- aws sts get-caller-identity
 1. Setup the new context for `kubectl`:
 
     ```sh
-    aws eks update-kubeconfig --name govuk —alias govuk-integration
+    aws eks update-kubeconfig --name govuk --alias govuk-integration
     ```
 
 1. Set `kubectl` to use that context:
@@ -96,7 +96,7 @@ Once you're authenticated with AWS, you can check your connection to Kubernetes:
 kubectl -n licensify get deploy
 ```
 
-You will need to do this setup for each environment. Make sure to replace references to "integration" in the command above with the relevant environment name.
+You will need to do this setup for each environment (`staging` and `production`). Make sure to replace references to "integration" in the command above with the relevant environment name.
 
 If this works, you can now use `kubectl` to manage the apps in the cluster. We'll assume from this point on that you're authenticated in your shell or are piping the subsequent commands onto the GDS CLI as demonstrated above.
 
