@@ -51,27 +51,30 @@ the previous version of the software.
 1. Check that GOV.UK content teams are aware of the ticket. They may
    need to request further tickets to be raised to cover the content updates.
 1. Download all zip files and XML file in the ticket
-1. Log into a backend machine: `gds govuk connect ssh -e production aws/backend:1`.
-   **Yes, production - don't use integration or staging to test. There's a test procedure on production.**
-1. Create a directory for the files to go into: `mkdir /tmp/hmrc-paye`
-1. Either `exit` to return to your dev machine, or open another shell
+   **Note - make sure you're in the production context for kubectl - don't use integration or staging to test. There's a test procedure on production.**
+1. Create a directory for the files to go into:
+
+   ```shell
+   kubectl exec -ti deploy/asset-manager -- mkdir /tmp/hmrc-paye
+   ```
+
+1. Get the name of the pod, something like asset-manager-74765b58bb-hhcr - it will be the one that isn't -freshclam- or -worker-:
+
+   ```shell
+   kubectl get pods | grep asset-manager
+   ```
+
 1. Upload the new files:
 
    ```shell
-   $mac gds govuk connect scp-push -e production aws/backend:1 *.zip /tmp/hmrc-paye
-   $mac gds govuk connect scp-push -e production aws/backend:1 *.xml /tmp/hmrc-paye
+   kubectl cp <local zip file path/name> apps/<pod identified above>:/tmp/hmrc-paye
+   kubectl cp <local xml file path/name> apps/<pod identified above>:/tmp/hmrc-paye
    ```
-
-1. SSH back into the machine if you exited earlier:
-   `gds govuk connect ssh -e production aws/backend:1`
-
-1. Verify that the files copied over correctly: `ls /tmp/hmrc-paye`
 
 1. Upload the ZIP files into Asset Manager
 
    ```shell
-   cd /var/apps/asset-manager
-   sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
+   kubectl exec -ti deploy/asset-manager -- "rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]"
    ```
 
    The command should take a few seconds to run, and the output will look something like this
@@ -86,8 +89,7 @@ the previous version of the software.
 1. Now upload the manifest, **but with "test-" at the start of the filename**:
 
    ```shell
-   sudo -udeploy govuk_setenv asset-manager bundle exec rake \
-   govuk_assets:create_hmrc_paye_asset[/home/yourname/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
+   kubectl exec -ti deploy/asset-manager -- "rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]"
    ```
 
 1. [Purge the cache](/manual/purge-cache.html#assets) for the test file.
@@ -111,9 +113,7 @@ the previous version of the software.
    re-load the test file to the production path:
 
    ```shell
-   gds govuk connect ssh -e production <aws_machine_ip_address>
-   cd /var/apps/asset-manager
-   sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
+   kubectl exec -ti deploy/asset-manager -- "rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]"
    ```
 
    If the SSH connection fails, or if the file is missing, the machine has
