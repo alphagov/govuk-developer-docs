@@ -226,7 +226,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2a71c1bb5ca176b3109794b3d374b8991fd08b18">24 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6cdba792d000efe337750e2c10ad606dcf0b61be">24 Jan 2024</a>
 </div>
 
  <h1 id='header'>Access to Licensify for Third Parties</h1> <p><a href="/manual/licensing.html">Licensify</a> is a GOV.UK application which is usually supported by third parties.</p>
@@ -248,7 +248,7 @@
 <p>The easiest way to do this is with the GDS CLI. You can either chain your commands onto the GDS CLI:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-licensinguser <span class="nt">--</span> aws sts get-caller-identity
 </code></pre></div><p>&hellip;or you can use the <code>-e</code> flag with the GDS CLI to export an AWS session into your terminal:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-licensinguser <span class="nt">-e</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-licensinguser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
 </code></pre></div><p>If you can&rsquo;t use the GDS CLI, you can use the <code>aws-vault exec</code> command with your manually-created AWS tokens instead:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>aws-vault <span class="nb">exec </span>govuk-integration <span class="nt">--</span> aws sts get-caller-identity
 </code></pre></div><h3 id='accessing-the-cluster-for-the-first-time'>Accessing the cluster for the first time</h3>
@@ -257,7 +257,7 @@
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-licensinguser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
 </code></pre></div></li>
 <li><p>Setup the new context for <code>kubectl</code>:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>aws eks update-kubeconfig <span class="nt">--name</span> govuk —alias govuk-integration
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>aws eks update-kubeconfig <span class="nt">--name</span> govuk <span class="nt">--alias</span> govuk-integration
 </code></pre></div></li>
 <li><p>Set <code>kubectl</code> to use that context:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl config use-context govuk-integration
@@ -265,7 +265,7 @@
 </ol>
 <p>Once you&rsquo;re authenticated with AWS, you can check your connection to Kubernetes:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify get deploy
-</code></pre></div><p>You will need to do this setup for each environment. Make sure to replace references to &ldquo;integration&rdquo; in the command above with the relevant environment name.</p>
+</code></pre></div><p>You will need to do this setup for each environment (<code>staging</code> and <code>production</code>). Make sure to replace references to &ldquo;integration&rdquo; in the command above with the relevant environment name.</p>
 <p>If this works, you can now use <code>kubectl</code> to manage the apps in the cluster. We&rsquo;ll assume from this point on that you&rsquo;re authenticated in your shell or are piping the subsequent commands onto the GDS CLI as demonstrated above.</p>
 <h3 id='observing-apps-on-kubernetes'>Observing Apps on Kubernetes</h3><p>The licensing resources all exist in their own <code>licensify</code> namespace, but also carry a set of labels to identify them. You can use these as filters for most commands to find certain deployments, pods or services running within the same namespace:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>app.kubernetes.io/name=licensify-admin
