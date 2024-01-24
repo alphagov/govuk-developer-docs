@@ -418,7 +418,9 @@ ckan dataset purge DATASET_NAME
 
 ### Bulk deleting datasets
 
-This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, which can be obtained from your user profile in the CKAN web interface. Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following.
+This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, which can be obtained from your user profile in the CKAN web interface. You might need to change [the limit to the number of datasets that can be deleted](https://github.com/alphagov/datagovuk_publish/blob/main/app/lib/ckan/v26/depaginator.rb#L5) - otherwise the deletion may appear to work in CKAN but the changes won't make it through to data.gov.uk and subsequent publish jobs could be blocked.
+
+Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following:
 
 ```
 while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: <your_api_key>" http://localhost:<ckan_port>/api/3/action/package_delete; done < list_of_ids.txt
