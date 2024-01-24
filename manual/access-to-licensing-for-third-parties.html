@@ -226,7 +226,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6cdba792d000efe337750e2c10ad606dcf0b61be">24 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/485e4f023ff47b4c3b7fad13002cf8fa6a9fc2dc">24 Jan 2024</a>
 </div>
 
  <h1 id='header'>Access to Licensify for Third Parties</h1> <p><a href="/manual/licensing.html">Licensify</a> is a GOV.UK application which is usually supported by third parties.</p>
@@ -235,6 +235,8 @@
 <h2 id='accessing-the-source-code'>Accessing the source code</h2><p>The source code is hosted on GitHub at <a href="https://github.com/alphagov/licensify">alphagov/licensify</a>.</p>
 <h2 id='accessing-the-logs'>Accessing the logs</h2><p>Licensify uses an Elasticsearch / Logstash / Kibana system hosted by Logit.io for its logs.</p>
 <p>If you haven&rsquo;t already got access to the GDS Logit account, you&rsquo;ll need to <a href="https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit">follow the instructions in the Reliability Engineering documentation to create an account in Logit</a>.</p>
+<p>Logs can be found in the stacks named &ldquo;GOV.UK <environment> EKS&rdquo;. For example, &ldquo;GOV.UK Integration EKS&rdquo; for integration logs.</p>
+<p>You can search using the &ldquo;kubernetes.labels.app_kubernetes_io/name&rdquo; field to filter for logs relevant to licensify. For example, <code>kubernetes.labels.app_kubernetes_io/name: &quot;licensify-frontend&quot;</code>.</p>
 <h2 id='testing'>Testing</h2><p>The GitHub Actions <a href="https://github.com/alphagov/licensify/actions/workflows/ci.yml"><code>CI</code> workflow</a> runs unit and integration tests for Licensify. This runs automatically on every commit pushed to GitHub and when PRs are merged in to the main branch.</p>
 <h2 id='releases'>Releases</h2><p>When a PR is merged into main and that merge commit sucessful passes, the GitHub Actions <a href="https://github.com/alphagov/licensify/actions/workflows/release.yml"><code>Release</code> workflow</a> runs and creates a new release for that merge commit. The name scheme for release follows the <code>v&lt;number&gt;</code> format, where <number> is incremented for each release.</p>
 <h2 id='building-an-image-and-deployment'>Building an image and deployment</h2><p>When a new Release is created, the GitHub Actions <a href="https://github.com/alphagov/licensify/actions/workflows/deploy.yml"><code>Deploy</code> workflow</a> builds a new container image, pushes the image into a private AWS ECR (Elastic Container Registry) and triggers a deployment in the Kubernetes cluster.</p>
