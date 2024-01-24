@@ -148,10 +148,13 @@
         <a href="#accessing-the-logs"><span>Accessing the logs</span></a>
       </li>
       <li>
-        <a href="#creating-new-builds"><span>Creating new Builds</span></a>
+        <a href="#testing"><span>Testing</span></a>
       </li>
       <li>
-        <a href="#deploying-builds-with-argocd"><span>Deploying builds with ArgoCD</span></a>
+        <a href="#releases"><span>Releases</span></a>
+      </li>
+      <li>
+        <a href="#building-an-image-and-deployment"><span>Building an image and deployment</span></a>
       </li>
       <li>
         <a href="#using-kubernetes"><span>Using Kubernetes</span></a>
@@ -164,9 +167,6 @@
           </li>
           <li>
             <a href="#accessing-live-containers"><span>Accessing live containers</span></a>
-          </li>
-          <li>
-            <a href="#relaunching-containers"><span>Relaunching containers</span></a>
           </li>
         </ul>
       </li>
@@ -223,7 +223,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2335f3d6dacef342880119a1d5b07af4e973a693">23 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b0d03ac2bfcbc5675d8b5b0ef4b24981843e19a6">23 Jan 2024</a>
 </div>
 
  <h1 id='header'>Access to Licensify for Third Parties</h1> <p><a href="/manual/licensing.html">Licensify</a> is a GOV.UK application which is usually supported by third parties.</p>
@@ -232,43 +232,30 @@
 <h2 id='accessing-the-source-code'>Accessing the source code</h2><p>The source code is hosted on GitHub at <a href="https://github.com/alphagov/licensify">alphagov/licensify</a>.</p>
 <h2 id='accessing-the-logs'>Accessing the logs</h2><p>Licensify uses an Elasticsearch / Logstash / Kibana system hosted by Logit.io for its logs.</p>
 <p>If you haven&rsquo;t already got access to the GDS Logit account, you&rsquo;ll need to <a href="https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit">follow the instructions in the Reliability Engineering documentation to create an account in Logit</a>.</p>
-<h2 id='creating-new-builds'>Creating new Builds</h2><p>Licensify is built into Docker container images with Github Actions Workflows.</p>
-<p>If you have access to merge code into main, you will have access to start builds that, once completed, will push container images into AWS ECR (Elastic Container Registry) and then trigger ArgoCD to start a deployment.</p>
-<p>Merges to the <code>main</code> branch will automatically trigger a build that deploys into Integration. In order to deploy into Staging or Production, you will need to trigger those deploys manually.</p>
-<h2 id='deploying-builds-with-argocd'>Deploying builds with ArgoCD</h2><p>Licensify is deployed by ArgoCD. In GOV.UK, we have an ArgoCD instance for each environment.</p>
-
-<ul>
-<li><a href="https://argo.eks.integration.govuk.digital/applications/licensify">Licensify in ArgoCD for Integration</a></li>
-<li><a href="https://argo.eks.staging.govuk.digital/applications/licensify">Licensify in ArgoCD for Staging</a></li>
-<li><a href="https://argo.eks.production.govuk.digital/applications/licensify">Licensify in ArgoCD for Production</a></li>
-</ul>
-<p>Authentication is with Github SSO, and Access is granted via membership of the following Github groups:</p>
-
-<ul>
-<li>alphagov:gov-uk</li>
-<li>alphagov:gov-uk-production-deploy</li>
-</ul>
-<p>To manage deployments in Production, you need to be a member of <code>alphagov:gov-uk-production-deploy</code>.</p>
-<p>By default, a successful build on the main branch in Github will notify Argo to start a new deployment. From Argo, you can see an overview of the Kubernetes resources and their current state.</p>
+<h2 id='testing'>Testing</h2><p>The GitHub Actions <a href="https://github.com/alphagov/licensify/actions/workflows/ci.yml"><code>CI</code> workflow</a> runs unit and integration tests for Licensify. This runs automatically on every commit pushed to GitHub and when PRs are merged in to the main branch.</p>
+<h2 id='releases'>Releases</h2><p>When a PR is merged into main and that merge commit sucessful passes, the GitHub Actions <a href="https://github.com/alphagov/licensify/actions/workflows/release.yml"><code>Release</code> workflow</a> runs and creates a new release for that merge commit. The name scheme for release follows the <code>v&lt;number&gt;</code> format, where <number> is incremented for each release.</p>
+<h2 id='building-an-image-and-deployment'>Building an image and deployment</h2><p>When a new Release is created, the GitHub Actions <a href="https://github.com/alphagov/licensify/actions/workflows/deploy.yml"><code>Deploy</code> workflow</a> builds a new container image, pushes the image into a private AWS ECR (Elastic Container Registry) and triggers a deployment in the Kubernetes cluster.</p>
+<p>Every new release is automatically deployed to integration.</p>
+<p>To deploy to staging or production, you need to manually trigger the <a href="https://github.com/alphagov/licensify/actions/workflows/deploy.yml"><code>Deploy</code> workflow</a>. This can be done via the GitHub Web UI by selecting &ldquo;Run workflow&rdquo; in the top right corner above the list of workflow runs. Enter the release name you wish to deploy e.g. <code>v24</code> into the field labelled &ldquo;Commit, tag or branch name to deploy&rdquo;, then select the &ldquo;Environment to deploy to&rdquo; and then select &ldquo;Run workflow&rdquo;.</p>
 <h2 id='using-kubernetes'>Using Kubernetes</h2><p>The licensing application stack is now orchestrated on Kubernetes clusters (running on AWS EKS).</p>
 <h3 id='getting-accesss'>Getting Accesss</h3><p>To interact with the Kubernetes cluster, you will need to authenticate via the AWS CLI. For more help on how to set up the necessary CLI tools, read <a href="https://docs.publishing.service.gov.uk/kubernetes/get-started/set-up-tools/">Set up tools to use the GOV.UK Kubernetes platform
 </a>.</p>
 <p>Access to GDS AWS accounts is managed via GDS Users. You can request a user via the <a href="https://gds-request-an-aws-account.cloudapps.digital/">self-service tool</a> if you have a <code>@digital-cabinet-office.gov.uk</code> email address. Once you have a user, ask a GOV.UK Tech Lead to be given the necessary roles in <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a>.</p>
 <p>Once you have the necessary permissions and access, you can continue.</p>
 <p>The easiest way to do this is with the GDS CLI. You can either chain your commands onto the GDS CLI:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-admin <span class="nt">--</span> aws sts get-caller-identity
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-licensinguser <span class="nt">--</span> aws sts get-caller-identity
 </code></pre></div><p>&hellip;or you can use the <code>-e</code> flag with the GDS CLI to export an AWS session into your terminal:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-admin <span class="nt">-e</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-licensinguser <span class="nt">-e</span>
 </code></pre></div><p>If you can&rsquo;t use the GDS CLI, you can use the <code>aws-vault exec</code> command with your manually-created AWS tokens instead:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>aws-vault <span class="nb">exec </span>govuk-integration <span class="nt">--</span> aws sts get-caller-identity
 </code></pre></div><p>Once you&rsquo;re authenticated with AWS, you can check your connection to Kubernetes:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-admin <span class="nt">--</span>  kubectl cluster-info
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-licensinguser <span class="nt">--</span>  kubectl cluster-info
 </code></pre></div><p>If this works, you can now use <code>kubectl</code> to manage the apps in the cluster. We&rsquo;ll assume from this point on that you&rsquo;re authenticated in your shell or are piping the subsequent commands onto the GDS CLI as demonstrated above.</p>
 <h3 id='observing-apps-on-kubernetes'>Observing Apps on Kubernetes</h3><p>The licensing resources all exist in their own <code>licensify</code> namespace, but also carry a set of labels to identify them. You can use these as filters for most commands to find certain deployments, pods or services running within the same namespace:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>app.kubernetes.io/name=licensify-admin
 app.kubernetes.io/part-of=licensify
 </code></pre></div><p>To observe all the licensing deployments on the cluster:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify get deploy <span class="nt">-l</span> app.kubernetes.io/part-of<span class="o">=</span>licensify
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify get deploy
 </code></pre></div><p>You should receive a response like:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>NAME                 READY   UP-TO-DATE   AVAILABLE   AGE
 clamav               1/1     1            1           11d
@@ -276,11 +263,11 @@ licensify-admin      1/1     1            1           11d
 licensify-feed       1/1     1            1           11d
 licensify-frontend   1/1     1            1           11d
 </code></pre></div><p>To view more details about one of the deployments:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify describe deploy licensify-admin
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify describe deploy/licensify-admin
 </code></pre></div><p>To view the logs from a deployment:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify logs deploy/licensify-admin
 </code></pre></div><p>You can reuse most of the above commands to view information about the individual pods, for example:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify get pods <span class="nt">-l</span> app.kubernetes.io/part-of<span class="o">=</span>licensify
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify get pods
 </code></pre></div><h3 id='accessing-live-containers'>Accessing live containers</h3><p>Since the application has been migrated onto Kubernetes, we no longer have a concept of SSH access. Instead, you can exec commands directly on the relevant containers, including an interactive Bash or Shell session:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify <span class="nb">exec</span> <span class="nt">-it</span> deploy/licensify-admin <span class="nt">--</span> bash
 </code></pre></div><p>If you want to access a specific pod, substitute the deployment for one of the pod names:</p>
@@ -292,9 +279,7 @@ licensify-frontend   1/1     1            1           11d
 <li>Logs: <code>/var/log/licensify</code></li>
 <li>Config: <code>/etc/licensify</code></li>
 </ul>
-<h3 id='relaunching-containers'>Relaunching containers</h3><p>If you want to relaunch an existing deployment, you can either kill the pods (so Kubernetes will replace them), or for more predictable behaviour, you should use the rollout restart command:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify rollout restart deployment/licensify-admin
-</code></pre></div><h2 id='accessing-mongodb'>Accessing MongoDB</h2>
+<h2 id='accessing-mongodb'>Accessing MongoDB</h2>
 <blockquote>
 <p><strong>Note: This section may need updating</strong><br>
 Since the change to Kubernetes, this procedure may no longer work or be a reliable means for accessing the Database.</p>
