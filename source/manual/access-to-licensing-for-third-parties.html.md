@@ -23,6 +23,10 @@ Licensify uses an Elasticsearch / Logstash / Kibana system hosted by Logit.io fo
 
 If you haven't already got access to the GDS Logit account, you'll need to [follow the instructions in the Reliability Engineering documentation to create an account in Logit](https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit).
 
+Logs can be found in the stacks named "GOV.UK <environment> EKS". For example, "GOV.UK Integration EKS" for integration logs.
+
+You can search using the "kubernetes.labels.app_kubernetes_io/name" field to filter for logs relevant to licensify. For example, `kubernetes.labels.app_kubernetes_io/name: "licensify-frontend"`.
+
 ## Testing
 
 The GitHub Actions [`CI` workflow](https://github.com/alphagov/licensify/actions/workflows/ci.yml) runs unit and integration tests for Licensify. This runs automatically on every commit pushed to GitHub and when PRs are merged in to the main branch.
