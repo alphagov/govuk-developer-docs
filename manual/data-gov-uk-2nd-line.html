@@ -388,7 +388,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/374b516d80064cd0da2e432e50d65d7e3397b0ca">18 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b106beb166536c6694aeb580d3c31f63227d7982">24 Jan 2024</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
@@ -615,7 +615,8 @@ ckan harvester initdb
 </code></pre></div><h3 id='purging-a-dataset'>Purging a dataset</h3><p>Where commands mention DATASET_NAME, this should either be the slug for the dataset, or the
 UUID.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan dataset purge DATASET_NAME
-</code></pre></div><h3 id='bulk-deleting-datasets'>Bulk deleting datasets</h3><p>This needs to be done on the CKAN machine, since <a href="https://github.com/alphagov/govuk-puppet/blob/91471d86c0aa52aea4044835311ae9ba860281f5/modules/govuk/manifests/apps/ckan.pp#L210">the deletion API is protected from external access</a>. Your API key is required, which can be obtained from your user profile in the CKAN web interface. Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following.</p>
+</code></pre></div><h3 id='bulk-deleting-datasets'>Bulk deleting datasets</h3><p>This needs to be done on the CKAN machine, since <a href="https://github.com/alphagov/govuk-puppet/blob/91471d86c0aa52aea4044835311ae9ba860281f5/modules/govuk/manifests/apps/ckan.pp#L210">the deletion API is protected from external access</a>. Your API key is required, which can be obtained from your user profile in the CKAN web interface. You might need to change <a href="https://github.com/alphagov/datagovuk_publish/blob/main/app/lib/ckan/v26/depaginator.rb#L5">the limit to the number of datasets that can be deleted</a> - otherwise the deletion may appear to work in CKAN but the changes won&rsquo;t make it through to data.gov.uk and subsequent publish jobs could be blocked.</p>
+<p>Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: &lt;your_api_key&gt;" http://localhost:&lt;ckan_port&gt;/api/3/action/package_delete; done &lt; list_of_ids.txt
 </code></pre></div><p>After deleting or purging a dataset, it will take up to 10 minutes to update on data.gov.uk, due to the sync process.</p>
 <h3 id='exporting-a-list-of-datasets-to-csv'>Exporting a list of datasets to CSV</h3><p>You can get a list all datasets (including those which have been soft-deleted) for an organisation by exporting a CSV from the database.</p>
