@@ -70,11 +70,33 @@ If you can't use the GDS CLI, you can use the `aws-vault exec` command with your
 aws-vault exec govuk-integration -- aws sts get-caller-identity
 ```
 
+### Accessing the cluster for the first time
+
+1. Set your AWS credentials as environment variables:
+
+    ```sh
+    eval $(gds aws govuk-integration-licensinguser -e --art 8h)
+    ```
+
+1. Setup the new context for `kubectl`:
+
+    ```sh
+    aws eks update-kubeconfig --name govuk —alias govuk-integration
+    ```
+
+1. Set `kubectl` to use that context:
+
+    ```sh
+    kubectl config use-context govuk-integration
+    ```
+
 Once you're authenticated with AWS, you can check your connection to Kubernetes:
 
 ```sh
-gds aws govuk-integration-licensinguser --  kubectl cluster-info
+kubectl -n licensify get deploy
 ```
+
+You will need to do this setup for each environment. Make sure to replace references to "integration" in the command above with the relevant environment name.
 
 If this works, you can now use `kubectl` to manage the apps in the cluster. We'll assume from this point on that you're authenticated in your shell or are piping the subsequent commands onto the GDS CLI as demonstrated above.
 
