@@ -265,7 +265,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6e4260059a55d0f4eea89df8d82271d3515f671b">22 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/fbeb4de6e96487d8a5b81279f7c6b3163bdbb278">25 Jan 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 link tracker</h1>
@@ -330,7 +330,8 @@
 &lt;/div&gt;
 </code></pre>
 <h2 id="track-links-within-content-within-a-specific-element">Track links within content within a specific element</h2>
-<p>To apply tracking to links within a specific element within part of a page, use the <code>data-ga4-limit-to-element-class</code> alongside the <code>data-ga4-track-links-only</code> attribute. This is helpful where page content is not editable, e.g. content comes from the content item or a publishing tool.</p>
+<p>To apply tracking to links within a specific elements within part of a page, use the <code>data-ga4-limit-to-element-class</code> alongside the <code>data-ga4-track-links-only</code> attribute. This is helpful where page content is not editable, e.g. content comes from the content item or a publishing tool. <code>data-ga4-limit-to-element-class</code> can accept multiple classes - each class must separated by a comma.</p>
+<h3 id="with-one-css-class">With one CSS class</h3>
 <pre lang="html"><code>&lt;div
   data-module="ga4-link-tracker"
   data-ga4-link='{ "event_name": "navigation", "type": "browse", "section": "name of section" }'
@@ -339,6 +340,27 @@
   &lt;a href="/link1"&gt;This link will not be tracked&lt;/a&gt;
   &lt;div class="demoBox"&gt;
     &lt;a href="/link2"&gt;This link will be tracked&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="with-multiple-css-classes">With multiple CSS classes</h3>
+<pre lang="html"><code>&lt;div
+  data-module="ga4-link-tracker"
+  data-ga4-link='{ "event_name": "navigation", "type": "browse", "section": "name of section" }'
+  data-ga4-track-links-only
+  data-ga4-limit-to-element-class="demoBox1, demoBox2, demoBox3"&gt;
+  &lt;a href="/link1"&gt;This link will not be tracked&lt;/a&gt;
+  &lt;div class="demoBox1"&gt;
+    &lt;a href="/link2"&gt;This link will be tracked&lt;/a&gt;
+  &lt;/div&gt;
+    &lt;div class="demoBox2"&gt;
+    &lt;a href="/link3"&gt;This link will be tracked&lt;/a&gt;
+  &lt;/div&gt;
+    &lt;div class="demoBox3"&gt;
+    &lt;a href="/link4"&gt;This link will be tracked&lt;/a&gt;
+  &lt;/div&gt;
+    &lt;div class="notTracked"&gt;
+    &lt;a href="/link5"&gt;This link will not be tracked&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
