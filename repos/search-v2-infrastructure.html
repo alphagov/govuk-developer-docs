@@ -260,12 +260,9 @@ set up a data pipeline for analytics events to feed into the search engine model
 <a href="https://github.com/alphagov/search-v2-infrastructure/blob/main/terraform/meta/"><code>terraform/meta</code></a>: Bootstrap Terraform Cloud project/workspaces, GCP projects,
 and workload federation between the two (applied locally with Terraform Cloud state)</li>
 <li>
-<a href="https://github.com/alphagov/search-v2-infrastructure/blob/main/terraform/full_environment/"><code>terraform/full_environment</code></a>: Set up Discovery Engine resources,
-service accounts and keys, and AWS Secrets Manager secrets consumed by the Kubernetes platform for
-an individual environment for <code>search-api-v2</code> (integration, staging, production)</li>
-<li>
-<a href="https://github.com/alphagov/search-v2-infrastructure/blob/main/terraform/dev_environment/"><code>terraform/dev_environment</code></a>: Sets up a reduced environment with only
-Discovery Engine resources for local development use</li>
+<a href="https://github.com/alphagov/search-v2-infrastructure/blob/main/terraform/environment/"><code>terraform/environment</code></a>: Set up Discovery Engine resources, service
+accounts and keys, and AWS Secrets Manager secrets consumed by the Kubernetes platform for an
+individual environment for <code>search-api-v2</code> (i.e. integration, staging, production)</li>
 <li>
 <a href="https://github.com/alphagov/search-v2-infrastructure/blob/main/terraform/modules/google_discovery_engine_restapi/"><code>terraform/modules/google_discovery_engine_restapi</code></a>:
 A helper module to abstract deployment of Discovery Engine resources through the REST API provider
