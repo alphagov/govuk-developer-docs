@@ -128,6 +128,22 @@ Some components, such as the cookie banner, are pulled in by Static. To test cha
 
 ## Troubleshooting
 
+### JavaScript changes not appearing/JavaScript not working properly
+
+Sometimes the main JavaScript files cannot be served properly when running locally. This happens when Rails automatically inserts fingerprinting into the script URLs when it is not needed e.g. `application-834y2r2hr292y9r.js` is being requested, but only `application.js` exists.
+
+A workaround is to modify `_layout_for_public.html.erb` in your local `govuk_publishing_components` to hardcode the URLs to the broken JavaScript files (`application.js`, `load-analytics` and any others you need). For example, change:
+
+```ruby
+<%= javascript_include_tag "govuk_publishing_components/load-analytics" %>
+```
+
+to:
+
+```ruby
+<script src="/assets/static/govuk_publishing_components/load-analytics.js"></script>
+```
+
 ### 504 Timeout Errors
 
 Assets can load slowly, which means we get frequent timeouts when running apps locally. Some developers find that the following workaround can help:
