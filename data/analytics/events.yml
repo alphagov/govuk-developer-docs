@@ -76,6 +76,28 @@
         - name: external
         - name: method
         - name: link_domain
+
+- name: back link
+  description:
+  events:
+    - name: link click
+      description: When the back link is used, on pages like the email subscription journeys
+      implemented: true
+      priority: low
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: back
+        - name: url
+        - name: text
+        - name: external
+        - name: link_domain
+        - name: method
 - name: banners
   description: Note that the presence of banners is tracked via our Pageview tracker.
   events:
