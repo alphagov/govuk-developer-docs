@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Link_domain attribute data | GOV.UK GA4 Implementation record</title>
+  <title>Back link event data | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_link_domain.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/event_back_link.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_link_domain.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/event_back_link.html" />
   <script>
   document.addEventListener('DOMContentLoaded', function () {
     var markup = `<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" data-module="cookie-banner" data-nosnippet role="region" aria-label="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <span class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></span> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" data-module="gem-track-click" data-track-category="cookieBanner" data-track-action="Cookie banner settings clicked from confirmation" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" data-module="gem-track-click" data-track-category="cookieBanner" data-track-action="Cookie banner settings clicked from confirmation" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click" data-accept-cookies="true" data-track-category="cookieBanner" data-track-action="Cookie banner accepted" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click" data-reject-cookies="true" data-track-category="cookieBanner" data-track-action="Cookie banner rejected">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="gem-track-click ga4-event-tracker" data-track-category="cookieBanner" data-track-action="Hide cookie banner" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide this message </button> </div> </div> </div>`;
@@ -123,115 +123,43 @@
         </div>
         <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
           
-<h1 class="govuk-heading-l">
-  <span class="govuk-caption-l">Attribute</span>
-  link_domain
+<h1 class="govuk-heading-l analytics-heading">
+  <span class="govuk-caption-l">Event</span>
+  back link
 </h1>
 
-<dl class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Name
-      </dt>
-      <dd class="govuk-summary-list__value">
-          link_domain
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Description
-      </dt>
-      <dd class="govuk-summary-list__value">
-          The protocol and domain of a link href attribute.
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Value
-      </dt>
-      <dd class="govuk-summary-list__value">
-          
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Example
-      </dt>
-      <dd class="govuk-summary-list__value">
-          https://www.nhs.uk
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Required
-      </dt>
-      <dd class="govuk-summary-list__value">
-          true
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Type
-      </dt>
-      <dd class="govuk-summary-list__value">
-          string
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Redact
-      </dt>
-      <dd class="govuk-summary-list__value">
-          <a href="/analytics/pii.html" class="govuk-link">false</a>
-      </dd>
-    </div>
 
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Used by
-    </dt>
-    <dd class="govuk-summary-list__value">
-                  <a href="/analytics/event_accordion.html" class="govuk-link">accordion</a> (Accordion links)<br/>
-                  <a href="/analytics/event_back_link.html" class="govuk-link">back link</a> (link click)<br/>
-                  <a href="/analytics/event_banners.html" class="govuk-link">banners</a> (link click)<br/>
-                  <a href="/analytics/event_breadcrumbs.html" class="govuk-link">breadcrumbs</a> (link clicks)<br/>
-                  <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (browse (browse level 0))<br/>
-                  <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (browse topic (browse level 1))<br/>
-                  <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (action link (browse level 1))<br/>
-                  <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (browse subtopic (browse level 2))<br/>
-                  <a href="/analytics/event_contents_list.html" class="govuk-link">contents list</a> (link click)<br/>
-                  <a href="/analytics/event_email_alerts_and_rss_subscriptions.html" class="govuk-link">email alerts and rss subscriptions</a> (email alerts)<br/>
-                  <a href="/analytics/event_email_alerts_and_rss_subscriptions.html" class="govuk-link">email alerts and rss subscriptions</a> (rss subscriptions)<br/>
-                  <a href="/analytics/event_email_subscriptions.html" class="govuk-link">email subscriptions</a> (get emails about this page)<br/>
-                  <a href="/analytics/event_footer.html" class="govuk-link">footer</a> (link clicks)<br/>
-                  <a href="/analytics/event_homepage.html" class="govuk-link">homepage</a> (Link clicks)<br/>
-                  <a href="/analytics/event_html_attachments.html" class="govuk-link">html attachments</a> (link clicks)<br/>
-                  <a href="/analytics/event_links.html" class="govuk-link">links</a> (External links)<br/>
-                  <a href="/analytics/event_links.html" class="govuk-link">links</a> (Download links)<br/>
-                  <a href="/analytics/event_links.html" class="govuk-link">links</a> (file attachment links)<br/>
-                  <a href="/analytics/event_local_lookup.html" class="govuk-link">local lookup</a> (change response)<br/>
-                  <a href="/analytics/event_local_lookup.html" class="govuk-link">local lookup</a> (information click)<br/>
-                  <a href="/analytics/event_previous_and_next.html" class="govuk-link">previous and next</a> (previous and next)<br/>
-                  <a href="/analytics/event_printing.html" class="govuk-link">printing</a> (view printable version)<br/>
-                  <a href="/analytics/event_related_navigation.html" class="govuk-link">related navigation</a> (related Navigation)<br/>
-                  <a href="/analytics/event_see_all_link.html" class="govuk-link">see all link</a> (see all link click (to another page))<br/>
-                  <a href="/analytics/event_share_this_page.html" class="govuk-link">share this page</a> (follow us)<br/>
-                  <a href="/analytics/event_share_this_page.html" class="govuk-link">share this page</a> (share this page)<br/>
-                  <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (simple smart answer start)<br/>
-                  <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (change answer)<br/>
-                  <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (results link click)<br/>
-                  <a href="/analytics/event_simple_smart_answers.html" class="govuk-link">simple smart answers</a> (start again link click)<br/>
-                  <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (smart answer start)<br/>
-                  <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (change answer)<br/>
-                  <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (results link click)<br/>
-                  <a href="/analytics/event_smart_answers.html" class="govuk-link">smart answers</a> (start again link click)<br/>
-                  <a href="/analytics/event_step_by_step_navigation.html" class="govuk-link">step by step navigation</a> (link clicks)<br/>
-                  <a href="/analytics/event_super_navigation_header.html" class="govuk-link">super navigation header</a> (Crown icon link)<br/>
-                  <a href="/analytics/event_super_navigation_header.html" class="govuk-link">super navigation header</a> (link clicks)<br/>
-                  <a href="/analytics/event_taxonomy_pages.html" class="govuk-link">taxonomy pages</a> (taxonomy page links)<br/>
-    </dd>
+<h2 class="govuk-heading-m analytics-heading">Contents</h2>
+<ul class="govuk-list govuk-list--bullet">
+    <li><a href="#heading-0" class="govuk-link">link click</a></li>
+</ul>
+
+  <div class="event">
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    <h2 class="govuk-heading-m analytics-heading" id="heading-0">
+      link click
+    </h2>
+
+    <p class="govuk-body">
+      Priority
+      <strong class="govuk-tag govuk-tag--green">
+        low
+      </strong>
+
+    </p>
+
+      <p class="govuk-body">
+        When the back link is used, on pages like the email subscription journeys
+      </p>
+
+
+
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+    <div class="govuk-inset-text">
+      <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event.html' class='govuk-link'>event</a>: event_data</li><li>event_data: <ul class='govuk-list indented-list'><li><a href='/analytics/attribute_event_name.html' class='govuk-link'>event_name</a>: navigation</li><li><a href='/analytics/attribute_external.html' class='govuk-link'>external</a>: string ("true" or "false")</li><li><a href='/analytics/attribute_link_domain.html' class='govuk-link'>link_domain</a>: string</li><li><a href='/analytics/attribute_method.html' class='govuk-link'>method</a>: string</li><li><a href='/analytics/attribute_text.html' class='govuk-link'>text</a>: string</li><li><a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: back</li><li><a href='/analytics/attribute_url.html' class='govuk-link'>url</a>: string</li></ul></li></ul>
+    </div>
+    <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
   </div>
-</dl>
 
         </div>
       </div>

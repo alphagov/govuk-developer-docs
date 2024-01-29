@@ -162,6 +162,9 @@
         <a href="#troubleshooting"><span>Troubleshooting</span></a>
         <ul>
           <li>
+            <a href="#javascript-changes-not-appearingjavascript-not-working-properly"><span>JavaScript changes not appearing/JavaScript not working properly</span></a>
+          </li>
+          <li>
             <a href="#504-timeout-errors"><span>504 Timeout Errors</span></a>
           </li>
           <li>
@@ -221,15 +224,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0a8edb20b5d6f633130e3a97e05970ea5a29e4e8">1 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ccbd781bf2af29a8b9df8d43fb9ce29ac79ea39b">29 Jan 2024</a>
 </div>
 
  <h1 id='header'>Local frontend development</h1> <h2 id='running-applications-locally'>Running applications locally</h2><p>There are several ways of running applications locally when developing and you should choose the option that works best for your situation. For frontend developers, the following is recommended.</p>
@@ -292,7 +288,12 @@ govuk-docker-run bundle <span class="nb">install
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> <span class="o">[</span>directory where application is]
 bundle update govuk_publishing_components
 </code></pre></div><p>Some components, such as the cookie banner, are pulled in by Static. To test changes to this component locally, we need to run a frontend app against both local static and local <a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components</a>. Remember to update the Gemfile in both Static and the application.</p>
-<h2 id='troubleshooting'>Troubleshooting</h2><h3 id='504-timeout-errors'>504 Timeout Errors</h3><p>Assets can load slowly, which means we get frequent timeouts when running apps locally. Some developers find that the following workaround can help:</p>
+<h2 id='troubleshooting'>Troubleshooting</h2><h3 id='javascript-changes-not-appearingjavascript-not-working-properly'>JavaScript changes not appearing/JavaScript not working properly</h3><p>Sometimes the main JavaScript files cannot be served properly when running locally. This happens when Rails automatically inserts fingerprinting into the script URLs when it is not needed e.g. <code>application-834y2r2hr292y9r.js</code> is being requested, but only <code>application.js</code> exists.</p>
+<p>A workaround is to modify <code>_layout_for_public.html.erb</code> in your local <code>govuk_publishing_components</code> to hardcode the URLs to the broken JavaScript files (<code>application.js</code>, <code>load-analytics</code> and any others you need). For example, change:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="o">&lt;</span><span class="sx">%= javascript_include_tag "govuk_publishing_components/load-analytics" %&gt;
+</span></code></pre></div><p>to:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="o">&lt;</span><span class="n">script</span> <span class="n">src</span><span class="o">=</span><span class="s2">"/assets/static/govuk_publishing_components/load-analytics.js"</span><span class="o">&gt;&lt;</span><span class="sr">/script&gt;
+</span></code></pre></div><h3 id='504-timeout-errors'>504 Timeout Errors</h3><p>Assets can load slowly, which means we get frequent timeouts when running apps locally. Some developers find that the following workaround can help:</p>
 
 <ol>
 <li>Set <code>config.assets.debug</code> to <code>false</code> in the <code>development.rb</code> file in your frontend app</li>
