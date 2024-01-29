@@ -151,7 +151,10 @@
         <a href="#reindex-an-elasticsearch-index"><span>Reindex an Elasticsearch index</span></a>
         <ul>
           <li>
-            <a href="#1-run-the-reindex"><span>1. Run the reindex</span></a>
+            <a href="#1-preflight-checks"><span>1. Preflight checks</span></a>
+          </li>
+          <li>
+            <a href="#2-run-the-reindex"><span>2. Run the reindex</span></a>
           </li>
           <li>
             <a href="#2-clean-up"><span>2. Clean up</span></a>
@@ -210,15 +213,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/eb1d44b6e9040e6aba9f6fd403549bd83e4398c4">16 Jun 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3518b0ec3f36ba14535b09ea9c5afcc120f1f878">29 Jan 2024</a>
 </div>
 
  <h1 id='header'>Reindex an Elasticsearch index</h1> <h2 id='when-to-reindex'>When to reindex</h2><p>After updating an Elasticsearch index&rsquo;s schema by <a href="https://github.com/alphagov/search-api/blob/main/docs/adding-new-fields.md">changing the fields or
@@ -250,7 +246,34 @@ search-api</li>
 alias</a>
 to the new index</li>
 </ol>
-<h2 id='reindex-an-elasticsearch-index'>Reindex an Elasticsearch index</h2><h3 id='1-run-the-reindex'>1. Run the reindex</h3><p>To reindex all indices, run the <code>search:migrate_schema</code> Rake task on search-api:</p>
+<h2 id='reindex-an-elasticsearch-index'>Reindex an Elasticsearch index</h2><h3 id='1-preflight-checks'>1. Preflight checks</h3><p>Make sure that you have sufficient space to complete an index migration.</p>
+<p>You can check this in:</p>
+
+<ul>
+<li>The <a href="https://eu-west-1.console.aws.amazon.com/aos/home?region=eu-west-1#opensearch/domains/blue-elasticsearch6-domain?tabId=clusterHealth">AWS Opensearch cluster health dashboard</a></li>
+<li><a href="https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#metricsV2?graph=~(metrics~(~(~(expression~'FLOOR*28m1*2f1024*29~label~'FreeStorageSpace~id~'e1~region~'eu-west-1~yAxis~'right))~(~'AWS*2fES~'FreeStorageSpace~'DomainName~'blue-elasticsearch6-domain~'ClientId~'172025368201~(id~'m1~region~'eu-west-1~visible~false)))~view~'timeSeries~stacked~false~region~'eu-west-1~title~'Total*20free*20storage*20space*20*28GiB*29~period~60~stat~'Sum~yAxis~(left~(showUnits~true~min~0)~right~(min~0))~legend~(position~'hidden)~start~'-PT12H~end~'P0D)">Total free storage space</a> for the cluster in AWS CloudWatch</li>
+</ul>
+<p>If the free storage is below 250GB, check to see if there are any old indices from a previous migration that have not been cleaned up.</p>
+<h4 id='check-for-old-indices'>Check for old indices</h4><p>Sign in as a poweruser:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-production-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
+</code></pre></div><p>List the search indices (sorting by index name):</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> sh <span class="nt">-c</span> <span class="s1">'curl -s "$ELASTICSEARCH_URI/_cat/indices?v&amp;s=i"'</span>
+</code></pre></div><p>You should see a table listing the indices. There should be one each of <code>detailed</code>, <code>government</code>, <code>govuk</code>, <code>metasearch</code> and <code>page-traffic</code> (plus others which are not affected by this task).</p>
+<p>Example healthy output (columns trimmed for brevity):</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>health status index
+green  open   .kibana_1
+green  open   .tasks
+green  open   detailed-2023-01-01t21-09-52z-0630e696-9d7f-
+green  open   government-2023-01-01t19-46-41z-e44c324c-644
+green  open   govuk-2023-01-01t23-09-56z-2a4ec293-2123-40f
+green  open   licence-finder
+green  open   metasearch-2023-01-01t21-41-47z-4a398b23-8bb
+green  open   page-traffic-2023-01-01t04-32-04z-cd2264ce-3
+</code></pre></div><p>If you see multiple indices which start with the same name, they probably need to be cleaned up. Check the time stamp on the index name. Anything older than a week is likely to have been forgotten by the last person.</p>
+<p>If you think you can clean up some indices, please do so:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> rake search:clean <span class="nv">SEARCH_INDEX</span><span class="o">=</span>alias_of_index_to_clean_up
+</code></pre></div><p>The <code>alias_of_index_to_clean_up</code> is the part of the name before the date/time stamp: <code>govuk</code>, <code>government</code>, <code>detailed</code>, <code>metasearch</code>, <code>page-traffic</code>, or alternatively <code>all</code>.</p>
+<h3 id='2-run-the-reindex'>2. Run the reindex</h3><p>To reindex all indices, run the <code>search:migrate_schema</code> Rake task on search-api:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> rake search:migrate_schema
 </code></pre></div><p>To reindex a specific index, specify the <code>SEARCH_INDEX</code> environment variable:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/search-api <span class="nt">--</span> rake <span class="nv">SEARCH_INDEX</span><span class="o">=</span>government search:migrate_schema
