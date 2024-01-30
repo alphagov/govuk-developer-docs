@@ -21,25 +21,12 @@ class Repo
     }
   end
 
-  def aws_puppet_class
-    Hosts.aws_machines.each do |puppet_class, keys|
-      if keys["apps"].include?(repo_name) || keys["apps"].include?(shortname)
-        return puppet_class
-      end
-    end
-    "Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml"
-  end
-
   def production_hosted_on_eks?
     production_hosted_on == "eks"
   end
 
   def production_hosted_on_aws?
-    production_hosted_on == "aws"
-  end
-
-  def machine_class
-    repo_data["machine_class"] || aws_puppet_class
+    false
   end
 
   def production_hosted_on
@@ -48,10 +35,6 @@ class Repo
 
   def is_app?
     !production_hosted_on.nil?
-  end
-
-  def hosting_name
-    Hosts::HOSTERS.fetch(production_hosted_on)
   end
 
   def html_url
@@ -121,20 +104,6 @@ class Repo
     end
   end
 
-  def puppet_url
-    return unless production_hosted_on_aws?
-
-    return repo_data["puppet_url"] if repo_data["puppet_url"]
-
-    "https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/#{shortname}.pp"
-  end
-
-  def deploy_url
-    return if repo_data["deploy_url"] == false || [nil, "none", "heroku", "eks"].include?(production_hosted_on)
-
-    "https://github.com/alphagov/govuk-app-deployment/blob/master/#{repo_name}/config/deploy.rb"
-  end
-
   def dashboard_url
     return if repo_data["dashboard_url"] == false
 
@@ -196,22 +165,6 @@ class Repo
 
   def readme
     github_readme
-  end
-
-  def can_run_rake_tasks_in_jenkins?
-    production_hosted_on_aws?
-  end
-
-  def rake_task_url(environment, rake_task = "")
-    return unless production_hosted_on_aws?
-
-    query_params = "?TARGET_APPLICATION=#{repo_name}&MACHINE_CLASS=#{machine_class}&RAKE_TASK=#{rake_task}"
-
-    if environment == "integration"
-      "https://deploy.#{environment}.publishing.service.gov.uk/job/run-rake-task/parambuild/#{query_params}"
-    else
-      "https://deploy.blue.#{environment}.govuk.digital/job/run-rake-task/parambuild/#{query_params}"
-    end
   end
 
 private

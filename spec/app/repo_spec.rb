@@ -60,33 +60,6 @@ RSpec.describe Repo do
     end
   end
 
-  describe "aws_puppet_class" do
-    before do
-      repo_data = {
-        "calculators_frontend" => {
-          "apps" => %w[
-            finder-frontend
-            smartanswers
-          ],
-        },
-      }
-      allow(Hosts).to receive(:aws_machines).and_return(repo_data)
-    end
-
-    it "should find puppet class via github repo name if neither app name nor puppet name provided" do
-      expect(Repo.new("repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
-    end
-
-    it "should find puppet class via shortname" do
-      expect(Repo.new("shortname" => "smartanswers", "repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
-    end
-
-    it "should return error message if no puppet class found" do
-      expect(Repo.new("repo_name" => "foo").aws_puppet_class)
-        .to eq("Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml")
-    end
-  end
-
   describe "dashboard_url" do
     let(:configured_dashboard_url) { nil }
     let(:app) do
@@ -113,10 +86,9 @@ RSpec.describe Repo do
     end
   end
 
-  describe "rake_task_url" do
+  describe "kibana_url" do
     let(:production_hosted_on) { nil }
     let(:environment) { nil }
-    let(:rake_task) { "" }
     let(:app) do
       described_class.new(
         "repo_name" => "content-publisher",
@@ -124,84 +96,43 @@ RSpec.describe Repo do
         "production_hosted_on" => production_hosted_on,
       )
     end
-    subject(:dashboard_url) { app.rake_task_url(environment, rake_task) }
+    subject(:kibana_url) { app.kibana_url }
 
-    describe "not hosted on AWS" do
-      it { is_expected.to be_nil }
+    describe "hosted on EKS" do
+      let(:production_hosted_on) { "eks" }
+
+      it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,request,status,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:content-publisher'),sort:!())") }
     end
 
-    describe "hosted on AWS and environment is production" do
+    describe "hosted on AWS" do
       let(:production_hosted_on) { "aws" }
-      let(:environment) { "production" }
 
-      it { is_expected.to eql("https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=") }
+      it { is_expected.to eql("https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:content-publisher')),sort:!('@timestamp',desc))") }
+    end
+  end
 
-      describe "with a Rake task" do
-        let(:rake_task) { "task" }
-        it { is_expected.to eql("https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=task") }
-      end
+  describe "kibana_worker_url" do
+    let(:production_hosted_on) { nil }
+    let(:environment) { nil }
+    let(:app) do
+      described_class.new(
+        "repo_name" => "content-publisher",
+        "machine_class" => "backend",
+        "production_hosted_on" => production_hosted_on,
+      )
+    end
+    subject(:kibana_worker_url) { app.kibana_worker_url }
+
+    describe "hosted on EKS" do
+      let(:production_hosted_on) { "eks" }
+
+      it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:content-publisher-worker'),sort:!())") }
     end
 
-    describe "hosted on AWS and environment is integration" do
+    describe "hosted on AWS" do
       let(:production_hosted_on) { "aws" }
-      let(:environment) { "integration" }
 
-      it { is_expected.to eql("https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=") }
-
-      describe "with a Rake task" do
-        let(:rake_task) { "task" }
-        it { is_expected.to eql("https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=task") }
-      end
-    end
-
-    describe "kibana_url" do
-      let(:production_hosted_on) { nil }
-      let(:environment) { nil }
-      let(:app) do
-        described_class.new(
-          "repo_name" => "content-publisher",
-          "machine_class" => "backend",
-          "production_hosted_on" => production_hosted_on,
-        )
-      end
-      subject(:kibana_url) { app.kibana_url }
-
-      describe "hosted on EKS" do
-        let(:production_hosted_on) { "eks" }
-
-        it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,request,status,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:content-publisher'),sort:!())") }
-      end
-
-      describe "hosted on AWS" do
-        let(:production_hosted_on) { "aws" }
-
-        it { is_expected.to eql("https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:content-publisher')),sort:!('@timestamp',desc))") }
-      end
-    end
-
-    describe "kibana_worker_url" do
-      let(:production_hosted_on) { nil }
-      let(:environment) { nil }
-      let(:app) do
-        described_class.new(
-          "repo_name" => "content-publisher",
-          "machine_class" => "backend",
-          "production_hosted_on" => production_hosted_on,
-        )
-      end
-      subject(:kibana_worker_url) { app.kibana_worker_url }
-
-      describe "hosted on EKS" do
-        let(:production_hosted_on) { "eks" }
-
-        it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:content-publisher-worker'),sort:!())") }
-      end
-
-      describe "hosted on AWS" do
-        let(:production_hosted_on) { "aws" }
-
-        it { is_expected.to eql("https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:content-publisher-worker')),sort:!('@timestamp',desc))") }
-      end
+      it { is_expected.to eql("https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:content-publisher-worker')),sort:!('@timestamp',desc))") }
     end
   end
 end
