@@ -265,26 +265,27 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/2518638ebd212dbddbc2bc0ade8fc5af63f10632">28 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b2eca143fa99a0cb8b9267aefedef8ba6f573ce8">30 Jan 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component wrapper helper</h1>
 
   
 <p>The component wrapper helper is designed to provide a standard way to wrap components so that common options can be passed without having to explicitly define them in the component.</p>
-<h2 id="adding-to-a-component">Adding to a component</h2>
-<p>The helper can be added to a component by including the helper and replacing the component parent element as shown. Note that a <code>div</code> tag is only used as an example.</p>
-<pre><code>&lt;% component_helper = GovukPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns) %&gt;
-
+<h2 id="basic-use">Basic use</h2>
+<p>The helper can be added to a component by including the helper and replacing the component parent element as shown. Note that <code>tag.div</code> can be replaced with any tag.</p>
+<pre lang="ruby"><code>&lt;%
+  component_helper = GovukPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+%&gt;
 &lt;%= tag.div(**component_helper.all_attributes) do %&gt;
   component content
 &lt;% end %&gt;
 </code></pre>
-<p>You must also add the following line to the component documentation YAML file, in order that these extra options are shown when viewing the component in the component guide.</p>
-<pre><code>uses_component_wrapper_helper: true
+<p>You must also add this to the component documentation YAML file, in order that component wrapper options are shown in the component guide.</p>
+<pre lang="yml"><code>uses_component_wrapper_helper: true
 </code></pre>
 <h2 id="passing-options">Passing options</h2>
-<p>The component wrapper helper accepts the following options.</p>
+<p>These options can be passed to any component that uses the component wrapper.</p>
 <ul>
 <li>
 <code>id</code> - accepts a string for the element ID attribute</li>
@@ -300,73 +301,41 @@
 <li>
 <code>lang</code> - accepts a language attribute value</li>
 </ul>
+<p>To prevent breaking <a href="/repos/govuk_publishing_components/component_principles.html">component isolation</a>, passed classes should only be used for JavaScript hooks and not styling. All component styling should be included only in the component itself. Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code>, <code>app-c-</code> or <code>govuk-</code> are also permitted, but should only be used within the component and not passed to it.</p>
 <p>The helper checks that any passed <code>id</code> attribute is valid, specifically that it does not start with a number or contain whitespace or contain any characters other than letters, numbers, and <code>_</code> or <code>-</code>. It also checks that role and lang attribute values are valid, along with some other checks detailed below.</p>
-<h3 id="data-and-aria">Data and aria</h3>
-<p>The <code>data_attributes</code> and <code>aria</code> options must be Ruby hashes of the form that would normally be passed to the <code>tag</code> method. For example:</p>
-<pre><code>&lt;%= render "govuk_publishing_components/components/example", {
+<p>An example of passing data to a component with the component wrapper:</p>
+<pre lang="ruby"><code>&lt;%= render "govuk_publishing_components/components/example", {
+  classes: "js-example",
   data_attributes: {
     module: "example-module",
     other_data_attribute: "other",
   },
   aria: {
     describedby: "element-id",
-  }
+  },
 } %&gt;
 </code></pre>
-<p>The helper checks that passed aria attributes are valid, based on a hard coded list.</p>
-<h3 id="classes">Classes</h3>
-<p>Classes can be passed to components. To prevent breaking <a href="/repos/govuk_publishing_components/component_principles.html">component isolation</a>, passed classes should only be used for JavaScript hooks and not styling. All component styling should be included only in the component itself.</p>
-<p>Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code>, <code>app-c-</code> or <code>govuk-</code> are also permitted, but should only be used within the component and not passed to it.</p>
-<pre><code>&lt;%= render "govuk_publishing_components/components/example", {
-  classes: "js-example"
-} %&gt;
-</code></pre>
-<h2 id="extending-options">Extending options</h2>
-<p>The helper is designed to collect any options passed through <code>local_assigns</code> to minimise the amount of code required in the component. In many situations it will be necessary to include or override specific values in the component template, instead of always passing them into the component.</p>
-<p>The helper includes additional methods to make this possible.</p>
-<ul>
-<li>
-<code>add_class("gem-c-example govuk-example")</code> - combines the given class with any passed classes, e.g. if <code>js-hook</code> had been passed, the result would be <code>js-hook gem-c-example govuk-example</code>
-</li>
-<li>
-<code>set_id("my-id")</code> - overrides any passed ID with this one (IDs can't be combined)</li>
-<li>
-<code>add_data_attribute({ module: "ga4-event-tracker" })</code> - combines the given data attributes with any that have been passed, merging duplicate keys, e.g. if <code>{ module: "gem-track-click", a: "1" }</code> had been passed, the result would be <code>{ module: "ga4-event-tracker gem-track-click", a: "1" }</code>
-</li>
-<li>
-<code>add_aria_attribute()</code> - works the same as <code>add_data_attribute</code>
-</li>
-<li>
-<code>add_role()</code> - works the same as <code>add_class</code>
-</li>
-<li>
-<code>set_lang()</code> - works the same as <code>set_id</code>
-</li>
-</ul>
-<p>This is an example component template using some of these methods.</p>
-<pre><code>&lt;%
-  helper = GovukPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
-  helper.add_class("gem-c-my-component")
-  helper.add_data_attribute({ module: "gem-track-click" })
-%&gt;
+<h2 id="advanced-use">Advanced use</h2>
+<p>The component wrapper includes several methods to make managing options easier, as shown below.</p>
+<pre lang="ruby"><code>&lt;%
+  # note that these variables do not explicitly need to be defined, shown here for clarity
+  classes ||= ""
+  id ||= nil
+  data_attributes ||= {}
+  aria_attributes ||= {}
+  role ||= nil
 
+  component_helper = GovukPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+  component_helper.add_class("gem-c-example govuk-example") # combines the given class with any passed classes
+  component_helper.set_id("my-id") # overrides any passed 'id' with this one (can only have one id)
+  component_helper.add_data_attribute({ module: "ga4-event-tracker" }) # combines any passed 'data_attributes' with those given, merging duplicate keys, e.g. if `{ module: "gem-track-click", a: "1" }` had been passed, would result in `{ module: "ga4-event-tracker gem-track-click", a: "1" }`
+  component_helper.add_aria_attribute({ label: "my-label" }) # works like 'add_data_attribute'
+  component_helper.add_role("button") # works like 'add_class'
+  component_helper.set_lang("en") # works like 'set_id' (can only have one lang)
+%&gt;
 &lt;%= tag.div(**component_helper.all_attributes) do %&gt;
   component content
 &lt;% end %&gt;
-</code></pre>
-<p>This is an example call to this component.</p>
-<pre><code>&lt;%= render "govuk_publishing_components/components/example", {
-  classes: "js-hook",
-  data_attributes: {
-    module: "another-module",
-    example: "example"
-  }
-} %&gt;
-</code></pre>
-<p>This would be the result.</p>
-<pre><code>&lt;div class="gem-c-my-component js-hook" data-module="gem-track-click another-module" data-example="example"&gt;
-  component content
-&lt;/div&gt;
 </code></pre>
 
 
