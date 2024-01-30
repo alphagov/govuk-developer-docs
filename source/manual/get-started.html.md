@@ -143,7 +143,7 @@ Ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant 
 
 ## 7. Install and configure the GDS CLI
 
-On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS and SSH access.
+On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS access.
 
 1. Run the following install GDS CLI:
 
@@ -200,9 +200,9 @@ gds aws govuk-integration-readonly aws s3 ls
 
 ## 8. Connect to the GDS VPN
 
-> This step is only necessary if you are a civil servant, require access to [applications hosted on EC2](/apps.html#apps-by-host) or are beginning your first Technical 2nd Line shift. Check with your tech lead first.
+> This step is only necessary if you are a civil servant. Check with your tech lead first.
 
-If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to access to our old infrastructure (e.g. SSH into EC2 instances or use Jenkins) and some other internal Cabinet Office services (e.g. SOP and the intranet).
+If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to use some internal Cabinet Office services (e.g. SOP and the intranet).
 
 ###  For GDS issued MacBooks
 
@@ -223,101 +223,11 @@ To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker
 
 > If you are a frontend developer, and you are working on GOV.UK's frontend apps, there is documentation on [alterntaive local development approaches](/manual/local-frontend-development.html) that make low or no usage of GOV.UK Docker.
 
-## 10. Get SSH access to EC2 integration
-
-> This step is only necessary if you require access to [applications hosted on EC2](/apps.html#apps-by-host) or are beginning your first Technical 2nd Line shift. Check with your tech lead first. If you are a frontend developer you do not need to complete this step as part of your initial setup.
-
-### Create a user to SSH into EC2 integration
-
-User accounts in our integration environments are managed in the [govuk-puppet][] repository.
-
-1. Run the following command to create a `govuk` folder in your home directory and clone the `govuk-puppet` GitHub repo:
-
-    ```bash
-    mkdir ~/govuk
-    cd ~/govuk
-    git clone git@github.com:alphagov/govuk-puppet.git
-    ```
-
-1. Add your SSH key which you created in [step 2](#2-generate-a-ssh-key).
-
-    If you do not have a YubiKey, run `more ~/.ssh/id_ed25519.pub` to retrieve your public key. The key should begin with `ssh-ed25519 AAA`. If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with `ssh-rsa AAA`. You may need to manually add the email address to the end of your key.
-
-    If you have a YubiKey, run `ssh-add -L` to retrieve the key from your device. The key should end with `cardno:000000000000`.
-
-1. Create a user manifest file at `~/govuk/govuk-puppet/modules/users/manifests/<firstnamelastname>.pp` with the following code:
-
-    ```
-    # Creates the <FIRSTNAMELASTNAME> user
-    class users::<FIRSTNAMELASTNAME> {
-      govuk_user { '<FIRSTNAMELASTNAME>':
-        fullname => 'FIRSTNAME LASTNAME',
-        email    => 'WORK EMAIL',
-        ssh_key  => '<SSH-PUBLIC-KEY-VALUE>',
-      }
-    }
-    ```
-
-    Enter your information and SSH public key value into the file. For example:
-
-    ```
-    # Creates the johnsmith user
-    class users::johnsmith {
-      govuk_user { 'johnsmith':
-        fullname => 'John Smith',
-        email    => 'john.smith@digital.cabinet-office.gov.uk',
-        ssh_key  => 'ssh-ed25519 AAAAC37eiue0923jfwnfwle93fnwefwn john.smith@digital.cabinet-office.gov.uk',
-      }
-    }
-    ```
-
-1. Add the name of your user class (`<firstnamelastname>`) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera].
-
-1. Create a pull request with these changes and ask your tech lead to review it.
-
-    Once the pull request has been [reviewed][merging], you can merge it and the pull request will automatically deploy to the integration environment.
-
-[govuk-puppet]: https://github.com/alphagov/govuk-puppet
-[integration-aws-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml
-[merging]: /manual/merge-pr.html
-
-### Access remote environments and server
-
-Once your pull request with your user manifest file is merged and deployed, you should test your SSH access to remote environments and servers.
-
-If you are outside of the office or on GovWiFi, you must first [connect to the GDS VPN](#8-connect-to-the-gds-vpn).
-
-Test your SSH access by running:
-
-```bash
-gds govuk connect --environment integration ssh jumpbox
-```
-
-If you see an error `Permission denied`, check the message shown later, similar to: `The SSH username used was: jsmith` - if this is not the user you specified in the puppet config above, you need to specify a username:
-
-```bash
-USER=jaysmith gds govuk connect --environment integration ssh jumpbox
-```
-
-(or you can `export USER=jaysmith` separately to set it for a shell session)
-
-If you see an error similar to `no matching host key type found. Their offer: ssh-rsa,ssh-dss` you will have to change your ssh configuration - this is an issue with OSX Ventura (and possibly other operating systems) - see [this StackOverflow issue](https://stackoverflow.com/questions/74215881/visual-studio-2022-wont-connect-via-ssh-on-macos-after-upgrading-to-ventura)
-
-You need to add the following into your ssh config (e.g. `~/.ssh/config`):
-
-```text
-Host *
-  HostkeyAlgorithms +ssh-rsa
-  PubkeyAcceptedAlgorithms +ssh-rsa
-```
-
-Note this may happen even if you don't use an rsa ssh private key - it is caused by the _host key_ which is defined by the server you connect to, not your _user key_ which you have defined.
-
-## 11. Set up tools to use the GOV.UK Kubernetes platform
+## 10. Set up tools to use the GOV.UK Kubernetes platform
 
 Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](/kubernetes/get-started/set-up-tools/).
 
-## 12. Get Signon accounts
+## 11. Get Signon accounts
 
 [Signon](/repos/signon.html) is the application used to control access to the GOV.UK Publishing applications.
 
@@ -326,14 +236,13 @@ Ask your tech lead to give you the following access:
 - 'Superadmin' level with permission to access the applications that your team are likely to work on [for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new).
 - 'Normal' level with access to the 'Release' app only (no permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html) is granted) [for the production Signon](https://signon.publishing.service.gov.uk/users/invitation/new). Note that this will automatically grant you access to the [staging Signon](https://signon.staging.publishing.service.gov.uk/) environment once the nightly [env sync](/manual/govuk-env-sync.html) has completed.
 
-## 13. Get familiar with the Release app
+## 12. Get familiar with the Release app
 
-[Release](/repos/release.html) is the application we use to track deployments,
-work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.
+[Release](/repos/release.html) is the application we use to track deployments, work out which branch/tag is deployed to each environment.
 
 > Your tech lead will have granted access to the Release app in the step above.
 
-## 14. Talk to your tech lead about supporting services you should have access to
+## 13. Talk to your tech lead about supporting services you should have access to
 
 Depending on the team you've joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access. Services you may need access to are:
 
