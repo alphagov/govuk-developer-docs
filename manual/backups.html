@@ -189,8 +189,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -298,7 +297,6 @@ The &ldquo;Earliest restorable time&rdquo; and &ldquo;Latest restorable time&rdq
 <p><a href="/manual/elasticsearch-dumps.html#header">Read more about backup and restore of Elasticsearch indices</a>.</p>
 <h1 id='graphite-whisper-backups'>Graphite Whisper backups</h1><p>Graphite is a open-source monitoring tool that stores time-series data. Whisper is a data storage format used by Graphite that is optimised for fast, reliable storage of time-series data.</p>
 <p>We use the <a href="https://github.com/alphagov/govuk-puppet/blob/648e9b95014b5fb40e9fb8da2a14c008ebf934aa/modules/govuk/manifests/node/s_graphite.pp#L117">whisper-backup script in govuk-puppet</a> to replicate the files daily to a <a href="https://github.com/alphagov/govuk-aws/blob/cb3205d8b11da3edd518924ad5ab2668627c6d48/terraform/projects/infra-graphite-backups-bucket/README.md">dedicated s3 bucket</a>. The data from production is retained for <a href="https://github.com/alphagov/govuk-aws/blob/cb3205d8b11da3edd518924ad5ab2668627c6d48/terraform/projects/infra-graphite-backups-bucket/main.tf#L23-L27">7 days</a> and for <a href="https://github.com/alphagov/govuk-aws-data/blob/7b5a2638c9d432aca5d7e09be3f990256b3a475d/data/infra-graphite-backups-bucket/integration/common.tfvars#L1">3 days</a> for non-production environments.</p>
-
 
   <div class='related-content'>
 

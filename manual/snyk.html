@@ -161,8 +161,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -212,7 +211,6 @@
 </code></pre></div><h2 id='where-to-find-security-alerts'>Where to find Security Alerts</h2><p>The scan outputs the scan alerts in JSON format and then saves the JSON file as an artifact after the action completes. Artifacts can be found on the &ldquo;run&rdquo; page of a workflow. Read the <a href="https://docs.github.com/en/actions/managing-workflow-runs/downloading-workflow-artifacts">downloading a workflow</a> page for details on retrieving this file.</p>
 <h2 id='dealing-with-security-alerts'>Dealing with Security Alerts</h2><p>Currently, SNYK is configured to <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/snyk-security.yml#L20">only identify vulnerabilities of a high severity</a>. Additionally, it will not fail the test when vulnerabilities are found: it will only raise an alert and move on. This is to reduce the number of false positives and avoid wasting developer time. Over time, we intend to tune the dial to make SNYK more strict.</p>
 <p>Alerts can be resolved either by fixing the identified vulnerability or by dismissing the alert as a false positive in the .snyk file of the project. More details on this can be found in the <a href="https://docs.snyk.io/scan-using-snyk/policies/the-.snyk-file">SNYK documentation</a>. If you do decide to ignore a warning, you must include a note outlining why it is a false positive and not a security vulnerability.</p>
-
 
   <div class='related-content'>
 

@@ -161,8 +161,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -219,7 +218,6 @@
 <p>For many of these cases, there isn&rsquo;t an originating request and so it&rsquo;s fine not to send a request id downstream. The request id will be generated and populated once a subsequent downstream request hits a load balancer, this will result in a partial trace.</p>
 <p>In cases where you do have a request id available, it is preferable to send this downstream as this could make it easier to debug in the future.</p>
 <p>Use <a href="https://github.com/alphagov/govuk_sidekiq">govuk_sidekiq</a> to do this. This gem injects middleware that will pass on the request id.</p>
-
 
   <div class='related-content'>
 

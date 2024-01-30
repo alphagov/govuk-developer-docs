@@ -161,8 +161,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -215,7 +214,6 @@
 <h2 id='dealing-with-security-alerts'>Dealing with Security Alerts</h2><p>Currently, CodeQL is configured to <a href="https://github.com/alphagov/govuk-infrastructure/blob/f9c3b2bddf407d78c04552563a4ba23a89c8af61/.github/workflows/codeql-analysis.yml#L24-L35">only identify vulnerabilities of a high severity and high precision</a>. Additionally, it will not fail the test when vulnerabilities are found: it will only create an alert and move on. This is to reduce the number of false positives and avoid wasting developer time. Over time, we intend to tune the dial to make CodeQL more strict.</p>
 <p>CodeQL will provide a recommendation on how to resolve a vulnerability along with references for additional research.</p>
 <p>Alerts can be resolved either by fixing the identified vulnerability or by dismissing the alert as a false positive. More details on this can be found in the <a href="https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository">CodeQL documentation</a>. If you do decide to ignore a warning, you must include a note outlining why it is a false positive and not a security vulnerability.</p>
-
 
   <div class='related-content'>
 

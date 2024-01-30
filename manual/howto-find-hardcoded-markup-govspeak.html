@@ -163,8 +163,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -222,7 +221,6 @@
 </code></pre></div><h4 id='find-youtube-links'>Find YouTube links</h4><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/href=\\"https:\/\/www.youtube.com\/watch?v=/</span> <span class="p">}</span>
 </code></pre></div><h4 id='find-hardcoded-buttons'>Find hardcoded buttons</h4><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/class=\\"button/</span> <span class="p">}</span>
 </code></pre></div>
-
   <div class='related-content'>
 
     <h3>More in the Publishing section</h3>

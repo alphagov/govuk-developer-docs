@@ -172,8 +172,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -302,7 +301,6 @@ be queried from the rails console.</p>
 </code></pre></div><p>Finally, you can do things like find and delete workers:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Sidekiq</span><span class="o">::</span><span class="no">RetrySet</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">filter</span> <span class="p">{</span> <span class="o">|</span><span class="n">job</span><span class="o">|</span> <span class="n">job</span><span class="p">.</span><span class="nf">klass</span> <span class="o">==</span> <span class="s2">"AssetManagerAttachmentMetadataWorker"</span> <span class="p">}.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:delete</span><span class="p">)</span>
 </code></pre></div>
-
   <div class='related-content'>
 
     <h3>More in the Monitoring section</h3>

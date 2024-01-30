@@ -174,8 +174,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -266,7 +265,6 @@ changes, irrespective of when they are published.</p>
 <h2 id='auto-merging-dependabot-prs'>Auto merging Dependabot PRs</h2><p>We have a <a href="https://github.com/alphagov/govuk-dependabot-merger">govuk-dependabot-merger</a> service that can auto-merge certain Dependabot PRs, outlined in <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-156-auto-merge-internal-prs.md">RFC-156</a>.</p>
 <p>Repos that wish to opt in to this service must have a <code>.govuk_dependabot_merger.yml</code> file at the root of the repository, configured as per the govuk-dependabot-merger README instructions. They must then be added to the <a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/config/repos_opted_in.yml">repos_opted_in.yml</a> list in govuk-dependabot-merger.</p>
 <h2 id='security'>Security</h2><p>We&rsquo;ve <a href="/manual/github.html">set up branch protection</a> for all repos with the <code>govuk</code> label. This prevents Dependabot from writing directly to main.</p>
-
 
   <div class='related-content'>
 

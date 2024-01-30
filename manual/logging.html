@@ -181,8 +181,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -314,7 +313,6 @@ viewing logs. It is responsible for:</p>
 <h3 id='vulnerability-scanners'>Vulnerability Scanners</h3><p>Occasionally you may see some logs that look suspicious. For example, see the <code>controller</code> part of the following made up example:</p>
 <p><code>http_request_duration_seconds_count { action=&quot;1&quot;, container=&quot;app&quot;, controller=&quot;../../../../../etc/passwd&quot;, endpoint=&quot;metrics&quot;, job=&quot;govuk&quot;, namespace=&quot;apps&quot;, pod=&quot;static-abc123-de7f&quot; }</code></p>
 <p>This sort of thing often originates from vulnerability scanners and isn&rsquo;t necessarily something to worry about. However, you should consider <em>how</em> such activity ended up leaking into your logs, and whether or not there&rsquo;s anything you could/should do to patch it up. Read our <a href="https://docs.google.com/document/d/1BZ_SBPuZmO8pseniqj1tlq7pss9iU3JslqQHp_JS9Wg/edit#heading=h.17fwpvs3mt0x">internal guidance on the issue</a>.</p>
-
 
   <div class='related-content'>
 

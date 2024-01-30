@@ -177,8 +177,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -301,7 +300,6 @@
 <p>The <a href="https://github.com/alphagov/authenticating-proxy">Authenticating Proxy</a> adds authentication to the draft stack. This means that only publishers with a <a href="/repos/signon.html">Signon</a> account, or a valid secret JSON web token (JWT) if the publisher is a fact checker, can access the draft stack.</p>
 <p>The publishing apps, Publishing API and message queue only run in this draft stack. The draft stack also has its own copy of <a href="https://github.com/alphagov/router">Router</a>, <a href="https://github.com/alphagov/content-store">Content Store</a>, and all of the frontend apps. This enables publishers to see what their draft content will look like when rendered by the appropriate frontend application.</p>
 <p>The only application that communicates with both the draft and live stacks is the Publishing API. When a publisher saves a draft in Publisher, Publishing API saves the content to the draft content store. When a publisher publishes a draft in Publisher, Publishing API saves the content to the live content store, which makes the content visible to users.</p>
-
 
   <div class='related-content'>
 

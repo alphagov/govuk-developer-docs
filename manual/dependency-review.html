@@ -161,8 +161,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -211,7 +210,6 @@
 </code></pre></div><h2 id='where-to-find-security-alerts'>Where to find Security Alerts</h2><p>Alerts can always be found in the job logs. Additionally, there is a job summary displayed beneath the GitHub Action run. Here, changes are summarised along with any vulnerabilities found.</p>
 <h2 id='dealing-with-security-alerts'>Dealing with Security Alerts</h2><p>Currently, Dependency Review is <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/dependency-review.yml">configured to find &ldquo;critical&rdquo; issues</a>. If issues are found, the check automatically &lsquo;fails&rsquo; and therefore blocks merging of the PR. We therefore want to avoid false positives and wasting developer time, so have set the bar high and only alert on critical issues. Over time, we intent to tune the dial so this becomes more strict.</p>
 <p>Alerts can be resolved only by fixing the issue and running the tests again. Vulnerability alerts provide a link to the <a href="https://github.com/advisories">GitHub advisory</a> database where advice on resolving the issue can be found. Dismissing an alert requires adding the GitHub Advisory Database ID (GHSA) to the inline configuration <a href="https://github.com/marketplace/actions/dependency-review#inline-configuration">via the <code>allow-ghsas</code> property</a>. As the workflow is a communal resource, this should be done sparingly and include a well detailed comment about why it is being skipped.</p>
-
 
   <div class='related-content'>
 

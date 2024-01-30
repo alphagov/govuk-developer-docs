@@ -200,8 +200,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -330,7 +329,6 @@ and the key ID is <code>90E65803</code> — the last 8 characters of the fingerp
 <h2 id='extend-an-expired-gpg-key'>Extend an expired GPG key</h2><p>If your GPG key has expired, the easiest way to update it is to <a href="https://superuser.com/questions/813421/can-you-extend-the-expiration-date-of-an-already-expired-gpg-key">extend the expiry date</a>.</p>
 <p>You may also find that you have sub-keys that are due to expire too. If you are using a Mac, the easiest way to check is to use the GPG Keychain application. In GPG Keychain, double-click on your key to see the details and go the the &ldquo;Subkeys&rdquo; tab. If you have a sub-key that is due to expire, you&rsquo;ll be asked if you want to update it.</p>
 <p>After extending (or renewing) your GPG key, you will need to <a href="#save-your-public-key-to-govuk-secrets">extract the public key</a> and raise a PR to update <code>govuk_secrets</code>.</p>
-
 
   <div class='related-content'>
 

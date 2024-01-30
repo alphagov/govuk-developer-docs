@@ -189,8 +189,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -290,7 +289,6 @@ mongorestore licensifydump/
 </code></pre></div><p>Confusingly, some collections exist in both the <code>licensify</code> and the <code>licensify-refdata</code> database. If <code>db.collectionName.count() == 0</code> in one database, and <code>db.collectionName.count() != 0</code> in the other, then you should assume that the one with objects is the source of truth.</p>
 <h3 id='application-files'>Application Files</h3><p>All newly-uploaded documents are stored within an S3 bucket; the credentials for this are provided to the application as environment variables. This feature was enabled on 2016-10-18; any documents uploaded before then are stored in GridFS (Mongo).</p>
 <h3 id='anti-virus-scans-of-uploaded-documents'>Anti-virus scans of uploaded documents</h3><p>All documents uploaded as part of the application process are scanned using ClamAV. The process to re-check any previously uploaded files against the latest definitions is currently disabled. The risks disabling this poses are mitigated due to the fact that we are purging all applications after 90+7 days.</p>
-
 
   <div class='related-content'>
 

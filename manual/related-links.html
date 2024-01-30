@@ -169,8 +169,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -251,7 +250,6 @@ links using Content Tagger.</p>
 <h4 id='suspending-all-suggested-related-links'>Suspending all suggested related links</h4><p>To immediately and temporarily stop showing all suggested related links (for example, if a problem has led to bad links being generated for a large percentage of content / high traffic content), you will need to update the CDN to set the <code>Govuk-Use-Recommended-Related-Links</code> header to <code>False</code> and then <a href="https://deploy.blue.production.govuk.digital/job/Deploy_CDN/">deploy the CDN</a> for <code>vhost: www</code>.</p>
 <p>The root cause of the problem should be investigated and a new set of related links generated and ingested through the pipeline, if possible. Should the fix not be immediate, we might consider re-ingesting an older batch of related links from S3.</p>
 <p>If you need to suspend all suggested related links, please reach out to the Data Labs team first so that we can help you assess the situation and take steps to address the root problem(s).</p>
-
 
   <div class='related-content'>
 
