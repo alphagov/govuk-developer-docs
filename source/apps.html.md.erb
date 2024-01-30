@@ -35,14 +35,6 @@ Apps can be loosely grouped into different types, including:
 | # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.app_name}](/repos/#{app.app_name}.html)" }.join(", ") %> |
 <% end %>
 
-## Apps by host
-
-| Hosting | Count | Applications |
-| --- | --- | --- |
-<% Repos.active_apps.group_by(&:hosting_name).sort.each do |name, apps| %>
-| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.app_name}](/repos/#{app.app_name}.html)" }.join(", ") %> |
-<% end %>
-
 ## Reuse this data
 
 You can download this data as JSON or as CSV. It's available for the hosted
