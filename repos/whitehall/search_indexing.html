@@ -230,7 +230,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/1a49f0e2d6e7cd208dc243f3e5c4c4470f2fcbd6">17 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/e748b577e0f13c01fe62bad2a303340ab5acc7c4">24 Jan 2024</a>
 </div>
 
   <h1 class="page-title">whitehall: Search Indexing</h1>
@@ -238,14 +238,14 @@
   
 <p>Whitehall interacts directly with the Search API, unlike other publishing apps which leave Publishing API to manage indexing.</p>
 <p>The Whitehall app relies on
-<a href="https://github.com/alphagov/rummager">Rummager</a> for document
+<a href="https://github.com/alphagov/search-api">Search Api</a> for document
 indexing, and the
 <a href="https://github.com/alphagov/frontend">GOV.UK frontend application</a> to
 serve results. The Whitehall search index is called 'government'.</p>
 <h2 id="search-indexing-paths">Search indexing paths</h2>
 <p>There are currently two paths through which Whitehall searchable classes are indexed.
-For a list of searchable classes, please refer to <code>RummagerPresenters.searchable_classes</code>
-(in <a href="https://github.com/alphagov/whitehall/blob/main/app/presenters/rummager_presenters.rb">app/presenters/rummager_presenters.rb</a>).
+For a list of searchable classes, please refer to <code>SearchApiPresenters.searchable_classes</code>
+(in <a href="https://github.com/alphagov/whitehall/blob/main/app/presenters/search_api_presenters.rb">app/presenters/search_api_presenters.rb</a>).
 Each of these searchable models includes the <a href="https://github.com/alphagov/whitehall/blob/main/app/models/searchable.rb">Searchable</a> module,
 which provides the base search indexing behaviour. Bear in mind that some classes may override its methods.</p>
 <h3 id="indexing-editions">Indexing Editions</h3>
@@ -292,9 +292,9 @@ search index, you will actually need to rebuild the search index.</p>
 <p>Rebuilding of the 'government' search index can now be done with a bulk data dump. This also supports
 construction of a new detached index and seamless switchover from the
 existing to the new index. There are two parts to this process, a
-<code>rummager_export.rb</code> script in Whitehall which dumps the data to
-STDOUT, and a <code>bulk_load</code> script in rummager which accepts that data on STDIN
-and loads it into rummager.</p>
+<code>search_api_export.rb</code> script in Whitehall which dumps the data to
+STDOUT, and a <code>bulk_load</code> script in search_api which accepts that data on STDIN
+and loads it into search_api.</p>
 <p>The <code>bulk_load</code> script also takes care of constructing the new offline index,
 locking the index for writes (so that index write workers queue up waiting for
 the new index to come online during indexing, avoiding data loss during
@@ -309,12 +309,12 @@ following task from the search-api repo:</p>
 </li>
 <li>
 <p>Run the bulk export and load:</p>
-<pre><code>bundle exec ./script/rummager_export.rb &gt; government.dump
-bundle exec ./script/rummager_export.rb --detailed &gt; detailed.dump
+<pre><code>bundle exec ./script/search_api_export.rb &gt; government.dump
+bundle exec ./script/search_api_export.rb --detailed &gt; detailed.dump
 </code></pre>
 <p>then</p>
-<pre><code>(cd ../rummager &amp;&amp; bundle exec ./bin/bulk_load government) &lt; government.dump
-(cd ../rummager &amp;&amp; bundle exec ./bin/bulk_load detailed) &lt; detailed.dump
+<pre><code>(cd ../search-api &amp;&amp; bundle exec ./bin/bulk_load government) &lt; government.dump
+(cd ../search-api &amp;&amp; bundle exec ./bin/bulk_load detailed) &lt; detailed.dump
 </code></pre>
 </li>
 </ol>

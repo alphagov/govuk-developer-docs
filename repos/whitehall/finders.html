@@ -229,15 +229,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/ec553343efb68bfd7beaaeecf7308164c0e04b9a">24 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/e748b577e0f13c01fe62bad2a303340ab5acc7c4">24 Jan 2024</a>
 </div>
 
   <h1 class="page-title">whitehall: Finders</h1>
@@ -257,7 +250,7 @@ query parameters, we do it in the controllers:</p>
 <h2 id="how-to-publish-a-finder-in-whitehall">How to publish a finder in whitehall</h2>
 <p><strong>Please consider publishing new finders from <a href="https://github.com/alphagov/search-api/tree/master/config/finders">search-api</a>. There are <a href="https://github.com/alphagov/search-api/tree/630a6947395d11267be3cc056c7370c65bb5723e/spec/unit/content_item_publisher">schema tests for both finders and email signup pages</a> there.</strong></p>
 <p>Create a JSON file in <a href="https://github.com/alphagov/whitehall/tree/master/lib/finders">lib/finders</a>. You can base it on one of the existing files in that folder.</p>
-<p>Double-check the filter format and document noun - the filter format is used for rummager to return the data, while the document noun is displayed to the user.</p>
+<p>Double-check the filter format and document noun - the filter format is used for search_api to return the data, while the document noun is displayed to the user.</p>
 <p>The default_documents_per_page key can be used to paginate very long finders (see <a href="https://github.com/alphagov/whitehall/blob/master/lib/finders/case_studies.json">whitehall/lib/finders/case_studies.json</a> for an example).</p>
 <p>Running the <a href="https://github.com/alphagov/whitehall/blob/master/lib/tasks/publish_finders.rake">finders:publish rake task</a> will publish your new finder to the <a href="https://github.com/alphagov/publishing-api">publishing-api</a>, and the route defined in the JSON will be taken over by <a href="https://github.com/alphagov/finder-frontend">finder-frontend</a>.</p>
 
