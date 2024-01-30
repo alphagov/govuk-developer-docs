@@ -56,37 +56,6 @@ tags: request AND path: \/government\/groups\/*
 host:cache* AND (@fields.status:[500 TO 504] OR status:[500 TO 504])
 ```
 
-### Puppet runs
-
-```rb
-# both agent and master
-syslog_program:puppet*
-
-# agent only
-syslog_program:"puppet-agent"
-
-# master only
-syslog_program:"puppet-master"
-```
-
-### Syslog logs
-
-```rb
-application:"syslog"
-```
-
-### Syslog logs on a specific machine
-
-```rb
-source:"/var/log/syslog" AND beat.hostname:"ip-10-13-5-15"
-```
-
-### Syslog logs filtered by program
-
-```rb
-application:"syslog" AND syslog_program:"rsync"
-```
-
 ### Nginx logs
 
 ```rb
@@ -103,18 +72,6 @@ tags:"nginx" AND application:frontend*
 >
 > The `@timestamp` field records the request END time. To calculate request start time subtract `request_time`.
 
-### Application upstart logs
-
-```rb
-tags:"upstart"
-
-tags:"upstart" AND tags:"stdout"
-
-tags:"upstart" AND tags:"stderr"
-
-tags:"upstart" AND application:"licensify"
-```
-
 ### Application production.log files
 
 ```rb
@@ -127,12 +84,6 @@ tags:"application" AND application:"smartanswers"
 
 ```rb
 application:"mongodb" AND message:"command"
-```
-
-### Audit/access logs
-
-```rb
-application:"syslog" AND syslog_program:"audispd"
 ```
 
 ### Mirrorer logs
@@ -225,18 +176,6 @@ GET _search
 Press the "Play" icon to run the query, whose results will appear in the panel on the right.
 You'll see a `hits` array for each matching record, and also an `aggregations` object where your aggregations are grouped into `buckets`.
 From here it should be quite simple to count the number of unique IPs.
-
-## Syslog program names
-
-If you're looking for specific program outputs, use `syslog_program:FOO`:
-
-- `audispd`: This is used to see all audit logs from various servers. You can refer to README for searching particular types of audit logs. The program name with combination of source_host and message can be helped for looking at various specific audit log lines on a server.
-- `clamd`
-- `cron`
-- `govuk_sync_mirror`: Records information from govuk_sync_mirror script
-- `puppet-agent`: Records output for govuk_puppet script on various servers
-- `puppet-master`
-- `smokey`
 
 ## Gotchas
 
