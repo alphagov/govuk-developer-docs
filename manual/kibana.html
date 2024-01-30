@@ -157,31 +157,13 @@
             <a href="#5xx-errors-returned-from-cache-layer"><span>5xx errors returned from cache layer</span></a>
           </li>
           <li>
-            <a href="#puppet-runs"><span>Puppet runs</span></a>
-          </li>
-          <li>
-            <a href="#syslog-logs"><span>Syslog logs</span></a>
-          </li>
-          <li>
-            <a href="#syslog-logs-on-a-specific-machine"><span>Syslog logs on a specific machine</span></a>
-          </li>
-          <li>
-            <a href="#syslog-logs-filtered-by-program"><span>Syslog logs filtered by program</span></a>
-          </li>
-          <li>
             <a href="#nginx-logs"><span>Nginx logs</span></a>
-          </li>
-          <li>
-            <a href="#application-upstart-logs"><span>Application upstart logs</span></a>
           </li>
           <li>
             <a href="#application-production-log-files"><span>Application production.log files</span></a>
           </li>
           <li>
             <a href="#mongodb-slow-queries"><span>MongoDB slow queries</span></a>
-          </li>
-          <li>
-            <a href="#auditaccess-logs"><span>Audit/access logs</span></a>
           </li>
           <li>
             <a href="#mirrorer-logs"><span>Mirrorer logs</span></a>
@@ -193,9 +175,6 @@
             <a href="#example-elasticsearch-query"><span>Example Elasticsearch query</span></a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a href="#syslog-program-names"><span>Syslog program names</span></a>
       </li>
       <li>
         <a href="#gotchas"><span>Gotchas</span></a>
@@ -248,15 +227,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ac8f6ccc297e47490aac7f7f9da94b6154e85aac">10 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/63f5bf2d1cd9615e638233dd054e3daf728c7091">30 Jan 2024</a>
 </div>
 
  <h1 id='header'>Query Kibana (includes useful queries)</h1> <p>All logs for GOV.UK on all environments are collected in Kibana, which you can
@@ -283,17 +255,6 @@ Elasticsearch queries</a>. See an <a href="#example-elasticsearch-query">example
 <h3 id='all-requests-rendered-by-the-content_items-controller-in-government-frontend'>All requests rendered by the content_items controller in government-frontend</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="ss">application: </span><span class="n">government</span><span class="o">-</span><span class="n">frontend</span> <span class="no">AND</span> <span class="ss">tags: </span><span class="n">request</span> <span class="no">AND</span> <span class="ss">controller: </span><span class="n">content_items</span>
 </code></pre></div><h3 id='all-requests-within-the-governmentgroups-path'>All requests within the /government/groups path</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="ss">tags: </span><span class="n">request</span> <span class="no">AND</span> <span class="ss">path: </span><span class="p">\</span><span class="sr">/government\/groups\/*
 </span></code></pre></div><h3 id='5xx-errors-returned-from-cache-layer'>5xx errors returned from cache layer</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">host</span><span class="ss">:cache</span><span class="o">*</span> <span class="no">AND</span> <span class="p">(</span><span class="vi">@fields</span><span class="p">.</span><span class="nf">status</span><span class="p">:[</span><span class="mi">500</span> <span class="no">TO</span> <span class="mi">504</span><span class="p">]</span> <span class="no">OR</span> <span class="n">status</span><span class="p">:[</span><span class="mi">500</span> <span class="no">TO</span> <span class="mi">504</span><span class="p">])</span>
-</code></pre></div><h3 id='puppet-runs'>Puppet runs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="c1"># both agent and master</span>
-<span class="n">syslog_program</span><span class="ss">:puppet</span><span class="o">*</span>
-
-<span class="c1"># agent only</span>
-<span class="n">syslog_program</span><span class="ss">:"puppet-agent"</span>
-
-<span class="c1"># master only</span>
-<span class="n">syslog_program</span><span class="ss">:"puppet-master"</span>
-</code></pre></div><h3 id='syslog-logs'>Syslog logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">application</span><span class="ss">:"syslog"</span>
-</code></pre></div><h3 id='syslog-logs-on-a-specific-machine'>Syslog logs on a specific machine</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">source</span><span class="ss">:"/var/log/syslog"</span> <span class="no">AND</span> <span class="n">beat</span><span class="p">.</span><span class="nf">hostname</span><span class="ss">:"ip-10-13-5-15"</span>
-</code></pre></div><h3 id='syslog-logs-filtered-by-program'>Syslog logs filtered by program</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">application</span><span class="ss">:"syslog"</span> <span class="no">AND</span> <span class="n">syslog_program</span><span class="ss">:"rsync"</span>
 </code></pre></div><h3 id='nginx-logs'>Nginx logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">tags</span><span class="ss">:"nginx"</span>
 </code></pre></div><p>Nginx logs for frontend:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">tags</span><span class="ss">:"nginx"</span> <span class="no">AND</span> <span class="n">application</span><span class="ss">:frontend</span><span class="o">*</span>
@@ -302,18 +263,10 @@ Elasticsearch queries</a>. See an <a href="#example-elasticsearch-query">example
 <p><strong>Note</strong></p>
 <p>The <code>@timestamp</code> field records the request END time. To calculate request start time subtract <code>request_time</code>.</p>
 </blockquote>
-<h3 id='application-upstart-logs'>Application upstart logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">tags</span><span class="ss">:"upstart"</span>
-
-<span class="n">tags</span><span class="ss">:"upstart"</span> <span class="no">AND</span> <span class="n">tags</span><span class="ss">:"stdout"</span>
-
-<span class="n">tags</span><span class="ss">:"upstart"</span> <span class="no">AND</span> <span class="n">tags</span><span class="ss">:"stderr"</span>
-
-<span class="n">tags</span><span class="ss">:"upstart"</span> <span class="no">AND</span> <span class="n">application</span><span class="ss">:"licensify"</span>
-</code></pre></div><h3 id='application-production-log-files'>Application production.log files</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">tags</span><span class="ss">:"application"</span>
+<h3 id='application-production-log-files'>Application production.log files</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">tags</span><span class="ss">:"application"</span>
 
 <span class="n">tags</span><span class="ss">:"application"</span> <span class="no">AND</span> <span class="n">application</span><span class="ss">:"smartanswers"</span>
 </code></pre></div><h3 id='mongodb-slow-queries'>MongoDB slow queries</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">application</span><span class="ss">:"mongodb"</span> <span class="no">AND</span> <span class="n">message</span><span class="ss">:"command"</span>
-</code></pre></div><h3 id='auditaccess-logs'>Audit/access logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">application</span><span class="ss">:"syslog"</span> <span class="no">AND</span> <span class="n">syslog_program</span><span class="ss">:"audispd"</span>
 </code></pre></div><h3 id='mirrorer-logs'>Mirrorer logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">syslog_program</span><span class="ss">:"govuk_sync_mirror"</span>
 </code></pre></div><h3 id='publishing-api-timeouts'>Publishing API timeouts</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">message</span><span class="ss">:"TimedOutException"</span> <span class="no">AND</span> <span class="p">(</span><span class="n">application</span><span class="ss">:"specialist-publisher"</span> <span class="no">OR</span> <span class="n">application</span><span class="ss">:"whitehall"</span> <span class="no">OR</span> <span class="n">application</span><span class="ss">:"content-tagger"</span><span class="p">)</span>
 </code></pre></div><h3 id='example-elasticsearch-query'>Example Elasticsearch query</h3><p>You can use Elasticsearch queries by clicking &ldquo;Add a filter&rdquo; and then specifying &ldquo;Edit Query DSL&rdquo;.
@@ -382,17 +335,6 @@ You&rsquo;ll probably want to specify your date range in JSON as there is no way
 </span></code></pre></div><p>Press the &ldquo;Play&rdquo; icon to run the query, whose results will appear in the panel on the right.
 You&rsquo;ll see a <code>hits</code> array for each matching record, and also an <code>aggregations</code> object where your aggregations are grouped into <code>buckets</code>.
 From here it should be quite simple to count the number of unique IPs.</p>
-<h2 id='syslog-program-names'>Syslog program names</h2><p>If you&rsquo;re looking for specific program outputs, use <code>syslog_program:FOO</code>:</p>
-
-<ul>
-<li><code>audispd</code>: This is used to see all audit logs from various servers. You can refer to README for searching particular types of audit logs. The program name with combination of source_host and message can be helped for looking at various specific audit log lines on a server.</li>
-<li><code>clamd</code></li>
-<li><code>cron</code></li>
-<li><code>govuk_sync_mirror</code>: Records information from govuk_sync_mirror script</li>
-<li><code>puppet-agent</code>: Records output for govuk_puppet script on various servers</li>
-<li><code>puppet-master</code></li>
-<li><code>smokey</code></li>
-</ul>
 <h2 id='gotchas'>Gotchas</h2>
 <ul>
 <li>Score: does a aggregation of field on last 2000 results</li>

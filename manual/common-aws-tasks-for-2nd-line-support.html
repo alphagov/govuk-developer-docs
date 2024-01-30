@@ -176,21 +176,12 @@
         <a href="#how-to-restore-an-aws-managed-db-from-a-backup"><span>How to restore an AWS managed DB from a backup</span></a>
       </li>
       <li>
-        <a href="#how-to-resize-a-persistent-disk"><span>How to resize a persistent disk</span></a>
-      </li>
-      <li>
-        <a href="#how-to-replace-an-instance-with-a-persistent-disk"><span>How to replace an instance with a persistent disk</span></a>
-      </li>
-      <li>
         <a href="#learn"><span>Learn</span></a>
         <ul>
           <li>
             <a href="#how-do-we-do-dns"><span>How do we do DNS?</span></a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a href="#how-are-ec2-instances-legacy-infrastructure-provisioned"><span>How are EC2 instances (legacy infrastructure) provisioned?</span></a>
       </li>
     </ul>
   </li>
@@ -240,15 +231,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/63f5bf2d1cd9615e638233dd054e3daf728c7091">30 Jan 2024</a>
 </div>
 
  <h1 id='header'>Common AWS tasks for Technical 2nd Line</h1> <p>This document details some of the tasks that GOV.UK Technical 2nd Line may
@@ -281,38 +265,9 @@ you which resource is the limiting factor impacting performance.</p>
 <p>It is also worth looking at AWS&rsquo;s troubleshooting documentation, such as
 the <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/user_diagnostics.html">DocumentDB documentation</a>.</p>
 <h2 id='how-to-restore-an-aws-managed-db-from-a-backup'>How to restore an AWS managed DB from a backup</h2><p>View the documentation on <a href="/manual/howto-backup-and-restore-in-aws-rds.html">how to backup and restore in AWS RDS</a>.</p>
-<h2 id='how-to-resize-a-persistent-disk'>How to resize a persistent disk</h2><p>If you&rsquo;re not sure how to do this, ask an Site Reliability Engineer to give you a walk through.</p>
-<p>See the docs: /manual/manually-resize-ebs.html.</p>
-<h2 id='how-to-replace-an-instance-with-a-persistent-disk'>How to replace an instance with a persistent disk</h2><p><em>If you&rsquo;re not sure how to do this, ask an Site Reliability Engineer to give
-you a walk through.</em></p>
-<p>Assuming we want to destroy and recreate a VM, but have the new VM attach to the
-old persistent disk</p>
-
-<ol>
-<li>Find the VM and note down the details of the persistent volume you want to keep</li>
-<li>Shutdown the VM</li>
-<li>Detach the EBS volume from the VM.</li>
-<li>Delete the VM</li>
-<li>Run terraform apply which will now recreate the VM</li>
-<li>Manually re-attach the EBS volume to the new VM</li>
-<li>Reboot the machine to make sure the persistent disk reattaches between reboots</li>
-<li>Initiate a puppet run to make sure that everything works</li>
-</ol>
 <h2 id='learn'>Learn</h2><h3 id='how-do-we-do-dns'>How do we do DNS?</h3><p>GOV.UK is effectively a DNS registrar for some third-level domain names, for
 example service.gov.uk.</p>
 <p>See <a href="/manual/dns.html">how GOV.UK does DNS</a>.</p>
-<h2 id='how-are-ec2-instances-legacy-infrastructure-provisioned'>How are EC2 instances (legacy infrastructure) provisioned?</h2><p><strong>As of Mar 2023, only Crawler, CKAN (for data.gov.uk) and Licensing still use
-the legacy EC2 infrastructure.</strong></p>
-<p>The legacy EC2 infrastructure is configured via Terraform code in the
-<a href="https://github.com/alphagov/govuk-aws">govuk-aws</a> repo.</p>
-<p>There are a few exceptions to this, such as ad-hoc instances started from
-Concourse via the AWS CLI - these are mainly for data science projects.</p>
-<p>We use <a href="https://github.com/alphagov/govuk-aws/blob/master/terraform/userdata/20-puppet-client">userdata scripts</a> to run commands on our instances at launch. These
-scripts install various core bits of software needed by a particular instance
-and then typically use <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a> to provision our instances.</p>
-<p>Finally, new instances send Jenkins their Fully Qualified Domain Name (FQDN)
-and puppet class. Jenkins automatically <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_Node_Apps/">deploys apps</a> to newly provisioned
-instances.</p>
 
   <div class='related-content'>
 
