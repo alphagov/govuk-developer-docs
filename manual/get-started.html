@@ -190,27 +190,16 @@
         <a href="#9-set-up-gov-uk-docker"><span>9. Set up GOV.UK Docker</span></a>
       </li>
       <li>
-        <a href="#10-get-ssh-access-to-ec2-integration"><span>10. Get SSH access to EC2 integration</span></a>
-        <ul>
-          <li>
-            <a href="#create-a-user-to-ssh-into-ec2-integration"><span>Create a user to SSH into EC2 integration</span></a>
-          </li>
-          <li>
-            <a href="#access-remote-environments-and-server"><span>Access remote environments and server</span></a>
-          </li>
-        </ul>
+        <a href="#10-set-up-tools-to-use-the-gov-uk-kubernetes-platform"><span>10. Set up tools to use the GOV.UK Kubernetes platform</span></a>
       </li>
       <li>
-        <a href="#11-set-up-tools-to-use-the-gov-uk-kubernetes-platform"><span>11. Set up tools to use the GOV.UK Kubernetes platform</span></a>
+        <a href="#11-get-signon-accounts"><span>11. Get Signon accounts</span></a>
       </li>
       <li>
-        <a href="#12-get-signon-accounts"><span>12. Get Signon accounts</span></a>
+        <a href="#12-get-familiar-with-the-release-app"><span>12. Get familiar with the Release app</span></a>
       </li>
       <li>
-        <a href="#13-get-familiar-with-the-release-app"><span>13. Get familiar with the Release app</span></a>
-      </li>
-      <li>
-        <a href="#14-talk-to-your-tech-lead-about-supporting-services-you-should-have-access-to"><span>14. Talk to your tech lead about supporting services you should have access to</span></a>
+        <a href="#13-talk-to-your-tech-lead-about-supporting-services-you-should-have-access-to"><span>13. Talk to your tech lead about supporting services you should have access to</span></a>
       </li>
       <li>
         <a href="#supporting-information"><span>Supporting information</span></a>
@@ -264,7 +253,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0c2d983f0257489bcbad99664cf2712381563321">28 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1bca242518ce5861601a4a56b2bd5cb397a2706c">30 Jan 2024</a>
 </div>
 
  <h1 id='header'>Get started developing on GOV.UK</h1> <blockquote>
@@ -336,7 +325,7 @@ $ git config --global user.name "Friendly Giraffe"
 </ol>
 <h2 id='6-get-permissions-for-aws-github-and-other-third-party-services'>6. Get permissions for AWS, GitHub and other third party services</h2><p>Permissions to GOV.UK&rsquo;s AWS, <a href="/manual/github.html">GitHub</a>, <a href="/manual/cdn.html">Fastly</a>, <a href="/manual/sentry.html">Sentry</a> and <a href="/manual/pagerduty.html">Pagerduty</a> accounts are managed by the <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> repository. This is a private repository so will 404 before joining GOV.UK&rsquo;s GitHub.</p>
 <p>Ask your tech lead to follow the <a href="https://github.com/alphagov/govuk-user-reviewer#addingremoving-users">instructions</a> in govuk-user-reviewer to grant you access. <em>You must complete steps 1-5 first</em>.</p>
-<h2 id='7-install-and-configure-the-gds-cli'>7. Install and configure the GDS CLI</h2><p>On GOV.UK we use the <a href="https://github.com/alphagov/gds-cli"><code>gds-cli</code></a> for AWS and SSH access.</p>
+<h2 id='7-install-and-configure-the-gds-cli'>7. Install and configure the GDS CLI</h2><p>On GOV.UK we use the <a href="https://github.com/alphagov/gds-cli"><code>gds-cli</code></a> for AWS access.</p>
 
 <ol>
 <li><p>Run the following install GDS CLI:</p>
@@ -378,9 +367,9 @@ Enter token <span class="k">for </span>arn:aws:iam::123456789012:mfa/firstname.l
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-readonly aws s3 <span class="nb">ls</span>
 </code></pre></div><h2 id='8-connect-to-the-gds-vpn'>8. Connect to the GDS VPN</h2>
 <blockquote>
-<p>This step is only necessary if you are a civil servant, require access to <a href="/apps.html#apps-by-host">applications hosted on EC2</a> or are beginning your first Technical 2nd Line shift. Check with your tech lead first.</p>
+<p>This step is only necessary if you are a civil servant. Check with your tech lead first.</p>
 </blockquote>
-<p>If you&rsquo;re outside of the office or on <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi">GovWiFi</a>, you must connect to the GDS VPN to access to our old infrastructure (e.g. SSH into EC2 instances or use Jenkins) and some other internal Cabinet Office services (e.g. SOP and the intranet).</p>
+<p>If you&rsquo;re outside of the office or on <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi">GovWiFi</a>, you must connect to the GDS VPN to use some internal Cabinet Office services (e.g. SOP and the intranet).</p>
 <h3 id='for-gds-issued-macbooks'> For GDS issued MacBooks</h3><p>Follow the <a href="https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit">GDS guidance on how to sign into the GDS VPN using Google credentials</a>.</p>
 <h3 id='for-bring-your-own-devices-byod'> For Bring Your Own Devices (BYOD)</h3><p>Follow the <a href="https://docs.google.com/document/d/150JX1xiWdXY29ahcYUMb05Si-hEAZvtkGAKojT9Rjis/edit#">VPN guide for Bring Your Own Devices (BYOD)</a></p>
 <h2 id='9-set-up-gov-uk-docker'>9. Set up GOV.UK Docker</h2><p>We use a <a href="/manual/intro-to-docker.html">Docker</a> environment for local development, <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker</a>.</p>
@@ -389,72 +378,20 @@ Enter token <span class="k">for </span>arn:aws:iam::123456789012:mfa/firstname.l
 <blockquote>
 <p>If you are a frontend developer, and you are working on GOV.UK&rsquo;s frontend apps, there is documentation on <a href="/manual/local-frontend-development.html">alterntaive local development approaches</a> that make low or no usage of GOV.UK Docker.</p>
 </blockquote>
-<h2 id='10-get-ssh-access-to-ec2-integration'>10. Get SSH access to EC2 integration</h2>
-<blockquote>
-<p>This step is only necessary if you require access to <a href="/apps.html#apps-by-host">applications hosted on EC2</a> or are beginning your first Technical 2nd Line shift. Check with your tech lead first. If you are a frontend developer you do not need to complete this step as part of your initial setup.</p>
-</blockquote>
-<h3 id='create-a-user-to-ssh-into-ec2-integration'>Create a user to SSH into EC2 integration</h3><p>User accounts in our integration environments are managed in the <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a> repository.</p>
-
-<ol>
-<li><p>Run the following command to create a <code>govuk</code> folder in your home directory and clone the <code>govuk-puppet</code> GitHub repo:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">mkdir</span> ~/govuk
-<span class="nb">cd</span> ~/govuk
-git clone git@github.com:alphagov/govuk-puppet.git
-</code></pre></div></li>
-<li><p>Add your SSH key which you created in <a href="#2-generate-a-ssh-key">step 2</a>.</p>
-<p>If you do not have a YubiKey, run <code>more ~/.ssh/id_ed25519.pub</code> to retrieve your public key. The key should begin with <code>ssh-ed25519 AAA</code>. If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with <code>ssh-rsa AAA</code>. You may need to manually add the email address to the end of your key.</p>
-<p>If you have a YubiKey, run <code>ssh-add -L</code> to retrieve the key from your device. The key should end with <code>cardno:000000000000</code>.</p></li>
-<li><p>Create a user manifest file at <code>~/govuk/govuk-puppet/modules/users/manifests/&lt;firstnamelastname&gt;.pp</code> with the following code:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># Creates the &lt;FIRSTNAMELASTNAME&gt; user
-class users::&lt;FIRSTNAMELASTNAME&gt; {
-  govuk_user { '&lt;FIRSTNAMELASTNAME&gt;':
-    fullname =&gt; 'FIRSTNAME LASTNAME',
-    email    =&gt; 'WORK EMAIL',
-    ssh_key  =&gt; '&lt;SSH-PUBLIC-KEY-VALUE&gt;',
-  }
-}
-</code></pre></div><p>Enter your information and SSH public key value into the file. For example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># Creates the johnsmith user
-class users::johnsmith {
-  govuk_user { 'johnsmith':
-    fullname =&gt; 'John Smith',
-    email    =&gt; 'john.smith@digital.cabinet-office.gov.uk',
-    ssh_key  =&gt; 'ssh-ed25519 AAAAC37eiue0923jfwnfwle93fnwefwn john.smith@digital.cabinet-office.gov.uk',
-  }
-}
-</code></pre></div></li>
-<li><p>Add the name of your user class (<code>&lt;firstnamelastname&gt;</code>) into the list of <code>users::usernames</code> in <a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml"><code>hieradata_aws/integration.yaml</code></a>.</p></li>
-<li><p>Create a pull request with these changes and ask your tech lead to review it.</p>
-<p>Once the pull request has been <a href="/manual/merge-pr.html">reviewed</a>, you can merge it and the pull request will automatically deploy to the integration environment.</p></li>
-</ol>
-<h3 id='access-remote-environments-and-server'>Access remote environments and server</h3><p>Once your pull request with your user manifest file is merged and deployed, you should test your SSH access to remote environments and servers.</p>
-<p>If you are outside of the office or on GovWiFi, you must first <a href="#8-connect-to-the-gds-vpn">connect to the GDS VPN</a>.</p>
-<p>Test your SSH access by running:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">--environment</span> integration ssh jumpbox
-</code></pre></div><p>If you see an error <code>Permission denied</code>, check the message shown later, similar to: <code>The SSH username used was: jsmith</code> - if this is not the user you specified in the puppet config above, you need to specify a username:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">USER</span><span class="o">=</span>jaysmith gds govuk connect <span class="nt">--environment</span> integration ssh jumpbox
-</code></pre></div><p>(or you can <code>export USER=jaysmith</code> separately to set it for a shell session)</p>
-<p>If you see an error similar to <code>no matching host key type found. Their offer: ssh-rsa,ssh-dss</code> you will have to change your ssh configuration - this is an issue with OSX Ventura (and possibly other operating systems) - see <a href="https://stackoverflow.com/questions/74215881/visual-studio-2022-wont-connect-via-ssh-on-macos-after-upgrading-to-ventura">this StackOverflow issue</a></p>
-<p>You need to add the following into your ssh config (e.g. <code>~/.ssh/config</code>):</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Host *
-  HostkeyAlgorithms +ssh-rsa
-  PubkeyAcceptedAlgorithms +ssh-rsa
-</code></pre></div><p>Note this may happen even if you don&rsquo;t use an rsa ssh private key - it is caused by the <em>host key</em> which is defined by the server you connect to, not your <em>user key</em> which you have defined.</p>
-<h2 id='11-set-up-tools-to-use-the-gov-uk-kubernetes-platform'>11. Set up tools to use the GOV.UK Kubernetes platform</h2><p>Follow <a href="/kubernetes/get-started/set-up-tools/">the instructions for setting up tools to use the GOV.UK Kubernetes platform</a>.</p>
-<h2 id='12-get-signon-accounts'>12. Get Signon accounts</h2><p><a href="/repos/signon.html">Signon</a> is the application used to control access to the GOV.UK Publishing applications.</p>
+<h2 id='10-set-up-tools-to-use-the-gov-uk-kubernetes-platform'>10. Set up tools to use the GOV.UK Kubernetes platform</h2><p>Follow <a href="/kubernetes/get-started/set-up-tools/">the instructions for setting up tools to use the GOV.UK Kubernetes platform</a>.</p>
+<h2 id='11-get-signon-accounts'>11. Get Signon accounts</h2><p><a href="/repos/signon.html">Signon</a> is the application used to control access to the GOV.UK Publishing applications.</p>
 <p>Ask your tech lead to give you the following access:</p>
 
 <ul>
 <li>&lsquo;Superadmin&rsquo; level with permission to access the applications that your team are likely to work on <a href="https://signon.integration.publishing.service.gov.uk/users/invitation/new">for the integration Signon</a>.</li>
 <li>&lsquo;Normal&rsquo; level with access to the &lsquo;Release&rsquo; app only (no permissions should be given for other applications, until <a href="/manual/rules-for-getting-production-access.html">production access</a> is granted) <a href="https://signon.publishing.service.gov.uk/users/invitation/new">for the production Signon</a>. Note that this will automatically grant you access to the <a href="https://signon.staging.publishing.service.gov.uk/">staging Signon</a> environment once the nightly <a href="/manual/govuk-env-sync.html">env sync</a> has completed.</li>
 </ul>
-<h2 id='13-get-familiar-with-the-release-app'>13. Get familiar with the Release app</h2><p><a href="/repos/release.html">Release</a> is the application we use to track deployments,
-work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.</p>
+<h2 id='12-get-familiar-with-the-release-app'>12. Get familiar with the Release app</h2><p><a href="/repos/release.html">Release</a> is the application we use to track deployments, work out which branch/tag is deployed to each environment.</p>
 
 <blockquote>
 <p>Your tech lead will have granted access to the Release app in the step above.</p>
 </blockquote>
-<h2 id='14-talk-to-your-tech-lead-about-supporting-services-you-should-have-access-to'>14. Talk to your tech lead about supporting services you should have access to</h2><p>Depending on the team you&rsquo;ve joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access. Services you may need access to are:</p>
+<h2 id='13-talk-to-your-tech-lead-about-supporting-services-you-should-have-access-to'>13. Talk to your tech lead about supporting services you should have access to</h2><p>Depending on the team you&rsquo;ve joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access. Services you may need access to are:</p>
 
 <ul>
 <li><a href="/manual/logit.html#accessing-logit">Logit</a> - the software we use for access application logs, where new starters are given access to the integration environment</li>

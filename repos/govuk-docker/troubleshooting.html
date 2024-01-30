@@ -1,0 +1,464 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>govuk-docker: Troubleshooting - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-docker/troubleshooting.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="govuk-docker: Troubleshooting - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/troubleshooting.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="govuk-docker: Troubleshooting" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/troubleshooting.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" data-module="cookie-banner" data-nosnippet role="region" aria-label="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <span class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></span> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" data-module="gem-track-click" data-track-category="cookieBanner" data-track-action="Cookie banner settings clicked from confirmation" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" data-module="gem-track-click" data-track-category="cookieBanner" data-track-action="Cookie banner settings clicked from confirmation" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click" data-accept-cookies="true" data-track-category="cookieBanner" data-track-action="Cookie banner accepted" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click" data-reject-cookies="true" data-track-category="cookieBanner" data-track-action="Cookie banner rejected">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="gem-track-click ga4-event-tracker" data-track-category="cookieBanner" data-track-action="Hide cookie banner" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide this message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/govuk-docker.html" rel="noopener" class="govuk-link">govuk-docker</a>
+    </li>
+    <li>
+      <ul>
+          <li><a href="/repos/govuk-docker/compatibility.html" rel="noopener" class="govuk-link">Compatibility</a></li>
+          <li><a href="/repos/govuk-docker/how-tos.html" rel="noopener" class="govuk-link">How To's</a></li>
+          <li><a href="/repos/govuk-docker/troubleshooting.html" rel="noopener" class="govuk-link">Troubleshooting</a></li>
+          <li class="subdir__heading">adr</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-docker/adr/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">0001-record-architecture-decisions</a></li>
+              <li><a href="/repos/govuk-docker/adr/0002-docker-images-for-ruby-applications.html" rel="noopener" class="govuk-link">2. Docker images for Ruby Applications</a></li>
+              <li><a href="/repos/govuk-docker/adr/0003-use-docker-volumes-for-improved-macos-performance.html" rel="noopener" class="govuk-link">3. Use Docker volumes for improved macOS performance</a></li>
+              <li><a href="/repos/govuk-docker/adr/0004-use-versioned-database-services.html" rel="noopener" class="govuk-link">1. Use versioned database services</a></li>
+              <li><a href="/repos/govuk-docker/adr/0001/DECISIONS.html" rel="noopener" class="govuk-link">Decisions</a></li>
+              <li><a href="/repos/govuk-docker/adr/0001/NEEDS.html" rel="noopener" class="govuk-link">make-1</a></li>
+          </ul>
+          <li class="subdir__heading">adr/0001</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-docker/adr/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">0001-record-architecture-decisions</a></li>
+              <li><a href="/repos/govuk-docker/adr/0001/DECISIONS.html" rel="noopener" class="govuk-link">Decisions</a></li>
+              <li><a href="/repos/govuk-docker/adr/0001/NEEDS.html" rel="noopener" class="govuk-link">make-1</a></li>
+          </ul>
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-docker",
+        "@id": "http://www.dev.gov.uk/repos/govuk-docker.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/govuk-docker.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk-docker&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-docker.html">govuk-docker</a>
+        </li>
+  </ol>
+</div>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/e99212cafd034fcabd2d5a6c52086388ac983e2e">13 Jul 2023</a>
+</div>
+
+  <h1 class="page-title">govuk-docker: Troubleshooting</h1>
+
+  
+<h2 id="binsetup-fails-to-succeed">
+<code>bin/setup</code> fails to succeed</h2>
+<p>If <code>bin/setup</code> fails on installing <code>dnsmasq</code>, make sure you're not overriding the <code>USER</code> env variable anywhere.</p>
+<p>If you are (for setting the right SSH username), you'll want to remove that and set it in <code>~/.config/config.yaml</code> instead.</p>
+<pre lang="yaml"><code># This is for govuk-connect: https://github.com/alphagov/govuk-connect/blob/1e14c58ce8e5d831aad3e2f8353d0e5204f83388/lib/govuk_connect/cli.rb#L230
+# Can't set `export USER="yourname"` as this causes some unix things to fail (e.g. `brew install dnsmasq`)
+# See https://github.com/alphagov/govuk-connect/issues/72
+ssh_username: "yourname"
+</code></pre>
+<h2 id="diagnose-common-issues-when-setting-up-gov-uk-docker">Diagnose common issues when setting up GOV.UK Docker</h2>
+<p>Run the following command in <code>~/govuk/govuk-docker</code>.</p>
+<pre><code>bin/doctor
+</code></pre>
+<p>Since this script makes use of Ruby Gems, you will need to install some additional dependencies in order to do this.</p>
+<p>First make sure you have the following dependencies:</p>
+<ul>
+<li><a href="https://github.com/rbenv/rbenv#installation">rbenv</a></li>
+</ul>
+<p>Next install Ruby / dependencies and run all the tests:</p>
+<pre lang="sh"><code>rbenv install
+
+bundle install
+</code></pre>
+<h2 id="diagnose-database-issues-with-a-projectapp-not-making">Diagnose database issues with a project/app not making</h2>
+<p>If you run <code>make</code> on an app inside govuk-docker and face any of the following database issues:</p>
+<ul>
+<li>
+<code>ActiveRecord::Migration</code> is not supported</li>
+<li>duplicate key error</li>
+</ul>
+<p>...then it is likely that there is a conflict between the app and one of your existing volumes. This is because database contents are stored in a volume that the container uses, so when the container is recreated, it picks up the same data again.</p>
+<p>The easiest resolution is to drop the database, e.g. <code>govuk-docker run content-store-lite bundle exec rails db:mongoid:drop</code>, and then try to <code>make</code> again.</p>
+<p>A blunter solution would be to drop the volume altogether, by running <code>docker volume rm VOLUME_NAME</code>, where <code>VOLUME_NAME</code> can be derived from <code>docker volume ls</code>.</p>
+<h2 id="diagnose-general-issues-with-a-projectapp-not-working">Diagnose general issues with a project/app not working</h2>
+<ul>
+<li>Make sure you run all commands via GOV.UK Docker.</li>
+</ul>
+<pre><code>govuk-docker-run bundle install
+govuk-docker-run rake db:migrate
+</code></pre>
+<ul>
+<li>
+<p>Try repeating the action. If you got a <code>GdsApi::HTTPUnavailable</code> or <code>GdsApi::TimedOutException</code> the first time around, it could mean that Publishing API wasn't ready in time, as unfortunately there's no way for govuk-docker to know when each dependency is ready.</p>
+</li>
+<li>
+<p>Check if one of the dependencies is the problem.</p>
+</li>
+</ul>
+<blockquote>
+<p>A common problem for dependencies is when you've previously <code>git pull</code>ed the repo, but haven't run <code>bundle install</code> or <code>rake db:migrate</code>. The logs for the dependency will show if this is the problem.</p>
+</blockquote>
+<pre><code># check if any dependencies have exited
+docker ps -a
+
+# check logs for an exited dependency
+govuk-docker logs -f publishing-api-app
+</code></pre>
+<ul>
+<li>Try cleaning up and running your command again.</li>
+</ul>
+<pre><code># stop all apps and their dependencies
+govuk-docker down
+
+# make sure GOV.UK Docker is up-to-date
+git pull
+</code></pre>
+<h2 id="diagnose-issues-with-dev-gov-uk-domains-not-resolving">Diagnose issues with <code>dev.gov.uk</code> domains not resolving</h2>
+<ul>
+<li>Check if <code>dev.gov.uk</code> works end-to-end</li>
+</ul>
+<pre><code>dig app.dev.gov.uk @127.0.0.1
+
+# output should contain...
+# app.dev.gov.uk.		0	IN	A	127.0.0.1
+</code></pre>
+<ul>
+<li>Check your <code>/etc/resolver</code> config is working</li>
+</ul>
+<pre><code>scutil --dns
+
+# output should contain...
+# domain   : dev.gov.uk
+# nameserver[0] : 127.0.0.1
+# port     : 53
+# flags    : Request A records, Request AAAA records
+# reach    : 0x00030002 (Reachable,Local Address,Directly Reachable Address)
+</code></pre>
+<ul>
+<li>Re-run the setup script and look for errors</li>
+</ul>
+<pre><code>bin/setup
+</code></pre>
+<h2 id="resolve-issues-caused-by-an-existing-docker-installation">Resolve issues caused by an existing Docker installation</h2>
+<p>You may get one of the following errors when running <code>bin/setup</code>.</p>
+<pre><code>Error: The `brew link` step did not complete successfully
+The formula built, but is not symlinked into /usr/local
+Could not symlink bin/docker-compose
+Target /usr/local/bin/docker-compose
+...
+</code></pre>
+<pre><code>Error: It seems there is already an App at '/Applications/Docker.app'.
+</code></pre>
+<p>This isn't a problem if you already have Docker/Compose installed, and the setup script will continue to run. If you like, you can remove your existing Docker/Compose and run <code>bin/setup</code> again.</p>
+<h2 id="cannot-rails-dbprepare-or-start-console-due-to-plugin-caching_sha2_password-could-not-be-loaded">Cannot <code>rails db:prepare</code> or start console due to "Plugin caching_sha2_password could not be loaded"</h2>
+<p>In MySQL 8.0 <code>caching_sha2_password</code> was made the default over the previous <code>mysql_native_password</code>.</p>
+<p>This can lead to the following error when ActiveRecord is attempting to connect to the database, for example when running <code>rails db:prepare</code> or trying to bring up a rails console.</p>
+<pre><code>ActiveRecord::ConnectionNotEstablished: Plugin caching_sha2_password could not be loaded: /usr/lib/x86_64-linux-gnu/mariadb19/plugin/caching_sha2_password.so: cannot open shared object file: No such file or directory
+</code></pre>
+<p>A workaround is to get MySQL to fall back to using <code>mysql_native_password</code> as follows:</p>
+<ul>
+<li>Check that you can see <code>govuk-docker_mysql-8_1</code> when running <code>govuk-docker ps</code>, if not you will need to start a service that uses mysql (for example Whitehall).</li>
+<li>Bring up a mysql console inside the container: <code>docker exec -it govuk-docker_mysql-8_1 mysql --user=root --password=root</code>
+</li>
+<li>Alter the way the root user identifies itself. <code>ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'root';</code>
+</li>
+</ul>
+<h2 id="browser-based-tests-fail-with-nosuchsessionerror-invalid-session-id">Browser based tests fail with <code>NoSuchSessionError: invalid session id</code>
+</h2>
+<p>For example: Jasmine unit tests or feature specs that use Capybara</p>
+<p>Docker allocates 64mb shared memory to containers by default, but recent versions of Chrome require more than this. Otherwise you'll start to see error messages complaining about an "invalid session id". In a previous discussion on Slack, it was informally agreed that 512mb seems to be the 'right sized' amount to allocate – but this was anecdotal, so other values may work equally well for our needs.</p>
+<p>If the <code>shm_size</code> is too small, you'll get error messages that look something like this in your terminal:</p>
+<pre><code>NoSuchSessionError: invalid session id
+    at Object.throwDecodedError (/govuk/whitehall/node_modules/selenium-webdriver/lib/error.js:522:15)
+    at parseHttpResponse (/govuk/whitehall/node_modules/selenium-webdriver/lib/http.js:548:13)
+    at Executor.execute (/govuk/whitehall/node_modules/selenium-webdriver/lib/http.js:474:28)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at async thenableWebDriverProxy.execute (/govuk/whitehall/node_modules/selenium-webdriver/lib/webdriver.js:735:17)
+    at async Object.runSpecs (/govuk/whitehall/node_modules/jasmine-browser-runner/index.js:116:9)
+    at async Command.runSpecs (/govuk/whitehall/node_modules/jasmine-browser-runner/lib/command.js:187:5) {
+  remoteStacktrace: '#0 0xaaaabaf6b1b0 &lt;unknown&gt;\n' +
+    '#1 0xaaaabada13b0 &lt;unknown&gt;\n' +
+    '#2 0xaaaabadc7fe4 &lt;unknown&gt;\n' +
+    '#3 0xaaaabadc9864 &lt;unknown&gt;\n' +
+    '#4 0xaaaabafa75f8 &lt;unknown&gt;\n' +
+    '#5 0xaaaabafa9d98 &lt;unknown&gt;\n' +
+    '#6 0xaaaabafa9acc &lt;unknown&gt;\n' +
+    '#7 0xaaaabaf987e0 &lt;unknown&gt;\n' +
+    '#8 0xaaaabafaa500 &lt;unknown&gt;\n' +
+    '#9 0xaaaabaf8e080 &lt;unknown&gt;\n' +
+    '#10 0xaaaabafc1790 &lt;unknown&gt;\n' +
+    '#11 0xaaaabafc1950 &lt;unknown&gt;\n' +
+    '#12 0xaaaabafdbbd4 &lt;unknown&gt;\n' +
+    '#13 0xffffb0f28628 &lt;unknown&gt;\n' +
+    '#14 0xffffb075501c &lt;unknown&gt;\n'
+}
+error Command failed with exit code 1.
+</code></pre>
+<p>To resolve it, check your project's <code>docker-compose.yml</code> file. The <code>*-lite</code> service will need a <code>shm_size</code> config to be added.</p>
+<p>For example:</p>
+<pre lang="yaml"><code>services:
+  whitehall-lite:
+    &lt;&lt;: *whitehall
+    shm_size: 512mb
+    depends_on:
+      - mysql-8
+      - redis
+    # ...
+</code></pre>
+<p>For further examples, see the PR <a href="https://github.com/alphagov/govuk-docker/pull/613">alphagov/govuk-docker#613</a>.</p>
+<h2 id="resolve-issue-with-a-projectapp-not-making">Resolve issue with a project/app not making</h2>
+<p>You may get this error when running <code>make &lt;app-name&gt;</code>.</p>
+<pre><code> =&gt; ERROR [ 2/11] RUN apt-get update -qq &amp;&amp; apt-get install -y chromium chromium-driverq
+...
+executor failed running [/bin/sh -c apt-get update -qq &amp;&amp; apt-get install -y chromium chromium-driver]: exit code: 100
+</code></pre>
+<p>This may resolve by removing orphan containers which were created in a previous run of docker-compose up, but which has since been deleted from the docker-compose.yml file</p>
+<pre><code>docker-compose down -v --rmi all --remove-orphans
+</code></pre>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-docker/blob/main/docs/troubleshooting.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-docker%2Ftroubleshooting.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
