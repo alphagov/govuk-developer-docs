@@ -34,9 +34,6 @@ From the Logit Dashboard page, choose Launch Kibana for the appropriate stack.
 Each environment (production, staging, integration) has its own ELK stack in
 Logit named `GOV.UK <environment> EKS`.
 
-There are also separate stacks for the legacy EC2/Puppet environments, named
-`GOV.UK <environment> AWS`.
-
 ### Alternative login method
 
 1. Go to [https://dashboard.logit.io/sign-in](https://dashboard.logit.io/sign-in).

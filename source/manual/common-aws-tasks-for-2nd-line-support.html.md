@@ -84,29 +84,6 @@ View the documentation on [how to backup and restore in AWS RDS].
 
 [how to backup and restore in AWS RDS]: /manual/howto-backup-and-restore-in-aws-rds.html
 
-## How to resize a persistent disk
-
-If you're not sure how to do this, ask an Site Reliability Engineer to give you a walk through.
-
-See the docs: /manual/manually-resize-ebs.html.
-
-## How to replace an instance with a persistent disk
-
-_If you're not sure how to do this, ask an Site Reliability Engineer to give
-you a walk through._
-
-Assuming we want to destroy and recreate a VM, but have the new VM attach to the
-old persistent disk
-
-1. Find the VM and note down the details of the persistent volume you want to keep
-1. Shutdown the VM
-1. Detach the EBS volume from the VM.
-1. Delete the VM
-1. Run terraform apply which will now recreate the VM
-1. Manually re-attach the EBS volume to the new VM
-1. Reboot the machine to make sure the persistent disk reattaches between reboots
-1. Initiate a puppet run to make sure that everything works
-
 ## Learn
 
 ### How do we do DNS?
@@ -116,26 +93,4 @@ example service.gov.uk.
 
 See [how GOV.UK does DNS](/manual/dns.html).
 
-## How are EC2 instances (legacy infrastructure) provisioned?
-
-**As of Mar 2023, only Crawler, CKAN (for data.gov.uk) and Licensing still use
-the legacy EC2 infrastructure.**
-
-The legacy EC2 infrastructure is configured via Terraform code in the
-[govuk-aws] repo.
-
-There are a few exceptions to this, such as ad-hoc instances started from
-Concourse via the AWS CLI - these are mainly for data science projects.
-
-We use [userdata scripts] to run commands on our instances at launch. These
-scripts install various core bits of software needed by a particular instance
-and then typically use [govuk-puppet] to provision our instances.
-
-Finally, new instances send Jenkins their Fully Qualified Domain Name (FQDN)
-and puppet class. Jenkins automatically [deploys apps] to newly provisioned
-instances.
-
 [govuk-aws]: https://github.com/alphagov/govuk-aws
-[userdata scripts]: https://github.com/alphagov/govuk-aws/blob/master/terraform/userdata/20-puppet-client
-[govuk-puppet]: https://github.com/alphagov/govuk-puppet
-[deploys apps]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_Node_Apps/
