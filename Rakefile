@@ -28,51 +28,10 @@ namespace :assets do
   end
 end
 
-desc "Find deployable applications that are not in this repo"
-task :verify_deployable_apps do
-  common_yaml = suppress_output do
-    HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata_aws/common.yaml")
-  end
-  deployable_applications = common_yaml["deployable_applications"].map { |k, v| v["repository"] || k }
-  our_applications = Repos.all.map(&:repo_name)
-
-  intentionally_missing =
-    %w[
-      smokey
-      kibana-gds
-      sidekiq-monitoring
-    ]
-
-  missing_apps = (deployable_applications - (our_applications + intentionally_missing)).uniq
-  if missing_apps.count.zero?
-    puts "No deployable apps missing from repos.yml ✅"
-  else
-    errors = missing_apps.map { |missing_app| "\n\t #{missing_app}" }
-    abort("The following deployable apps are missing from repos.yml: #{errors.join('')}")
-  end
-end
-
-desc "Check all puppet names are valid, will error when not"
-task :check_puppet_names do
-  puts "Checking Puppet manifests..."
-  invalid_puppet_names = []
-  Repos.active_apps.each do |app|
-    suppress_output { HTTP.get(app.puppet_url) unless app.puppet_url.nil? }
-  rescue Octokit::NotFound
-    invalid_puppet_names << app.puppet_url
-  end
-  if invalid_puppet_names.count.zero?
-    puts "All AWS apps have a valid puppet manifest ✅"
-  else
-    errors = invalid_puppet_names.map { |url| "\n\t #{url}" }
-    abort("Expected the following puppet manifests to exist: #{errors.join('')}")
-  end
-end
-
 desc "Clear out and rebuild the build/ folder"
 task build: %i[cache:clear assets:precompile]
 
-task default: %i[verify_deployable_apps lint lint_markdown spec check_puppet_names build]
+task default: %i[lint lint_markdown spec build]
 
 # https://gist.github.com/moertel/11091573
 def suppress_output
