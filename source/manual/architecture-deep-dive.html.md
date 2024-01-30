@@ -34,11 +34,6 @@ authoritative servers are hosted by [Jisc]. Unusually for a ccSLD, `gov.uk` is
 also a website, and hosts the redirect from `gov.uk` to `www.gov.uk`. The records
 for these two domains are within the `gov.uk` second-level zone hosted by Jisc.
 
-GDS hosts the DNS for third-level domains under `gov.uk` (for example `service.gov.uk`)
-on both [Amazon Route53] and Google Cloud Platform, for redundancy. The configuration
-for these domains is in the [govuk-dns-config repo], which is deployed via the
-[Deploy_DNS Jenkins job][deploy-dns], which in turn references the [govuk-dns repo].
-
 `www.gov.uk` is a CNAME record which ultimately points to `www-gov-uk.map.fastly.net.`
 The `fastly.net` domain name is hosted by special nameservers at the Fastly content
 delivery network, which aim to respond with the IP address of the Fastly cache node
@@ -380,21 +375,27 @@ queue, which triggers downstream actions such as cache clearing and email alerts
 
 ### Environments
 
-Everything you've read about the live and draft stacks, you can now multiply
-threefold, as they each exist in the following environments:
+There is a copy of the live and draft stacks in each of the following
+environments:
 
 - Production
 - Staging
 - Integration
 
-Data is copied from Production to Staging - and from Staging to Integration - every
-24 hours via [automated Jenkins jobs][copy-data-to-staging]. This way our
-environments are always roughly in sync, although it's worth noting that email
-addresses are anonymised and access-limited documents are obfuscated before data is
-copied. The data copying is [configured in govuk-puppet][govuk-env-sync].
+Nightly cronjobs copy data from Production to Staging and from Staging to
+Integration. This is because:
 
-[copy-data-to-staging]: https://deploy.publishing.service.gov.uk/job/Copy_Data_to_Staging/
-[govuk-env-sync]: /manual/govuk-env-sync.html
+- this gives us automated restore testing, to prove that we can actually
+  restore from production backups
+- we don't yet have example datasets suitable for development and testing
+  purposes
+- most of the data is public
+
+Some data is removed or redacted in the staging environment so that we don't
+copy it to the integration environment, such as:
+
+- email addresses, for example of subscribers to topic change notifications
+- draft content that has yet to be published on the public website
 
 ### Deploying
 
