@@ -258,7 +258,7 @@
 <p>There are separate backup and restore tasks for each database in each environment, all with different start times, so it is difficult to pinpoint exactly when the govuk_env_sync starts and ends. However, the data sync period is generally expected to run from around <a href="https://github.com/alphagov/govuk-puppet/blob/cb9351f92456ccf132e776b3b9f7129c0e654697/modules/govuk/lib/puppet/parser/functions/data_sync_times.rb#L6-L9">10pm until 8am</a>. For this reason:</p>
 
 <blockquote>
-<p><strong>Traffic replay using <a href="/manual/alerts/goreplay.html">GoReplay</a> is disabled between 22:00 and
+<p><strong>Traffic replay using <a href="alerts/goreplay.html">GoReplay</a> is disabled between 22:00 and
 08:00 UTC daily whilst the data sync pull jobs take place. This is to prevent
 lots of errors while we are dropping databases.</strong></p>
 </blockquote>
@@ -327,16 +327,12 @@ path="postgresql-backend"
           <h4>Learn</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/grafana.html">Grafana</a></li>
             <li><a href="/manual/graphite-and-deployment-dashboards.html">Graphite and deployment dashboards</a></li>
-            <li><a href="/manual/icinga.html">Icinga</a></li>
-            <li><a href="/manual/metrics.html">Metrics</a></li>
             <li><a href="/manual/pingdom-bouncer-canary-check.html">Pingdom Bouncer canary check</a></li>
             <li><a href="/manual/screens.html">Screens that we have in the office</a></li>
             <li><a href="/manual/sentry.html">Sentry</a></li>
             <li><a href="/manual/sidekiq.html">Sidekiq</a></li>
             <li><a href="/manual/tools.html">Tools: Icinga, Grafana and Graphite, Kibana and friends</a></li>
-            <li><a href="/manual/uptime-metrics.html">Uptime Metrics</a></li>
           </ul>
         </div>
 
@@ -344,11 +340,9 @@ path="postgresql-backend"
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/add-an-icinga-passive-check.html">Add an Icinga passive check to a Jenkins job</a></li>
             <li><a href="/manual/debug-underperforming-search.html">Debug underperforming search</a></li>
             <li><a href="/manual/errors.html">How we handle errors</a></li>
             <li><a href="/manual/pingdom.html">Pingdom</a></li>
-            <li><a href="/manual/nagstamon.html">Use Nagstamon for monitoring Icinga</a></li>
           </ul>
         </div>
 

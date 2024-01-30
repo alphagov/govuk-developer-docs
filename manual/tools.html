@@ -229,7 +229,7 @@ Some useful targets are:</p>
 <p>The composer offers tab completion, although it doesn’t handle patterns very well.</p>
 <p>To add one of these graphs to a dashboard, you can copy the graph image URL and select Graphs → New Graph → From URL from the dashboard menu.</p>
 <p>Both Graphite views let you adjust the time range of graphs, although they both do it in different ways. The composer view offers two buttons to select absolute and relative time ranges (<a href="images/composer-buttons.png" rel="noopener noreferrer"><img src="/manual/images/composer-buttons.png" alt="composer_buttons" /></a>), and the dashboard view has ones with labels (<a href="images/dashboard-buttons.png" rel="noopener noreferrer"><img src="/manual/images/dashboard-buttons.png" alt="dashboard_buttons" /></a>).</p>
-<p>Our <a href="/manual/deployment-dashboards.html">deployment dashboards</a> use Graphite extensively. <a href="/manual/graphite-and-deployment-dashboards.html">See some tips</a> on how to best manipulate the data streams to create useful dashboards.</p>
+<p>Our <a href="deployment-dashboards.html">deployment dashboards</a> use Graphite extensively. <a href="/manual/graphite-and-deployment-dashboards.html">See some tips</a> on how to best manipulate the data streams to create useful dashboards.</p>
 <h3 id='applying-functions'>Applying Functions</h3><p>Apply <a href="http://graphite.readthedocs.org/en/0.9.12/functions.html">Graphite functions</a> to your data to make it more useful.</p>
 <p>One particularly useful Graphite function is <code>keepLastValue</code>. If your graphs come out nearly black with a few spots of colour in them, you probably want this one. Both views have an &ldquo;Apply Function&rdquo; button.</p>
 <h2 id='kibana'>Kibana</h2><p>Kibana is a log viewer and search engine. Access GOV.UK Kibana through <a href="/manual/logit.html">Logit</a>.</p>
@@ -254,15 +254,11 @@ Some useful targets are:</p>
 
           <ul class="govuk-list">
             <li><a href="/manual/govuk-env-sync.html">Environment data sync</a></li>
-            <li><a href="/manual/grafana.html">Grafana</a></li>
             <li><a href="/manual/graphite-and-deployment-dashboards.html">Graphite and deployment dashboards</a></li>
-            <li><a href="/manual/icinga.html">Icinga</a></li>
-            <li><a href="/manual/metrics.html">Metrics</a></li>
             <li><a href="/manual/pingdom-bouncer-canary-check.html">Pingdom Bouncer canary check</a></li>
             <li><a href="/manual/screens.html">Screens that we have in the office</a></li>
             <li><a href="/manual/sentry.html">Sentry</a></li>
             <li><a href="/manual/sidekiq.html">Sidekiq</a></li>
-            <li><a href="/manual/uptime-metrics.html">Uptime Metrics</a></li>
           </ul>
         </div>
 
@@ -270,11 +266,9 @@ Some useful targets are:</p>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/add-an-icinga-passive-check.html">Add an Icinga passive check to a Jenkins job</a></li>
             <li><a href="/manual/debug-underperforming-search.html">Debug underperforming search</a></li>
             <li><a href="/manual/errors.html">How we handle errors</a></li>
             <li><a href="/manual/pingdom.html">Pingdom</a></li>
-            <li><a href="/manual/nagstamon.html">Use Nagstamon for monitoring Icinga</a></li>
           </ul>
         </div>
 
