@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-app-deployment - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-app-deployment (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -17,13 +17,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-app-deployment - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-app-deployment (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-app-deployment.html" />
 
       <meta property="og:description" content="Everything about govuk-app-deployment (Capistrano deployment scripts for applications running on GOV.UK.)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-app-deployment" />
+      <meta property="og:title" content="Repository: govuk-app-deployment (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-app-deployment.html" />
 
@@ -187,118 +187,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-app-deployment</h1>
+  <h1 class="page-title">Repository: govuk-app-deployment (retired)</h1>
 
-  <p>Capistrano deployment scripts for applications running on GOV.UK.</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-app-deployment">govuk-app-deployment</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-app-deployment')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-app-deployment-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Capistrano deployment scripts for applications running on GOV.UK.</p>
-
-<h2 id="adding-a-new-app">Adding a new app</h2>
-
-<p>Create a new directory for your app based on one of the other apps e.g.</p>
-
-<pre><code># Capfile
-
-load "deploy"
-
-$:.unshift(File.expand_path("../../lib", __FILE__))
-load_paths &lt;&lt; File.expand_path("../../recipes", __FILE__)
-
-load "config/deploy"
-</code></pre>
-
-<pre><code># config/deploy.rb
-
-set :application, "myapp"
-set :capfile_dir, File.expand_path("../", File.dirname(__FILE__))
-set :server_class, "myserverclass"
-set :repository, "git@github.com/alphagov/myapp.git"
-
-load "defaults"
-load "ruby"
-load "deploy/assets"
-
-set :copy_exclude, [
-  ".git/*",
-]
-</code></pre>
-
-<h2 id="how-deployments-work">How deployments work</h2>
-
-<p>The main <code>jenkins.sh</code> script is run by
-<a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_jenkins/templates/jobs/deploy_app.yaml.erb">Jenkins</a>
-to deploy each app.</p>
-
-<h2 id="environment-variables-available-to-deploy-scripts">Environment variables available to deploy scripts</h2>
-
-<p>There are a number of environment variables set in Jenkins that can be used in
-deploy scripts:</p>
-
-<ul>
-<li>
-<code>DEPLOY_TO</code> - the environment being deployed to</li>
-<li>
-<code>DEPLOY_TASK</code> - the deploy task selected in the Jenkins interface (&ldquo;deploy&rdquo;, &ldquo;deploy:setup&rdquo;, etc)</li>
-<li>
-<code>TAG</code> - the tag/branch entered in the Jenkins interface (&ldquo;release&rdquo;, &ldquo;release_1234&rdquo;, &ldquo;build-1234&rdquo;, etc)</li>
-<li>
-<code>HOSTFILTER</code> - optional, comma-separated list of hosts to deploy to. We use this when deploying apps onto new machine instances. If a machine doesn&rsquo;t match one of the app&rsquo;s <code>server_class</code> then it is ignored. This is a Capistrano 2 feature.</li>
-<li>
-<code>ORGANISATION</code> - The vCloud organisation being deployed to</li>
-<li>
-<code>CI_DEPLOY_JENKINS_API_KEY</code> - API key used to fetch build artefacts from ci.dev.publishing.service.gov.uk.</li>
-</ul>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/govuk-app-deployment/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Capistrano deployment scripts for applications running on GOV.UK.</p></p>
+<p><a href="https://github.com/alphagov/govuk-app-deployment">GitHub repository</a></p>
 
 
             

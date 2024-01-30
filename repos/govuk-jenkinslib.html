@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-jenkinslib - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-jenkinslib (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -17,13 +17,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-jenkinslib - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-jenkinslib (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-jenkinslib.html" />
 
       <meta property="og:description" content="Everything about govuk-jenkinslib (Groovy library for common GOV.UK Jenkins CI tasks)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-jenkinslib" />
+      <meta property="og:title" content="Repository: govuk-jenkinslib (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-jenkinslib.html" />
 
@@ -187,154 +187,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-jenkinslib</h1>
+  <h1 class="page-title">Repository: govuk-jenkinslib (retired)</h1>
 
-  <p>Groovy library for common GOV.UK Jenkins CI tasks</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-jenkinslib">govuk-jenkinslib</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-jenkinslib')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-jenkinslib-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme">
-    <h2 id="gov-uk-jenkinslib">GOV.UK Jenkinslib</h2>
-<p>A library for setting up CI environments in GOV.UK.</p>
-<p>The library will need to be loaded into a Jenkins instance before being able to use it. This
-will depend on Jenkins <a href="https://jenkins.io/doc/book/pipeline/shared-libraries/#global-shared-libraries">being configured to load it</a>.</p>
-<p>To load the library, use the <code>library</code> function:</p>
-<p><code>library(&quot;govuk&quot;)</code></p>
-<p>To specify a different branch for testing:</p>
-<p><code>library(&quot;govuk@my-new-branch&quot;)</code></p>
-<h2 id="setting-up-ci-on-gov-uk">Setting up CI on GOV.UK</h2>
-<p>For most Ruby projects, the following <code>Jenkinsfile</code> is sufficient:</p>
-<pre lang="groovy"><code>#!/usr/bin/env groovy</p>
-<p>library(&quot;govuk&quot;)</p>
-<p>node {
-  govuk.buildProject()
-}
-</code></pre>
-<p>This will set up dependencies, run the tests and report back to GitHub.</p>
-<p>For applications: the <code>master</code> branch of applications will be deployed to integration</p>
-<p>For gems: if the version has changed, the latest version will be released to rubygems.org</p>
-<h2 id="exceptions">Exceptions</h2>
-<p>If you need to run tests using a command other than the default rake task
-you can do this by specifying the <code>overrideTestTask</code> option:</p>
-<pre lang="groovy"><code>#!/usr/bin/env groovy</p>
-<p>library(&quot;govuk&quot;)</p>
-<p>node {
-  govuk.buildProject(overrideTestTask: {
-    stage(&quot;Run custom tests&quot;) {
-      govuk.runRakeTask(&quot;super-special-tests&quot;)
-    }
-  })
-}
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>afterTest</td>
-<td>A closure containing commands to run after the test stage, such as report publishing</td>
-<td></td>
-</tr>
-<tr>
-<td>beforeTest</td>
-<td>A closure containing commands to run before the test stage, such as environment variable configuration</td>
-<td></td>
-</tr>
-<tr>
-<td>brakeman</td>
-<td>Whether or not to run the Brakeman security scanner</td>
-<td>
-<code>true</code> if a Rails app, otherwise <code>false</code>
-</td>
-</tr>
-<tr>
-<td>cleanWorkspace</td>
-<td>Whether to delete the workspace at the beginning of the build</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td>extraParameters</td>
-<td>Provide details here of any extra parameters that can be used to configure this build.  See: <a href="https://jenkins.io/doc/pipeline/steps/workflow-multibranch/#code-properties-code-set-job-properties">https://jenkins.io/doc/pipeline/steps/workflow-multibranch/#code-properties-code-set-job-properties</a> for details on the format and structure of these extra parameters.</td>
-<td></td>
-</tr>
-<tr>
-<td>extraRubyVersions</td>
-<td>Ruby versions to run the tests against in addition to the versions currently supported by all GOV.UK applications. Only applies to gems because they may be used in projects with different Ruby versions.</td>
-<td><code>[]</code></td>
-</tr>
-<tr>
-<td>gemName</td>
-<td>If publishing a Rubygem, you can specify the Gem name.</td>
-<td>Repository name</td>
-</tr>
-<tr>
-<td>overrideTestTask</td>
-<td>A closure containing commands to run to test the project. This will run instead of the default <code>bundle exec rake</code>
-</td>
-<td></td>
-</tr>
-<tr>
-<td>skipDeployToIntegration</td>
-<td>Whether or not to skip the &ldquo;Deploy to integration&rdquo; stage</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td>yarnInstall</td>
-<td>Whether or not to install Yarn dependencies if a yarn.lock file is found</td>
-<td><code>true</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="licence">Licence</h2>
-<p><a href="https://github.com/alphagov/govuk-jenkinslib/blob/main/LICENCE">MIT License</a></p>
-  </div></p>
+  <p>This application is retired.</p>
+<p><p>Groovy library for common GOV.UK Jenkins CI tasks</p></p>
+<p><a href="https://github.com/alphagov/govuk-jenkinslib">GitHub repository</a></p>
 
 
             
