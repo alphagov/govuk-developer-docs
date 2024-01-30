@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk-docker: 2. Docker images for Ruby Applications - GOV.UK Developer Documentation</title>
+    <title>govuk-user-journey-analysis-tools: Writing Sphinx documentation - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-docker/adr/0002-docker-images-for-ruby-applications.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-user-journey-analysis-tools/contributor_guide/writing_sphinx_documentation.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk-docker: 2. Docker images for Ruby Applications - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/adr/0002-docker-images-for-ruby-applications.html" />
+      <meta name="twitter:title" content="govuk-user-journey-analysis-tools: Writing Sphinx documentation - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-user-journey-analysis-tools/contributor_guide/writing_sphinx_documentation.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk-docker: 2. Docker images for Ruby Applications" />
+      <meta property="og:title" content="govuk-user-journey-analysis-tools: Writing Sphinx documentation" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/adr/0002-docker-images-for-ruby-applications.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-user-journey-analysis-tools/contributor_guide/writing_sphinx_documentation.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -134,27 +134,56 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                   <ul>
     <li>
-      <a href="/repos/govuk-docker.html" rel="noopener" class="govuk-link">govuk-docker</a>
+      <a href="/repos/govuk-user-journey-analysis-tools.html" rel="noopener" class="govuk-link">govuk-user-journey-analysis-tools</a>
     </li>
     <li>
       <ul>
-          <li><a href="/repos/govuk-docker/compatibility.html" rel="noopener" class="govuk-link">Compatibility</a></li>
-          <li><a href="/repos/govuk-docker/how-tos.html" rel="noopener" class="govuk-link">How To's</a></li>
-          <li><a href="/repos/govuk-docker/troubleshooting.html" rel="noopener" class="govuk-link">Troubleshooting</a></li>
-          <li class="subdir__heading">adr</li>
+          <li><a href="/repos/govuk-user-journey-analysis-tools/README.html" rel="noopener" class="govuk-link">`docs` folder overview</a></li>
+          <li><a href="/repos/govuk-user-journey-analysis-tools/index.html" rel="noopener" class="govuk-link">index</a></li>
+          <li class="subdir__heading">aqa</li>
           <ul class="subdir__menu">
-              <li><a href="/repos/govuk-docker/adr/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">0001-record-architecture-decisions</a></li>
-              <li><a href="/repos/govuk-docker/adr/0002-docker-images-for-ruby-applications.html" rel="noopener" class="govuk-link">2. Docker images for Ruby Applications</a></li>
-              <li><a href="/repos/govuk-docker/adr/0003-use-docker-volumes-for-improved-macos-performance.html" rel="noopener" class="govuk-link">3. Use Docker volumes for improved macOS performance</a></li>
-              <li><a href="/repos/govuk-docker/adr/0004-use-versioned-database-services.html" rel="noopener" class="govuk-link">1. Use versioned database services</a></li>
-              <li><a href="/repos/govuk-docker/adr/0001/DECISIONS.html" rel="noopener" class="govuk-link">Decisions</a></li>
-              <li><a href="/repos/govuk-docker/adr/0001/NEEDS.html" rel="noopener" class="govuk-link">make-1</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/aqa/README.html" rel="noopener" class="govuk-link">Analytical quality assurance</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/aqa/aqa_plan.html" rel="noopener" class="govuk-link">Analytical quality assurance plan</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/aqa/assumptions-caveats-forward-path-tool.html" rel="noopener" class="govuk-link">Assumptions and caveats log</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/aqa/assumptions-caveats-reverse-path-tool.html" rel="noopener" class="govuk-link">Assumptions and caveats log</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/aqa/assumptions-caveats-spider-diagram-tool.html" rel="noopener" class="govuk-link">Assumptions and caveats log</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/aqa/data_log.html" rel="noopener" class="govuk-link">Data log</a></li>
           </ul>
-          <li class="subdir__heading">adr/0001</li>
+          <li class="subdir__heading">contributor_guide</li>
           <ul class="subdir__menu">
-              <li><a href="/repos/govuk-docker/adr/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">0001-record-architecture-decisions</a></li>
-              <li><a href="/repos/govuk-docker/adr/0001/DECISIONS.html" rel="noopener" class="govuk-link">Decisions</a></li>
-              <li><a href="/repos/govuk-docker/adr/0001/NEEDS.html" rel="noopener" class="govuk-link">make-1</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/contributor_guide/CODE_OF_CONDUCT.html" rel="noopener" class="govuk-link">Code of conduct for `govuk-user-journey-analysis-tools`</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/contributor_guide/CONTRIBUTING.html" rel="noopener" class="govuk-link">Contributing</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/contributor_guide/README.html" rel="noopener" class="govuk-link">Contributing guide</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/contributor_guide/pre_commit_hooks.html" rel="noopener" class="govuk-link">Pre-commit hooks</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/contributor_guide/updating_gitignore.html" rel="noopener" class="govuk-link">Updating the `.gitignore` file</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/contributor_guide/writing_accessible_documentation.html" rel="noopener" class="govuk-link">Writing accessible documentation</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/contributor_guide/writing_sphinx_documentation.html" rel="noopener" class="govuk-link">Writing Sphinx documentation</a></li>
+          </ul>
+          <li class="subdir__heading">reference</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-user-journey-analysis-tools/reference/README.html" rel="noopener" class="govuk-link">`src` API reference</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/reference/make_data.html" rel="noopener" class="govuk-link">Data generation</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/reference/make_features.html" rel="noopener" class="govuk-link">Feature generation</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/reference/make_models.html" rel="noopener" class="govuk-link">Model generation</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/reference/make_visualisations.html" rel="noopener" class="govuk-link">Create visualisations</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/reference/src.html" rel="noopener" class="govuk-link">Package functions</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/reference/utils.html" rel="noopener" class="govuk-link">Create utility functions</a></li>
+          </ul>
+          <li class="subdir__heading">structure</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-user-journey-analysis-tools/structure/README.html" rel="noopener" class="govuk-link">`govuk-user-journey-analysis-tools` structure</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/structure/data.html" rel="noopener" class="govuk-link">data</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/structure/docs.html" rel="noopener" class="govuk-link">docs</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/structure/notebooks.html" rel="noopener" class="govuk-link">notebooks</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/structure/outputs.html" rel="noopener" class="govuk-link">outputs</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/structure/src.html" rel="noopener" class="govuk-link">src</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/structure/tests.html" rel="noopener" class="govuk-link">tests</a></li>
+          </ul>
+          <li class="subdir__heading">user_guide</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-user-journey-analysis-tools/user_guide/user-guide-forward-path-tool.html" rel="noopener" class="govuk-link">How to execute the Forward Path tool</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/user_guide/user-guide-reverse-path-tool.html" rel="noopener" class="govuk-link">How to execute the Reverse Path tool</a></li>
+              <li><a href="/repos/govuk-user-journey-analysis-tools/user_guide/user-guide-spider-diagram-tool.html" rel="noopener" class="govuk-link">How to generate the Spider Diagram tool</a></li>
           </ul>
       </ul>
     </li>
@@ -192,8 +221,8 @@
       "@type": "ListItem",
       "position": 3,
       "item": {
-        "name": "govuk-docker",
-        "@id": "http://www.dev.gov.uk/repos/govuk-docker.html"
+        "name": "govuk-user-journey-analysis-tools",
+        "@id": "http://www.dev.gov.uk/repos/govuk-user-journey-analysis-tools.html"
       }
     }
   ]
@@ -209,7 +238,7 @@
           <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/govuk-docker.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk-docker&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-docker.html">govuk-docker</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/govuk-user-journey-analysis-tools.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk-user-journey-analysis-tools&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-user-journey-analysis-tools.html">govuk-user-journey-analysis-tools</a>
         </li>
   </ol>
 </div>
@@ -222,88 +251,105 @@
       </strong>
     </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/6f51d30bb8b7c413bbc1cdec1d5415bd7828e495">1 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-user-journey-analysis-tools/commit/6302d9b6362eb4ff9dadc289a57b2fed491f6560">2 Sep 2021</a>
 </div>
 
-  <h1 class="page-title">govuk-docker: 2. Docker images for Ruby Applications</h1>
+  <h1 class="page-title">govuk-user-journey-analysis-tools: Writing Sphinx documentation</h1>
 
   
-<p>Date: 2020-11-17</p>
-<h2 id="context">Context</h2>
-<p>In order to run GOV.UK applications in a Docker environment we need
-<a href="https://docs.docker.com/get-started/overview/#images">Docker images</a>. GOV.UK had previously created Docker images for various
-applications to enable the <a href="https://github.com/alphagov/publishing-e2e-tests">publishing-e2e-tests</a> suite, which runs a
-containerised version of the GOV.UK publishing stack. These images were
-defined with a Dockerfile in the root of a project's repository
-(<a href="https://github.com/alphagov/publishing-api/blob/8b6bc39a3f6b73c2c3e73def6a1c2a6e7687d789/Dockerfile">example</a>) and, as they are the only Dockerfile for a
-project, were essentially the defacto Docker images for GOV.UK applications.</p>
-<p>Attempting to reuse these images in the GOV.UK Docker development environment
-revealed a number of problems:</p>
-<ol>
-<li>Any time a Ruby project's Gem dependencies changed the image would need to
-be rebuilt which <a href="https://github.com/alphagov/government-frontend/blob/51d86566de33c122aea20f30bcc0fd0d36572752/Dockerfile#L16">required re-installing</a> every single gem,
-which could be a slow process.</li>
-<li>As Gem dependencies were stored within a project's image no Gems could be
-shared across applications - this meant that the initialisation process
-for multiple GOV.UK apps could be frustratingly slow with the same Gems
-installed in each different image, it also resulted in high disk usage.</li>
-<li>The images were only exercised in publishing-e2e-tests which ran them
-<a href="https://github.com/alphagov/publishing-e2e-tests/blob/3c0e50f66c2c61a7bb98eb07cacd4fcf6233fb51/docker-compose.yml#L14">in production mode</a>, this meant they didn't necessarily have
-sufficient dependencies for development usage  (e.g. Google Chrome for UI
-testing).</li>
-<li>The images <a href="https://github.com/alphagov/specialist-publisher/blob/33a6f3a5d7c8b5ea79d0cd5a8232ed40391db1ef/Dockerfile#L26">embedded the application's files</a> - this meant
-that by default any edits to files would require the image to be rebuilt.</li>
-</ol>
-<p>Thus we considered whether it would be appropriate to modify these images to
-solve the problems or to create different images for GOV.UK Docker.</p>
-<h2 id="decision">Decision</h2>
-<p>We decided that we should not reuse the existing images and that we would
-resolve the problems with a different image approach for GOV.UK Docker. While
-some of the problems could be resolved we reasoned that the existing images
-represent <a href="https://docs.docker.com/compose/rails/">standard industry practice</a> for web application images
-and that this practice was optimised for running a production instance of an
-application. We felt that the needs of production and development were
-sufficiently distinct that it would be simpler to have separate images than try
-to consolidate.</p>
-<p>We instead <a href="https://github.com/alphagov/govuk-docker/blob/b2fb90dd62a7579976cc3adaa9c783cd92cbd7e7/Dockerfile.govuk-base">created a Dockerfile</a> that is stored in
-GOV.UK Docker and this is used by the majority of GOV.UK Docker Ruby projects.
-This base Dockerfile contains a collection of common dependencies used by a
-significant number of projects. Projects that have additional dependencies
-have their <a href="https://github.com/alphagov/govuk-docker/blob/b2fb90dd62a7579976cc3adaa9c783cd92cbd7e7/projects/whitehall/Dockerfile">own Dockerfiles</a>. This allowed us to ensure
-that projects had their necessary development dependencies.</p>
-<p>We resolved the problems for Gem installations with a <a href="https://github.com/alphagov/govuk-docker/blob/b2fb90dd62a7579976cc3adaa9c783cd92cbd7e7/docker-compose.yml#L4">shared Docker
-mount</a>. Using this allowed the installation, and thus updating,
-of Ruby versions and Gems to be done <a href="https://github.com/alphagov/govuk-docker/blob/b2fb90dd62a7579976cc3adaa9c783cd92cbd7e7/Makefile#L27-L31">outside a Docker build
-process</a>, meaning these tasks can be achieved without rebuilding
-the image. This shared mount is used across projects and allows Ruby and Gem
-dependencies to be reused.</p>
-<p>We resolved the problem of embedded files with a <a href="https://github.com/alphagov/govuk-docker/blob/b2fb90dd62a7579976cc3adaa9c783cd92cbd7e7/projects/publishing-api/docker-compose.yml#L11">mount for the ~/govuk
-directory</a>. This mount allows containers to access application
-code and for this code to be modified without requiring an image rebuild. Using
-this broad directory allows projects to access other projects when necessary
-which assists working with <a href="https://bundler.io/man/gemfile.5.html#PATH">local versions of Gems</a>.</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="consequences">Consequences</h2>
-<p>With most GOV.UK Docker projects lacking an individual Dockerfile there is
-substantially less Docker configuration to manage and there is a reduced risk
-of inconsistencies. This also reduces the difficulty in adding new projects to
-GOV.UK Docker.</p>
-<p>The containers in GOV.UK Docker lack the property of being a <a href="https://www.docker.com/resources/what-container">unit of software
-that packages up all code and dependencies</a> which may be
-surprising. However, it is unclear that container principles can be easily
-applied to Ruby-on-Rails development environments without the problems we
-experienced.</p>
-<p>By storing the Dockerfile in GOV.UK Docker there is only a very weak coupling
-between the minimal set of system packages installed on the image, and those
-used by the application. This will mean that changes to system packages need
-coordinating in both the application repository and GOV.UK Docker. This is
-however a rare occurrence, due to the minimal number of system packages in
-the Dockerfile used by GOV.UK Docker.</p>
-<p>GOV.UK will have multiple Dockerfiles for the same application raising a risk
-of confusion for developers. While <a href="https://github.com/alphagov/govuk-rfcs/blob/master/rfc-128-continuous-deployment.md#delete-publishing-e2e-tests">there remains</a> a Dockerfile in
-the root of repositories developers may expect that this is somewhat related
-to the GOV.UK Docker project.</p>
+<p><a href="https://www.sphinx-doc.org/">This project is set up to produce documentation using Sphinx</a>; this page
+should give you a quick overview on how to write documentation for it. If you'd like to
+know how to write good documentation take a look at <a href="https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/">Write the Docs guide on writing
+documentation</a>. <a href="http://agilemodeling.com/essays/documentLate.htm">For Agile projects, consider documenting
+late</a> as well.</p>
+<h2 id="why-should-i-bother-and-why-sphinx">Why should I bother? And why Sphinx?</h2>
+<p>Keeping as much of the documentation in a centralised location is a good thing. It
+means contributors, users, and anyone else can quickly find as much information as they
+need to understand and/or run what you've done.</p>
+<p>Sphinx is a Python-based package to compile documentation into different formats,
+including HTML. This means you can write your documentation and, with a single terminal
+command, build it into a searchable website.</p>
+<p>It's widely used, such as for the documentation of the <a href="https://pandas.pydata.org/docs/"><code>pandas</code></a>, and
+<a href="https://pytorch.org/docs/stable/index.html">PyTorch</a> Python packages as well as many <a href="https://www.sphinx-doc.org/en/master/examples.html">others</a>. It is
+highly customisable with different extensions, and themes. Included with this project
+is:</p>
+<ul>
+<li>support for both <a href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText (ReST)</a>, and <a href="https://myst-parser.readthedocs.io/">ReST-enabled
+Markdown</a>;</li>
+<li>automatic building of documentation from Python docstrings; and</li>
+<li>support for <a href="https://www.python.org/dev/peps/pep-0287/">ReStructuredText</a>, <a href="https://numpydoc.readthedocs.io/en/latest/format.html">NumPy</a>, or
+<a href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google</a> docstring formats.</li>
+</ul>
+<h3 id="creating-a-searchable-website">Creating a searchable website</h3>
+<p>To create a website with your documentation, run the following command in your terminal
+at the top-level of this project:</p>
+<pre lang="shell"><code>make docs
+</code></pre>
+<p>This should create an HTML version of your documentation accessible from
+<code>docs/_build/index.html</code>.</p>
+<h2 id="writing-in-restructuredtext">Writing in reStructuredText</h2>
+<p><a href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">Sphinx provides good documentation on writing in ReST</a> — we would highly
+recommend reading that for guidance. We will cover automatically creating docstrings in
+the next subsection.</p>
+<h3 id="automatically-creating-docstring-documentation-rest">Automatically creating docstring documentation (ReST)</h3>
+<p>Let us say that <code>src/__init__.py</code> has functions called <code>hello</code> and <code>world</code> imported
+into it, and both have docstrings. To automatically generate docstring documentation,
+create a ReST file, and add the following line to reference the <code>src</code> module:</p>
+<pre lang="rest"><code>.. currentmodule:: src
+</code></pre>
+<p>Then, elsewhere in the body, <a href="https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html">call the <code>autosummary</code> directive to generate the
+docstrings as ReST stub files</a>.</p>
+<pre lang="rest"><code>.. autosummary::
+    :toctree: api/
+
+    hello
+    world
+
+</code></pre>
+<p><a href="https://pandas.pydata.org/docs/reference/index.html">This will create something similar to the <code>pandas</code> API
+reference</a>.</p>
+<h2 id="writing-in-rest-enabled-markdown">Writing in ReST-enabled Markdown</h2>
+<p><a href="https://myst-parser.readthedocs.io/">We use the <code>myst-parser</code> package (MyST) to write Markdown that can also include ReST
+elements</a>. The package documentation is detailed, so we would recommend reviewing
+it. We will cover some of the more widely used elements in the following subsections.</p>
+<h3 id="embedding-rest-directives">Embedding ReST directives</h3>
+<p><a href="https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html">Most ReST directives can be embedded into MyST Markdown</a>.</p>
+<h3 id="automatically-creating-docstring-documentation-myst-markdown">Automatically creating docstring documentation (MyST Markdown)</h3>
+<p>Let us say that <code>src/__init__.py</code> has functions called <code>hello</code> and <code>world</code> imported
+into it, and both have docstrings. To automatically generate docstring documentation,
+create a Markdown file, and add the following line to reference the <code>src</code> module:</p>
+<pre lang="md"><code>```{eval-rst}
+.. currentmodule:: src
+```
+</code></pre>
+<p>Then, elsewhere in the body, <a href="https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html">call the <code>autosummary</code> directive to generate the
+docstrings as ReST stub files</a>.</p>
+<pre lang="md"><code>```{eval-rst}
+.. autosummary::
+    :toctree: api/
+
+    hello
+    world
+
+```
+</code></pre>
+<h3 id="including-markdown-files-outside-the-docs-folder">Including Markdown files outside the <code>docs</code> folder</h3>
+<p><a href="https://myst-parser.readthedocs.io/en/latest/sphinx/use.html#include-a-file-from-outside-the-docs-folder-like-readme-md">MyST lets you include Markdown files outside the <code>docs</code> folder</a>.</p>
+<p>If a Markdown file (<code>../example.md</code>) only contains links that do not reference anything
+else in this project (including images), create a Markdown file within the <code>docs</code>
+folder with the following lines:</p>
+<pre lang="md"><code>```{include} ../example.md
+```
+</code></pre>
+<p>However, if it includes relative links referencing other files in this project
+(including images), we need to tell MyST what those links actually refer. For example,
+if the relative link is <code>../hello/world.md</code>, we need to create a Markdown file within
+the <code>docs</code> folder with the following lines:</p>
+<pre lang="md"><code>```{include} ../example.md
+:relative-docs: ../hello
+:relative-images:
+```
+</code></pre>
 
 
             
@@ -311,8 +357,8 @@ to the GOV.UK Docker project.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-docker/blob/main/docs/adr/0002-docker-images-for-ruby-applications.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-docker%2Fadr%2F0002-docker-images-for-ruby-applications.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-user-journey-analysis-tools/blob/main/docs/contributor_guide/writing_sphinx_documentation.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-user-journey-analysis-tools%2Fcontributor_guide%2Fwriting_sphinx_documentation.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
