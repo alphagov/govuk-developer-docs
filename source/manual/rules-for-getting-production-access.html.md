@@ -30,9 +30,10 @@ There's also a [flow diagram showing when you get Production Deploy and Producti
 This level of access allows engineers to deploy code but not administer admin related
 systems. Access includes:
 
-- Permission to [deploy apps](/manual/development-pipeline.html#deployment) in Jenkins via the [GOV.UK Production Deploy Github team](https://github.com/orgs/alphagov/teams/gov-uk-production-deploy)
+- Permission to [deploy apps](/manual/development-pipeline.html#deployment) via the [GOV.UK Production Deploy Github team](https://github.com/orgs/alphagov/teams/gov-uk-production-deploy)
 - Permission to [merge pull requests](/manual/merge-pr.html#header) in continuously deployed applications
-- Readonly access to logging systems such as Logit, etc.
+- Read-only access to logging systems such as Logit, etc.
+- Read-only access to dashboards in staging and production, such as the Argo CD web UI.
 - AWS readonly access via the `role_user_user_arns` role in [Staging](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/staging/common.tfvars) and [Production](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/production/common.tfvars)
 - "Normal" role in to GOV.UK Signon on Staging and Production (with app permissions granted as needed)
 
@@ -54,9 +55,8 @@ Before approving access, the sponsor should ensure that the engineer:
 
 ### Production Admin access
 
-- Permission to read & write [production](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml) and [staging](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/staging_credentials.yaml) [hieradata](/manual/encrypted-hiera-data.html#what-to-do-when-someone-gets-production-access) in govuk-secrets using GPG
 - Permission to read & write to the [password store](https://github.com/alphagov/govuk-secrets/tree/main/pass) in govuk-secrets store using [GPG](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id)
-- Access to [Production Deploy Jenkins](https://deploy.blue.production.govuk.digital/) and [Staging Deploy Jenkins](https://deploy.blue.staging.govuk.digital/) to deploy applications via the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production)
+- Write access to Argo CD in staging and production via the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production)
 - Privileged AWS Access in [Production](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars), [Staging](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/staging/common.tfvars) and [Tools](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/tools/common.tfvars) environments (via the `role_admin_user_arns` role)
 - [Google Cloud Platform (GCP)](/manual/google-cloud-platform-gcp.html) access to role to manage [static mirrors](/manual/fall-back-to-mirror.html) and DNS
 - Signon "Super Admin" access in production
