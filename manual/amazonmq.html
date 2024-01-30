@@ -207,7 +207,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/42bc23a9edea3ade37c28d2166627052688162c5">7 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ad997b3610f131063008237b7cc43aa9deac315c">30 Jan 2024</a>
 </div>
 
  <h1 id='header'>Manage AmazonMQ</h1> <p><a href="https://www.rabbitmq.com/">RabbitMQ</a> is a message broker based on the <a href="https://www.rabbitmq.com/tutorials/amqp-concepts.html">Advanced Message Queuing
@@ -215,8 +215,7 @@ Protocol</a> (AMQP). Publishing&rsquo;s RabbitMQ cluster is provided by AWS&rsqu
 <p><a href="https://www.rabbitmq.com/tutorials/tutorial-one-ruby.html">Learn more about RabbitMQ</a>.</p>
 <h2 id='connecting-to-the-rabbitmq-web-control-panel'>Connecting to the RabbitMQ web control panel</h2><p>Run <code>gds govuk connect amazonmq -e integration</code> and point your
 browser at the URL it gives you - it will look like <a href="http://127.0.0.1:45612">http://127.0.0.1:45612</a>, but will have a random port number. You can connect to <code>staging</code> and <code>production</code> the same way, just replace <code>integration</code> above with the environment of your choice.</p>
-<p>The username for connecting to the RabbitMQ web control panel is <code>root</code> and the password
-can be decrypted from the <code>govuk-secrets</code> repo via <code>bundle exec rake &#39;eyaml:decrypt_value[integration,govuk_publishing_amazonmq::passwords::root]&#39;</code> (from the <code>puppet_aws</code> directory).</p>
+<p>The username is <code>root</code> and the passwords for each environment are in the <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">pass</a> password store under <code>amazonmq</code>.</p>
 <h2 id='amazonmq-metrics'>AmazonMQ metrics</h2><p>A <a href="https://grafana.eks.production.govuk.digital/d/mq/">generic AmazonMQ dashboard</a> shows metrics for queues and exchanges.</p>
 <h2 id='how-we-run-rabbitmq'>How we run RabbitMQ</h2><h3 id='overview'>Overview</h3><p><a href="images/rabbitmq_graph.png" rel="noopener noreferrer"><img src="/manual/images/rabbitmq_graph.png" alt="A graph showing the message flow" /></a></p>
 <p><strong>Producer</strong>: an application that publishes messages to RabbitMQ. On GOV.UK this could
