@@ -22,20 +22,8 @@ exclude_rule "ol-prefix"
 # be provided.
 exclude_rule "fenced-code-language"
 
-# We use `$` as a hint that 'this line is run in isolation'.
-# We may batch up multiple of these in one code block, for example:
-#
-# ```
-# $ sudo -i aptly repo edit -distribution="stable" govuk-jenkins
-# $ sudo -i aptly repo add govuk-jenkins /path/to/jenkins.deb
-# $ sudo aptly snapshot create govuk-jenkins-$(date +%Y%m%d) from repo govuk-jenkins
-# $ sudo -i aptly publish snapshot govuk-jenkins-$(date +%Y%m%d) govuk-jenkins
-# ```
-#
-# We've also not been particularly consistent with our use of `$` to
-# represent the shell prompt - some code examples have it and some don't.
-# We don't appear to have prescribed a style, so let's just leave this to
-# developer choice for now.
+# We've historically been inconsistent in avoiding the leading `$` in shell
+# examples: some have the extraneous `$` and some don't.
 exclude_rule "commands-show-output"
 
 # At time of writing, this rule is quite buggy.
