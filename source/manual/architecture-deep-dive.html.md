@@ -34,11 +34,6 @@ authoritative servers are hosted by [Jisc]. Unusually for a ccSLD, `gov.uk` is
 also a website, and hosts the redirect from `gov.uk` to `www.gov.uk`. The records
 for these two domains are within the `gov.uk` second-level zone hosted by Jisc.
 
-GDS hosts the DNS for third-level domains under `gov.uk` (for example `service.gov.uk`)
-on both [Amazon Route53] and Google Cloud Platform, for redundancy. The configuration
-for these domains is in the [govuk-dns-config repo], which is deployed via the
-[Deploy_DNS Jenkins job][deploy-dns], which in turn references the [govuk-dns repo].
-
 `www.gov.uk` is a CNAME record which ultimately points to `www-gov-uk.map.fastly.net.`
 The `fastly.net` domain name is hosted by special nameservers at the Fastly content
 delivery network, which aim to respond with the IP address of the Fastly cache node
@@ -380,130 +375,28 @@ queue, which triggers downstream actions such as cache clearing and email alerts
 
 ### Environments
 
-Everything you've read about the live and draft stacks, you can now multiply
-threefold, as they each exist in the following environments:
+There is a copy of the live and draft stacks in each of the following
+environments:
 
 - Production
 - Staging
 - Integration
 
-Data is copied from Production to Staging - and from Staging to Integration - every
-24 hours via [automated Jenkins jobs][copy-data-to-staging]. This way our
-environments are always roughly in sync, although it's worth noting that email
-addresses are anonymised and access-limited documents are obfuscated before data is
-copied. The data copying is [configured in govuk-puppet][govuk-env-sync].
+Nightly cronjobs copy data from Production to Staging and from Staging to
+Integration. This is because:
 
-[copy-data-to-staging]: https://deploy.publishing.service.gov.uk/job/Copy_Data_to_Staging/
-[govuk-env-sync]: /manual/govuk-env-sync.html
+- this gives us automated restore testing, to prove that we can actually
+  restore from production backups
+- we don't yet have example datasets suitable for development and testing
+  purposes
+- most of the data is public
 
-### Deploying
+Some data is removed or redacted in the staging environment so that we don't
+copy it to the integration environment, such as:
 
-We have detailed docs on [how to deploy an application][how-to-deploy]. But
-what happens under the hood?
+- email addresses, for example of subscribers to topic change notifications
+- draft content that has yet to be published on the public website
 
-When a PR is opened against a GOV.UK repository, the corresponding Jenkins job
-on [CI Jenkins] runs the tests (although we're gradually
-[moving to GitHub Actions][github-actions-rfc]). The Jenkins jobs are created
-in the first place by being [added to govuk-puppet][create-jenkins-job], and
-configured to use the [govuk-jenkinslib] library to build and run the tests.
+### Release and rollout automation
 
-The tests report back to the PR as a [GitHub check], though other checks may
-also be required before the PR can be merged ([govuk-saas-config] defines things
-such as whether branches must be up to date with 'main' before merging).
-
-On merge, the same Jenkins job that ran the tests runs the tests again, then
-[creates and pushes a git tag][push-tag] to GitHub, then
-[sends a message][send-deploy-message] to the [deploy Jenkins] environment
-to build the [govuk-app-deployment] job. This clones the repository, checks out
-the tag and deploys the code to the corresponding nodes on Integration using
-[Capistrano][Capistrano] (a Ruby-based server automation and deployment tool).
-Capistrano does deployments only by default, but can also do deployments 'with
-migration' or 'with hard restart', etc, depending on the nature of the change.
-
-A developer must manually trigger a deployment to Staging and Production through
-the [release] app. This uses the same Jenkins/Capistrano pipeline as for
-Integration, but on the Staging and Production Jenkins environments respectively.
-
-Some apps require extra care when deploying; see ['Static' deployment rules][static-deploy].
-
-[Capistrano]: https://capistranorb.com/
-[CI Jenkins]: https://ci.integration.publishing.service.gov.uk/
-[create-jenkins-job]: https://github.com/alphagov/govuk-puppet/blob/6a0b05aa1f9a90c01cefd5fc5b9c8e5f0aa030f2/hieradata/common.yaml#L422
-[deploy Jenkins]: https://deploy.integration.publishing.service.gov.uk/
-[GitHub check]: https://developer.github.com/v3/checks/
-[github-actions-rfc]: https://github.com/alphagov/govuk-rfcs/blob/main/rfc-123-github-actions-ci.md
-[govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
-[govuk-jenkinslib]: https://github.com/alphagov/govuk-jenkinslib
-[govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
-[how-to-deploy]: /manual/development-pipeline.html
-[push-tag]: https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L122-L124
-[release]: https://github.com/alphagov/release
-[send-deploy-message]: https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L132-L135
-[static-deploy]: /manual/deploy-static.html
-
-### Puppet on GOV.UK
-
-![](images/puppet.png)
-
-As discussed in the routing section, we have different 'classes' of machines
-running in the cloud; to recap, the "cache" machines run the Router
-application. These classes are configured in [govuk-puppet], which uses
-[Puppet] under the hood: tooling which configures resources such as files
-and processes.
-
-Puppet runs in a master/agent setup. There is a single "puppetmaster" running
-on its own class of machine, whereas the agents run on all the other machines
-(irrespective of class). The Puppet master is in charge of keeping all of the
-Puppet agents in sync with itself.
-
-[Icinga] alerts us to problems with our machines and apps. There is a wide
-variety of different alerts, all of which are configured in Puppet. Each
-puppet agent is responsible for [configuring Icinga alerts] using the
-[Icinga Puppet module]. Alerts might be triggered by an application's
-[health check endpoint] being unavailable, or by a machine having
-[low available disk space], or a number of other reasons.
-
-For monitoring, 'filebeat' is used to send logs to [Logit], and 'statsd'
-exports most monitoring metrics, which can be viewed in [Grafana]. This is
-configured in [govuk_app_config], which is included in most GOV.UK apps.
-Read more about [tooling for monitoring][tools].
-
-If an app release contains a major change such as a renamed environment
-variable, then it will require an application restart, which would bring the
-application offline on that machine. The load balancer would begin serving
-traffic from different nodes of the same class: for this reason it is
-important that all machines are updated at different times. Therefore, each
-instance [runs puppet every half hour][puppet-cronjob], with the Puppet
-agents configured to run after the puppetmaster at randomised times.
-
-When [deploying Puppet], the latest versions of govuk-puppet and
-govuk-secrets are copied to the puppetmaster. On each Puppet run, the Puppet
-agent checks for differences between what is sees and what the puppetmaster
-says should be there to see if they have diverged ("configuration drift")
-and whether they should reset themselves against the master. Only after all
-the Puppet agents have updated can you be confident that your Puppet change
-hasn't broken anything, which is why you must wait 30 minutes between Puppet
-deploys.
-
-[configuring Icinga alerts]: https://github.com/alphagov/govuk-puppet/blob/0b20c7efe7e0c3855d4821e55a914ab577d3b84e/modules/govuk_containers/manifests/app.pp
-[deploying Puppet]: /manual/deploy-puppet.html
-[health check endpoint]: https://github.com/alphagov/content-publisher/blob/5b968f1bbfd4fa7e577ea535bb2dc23fcf0c99b8/spec/requests/healthcheck_spec.rb
-[govuk_app_config]: https://github.com/alphagov/govuk_app_config
-[govuk-puppet]: https://github.com/alphagov/govuk-puppet
-[Grafana]: /manual/grafana.html
-[Icinga]: /manual/icinga.html
-[Icinga Puppet module]: https://github.com/alphagov/govuk-puppet/blob/master/modules/icinga/manifests/check.pp
-[Logit]: /manual/logit.html
-[low available disk space]: https://github.com/alphagov/govuk-puppet/blob/f12b696a24a7bd7ab0bfbdd0a35a1acc921ff168/modules/icinga/manifests/client/checks.pp#L37-L43
-[Puppet]: https://puppet.com/open-source/#osp
-[puppet-cronjob]: https://github.com/alphagov/govuk-puppet/blob/9dda11ec245e882ed879cdb7abb7ffe70df015ce/modules/puppet/manifests/cronjob.pp
-[tools]: /manual/tools.html
-
-### Summary
-
-When code gets merged into the `master` branch, it is automatically deployed
-to Integration and a release tag is created in GitHub. Another Jenkins job uses
-Capistrano to deploy the release to the relevant machines in the cloud. The
-same process for Staging and Production is manually triggered by a developer.
-Puppet is used to keep each node's environment consistent, and to monitor the
-health of each application.
+See [The development and deployment pipeline](/manual/development-pipeline.html).
