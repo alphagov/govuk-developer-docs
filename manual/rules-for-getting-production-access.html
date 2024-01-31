@@ -207,7 +207,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1cf82f706e530da1c234a52f94ee2eded1b3ef67">15 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b5ecb650000f4739763e42114018fcef29036c1f">30 Jan 2024</a>
 </div>
 
  <h1 id='header'>Rules for getting production access</h1> <p>In the GOV.UK programme we restrict access to production systems for new or
@@ -228,9 +228,10 @@ clearance, probation, building secure systems with audibility etc.</p>
 systems. Access includes:</p>
 
 <ul>
-<li>Permission to <a href="/manual/development-pipeline.html#deployment">deploy apps</a> in Jenkins via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy Github team</a></li>
+<li>Permission to <a href="/manual/development-pipeline.html#deployment">deploy apps</a> via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy Github team</a></li>
 <li>Permission to <a href="/manual/merge-pr.html#header">merge pull requests</a> in continuously deployed applications</li>
-<li>Readonly access to logging systems such as Logit, etc.</li>
+<li>Read-only access to logging systems such as Logit, etc.</li>
+<li>Read-only access to dashboards in staging and production, such as the Argo CD web UI.</li>
 <li>AWS readonly access via the <code>role_user_user_arns</code> role in <a href="https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/staging/common.tfvars">Staging</a> and <a href="https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/production/common.tfvars">Production</a></li>
 <li>&ldquo;Normal&rdquo; role in to GOV.UK Signon on Staging and Production (with app permissions granted as needed)</li>
 </ul>
@@ -249,9 +250,8 @@ any access issues.</p>
 </ul>
 <h3 id='production-admin-access'>Production Admin access</h3>
 <ul>
-<li>Permission to read &amp; write <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml">production</a> and <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/staging_credentials.yaml">staging</a> <a href="/manual/encrypted-hiera-data.html#what-to-do-when-someone-gets-production-access">hieradata</a> in govuk-secrets using GPG</li>
 <li>Permission to read &amp; write to the <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">password store</a> in govuk-secrets store using <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id">GPG</a></li>
-<li>Access to <a href="https://deploy.blue.production.govuk.digital/">Production Deploy Jenkins</a> and <a href="https://deploy.blue.staging.govuk.digital/">Staging Deploy Jenkins</a> to deploy applications via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production GitHub team</a></li>
+<li>Write access to Argo CD in staging and production via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production GitHub team</a></li>
 <li>Privileged AWS Access in <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars">Production</a>, <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/staging/common.tfvars">Staging</a> and <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/tools/common.tfvars">Tools</a> environments (via the <code>role_admin_user_arns</code> role)</li>
 <li><a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a> access to role to manage <a href="/manual/fall-back-to-mirror.html">static mirrors</a> and DNS</li>
 <li>Signon &ldquo;Super Admin&rdquo; access in production</li>
