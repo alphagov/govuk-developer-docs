@@ -1565,14 +1565,10 @@ a publishing application sends to the publishing-api in a
 <a href="http://www.rubydoc.info/github/alphagov/gds-api-adapters/GdsApi/PublishingApiV2#patch_links-instance_method"><code>patch_links</code></a> call.</p>
 <h3 id='attributes'>Attributes</h3>
 <table class='schema-table'><tr><td><strong>bulk_publishing</strong><br/><code>boolean</code></td> <td><br/></td></tr>
-<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>corporate_information_pages</strong><br/></td> <td>Corporate information pages for this Worldwide Organisation<br/></td></tr>
-<tr><td><strong>finder</strong><br/></td> <td>Powers links from content back to finders the content is surfaced on<br/></td></tr>
-<tr><td><strong>home_page_offices</strong><br/></td> <td>The offices, other than the main office, to be shown on the home page of this Worldwide Organisation<br/></td></tr>
+<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>finder</strong><br/></td> <td>Powers links from content back to finders the content is surfaced on<br/></td></tr>
 <tr><td><strong>lead_organisations</strong><br/></td> <td>DEPRECATED: A subset of organisations that should be emphasised in relation to this content item. All organisations specified here should also be part of the organisations array.<br/></td></tr>
-<tr><td><strong>main_office</strong><br/></td> <td>The main office for this Worldwide Organisation<br/></td></tr>
 <tr><td><strong>mainstream_browse_pages</strong><br/></td> <td>Powers the /browse section of the site. These are known as sections in some legacy apps.<br/></td></tr>
 <tr><td><strong>meets_user_needs</strong><br/></td> <td>The user needs this piece of content meets.<br/></td></tr>
-<tr><td><strong>office_staff</strong><br/></td> <td>People currently appointed to office staff roles in this Worldwide Organisation<br/></td></tr>
 <tr><td><strong>ordered_related_items</strong><br/></td> <td>Related items, can be any page on GOV.UK. Mostly used for mainstream content to power the sidebar. Ordering of the links is determined by the editor in Content Tagger.<br/></td></tr>
 <tr><td><strong>ordered_related_items_overrides</strong><br/></td> <td>Related items, can be any page on GOV.UK. Overrides &lsquo;more like this&rsquo; automatically generated links in the beta navigation.<br/></td></tr>
 <tr><td><strong>organisations</strong><br/></td> <td>All organisations linked to this content item. This should include lead organisations.<br/></td></tr>
@@ -1580,94 +1576,34 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>parent</strong><br/></td> <td>The parent content item.<br/></td></tr>
 <tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr>
 <tr><td><strong>primary_publishing_organisation</strong><br/></td> <td>The organisation that published the page. Corresponds to the first of the &lsquo;Lead organisations&rsquo; in Whitehall, and is empty for all other publishing applications.<br/></td></tr>
-<tr><td><strong>primary_role_person</strong><br/></td> <td>The person currently appointed to a primary role in this Worldwide Organisation<br/></td></tr>
-<tr><td><strong>roles</strong><br/></td> <td>All roles associated with this Worldwide Organisation<br/></td></tr>
-<tr><td><strong>secondary_role_person</strong><br/></td> <td>The person currently appointed to a secondary role in this Worldwide Organisation<br/></td></tr>
-<tr><td><strong>sponsoring_organisations</strong><br/></td> <td>Sponsoring organisations for this Worldwide Organisation<br/></td></tr>
 <tr><td><strong>suggested_ordered_related_items</strong><br/></td> <td>Used for displaying related content on most pages, except for step-by-step and fatality notices. Links and their ordering are determined by the machine learning algorithms.<br/></td></tr>
 <tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr>
-<tr><td><strong>topics</strong><br/></td> <td>Powers the /topic section of the site. These are known as specialist sectors in some legacy apps.<br/></td></tr>
-<tr><td><strong>world_locations</strong><br/></td> <td>World Locations associated with this Worldwide Organisation<br/></td></tr></table></td></tr>
+<tr><td><strong>topics</strong><br/></td> <td>Powers the /topic section of the site. These are known as specialist sectors in some legacy apps.<br/></td></tr></table></td></tr>
 <tr><td><strong>previous_version</strong><br/><code>string</code></td> <td><br/></td></tr></table>
 <p><a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/worldwide_organisation/publisher_v2/links.json">View this schema on GitHub</a></p>
 <h3 id='random-example'>Random example</h3><div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"bulk_publishing"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"finder"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"lead_organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"feb8cab4-bdc2-17e6-a7a8-c0fea6ef5174"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"meets_user_needs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"aaa5b4b9-0cdf-15a4-ab3a-deae7bad5ed3"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cd8e6cbd-31c3-1450-ae6d-da3ce6e5d3da"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"f01afd8d-d045-1efb-a2ef-9f0c41d942c3"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"c7a3aaec-3f6a-154b-a4aa-d1d71e255db6"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ordered_related_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"8f788fcd-3d49-1c28-ac22-a92cfeaed226"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"c5a21eae-dea1-11fb-a73d-e1b3e6f10367"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"a4816aaa-975c-1681-a3f5-9a6a7b3dcdb4"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"f55fb35e-fc31-1bec-aeab-9bf06ff1cbe9"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"1fa7fb2e-45e8-1c0c-a07b-a47b7eeee2cf"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"b5fe9d0a-6be2-1a4b-a91a-df5c7a88a5fe"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ordered_related_items_overrides"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"d7ebe9f9-ce25-1e8f-aebb-9397579923c6"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dff34aa4-12fe-18fa-a0f5-b7a036b2feaf"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"160e5ccd-35f1-122f-a6ee-24acceec0d92"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"e3e00ebf-9059-1ff3-ac05-453e5d2bdac4"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"5eb9615e-c309-1273-ac53-f7e17a36e428"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"6b4c5ab1-7bd6-1bee-ac0f-ce93f3f2f3be"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"e1a6eb9a-98d9-1668-ad0f-59febaffb57d"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"62fabc49-7bff-1f6d-a046-c01c698aecdd"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"725fd5ad-895f-1ffe-af4e-34a9decb9a96"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"298a6ec1-2e7f-199c-a8c0-172ac62188f7"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"8d2c0112-a247-1bbc-af5f-8d99b01db9f0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"03f7da56-b0d7-10eb-aae0-273bbd3350ab"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"c1e52dd6-ee32-1cbc-ad3a-0589ea400e0e"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ed3109df-8c9d-1b45-a7df-976231fd1a43"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"policy_areas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"10ad170a-265e-1b47-ae0d-e0aa0095eeae"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"df7aec0b-62fd-1ebf-ad5c-3a9d81f3429c"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ca36e409-90aa-1d62-a763-f5dce8b2613a"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"18625dcc-2094-1a90-acec-76dadee7bd2c"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"4d8b6b69-6cb7-1d8d-aacd-7be5c6b256c8"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"eee14a23-fe4c-166e-af8f-56778dd9c15d"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ced49f6a-a154-1bcc-aa14-337d6ef9c1d9"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fc6742ea-a265-1baa-ac33-c86d61d2bb50"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"primary_publishing_organisation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
 
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"secondary_role_person"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"cb5bf6ee-5426-1b0e-abb4-652abdaec5f7"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"e137bf81-e302-1370-aedd-b31bbf9afb31"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"0bb9ffc1-adff-1b6e-ae5b-b70bfbc0a1b7"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fc9a084e-ffef-1e4e-a664-c577639fa693"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fde33ee4-95b0-1ca0-a01c-d5eafdfce4fb"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"307bef7c-bdac-1b95-af9b-6765dcaad173"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"c369304f-2b8b-1fcc-abfb-f437cfe6ced8"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"sponsoring_organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"fe3620cc-1b86-1e85-a55b-d52cc08cb8e5"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"4cd81cf6-ef99-1d55-aab1-bc6d2fee7ce0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"bfefbe29-a9c9-1ab4-ad6d-376e8ff0aa85"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"bfdac1fa-1005-1d88-a8e9-ead6bb00dfee"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"5ef7124d-c2cf-1fdb-aeff-a15ff975cfb0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"e17abbfb-0be6-1d68-a040-dd6e7bf36c65"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"8299f4e4-f09a-11c0-a7cb-aab9caf4645f"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"9ca1d941-77bd-10de-a5a4-fb7e40cb8cc7"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"f5dededd-d9fc-1cc6-abbc-3de33a0ebbd3"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"0c4a6593-21df-1d26-a47e-a8cc0d06cf6d"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"world_locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"5fcf485d-9276-1f2b-a4b1-1d39a48920b0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"db912ad7-72f5-129b-ab6d-1fb52e57f2a9"</span><span class="w">
+    </span><span class="nl">"suggested_ordered_related_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"a8fcd3d4-9c28-1c22-aa92-cfeaed226c5a"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"21eaedea-11fb-173d-ae1b-3e6f10367a48"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"16aaa975-c681-13f5-a9a6-a7b3dcdb4f55"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fb35efc3-1bec-1eab-a9bf-06ff1cbe91fa"</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"massa ultricies mauris suscipit cursus Ut turpis adipiscing sagittis Mauris nibh eros. non tempor et tempor Nam netus sed Aenean scelerisque. ac imperdiet ac senectus Quisque nibh. vestibulum. interdum. malesuada"</span><span class="w">
+  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"porttitor aliquet. molestie a malesuada turpis egestas. tempor volutpat interdum. Quisque ac at purus Nam sagittis morbi ac amet non dolor et tempor sit eu senectus consectetur"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 
