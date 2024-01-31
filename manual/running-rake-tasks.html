@@ -142,10 +142,7 @@
     <a href="#header"><span>Run a rake task</span></a>
     <ul>
       <li>
-        <a href="#run-a-rake-task-on-eks"><span>Run a rake task on EKS</span></a>
-      </li>
-      <li>
-        <a href="#run-rake-tasks-from-the-command-line"><span>Run rake tasks from the command line</span></a>
+        <a href="#run-a-rake-task-on-eks"><span>Run a Rake task on EKS</span></a>
       </li>
     </ul>
   </li>
@@ -195,31 +192,15 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/17fc9cc39beea14450019f4b51d69ec8873acb32">26 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c8665b31c856020e731d7fbebd5005039d6f73c4">30 Jan 2024</a>
 </div>
 
- <h1 id='header'>Run a rake task</h1> <p>Rake is a task runner for Ruby. Here are the methods for running a rake task:</p>
-<h2 id='run-a-rake-task-on-eks'>Run a rake task on EKS</h2><p>To run a rake task in Kubernetes, execute the rake command inside the application container.</p>
+ <h1 id='header'>Run a rake task</h1> <h2 id='run-a-rake-task-on-eks'>Run a Rake task on EKS</h2><p>To run a <a href="https://ruby.github.io/rake/">rake</a> task in Kubernetes, execute the rake command inside the application container.</p>
 <p>For example:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec </span>deploy/publishing-api <span class="nt">--</span> rake <span class="s1">'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec </span>deploy/publishing-api <span class="nt">--</span> rake <span class="s1">'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'</span>
 </code></pre></div><p>The output of the command will be streamed to your terminal.</p>
-<h2 id='run-rake-tasks-from-the-command-line'>Run rake tasks from the command line</h2><p>It is also possible to run the rake tasks directly on the relevant app machines.</p>
-<p>First, SSH into the right machine class (e.g. <code>publishing_api</code>):</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh -e production publishing_api
-</code></pre></div><p>Secondly, change directory so that the rake task is available:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cd /var/apps/publishing-api
-</code></pre></div><p>Finally, run the rake task, e.g.:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_setenv publishing-api bundle exec \
-rake 'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
-</code></pre></div>
+
   <div class='related-content'>
 
     <h3>More in the Deployment section</h3>
