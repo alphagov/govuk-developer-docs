@@ -89,10 +89,9 @@ It is also possible but not typically done to take manual snapshots of a Documen
 
 > Use of Mongo is a recognised [tech debt](https://trello.com/c/lSpntlfk/81-mongo-26-has-reached-end-of-life) and is likely to soon go away as we are planning to port to PostgreSQL.
 
-We still run two MongoDB clusters:
+We still run one MongoDB cluster:
 
 - router_backend (router)
-- mongo (content store, draft content store)
 
 Databases are backed up to S3 using mongodump, a command-line tool that creates a binary dump, in the [govuk_env_sync](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_env_sync/files/govuk_env_sync.sh).
 
