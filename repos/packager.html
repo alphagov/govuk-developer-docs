@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: packager - GOV.UK Developer Documentation</title>
+    <title>Repository: packager (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -17,13 +17,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: packager - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: packager (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/packager.html" />
 
       <meta property="og:description" content="Everything about packager (Tools for building debian-compatible source packages for submission to buildd/Launchpad PPAs.)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: packager" />
+      <meta property="og:title" content="Repository: packager (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/packager.html" />
 
@@ -187,96 +187,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: packager</h1>
+  <h1 class="page-title">Repository: packager (retired)</h1>
 
-  <p>Tools for building debian-compatible source packages for submission to buildd/Launchpad PPAs.</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/packager">packager</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-packager" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/packager.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:packager')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:packager-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>This repo creates packages for GOV.UK.</p>
-
-<h2 id="fpm">fpm</h2>
-
-<p>This is the way we create packages now. It is easier than using debuild
-because it&rsquo;s just one command instead of creating Debian packaging files
-by hand.</p>
-
-<h2 id="legacy-debuild">legacy-debuild</h2>
-
-<p>This is how we used to do things.</p>
-
-<h2 id="test-your-package">test-your-package</h2>
-
-<p>Used for testing your created package. Relies on Docker.</p>
-
-<p>Set up:</p>
-
-<pre><code>$ cd test-your-package
-$ docker build -t trusty .
-</code></pre>
-
-<p>Check your setup is working:</p>
-
-<pre><code>$ docker run -v ~/Downloads:/home -w /home trusty ls
-# should see your downloaded package in the output
-</code></pre>
-
-<p>Verify that your package can be imported:</p>
-
-<pre><code>$ docker run -v ~/Downloads:/home -w /home trusty sudo dpkg -i ./rbenv-ruby-2.6.9_1_amd64.deb
-Selecting previously unselected package rbenv-ruby-2.6.9.
-(Reading database ... 19423 files and directories currently installed.)
-Preparing to unpack ./rbenv-ruby-2.6.9_1_amd64.deb ...
-Unpacking rbenv-ruby-2.6.9 (1) ...
-Setting up rbenv-ruby-2.6.9 (1) ...
-</code></pre>
-
-<p>If there are no errors, your package is good to go.</p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Tools for building debian-compatible source packages for submission to buildd/Launchpad PPAs.</p></p>
+<p><a href="https://github.com/alphagov/packager">GitHub repository</a></p>
 
 
             
