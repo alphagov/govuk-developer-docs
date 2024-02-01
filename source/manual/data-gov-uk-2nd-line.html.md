@@ -6,19 +6,20 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 [ckan-app]: repos/ckanext-datagovuk
-[ckan-api-404]: https://github.com/alphagov/govuk-puppet/blob/91471d86c0aa52aea4044835311ae9ba860281f5/modules/govuk/manifests/apps/ckan.pp#L210
 [ckan-api-docs]: https://docs.ckan.org/en/2.9/api/index.html
 [dgu-api-docs]: https://guidance.data.gov.uk/get_data/api_documentation/
 [dgu-ckan]: https://ckan.publishing.service.gov.uk
 [dgu-docs]: https://guidance.data.gov.uk
 [find]: repos/datagovuk_find
-[govuk-connect]: manual/howto-ssh-to-machines
-[Grafana]: https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&refresh=1m&var-namespace=datagovuk&var-app=All&var-error_status=All
-[logit]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3
 [pagerduty]: https://govuk.pagerduty.com/
 [pingdom]: /manual/pingdom
 [publish]: repos/datagovuk_publish
 [sentry]: https://sentry.io/govuk/
+
+> 🚧 This doc is being updated to reflect that CKAN now runs in Kubernetes.
+>
+> In the meantime, if you're unable to figure out one of yet-to-be-updated
+> parts, #govuk-platform-engineering will be able to help you.
 
 This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).
 
@@ -441,8 +442,10 @@ https://data.gov.uk/api/3/action/organization_show?id=environment-agency
 2. Follow the [instructions to access the database](#accessing-the-database)
 3. This query will list all datasets for the Environment Agency, with the number of records for each, and export the result to a CSV file.
 
-```
-\copy (SELECT package.name, package.title, package.url, package.state, COUNT(resource.package_id) as num_resources FROM package LEFT JOIN resource ON (resource.package_id = package.id) WHERE package.owner_org='11c51f05-a8bf-4f58-9b95-7ab55f9546d7' GROUP BY package.id) to 'output.csv' csv header;
+```sql
+\pset format csv
+
+SELECT package.name, package.title, package.url, package.state, COUNT(resource.package_id) as num_resources FROM package LEFT JOIN resource ON (resource.package_id = package.id) WHERE package.owner_org='11c51f05-a8bf-4f58-9b95-7ab55f9546d7' GROUP BY package.id)
 ```
 
 4. You can then use scp-pull from the govuk-connect tool to download the file.
