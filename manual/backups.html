@@ -227,7 +227,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/59ca7bf9a5ce5b8f497d83b4438ec5c08454c881">10 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/394c76577ed3f72d114c946beff7101ec0917279">1 Feb 2024</a>
 </div>
 
  <h1 id='header'>Use of backups</h1> <p>This manual provides a shared definition of a backup and documents our current use of backups summarising strategies and tools we use.</p>
@@ -284,11 +284,10 @@ The &ldquo;Earliest restorable time&rdquo; and &ldquo;Latest restorable time&rdq
 <blockquote>
 <p>Use of Mongo is a recognised <a href="https://trello.com/c/lSpntlfk/81-mongo-26-has-reached-end-of-life">tech debt</a> and is likely to soon go away as we are planning to port to PostgreSQL.</p>
 </blockquote>
-<p>We still run two MongoDB clusters:</p>
+<p>We still run one MongoDB cluster:</p>
 
 <ul>
 <li>router_backend (router)</li>
-<li>mongo (content store, draft content store)</li>
 </ul>
 <p>Databases are backed up to S3 using mongodump, a command-line tool that creates a binary dump, in the <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_env_sync/files/govuk_env_sync.sh">govuk_env_sync</a>.</p>
 <h1 id='elasticsearch-backups'>Elasticsearch backups</h1><p>Elasticsearch provides the Snapshot and Restore API for creating and restoring snapshots of Elasticsearch indices. When we create a snapshot using the API, Elasticsearch creates a copy of the index and its data and stores it in the specified repository. Elasticsearch also stores metadata about the snapshot, including the index mappings, settings and aliases. These snapshots are taken <a href="https://github.com/alphagov/govuk-aws/blob/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/app-elasticsearch6/main.tf#L87-L91">overnight</a> and stored in an <a href="https://github.com/alphagov/govuk-aws/blob/c7297c0730dd4a7319e11f270e197dd52e5d8127/terraform/projects/app-elasticsearch6/register-snapshot-repository.py#L37">S3 bucket</a> to be used in the <a href="https://github.com/alphagov/govuk-puppet/blob/aa75027/modules/govuk_env_sync/files/govuk_env_sync.sh#L328-L336">environment sync process</a>.</p>
