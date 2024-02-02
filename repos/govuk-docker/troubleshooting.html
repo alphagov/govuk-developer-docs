@@ -214,15 +214,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/e99212cafd034fcabd2d5a6c52086388ac983e2e">13 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/4ce8b8d7e9ead535db33b206515763f96329caed">1 Feb 2024</a>
 </div>
 
   <h1 class="page-title">govuk-docker: Troubleshooting</h1>
@@ -231,12 +224,6 @@
 <h2 id="binsetup-fails-to-succeed">
 <code>bin/setup</code> fails to succeed</h2>
 <p>If <code>bin/setup</code> fails on installing <code>dnsmasq</code>, make sure you're not overriding the <code>USER</code> env variable anywhere.</p>
-<p>If you are (for setting the right SSH username), you'll want to remove that and set it in <code>~/.config/config.yaml</code> instead.</p>
-<pre lang="yaml"><code># This is for govuk-connect: https://github.com/alphagov/govuk-connect/blob/1e14c58ce8e5d831aad3e2f8353d0e5204f83388/lib/govuk_connect/cli.rb#L230
-# Can't set `export USER="yourname"` as this causes some unix things to fail (e.g. `brew install dnsmasq`)
-# See https://github.com/alphagov/govuk-connect/issues/72
-ssh_username: "yourname"
-</code></pre>
 <h2 id="diagnose-common-issues-when-setting-up-gov-uk-docker">Diagnose common issues when setting up GOV.UK Docker</h2>
 <p>Run the following command in <code>~/govuk/govuk-docker</code>.</p>
 <pre><code>bin/doctor

@@ -265,7 +265,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/260f5fa6d8b02b4f647eb56e93e629ffda1bb2b1">24 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b1b9f1ec673869efffaf65f198c68e4acc2a9acb">24 Jan 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: # JavaScript Modules</h1>
@@ -303,13 +303,13 @@ GOVUK.modules.start($container)
   if (consentCookie &amp;&amp; consentCookie.usage) {
     this.startModule()
   } else {
-    this.startModule = this.startModule.bind(this)
-    window.addEventListener('cookie-consent', this.startModule)
+    this.start = this.startModule.bind(this)
+    window.addEventListener('cookie-consent', this.start)
   }
 }
 
 AnExampleModule.prototype.startModule = function () {
-  window.removeEventListener('cookie-consent', this.startModule)
+  window.removeEventListener('cookie-consent', this.start)
   // the rest of the module
 }
 </code></pre>
