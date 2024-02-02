@@ -387,10 +387,15 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b106beb166536c6694aeb580d3c31f63227d7982">24 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/50f7c7f34dcc0e5a4430902906ca7f9f685bfe1b">1 Feb 2024</a>
 </div>
 
- <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
+ <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <blockquote>
+<p>🚧 This doc is being updated to reflect that CKAN now runs in Kubernetes.</p>
+<p>In the meantime, if you&rsquo;re unable to figure out one of yet-to-be-updated
+parts, #govuk-platform-engineering will be able to help you.</p>
+</blockquote>
+<p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
 <p><a href="https://guidance.data.gov.uk">Separate documentation</a> exists for publishers.</p>
 <p>There&rsquo;s also <a href="/manual/data-gov-uk-architecture">an architectural overview of data.gov.uk</a> and <a href="/manual/data-gov-uk-deployment">a deployment guide</a>.</p>
 <p><a href="/repos/ckanext-datagovuk.html">ckanext-datagovuk</a> is the primary CKAN extension behind data.gov.uk.</p>
@@ -410,9 +415,9 @@ fix it - open a PR to resolve the problem.</p>
 </ul>
 <h2 id='monitoring-data-gov-uk'>Monitoring data.gov.uk</h2><h3 id='pingdom'>Pingdom</h3><p><a href="/manual/pingdom">Pingdom</a> monitors <code>https://data.gov.uk</code> uptime and alerts <a href="https://govuk.pagerduty.com/">PagerDuty</a> when downtime is detected.</p>
 <h3 id='sentry'>Sentry</h3><p><a href="https://sentry.io/govuk/">Sentry</a> monitors application errors. The Sentry pages for each app can be found on the <a href="/repos/datagovuk_find.html">Find</a> and <a href="/repos/datagovuk_publish.html">Publish</a> app pages.</p>
-<h3 id='log-it'>Log.it</h3><p>Each application sends logs to <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3">Logit</a>. <a href="/repos/ckanext-datagovuk.html">ckan</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> also send their logs here.
+<h3 id='log-it'>Log.it</h3><p>Each application sends logs to [Logit]. <a href="/repos/ckanext-datagovuk.html">ckan</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> also send their logs here.
 Example query: <code>kubernetes.namespace: datagovuk AND kubernetes.container.name: find AND message: &quot;status=404&quot;</code>.</p>
-<h3 id='grafana'>Grafana</h3><p>You can see the dashboard showing some metrics of datagovuk apps, <a href="/repos/ckanext-datagovuk.html">ckan</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a>, on <a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&amp;refresh=1m&amp;var-namespace=datagovuk&amp;var-app=All&amp;var-error_status=All">Grafana</a>.</p>
+<h3 id='grafana'>Grafana</h3><p>You can see the dashboard showing some metrics of datagovuk apps, <a href="/repos/ckanext-datagovuk.html">ckan</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a>, on [Grafana].</p>
 <h3 id='sidekiq-publish'>Sidekiq (<a href="/repos/datagovuk_publish.html">Publish</a>)</h3><p>You can monitor the number of jobs in each queue using the following.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
 rails console
@@ -614,7 +619,7 @@ ckan harvester initdb
 </code></pre></div><h3 id='purging-a-dataset'>Purging a dataset</h3><p>Where commands mention DATASET_NAME, this should either be the slug for the dataset, or the
 UUID.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan dataset purge DATASET_NAME
-</code></pre></div><h3 id='bulk-deleting-datasets'>Bulk deleting datasets</h3><p>This needs to be done on the CKAN machine, since <a href="https://github.com/alphagov/govuk-puppet/blob/91471d86c0aa52aea4044835311ae9ba860281f5/modules/govuk/manifests/apps/ckan.pp#L210">the deletion API is protected from external access</a>. Your API key is required, which can be obtained from your user profile in the CKAN web interface. You might need to change <a href="https://github.com/alphagov/datagovuk_publish/blob/main/app/lib/ckan/v26/depaginator.rb#L5">the limit to the number of datasets that can be deleted</a> - otherwise the deletion may appear to work in CKAN but the changes won&rsquo;t make it through to data.gov.uk and subsequent publish jobs could be blocked.</p>
+</code></pre></div><h3 id='bulk-deleting-datasets'>Bulk deleting datasets</h3><p>This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, which can be obtained from your user profile in the CKAN web interface. You might need to change <a href="https://github.com/alphagov/datagovuk_publish/blob/main/app/lib/ckan/v26/depaginator.rb#L5">the limit to the number of datasets that can be deleted</a> - otherwise the deletion may appear to work in CKAN but the changes won&rsquo;t make it through to data.gov.uk and subsequent publish jobs could be blocked.</p>
 <p>Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: &lt;your_api_key&gt;" http://localhost:&lt;ckan_port&gt;/api/3/action/package_delete; done &lt; list_of_ids.txt
 </code></pre></div><p>After deleting or purging a dataset, it will take up to 10 minutes to update on data.gov.uk, due to the sync process.</p>
@@ -629,7 +634,9 @@ UUID.</p>
 <li>Follow the <a href="#accessing-the-database">instructions to access the database</a></li>
 <li>This query will list all datasets for the Environment Agency, with the number of records for each, and export the result to a CSV file.</li>
 </ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>\copy (SELECT package.name, package.title, package.url, package.state, COUNT(resource.package_id) as num_resources FROM package LEFT JOIN resource ON (resource.package_id = package.id) WHERE package.owner_org='11c51f05-a8bf-4f58-9b95-7ab55f9546d7' GROUP BY package.id) to 'output.csv' csv header;
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="err">\</span><span class="n">pset</span> <span class="n">format</span> <span class="n">csv</span>
+
+<span class="k">SELECT</span> <span class="n">package</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">package</span><span class="p">.</span><span class="n">title</span><span class="p">,</span> <span class="n">package</span><span class="p">.</span><span class="n">url</span><span class="p">,</span> <span class="n">package</span><span class="p">.</span><span class="k">state</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">resource</span><span class="p">.</span><span class="n">package_id</span><span class="p">)</span> <span class="k">as</span> <span class="n">num_resources</span> <span class="k">FROM</span> <span class="n">package</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">resource</span> <span class="k">ON</span> <span class="p">(</span><span class="n">resource</span><span class="p">.</span><span class="n">package_id</span> <span class="o">=</span> <span class="n">package</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">WHERE</span> <span class="n">package</span><span class="p">.</span><span class="n">owner_org</span><span class="o">=</span><span class="s1">'11c51f05-a8bf-4f58-9b95-7ab55f9546d7'</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">package</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
 </code></pre></div>
 <ol>
 <li>You can then use scp-pull from the govuk-connect tool to download the file.</li>

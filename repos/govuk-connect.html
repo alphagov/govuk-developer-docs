@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-connect - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-connect (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -17,13 +17,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-connect - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-connect (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-connect.html" />
 
       <meta property="og:description" content="Everything about govuk-connect (Archived: a tool which was used for connecting to the now-decommissioned legacy infrastructure for GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-connect" />
+      <meta property="og:title" content="Repository: govuk-connect (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-connect.html" />
 
@@ -187,130 +187,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-connect</h1>
+  <h1 class="page-title">Repository: govuk-connect (retired)</h1>
 
-  <p>Archived: a tool which was used for connecting to the now-decommissioned legacy infrastructure for GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-connect">govuk-connect</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-platform-security-reliability-team">#govuk-platform-security-reliability-team</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk-connect" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk-connect.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-connect')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-connect-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>This is a command line tool to help you connect to GOV.UK&rsquo;s infrastructure e.g.</p>
-
-<pre lang="bash"><code>govuk-connect ssh -e integration frontend
-</code></pre>
-
-<h2 id="installation">Installation</h2>
-
-<h3 id="with-homebrew-on-macos-or-linux">With Homebrew on macOS or Linux:</h3>
-
-<pre lang="bash"><code>brew tap alphagov/gds # This will exist if you use the gds-cli
-brew install govuk-connect
-</code></pre>
-
-<blockquote>
-<p>Note: If you previously installed <code>govuk-connect</code> via RubyGems, but
-switched to using Homebrew, you may have to do the following to get
-it to work:</p>
-<pre><code>sudo gem uninstall govuk-connect
-rbenv rehash
-</code></pre>
-</blockquote>
-
-<h3 id="with-rubygems">With RubyGems:</h3>
-
-<pre lang="bash"><code>sudo gem install govuk-connect
-</code></pre>
-
-<blockquote>
-<p>If you use a Ruby version manager like <a href="https://github.com/rbenv/rbenv">rbenv</a>, you may find this only installs <code>govuk-connect</code> for a particular version of Ruby. Try installing outside of an rbenv-managed directory to fix this e.g. your home directory.</p>
-</blockquote>
-
-<h2 id="usage">Usage</h2>
-
-<p>If you have the gds-cli installed (you <a href="https://docs.publishing.service.gov.uk/manual/access-aws-console.html">should do</a>!), you can use this tool within it. This means you only have to use one tool to do AWS and SSH.</p>
-
-<pre><code>gds govuk connect --help
-</code></pre>
-
-<p>It can be shortened to <code>gds govuk c</code>.</p>
-
-<p>Whichever installation method you choose, you can use the above method or the standalone <code>govuk-connect</code> binary.</p>
-
-<h2 id="releases">Releases</h2>
-
-<h3 id="1-release-the-gem">1. Release the gem</h3>
-
-<p>When you&rsquo;ve merged the PR that bumps the version (change value in <code>lib/govuk_connect/version.rb</code>),
-publish a release tag and the gem to RubyGems from the <code>main</code> branch.</p>
-
-<p>The <code>gem push</code> step is done automatically by the GitHub Action, when you
-update the <code>version.rb</code> file.</p>
-
-<pre lang="bash"><code># Note: You shouldn't need to do this manually. This is done by a GitHub Action
-gem build govuk-connect
-gem push govuk-connect-&lt;version&gt;.gem # Credentials are in govuk-secrets/pass under packages/rubygems
-git tag &lt;version&gt; # eg 0.0.3
-git push origin &lt;version&gt;
-</code></pre>
-
-<h3 id="2-update-homebrew">2. Update Homebrew</h3>
-
-<p>To raise a PR to bump the Homebrew formula version, run:</p>
-
-<p><code>brew bump-formula-pr govuk-connect --url=https://rubygems.org/downloads/govuk-connect-&lt;version&gt;.gem --no-fork</code></p>
-
-<blockquote>
-<p>If you have problems with this, note that the password Git asks for
-to push the changes to GitHub is in fact a <a href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line">Personal Access
-Token</a>.
-If you get in a real mess, run <code>brew update-reset</code>, and try <code>brew bump-formula-pr</code> again. If you really can&rsquo;t do it, <a href="https://github.com/alphagov/govuk-connect/pull/21">consider
-reopening a previous PR on this
-topic</a>.</p>
-</blockquote>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Archived: a tool which was used for connecting to the now-decommissioned legacy infrastructure for GOV.UK</p></p>
+<p><a href="https://github.com/alphagov/govuk-connect">GitHub repository</a></p>
 
 
             
