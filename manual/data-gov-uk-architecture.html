@@ -199,7 +199,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/575bf81e62335a30cc04a69ae8b59aa93f10f819">28 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bb6ed86c82aa357b7873d4abd3d599412609f315">2 Feb 2024</a>
 </div>
 
  <h1 id='header'>Architecture of data.gov.uk</h1> <p>The <code>data.gov.uk</code> (DGU) platform is used to publish and view datasets. A dataset contains the metadata for a collection of links to data hosted somewhere on the internet.</p>
@@ -209,9 +209,8 @@
 
 <ul>
 <li><a href="/repos/ckanext-datagovuk.html">CKAN</a> is the publishing app for datasets (&lsquo;packages&rsquo;).</li>
-<li><a href="/repos/datagovuk_find.html">Find</a> is the public frontend for searching datasets using Opencsearch.</li>
+<li><a href="/repos/datagovuk_find.html">Find</a> is the public frontend for viewing and searching for datasets (using Opensearch).</li>
 <li><a href="/repos/datagovuk_publish.html">Publish</a> is a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Opensearch for use in Find.</li>
-<li><a href="http://reference.data.gov.uk">Reference</a> is a legacy service that attempts to provide a <a href="https://github.com/epimorphics/IntervalServer">nomenclature of time intervals</a>, hosted on <a href="/manual/review-apps.html#use-the-shared-heroku-account">Heroku</a>.</li>
 </ul>
 <p>Services with data.gov.uk sub-domains, but owned by other departments</p>
 
@@ -220,7 +219,6 @@
 <li><a href="http://environment.data.gov.uk/index.html">Environment</a> is owned by DEFRA and was created with the <a href="http://location.data.gov.uk/registry/">Location</a> service as part of the <a href="https://www.gov.uk/government/publications/open-data-white-paper-unleashing-the-potential">Open Data Policy</a>.</li>
 <li><a href="http://landregistry.data.gov.uk">Land Registry</a> is owned by the same and <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/246732/0247.pdf">was created</a> to publish linked data as part of the <a href="https://www.gov.uk/government/publications/open-data-white-paper-unleashing-the-potential">Open Data Policy</a>.</li>
 <li><a href="http://csw.data.gov.uk/geonetwork/srv/en/main.home">Catalog Service for the Web</a> is owned by Ordnance Survey and serves <a href="http://inspire.ec.europa.eu/about-inspire">INSPIRE</a> datasets to the EU Geoportal.</li>
-<li><a href="http://locationmde.data.gov.uk">Location Metadata Editor</a> is owned by DEFRA and publishes <a href="http://inspire.ec.europa.eu/about-inspire">INSPIRE</a> metadata, which is used to enrich datasets.</li>
 <li><a href="http://location.data.gov.uk/registry/">Location</a> came before <a href="http://locationmde.data.gov.uk">Location Metadata Editor</a> and was established as part of the <a href="https://inspire.ec.europa.eu/events/conferences/inspire_2010/presentations/258_pdf_presentation.pdf">UK Location Programme</a>.</li>
 <li><a href="http://guidance.data.gov.uk">Guidance</a> is a set of manual pages hosted in <a href="https://github.com/datagovuk/guidance">GitHub</a>, which ought to be migrated into normal GOV.UK docs.</li>
 <li><a href="https://data.gov.uk/data/contracts-finder-archive/">Contract Finder</a> is now provided by <a href="https://www.contractsfinder.service.gov.uk/Search">Crown Commercial Service</a>, which ought to have pre-2015 stuff merged in.</li>
@@ -230,8 +228,7 @@
 <blockquote>
 <p>Several datasets link to <a href="http://environment.data.gov.uk/index.html">environment.data.gov.uk</a> and require user login to access.  Although branded
 as data.gov.uk, this is a totally separate service.  If a user is having difficulty accessing this system, they
-should contact the <a href="http://environment.data.gov.uk/ds/partners/index.jsp#/contactus">maintainers of this resource</a>,
-who are currently Airbus Defence &amp; Space.</p>
+should contact the <a href="http://environment.data.gov.uk/ds/partners/index.jsp#/contactus">maintainers of this resource</a>.</p>
 </blockquote>
 <h2 id='ckan-publish-and-find'><a href="/repos/ckanext-datagovuk.html">CKAN</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a></h2><p><a href="/repos/ckanext-datagovuk.html">CKAN</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> are hosted on AWS EKS and is maintained/deployed in the same way as most other GOV.UK applications.</p>
 
