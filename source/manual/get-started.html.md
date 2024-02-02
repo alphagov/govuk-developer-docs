@@ -149,7 +149,7 @@ On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS ac
 
     ```bash
     brew tap alphagov/gds
-    brew install gds-cli govuk-connect
+    brew install gds-cli
     brew install --cask aws-vault
     ```
 
