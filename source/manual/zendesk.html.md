@@ -23,6 +23,7 @@ When you're logged in, you should be looking at the [`2nd Line--GOV.UK Alerts an
 * [Tickets assigned to "2nd Line - GOV.UK Alerts and Issues"](https://govuk.zendesk.com/agent/filters/30791708)
 * As above, but [filtered subset of just "New" and "Open" tickets](https://govuk.zendesk.com/agent/search/1?copy&type=ticket&q=group%3A2nd%20Line%20-%20GOV.UK%20Alerts%20and%20Issues%20status%3Cpending)
 * [Tickets you have commented on](https://govuk.zendesk.com/agent/search/1?type=ticket&q=commenter%3Ame)
+* Read the [Zendesk documentation](https://support.zendesk.com/hc/en-us/articles/4408835086106-Using-Zendesk-Support-advanced-search) for advanced search options
 
 ## Priorities
 
