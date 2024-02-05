@@ -331,25 +331,27 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>This is the code that deploys GOV.UK in AWS.</p>
+<p>Please use <a href="https://github.com/alphagov/govuk-infrastructure">govuk-infrastructure</a> for anything new. Talk with
+#govuk-platform-engineering if you&rsquo;re unsure.</p>
+
+<h1 id="gov-uk-aws">GOV.UK AWS</h1>
+
+<p>This is the Terraform code that still manages some of GOV.UK&rsquo;s AWS resources.</p>
+
+<p>Platform Engineering team is in the process of:</p>
+
+<ul>
+<li>cleaning up disused modules</li>
+<li>updating what&rsquo;s left and incorporating it into govuk-infrastructure</li>
+</ul>
 
 <h2 id="getting-started">Getting started</h2>
 
 <p>Start by reading <a href="https://github.com/alphagov/govuk-aws/blob/main/docs/guides/getting-started.md">the getting started guide</a>.</p>
 
-<h2 id="building-a-new-environment">Building a new environment</h2>
-
-<p>Please see <a href="https://github.com/alphagov/govuk-aws/blob/main/docs/guides/environment-provisioning.md">the environment provisioning guide</a> for building a fresh environment.</p>
-
-<h2 id="govuk-tools-account">govuk-tools account</h2>
-
-<p>The <code>govuk-tools</code> account does not behave like a normal environment. It contains one-off resources and does not need to be built like a normal environment.</p>
-
 <h2 id="architecture-decision-records">Architecture Decision Records</h2>
 
-<p>We&rsquo;re recording architecture decisions we make so we have a history and context on our implementation.</p>
-
-<p>Please see the <a href="https://github.com/alphagov/govuk-aws/blob/main/docs/architecture/README.md">ADR documentation</a> for further details.</p>
+<p>Some of the design choices in the history of this codebase are documented in <a href="https://github.com/alphagov/govuk-aws/blob/main/docs/architecture/">docs/architecture/</a> for posterity.</p>
 
 <h2 id="licence">Licence</h2>
 
