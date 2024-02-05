@@ -265,7 +265,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/9cb954bf5f90fc792a85c1093f3153fe4b114996">13 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/13abfa4e5396be6a942b4c55f8a59c9b45e7a4f1">1 Feb 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 form tracker</h1>
@@ -294,7 +294,7 @@
 <code>tool_name</code> records the overall name of the smart answer e.g. <code>How do I eat more healthily?</code>
 </li>
 </ul>
-<p>The script will automatically collect the answer submitted in the <code>text</code> field. For questions where multiple answers are possible, these will be comma separated. Where the answer is a text input, the value given is replaced with <code>[REDACTED]</code>, to avoid collecting personally identifiable information. If text should not be redacted, add a <code>data-ga4-form-include-text</code> attribute to the form.</p>
+<p>The script will automatically collect the answer submitted in the <code>text</code> field. For questions where multiple answers are possible, these will be comma separated. Where the answer is a text input, the value given is replaced with <code>[REDACTED]</code>, to avoid collecting personally identifiable information. If all inputs should not have their text redacted, add a <code>data-ga4-form-include-text</code> attribute to the form. If you only want a certain text input to be exempt from redaction, add a <code>data-ga4-form-include-input</code> attribute to that input element.</p>
 <p>In the example above, the following would be pushed to the dataLayer. Note that the schema automatically populates empty values, and that attributes not in the schema are ignored.</p>
 <pre><code>{
   'event': 'event_data',
