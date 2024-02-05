@@ -89,8 +89,14 @@ If you know you cannot solve a ticket immediately, fill in a "Public reply" to t
 know you’re looking into it.
 
 You can use Internal Notes to keep a log of actions you've taken so far: this can make it easier for other
-staff to pick up where you left off if you're unable to solve the ticket yourself. Please note that departments
-can see internal notes, so don’t write anything you wouldn’t say to someone publicly.
+staff to pick up where you left off if you're unable to solve the ticket yourself.
+
+If you run a rake task or execute code directly on a console, include a copy of the commands you ran as an
+internal note on the ticket. This makes it easier to see what has already been done if a user replies to a
+ticket that has previously been worked on.
+
+> Please note that departments can see internal notes, so don’t write anything you wouldn’t say to someone
+> publicly.
 
 If you need more information from the user, fill in the "Public reply" as appropriate and click "Submit as Pending".
 
