@@ -231,7 +231,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/54443879e7dc86145fd1414102923602cbdeec2d">12 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7d80c3ea3a7d5e020548890a2d715efa8101f8cd">5 Feb 2024</a>
 </div>
 
  <h1 id='header'>Zendesk</h1> <p>Technical 2nd Line Zendesk tickets are technical errors reported by our users, including government publishers.</p>
@@ -244,6 +244,7 @@
 <li><a href="https://govuk.zendesk.com/agent/filters/30791708">Tickets assigned to &ldquo;2nd Line - GOV.UK Alerts and Issues&rdquo;</a></li>
 <li>As above, but <a href="https://govuk.zendesk.com/agent/search/1?copy&amp;type=ticket&amp;q=group%3A2nd%20Line%20-%20GOV.UK%20Alerts%20and%20Issues%20status%3Cpending">filtered subset of just &ldquo;New&rdquo; and &ldquo;Open&rdquo; tickets</a></li>
 <li><a href="https://govuk.zendesk.com/agent/search/1?type=ticket&amp;q=commenter%3Ame">Tickets you have commented on</a></li>
+<li>Read the <a href="https://support.zendesk.com/hc/en-us/articles/4408835086106-Using-Zendesk-Support-advanced-search">Zendesk documentation</a> for advanced search options</li>
 </ul>
 <h2 id='priorities'>Priorities</h2><p>Work on &lsquo;High&rsquo; priority tickets first - these will have been triaged by Technical 2nd Line already, so should be
 relevant and actionable - and start with the oldest by date. If external assistance from outside 2nd
@@ -295,8 +296,15 @@ for assistance.</p>
 If you know you cannot solve a ticket immediately, fill in a &ldquo;Public reply&rdquo; to the requester to let them
 know you’re looking into it.</p>
 <p>You can use Internal Notes to keep a log of actions you&rsquo;ve taken so far: this can make it easier for other
-staff to pick up where you left off if you&rsquo;re unable to solve the ticket yourself. Please note that departments
-can see internal notes, so don’t write anything you wouldn’t say to someone publicly.</p>
+staff to pick up where you left off if you&rsquo;re unable to solve the ticket yourself.</p>
+<p>If you run a rake task or execute code directly on a console, include a copy of the commands you ran as an
+internal note on the ticket. This makes it easier to see what has already been done if a user replies to a
+ticket that has previously been worked on.</p>
+
+<blockquote>
+<p>Please note that departments can see internal notes, so don’t write anything you wouldn’t say to someone
+publicly.</p>
+</blockquote>
 <p>If you need more information from the user, fill in the &ldquo;Public reply&rdquo; as appropriate and click &ldquo;Submit as Pending&rdquo;.</p>
 <h2 id='data-gov-uk-tickets'>data.gov.uk tickets</h2><p>Read <a href="/manual/data-gov-uk-2nd-line.html">Common Technical 2nd Line tasks for data.gov.uk</a>, which outlines
 some of the common data.gov.uk (DGU) tickets that come in and how to fix them.
