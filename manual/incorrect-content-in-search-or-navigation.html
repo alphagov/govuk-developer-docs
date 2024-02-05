@@ -142,21 +142,14 @@
     <a href="#header"><span>Content that doesn't show up correctly in search or list pages</span></a>
     <ul>
       <li>
-        <a href="#check-if-search-is-the-problem"><span>Check if search is the problem</span></a>
-      </li>
-      <li>
-        <a href="#correct-the-search-data"><span>Correct the search data</span></a>
         <ul>
           <li>
-            <a href="#published-content-is-missing-from-searchfindersnavigation"><span>Published content is missing from search/finders/navigation</span></a>
+            <a href="#check-if-search-is-the-problem"><span>Check if search is the problem</span></a>
           </li>
           <li>
-            <a href="#unpublished-deleted-or-redirected-content-is-still-showing-up-in-search"><span>Unpublished, deleted, or redirected content is still showing up in search</span></a>
+            <a href="#correct-the-search-data"><span>Correct the search data</span></a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a href="#issues-with-external-search"><span>Issues with external search</span></a>
       </li>
     </ul>
   </li>
@@ -206,14 +199,21 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e11a8da4f5e278da6e6ac9fa848b47bfcfda3aed">5 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0f000cb8ae3526bd95ccc806a877b8b5d143b33e">4 May 2022</a>
 </div>
 
  <h1 id='header'>Content that doesn't show up correctly in search or list pages</h1> <p>The Elasticsearch cluster utilised by <a href="/repos/search-api.html">Search API</a> can
 get out of sync with publishing applications. This affects any part of the site
 using it, including navigation pages and related links.</p>
-<h2 id='check-if-search-is-the-problem'>Check if search is the problem</h2><p>A page with URL <a href="https://www.gov.uk/council-tax">/council-tax</a> can be queried using <a href="https://www.gov.uk/api/search.json?filter_link=/council-tax">/api/search.json?filter_link=/council-tax</a>. You can quickly
+<h3 id='check-if-search-is-the-problem'>Check if search is the problem</h3><p>A page with URL <a href="https://www.gov.uk/council-tax">/council-tax</a> can be queried using <a href="https://www.gov.uk/api/search.json?filter_link=/council-tax">/api/search.json?filter_link=/council-tax</a>. You can quickly
 switch between the two using the <a href="https://github.com/alphagov/govuk-browser-extension">GOV.UK browser extension</a>.</p>
 <p>You can compare the data returned with the publishing app to check if it&rsquo;s up
 to date. An empty response means search has never received the content.</p>
@@ -242,12 +242,11 @@ bash -c 'curl "$ELASTICSEARCH_URI/detailed,government,govuk/_search" -H "content
 that the document does not match the search query. You can debug the query by
 adding the parameter <code>debug=show_query</code> to the search API URL, e.g.
 <a href="https://www.gov.uk/api/search.json?q=badgers&debug=show_query">https://www.gov.uk/api/search.json?q=badgers&amp;debug=show_query</a>.</p>
-<h2 id='correct-the-search-data'>Correct the search data</h2><p>Most search issues can be fixed by either republishing the content, or manually
+<h3 id='correct-the-search-data'>Correct the search data</h3><p>Most search issues can be fixed by either republishing the content, or manually
 reindexing via a rake task in the publishing app.</p>
-<h3 id='published-content-is-missing-from-searchfindersnavigation'>Published content is missing from search/finders/navigation</h3><p>Try republishing the content.</p>
-<h3 id='unpublished-deleted-or-redirected-content-is-still-showing-up-in-search'>Unpublished, deleted, or redirected content is still showing up in search</h3><p>Unpublished, deleted, or redirected content can be removed from search manually
+<h4 id='published-content-is-missing-from-searchfindersnavigation'>Published content is missing from search/finders/navigation</h4><p>Try republishing the content.</p>
+<h4 id='unpublished-deleted-or-redirected-content-is-still-showing-up-in-search'>Unpublished, deleted, or redirected content is still showing up in search</h4><p>Unpublished, deleted, or redirected content can be removed from search manually
 using <a href="https://search-admin.publishing.service.gov.uk/">search admin</a>.</p>
-<h2 id='issues-with-external-search'>Issues with external search</h2><p>There&rsquo;s internal <a href="https://gov-uk.atlassian.net/wiki/spaces/GOVUK/pages/3585441793/Google+Search+Console">guidance on working with external search engines</a> like Bing or Google.</p>
 
   <div class='related-content'>
     <h4>Related repositories</h4>
