@@ -11,7 +11,7 @@ The Elasticsearch cluster utilised by [Search API](/repos/search-api.html) can
 get out of sync with publishing applications. This affects any part of the site
 using it, including navigation pages and related links.
 
-### Check if search is the problem
+## Check if search is the problem
 
 A page with URL [/council-tax](https://www.gov.uk/council-tax) can be queried using [/api/search.json?filter_link=/council-tax](https://www.gov.uk/api/search.json?filter_link=/council-tax). You can quickly
 switch between the two using the [GOV.UK browser extension](https://github.com/alphagov/govuk-browser-extension).
@@ -52,16 +52,20 @@ that the document does not match the search query. You can debug the query by
 adding the parameter `debug=show_query` to the search API URL, e.g.
 <https://www.gov.uk/api/search.json?q=badgers&debug=show_query>.
 
-### Correct the search data
+## Correct the search data
 
 Most search issues can be fixed by either republishing the content, or manually
 reindexing via a rake task in the publishing app.
 
-#### Published content is missing from search/finders/navigation
+### Published content is missing from search/finders/navigation
 
 Try republishing the content.
 
-#### Unpublished, deleted, or redirected content is still showing up in search
+### Unpublished, deleted, or redirected content is still showing up in search
 
 Unpublished, deleted, or redirected content can be removed from search manually
 using [search admin](https://search-admin.publishing.service.gov.uk/).
+
+## Issues with external search
+
+There's internal [guidance on working with external search engines](https://gov-uk.atlassian.net/wiki/spaces/GOVUK/pages/3585441793/Google+Search+Console) like Bing or Google.
