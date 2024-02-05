@@ -142,7 +142,7 @@
     <a href="#header"><span>GOV.UK's environments (integration, staging, production)</span></a>
     <ul>
       <li>
-        <a href="#continuous-integration-ci"><span>Continuous integration (CI)</span></a>
+        <a href="#local-development-environments"><span>Local development environments</span></a>
       </li>
       <li>
         <a href="#integration"><span>Integration</span></a>
@@ -201,35 +201,66 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a3111be7544af406ad5911c98612398929ec1d61">30 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/77ba4fd9ef0e7cb8aa2d7d50a5f75d0b74b04d41">2 Feb 2024</a>
 </div>
 
- <h1 id='header'>GOV.UK's environments (integration, staging, production)</h1> <p>GOV.UK has several environments with different purposes.</p>
-<p>For a quick view of what&rsquo;s where, you can use the <a href="https://release.publishing.service.gov.uk">release app</a>.</p>
-<h2 id='continuous-integration-ci'>Continuous integration (CI)</h2><p>Runs tests for applications.</p>
-<h2 id='integration'>Integration</h2><p>Used by GOV.UK product teams to test changes to software.</p>
-<p>Right now this environment is also used by content editors at GDS and in other departments
-to preview their content changes. This functionality should be replaced by draft preview
-functionality as part of the publishing platform.</p>
-<p>Integration is hosted on <a href="/manual/govuk-in-aws.html">AWS</a>.</p>
-<h2 id='staging'>Staging</h2><p>Used by GOV.UK product teams while deploying changes to ensure that they behave correctly
-in a production-like environment. This means that staging must be similar to production
-so that we&rsquo;re able to test things like the performance impact of changes.</p>
-<p>Staging is hosted on <a href="/manual/govuk-in-aws.html">AWS</a>.</p>
-<p>Access to Staging is restricted to office IPs, so you&rsquo;ll need to <a href="https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit">be
-on the VPN</a>.
-AWS configuration can be found in
-<a href="https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-security-groups/cache.tf">govuk-aws-data</a>.</p>
-<h2 id='production'>Production</h2><p>The thing that runs the website for real people.</p>
-<p>Production is hosted on <a href="/manual/govuk-in-aws.html">AWS</a>.</p>
+ <h1 id='header'>GOV.UK's environments (integration, staging, production)</h1> <p>GOV.UK has several environments with different purposes. By <em>environment</em>, we
+mean:</p>
+
+<ul>
+<li>a self-contained, running instance of all the software components of GOV.UK</li>
+<li>the AWS account and VPC network which hosts that instance of GOV.UK</li>
+<li>the configuration (settings) for that instance of GOV.UK</li>
+</ul>
+<p>This document describes each GOV.UK environment and its uses.</p>
+<p>There are three GOV.UK environments hosted in AWS: integration, staging and
+production. Individual developers also run GOV.UK locally on laptops or
+workstations.</p>
+<p>The <a href="https://release.publishing.service.gov.uk/">Release dashboard</a> shows which
+application versions have been rolled out in each environment.</p>
+<h2 id='local-development-environments'>Local development environments</h2><p>Software developers working on GOV.UK generally either use <a href="https://github.com/alphagov/govuk-docker/">govuk-docker</a> or
+run the applications directly on their machines alongside copies of the
+necessary databases.</p>
+<p>In future, we hope to improve <a href="https://github.com/alphagov/govuk-helm-charts/">govuk-helm-charts</a> to be able to run the whole
+GOV.UK stack locally. This should make it easier for new contributors to get
+started on GOV.UK, encourage open-source engagement and reduce friction for
+developers.</p>
+<h2 id='integration'>Integration</h2><p>GOV.UK product teams use the <em>integration test</em> environment for:</p>
+
+<ul>
+<li>manual software testing, where automated test coverage is not yet sufficient
+and/or the <a href="https://github.com/alphagov/govuk-docker/">govuk-docker</a> local development environment is insufficient</li>
+<li>automated end-to-end/system tests (<a href="/repos/smokey">Smokey</a>) which determine whether a
+software release is automatically promoted to the staging environment</li>
+</ul>
+<p>Currently, the integration environment is also used by content editors at GDS
+and in other departments as a workaround to preview certain types of content
+changes. This usage needs to be replaced by proper preview functionality in the
+Publisher applications so that all end-user usage happens in production.</p>
+<p>There are no guarantees about availability of the integration environment and
+support is on a best-effort basis only.</p>
+<h2 id='staging'>Staging</h2><p>GOV.UK Platform Engineering team uses the staging environment for:</p>
+
+<ul>
+<li>verifying changes to cluster configuration or cloud infrastructure, such as
+Kubernetes cluster upgrades</li>
+</ul>
+<p>GOV.UK product teams occasionally use the staging environment for:</p>
+
+<ul>
+<li>testing of major changes which need to run on a full copy of production data</li>
+<li>testing that involves measuring system performance or resource usage, for
+example load testing and stress testing</li>
+</ul>
+<p>The staging environment is currently also a gate for automatic deployment of
+new releases to production.</p>
+<p>Front ends in the staging environment are reachable from GDS network addresses
+only. This is to prevent content in staging being mistakenly linked to. If you
+are working outside a GDS office, you will need to connect via the <a href="https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/preview">VPN</a> in
+order to view the website on the staging environment. Apps that require you to
+log in via GOV.UK Signon do not require the VPN.</p>
+<h2 id='production'>Production</h2><p>The production environment runs the versions of the applications which serve content to the general public.</p>
 
   <div class='related-content'>
 
