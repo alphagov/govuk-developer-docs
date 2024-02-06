@@ -241,8 +241,8 @@ tests in a headless Chrome browser. This is now the recommended approach.
 For an example of how to configure Jasmine in a GOV.UK Rails application,
 see [alphagov/signon#1810][].
 
-[rspec-rails]: https://relishapp.com/rspec/rspec-rails/docs
-[rspec-mocks]: https://relishapp.com/rspec/rspec-mocks/docs
+[rspec-rails]: https://rspec.info/features/6-0/rspec-rails
+[rspec-mocks]: https://rspec.info/features/3-12/rspec-mocks
 [spec_helper.rb]: https://github.com/rspec/rspec-core/blob/7b6b9c3f2e2878213f97d6fc9e9eb23c323cfe1c/lib/rspec/core/project_initializer/spec/spec_helper.rb
 [rails_helper.rb]: https://github.com/rspec/rspec-rails/blob/a9e3f18c47cf83e0a40c3870f3bab5fe2f4e609a/lib/generators/rspec/install/templates/spec/rails_helper.rb
 [single spec_helper.rb]: https://github.com/alphagov/content-publisher/blob/92eb7afe4344d32905b30204c94e033332342e6b/spec/spec_helper.rb
@@ -404,9 +404,9 @@ approach to writing feature tests in RSpec. This offers a similar level of
 readability of a [cucumber][] test, without the difficulties in identifying
 the code used to perform the test.
 
-[feature specs]: https://relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec
-[system specs]: https://relishapp.com/rspec/rspec-rails/docs/system-specs/system-spec
-[future-learn]: https://www.futurelearn.com/info/blog/how-we-write-readable-feature-tests-with-rspec
+[feature specs]: https://rspec.info/features/6-0/rspec-rails/feature-specs/feature-spec
+[system specs]: https://rspec.info/features/6-0/rspec-rails/system-specs/system-specs
+[future-learn]: https://web.archive.org/web/20230320165008/https://www.futurelearn.com/info/blog/how-we-write-readable-feature-tests-with-rspec
 [cucumber]: https://cucumber.io/
 
 ### Testing controllers
@@ -415,9 +415,9 @@ Use [request specs][] for testing controllers, this is the [recommended
 approach][rspec-request-moj] to replace [controller specs][] reflecting a
 [direction introduced in Rails 5][controller-rails-5].
 
-[request specs]: https://relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec
+[request specs]: https://rspec.info/features/6-0/rspec-rails/request-specs/request-spec
 [rspec-request-moj]: https://medium.com/just-tech/rspec-controller-or-request-specs-d93ef563ef11
-[controller specs]: https://relishapp.com/rspec/rspec-rails/docs/controller-specs
+[controller specs]: https://rspec.info/features/6-0/rspec-rails/controller-specs
 [controller-rails-5]: https://github.com/rails/rails/issues/18950
 
 ### Useful reading
