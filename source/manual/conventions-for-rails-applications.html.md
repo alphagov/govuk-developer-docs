@@ -400,13 +400,14 @@ use the more modern equivalent: [system specs][]) via [govuk_test][]'s
 [Capybara](https://teamcapybara.github.io/capybara/) configuration.
 
 GOV.UK have adopted the [Future Learn readable feature test][future-learn]
-approach to writing feature tests in RSpec. This offers a similar level of
+approach to writing feature tests in RSpec ([example][feature-test-example]). This offers a similar level of
 readability of a [cucumber][] test, without the difficulties in identifying
 the code used to perform the test.
 
 [feature specs]: https://rspec.info/features/6-0/rspec-rails/feature-specs/feature-spec
 [system specs]: https://rspec.info/features/6-0/rspec-rails/system-specs/system-specs
 [future-learn]: https://web.archive.org/web/20230320165008/https://www.futurelearn.com/info/blog/how-we-write-readable-feature-tests-with-rspec
+[feature-test-example]: https://github.com/alphagov/content-publisher/blob/main/spec/features/editing_content/edit_edition_spec.rb
 [cucumber]: https://cucumber.io/
 
 ### Testing controllers
