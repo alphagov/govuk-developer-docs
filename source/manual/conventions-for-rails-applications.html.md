@@ -24,7 +24,7 @@ Non-Rails GOV.UK applications may still benefit from these conventions.
 Consider applying them if they do not conflict with existing
 conventions in an adopted framework.
 
-[Ruby on Rails]: https://rubyonrails.org/
+[Ruby on Rails]: https://rubyonrails.org
 [consistent-govuk]: https://docs.google.com/document/d/1jEjPOFJ2s1cjQv9vHAbE-KF68LSletpnUVaG5lXlHy4/edit#heading=h.yod40rauhyhu
 [new-rails-app]: /manual/setting-up-new-rails-app.html
 [name-an-app]: /manual/naming.html
@@ -135,7 +135,7 @@ gem "elasticsearch", "~> 6" # We need a 6.x release to interface with Elasticsea
 ### Data storage
 
 For non-specialist database needs you should use
-[PostgreSQL](https://www.postgresql.org/) with [ActiveRecord][]. The
+[PostgreSQL][] with [ActiveRecord][]. The
 [db/seeds.rb][] can be used to populate the database for development and test
 environments.
 
@@ -148,14 +148,15 @@ For file storage local to an application [Amazon S3][] is the preferred choice,
 where this needs to be associated with a database [ActiveStorage][] should be
 used.
 
+[PostgreSQL]: https://www.postgresql.org
 [ActiveRecord]: https://guides.rubyonrails.org/active_record_basics.html
-[AmazonMQ]: https://aws.amazon.com/amazon-mq/
 [db/seeds.rb]: https://github.com/alphagov/content-publisher/blob/main/db/seeds.rb
 [key-value datastore]: https://en.wikipedia.org/wiki/Key-value_database
-[Redis]: https://redis.io/
-[RabbitMQ]: https://www.rabbitmq.com/
+[Redis]: https://redis.io
+[RabbitMQ]: https://www.rabbitmq.com
 [Bunny]: https://github.com/ruby-amqp/bunny
-[Amazon S3]: https://aws.amazon.com/s3/
+[AmazonMQ]: https://aws.amazon.com/amazon-mq
+[Amazon S3]: https://aws.amazon.com/s3
 [ActiveStorage]: https://guides.rubyonrails.org/active_storage_overview.html
 
 ### Background job processing
@@ -168,18 +169,20 @@ ActiveJob is preferred due to its closer integration of Rails components
 Scheduled background jobs for applications should also make use of Sidekiq,
 where [sidekiq-scheduler][] is the conventional choice to achieve this.
 
-[Sidekiq]: https://sidekiq.org
 [ActiveJob]: https://guides.rubyonrails.org/active_job_basics.html
+[Sidekiq]: https://sidekiq.org
 [ActionMailer]: https://guides.rubyonrails.org/action_mailer_basics.html
 [sidekiq-scheduler]: https://github.com/moove-it/sidekiq-scheduler
 
 ### JavaScript package management
 
-For Rails applications you should use the [Yarn](https://yarnpkg.com) package
+For Rails applications you should use the [Yarn][] package
 manager for JavaScript packages. Yarn is preferable to using
-[NPM](https://www.npmjs.com/) as Rails [integrates][yarn-integration] directly
+[NPM][] as Rails [integrates][yarn-integration] directly
 with Yarn, providing default tasks and automating some workflows.
 
+[Yarn]: https://yarnpkg.com
+[NPM]: https://www.npmjs.com
 [yarn-integration]: https://guides.rubyonrails.org/5_1_release_notes.html#yarn-support
 
 ### Frontend assets
@@ -199,7 +202,7 @@ retire asset pipeline and encourage decoupling wherever possible.
 [ActionMailer][]. There is [further documentation][govuk-notify-docs] on how
 GOV.UK applications use Notify.
 
-[GOV.UK Notify]: https://www.notifications.service.gov.uk/
+[GOV.UK Notify]: https://www.notifications.service.gov.uk
 [mail-notify]: https://github.com/dxw/mail-notify
 [govuk-notify-docs]: /manual/govuk-notify.html
 
@@ -232,7 +235,7 @@ The conventional testing framework for JavaScript files in GOV.UK Rails
 applications is [Jasmine][].
 
 This was originally chosen due to the `jasmine` gem's tight integration with the
-Rails [Asset Pipeline][]. However that gem has since been deprecated and should
+Rails [asset pipeline][frontend-assets]. However that gem has since been deprecated and should
 [no longer be used][jasmine-gem-deprecated].
 
 Instead, we use the NPM package `jasmine-browser-runner` to run Jasmine
@@ -249,14 +252,12 @@ see [alphagov/signon#1810][].
 [rspec-file-example]: https://github.com/alphagov/content-publisher/blob/92eb7afe4344d32905b30204c94e033332342e6b/.rspec
 [rspec-file]: https://github.com/rspec/rspec/wiki#rspec
 [webmock]: https://github.com/bblimke/webmock
-[webmock-localhost]: https://github.com/alphagov/content-publisher/blob/8c88972d461c8c25ae4e8c8b22c367eb28d6b79a/spec/spec_helper.rb#L18
-[simplecov]: https://github.com/colszowka/simplecov
+[SimpleCov]: https://github.com/colszowka/simplecov
 [factory_bot_rails]: https://github.com/thoughtbot/factory_bot_rails
-[factory-bot-lint]: https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md#linting-factories
 [Climate Control]: https://github.com/thoughtbot/climate_control
 [time-helpers]: https://api.rubyonrails.org/v6.0.2/classes/ActiveSupport/Testing/TimeHelpers.html
-[Jasmine]: https://jasmine.github.io/
-[Asset Pipeline]: #frontend-assets
+[Jasmine]: https://jasmine.github.io
+[frontend-assets]: #frontend-assets
 [jasmine-gem-deprecated]: https://github.com/jasmine/jasmine-gem#discontinued
 [alphagov/signon#1810]: https://github.com/alphagov/signon/pull/1810
 
@@ -265,7 +266,7 @@ see [alphagov/signon#1810][].
 ### Embrace 12 factor conventions
 
 GOV.UK Rails applications aim to follow
-[12 factor](https://12factor.net/) conventions. These should manifest in your
+[12 factor][] conventions. These should manifest in your
 Rails application with practices such as:
 
 - environmental configuration done by environment variables, for example using
@@ -275,6 +276,8 @@ Rails application with practices such as:
   PostgreSQL for production;
 - avoiding, where possible, the need for additional configuration on the
   serving machine, for example needing additional Nginx rules to serve requests.
+
+[12 factor]: https://12factor.net
 
 ### Inject secrets with environment variables
 
@@ -334,7 +337,7 @@ GOV.UK Rails applications should anticipate failure and do so gracefully. This
 applications][frontend-errors] but not on admin applications where there is more
 granular control over error responses. GOV.UK Rails applications should be
 configured to provide GOV.UK branded error responses.
-[Content Publisher][cp-errors]  provides an example of implementing this with
+[Content Publisher][cp-errors] provides an example of implementing this with
 the [GOV.UK admin layout][].
 
 [frontend-errors]: /manual/errors.html
@@ -369,7 +372,7 @@ Configuration for applications, typically [YAML][] files, should live in the
 [interactors]: https://github.com/alphagov/content-publisher/tree/92eb7afe4344d32905b30204c94e033332342e6b/app/interactors
 [reporters]: https://github.com/alphagov/specialist-publisher/blob/077123cc45c86e39d16be2ce2df239adef6ed2d3/app/reporters
 [link expansion]: https://github.com/alphagov/publishing-api/blob/6595cd840e56aefd29964a2df5e86bd397869034/lib/link_expansion.rb
-[YAML]: https://yaml.org/
+[YAML]: https://yaml.org
 
 ## Documenting your decisions
 
@@ -397,18 +400,19 @@ different abstractions (unit, integration and functional)][cp-testing-strategy].
 When testing Rails applications from the perspective of an end user it is
 conventional to use RSpec Rails' [feature specs][] (new applications should
 use the more modern equivalent: [system specs][]) via [govuk_test][]'s
-[Capybara](https://teamcapybara.github.io/capybara/) configuration.
+[Capybara][] configuration.
 
-GOV.UK have adopted the [Future Learn readable feature test][future-learn]
+GOV.UK have adopted the [FutureLearn readable feature test][future-learn]
 approach to writing feature tests in RSpec ([example][feature-test-example]). This offers a similar level of
 readability of a [cucumber][] test, without the difficulties in identifying
 the code used to perform the test.
 
 [feature specs]: https://rspec.info/features/6-0/rspec-rails/feature-specs/feature-spec
 [system specs]: https://rspec.info/features/6-0/rspec-rails/system-specs/system-specs
+[Capybara]: https://teamcapybara.github.io/capybara
 [future-learn]: https://web.archive.org/web/20230320165008/https://www.futurelearn.com/info/blog/how-we-write-readable-feature-tests-with-rspec
 [feature-test-example]: https://github.com/alphagov/content-publisher/blob/main/spec/features/editing_content/edit_edition_spec.rb
-[cucumber]: https://cucumber.io/
+[cucumber]: https://cucumber.io
 
 ### Testing controllers
 
@@ -423,4 +427,6 @@ approach][rspec-request-moj] to replace [controller specs][] reflecting a
 
 ### Useful reading
 
-[The RSpec Styleguide](https://rspec.rubystyle.guide/)
+[The RSpec Styleguide][]
+
+[The RSpec Styleguide]: https://rspec.rubystyle.guide
