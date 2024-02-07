@@ -267,18 +267,11 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2a82352e924a90691879fda6c0fe5db5be79fa47">14 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e546d611341b1d9e7d2f238b2b8bcea026d77ca3">6 Feb 2024</a>
 </div>
 
- <h1 id='header'>Conventions for Rails applications</h1> <p>The majority of GOV.UK applications are built using <a href="https://rubyonrails.org/">Ruby on Rails</a> and over
+ <h1 id='header'>Conventions for Rails applications</h1> <p>The majority of GOV.UK applications are built using <a href="https://rubyonrails.org">Ruby on Rails</a> and over
 the years we have created a lot them. Along the way we&rsquo;ve used a variety of
 patterns and conventions. We aim for GOV.UK apps to be <a href="https://docs.google.com/document/d/1jEjPOFJ2s1cjQv9vHAbE-KF68LSletpnUVaG5lXlHy4/edit#heading=h.yod40rauhyhu">consistent in their
 implementation</a> with differences in domain logic. However,
@@ -355,14 +348,14 @@ explain the particular version. This documents why we need to care
 about the gem version. For example:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gem "elasticsearch", "~&gt; 6" # We need a 6.x release to interface with Elasticsearch 6
 </code></pre></div><h3 id='data-storage'>Data storage</h3><p>For non-specialist database needs you should use
-<a href="https://www.postgresql.org/">PostgreSQL</a> with <a href="https://guides.rubyonrails.org/active_record_basics.html">ActiveRecord</a>. The
+<a href="https://www.postgresql.org">PostgreSQL</a> with <a href="https://guides.rubyonrails.org/active_record_basics.html">ActiveRecord</a>. The
 <a href="https://github.com/alphagov/content-publisher/blob/main/db/seeds.rb">db/seeds.rb</a> can be used to populate the database for development and test
 environments.</p>
 <p>For <a href="https://en.wikipedia.org/wiki/Key-value_database">key-value datastore</a> access (such as queues or distributed caches)
-<a href="https://redis.io/">Redis</a> should be used. Typically a Redis datastore will not be shared
+<a href="https://redis.io">Redis</a> should be used. Typically a Redis datastore will not be shared
 between applications, for queue-based communication between applications we
-have precedent for using <a href="https://www.rabbitmq.com/">RabbitMQ</a> via the <a href="https://github.com/ruby-amqp/bunny">Bunny</a> gem, and AWS&rsquo; <a href="https://aws.amazon.com/amazon-mq/">AmazonMQ</a>.</p>
-<p>For file storage local to an application <a href="https://aws.amazon.com/s3/">Amazon S3</a> is the preferred choice,
+have precedent for using <a href="https://www.rabbitmq.com">RabbitMQ</a> via the <a href="https://github.com/ruby-amqp/bunny">Bunny</a> gem, and AWS&rsquo; <a href="https://aws.amazon.com/amazon-mq">AmazonMQ</a>.</p>
+<p>For file storage local to an application <a href="https://aws.amazon.com/s3">Amazon S3</a> is the preferred choice,
 where this needs to be associated with a database <a href="https://guides.rubyonrails.org/active_storage_overview.html">ActiveStorage</a> should be
 used.</p>
 <h3 id='background-job-processing'>Background job processing</h3><p>The preferred approach for background job processing is to use <a href="https://guides.rubyonrails.org/active_job_basics.html">ActiveJob</a>
@@ -373,20 +366,20 @@ ActiveJob is preferred due to its closer integration of Rails components
 where <a href="https://github.com/moove-it/sidekiq-scheduler">sidekiq-scheduler</a> is the conventional choice to achieve this.</p>
 <h3 id='javascript-package-management'>JavaScript package management</h3><p>For Rails applications you should use the <a href="https://yarnpkg.com">Yarn</a> package
 manager for JavaScript packages. Yarn is preferable to using
-<a href="https://www.npmjs.com/">NPM</a> as Rails <a href="https://guides.rubyonrails.org/5_1_release_notes.html#yarn-support">integrates</a> directly
+<a href="https://www.npmjs.com">NPM</a> as Rails <a href="https://guides.rubyonrails.org/5_1_release_notes.html#yarn-support">integrates</a> directly
 with Yarn, providing default tasks and automating some workflows.</p>
-<h3 id='frontend-assets'>Frontend assets</h3><p>GOV.UK applications use the Rails <a href="#frontend-assets">asset pipeline</a> for precompiling assets -
+<h3 id='frontend-assets'>Frontend assets</h3><p>GOV.UK applications use the Rails <a href="https://guides.rubyonrails.org/asset_pipeline.html">asset pipeline</a> for precompiling assets -
 we are currently prevented from broadly adopting a more modern approach,
 due to <a href="https://github.com/alphagov/govuk_publishing_components/issues/505">asset pipeline coupling</a> in our components gem, but do aspire to
 retire asset pipeline and encourage decoupling wherever possible.</p>
-<h3 id='sending-emails'>Sending emails</h3><p><a href="https://www.notifications.service.gov.uk/">GOV.UK Notify</a> is the preferred approach for sending email. The
+<h3 id='sending-emails'>Sending emails</h3><p><a href="https://www.notifications.service.gov.uk">GOV.UK Notify</a> is the preferred approach for sending email. The
 <a href="https://github.com/dxw/mail-notify">mail-notify</a> gem is conventionally used to integrate Notify with
 <a href="https://guides.rubyonrails.org/action_mailer_basics.html">ActionMailer</a>. There is <a href="/manual/govuk-notify.html">further documentation</a> on how
 GOV.UK applications use Notify.</p>
-<h3 id='testing-utilities'>Testing utilities</h3><p>The preferred framework for testing Rails applications is <a href="https://relishapp.com/rspec/rspec-rails/docs">rspec-rails</a> where
+<h3 id='testing-utilities'>Testing utilities</h3><p>The preferred framework for testing Rails applications is <a href="https://rspec.info/features/6-0/rspec-rails">rspec-rails</a> where
 we aim to adhere to the project&rsquo;s conventions. <a href="https://github.com/alphagov/rubocop-govuk">rubocop-govuk</a> provides
 a linting configuration for RSpec. For mocking and test doubles you should use
-the provided <a href="https://relishapp.com/rspec/rspec-mocks/docs">rspec-mocks</a> framework.</p>
+the provided <a href="https://rspec.info/features/3-12/rspec-mocks">rspec-mocks</a> framework.</p>
 <p>When working with rspec-rails we prefer merging the <a href="https://github.com/rspec/rspec-core/blob/7b6b9c3f2e2878213f97d6fc9e9eb23c323cfe1c/lib/rspec/core/project_initializer/spec/spec_helper.rb">spec_helper.rb</a> and
 <a href="https://github.com/rspec/rspec-rails/blob/a9e3f18c47cf83e0a40c3870f3bab5fe2f4e609a/lib/generators/rspec/install/templates/spec/rails_helper.rb">rails_helper.rb</a> files into a <a href="https://github.com/alphagov/content-publisher/blob/92eb7afe4344d32905b30204c94e033332342e6b/spec/spec_helper.rb">single spec_helper.rb</a> to avoid the
 complexities of two configuration files. We also choose to specify
@@ -404,16 +397,16 @@ that are preferred to manual stubbing;</li>
 <li><a href="https://api.rubyonrails.org/v6.0.2/classes/ActiveSupport/Testing/TimeHelpers.html"><code>ActiveSupport::Testing::TimeHelpers</code></a> for time manipulation.</li>
 </ul>
 <h4 id='testing-javascript-code'>Testing JavaScript code</h4><p>The conventional testing framework for JavaScript files in GOV.UK Rails
-applications is <a href="https://jasmine.github.io/">Jasmine</a>.</p>
+applications is <a href="https://jasmine.github.io">Jasmine</a>.</p>
 <p>This was originally chosen due to the <code>jasmine</code> gem&rsquo;s tight integration with the
-Rails <a href="#frontend-assets">Asset Pipeline</a>. However that gem has since been deprecated and should
+Rails <a href="#frontend-assets">asset pipeline</a>. However that gem has since been deprecated and should
 <a href="https://github.com/jasmine/jasmine-gem#discontinued">no longer be used</a>.</p>
 <p>Instead, we use the NPM package <code>jasmine-browser-runner</code> to run Jasmine
 tests in a headless Chrome browser. This is now the recommended approach.</p>
 <p>For an example of how to configure Jasmine in a GOV.UK Rails application,
 see <a href="https://github.com/alphagov/signon/pull/1810">alphagov/signon#1810</a>.</p>
 <h2 id='configuration'>Configuration</h2><h3 id='embrace-12-factor-conventions'>Embrace 12 factor conventions</h3><p>GOV.UK Rails applications aim to follow
-<a href="https://12factor.net/">12 factor</a> conventions. These should manifest in your
+<a href="https://12factor.net">12 factor</a> conventions. These should manifest in your
 Rails application with practices such as:</p>
 
 <ul>
@@ -458,7 +451,7 @@ for any application configuration.</p>
 applications</a> but not on admin applications where there is more
 granular control over error responses. GOV.UK Rails applications should be
 configured to provide GOV.UK branded error responses.
-<a href="https://github.com/alphagov/content-publisher/pull/1252">Content Publisher</a>  provides an example of implementing this with
+<a href="https://github.com/alphagov/content-publisher/pull/1252">Content Publisher</a> provides an example of implementing this with
 the <a href="https://components.publishing.service.gov.uk/component-guide/layout_for_admin">GOV.UK admin layout</a>.</p>
 <h2 id='organising-your-code'>Organising your code</h2><p>Organising code in a Rails application is frequently a source of debate and
 confusion, <a href="https://medium.com/extreme-programming/what-goes-in-rails-lib-92c74dfd955e">particularly as to what code belongs in the <code>/app</code> directory and
@@ -485,7 +478,7 @@ in the Publishing API)</li>
 </ul>
 <p>GOV.UK Rails applications should avoid creating an <code>/app/lib</code> directory, as this
 causes confusion with the prevalent <code>/lib</code> directory.</p>
-<p>Configuration for applications, typically <a href="https://yaml.org/">YAML</a> files, should live in the
+<p>Configuration for applications, typically <a href="https://yaml.org">YAML</a> files, should live in the
 <code>/config</code> directory.</p>
 <h2 id='documenting-your-decisions'>Documenting your decisions</h2><p>It&rsquo;s conventional to create a <code>/docs</code> directory in GOV.UK Rails applications to
 store application documentation (which is typically linked to from the readme).</p>
@@ -497,17 +490,17 @@ and provide assurances that an application is operating correctly. We value
 test suites that are fast to run, easy to read and <a href="https://github.com/alphagov/content-publisher/blob/f26d9b551842fdf2084159b5b7f1bb078da56936/docs/testing-strategy.md">test things consistently at
 different abstractions (unit, integration and functional)</a>.</p>
 <h3 id='featuresystem-testing'>Feature/system testing</h3><p>When testing Rails applications from the perspective of an end user it is
-conventional to use RSpec Rails&rsquo; <a href="https://relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec">feature specs</a> (new applications should
-use the more modern equivalent: <a href="https://relishapp.com/rspec/rspec-rails/docs/system-specs/system-spec">system specs</a>) via <a href="https://github.com/alphagov/govuk_test">govuk_test</a>&rsquo;s
-<a href="https://teamcapybara.github.io/capybara/">Capybara</a> configuration.</p>
-<p>GOV.UK have adopted the <a href="https://www.futurelearn.com/info/blog/how-we-write-readable-feature-tests-with-rspec">Future Learn readable feature test</a>
-approach to writing feature tests in RSpec. This offers a similar level of
-readability of a <a href="https://cucumber.io/">cucumber</a> test, without the difficulties in identifying
+conventional to use RSpec Rails&rsquo; <a href="https://rspec.info/features/6-0/rspec-rails/feature-specs/feature-spec">feature specs</a> (new applications should
+use the more modern equivalent: <a href="https://rspec.info/features/6-0/rspec-rails/system-specs/system-specs">system specs</a>) via <a href="https://github.com/alphagov/govuk_test">govuk_test</a>&rsquo;s
+<a href="https://teamcapybara.github.io/capybara">Capybara</a> configuration.</p>
+<p>GOV.UK have adopted the <a href="https://web.archive.org/web/20230320165008/https://www.futurelearn.com/info/blog/how-we-write-readable-feature-tests-with-rspec">FutureLearn readable feature test</a>
+approach to writing feature tests in RSpec (<a href="https://github.com/alphagov/content-publisher/blob/main/spec/features/editing_content/edit_edition_spec.rb">example</a>). This offers a similar level of
+readability of a <a href="https://cucumber.io">cucumber</a> test, without the difficulties in identifying
 the code used to perform the test.</p>
-<h3 id='testing-controllers'>Testing controllers</h3><p>Use <a href="https://relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec">request specs</a> for testing controllers, this is the <a href="https://medium.com/just-tech/rspec-controller-or-request-specs-d93ef563ef11">recommended
-approach</a> to replace <a href="https://relishapp.com/rspec/rspec-rails/docs/controller-specs">controller specs</a> reflecting a
+<h3 id='testing-controllers'>Testing controllers</h3><p>Use <a href="https://rspec.info/features/6-0/rspec-rails/request-specs/request-spec">request specs</a> for testing controllers, this is the <a href="https://medium.com/just-tech/rspec-controller-or-request-specs-d93ef563ef11">recommended
+approach</a> to replace <a href="https://rspec.info/features/6-0/rspec-rails/controller-specs">controller specs</a> reflecting a
 <a href="https://github.com/rails/rails/issues/18950">direction introduced in Rails 5</a>.</p>
-<h3 id='useful-reading'>Useful reading</h3><p><a href="https://rspec.rubystyle.guide/">The RSpec Styleguide</a></p>
+<h3 id='useful-reading'>Useful reading</h3><p><a href="https://rspec.rubystyle.guide">The RSpec Styleguide</a></p>
 
   <div class='related-content'>
 
