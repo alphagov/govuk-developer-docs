@@ -192,21 +192,13 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4f9aaafca2e3b5028992bafdf3a17bd32dca6a1a">3 Aug 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/91453ed331a6bddf84a51b71334bc393845835e9">8 Feb 2024</a>
 </div>
 
  <h1 id='header'>Brakeman</h1> <p><a href="https://github.com/presidentbeef/brakeman">Brakeman</a> is a static analysis tool which checks Rails applications
 for security vulnerabilities. It is effectively a type of linter, similar to
-<a href="https://github.com/rubocop-hq/rubocop">rubocop</a>. It is <a href="https://github.com/alphagov/govuk-jenkinslib/pull/19">configured to run automatically</a> as
-part of the CI build process of any Rails application.</p>
+<a href="https://github.com/rubocop-hq/rubocop">rubocop</a>.</p>
 <h2 id='dealing-with-false-positives'>Dealing with false positives</h2><p>There will be times when Brakeman flags up false positives in your code. You
 should try to refactor the code to satisfy Brakeman in such a way that it would
 also pass a code review. There is no benefit to refactoring the code just for
