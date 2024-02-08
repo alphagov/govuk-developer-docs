@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publisher: Decision record: Why "Service sign in" pages are created using rake tasks - GOV.UK Developer Documentation</title>
+    <title>publisher: Feature flags - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-003-using-rake-to-create-service-sign-in-pages.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/feature-flags.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publisher: Decision record: Why &quot;Service sign in&quot; pages are created using rake tasks - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-003-using-rake-to-create-service-sign-in-pages.html" />
+      <meta name="twitter:title" content="publisher: Feature flags - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/feature-flags.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publisher: Decision record: Why &quot;Service sign in&quot; pages are created using rake tasks" />
+      <meta property="og:title" content="publisher: Feature flags" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-003-using-rake-to-create-service-sign-in-pages.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/feature-flags.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -211,50 +211,42 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publisher/commit/d950ddfbd22c87f2954dc46eadec3feab0d63967">24 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publisher/commit/2149934065807110e52f26c0f424c0689732f7ea">8 Feb 2024</a>
 </div>
 
-  <h1 class="page-title">publisher: Decision record: Why "Service sign in" pages are created using rake tasks</h1>
+  <h1 class="page-title">publisher: Feature flags</h1>
 
   
-<h2 id="context">Context</h2>
-<p>For the Q3 Start Pages mission, we descoped creating a UI in Publisher to handle
-the workflow of managing Service sign in pages due to time constraints. As such
-we needed to find a way for developers to easily create and update service sign
-in pages.</p>
-<h2 id="decision">Decision</h2>
-<p>One of the options was to hardcode the content within their own views, which
-would require a developer to manually update content when needed. While this is
-a simple approach, it isn't very scalable and is prone to error. With this
-approach we would not be sending the content to the Publishing API. As such we
-would have to remember to register routes ourselves, and wouldn't have other
-benefits of the Publishing API such as maintaining content history.</p>
-<p>We knew that Smart Answers made use of rake tasks to import content, so we
-considered following a similar approach. This would involve a content designer
-providing a YAML file containing the content, which would be imported using a
-rake task and then presented in a data format that could be sent to the
-Publishing API. The downside of this approach is that we assume that content
-designers have some level of familiarity with YAML and would be able to provide
-the file to us via Git. However we felt that this would be the best approach as
-a developer tasked with publishing a service sign in page in future would only
-need to invoke a simple rake task instead of manually updating content
-themselves. We've also provided an example YAML file so that content designers
-are able follow a template and ensure that all the data is supplied in a
-suitable format.</p>
-<h2 id="consequences">Consequences</h2>
-<p>Due to no UI being provided to create a Service sign in page, the workflow is
-unusual for content designers and as previously mentioned it does assume
-familiarity with YAML and Git. While we expect most content designers will have
-access to a developer who may be able to assist, we should acknowledge some
-potential risk here.</p>
+<p>Feature flags in Publisher are managed using the <a href="https://github.com/voormedia/flipflop">Flipflop gem</a>. The gem is currently
+configured so that only the "cookie" and "default" strategies are active.</p>
+<h2 id="toggling-feature-flags">Toggling feature flags</h2>
+<p>A features dashboard is available to make it easy to toggle features on and off during development.
+This dashboard can be accessed at <code>/flipflop</code>. Note that this can only be used to toggle feature flags for your user.</p>
+<h2 id="testing-with-feature-flags">Testing with feature flags</h2>
+<p>For testing purposes, feature flags can be configured like so:</p>
+<pre lang="ruby"><code>  setup do
+    test_strategy = Flipflop::FeatureSet.current.test!
+    test_strategy.switch!(:feature_name, true)
+  end
+</code></pre>
+<h2 id="creating-a-feature-flag">Creating a feature flag</h2>
+<p>To create a new feature flag, create an entry in the <a href="https://github.com/alphagov/publisher/blob/main/config/features.rb">features.rb</a> file with this format:</p>
+<pre lang="ruby"><code>feature :feature_name,
+      default: false,
+      description: "A description of the feature"
+</code></pre>
+<p>Features should default to <code>false</code> while being worked on, meaning users will not see any change without explicitly turning the feature on using the dashboard.</p>
+<p>To route the user between different pages based on the status of a feature flag, use the <a href="https://github.com/alphagov/publisher/blob/main/app/constraints/feature_constraint.rb">FeatureConstraint class</a>.</p>
+<p>For example:</p>
+<pre lang="ruby"><code>app/routes.rb
+
+constraints FeatureConstraint.new("feature_name") do
+  get "path/to/page" =&gt; "new_controller#action"
+end
+get "path/to/page" =&gt; "old_controller#action"
+</code></pre>
+<p>This will route GET requests for <code>/path/to/page</code> to <code>new_controller</code> when the feature flag is enabled, and to <code>old_controller</code> when it is disabled.</p>
 
 
             
@@ -262,8 +254,8 @@ potential risk here.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-003-using-rake-to-create-service-sign-in-pages.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-003-using-rake-to-create-service-sign-in-pages.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/feature-flags.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Ffeature-flags.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
