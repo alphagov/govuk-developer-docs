@@ -9,12 +9,10 @@ parent: "/manual.html"
 
 [Brakeman][brakeman] is a static analysis tool which checks Rails applications
 for security vulnerabilities. It is effectively a type of linter, similar to
-[rubocop][]. It is [configured to run automatically][automatic-brakeman] as
-part of the CI build process of any Rails application.
+[rubocop][].
 
 [brakeman]: https://github.com/presidentbeef/brakeman
 [rubocop]: https://github.com/rubocop-hq/rubocop
-[automatic-brakeman]: https://github.com/alphagov/govuk-jenkinslib/pull/19
 
 ## Dealing with false positives
 
