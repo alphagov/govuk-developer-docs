@@ -113,7 +113,7 @@ is responsible for providing access to deploy software for teams who can't deplo
 - Check the notes in the [Release app][release] to see if Continuous Deployment is enabled.
 - If so, after merging, you should check the Release app to see if the deployment succeeds.
 - If the latest release is not on Production within about 15 minutes, something went wrong:
-  - Refer to the [Continuous Deployment Demo slides][slides] for details of the deployment process so you can pinpoint where in the pipeline it failed.
+  - Refer to the [deployment documentation](/kubernetes/manage-app/access-ci-cd/#how-apps-are-deployed) for details of the deployment process so you can pinpoint where in the pipeline it failed.
   - You can manually deploy your change if the automation fails e.g. due to a flakey [Smokey test][smokey].
 
 ### Manual Deployment
@@ -155,6 +155,5 @@ After a deployment:
 - Run a build of [smoke tests][smokey] in the environment you're deploying to.
 
 [release]: https://release.publishing.service.gov.uk
-[slides]: https://docs.google.com/presentation/d/1A0zdYHwOxV2jO_0YVsKplySXvd777pXDwn1YnETXSh8/edit
 [smokey]: https://github.com/alphagov/smokey
 [smokey-integration]: https://deploy.integration.publishing.service.gov.uk/job/Smokey/
