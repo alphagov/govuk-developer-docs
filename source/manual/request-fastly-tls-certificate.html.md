@@ -19,8 +19,6 @@ When transitioning HTTPS domains, these are the steps to request a TLS certifica
 
    ![Photo of the step 3](images/fastly/2.png)
 
-*Note: If the domain is not listed, you may need to re-run [CDN: deploy Bouncer configs](https://deploy.blue.production.govuk.digital/job/Bouncer_CDN/) Jenkins job.*
-
 4. Once you have completed the previous step to confirm that your domain is listed, click on "Secure" in the main header. Click the button **+ Secure another domain**, and select "Use certificates Fastly obtains for you".
 
    ![Photo of the step 4](images/fastly/3.png)
