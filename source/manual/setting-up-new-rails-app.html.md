@@ -7,14 +7,6 @@ parent: "/manual.html"
 ---
 
 [mit-license]: https://en.wikipedia.org/wiki/MIT_License
-[govuk-puppet]: https://github.com/alphagov/govuk-puppet/blob/master/docs/adding-a-new-app.md#including-the-app-on-machines
-[govuk-puppet-jenkins]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
-[dns]: /manual/dns.html#dns-for-the-publishingservicegovuk-domain
-[govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
-[govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
-[sentry]: https://sentry.io/settings/govuk/teams/
-[release]: https://release.publishing.service.gov.uk/applications
-[deploy-jenkins]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/
 [docs-applications]: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml
 [get-started]: /manual/get-started.html
 [linting]: /manual/configure-linting.html
@@ -22,7 +14,6 @@ parent: "/manual.html"
 [naming]: /manual/naming.html
 [auto-config]: /manual/github.html
 [app-list]: /#applications
-[sentry-update-project-rake-task]: https://github.com/alphagov/govuk-saas-config/blob/045668beed8aebc50b876108363c8d1a25bdf80c/sentry/Rakefile#L69-L83
 
 ## Before you start
 
@@ -166,10 +157,6 @@ Create a `config/puma.rb` file that contains the following code:
 
 Add your Rails app to GOV.UK Docker so you can run the app locally. See an [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465).
 
-### Set up contract tests for your app
-
-If your app provides an internal API, it should have [contract tests](/manual/pact-testing.html).
-
 ## Set up a GitHub repo for your Rails app
 
 When you’ve finished developing your Rails app, you can [set up a GitHub repo for your Rails app][auto-config].
@@ -214,39 +201,6 @@ If your app is an API, you should create a `docs/api.md` file.
 
 [Guidance on writing API reference documentation on GOV.UK](https://www.gov.uk/guidance/writing-api-reference-documentation).
 
-## Prepare your Rails app to run in production
-
-### Configure your Rails app for Jenkins
-
-Find out how to [set up an app in Jenkins](/manual/test-and-build-a-project-on-jenkins-ci.html#setting-up).
-
-### Add your Rails app to GOV.UK
-
-Find out how to [add your Rails app to GOV.UK using `govuk-puppet`][govuk-puppet].
-
-### Configure your Rails app's deployment
-
-To configure your app's deployment, see the [GOV.UK application deployment scripts][govuk-app-deployment].
-
-### Enable external DNS
-
-If you need to enable external DNS, find out how to [make changes to publishing.service.gov.uk][dns].
-
 ### Add your app to the GOV.UK developer documentation
 
 Open a pull request to add your Rails app to the [GOV.UK developer documentation `data/repos.yml` file][docs-applications].
-
-### Create the application in Sentry
-
-After you’ve added your Rails app to the GOV.UK developer documentation,
-[add the project to Sentry](/manual/sentry.html#how-govuk-projects-are-added-to-sentry).
-
-### Add your Rails app to Release app
-
-Add your Rails app to the [Release][release] app and select __Create__.
-
-### Run the Deploy_App job
-
-Run the [Deploy_App job][deploy-jenkins].
-
-Use the `with_migrations` option if your Rails app has a database.
