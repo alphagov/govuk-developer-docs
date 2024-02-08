@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: Retire a gem
-section: Applications
+section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 ---
