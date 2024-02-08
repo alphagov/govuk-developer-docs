@@ -50,7 +50,7 @@ Before approving access, the sponsor should ensure that the engineer:
 - has the required level of security clearance (BPSS)
 - is aware of our processes and standards around [code review](https://gds-way.digital.cabinet-office.gov.uk/manuals/code-review-guidelines.html)
 - understands the responsibilities that [releasing code](/manual/development-pipeline.html#deployment) brings with it
-- knows how to roll back to an older release if there are any issues
+- knows [how to roll back to an older release](/kubernetes/manage-app/roll-back-app/#roll-back-your-app) if there are any issues
 - knows [how to get help](/manual/ask-for-help.html) from someone with more access if they need it
 
 ### Production Admin access
