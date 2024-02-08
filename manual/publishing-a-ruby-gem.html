@@ -142,13 +142,27 @@
     <a href="#header"><span>Publish a Ruby gem</span></a>
     <ul>
       <li>
-        <a href="#conventions"><span>Conventions</span></a>
+        <a href="#naming"><span>Naming</span></a>
+      </li>
+      <li>
+        <a href="#versioning"><span>Versioning</span></a>
+      </li>
+      <li>
+        <a href="#file-layout"><span>File layout</span></a>
       </li>
       <li>
         <a href="#releasing-gem-versions"><span>Releasing gem versions</span></a>
       </li>
       <li>
         <a href="#ruby-version-compatibility"><span>Ruby version compatibility</span></a>
+        <ul>
+          <li>
+            <a href="#manually-publishing-gems-from-the-cli"><span>Manually publishing gems from the CLI</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#clearing-the-gemstash-cache"><span>Clearing the gemstash cache</span></a>
       </li>
     </ul>
   </li>
@@ -198,22 +212,68 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/853a866a823f2b76c807a426725fe457614c37a5">8 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a92baf18a1a038a68e0f799963e799dba7c0f0aa">11 Apr 2023</a>
 </div>
 
- <h1 id='header'>Publish a Ruby gem</h1> <h2 id='conventions'>Conventions</h2><p>For conventions around naming, refer to the <a href="http://guides.rubygems.org/name-your-gem/">RubyGems naming guide</a> and the
-<a href="/manual/naming.html#naming-gems">GOV.UK naming policy</a>.</p>
-<p>Follow <a href="https://semver.org/">Semantic Versioning</a> and put version updates in their own commit.</p>
-<p>Follow the file and directory <a href="https://bundler.io/guides/creating_gem.html">conventions used by Bundler</a>.</p>
-<h2 id='releasing-gem-versions'>Releasing gem versions</h2><p>Use GitHub Actions for releasing gems, with our <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yaml">shared workflow</a> and the
-<code>ALPHAGOV_RUBYGEMS_API_KEY</code> secret. For builds with extra needs (e.g. the npm
-build step in govuk_publishing_components), copy and adapt the shared workflow.</p>
-<p>Contact a <a href="mailto:govuk-github-owners@digital.cabinet-office.gov.uk">GOV.UK GitHub Owner</a> to grant your repository
-<a href="https://github.com/organizations/alphagov/settings/secrets/actions">access to the secret</a>.</p>
-<h2 id='ruby-version-compatibility'>Ruby version compatibility</h2><p>Ensure gems are compatible with all <a href="https://www.ruby-lang.org/en/downloads/branches/">supported minor Ruby
-versions</a>, specifying the minimum Ruby version in the <a href="https://guides.rubygems.org/specification-reference/#required_ruby_version">gemspec
-file</a> and matching it in .ruby-version.</p>
+ <h1 id='header'>Publish a Ruby gem</h1> <h2 id='naming'>Naming</h2><p>In general, the gem name should be the same as the thing you require when using
+it. This means using <code>_</code>, and not <code>-</code> to separate multi-word gem names.  See the
+<a href="http://guides.rubygems.org/name-your-gem/">name your gem guide</a> for more detailed
+guidance.</p>
+<p>Also <a href="/manual/naming.html#naming-gems">see the general policy on naming</a>.</p>
+<h2 id='versioning'>Versioning</h2><p>Follow the guidelines on <a href="http://semver.org/">semver.org</a> for assigning version
+numbers.</p>
+<p>Versions should only be changed in a commit of their own, in a pull request of
+their own.</p>
+<p>This alerts team members to the new version and allows for last-minute scrutiny
+before the new version is released. Also, by raising a separate pull request,
+we avoid version number conflicts between feature branches.</p>
+<h2 id='file-layout'>File layout</h2><p>We should follow the scheme used by Bundler when creating gems (see <a href="http://railscasts.com/episodes/245-new-gem-with-bundler?view=asciicast">this
+railscast</a>).</p>
+
+<blockquote>
+<p><strong>Note</strong></p>
+
+<ul>
+<li>The version is stored in a file by itself in <code>lib/&lt;gem_name&gt;/version.rb</code>.</li>
+<li>The Gemfile references the gemspec for gem dependencies.  All gem
+dependencies should be specified in the gemspec.</li>
+<li>The Gemfile.lock is <strong>never</strong> committed (it should be in the <code>.gitignore</code>
+file).</li>
+</ul>
+</blockquote>
+<h2 id='releasing-gem-versions'>Releasing gem versions</h2><p>We use GitHub Actions as a means to create new releases of gems. We have
+a <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yaml">workflow</a> that can be imported into apps and an
+organisation <a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">GitHub secret</a>, <code>ALPHAGOV_RUBYGEMS_API_KEY</code>, that
+can be used to authenticate with RubyGems.</p>
+<p>To utilise these you will need to ask a <a href="mailto:govuk-github-owners@digital.cabinet-office.gov.uk">GOV.UK GitHub Owner</a>
+to grant your repository <a href="https://github.com/organizations/alphagov/settings/secrets/actions">access to the secret</a> and apply
+the workflow to your GitHub Action (<a href="https://github.com/alphagov/govuk_schemas/blob/74c5375505e6f46272c393e49e0d4e081b2cdd21/.github/workflows/ci.yml">example</a>).</p>
+<p>Should you have an unconventional need in building your gem for deployment,
+for example <a href="/repos/govuk_publishing_components.html">govuk_publishing_components</a> requires an npm build step, you
+should not use the shared workflow, or adapt it for your edge case, and
+instead add an app specific workflow to release the gem
+(<a href="https://github.com/alphagov/govuk_publishing_components/blob/04225e53f0a70f64589ebd0c66dd4e444430e460/.github/workflows/ci.yml#L41-L70">example</a>).</p>
+<h2 id='ruby-version-compatibility'>Ruby version compatibility</h2><p>Our policy is that our Ruby gems are compatible with all <a href="https://www.ruby-lang.org/en/downloads/branches/">currently supported
+minor versions of Ruby</a>. For example, in November 2022, There
+were supported Ruby releases of 2.7, 3.0 and 3.1, thus we expected gems to be
+compatible with each of those and be tested against them (there is
+<a href="/manual/test-and-build-a-project-with-github-actions.html#a-ruby-gem">documentation</a> on the approach to test them).</p>
+<p>We specify the minimum Ruby version supported in the <a href="https://guides.rubygems.org/specification-reference/#required_ruby_version">gemspec file</a>
+and expect the <code>.ruby-version</code> to match that version. For example, if Ruby 2.7
+is the oldest supported minor version, we expect gems to require Ruby 2.7 or
+greater and the <code>.ruby-version</code> file to reference the most recent Ruby 2.7
+release (which in November 2022 was 2.7.6).</p>
+<p>When new minor versions of Ruby are released (typically each Christmas) we
+update gems to test against the new version. For example, when Ruby 3.2
+was released, our gem test matrices were expanded to test against Ruby 3.2.</p>
 <p>When Ruby versions reach end-of-life (typically April) we update gems
 to drop support for that Ruby version and update the <code>.ruby-version</code> files to
 the next supported version. For example, when Ruby 2.7 reached end of life, we dropped 2.7
@@ -227,22 +287,39 @@ even raise a PR unless the upstream app is on a supported Ruby version). It also
 limited our ability to benefit from the automated workflows agreed in RFC-156,
 which <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-156-auto-merge-internal-prs.md#4-version-increase-is-patch-or-minor">apply only to patch and minor version upgrades</a>.
 Note that patch versions are generally reserved only for bug fixes.</p>
+<h3 id='manually-publishing-gems-from-the-cli'>Manually publishing gems from the CLI</h3><p>Sometimes you may be required to publish a gem outside of Jenkins, if you need
+to release a patch or minor version below the current latest major version.
+For example, say you have a gem at version 1.0.0 and later release a major breaking
+change as version 2.0.0. If you still need to support apps using v1, and you want
+to apply a bugfix as a patch version 1.0.1, you would not be able to deploy off
+the <code>main</code> branch as this will include all of the breaking v2 changes.</p>
+<p>To manually publish from the command line:</p>
+
+<ol>
+<li>Get your branch ready: checkout the tag of the previous major version (e.g.
+<code>git checkout v1.0.0</code>) and then create a branch pointing at this commit
+(<code>git checkout -b bump-version-to-1.0.1</code>).</li>
+<li>Get your code ready: make your code changes, including adding a CHANGELOG entry
+and bumping the version number.</li>
+<li>Commit.</li>
+<li>Manually follow the steps of the <a href="https://github.com/alphagov/govuk-jenkinslib/blob/c25c362dd8288e92a09b6f6cc9b5dd6fd6c12c84/vars/govuk.groovy#L762-L806"><code>publishGem</code> function in govuk-jenkinslib</a>
+i.e. check your new version doesn&rsquo;t already exist, build &amp; publish the gem,
+make and push a git tag. The RubyGems credentials can be found in govuk-secrets.</li>
+<li>Tidy up: open a pull request for this branch against <code>main</code>. There will be merge
+conflicts, which you&rsquo;ll have to manually resolve before you can merge. Do this
+<strong>without rebasing</strong>, as we want to keep the original <code>main</code> history. You&rsquo;ll end
+up with a meta commit like <code>Merge pull request #1 from username/branch-name</code>,
+but the full history of both <code>main</code> and your branch will be intact.</li>
+</ol>
+<h2 id='clearing-the-gemstash-cache'>Clearing the gemstash cache</h2><p>When a new gem version is released, it may not be available immediately on Jenkins.
+This is due to <a href="https://github.com/bundler/gemstash/">gemstash</a>, our gem mirror. It caches versions for up to 30
+minutes. To force it to clear, restart <code>gemstash</code> on the <code>apt</code> machine in the
+relevant environment, e.g. for integration:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk c ssh -e integration apt 'sudo docker restart gemstash'
+</code></pre></div><p>To clear the cache for the CI Jenkins instance, run this in integration.</p>
 
   <div class='related-content'>
 
-    <h3>More in the Packaging section</h3>
-
-    <div class='govuk-grid-row'>
-
-        <div class='govuk-grid-column-one-half'>
-          <h4>How to...</h4>
-
-          <ul class="govuk-list">
-            <li><a href="/manual/retiring-a-gem.html">Retire a gem</a></li>
-          </ul>
-        </div>
-
-    </div>
 </div>
 
 

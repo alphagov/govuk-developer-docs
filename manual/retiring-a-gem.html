@@ -182,8 +182,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "Packaging",
-        "@id": "http://www.dev.gov.uk/manual.html#packaging"
+        "name": "Applications",
+        "@id": "http://www.dev.gov.uk/manual.html#applications"
       }
     }
   ]
@@ -196,13 +196,20 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#packaging" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Packaging&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#packaging">Packaging</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#applications" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Applications&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#applications">Applications</a>
         </li>
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b4c28cd3ffa5223f6bbca90c1500f920c80a9dc3">8 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/92b94b976ca805a91d10125e123380f53958ca3a">18 Apr 2023</a>
 </div>
 
  <h1 id='header'>Retire a gem</h1> <h2 id='1-ensure-the-gem-is-not-used-by-any-apps'>1. Ensure the gem is not used by any apps</h2><p>Search for references to the gem in our codebase to see if any apps are still using it:</p>
@@ -223,15 +230,32 @@ and update or remove them.</p>
 
   <div class='related-content'>
 
-    <h3>More in the Packaging section</h3>
+    <h3>More in the Applications section</h3>
 
     <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/architecture-deep-dive.html">Architectural deep-dive of GOV.UK</a></li>
+            <li><a href="/manual/architecture-shallow-dive.html">Architectural summary of GOV.UK</a></li>
+            <li><a href="/manual/architecture.html">Architecture overview of GOV.UK applications</a></li>
+            <li><a href="/manual/configure-linting.html">Configure linting</a></li>
+            <li><a href="/manual/conventions-for-rails-applications.html">Conventions for Rails applications</a></li>
+          </ul>
+        </div>
 
         <div class='govuk-grid-column-one-half'>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/publishing-a-ruby-gem.html">Publish a Ruby gem</a></li>
+            <li><a href="/manual/add-authentication-to-an-application.html">Add authentication to an application</a></li>
+            <li><a href="/manual/ownership-meaning.html">Application ownership</a></li>
+            <li><a href="/manual/create-a-local-transaction.html">Create a Local Transaction</a></li>
+            <li><a href="/manual/naming.html">Name a new application or gem</a></li>
+            <li><a href="/manual/retiring-a-repo.html">Retire a repo</a></li>
+            <li><a href="/manual/retiring-an-application.html">Retire an application</a></li>
+            <li><a href="/manual/setting-up-new-rails-app.html">Set up a new Rails application</a></li>
           </ul>
         </div>
 
