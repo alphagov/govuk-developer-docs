@@ -41,14 +41,7 @@ link near the bottom of each PR.
 ### Branch Deploy Review
 
 Sometimes you may need to deploy your change in Integration in
-order to test it works on real infrastructure. Go to
-[the `Deploy_App` job in Jenkins](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/)
-and click 'Build with Parameters':
-
-- `TARGET_APPLICATION` - the name of the repository you want to deploy
-- `DEPLOY_TASK` - usually 'deploy' is most appropriate
-- `TAG` - put the name of your branch
-- Typically you can leave the checkboxes as they are
+order to test it works on real infrastructure. Refer to the [manual deployments documentation](/manual/deployments.html#manual-deployments).
 
 ## Get someone to review your Pull Request
 
@@ -93,8 +86,6 @@ to merge (and deploy) it for you.
 
 Code that is merged to `main` is tested again on CI. This is because
 the `main` branch may have changed since the tests last ran on the PR.
-If the tests on `main` pass, Jenkins pushes a `release_123` git tag to
-GitHub.
 
 > **WARNING**: some applications have Continuous Deployment enabled,
 > which means the deployment process is fully automated. You should do
@@ -120,9 +111,9 @@ is responsible for providing access to deploy software for teams who can't deplo
 
 #### Wait for the release to deploy to Integration
 
-When a new release is created, CI sends a message to Integration Deploy Jenkins to deploy the tag. You should verify your changes work in Integration before deploying downstream:
+Refer to the [manual deployments documentation](/manual/deployments.html#manual-deployments). You should verify your changes work in Integration before deploying downstream:
 
-- Run a build of [smoke tests][smokey-integration].
+- Run a build of [smoke tests][smokey] in the environment you're deploying to.
 - Look for any Icinga alerts related to your application.
 
 Our apps should always be in a state where `main` is deployable. You
@@ -156,4 +147,3 @@ After a deployment:
 
 [release]: https://release.publishing.service.gov.uk
 [smokey]: https://github.com/alphagov/smokey
-[smokey-integration]: https://deploy.integration.publishing.service.gov.uk/job/Smokey/
