@@ -15,8 +15,7 @@ You can query these logs using [Amazon
 Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html) to gain
 insights into GOV.UK traffic.
 
-The same Fastly logs are also available to query [in Splunk](#splunk)
-(excluding data.gov.uk).
+The same Fastly logs are also available to query [in Splunk](#splunk).
 
 ## Access Athena
 
