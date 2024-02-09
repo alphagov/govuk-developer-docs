@@ -298,15 +298,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2860a6740b0b9db4fea1e022f4fa991694156ae0">12 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/258f92490e8825824ba10286ce7b143e1563b58b">9 Feb 2024</a>
 </div>
 
  <h1 id='header'>Query CDN logs</h1> <p>Fastly, GOV.UK&rsquo;s <a href="/manual/cdn.html">content distribution network</a>, logs
@@ -316,8 +309,7 @@ days</a>.</p>
 <p>You can query these logs using <a href="https://docs.aws.amazon.com/athena/latest/ug/what-is.html">Amazon
 Athena</a> to gain
 insights into GOV.UK traffic.</p>
-<p>The same Fastly logs are also available to query <a href="#splunk">in Splunk</a>
-(excluding data.gov.uk).</p>
+<p>The same Fastly logs are also available to query <a href="#splunk">in Splunk</a>.</p>
 <h2 id='access-athena'>Access Athena</h2><p>You can use Amazon Athena to query the CDN logs by writing SQL queries.</p>
 <p>There is a separate table for each CDN service (roughly corresponding to the
 hostname in the URL).</p>
