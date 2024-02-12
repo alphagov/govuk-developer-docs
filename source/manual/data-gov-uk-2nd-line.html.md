@@ -56,10 +56,12 @@ There are three environments for CKAN:
 
 [Sentry] monitors application errors. The Sentry pages for each app can be found on the [Find] and [Publish] app pages.
 
-### Log.it
+### Logs
 
-Each application sends logs to [Logit]. [ckan][ckan-app], [Publish] and [Find] also send their logs here.
+[Ckan][ckan-app], [Publish] and [Find] send their logs to [Logit].
 Example query: `kubernetes.namespace: datagovuk AND kubernetes.container.name: find AND message: "status=404"`.
+
+[CDN logs for data.gov.uk are also available](/manual/query-cdn-logs.html).
 
 ### Grafana
 
