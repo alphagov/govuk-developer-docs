@@ -127,22 +127,6 @@ For actioning these requests, [read our DNS documentation](/manual/dns.html).
 
 Please refer to the [SRE interruptible documentation](https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.91quw0ws3zim).
 
-## Leaver tickets
-
-As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have any GOV.UK access.
-
-Search for their name/email in the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository.
-
-1. If you don't find a reference, you can close the ticket with an internal comment
-1. If you find a reference in [config/govuk_tech.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml), create a card using the ["Leaver (tech role)"](https://trello.com/c/IQIV54Pc/378-leaver-tech-role) template card on the Technical 2nd Line Trello board
-1. If you find a reference in [config/govuk_non_tech.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_non_tech.yml), create a card using the ["Leaver (non tech role)"](https://trello.com/c/g9iK9fcL/1115-leaver-non-tech-role) template card on the Technical 2nd Line Trello board
-
-Add the card to the "To do" column with a due date, which will be the leaving date from the Zendesk ticket.
-
-You can then close the ticket with an internal comment which includes a link to the new Trello card.
-
-Finally, it's a case of working through the Trello card checklist (on or after the due date), then moving the card to Done.
-
 ## Closing a ticket
 
 Once you've resolved a ticket, click "Submit as Solved". You do not need to wait for user confirmation to

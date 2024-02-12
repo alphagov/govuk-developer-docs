@@ -34,11 +34,10 @@ If the developer is new to GOV.UK, then it’s worth taking them through the [ov
 
 ## Managing leavers
 
-When a team member leaves GOV.UK, the tech lead must raise a PR in the GOV.UK [user reviewer][] ([sample pr][]) and ensure a [leaver’s trello card][] is created on the Technical 2nd Line trello board.
+When a team member leaves GOV.UK, the tech lead should raise a PR in the GOV.UK [user reviewer][] ([sample pr][]) and ensure their team's Delivery Manager has informed Business Operations of the leaver/mover.
 
 [user reviewer]: https://github.com/alphagov/govuk-user-reviewer
 [sample pr]: https://github.com/alphagov/govuk-user-reviewer/pull/542
-[leaver’s trello card]: https://trello.com/c/IQIV54Pc/378-leaver
 
 ## Being aware of the health of your team
 
