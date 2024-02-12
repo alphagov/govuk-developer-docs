@@ -311,8 +311,26 @@ chart repository hosted on GitHub Pages.</p>
 
 <h2 id="schemas">Schemas</h2>
 
-<p><code>kubeconform</code> runs as a pre-merge check. The JSON schemas that it validates
-against are in the <a href="https://github.com/alphagov/govuk-helm-charts/blob/main/schemas"><code>schemas/</code></a> directory.</p>
+<p>We have several Custom Resource Definitions (CRDs) installed in our Kubernetes clusters, and referenced by the Helm charts
+in this repository.</p>
+
+<p>We use <a href="https://github.com/yannh/kubeconform">kubeconform</a> to validate our Kubernetes manifests against schemas for
+those resources. This helps us ensure that our Helm charts are correct.</p>
+
+<p><code>kubeconform</code> runs in a GitHub Action as a pre-merge check and can also be run
+locally.</p>
+
+<p>You can run the validation tests locally by installing <code>kubeconform</code> and running</p>
+
+<pre lang="shell"><code>mkdir helm-dist
+for c in charts/*; do
+  helm template "$(basename "$c")" "$c" --output-dir helm-dist
+done
+
+kubeconform -schema-location default \
+-schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
+-summary helm-dist
+</code></pre>
 
 <h2 id="team">Team</h2>
 
