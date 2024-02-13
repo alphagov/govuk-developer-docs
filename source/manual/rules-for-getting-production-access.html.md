@@ -86,6 +86,4 @@ You will also begin to fill the Primary role on some in-hours shifts.
 
 ## Temporarily revoking access
 
-If you're absent more than 6 weeks, your access will be revoked. See [the Trello
-leaver template card](https://trello.com/c/IQIV54Pc/378-leaver-name-here-tech-role)
-for the steps.
+If you're absent more than 6 weeks, your access should be revoked.
