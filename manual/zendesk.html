@@ -174,9 +174,6 @@
         <a href="#automated-requests-from-amazon-acm-or-aws-certificate-manager"><span>Automated requests from Amazon ACM or AWS Certificate Manager</span></a>
       </li>
       <li>
-        <a href="#leaver-tickets"><span>Leaver tickets</span></a>
-      </li>
-      <li>
         <a href="#closing-a-ticket"><span>Closing a ticket</span></a>
       </li>
       <li>
@@ -231,7 +228,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7d80c3ea3a7d5e020548890a2d715efa8101f8cd">5 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f5986b835871c63a1cd6b6576f94a0541bfdf6b4">12 Feb 2024</a>
 </div>
 
  <h1 id='header'>Zendesk</h1> <p>Technical 2nd Line Zendesk tickets are technical errors reported by our users, including government publishers.</p>
@@ -322,17 +319,6 @@ review and assign to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk 
 <p>Note that some requests come directly via the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/hostmaster">hostmaster Google group</a>. If you are in any doubt about the legitimacy of a request, reassign the ticket to <code>3rd Line--Policy and Strategy</code> and add an internal note asking them.</p>
 <p>For actioning these requests, <a href="/manual/dns.html">read our DNS documentation</a>.</p>
 <h2 id='automated-requests-from-amazon-acm-or-aws-certificate-manager'>Automated requests from Amazon ACM or AWS Certificate Manager</h2><p>Please refer to the <a href="https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.91quw0ws3zim">SRE interruptible documentation</a>.</p>
-<h2 id='leaver-tickets'>Leaver tickets</h2><p>As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have any GOV.UK access.</p>
-<p>Search for their name/email in the <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> repository.</p>
-
-<ol>
-<li>If you don&rsquo;t find a reference, you can close the ticket with an internal comment</li>
-<li>If you find a reference in <a href="https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml">config/govuk_tech.yml</a>, create a card using the <a href="https://trello.com/c/IQIV54Pc/378-leaver-tech-role">&ldquo;Leaver (tech role)&rdquo;</a> template card on the Technical 2nd Line Trello board</li>
-<li>If you find a reference in <a href="https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_non_tech.yml">config/govuk_non_tech.yml</a>, create a card using the <a href="https://trello.com/c/g9iK9fcL/1115-leaver-non-tech-role">&ldquo;Leaver (non tech role)&rdquo;</a> template card on the Technical 2nd Line Trello board</li>
-</ol>
-<p>Add the card to the &ldquo;To do&rdquo; column with a due date, which will be the leaving date from the Zendesk ticket.</p>
-<p>You can then close the ticket with an internal comment which includes a link to the new Trello card.</p>
-<p>Finally, it&rsquo;s a case of working through the Trello card checklist (on or after the due date), then moving the card to Done.</p>
 <h2 id='closing-a-ticket'>Closing a ticket</h2><p>Once you&rsquo;ve resolved a ticket, click &ldquo;Submit as Solved&rdquo;. You do not need to wait for user confirmation to
 close the ticket.</p>
 <h2 id='tickets-left-pending-without-a-response'>Tickets left pending without a response</h2><p>Note that if a ticket has been pending a response for 5 or more days with no response from the
