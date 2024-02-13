@@ -91,7 +91,7 @@ Remove the code freeze, then make sure the current version is deployed to all th
 
 ### Assign a user to their publisher in data.gov.uk
 
-[Log into our shared data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher). Pick a [publisher](https://ckan.publishing.service.gov.uk/organization) to do a hypothetical walk though of [Assign users to publishers](/manual/data-gov-uk-2nd-line.html#assign-users-to-publishers-setting-user-permissions).
+[Log into our shared data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher). Pick a [publisher](https://ckan.publishing.service.gov.uk/organization) to do a hypothetical walk through of [assign users to publishers](/manual/data-gov-uk-2nd-line.html#assigning-users-to-publishers-setting-user-permissions).
 
 ### Change a user's permissions in Signon
 
