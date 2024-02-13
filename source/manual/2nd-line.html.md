@@ -106,7 +106,6 @@ Read more about [processing Zendesk tickets on Technical 2nd Line](/manual/zende
 
 We use the [GOV.UK Technical 2nd Line Trello board][] to capture pieces of work 2nd Line are required to do, such as:
 
-- Leaver tickets
 - Setting up production access
 - Recording technical issues
 
