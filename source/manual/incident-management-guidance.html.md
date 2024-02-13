@@ -1,5 +1,5 @@
 ---
-owner_slack: "@nila.patel"
+owner_slack: "#govuk-developers"
 title: Incident management guidance
 parent: "/manual.html"
 layout: manual_layout
@@ -23,6 +23,7 @@ When something goes wrong on GOV.UK we follow the incident management procedure:
 
 Other useful links:
 
+- [Incidents - summary information spreadsheet](https://drive.google.com/drive/search?q=%22Incidents%20-%20summary%20information%22%20parent:0AMt7fTTYo1A6Uk9PVA%20type:spreadsheet)
 - [Handling security incidents](https://docs.google.com/document/d/1ty12B5eBWB9YSfnD9xY1mr5rtTQxdNxRdmEGgibilN0/edit?usp=sharing)
 - [Incident severity levels](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/64487471/Incident+severity+levels)
 - [Incident review actions](https://trello.com/b/O8vBQOLX/govuk-incident-review-actions)
