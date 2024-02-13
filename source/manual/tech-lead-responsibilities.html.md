@@ -34,10 +34,9 @@ If the developer is new to GOV.UK, then it’s worth taking them through the [ov
 
 ## Managing leavers
 
-When a team member leaves GOV.UK, the tech lead should raise a PR in the GOV.UK [user reviewer][] ([sample pr][]) and ensure their team's Delivery Manager has informed Business Operations of the leaver/mover.
+When a team member leaves GOV.UK, the team's Delivery Manager should inform Business Operations of the leaver/mover.
 
-[user reviewer]: https://github.com/alphagov/govuk-user-reviewer
-[sample pr]: https://github.com/alphagov/govuk-user-reviewer/pull/542
+This eventually leads to a ticket in the [JML view](https://govuk.zendesk.com/agent/filters/63966232) Zendesk group, which Senior Tech will process.
 
 ## Being aware of the health of your team
 
