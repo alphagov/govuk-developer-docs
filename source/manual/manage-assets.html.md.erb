@@ -24,7 +24,7 @@ follow these steps:
 1. Add a query string to the URL (e.g. `?cache-bust=12345`) to bypass the cache
    and check that the asset responds with a 404 not found.
 
-1. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache].
+1. Wait 20 minutes for the cache to clear, or [purge it yourself](https://docs.publishing.service.gov.uk/manual/purge-cache.html#purge-a-page-from-the-fastly-cdn).
 
 1. Verify that the asset is not there without using query string.
 
@@ -42,7 +42,6 @@ follow these steps:
 
    `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
 
-[clear-cache]: /manual/purge-cache.html#assets
 [govuk-production-mirror-gcp]: https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&project=govuk-production
 
 ## Redirecting an asset
