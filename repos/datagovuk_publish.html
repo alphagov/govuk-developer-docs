@@ -250,27 +250,7 @@
 
 <h2 id="deployment">Deployment</h2>
 
-<p>Continuous Integration has been setup using Github Actions.</p>
-
-<ul>
-<li>Tests are run on pull requests.</li>
-<li>Deployments to Integration happen automatically when marging branches into the <code>main</code> branch.</li>
-<li>In order to carry out a release to production a developer in the govuk team will need to create a release tag with a  leading <code>v</code> and <a href="https://docs.github.com/en/actions/managing-workflow-runs/reviewing-deployments">approve</a> of the deployment in Github Actions.</li>
-</ul>
-
-<h3 id="integration">Integration</h3>
-
-<p>To deploy to integration merge a PR into <code>main</code>.</p>
-
-<h3 id="staging-production">Staging &amp; Production</h3>
-
-<p>To deploy to staging/production you need to tag the release, the tag needs to be in this format - <code>v9.9.9</code> where 9 is a number and the leading <code>v</code> is required. E.g. <code>v0.1.11</code> is valid, <code>0.1.11</code> is not.</p>
-
-<p>This will create a PR on <a href="https://github.com/alphagov/govuk-dgu-charts/pulls">govuk-dgu-charts</a> which you should be able to approve and merge into main for testing.</p>
-
-<p>Test that your changes are working in staging by looking at the publish pod logs for evidence of jobs being processed.</p>
-
-<p>Then merge in the production release PR.</p>
+<p>See <a href="https://docs.publishing.service.gov.uk/manual/data-gov-uk-deployment.html">the developer docs on data.gov.uk deployment</a></p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 
