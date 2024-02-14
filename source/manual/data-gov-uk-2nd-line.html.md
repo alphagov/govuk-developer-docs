@@ -11,6 +11,8 @@ parent: "/manual.html"
 [dgu-ckan]: https://ckan.publishing.service.gov.uk
 [dgu-docs]: https://guidance.data.gov.uk
 [find]: repos/datagovuk_find
+[Grafana]: https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&refresh=1m&var-namespace=datagovuk&var-app=All&var-error_status=All
+[logit]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3
 [pagerduty]: https://govuk.pagerduty.com/
 [pingdom]: /manual/pingdom
 [publish]: repos/datagovuk_publish
@@ -65,7 +67,7 @@ Example query: `kubernetes.namespace: datagovuk AND kubernetes.container.name: f
 
 ### Grafana
 
-You can see the dashboard showing some metrics of datagovuk apps, [ckan][ckan-app], [Publish] and [Find], on [Grafana].
+There is a [Grafana dashboard][Grafana] showing some metrics for datagovuk apps.
 
 ### Sidekiq ([Publish])
 
