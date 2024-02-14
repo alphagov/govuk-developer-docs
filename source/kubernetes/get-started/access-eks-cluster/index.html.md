@@ -45,10 +45,23 @@ This document assumes that you have already followed the steps in [Get started d
 
     See the [Kubernetes documentation on configuring access to multiple clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) for more information.
 
+1. Set the current context:
+
+    ```bash
+    kubectl config use-context <govuk-environment>
+    ```
+
+    Where `govuk-environment` is the name of the context from step 2.
+
+1. Set the [default namespace](/kubernetes/manage-app/get-app-info/#choose-and-set-a-namespace)
+
+    ```
+    bash kubectl config set-context --current --namespace=apps
+    ```
+
 1. Check that you can access the cluster:
 
     ```sh
-    kubectl config use-context <govuk-environment>
     kubectl get deploy/frontend
     ```
 
