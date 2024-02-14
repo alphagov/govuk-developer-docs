@@ -253,7 +253,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/50f7c7f34dcc0e5a4430902906ca7f9f685bfe1b">1 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/79b85352013dfc35c9b1ba4d8dbb221288f7ebd7">14 Feb 2024</a>
 </div>
 
  <h1 id='header'>Get started developing on GOV.UK</h1> <blockquote>
@@ -308,9 +308,14 @@ gpgconf --launch gpg-agent
 <li><a href="https://gds-request-an-aws-account.cloudapps.digital/">Request a AWS IAM User</a> for the central <code>gds-users</code> AWS account.</li>
 <li>You should receive an email when your account is created.</li>
 <li>Follow instructions in the email to sign into the <code>gds-users</code> AWS account for the first time.</li>
-<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user">Enable Multi-factor Authentication (MFA)</a> for your IAM User.</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user">Enable Multi-factor Authentication (MFA)</a> for your IAM User,
+you must use your email address as the name of your MFA device, see
+below:</li>
 </ol>
-<p><strong><em>Important - You must specify your email address as the MFA device name.</em></strong></p>
+<p><a href="images/aws/assign-mfa-device.png" rel="noopener noreferrer"><img src="/images/aws/assign-mfa-device.png" alt="Screenshot of the Add MFA Device dialog in the AWS console" /></a></p>
+<p><strong><em>Important - not using your email address as the &lsquo;MFA Device Name&rsquo; will prevent
+the <a href="#7-install-and-configure-the-gds-cli">gds-cli</a> working without additional
+configuration</em></strong></p>
 <p>If you were issued a Yubikey, you can <a href="/manual/setup-a-yubikey.html#set-up-as-an-mfa-device-for-aws">use it as a MFA device</a>.</p>
 <h2 id='5-set-up-your-github-account'>5. Set up your GitHub account</h2>
 <ol>
@@ -340,8 +345,12 @@ brew <span class="nb">install</span> <span class="nt">--cask</span> aws-vault
 <li>remove that alias by adding <code>unalias gds</code> to your <code>~/.zshrc</code></li>
 <li>use <code>gds-cli</code> instead of <code>gds</code> for all the relevant commands</li>
 </ul></li>
-<li><p>Configure the GDS CLI by running:</p>
+<li><p>Configure your email address:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds config email &lt;FIRSTNAME&gt;.&lt;LASTNAME&gt;@digital.cabinet-office.gov.uk
+</code></pre></div></li>
+<li><p>By default the GDS-CLI will use a Yubikey as the MFA device. If you are not
+using a Yubikey you must disable this behaviour:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds config yubikey <span class="nb">false</span>
 </code></pre></div></li>
 <li><p>Set up AWS credentials:</p>
 

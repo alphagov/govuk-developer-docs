@@ -565,7 +565,7 @@
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/de52138d1998a59c2e2370b5b5f3bad26889e7ac">17 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3d81b040c2285e00cba3464adfc111bd4b8da117">14 Feb 2024</a>
 </div>
 
  <h1 id='access-a-gov-uk-eks-cluster'>Access a GOV.UK EKS cluster</h1><p>There are 3 GOV.UK clusters: integration, staging and production. These correspond to the integration, staging and production GOV.UK environments, which belong to the integration, staging and production AWS accounts respectively.</p>
@@ -594,9 +594,14 @@
 <li><p>To make it easier to switch between clusters, namespaces or users, you can rename the new context to match the name of the environment:</p>
 <p>Edit the <code>name</code> field of the last context in <code>~/.kube/config</code>. For example, for the staging environment you could set <code>name</code> to <code>govuk-staging</code>.</p>
 <p>See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">Kubernetes documentation on configuring access to multiple clusters</a> for more information.</p></li>
-<li><p>Check that you can access the cluster:</p>
+<li><p>Set the current context:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl config use-context &lt;govuk-environment&gt;
-kubectl get deploy/frontend
+</code></pre></div><p>Where <code>govuk-environment</code> is the name of the context from step 2.</p></li>
+<li><p>Set the <a href="/kubernetes/manage-app/get-app-info/#choose-and-set-a-namespace">default namespace</a></p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bash kubectl config set-context --current --namespace=apps
+</code></pre></div></li>
+<li><p>Check that you can access the cluster:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl get deploy/frontend
 </code></pre></div><p>You should see output similar to:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>NAME       READY   UP-TO-DATE   AVAILABLE   AGE
 frontend   2/2     2            2           399d
