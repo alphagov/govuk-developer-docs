@@ -97,9 +97,15 @@ GDS has a central `gds-users` AWS account where you create your IAM User. Your [
 1. [Request a AWS IAM User][request-aws-user] for the central `gds-users` AWS account.
 1. You should receive an email when your account is created.
 1. Follow instructions in the email to sign into the `gds-users` AWS account for the first time.
-1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User.
+1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User,
+   you must use your email address as the name of your MFA device, see
+   below:
 
-***Important - You must specify your email address as the MFA device name.***
+![Screenshot of the Add MFA Device dialog in the AWS console](images/aws/assign-mfa-device.png)
+
+***Important - not using your email address as the 'MFA Device Name' will prevent
+the [gds-cli](#7-install-and-configure-the-gds-cli) working without additional
+configuration***
 
 If you were issued a Yubikey, you can [use it as a MFA device][yubikey-aws-mfa].
 
@@ -161,10 +167,17 @@ On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS ac
       - remove that alias by adding `unalias gds` to your `~/.zshrc`
       - use `gds-cli` instead of `gds` for all the relevant commands
 
-1. Configure the GDS CLI by running:
+1. Configure your email address:
 
     ```bash
     gds config email <FIRSTNAME>.<LASTNAME>@digital.cabinet-office.gov.uk
+    ```
+
+1. By default the GDS-CLI will use a Yubikey as the MFA device. If you are not
+   using a Yubikey you must disable this behaviour:
+
+    ```bash
+    gds config yubikey false
     ```
 
 1. Set up AWS credentials:
