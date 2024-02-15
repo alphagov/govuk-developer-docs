@@ -41,14 +41,7 @@ link near the bottom of each PR.
 ### Branch Deploy Review
 
 Sometimes you may need to deploy your change in Integration in
-order to test it works on real infrastructure. Go to
-[the `Deploy_App` job in Jenkins](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/)
-and click 'Build with Parameters':
-
-- `TARGET_APPLICATION` - the name of the repository you want to deploy
-- `DEPLOY_TASK` - usually 'deploy' is most appropriate
-- `TAG` - put the name of your branch
-- Typically you can leave the checkboxes as they are
+order to test it works on real infrastructure. Refer to the [manual deployments documentation](/manual/deployments.html#manual-deployments).
 
 ## Get someone to review your Pull Request
 
@@ -93,8 +86,6 @@ to merge (and deploy) it for you.
 
 Code that is merged to `main` is tested again on CI. This is because
 the `main` branch may have changed since the tests last ran on the PR.
-If the tests on `main` pass, Jenkins pushes a `release_123` git tag to
-GitHub.
 
 > **WARNING**: some applications have Continuous Deployment enabled,
 > which means the deployment process is fully automated. You should do
@@ -113,17 +104,16 @@ is responsible for providing access to deploy software for teams who can't deplo
 - Check the notes in the [Release app][release] to see if Continuous Deployment is enabled.
 - If so, after merging, you should check the Release app to see if the deployment succeeds.
 - If the latest release is not on Production within about 15 minutes, something went wrong:
-  - Refer to the [Continuous Deployment Demo slides][slides] for details of the deployment process so you can pinpoint where in the pipeline it failed.
+  - Refer to the [deployment documentation](/kubernetes/manage-app/access-ci-cd/#how-apps-are-deployed) for details of the deployment process so you can pinpoint where in the pipeline it failed.
   - You can manually deploy your change if the automation fails e.g. due to a flakey [Smokey test][smokey].
 
 ### Manual Deployment
 
 #### Wait for the release to deploy to Integration
 
-When a new release is created, CI sends a message to Integration Deploy Jenkins to deploy the tag. You should verify your changes work in Integration before deploying downstream:
+Refer to the [manual deployments documentation](/manual/deployments.html#manual-deployments). You should verify your changes work in Integration before deploying downstream:
 
-- Run a build of [smoke tests][smokey-integration].
-- Look for any Icinga alerts related to your application.
+- Run a build of [smoke tests][smokey] in the environment you're deploying to.
 
 Our apps should always be in a state where `main` is deployable. You
 should raise a PR to revert your changes if they cause a problem and
@@ -150,11 +140,8 @@ Follow these rules:
 After a deployment:
 
 - [Check Sentry for any new errors](/manual/error-reporting.html).
-- Look for [any Icinga alerts](/manual/icinga.html) related to your application.
 - Check the [Deployment Dashboard](/manual/deployment-dashboards.html) for any issues.
 - Run a build of [smoke tests][smokey] in the environment you're deploying to.
 
 [release]: https://release.publishing.service.gov.uk
-[slides]: https://docs.google.com/presentation/d/1A0zdYHwOxV2jO_0YVsKplySXvd777pXDwn1YnETXSh8/edit
 [smokey]: https://github.com/alphagov/smokey
-[smokey-integration]: https://deploy.integration.publishing.service.gov.uk/job/Smokey/
