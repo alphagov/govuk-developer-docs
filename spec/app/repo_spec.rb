@@ -61,28 +61,33 @@ RSpec.describe Repo do
   end
 
   describe "dashboard_url" do
-    let(:configured_dashboard_url) { nil }
-    let(:app) do
-      described_class.new(
+    let(:default_options) do
+      {
         "type" => "Publishing app",
         "repo_name" => "my-app",
-        "dashboard_url" => configured_dashboard_url,
-      )
+      }
     end
-    subject(:dashboard_url) { app.dashboard_url }
+    let(:options) { default_options }
+    subject(:dashboard_url) { described_class.new(options).dashboard_url }
 
     describe "configured dashboard_url set to false" do
-      let(:configured_dashboard_url) { false }
+      let(:options) { default_options.merge("dashboard_url" => false) }
       it { is_expected.to be_nil }
     end
 
     describe "configured dashboard_url" do
-      let(:configured_dashboard_url) { "https://example.com" }
+      let(:options) { default_options.merge("dashboard_url" => "https://example.com") }
       it { is_expected.to eql("https://example.com") }
     end
 
+    describe "default dashboard_url for EKS hosted apps" do
+      let(:production_hosted_on) { "eks" }
+      let(:options) { default_options.merge("production_hosted_on" => "eks") }
+      it { is_expected.to eql("https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?var-app=my-app") }
+    end
+
     describe "default dashboard_url" do
-      it { is_expected.to eql("https://grafana.production.govuk.digital/dashboard/file/my-app.json") }
+      it { is_expected.to eql(nil) }
     end
   end
 
