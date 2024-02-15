@@ -110,8 +110,6 @@ class Repo
     default_url = if production_hosted_on_eks?
                     query_string = argo_cd_apps.map { |app| "var-app=#{app}" }.join("&")
                     "https://grafana.eks.production.govuk.digital/d/000000111?#{query_string}"
-                  else
-                    "https://grafana.production.govuk.digital/dashboard/file/#{repo_name}.json"
                   end
     repo_data["dashboard_url"] || default_url
   end

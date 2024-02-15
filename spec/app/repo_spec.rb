@@ -87,7 +87,7 @@ RSpec.describe Repo do
     end
 
     describe "default dashboard_url" do
-      it { is_expected.to eql("https://grafana.production.govuk.digital/dashboard/file/my-app.json") }
+      it { is_expected.to eql(nil) }
     end
   end
 
