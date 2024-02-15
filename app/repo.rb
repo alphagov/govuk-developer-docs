@@ -105,13 +105,12 @@ class Repo
   end
 
   def dashboard_url
-    return if repo_data["dashboard_url"] == false
-
-    default_url = if production_hosted_on_eks?
-                    query_string = argo_cd_apps.map { |app| "var-app=#{app}" }.join("&")
-                    "https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?#{query_string}"
-                  end
-    repo_data["dashboard_url"] || default_url
+    if repo_data["dashboard_url"]
+      repo_data["dashboard_url"]
+    elsif production_hosted_on_eks?
+      query_string = argo_cd_apps.map { |app| "var-app=#{app}" }.join("&")
+      "https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?#{query_string}"
+    end
   end
 
   def kibana_url
