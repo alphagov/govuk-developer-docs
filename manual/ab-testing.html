@@ -205,35 +205,28 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ca1ad4ee4a1678d425b914a4d85b581806831649">14 Feb 2024</a>
 </div>
 
- <h1 id='header'>How A/B testing works</h1> <p>GOV.UK uses our <a href="/manual/cdn.html">Content Delivery Network (Fastly)</a> to run A/B and multivariate tests.</p>
-<p>For a general introduction to A/B testing from a content design perspective, see the <a href="https://bit.ly/AB-testing-GOVUK">Confluence Wiki</a>.</p>
+ <h1 id='header'>How A/B testing works</h1> <p>GOV.UK uses our <a href="/manual/cdn.html">Content Delivery Network (Fastly)</a> to run A/B and multivariate tests. A <a href="https://docs.google.com/spreadsheets/d/1h4vGXzIbhOWwUzourPLIc8WM-iU1b6WYOVDOZxmU1Uo/edit#gid=254065189">list of previous and currently running A/B tests</a> is available internally.</p>
+<p>For a general introduction to A/B testing from a content design perspective, see the <a href="https://gov-uk.atlassian.net/wiki/spaces/CC/pages/87097383/A+B+Testing">GOV.UK internal wiki</a>.</p>
 
 <blockquote>
 <p>A/B tests are only enabled for users who have opted in to analytics cookies.</p>
 </blockquote>
-<p>If the user is opted-in to usage cookies, but hasn&rsquo;t got an AB test cookie yet:</p>
+<p>If the user is opted-in to usage cookies, but has not got an ABTest cookie yet:</p>
 <p><a href="images/ab-testing/opted-in.svg" rel="noopener noreferrer"><img src="/manual/images/ab-testing/opted-in.svg" alt="" /></a></p>
 <p>If the user is opted in to usage cookies, and has already got an ABTest cookie set:</p>
 <p><a href="images/ab-testing/opted-out.svg" rel="noopener noreferrer"><img src="/manual/images/ab-testing/opted-out.svg" alt="" /></a></p>
-<p><code>req.http.GOVUK-ABTest-Example</code> is set as soon as the user is assigned a bucket, which happens for users who haven&rsquo;t got cookies yet (as well as for those who already have). <code>vcl_recv</code> where this happens can&rsquo;t set the cookie itself, because it hasn&rsquo;t got a response object to mutate yet.</p>
+<p><code>req.http.GOVUK-ABTest-Example</code> is set as soon as the user is assigned a bucket, which happens for users who have not got cookies yet (as well as for those who already have). <code>vcl_recv</code> where this happens cannot set the cookie itself, because it has not got a response object to mutate yet.</p>
 <p>So if we say &ldquo;Only set the cookie if GOVUK-ABTest-Example is not already set&rdquo; then we&rsquo;ll never set the cookie.</p>
-<p>We need some way of detecting the situation where they user already had a cookie when they arrived if we want to avoid sending a Set-Cookie header in every response.</p>
+<p>We need a way of detecting the situation where the user already had a cookie when they arrived, if we want to avoid sending a Set-Cookie header in every response.</p>
 <h3 id='fastly-receives-the-request'>Fastly receives the request</h3><p>When a user requests a GOV.UK page, the request reaches Fastly&rsquo;s CDN first. If the page has A/B testing enabled, Fastly will add a <code>GOVUK-ABTest-Example</code> header to downstream requests. The header&rsquo;s value is set depending on whether a cookie called <code>ABTest-Example</code> is present in the original request:</p>
 
 <ul>
 <li>If the original request has the cookie, then the header&rsquo;s value is set to that cookie&rsquo;s value. For instance, the downstream request will have <code>GOVUK-ABTest-Example: B</code> if the <code>ABTest-Example</code> cookie of the original request has value <code>B</code>.</li>
-<li>If the original request doesn&rsquo;t have the cookie, then Fastly chooses a variant (e.g. <code>A</code>) and sets the header&rsquo;s value accordingly: <code>GOVUK-ABTest-Example: A</code></li>
+<li>If the original request does not have the cookie, then Fastly chooses a variant (e.g. <code>A</code>) and sets the header&rsquo;s value accordingly: <code>GOVUK-ABTest-Example: A</code></li>
 </ul>
 <p>In order to choose a variant, Fastly looks up the weighting of each variant in a <a href="https://docs.fastly.com/guides/edge-dictionaries/">Fastly dictionary</a> configured for all A/B tests.</p>
 <p>Fastly will then try to get a response from its cache.</p>
