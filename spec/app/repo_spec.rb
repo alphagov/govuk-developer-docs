@@ -62,11 +62,13 @@ RSpec.describe Repo do
 
   describe "dashboard_url" do
     let(:configured_dashboard_url) { nil }
+    let(:production_hosted_on) { "heroku" }
     let(:app) do
       described_class.new(
         "type" => "Publishing app",
         "repo_name" => "my-app",
         "dashboard_url" => configured_dashboard_url,
+        "production_hosted_on" => production_hosted_on,
       )
     end
     subject(:dashboard_url) { app.dashboard_url }
@@ -79,6 +81,11 @@ RSpec.describe Repo do
     describe "configured dashboard_url" do
       let(:configured_dashboard_url) { "https://example.com" }
       it { is_expected.to eql("https://example.com") }
+    end
+
+    describe "default dashboard_url for EKS hosted apps" do
+      let(:production_hosted_on) { "eks" }
+      it { is_expected.to eql("https://grafana.eks.production.govuk.digital/d/000000111?var-app=my-app") }
     end
 
     describe "default dashboard_url" do
