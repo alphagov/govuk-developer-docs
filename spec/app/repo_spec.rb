@@ -92,38 +92,24 @@ RSpec.describe Repo do
   end
 
   describe "kibana_url" do
-    let(:production_hosted_on) { nil }
-    let(:environment) { nil }
-    let(:app) do
-      described_class.new(
-        "repo_name" => "content-publisher",
-        "machine_class" => "backend",
-        "production_hosted_on" => production_hosted_on,
-      )
-    end
-    subject(:kibana_url) { app.kibana_url }
+    let(:default_options) { { "repo_name" => "content-publisher" } }
+    let(:options) { default_options }
+    subject(:kibana_url) { described_class.new(options).kibana_url }
 
     describe "hosted on EKS" do
-      let(:production_hosted_on) { "eks" }
+      let(:options) { default_options.merge("production_hosted_on" => "eks") }
 
       it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,request,status,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:content-publisher'),sort:!())") }
     end
   end
 
   describe "kibana_worker_url" do
-    let(:production_hosted_on) { nil }
-    let(:environment) { nil }
-    let(:app) do
-      described_class.new(
-        "repo_name" => "content-publisher",
-        "machine_class" => "backend",
-        "production_hosted_on" => production_hosted_on,
-      )
-    end
-    subject(:kibana_worker_url) { app.kibana_worker_url }
+    let(:default_options) { { "repo_name" => "content-publisher" } }
+    let(:options) { default_options }
+    subject(:kibana_worker_url) { described_class.new(options).kibana_worker_url }
 
     describe "hosted on EKS" do
-      let(:production_hosted_on) { "eks" }
+      let(:options) { default_options.merge("production_hosted_on" => "eks") }
 
       it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:content-publisher-worker'),sort:!())") }
     end
