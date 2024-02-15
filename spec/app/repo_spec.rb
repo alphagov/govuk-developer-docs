@@ -92,52 +92,34 @@ RSpec.describe Repo do
   end
 
   describe "kibana_url" do
-    let(:production_hosted_on) { nil }
-    let(:environment) { nil }
-    let(:app) do
-      described_class.new(
-        "repo_name" => "content-publisher",
-        "machine_class" => "backend",
-        "production_hosted_on" => production_hosted_on,
-      )
+    let(:default_options) { { "repo_name" => "content-publisher" } }
+    let(:options) { default_options }
+    subject(:kibana_url) { described_class.new(options).kibana_url }
+
+    describe "default behaviour" do
+      it { is_expected.to eql(nil) }
     end
-    subject(:kibana_url) { app.kibana_url }
 
     describe "hosted on EKS" do
-      let(:production_hosted_on) { "eks" }
+      let(:options) { default_options.merge("production_hosted_on" => "eks") }
 
-      it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,request,status,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:content-publisher'),sort:!())") }
-    end
-
-    describe "hosted on AWS" do
-      let(:production_hosted_on) { "aws" }
-
-      it { is_expected.to eql("https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:content-publisher')),sort:!('@timestamp',desc))") }
+      it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:content-publisher),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:content-publisher)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())"), "Actual URL returned: #{kibana_url.inspect}" }
     end
   end
 
   describe "kibana_worker_url" do
-    let(:production_hosted_on) { nil }
-    let(:environment) { nil }
-    let(:app) do
-      described_class.new(
-        "repo_name" => "content-publisher",
-        "machine_class" => "backend",
-        "production_hosted_on" => production_hosted_on,
-      )
+    let(:default_options) { { "repo_name" => "content-publisher" } }
+    let(:options) { default_options }
+    subject(:kibana_worker_url) { described_class.new(options).kibana_worker_url }
+
+    describe "default behaviour" do
+      it { is_expected.to eql(nil) }
     end
-    subject(:kibana_worker_url) { app.kibana_worker_url }
 
     describe "hosted on EKS" do
-      let(:production_hosted_on) { "eks" }
+      let(:options) { default_options.merge("production_hosted_on" => "eks") }
 
-      it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:content-publisher-worker'),sort:!())") }
-    end
-
-    describe "hosted on AWS" do
-      let(:production_hosted_on) { "aws" }
-
-      it { is_expected.to eql("https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:content-publisher-worker')),sort:!('@timestamp',desc))") }
+      it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:content-publisher-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:content-publisher-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())"), "Actual URL returned: #{kibana_worker_url.inspect}" }
     end
   end
 end
