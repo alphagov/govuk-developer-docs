@@ -7,25 +7,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-ask-export - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-ask-export (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-ask-export.html">
 
-      <meta name="description" content="Everything about govuk-ask-export (A tool for exporting the user responses and metadata from Smart Survey which is used for the [https://www.gov.uk/ask](https://www.gov.uk/ask) service.
+      <meta name="description" content="Everything about govuk-ask-export (A tool for exporting the user responses and metadata from Smart Survey which is used for the [https://www.gov.uk/ask](https://www.gov.uk/ask) service. Retired in February 2024, since it was no longer used.
 )" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-ask-export - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-ask-export (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-ask-export.html" />
 
-      <meta property="og:description" content="Everything about govuk-ask-export (A tool for exporting the user responses and metadata from Smart Survey which is used for the [https://www.gov.uk/ask](https://www.gov.uk/ask) service.
+      <meta property="og:description" content="Everything about govuk-ask-export (A tool for exporting the user responses and metadata from Smart Survey which is used for the [https://www.gov.uk/ask](https://www.gov.uk/ask) service. Retired in February 2024, since it was no longer used.
 )" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-ask-export" />
+      <meta property="og:title" content="Repository: govuk-ask-export (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-ask-export.html" />
 
@@ -189,212 +189,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-ask-export</h1>
+  <h1 class="page-title">Repository: govuk-ask-export (retired)</h1>
 
-  <p>A tool for exporting the user responses and metadata from Smart Survey which is used for the <a href="https://www.gov.uk/ask">https://www.gov.uk/ask</a> service.</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-ask-export">govuk-ask-export</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/dev-notifications-ai-govuk">#dev-notifications-ai-govuk</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk-ask-export" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-ask-export')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:govuk-ask-export-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p><strong>Archived - This tool has not been running since Jenkins was retired</strong></p>
-
-<p>A tool for exporting the user responses and metadata from Smart Survey which is
-used for the <a href="https://www.gov.uk/ask">https://www.gov.uk/ask</a> service. This does the following:</p>
-
-<ul>
-<li>downloads data from Smart Survey API</li>
-<li>removes identifying strings from the user&rsquo;s question text</li>
-<li>formats the data in CSV file</li>
-<li>exports the CSV file to specified targets including to the local filesystem,
-a Google Drive folder or an AWS S3 bucket</li>
-</ul>
-
-<p>A <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_jenkins/templates/jobs/ask_export.yaml.erb">Jenkins job</a> has been configured to run daily, to export the previous
-day&rsquo;s smart survey data. However, this project can also be run manually on your
-local machine if needed.</p>
-
-<h2 id="dependencies">Dependencies</h2>
-
-<p>This project has several external dependencies and needs access to the
-following credentials:</p>
-
-<ul>
-<li>GOV.UK&rsquo;s <a href="https://www.smartsurvey.co.uk/">Smart Survey</a> account. The
-credentials are available in <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>.</li>
-<li>Google Cloud Platform Service Account with appropriate permissions, DLP and
-Google Drive APIs enabled and billing enabled. This is used to remove
-identifiable strings and to export files to Google Drive</li>
-<li>AWS IAM User credentials to export files to an S3 bucket.</li>
-</ul>
-
-<h2 id="how-to-use">How to use</h2>
-
-<h3 id="setup">Setup</h3>
-
-<p>Install dependencies with <code>bundle install</code></p>
-
-<h3 id="configure-the-exports">Configure the exports</h3>
-
-<p>The exports are configured in
-<a href="https://github.com/alphagov/govuk-ask-export/blob/master/config/pipelines.yml"><code>config/pipelines.yml</code></a>.
-Each pipeline represents a version of the CSV data being generated. Pipelines
-are configured to export specific data fields or CSV columns listed under <code>fields</code>
-attribute. Each pipeline can specify zero or more export targets under the
-<code>targets</code> attribute. These are the names of the locations to which the file
-should be exported to.</p>
-
-<h3 id="set-the-environment-variables">Set the environment variables</h3>
-
-<p>The following environment variables should be configured:</p>
-
-<table>
-<thead>
-<tr>
-<th>Environment Variable Key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SMART_SURVEY_CONFIG</td>
-<td>This configures which Smart Survey to retrieve data from. Defaults to <code>draft</code>. Set to <code>live</code> for the live survey.</td>
-</tr>
-<tr>
-<td>SMART_SURVEY_API_TOKEN</td>
-<td>Credentials found in Smart Survey, under Account &gt; API Keys. (Required)</td>
-</tr>
-<tr>
-<td>SMART_SURVEY_API_TOKEN_SECRET</td>
-<td>Credentials found in Smart Survey, under Account &gt; API Keys. (Required)</td>
-</tr>
-<tr>
-<td>SINCE_TIME</td>
-<td>Retrieve responses submitted after this time. Can be set as a time (e.g. &ldquo;13:00&rdquo;) for the previous day or can be set as a datetime (e.g. &ldquo;2020-05-01 10:00&rdquo;) to specify the date. Default is &ldquo;10:00&rdquo;.</td>
-</tr>
-<tr>
-<td>UNTIL_TIME</td>
-<td>Retrieve responses submitted before this time. Can be set as a time (e.g. &ldquo;13:00&rdquo;) for the current day or can be set as a datetime (e.g. &ldquo;2020-05-01 16:00&rdquo;) to specify the date. Default is &ldquo;10:00&rdquo;.</td>
-</tr>
-<tr>
-<td>FOLDER_ID_&lt;PIPELINE_NAME&gt;</td>
-<td>Each pipeline with an export target <code>google_drive</code> requires an environment variable to be set. This specifies the Google Drive folder to export to for that pipeline. E.g. <code>cabinet-office</code> needs <code>FOLDER_ID_CABINET_OFFICE</code> set.</td>
-</tr>
-<tr>
-<td>GOOGLE_CLOUD_PROJECT</td>
-<td>The GCP project name which has the billing and DLP API enabled.</td>
-</tr>
-<tr>
-<td>GOOGLE_ACCOUNT_TYPE</td>
-<td>The account type for the credentials used by Google APIs. This should be <code>service_account</code>.</td>
-</tr>
-<tr>
-<td>GOOGLE_CLIENT_ID</td>
-<td>GCP credentials for the service account.</td>
-</tr>
-<tr>
-<td>GOOGLE_CLIENT_EMAIL</td>
-<td>GCP credentials for the service account.</td>
-</tr>
-<tr>
-<td>GOOGLE_PRIVATE_KEY</td>
-<td>GCP credentials for the service account.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Then run the rake task:</p>
-
-<pre><code>bundle exec rake run_exports
-</code></pre>
-
-<p>To run existing pipeline:</p>
-
-<pre><code>SINCE_TIME=00:00 \
-UNTIL_TIME=00:00 \
-SMART_SURVEY_API_TOKEN=&lt;smart-survey-api-token&gt; \
-SMART_SURVEY_API_TOKEN_SECRET=&lt;smart-survey-api-token-secret&gt; \
-SMART_SURVEY_CONFIG=live \
-GOOGLE_ACCOUNT_TYPE=service_account \
-GOOGLE_CLIENT_ID=&lt;google-client-id&gt; \
-GOOGLE_CLIENT_EMAIL=&lt;google-client-email&gt; \
-GOOGLE_PRIVATE_KEY=&lt;google-private-key&gt; \
-GOOGLE_CLOUD_PROJECT=&lt;google-cloud-project&gt; \
-FOLDER_ID_CABINET_OFFICE=&lt;google-drive-folder-id-cabinet-office&gt; \
-FOLDER_ID_THIRD_PARTY=&lt;google-drive-folder-id-third-party&gt; \
-bundle exec rake run_exports
-</code></pre>
-
-<p>Minimal configuration to run would be:</p>
-
-<pre><code>SINCE_TIME=09:00 \
-UNTIL_TIME=11:00\
-SMART_SURVEY_CONFIG=live \
-SMART_SURVEY_API_TOKEN=&lt;api-token&gt; \
-SMART_SURVEY_API_TOKEN_SECRET=&lt;api-token-secret&gt; \
-GOOGLE_CLOUD_PROJECT=&lt;project-name&gt; \
-GOOGLE_ACCOUNT_TYPE=service_account \
-GOOGLE_CLIENT_ID=&lt;client-id&gt; \
-GOOGLE_CLIENT_EMAIL=&lt;service-account-email&gt; \
-GOOGLE_PRIVATE_KEY=&lt;private-key&gt; \
-bundle exec rake run_exports
-</code></pre>
-
-<h2 id="development">Development</h2>
-
-<h3 id="run-tests">Run tests</h3>
-
-<pre><code>bundle exec rake
-</code></pre>
-
-<p>This will lint and test the code.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/govuk-ask-export/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>A tool for exporting the user responses and metadata from Smart Survey which is used for the <a href="https://www.gov.uk/ask">https://www.gov.uk/ask</a> service. Retired in February 2024, since it was no longer used.</p></p>
+<p><a href="https://github.com/alphagov/govuk-ask-export">GitHub repository</a></p>
 
 
             
