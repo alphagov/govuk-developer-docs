@@ -83,7 +83,7 @@ RSpec.describe Repo do
     describe "default dashboard_url for EKS hosted apps" do
       let(:production_hosted_on) { "eks" }
       let(:options) { default_options.merge("production_hosted_on" => "eks") }
-      it { is_expected.to eql("https://grafana.eks.production.govuk.digital/d/000000111?var-app=my-app") }
+      it { is_expected.to eql("https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?var-app=my-app") }
     end
 
     describe "default dashboard_url" do
