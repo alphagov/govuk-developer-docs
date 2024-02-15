@@ -224,7 +224,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/74ffa2c0bfaad0975c1332b129d3eee169107505">7 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/161fc9f314f92e1559ce7791796ed980f1cd8aa5">15 Feb 2024</a>
 </div>
 
  <h1 id='header'>The development and deployment pipeline</h1> <blockquote>
@@ -251,16 +251,7 @@ All frontend applications and some publishing apps have
 <a href="/manual/review-apps.html">Heroku Review Apps</a> enabled, with a
 link near the bottom of each PR.</p>
 <h3 id='branch-deploy-review'>Branch Deploy Review</h3><p>Sometimes you may need to deploy your change in Integration in
-order to test it works on real infrastructure. Go to
-<a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">the <code>Deploy_App</code> job in Jenkins</a>
-and click &lsquo;Build with Parameters&rsquo;:</p>
-
-<ul>
-<li><code>TARGET_APPLICATION</code> - the name of the repository you want to deploy</li>
-<li><code>DEPLOY_TASK</code> - usually &lsquo;deploy&rsquo; is most appropriate</li>
-<li><code>TAG</code> - put the name of your branch</li>
-<li>Typically you can leave the checkboxes as they are</li>
-</ul>
+order to test it works on real infrastructure. Refer to the <a href="/manual/deployments.html#manual-deployments">manual deployments documentation</a>.</p>
 <h2 id='get-someone-to-review-your-pull-request'>Get someone to review your Pull Request</h2><p>The GDS Way has guidelines on <a href="https://gds-way.digital.cabinet-office.gov.uk/manuals/code-review-guidelines.html">how to review code</a>.</p>
 <p>Only when the tests pass and the code has been approved the Pull Request can be merged, since we&rsquo;ve
 <a href="/manual/github.html">configured GitHub to prevent merges</a> otherwise.</p>
@@ -294,9 +285,7 @@ If you are unable to merge your own PR, you should ask
 <a href="https://github.com/orgs/alphagov/teams/gov-uk-production/members">someone else</a>
 to merge (and deploy) it for you.</p>
 <p>Code that is merged to <code>main</code> is tested again on CI. This is because
-the <code>main</code> branch may have changed since the tests last ran on the PR.
-If the tests on <code>main</code> pass, Jenkins pushes a <code>release_123</code> git tag to
-GitHub.</p>
+the <code>main</code> branch may have changed since the tests last ran on the PR.</p>
 
 <blockquote>
 <p><strong>WARNING</strong>: some applications have Continuous Deployment enabled,
@@ -315,15 +304,14 @@ is responsible for providing access to deploy software for teams who can&rsquo;t
 <li>If the latest release is not on Production within about 15 minutes, something went wrong:
 
 <ul>
-<li>Refer to the <a href="https://docs.google.com/presentation/d/1A0zdYHwOxV2jO_0YVsKplySXvd777pXDwn1YnETXSh8/edit">Continuous Deployment Demo slides</a> for details of the deployment process so you can pinpoint where in the pipeline it failed.</li>
+<li>Refer to the <a href="/kubernetes/manage-app/access-ci-cd/#how-apps-are-deployed">deployment documentation</a> for details of the deployment process so you can pinpoint where in the pipeline it failed.</li>
 <li>You can manually deploy your change if the automation fails e.g. due to a flakey <a href="https://github.com/alphagov/smokey">Smokey test</a>.</li>
 </ul></li>
 </ul>
-<h3 id='manual-deployment'>Manual Deployment</h3><h4 id='wait-for-the-release-to-deploy-to-integration'>Wait for the release to deploy to Integration</h4><p>When a new release is created, CI sends a message to Integration Deploy Jenkins to deploy the tag. You should verify your changes work in Integration before deploying downstream:</p>
+<h3 id='manual-deployment'>Manual Deployment</h3><h4 id='wait-for-the-release-to-deploy-to-integration'>Wait for the release to deploy to Integration</h4><p>Refer to the <a href="/manual/deployments.html#manual-deployments">manual deployments documentation</a>. You should verify your changes work in Integration before deploying downstream:</p>
 
 <ul>
-<li>Run a build of <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">smoke tests</a>.</li>
-<li>Look for any Icinga alerts related to your application.</li>
+<li>Run a build of <a href="https://github.com/alphagov/smokey">smoke tests</a> in the environment you&rsquo;re deploying to.</li>
 </ul>
 <p>Our apps should always be in a state where <code>main</code> is deployable. You
 should raise a PR to revert your changes if they cause a problem and
@@ -349,7 +337,6 @@ Individual app deploy freezes are usually announced here.</li>
 
 <ul>
 <li><a href="/manual/error-reporting.html">Check Sentry for any new errors</a>.</li>
-<li>Look for <a href="/manual/icinga.html">any Icinga alerts</a> related to your application.</li>
 <li>Check the <a href="/manual/deployment-dashboards.html">Deployment Dashboard</a> for any issues.</li>
 <li>Run a build of <a href="https://github.com/alphagov/smokey">smoke tests</a> in the environment you&rsquo;re deploying to.</li>
 </ul>
