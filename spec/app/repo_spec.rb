@@ -96,6 +96,10 @@ RSpec.describe Repo do
     let(:options) { default_options }
     subject(:kibana_url) { described_class.new(options).kibana_url }
 
+    describe "default behaviour" do
+      it { is_expected.to eql(nil) }
+    end
+
     describe "hosted on EKS" do
       let(:options) { default_options.merge("production_hosted_on" => "eks") }
 
@@ -107,6 +111,10 @@ RSpec.describe Repo do
     let(:default_options) { { "repo_name" => "content-publisher" } }
     let(:options) { default_options }
     subject(:kibana_worker_url) { described_class.new(options).kibana_worker_url }
+
+    describe "default behaviour" do
+      it { is_expected.to eql(nil) }
+    end
 
     describe "hosted on EKS" do
       let(:options) { default_options.merge("production_hosted_on" => "eks") }
