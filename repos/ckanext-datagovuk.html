@@ -223,12 +223,13 @@
     <li><a href="https://ckan.publishing.service.gov.uk/" class="govuk-link">ckan.publishing.service.gov.uk/</a></li>
     <li><a href="https://sentry.io/govuk/app-ckanext-datagovuk" class="govuk-link">Sentry (error tracking)</a></li>
     <li></li>
-    <li><a href="https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&amp;orgId=1" class="govuk-link">Deployment dashboard</a></li>
+    <li><a href="https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&amp;orgId=1" class="govuk-link">App dashboard: request rates, errors, durations</a></li>
     <li></li>
     <li></li>
     <li></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:ckanext-datagovuk')),sort:!('@timestamp',desc))" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&amp;_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:ckanext-datagovuk-worker')),sort:!('@timestamp',desc))" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
+    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:ckanext-datagovuk'),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
+    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:ckanext-datagovuk-worker'),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
+    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/ckanext-datagovuk" class="govuk-link">Argo CD (ckanext-datagovuk)</a></li>
 </dd>
 
 
