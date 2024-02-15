@@ -114,7 +114,6 @@ is responsible for providing access to deploy software for teams who can't deplo
 Refer to the [manual deployments documentation](/manual/deployments.html#manual-deployments). You should verify your changes work in Integration before deploying downstream:
 
 - Run a build of [smoke tests][smokey] in the environment you're deploying to.
-- Look for any Icinga alerts related to your application.
 
 Our apps should always be in a state where `main` is deployable. You
 should raise a PR to revert your changes if they cause a problem and
@@ -141,7 +140,6 @@ Follow these rules:
 After a deployment:
 
 - [Check Sentry for any new errors](/manual/error-reporting.html).
-- Look for [any Icinga alerts](/manual/icinga.html) related to your application.
 - Check the [Deployment Dashboard](/manual/deployment-dashboards.html) for any issues.
 - Run a build of [smoke tests][smokey] in the environment you're deploying to.
 
