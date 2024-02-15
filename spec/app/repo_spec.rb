@@ -108,12 +108,6 @@ RSpec.describe Repo do
 
       it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,request,status,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:content-publisher'),sort:!())") }
     end
-
-    describe "hosted on AWS" do
-      let(:production_hosted_on) { "aws" }
-
-      it { is_expected.to eql("https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&_a=(columns:!(level,request,status,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:content-publisher')),sort:!('@timestamp',desc))") }
-    end
   end
 
   describe "kibana_worker_url" do
@@ -132,12 +126,6 @@ RSpec.describe Repo do
       let(:production_hosted_on) { "eks" }
 
       it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,message),filters:!(),index:'filebeat-*',interval:auto,query:(language:lucene,query:'kubernetes.deployment.name:content-publisher-worker'),sort:!())") }
-    end
-
-    describe "hosted on AWS" do
-      let(:production_hosted_on) { "aws" }
-
-      it { is_expected.to eql("https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-3h,mode:quick,to:now))&_a=(columns:!(level,message),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'application:content-publisher-worker')),sort:!('@timestamp',desc))") }
     end
   end
 end
