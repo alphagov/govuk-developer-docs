@@ -387,7 +387,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ab13bf1da3a9c5d51ad94d50fa9ee14903ef453d">12 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a879c2f5c2741885730d6d812250fa89eab05d0f">14 Feb 2024</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <blockquote>
@@ -415,10 +415,10 @@ fix it - open a PR to resolve the problem.</p>
 </ul>
 <h2 id='monitoring-data-gov-uk'>Monitoring data.gov.uk</h2><h3 id='pingdom'>Pingdom</h3><p><a href="/manual/pingdom">Pingdom</a> monitors <code>https://data.gov.uk</code> uptime and alerts <a href="https://govuk.pagerduty.com/">PagerDuty</a> when downtime is detected.</p>
 <h3 id='sentry'>Sentry</h3><p><a href="https://sentry.io/govuk/">Sentry</a> monitors application errors. The Sentry pages for each app can be found on the <a href="/repos/datagovuk_find.html">Find</a> and <a href="/repos/datagovuk_publish.html">Publish</a> app pages.</p>
-<h3 id='logs'>Logs</h3><p><a href="/repos/ckanext-datagovuk.html">Ckan</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> send their logs to [Logit].
+<h3 id='logs'>Logs</h3><p><a href="/repos/ckanext-datagovuk.html">Ckan</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> send their logs to <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3">Logit</a>.
 Example query: <code>kubernetes.namespace: datagovuk AND kubernetes.container.name: find AND message: &quot;status=404&quot;</code>.</p>
 <p><a href="/manual/query-cdn-logs.html">CDN logs for data.gov.uk are also available</a>.</p>
-<h3 id='grafana'>Grafana</h3><p>You can see the dashboard showing some metrics of datagovuk apps, <a href="/repos/ckanext-datagovuk.html">ckan</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a>, on [Grafana].</p>
+<h3 id='grafana'>Grafana</h3><p>There is a <a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&amp;refresh=1m&amp;var-namespace=datagovuk&amp;var-app=All&amp;var-error_status=All">Grafana dashboard</a> showing some metrics for datagovuk apps.</p>
 <h3 id='sidekiq-publish'>Sidekiq (<a href="/repos/datagovuk_publish.html">Publish</a>)</h3><p>You can monitor the number of jobs in each queue using the following.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
 rails console
@@ -747,7 +747,7 @@ case it should fail or if the sync needs to happen sooner you can manually
 trigger the sync after Solr has been reindexed.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>ckan ckan-pycsw load <span class="nt">-p</span> /config/pycsw.cfg <span class="nt">-u</span> http://ckan-ckan:5000
 </code></pre></div><h2 id='map-previews'>Map previews</h2><p>Map previews on data.gov.uk have been deprecated. Map preview links are no longer available and existing map preview pages will have a note about them being deprecated.</p>
-<p>The Ordanance Survey API that sat behind this service was turned off. We also conducted an audit of the use of map previews, which showed that less than 1% of requests were to map preview datasets and of the 6% of map preview datasets available on DGU, only 2% were working as expected.</p>
+<p>The Ordnance Survey API that sat behind this service was turned off. We also conducted an audit of the use of map previews, which showed that less than 1% of requests were to map preview datasets and of the 6% of map preview datasets available on DGU, only 2% were working as expected.</p>
 <h2 id='register-a-brownfield-dataset'>Register a brownfield dataset</h2><p>See the <a href="https://docs.google.com/document/d/1SxzN9Ihat75TXo-fMwFqW_qBS-bPKHRs-a-tAO-qA1c/edit?usp=sharing">supporting manual</a>.</p>
 <h2 id='ckan-on-staging-environment-responds-with-nginx-504-timeout'>CKAN on Staging environment responds with Nginx 504 timeout:</h2><p>CKAN on the Staging environment can sometime respond with a 504 error, due to it timing out when connecting to the database as there are too many connections. The current limit is 1000, usually the number of connections should be under 100.</p>
 <div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">rolname</span><span class="p">,</span> <span class="n">rolconnlimit</span> <span class="k">FROM</span> <span class="n">pg_roles</span> <span class="k">WHERE</span> <span class="n">rolname</span><span class="o">=</span><span class="s1">'ckan'</span><span class="p">;</span>
