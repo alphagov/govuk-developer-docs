@@ -43,8 +43,7 @@ You should do these things before going on call so you're prepared.
     - [Falling back to the static mirror](/manual/fall-back-to-mirror.html)
     - [Non-emergency global banner](/manual/global-banner.html)
 
-The steps above are outlined in the [On call template Trello card](https://trello.com/c/mK6p8hH4/977-on-call-checklist), which developers should drill when given [Production Admin access](/manual/rules-for-getting-production-access.html#when-you-get-production-admin-access). Developers should speak to the 2nd line tech lead(s)
-if they have any issues with the above steps.
+The steps above are outlined in the [On call template Trello card](https://trello.com/c/mK6p8hH4/977-on-call-checklist). Developers should speak to the 2nd line tech lead(s) if they have any issues with the above steps.
 
 You may also want to set to be notified for every new message in the [#govuk-incident](https://gds.slack.com/archives/CAH9L36LR) Slack channel, but this is strictly optional. People should not expect to be able to contact you on Slack during your shift. You can change your Slack notification settings by clicking “Change notifications” and selecting “All new messages”.
 
