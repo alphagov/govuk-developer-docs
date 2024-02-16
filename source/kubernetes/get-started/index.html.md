@@ -6,7 +6,7 @@ layout: multipage_layout
 
 # Get started
 
-To start using the GOV.UK Kubernetes platform, you should:
+To start using the GOV.UK Kubernetes clusters, you should:
 
 - try the [tutorials](tutorials)
 - [set up the necessary tools](set-up-tools)

@@ -14,100 +14,54 @@ If you're having trouble with this guide, you can ask your colleagues on the [#g
 
 ## Before you start
 
-You should determine who your tech lead is in your team, as there are a number of steps that require their involvement.
+You will need to know who your tech lead is, as you will need them for some of these steps.
 
 If you are on a team that does not have a tech lead, or you are the tech lead, please contact the Lead Developer in your area or email [GOV.UK senior tech](/manual/ask-for-help.html#contact-senior-tech) with details on who you are and what team you've joined, so that they can help.
 
-You must have a laptop with full admin access. To check if you have full admin access, run a `sudo` command in your command line. For example, `sudo ls`.
+You should have been given a GDS "developer build" laptop with full admin access. To find out, try running `sudo whoami` in your terminal. It should prompt for your local account password and print `root` if you entered your password correctly.
 
-If you do not have full admin access to your laptop, ask your line manager to ask IT to provide you with a developer build on your laptop.
+If you don't have admin access to your laptop, file a ticket with the IT helpdesk and copy your line manager.
 
-Once you have full admin access on your laptop, run the following in your command line to install the Xcode command line tool:
+## 1. Install the Xcode command-line tools
 
-```
+Run the following in your command line to install the Xcode command line tools:
+
+```sh
 xcode-select --install
 ```
 
-## 1. Install the Homebrew package manager
+## 2. Install the Homebrew package manager
 
 Run the following in your command line to install the [Homebrew package manager](https://brew.sh):
 
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 This command works for macOS or Linux.
 
-## 2. Generate a SSH key
+## 3. Fill out your Slack profile
 
-### If you have a YubiKey
-
-If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which requires a GPG key to have been generated.
-
-1. Create a GPG key as per the [Create a GPG Key][create-gpg-key] documentation.
-
-1. Add the following to the `~/.gnupg/gpg-agent.conf` file:
-
-    ```
-    enable-ssh-support
-    pinentry-program /usr/local/bin/pinentry-mac
-    default-cache-ttl 60
-    max-cache-ttl 120
-    ```
-
-1. Add the following to your `~/.zprofile` file:
-
-    ```
-    export GPG_TTY=$(tty)
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-    gpgconf --launch gpg-agent
-    ```
-
-1. Run `killall gpg-agent` to stop any running `gpg-agent` processes.
-
-1. Run `ssh-add -L`. This will output your public SSH key, which should end `cardno:000000000000` (indicating it is from a YubiKey).
-
-### If you do not have a YubiKey
-
-1. [Generate a new SSH key for your laptop and add it to the ssh-agent][generate-ssh-key].
-
-1. Add the following code into your `.zshrc`, `~/.bash_profile`, or equivalent so that it is persistent between restarts:
-
-    ```
-    $ /usr/bin/ssh-add -K <YOUR-PRIVATE-KEY>
-    ```
-
-[create-gpg-key]: /manual/create-a-gpg-key.html
-[generate-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-
-## 3. Set up your Slack profile
-
-As part of your onboarding to GDS you will have been given access to Slack - if you've not got this please talk to your tech lead.
+You should already have access to Slack. If not, please talk with your line manager.
 
 Help others know who you are by [updating your Slack profile's 'title' field](https://slack.com/intl/en-gb/help/articles/204092246-Edit-your-profile). This should include:
 
 - your job role
 - the team you're working on
-- if relevant, the name of your supplier
+- the name of your organisation, if you're not directly employed by GDS / Cabinet Office
 
-## 4. Set up your AWS IAM User
+## 4. Set up your AWS IAM user account
 
-GDS has a central `gds-users` AWS account where you create your IAM User. Your [tech lead will then create IAM Roles][iam-role-creation] that you can assume for access to GOV.UK's AWS accounts. The [reliability engineering site][aws-account-info] has more information on how AWS accounts are structured.
-
-1. [Request a AWS IAM User][request-aws-user] for the central `gds-users` AWS account.
+1. [Request a AWS user account][request-aws-user].
 1. You should receive an email when your account is created.
 1. Follow instructions in the email to sign into the `gds-users` AWS account for the first time.
-1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User,
-   you must use your email address as the name of your MFA device, see
-   below:
+1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User.
+
+> <strong>You must specify your email address as the MFA device name.</strong>
 
 ![Screenshot of the Add MFA Device dialog in the AWS console](images/aws/assign-mfa-device.png)
 
-***Important - not using your email address as the 'MFA Device Name' will prevent
-the [gds-cli](#7-install-and-configure-the-gds-cli) working without additional
-configuration***
-
-If you were issued a Yubikey, you can [use it as a MFA device][yubikey-aws-mfa].
+You should [use your Yubikey as your MFA device][yubikey-aws-mfa] if you have one.
 
 [aws-account-info]: https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws
 [iam-role-creation]: #6-get-permissions-for-aws-github-and-other-third-party-services
@@ -118,27 +72,32 @@ If you were issued a Yubikey, you can [use it as a MFA device][yubikey-aws-mfa].
 
 ## 5. Set up your GitHub account
 
-1. [Login into your existing GitHub account][github-login] or [create a new GitHub account][github-signup].
-1. [Associate your GitHub account with your GDS email address][associate-email-github], which can be in addition to your personal email address.
+1. [Log into your existing GitHub account](https://github.com/login) or [create a new one](https://github.com/signup).
+1. [Add your GDS email address to your GitHub account][associate-email-github], which can be in addition to your personal email address.
+1. [Generate an SSH key].
 1. [Add the SSH key to your GitHub account][add-ssh-key].
-1. Test that the SSH key works by running `ssh -T git@github.com`.
+1. Check that you can access GitHub using the new key:
+
+    ```sh
+    ssh -T git@github.com
+    ```
+
 1. Add your name and email to your git commits. For example:
 
-    ```
-    $ git config --global user.email "friendly.giraffe@digital.cabinet-office.gov.uk"
-    $ git config --global user.name "Friendly Giraffe"
+    ```sh
+    git config --global user.email "friendly.giraffe@digital.cabinet-office.gov.uk"
+    git config --global user.name "Friendly Giraffe"
     ```
 
-[github-login]: https://www.github.com/login
-[github-signup]: https://www.github.com/signup
 [associate-email-github]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
+[Generate an SSH key]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 [add-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 
 ## 6. Get permissions for AWS, GitHub and other third party services
 
-Permissions to GOV.UK's AWS, [GitHub], [Fastly], [Sentry] and [Pagerduty] accounts are managed by the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository. This is a private repository so will 404 before joining GOV.UK's GitHub.
+Permissions to GOV.UK's AWS, [GitHub], [Fastly], [Sentry] and [Pagerduty] accounts are managed by the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) private repository. You won't be able to see this repo until you are added to the alphagov GitHub organisation.
 
-Ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant you access. *You must complete steps 1-5 first*.
+Ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant you access.
 
 [Fastly]: /manual/cdn.html
 [GitHub]: /manual/github.html
@@ -151,30 +110,32 @@ Ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant 
 
 On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS access.
 
-1. Run the following install GDS CLI:
+You must be a member of the [alphagov GitHub org](https://github.com/alphagov/) (see previous step) to proceed.
 
-    ```bash
+1. Install GDS CLI:
+
+    ```sh
     brew tap alphagov/gds
     brew install gds-cli
     brew install --cask aws-vault
     ```
 
-    The GDS CLI repository is private, so your tech lead must have first completed [step 6](#6-get-permissions-for-aws-github-and-other-third-party-services) to provide you with the necessary access.
+1. Run `gds --help` to check the installation.
 
-1. Test that installation was successful by running `gds --help`  and `gds govuk connect --help`.
+    If you see `fatal: no such path in the working tree`, that's because you're using ZSH, which has `gds` set up as a Git alias. To solve this, you can remove that alias by adding `unalias gds` to your `~/.zshrc`:
 
-    If you see a `fatal: no such path in the working tree` error, that's because you're using ZSH, which has `gds` set up as a Git alias. To solve this, you can either:
-      - remove that alias by adding `unalias gds` to your `~/.zshrc`
-      - use `gds-cli` instead of `gds` for all the relevant commands
+    ```sh
+    echo unalias gds >>~/.zshrc
+    ```
 
 1. Configure your email address:
 
-    ```bash
+    ```sh
     gds config email <FIRSTNAME>.<LASTNAME>@digital.cabinet-office.gov.uk
     ```
 
-1. By default the GDS-CLI will use a Yubikey as the MFA device. If you are not
-   using a Yubikey you must disable this behaviour:
+1. By default, GDS CLI will use a Yubikey as the MFA device. If you don't
+   have a Yubikey you must disable this:
 
     ```bash
     gds config yubikey false
@@ -183,15 +144,19 @@ On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS ac
 1. Set up AWS credentials:
 
     1. [Create an AWS access key][create-aws-access-key] via the [console][gds-users-aws-signin].
-    1. Run a GDS CLI command to prompt for credentials. For example `gds aws govuk-integration-readonly -l`.
-    1. Enter your Access Key ID and Secret Access Key
-    1. Enter your AWS MFA token
+    1. Run any `gds aws` command to start the first-time setup process:
+
+        ```sh
+        gds aws govuk-integration-readonly -l
+        ```
+
+    1. Enter your Access Key ID and Secret Access Key when prompted.
+    1. Enter your AWS MFA token when prompted.
     1. When prompted, save credentials to your Mac's keychain as `aws-vault` and set a password for the keychain. Save that password somewhere safe, for example in a password manager.
 
-    Here is an example of the output you'll see:
+    For example:
 
-    ```shell
-    $ gds aws govuk-integration-readonly -l
+    ```
     Welcome to the GDS CLI! We will now store your AWS credentials in the keychain using aws-vault.
     Enter Access Key ID: <YOUR-ACCESS-KEY-ID>
     Enter Secret Access Key: <YOUR-SECRET-ACCESS-KEY>
@@ -200,12 +165,10 @@ On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS ac
     Enter token for arn:aws:iam::123456789012:mfa/firstname.lastname@digital.cabinet-office.gov.uk: 123456
     ```
 
-If you have a GDS-issued Yubikey, you can run `gds config yubikey true` in the GDS CLI to set GDS CLI to automatically pull the MFA code from your Yubikey.
+You can now use `gds aws` to run [AWS CLI](https://aws.amazon.com/cli/) commands by prefixing them with `gds aws <role>`. You can use `--` to avoid ambiguity between `gds` options and options for the wrapped command. For example:
 
-You have completed the get started process. You can now use `gds aws` to run generic [aws CLI](https://aws.amazon.com/cli/) commands by prefixing them with `gds aws <role>`. For example:
-
-```shell
-gds aws govuk-integration-readonly aws s3 ls
+```sh
+gds aws govuk-integration-readonly -- aws s3 ls
 ```
 
 [gds-users-aws-signin]: https://gds-users.signin.aws.amazon.com/console
@@ -213,7 +176,7 @@ gds aws govuk-integration-readonly aws s3 ls
 
 ## 8. Connect to the GDS VPN
 
-> This step is only necessary if you are a civil servant. Check with your tech lead first.
+> This step might not be necessary if you are a contractor. Ask your tech lead.
 
 If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to use some internal Cabinet Office services (e.g. SOP and the intranet).
 
@@ -234,20 +197,22 @@ We use a [Docker](/manual/intro-to-docker.html) environment for local developmen
 
 To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker` GitHub repo](https://github.com/alphagov/govuk-docker#installation).
 
-> If you are a frontend developer, and you are working on GOV.UK's frontend apps, there is documentation on [alterntaive local development approaches](/manual/local-frontend-development.html) that make low or no usage of GOV.UK Docker.
+> If you are a frontend developer, you may be able to use [alternative approaches to local development](/manual/local-frontend-development.html) if you prefer to avoid GOV.UK Docker.
 
-## 10. Set up tools to use the GOV.UK Kubernetes platform
+## 10. Set up tools to use the GOV.UK Kubernetes clusters
 
-Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](/kubernetes/get-started/set-up-tools/).
+Follow [the instructions for getting started with the GOV.UK Kubernetes clusters](/kubernetes/get-started/).
 
 ## 11. Get Signon accounts
 
-[Signon](/repos/signon.html) is the application used to control access to the GOV.UK Publishing applications.
+[Signon](/repos/signon.html) controls access to the GOV.UK Publishing applications.
 
-Ask your tech lead to give you the following access:
+Ask your tech lead for:
 
-- 'Superadmin' level with permission to access the applications that your team are likely to work on [for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new).
-- 'Normal' level with access to the 'Release' app only (no permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html) is granted) [for the production Signon](https://signon.publishing.service.gov.uk/users/invitation/new). Note that this will automatically grant you access to the [staging Signon](https://signon.staging.publishing.service.gov.uk/) environment once the nightly [env sync](/manual/govuk-env-sync.html) has completed.
+- a 'Superadmin' privileged account in [**integration** Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new)
+- a 'Normal' account in [**production** Signon](https://signon.publishing.gov.uk/users/invitation/new) with access to the 'Release' app **only** and no other apps
+
+Production Signon accounts are copied automatically to the staging environment overnight, so you will have access to staging the next day.
 
 ## 12. Get familiar with the Release app
 
@@ -257,11 +222,11 @@ Ask your tech lead to give you the following access:
 
 ## 13. Talk to your tech lead about supporting services you should have access to
 
-Depending on the team you've joined, you will likely need access to other supporting services to fulfil your role. Talk to your tech lead about which ones you need as part of onboarding and they can arrange access. Services you may need access to are:
+Depending on your role and the team you've joined, you will likely need access to some other services. Your tech lead will know which ones you will need and can arrange access. For example:
 
-- [Logit](/manual/logit.html#accessing-logit) - the software we use for access application logs, where new starters are given access to the integration environment
-- [Google Analytics](/manual/analytics.html) - the software we use to track user behaviour, typically only needed if you work on a team working frequently with analytics
-- [Zendesk](/manual/zendesk.html) - the software we use for tracking support tickets, typically access isn't needed until working as part of the [2nd line](/manual/2nd-line.html) support team
+- [Logit](/manual/logit.html#accessing-logit) for reading application logs and request logs. New developers typically need access to logs for the integration environment.
+- [Zendesk](/manual/zendesk.html) for working with user support tickets. Usually you won't need this until you join the [2nd line tech support](/manual/2nd-line.html) rota.
+- [Google Analytics](/manual/analytics.html) for analysing trends in user behaviour. Most new developers won't need this at first.
 
 ## Supporting information
 
