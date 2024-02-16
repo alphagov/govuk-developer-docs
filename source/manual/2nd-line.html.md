@@ -33,7 +33,15 @@ Standby developers are not expected to attend the standups or the incoming hando
 
 If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, or there's a live incident, or an urgent Zendesk ticket, you’ll need to prioritise Technical 2nd Line above your meetings.
 
-## Role specific policies
+## Rules for Primary, Secondary and On Call
+
+[Production Admin access](/manual/rules-for-getting-production-access.html) is a pre-requisite for joining 2nd line, unless you're only shadowing.
+
+Folks start out as a Secondary. After two shifts as a Secondary, they'll start to fill the Primary role, with some exceptions (see [role specific policies](#role-specific-policies)).
+
+At this point they'll also start filling the [on-call](/manual/on-call.html) rota, as a Primary. After a couple of Primary on-call shifts, they'll start taking the on-call Secondary shifts. The thinking behind them starting out as Primary is that engineers who are new to on-call should be paged first and escalate to the Secondary, for the experience.
+
+### Role specific policies
 
 Backend developers and SREs are all expected to be on the in-hours and on-call rota, unless their head of community agrees that they have reason to opt out.
 
@@ -41,9 +49,7 @@ Frontend developers are expected to be on the in-hours rota, unless their head o
 
 A junior technologist can be a shadow or a secondary, but won't be a primary.
 
-A technologist apprentice will only fulfil the shadow role, and will be limited to Production Deploy access. However, if they are confident, they can request to be added to the secondary role and given Production Admin access, at their Line Manager's discretion.
-
-See the [2nd line roles and Production Access flow diagram](https://docs.google.com/presentation/d/10oRKrXqYki7LSFUySjb1e_FdTYGLihMKjeoH9qWC1kU/edit) for a visualisation of these rules.
+A technologist apprentice will only fulfil the shadow role. However, if they are confident, they can (at their Line Manager's discretion) go through the process to get Production Admin access, at which point they can request to be added to the secondary role.
 
 ## Shift swaps, working patterns and sickness
 
@@ -66,19 +72,11 @@ If you do not work a 5-day week, please talk to your delivery manager to arrange
 
 ## Monitoring
 
-We have a [Technical 2nd Line dashboard][] showing a high level overview of the state of the GOV.UK environments. You can also [install our Chrome extension][] if you want a permanently visible overview. You will need to be connected to the [GDS VPN][gds-vpn] if accessing from home.
-
-### Icinga
-
-We use Icinga to monitor our platform across our environments ([CI/Integration][], [Staging][], [Production][]) and alert us when things go wrong. Many alerts have corresponding documentation in our [GOV.UK developer docs][], detailing how to respond. [Read more about Icinga][].
-
-If you see critical alerts that aren't easily solved, start a thread in the #govuk-2ndline-tech Slack channel.
-
-NB: Technical 2nd Line should investigate these alerts when there is nothing more urgent happening; you do not necessarily have to fix them.
+We have a [Technical 2nd Line dashboard][] showing a high level overview of the state of the GOV.UK environments. You can also [install our Chrome extension][] if you want a permanently visible overview.
 
 ### Grafana
 
-We use Grafana dashboards to monitor the health of our applications and service across our environments ([Integration](https://grafana.blue.integration.govuk.digital/?orgId=1), [Staging](https://grafana.blue.staging.govuk.digital/?orgId=1), [Production](https://grafana.blue.production.govuk.digital/). Some useful dashboards include:
+We use Grafana dashboards to monitor the health of our applications and service across our environments ([Integration](https://grafana.eks.integration.govuk.digital/?orgId=1), [Staging](https://grafana.eks.staging.govuk.digital/?orgId=1), [Production](https://grafana.eks.production.govuk.digital/)). Some useful dashboards include:
 
 - Second line, which includes data from our Origin health and Edge health dashboards
 - Sidekiq
