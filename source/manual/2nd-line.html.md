@@ -43,8 +43,6 @@ A junior technologist can be a shadow or a secondary, but won't be a primary.
 
 A technologist apprentice will only fulfil the shadow role, and will be limited to Production Deploy access. However, if they are confident, they can request to be added to the secondary role and given Production Admin access, at their Line Manager's discretion.
 
-See the [2nd line roles and Production Access flow diagram](https://docs.google.com/presentation/d/10oRKrXqYki7LSFUySjb1e_FdTYGLihMKjeoH9qWC1kU/edit) for a visualisation of these rules.
-
 ## Shift swaps, working patterns and sickness
 
 Technical 2nd Line takes priority over the work you do in your usual team. It also takes priority over things like All Staff events, which you will be unable to attend in person, though can attend remotely (if possible) provided you keep on top of Zendesk and alerts. Note that standby developers can attend such events in person, but must be contactable by phone and able to access their laptop at short notice.

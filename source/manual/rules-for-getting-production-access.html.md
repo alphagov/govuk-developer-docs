@@ -23,8 +23,6 @@ We have two types of production access:
 
 We have a [spreadsheet documenting the full list of permissions for both access levels](https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing).
 
-There's also a [flow diagram showing when you get Production Deploy and Production Admin access](https://docs.google.com/presentation/d/10oRKrXqYki7LSFUySjb1e_FdTYGLihMKjeoH9qWC1kU/edit).
-
 ### Production Deploy access
 
 This level of access allows engineers to deploy code but not administer admin related
