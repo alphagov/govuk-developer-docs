@@ -153,9 +153,6 @@
         </ul>
       </li>
       <li>
-        <a href="#rules-for-primary-secondary-and-on-call"><span>Rules for Primary, Secondary and On Call</span></a>
-      </li>
-      <li>
         <a href="#temporarily-revoking-access"><span>Temporarily revoking access</span></a>
       </li>
     </ul>
@@ -207,7 +204,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ee837dbbcecc7941e45e180e484b770177e149a4">8 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b3170692c2f5701dda8ce3a0e7cbe8c950fb7c62">16 Feb 2024</a>
 </div>
 
  <h1 id='header'>Rules for getting production access</h1> <p>In the GOV.UK programme we restrict access to production systems for new or
@@ -223,7 +220,6 @@ clearance, probation, building secure systems with audibility etc.</p>
 <li><a href="#production-admin-access">Production Admin access</a></li>
 </ol>
 <p>We have a <a href="https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing">spreadsheet documenting the full list of permissions for both access levels</a>.</p>
-<p>There&rsquo;s also a <a href="https://docs.google.com/presentation/d/10oRKrXqYki7LSFUySjb1e_FdTYGLihMKjeoH9qWC1kU/edit">flow diagram showing when you get Production Deploy and Production Admin access</a>.</p>
 <h3 id='production-deploy-access'>Production Deploy access</h3><p>This level of access allows engineers to deploy code but not administer admin related
 systems. Access includes:</p>
 
@@ -238,7 +234,7 @@ systems. Access includes:</p>
 <p>The steps above are outlined in the <a href="https://trello.com/c/S9sex2XU/1391-govuk-production-deploy-access-for-name">GOV.UK Production Deploy template Trello card</a>, which can be copied to
 your team&rsquo;s board and carried out by developers. You can ask 2nd line for help if you have
 any access issues.</p>
-<h4 id='when-you-get-production-deploy-access'>When you get Production Deploy access</h4><p>Access can be granted to both civil servants and contractors as needed, at the discretion of a sponsor: either the engineer&rsquo;s (civil servant) tech lead, or a GOV.UK Senior Technologist.</p>
+<h4 id='when-you-get-production-deploy-access'>When you get Production Deploy access</h4><p>Access can be granted to both civil servants and contractors as needed, at the discretion of a &ldquo;sponsor&rdquo;: either the engineer&rsquo;s (civil servant) tech lead, or a GOV.UK Senior Technologist.</p>
 <p>Before approving access, the sponsor should ensure that the engineer:</p>
 
 <ul>
@@ -248,7 +244,10 @@ any access issues.</p>
 <li>knows <a href="/kubernetes/manage-app/roll-back-app/#roll-back-your-app">how to roll back to an older release</a> if there are any issues</li>
 <li>knows <a href="/manual/ask-for-help.html">how to get help</a> from someone with more access if they need it</li>
 </ul>
-<h3 id='production-admin-access'>Production Admin access</h3>
+<p>To grant access, the sponsor should follow the steps in the <a href="https://trello.com/c/S9sex2XU/3227-govuk-production-deploy-access-for-name">&ldquo;GOV.UK Production Deploy&rdquo; access</a> template card.</p>
+<p>Note that a technologist apprentice is limited to Production Deploy access. However, if they are confident and want to take on a 2nd line shift as a Secondary, they can follow the Production Admin access steps (at their Line Manager&rsquo;s discretion).</p>
+<h3 id='production-admin-access'>Production Admin access</h3><p>Gives:</p>
+
 <ul>
 <li>Permission to read &amp; write to the <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">password store</a> in govuk-secrets store using <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id">GPG</a></li>
 <li>Write access to Argo CD in staging and production via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production GitHub team</a></li>
@@ -258,19 +257,21 @@ any access issues.</p>
 <li><code>engineer</code> and &ldquo;Access all services&rdquo; permissions in Fastly</li>
 <li><a href="https://sentry.io/settings/govuk/members/">Sentry</a> &ldquo;Admin&rdquo; role to administer teams and projects</li>
 </ul>
-<p>The steps above are outlined in the <a href="https://trello.com/c/GIHPZi2o/382-production-admin-access-for-2nd-line">GOV.UK Production Admin template Trello card</a>, which is normally given whilst on 2nd line.</p>
 <h4 id='when-you-get-production-admin-access'>When you get Production Admin access</h4>
 <ul>
 <li>You have a minimum of BPSS security clearance (blue building pass), AND</li>
 <li>You have passed your probation period, AND</li>
-<li>You have had at least one Technical 2nd Line shadow shift</li>
+<li>You have completed the <a href="https://docs.google.com/forms/d/e/1FAIpQLSeY5H8ei89AJFaQLuDrd6CpWjCighCvF3d2iXx7QsyJdQjL-Q/viewform">Production Admin Preparedness checklist</a>, covering the <a href="#production-admin-learning-objectives">learning objectives</a> below, and have had your form response reviewed by <a href="/manual/ask-for-help.html#contact-senior-tech">someone in Senior Tech</a>.</li>
 </ul>
-<p>Once these conditions are met, you will be drafted onto one last Technical 2nd Line shadow shift, where you will be granted supervised Production Admin access. You will need to ensure the Primary or Secondary supervises you whenever you use that access.</p>
-<p>At the end of your shadow shift, you will retain your Production Admin access, and will no longer need to be supervised. However, you should ensure you are careful with the new access, and seek the support of your tech lead or your team whenever you&rsquo;re in doubt.</p>
-<p>Note that a Lead Developer or the Head of Technology is able to approve Production Admin access for individuals who may not have met all of the conditions above, where there is a business case to do so.</p>
-<h2 id='rules-for-primary-secondary-and-on-call'>Rules for Primary, Secondary and On Call</h2><p>Once you have Production Admin access, you&rsquo;ll be given the Secondary role on your next Technical 2nd line shift.</p>
-<p>After two sessions as Secondary, you will be drafted onto the 2nd line <a href="/manual/on-call.html">on-call</a> rota.
-You will also begin to fill the Primary role on some in-hours shifts.</p>
+<p>To grant access, the senior tech person should follow the steps in the <a href="https://trello.com/c/GIHPZi2o/3226-production-admin-access-for-2nd-line">&ldquo;GOV.UK Production Admin&rdquo; access</a> template card.</p>
+<h4 id='production-admin-learning-objectives'>Production Admin learning objectives</h4><p>A new starter/engineer will be expected to work through the following checklist in order to &lsquo;qualify&rsquo; for production admin access:</p>
+
+<ul>
+<li>The different parts of the GOV.UK technical stack (CDN, frontends, publishing apps, etc). E.g. by attending an &ldquo;Introduction to GOV.UK Technical Architecture&rdquo; session (or watching the <a href="https://drive.google.com/file/d/1-az_Y_JeKJ2Xhqrc7VNVt1sKOTEpHbcM/view">recording</a>).</li>
+<li>The deployment pipeline - how code gets from your machine to running on production. E.g. by reading the deployment docs, and learning on the job.</li>
+<li>The incident management process. E.g. by reading through the &ldquo;So, you&rsquo;re having an incident&rdquo; doc and completing the <a href="https://drive.google.com/drive/folders/1X9eGQMIl9ifb3X2jYcdjqrt01P9JYJzR">incident preparedness quizzes</a>.</li>
+<li>Best practices around the principle of least privilege, how to safely debug production issues, and how to work with credentials and accounts. E.g. by pairing with another developer to <a href="/manual/2nd-line-drills.html">practise a drill</a>.</li>
+</ul>
 <h2 id='temporarily-revoking-access'>Temporarily revoking access</h2><p>If you&rsquo;re absent more than 6 weeks, your access should be revoked.</p>
 
   <div class='related-content'>

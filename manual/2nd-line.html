@@ -142,7 +142,12 @@
     <a href="#header"><span>Technical 2nd line</span></a>
     <ul>
       <li>
-        <a href="#role-specific-policies"><span>Role specific policies</span></a>
+        <a href="#rules-for-primary-secondary-and-on-call"><span>Rules for Primary, Secondary and On Call</span></a>
+        <ul>
+          <li>
+            <a href="#role-specific-policies"><span>Role specific policies</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#shift-swaps-working-patterns-and-sickness"><span>Shift swaps, working patterns and sickness</span></a>
@@ -150,9 +155,6 @@
       <li>
         <a href="#monitoring"><span>Monitoring</span></a>
         <ul>
-          <li>
-            <a href="#icinga"><span>Icinga</span></a>
-          </li>
           <li>
             <a href="#grafana"><span>Grafana</span></a>
           </li>
@@ -222,7 +224,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f5986b835871c63a1cd6b6576f94a0541bfdf6b4">12 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b3170692c2f5701dda8ce3a0e7cbe8c950fb7c62">16 Feb 2024</a>
 </div>
 
  <h1 id='header'>Technical 2nd line</h1> <p>Technical 2nd Line is the user support function of GOV.UK.</p>
@@ -244,11 +246,13 @@
 <p>You are required to attend a daily morning standup with your paired 2nd Line partner and the Technical 2nd Line team. There’s a short retrospective at the handover meeting at the end of your shift.</p>
 <p>Standby developers are not expected to attend the standups or the incoming handover. If they&rsquo;re called onto the shift, they should attend the next standup, and may wish to attend the outgoing handover at the end of the shift.</p>
 <p>If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, or there&rsquo;s a live incident, or an urgent Zendesk ticket, you’ll need to prioritise Technical 2nd Line above your meetings.</p>
-<h2 id='role-specific-policies'>Role specific policies</h2><p>Backend developers and SREs are all expected to be on the in-hours and on-call rota, unless their head of community agrees that they have reason to opt out.</p>
+<h2 id='rules-for-primary-secondary-and-on-call'>Rules for Primary, Secondary and On Call</h2><p><a href="/manual/rules-for-getting-production-access.html">Production Admin access</a> is a pre-requisite for joining 2nd line, unless you&rsquo;re only shadowing.</p>
+<p>Folks start out as a Secondary. After two shifts as a Secondary, they&rsquo;ll start to fill the Primary role, with some exceptions (see <a href="#role-specific-policies">role specific policies</a>).</p>
+<p>At this point they&rsquo;ll also start filling the <a href="/manual/on-call.html">on-call</a> rota, as a Primary. After a couple of Primary on-call shifts, they&rsquo;ll start taking the on-call Secondary shifts. The thinking behind them starting out as Primary is that engineers who are new to on-call should be paged first and escalate to the Secondary, for the experience.</p>
+<h3 id='role-specific-policies'>Role specific policies</h3><p>Backend developers and SREs are all expected to be on the in-hours and on-call rota, unless their head of community agrees that they have reason to opt out.</p>
 <p>Frontend developers are expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out. They are <em>not</em> expected to be on the on-call rota. Junior technologists and technologist apprentices are also expected to take part in the in-hours rota and not the on-call rota.</p>
 <p>A junior technologist can be a shadow or a secondary, but won&rsquo;t be a primary.</p>
-<p>A technologist apprentice will only fulfil the shadow role, and will be limited to Production Deploy access. However, if they are confident, they can request to be added to the secondary role and given Production Admin access, at their Line Manager&rsquo;s discretion.</p>
-<p>See the <a href="https://docs.google.com/presentation/d/10oRKrXqYki7LSFUySjb1e_FdTYGLihMKjeoH9qWC1kU/edit">2nd line roles and Production Access flow diagram</a> for a visualisation of these rules.</p>
+<p>A technologist apprentice will only fulfil the shadow role. However, if they are confident, they can (at their Line Manager&rsquo;s discretion) go through the process to get Production Admin access, at which point they can request to be added to the secondary role.</p>
 <h2 id='shift-swaps-working-patterns-and-sickness'>Shift swaps, working patterns and sickness</h2><p>Technical 2nd Line takes priority over the work you do in your usual team. It also takes priority over things like All Staff events, which you will be unable to attend in person, though can attend remotely (if possible) provided you keep on top of Zendesk and alerts. Note that standby developers can attend such events in person, but must be contactable by phone and able to access their laptop at short notice.</p>
 <p>If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.</p>
 
@@ -261,11 +265,8 @@
 The corresponding standby developer will then take your place.</p>
 <p>If your working patterns are not compatible with a 9.30am-5.30pm shift, let the Technical 2nd Line team know so they can find extra support.</p>
 <p>If you do not work a 5-day week, please talk to your delivery manager to arrange cover with another developer on your team.</p>
-<h2 id='monitoring'>Monitoring</h2><p>We have a <a href="https://govuk-2ndline-dashboard.herokuapp.com/">Technical 2nd Line dashboard</a> showing a high level overview of the state of the GOV.UK environments. You can also <a href="https://github.com/alphagov/govuk-secondline-blinken#chrome-extension">install our Chrome extension</a> if you want a permanently visible overview. You will need to be connected to the <a href="https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit">GDS VPN</a> if accessing from home.</p>
-<h3 id='icinga'>Icinga</h3><p>We use Icinga to monitor our platform across our environments (<a href="https://alert.integration.publishing.service.gov.uk/">CI/Integration</a>, <a href="https://alert.blue.staging.govuk.digital/">Staging</a>, <a href="https://alert.blue.production.govuk.digital/">Production</a>) and alert us when things go wrong. Many alerts have corresponding documentation in our <a href="/">GOV.UK developer docs</a>, detailing how to respond. <a href="/manual/icinga.html">Read more about Icinga</a>.</p>
-<p>If you see critical alerts that aren&rsquo;t easily solved, start a thread in the #govuk-2ndline-tech Slack channel.</p>
-<p>NB: Technical 2nd Line should investigate these alerts when there is nothing more urgent happening; you do not necessarily have to fix them.</p>
-<h3 id='grafana'>Grafana</h3><p>We use Grafana dashboards to monitor the health of our applications and service across our environments (<a href="https://grafana.blue.integration.govuk.digital/?orgId=1">Integration</a>, <a href="https://grafana.blue.staging.govuk.digital/?orgId=1">Staging</a>, <a href="https://grafana.blue.production.govuk.digital/">Production</a>. Some useful dashboards include:</p>
+<h2 id='monitoring'>Monitoring</h2><p>We have a <a href="https://govuk-2ndline-dashboard.herokuapp.com/">Technical 2nd Line dashboard</a> showing a high level overview of the state of the GOV.UK environments. You can also <a href="https://github.com/alphagov/govuk-secondline-blinken#chrome-extension">install our Chrome extension</a> if you want a permanently visible overview.</p>
+<h3 id='grafana'>Grafana</h3><p>We use Grafana dashboards to monitor the health of our applications and service across our environments (<a href="https://grafana.eks.integration.govuk.digital/?orgId=1">Integration</a>, <a href="https://grafana.eks.staging.govuk.digital/?orgId=1">Staging</a>, <a href="https://grafana.eks.production.govuk.digital/">Production</a>). Some useful dashboards include:</p>
 
 <ul>
 <li>Second line, which includes data from our Origin health and Edge health dashboards</li>
