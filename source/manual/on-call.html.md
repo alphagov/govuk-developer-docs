@@ -37,7 +37,6 @@ You should do these things before going on call so you're prepared.
 1. Make sure you can [access GCP][] (using the web console and the `gcloud` CLI)
 1. Make sure you can VPN to the office or disaster recovery location.
 1. Ensure your PagerDuty [alert settings](https://support.pagerduty.com/docs/user-profile#notification-rules) will wake you if you're called. You might want to install the [PagerDuty App](https://www.pagerduty.com/features/mobile-incident-management/) on your phone and [send a test notification](https://support.pagerduty.com/docs/notification-troubleshooting#send-a-test-notification).
-1. Ensure you can [decrypt secrets][govuk-secrets] with your GPG setup.
 1. Read these documents:
     - [So, you're having an incident](/manual/incident-what-to-do.html)
     - [Falling back to the static mirror](/manual/fall-back-to-mirror.html)
