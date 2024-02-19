@@ -7,6 +7,7 @@ parent: "/manual.html"
 ---
 [ckan-app]: repos/ckanext-datagovuk
 [ckan-api-docs]: https://docs.ckan.org/en/2.9/api/index.html
+[dgu-analytics]: https://lookerstudio.google.com/reporting/1dLIysu5Ie131ZL3gGT7zyWBhffNgTSX2/page/cduv
 [dgu-api-docs]: https://guidance.data.gov.uk/get_data/api_documentation/
 [dgu-ckan]: https://ckan.publishing.service.gov.uk
 [dgu-docs]: https://guidance.data.gov.uk
@@ -48,6 +49,51 @@ There are three environments for CKAN:
 - [Staging](https://ckan.eks.staging.govuk.digital)
 - [Integration](https://ckan.eks.integration.govuk.digital)
 
+## Accessing data.gov.uk
+
+### Datagovuk kubernetes cluster
+
+Publish and Find are hosted on the same AWS cluster as GOV.UK but in its own namespace - `datagovuk`
+
+So to manage data.gov.uk apps you will need to add `-n datagovuk` to any `kubectl` command or run `kubectl config set-context --current --namespace=datagovuk` to make it the default.
+
+You will be able to exec onto any datagovuk pod in a similar way to other GOV.UK apps.
+
+## Reindexing [Find]
+
+This is done using the `search:reindex` rake task in [Publish] and will not cause any app downtime.
+
+```
+kubectl exec deploy/datagovuk-publish -n datagovuk -- rails 'search:reindex[500]'
+```
+
+This will populate a new index and rotate the index alias to point to it when it's ready.
+
+## Perform a full re-sync from [CKAN]
+
+The sync is normally done automatically using Sidekiq Scheduler. There may be times when you need to throw away the existing Postgres database, sync all datasets from CKAN and reindex.
+
+This will not make any changes to the content on Find until the [reindex](#reindexing-find) has completed and the Elastic index is updated.  This will affect data served on Publish, however this service is not currently used for publishing or editing datasets.  In most cases, you should never need to do this as the sync performs incremental updates.
+
+```
+## drop tables in publish database so that the db setup can run
+kubectl exec deploy/datagovuk-publish -n datagovuk -- bash -c 'psql $DATABASE_URL -c "DROP OWNED BY ckan;"'
+
+# NOTE - ignore the server restart warnings after setting up the database
+kubectl exec deploy/datagovuk-publish -n datagovuk -- bin/setup
+
+## make sure the index is setup
+
+kubectl exec deploy/datagovuk-publish -n datagovuk -- rails search:reindex
+
+## update orgs or datasets
+
+kubectl exec deploy/datagovuk-publish -n datagovuk -- rails runner CKAN::V26::CKANOrgSyncWorker.new.perform
+kubectl exec deploy/datagovuk-publish -n datagovuk -- rails runner CKAN::V26::PackageSyncWorker.new.perform
+```
+
+Now run `kubectl exec deploy/datagovuk-publish -n datagovuk -- bundle exec sidekiq` and see the logs.
+
 ## Monitoring data.gov.uk
 
 ### Pingdom
@@ -82,6 +128,17 @@ rails console
 ### Analytics
 
 Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.
+
+If a user requests analytics for data.gov.uk, we can provide them with access to [an analytics dashboard][dgu-analytics]. Assign tickets like this to the `3rd Line--GOV.UK Product Requests` Zendesk queue.
+
+## Updating the Zendesk password for Find
+
+The form at https://www.data.gov.uk/support uses the Zendesk API to create new tickets. If the account password expires, it'll need updating in [AWS Secrets Manager](/manual/secrets-manager.html):
+
+1. Get the existing `govuk/dgu/datagovuk` credentials from AWS Secrets Manager
+1. Log into Zendesk using the username and password obtained from the previous step
+1. Reset the password through the UI and copy the password to your clipboard
+1. Update the password in AWS Secrets Manager.
 
 ## Logging into the publisher
 
@@ -233,7 +290,7 @@ rails console
 >>> Dataset.update(status: 'published')
 ```
 
-A [reindex](/manual/data-gov-uk-operations.html#reindexing-find) is then needed to update the status with the Elastic instance that serves data.gov.uk.
+A [reindex](#reindexing-find) is then needed to update the status with the Elastic instance that serves data.gov.uk.
 
 ### Datasets published in CKAN are not appearing on data.gov.uk
 
@@ -318,10 +375,6 @@ There's [guidance for users on publishing organograms](https://guidance.data.gov
 Publishers upload their organograms as an Excel (XLS) file that contains macros.  A script converts these to the two CSV files (junior staff and senior staff).
 
 > Publishers **must** select the correct 'Schema Vocabulary' for their organogram dataset (i.e. one of the two 'organisation structure' values) in order for the upload option to become available and for the conversion script to run.
-
-### Dataset Analytics requests
-
-If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to the `3rd Line--GOV.UK Product Requests` Zendesk queue.
 
 ## Connecting to CKAN via kubectl exec
 
