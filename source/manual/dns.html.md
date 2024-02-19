@@ -7,17 +7,13 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-GOV.UK is responsible for managing several DNS zones. For documentation on updating DNS, see the [DNS change request and hostmaster](https://drive.google.com/drive/search?q=-%20type:document%20title:%22Tech%202nd%20Line%20-%20Handle%20Tickets%20on%20DNS%20Change%20request%20hostmaster%40%22) doc for Technical 2nd Line.
+> For **Technical 2nd Line documentation** on when and how to respond to DNS delegation and domain verification requests, read the [DNS change request and hostmaster Google doc](https://drive.google.com/drive/search?q=-%20type:document%20title:%22Tech%202nd%20Line%20-%20Handle%20Tickets%20on%20DNS%20Change%20request%20hostmaster%40%22).
 
-In most cases, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS). See [Amazon Route53 vs Google Cloud in the govuk-dns-tf README](https://github.com/alphagov/govuk-dns-tf#amazon-route53-vs-google-cloud)
+GOV.UK is responsible for managing several DNS zones, spanning a number of `*.gov.uk` domains. As of February 2024, there are 45 hosted zones, configuring many hundreds of domains. A list of hosted zones is retrievable from a terminal using:
 
-As of December 2022, there are 61 hosted zones. A list is retrievable from a terminal using:
-
-```
+```sh
 gds aws govuk-production-poweruser -- aws route53 list-hosted-zones | grep Name
 ```
-
-Some individual records within these zones are managed by other teams.
 
 ## Records for GOV.UK systems
 
