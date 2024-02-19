@@ -33,6 +33,7 @@ it will query the authoritative name servers for the domain.
 authoritative servers are hosted by [Jisc]. Unusually for a ccSLD, `gov.uk` is
 also a website, and hosts the redirect from `gov.uk` to `www.gov.uk`. The records
 for these two domains are within the `gov.uk` second-level zone hosted by Jisc.
+TODO - are they?
 
 `www.gov.uk` is a CNAME record which ultimately points to `www-gov-uk.map.fastly.net.`
 The `fastly.net` domain name is hosted by special nameservers at the Fastly content
@@ -85,16 +86,16 @@ and saving the output to disk.
 
 As well as for caching, Varnish is used for the redirection from `gov.uk` to
 `www.gov.uk`, which is configured in Varnish Configuration Language (VCL) and
-uploaded directly to Fastly via [govuk-cdn-config].
+uploaded directly to Fastly via [govuk-fastly].
 
-Other redirects that happen at the Fastly level include [bouncer]: a GOV.UK
+Other redirects that happen at the Fastly level include [Bouncer]: a GOV.UK
 application responsible for redirecting traffic from old pre-GOV.UK websites.
-This is configured via [transition]. Read [Transition architecture] for more detail.
+This is configured via [Transition]. Read [Transition architecture] for more detail.
 
-[bouncer]: https://github.com/alphagov/bouncer
-[govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
+[Bouncer]: https://github.com/alphagov/bouncer
+[govuk-fastly]: https://github.com/alphagov/govuk-fastly
 [Transition architecture]: /manual/transition-architecture.html
-[transition]: https://github.com/alphagov/transition
+[Transition]: https://github.com/alphagov/transition
 
 ### Routing on GOV.UK
 
