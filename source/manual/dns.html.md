@@ -15,76 +15,100 @@ GOV.UK is responsible for managing several DNS zones, spanning a number of `*.go
 gds aws govuk-production-poweruser -- aws route53 list-hosted-zones | grep Name
 ```
 
-## Records for GOV.UK systems
+## Overview of GOV.UK domains
 
-We use a few domains:
+GOV.UK is responsible for more than just the `www.gov.uk` domain.
+The [GOV.UK proposition](https://www.gov.uk/government/publications/govuk-proposition/govuk-proposition#what-the-govuk-proposition-covers) lists the domains we're responsible for. These are:
 
-- `alphagov.co.uk` is the old domain name GOV.UK publishing used to live on.
-  We maintain records which point to Bouncer so that these URLs redirect.
-- `publishing.service.gov.uk` and `govuk.service.gov.uk` are where GOV.UK lives.
+- www.gov.uk
+- service.gov.uk
+- data.gov.uk
+- blog.gov.uk
+- campaign.gov.uk
+- independent.gov.uk
+- api.gov.uk
 
-## DNS for `*.service.gov.uk` domains
+There are lots of other `*.gov.uk` domains, such as `cityoflondon.gov.uk`, which are managed by Cabinet Office.
 
-GOV.UK Technical 2nd Line are responsible for delegating DNS to other government services.
-Note that we __do not__ manage any other DNS records: if you get a request concerning anything other than `NS` records, it should be rejected.
+In theory, the GOV.UK proposition domains should all be managed by GDS (who use [Jisc](https://www.jisc.ac.uk/): a non-profit that provides networking to UK education and government). In practice, a couple of GOV.UK proposition domains are managed by Cabinet Office, and a couple of non-proposition domains are in the Government Digital Service Jisc account. [This is being looked at](https://trello.com/c/qNpyVaC5/3228-consolidate-co-vs-non-co-domains-in-govuks-jisc-account) by Platform Security & Reliability.
 
-When you've verified the authenticity of the request as per the SRE docs above, you should:
+In most cases, DNS zones are hosted by both AWS (Route 53) and Google Cloud Platform (Cloud DNS). See [Amazon Route53 vs Google Cloud in the govuk-dns-tf README](https://github.com/alphagov/govuk-dns-tf#amazon-route53-vs-google-cloud)
 
-1. Ensure you have [Terraform Cloud access](/manual/terraform-cloud.html)
-1. Commit your changes in [govuk-dns-tf][] (see [example](https://github.com/alphagov/govuk-dns-tf/pull/14))
-1. Push your changes to GitHub and open a pull request
-1. Terraform Cloud will automatically perform a plan. Open the [govuk-dns-tf][govuk-dns-tf-cloud] workspace to see it.
-1. If you are happy with the results of the plan, merge your PR
-1. From the PR page in GitHub, look under the pre-merge checks section and open the "details" link from the Terraform Cloud check.
-1. Press "Confirm and apply" in Terraform Cloud.
+### The `gov.uk` domain
 
-[govuk-dns-tf-cloud]: https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf
+This domain is currently administered by Cabinet Office. `gov.uk.` is an apex domain so it [cannot have a CNAME record](https://tools.ietf.org/html/rfc1912#section-2.4). Instead, it has A records that point directly to Fastly virtual IP addresses, resolving to the [Production TLD Redirect](https://manage.fastly.com/configure/services/7IaQm6UK3NiQu0v0E83YKn) Fastly service, which performs a redirect to `www.gov.uk`.
 
-## DNS for `govuk.digital` and `govuk-internal.digital`
+### The `www.gov.uk` domain
 
-Currently these zones are only used in environments running on AWS.
+This domain is currently administered by Cabinet Office.
 
-These DNS zones are hosted in Route53 and managed by Terraform. Changes can be
-made in the [govuk-aws](https://github.com/alphagov/govuk-aws/) and
-[govuk-aws-data](https://github.com/alphagov/govuk-aws-data/) repositories.
-Ask the Platform teams if you need help making your changes.
+`www.gov.uk.` is a CNAME to `www-cdn.production.govuk.service.gov.uk.`, which ultimately points to `www-gov-uk.map.fastly.net.` (configured [via govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf/blob/8fa490bce3d9272e6df69f4dbcb1c1be1b3f07c2/zones/govuk.service.gov.uk.yaml#L45-L48)). This resolves to the [Production GOV.UK](https://manage.fastly.com/configure/services/4b340CyOhAgINR9eKMH83h/versions/549/origins) Fastly service.
 
-## DNS for the `publishing.service.gov.uk` domain
+### The `service.gov.uk` domain
 
-To make a change to this zone, begin by adding the records to the yaml file for
-the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-tf).
+This is managed in the Government Digital Service Jisc account.
 
-The deployment process is the same as for [`service.gov.uk`](#dns-for-service-gov-uk-domains)
+The `service.gov.uk` domain has [A records](https://github.com/alphagov/govuk-dns-tf/blob/e00ae516f9ae6265ca186581a1e74319372d2677/zones/service.gov.uk.yaml#L3-L10) pointing to Fastly's virtual IP addresses.
 
-## DNS for the `gov.uk` top level domain
+We've configured [several hundred subdomains of the `service.gov.uk` domain](https://github.com/alphagov/govuk-dns-tf/blob/e00ae516f9ae6265ca186581a1e74319372d2677/zones/service.gov.uk.yaml).
 
-[Jisc](https://www.jisc.ac.uk/) is a non-profit which provides networking to
-UK education and government. They host DNS for the `gov.uk.` zone.
+An important one we've configured is `publishing.service.gov.uk`, which is [delegated to a set of NS records](https://github.com/alphagov/govuk-dns-tf/blob/e00ae516f9ae6265ca186581a1e74319372d2677/zones/service.gov.uk.yaml#L1679-L1687) in GOV.UK's AWS account. Subdomains of this are configured in [`publishing.service.gov.uk.yaml` in govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf/blob/cd833c896bbebb90aa691372486f35e6663928e6/zones/publishing.service.gov.uk.yaml).
 
-Requests to modify the DNS records for `gov.uk.` should be sent by
-email to `naming@ja.net` from someone on Jisc's approved contacts
-list. Speak to a member of Senior Tech or someone in the Platform teams if you
-need to make a change and don't have access.
+### The `data.gov.uk` domain
 
-You should also make sure that the following groups of people are aware before
-requesting any changes:
+This is managed in the Government Digital Service Jisc account.
 
-- Technical 2nd Line (via email)
-- GOV.UK's Head of Tech and the senior tech team
-- The CDDO domains team (#team-domains)
+The `data.gov.uk` domain has [A records](https://github.com/alphagov/govuk-dns-tf/blob/f21d1f9dfde8470981e2fc79a63538753f2e25f8/zones/data.gov.uk.yaml#L3-L9) pointing to Fastly's virtual IP addresses, and `www.data.gov.uk` is a [CNAME to `www-gov-uk.map.fastly.net.`](https://github.com/alphagov/govuk-dns-tf/blob/f21d1f9dfde8470981e2fc79a63538753f2e25f8/zones/data.gov.uk.yaml#L291-L294). Both domains resolve to the [Production data.gov.uk](https://manage.fastly.com/configure/services/1hGLCRA0sJuaXJEFI49z2z) Fastly service.
 
-Technical 2nd Line should be notified of any planned changes via email.
+The `data.gov.uk` redirect to `www.data.gov.uk` is [configured in govuk-fastly-secrets](https://github.com/alphagov/govuk-fastly-secrets/blob/61e0206f62a7af6e45c80820e90d52db7590f3ab/secrets.yaml#L387-L396).
 
-- The domain name `gov.uk.` is an apex domain so it [cannot have a CNAME record](https://tools.ietf.org/html/rfc1912#section-2.4).
-  Instead, it has A records that point directly to anycast virtual IP addresses (VIPs) for our CDN provider.
-- `www.gov.uk.` is a CNAME to `www-cdn.production.govuk.service.gov.uk.`, which
-  means we do not need to make a request to Jisc if we want to change CDN
-  providers. We can just change where the CNAME points to.
+There are a number of other subdomains of `data.gov.uk` configured in govuk-dns-tf.
 
-## DNS for non-`gov.uk` domains
+### The `blog.gov.uk` domain
 
-GOV.UK also manages DNS zones for some non-`gov.uk` domains (e.g. `independent-inquiry.uk`).
+This is managed in the Government Digital Service Jisc account.
 
-These should be managed in Terraform, with each domain having its own zone configuration file in [govuk-dns-tf][].
+We have a [wildcard CNAME](https://github.com/alphagov/govuk-dns-tf/blob/8fa490bce3d9272e6df69f4dbcb1c1be1b3f07c2/zones/blog.gov.uk.yaml#L18-L21) delegating all subdomains of `blog.gov.uk` to our provider, DXW.
 
-[govuk-dns-tf]: https://github.com/alphagov/govuk-dns-tf
+### The `campaign.gov.uk` domain
+
+This is managed in the Government Digital Service Jisc account.
+
+We have a [wildcard CNAME](https://github.com/alphagov/govuk-dns-tf/blob/1be5ae58e82fb47f0e42cc6f7c2507b424fa9200/zones/campaign.gov.uk.yaml#L91-L95) delegating all subdomains of `campaign.gov.uk` to our provider, DXW.
+
+There are a handful of campaign subdomains that have their own specific NS records or CNAME, which take precedence over the wildcard ([example](https://github.com/alphagov/govuk-dns-tf/blob/1be5ae58e82fb47f0e42cc6f7c2507b424fa9200/zones/campaign.gov.uk.yaml#L54-L60)).
+
+### The `independent.gov.uk` domain
+
+This domain is currently administered by Cabinet Office, who manage the delegation of subdomains (e.g. to `icai.independent.gov.uk`).
+
+[The management of the domain is being looked at](https://trello.com/c/qNpyVaC5/3228-consolidate-co-vs-non-co-domains-in-govuks-jisc-account) by Platform Security & Reliability.
+
+Relatedly, there are a [number of `independent-*.uk` domains managed by GOV.UK](#other-domains-we-manage).
+
+### The `api.gov.uk` domain
+
+This domain is currently administered by Cabinet Office, but delegated to GOV.UK. GOV.UK itself then delegates subdomains (such as www.api.gov.uk) back to Cabinet Office, as well as other subdomains (such as driver-vehicle-licensing.api.gov.uk) to other organisations.
+
+The `api.gov.uk` domain has [A records](https://github.com/alphagov/govuk-dns-tf/blob/552278f8cb155999185aa307124cbae226ad5da4/zones/api.gov.uk.yaml#L3-L8) pointing to Fastly's virtual IP addresses.
+
+`www.api.gov.uk` is a [CNAME to `co-cddo.github.io.`](https://github.com/alphagov/govuk-dns-tf/blob/552278f8cb155999185aa307124cbae226ad5da4/zones/api.gov.uk.yaml#L26-L29).
+
+The Platform Security & Reliability team are [looking at the future management of the api.gov.uk domain](https://trello.com/c/8aXqoeCN).
+
+## Other domains we manage
+
+GOV.UK manages DNS zones for some non-`gov.uk` domains (e.g. `independent-inquiry.uk`). Another example is `alphagov.co.uk`, which is the old domain name GOV.UK publishing used to live on - we maintain records which point to Bouncer so that these URLs redirect.
+
+Some of these domains are managed by us for legacy reasons. Others are defensively registered variations of domains that are in the GOV.UK proposition.
+
+All domains should be managed in Terraform, with each domain having its own zone configuration file in [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf), with the exception of the domains in the next section.
+
+### Domains and zones managed outside of govuk-dns-tf
+
+The following DNS zones are hosted in Route53 and ultimately configured via [govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure), [govuk-aws](https://github.com/alphagov/govuk-aws/) and
+[govuk-aws-data](https://github.com/alphagov/govuk-aws-data/):
+
+- `govuk.digital`
+- `govuk-internal.digital`
+- `production.govuk-internal.digital`
