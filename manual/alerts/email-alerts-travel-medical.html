@@ -142,19 +142,19 @@
     <a href="#header"><span>Travel Advice or Drug and Medical Device email alerts not sent</span></a>
     <ul>
       <li>
-        <a href="#finding-out-more-details-about-the-failed-check"><span>Finding out more details about the failed check</span></a>
+        <a href="#find-out-which-mailshot-was-affected"><span>Find out which mailshot was affected</span></a>
       </li>
       <li>
-        <a href="#verifying-whether-the-email-was-received"><span>Verifying whether the email was received</span></a>
+        <a href="#verify-whether-the-email-was-received"><span>Verify whether the email was received</span></a>
       </li>
       <li>
         <a href="#troubleshooting"><span>Troubleshooting</span></a>
       </li>
       <li>
-        <a href="#resending-medical-safety-emails"><span>Resending medical safety emails</span></a>
+        <a href="#resend-a-medical-safety-alert"><span>Resend a medical safety alert</span></a>
       </li>
       <li>
-        <a href="#resending-travel-advice-emails"><span>Resending travel advice emails</span></a>
+        <a href="#resend-a-travel-advice-alert"><span>Resend a travel advice alert</span></a>
       </li>
     </ul>
   </li>
@@ -205,56 +205,74 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/efe8f10a3910a9dc8197b14a3e8a24ab62aef67b">18 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/59e2f9222354c3bf445d9f7800141a549e91c5d9">16 Feb 2024</a>
 </div>
 
- <h1 id='header'>Travel Advice or Drug and Medical Device email alerts not sent</h1> <p>We expect that when new GOV.UK content is published, or when existing content
-is updated in a significant way, emails will be sent to any subscribers to
-notify them of the change.</p>
-<p>We actively monitor this for <a href="https://www.gov.uk/drug-device-alerts">medical safety alerts</a> and <a href="https://www.gov.uk/foreign-travel-advice">travel advice
-alerts</a> with scheduled jobs running in <a href="https://github.com/alphagov/email-alert-api">email-alert-api</a>.</p>
-<p>These jobs determine a list of content that we expect subscribers to have
-been emailed. We use the Notify system&rsquo;s callback to record whether emails
-sent out via this alert have been received.</p>
-<h2 id='finding-out-more-details-about-the-failed-check'>Finding out more details about the failed check</h2><p>Open this <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/view/4147d5b0-99f8-11ee-aed3-9b7debb07809?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-24h%2Cto%3Anow))">Kibana Search</a> to see potentially undelivered
-alerts in the last 24 hours (note the same alerts will appear on each run, so
-you might see the same alert more than once in this log view)</p>
-<p>This will get you the Content ID and Path of the alert, and visiting the path
-on GOV.UK will get you the title of the alert.</p>
-<h2 id='verifying-whether-the-email-was-received'>Verifying whether the email was received</h2><p>To verify if the Gmail account has received the email or not you can join the
-google group &lsquo;Email Alert API Alert Listener&rsquo;, which is subscribed to all travel
-advice and medical safety alerts, and see if the email has been received.</p>
+ <h1 id='header'>Travel Advice or Drug and Medical Device email alerts not sent</h1> <p>GOV.UK&rsquo;s <a href="https://github.com/alphagov/email-alert-api">email-alert-api</a> sends two kinds of time-sensitive email notifications:</p>
+
+<ul>
+<li><a href="https://www.gov.uk/foreign-travel-advice">travel advice alerts</a></li>
+<li><a href="https://www.gov.uk/drug-device-alerts">medical safety alerts</a>, for example product recalls of medical devices</li>
+</ul>
+<p>These <em>email alerts</em> are supposed to be delivered to subscribers within a few
+hours.</p>
+<p>email-alert-api-worker monitors deliverability by comparing records of
+what should have been sent against callbacks from GOV.UK Notify, which is the
+system that sends the bulk email to subscribers.</p>
+
+<blockquote>
+<p><em>Email alerts</em> have nothing to do with Prometheus/Alertmanager/PagerDuty
+alerts. They&rsquo;re just ambiguously named.</p>
+</blockquote>
+<h2 id='find-out-which-mailshot-was-affected'>Find out which mailshot was affected</h2><p>Search for recent WARN-level <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/view/4147d5b0-99f8-11ee-aed3-9b7debb07809?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-24h,to:now))&amp;_a=(columns:!(_source),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:email-alert-api-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:email-alert-api-worker))),('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:level,negate:!f,params:(query:WARN),type:phrase),query:(match_phrase:(level:WARN)))),index:'filebeat-*',interval:auto,query:(language:lucene,query:'%22any%20delivered%22'),sort:!())">logs from email-alert-api-worker</a>. Workers log a
+<code>Couldn&#39;t find any delivered emails for ...</code> warning periodically when there
+are potentially undelivered medical/travel alerts.</p>
+<p>The log message should contain the Content ID and path of the affected
+mailshot. Visit the path on GOV.UK to find the title of the alert.</p>
+<h2 id='verify-whether-the-email-was-received'>Verify whether the email was received</h2><p>The <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-alert-listener">email-alert-api-alert-listener</a> mailing list is subscribed to all travel
+advice and medical safety alerts. Check whether the message appears there.</p>
 <h2 id='troubleshooting'>Troubleshooting</h2>
 <ul>
-<li>If an email matching the details in the logs has been received by the google
-account, it is possible that a false alarm has occurred. Check to see if there
-is a Notify outage. (NOTIFY STATUS PAGE)</li>
-<li>Using the Content ID from the logs, get send/delivery statistics from
-email-alert-api using the <a href="/repos/email-alert-api/alert_check_scheduled_jobs.html#support-tasks">email statistics rake task</a> in email-alert-api
-to determine whether there was a problem sending the emails to Notify, or
-problems returned from Notify after it attempted to deliver them.</li>
-<li>determine whether Email Alert API has a backlog of work to do using the
-<a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&amp;var-namespace=apps&amp;var-app=email-alert-api-worker&amp;from=now-24h&amp;to=now">Sidekiq dashboard</a> and <a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&amp;refresh=1m&amp;var-namespace=apps&amp;var-app=email-alert-api&amp;var-error_status=All&amp;from=now-24h&amp;to=now">Email Alert API Technical
-dashboard</a> - the email may just be delayed;</li>
-<li>whether the change was a result of a new type of medical safety content
-sub-type, this was the previous cause of an <a href="https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#">incident</a> and
-is recorded as <a href="https://trello.com/c/v2ees2fD/199-all-checkbox-is-misleading-for-finderemailsignups">GOV.UK Tech Debt</a>;</li>
-<li>check the <a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/goto/43fc79ee47ac49f248e0f29a174be240">Kibana logs</a> and <a href="https://sentry.io/organizations/govuk/issues/?project=202220&amp;statsPeriod=12h">Sentry</a> for any errors or clues;</li>
-<li>if all else fails you may need to investigate the Email Alert API database
-to determine whether the content change was received and what state it is in.</li>
+<li><p>Check whether an email matching the details from the logs was delivered to
+the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-alert-listener">email-alert-api-alert-listener</a> mailing list.</p></li>
+<li><p>Check <a href="https://status.notifications.service.gov.uk/">Notify&rsquo;s service
+status</a>.</p></li>
+<li><p>Using the Content ID from the logs, use the <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/alert_check_scheduled_jobs.md#support-tasks">email statistics rake task</a> to
+determine whether the app failed to send messages to Notify, or whether
+Notify failed to deliver them.</p></li>
+<li><p>Check the size of email-alert-api&rsquo;s work queue using the <a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues/?var-namespace=apps&amp;var-app=email-alert-api-worker&amp;from=now-24h&amp;to=now">Sidekiq dashboard</a>
+and <a href="https://grafana.eks.production.govuk.digital/d/app-requests/?var-namespace=apps&amp;var-app=email-alert-api&amp;var-error_status=All&amp;from=now-24h&amp;to=now">email-alert-api dashboard</a>. Is there a backlog? If so, is it
+diminishing? Are the workers making sufficient progress?</p></li>
+<li><p>Check <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/goto/06faa093ecf75957ccc04700ea52515d?security_tenant=global">logs in
+Kibana</a>
+and events in <a href="https://sentry.io/organizations/govuk/issues/?project=202220&amp;statsPeriod=12h">Sentry</a> for errors or clues.</p></li>
+<li><p>Previously, the introduction of a new content sub-type of medical safety
+alerts caused an <a href="https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#">outage</a>. See <a href="https://trello.com/c/v2ees2fD">&ldquo;all&rdquo; checkbox is
+misleading for finder_email_signups</a>.</p></li>
+<li><p>If all else fails, investigate the Email Alert API database to determine
+whether the content change was received and what state it is in.</p></li>
 </ul>
-<h2 id='resending-medical-safety-emails'>Resending medical safety emails</h2><p>If you need to force the sending of a travel advice email alert, run the
-<code>email_alerts:trigger[PUT_EDITION_ID_HERE]</code> rake task in Travel Advice
-Publisher.</p>
-<p>The edition ID of the travel advice content item can be found in the
-URL of the country&rsquo;s edit page in Travel Advice Publisher and looks like
-<code>fedc13e231ccd7d63e1abf65</code>.</p>
-<h2 id='resending-travel-advice-emails'>Resending travel advice emails</h2><p>If you need to force the sending of a travel advice email alert, run the
-<code>email_alerts:trigger[PUT_EDITION_ID_HERE]</code> rake task in Travel Advice
-Publisher.</p>
-<p>The edition ID of the travel advice content item can be found in the
-URL of the country&rsquo;s edit page in Travel Advice Publisher and looks like
-<code>fedc13e231ccd7d63e1abf65</code>.</p>
+<h2 id='resend-a-medical-safety-alert'>Resend a medical safety alert</h2>
+<ol>
+<li><p>Find the content ID of the affected content item. In Specialist Publisher,
+go to <a href="https://specialist-publisher.publishing.service.gov.uk/medical-safety-alerts">Medical
+Alerts</a>
+and choose the affected document. The content ID is the UUID in the URL. For
+example, in
+<code>https://specialist-publisher.publishing.service.gov.uk/medical-safety-alerts/de8a10f1-eac7-49a8-a8ef-1769a6f6cef9:en</code>
+the content ID is <code>de8a10f1-eac7-49a8-a8ef-1769a6f6cef9</code>.</p></li>
+<li><p>Run the <code>republish:one[&lt;CONTENT_ID&gt;]</code> Rake task in specialist-publisher,
+replacing <code>&lt;CONTENT_ID&gt;</code> with the one from the previous step.</p></li>
+</ol>
+<h2 id='resend-a-travel-advice-alert'>Resend a travel advice alert</h2>
+<ol>
+<li><p>Find the edition ID of the affected content item. In Travel Advice Publisher,
+go to the URL of the country&rsquo;s Edit page. The edition ID is a 24-digit hex
+number, for example <code>fedc13e231ccd7d63e1abf65</code>.</p></li>
+<li><p>Run the <code>email_alerts:trigger[&lt;EDITION_ID&gt;]</code> Rake task in
+travel-advice-publisher, replacing <code>&lt;EDITION_ID&gt;</code> with the one from the
+previous step.</p></li>
+</ol>
 
   <div class='related-content'>
 
