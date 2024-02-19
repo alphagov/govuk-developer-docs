@@ -109,19 +109,7 @@ review and assign to the `3rd Line--GOV.UK Product Requests` Zendesk group.
 
 ## DNS delegation tickets
 
-As of October 2022, Technical 2nd line may be asked to process DNS delegation requests. This used to be handled by a dedicated `3rd Line--GDS Reliability Engineering` Zendesk queue, which has now been merged into `2nd Line--GOV.UK Alerts and Issues`.
-
-The requests will look something like the following:
-
-> Please delegate the following to `something.service.gov.uk`
-> `nameserver1.example.com`
-> `nameserver2.example.com`
-
-The workflow for these requests is that a requester emails a particular email address, which creates a Zendesk ticket for the GOV.UK Policy and Strategy team. The request is then signed off and routed to us. We then double-check with someone from GOV.UK Policy and Strategy that the change has been agreed, then add/change the necessary DNS records (see [example](https://github.com/alphagov/govuk-dns-config/pull/854/files)) and respond to the requestor via the ticket.
-
-Note that some requests come directly via the [hostmaster Google group](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/hostmaster). If you are in any doubt about the legitimacy of a request, reassign the ticket to `3rd Line--Policy and Strategy` and add an internal note asking them.
-
-For actioning these requests, [read our DNS documentation](/manual/dns.html).
+[Read our DNS documentation](/manual/dns.html) to find out more about these requests and how to action them.
 
 ## Automated requests from Amazon ACM or AWS Certificate Manager
 
