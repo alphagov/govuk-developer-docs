@@ -208,15 +208,15 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6692899c8d4a114391a5dfcc5b146fb606bd052f">12 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c42036c6cf25fa4c8407d4dda493039dae425c79">19 Feb 2024</a>
 </div>
 
- <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones. For documentation on updating DNS, see the <a href="https://drive.google.com/drive/search?q=-%20type:document%20title:%22Tech%202nd%20Line%20-%20Handle%20Tickets%20on%20DNS%20Change%20request%20hostmaster%40%22">DNS change request and hostmaster</a> doc for Technical 2nd Line.</p>
-<p>In most cases, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS). See <a href="https://github.com/alphagov/govuk-dns-tf#amazon-route53-vs-google-cloud">Amazon Route53 vs Google Cloud in the govuk-dns-tf README</a></p>
-<p>As of December 2022, there are 61 hosted zones. A list is retrievable from a terminal using:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-production-poweruser -- aws route53 list-hosted-zones | grep Name
-</code></pre></div><p>Some individual records within these zones are managed by other teams.</p>
-<h2 id='records-for-gov-uk-systems'>Records for GOV.UK systems</h2><p>We use a few domains:</p>
+ <h1 id='header'>Domain Name System (DNS) records</h1> <blockquote>
+<p>For <strong>Technical 2nd Line documentation</strong> on when and how to respond to DNS delegation and domain verification requests, read the <a href="https://drive.google.com/drive/search?q=-%20type:document%20title:%22Tech%202nd%20Line%20-%20Handle%20Tickets%20on%20DNS%20Change%20request%20hostmaster%40%22">DNS change request and hostmaster Google doc</a>.</p>
+</blockquote>
+<p>GOV.UK is responsible for managing several DNS zones, spanning a number of <code>*.gov.uk</code> domains. As of February 2024, there are 45 hosted zones, configuring many hundreds of domains. A list of hosted zones is retrievable from a terminal using:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-production-poweruser <span class="nt">--</span> aws route53 list-hosted-zones | <span class="nb">grep </span>Name
+</code></pre></div><h2 id='records-for-gov-uk-systems'>Records for GOV.UK systems</h2><p>We use a few domains:</p>
 
 <ul>
 <li><code>alphagov.co.uk</code> is the old domain name GOV.UK publishing used to live on.
@@ -298,7 +298,6 @@ providers. We can just change where the CNAME points to.</li>
             <li><a href="/manual/manually-resize-ebs.html">Manually resize EBSs (elastic block store)</a></li>
             <li><a href="/manual/move-apps-between-servers.html">Move apps between servers</a></li>
             <li><a href="/manual/provision-machines-for-data-science-research.html">Provision machines for data science research</a></li>
-            <li><a href="/manual/renew-a-tls-certificate.html">Renew a TLS certificate for GOV.UK</a></li>
             <li><a href="/manual/reprovision.html">Reprovision a machine</a></li>
           </ul>
         </div>
