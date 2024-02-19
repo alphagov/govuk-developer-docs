@@ -84,13 +84,4 @@ View the documentation on [how to backup and restore in AWS RDS].
 
 [how to backup and restore in AWS RDS]: /manual/howto-backup-and-restore-in-aws-rds.html
 
-## Learn
-
-### How do we do DNS?
-
-GOV.UK is effectively a DNS registrar for some third-level domain names, for
-example service.gov.uk.
-
-See [how GOV.UK does DNS](/manual/dns.html).
-
 [govuk-aws]: https://github.com/alphagov/govuk-aws
