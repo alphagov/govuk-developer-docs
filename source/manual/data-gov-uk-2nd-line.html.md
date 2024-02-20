@@ -85,9 +85,9 @@ Traffic for data.gov.uk is recorded using Google Analytics, in specific properti
 
 ## Logging into the publisher
 
-You can log into [CKAN][dgu-ckan] using a shared 2nd line account. The credentials are available in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/main/pass) under [datagovuk/ckan](https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/datagovuk/ckan.gpg).
+You can log into [CKAN][dgu-ckan] using a shared account. The credentials are available in [Secrets Manager](secrets-manager.html) under `2ndline/datagovuk/ckan`.
 
-For commands not available via the user interface you need to [SSH onto a CKAN machine](#connecting-to-ckan-via-ssh).
+For commands not available via the user interface you need to `kubectl exec` into a CKAN pod.
 
 ## Users and publishing organisations
 

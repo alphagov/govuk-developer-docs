@@ -59,7 +59,6 @@ Note that a technologist apprentice is limited to Production Deploy access. Howe
 
 Gives:
 
-- Permission to read & write to the [password store](https://github.com/alphagov/govuk-secrets/tree/main/pass) in govuk-secrets store using [GPG](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id)
 - Write access to Argo CD in staging and production via the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production)
 - Privileged AWS Access in [Production](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars), [Staging](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/staging/common.tfvars) and [Tools](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/tools/common.tfvars) environments (via the `role_admin_user_arns` role)
 - [Google Cloud Platform (GCP)](/manual/google-cloud-platform-gcp.html) access to role to manage [static mirrors](/manual/fall-back-to-mirror.html) and DNS
