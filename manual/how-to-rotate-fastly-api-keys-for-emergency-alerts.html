@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Rotate Fastly API Keys for Emergency Alerts - GOV.UK Developer Documentation</title>
+    <title>Rotate Fastly automation token for Emergency Alerts application - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -20,12 +20,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Rotate Fastly API Keys for Emergency Alerts - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Rotate Fastly automation token for Emergency Alerts application - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Rotate Fastly API Keys for Emergency Alerts" />
+      <meta property="og:title" content="Rotate Fastly automation token for Emergency Alerts application" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html" />
 
@@ -139,7 +139,7 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Rotate Fastly API Keys for Emergency Alerts</span></a>
+    <a href="#header"><span>Rotate Fastly automation token for Emergency Alerts application</span></a>
   </li>
 </ul>
 
@@ -188,39 +188,65 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b66e83b5edd1b7eb8e96e39d0b5b00dbf46f7c36">17 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/86b58aebccea74c7cc7ec39304f48b51cdbbd1f3">17 Feb 2024</a>
 </div>
 
- <h1 id='header'>Rotate Fastly API Keys for Emergency Alerts</h1> <p>The GOV.UK Emergency Alerts team will occasionally request GOV.UK&rsquo;s help rotating some Fastly API keys which they use to purge Emergency Alerts
-pages from the Fastly cache.</p>
-<p>The process should be roughly:</p>
+ <h1 id='header'>Rotate Fastly automation token for Emergency Alerts application</h1> <blockquote>
+<p>🚧 This process should not be necessary unless a token has been compromised or lost.</p>
+</blockquote>
+<p>GOV.UK Emergency Alerts has a Fastly account token for evicting objects from
+the CDN cache. The token should not normally need to be changed. Under
+exceptional circumstances it may be necessary to change the token, for example if
+the token has been compromised.</p>
+<p>Changing a Fastly automation tokens requires <code>superuser</code> access. Ask someone
+from <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-platform-engineering/members">govuk-platform-engineering@</a> or <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members">govuk-senior-tech-members@</a> to do this for
+you.</p>
 
-<ul>
-<li>Sign in to Fastly using the Emergency Alerts account <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/notify_emergency_alerts_account.gpg">(credentials in govuk-secrets)</a> (private repository)</li>
-<li>Visit <a href="https://manage.fastly.com/account/personal/tokens">Account / Personal API tokens</a> in Fastly</li>
-<li>Search for &ldquo;GOV.UK Emergency Alerts /alerts&rdquo; to find the current keys</li>
-<li>Click Create Token</li>
-<li>Re-enter the account password</li>
-<li>Name the token using the pattern <code>GOV.UK Emergency Alerts /alerts $ENVIRONMENT $YEAR</code></li>
-<li>Choose the specific service <code>$ENVIRONMENT GOV.UK</code></li>
-<li>Select only purge select as the Scope</li>
-<li>Select &ldquo;Never expire&rdquo; for the expiration</li>
-</ul>
-<p><a href="/manual/images/fastly-api-key-emergency-alerts.png" rel="noopener noreferrer"><img src="/manual/images/fastly-api-key-emergency-alerts.png" alt="Screenshot of the Fastly user interface for configuring an API key" /></a></p>
+<blockquote>
+<p>It doesn&rsquo;t matter who creates the token, as long as they have superuser
+access. Any superuser can delete or rotate any API token in the GOV.UK Fastly
+account.</p>
+</blockquote>
+<p>Follow these steps to revoke old tokens and issue new one.</p>
 
-<ul>
-<li>Copy the token value and <a href="https://docs.publishing.service.gov.uk/manual/send-secret-using-gcp.html">send it to the Emergency Alerts team member securely</a>.</li>
-<li>Repeat for each environment requested. (You may wish to send all of the tokens across in one go, to save on the overhead).</li>
-<li>Once the Emergency Alerts team have confirmed that the new API keys are working (see below), you should delete the old keys via the Fastly UI.</li>
-</ul>
-<p>The Emergency Alerts team member will then:</p>
+<blockquote>
+<p>The new token will allow purge requests to the 3 Emergency Alerts services on
+Fastly and nothing else.</p>
+<p>Please do not create multiple tokens, even though this was done in the past.
+Having 3 separate tokens does not improve security in this case; it only
+creates toil.</p>
+</blockquote>
 
-<ul>
-<li>Log into the relevant AWS environment (preview, staging, production) and update the relevant <code>fastly-api-key</code> in Parameter Store within AWS Systems Manager</li>
-<li>Log into the AWS ECS console and navigate to the service eas-app-govuk-alerts within the eas-app-cluster</li>
-<li>Stop the running task within the eas-app-govuk-alerts dwiserviceapp. (That should then be restarted and will pull in the new credentials).</li>
-<li>Test the relevant key is working correctly by rebuilding the public alerts site for that environment. (It will automatically rebuild after the container app restarts).</li>
-</ul>
+<ol>
+<li>Log into <manage.fastly.com>.</li>
+<li>Go to <a href="https://manage.fastly.com/account/tokens">Account tokens</a>.</li>
+<li>Filter by the string &ldquo;Emergency Alerts&rdquo; to narrow down the list.</li>
+<li>Delete any lost or compromised tokens by pressing the trash bin icon in the
+rightmost column.</li>
+<li>Go to <a href="https://manage.fastly.com/account/personal/tokens">API tokens</a>.</li>
+<li>Choose <strong>Create Token</strong>, near the top-right of the page. The UI may prompt
+you for your account password.</li>
+<li>Under Type, choose <strong>Automation token</strong>. Do not create a User token.</li>
+<li>Name the token <code>GOV.UK Emergency Alerts</code>.</li>
+<li>Under Scope, tick the two Purge boxes: <code>purge_all</code> and <code>purge_select</code>.
+Ensure nothing else is ticked under the Scope heading.</li>
+<li>Under Access, choose <strong>One or more services</strong> and select <code>Production
+GOV.UK</code>, <code>Staging GOV.UK</code> and <code>Integration GOV.UK</code>, then choose Apply.</li>
+<li>Under Expiration, choose <strong>Never expire</strong>. Do not set an expiry date.</li>
+<li>Choose <strong>Create Token</strong>.</li>
+</ol>
+<p>Someone on Emergency Alerts team will need to set the new token in each of the
+3 AWS accounts for Emergency Alerts: preview, staging and production. For each
+account, they will need to:</p>
+
+<ol>
+<li>Update <code>fastly-api-key</code> in SSM Parameter Store.</li>
+<li>Find the <code>eas-app-govuk-alerts</code> service in <code>eas-app-cluster</code> in ECS.</li>
+<li>Stop the running task within the <code>eas-app-govuk-alerts</code> dwiserviceapp. ECS
+will automatically start a new task with the new credentials.</li>
+<li>Check that the key works by rebuilding the public alerts site for that
+environment. It will automatically rebuild after the container app restarts.</li>
+</ol>
 
   <div class='related-content'>
 
@@ -246,7 +272,7 @@ pages from the Fastly cache.</p>
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Rotate+Fastly+API+Keys+for+Emergency+Alerts%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhow-to-rotate-fastly-api-keys-for-emergency-alerts.html%29&amp;labels=bug&amp;title=Re%3A+%27Rotate+Fastly+API+Keys+for+Emergency+Alerts%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Rotate+Fastly+automation+token+for+Emergency+Alerts+application%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhow-to-rotate-fastly-api-keys-for-emergency-alerts.html%29&amp;labels=bug&amp;title=Re%3A+%27Rotate+Fastly+automation+token+for+Emergency+Alerts+application%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

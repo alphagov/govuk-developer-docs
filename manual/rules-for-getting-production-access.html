@@ -204,7 +204,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b3170692c2f5701dda8ce3a0e7cbe8c950fb7c62">16 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/86b58aebccea74c7cc7ec39304f48b51cdbbd1f3">17 Feb 2024</a>
 </div>
 
  <h1 id='header'>Rules for getting production access</h1> <p>In the GOV.UK programme we restrict access to production systems for new or
@@ -249,7 +249,6 @@ any access issues.</p>
 <h3 id='production-admin-access'>Production Admin access</h3><p>Gives:</p>
 
 <ul>
-<li>Permission to read &amp; write to the <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">password store</a> in govuk-secrets store using <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id">GPG</a></li>
 <li>Write access to Argo CD in staging and production via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production GitHub team</a></li>
 <li>Privileged AWS Access in <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars">Production</a>, <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/staging/common.tfvars">Staging</a> and <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/tools/common.tfvars">Tools</a> environments (via the <code>role_admin_user_arns</code> role)</li>
 <li><a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a> access to role to manage <a href="/manual/fall-back-to-mirror.html">static mirrors</a> and DNS</li>
@@ -303,6 +302,7 @@ any access issues.</p>
             <li><a href="/manual/change-in-hours-time-period-for-dst.html">Change in-hours time period for daylight savings</a></li>
             <li><a href="/manual/incorrect-postcode-data.html">Incorrect postcode data</a></li>
             <li><a href="/manual/raising-issues-with-reliability-engineering.html">Raise issues with Reliability Engineering</a></li>
+            <li><a href="/manual/secrets-manager.html">Retrieve shared credentials from AWS Secrets Manager</a></li>
             <li><a href="/manual/smart-survey-scheduled-maintenance.html">SmartSurvey scheduled maintenance</a></li>
             <li><a href="/manual/update_popular_links.html">Update popular links</a></li>
           </ul>

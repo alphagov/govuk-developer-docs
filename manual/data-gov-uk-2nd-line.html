@@ -387,7 +387,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a879c2f5c2741885730d6d812250fa89eab05d0f">14 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fb1372a5f762cea35ad71c0abb7ff279d07e1524">20 Feb 2024</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <blockquote>
@@ -424,8 +424,8 @@ Example query: <code>kubernetes.namespace: datagovuk AND kubernetes.container.na
 rails console
 &gt;&gt;&gt; Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
 </code></pre></div><h3 id='analytics'>Analytics</h3><p>Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.</p>
-<h2 id='logging-into-the-publisher'>Logging into the publisher</h2><p>You can log into <a href="https://ckan.publishing.service.gov.uk">CKAN</a> using a shared 2nd line account. The credentials are available in <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">govuk-secrets</a> under <a href="https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/datagovuk/ckan.gpg">datagovuk/ckan</a>.</p>
-<p>For commands not available via the user interface you need to <a href="#connecting-to-ckan-via-ssh">SSH onto a CKAN machine</a>.</p>
+<h2 id='logging-into-the-publisher'>Logging into the publisher</h2><p>You can log into <a href="https://ckan.publishing.service.gov.uk">CKAN</a> using a shared account. The credentials are available in <a href="/manual/secrets-manager.html">Secrets Manager</a> under <code>2ndline/datagovuk/ckan</code>.</p>
+<p>For commands not available via the user interface you need to <code>kubectl exec</code> into a CKAN pod.</p>
 <h2 id='users-and-publishing-organisations'>Users and publishing organisations</h2><p>Publishers login using their email address. A user can be a member of one or more publishing
 organisations, with either the &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; role for each organisation.</p>
 <p>&lsquo;Admin&rsquo; users can add/remove users from their own organisation.</p>
