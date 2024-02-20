@@ -62,10 +62,3 @@ Run the `publishing:scheduled:requeue_all_jobs` Rake task to requeue all
 scheduled editions:
 
 <%= RunRakeTask.links("whitehall-admin", "publishing:scheduled:requeue_all_jobs") %>
-
-Historically, this error has happened in the staging and integration
-environments, after the nightly [data sync](/manual/govuk-env-sync.html).
-We [no longer spawn scheduling workers](https://github.com/alphagov/govuk-puppet/pull/10842)
-for Whitehall on Staging and Integration, so this will no longer affect
-those environments. The alert and rake task fix could still prove useful
-on Production.
