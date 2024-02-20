@@ -214,15 +214,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7130481824ede6c64e6a2b7b5c7924336d0dcbd3">3 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3da4fde9b2687d465f9356441bdc84d75b9b2e7c">26 Jan 2024</a>
 </div>
 
  <h1 id='header'>Architectural summary of GOV.UK</h1> <p>The following content is a high-level summary of GOV.UK architecture, intended for both developers and non-developers to refer to.</p>
@@ -259,12 +252,12 @@
 <p><a href="https://github.com/alphagov/frontend">Frontend</a> looks at the request and decides which content to get from the Content Store. The <a href="https://github.com/alphagov/content-store">Content Store</a> is:</p>
 
 <ul>
-<li>a MongoDB database of almost all the content published on GOV.UK, excluding dynamic elements such as top links on taxon pages, navigation elements, or search result pages</li>
-<li>an application that exposes the <a href="https://github.com/alphagov/content-store/blob/main/docs/content-store-api.md">Content Store API</a></li>
+<li>a Postgres database of most of the content on GOV.UK, excluding dynamic elements such as top links on taxon pages, navigation elements, search result pages and some content which is still hardcoded in front end apps</li>
+<li>an application that provides the <a href="https://github.com/alphagov/content-store/blob/main/docs/content-store-api.md">Content Store API</a></li>
 </ul>
-<p>Frontend then queries the Content Store API to get the content in an <a href="https://www.gov.uk/api/content/government/news/uk-changes-travel-rules-for-travellers-from-nigeria-to-england">API response from the Content Store</a>.</p>
-<p>Frontend then builds the page using the content in the API response, and sends that response back to Router.</p>
-<p>Router sends the response to Fastly. Fastly sends the response back to the user.</p>
+<p>Frontend queries the Content Store API and receives the content as JSON (<a href="https://www.gov.uk/api/content/government/news/uk-changes-travel-rules-for-travellers-from-nigeria-to-england">example</a>).</p>
+<p>Frontend generates the response body by transforming the JSON content into HTML and returns it to Router.</p>
+<p>Router returns the response to Fastly. Fastly returns the response to the user.</p>
 <h3 id='a-user-searches-gov-uk'>A user searches GOV.UK</h3><p>The user goes to the <a href="https://www.gov.uk/search">GOV.UK search page</a>, and <a href="https://www.gov.uk/search/all?keywords=tax&amp;order=relevance">searches for something, for example, &ldquo;tax&rdquo;</a>.</p>
 <p>The user&rsquo;s browser uses DNS to figure out where to send the request, and sends that request to Fastly.</p>
 <p>If Fastly has the search results page cached, Fastly returns that page to the user.</p>
@@ -276,7 +269,7 @@
 <h2 id='a-publisher-publishes-content-on-gov-uk'>A publisher publishes content on GOV.UK</h2><p>GOV.UK has the following applications to publish content:</p>
 
 <ul>
-<li>Mainstream Publisher</li>
+<li>Mainstream Publisher, also known as Publisher</li>
 <li>Whitehall</li>
 <li>Content Publisher</li>
 <li>Specialist Publisher</li>
@@ -284,7 +277,7 @@
 <li>Collections Publisher</li>
 <li>Manuals Publisher</li>
 </ul>
-<p>The following sections describe what happens when a publisher publishes content to live and to draft using Mainstream Publisher (referred to as &ldquo;Publisher&rdquo;).</p>
+<p>The following sections describe what happens when a publisher publishes content to live and to draft using Mainstream Publisher.</p>
 <h3 id='a-publisher-publishes-content-to-live'>A publisher publishes content to live</h3><p>A publisher signs into their <a href="/repos/signon.html">Signon</a> account. Signon is a centralised single sign-on provider for GDS services that provides username/password and two-factor authentication.</p>
 <p>The publisher creates or changes content in Publisher and <a href="#a-publisher-publishes-content-to-draft">saves that content in draft</a>.</p>
 <p>When the publisher is ready to publish the content, they select <strong>Publish</strong> in Publisher, which sends a request to the Publishing API.</p>
