@@ -39,16 +39,16 @@ On Integration or Staging, follow the [Restore an RDS instance via the AWS CLI](
 
 ## Drill logging into accounts
 
-Make sure you can log into the following accounts:
+Make sure you can log into the following:
 
-1. [The AWS Console](/manual/common-aws-tasks-for-2nd-line-support.html#logging-into-aws)
-1. Your individual [Fastly account](https://manage.fastly.com/)
-1. Your individual [Statuspage account](https://manage.statuspage.io/login)
-1. Your individual [Logit account](https://dashboard.logit.io/sign-in)
-1. [Shared Heroku account](/manual/heroku.html)
-1. [Shared CKAN/data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html)
-1. [Shared Rubygems account](https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/packages/rubygems.gpg)
-1. [Shared NPM account](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm)
+1. [The AWS web console](/manual/common-aws-tasks-for-2nd-line-support.html#logging-into-aws)
+1. [Fastly](https://manage.fastly.com/) (using your individual account)
+1. [Statuspage](https://manage.statuspage.io/login) (using your individual account)
+1. [Logit](https://dashboard.logit.io/sign-in) (using your individual account)
+1. [Heroku](/manual/heroku.html)
+1. [data.gov.uk CKAN](/manual/data-gov-uk-2nd-line.html)
+1. [Rubygems](https://rubygems.org/sign_in) (`2ndline/rubygems` in [Secrets Manager](secrets-manager.html))
+1. [NPM](https://www.npmjs.com/login) (`2ndline/npm` in Secrets Manager)
 
 ## Drill scaling up an application
 

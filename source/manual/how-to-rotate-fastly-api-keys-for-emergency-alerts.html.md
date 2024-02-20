@@ -1,35 +1,62 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
-title: Rotate Fastly API Keys for Emergency Alerts
+owner_slack: "#govuk-platform-engineering"
+title: Rotate Fastly automation token for Emergency Alerts application
 section: Emergency Alerts
 layout: manual_layout
 parent: "/manual.html"
 ---
 
-The GOV.UK Emergency Alerts team will occasionally request GOV.UK's help rotating some Fastly API keys which they use to purge Emergency Alerts
-pages from the Fastly cache.
+> 🚧 This process should not be necessary unless a token has been compromised or lost.
 
-The process should be roughly:
+GOV.UK Emergency Alerts has a Fastly account token for evicting objects from
+the CDN cache. The token should not normally need to be changed. Under
+exceptional circumstances it may be necessary to change the token, for example if
+the token has been compromised.
 
-* Sign in to Fastly using the Emergency Alerts account [(credentials in govuk-secrets)](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/notify_emergency_alerts_account.gpg) (private repository)
-* Visit [Account / Personal API tokens](https://manage.fastly.com/account/personal/tokens) in Fastly
-* Search for "GOV.UK Emergency Alerts /alerts" to find the current keys
-* Click Create Token
-* Re-enter the account password
-* Name the token using the pattern `GOV.UK Emergency Alerts /alerts $ENVIRONMENT $YEAR`
-* Choose the specific service `$ENVIRONMENT GOV.UK`
-* Select only purge select as the Scope
-* Select "Never expire" for the expiration
+Changing a Fastly automation tokens requires `superuser` access. Ask someone
+from [govuk-platform-engineering@] or [govuk-senior-tech-members@] to do this for
+you.
 
-![Screenshot of the Fastly user interface for configuring an API key](/manual/images/fastly-api-key-emergency-alerts.png)
+[govuk-platform-engineering@]: https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-platform-engineering/members
+[govuk-senior-tech-members@]: https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members
 
-* Copy the token value and [send it to the Emergency Alerts team member securely](https://docs.publishing.service.gov.uk/manual/send-secret-using-gcp.html).
-* Repeat for each environment requested. (You may wish to send all of the tokens across in one go, to save on the overhead).
-* Once the Emergency Alerts team have confirmed that the new API keys are working (see below), you should delete the old keys via the Fastly UI.
+> It doesn't matter who creates the token, as long as they have superuser
+> access. Any superuser can delete or rotate any API token in the GOV.UK Fastly
+> account.
 
-The Emergency Alerts team member will then:
+Follow these steps to revoke old tokens and issue new one.
 
-* Log into the relevant AWS environment (preview, staging, production) and update the relevant `fastly-api-key` in Parameter Store within AWS Systems Manager
-* Log into the AWS ECS console and navigate to the service eas-app-govuk-alerts within the eas-app-cluster
-* Stop the running task within the eas-app-govuk-alerts dwiserviceapp. (That should then be restarted and will pull in the new credentials).
-* Test the relevant key is working correctly by rebuilding the public alerts site for that environment. (It will automatically rebuild after the container app restarts).
+> The new token will allow purge requests to the 3 Emergency Alerts services on
+> Fastly and nothing else.
+>
+> Please do not create multiple tokens, even though this was done in the past.
+> Having 3 separate tokens does not improve security in this case; it only
+> creates toil.
+
+1. Log into <manage.fastly.com>.
+1. Go to [Account tokens](https://manage.fastly.com/account/tokens).
+1. Filter by the string "Emergency Alerts" to narrow down the list.
+1. Delete any lost or compromised tokens by pressing the trash bin icon in the
+   rightmost column.
+1. Go to [API tokens](https://manage.fastly.com/account/personal/tokens).
+1. Choose __Create Token__, near the top-right of the page. The UI may prompt
+   you for your account password.
+1. Under Type, choose __Automation token__. Do not create a User token.
+1. Name the token `GOV.UK Emergency Alerts`.
+1. Under Scope, tick the two Purge boxes: `purge_all` and `purge_select`.
+   Ensure nothing else is ticked under the Scope heading.
+1. Under Access, choose __One or more services__ and select `Production
+   GOV.UK`, `Staging GOV.UK` and `Integration GOV.UK`, then choose Apply.
+1. Under Expiration, choose __Never expire__. Do not set an expiry date.
+1. Choose __Create Token__.
+
+Someone on Emergency Alerts team will need to set the new token in each of the
+3 AWS accounts for Emergency Alerts: preview, staging and production. For each
+account, they will need to:
+
+1. Update `fastly-api-key` in SSM Parameter Store.
+1. Find the `eas-app-govuk-alerts` service in `eas-app-cluster` in ECS.
+1. Stop the running task within the `eas-app-govuk-alerts` dwiserviceapp. ECS
+   will automatically start a new task with the new credentials.
+1. Check that the key works by rebuilding the public alerts site for that
+   environment. It will automatically rebuild after the container app restarts.
