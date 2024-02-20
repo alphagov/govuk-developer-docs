@@ -11,23 +11,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Setup a Yubikey - GOV.UK Developer Documentation</title>
+    <title>Set up a YubiKey - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/setup-a-yubikey.html">
 
-      <meta name="description" content="Guide for setting up and using a Yubikey" />
+      <meta name="description" content="Guide for setting up and using a YubiKey" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Setup a Yubikey - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Set up a YubiKey - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/setup-a-yubikey.html" />
 
-      <meta property="og:description" content="Guide for setting up and using a Yubikey" />
+      <meta property="og:description" content="Guide for setting up and using a YubiKey" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Setup a Yubikey" />
+      <meta property="og:title" content="Set up a YubiKey" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/setup-a-yubikey.html" />
 
@@ -141,10 +141,10 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Setup a Yubikey</span></a>
+    <a href="#header"><span>Set up a YubiKey</span></a>
     <ul>
       <li>
-        <a href="#setup-as-an-mfa-device-for-aws"><span>Setup as an MFA device for AWS</span></a>
+        <a href="#set-up-a-yubikey-as-an-mfa-device-for-aws"><span>Set up a YubiKey as an MFA device for AWS</span></a>
       </li>
     </ul>
   </li>
@@ -194,33 +194,40 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e47b1253c251c1b3cfa3cba3639254714bf538bb">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/480a607c1c30536435be8c80b32b098ea5e5e63f">16 Feb 2024</a>
 </div>
 
- <h1 id='header'>Setup a Yubikey</h1> <h2 id='setup-as-an-mfa-device-for-aws'>Setup as an MFA device for AWS</h2>
+ <h1 id='header'>Set up a YubiKey</h1> <h2 id='set-up-a-yubikey-as-an-mfa-device-for-aws'>Set up a YubiKey as an MFA device for AWS</h2>
 <ol>
-<li>Download the <a href="https://www.yubico.com/products/yubico-authenticator/">Yubico Authenticator</a> app to your computer (or mobile device, if your Yubikey supports NFC).</li>
-<li>Sign in to the [<code>gds-users</code> AWS console][gds-users-aws-signin].</li>
-<li>Select the <strong>IAM</strong> service.</li>
-<li>Select <strong>Users</strong> in the left hand menu and enter your name.</li>
-<li>Select the link for your email address.</li>
-<li>Select the <strong>Security credentials</strong> tab.</li>
+<li>Install the <a href="https://www.yubico.com/products/yubico-authenticator/">Yubico Authenticator</a> app on your computer.</li>
+<li><a href="https://gds-users.signin.aws.amazon.com/console">Sign into the <code>gds-users</code> AWS account</a>.</li>
+<li>Select your email address in the top-right corner of the page.</li>
+<li>Choose <strong>Security credentials</strong> from the drop-down menu.</li>
 <li>Select <strong>Manage</strong>, which is next to <strong>Assigned MFA device</strong>.</li>
-<li>Specify your email address as the MFA device name</li>
-<li>Select &ldquo;Authenticator app&rdquo;, not &ldquo;Security Key&rdquo;</li>
-<li>When asked to scan the QR code with your mobile device, open the Yubico Authenticator app and use that to scan the QR code. The MFA code will now be present on your Yubikey.</li>
-<li>Configure gds-cli to use the YubiKey:</li>
-</ol>
+<li>Specify your email address as the MFA device name.</li>
+<li>Select <strong>Authenticator app</strong>, not <strong>Security Key</strong>.</li>
+<li>Click to reveal the QR code.</li>
+<li>Open the Yubico Authenticator app, choose Add Account from the hamburger menu at the top-right of the window and choose Scan QR code.</li>
+<li>Make sure <strong>Require touch</strong> is enabled.</li>
+<li>Enter two consecutive codes from Yubico Authenticator and press <strong>Save</strong>.</li>
+<li><p>Configure gds-cli to use the YubiKey:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds config yubikey true
-</code></pre></div>
+</code></pre></div></li>
+<li><p>Go back to the <strong>Security credentials</strong> page and add the YubiKey again as a second MFA device, but choose <strong>Security Key</strong> this time.</p></li>
+</ol>
+<p>You have now:</p>
+
+<ul>
+<li>added your YubiKey as a U2F/FIDO2 security key for logging into the AWS web console more securely and conveniently</li>
+<li>added your YubiKey as a legacy OATH MFA device for compatibility with gds-cli/aws-vault on the command line</li>
+</ul>
+
+<blockquote>
+<p>⚠️ Now that you have an unphishable security key as an MFA device, you should never type or copy/paste the 6-digit OATH one-time codes. They&rsquo;re only for gds-cli/aws-vault now, not for you.</p>
+<p>Always use the <strong>Security Key</strong> option and not the legacy Authenticator app option when signing into the AWS web console.</p>
+</blockquote>
+
   <div class='related-content'>
 
     <h3>More in the Security section</h3>
@@ -248,7 +255,7 @@
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/setup-a-yubikey.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Setup+a+Yubikey%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fsetup-a-yubikey.html%29&amp;labels=bug&amp;title=Re%3A+%27Setup+a+Yubikey%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Set+up+a+YubiKey%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fsetup-a-yubikey.html%29&amp;labels=bug&amp;title=Re%3A+%27Set+up+a+YubiKey%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
