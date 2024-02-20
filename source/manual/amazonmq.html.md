@@ -16,7 +16,7 @@ Protocol][AMQP] (AMQP). Publishing's RabbitMQ cluster is provided by AWS' [Amazo
 Run `gds govuk connect amazonmq -e integration` and point your
 browser at the URL it gives you - it will look like <http://127.0.0.1:45612>, but will have a random port number. You can connect to `staging` and `production` the same way, just replace `integration` above with the environment of your choice.
 
-The username is `root` and the passwords for each environment are in the [pass](https://github.com/alphagov/govuk-secrets/tree/main/pass) password store under `amazonmq`.
+The username is `root` and the passwords for each environment are in `2ndline/publishing-amazonmq` in [Secrets Manager](secrets-manager.html) in the **production** AWS account.
 
 ## AmazonMQ metrics
 
