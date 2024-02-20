@@ -14,7 +14,7 @@ Pingdom operates by making pre-defined requests at a regular interval (typically
 
 ## Access Pingdom
 
-GOV.UK account credentials for Pingdom are available in [govuk-secrets](https://github.com/alphagov/govuk-secrets) via the [Technical 2nd Line password store](https://github.com/alphagov/govuk-secrets/tree/master/pass) under `monitoring/pingdom`.
+Login credentials for Pingdom are under `2ndline/pingdom` in [Secrets Manager](secrets-manager.html).
 
 ## Add a Pingdom check
 
