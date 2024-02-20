@@ -100,8 +100,6 @@ The Platform Security & Reliability team are [looking at the future management o
 
 GOV.UK manages DNS zones for some non-`gov.uk` domains (e.g. `independent-inquiry.uk`). Another example is `alphagov.co.uk`, which is the old domain name GOV.UK publishing used to live on - we maintain records which point to Bouncer so that these URLs redirect.
 
-Some of these domains are managed by us for legacy reasons. Others are defensively registered variations of domains that are in the GOV.UK proposition.
-
 All domains should be managed in Terraform, with each domain having its own zone configuration file in [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf), with the exception of the domains in the next section.
 
 ### Domains and zones managed outside of govuk-dns-tf
