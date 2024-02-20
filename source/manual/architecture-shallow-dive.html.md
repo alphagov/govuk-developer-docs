@@ -62,14 +62,14 @@ Router chooses Frontend to produce the page, and forwards the request to Fronten
 
 [Frontend](https://github.com/alphagov/frontend) looks at the request and decides which content to get from the Content Store. The [Content Store](https://github.com/alphagov/content-store) is:
 
-- a MongoDB database of almost all the content published on GOV.UK, excluding dynamic elements such as top links on taxon pages, navigation elements, or search result pages
-- an application that exposes the [Content Store API](https://github.com/alphagov/content-store/blob/main/docs/content-store-api.md)
+- a Postgres database of most of the content on GOV.UK, excluding dynamic elements such as top links on taxon pages, navigation elements, search result pages and some content which is still hardcoded in front end apps
+- an application that provides the [Content Store API](https://github.com/alphagov/content-store/blob/main/docs/content-store-api.md)
 
-Frontend then queries the Content Store API to get the content in an [API response from the Content Store](https://www.gov.uk/api/content/government/news/uk-changes-travel-rules-for-travellers-from-nigeria-to-england).
+Frontend queries the Content Store API and receives the content as JSON ([example](https://www.gov.uk/api/content/government/news/uk-changes-travel-rules-for-travellers-from-nigeria-to-england)).
 
-Frontend then builds the page using the content in the API response, and sends that response back to Router.
+Frontend generates the response body by transforming the JSON content into HTML and returns it to Router.
 
-Router sends the response to Fastly. Fastly sends the response back to the user.
+Router returns the response to Fastly. Fastly returns the response to the user.
 
 ### A user searches GOV.UK
 
@@ -93,7 +93,7 @@ Finder Frontend then renders the response in a search results page, and sends th
 
 GOV.UK has the following applications to publish content:
 
-- Mainstream Publisher
+- Mainstream Publisher, also known as Publisher
 - Whitehall
 - Content Publisher
 - Specialist Publisher
@@ -101,7 +101,7 @@ GOV.UK has the following applications to publish content:
 - Collections Publisher
 - Manuals Publisher
 
-The following sections describe what happens when a publisher publishes content to live and to draft using Mainstream Publisher (referred to as "Publisher").
+The following sections describe what happens when a publisher publishes content to live and to draft using Mainstream Publisher.
 
 ### A publisher publishes content to live
 
