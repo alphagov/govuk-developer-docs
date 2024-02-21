@@ -37,6 +37,6 @@ Mark the gem as `retired` in [govuk-developer-docs][https://github.com/alphagov/
 
 ## 4. Yank the gem (optional)
 
-Once the gem has been archived you may want to [yank it from Rubygems](https://guides.rubygems.org/removing-a-published-gem/) if it was published there. You can find the Rubygems credentials in [govuk-secrets](https://github.com/alphagov/govuk-secrets).
+Once the gem has been archived you may want to [yank it from Rubygems](https://guides.rubygems.org/removing-a-published-gem/) if it was published there. The Rubygems login credentials are under `2ndline/rubygems` in [Secrets Manager](secrets-manager.html).
 
 You should only really do this if the gem was published in error or contains a security vulnerability. If it's simply that the gem is no longer maintained, it's fine to leave it published.

@@ -147,8 +147,6 @@ support (assuming everything is working).
 
 [So, you're having an incident]: /manual/incident-what-to-do.html
 [docs]: https://github.com/alphagov/govuk-developer-docs/
-[govuk-secrets]: https://github.com/alphagov/govuk-secrets/
-[vcloud]: connect-to-vcloud-director.html
 [payment claim form]: https://forms.gle/yvPoANwrsHz8SrL4A
 [access AWS]: /manual/get-started.html#sign-in-to-aws
 [access GCP]: /manual/google-cloud-platform-gcp.html
