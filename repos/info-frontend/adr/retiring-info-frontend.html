@@ -7,25 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: info-frontend - GOV.UK Developer Documentation</title>
+    <title>info-frontend: ADR: Retiring Info Frontend - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/info-frontend.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/info-frontend/adr/retiring-info-frontend.html">
 
-      <meta name="description" content="Everything about info-frontend (Serves /info pages to display user needs and performance data about a page on GOV.UK)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: info-frontend - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/info-frontend.html" />
+      <meta name="twitter:title" content="info-frontend: ADR: Retiring Info Frontend - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/info-frontend/adr/retiring-info-frontend.html" />
 
-      <meta property="og:description" content="Everything about info-frontend (Serves /info pages to display user needs and performance data about a page on GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: info-frontend" />
+      <meta property="og:title" content="info-frontend: ADR: Retiring Info Frontend" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/info-frontend.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/info-frontend/adr/retiring-info-frontend.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -175,6 +173,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "info-frontend",
+        "@id": "http://www.dev.gov.uk/repos/info-frontend.html"
+      }
     }
   ]
 }
@@ -183,86 +189,88 @@
 <div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/info-frontend.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;info-frontend&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/info-frontend.html">info-frontend</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Application: info-frontend</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Serves /info pages to display user needs and performance data about a page on GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/info-frontend">info-frontend</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-navigation-tech">#govuk-navigation-tech</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Frontend apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-info-frontend" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?var-app=info-frontend" class="govuk-link">App dashboard: request rates, errors, durations</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:info-frontend),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:info-frontend)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:info-frontend-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:info-frontend-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/info-frontend" class="govuk-link">Argo CD (info-frontend)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/info-frontend/commit/e9ba2c1ca40498a57ca201ba860ca22b56d88316">20 Feb 2024</a>
 </div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>This application exposes the user needs and metrics about content on GOV.UK. It does this by fetching content details from <a href="https://github.com/alphagov/content-store">Content Store</a>.</p>
+  <h1 class="page-title">info-frontend: ADR: Retiring Info Frontend</h1>
 
-<p>Information pages have a prefix of <code>/info</code>, for example: <a href="https://www.gov.uk/info/benefits-calculators">https://www.gov.uk/info/benefits-calculators</a> and <a href="https://www.gov.uk/info/employers-sick-pay">https://www.gov.uk/info/employers-sick-pay</a>.</p>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> or the local <code>startup.sh</code> script to run the app. Read the <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">guidance on local frontend development</a> to find out more about each approach, before you get started.</p>
-
-<p>If you are using GOV.UK Docker, remember to combine it with the commands that follow. See the <a href="https://github.com/alphagov/govuk-docker#usage">GOV.UK Docker usage instructions</a> for examples.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<pre><code>bundle exec rake
-</code></pre>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/info-frontend/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  
+<p>Date: 2023-02-20</p>
+<h2 id="status">Status</h2>
+<p>Agreed.</p>
+<h2 id="context">Context</h2>
+<p>Info pages display <a href="https://github.com/alphagov/maslow">Maslow</a> information (the needs for the page) and
+historically, performance information such as how many visitors a page has had.</p>
+<p>Adding /info to the start of any GOV.UK URL such as
+<a href="https://www.gov.uk/info/employers-sick-pay">https://www.gov.uk/info/employers-sick-pay</a> will return the info page for the
+content.</p>
+<p>Most of the pages Info Frontend renders are void of content as user needs are
+rarely used. To put this in perspective, there are currently 413 user needs,
+applied to 1164 published pages on <a href="http://www.gov.uk">www.gov.uk</a>. As there is an /info page for
+every page on <a href="http://www.gov.uk">www.gov.uk</a>, this is a very small proportion. ~73% of the
+published pages have not been created, or publicly updated since 2018 and the
+last change to a published user need in Maslow was in June 2018.</p>
+<p>Previously, info pages also contained performance data however this has been
+turned off as the <a href="https://docs.publishing.service.gov.uk/repos/performanceplatform-admin.html">Performance Platform has been decommissioned</a> so there are no
+metrics to display.</p>
+<p>We also don't index or link to any of these pages and so there will be little
+organic traffic to them. CIOP have gathered some analytics and confirmed that:</p>
+<ul>
+<li>nearly all pages receive very little traffic, if any</li>
+<li>compared to the visits for the parent page, the traffic looks even smaller</li>
+<li>most of the traffic seems to come from, say, references in blogs</li>
+</ul>
+<h2 id="decision">Decision</h2>
+<p>As we no longer provide performance data on the /info pages or maintain the
+user needs information, we are proposing to remove the pages and thus, retire
+Info Frontend.</p>
+<p>We plan to redirect requests to /info pages to a single mainstream content page
+that outlines what these pages were, why they have been removed. We'll remove
+the existing prefix info/ route that points to info-frontend and instead use
+<a href="https://github.com/alphagov/short-url-manager">Short URL Manager</a> to add a prefix route that points at the single content
+page.  We did consider removing the /info pages without redirects considering
+the low traffic, however a content page would be beneficial for any invested
+user (publisher / public) that is curious why they no longer exist. Post launch
+we will monitor the page traffic and feedback and assess whether the page
+should persist.</p>
+<p>As part of this work, we won't be retiring Maslow or the backing data, we'll
+just be removing the frontend that supports /info pages. Publishers will still
+be able to tag user needs in the various publishing apps. The Publishing team
+have previously informed users of their intention to retire Maslow, but this
+work is not currently scheduled.</p>
+<p>We will inform the relevant teams internally and post this to the wider content
+community (x-gov) to raise awareness of the upcoming change.</p>
+<h2 id="consequences">Consequences</h2>
+<p>Removing /info pages reduces reputational damage, as the:</p>
+<ul>
+<li>vast majority of pages look broken to anyone who sees them</li>
+<li>backing data (user needs) is not actively maintained and thus could be incorrect</li>
+<li>performance data is missing</li>
+<li>/info pages are not accessible</li>
+</ul>
+<p>Reduces gov.uk maintenance burden as one less app to maintain (monitoring,
+dependabot, Rails upgrades etc).</p>
+<p>Paves the way for removing, or repurposing <a href="https://github.com/alphagov/maslow">Maslow</a>. If we decide we still
+want to display user needs for certain pages, then a solution should be
+proposed that is maintainable and useful.</p>
+<p>Risk of users complaining about user needs disappearing on info pages they
+visit (albeit small risk given these pages are pretty much hidden and analytics
+confirm really low traffic).</p>
+<p>Risk of the proposed single content page becoming stale, e.g if we point users
+to the content API but then the backing data is removed without consideration
+of the new page.</p>
 
 
             
@@ -270,8 +278,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Finfo-frontend.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/info-frontend/blob/main/docs/adr/retiring-info-frontend.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Finfo-frontend%2Fadr%2Fretiring-info-frontend.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
