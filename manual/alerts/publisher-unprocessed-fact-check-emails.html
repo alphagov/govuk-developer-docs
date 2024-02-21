@@ -148,6 +148,9 @@
             <a href="#log-in-to-the-inbox"><span>Log in to the inbox</span></a>
           </li>
           <li>
+            <a href="#retrieve-the-mailbox-credentials-from-the-app"><span>Retrieve the mailbox credentials from the app</span></a>
+          </li>
+          <li>
             <a href="#investigate-the-unprocessed-emails"><span>Investigate the unprocessed emails</span></a>
           </li>
         </ul>
@@ -200,15 +203,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1c279e4e70ebf51800849576d5c1fdfb74717f7f">13 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7782bea5b1a1b045cec6dfc988b4cea2724ff179">20 Feb 2024</a>
 </div>
 
  <h1 id='header'>Publisher: Unprocessed fact-check emails</h1> <p>As part of the <a href="https://github.com/alphagov/publisher/blob/main/docs/fact-checking.md">Publisher fact checking process</a>, this alert appears if emails
@@ -223,12 +219,7 @@ because they&rsquo;re missing the identification for the edition they relate to
 <li>govuk-fact-check-staging@digital.cabinet-office.gov.uk</li>
 <li>govuk-fact-check-integration@digital.cabinet-office.gov.uk</li>
 </ul>
-<h4 id='retrieving-credentials'>Retrieving credentials</h4><p>The passwords for the @digital.cabinet-office.gov.uk addresses are found in
-<a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">PASSWORD_STORE_DIR</span><span class="o">=</span>~/govuk/govuk-secrets/pass/2ndline pass google-accounts/govuk-fact-check@digital.cabinet-office.gov.uk
-</code></pre></div><p>Or by logging into the Publisher console:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect app-console <span class="nt">-e</span> production publisher
-</code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="o">&gt;</span> <span class="no">Publisher</span><span class="o">::</span><span class="no">Application</span><span class="p">.</span><span class="nf">mail_fetcher_config</span>
+<h3 id='retrieve-the-mailbox-credentials-from-the-app'>Retrieve the mailbox credentials from the app</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">echo</span> <span class="s1">'Publisher::Application.mail_fetcher_config'</span> | k <span class="nb">exec</span> <span class="nt">-i</span> deploy/publisher <span class="nt">--</span> rails c
 </code></pre></div><h3 id='investigate-the-unprocessed-emails'>Investigate the unprocessed emails</h3><p>There are a number of different ways of proceeding here based on why the email
 wasn&rsquo;t able to be processed:</p>
 <h4 id='spamout-of-office'>Spam/out of office</h4><p>If the email is clearly spam or not relevant for other reasons,

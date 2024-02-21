@@ -207,7 +207,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ad997b3610f131063008237b7cc43aa9deac315c">30 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7782bea5b1a1b045cec6dfc988b4cea2724ff179">20 Feb 2024</a>
 </div>
 
  <h1 id='header'>Manage AmazonMQ</h1> <p><a href="https://www.rabbitmq.com/">RabbitMQ</a> is a message broker based on the <a href="https://www.rabbitmq.com/tutorials/amqp-concepts.html">Advanced Message Queuing
@@ -215,7 +215,7 @@ Protocol</a> (AMQP). Publishing&rsquo;s RabbitMQ cluster is provided by AWS&rsqu
 <p><a href="https://www.rabbitmq.com/tutorials/tutorial-one-ruby.html">Learn more about RabbitMQ</a>.</p>
 <h2 id='connecting-to-the-rabbitmq-web-control-panel'>Connecting to the RabbitMQ web control panel</h2><p>Run <code>gds govuk connect amazonmq -e integration</code> and point your
 browser at the URL it gives you - it will look like <a href="http://127.0.0.1:45612">http://127.0.0.1:45612</a>, but will have a random port number. You can connect to <code>staging</code> and <code>production</code> the same way, just replace <code>integration</code> above with the environment of your choice.</p>
-<p>The username is <code>root</code> and the passwords for each environment are in the <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">pass</a> password store under <code>amazonmq</code>.</p>
+<p>The username is <code>root</code> and the passwords for each environment are in <code>2ndline/publishing-amazonmq</code> in <a href="/manual/secrets-manager.html">Secrets Manager</a> in the <strong>production</strong> AWS account.</p>
 <h2 id='amazonmq-metrics'>AmazonMQ metrics</h2><p>A <a href="https://grafana.eks.production.govuk.digital/d/mq/">generic AmazonMQ dashboard</a> shows metrics for queues and exchanges.</p>
 <h2 id='how-we-run-rabbitmq'>How we run RabbitMQ</h2><h3 id='overview'>Overview</h3><p><a href="images/rabbitmq_graph.png" rel="noopener noreferrer"><img src="/manual/images/rabbitmq_graph.png" alt="A graph showing the message flow" /></a></p>
 <p><strong>Producer</strong>: an application that publishes messages to RabbitMQ. On GOV.UK this could
@@ -294,7 +294,6 @@ AMQP concepts really well.</li>
           <ul class="govuk-list">
             <li><a href="/manual/ruby.html">Add a new Ruby version</a></li>
             <li><a href="/manual/databases.html">Databases on GOV.UK</a></li>
-            <li><a href="/manual/rabbitmq.html">Manage RabbitMQ</a></li>
             <li><a href="/manual/manually-resize-ebs.html">Manually resize EBSs (elastic block store)</a></li>
             <li><a href="/manual/move-apps-between-servers.html">Move apps between servers</a></li>
             <li><a href="/manual/provision-machines-for-data-science-research.html">Provision machines for data science research</a></li>

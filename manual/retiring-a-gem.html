@@ -202,7 +202,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b4c28cd3ffa5223f6bbca90c1500f920c80a9dc3">8 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7782bea5b1a1b045cec6dfc988b4cea2724ff179">20 Feb 2024</a>
 </div>
 
  <h1 id='header'>Retire a gem</h1> <h2 id='1-ensure-the-gem-is-not-used-by-any-apps'>1. Ensure the gem is not used by any apps</h2><p>Search for references to the gem in our codebase to see if any apps are still using it:</p>
@@ -218,7 +218,7 @@ Check the usage instructions in the gem&rsquo;s README and then search for the c
 <h2 id='3-remove-references-and-update-docs'>3. Remove references and update docs</h2><p>Do a [code search on GitHub][https://github.com/search?q=org%3Aalphagov+panopticon&amp;type=Code] to find any references to the gem
 and update or remove them.</p>
 <p>Mark the gem as <code>retired</code> in [govuk-developer-docs][https://github.com/alphagov/govuk-developer-docs].</p>
-<h2 id='4-yank-the-gem-optional'>4. Yank the gem (optional)</h2><p>Once the gem has been archived you may want to <a href="https://guides.rubygems.org/removing-a-published-gem/">yank it from Rubygems</a> if it was published there. You can find the Rubygems credentials in <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>.</p>
+<h2 id='4-yank-the-gem-optional'>4. Yank the gem (optional)</h2><p>Once the gem has been archived you may want to <a href="https://guides.rubygems.org/removing-a-published-gem/">yank it from Rubygems</a> if it was published there. The Rubygems login credentials are under <code>2ndline/rubygems</code> in <a href="/manual/secrets-manager.html">Secrets Manager</a>.</p>
 <p>You should only really do this if the gem was published in error or contains a security vulnerability. If it&rsquo;s simply that the gem is no longer maintained, it&rsquo;s fine to leave it published.</p>
 
   <div class='related-content'>

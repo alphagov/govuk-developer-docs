@@ -140,41 +140,6 @@
   <ul>
   <li>
     <a href="#header"><span>Data.gov.uk Contracts Archive</span></a>
-    <ul>
-      <li>
-        <a href="#application"><span>Application</span></a>
-        <ul>
-          <li>
-            <a href="#finding-the-ip-address-of-the-machine"><span>Finding the IP address of the machine</span></a>
-          </li>
-          <li>
-            <a href="#ssh39ing-onto-the-machine"><span>SSH'ing onto the machine</span></a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#historical-data"><span>Historical data</span></a>
-        <ul>
-          <li>
-            <a href="#snapshot"><span>Snapshot</span></a>
-          </li>
-          <li>
-            <a href="#on-data-gov-uk"><span>On data.gov.uk</span></a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#takedown-and-text-change-requests"><span>Takedown and text change requests</span></a>
-        <ul>
-          <li>
-            <a href="#authorise-the-request"><span>Authorise the request</span></a>
-          </li>
-          <li>
-            <a href="#process-the-request"><span>Process the request</span></a>
-          </li>
-        </ul>
-      </li>
-    </ul>
   </li>
 </ul>
 
@@ -223,87 +188,12 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3cb05ea5509f999aa5cad50279fac0925e4a0f0d">30 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7782bea5b1a1b045cec6dfc988b4cea2724ff179">20 Feb 2024</a>
 </div>
 
  <h1 id='header'>Data.gov.uk Contracts Archive</h1> <blockquote>
 <p>This service is no longer available and was superseded by a new <a href="https://www.gov.uk/contracts-finder">Contracts Finder</a> designed and operated by the Crown Commercial Service.</p>
 </blockquote>
-<h2 id='application'>Application</h2><p>Visit the <a href="https://data.gov.uk/data/contracts-finder-archive">contracts archive finder</a>.</p>
-<h3 id='finding-the-ip-address-of-the-machine'>Finding the IP address of the machine</h3><p>Credentials for the AWS account are in the <code>govuk-secrets</code> repository under
-<code>2ndline/datagovuk/contracts-finder-archive-aws-console-pass</code>.</p>
-<p>Once logged in to the AWS console, you&rsquo;ll be able to list the EC2 instances and
-find the IP of the contracts archive finder.</p>
-<h3 id='ssh39ing-onto-the-machine'>SSH&#39;ing onto the machine</h3><p><a name="ssh-instructions"></a></p>
-<p>If you need to <code>ssh</code> on to the machine, you can do so by grabbing the private
-key from <code>govuk-secrets</code> under
-<code>2ndline/datagovuk/contracts-finder-archive-cert</code>.</p>
-<p>You will need to put the private key into a file and change the permissions so
-it is not publicly viewable before you can use it.</p>
-<p>You can do this as follows:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">cd</span> ~/govuk/govuk-secrets
-<span class="nv">$ PASSWORD_STORE_DIR</span><span class="o">=</span>~/govuk/govuk-secrets/pass/2ndline pass datagovuk/contracts-finder-archive-cert <span class="o">&gt;</span> govuk-contracts-archive.pem
-<span class="nv">$ </span><span class="nb">chmod </span>400 govuk-contracts-archive.pem
-</code></pre></div><p>You will then be able to <code>ssh</code> onto the machine in AWS by using the <code>.pem</code>
-file:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>ssh <span class="nt">-i</span> <span class="s2">"govuk-contracts-archive.pem"</span> ubuntu@&lt;ip address&gt;
-</code></pre></div><h2 id='historical-data'>Historical data</h2><h3 id='snapshot'>Snapshot</h3><p>There is a point in time snapshot of the contracts archive finder, should you
-need to access older log files.</p>
-<p>This is setup on the same AWS account as an EC2 instance called
-<code>2019-contracts-archive</code>. To access this machine, use the same certificate as
-above and <code>ssh</code> in as follows:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>ssh <span class="nt">-i</span> <span class="s2">"govuk-contracts-archive.pem"</span> ubuntu@&lt;ip address&gt;
-</code></pre></div><p>This machine includes Nginx logs from two periods:</p>
-
-<ul>
-<li>June 9 to June 26 2018 - available at <code>/mount-old-arch/var/log/nginx</code></li>
-<li>March 9 to March 19 2019 - available at <code>/var/log/nginx</code></li>
-</ul>
-<p>The machine was created from two snapshots that are sitting in the AWS account.
-These have the following descriptions:</p>
-
-<ul>
-<li>contract-finder (started June 26 2018)</li>
-<li>snapshot_contracts_20190319 (started March 19 2019)</li>
-</ul>
-<h3 id='on-data-gov-uk'>On data.gov.uk</h3><p>A database of the contracts archive is also accessible in a SQLite database on
-this <a href="https://data.gov.uk/dataset/97c75a0c-dd9b-42f9-969c-5e667d8c80f1/contracts-finder-archive-2011-to-2015">dataset on data.gov.uk</a>.</p>
-<h2 id='takedown-and-text-change-requests'>Takedown and text change requests</h2><h3 id='authorise-the-request'>Authorise the request</h3><p>Respond to the user&rsquo;s Zendesk ticket, saying that we&rsquo;re processing the request.
-Change priority to Low and leave a message for the product owners that this ticket
-requires authorisation. When they have checked the validity of the request, they&rsquo;ll
-leave a comment in the ticket and move it to the relevant priority queue for the
-Technical 2nd Line developers to process.</p>
-<h3 id='process-the-request'>Process the request</h3><h4 id='text-change'>Text change</h4><p>To change the text inside a contract, e.g. to remove company details from the actual
-contract entry, you&rsquo;d <a href="#ssh-instructions">SSH onto the contracts archive machine</a>,
-then open SQLite:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>sqlite3 ~/src/contracts-archive/instance/app.db
-</code></pre></div><p>Find out the <code>award_id</code>:</p>
-<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">award_detail</span> <span class="k">where</span> <span class="n">business_name</span> <span class="k">like</span> <span class="nv">"%word%"</span><span class="p">;</span>
-</code></pre></div><p>Then for each <code>award_id</code>:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>UPDATE award_detail set business_name = 'Redacted', business_address = 'Redacted' WHERE award_id = xxxxxx;
-</code></pre></div><p>Note that a reindex is <em>not</em> necessary.</p>
-<h4 id='takedown'>Takedown</h4><p>To take down a contract, <a href="#ssh-instructions">SSH onto the contracts archive machine</a>
-and then move the relevant contract attachments to the redacted folder.</p>
-<p>Contracts are located on the machine at
-<code>~/src/contracts-archive/instance/documents</code>. Find the directory for the
-contract you are trying to redact. It will be
-<code>~/src/contracts-archive/instance/documents/&lt;contract_id&gt;</code>.</p>
-<p>For example if the contract id is <code>12345</code> then you will find all the files
-under the directory <code>~/src/contracts-archive/instance/documents/12345</code>.</p>
-<p>Create a new directory in <code>~/src/contracts-archive/instance/redacted</code>. Name the
-directory the same as the contract id.</p>
-<p>Move all the files from the <code>documents/&lt;contract_id&gt;</code> into the
-<code>redacted/&lt;contract_id&gt;</code> folder.</p>
-<p>Note that this method will remove the downloadable attachments, but leave the
-contract page available to view on the website. This is fine. You can confirm
-that you&rsquo;ve redacted the documents by navigating to the contract in the
-contracts archive finder application and clicking on the download links for
-each attachment. It should return a 404 Not Found. This may require adding a
-cachebust string to the download URL.</p>
-<p>You should also remove it from Google cache (this will only work once we&rsquo;ve
-reinstated the using this page:</p>
-<p><a href="https://www.google.com/webmasters/tools/url-removal?hl=en&siteUrl=https://data.gov.uk">https://www.google.com/webmasters/tools/url-removal?hl=en&amp;siteUrl=https://data.gov.uk</a></p>
-<p>Click “Temporarily Hide” and provide the URL and then Submit.</p>
 
   <div class='related-content'>
 
