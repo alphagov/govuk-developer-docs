@@ -223,7 +223,7 @@
 <p>There are some limitations to the generator, which we hope to resolve in future iterations:</p>
 
 <ol>
-<li>Currently no way of capping certain shift types (e.g. maximum two shadow shifts).</li>
+<li>Currently no way of capping certain shift types.</li>
 <li>It doesn&rsquo;t account for different working patterns (e.g. devs who don&rsquo;t work Fridays currently have to find cover)</li>
 <li>The week is marked as &lsquo;unavailable&rsquo; even if only one cover type is off limits. For example, a developer may say they&rsquo;re unavailable to do on-call at the weekend, but they would still be available to do in-hours shifts.</li>
 <li>It doesn&rsquo;t account for bank holidays.</li>
@@ -268,7 +268,7 @@ Remember to delete the second row from the CSV, as this only contains hint text.
 
 <p>The generated file will look something like:</p>
 
-<pre lang="csv"><code>name,team,can_do_inhours_primary,can_do_inhours_secondary,can_do_inhours_shadow,can_do_inhours_primary_standby,can_do_inhours_secondary_standby,can_do_oncall_primary,can_do_oncall_secondary,forbidden_weeks
+<pre lang="csv"><code>name,team,can_do_inhours_primary,can_do_inhours_secondary,can_do_inhours_primary_standby,can_do_inhours_secondary_standby,can_do_oncall_primary,can_do_oncall_secondary,forbidden_weeks
 Some Person,Find and View,false,false,false,false,false,true,true,"6,10"
 </code></pre>
 <p></div></p>
