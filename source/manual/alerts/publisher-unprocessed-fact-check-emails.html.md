@@ -28,25 +28,10 @@ The current email addresses used for the fact checking process are:
 - govuk-fact-check-staging@digital.cabinet-office.gov.uk
 - govuk-fact-check-integration@digital.cabinet-office.gov.uk
 
-#### Retrieving credentials
-
-The passwords for the @digital.cabinet-office.gov.uk addresses are found in
-[govuk-secrets]:
-
-[govuk-secrets]: https://github.com/alphagov/govuk-secrets
+### Retrieve the mailbox credentials from the app
 
 ```sh
-PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass google-accounts/govuk-fact-check@digital.cabinet-office.gov.uk
-```
-
-Or by logging into the Publisher console:
-
-```sh
-$ gds govuk connect app-console -e production publisher
-```
-
-```ruby
-> Publisher::Application.mail_fetcher_config
+echo 'Publisher::Application.mail_fetcher_config' | k exec -i deploy/publisher -- rails c
 ```
 
 ### Investigate the unprocessed emails
