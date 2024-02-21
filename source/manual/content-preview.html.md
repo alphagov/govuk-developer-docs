@@ -7,70 +7,53 @@ type: learn
 section: Publishing
 ---
 
-The "draft stack" on GOV.UK, is intended to be
-a full version of GOV.UK that includes content that has not yet been
-sent for publication. This allows content editors to preview their
-content before making it live, without having to manually copy it into a
-separate version of the publishing tool.
-
-Content Preview contains [most frontend applications][preview-puppet].
-
-Content Preview exists in each of integration, staging and production.
-
-[preview-puppet]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/class/draft_frontend.yaml
+GOV.UK has a Content Preview feature, also known as the _draft stack_. Content
+Preview lets content editors preview new or updated content before making it
+available on the public website.
 
 ## Design
 
-Content Preview consists of separate 'draft' instances of the router,
-frontend and content-store machines. These are located at
-draft-cache-{1,2}.router, draft-frontend-{1,2}.frontend, and
-draft-content-store-{1,2}.api respectively.
+Content Preview consists of separate "draft" deployments of Router, Content
+Store and the frontend rendering apps such as government-frontend.
 
-Publishing tools send content to the
-[publishing-api](https://github.com/alphagov/publishing-api). All
-content is initially pushed to the draft content store, and then to the
-live content store when it is published.
+Publishing tools send content to
+[publishing-api](https://github.com/alphagov/publishing-api). Every content
+change is pushed to the draft content store as soon as it is saved, whereas a
+content change is only pushed to the live content store when it is published.
 
-The draft-frontend and draft-cache machines host draft instances of the
-frontend apps and router which serve the content from the draft
-content-store. Both router and content-store share MongoDB clusters with
-their respective live versions, although they use separate databases on
-these clusters.
+## Environments
 
-Because draft involves content-store apps only, there are no instances
-of MySQL or PostgreSQL in Content Preview, and no backend apps (except
-for router-api).
-
-## Location
-
-Content Preview is available in all three environments.
+Content Preview runs in each GOV.UK environment:
 
 - <https://draft-origin.publishing.service.gov.uk>
 - <https://draft-origin.staging.publishing.service.gov.uk>
 - <https://draft-origin.integration.publishing.service.gov.uk>
 
-## Authentication
+## Authentication and authorisation
 
-Because Whitehall permits content to be access-limited before
-publication, the draft environment enforces Signon authentication for
-all routes. This is performed by the
-[authenticating-proxy](https://github.com/alphagov/authenticating-proxy)
-app, which sits between Varnish and the router.
+In Whitehall Publisher, content editors can choose to limit access to
+pre-publication content to specific users. To support this, the draft stack has
+an [authenticating proxy](https://github.com/alphagov/authenticating-proxy)
+between the load balancer and Router to control access.
 
-Draft content items can contain an optional `access_limited` hash in
-their metadata, which contains a list of Signon user UIDs corresponding
-to the users who are permitted to see that content. All other users will
-see a 403 Forbidden page.
+The proxy passes the user's Signon user ID to Content Store via the request
+header. Content Store is responsible for authorisation.
 
-(This is achieved by the API adapters passing the UID in the headers of
-the request to content-store, in the same way as the govuk-request-id.)
+A draft content item has an optional metadata field, `access_limited`, which
+represents an access control list (ACL). This ACL can contain:
 
-Publishing apps can also add an `auth_bypass_ids` list to the access limited
-hash, to allow unauthenticated access for preview or fact checking. The ID is
-encoded in a JSON Web Token and appended to the URL provided to the users.
-Authenticating-proxy decodes the token and extracts the ID, and again passes
-it to the content-store in the request headers, where it is compared with the
-ID stored on the requested content item.
+- user IDs for allowing access to individual Signon users
+- organisation IDs for allowing access to any user in a Signon organisation,
+  such as a particular government department
+- bearer tokens (internally called `auth_bypass_ids`) for constructing
+  shareable preview URLs
 
-Publishing API strips out the `access_limited` hash before sending data to the
-live content-store, since all published content is viewable by everyone.
+GOV.UK uses the `auth_bypass_ids` bearer token feature to generate URLs for
+draft content that can be shared with non-Signon users for preview or fact
+checking. The token is encoded as a JSON Web Token (JWT) and appended to the
+URL for sharing. When the recipient requests the URL, authenticating-proxy
+extracts the `auth_bypass_id` bearer token from the JWT and passes it to
+content-store via the request header.
+
+Publishing API removes the `access_limited` field when sending content items to
+the live Content Store, since all published content is public by definition.
