@@ -234,7 +234,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d6366d143b5325174832bdb2d1a339e2cc0f0a03">5 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0299070485e44ab1a8dc74e72d2564390d282e6d">22 Feb 2024</a>
 </div>
 
  <h1 id='header'>Transition a site to GOV.UK</h1> <p>When a site is going to move to GOV.UK, there are two ways that the old site
@@ -356,9 +356,12 @@ the day after.</p>
 
 <ol>
 <li><p>Obtain the TXT record by submitting a Fastly support request. You will need to provide the &lsquo;Production bouncer&rsquo; service ID and the subdomain you want to add. See an <a href="https://support.fastly.com/hc/en-us/requests/700875">example of support request</a>.</p></li>
-<li><p>Add the DNS record to <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a> and apply terraform configuration.</p></li>
+<li><p>If the domain&rsquo;s DNS is managed by GOV.UK: add the DNS record to <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a> and apply terraform configuration. If the domain&rsquo;s DNS is managed by the department: send the TXT record to the department and ask them to add this record to the DNS.</p></li>
 </ol>
+
+<blockquote>
 <p>It&rsquo;s not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with <code>_fastly</code> as a proof of ownership. See an <a href="https://github.com/alphagov/govuk-dns-tf/compare/0cf283b6...18471c36">example code change</a>.</p>
+</blockquote>
 <h4 id='apply-govuk-fastly-terraform-configuration'>Apply govuk-fastly terraform configuration</h4><p>Manually trigger govuk-fastly &lsquo;Plan and apply&rsquo; run in <a href="https://app.terraform.io/app/govuk/workspaces/govuk-fastly/runs">Terraform Cloud UI</a>. Review the plan with changes to <code>module.bouncer-production.fastly_service_vcl.service</code> and apply the configuration.</p>
 <h3 id='9-point-the-domain-at-us'>9) Point the domain at us</h3><p>Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a <code>CNAME</code>
