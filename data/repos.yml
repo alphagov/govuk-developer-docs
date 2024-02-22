@@ -12,30 +12,11 @@
   team: "#govuk-publishing-platform"
   production_hosted_on: eks
 
-- repo_name: asset_bom_removal-rails
-  retired: true
-  type: Gems
-  sentry_url: false
-
-- repo_name: assets-businesslink
-  retired: true
-  type: Utilities
-
-- repo_name: assets-directgov
-  retired: true
-  type: Utilities
-
 - repo_name: authenticating-proxy
   type: Supporting apps
   team: "#govuk-publishing-platform"
   production_hosted_on: eks
   production_url: false
-
-- repo_name: backdrop
-  type: Utilities
-  retired: true
-  description: |
-    Backdrop was a datastore built with Python and MongoDB. It was built for the Performance Platform. It was archived in March 2021.
 
 - repo_name: bouncer
   type: Transition apps
@@ -54,44 +35,6 @@
   team: "#govuk-platform-security-reliability-team"
   description: For bulk merging Pull Requests for GOV.UK repos.
   sentry_url: false
-
-- repo_name: business-support-api
-  retired: true
-  type: APIs
-  description: |
-    API that was used to populate the "business support finder". In May 2017,
-    it was replaced with the publishing-api and content-store.
-
-- repo_name: business-support-finder
-  retired: true
-  type: Frontend apps
-  repo_url: https://github.com/alphagov/business-support-finder
-  description: |
-    Application that was used to display the "business support finder", an early
-    finder-style page with search functionality for finding details of business
-    finance support schemes. In March 2017, it was replaced with a new-style finder
-    rendered by [finder-frontend](/repos/finder-frontend.html) and published by
-    [specialist-publisher](/repos/specialist-publisher.html).
-
-- repo_name: cache-clearing-service
-  type: Services
-  retired: true
-
-- repo_name: calculators
-  type: Frontend apps
-  retired: true
-  description: |
-    calculators used to report how much child benefit tax you are entitled during a tax year.
-    It was only responsible for rendering https://www.gov.uk/child-benefit-tax-calculator.
-    That page has now been moved into Smart Answers.
-
-- repo_name: calendars
-  retired: true
-  type: Frontend apps
-  description: |
-    calendars used to render the bank-holidays and
-    when-do-the-clocks-change pages. Since May 2020 those pages are
-    rendered by frontend.
 
 - repo_name: ckan
   type: data.gov.uk apps
@@ -154,13 +97,6 @@
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
 
-- repo_name: contacts-frontend
-  type: Frontend apps
-  retired: true
-  description: |
-    contacts-frontend used to render the HMRC contacts pages. Since April 2017
-    these are rendered by government-frontend.
-
 - repo_name: content-data-admin
   type: Supporting apps
   team: "#govuk-platform-security-reliability-team"
@@ -184,24 +120,6 @@
   argo_cd_apps:
     - content-store
     - draft-content-store
-
-- repo_name: content-store-proxy
-  type: APIs
-  team: "#govuk-publishing-platform"
-  description: |
-    A temporary proxy to aid with the migration of content-store from
-    MongoDB to PostgreSQL. We had two versions of content-store
-    running side-by-side, one using each database. The proxy sat in front of them,
-    forwarding all incoming requests to its PRIMARY_UPSTREAM (at first the MongoDB
-    version, later PostgreSQL) and returned that response. It also replayed the
-    request to its SECONDARY_UPSTREAM (at first the PostgreSQL version, later
-    MongoDB). This allowed us to compare the responses from both versions to
-    satisfy ourselves that the two were completely equivalent and address any
-    differences, before we migrated production.
-
-    The migration was completed in December 2023, and the proxy repo was archived
-    on 3rd Jan 2024.
-  retired: true
 
 - repo_name: content-tagger
   type: Publishing apps
@@ -238,49 +156,6 @@
   sentry_url: https://sentry.io/govuk/publish-data
   dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
 
-- repo_name: datagovuk_publish_elasticsearch_monitor
-  type: data.gov.uk apps
-  team: "#govuk-datagovuk"
-  retired: true
-
-- repo_name: datagovuk_publish_queue_monitor
-  type: data.gov.uk apps
-  team: "#govuk-datagovuk"
-  retired: true
-
-- repo_name: datagovuk_reference
-  type: data.gov.uk apps
-  team: "#govuk-datagovuk"
-  retired: true
-
-- repo_name: deprecated_columns
-  type: Gems
-  retired: true
-
-- repo_name: design-principles
-  type: Frontend apps
-  retired: true
-  shortname: designprinciples
-  description: |
-    A frontend app (often referred to as "designprinciples") that used to render the GDS design principles as static
-    pages.  This required developer effort to update the content so in
-    November 2017 we retired the app after all the content had been replaced
-    by a version managed by our publishing apps.
-
-- repo_name: differential-privacy-tests
-  retired: true
-  private_repo: true
-  team: "#data-products"
-  type: Data science
-
-- repo_name: eligibility-viewer
-  private_repo: true
-  retired: true
-  team: "#data-products"
-  type: Data science
-  description: Prototype to show content with eligibility based on a user's circumstances
-  sentry_url: false
-
 - repo_name: email-alert-api
   type: APIs
   team: "#tech-content-interactions-on-platform-govuk"
@@ -291,17 +166,6 @@
   type: Frontend apps
   team: "#tech-content-interactions-on-platform-govuk"
   production_hosted_on: eks
-
-- repo_name: email-alert-monitoring
-  type: Utilities
-  team: "#tech-content-interactions-on-platform-govuk"
-  production_hosted_on: eks
-  sentry_url: false
-  retired: true
-  description: |
-    Was used to check that Medical Safety and Travel Advice email alerts were
-    being delivered.
-    Replaced by internal checks in email-alert-api in January 2024.
 
 - repo_name: email-alert-service
   type: Services
@@ -380,39 +244,10 @@
   type: Utilities
   team: "#govuk-publishing-experience-tech"
 
-- repo_name: govuk-accessibility-reports
-  retired: true
-  team: "#data-products"
-  type: Data science
-  description: Project containing numerous report generators to monitor accessibility
-    on GOV.UK. It was retired in November 2022 after Data Products found no evidence
-    of it being used for many months, and moved the data source needed to CPTO's
-    GCloud account.
-  sentry_url: false
-
-- repo_name: govuk-account-architecture
-  private_repo: true
-  team: "#tech-content-interactions-on-platform-govuk"
-  type: Utilities
-  retired: true
-  description: Repo containing archiecture diagrams created for the build of phase 1 of GOV.UK Accounts.
-
 - repo_name: govuk-analytics-engineering
   private_repo: true
   team: "#data-products"
   type: Data science
-
-- repo_name: govuk-app-deployment
-  retired: true
-  type: Utilities
-  description: Capistrano deployment scripts for applications running on GOV.UK.
-  sentry_url: false
-
-- repo_name: govuk-ask-export
-  retired: true
-  type: Utilities
-  description: |
-    A tool for exporting the user responses and metadata from Smart Survey which is used for the [https://www.gov.uk/ask](https://www.gov.uk/ask) service. Retired in February 2024, since it was no longer used.
 
 - repo_name: govuk-aws
   team: "#govuk-platform-security-reliability-team"
@@ -430,73 +265,13 @@
   type: Utilities
   sentry_url: false
 
-- repo_name: govuk-cdn-config
-  team: "#govuk-platform-security-reliability-team"
-  type: Utilities
-  sentry_url: false
-  retired: true
-  description: |
-    This project managed our Fastly VCL configuration until it was replaced by govuk-fastly in September 2023.
-
-- repo_name: govuk-cdn-config-secrets
-  private_repo: true
-  team: "#govuk-platform-security-reliability-team"
-  type: Utilities
-  retired: true
-
-- repo_name: govuk-cdn-logs-monitor
-  type: Utilities
-  retired: true
-  description: |
-    This project monitored the CDN logs for GOV.UK, to find problems with the site. It was archived in July 2018, following RFC-93.
-
-- repo_name: govuk-chat-infrastructure
-  team: "#ai-govuk"
-  type: Utilities
-  sentry_url: false
-  private_repo: true
-
-- repo_name: govuk-ckan-charts
-  type: data.gov.uk apps
-  retired: true
-  team: "#govuk-datagovuk"
-  sentry_url: false
-
-- repo_name: govuk-connect
-  retired: true
-  type: Utilities
-
 - repo_name: govuk-content-api-docs
   team: "#govuk-publishing-platform"
   type: Utilities
 
-- repo_name: govuk-content-schemas
-  type: Utilities
-  retired: true
-  description: |
-    This repo contained JSON Schema files and examples of the content that uses them on GOV.UK. It was merged into Publishing API and subsequently archived in November 2022.
-
-- repo_name: govuk-content-similarity
-  retired: true
-  team: "#data-products"
-  type: Data science
-
-- repo_name: govuk-csp-forwarder
-  team: "#govuk-platform-security-reliability-team"
-  type: Utilities
-  retired: true
-
 - repo_name: govuk-data-science-workshop
   team: "#data-products"
   type: Data science
-
-- repo_name: govuk-delivery
-  retired: true
-  type: APIs
-  description: |
-    API that was once used to handle Whitehall email notifications and the
-    translation of Whitehall feed URLs into Govdelivery topics. Retired in favour
-    of email-alert-api in September 2017.
 
 - repo_name: govuk-dependabot-merger
   team: "#govuk-platform-security-reliability-team"
@@ -504,25 +279,10 @@
   description: GitHub Action for auto-merging Dependabot PRs as per RFC-156
   sentry_url: false
 
-- repo_name: govuk-dependencies
-  retired: true
-  team: "#govuk-platform-security-reliability-team"
-  type: Utilities
-  description: |
-    Retired in November 2022. This used to be a microsite showing us the outstanding open PRs made by Dependabot,
-    as well as being responsible for sending Slack alerts to GDS teams to remind them of open Dependabot PRs.
-    This functionality has now been merged into alphagov/seal.
-
 - repo_name: govuk-dependency-checker
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
   production_hosted_on: eks
-
-- repo_name: govuk-deploy-lag-badger
-  retired: true
-  team: "#govuk-platform-security-reliability-team"
-  type: Utilities
-  sentry_url: false
 
 - repo_name: govuk-developer-docs
   team: "#govuk-developers"
@@ -536,13 +296,6 @@
   type: Utilities
   sentry_url: false
 
-- repo_name: govuk-dns
-  team: "#govuk-platform-security-reliability-team"
-  type: Utilities
-  description: Tasks for managing DNS records
-  retired: true
-  description: This and the govuk-dns-config repos were archived in favour of govuk-dns-tf.
-
 - repo_name: govuk-dns-tf
   private_repo: true
   team: "#govuk-platform-engineering"
@@ -553,11 +306,6 @@
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
   sentry_url: false
-
-- repo_name: govuk-entity-personalisation
-  retired: true
-  team: "#data-products"
-  type: Data science
 
 - repo_name: govuk-exporter
   team: "#govuk-platform-engineering"
@@ -580,15 +328,6 @@
   team: "#data-products"
   type: Data science
 
-- repo_name: govuk-google-analytics
-  team: "#analytics_team"
-  type: Utilities
-  retired: true
-  description: |
-    Documentation and tools for GOV.UK and others that describes
-    the approach taken when converting from Universal Analytics (UA)
-    to Google Analytics 4 (GA4). Retired in Jan 2024, content moved to govuk-developer-docs
-
 - repo_name: govuk-helm-charts
   type: Utilities
   team: "#govuk-platform-engineering"
@@ -597,41 +336,9 @@
   type: Utilities
   team: "#govuk-platform-engineering"
 
-- repo_name: govuk-ithc-documentation
-  retired: true
-  private_repo: true
-  type: Utilities
-
-- repo_name: govuk-jenkinslib
-  retired: true
-  type: Utilities
-  description: Groovy library for common GOV.UK Jenkins CI tasks
-  sentry_url: false
-
-- repo_name: govuk-knowledge-graph
-  retired: true
-  private_repo: true
-  team: "#data-products"
-  type: Data science
-  description: Experiment with setting up an extended property graph of GOV.UK organisations
-    and associated content. In November 2022 it was migrated to CPTO's GCloud account.
-  sentry_url: false
-
 - repo_name: govuk-knowledge-graph-search
   team: "#data-products"
   type: Data science
-
-- repo_name: govuk-kubernetes-cluster-user-docs
-  type: Utilities
-  team: "#govuk-platform-engineering"
-  retired: true
-  description: The kubernetes cluster user documentation site was merged into the GOV.UK Developer Docs in September 2023.
-
-- repo_name: govuk-lambda-app-deployment
-  type: Utilities
-  team: "#govuk-platform-security-reliability-team"
-  retired: true
-  description: The lambda functions were migrated to govuk-aws.
 
 - repo_name: govuk-load-testing
   type: Utilities
@@ -644,17 +351,6 @@
   description: A simple Go program used by GOV.UK to populate mirrors hosted by AWS S3 and GCP Storage
   sentry_url: false
 
-- repo_name: govuk-network-data
-  retired: true
-  team: "#data-products"
-  type: Data science
-
-- repo_name: govuk-paas-office-ip-router
-  retired: true
-  private_repo: true
-  team: "#govuk-platform-security-reliability-team"
-  type: Utilities
-
 - repo_name: govuk-pact-broker
   team: "#govuk-platform-security-reliability-team"
   production_url: https://govuk-pact-broker-6991351eca05.herokuapp.com/
@@ -662,42 +358,10 @@
   type: Utilities
   sentry_url: false
 
-- repo_name: govuk-provisioning
-  private_repo: true
-  retired: true
-  type: Utilities
-  team: "#govuk-platform-security-reliability-team"
-  description: |
-    This held infra-as-code for the old GOV.UK provider, which is no longer needed.
-
-- repo_name: govuk-puppet
-  retired: true
-  team: "#govuk-platform-engineering"
-  type: Utilities
-  sentry_url: false
-
-- repo_name: govuk-related-links-recommender
-  team: "#data-products"
-  type: Data science
-  description: Machine learning model to recommend related content
-  sentry_url: false
-  retired: true
-
 - repo_name: govuk-replatform-test-app
   type: Utilities
   team: "#govuk-platform-engineering"
   sentry_url: false
-
-- repo_name: govuk-replatforming-discovery-2020
-  retired: true
-  private_repo: true
-  type: Utilities
-  team: "#govuk-platform-engineering"
-
-- repo_name: govuk-repo-mirror
-  team: "#govuk-platform-security-reliability-team"
-  type: Utilities
-  retired: true
 
 - repo_name: govuk-rfcs
   team: "#govuk-developers"
@@ -729,19 +393,6 @@
   type: Utilities
   sentry_url: false
 
-- repo_name: govuk-secrets
-  private_repo: true
-  type: Utilities
-  retired: true
-
-- repo_name: govuk-sentry-monitor
-  team: "#govuk-platform-security-reliability-team"
-  type: Utilities
-  retired: true
-  description: |
-    Script to report the number of errors in Sentry to Graphite.
-    The result was displayed on the Sentry dashboard and on the 2nd line dashboard.
-
 - repo_name: govuk-sli-collector
   team: "#govuk-publishing-platform"
   type: Utilities
@@ -759,47 +410,11 @@
   team: "#data-products"
   type: Data science
 
-- repo_name: govuk-user-intent-survey-explorer
-  private_repo: true
-  retired: true
-  team: "#data-products"
-  type: Data science
-  description: Prototype to help explorer user intent survey data
-  sentry_url: false
-
-- repo_name: govuk-user-journey-analysis-tools
-  team: "#data-products"
-  type: Data science
-  retired: true
-
-- repo_name: govuk-user-journey-models
-  private_repo: true
-  retired: true
-  team: "#data-products"
-  type: Data science
-  description: Classifying successful and unsuccessful user journeys on GOV.UK
-  sentry_url: false
-
-- repo_name: govuk-user-research-panel
-  team:
-  type: Utilities
-  retired: true
-  description: |
-    A PHP based application for managing people who take part in user research.
-    At the time of archiving, it had had no commits since December 2016 (and had
-    only had 5 commits in total at any rate, most of which were README updates).
-    It's therefore reasonable to assume there is no support plan for this app.
-
 - repo_name: govuk-user-reviewer
   private_repo: true
   team: "#govuk-platform-security-reliability-team"
   type: Utilities
   sentry_url: false
-
-- repo_name: govuk_ab_analysis
-  retired: true
-  team: "#data-products"
-  type: Data science
 
 - repo_name: govuk_ab_testing
   team: "#dev-notifications-ai-govuk"
@@ -815,24 +430,6 @@
   type: Gems
   sentry_url: false
 
-- repo_name: govuk_content_api
-  retired: true
-  type: APIs
-  shortname: contentapi
-  description: |
-    API that used to store and serve published content to the rendering applications
-    for display from public-facing URLs. This has now been superceded by the
-    [content-store](/repos/content-store.html).
-
-- repo_name: govuk_crawler_worker
-  team: "#govuk-platform-engineering"
-  type: Utilities
-  retired: true
-  description: |
-    Was used (in conjunction with govuk_seed_crawler) to crawl and take a local
-    copy of GOV.UK, to synchronise upstream with the S3 and GCP mirrors.
-    Replaced by govuk-mirror in October 2023.
-
 - repo_name: govuk_document_types
   team: "#govuk-navigation-tech"
   type: Gems
@@ -842,15 +439,6 @@
   team: "#govuk-publishing-platform"
   type: Gems
   sentry_url: false
-
-- repo_name: govuk_need_api
-  retired: true
-  type: APIs
-  shortname: need_api
-  description: |
-    A JSON read and write API for information about user needs on GOV.UK. It was a Rails
-    app which was part of the GOV.UK Publishing Platform. The need information is now
-    stored in the Publishing API, and available in the Content Store.
 
 - repo_name: govuk_personalisation
   team: "#tech-content-interactions-on-platform-govuk"
@@ -867,27 +455,10 @@
   type: Gems
   sentry_url: false
 
-- repo_name: govuk_seed_crawler
-  team: "#govuk-platform-engineering"
-  type: Gems
-  retired: true
-  description: |
-    Was used (in conjunction with govuk_crawler_worker) to crawl and take a local
-    copy of GOV.UK, to synchronise upstream with the S3 and GCP mirrors.
-    Replaced by govuk-mirror in October 2023.
-
 - repo_name: govuk_sidekiq
   team: "#govuk-publishing-platform"
   type: Gems
   sentry_url: false
-
-- repo_name: govuk_taxonomy_helpers
-  retired: true
-  type: Utilities
-  description: |
-    govuk_taxonomy_helpers was a gem that provided code for working with the
-    govuk-taxonomy. It was only used by Content Tagger and was retired as a gem
-    after the code was merged into Content Tagger.
 
 - repo_name: govuk_test
   team: "#govuk-platform-security-reliability-team"
@@ -908,25 +479,6 @@
   type: Frontend apps
   team: "#govuk-navigation-tech"
   production_hosted_on: eks
-
-- repo_name: insights-data-visualisation-templates
-  retired: true
-  private_repo: true
-  team: "#data-products"
-  type: Data science
-
-- repo_name: kibana-gds
-  type: Utilities
-  retired: true
-  description: |
-    This was a wrapper that initialised Kibana behind GOV.UK's Signon. It was archived in May 2018.
-
-- repo_name: licence-finder
-  type: Frontend apps
-  retired: true
-  description: |
-    Allowed users to search for licences in their business areas. This is now handled by a
-    specialist finder. It was archived in July 2023
 
 - repo_name: licensify
   app_name: licensify
@@ -967,37 +519,10 @@
   team: "#tech-content-interactions-on-platform-govuk"
   production_hosted_on: eks
 
-- repo_name: logstasher
-  retired: true
-  team: "#govuk-platform-security-reliability-team"
-  type: Utilities
-  sentry_url: false
-
-- repo_name: manuals-frontend
-  retired: true
-  type: Frontend apps
-  description: |
-    Used to host manuals from manuals-publisher and hmrc-manuals-api
-    (now hosted by government-frontend). Archived in June 2022.
-
 - repo_name: manuals-publisher
   type: Publishing apps
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
-
-- repo_name: mapit
-  retired: true
-  type: APIs
-  api_docs_url: https://mapit.mysociety.org/docs/
-  description: |
-    Used to do postcode lookups for Imminence and Frontend (now
-    replaced by locations-api). Archived in October 2022.
-
-- repo_name: mapit-scripts
-  retired: true
-  type: Utilities
-  team: "#govuk-platform-security-reliability-team"
-  description: Scripts used by mapit (now retired)
 
 - repo_name: markdown-toolbar-element
   type: Utilities
@@ -1008,70 +533,18 @@
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
 
-- repo_name: metadata-api
-  retired: true
-  type: APIs
-  description: |
-    API written in Go that was used to get user need information about given URLs
-    on GOV.UK. The api would communicate with the `needs API` on behalf of
-    `info-frontend` and retrieve information about user needs. The responses would
-    then be parsed by `metadata-api` and handed over to `info-frontend`. `info-frontend` is
-    now getting need information via the `backdrop read API` which it talks to using
-    `gds-api-adapters`.
-
 - repo_name: miller-columns-element
   type: Utilities
   team: "#govuk-publishing-experience-tech"
-
-- repo_name: multipage-frontend
-  type: Frontend apps
-  retired: true
-  description: |
-    multipage-frontend was used to render travel advice pages. Those were moved
-    to government-frontend in March 2017.
 
 - repo_name: nested_form
   type: Utilities
   team: "#govuk-publishing-mainstream-experience-tech"
 
-- repo_name: omniauth-gds
-  type: Gems
-  retired: true
-  description: |
-    omniauth-gds was a gem providing an omniauth strategy for signon. It
-    was merged into the gds-sso gem.
-
 - repo_name: optic14n
   team: "#govuk-publishing-platform"
   type: Gems
   sentry_url: false
-
-- repo_name: organisations-publisher
-  type: Publishing apps
-  retired: true
-  repo_url: https://github.com/alphagov/organisations-publisher
-  description: |
-    organisations-publisher was a proposed app to create and edit organisations,
-    people and roles, taking over from whitehall. It was never released.
-
-- repo_name: packager
-  retired: true
-  team: "#govuk-platform-engineering"
-  type: Utilities
-
-- repo_name: panopticon
-  retired: true
-  type: Publishing apps
-  repo_url: https://github.com/alphagov/panopticon
-  description: |
-    Application that was at one time used for management of "artefacts", route
-    registration, tagging and search indexing. The functionality was slowly moved
-    to the new publishing platform during migration (2016/2017). In February 2017
-    the last functionality was removed. Most features moved to
-    [publishing-api](/repos/publishing-api.html) (like route registration), managing
-    of artefacts was moved to [publisher](/repos/publisher.html), and tagging moved
-    to [content-tagger](/repos/content-tagger.html). Publishing apps became
-    responsible for sending their pages to search.
 
 - repo_name: paste-html-to-govspeak
   team: "#govuk-publishing-experience-tech"
@@ -1082,33 +555,10 @@
   type: Utilities
   sentry_url: false
 
-- repo_name: performanceplatform-admin
-  type: Utilities
-  retired: true
-  description: |
-    Performance Platform admin was a Flask app that allowed authorised users to update performance data on GOV.UK. It was archived in March 2021.
-
-- repo_name: performanceplatform-big-screen-view
-  type: Utilities
-  retired: true
-  description: |
-    This was an application for displaying data from the Performance Platform fullscreen on a large display. It was archived in January 2018.
-
 - repo_name: plek
   team: "#govuk-platform-security-reliability-team"
   type: Gems
   sentry_url: false
-
-- repo_name: policy-publisher
-  retired: true
-  type: Publishing apps
-  repo_url: https://github.com/alphagov/policy-publisher
-  description: |
-    Used to create and edit policies, which were shown at
-    https://www.gov.uk/government/policies. This functionality was
-    originally extracted from Whitehall in to this app. Then later,
-    policy pages were replaced by Topic pages through the work on the
-    GOV.UK Topic Taxonomy, removing the need for Policy Publisher.
 
 - repo_name: public-asset-checker
   team: "#govuk-publishing-components"
@@ -1125,19 +575,6 @@
   type: APIs
   team: "#govuk-publishing-platform"
   production_hosted_on: eks
-
-- repo_name: publishing-e2e-tests
-  retired: true
-  type: Utilities
-  repo_url: https://github.com/alphagov/publishing-e2e-tests
-  description: |
-    Used to run tests that explored an end-to-end journey of publishing
-    content - from creation to rendering - within a docker replication
-    of the GOV.UK stack. In [RFC-128](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md)
-    we agreed these would be removed because the value they add is low
-    whereas the add significant times to builds and are extremely
-    complicated to debug when they break. They were retired in
-    October 2022.
 
 - repo_name: rack-logstasher
   team: "#govuk-platform-security-reliability-team"
@@ -1201,18 +638,6 @@
   team: "#govuk-search-improvement"
   production_hosted_on: eks
 
-- repo_name: search-performance-explorer
-  retired: true
-  production_hosted_on: heroku
-  production_url: https://search-performance-explorer.herokuapp.com/
-  management_url: https://dashboard.heroku.com/apps/search-performance-explorer
-  team: "#dev-notifications-ai-govuk"
-  type: Utilities
-  sentry_url: false
-  description: |
-    Tools used to explore search performance and compare results
-    of A/B tests on GOV.UK search. Retired in April 2022
-
 - repo_name: search-v2-evaluator
   type: Supporting apps
   description: Internal semi-temporary tool to evaluate results from search-api-v2
@@ -1223,16 +648,6 @@
   type: Utilities
   team: "#govuk-search-improvement"
 
-- repo_name: service-manual-frontend
-  type: Frontend apps
-  retired: true
-  description: |
-    service-manual-frontend was used to render service manual pages. Those were moved
-    to government-frontend in February 2023.
-  argo_cd_apps:
-    - service-manual-frontend
-    - draft-service-manual-frontend
-
 - repo_name: service-manual-publisher
   type: Publishing apps
   team: "#govuk-publishing-experience-tech"
@@ -1242,19 +657,6 @@
   type: Publishing apps
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
-
-- repo_name: side-by-side-browser
-  type: Transition apps
-  retired: true
-  description: |
-    This used to be a supporting tool for transition which was used to allow
-    browsing a preview of a transitioned host with the current host. It
-    was retired in November 2022 to reflect the reduced need for transition
-    functionality.
-
-- repo_name: sidekiq-monitoring
-  retired: true
-  type: Utilities
 
 - repo_name: signon
   type: Supporting apps
@@ -1289,29 +691,10 @@
   type: Utilities
   sentry_url: false
 
-- repo_name: specialist-frontend
-  type: Frontend apps
-  retired: true
-  description: |
-    specialist-frontend was used to render specialist documents. Those were moved
-    to government-frontend in April 2017.
-
 - repo_name: specialist-publisher
   type: Publishing apps
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
-
-- repo_name: spotlight
-  type: Utilities
-  retired: true
-  description: |
-    Spotlight was a hybrid rendering app for the GOV.UK Performance Platform using Backbone and D3. It was archived in 2021.
-
-- repo_name: stagecraft
-  type: Utilities
-  retired: true
-  description: |
-    Stagecraft was built to manage the Performance Platform. It was archived in March 2021.
 
 - repo_name: static
   type: Frontend apps
@@ -1337,28 +720,10 @@
   production_hosted_on: eks
   production_url: https://transition.publishing.service.gov.uk
 
-- repo_name: transition-config
-  type: Transition apps
-  retired: true
-  team: "#govuk-publishing-platform"
-  sentry_url: false
-
 - repo_name: travel-advice-publisher
   type: Publishing apps
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
-
-- repo_name: unicornherder
-  type: Utilities
-  retired: true
-  team: "#govuk-datagovuk"
-
-- repo_name: upgrade-ruby-version
-  type: Utilities
-  retired: true
-  description: |
-    Repo for raising PRs in bulk, to update ruby versions across GOV.UK.
-    This was replaced by bulk-changer in January 2023.
 
 - repo_name: whitehall
   type: Publishing apps
@@ -1367,27 +732,6 @@
   argo_cd_apps:
     - whitehall-admin
   production_hosted_on: eks
-
-- repo_name: whitehall-asset-analysis
-  type: Utilities
-  team: "#govuk-publishing-experience-tech"
-  private_repo: true
-  sentry_url: false
-  retired: true
-  description: |
-    Repo for analysis scripts used to improve Whitehall asset management. Retired as resulting work has been completed.
-
-- repo_name: whitehall-prototype-2023
-  type: Publishing apps
-  team: "#govuk-publishing-experience-tech"
-  production_url: https://whitehall-prototype-91f05d25216a.herokuapp.com
-  management_url: https://dashboard.heroku.com/pipelines/2f915a5e-edfd-4c90-b24d-00ed5c8c3c66
-  production_hosted_on: heroku
-  sentry_url: false
-  retired: true
-  description: |
-    A prototype built for testing proposed changes to the Whitehall publishing workflow. Retired as the experiments have
-    been completed.
 
 - repo_name: widdershins
   type: Gems
