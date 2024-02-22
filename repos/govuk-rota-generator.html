@@ -233,36 +233,39 @@
 
 <p>We hope one day to make the rota generator think in terms of days rather than weeks, and also have tighter integration with the <code>pay-pagerduty</code> repo (e.g. merging together under a new name).</p>
 
-<h2 id="usage">Usage</h2>
+<h2 id="setup">Setup</h2>
 
-<p>Once you&rsquo;ve generated a <code>/data/combined.csv</code> file as per <a href="#creating-the-input-data">Creating the input data</a>, you can generate a rota by running <code>ruby bin/generate_rota.rb</code> (it will output to STDOUT).</p>
+<p>In GCP, there&rsquo;s a <a href="https://console.cloud.google.com/?project=govuk-rota-generator">govuk-rota-generator &lsquo;project&rsquo;</a> which has a google-sheet-fetcher &lsquo;service account&rsquo; (which automatically has its own email address <code>google-sheet-fetcher@govuk-rota-generator.iam.gserviceaccount.com</code>).</p>
 
-<p>Tweak the weighting in that file to place more or less emphasis on different cover types (e.g. oncall_primary).</p>
-
-<p>The generated output can be used as the <code>data/rota.csv</code> in <a href="https://github.com/alphagov/pay-pagerduty">pay-pagerduty</a>, which automates the overriding of PagerDuty schedules.</p>
-
-<h2 id="creating-the-input-data">Creating the input data</h2>
-
-<p>This was very much hacked together for a prototype, and needs rebuilding properly at some point.</p>
+<p>The 2nd-line-support Google group is an &lsquo;Owner&rsquo; of the service account, so anyone in that group should be able to create a service account key for local use. From the <a href="https://console.cloud.google.com/iam-admin/serviceaccounts/details/111167577478691063624;edit=true/keys?orgonly=true&amp;project=govuk-rota-generator&amp;supportedpurview=organizationId">google-sheet-fetcher service account page</a>:</p>
 
 <ol>
-<li>Download the <a href="https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1249170615">Technical Support Google Sheet</a> as a CSV, storing in <code>data/people.csv</code>.
-This CSV describes what roles developers are eligible for, e.g. whether or not they can do on-call.
-Remember to delete the second row from the CSV, as this only contains hint text.</li>
-<li>Export the <a href="https://docs.google.com/forms/d/11Az5Y6acNYiqJPiIigHJRF-KdT8Fnpp2jmoQNysKzmg/edit#responses">Rota Availability Google Forms Responses</a> to Google Sheets (use the &ldquo;View in Sheets&rdquo; option). Rename row F onwards to something that identifies each week (e.g. &ldquo;Week 1 (03/04/23 - 09/04/23)&rdquo;). Now export the sheet as a CSV, storing it as <code>data/responses.csv</code>. This CSV describes which weeks developers are unavailable.</li>
-<li>Check your <code>responses.csv</code> file should look something like below (also ensure that any newlines have been removed from the output):</li>
+<li>&ldquo;Add Key&rdquo; -&gt; &ldquo;JSON&rdquo; -&gt; &ldquo;Create&rdquo;</li>
+<li>This will download a JSON file.</li>
+<li>Store it as <code>google_service_account_key.json</code> (which is git-ignored) at the root of this repo.</li>
 </ol>
 
-<pre lang="csv"><code>Timestamp,What is your name,What team will you be on? (team),"If you work different hours to the 9.30am-5.30pm 2nd line shifts, please state your hours",Do you have any non working days? [Non working day(s)],Week 1 (03/04/23 - 09/04/23),Week 2 (10/04/23 - 16/04/23),Week 3 (17/04/23 - 23/04/23),Week 4 (24/04/23 - 30/04/23),Week 5 (01/05/23 - 07/05/23),Week 6 (08/05/23 - 14/05/23),Week 7 (15/05/23 - 21/05/23),Week 8 (22/05/23 - 28/05/23),Week 9 (29/05/23 - 04/06/23),Week 10 (05/06/23 - 11/06/23),Week 11 (12/06/23 - 18/06/23),Week 12 (19/06/23 - 25/06/23),Week 13 (26/06/23 - 02/07/23),Need to elaborate on any of the above?
-10/02/2023 16:54:04,Some Person,Find and View,,,,,,,,"Not available for in-hours, Not available for on-call weekday nights, Not available for on-call over the weekend",,,,"Not available for in-hours, Not available for on-call weekday nights, Not available for on-call over the weekend",,,,
-</code></pre>
+<h2 id="usage">Usage</h2>
 
-<ol start="4">
+<h3 id="create-a-developer-availability-form">Create a developer availability form</h3>
+
+<ol>
+<li>Clone the <a href="https://docs.google.com/forms/d/1PvCMjzCZeELjflHY22p6FH5rtPp3Lvql7LmHGoUSFjM/edit">form template</a>
+</li>
+<li>Update the dates etc, but otherwise make no changes to the form structure</li>
+<li>Send out the form, gather responses</li>
+<li>Link it to a spreadsheet</li>
+<li>Share the spreadsheet with <code>google-sheet-fetcher@govuk-rota-generator.iam.gserviceaccount.com</code> (dismiss the warning about sharing with external email addresses)</li>
+</ol>
+
+<h3 id="get-the-data-ready">Get the data ready</h3>
+
+<ol>
 <li>
-<p>Update the <code>week_headers</code> variable in <code>bin/combine_csvs.rb</code> to refer to the headings you wrote in step 2, so that it knows which columns to read.</p>
+<p>Update the <code>AVAILABILITY_SHEET_ID</code> specified inside <code>combine_csvs.rb</code>, to refer to your responses spreadsheet.</p>
 </li>
 <li>
-<p>Run <code>ruby bin/combine_csvs.rb</code>. This will generate a <code>data/combined.csv</code> file.</p>
+<p>Run <code>ruby bin/combine_csvs.rb</code>. This will generate a <code>data/combined.csv</code> file, combining your responses spreadsheet with the <a href="https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1249170615">Technical Support Google Sheet</a>.</p>
 </li>
 </ol>
 
@@ -271,6 +274,14 @@ Remember to delete the second row from the CSV, as this only contains hint text.
 <pre lang="csv"><code>name,team,can_do_inhours_primary,can_do_inhours_secondary,can_do_inhours_primary_standby,can_do_inhours_secondary_standby,can_do_oncall_primary,can_do_oncall_secondary,forbidden_weeks
 Some Person,Find and View,false,false,false,false,false,true,true,"6,10"
 </code></pre>
+
+<h3 id="generate-the-rota">Generate the rota</h3>
+
+<p>Run <code>ruby bin/generate_rota.rb</code> (it will output to STDOUT).</p>
+
+<p>Tweak the weighting in that file to place more or less emphasis on different cover types (e.g. oncall_primary).</p>
+
+<p>The generated output can be used as the <code>data/rota.csv</code> in <a href="https://github.com/alphagov/pay-pagerduty">pay-pagerduty</a>, which automates the overriding of PagerDuty schedules.</p>
 <p></div></p>
 
 
