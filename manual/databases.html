@@ -204,11 +204,10 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/374b516d80064cd0da2e432e50d65d7e3397b0ca">18 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6ff27354c7cc1eccf03c182b4c2dc6a98470cf4e">22 Feb 2024</a>
 </div>
 
- <h1 id='header'>Databases on GOV.UK</h1> <p>Many GOV.UK applications use a database. See our <a href="https://docs.google.com/spreadsheets/d/1rBZeeaT9XevaRvstMjw2YsbSsoB7IqgWjpJz5oAO9nM/edit#gid=1368371571">spreadsheet of applications and database engines</a> for details.</p>
-<h2 id='database-engines'>Database engines</h2><p>GOV.UK uses mostly PostgreSQL and some MySQL for apps that require a relational database. There&rsquo;s no particular reason why we use both, and the fact that we do is considered <a href="https://trello.com/c/zlfgSJlV/69-govuk-uses-mysql-and-postgresql-and-mongo">tech debt</a>.</p>
+ <h1 id='header'>Databases on GOV.UK</h1> <h2 id='database-engines'>Database engines</h2><p>GOV.UK uses mostly PostgreSQL and some MySQL for apps that require a relational database. There&rsquo;s no particular reason why we use both, and the fact that we do is considered <a href="https://trello.com/c/zlfgSJlV/69-govuk-uses-mysql-and-postgresql-and-mongo">tech debt</a>.</p>
 <p>GOV.UK uses MongoDB or DocumentDB for apps that require a document database. Whilst there are some <a href="https://www.mongodb.com/atlas-vs-amazon-documentdb">big differences between the two</a>, they&rsquo;re broadly compatible, and we tend to use the term &ldquo;Mongo&rdquo; to apply to both.</p>
 <p>Finally, GOV.UK uses an ElasticSearch database for search.</p>
 <h2 id='hosting'>Hosting</h2><p>Instead of running these databases locally on the same instance as the application, they&rsquo;re hosted in separate infrastructure (with <a href="/repos/govuk-aws/guides/rds-database-management.html">one exception</a>).</p>
