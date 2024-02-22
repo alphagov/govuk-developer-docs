@@ -6,8 +6,6 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-Many GOV.UK applications use a database. See our [spreadsheet of applications and database engines](https://docs.google.com/spreadsheets/d/1rBZeeaT9XevaRvstMjw2YsbSsoB7IqgWjpJz5oAO9nM/edit#gid=1368371571) for details.
-
 ## Database engines
 
 GOV.UK uses mostly PostgreSQL and some MySQL for apps that require a relational database. There's no particular reason why we use both, and the fact that we do is considered [tech debt](https://trello.com/c/zlfgSJlV/69-govuk-uses-mysql-and-postgresql-and-mongo).
