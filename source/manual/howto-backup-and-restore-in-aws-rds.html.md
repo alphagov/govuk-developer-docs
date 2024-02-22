@@ -6,11 +6,13 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-Backups of [RDS](https://aws.amazon.com/rds/) instances are [taken
+In the production environment, backups of [RDS](https://aws.amazon.com/rds/) instances are [taken
 nightly](https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance).
 They are stored in Amazon S3. SQL dumps are also taken nightly from the various
 `db_admin` machines via the [`govuk_env_sync`](/manual/govuk-env-sync.html)
 process.
+
+> **Note:** In integration and staging, we do not capture automated snapshots of RDS instances. If performing a drill of these steps in either environment, it will first be necessary to capture a manual snapshot from the AWS console. Make sure the snapshot's name contains the name of the app (e.g. `local-links-manager`), and remember to delete it after completing the drill.
 
 ## Restore an RDS instance via the AWS CLI
 
@@ -52,7 +54,7 @@ You can get this using the `DBInstanceIdentifier`, for example:
 * db_instance_identifier=local-links-manager-postgres
 
 ```
-gds-cli aws govuk-<environment>-admin aws rds describe-db-snapshots --db-snapshot-identifier ${snapshot_arn} --snapshot-type automated --query 'DBSnapshots[].DBInstanceIdentifier'
+gds-cli aws govuk-<environment>-admin aws rds describe-db-snapshots --db-snapshot-identifier ${snapshot_arn} --query 'DBSnapshots[].DBInstanceIdentifier'
 ```
 
 Store the `DBInstanceIdentifier` as a variable:
@@ -105,33 +107,45 @@ gds-cli aws govuk-<environment>-admin aws rds wait db-instance-available --db-in
 
 This command will wait until the database is ready, and then exit without any output.
 
-### 6. Make a change to the database contents
+### 6. Get the new database's hostname
 
-Through the app's user interface, or via the app console or database console, make
-a change that you can use as a sense check to verify that the database switch has
-been successful.
+Once the database is ready, fetch its hostname:
+
+```
+gds-cli aws govuk-<environment>-admin aws rds describe-db-instances --db-instance-identifier "restored-${db_instance_identifier}" --query 'DBInstances[].Endpoint.Address'
+```
+
+### 7. Make a change to the database contents
+
+Through the app's user interface, or via the app console, make a change that you
+can use as a sense check to verify that the database switch has been successful.
 
 For example, you might create a draft edition of something, or modify or delete
 a record. After switching to the restored database, your changes should be undone.
 
-In this example we want to make a change to the database `local-links-manager_production`
-such as delete an old record:
+In this example we open a Rails console on local-links-manager, from which we can
+make a change such as deleting an old record:
 
 ```
-sudo psql -U aws_db_admin -h local-links-manager-postgres -d local-links-manager_production
+kubectl exec -n apps -it deploy/local-links-manager -- bundle exec rails c
 ```
 
-### 7. Connect to the restored backup database
+### 8. Connect to the restored backup database
 
-This requires updating the CNAME for `local-links-manager-postgres`.
+This requires updating the `govuk/local-links-manager/postgres` secret in AWS Secrets Manager.
 
-1. In AWS Route53 navigate to `Route 53 > Hosted zones > integration.govuk-internal.digital`
-2. In the list search for the hostname and select it to edit the record.
-3. Make a note of the current value if you are planning on reconnecting to the original database afterwards e.g. if you're carrying this out as a drill
-4. Replace the value with the new RDS backup and save your changes. This takes about 60 seconds, you can click "view status" for updates. Once updated it will say `INSYNC`.
-5. SSH back into the machine and query for the record you deleted. If the record is back this should verify the app is now using the backup database.
-
-> This is only a temporary solution, to be used in an incident. You should continue onto the next section for a permanent solution.
+1. Log in to AWS in the correct environment: `gds aws govuk-<environment>-admin -l`
+1. In AWS Secrets Manager, search for and click on `govuk/local-links-manager/postgres`.
+1. Under the "Overview" tab, in the "Secret Value" section, select "Retrieve Secret Value".
+1. Make a note of the existing value, in case you need to revert the changes (for example, if performing a drill).
+1. Click "Edit", and replace the value of the "host" and "dbInstanceIdentifier" fields with the URL and identifier of the new database instance. Click "Save".
+   > Some of our apps currently refer to their database directly (e.g. `app-name.hex-string.eu-west-1.rds.amazonaws.com`), some of them refer to their database indirectly via a `CNAME` record (e.g. `app-name.blue.staging.govuk-internal.digital`). In either case, you can replace this with the URL of the new database instance.
+1. Log into Argo CD in the correct environment ([integration](https://argo.eks.integration.govuk.digital/),
+    [staging](https://argo.eks.staging.govuk.digital/), [production](https://argo.eks.production.govuk.digital/)).
+1. Navigate to the `external-secrets` app, locate the `local-links-manager-postgres` external secret, select the "..." menu, and select "Refresh".
+1. After refreshing this secret, the app's pods should automatically be restarted pointing at the correct database instance. To confirm that this happened, navigate to the `local-links-manager` app, locate the `local-links-manager` deployment, and check the uptime of the pods.
+    > If the pods were not automatically restarted, select the "..." menu next to the deployment, and select "Restart".
+1. Verify that the app is now using the backup database by checking if the change you made in the previous step has been reverted.
 
 ## Delete an obsolete database
 
@@ -149,5 +163,3 @@ gds-cli aws govuk-<environment>-admin aws rds delete-db-instance --db-instance-i
 ```
 
 You can check the snapshot is available by navigating to RDS > Snapshots in the AWS console.
-Now that the original RDS instance has been removed this will free up the name for the
-[permanent fix](#ensure-your-setup-will-continue-to-work-if-infrastructure-is-reprovisioned)).
