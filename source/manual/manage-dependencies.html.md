@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
-title: Manage Ruby dependencies with Dependabot
-description: How we manage our Ruby dependencies using Dependabot, who can merge PRs and security
+title: Manage dependencies with Dependabot
+description: How we manage our dependencies using Dependabot, including setup, automation and how to review dependency update PRs.
 section: Dependencies
 layout: manual_layout
 parent: "/manual.html"
