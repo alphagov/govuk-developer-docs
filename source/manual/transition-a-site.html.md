@@ -177,9 +177,9 @@ We need to:
 
 1. Obtain the TXT record by submitting a Fastly support request. You will need to provide the 'Production bouncer' service ID and the subdomain you want to add. See an [example of support request](https://support.fastly.com/hc/en-us/requests/700875).
 
-2. Add the DNS record to [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf) and apply terraform configuration.
+2. If the domain's DNS is managed by GOV.UK: add the DNS record to [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf) and apply terraform configuration. If the domain's DNS is managed by the department: send the TXT record to the department and ask them to add this record to the DNS.
 
-  It's not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with `_fastly` as a proof of ownership. See an [example code change][code change].
+> It's not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with `_fastly` as a proof of ownership. See an [example code change][code change].
 
 #### Apply govuk-fastly terraform configuration
 
