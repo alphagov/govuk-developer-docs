@@ -143,7 +143,7 @@
         <a href="#how-does-www-gov-ukalerts-work"><span>How does www.gov.uk/alerts work?</span></a>
       </li>
       <li>
-        <a href="#api-keys"><span>API Keys</span></a>
+        <a href="#fastly-automation-token-for-cache-purge"><span>Fastly automation token for cache purge</span></a>
       </li>
     </ul>
   </li>
@@ -194,7 +194,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/feb9255e0c457df572efcb10c78a0419790448b1">17 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/94e25374411e6147555157cd0a60812fe5744e6f">23 Feb 2024</a>
 </div>
 
  <h1 id='header'>What is GOV.UK Emergency Alerts?</h1> <p>The Cabinet Office <a href="https://www.instituteforgovernment.org.uk/explainer/cobr-cobra">COBR</a> Unit and the Department for Science, Innovation and Technology have developed an emergency alert system to enable people whose lives are at risk in an emergency to be rapidly contacted via their mobile phone. It is currently in the trial phase following a successful national test message. It was originally developed by the GOV.UK Notify team and is now managed and maintained by the GOV.UK Emergency Alerts team.</p>
@@ -209,12 +209,13 @@
 <p>Requests to /alerts (or to anything beginning with <code>/alerts/</code>) hit GOV.UK&rsquo;s CDN (Fastly), but no other bits of GOV.UK&rsquo;s infrastructure.</p>
 <p>This is configured in govuk-fastly, by <a href="https://github.com/alphagov/govuk-fastly/blob/ffd54b5c495a6daad6f6a774d53296924cb4e784/modules/www/service.tf#L70-L73">dynamically selecting the backend</a> from the <a href="https://github.com/alphagov/govuk-fastly-secrets/blob/fbf5333dafdca0250d67c043b15750a6b160de6a/secrets.yaml#L58-L61">list of backends in govuk-fastly-secrets</a>.</p>
 <p>We <a href="https://github.com/alphagov/govuk-fastly-secrets/blob/fbf5333dafdca0250d67c043b15750a6b160de6a/secrets.yaml#L58-L61">only have one backend</a>, at the time of writing. Backends have <a href="https://github.com/alphagov/govuk-fastly/blob/ffd54b5c495a6daad6f6a774d53296924cb4e784/modules/www/service.tf#L83">POP shield enabled by default</a>.</p>
-<h2 id='api-keys'>API Keys</h2><p>Emergency Alerts have three Fastly API keys with <a href="https://developer.fastly.com/reference/api/auth/#scopes"><code>purge_select</code> scope</a>, one for
-integration, staging and production. These allow them to purge individual pages or surrogate keys from the cache. Note that the scope
-of these keys is not restricted to <code>/alerts</code> - in principle they could be used to purge any page from the cache. We trust the Emergency
-Alerts team to take appropriate care with these credentials.</p>
-<p>The API keys are not configured to expire, but it is good practice to rotate them regularly. The Emergency Alerts team will instigate API key rotations,
-see <a href="/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html">Rotate Fastly API Keys for Emergency Alerts</a>.</p>
+<h2 id='fastly-automation-token-for-cache-purge'>Fastly automation token for cache purge</h2><p>The Emergency Alerts team has a Fastly automation token which allows their
+application to invalidate objects in the Fastly CDN cache for www.gov.uk.</p>
+<p>This purge token should not normally need to be changed. In rare circumstances
+the Emergency Alerts team may need us to reissue a token, for example if a
+token has been lost or compromised. See <a href="/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html">Rotate Fastly automation token for
+Emergency Alerts
+application</a>.</p>
 
   <div class='related-content'>
 

@@ -186,7 +186,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/86b58aebccea74c7cc7ec39304f48b51cdbbd1f3">17 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/94e25374411e6147555157cd0a60812fe5744e6f">23 Feb 2024</a>
 </div>
 
  <h1 id='header'>Rotate Fastly automation token for Emergency Alerts application</h1> <blockquote>
@@ -232,10 +232,14 @@ Ensure nothing else is ticked under the Scope heading.</li>
 GOV.UK</code>, <code>Staging GOV.UK</code> and <code>Integration GOV.UK</code>, then choose Apply.</li>
 <li>Under Expiration, choose <strong>Never expire</strong>. Do not set an expiry date.</li>
 <li>Choose <strong>Create Token</strong>.</li>
+<li>Copy the token and securely transfer it to the person from Emergency Alerts
+team who is requesting it. For example, calling the person via Google Meet
+and pasting it into the chat would be acceptable. Avoid sending the token by
+email or any communication tool that might leave lasting copies.</li>
 </ol>
-<p>Someone on Emergency Alerts team will need to set the new token in each of the
-3 AWS accounts for Emergency Alerts: preview, staging and production. For each
-account, they will need to:</p>
+<p>The person from Emergency Alerts team will then update the configuration in
+their 3 AWS accounts: preview, staging and production. For each account, they
+will need to:</p>
 
 <ol>
 <li>Update <code>fastly-api-key</code> in SSM Parameter Store.</li>
