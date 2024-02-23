@@ -198,15 +198,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/423870e13bb1b68ed233a2c95069dba1ad8b1413">17 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/644894c960c7a33c3a871aa84eab2968fda27b06">20 Feb 2024</a>
 </div>
 
  <h1 id='header'>Whitehall scheduled publishing</h1> <h2 id='overdue-publications-in-whitehall'>Overdue publications in Whitehall</h2><p>This alert means that there are scheduled editions which have passed their
@@ -240,13 +233,7 @@ in the queue.</p>
 <p>Run the <code>publishing:scheduled:requeue_all_jobs</code> Rake task to requeue all
 scheduled editions:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall-admin <span class="nt">--</span> rake publishing:scheduled:requeue_all_jobs
-</code></pre></div><p>Historically, this error has happened in the staging and integration
-environments, after the nightly <a href="/manual/govuk-env-sync.html">data sync</a>.
-We <a href="https://github.com/alphagov/govuk-puppet/pull/10842">no longer spawn scheduling workers</a>
-for Whitehall on Staging and Integration, so this will no longer affect
-those environments. The alert and rake task fix could still prove useful
-on Production.</p>
-
+</code></pre></div>
   <div class='related-content'>
 
 </div>
