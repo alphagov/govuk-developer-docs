@@ -49,10 +49,14 @@ Follow these steps to revoke old tokens and issue new one.
    GOV.UK`, `Staging GOV.UK` and `Integration GOV.UK`, then choose Apply.
 1. Under Expiration, choose __Never expire__. Do not set an expiry date.
 1. Choose __Create Token__.
+1. Copy the token and securely transfer it to the person from Emergency Alerts
+   team who is requesting it. For example, calling the person via Google Meet
+   and pasting it into the chat would be acceptable. Avoid sending the token by
+   email or any communication tool that might leave lasting copies.
 
-Someone on Emergency Alerts team will need to set the new token in each of the
-3 AWS accounts for Emergency Alerts: preview, staging and production. For each
-account, they will need to:
+The person from Emergency Alerts team will then update the configuration in
+their 3 AWS accounts: preview, staging and production. For each account, they
+will need to:
 
 1. Update `fastly-api-key` in SSM Parameter Store.
 1. Find the `eas-app-govuk-alerts` service in `eas-app-cluster` in ECS.
