@@ -12,8 +12,7 @@ The Cabinet Office [COBR](https://www.instituteforgovernment.org.uk/explainer/co
 
 As part of this service, GOV.UK delegate serving [www.gov.uk/alerts](https://www.gov.uk/alerts) to the GOV.UK Emergency Alerts team.
 
-How does www.gov.uk/alerts work?
---------------------------------
+## How does www.gov.uk/alerts work?
 
 We have a custom host in Fastly for /alerts which points at an AWS CloudFront CDN which is managed by the GOV.UK Emergency Alerts team. Each GOV.UK environment points at a different custom host:
 
@@ -27,13 +26,13 @@ This is configured in govuk-fastly, by [dynamically selecting the backend](https
 
 We [only have one backend](https://github.com/alphagov/govuk-fastly-secrets/blob/fbf5333dafdca0250d67c043b15750a6b160de6a/secrets.yaml#L58-L61), at the time of writing. Backends have [POP shield enabled by default](https://github.com/alphagov/govuk-fastly/blob/ffd54b5c495a6daad6f6a774d53296924cb4e784/modules/www/service.tf#L83).
 
-API Keys
---------
+## Fastly automation token for cache purge
 
-Emergency Alerts have three Fastly API keys with [`purge_select` scope](https://developer.fastly.com/reference/api/auth/#scopes), one for
-integration, staging and production. These allow them to purge individual pages or surrogate keys from the cache. Note that the scope
-of these keys is not restricted to `/alerts` - in principle they could be used to purge any page from the cache. We trust the Emergency
-Alerts team to take appropriate care with these credentials.
+The Emergency Alerts team has a Fastly automation token which allows their
+application to invalidate objects in the Fastly CDN cache for www.gov.uk.
 
-The API keys are not configured to expire, but it is good practice to rotate them regularly. The Emergency Alerts team will instigate API key rotations,
-see [Rotate Fastly API Keys for Emergency Alerts](/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html).
+This purge token should not normally need to be changed. In rare circumstances
+the Emergency Alerts team may need us to reissue a token, for example if a
+token has been lost or compromised. See [Rotate Fastly automation token for
+Emergency Alerts
+application](/manual/how-to-rotate-fastly-api-keys-for-emergency-alerts.html).
