@@ -8,8 +8,6 @@ layout: multipage_layout
 
 To start using the GOV.UK Kubernetes clusters, you should:
 
-- try the [tutorials](tutorials)
-- [set up the necessary tools](set-up-tools)
-- check that you can [access the Elastic Kubernetes Service (EKS) clusters](access-eks-cluster)
-
-Please note that the tutorials do not require any set up of the tools.
+1. try the [tutorials](tutorials), unless you are already familiar with Kubernetes
+1. [set up the necessary tools](set-up-tools)
+1. check that you can [access the Elastic Kubernetes Service (EKS) clusters](access-eks-cluster)

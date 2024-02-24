@@ -47,7 +47,7 @@ This document assumes that you have already followed the steps in [Get started d
 
 1. Set the current context:
 
-    ```bash
+    ```sh
     kubectl config use-context <govuk-environment>
     ```
 
@@ -55,8 +55,8 @@ This document assumes that you have already followed the steps in [Get started d
 
 1. Set the [default namespace](/kubernetes/manage-app/get-app-info/#choose-and-set-a-namespace)
 
-    ```
-    bash kubectl config set-context --current --namespace=apps
+    ```sh
+    kubectl config set-context --current --namespace=apps
     ```
 
 1. Check that you can access the cluster:
