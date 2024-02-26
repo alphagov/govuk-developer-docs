@@ -6,22 +6,23 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-Spelling mistakes can creep into [change notes](https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes), and we are often asked to correct them. The instructions below cover doing this task in Whitehall, Content Publisher and Publishing API.
+We are sometimes asked to amend [change notes](https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes), for example where a user has made a typo. This playbook describes how to amend change notes in Whitehall, Content Publisher and Publishing API.
 
 ## Whitehall
 
 Whitehall supports modifying change notes directly from the UI. The feature is hidden from publishers, but available to anyone with `GDS Admin` permissions.
-Content 2nd Line can modify the change note themselves by:
 
-- Appending `/change_notes` to the URL of the admin screen, so that the URL looks something like:
+2nd-line Content Support team can modify the change note themselves:
+
+1. Append `/change_notes` to the URL of the admin screen, for example:
   `https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edition-id>/change_notes`
-- You may need to swap out the portion after `/admin/`, for the word `editions`. For example,
+1. You may need to replace the portion after `/admin/` with the word `editions`. For example,
   `https://whitehall-admin.publishing.service.gov.uk/government/admin/publications/1389309/change_notes` won't work, but
   `https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/1389309/change_notes` will.
 
-Note that _adding_ a change note is not supported in the UI. Instead, you'd need to use the app console and do something like:
+__Adding__ a change note is not yet supported in the UI. You can use the Rails console, for example:
 
-```
+```ruby
 ed = Edition.where(id: <relevant id>).first
 ed.state = "draft"
 ed.save
@@ -35,108 +36,119 @@ ed.save
 
 Content Publisher has a [set of rake tasks](https://github.com/alphagov/content-publisher/blob/main/lib/tasks/change_history.rake) for adding, deleting and editing change notes.
 
+## Specialist Publisher
+
+Use the [Publishing API procedure](#publishing-api) below.
+
 ## Other Publishing Apps
 
-The other publishing apps do not currently provide an automated means of updating a change note, and therefore unfortunately direct modification via the Rails console is required before republishing the document.
+The other publishing apps do not yet provide a way to update a change note.
 
-The exception to this is Specialist Publisher, which does not have its own database. Specialist Publisher persists all of its data straight to Publishing API, so [the steps documented below](#publishing-api) for updating a change note there can be followed.
+Use the app's Rails console to update the change history in the app's own database, then republish the document via the app's web UI.
 
 ## Publishing API
 
-Updating change notes in Publishing API is rarely adviseable and should ONLY be done if unable to do so from the corresponding publishing app. This is to mitigate the risk of Publishing API being overwritten by the publishing app later on. Thoroughly explore your publishing app first, to see if such functionality exists (we've documented Whitehall and Content Publisher above), and if it doesn't, consider building the feature in! However, in an emergency, you can edit the changenote directly in Publishing API.
+> ⚠️ You should use the relevant publishing app to modify a change note where possible. Only use publishing-api where a publishing app lacks support for updating change notes.
 
-1. Ensure your access to EKS is set up:
+1. Obtain kubectl credentials for the EKS cluster. Follow [the set up guide](/kubernetes/get-started/set-up-tools/) if unfamiliar.
 
-```bash
-export AWS_REGION=eu-west-1
-eval $(gds aws govuk-<environment-name>-poweruser -e --art 8h)
-kubectl config use-context <your-context-name>
-```
+1. Open a Rails console on Publishing API:
 
-If you have not accessed the EKS cluster before, you will need to follow [the set up guide](/kubernetes/get-started/set-up-tools/) first.
+    ```sh
+    k exec -it deploy/publishing-api -- rails c
+    ```
 
-1. Connect to the Publishing API console: `kubectl exec -n apps -it deploy/publishing-api -- rails c`
+1. Find the document:
 
-1. Find the document: `document = Document.find_by_content_id("YOUR_CONTENT_ID_HERE")`
+    ```ruby
+    document = Document.find_by_content_id("YOUR_CONTENT_ID_HERE")
+    ```
 
-1. Find the document's live edition: `live_edition = document.editions.live.last`
+1. Find the document's live edition:
 
-1. Check the edition's details hash for the change history: `live_edition.details[:change_history]`
+    ```ruby
+    live_edition = document.editions.live.last
+    ```
 
-If this is empty, you'll need to follow method 1. Otherwise, follow method 2.
+1. Fetch the edition's details change history:
 
-### Method 1 (update an individual ChangeNote)
+    ```ruby
+    live_edition.details[:change_history]
+    ```
 
-Fetch the change notes for the document:
+   If this is empty, follow method A. Otherwise, follow method B.
 
-```
-change_notes = ChangeNote.joins(:edition).where(editions: { document: document }).order(:public_timestamp)
-```
+### Method A: update an individual ChangeNote
 
-Select the relevant change note manually, or by searching for the note text:
+1. Fetch the change notes for the document:
 
-```
-change_note = change_notes.find_by("note LIKE ?", "%SUBSTRING OR FULL CHANGE NOTE TEXT%")
-```
+    ```ruby
+    change_notes = ChangeNote.joins(:edition).where(editions: { document: document }).order(:public_timestamp)
+    ```
 
-Update change note:
+1. Retrieve the change note to amend, for example by searching for the note text:
 
-```
-change_note.update(note: "NEW NOTE")
-```
+    ```ruby
+    note = change_notes.find_by("note LIKE ?", "%SUBSTRING OR FULL CHANGE NOTE TEXT%")
+    ```
 
-Finally, [send the document downstream] using the content id.
+1. Update the change note:
 
-### Method 2 update the `details.change_history`
+    ```ruby
+    note.update(note: "NEW NOTE")
+    ```
 
-Fetch details for edition:
+1. [Send the document downstream] using the content ID.
 
-```
-details = live_edition.details
-```
+### Method B: update `details.change_history`
 
-Ouput change history:
+1. Fetch the details for the edition:
 
-```
-details[:change_history]
-```
+    ```ruby
+    details = live_edition.details
+    ```
 
-Select relevant change note manually, or by seaching for the note text:
+1. View the change history:
 
-```
-change_note_index = details[:change_history].find_index { |change_note| change_note[:note] =~ /SUBSTRING OR FULL CHANGE NOTE TEXT/ }
-```
+    ```ruby
+    details[:change_history]
+    ```
 
-Check the returned change note is correct:
+1. Retrieve the change note to amend, for example by searching for the note text:
 
-```
-details[:change_history][change_note_index]
-```
+    ```ruby
+    change_note_index = details[:change_history].find_index { |change_note| change_note[:note] =~ /SUBSTRING OR FULL CHANGE NOTE TEXT/ }
+    ```
 
-Update change note:
+1. Check the returned change note is correct:
 
-```
-details[:change_history][change_note_index][:note] = "New note"
-```
+    ```ruby
+    details[:change_history][change_note_index]
+    ```
 
-Update edition:
+1. Update the change note:
 
-```
-live_edition.update(details: details)
-```
+    ```ruby
+    details[:change_history][change_note_index][:note] = "New note"
+    ```
 
-Finally, [send the document downstream](/repos/publishing-api/admin-tasks.html#representing-data-downstream) using the content id.
+1. Update the edition:
+
+    ```ruby
+    live_edition.update(details: details)
+    ```
+
+1. [Send the document downstream] using the content ID.
 
 ## Troubleshooting
 
-The steps below helped us in a situation where the change note was present in the content item
-in both Whitehall and publishing-api, but was not being reflected on the page itself. We
-found this was due to the content-store not being in sync with the publishing-api. This can
-happen in `staging` due to an issue with the overnight data sync.
+### Change note is in content item in Whitehall and publishing-api but not showing on page
 
-Things we tried:
+Content Store may be out of sync with Publishing API.
 
-- [purge the page from cache](/manual/purge-cache.html)
-- check the [Sidekiq monitoring queue](/manual/sidekiq.html#monitoring) to see if the document is stuck somewhere in a queue
-- look in [Kibana](/manual/tools.html#kibana) - there might be some with the status `409` which might be due to the content-store thinking it's got more up to date data than the publishing-api
-- compare the `payload_version` in publishing-api and content-store in the console, if the request from publishing-api is lower it will be ignored (also see this [doc on publishing-api messages](/repos/content-data-api/processing_publishing_api_messages.html#discarding-messages))
+- If the problem is only in staging/integration and not production, check for failed [environment sync jobs](https://argo.eks.staging.govuk.digital/applications/db-backup) for content-store or publishing-api.
+- Check the [Sidekiq monitoring queue](/manual/sidekiq.html#monitoring) to see if the document is stuck somewhere in a queue.
+- Look in [Kibana](/manual/tools.html#kibana) for responses with `status:409` (resource conflict). This can indicate that content-store already has a more recent version of the document than publishing-api.
+- Compare the `payload_version` in publishing-api and content-store in the Rails console. Content Store will reject the request if the the request's `payload_version` is not newer than the one in the content-store database. See also [content-data-api: Processing publishing-api messages: Discarding messages](https://github.com/alphagov/content-data-api/blob/main/docs/processing_publishing_api_messages.md#discarding-messages).
+
+[Send the document downstream]: /repos/publishing-api/admin-tasks.html#representing-data-downstream
