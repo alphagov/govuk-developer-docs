@@ -13,9 +13,9 @@ Spelling mistakes can creep into [change notes](https://www.gov.uk/guidance/cont
 Whitehall supports modifying change notes directly from the UI. The feature is hidden from publishers, but available to anyone with `GDS Admin` permissions.
 Content 2nd Line can modify the change note themselves by:
 
-* Appending `/change_notes` to the URL of the admin screen, so that the URL looks something like:
+- Appending `/change_notes` to the URL of the admin screen, so that the URL looks something like:
   `https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edition-id>/change_notes`
-* You may need to swap out the portion after `/admin/`, for the word `editions`. For example,
+- You may need to swap out the portion after `/admin/`, for the word `editions`. For example,
   `https://whitehall-admin.publishing.service.gov.uk/government/admin/publications/1389309/change_notes` won't work, but
   `https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/1389309/change_notes` will.
 
