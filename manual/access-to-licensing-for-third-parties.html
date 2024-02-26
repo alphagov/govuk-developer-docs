@@ -223,7 +223,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/485e4f023ff47b4c3b7fad13002cf8fa6a9fc2dc">24 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1c9361cbded72c094e628d4e3fc049bbb753dda2">19 Feb 2024</a>
 </div>
 
  <h1 id='header'>Access to Licensify for Third Parties</h1> <p><a href="/manual/licensing.html">Licensify</a> is a GOV.UK application which is usually supported by third parties.</p>
@@ -242,7 +242,7 @@
 <h2 id='using-kubernetes'>Using Kubernetes</h2><p>The licensing application stack is now orchestrated on Kubernetes clusters (running on AWS EKS).</p>
 <h3 id='getting-accesss'>Getting Accesss</h3><p>To interact with the Kubernetes cluster, you will need to authenticate via the AWS CLI. For more help on how to set up the necessary CLI tools, read <a href="https://docs.publishing.service.gov.uk/kubernetes/get-started/set-up-tools/">Set up tools to use the GOV.UK Kubernetes platform
 </a>.</p>
-<p>Access to GDS AWS accounts is managed via GDS Users. You can request a user via the <a href="https://gds-request-an-aws-account.cloudapps.digital/">self-service tool</a> if you have a <code>@digital-cabinet-office.gov.uk</code> email address. Once you have a user, ask a GOV.UK Tech Lead to be given the necessary roles in <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a>.</p>
+<p>Access to GDS AWS accounts is managed via GDS Users. You can request a user via the <a href="https://request-an-aws-account.gds-reliability.engineering/">self-service tool</a> if you have a <code>@digital-cabinet-office.gov.uk</code> email address. Once you have a user, ask a GOV.UK Tech Lead to be given the necessary roles in <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a>.</p>
 <p>Once you have the necessary permissions and access, you can continue.</p>
 <p>The easiest way to do this is with the GDS CLI. You can either chain your commands onto the GDS CLI:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-licensinguser <span class="nt">--</span> aws sts get-caller-identity
