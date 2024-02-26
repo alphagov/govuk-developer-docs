@@ -146,21 +146,29 @@
         <a href="#content-publisher"><span>Content Publisher</span></a>
       </li>
       <li>
+        <a href="#specialist-publisher"><span>Specialist Publisher</span></a>
+      </li>
+      <li>
         <a href="#other-publishing-apps"><span>Other Publishing Apps</span></a>
       </li>
       <li>
         <a href="#publishing-api"><span>Publishing API</span></a>
         <ul>
           <li>
-            <a href="#method-1-update-an-individual-changenote"><span>Method 1 (update an individual ChangeNote)</span></a>
+            <a href="#method-a-update-an-individual-changenote"><span>Method A: update an individual ChangeNote</span></a>
           </li>
           <li>
-            <a href="#method-2-update-the-details-change_history"><span>Method 2 update the details.change_history</span></a>
+            <a href="#method-b-update-details-change_history"><span>Method B: update details.change_history</span></a>
           </li>
         </ul>
       </li>
       <li>
         <a href="#troubleshooting"><span>Troubleshooting</span></a>
+        <ul>
+          <li>
+            <a href="#change-note-is-in-content-item-in-whitehall-and-publishing-api-but-not-showing-on-page"><span>Change note is in content item in Whitehall and publishing-api but not showing on page</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -211,79 +219,95 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ca8f36344cd32176f7d34a5383ac0ed2de33a1c5">26 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f559ce2665a0bb00065de989ebc5add23bd3daa8">26 Feb 2024</a>
 </div>
 
- <h1 id='header'>Modify a change note in Publishing API, Content Publisher or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in Whitehall, Content Publisher and Publishing API.</p>
-<h2 id='whitehall'>Whitehall</h2><p>Whitehall supports modifying change notes directly from the UI. The feature is hidden from publishers, but available to anyone with <code>GDS Admin</code> permissions.
-Content 2nd Line can modify the change note themselves by:</p>
+ <h1 id='header'>Modify a change note in Publishing API, Content Publisher or Whitehall</h1> <p>We are sometimes asked to amend <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, for example where a user has made a typo. This playbook describes how to amend change notes in Whitehall, Content Publisher and Publishing API.</p>
+<h2 id='whitehall'>Whitehall</h2><p>Whitehall supports modifying change notes directly from the UI. The feature is hidden from publishers, but available to anyone with <code>GDS Admin</code> permissions.</p>
+<p>2nd-line Content Support team can modify the change note themselves:</p>
 
-<ul>
-<li>Appending <code>/change_notes</code> to the URL of the admin screen, so that the URL looks something like:
+<ol>
+<li>Append <code>/change_notes</code> to the URL of the admin screen, for example:
 <code>https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/&lt;edition-id&gt;/change_notes</code></li>
-<li>You may need to swap out the portion after <code>/admin/</code>, for the word <code>editions</code>. For example,
+<li>You may need to replace the portion after <code>/admin/</code> with the word <code>editions</code>. For example,
 <code>https://whitehall-admin.publishing.service.gov.uk/government/admin/publications/1389309/change_notes</code> won&rsquo;t work, but
 <code>https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/1389309/change_notes</code> will.</li>
-</ul>
-<p>Note that <em>adding</em> a change note is not supported in the UI. Instead, you&rsquo;d need to use the app console and do something like:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ed = Edition.where(id: &lt;relevant id&gt;).first
-ed.state = "draft"
-ed.save
-ed.update(minor_change: false, change_note: "Change note", major_change_published_at: Time.new(2022,12,21))
-ed.save
-ed.state = "published"
-ed.save
+</ol>
+<p><strong>Adding</strong> a change note is not yet supported in the UI. You can use the Rails console, for example:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">ed</span> <span class="o">=</span> <span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">id: </span><span class="o">&lt;</span><span class="n">relevant</span> <span class="nb">id</span><span class="o">&gt;</span><span class="p">).</span><span class="nf">first</span>
+<span class="n">ed</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="s2">"draft"</span>
+<span class="n">ed</span><span class="p">.</span><span class="nf">save</span>
+<span class="n">ed</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">minor_change: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">change_note: </span><span class="s2">"Change note"</span><span class="p">,</span> <span class="ss">major_change_published_at: </span><span class="no">Time</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">21</span><span class="p">))</span>
+<span class="n">ed</span><span class="p">.</span><span class="nf">save</span>
+<span class="n">ed</span><span class="p">.</span><span class="nf">state</span> <span class="o">=</span> <span class="s2">"published"</span>
+<span class="n">ed</span><span class="p">.</span><span class="nf">save</span>
 </code></pre></div><h2 id='content-publisher'>Content Publisher</h2><p>Content Publisher has a <a href="https://github.com/alphagov/content-publisher/blob/main/lib/tasks/change_history.rake">set of rake tasks</a> for adding, deleting and editing change notes.</p>
-<h2 id='other-publishing-apps'>Other Publishing Apps</h2><p>The other publishing apps do not currently provide an automated means of updating a change note, and therefore unfortunately direct modification via the Rails console is required before republishing the document.</p>
-<p>The exception to this is Specialist Publisher, which does not have its own database. Specialist Publisher persists all of its data straight to Publishing API, so <a href="#publishing-api">the steps documented below</a> for updating a change note there can be followed.</p>
-<h2 id='publishing-api'>Publishing API</h2><p>Updating change notes in Publishing API is rarely adviseable and should ONLY be done if unable to do so from the corresponding publishing app. This is to mitigate the risk of Publishing API being overwritten by the publishing app later on. Thoroughly explore your publishing app first, to see if such functionality exists (we&rsquo;ve documented Whitehall and Content Publisher above), and if it doesn&rsquo;t, consider building the feature in! However, in an emergency, you can edit the changenote directly in Publishing API.</p>
+<h2 id='specialist-publisher'>Specialist Publisher</h2><p>Use the <a href="#publishing-api">Publishing API procedure</a> below.</p>
+<h2 id='other-publishing-apps'>Other Publishing Apps</h2><p>The other publishing apps do not yet provide a way to update a change note.</p>
+<p>Use the app&rsquo;s Rails console to update the change history in the app&rsquo;s own database, then republish the document via the app&rsquo;s web UI.</p>
+<h2 id='publishing-api'>Publishing API</h2>
+<blockquote>
+<p>⚠️ You should use the relevant publishing app to modify a change note where possible. Only use publishing-api where a publishing app lacks support for updating change notes.</p>
+</blockquote>
 
 <ol>
-<li>Ensure your access to EKS is set up:</li>
+<li><p>Obtain kubectl credentials for the EKS cluster. Follow <a href="/kubernetes/get-started/set-up-tools/">the set up guide</a> if unfamiliar.</p></li>
+<li><p>Open a Rails console on Publishing API:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/publishing-api <span class="nt">--</span> rails c
+</code></pre></div></li>
+<li><p>Find the document:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">document</span> <span class="o">=</span> <span class="no">Document</span><span class="p">.</span><span class="nf">find_by_content_id</span><span class="p">(</span><span class="s2">"YOUR_CONTENT_ID_HERE"</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>Find the document&rsquo;s live edition:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">live_edition</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="nf">editions</span><span class="p">.</span><span class="nf">live</span><span class="p">.</span><span class="nf">last</span>
+</code></pre></div></li>
+<li><p>Fetch the edition&rsquo;s details change history:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">live_edition</span><span class="p">.</span><span class="nf">details</span><span class="p">[</span><span class="ss">:change_history</span><span class="p">]</span>
+</code></pre></div></li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
-<span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-&lt;environment-name&gt;-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
-kubectl config use-context &lt;your-context-name&gt;
-</code></pre></div><p>If you have not accessed the EKS cluster before, you will need to follow <a href="/kubernetes/get-started/set-up-tools/">the set up guide</a> first.</p>
-
+<p>If this is empty, follow method A. Otherwise, follow method B.</p>
+<h3 id='method-a-update-an-individual-changenote'>Method A: update an individual ChangeNote</h3>
 <ol>
-<li><p>Connect to the Publishing API console: <code>kubectl exec -n apps -it deploy/publishing-api -- rails c</code></p></li>
-<li><p>Find the document: <code>document = Document.find_by_content_id(&quot;YOUR_CONTENT_ID_HERE&quot;)</code></p></li>
-<li><p>Find the document&rsquo;s live edition: <code>live_edition = document.editions.live.last</code></p></li>
-<li><p>Check the edition&rsquo;s details hash for the change history: <code>live_edition.details[:change_history]</code></p></li>
+<li><p>Fetch the change notes for the document:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">change_notes</span> <span class="o">=</span> <span class="no">ChangeNote</span><span class="p">.</span><span class="nf">joins</span><span class="p">(</span><span class="ss">:edition</span><span class="p">).</span><span class="nf">where</span><span class="p">(</span><span class="ss">editions: </span><span class="p">{</span> <span class="ss">document: </span><span class="n">document</span> <span class="p">}).</span><span class="nf">order</span><span class="p">(</span><span class="ss">:public_timestamp</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>Retrieve the change note to amend, for example by searching for the note text:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">note</span> <span class="o">=</span> <span class="n">change_notes</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="s2">"note LIKE ?"</span><span class="p">,</span> <span class="s2">"%SUBSTRING OR FULL CHANGE NOTE TEXT%"</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>Update the change note:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">note</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">note: </span><span class="s2">"NEW NOTE"</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p><a href="/repos/publishing-api/admin-tasks.html#representing-data-downstream">Send the document downstream</a> using the content ID.</p></li>
 </ol>
-<p>If this is empty, you&rsquo;ll need to follow method 1. Otherwise, follow method 2.</p>
-<h3 id='method-1-update-an-individual-changenote'>Method 1 (update an individual ChangeNote)</h3><p>Fetch the change notes for the document:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_notes = ChangeNote.joins(:edition).where(editions: { document: document }).order(:public_timestamp)
-</code></pre></div><p>Select the relevant change note manually, or by searching for the note text:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_note = change_notes.find_by("note LIKE ?", "%SUBSTRING OR FULL CHANGE NOTE TEXT%")
-</code></pre></div><p>Update change note:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_note.update(note: "NEW NOTE")
-</code></pre></div><p>Finally, [send the document downstream] using the content id.</p>
-<h3 id='method-2-update-the-details-change_history'>Method 2 update the <code>details.change_history</code></h3><p>Fetch details for edition:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details = live_edition.details
-</code></pre></div><p>Ouput change history:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history]
-</code></pre></div><p>Select relevant change note manually, or by seaching for the note text:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_note_index = details[:change_history].find_index { |change_note| change_note[:note] =~ /SUBSTRING OR FULL CHANGE NOTE TEXT/ }
-</code></pre></div><p>Check the returned change note is correct:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history][change_note_index]
-</code></pre></div><p>Update change note:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history][change_note_index][:note] = "New note"
-</code></pre></div><p>Update edition:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>live_edition.update(details: details)
-</code></pre></div><p>Finally, <a href="/repos/publishing-api/admin-tasks.html#representing-data-downstream">send the document downstream</a> using the content id.</p>
-<h2 id='troubleshooting'>Troubleshooting</h2><p>The steps below helped us in a situation where the change note was present in the content item
-in both Whitehall and publishing-api, but was not being reflected on the page itself. We
-found this was due to the content-store not being in sync with the publishing-api. This can
-happen in <code>staging</code> due to an issue with the overnight data sync.</p>
-<p>Things we tried:</p>
+<h3 id='method-b-update-details-change_history'>Method B: update <code>details.change_history</code></h3>
+<ol>
+<li><p>Fetch the details for the edition:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">details</span> <span class="o">=</span> <span class="n">live_edition</span><span class="p">.</span><span class="nf">details</span>
+</code></pre></div></li>
+<li><p>View the change history:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">details</span><span class="p">[</span><span class="ss">:change_history</span><span class="p">]</span>
+</code></pre></div></li>
+<li><p>Retrieve the change note to amend, for example by searching for the note text:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">change_note_index</span> <span class="o">=</span> <span class="n">details</span><span class="p">[</span><span class="ss">:change_history</span><span class="p">].</span><span class="nf">find_index</span> <span class="p">{</span> <span class="o">|</span><span class="n">change_note</span><span class="o">|</span> <span class="n">change_note</span><span class="p">[</span><span class="ss">:note</span><span class="p">]</span> <span class="o">=~</span> <span class="sr">/SUBSTRING OR FULL CHANGE NOTE TEXT/</span> <span class="p">}</span>
+</code></pre></div></li>
+<li><p>Check the returned change note is correct:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">details</span><span class="p">[</span><span class="ss">:change_history</span><span class="p">][</span><span class="n">change_note_index</span><span class="p">]</span>
+</code></pre></div></li>
+<li><p>Update the change note:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">details</span><span class="p">[</span><span class="ss">:change_history</span><span class="p">][</span><span class="n">change_note_index</span><span class="p">][</span><span class="ss">:note</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"New note"</span>
+</code></pre></div></li>
+<li><p>Update the edition:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">live_edition</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">details: </span><span class="n">details</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p><a href="/repos/publishing-api/admin-tasks.html#representing-data-downstream">Send the document downstream</a> using the content ID.</p></li>
+</ol>
+<h2 id='troubleshooting'>Troubleshooting</h2><h3 id='change-note-is-in-content-item-in-whitehall-and-publishing-api-but-not-showing-on-page'>Change note is in content item in Whitehall and publishing-api but not showing on page</h3><p>Content Store may be out of sync with Publishing API.</p>
 
 <ul>
-<li><a href="/manual/purge-cache.html">purge the page from cache</a></li>
-<li>check the <a href="/manual/sidekiq.html#monitoring">Sidekiq monitoring queue</a> to see if the document is stuck somewhere in a queue</li>
-<li>look in <a href="/manual/tools.html#kibana">Kibana</a> - there might be some with the status <code>409</code> which might be due to the content-store thinking it&rsquo;s got more up to date data than the publishing-api</li>
-<li>compare the <code>payload_version</code> in publishing-api and content-store in the console, if the request from publishing-api is lower it will be ignored (also see this <a href="/repos/content-data-api/processing_publishing_api_messages.html#discarding-messages">doc on publishing-api messages</a>)</li>
+<li>If the problem is only in staging/integration and not production, check for failed <a href="https://argo.eks.staging.govuk.digital/applications/db-backup">environment sync jobs</a> for content-store or publishing-api.</li>
+<li>Check the <a href="/manual/sidekiq.html#monitoring">Sidekiq monitoring queue</a> to see if the document is stuck somewhere in a queue.</li>
+<li>Look in <a href="/manual/tools.html#kibana">Kibana</a> for responses with <code>status:409</code> (resource conflict). This can indicate that content-store already has a more recent version of the document than publishing-api.</li>
+<li>Compare the <code>payload_version</code> in publishing-api and content-store in the Rails console. Content Store will reject the request if the the request&rsquo;s <code>payload_version</code> is not newer than the one in the content-store database. See also <a href="https://github.com/alphagov/content-data-api/blob/main/docs/processing_publishing_api_messages.md#discarding-messages">content-data-api: Processing publishing-api messages: Discarding messages</a>.</li>
 </ul>
 
   <div class='related-content'>
