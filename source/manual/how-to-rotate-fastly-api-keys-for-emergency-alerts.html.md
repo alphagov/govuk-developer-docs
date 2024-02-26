@@ -33,7 +33,7 @@ Follow these steps to revoke old tokens and issue new one.
 > Having 3 separate tokens does not improve security in this case; it only
 > creates toil.
 
-1. Log into <manage.fastly.com>.
+1. Log into <https://manage.fastly.com/>.
 1. Go to [Account tokens](https://manage.fastly.com/account/tokens).
 1. Filter by the string "Emergency Alerts" to narrow down the list.
 1. Delete any lost or compromised tokens by pressing the trash bin icon in the
