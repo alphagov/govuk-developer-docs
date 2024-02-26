@@ -334,18 +334,16 @@
           <main id="content" class="technical-documentation" data-module="anchored-headings">
               <h1 class="page-title">Document types on GOV.UK</h1>
 
-  <p>The document type describes a type of page that can exist on GOV.UK. This is different to the <a href="/content-schemas.html">content schemas</a> which describe the underlying structure of a piece of content.</p>
-<p>The document types included in these docs are pulled in automatically based on data in the <a href="https://github.com/alphagov/govuk_document_types">govuk_document_types repo</a>.</p>
-<h2 id='analysing-document-types'>Analysing document types</h2><p>You can also <a href="/document-types.csv">download this data as CSV</a>. To view the current data in Google Spreadsheets, copy the following formula into a new spreadsheet:</p>
+  <p>A <em>document type</em> describes a category of pages that can exist on GOV.UK. Document types are different from <a href="/content-schemas.html">content schemas</a>, which define the structure of a piece of content.</p>
+<p>GOV.UK Developer Docs automatically generates documentation about document types based on data in the <a href="https://github.com/alphagov/govuk_document_types">govuk_document_types repo</a>.</p>
+<h2 id='relationship-between-document-type-and-content-schema'>Relationship between document type and content schema</h2><p>The mapping between GOV.UK document types and content schemas is many-to-many. A document type can correspond to one or more content schemas. A content schema can permit one or more document types for content items that conform to that schema.</p>
+<h2 id='analyse-document-types'>Analyse document types</h2><p>Data about document types is available <a href="/document-types.csv">in CSV format</a>. You can import this data into Google Sheets using the <code>importData</code> function:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>=importData("https://docs.publishing.service.gov.uk/document-types.csv")
-</code></pre></div>
-<blockquote>
-<p>Note: this is only a snapshot of the data and isn&rsquo;t kept up to date automatically.</p>
-</blockquote>
-<h3 id='using-the-search-api-to-find-similar-data'>Using the Search API to find similar data</h3><p>It&rsquo;s also possible to use the Search API to <a href="https://www.gov.uk/api/search.json?count=0&amp;facet_content_store_document_type=115,examples:1,example_scope:query,example_fields:rendering_app">query for document types</a>.</p>
+</code></pre></div><p>Google Sheets will <a href="https://support.google.com/docs/answer/58515?hl=en#zippy=%2Cchoose-how-often-formulas-calculate">refresh the data hourly</a>.</p>
+<h3 id='query-document-types-in-search-api'>Query document types in Search API</h3><p>You can use Search API to <a href="https://www.gov.uk/api/search.json?count=0&amp;facet_content_store_document_type=115,examples:1,example_scope:query,example_fields:rendering_app">query for document types</a>.</p>
 
 <blockquote>
-<p>Note: this won&rsquo;t include document types which are not yet migrated out of Whitehall.</p>
+<p>Search API will not return document types which have yet to be migrated out of Whitehall.</p>
 </blockquote>
 
 
