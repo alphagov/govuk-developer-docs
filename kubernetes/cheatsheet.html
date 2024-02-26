@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>EKS/Kubernetes GOV.UK cheatsheet - GOV.UK Developer Documentation</title>
+    <title>Kubernetes/EKS cheatsheet - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -17,12 +17,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="EKS/Kubernetes GOV.UK cheatsheet - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Kubernetes/EKS cheatsheet - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="EKS/Kubernetes GOV.UK cheatsheet" />
+      <meta property="og:title" content="Kubernetes/EKS cheatsheet" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html" />
 
@@ -135,43 +135,42 @@
 <li><a href="/kubernetes/"><span>GOV.UK Kubernetes cluster documentation for developers</span></a>
 <ul>
   <li>
-    <a href="/kubernetes/cheatsheet.html"><span>EKS/Kubernetes GOV.UK cheatsheet</span></a>
+    <a href="/kubernetes/cheatsheet.html"><span>Kubernetes/EKS cheatsheet for GOV.UK developers</span></a>
     <ul>
       <li>
+        <a href="/kubernetes/cheatsheet.html#prerequisites"><span>Prerequisites</span></a>
+      </li>
+      <li>
         <a href="/kubernetes/cheatsheet.html#common-tasks"><span>Common tasks</span></a>
+        <ul>
+          <li>
+            <a href="/kubernetes/cheatsheet.html#view-recent-logs-for-an-app"><span>View recent logs for an app</span></a>
+          </li>
+          <li>
+            <a href="/kubernetes/cheatsheet.html#open-a-rails-console"><span>Open a Rails console</span></a>
+          </li>
+          <li>
+            <a href="/kubernetes/cheatsheet.html#open-a-shell-in-an-app-container"><span>Open a shell in an app container</span></a>
+          </li>
+          <li>
+            <a href="/kubernetes/cheatsheet.html#open-a-shell-on-router"><span>Open a shell on Router</span></a>
+          </li>
+          <li>
+            <a href="/kubernetes/cheatsheet.html#list-the-available-rake-tasks-for-an-app"><span>List the available Rake tasks for an app</span></a>
+          </li>
+          <li>
+            <a href="/kubernetes/cheatsheet.html#run-a-rake-task"><span>Run a Rake task</span></a>
+          </li>
+        </ul>
       </li>
       <li>
-        <a href="/kubernetes/cheatsheet.html#set-your-aws-environment-and-role"><span>Set your AWS environment and role</span></a>
+        <a href="/kubernetes/cheatsheet.html#app-releases-and-rollouts-deployments"><span>App releases and rollouts / deployments</span></a>
       </li>
       <li>
-        <a href="/kubernetes/cheatsheet.html#recommended-aliases"><span>Recommended aliases</span></a>
+        <a href="/kubernetes/cheatsheet.html#smokey-test-logs"><span>Smokey test logs</span></a>
       </li>
       <li>
-        <a href="/kubernetes/cheatsheet.html#whats-staying-and-going"><span>What’s staying and going?</span></a>
-      </li>
-      <li>
-        <a href="/kubernetes/cheatsheet.html#app-deployments"><span>App deployments</span></a>
-      </li>
-      <li>
-        <a href="/kubernetes/cheatsheet.html#cdn-and-dns-deployments"><span>CDN and DNS deployments</span></a>
-      </li>
-      <li>
-        <a href="/kubernetes/cheatsheet.html#smokey"><span>Smokey</span></a>
-      </li>
-      <li>
-        <a href="/kubernetes/cheatsheet.html#dashboards-alerting-and-icinga"><span>Dashboards, alerting and Icinga</span></a>
-      </li>
-      <li>
-        <a href="/kubernetes/cheatsheet.html#fetch-logs"><span>Fetch logs</span></a>
-      </li>
-      <li>
-        <a href="/kubernetes/cheatsheet.html#open-a-rails-console"><span>Open a rails console</span></a>
-      </li>
-      <li>
-        <a href="/kubernetes/cheatsheet.html#open-a-shell"><span>Open a shell</span></a>
-      </li>
-      <li>
-        <a href="/kubernetes/cheatsheet.html#run-a-rake-task"><span>Run a rake task</span></a>
+        <a href="/kubernetes/cheatsheet.html#dashboards"><span>Dashboards</span></a>
       </li>
     </ul>
   </li>
@@ -563,125 +562,76 @@
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e6c1b72ec1cb7ff0c53948c917ddb9db2be42d89">9 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f35d456155d25b592a2c5b8992bd3d9504e4b1df">26 Feb 2024</a>
 </div>
 
- <h1 id='ekskubernetes-gov-uk-cheatsheet'>EKS/Kubernetes GOV.UK cheatsheet</h1><p>This is a quick summary of the most useful commands and guidance for interacting with GOV.UK&rsquo;s EKS platform.</p>
-<p>This page assumes you have completed the <a href="/kubernetes/get-started/set-up-tools/">set up instructions</a>, <a href="/kubernetes/get-started/access-eks-cluster/#test-your-access">tested your access</a> and set up the <a href="#recommended-aliases">recommended aliases</a>.</p>
-<h2 id='common-tasks'>Common tasks</h2>
-<ul>
-<li>To access logs for an app:
-
-<ul>
-<li><code>k logs deploy/account-api</code></li>
-</ul></li>
-<li>To open a <a href="https://andycroll.com/ruby/play-in-a-sandbox-in-production/">read-only rails console</a>:
-
-<ul>
-<li><code>k exec -it deploy/router-api -- rails c --sandbox</code></li>
-</ul></li>
-<li>To open a normal rails console:
-
-<ul>
-<li><code>k exec -it deploy/router-api -- rails c</code></li>
-</ul></li>
-<li>To open a shell:
-
-<ul>
-<li><code>k exec -it deploy/government-frontend -- bash</code></li>
-</ul></li>
-<li>To open a shell on Router:
-
-<ul>
-<li><code>k exec -it deploy/router -c nginx</code></li>
-</ul></li>
-</ul>
-<p>Read more about each command further on in the document.</p>
-<h2 id='set-your-aws-environment-and-role'>Set your AWS environment and role</h2><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="c"># set the correct kubectl context (`k config get-contexts` to see available ones)</span>
-k config use-context integration
-<span class="c"># set the appropriate AWS environment (integration/staging/production) and role (see below)</span>
+ <h1 id='kuberneteseks-cheatsheet-for-gov-uk-developers'>Kubernetes/EKS cheatsheet for GOV.UK developers</h1><p>This page lists some example commands for interacting with the GOV.UK
+Kubernetes clusters.</p>
+<p>See <a href="https://kubernetes.io/docs/reference/kubectl/quick-reference/">https://kubernetes.io/docs/reference/kubectl/quick-reference/</a> for a more
+general quick-reference guide.</p>
+<h2 id='prerequisites'>Prerequisites</h2>
+<ol>
+<li><p>You need to have completed <a href="get-started/">Get started with the GOV.UK Kubernetes
+clusters</a>. If you skimmed those instructions, make sure you
+have configured your shell:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
+<span class="nb">alias </span><span class="nv">k</span><span class="o">=</span>kubectl
+</code></pre></div></li>
+<li><p>Obtain credentials to access the cluster.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="c"># Obtain IAM credentials for the AWS account (integration, staging, production).</span>
 <span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
-</code></pre></div><p>Use an AWS role with sufficient permissions:</p>
 
-<ul>
-<li>readonly can view logs</li>
-<li>poweruser can run Rake tasks or open a shell</li>
-<li>administrator gives full access (you&rsquo;ll rarely need this)</li>
-</ul>
-<p>See <a href="/kubernetes/get-started/access-eks-cluster/">full instructions for more detail</a>.</p>
-<h2 id='recommended-aliases'>Recommended aliases</h2><p>Prior to using kubectl, you&rsquo;ll need to set the recommended aliases (see the <a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">kubectl cheatsheet</a>), default contexts and globals:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">alias </span><span class="nv">k</span><span class="o">=</span>kubectl
+<span class="c"># Select the corresponding kubectl context. `k config get-contexts` lists them.</span>
+k config use-context integration
+
+<span class="c"># Use the `apps` namespace by default. You only need to do this the first</span>
+<span class="c"># time you use each cluster.</span>
 k config set-context <span class="nt">--current</span> <span class="nt">--namespace</span><span class="o">=</span>apps
-<span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
-</code></pre></div><h2 id='whats-staying-and-going'>What’s staying and going?</h2><p>All front-end traffic and back-end publisher traffic is now on Kubernetes (EKS) instead of EC2.</p>
-<p>Some things haven&rsquo;t yet been replatformed, and some things will remain unchanged - see <a href="https://docs.google.com/document/d/1R8C3BtvhqTXEga4C3_KxTopjWuYVbiEgKiikTyRXXiA/edit">what stays/goes/changes with Platform Engineering</a>.</p>
-<h2 id='app-deployments'>App deployments</h2>
-<ul>
-<li>To see <em>what&rsquo;s deployed where</em>, use the <a href="https://release.publishing.service.gov.uk/applications">Release</a> app.</li>
-<li>Continuously deployed apps will continue to be deployed post-merge, using <a href="https://argo.eks.integration.govuk.digital/applications">ArgoCD</a>. You can see the progress of a workflow in <a href="https://argo-workflows.eks.integration.govuk.digital/workflows/apps?limit=50">Argo Workflows</a></li>
-<li>To deploy a branch (or for non-continuously deployed apps):
+</code></pre></div><p>Use an IAM role with sufficient permissions:</p></li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>- `-readonly` roles can view logs and configuration
+- `-poweruser` roles can run Rake tasks or open a shell
+- `-administrator` roles can modify base cluster services (you should not
+  normally need this)
 
-<ul>
-<li>Go to the app’s repo in GitHub</li>
-<li>Choose Actions</li>
-<li>Choose Deploy (from the left-hand column).</li>
-<li>Click “Run workflow”</li>
-<li>Enter the name of the branch to deploy under &ldquo;Commit, tag or branch name to deploy&rdquo;.</li>
-<li>(Always leave the &ldquo;Use workflow from&rdquo; option set as <code>main</code>, unless you’re actually trying to change the workflow itself)</li>
-</ul></li>
-</ul>
-<h2 id='cdn-and-dns-deployments'>CDN and DNS deployments</h2>
-<ul>
-<li><a href="/manual/dns.html">DNS rollouts</a> and <a href="/repos/govuk-fastly.html">Fastly CDN config rollouts</a> are now via <a href="/manual/terraform-cloud.html">Terraform Cloud</a></li>
-</ul>
-<h2 id='smokey'>Smokey</h2><p>Smokey runs in Argo Workflows persist for longer only if they have failed (because of limitations of Argo Workflows that we can&rsquo;t easily get around).
-The Smokey cronjob keeps the last 3 successes and the last 3 failures.</p>
-<h2 id='dashboards-alerting-and-icinga'>Dashboards, alerting and Icinga</h2>
-<ul>
-<li>The Technical 2nd Line Dashboard will be kept up to date as we improve our dashboards. It&rsquo;s worth bookmarking <a href="https://govuk-2ndline-dashboard.herokuapp.com/">https://govuk-2ndline-dashboard.herokuapp.com/</a></li>
-<li>The detailed Sidekiq dashboard is not yet available for EKS (the <a href="https://sidekiq-monitoring.integration.govuk.digital/publishing-api/queues">old one</a> still looks at EC2) but you can see queue lengths and age-of-oldest-job on the <a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues">Sidekiq Grafana dashboard</a>.</li>
-<li>Dashboards are on <a href="https://grafana.eks.production.govuk.digital/">https://grafana.eks.production.govuk.digital/</a> and no longer require VPN. Don’t get confused by the <a href="https://grafana.production.govuk.digital/">old Grafana</a>, which will show mostly empty graphs about the old EC2 setup.</li>
-<li>Most Icinga alerts are irrelevant now, <strong>except for a few</strong>, which are all listed on the 2nd line dashboard.</li>
-</ul>
-<h2 id='fetch-logs'>Fetch logs</h2><p>You can fetch the list of pods:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k get pods
-</code></pre></div><p>This will return a list, including output like:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>NAME                                                              READY   STATUS             RESTARTS           AGE
-account-api-568d46d6f7-4pnld                                      2/2     Running            0                  34m
-account-api-568d46d6f7-txwsx                                      2/2     Running            0                  34m
-account-api-dbmigrate-6n5mp                                       0/1     Completed          0                  35m
-account-api-worker-54597b666c-jlcfn                               1/1     Running            0                  34m
-asset-manager-7bd745d655-tzlgz                                    2/2     Running            0                  15h
-...
-</code></pre></div><p>As you can see above, each pod either runs the application (we can see two pods running Account API, for example) or runs a worker or cron job for the application (we can see one pod running the Account API application worker).</p>
-<p>You can also fetch just a subset list of pods by passing the <code>lapp</code> argument:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ k get pods -lapp=account-api
-
-NAME                           READY   STATUS    RESTARTS   AGE
-account-api-75f95899f6-gjdmg   2/2     Running   0          21h
-account-api-75f95899f6-nn56t   2/2     Running   0          21h
-</code></pre></div><p>You can fetch the logs for all running containers in a pod. Take one of the pods from the output above:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k logs account-api-568d46d6f7-4pnld
-</code></pre></div><p>Or you can fetch the logs using its &lsquo;app deployment&rsquo; name. This will choose one of the Account API pods at random, much like the old jumpbox methods:</p>
+See [Access an EKS cluster](get-started/access-eks-cluster/) for more.
+</code></pre></div><h2 id='common-tasks'>Common tasks</h2><h3 id='view-recent-logs-for-an-app'>View recent logs for an app</h3><p>From one pod, chosen arbitrarily:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k logs deploy/account-api
-</code></pre></div><h2 id='open-a-rails-console'>Open a rails console</h2><p>Open a rails console with:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/whitehall-admin <span class="nt">--</span> rails c
-</code></pre></div><p>If you try doing this having assumed a <code>readonly</code> role when setting context, you&rsquo;ll see a permissions error:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>Defaulted container <span class="s2">"app"</span> out of: app, nginx
-Error from server <span class="o">(</span>Forbidden<span class="o">)</span>: pods <span class="s2">"whitehall-admin-6bb47c48d-wkkxk"</span> is forbidden: User <span class="s2">"christopher.ashton-user"</span> cannot create resource <span class="s2">"pods/exec"</span> <span class="k">in </span>API group <span class="s2">""</span> <span class="k">in </span>the namespace <span class="s2">"apps"</span>
-</code></pre></div><p>You need write permissions to be able to open a console (<code>poweruser</code> or above).</p>
-<h2 id='open-a-shell'>Open a shell</h2><p>Open a shell (requires <code>poweruser</code> or above):</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/whitehall-admin <span class="nt">--</span> bash
-</code></pre></div><p>Note that the prompt will have prefix that may feel a little unfamiliar: <code>I have no name!@whitehall-admin-6bb47c48d-wkkxk:/app$</code>.
-This only happens for asset-manager and whitehall-admin, because those have to run as a specific user ID that matches what&rsquo;s on NFS (due to how NFS was set up on the old system).</p>
-<p>To open a shell on Router, you&rsquo;ll need to exec into the nginx container:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/router <span class="nt">-c</span> nginx <span class="nt">--</span> bash
-</code></pre></div><p>This is because <a href="https://github.com/alphagov/router/blob/9797473edbbcbb5085fdca006bec7f6b1552f4e6/Dockerfile#L7">Router&rsquo;s image is <code>FROM scratch</code></a>, so bash isn&rsquo;t available.</p>
-<h2 id='run-a-rake-task'>Run a rake task</h2><p>See <a href="/manual/running-rake-tasks.html#run-a-rake-task-on-eks">Run a Rake task on EKS</a></p>
-<p>Here&rsquo;s an idempotent rake task you can run to try one out:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/email-alert-api <span class="nt">--</span> rake <span class="s1">'support:view_emails[your.email@digital.cabinet-office.gov.uk]'</span>
-</code></pre></div><p>Note that we haven&rsquo;t specified the <code>-it</code> flags in the command above because we don&rsquo;t need to interact with the task.
-To find out what they do, run <code>k exec --help</code>.</p>
+</code></pre></div><p>From all pods:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k logs <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span>account-api
+</code></pre></div><h3 id='open-a-rails-console'>Open a Rails console</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/router-api <span class="nt">--</span> rails c
+</code></pre></div><h3 id='open-a-shell-in-an-app-container'>Open a shell in an app container</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/government-frontend <span class="nt">--</span> bash
+</code></pre></div><h3 id='open-a-shell-on-router'>Open a shell on Router</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/router <span class="nt">-c</span> nginx
+</code></pre></div><h3 id='list-the-available-rake-tasks-for-an-app'>List the available Rake tasks for an app</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/email-alert-api <span class="nt">--</span> rake <span class="nt">-T</span>
+</code></pre></div><h3 id='run-a-rake-task'>Run a Rake task</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/email-alert-api <span class="nt">--</span> <span class="se">\</span>
+  rake <span class="s1">'support:view_emails[your.email@digital.cabinet-office.gov.uk]'</span>
+</code></pre></div><p>See <a href="/manual/running-rake-tasks.html#run-a-rake-task-on-eks">Run a Rake task on EKS</a>.</p>
+<h2 id='app-releases-and-rollouts-deployments'>App releases and rollouts / deployments</h2>
+<ul>
+<li>The <a href="https://release.publishing.service.gov.uk/applications">Release app</a>
+shows what&rsquo;s deployed where.</li>
+<li>Deployment automation is via <a href="https://argo.eks.integration.govuk.digital/applications">Argo
+CD</a>. Post-deploy
+smoke tests run via <a href="https://argo-workflows.eks.integration.govuk.digital/workflows/apps?limit=100">Argo
+Workflows</a>.</li>
+<li>To deploy a branch or manually promote a release:
+
+<ol>
+<li>Go to the app&rsquo;s repo in GitHub.</li>
+<li>Choose <strong>Actions</strong>.</li>
+<li>Choose <strong>Deploy</strong> from the left-hand column.</li>
+<li>Click <strong>Run workflow</strong>.</li>
+<li>Leave the <strong>Use workflow from</strong> dropdown set to <code>main</code>, unless you are
+testing a change to the workflow itself.</li>
+<li>Under <strong>Commit, tag or branch name to deploy</strong>, enter the branch or
+release tag.</li>
+</ol></li>
+</ul>
+<h2 id='smokey-test-logs'>Smokey test logs</h2><p>Argo Workflows keeps logs only for failed workflow tasks.</p>
+<p>The Smokey cronjob keeps the last 3 successes and the last 3 failures.</p>
+<h2 id='dashboards'>Dashboards</h2><p>Dashboards are on <a href="https://grafana.eks.production.govuk.digital/">Grafana</a>.</p>
+<p>You can see Sidekiq queue lengths on the <a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues">Sidekiq Grafana
+dashboard</a>.</p>
 
   <script>
     /*
@@ -713,7 +663,7 @@ To find out what they do, run <code>k exec --help</code>.</p>
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/kubernetes/cheatsheet.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27EKS%2FKubernetes+GOV.UK+cheatsheet%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fkubernetes%2Fcheatsheet.html%29&amp;labels=bug&amp;title=Re%3A+%27EKS%2FKubernetes+GOV.UK+cheatsheet%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Kubernetes%2FEKS+cheatsheet%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fkubernetes%2Fcheatsheet.html%29&amp;labels=bug&amp;title=Re%3A+%27Kubernetes%2FEKS+cheatsheet%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
