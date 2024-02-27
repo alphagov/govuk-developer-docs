@@ -105,129 +105,7 @@ gds-cli aws govuk-<environment>-admin aws rds wait db-instance-available --db-in
 
 This command will wait until the database is ready, and then exit without any output.
 
-### 6. Modify the restored database instance
-
-If you are doing this as a drill you can update the `db_instance_identifier` to something distinguishable so that it is easier to find later in the list of databases in AWS, for example:
-
-* db_instance_identifier = <your_initials>-<DB_Instance_Identifier>
-
-```
-gds-cli aws govuk-<environment>-admin aws rds modify-db-instance --db-instance-identifier restored-${db_instance_identifier} --vpc-security-group-ids ${vpc_security_group_id} --db-parameter-group-name ${db_parameter_group_name}
-```
-
-### 7. Update the DNS
-
-Once restored, you will need to update the DNS so that the restored database can be accessed on the internal domain.
-
-To get the endpoint of the restored instance:
-
-Example of output:
-
-* Address = restored-local-links-manager-postgres.XXXXXX.eu-west-1.rds.amazon.com
-* Port = 54XX
-
-```
-gds-cli aws govuk-<environment>-admin aws rds describe-db-instances --db-instance-identifier restored-${db_instance_identifier} --query 'DBInstances[].Endpoint'
-```
-
-Store the output as a variable:
-
-```
-endpoint_address=<replace_with_address_output_above>
-```
-
-### 8. Get the zone ID of the GOV.UK internal domain name
-
-(It'll be in the form "Id": "/hostedzone/ZXXXXX" - only the Z section is required.)
-
-For example:
-
-* NextHostedZoneId = ZXXXXXXXXXX
-
-```
-gds-cli aws govuk-<environment>-admin aws route53 list-hosted-zones-by-name --dns-name ${endpoint_address} --max-items 1
-```
-
-Store the output as a variable:
-
-```
-next_hosted_zone_id=<replace_with_NextHostedZoneId>
-```
-
-### 9. Create a local JSON file to update AWS Route53
-
-Amazon Route53 doesn't have a command line to update just one DNS record. It requires a file for batch changes (even if there's only one).
-
-For this step you will need to create a file (locally) - e.g. `/var/tmp/update_dns.json`, with the following code below.
-
-Please be aware that you can store the file anywhere on your local drive but remember to update the file path in the next step.
-
-For example:
-
-* database-name = `restored-<name_old_db>`
-* stack-name = blue
-* govuk-internal-domain = `<environment>.govuk-internal.digital`
-* restored-db-endpoint= echo ${endpoint_address} in your terminal then copy and past into file
-
-```
-{
-    "Comment": "Manual DB restore",
-    "Changes": [
-        {
-            "Action": "UPSERT",
-            "ResourceRecordSet": {
-                "Name": "<database-name>.<stack-name>.<govuk-internal-domain>",
-                "Type": "CNAME",
-                "TTL": 300,
-                "ResourceRecords": [
-                    {
-                        "Value": "<restored-db-endpoint>"
-                    }
-                ]
-            }
-        }
-    ]
-}
-```
-
-Apply these changes with the following command:
-
-```
-gds-cli aws govuk-<environment>-admin aws route53 change-resource-record-sets --hosted-zone-id ${next_hosted_zone_id} --change-batch file:///var/tmp/update_dns.json
-```
-
-The output should look something like:
-
-```
-{
-    "ChangeInfo": {
-        "Id": "/change/C1045684TR3O47QOC1T6",
-        "Status": "INSYNC",
-        "SubmittedAt": "2023-08-23T15:16:15.298000+00:00",
-        "Comment": "Manual DB restore"
-    }
-}
-```
-
-It can take a couple of minutes for the change to be applied and you might have the status `PENDING`. You can check the status by running:
-
-```
-gds-cli aws govuk-<environment>-admin aws route53 get-change --id /change/<ChangeInfo_Id>
-```
-
-The restore is now finished!
-
-Please be aware that if you changed the file path in the previous step, remember to change the code below.
-
-### 10. Check the changes in Route53
-
-To see the changes to AWS Route 53, Log into AWS Console > Route 53 > Hosted Zones > Check the Public and private link to <environment>.govuk-internal.digital and search for the restored DB.
-
-## Point the application to the new RDS instance
-
-Once you have restored a database in AWS RDS, you now need to point the corresponding app towards it.
-
-### 1. Make a change to the database contents
+### 6. Make a change to the database contents
 
 Through the app's user interface, or via the app console or database console, make
 a change that you can use as a sense check to verify that the database switch has
@@ -243,7 +121,7 @@ such as delete an old record:
 sudo psql -U aws_db_admin -h local-links-manager-postgres -d local-links-manager_production
 ```
 
-### 2. Connect to the restored backup database
+### 7. Connect to the restored backup database
 
 This requires updating the CNAME for `local-links-manager-postgres`.
 
@@ -254,23 +132,6 @@ This requires updating the CNAME for `local-links-manager-postgres`.
 5. SSH back into the machine and query for the record you deleted. If the record is back this should verify the app is now using the backup database.
 
 > This is only a temporary solution, to be used in an incident. You should continue onto the next section for a permanent solution.
-
-## Ensure your setup will continue to work if infrastructure is reprovisioned
-
-If new infrastructure is provisioned, then the "Point the application to the new RDS instance" solution above will break, as Terraform would fall out of sync with the manual changes. We either need to update Terraform with our changes, or manually get our infrastructure back to how it used to be.
-
-*For the purposes of drilling*, it's quicker and easier to do the latter. Simply repeat the steps to [point the application to the new RDS instance](#point-the-application-to-the-new-rds-instance), but this time connect to the original database. If you need to find the endpoint again for the original database, navigate to Amazon RDS, find the database in the list and look for `Endpoint & Port` under the `Connectivity & Security` tab.
-
-*If this is not a drill*, then you would not want to connect to the original database again - you've created a database from a backup for a reason!
-The safest approach would be to update Terraform to refer to the new database.
-
-Alternatively, you could:
-
-1. [Delete the original database](#delete-an-obsolete-database)
-1. Create a snapshot from your new database (which we'll call the "temporary" database)
-1. [Restore an RDS instance](#restore-an-rds-instance-via-the-aws-cli) (we'll call this the "new" database) from your temporary database's snapshot, but using the original hostname this time
-1. Repeat the steps to [point the application to the new RDS instance](#point-the-application-to-the-new-rds-instance), this time connecting to the "new" database.
-1. [Delete the temporary database](#delete-an-obsolete-database)
 
 ## Delete an obsolete database
 
