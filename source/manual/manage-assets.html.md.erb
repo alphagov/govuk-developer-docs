@@ -21,16 +21,20 @@ follow these steps:
      The square brackets are part of the command, so don't remove them:
      <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID]") %>
 
-1. Add a query string to the URL (e.g. `?cache-bust=12345`) to bypass the cache
+     For "Whitehall" Assets (that start with the path `/government/uploads/system`), there is a [slightly different Rake task]((https://github.com/alphagov/asset-manager/blob/main/lib/tasks/assets.rake#L9-L13)):
+
+     <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[ASSET_PATH]") %>
+
+2. Add a query string to the URL (e.g. `?cache-bust=12345`) to bypass the cache
    and check that the asset responds with a 404 not found.
 
-1. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache].
+3. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache].
 
-1. Verify that the asset is not there without using query string.
+4. Verify that the asset is not there without using query string.
 
-1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals).
+5. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals).
 
-1. Remove the asset from the Google Cloud Platform (GCP) mirror:
+6. Remove the asset from the Google Cloud Platform (GCP) mirror:
    - Log into the [GCP console](https://console.cloud.google.com/).
    - Go to the `GOVUK Production` project under the `DIGITAL.CABINET-OFFICE.GOV.UK`
      organisation.
@@ -38,7 +42,7 @@ follow these steps:
      bucket][govuk-production-mirror-gcp].
    - Navigate to the file, then delete it.
 
-1. Remove the asset from the Amazon Web Services (AWS) mirror:
+7. Remove the asset from the Amazon Web Services (AWS) mirror:
 
    `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
 
