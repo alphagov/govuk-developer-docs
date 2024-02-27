@@ -8,7 +8,7 @@ section: Routing
 
 > **Note**
 >
-> For Worldwide Organisations, only steps 1 and 5 below need to be performed.
+> For Worldwide Organisations, only steps 1 and 4 below need to be performed.
 
 The organisation slug is used as a foreign key for organisations across
 multiple apps.
