@@ -220,7 +220,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c60fe5534e6ab867f3a6b5d9e854417a84721b01">28 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fc580b81cbd7ce3d9b430d876b95549c80244125">28 Feb 2024</a>
 </div>
 
  <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>This playbook describes how to restore a database instance using Amazon&rsquo;s <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html">RDS Backups</a> feature.</p>
@@ -301,13 +301,19 @@ gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><s
 <li>In AWS Secrets Manager, search for and click on <code>govuk/local-links-manager/postgres</code>.</li>
 <li>Under the &ldquo;Overview&rdquo; tab, in the &ldquo;Secret Value&rdquo; section, select &ldquo;Retrieve Secret Value&rdquo;.</li>
 <li>Make a note of the existing value, in case you need to revert the changes (for example, if performing a drill).</li>
-<li>Click &ldquo;Edit&rdquo;, and replace the value of the &ldquo;host&rdquo; and &ldquo;dbInstanceIdentifier&rdquo; fields with the URL and identifier of the new database instance. Click &ldquo;Save&rdquo;.
-&gt; Some of our apps currently refer to their database directly (e.g. <code>app-name.hex-string.eu-west-1.rds.amazonaws.com</code>), some of them refer to their database indirectly via a <code>CNAME</code> record (e.g. <code>app-name.blue.staging.govuk-internal.digital</code>). In either case, you can replace this with the URL of the new database instance.</li>
-<li>Log into Argo CD in the correct environment (<a href="https://argo.eks.integration.govuk.digital/">integration</a>,
-<a href="https://argo.eks.staging.govuk.digital/">staging</a>, <a href="https://argo.eks.production.govuk.digital/">production</a>).</li>
-<li>Navigate to the <code>external-secrets</code> app, locate the <code>local-links-manager-postgres</code> external secret, select the &ldquo;&hellip;&rdquo; menu, and select &ldquo;Refresh&rdquo;.</li>
-<li>After refreshing this secret, the app&rsquo;s pods should automatically be restarted pointing at the correct database instance. To confirm that this happened, navigate to the <code>local-links-manager</code> app, locate the <code>local-links-manager</code> deployment, and check the uptime of the pods.
-&gt; If the pods were not automatically restarted, select the &ldquo;&hellip;&rdquo; menu next to the deployment, and select &ldquo;Restart&rdquo;.</li>
+<li><p>Click &ldquo;Edit&rdquo;, and replace the value of the &ldquo;host&rdquo; and &ldquo;dbInstanceIdentifier&rdquo; fields with the URL and identifier of the new database instance. Click &ldquo;Save&rdquo;.</p>
+
+<blockquote>
+<p>Some of our apps currently refer to their database directly (e.g. <code>app-name.hex-string.eu-west-1.rds.amazonaws.com</code>), some of them refer to their database indirectly via a <code>CNAME</code> record (e.g. <code>app-name.blue.staging.govuk-internal.digital</code>). In either case, you can replace this with the URL of the new database instance.</p>
+</blockquote></li>
+<li><p>Log into Argo CD in the correct environment (<a href="https://argo.eks.integration.govuk.digital/">integration</a>,
+<a href="https://argo.eks.staging.govuk.digital/">staging</a>, <a href="https://argo.eks.production.govuk.digital/">production</a>).</p></li>
+<li><p>Navigate to the <code>external-secrets</code> app, locate the <code>local-links-manager-postgres</code> external secret, select the &ldquo;&hellip;&rdquo; menu, and select &ldquo;Refresh&rdquo;.</p></li>
+<li><p>After refreshing this secret, the app&rsquo;s pods should automatically be restarted pointing at the correct database instance. To confirm that this happened, navigate to the <code>local-links-manager</code> app, locate the <code>local-links-manager</code> deployment, and check the uptime of the pods.</p>
+
+<blockquote>
+<p>If the pods were not automatically restarted, select the &ldquo;&hellip;&rdquo; menu next to the deployment, and select &ldquo;Restart&rdquo;.</p>
+</blockquote></li>
 </ol>
 <h3 id='8-check-that-the-app-is-now-using-the-restored-database'>8. Check that the app is now using the restored database</h3><p>Open a Rails console on the target app:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps <span class="nt">-it</span> deploy/local-links-manager <span class="nt">--</span> bundle <span class="nb">exec </span>rails c

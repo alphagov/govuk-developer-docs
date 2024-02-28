@@ -199,7 +199,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/info-frontend/commit/e9ba2c1ca40498a57ca201ba860ca22b56d88316">20 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/info-frontend/commit/d1658eacfa3d8788325dcaba7905bdeee3c1e81e">28 Feb 2024</a>
 </div>
 
   <h1 class="page-title">info-frontend: ADR: Retiring Info Frontend</h1>
@@ -234,15 +234,13 @@ organic traffic to them. CIOP have gathered some analytics and confirmed that:</
 <p>As we no longer provide performance data on the /info pages or maintain the
 user needs information, we are proposing to remove the pages and thus, retire
 Info Frontend.</p>
-<p>We plan to redirect requests to /info pages to a single mainstream content page
-that outlines what these pages were, why they have been removed. We'll remove
-the existing prefix info/ route that points to info-frontend and instead use
-<a href="https://github.com/alphagov/short-url-manager">Short URL Manager</a> to add a prefix route that points at the single content
-page.  We did consider removing the /info pages without redirects considering
-the low traffic, however a content page would be beneficial for any invested
-user (publisher / public) that is curious why they no longer exist. Post launch
-we will monitor the page traffic and feedback and assess whether the page
-should persist.</p>
+<p>We plan to unpublish the pages with a 410 gone <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410">3</a>. We'll remove the existing
+prefix info/ route that points to info-frontend and instead return gov.uk's
+static 410 page instead <a href="https://github.com/alphagov/static/blob/main/app/views/root/410.html.erb">4</a>. We did consider creating a single retirement
+content page for and redirecting all the /info page requests to it, however
+this was deemed unnecessary as we've already communicated the upcoming
+retirement to departments and /info pages receive such little traffic that it
+didn't seem worthwhile.</p>
 <p>As part of this work, we won't be retiring Maslow or the backing data, we'll
 just be removing the frontend that supports /info pages. Publishers will still
 be able to tag user needs in the various publishing apps. The Publishing team
