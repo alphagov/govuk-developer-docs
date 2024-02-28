@@ -139,11 +139,14 @@ This requires updating the `govuk/local-links-manager/postgres` secret in AWS Se
 1. Under the "Overview" tab, in the "Secret Value" section, select "Retrieve Secret Value".
 1. Make a note of the existing value, in case you need to revert the changes (for example, if performing a drill).
 1. Click "Edit", and replace the value of the "host" and "dbInstanceIdentifier" fields with the URL and identifier of the new database instance. Click "Save".
-   > Some of our apps currently refer to their database directly (e.g. `app-name.hex-string.eu-west-1.rds.amazonaws.com`), some of them refer to their database indirectly via a `CNAME` record (e.g. `app-name.blue.staging.govuk-internal.digital`). In either case, you can replace this with the URL of the new database instance.
+
+    > Some of our apps currently refer to their database directly (e.g. `app-name.hex-string.eu-west-1.rds.amazonaws.com`), some of them refer to their database indirectly via a `CNAME` record (e.g. `app-name.blue.staging.govuk-internal.digital`). In either case, you can replace this with the URL of the new database instance.
+
 1. Log into Argo CD in the correct environment ([integration](https://argo.eks.integration.govuk.digital/),
     [staging](https://argo.eks.staging.govuk.digital/), [production](https://argo.eks.production.govuk.digital/)).
 1. Navigate to the `external-secrets` app, locate the `local-links-manager-postgres` external secret, select the "..." menu, and select "Refresh".
 1. After refreshing this secret, the app's pods should automatically be restarted pointing at the correct database instance. To confirm that this happened, navigate to the `local-links-manager` app, locate the `local-links-manager` deployment, and check the uptime of the pods.
+
     > If the pods were not automatically restarted, select the "..." menu next to the deployment, and select "Restart".
 
 ### 8. Check that the app is now using the restored database
