@@ -207,4 +207,43 @@ RSpec.describe AnalyticsHelpers do
       expect(helper.implementation_percentage(events)).to eq("1 of 2 (50.0%)")
     end
   end
+
+  describe "#events_by_type" do
+    it "converts YML into a usable object" do
+      input = YAML.load_file("spec/fixtures/events-fixture.yml", aliases: true)
+      expected = {
+        navigation: {
+          name: "navigation",
+          events: [
+            {
+              event_name: "Accordion links",
+              index: 2,
+              name: "accordion",
+            },
+            {
+              event_name: "link click",
+              index: 0,
+              name: "back link",
+            },
+          ],
+        },
+        select_content: {
+          name: "select_content",
+          events: [
+            {
+              event_name: "Accordion section",
+              index: 0,
+              name: "accordion",
+            },
+            {
+              event_name: "Show all sections",
+              index: 1,
+              name: "accordion",
+            },
+          ],
+        },
+      }
+      expect(helper.events_by_type(input)).to eq(expected)
+    end
+  end
 end

@@ -56,4 +56,43 @@ module AnalyticsHelpers
     header.prepend(title) if title
     header.join(" | ")
   end
+
+  def events_by_type(events = nil)
+    events ||= data.analytics.events.map { |e| JSON.parse(e.to_json) }
+    by_type = {}
+    events.each do |event|
+      event["events"].each_with_index do |e, index|
+        event_name = find_event_name(e["data"])
+        result = {
+          name: event["name"],
+          event_name: e["name"],
+          index:,
+        }
+        if by_type[event_name.to_sym]
+          by_type[event_name.to_sym][:events] << result
+        else
+          by_type[event_name.to_sym] = {
+            name: event_name,
+            events: [
+              result,
+            ],
+          }
+        end
+      end
+    end
+
+    by_type
+  end
+
+  def find_event_name(data)
+    data.each do |item|
+      next unless item["name"] == "event_data"
+
+      item["value"].each do |i|
+        return i["value"] if i["name"] == "event_name"
+      end
+    end
+
+    "undefined"
+  end
 end
