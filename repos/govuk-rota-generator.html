@@ -253,19 +253,16 @@
 <li>Update the dates etc, but otherwise make no changes to the form structure</li>
 <li>Send out the form, gather responses</li>
 <li>Link it to a spreadsheet</li>
-<li>Share the spreadsheet with <code>google-sheet-fetcher@govuk-rota-generator.iam.gserviceaccount.com</code> (dismiss the warning about sharing with external email addresses)</li>
+<li>Share the spreadsheet with <code>google-sheet-fetcher@govuk-rota-generator.iam.gserviceaccount.com</code>, as a Viewer. (Dismiss the warning about sharing with external email addresses)</li>
 </ol>
 
 <h3 id="get-the-data-ready">Get the data ready</h3>
 
-<ol>
-<li>
-<p>Update the <code>AVAILABILITY_SHEET_ID</code> specified inside <code>combine_csvs.rb</code>, to refer to your responses spreadsheet.</p>
-</li>
-<li>
-<p>Run <code>ruby bin/combine_csvs.rb</code>. This will generate a <code>data/combined.csv</code> file, combining your responses spreadsheet with the <a href="https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1249170615">Technical Support Google Sheet</a>.</p>
-</li>
-</ol>
+<p>Run the <code>fetch_data</code> script, passing the URL of your responses spreadsheet as a parameter, e.g.</p>
+
+<p><code>ruby bin/fetch_data.rb https://docs.google.com/spreadsheets/d/abc123def456hij789/edit</code></p>
+
+<p>This will generate a <code>data/combined.csv</code> file, combining your responses spreadsheet with the <a href="https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1249170615">Technical Support Google Sheet</a>.</p>
 
 <p>The generated file will look something like:</p>
 
@@ -277,7 +274,7 @@ Some Person,Find and View,false,false,false,false,false,true,true,"6,10"
 
 <p>Run <code>ruby bin/generate_rota.rb</code> (it will output to STDOUT).</p>
 
-<p>Tweak the weighting in that file to place more or less emphasis on different cover types (e.g. oncall_primary).</p>
+<p>You can tweak the weighting of each &lsquo;role&rsquo; (e.g. <code>oncall_primary</code>) by editing the values in <a href="https://github.com/alphagov/govuk-rota-generator/blob/main/config/roles.yml">config/roles.yml</a>.</p>
 
 <p>The generated output can be used as the <code>data/rota.csv</code> in <a href="https://github.com/alphagov/pay-pagerduty">pay-pagerduty</a>, which automates the overriding of PagerDuty schedules.</p>
 <p></div></p>
