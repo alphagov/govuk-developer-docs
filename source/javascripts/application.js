@@ -4,6 +4,7 @@
 //= require govuk_publishing_components/lib/cookie-functions
 //= require govuk_publishing_components/lib/cookie-settings
 //= require govuk_publishing_components/components/cookie-banner
+//= require govuk_publishing_components/components/tabs
 //= require govuk_publishing_components/load-analytics
 
 // reworked version of modules.js from govuk_publishing_components
