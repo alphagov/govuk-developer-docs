@@ -6,13 +6,17 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-In the production environment, backups of [RDS](https://aws.amazon.com/rds/) instances are [taken
-nightly](https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance).
-They are stored in Amazon S3. SQL dumps are also taken nightly from the various
-`db_admin` machines via the [`govuk_env_sync`](/manual/govuk-env-sync.html)
-process.
+This playbook describes how to restore a database instance using Amazon's [RDS Backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html) feature.
 
-> **Note:** In integration and staging, we do not capture automated snapshots of RDS instances. If performing a drill of these steps in either environment, it will first be necessary to capture a manual snapshot from the AWS console. Make sure the snapshot's name contains the name of the app (e.g. `local-links-manager`), and remember to delete it after completing the drill.
+We use RDS Backups to give us fully nightly backups and point-in-time recovery (PITR) (also known as continuous data protection or CDP).
+
+> This playbook does not cover restoring from [govuk_env_sync backups](govuk-env-sync.html).
+
+<!-- Force markdown to separate these quotes -->
+
+> We only run RDS Backup in the production environment. To run a test restore in staging or integration, you must first take a manual snapshot from the AWS console.
+>
+> Make sure the snapshot's name contains the name of the app (e.g. `local-links-manager`), and remember to delete it afterwards.
 
 ## Restore an RDS instance via the AWS CLI
 
@@ -53,7 +57,7 @@ You can get this using the `DBInstanceIdentifier`, for example:
 
 * db_instance_identifier=local-links-manager-postgres
 
-```
+```sh
 gds-cli aws govuk-<environment>-admin aws rds describe-db-snapshots --db-snapshot-identifier ${snapshot_arn} --query 'DBSnapshots[].DBInstanceIdentifier'
 ```
 
