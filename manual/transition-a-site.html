@@ -149,34 +149,37 @@
             <a href="#prerequisites"><span>Prerequisites</span></a>
           </li>
           <li>
-            <a href="#1-add-a-site-to-the-transition-app"><span>1) Add a site to the Transition app</span></a>
+            <a href="#1-verify-the-domain-for-gov-uk-domains-only"><span>1) Verify the domain (for *.gov.uk domains only)</span></a>
           </li>
           <li>
-            <a href="#2-consider-aka-domains"><span>2) Consider AKA domains</span></a>
+            <a href="#2-add-a-site-to-the-transition-app"><span>2) Add a site to the Transition app</span></a>
           </li>
           <li>
-            <a href="#3-get-a-list-of-old-urls"><span>3) Get a list of old URLs</span></a>
+            <a href="#3-consider-aka-domains"><span>3) Consider AKA domains</span></a>
           </li>
           <li>
-            <a href="#4-clean-up-urls"><span>4) Clean up URLs</span></a>
+            <a href="#4-get-a-list-of-old-urls"><span>4) Get a list of old URLs</span></a>
           </li>
           <li>
-            <a href="#5-add-the-old-urls-as-mappings"><span>5) Add the old URLs as mappings</span></a>
+            <a href="#5-clean-up-urls"><span>5) Clean up URLs</span></a>
           </li>
           <li>
-            <a href="#6-get-the-organisation-to-do-the-mapping-work"><span>6) Get the organisation to do the mapping work</span></a>
+            <a href="#6-add-the-old-urls-as-mappings"><span>6) Add the old URLs as mappings</span></a>
           </li>
           <li>
-            <a href="#7-get-the-organisation-to-lower-the-ttl-on-the-dns-records-a-day-ahead"><span>7) Get the organisation to lower the TTL on the DNS records a day ahead</span></a>
+            <a href="#7-get-the-organisation-to-do-the-mapping-work"><span>7) Get the organisation to do the mapping work</span></a>
           </li>
           <li>
-            <a href="#8-add-the-domain-to-fastly"><span>8) Add the domain to Fastly</span></a>
+            <a href="#8-get-the-organisation-to-lower-the-ttl-on-the-dns-records-a-day-ahead"><span>8) Get the organisation to lower the TTL on the DNS records a day ahead</span></a>
           </li>
           <li>
-            <a href="#9-point-the-domain-at-us"><span>9) Point the domain at us</span></a>
+            <a href="#9-add-the-domain-to-fastly"><span>9) Add the domain to Fastly</span></a>
           </li>
           <li>
-            <a href="#10-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app"><span>10) Get the organisation to monitor the traffic data in the Transition app</span></a>
+            <a href="#10-point-the-domain-at-us"><span>10) Point the domain at us</span></a>
+          </li>
+          <li>
+            <a href="#11-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app"><span>11) Get the organisation to monitor the traffic data in the Transition app</span></a>
           </li>
         </ul>
       </li>
@@ -232,7 +235,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0299070485e44ab1a8dc74e72d2564390d282e6d">22 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c62852572d88a7a6eac4a62056e2a7059ec150ca">27 Feb 2024</a>
 </div>
 
  <h1 id='header'>Transition a site to GOV.UK</h1> <p>When a site is going to move to GOV.UK, there are two ways that the old site
@@ -259,8 +262,24 @@ it, or changing the configuration of an existing site in the Transition app.</p>
 <li>what organisation name and branding is used on pages served by Bouncer for URLs which aren&rsquo;t redirected</li>
 </ul>
 <p>Extra organisations can be added later.</p>
-<h3 id='1-add-a-site-to-the-transition-app'>1) Add a site to the Transition app</h3><p>If you have the Site Manager permission for Transition, you will see an &ldquo;Add a transition site&rdquo; button on each organisation page (for example, <a href="https://transition.integration.publishing.service.gov.uk/organisations/department-for-education">Department for Education’s organisation page</a>. Follow the instructions on that form to add a site.</p>
-<h3 id='2-consider-aka-domains'>2) Consider AKA domains</h3><p>If the department want to use the side-by-side browser to preview how their
+<h3 id='1-verify-the-domain-for-gov-uk-domains-only'>1) Verify the domain (for *.gov.uk domains only)</h3><p>For security reasons, Fastly require that *.gov.uk domains are verified before they can be added to our Fastly account.</p>
+
+<blockquote>
+<p>When the steps below are not completed, there will be a <code>Domain &#39;gov.uk&#39; is owned by another customer</code> error when the terraform apply command runs.</p>
+<p>This error results in any further transitioned sites being blocked until the verification is completed. Therefore this step must be completed before moving onto the next step.</p>
+</blockquote>
+<p>We need to:</p>
+
+<ol>
+<li><p>Obtain the TXT record by submitting a Fastly support request. You will need to provide the &lsquo;Production bouncer&rsquo; service ID and the subdomain you want to add. See an <a href="https://support.fastly.com/hc/en-us/requests/700875">example of support request</a>.</p></li>
+<li><p>If the domain&rsquo;s DNS is managed by GOV.UK: add the DNS record to <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a> and apply terraform configuration. If the domain&rsquo;s DNS is managed by the department: send the TXT record to the department and ask them to add this record to the DNS.</p></li>
+</ol>
+
+<blockquote>
+<p>It&rsquo;s not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with <code>_fastly</code> as a proof of ownership. See an <a href="https://github.com/alphagov/govuk-dns-tf/compare/0cf283b6...18471c36">example code change</a>.</p>
+</blockquote>
+<h3 id='2-add-a-site-to-the-transition-app'>2) Add a site to the Transition app</h3><p>If you have the Site Manager permission for Transition, you will see an &ldquo;Add a transition site&rdquo; button on each organisation page (for example, <a href="https://transition.integration.publishing.service.gov.uk/organisations/department-for-education">Department for Education’s organisation page</a>. Follow the instructions on that form to add a site.</p>
+<h3 id='3-consider-aka-domains'>3) Consider AKA domains</h3><p>If the department want to use the side-by-side browser to preview how their
 redirects will appear after transitioning they will need to set up AKA domains.</p>
 <p>They will need one new CNAME DNS entry for each domain/subdomain they wish to
 preview according to the following pattern:</p>
@@ -274,7 +293,7 @@ Transition</a>.</p>
 <p>These AKA domains should be CNAMEd to: <code>bouncer-cdn.production.govuk.service.gov.uk</code></p>
 <p>Previously we used a <code>redirector-cdn</code> address which reached its capacity and will now fail if added as the
 CNAME record for any new domains.</p>
-<h3 id='3-get-a-list-of-old-urls'>3) Get a list of old URLs</h3><p>In order for us to redirect anything but the homepage, we need a list of URLs
+<h3 id='4-get-a-list-of-old-urls'>4) Get a list of old URLs</h3><p>In order for us to redirect anything but the homepage, we need a list of URLs
 for the old site so that they can be mapped. In the past, this is something
 GDS did for the organisation as it requires some technical skill and
 experience.</p>
@@ -293,7 +312,7 @@ might take several hours. This will give you a list of URLs for a domain:</p>
 <blockquote>
 <p><strong>Note:</strong> This will include 404s, 301s, etc.</p>
 </blockquote>
-<h3 id='4-clean-up-urls'>4) Clean up URLs</h3><h4 id='strip-paths-and-pattern'>Strip paths and pattern</h4><p>There are lots of file formats we don&rsquo;t want to provide mappings for, like
+<h3 id='5-clean-up-urls'>5) Clean up URLs</h3><h4 id='strip-paths-and-pattern'>Strip paths and pattern</h4><p>There are lots of file formats we don&rsquo;t want to provide mappings for, like
 static assets, images, or common spammy/malicious crawlers. These can be
 stripped using the <a href="https://github.com/alphagov/transition/blob/main/tools/strip_mappings.sh">strip_mappings.sh</a> script.</p>
 <h4 id='query-parameter-analysis'>Query parameter analysis</h4><p>From your set of URLs, you can attempt to identify significant query string
@@ -320,7 +339,7 @@ seen on the old site and/or it would be mapped to a different new URL.</p>
 <li>analytics</li>
 <li>search queries</li>
 </ul>
-<h3 id='5-add-the-old-urls-as-mappings'>5) Add the old URLs as mappings</h3><p>Ideally, any significant query string parameters should be identified and
+<h3 id='6-add-the-old-urls-as-mappings'>6) Add the old URLs as mappings</h3><p>Ideally, any significant query string parameters should be identified and
 added to the site before adding the mappings. This is because URLs are
 canonicalised and then deduplicated before being saved and part of
 canonicalisation is to remove non-significant parameters. However,
@@ -336,12 +355,12 @@ the <a href="https://transition.publishing.service.gov.uk">transition app</a>, f
 the site and click <code>Add mappings</code> to add them in bulk.</p>
 <p>To allow mappings which redirect away from GOV.UK, you&rsquo;ll need to add the site
 into <a href="https://transition.publishing.service.gov.uk/admin/whitelisted_hosts">the allowlisted hosts in Transition</a>. You&rsquo;ll need the <code>admin</code> permission in Transition to be able to see this page.</p>
-<h3 id='6-get-the-organisation-to-do-the-mapping-work'>6) Get the organisation to do the mapping work</h3><p>By default, the mappings will present an archive page to users visiting
+<h3 id='7-get-the-organisation-to-do-the-mapping-work'>7) Get the organisation to do the mapping work</h3><p>By default, the mappings will present an archive page to users visiting
 the old URL. The objective is to get users to somewhere that best serves
 the need fulfilled by the old page. Usually this means redirecting them
 to the page on GOV.UK or elsewhere. It is really important that this is
 done by people who understand the users and content.</p>
-<h3 id='7-get-the-organisation-to-lower-the-ttl-on-the-dns-records-a-day-ahead'>7) Get the organisation to lower the TTL on the DNS records a day ahead</h3><p>In order to cleanly switch the domain from the old site, the TTL needs
+<h3 id='8-get-the-organisation-to-lower-the-ttl-on-the-dns-records-a-day-ahead'>8) Get the organisation to lower the TTL on the DNS records a day ahead</h3><p>In order to cleanly switch the domain from the old site, the TTL needs
 to be low enough that there isn&rsquo;t a significant period where some users
 will get the old site and some get the new one. This is important for
 several reasons, including user experience and giving a professional
@@ -349,19 +368,8 @@ impression to stakeholders. We normally ask for this to be done a day in
 advance, and to be lowered to 300 seconds (5 minutes). It can be raised
 again once everyone is happy there is no need to switch back - normally
 the day after.</p>
-<h3 id='8-add-the-domain-to-fastly'>8) Add the domain to Fastly</h3><h4 id='verify-the-subdomain-for-a-gov-uk-subdomain-only'>Verify the subdomain (for a *.gov.uk subdomain only)</h4><p>For security reasons, *.gov.uk subdomains are delegated upon request. When the steps below are not completed, there will be a <code>Domain &#39;gov.uk&#39; is owned by another customer</code> error when the terraform apply command runs.</p>
-<p>We need to:</p>
-
-<ol>
-<li><p>Obtain the TXT record by submitting a Fastly support request. You will need to provide the &lsquo;Production bouncer&rsquo; service ID and the subdomain you want to add. See an <a href="https://support.fastly.com/hc/en-us/requests/700875">example of support request</a>.</p></li>
-<li><p>If the domain&rsquo;s DNS is managed by GOV.UK: add the DNS record to <a href="https://github.com/alphagov/govuk-dns-tf">govuk-dns-tf</a> and apply terraform configuration. If the domain&rsquo;s DNS is managed by the department: send the TXT record to the department and ask them to add this record to the DNS.</p></li>
-</ol>
-
-<blockquote>
-<p>It&rsquo;s not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with <code>_fastly</code> as a proof of ownership. See an <a href="https://github.com/alphagov/govuk-dns-tf/compare/0cf283b6...18471c36">example code change</a>.</p>
-</blockquote>
-<h4 id='apply-govuk-fastly-terraform-configuration'>Apply govuk-fastly terraform configuration</h4><p>Manually trigger govuk-fastly &lsquo;Plan and apply&rsquo; run in <a href="https://app.terraform.io/app/govuk/workspaces/govuk-fastly/runs">Terraform Cloud UI</a>. Review the plan with changes to <code>module.bouncer-production.fastly_service_vcl.service</code> and apply the configuration.</p>
-<h3 id='9-point-the-domain-at-us'>9) Point the domain at us</h3><p>Once the site has been imported successfully, the domain can be pointed
+<h3 id='9-add-the-domain-to-fastly'>9) Add the domain to Fastly</h3><p>Manually trigger govuk-fastly &lsquo;Plan and apply&rsquo; run in <a href="https://app.terraform.io/app/govuk/workspaces/govuk-fastly/runs">Terraform Cloud UI</a>. Review the plan with changes to <code>module.bouncer-production.fastly_service_vcl.service</code> and apply the configuration.</p>
+<h3 id='10-point-the-domain-at-us'>10) Point the domain at us</h3><p>Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a <code>CNAME</code>
 record, this is <code>bouncer-cdn.production.govuk.service.gov.uk</code>.
 Domains at the root of their zone can&rsquo;t use <code>CNAME</code> records, so must use
@@ -372,7 +380,7 @@ addresses</a>.</p>
 <p>You&rsquo;ll need to create a TLS certificate in Fastly for HTTPS domains, otherwise
 users will see a certificate error when being redirected from an external
 HTTPS URL to GOV.UK via Bouncer. Read how to <a href="/manual/request-fastly-tls-certificate.html">request a Fastly TLS certificate</a></p>
-<h3 id='10-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app'>10) Get the organisation to monitor the traffic data in the Transition app</h3><p>There are two things that need to be responded to:</p>
+<h3 id='11-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app'>11) Get the organisation to monitor the traffic data in the Transition app</h3><p>There are two things that need to be responded to:</p>
 
 <ul>
 <li>high numbers of 404s - this means a mapping is missing</li>
