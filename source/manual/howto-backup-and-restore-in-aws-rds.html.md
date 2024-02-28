@@ -119,22 +119,7 @@ Once the database is ready, fetch its hostname:
 gds-cli aws govuk-<environment>-admin aws rds describe-db-instances --db-instance-identifier "restored-${db_instance_identifier}" --query 'DBInstances[].Endpoint.Address'
 ```
 
-### 7. Make a change to the database contents
-
-Through the app's user interface, or via the app console, make a change that you
-can use as a sense check to verify that the database switch has been successful.
-
-For example, you might create a draft edition of something, or modify or delete
-a record. After switching to the restored database, your changes should be undone.
-
-In this example we open a Rails console on local-links-manager, from which we can
-make a change such as deleting an old record:
-
-```
-kubectl exec -n apps -it deploy/local-links-manager -- bundle exec rails c
-```
-
-### 8. Connect to the restored backup database
+### 7. Connect to the restored backup database
 
 This requires updating the `govuk/local-links-manager/postgres` secret in AWS Secrets Manager.
 
@@ -149,7 +134,10 @@ This requires updating the `govuk/local-links-manager/postgres` secret in AWS Se
 1. Navigate to the `external-secrets` app, locate the `local-links-manager-postgres` external secret, select the "..." menu, and select "Refresh".
 1. After refreshing this secret, the app's pods should automatically be restarted pointing at the correct database instance. To confirm that this happened, navigate to the `local-links-manager` app, locate the `local-links-manager` deployment, and check the uptime of the pods.
     > If the pods were not automatically restarted, select the "..." menu next to the deployment, and select "Restart".
-1. Verify that the app is now using the backup database by checking if the change you made in the previous step has been reverted.
+
+### 8. Check that the app is now using the restored database
+
+Open a Rails console on the target app with `kubectl exec -n apps -it deploy/local-links-manager -- bundle exec rails c`, and verify that `ActiveRecord::Base.connection_db_config.host` returns the hostname of the restored database.
 
 ## Delete an obsolete database
 
