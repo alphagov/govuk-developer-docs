@@ -40,11 +40,27 @@ The organisation that owns the site determines several things:
 
 Extra organisations can be added later.
 
-### 1) Add a site to the Transition app
+### 1) Verify the domain (for *.gov.uk domains only)
+
+For security reasons, Fastly require that *.gov.uk domains are verified before they can be added to our Fastly account.
+
+> When the steps below are not completed, there will be a `Domain 'gov.uk' is owned by another customer` error when the terraform apply command runs.
+>
+> This error results in any further transitioned sites being blocked until the verification is completed. Therefore this step must be completed before moving onto the next step.
+
+We need to:
+
+1. Obtain the TXT record by submitting a Fastly support request. You will need to provide the 'Production bouncer' service ID and the subdomain you want to add. See an [example of support request](https://support.fastly.com/hc/en-us/requests/700875).
+
+1. If the domain's DNS is managed by GOV.UK: add the DNS record to [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf) and apply terraform configuration. If the domain's DNS is managed by the department: send the TXT record to the department and ask them to add this record to the DNS.
+
+> It's not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with `_fastly` as a proof of ownership. See an [example code change][code change].
+
+### 2) Add a site to the Transition app
 
 If you have the Site Manager permission for Transition, you will see an "Add a transition site" button on each organisation page (for example, [Department for Education’s organisation page](https://transition.integration.publishing.service.gov.uk/organisations/department-for-education). Follow the instructions on that form to add a site.
 
-### 2) Consider AKA domains
+### 3) Consider AKA domains
 
 If the department want to use the side-by-side browser to preview how their
 redirects will appear after transitioning they will need to set up AKA domains.
@@ -65,7 +81,7 @@ CNAME record for any new domains.
 
 [transition-hosts]: https://transition.publishing.service.gov.uk/hosts
 
-### 3) Get a list of old URLs
+### 4) Get a list of old URLs
 
 In order for us to redirect anything but the homepage, we need a list of URLs
 for the old site so that they can be mapped. In the past, this is something
@@ -91,7 +107,7 @@ $ anemone url-list 'transitioning-site.gov.uk'
 
 > **Note:** This will include 404s, 301s, etc.
 
-### 4) Clean up URLs
+### 5) Clean up URLs
 
 #### Strip paths and pattern
 
@@ -125,7 +141,7 @@ Some common examples of non-significant parameters:
 - analytics
 - search queries
 
-### 5) Add the old URLs as mappings
+### 6) Add the old URLs as mappings
 
 Ideally, any significant query string parameters should be identified and
 added to the site before adding the mappings. This is because URLs are
@@ -148,7 +164,7 @@ into [the allowlisted hosts in Transition][]. You'll need the `admin` permission
 
 [the allowlisted hosts in Transition]: https://transition.publishing.service.gov.uk/admin/whitelisted_hosts
 
-### 6) Get the organisation to do the mapping work
+### 7) Get the organisation to do the mapping work
 
 By default, the mappings will present an archive page to users visiting
 the old URL. The objective is to get users to somewhere that best serves
@@ -156,7 +172,7 @@ the need fulfilled by the old page. Usually this means redirecting them
 to the page on GOV.UK or elsewhere. It is really important that this is
 done by people who understand the users and content.
 
-### 7) Get the organisation to lower the TTL on the DNS records a day ahead
+### 8) Get the organisation to lower the TTL on the DNS records a day ahead
 
 In order to cleanly switch the domain from the old site, the TTL needs
 to be low enough that there isn't a significant period where some users
@@ -167,25 +183,11 @@ advance, and to be lowered to 300 seconds (5 minutes). It can be raised
 again once everyone is happy there is no need to switch back - normally
 the day after.
 
-### 8) Add the domain to Fastly
-
-#### Verify the subdomain (for a *.gov.uk subdomain only)
-
-For security reasons, *.gov.uk subdomains are delegated upon request. When the steps below are not completed, there will be a `Domain 'gov.uk' is owned by another customer` error when the terraform apply command runs.
-
-We need to:
-
-1. Obtain the TXT record by submitting a Fastly support request. You will need to provide the 'Production bouncer' service ID and the subdomain you want to add. See an [example of support request](https://support.fastly.com/hc/en-us/requests/700875).
-
-2. If the domain's DNS is managed by GOV.UK: add the DNS record to [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf) and apply terraform configuration. If the domain's DNS is managed by the department: send the TXT record to the department and ask them to add this record to the DNS.
-
-> It's not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with `_fastly` as a proof of ownership. See an [example code change][code change].
-
-#### Apply govuk-fastly terraform configuration
+### 9) Add the domain to Fastly
 
 Manually trigger govuk-fastly 'Plan and apply' run in [Terraform Cloud UI](https://app.terraform.io/app/govuk/workspaces/govuk-fastly/runs). Review the plan with changes to `module.bouncer-production.fastly_service_vcl.service` and apply the configuration.
 
-### 9) Point the domain at us
+### 10) Point the domain at us
 
 Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a `CNAME`
@@ -201,7 +203,7 @@ You'll need to create a TLS certificate in Fastly for HTTPS domains, otherwise
 users will see a certificate error when being redirected from an external
 HTTPS URL to GOV.UK via Bouncer. Read how to [request a Fastly TLS certificate][]
 
-### 10) Get the organisation to monitor the traffic data in the Transition app
+### 11) Get the organisation to monitor the traffic data in the Transition app
 
 There are two things that need to be responded to:
 
