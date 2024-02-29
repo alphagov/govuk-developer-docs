@@ -58,19 +58,23 @@ We need to create a CSV file containing the `name`, `slug` and an empty space fo
 
 The service product owner (your PM or DM should be able to identify them for you) can then add the specific URLs for each local authority that offers the service and return the finished file to us for import. This is used to associate the URL with the service and the local authority in LLM.
 
-Log into the LLM console...
+We'll want to pick a `local-links-manager` pod to connect to the Console - normally we'd just run exec via the `deploy` resource and let Kubernetes pick for us, but as we'll need to download a file from the pod, we should make sure everything is run from the context of the same pod.
 
+List the LLM pods and select one:
 ```bash
-$ gds govuk connect app-console -e integration local-links-manager
+$ gds aws govuk-integration-poweruser -- kubectl -n apps get pods -l=app=local-links-manager
 
-Connecting to the app console for local-links-manager, in the integration environment
-The relevant hosting provider is aws
-The relevant node class is backend
-There are 2 machines of this class
-Connecting to a random machine (number 1) #=> Make a note of this MACHINE_NO
+NAME                                  READY   STATUS    RESTARTS   AGE
+local-links-manager-fdc5dbbb7-vrf96   2/2     Running   0          4h50m
+local-links-manager-fdc5dbbb7-x7rll   2/2     Running   0          4h50m
 ```
 
-Then in the rails console...
+Once you've chosen a pod, connect to its Rails Console:
+```bash
+$ gds aws govuk-integration-poweruser -- kubectl -n apps exec local-links-manager-fdc5dbbb7-vrf96 -- rails c
+```
+
+Once in the rails console...
 
 ```ruby
 lgsl_code = 1234
@@ -78,7 +82,7 @@ lgsl_code = 1234
 file = "#{Rails.root}/tmp/#{lgsl_code}.csv"
 
 # Make a note of this REMOTE_FILE_PATH...
-=> "/data/vhost/local-links-manager/releases/20210507085218/tmp/1234.csv"
+=> "/app/tmp/1234.csv"
 ```
 
 Generate the CSV file and exit out of the rails console.
@@ -92,16 +96,10 @@ CSV.open(file, 'w') do |csv|
 end
 ```
 
-Download the CSV file just you just created to your local machine...
+Now using the same pod as before and the file path from above, run the `kubectl cp` command to pull the file:
 
 ```bash
-$ gds govuk connect scp-pull -e integration backend:MACHINE_NO REMOTE_FILE_PATH ~/Downloads
-```
-
-Substituting the MACHINE_NO and REMOTE_FILE_PATH from the earlier rails console session. For example:
-
-```bash
-$ gds govuk connect scp-pull -e integration backend:1 /data/vhost/local-links-manager/releases/20210507085218/tmp/1234.csv ~/Downloads
+$ gds aws govuk-integration-poweruser -- kubectl -n apps cp local-links-manager-fdc5dbbb7-vrf96:/app/tmp/1234.csv ~/Downloads/1234.csv
 ```
 
 Hand this over to the service product owner.
