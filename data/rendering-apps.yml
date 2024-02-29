@@ -13,6 +13,10 @@
 #
 # puts docs.to_yaml
 #```
+# If whitehall-frontend appears (stagnant data in content-store), filter it out using:
+# ```ruby
+# docs.filter_map { |doc| doc[:apps] = doc[:apps] - ["whitehall-frontend"]; doc if doc[:apps].present? }
+# ```
 ---
 - :name: aaib_report
   :apps:
@@ -30,6 +34,9 @@
   :apps:
   - government-frontend
 - :name: ai_assurance_portfolio_technique
+  :apps:
+  - government-frontend
+- :name: algorithmic_transparency_record
   :apps:
   - government-frontend
 - :name: animal_disease_case
@@ -50,7 +57,13 @@
 - :name: calendar
   :apps:
   - frontend
+- :name: call_for_evidence_outcome
+  :apps:
+  - government-frontend
 - :name: case_study
+  :apps:
+  - government-frontend
+- :name: closed_call_for_evidence
   :apps:
   - government-frontend
 - :name: closed_consultation
@@ -122,6 +135,9 @@
 - :name: export_health_certificate
   :apps:
   - government-frontend
+- :name: farming_grant_option
+  :apps:
+  - government-frontend
 - :name: fatality_notice
   :apps:
   - government-frontend
@@ -133,8 +149,8 @@
   - government-frontend
 - :name: finder
   :apps:
-  - finder-frontend
   - collections
+  - finder-frontend
 - :name: finder_email_signup
   :apps:
   - finder-frontend
@@ -152,8 +168,8 @@
   - government-frontend
 - :name: gone
   :apps:
-  -
   - government-frontend
+  -
 - :name: government
   :apps:
   - government-frontend
@@ -168,8 +184,8 @@
   - government-frontend
 - :name: help_page
   :apps:
-  - government-frontend
   - frontend
+  - government-frontend
 - :name: historic_appointment
   :apps:
   - collections
@@ -277,7 +293,7 @@
 - :name: official_statistics_announcement
   :apps:
   - government-frontend
-- :name: oim_project
+- :name: open_call_for_evidence
   :apps:
   - government-frontend
 - :name: open_consultation
@@ -390,19 +406,18 @@
   - government-frontend
 - :name: special_route
   :apps:
-  - static
-  - frontend
-  - search-api
-  - content-store
-  - collections
   - account-api
-  - feedback
+  - collections
+  - content-store
   - email-alert-frontend
-  - government-frontend
-  - info-frontend
   - email-campaign-frontend
-  - performanceplatform-big-screen-view
+  - feedback
   - finder-frontend
+  - frontend
+  - government-frontend
+  - performanceplatform-big-screen-view
+  - search-api
+  - static
 - :name: speech
   :apps:
   - government-frontend
@@ -442,9 +457,6 @@
 - :name: terms_of_reference
   :apps:
   - government-frontend
-- :name: topic
-  :apps:
-  - collections
 - :name: topical_event
   :apps:
   - collections
