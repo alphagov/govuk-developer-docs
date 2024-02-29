@@ -8,13 +8,32 @@
   <%= data.analytics.navigation.events.desc %>
 </p>
 
-<ul class="govuk-list govuk-list--bullet">
-  <% events = data.analytics.events.sort_by { |e| e[:name] } %>
-  <% events.each do |event| %>
-    <li>
-      <a href="event_<%= urlize(event['name']) %>.html" class="govuk-link">
-        <%= event.name %>
-      </a>
-    </li>
-  <% end %>
-</ul>
+<%= GovukPublishingComponents.render("govuk_publishing_components/components/tabs", {
+  panel_border: false,
+  as_links: true,
+  tabs: [
+    {
+      href: "events.html",
+      label: "By type",
+      active: true
+    },
+    {
+      href: "events_by_name.html",
+      label: "By name",
+    }
+  ]
+}) %>
+
+<% events = events_by_type %>
+<% events = events.sort_by { |key| key }.to_h %>
+<% events.each do |key, value| %>
+  <h2 class="govuk-heading-s"><%= key %></h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <% value[:events].each do |e| %>
+      <li>
+        <% anchor_link = "#heading-#{e[:index]}" %>
+        <a href="event_<%= urlize(e[:name]) %>.html<%= anchor_link %>" class="govuk-link"><%= e[:event_name] %></a> (<%= e[:name] %>)
+      </li>
+    <% end %>
+  </ul>
+<% end %>
