@@ -2,16 +2,16 @@
 #```ruby
 # require 'yaml'
 #
-# docs = ContentItem.distinct(:document_type).sort.map do |document_type|
+# document_types = ContentItem.distinct.pluck(:document_type).compact.sort
+#
+# docs = document_types.map do |document_type|
 #   {
 #     name: document_type,
-#     apps: ContentItem
-#           .where(document_type: document_type)
-#           .distinct(:rendering_app)
+#     apps: ContentItem.distinct.where(document_type: document_type).pluck(:rendering_app)
 #   }
 # end
 #
-# docs.to_yaml
+# puts docs.to_yaml
 #```
 ---
 - :name: aaib_report
