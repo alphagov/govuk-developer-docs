@@ -262,15 +262,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/7876f524d16ba52017c4494963e7682f49ef5a15">18 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/966cfd7cf348aa6e24f33f8a1b38bcfc09363d71">1 Mar 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 scroll tracker</h1>
@@ -319,6 +312,11 @@
   }
 }
 </code></pre>
+<p>If you need custom text when tracking a specific heading, a data attribute can be added to the element for this purpose.</p>
+<pre lang="HTML"><code>&lt;h2 data-ga4-text="this text will be recorded in the event"&gt;
+  This text will be ignored
+&lt;/h2&gt;
+</code></pre>
 <h3 id="track-markers">Track markers</h3>
 <p>Sometimes only certain elements on a page should be tracked. This can be done by adding a marker to the required elements and configuring as shown.</p>
 <pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
@@ -335,7 +333,7 @@
 </code></pre>
 <p>Any element that a marker is attached to should be short in both height and text content to be tracked well, because:</p>
 <ul>
-<li>the <code>text</code> attribute collects the full text of the element with the marker</li>
+<li>the <code>text</code> attribute collects the full text of the element with the marker (or the <code>data-ga4-text</code> attribute can be applied, as for heading tracking)</li>
 <li>scroll tracking only happens when the marked element is fully visible to the user</li>
 </ul>
 <p>When tracking markers, the following data will be pushed to the dataLayer.</p>
