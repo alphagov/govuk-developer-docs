@@ -143,6 +143,20 @@
         <a href="#environments"><span>Environments</span></a>
       </li>
       <li>
+        <a href="#accessing-data-gov-uk"><span>Accessing data.gov.uk</span></a>
+        <ul>
+          <li>
+            <a href="#datagovuk-kubernetes-cluster"><span>Datagovuk kubernetes cluster</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#reindexing-find"><span>Reindexing Find</span></a>
+      </li>
+      <li>
+        <a href="#perform-a-full-re-sync-from-ckan"><span>Perform a full re-sync from [CKAN]</span></a>
+      </li>
+      <li>
         <a href="#monitoring-data-gov-uk"><span>Monitoring data.gov.uk</span></a>
         <ul>
           <li>
@@ -164,6 +178,9 @@
             <a href="#analytics"><span>Analytics</span></a>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="#updating-the-zendesk-password-for-find"><span>Updating the Zendesk password for Find</span></a>
       </li>
       <li>
         <a href="#logging-into-the-publisher"><span>Logging into the publisher</span></a>
@@ -222,9 +239,6 @@
         <ul>
           <li>
             <a href="#xls-to-csv-conversion"><span>XLS to CSV Conversion</span></a>
-          </li>
-          <li>
-            <a href="#dataset-analytics-requests"><span>Dataset Analytics requests</span></a>
           </li>
         </ul>
       </li>
@@ -385,7 +399,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fb1372a5f762cea35ad71c0abb7ff279d07e1524">20 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2bc38afb880016fe35c7388071ec3bb4dd41bb90">19 Feb 2024</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <blockquote>
@@ -411,6 +425,29 @@ fix it - open a PR to resolve the problem.</p>
 <li><a href="https://ckan.eks.staging.govuk.digital">Staging</a></li>
 <li><a href="https://ckan.eks.integration.govuk.digital">Integration</a></li>
 </ul>
+<h2 id='accessing-data-gov-uk'>Accessing data.gov.uk</h2><h3 id='datagovuk-kubernetes-cluster'>Datagovuk kubernetes cluster</h3><p>Publish and Find are hosted on the same AWS cluster as GOV.UK but in its own namespace - <code>datagovuk</code></p>
+<p>So to manage data.gov.uk apps you will need to add <code>-n datagovuk</code> to any <code>kubectl</code> command or run <code>kubectl config set-context --current --namespace=datagovuk</code> to make it the default.</p>
+<p>You will be able to exec onto any datagovuk pod in a similar way to other GOV.UK apps.</p>
+<h2 id='reindexing-find'>Reindexing <a href="/repos/datagovuk_find.html">Find</a></h2><p>This is done using the <code>search:reindex</code> rake task in <a href="/repos/datagovuk_publish.html">Publish</a> and will not cause any app downtime.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec deploy/datagovuk-publish -n datagovuk -- rails 'search:reindex[500]'
+</code></pre></div><p>This will populate a new index and rotate the index alias to point to it when it&rsquo;s ready.</p>
+<h2 id='perform-a-full-re-sync-from-ckan'>Perform a full re-sync from [CKAN]</h2><p>The sync is normally done automatically using Sidekiq Scheduler. There may be times when you need to throw away the existing Postgres database, sync all datasets from CKAN and reindex.</p>
+<p>This will not make any changes to the content on Find until the <a href="#reindexing-find">reindex</a> has completed and the Elastic index is updated.  This will affect data served on Publish, however this service is not currently used for publishing or editing datasets.  In most cases, you should never need to do this as the sync performs incremental updates.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>## drop tables in publish database so that the db setup can run
+kubectl exec deploy/datagovuk-publish -n datagovuk -- bash -c 'psql $DATABASE_URL -c "DROP OWNED BY ckan;"'
+
+# NOTE - ignore the server restart warnings after setting up the database
+kubectl exec deploy/datagovuk-publish -n datagovuk -- bin/setup
+
+## make sure the index is setup
+
+kubectl exec deploy/datagovuk-publish -n datagovuk -- rails search:reindex
+
+## update orgs or datasets
+
+kubectl exec deploy/datagovuk-publish -n datagovuk -- rails runner CKAN::V26::CKANOrgSyncWorker.new.perform
+kubectl exec deploy/datagovuk-publish -n datagovuk -- rails runner CKAN::V26::PackageSyncWorker.new.perform
+</code></pre></div><p>Now run <code>kubectl exec deploy/datagovuk-publish -n datagovuk -- bundle exec sidekiq</code> and see the logs.</p>
 <h2 id='monitoring-data-gov-uk'>Monitoring data.gov.uk</h2><h3 id='pingdom'>Pingdom</h3><p><a href="/manual/pingdom">Pingdom</a> monitors <code>https://data.gov.uk</code> uptime and alerts <a href="https://govuk.pagerduty.com/">PagerDuty</a> when downtime is detected.</p>
 <h3 id='sentry'>Sentry</h3><p><a href="https://sentry.io/govuk/">Sentry</a> monitors application errors. The Sentry pages for each app can be found on the <a href="/repos/datagovuk_find.html">Find</a> and <a href="/repos/datagovuk_publish.html">Publish</a> app pages.</p>
 <h3 id='logs'>Logs</h3><p><a href="/repos/ckanext-datagovuk.html">Ckan</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> send their logs to <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3">Logit</a>.
@@ -422,6 +459,15 @@ Example query: <code>kubernetes.namespace: datagovuk AND kubernetes.container.na
 rails console
 &gt;&gt;&gt; Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
 </code></pre></div><h3 id='analytics'>Analytics</h3><p>Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.</p>
+<p>If a user requests analytics for data.gov.uk, we can provide them with access to <a href="https://lookerstudio.google.com/reporting/1dLIysu5Ie131ZL3gGT7zyWBhffNgTSX2/page/cduv">an analytics dashboard</a>. Assign tickets like this to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk queue.</p>
+<h2 id='updating-the-zendesk-password-for-find'>Updating the Zendesk password for Find</h2><p>The form at https://www.data.gov.uk/support uses the Zendesk API to create new tickets. If the account password expires, it&rsquo;ll need updating in <a href="/manual/secrets-manager.html">AWS Secrets Manager</a>:</p>
+
+<ol>
+<li>Get the existing <code>govuk/dgu/datagovuk</code> credentials from AWS Secrets Manager</li>
+<li>Log into Zendesk using the username and password obtained from the previous step</li>
+<li>Reset the password through the UI and copy the password to your clipboard</li>
+<li>Update the password in AWS Secrets Manager.</li>
+</ol>
 <h2 id='logging-into-the-publisher'>Logging into the publisher</h2><p>You can log into <a href="https://ckan.publishing.service.gov.uk">CKAN</a> using a shared account. The credentials are available in <a href="/manual/secrets-manager.html">Secrets Manager</a> under <code>2ndline/datagovuk/ckan</code>.</p>
 <p>For commands not available via the user interface you need to <code>kubectl exec</code> into a CKAN pod.</p>
 <h2 id='users-and-publishing-organisations'>Users and publishing organisations</h2><p>Publishers login using their email address. A user can be a member of one or more publishing
@@ -535,7 +581,7 @@ rails console
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
 rails console
 &gt;&gt;&gt; Dataset.update(status: 'published')
-</code></pre></div><p>A <a href="/manual/data-gov-uk-operations.html#reindexing-find">reindex</a> is then needed to update the status with the Elastic instance that serves data.gov.uk.</p>
+</code></pre></div><p>A <a href="#reindexing-find">reindex</a> is then needed to update the status with the Elastic instance that serves data.gov.uk.</p>
 <h3 id='datasets-published-in-ckan-are-not-appearing-on-data-gov-uk'>Datasets published in CKAN are not appearing on data.gov.uk</h3><p>Check the Sidekiq queue (see <a href="/manual/data-gov-uk-monitoring.html#sidekiq-publish">monitoring section</a>) to ensure the queue length is not too long.  You should not see more jobs than the number of datasets in CKAN.</p>
 <p>If the queue is too long, you should <a href="https://github.com/mperham/sidekiq/wiki/API">clear the queue</a>. The next sync process will repopulate the queue with any relevant datasets that require updating.</p>
 <h3 id='accessing-withdrawn-content'>Accessing withdrawn content</h3><p>If a user is asking for data that is no longer publicly available, e.g. a withdrawn dataset, they should email the organisation that originally published the dataset. You can find an email address for the organisation on CKAN.</p>
@@ -591,7 +637,6 @@ https://data.gov.uk/api/3/action/package_search?q=name:population-of-england-and
 <blockquote>
 <p>Publishers <strong>must</strong> select the correct &lsquo;Schema Vocabulary&rsquo; for their organogram dataset (i.e. one of the two &lsquo;organisation structure&rsquo; values) in order for the upload option to become available and for the conversion script to run.</p>
 </blockquote>
-<h3 id='dataset-analytics-requests'>Dataset Analytics requests</h3><p>If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk queue.</p>
 <h2 id='connecting-to-ckan-via-kubectl-exec'>Connecting to CKAN via kubectl exec</h2><p>For commands not available via the user interface you must exec onto a CKAN pod:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/ckan-ckan -n datagovuk -- bash
 </code></pre></div><p>Most of the commands to interact with CKAN use the <code>ckan</code> CLI.</p>
@@ -805,7 +850,6 @@ caution as it may cause the database to restart to recover consistency.</p>
 
           <ul class="govuk-list">
             <li><a href="/manual/data-gov-uk-deployment.html">Deployments for data.gov.uk</a></li>
-            <li><a href="/manual/data-gov-uk-operations.html">Operation of data.gov.uk</a></li>
           </ul>
         </div>
 
