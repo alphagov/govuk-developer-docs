@@ -1,9 +1,5 @@
 
 
-
-
-
-
 <!doctype html>
 <html lang="en" class="govuk-template no-js">
   <head>
@@ -11,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Retire an application - GOV.UK Developer Documentation</title>
+    <title>info-frontend: ADR: Retiring Info Frontend - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/retiring-an-application.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/info-frontend/adr/retiring-info-frontend.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Retire an application - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/retiring-an-application.html" />
+      <meta name="twitter:title" content="info-frontend: ADR: Retiring Info Frontend - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/info-frontend/adr/retiring-info-frontend.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Retire an application" />
+      <meta property="og:title" content="info-frontend: ADR: Retiring Info Frontend" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/retiring-an-application.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/info-frontend/adr/retiring-info-frontend.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -81,13 +77,13 @@
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
             </li>
-            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+            <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/manual.html">Manual</a>
             </li>
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
             </li>
-            <li class="govuk-header__navigation-item">
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
               <a class="govuk-header__link" href="/apps.html">Apps</a>
             </li>
             <li class="govuk-header__navigation-item">
@@ -134,66 +130,19 @@
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
-  <ul>
-  <li>
-    <a href="#header"><span>Retire an application</span></a>
-    <ul>
-      <li>
-        <a href="#1-puppet-apps-only-remove-app-from-puppet"><span>1. (PUPPET APPS ONLY) Remove app from puppet</span></a>
-      </li>
-      <li>
-        <a href="#2-remove-smoke-tests"><span>2. Remove smoke tests</span></a>
-      </li>
-      <li>
-        <a href="#3-puppet-apps-only-remove-deploy-scripts"><span>3. (PUPPET APPS ONLY) Remove deploy scripts</span></a>
-      </li>
-      <li>
-        <a href="#4-update-release-app"><span>4. Update Release app</span></a>
-      </li>
-      <li>
-        <a href="#5-puppet-apps-only-remove-from-deploy-jenkins"><span>5. (PUPPET APPS ONLY) Remove from deploy Jenkins</span></a>
-      </li>
-      <li>
-        <a href="#6-update-signon"><span>6. Update Signon</span></a>
-      </li>
-      <li>
-        <a href="#7-remove-from-gov-uk-docker"><span>7. Remove from GOV.UK Docker</span></a>
-      </li>
-      <li>
-        <a href="#8-update-dns"><span>8. Update DNS</span></a>
-      </li>
-      <li>
-        <a href="#9-update-docs"><span>9. Update docs</span></a>
-      </li>
-      <li>
-        <a href="#10-drop-database"><span>10. Drop database</span></a>
-      </li>
-      <li>
-        <a href="#11-puppet-apps-only-remove-jobs-in-ci"><span>11. (PUPPET APPS ONLY) Remove jobs in CI</span></a>
-      </li>
-      <li>
-        <a href="#12-unpublish-routes"><span>12. Unpublish routes</span></a>
-      </li>
-      <li>
-        <a href="#13-remove-from-sentry"><span>13. Remove from Sentry</span></a>
-      </li>
-      <li>
-        <a href="#14-remove-from-heroku"><span>14. Remove from Heroku</span></a>
-      </li>
-      <li>
-        <a href="#15-eks-apps-only-remove-from-govuk-helm-charts"><span>15. (EKS APPS ONLY) Remove from govuk-helm-charts</span></a>
-      </li>
-      <li>
-        <a href="#17-delete-the-app39s-kubernetes-resources-if-applicable"><span>17. Delete the app’s Kubernetes resources (if applicable)</span></a>
-      </li>
-      <li>
-        <a href="#18-archive-the-repo"><span>18. Archive the repo</span></a>
-      </li>
-    </ul>
-  </li>
-</ul>
-
+                  <ul>
+    <li>
+      <a href="/repos/info-frontend.html" rel="noopener" class="govuk-link">info-frontend</a>
+    </li>
+    <li>
+      <ul>
+          <li class="subdir__heading">adr</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/info-frontend/adr/retiring-info-frontend.html" rel="noopener" class="govuk-link">ADR: Retiring Info Frontend</a></li>
+          </ul>
+      </ul>
+    </li>
+  </ul>
 
               </nav>
             </div>
@@ -201,7 +150,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-                
+              
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -219,8 +168,16 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "Applications",
-        "@id": "http://www.dev.gov.uk/manual.html#applications"
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "info-frontend",
+        "@id": "http://www.dev.gov.uk/repos/info-frontend.html"
       }
     }
   ]
@@ -230,123 +187,86 @@
 <div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#applications" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Applications&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#applications">Applications</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/info-frontend.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;info-frontend&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/info-frontend.html">info-frontend</a>
         </li>
   </ol>
 </div>
-   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba338357741d15495c5b4db8a0da22f450e042b6">10 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/info-frontend/commit/d1658eacfa3d8788325dcaba7905bdeee3c1e81e">28 Feb 2024</a>
 </div>
 
- <h1 id='header'>Retire an application</h1> <p>Note: Now that we&rsquo;ve moved most of the applications to EKS, some of these
-steps are only necessary for the handful of apps being deployed by Puppet.
-The step titles now indicate whether a step is only required for Puppet or
-EKS-deployed apps.</p>
-<h2 id='1-puppet-apps-only-remove-app-from-puppet'>1. (PUPPET APPS ONLY) Remove app from puppet</h2><p>Configure Puppet to remove the app from all servers. Change the app resource,
-and any database resources to <code>ensure =&gt; absent</code>, remove any host and
-load-balancer entries, but leave the hieradata entries.</p>
-<p>See this pull request for an example:</p>
+  <h1 class="page-title">info-frontend: ADR: Retiring Info Frontend</h1>
 
+  
+<p>Date: 2023-02-20</p>
+<h2 id="status">Status</h2>
+<p>Agreed.</p>
+<h2 id="context">Context</h2>
+<p>Info pages display <a href="https://github.com/alphagov/maslow">Maslow</a> information (the needs for the page) and
+historically, performance information such as how many visitors a page has had.</p>
+<p>Adding /info to the start of any GOV.UK URL such as
+<a href="https://www.gov.uk/info/employers-sick-pay">https://www.gov.uk/info/employers-sick-pay</a> will return the info page for the
+content.</p>
+<p>Most of the pages Info Frontend renders are void of content as user needs are
+rarely used. To put this in perspective, there are currently 413 user needs,
+applied to 1164 published pages on <a href="http://www.gov.uk">www.gov.uk</a>. As there is an /info page for
+every page on <a href="http://www.gov.uk">www.gov.uk</a>, this is a very small proportion. ~73% of the
+published pages have not been created, or publicly updated since 2018 and the
+last change to a published user need in Maslow was in June 2018.</p>
+<p>Previously, info pages also contained performance data however this has been
+turned off as the <a href="https://docs.publishing.service.gov.uk/repos/performanceplatform-admin.html">Performance Platform has been decommissioned</a> so there are no
+metrics to display.</p>
+<p>We also don't index or link to any of these pages and so there will be little
+organic traffic to them. CIOP have gathered some analytics and confirmed that:</p>
 <ul>
-<li><a href="https://github.com/alphagov/govuk-puppet/pull/5496">https://github.com/alphagov/govuk-puppet/pull/5496</a></li>
+<li>nearly all pages receive very little traffic, if any</li>
+<li>compared to the visits for the parent page, the traffic looks even smaller</li>
+<li>most of the traffic seems to come from, say, references in blogs</li>
 </ul>
-<p>After this has been deployed, remove it entirely. For example:</p>
-
+<h2 id="decision">Decision</h2>
+<p>As we no longer provide performance data on the /info pages or maintain the
+user needs information, we are proposing to remove the pages and thus, retire
+Info Frontend.</p>
+<p>We plan to unpublish the pages with a 410 gone <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410">3</a>. We'll remove the existing
+prefix info/ route that points to info-frontend and instead return gov.uk's
+static 410 page instead <a href="https://github.com/alphagov/static/blob/main/app/views/root/410.html.erb">4</a>. We did consider creating a single retirement
+content page for and redirecting all the /info page requests to it, however
+this was deemed unnecessary as we've already communicated the upcoming
+retirement to departments and /info pages receive such little traffic that it
+didn't seem worthwhile.</p>
+<p>As part of this work, we won't be retiring Maslow or the backing data, we'll
+just be removing the frontend that supports /info pages. Publishers will still
+be able to tag user needs in the various publishing apps. The Publishing team
+have previously informed users of their intention to retire Maslow, but this
+work is not currently scheduled.</p>
+<p>We will inform the relevant teams internally and post this to the wider content
+community (x-gov) to raise awareness of the upcoming change.</p>
+<h2 id="consequences">Consequences</h2>
+<p>Removing /info pages reduces reputational damage, as the:</p>
 <ul>
-<li><a href="https://github.com/alphagov/govuk-puppet/pull/5507">https://github.com/alphagov/govuk-puppet/pull/5507</a></li>
+<li>vast majority of pages look broken to anyone who sees them</li>
+<li>backing data (user needs) is not actively maintained and thus could be incorrect</li>
+<li>performance data is missing</li>
+<li>/info pages are not accessible</li>
 </ul>
-<h2 id='2-remove-smoke-tests'>2. Remove smoke tests</h2><p>Remove any <a href="https://github.com/alphagov/smokey">smokey tests</a> specific to the application.</p>
-<h2 id='3-puppet-apps-only-remove-deploy-scripts'>3. (PUPPET APPS ONLY) Remove deploy scripts</h2><p>Remove necessary scripts from <a href="https://github.com/alphagov/govuk-app-deployment">govuk-app-deployment</a>.</p>
-<h2 id='4-update-release-app'>4. Update Release app</h2><p>Mark the application as archived in the Release app.</p>
-<p>Edit the application in the release app (you&rsquo;ll need the <code>deploy</code> permission to
-do this), and check the <code>archived</code> checkbox. This will hide it from the UI.</p>
-<h2 id='5-puppet-apps-only-remove-from-deploy-jenkins'>5. (PUPPET APPS ONLY) Remove from deploy Jenkins</h2><p>Remove entry from the deploy Jenkinses. This is managed
-<a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml">through govuk-puppet</a> in the <code>common.yml</code>.</p>
-<h2 id='6-update-signon'>6. Update Signon</h2><p>Mark the application as &ldquo;retired&rdquo; in signon, if it used it.</p>
-<p>Click on the Applications tab. Find the application that is being retired and
-click the &ldquo;edit&rdquo; button. Tick the box that says &ldquo;This application is being
-retired&rdquo;, then save your changes.</p>
-<h2 id='7-remove-from-gov-uk-docker'>7. Remove from GOV.UK Docker</h2><p>Remove from the <a href="https://github.com/alphagov/govuk-docker/tree/master/projects">projects directory</a> and any references
-in <a href="https://github.com/alphagov/govuk-docker/blob/master/docker-compose.yml">docker compose</a> or throughout the repo.</p>
-<h2 id='8-update-dns'>8. Update DNS</h2><p>Request any public DNS entries be removed. If the app had an admin UI, it will
-have had public DNS entries in the <code>publishing.service.gov.uk</code> domain.</p>
-<p>Follow the <a href="/manual/dns.html#dns-for-the-publishingservicegovuk-domain">instructions for DNS changes</a> in order to remove
-these.</p>
-<h2 id='9-update-docs'>9. Update docs</h2>
-<ul>
-<li>Mark the application as <code>retired</code> in <a href="https://github.com/alphagov/govuk-developer-docs">govuk-developer-docs</a></li>
-<li>Remove the application from the <a href="/manual/architecture.html">GOV.UK architecture diagram</a></li>
-</ul>
-<h2 id='10-drop-database'>10. Drop database</h2><p>If Puppet hasn&rsquo;t done it (eg for MongoDB databases), drop the database.</p>
-<h2 id='11-puppet-apps-only-remove-jobs-in-ci'>11. (PUPPET APPS ONLY) Remove jobs in CI</h2><p>If tests were set up, go to <a href="https://ci.integration.publishing.service.gov.uk/">CI</a> and choose &ldquo;Delete Repository&rdquo; for your
-project.</p>
-<h2 id='12-unpublish-routes'>12. Unpublish routes</h2><p>Some applications are responsible for publishing certain routes. If you&rsquo;re
-retiring a publishing application, make sure you check if any of its content
-items need to be unpublished and do it via the Publishing API.</p>
-<h2 id='13-remove-from-sentry'>13. Remove from Sentry</h2><p>Since the application has been retired, it shouldn&rsquo;t be tracked in Sentry.</p>
-<h2 id='14-remove-from-heroku'>14. Remove from Heroku</h2><p>If relevant (e.g. if Heroku was used for previews).</p>
-<h2 id='15-eks-apps-only-remove-from-govuk-helm-charts'>15. (EKS APPS ONLY) Remove from govuk-helm-charts</h2><p>Remove the app&rsquo;s entry in [govuk-helm-charts] from:</p>
-
-<ul>
-<li>/charts/app-config/values-integration.yaml</li>
-<li>/charts/app-config/values-staging.yaml</li>
-<li>/charts/app-config/values-production.yaml</li>
-<li>(if present) /charts/app-config/templates/signon-secrets-sync-configmap.yaml</li>
-<li>(if present) /charts/external-secrets/templates/<app name></li>
-</ul>
-<p>It&rsquo;s also wise to search that repo for other references to the app being retired.
-Once the PR is merged ([Example PR][]), the app pods will automatically be removed by Argo.</p>
-<p><a href="https://github.com/alphagov/govuk-helm-charts/">govuk-helm-charts</a>
-<a href="https://github.com/alphagov/govuk-helm-charts/pull/1236">Example PR</a></p>
-<h2 id='17-delete-the-app39s-kubernetes-resources-if-applicable'>17. Delete the app&rsquo;s Kubernetes resources (if applicable)</h2><p>In the staging and production environments, deleting an Argo CD app will not <a href="https://github.com/alphagov/govuk-helm-charts/blob/c55a034/charts/app-config/templates/govuk-application.yaml#L10">automatically delete</a> the Kubernetes resources that it manages, such as <code>deployments</code>, <code>services</code>, <code>jobs</code> and <code>cronjobs</code>.</p>
-<p>You will need to list and delete these resources yourself, for example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  kubectl get all | grep &lt;app-name&gt;
-
-  kubectl delete deploy/&lt;app-name&gt; svc/&lt;app-name&gt; job/&lt;app-name&gt;-upload-assets
-</code></pre></div><h2 id='18-archive-the-repo'>18. Archive the repo</h2><p>Follow the steps at <a href="/manual/retiring-a-repo.html">Retire a repo</a>.</p>
-
-  <div class='related-content'>
-
-    <h3>More in the Applications section</h3>
-
-    <div class='govuk-grid-row'>
-        <div class='govuk-grid-column-one-half'>
-          <h4>Learn</h4>
-
-          <ul class="govuk-list">
-            <li><a href="/manual/architecture-deep-dive.html">Architectural deep-dive of GOV.UK</a></li>
-            <li><a href="/manual/architecture-shallow-dive.html">Architectural summary of GOV.UK</a></li>
-            <li><a href="/manual/architecture.html">Architecture overview of GOV.UK applications</a></li>
-            <li><a href="/manual/configure-linting.html">Configure linting</a></li>
-            <li><a href="/manual/conventions-for-rails-applications.html">Conventions for Rails applications</a></li>
-          </ul>
-        </div>
-
-        <div class='govuk-grid-column-one-half'>
-          <h4>How to...</h4>
-
-          <ul class="govuk-list">
-            <li><a href="/manual/ownership-meaning.html">Application ownership</a></li>
-            <li><a href="/manual/create-a-local-transaction.html">Create a Local Transaction</a></li>
-            <li><a href="/manual/naming.html">Name a new application or gem</a></li>
-            <li><a href="/manual/retiring-a-repo.html">Retire a repo</a></li>
-            <li><a href="/manual/setting-up-new-rails-app.html">Set up a new Rails application</a></li>
-          </ul>
-        </div>
-
-    </div>
-</div>
+<p>Reduces gov.uk maintenance burden as one less app to maintain (monitoring,
+dependabot, Rails upgrades etc).</p>
+<p>Paves the way for removing, or repurposing <a href="https://github.com/alphagov/maslow">Maslow</a>. If we decide we still
+want to display user needs for certain pages, then a solution should be
+proposed that is maintainable and useful.</p>
+<p>Risk of users complaining about user needs disappearing on info pages they
+visit (albeit small risk given these pages are pretty much hidden and analytics
+confirm really low traffic).</p>
+<p>Risk of the proposed single content page becoming stale, e.g if we point users
+to the content API but then the backing data is removed without consideration
+of the new page.</p>
 
 
             
@@ -354,8 +274,8 @@ Once the PR is merged ([Example PR][]), the app pods will automatically be remov
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/retiring-an-application.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Retire+an+application%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fretiring-an-application.html%29&amp;labels=bug&amp;title=Re%3A+%27Retire+an+application%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/info-frontend/blob/main/docs/adr/retiring-info-frontend.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Finfo-frontend%2Fadr%2Fretiring-info-frontend.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
