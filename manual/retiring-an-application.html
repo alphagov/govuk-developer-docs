@@ -164,7 +164,7 @@
         <a href="#8-update-dns"><span>8. Update DNS</span></a>
       </li>
       <li>
-        <a href="#9-update-docs"><span>9. Update docs</span></a>
+        <a href="#9-remove-the-gov-uk-architecture-diagram"><span>9. Remove the GOV.UK architecture diagram</span></a>
       </li>
       <li>
         <a href="#10-drop-database"><span>10. Drop database</span></a>
@@ -238,15 +238,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba338357741d15495c5b4db8a0da22f450e042b6">10 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec05a2c33c3ed54e2e549cdf927349de2dea7402">5 Mar 2024</a>
 </div>
 
  <h1 id='header'>Retire an application</h1> <p>Note: Now that we&rsquo;ve moved most of the applications to EKS, some of these
@@ -283,9 +276,8 @@ in <a href="https://github.com/alphagov/govuk-docker/blob/master/docker-compose.
 have had public DNS entries in the <code>publishing.service.gov.uk</code> domain.</p>
 <p>Follow the <a href="/manual/dns.html#dns-for-the-publishingservicegovuk-domain">instructions for DNS changes</a> in order to remove
 these.</p>
-<h2 id='9-update-docs'>9. Update docs</h2>
+<h2 id='9-remove-the-gov-uk-architecture-diagram'>9. Remove the GOV.UK architecture diagram</h2>
 <ul>
-<li>Mark the application as <code>retired</code> in <a href="https://github.com/alphagov/govuk-developer-docs">govuk-developer-docs</a></li>
 <li>Remove the application from the <a href="/manual/architecture.html">GOV.UK architecture diagram</a></li>
 </ul>
 <h2 id='10-drop-database'>10. Drop database</h2><p>If Puppet hasn&rsquo;t done it (eg for MongoDB databases), drop the database.</p>
@@ -311,7 +303,7 @@ Once the PR is merged ([Example PR][]), the app pods will automatically be remov
 <a href="https://github.com/alphagov/govuk-helm-charts/pull/1236">Example PR</a></p>
 <h2 id='17-delete-the-app39s-kubernetes-resources-if-applicable'>17. Delete the app&rsquo;s Kubernetes resources (if applicable)</h2><p>In the staging and production environments, deleting an Argo CD app will not <a href="https://github.com/alphagov/govuk-helm-charts/blob/c55a034/charts/app-config/templates/govuk-application.yaml#L10">automatically delete</a> the Kubernetes resources that it manages, such as <code>deployments</code>, <code>services</code>, <code>jobs</code> and <code>cronjobs</code>.</p>
 <p>You will need to list and delete these resources yourself, for example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  kubectl get all | grep &lt;app-name&gt;
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  kubectl --namespace apps get all | grep &lt;app-name&gt;
 
   kubectl delete deploy/&lt;app-name&gt; svc/&lt;app-name&gt; job/&lt;app-name&gt;-upload-assets
 </code></pre></div><h2 id='18-archive-the-repo'>18. Archive the repo</h2><p>Follow the steps at <a href="/manual/retiring-a-repo.html">Retire a repo</a>.</p>
