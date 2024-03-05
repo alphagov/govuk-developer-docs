@@ -4870,6 +4870,25 @@
 .gem-c-heading--inverse {
   color: #ffffff; }
 
+.gem-c-input__search-icon {
+  display: block;
+  position: relative;
+  z-index: 1;
+  margin-bottom: -40px;
+  margin-bottom: -2.5rem;
+  width: 40px;
+  height: 40px;
+  height: 2.5rem;
+  background: url("govuk_publishing_components/icon-search.svg") no-repeat -3px center; }
+
+.gem-c-input.govuk-input {
+  margin: 0;
+  min-width: 0;
+  padding: 5px;
+  box-sizing: border-box; }
+  .gem-c-input.govuk-input.gem-c-input--with-search-icon {
+    padding-left: 30px; }
+
 .govuk-radios__item {
   font-family: "GDS Transport", arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -5524,3 +5543,13 @@ ul.subdir__menu {
   @media (max-width: 40.0525em) {
     .architecture-diagram {
       width: calc(100vw - 30px * 2); } }
+.filter-form {
+  display: none; }
+  .js-enabled .filter-form {
+    display: block; }
+
+.filter-list-hidden {
+  display: none; }
+
+.hidden {
+  display: none; }
