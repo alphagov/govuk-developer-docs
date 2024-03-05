@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: info-frontend - GOV.UK Developer Documentation</title>
+    <title>Application: info-frontend (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -17,13 +17,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: info-frontend - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Application: info-frontend (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/info-frontend.html" />
 
       <meta property="og:description" content="Everything about info-frontend (Serves /info pages to display user needs and performance data about a page on GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: info-frontend" />
+      <meta property="og:title" content="Application: info-frontend (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/info-frontend.html" />
 
@@ -189,79 +189,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Application: info-frontend</h1>
+  <h1 class="page-title">Application: info-frontend (retired)</h1>
 
-  <p>Serves /info pages to display user needs and performance data about a page on GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/info-frontend">info-frontend</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-navigation-tech">#govuk-navigation-tech</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Frontend apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-info-frontend" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?var-app=info-frontend" class="govuk-link">App dashboard: request rates, errors, durations</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:info-frontend),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:info-frontend)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:info-frontend-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:info-frontend-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/info-frontend" class="govuk-link">Argo CD (info-frontend)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme">
-    <p><strong>Info pages are retired, you can read about the decision in the <a href="https://github.com/alphagov/info-frontend/blob/main/docs/adr/retiring-info-frontend.md">retirement ADR</a></strong></p></p>
-
-<p>This application exposes the user needs and metrics about content on GOV.UK. It does this by fetching content details from <a href="https://github.com/alphagov/content-store">Content Store</a>.</p>
-
-<p>Information pages have a prefix of <code>/info</code>, for example: <a href="https://www.gov.uk/info/benefits-calculators">https://www.gov.uk/info/benefits-calculators</a> and <a href="https://www.gov.uk/info/employers-sick-pay">https://www.gov.uk/info/employers-sick-pay</a>.</p>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> or the local <code>startup.sh</code> script to run the app. Read the <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">guidance on local frontend development</a> to find out more about each approach, before you get started.</p>
-
-<p>If you are using GOV.UK Docker, remember to combine it with the commands that follow. See the <a href="https://github.com/alphagov/govuk-docker#usage">GOV.UK Docker usage instructions</a> for examples.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<pre><code>bundle exec rake
-</code></pre>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/info-frontend/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Serves /info pages to display user needs and performance data about a page on GOV.UK</p></p>
+<p><a href="https://github.com/alphagov/info-frontend">GitHub repository</a></p>
 
 
             
