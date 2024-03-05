@@ -30,7 +30,7 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
         // show/hide children
         for (var j = 0; j < children.length; j++) {
           var child = children[j]
-          var text = child.innerText.toLowerCase()
+          var text = child.textContent.toLowerCase()
           this.showHide(text, searchTerm, child)
         }
         // show/hide title
@@ -40,7 +40,7 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
           title.classList.remove('filter-list-hidden')
         }
       } else {
-        var text = current.innerText.toLowerCase()
+        var text = current.textContent.toLowerCase()
         this.showHide(text, searchTerm, current)
       }
     }
