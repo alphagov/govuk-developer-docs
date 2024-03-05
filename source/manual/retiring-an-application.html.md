@@ -77,9 +77,8 @@ these.
 
 [dns-changes]: /manual/dns.html#dns-for-the-publishingservicegovuk-domain
 
-## 9. Update docs
+## 9. Remove the GOV.UK architecture diagram
 
-- Mark the application as `retired` in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs)
 - Remove the application from the [GOV.UK architecture diagram](/manual/architecture.html)
 
 ## 10. Drop database
@@ -130,7 +129,7 @@ In the staging and production environments, deleting an Argo CD app will not [au
 You will need to list and delete these resources yourself, for example:
 
 ```
-  kubectl get all | grep <app-name>
+  kubectl --namespace apps get all | grep <app-name>
 
   kubectl delete deploy/<app-name> svc/<app-name> job/<app-name>-upload-assets
 ```
