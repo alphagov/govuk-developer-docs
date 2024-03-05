@@ -8,10 +8,22 @@
   <%= data.analytics.navigation.attributes.desc %>
 </p>
 
+<form role="search" data-module="filter-list" class="filter-form">
+  <%= GovukPublishingComponents.render("govuk_publishing_components/components/input", {
+    label: {
+      text: "Filter events"
+    },
+    name: "filter-box",
+    type: "search",
+    search_icon: true,
+    spellcheck: true
+  }) %>
+</form>
+
 <ul class="govuk-list govuk-list--bullet">
   <% attributes = data.analytics.attributes.sort_by { |e| e[:name] } %>
   <% attributes.each do |attribute| %>
-    <li>
+    <li data-filter-section>
       <a href="attribute_<%= urlize(attribute['name']) %>.html" class="govuk-link">
         <%= attribute.name %>
       </a>
