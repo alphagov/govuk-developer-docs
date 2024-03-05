@@ -14,16 +14,23 @@ general quick-reference guide.
 
 ## Prerequisites
 
-1. You need to have completed [Get started with the GOV.UK Kubernetes
-   clusters](get-started/). If you skimmed those instructions, make sure you
-   have configured your shell:
+1. You need to have completed [Access an EKS
+   cluster](get-started/access-eks-cluster/) from the [get started
+   guide](get-started/). If you skimmed those instructions, make sure you have
+   configured your shell:
 
     ```sh
     export AWS_REGION=eu-west-1
     alias k=kubectl
     ```
 
-1. Obtain credentials to access the cluster.
+1. Obtain credentials to access the cluster. Use an IAM role with sufficient permissions:
+    - `-readonly` roles can view logs and configuration
+    - `-poweruser` roles can run Rake tasks or open a shell
+    - `-administrator` roles can modify base cluster services (you should not
+      normally need this)
+
+    For example:
 
     ```sh
     # Obtain IAM credentials for the AWS account (integration, staging, production).
@@ -36,15 +43,6 @@ general quick-reference guide.
     # time you use each cluster.
     k config set-context --current --namespace=apps
     ```
-
-    Use an IAM role with sufficient permissions:
-
-    - `-readonly` roles can view logs and configuration
-    - `-poweruser` roles can run Rake tasks or open a shell
-    - `-administrator` roles can modify base cluster services (you should not
-      normally need this)
-
-    See [Access an EKS cluster](get-started/access-eks-cluster/) for more.
 
 ## Common tasks
 
