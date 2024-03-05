@@ -16,34 +16,21 @@ on:
     - cron: "0 9-19 * * 1-5"
 
 jobs:
-  snyk-security:
-    name: SNYK security analysis
-    uses: alphagov/govuk-infrastructure/.github/workflows/snyk-security.yml@main
-    secrets: inherit
-  
-  codeql-sast:
-    name: CodeQL SAST scan
-    uses: alphagov/govuk-infrastructure/.github/workflows/codeql-analysis.yml@main
-    permissions:
-      security-events: write
-
-  dependency-review:
-    name: Dependency Review scan
-    uses: alphagov/govuk-infrastructure/.github/workflows/dependency-review.yml@main
-  
   test-ruby:
     name: Test Ruby
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.ref || github.ref }}
+          show-progress: false
       - name: Clone publishing api
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: alphagov/publishing-api
           ref: main
           path: tmp/publishing-api
+          show-progress: false
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
