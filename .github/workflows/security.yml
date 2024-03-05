@@ -1,0 +1,33 @@
+name: Security scans
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    paths-ignore:
+      - '**/*.md'
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: The branch, tag or SHA to check out
+        default: main
+        type: string
+
+jobs:
+  snyk-security:
+    name: SNYK security analysis
+    uses: alphagov/govuk-infrastructure/.github/workflows/snyk-security.yml@main
+    secrets: inherit
+
+  codeql-sast:
+    name: CodeQL SAST scan
+    uses: alphagov/govuk-infrastructure/.github/workflows/codeql-analysis.yml@main
+    permissions:
+      security-events: write
+
+  dependency-review:
+    name: Dependency Review scan
+    uses: alphagov/govuk-infrastructure/.github/workflows/dependency-review.yml@main
