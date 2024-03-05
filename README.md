@@ -1,72 +1,73 @@
 # GOV.UK Developer Docs
 
-👉 https://docs.publishing.service.gov.uk
+👉 https://docs.publishing.service.gov.uk/
 
 This is a static site generated with Middleman, using [alphagov/tech-docs-template](https://github.com/alphagov/tech-docs-template).
 
 Some of the files (like the CSS, javascripts and layouts) are managed in the template and are not supposed to be modified here. Any project-specific
 Ruby code needs to go into `/app`.
 
-## Technical documentation
+## Build the app locally
 
-You can use the [GOV.UK Docker environment](https://github.com/alphagov/govuk-docker) to run the application and its tests with all the necessary dependencies. Follow [the usage instructions](https://github.com/alphagov/govuk-docker#usage) to get started.
-
-**Use GOV.UK Docker to run any commands that follow.**
-
-### Running the app
-
-```
-./startup.sh
+```sh
+bundle install
 ```
 
-The docs include pages pulled from other GitHub repositories. By default, all these "proxy" pages are pulled when you start the app, which can lead to rate limit error. Using a GitHub API token avoids this.
-
-[Create a GitHub auth token](https://github.com/settings/tokens/new) (the token doesn't need any permissions).
-
-Store the token in a `.env` file like this:
-
-```
-GITHUB_TOKEN=somethingsomething
-```
-
-Alternatively, you can also disable proxy pages temporarily e.g.
-
-```
-env SKIP_PROXY_PAGES=true ./startup.sh
-```
-
-Disabling proxy pages means you'll get a "Not Found" error if you try to access them locally.
-
-### Testing the app
+## Run the tests locally
 
 ```
 bundle exec rake
 ```
 
-### Updating the template
+## Run the app locally
 
-You can pull down the latest version of the Tech Docs template by running:
+```sh
+SKIP_PROXY_PAGES=true ./startup.sh
+```
+
+## Proxy pages
+
+The live docs site includes pages from other alphagov GitHub repositories. To test this locally, omit `SKIP_PROXY_PAGES=true` from the command above.
+
+The app downloads these "proxy pages" at startup and this can cause GitHub to rate limit your requests. You can pass a valid GitHub API token to the app to help avoid this:
+
+1. [Create a GitHub token](https://github.com/settings/tokens/new). The token doesn't need any scopes.
+
+1. Store the token in a `.env` file:
+
+    ```sh
+    GITHUB_TOKEN=somethingsomething
+    ```
+
+1. Start the application:
+
+    ```sh
+    ./startup.sh
+    ```
+
+## Update to the latest Tech Docs template
 
 ```sh
 bin/update
 ```
 
-### Deployment
+## Deployment
 
-This project is hosted on GitHub Pages. It is [redeployed hourly on weekdays][actions]
-(to pick up changes to external docs) and whenever a PR is merged.
+We host GOV.UK Developer Docs as a static site on GitHub Pages. The [ci.yml] GitHub Actions workflow updates the site automatically:
 
-As part of the deployment, we build a static set of pages to minimise the response time
-and potential issues with remote API calls.
+- when a PR is merged to the default branch
+- on an hourly schedule, to pick up changes to docs included from other repos
+
+### Build the static site locally
 
 ```sh
 NO_CONTRACTS=true bundle exec middleman build
 ```
 
-This will create a bunch of static files in `/build`.
+This will create a `build` directory containing a set of HTML files.
 
 ## Licence
 
 [MIT License](LICENCE)
 
-[actions]: https://github.com/alphagov/govuk-developer-docs/blob/main/.github/workflows/ci.yml
+[ci.yml]: /.github/workflows/ci.yml
