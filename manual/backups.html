@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Use of backups - GOV.UK Developer Documentation</title>
+    <title>Data backups in GOV.UK - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -20,12 +20,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Use of backups - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Data backups in GOV.UK - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/backups.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Use of backups" />
+      <meta property="og:title" content="Data backups in GOV.UK" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/backups.html" />
 
@@ -137,46 +137,26 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Use of backups</span></a>
-  </li>
-  <li>
-    <a href="#aws-rds-backups"><span>AWS RDS Backups</span></a>
+    <a href="#header"><span>Data backups in GOV.UK</span></a>
     <ul>
       <li>
-        <a href="#point-in-time-rds-backups"><span>Point-in-time RDS backups</span></a>
+        <a href="#databases-in-amazon-rds-and-documentdb"><span>Databases in Amazon RDS and DocumentDB</span></a>
         <ul>
           <li>
-            <a href="#manual-rds-snapshots"><span>Manual RDS snapshots</span></a>
+            <a href="#rds-backup"><span>RDS Backup</span></a>
+          </li>
+          <li>
+            <a href="#nightly-db-backup-cronjobs"><span>Nightly db-backup cronjobs</span></a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#full-backups-via-govuk_env_sync"><span>Full backups via govuk_env_sync</span></a>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <a href="#s3-buckets-backups"><span>S3 buckets backups</span></a>
-    <ul>
-      <li>
-        <a href="#s3-versioning"><span>S3 versioning</span></a>
+        <a href="#data-in-s3-buckets"><span>Data in S3 buckets</span></a>
       </li>
       <li>
-        <a href="#s3-cross-region-replication"><span>S3 Cross-Region Replication</span></a>
+        <a href="#elasticsearch-indices-in-amazon-opensearch"><span>Elasticsearch indices in Amazon OpenSearch</span></a>
       </li>
     </ul>
-  </li>
-  <li>
-    <a href="#documentdb-backups"><span>DocumentDB backups</span></a>
-  </li>
-  <li>
-    <a href="#mongodb-backups"><span>MongoDB backups</span></a>
-  </li>
-  <li>
-    <a href="#elasticsearch-backups"><span>Elasticsearch backups</span></a>
-  </li>
-  <li>
-    <a href="#graphite-whisper-backups"><span>Graphite Whisper backups</span></a>
   </li>
 </ul>
 
@@ -225,75 +205,113 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/394c76577ed3f72d114c946beff7101ec0917279">1 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d5c41bd56f17b54b5c9d5821fc9dc5cc1697ca72">5 Mar 2024</a>
 </div>
 
- <h1 id='header'>Use of backups</h1> <p>This manual provides a shared definition of a backup and documents our current use of backups summarising strategies and tools we use.</p>
+ <h1 id='header'>Data backups in GOV.UK</h1> <p>This document describes the backup policies and strategies for GOV.UK&rsquo;s production databases and other persistent storage systems.</p>
 
 <blockquote>
-<p>A backup is a process of creating a copy of the data stored in a database and storing it in a safe location to allow data recovery in case of a disaster, system failure or human error.</p>
+<p>For restore playbooks, see:</p>
+
+<ul>
+<li><a href="/manual/howto-backup-and-restore-in-aws-rds.html">Restore a database in Amazon RDS</a></li>
+<li><a href="/manual/elasticsearch-dumps.html">Restore Elasticsearch indices from snapshots</a></li>
+</ul>
 </blockquote>
-<h1 id='aws-rds-backups'>AWS RDS Backups</h1><h2 id='point-in-time-rds-backups'>Point-in-time RDS backups</h2><p>Point-in-time backups for Amazon Relational Database Service (RDS) allow us to restore databases to a specific point in time in the past. This feature is useful when we want to restore database to a state before an unintended change or data loss occurred.</p>
-<p>When point-in-time backups for an RDS instance are enabled, Amazon RDS automatically takes regular backups of the database and stores them in Amazon S3. Each backup contains a snapshot of the database at a specific point in time. RDS uploads transaction logs for DB instances to Amazon S3 every five minutes. We can restore the database to any of these points in time, within the retention period up to the last five minutes of database usage.</p>
-<p>The retention period is the amount of time that Amazon RDS stores our backups.</p>
-<p>They are configured with <a href="https://github.com/alphagov/govuk-aws/blob/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/modules/aws/rds_instance/main.tf#L118-L128">terraform</a> where <code>backup_retention_period</code> is set to 7 days, creating one snapshot per day during the specified <code>backup_window</code> (see  <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance">aws_db_instance terraform docs</a>). The <code>backup_window</code>, should generally be set to a time where some increased latency would be acceptable (i.e. overnight, between 1 AM and 3 AM in our case), as <a href="https://github.com/shunliz/AWS-certificate/blob/master/rds/rds-back-up-restore-and-snapshots.md#automated-backups">storage I/O may be suspended for a few seconds</a> when the backup initialises, though this only seems to apply to single Availability Zone instances. All our RDS databases, except for Transition PostgreSQL, are Multi-AZ.</p>
-<p>These snapshots are visible on the &ldquo;<a href="https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#automatedbackups:">Automated backups</a>&rdquo; page in the AWS console (and are the same snapshots as can be seen under each RDS instance&rsquo;s &ldquo;Maintenance &amp; backups&rdquo; tab).
-The &ldquo;Earliest restorable time&rdquo; and &ldquo;Latest restorable time&rdquo; columns show the time range that can be restored to. <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html">Read more about restoring a DB instance to a specified time</a>.</p>
-<p>When we restore a database to a point in time, Amazon RDS creates a new instance and restores the database to the specified point in time. Amazon RDS first restores the automated backup that is closest to the desired time and then applies the transaction logs to roll the database forward to the specific point in time. The new instance will have a new endpoint and downstream apps will need to be updated to point to it.</p>
-<h3 id='manual-rds-snapshots'>Manual RDS snapshots</h3><p>It is also possible to take manual snapshots (<a href="https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#snapshots-list:">example</a>) at any time to create a backup. Amazon RDS snapshots are point-in-time backups of a relational database. They capture the entire database at a specific point in time, including the data, configuration and transaction logs.</p>
-<p>They are different from automated backups, which are taken automatically by RDS. They are stored indefinitely until we delete them. We don&rsquo;t typically create manual snapshots.
-<a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateSnapshot.html">Read more about creating a manual DB snapshot</a>.</p>
-<h2 id='full-backups-via-govuk_env_sync'>Full backups via govuk_env_sync</h2><p>In addition to the automatic point-in-time RDS backups described above, we use pg_dump and mysqldump utilities in the <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_env_sync/files/govuk_env_sync.sh">govuk_env_sync</a> that runs daily. The full backups are stored in an S3 bucket with a mixture of Glacier, Standard-IA and Standard storage classes (depending on age) and retained for 120 days.</p>
-<p>It also facilitates Mongo, DocumentDB and Elasticsearch backups described in the later sections of this manual. <a href="manual/govuk-env-sync.html">Read more about Environment data sync</a>.</p>
-<h1 id='s3-buckets-backups'>S3 buckets backups</h1><p>Besides the S3 buckets that store aforementioned full database backups, we have S3 buckets that store business critical information, for example:</p>
+<h2 id='databases-in-amazon-rds-and-documentdb'>Databases in Amazon RDS and DocumentDB</h2><p>Our production <a href="https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#databases:">RDS</a> and <a href="https://eu-west-1.console.aws.amazon.com/docdb/home?region=eu-west-1#clusters">DocumentDB</a> clusters have two backup systems, which together are able to meet our needs:</p>
 
 <ul>
-<li><a href="/manual/fall-back-to-mirror.html">GOV.UK mirrors</a>
+<li><a href="https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#automatedbackups:"><strong>RDS Backup</strong></a> provides point-in-time recovery (PITR), also known as continuous data protection (CDP)</li>
+<li><a href="https://argo.eks.production.govuk.digital/applications/db-backup"><strong>db-backup cronjobs</strong></a> write nightly database dumps to <a href="https://s3.console.aws.amazon.com/s3/buckets/govuk-production-database-backups?region=eu-west-1">S3</a> in portable formats to ensure that we are not locked into AWS</li>
+</ul>
+<h3 id='rds-backup'>RDS Backup</h3><div class="table-container">
+        <table>
+          <tr>
+<th>Strategy</th>
+<th>Retention</th>
+<th>Recovery point objective (RPO)</th>
+<th>Recovery time objective (RTO)</th>
+</tr><tr>
+<td>Nightly full + continuous</td>
+<td>7 days</td>
+<td>5 minutes</td>
+<td>4 hours (best effort)</td>
+</tr>
+        </table>
+      </div><h4 id='capabilities-of-rds-backup'>Capabilities of RDS Backup</h4>
+<ul>
+<li><strong>PITR/CDP</strong> lets us restore to any arbitrary point in time between the retention period and the RPO</li>
+<li>covers data written as recently as 5 minutes in the past</li>
+<li>stores backups in N+1 regions</li>
+</ul>
+<h4 id='limitations-of-rds-backup'>Limitations of RDS Backup</h4><p>RDS Backup produces backups that are:</p>
 
 <ul>
-<li>A replica is also held in <a href="https://github.com/alphagov/govuk-aws/tree/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/infra-google-mirror-bucket">Google Cloud Storage</a> with versioning enabled</li>
+<li><strong>opaque</strong>, in that we cannot directly read the backups</li>
+<li><strong>not portable</strong>, meaning we cannot transfer or restore the backups outside AWS</li>
+</ul>
+<h3 id='nightly-db-backup-cronjobs'>Nightly db-backup cronjobs</h3><div class="table-container">
+        <table>
+          <tr>
+<th>Strategy</th>
+<th>Retention</th>
+<th>Recovery point objective (RPO)</th>
+<th>Recovery time objective (RTO)</th>
+</tr><tr>
+<td>Nightly full</td>
+<td>120 days</td>
+<td>24 hours</td>
+<td>1 working day (best effort)</td>
+</tr>
+        </table>
+      </div><h4 id='capabilities-of-the-db-backup-cronjobs'>Capabilities of the db-backup cronjobs</h4>
+<ul>
+<li><strong>automatic restore testing</strong>, which assures us that:
+
+<ul>
+<li>we can actually restore from our backups</li>
+<li>the applications still work properly after a restore</li>
 </ul></li>
-<li>GOV.UK assets (attachments)</li>
-<li>Terraform state</li>
-<li>Data.gov.uk organograms</li>
+<li><strong>timelocked backups</strong>, so that nobody can delete or tamper with an unexpired backup regardless of their access privileges</li>
+<li><strong>portable backups</strong> in standard formats, which means we can restore them outside AWS</li>
+<li>long retention at very low cost</li>
+<li>covers <code>router-mongo</code>, our one remaining database hosted outside RDS</li>
+<li>stored in N+1 regions</li>
 </ul>
-<p>Backups have encryption at rest enabled. <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingEncryption.html">AWS enables S3 encryption at rest by default</a>.</p>
-<h2 id='s3-versioning'>S3 versioning</h2><p>S3 have a versioning feature, which allows you to keep multiple versions of an object in the same bucket. We have versioning enabled in some buckets, which allows both:</p>
+<h4 id='limitations-of-the-db-backup-cronjobs'>Limitations of the db-backup cronjobs</h4>
+<ul>
+<li>only run once daily, overnight</li>
+</ul>
+<h2 id='data-in-s3-buckets'>Data in S3 buckets</h2><p>In some cases, GOV.UK stores original data directly in S3:</p>
 
 <ul>
-<li>restoration of an old version while retaining the most recent</li>
-<li>permanent deletion of the most recent version, reverting to the previous version</li>
+<li><code>govuk-assets-production</code>: inline images in articles and attachments such as PDF documents, managed via Asset Manager</li>
+<li><code>datagovuk-production-ckan-organogram</code>: organisation charts on data.gov.uk</li>
 </ul>
-<p>The feature is enabled by configuring the <code>versioning</code> attribute (<a href="https://github.com/alphagov/govuk-aws/blob/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/infra-assets/backup.tf#L11-L13">example</a>) in terraform.</p>
-<p>S3 versioning is enabled for buckets that store GOV.UK assets, mirrors, data.gov.uk organograms, related links, database backups, ActiveStorage blobs uploaded via Content Publisher, <a href="https://github.com/alphagov/govuk-aws/tree/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/infra-artefact-bucket">some non-ruby apps artifact used for deployment</a>, Fastly and AWS logs.</p>
-<h2 id='s3-cross-region-replication'>S3 Cross-Region Replication</h2><p>S3 replication between regions is a feature of Amazon S3 that allows you to automatically replicate S3 objects from one region to another. To enable it we:</p>
-
-<ol>
-<li>create a designated replica S3 bucket in the destination region that will receive the replicated objects</li>
-<li>configure replication rules for the source bucket with <code>s3_bucket_replication_configuration</code> attribute in terraform (<a href="https://github.com/alphagov/govuk-aws/blob/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/infra-database-backups-bucket/main.tf#L139-L151">example</a> of <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_replication_configuration">deprecated  <code>replication_configuration</code></a>), where we specify the destination bucket and whether the feature is &ldquo;Enabled&rdquo;.</li>
-</ol>
-<p>Region replication is enabled for buckets that store GOV.UK mirrors, assets, database backups, ActiveStorage blobs uploaded via Content Publisher, some non-ruby apps artifact used for deployment and AWS logging (in production).</p>
-<h1 id='documentdb-backups'>DocumentDB backups</h1><p>Amazon DocumentDB snapshots are point-in-time backups of Amazon DocumentDB cluster that are stored in Amazon S3. These are service-managed Amazon S3 buckets and we don&rsquo;t have access to the backup files. These backups capture the entire cluster at a specific point in time, including the data, configuration and transaction logs (used to enable point-in-time recovery).</p>
-<p>Automated backups are taken daily and are retained for <a href="https://github.com/alphagov/govuk-aws-data/blob/4cc7b75f9ac5f7fd76923c3e82f825913c89670f/data/app-licensify-documentdb/production/common.tfvars#L1">5 days</a>. We also have point-in-time recovery enabled, which allows us to restore to database to any point in time within the retention period.</p>
-<p>When the point-in-time recovery is initialised, Amazon DocumentDB first restores the automated backup that is closest to the desired time and then applies the transaction logs to roll the database forward to the specific point in time.</p>
-<p>We also take full backups via govuk_env_sync using mongodump utility.</p>
-<p>It is also possible but not typically done to take manual snapshots of a DocumentDB cluster to create a backup.</p>
-<h1 id='mongodb-backups'>MongoDB backups</h1>
-<blockquote>
-<p>Use of Mongo is a recognised <a href="https://trello.com/c/lSpntlfk/81-mongo-26-has-reached-end-of-life">tech debt</a> and is likely to soon go away as we are planning to port to PostgreSQL.</p>
-</blockquote>
-<p>We still run one MongoDB cluster:</p>
+<p>These buckets have:</p>
 
 <ul>
-<li>router_backend (router)</li>
+<li>a replica in a different AWS region</li>
+<li>versioning, so that we can restore previous or deleted object versions</li>
+<li>120-day timelock on the replica (in governance mode, so that we can still delete an object if, for example, a department publishes private information by mistake)</li>
 </ul>
-<p>Databases are backed up to S3 using mongodump, a command-line tool that creates a binary dump, in the <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_env_sync/files/govuk_env_sync.sh">govuk_env_sync</a>.</p>
-<h1 id='elasticsearch-backups'>Elasticsearch backups</h1><p>Elasticsearch provides the Snapshot and Restore API for creating and restoring snapshots of Elasticsearch indices. When we create a snapshot using the API, Elasticsearch creates a copy of the index and its data and stores it in the specified repository. Elasticsearch also stores metadata about the snapshot, including the index mappings, settings and aliases. These snapshots are taken <a href="https://github.com/alphagov/govuk-aws/blob/39f21f8c0397a4ff0d07caf397fcfabffa6ac339/terraform/projects/app-elasticsearch6/main.tf#L87-L91">overnight</a> and stored in an <a href="https://github.com/alphagov/govuk-aws/blob/c7297c0730dd4a7319e11f270e197dd52e5d8127/terraform/projects/app-elasticsearch6/register-snapshot-repository.py#L37">S3 bucket</a> to be used in the <a href="https://github.com/alphagov/govuk-puppet/blob/aa75027/modules/govuk_env_sync/files/govuk_env_sync.sh#L328-L336">environment sync process</a>.</p>
-<p>GOV.UK search is a consumer of publishing API events. Indices can be recreated to match current publishing state by republishing content.</p>
-<p>Automated snapshots are taken hourly, retained for 2 weeks in an AWS repository that we can interact with via the Elasticsearch API.</p>
-<p><a href="/manual/elasticsearch-dumps.html#header">Read more about backup and restore of Elasticsearch indices</a>.</p>
-<h1 id='graphite-whisper-backups'>Graphite Whisper backups</h1><p>Graphite is a open-source monitoring tool that stores time-series data. Whisper is a data storage format used by Graphite that is optimised for fast, reliable storage of time-series data.</p>
-<p>We use the <a href="https://github.com/alphagov/govuk-puppet/blob/648e9b95014b5fb40e9fb8da2a14c008ebf934aa/modules/govuk/manifests/node/s_graphite.pp#L117">whisper-backup script in govuk-puppet</a> to replicate the files daily to a <a href="https://github.com/alphagov/govuk-aws/blob/cb3205d8b11da3edd518924ad5ab2668627c6d48/terraform/projects/infra-graphite-backups-bucket/README.md">dedicated s3 bucket</a>. The data from production is retained for <a href="https://github.com/alphagov/govuk-aws/blob/cb3205d8b11da3edd518924ad5ab2668627c6d48/terraform/projects/infra-graphite-backups-bucket/main.tf#L23-L27">7 days</a> and for <a href="https://github.com/alphagov/govuk-aws-data/blob/7b5a2638c9d432aca5d7e09be3f990256b3a475d/data/infra-graphite-backups-bucket/integration/common.tfvars#L1">3 days</a> for non-production environments.</p>
+<h2 id='elasticsearch-indices-in-amazon-opensearch'>Elasticsearch indices in Amazon OpenSearch</h2><div class="table-container">
+        <table>
+          <tr>
+<th>Strategy</th>
+<th>Retention</th>
+<th>Recovery point objective (RPO)</th>
+<th>Recovery time objective (RTO)</th>
+</tr><tr>
+<td>Incremental snapshots</td>
+<td>14 days</td>
+<td>1 hour</td>
+<td>1 working day (best effort)</td>
+</tr>
+        </table>
+      </div><p>GOV.UK does not store any original data in Elasticsearch, but regenerating the full index takes a long time.</p>
+<p>The Search feature on GOV.UK no longer uses Elasticsearch, but some other features of the website still rely on Elasticsearch indices for legacy reasons.</p>
+<p>Amazon OpenSearch Service <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html#managedomains-snapshot-restore">takes hourly snapshots</a> of Elasticsearch indices as standard. We can <a href="/manual/elasticsearch-dumps.html">restore Elasticsearch indices from snapshots</a> relatively quickly compared to a full reindex.</p>
 
   <div class='related-content'>
 
@@ -329,7 +347,7 @@ The &ldquo;Earliest restorable time&rdquo; and &ldquo;Latest restorable time&rdq
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/backups.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Use+of+backups%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fbackups.html%29&amp;labels=bug&amp;title=Re%3A+%27Use+of+backups%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Data+backups+in+GOV.UK%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fbackups.html%29&amp;labels=bug&amp;title=Re%3A+%27Data+backups+in+GOV.UK%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
