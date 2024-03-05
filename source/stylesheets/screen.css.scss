@@ -5,6 +5,7 @@
 @import "govuk_publishing_components/components/_button";
 @import "govuk_publishing_components/components/_fieldset";
 @import "govuk_publishing_components/components/_heading";
+@import "govuk_publishing_components/components/_input";
 @import "govuk_publishing_components/components/_radio";
 @import "govuk_publishing_components/components/_success-alert";
 @import "govuk_publishing_components/components/_tabs";
@@ -129,4 +130,20 @@ ul.subdir__menu {
   @include govuk-media-query($until: tablet) {
     width: calc(100vw - #{$govuk-gutter} * 2);
   }
+}
+
+.filter-form {
+  display: none;
+
+  .js-enabled & {
+    display: block;
+  }
+}
+
+.filter-list-hidden {
+  display: none;
+}
+
+.hidden {
+  display: none;
 }

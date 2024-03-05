@@ -6,6 +6,7 @@
 //= require govuk_publishing_components/components/cookie-banner
 //= require govuk_publishing_components/components/tabs
 //= require govuk_publishing_components/load-analytics
+//= require filter-list
 
 // reworked version of modules.js from govuk_publishing_components
 // needed to manually start tech docs gem modules now that we're including

@@ -24,16 +24,31 @@
   ]
 }) %>
 
+<form role="search" data-module="filter-list" class="filter-form">
+  <%= GovukPublishingComponents.render("govuk_publishing_components/components/input", {
+    label: {
+      text: "Filter events"
+    },
+    name: "filter-box",
+    type: "search",
+    search_icon: true,
+    spellcheck: true
+  }) %>
+</form>
+
 <% events = events_by_type %>
 <% events = events.sort_by { |key| key }.to_h %>
 <% events.each do |key, value| %>
-  <h2 class="govuk-heading-s"><%= key %></h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <% value[:events].each do |e| %>
-      <li>
-        <% anchor_link = "#heading-#{e[:index]}" %>
-        <a href="event_<%= urlize(e[:name]) %>.html<%= anchor_link %>" class="govuk-link"><%= e[:event_name] %></a> (<%= e[:name] %>)
-      </li>
-    <% end %>
-  </ul>
+  <div data-filter-section>
+    <h2 data-filter-title class="govuk-heading-s"><%= key %></h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <% value[:events].each do |e| %>
+        <li data-filter-item>
+          <% anchor_link = "#heading-#{e[:index]}" %>
+          <a href="event_<%= urlize(e[:name]) %>.html<%= anchor_link %>" class="govuk-link"><%= e[:event_name] %></a> (<%= e[:name] %>)
+          <span class="hidden"><%= key %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
