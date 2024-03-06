@@ -10,6 +10,7 @@
         - text: Manual page
           link: https://www.gov.uk/guidance/immigration-rules/immigration-rules-part-11b
       tracker: event_tracker
+      component: accordion
       data:
       - name: event
         value: event_data
@@ -32,6 +33,7 @@
       priority: high
       description: When the 'Show all sections' control is used.
       tracker: event_tracker
+      component: accordion
       data:
       - name: event
         value: event_data
@@ -54,6 +56,7 @@
       priority: high
       description: When links within accordion sections are clicked.
       tracker: link_tracker
+      component: accordion
       data:
       - name: event
         value: event_data
@@ -84,6 +87,7 @@
       description: When the back link is used, on pages like the email subscription journeys
       implemented: true
       priority: low
+      component: back_link
       data:
       - name: event
         value: event_data
@@ -136,6 +140,7 @@
           link: https://www.gov.uk/
       implemented: true
       priority: medium
+      component: cookie_banner
       data:
       - name: event
         value: event_data
@@ -164,6 +169,7 @@
         - text: Another generic page with a breadcrumb
           link: https://www.gov.uk/check-coastal-erosion-management-in-your-area
       tracker: link_tracker
+      component: breadcrumbs
       data:
       - name: event
         value: event_data
@@ -249,9 +255,10 @@
       priority: low
       description: Tracks the action links shown on only some browse pages.
       examples:
-        - text: Benefits
+        - text: Benefits (the 'Popular tasks' links)
           link: https://www.gov.uk/browse/benefits
       tracker: link_tracker
+      component: action_link
       data:
       - name: event
         value: event_data
@@ -313,6 +320,7 @@
       tracker: link_tracker
       implemented: true
       priority: low
+      component: notice
       data:
       - name: event
         value: event_data
@@ -417,6 +425,8 @@
           link: https://www.gov.uk/jobseekers-allowance
         - text: Cost of living payments (anchor links to same page)
           link: https://www.gov.uk/guidance/cost-of-living-payment
+      tracker: link_tracker
+      component: contents_list
       data:
       - name: event
         value: event_data
@@ -484,6 +494,8 @@
       examples:
         - text: Government organisations
           link: https://www.gov.uk/government/organisations
+      tracker: event_tracker
+      component: details
       data:
       - name: event
         value: event_data
@@ -511,6 +523,7 @@
         - text: Research and statistics
           link: https://www.gov.uk/search/research-and-statistics
       tracker: link_tracker
+      component: subscription_links
       data:
       - name: event
         value: event_data
@@ -538,6 +551,7 @@
         - text: Search pages
           link: https://www.gov.uk/search/all?keywords=minister&order=relevance
       tracker: link_tracker
+      component: subscription_links
       data:
       - name: event
         value: event_data
@@ -569,6 +583,7 @@
         - text: Welfare topic page (start of email subscription journey)
           link: https://www.gov.uk/welfare
       tracker: link_tracker
+      component: signup_link
       data:
       - name: event
         value: event_data
@@ -664,6 +679,7 @@
       priority: medium
       description:
       tracker: event_tracker
+      component: feedback
       data:
       - name: event
         value: event_data
@@ -682,6 +698,7 @@
       priority: medium
       description:
       tracker: event_tracker
+      component: feedback
       data:
       - name: event
         value: event_data
@@ -700,6 +717,7 @@
       priority: medium
       description:
       tracker: event_tracker
+      component: feedback
       data:
       - name: event
         value: event_data
@@ -718,6 +736,7 @@
       priority: medium
       description: Clicking the 'send me the survey' button after choosing 'No'
       tracker: event_tracker
+      component: feedback
       data:
       - name: event
         value: event_data
@@ -736,6 +755,7 @@
       priority: medium
       description: Clicking the 'send' button after choosing 'Report a problem with this page'
       tracker: event_tracker
+      component: feedback
       data:
       - name: event
         value: event_data
@@ -760,6 +780,7 @@
         - text: GOV.UK homepage
           link: https://www.gov.uk/
       tracker: link_tracker
+      component: layout_footer
       data:
       - name: event
         value: event_data
@@ -837,6 +858,7 @@
         - text: Page with html attachments
           link: https://www.gov.uk/government/publications/equality-act-guidance
       tracker: link_tracker
+      component: attachment
       data:
       - name: event
         value: event_data
@@ -1166,6 +1188,7 @@
         - text: Buy a rod fishing licence
           link: https://www.gov.uk/fishing-licences/types-of-licences-and-rod-limits
       tracker: link_tracker
+      component: previous_and_next_navigation
       data:
       - name: event
         value: event_data
@@ -1194,6 +1217,7 @@
         - text: Register a trust as a trustee
           link: https://www.gov.uk/guidance/register-a-trust-as-a-trustee
       tracker: event_tracker
+      component: print_link
       data:
       - name: event
         value: event_data
@@ -1261,6 +1285,7 @@
         - text: Page with related navigation
           link: https://www.gov.uk/government/statistics/national-curriculum-assessments-key-stage-2-2016-provisional
       tracker: link_tracker
+      component: contextual_sidebar
       data:
       - name: event
         value: event_data
@@ -1363,6 +1388,7 @@
       examples:
         - text: Cost of Living payments (click on 'See all updates')
           link: https://www.gov.uk/guidance/cost-of-living-payment
+      component: metadata
       data:
       - name: event
         value: event_data
@@ -1383,6 +1409,7 @@
       examples:
         - text: Air passenger duty
           link: https://www.gov.uk/hmrc-internal-manuals/air-passenger-duty
+      component: metadata
       data:
       - name: event
         value: event_data
@@ -1431,6 +1458,7 @@
           link: https://www.gov.uk/search/
         - text: Search results page
           link: https://www.gov.uk/search/all?keywords=pension
+      component: search
       data:
       - name: event
         value: event_data
@@ -1454,6 +1482,7 @@
       examples:
         - text: Search results page (click on a result)
           link: https://www.gov.uk/search/all?keywords=pension
+      component: document_list
       data:
       - name: event
         value: search_results
@@ -1478,6 +1507,7 @@
       examples:
         - text: Search results page
           link: https://www.gov.uk/search/all?keywords=pension
+      component: option_select
       data:
       - name: event
         value: event_data
@@ -1533,6 +1563,7 @@
         - text: Organisation page
           link: https://www.gov.uk/government/organisations/department-for-culture-media-and-sport
       tracker: link_tracker
+      component: share_links
       data:
       - name: event
         value: event_data
@@ -1560,6 +1591,7 @@
         - text: Press release
           link: https://www.gov.uk/government/news/new-protections-for-children-and-free-speech-added-to-internet-laws
       tracker: link_tracker
+      component: share_links
       data:
       - name: event
         value: event_data
@@ -1589,6 +1621,7 @@
         - text: Tell DVLA you've sold, transferred or bought a vehicle
           link: https://www.gov.uk/sold-bought-vehicle
       tracker: link_tracker
+      component: button
       data:
       - name: event
         value: event_data
@@ -1769,6 +1802,7 @@
         - text: Towing rules
           link: https://www.gov.uk/towing-rules
       tracker: link_tracker
+      component: button
       data:
       - name: event
         value: event_data
@@ -1974,6 +2008,7 @@
         - text: Learn to drive a car step by step
           link: https://www.gov.uk/learn-to-drive-a-car
       tracker: event_tracker
+      component: step_by_step_nav
       data:
       - name: event
         value: event_data
@@ -2000,6 +2035,7 @@
         - text: Learn to drive a car step by step
           link: https://www.gov.uk/learn-to-drive-a-car
       tracker: event_tracker
+      component: step_by_step_nav
       data:
       - name: event
         value: event_data
@@ -2026,6 +2062,7 @@
         - text: Learn to drive a car step by step
           link: https://www.gov.uk/learn-to-drive-a-car
       tracker: link_tracker
+      component: step_by_step_nav
       data:
       - name: event
         value: event_data
@@ -2055,6 +2092,7 @@
     - name: link click
       implemented: false
       priority: medium
+      component: step_by_step_nav_header
       data:
       - name: event
         value: event_data
@@ -2069,6 +2107,7 @@
         - text: GOV.UK homepage
           link: https://www.gov.uk
       tracker: link_tracker
+      component: layout_super_navigation_header
       data:
       - name: event
         value: event_data
@@ -2100,6 +2139,7 @@
         - text: GOV.UK homepage
           link: https://www.gov.uk
       tracker: event_tracker
+      component: layout_super_navigation_header
       data:
       - name: event
         value: event_data
@@ -2127,6 +2167,7 @@
         - text: GOV.UK homepage
           link: https://www.gov.uk
       tracker: link_tracker
+      component: layout_super_navigation_header
       data:
       - name: event
         value: event_data
@@ -2163,6 +2204,7 @@
         - text: Tax your vehicle
           link: https://www.gov.uk/vehicle-tax
       tracker: event_tracker
+      component: tabs
       data:
       - name: event
         value: event_data
@@ -2224,6 +2266,7 @@
         - text: HMRC videos for tax credits
           link: https://www.gov.uk/guidance/help-and-support-with-tax-credits
       tracker: video_tracker
+      component: govspeak
       data:
       - name: event
         value: event_data
@@ -2251,6 +2294,7 @@
         - text: HMRC videos for tax credits
           link: https://www.gov.uk/guidance/help-and-support-with-tax-credits
       tracker: video_tracker
+      component: govspeak
       data:
       - name: event
         value: event_data
@@ -2276,6 +2320,7 @@
         - text: HMRC videos for tax credits
           link: https://www.gov.uk/guidance/help-and-support-with-tax-credits
       tracker: video_tracker
+      component: govspeak
       data:
       - name: event
         value: event_data
