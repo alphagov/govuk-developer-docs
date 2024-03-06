@@ -13,42 +13,32 @@ malicious/suspect requests at the edge of the network before they can reach the 
 
 WAF rules are configured via Terraform and associated to load balancers.
 
-The rules are maintained alongside the configuration for the public load
-balancers in [govuk-aws/terraform/projects/infra-public-services](https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-public-services).
-For instructions on how to deploy the terraform projects see [deploying terraform](/manual/deploying-terraform.html)
+The rules are maintained in [govuk-aws/terraform/projects/infra-public-wafs](https://github.com/alphagov/govuk-aws/tree/main/terraform/projects/infra-public-wafs)
+(alongside the configuration for the public load balancers in [govuk-aws/terraform/projects/infra-public-services](https://github.com/alphagov/govuk-aws/tree/main/terraform/projects/infra-public-services)).
+
+For instructions on how to deploy the terraform projects see [deploying terraform](/manual/deploying-terraform.html).
 
 For documentation on the kinds of rules:
 
 * [AWS WAF Documentation](https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html)
-* [Terraform WAF Rule Documentation](https://www.terraform.io/docs/providers/aws/r/wafregional_rule.html)
+* [Terraform WAF Rule Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl)
 
 ## Viewing logs for WAF
 
-Each time a WAF rule is evaluated and matched it gets logged as either `ALLOW`
-or `BLOCK`. Requests that match the "default" action are not logged. This means
-that only rules that have been explicitly told to `ALLOW` or `BLOCK` will be
-logged, otherwise the logs would contain every single request.
+Our WAF ACLs are configured to log requests to Amazon CloudWatch log groups following the naming convention `aws-waf-logs-<acl>-public-<environment>`.
+They can be live tailed or queried via the CloudWatch interface in the AWS console.
 
-Logs are shipped to a Splunk instance managed by Cyber Security for monitoring
-and the logs are accessible by members of GOV.UK by logging in with your GDS
-Google Account.
+For the `cache_public` and `bouncer_public` WAF ACLs, we only log requests where the action is either `BLOCK` or `COUNT`. For the `backend_public` WAF ACL, we log all requests.
 
-Example query links:
+## Blocking requests by JA3 signature
 
-* [ALL requests](https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D"govuk_waf")
-* [BLOCKED requests](https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D"govuk_waf"%20action%3DBLOCK)
-* [ALLOWED requests](https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D"govuk_waf"%20action%3DALLOW)
+[JA3 is a way of fingerprinting TLS connections](https://engineering.salesforce.com/open-sourcing-ja3-92c9e53c3c41/), which can be used to detect whether a connection comes from a particular browser, or another TLS client (like curl, python, or possibly malware). They are useful as a way to match botnet/malware traffic if there are no better criteria available. Their opaqueness is a disadvantage in that it's not possible to tell anything about what traffic they might apply to by reading the configuration.
 
-If you do not have access to Splunk, you can request access by raising a
-support ticket with IT and asking them to enable Splunk for your Google account
-and saying you work on GOV.UK.
+Note that banning JA3s is potentially risky. If we get it wrong, we could ban a legitimate browser version.
 
-## Debugging issues with logs delivery
+The `backend_public` WAF ACL supports blocking requests by JA3 signature. The production denylist can be configured in
+[govuk-aws-data/infra-public-wafs/production/common.tfvars](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-public-wafs/production/common.tfvars#L4)
+([integration](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-public-wafs/integration/common.tfvars#L4),
+[staging](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-public-wafs/staging/common.tfvars#L4)).
 
-If Splunk is down the logs will be requeued and retried for several
-minutes before falling back to storage in an S3 bucket. The S3 bucket
-has a very short expiry of 3 days since its primary use is to
-troubleshoot issues in scenerios where Splunk delivery is failing.
-
-In addition to the previous 3 days of backup logs, the s3 bucket will also dump
-any errors encountered into `failed-delivery` and `failed-processing` folders.
+The `cache_public` and `bouncer_public` ACLs do not support JA3 denylisting, but this can instead be [configured at the CDN level](/manual/cdn.html#block-requests-based-on-their-ja3-signature).
