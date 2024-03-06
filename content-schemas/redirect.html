@@ -423,7 +423,7 @@
 <tr><td><strong>need_ids</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>phase</strong><br/><code>string</code></td> <td>The service design phase of this content item - https://www.gov.uk/service-manual/phases<br/>Allowed values: <code>alpha</code>, <code>beta</code>, <code>live</code></td></tr>
 <tr><td><strong>public_updated_at</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
-<tr><td><strong>publishing_app</strong><br/><code>string</code></td> <td>The application that published this item.<br/>Allowed values: <code>account-api</code>, <code>calculators</code>, <code>calendars</code>, <code>collections-publisher</code>, <code>contacts</code>, <code>content-publisher</code>, <code>content-tagger</code>, <code>email-alert-frontend</code>, <code>external-link-tracker</code>, <code>feedback</code>, <code>frontend</code>, <code>government-frontend</code>, <code>hmrc-manuals-api</code>, <code>info-frontend</code>, <code>licencefinder</code>, <code>local-links-manager</code>, <code>manuals-publisher</code>, <code>maslow</code>, <code>performanceplatform-big-screen-view</code>, <code>publisher</code>, <code>rummager</code>, <code>search-admin</code>, <code>search-api</code>, <code>service-manual-publisher</code>, <code>share-sale-publisher</code>, <code>short-url-manager</code>, <code>smartanswers</code>, <code>special-route-publisher</code>, <code>specialist-publisher</code>, <code>static</code>, <code>tariff</code>, <code>travel-advice-publisher</code>, <code>whitehall</code></td></tr>
+<tr><td><strong>publishing_app</strong><br/><code>string</code></td> <td>The application that published this item.<br/>Allowed values: <code>account-api</code>, <code>calculators</code>, <code>calendars</code>, <code>collections-publisher</code>, <code>contacts</code>, <code>content-publisher</code>, <code>content-tagger</code>, <code>email-alert-frontend</code>, <code>external-link-tracker</code>, <code>feedback</code>, <code>frontend</code>, <code>government-frontend</code>, <code>hmrc-manuals-api</code>, <code>local-links-manager</code>, <code>manuals-publisher</code>, <code>maslow</code>, <code>performanceplatform-big-screen-view</code>, <code>publisher</code>, <code>rummager</code>, <code>search-admin</code>, <code>search-api</code>, <code>service-manual-publisher</code>, <code>share-sale-publisher</code>, <code>short-url-manager</code>, <code>smartanswers</code>, <code>special-route-publisher</code>, <code>specialist-publisher</code>, <code>static</code>, <code>tariff</code>, <code>travel-advice-publisher</code>, <code>whitehall</code></td></tr>
 <tr><td><strong>publishing_request_id</strong><br/></td> <td>A unique identifier used to track publishing requests to rendered content<br/></td></tr>
 <tr><td><strong>publishing_scheduled_at</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
 <tr><td><strong>redirects</strong><br/><code>array</code></td> <td><br/></td></tr>
@@ -664,51 +664,12 @@
     </span><span class="s2">"Nam vel risus tempor"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-11T10:40:04+00:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"search-admin"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"redirects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/8280b07f-5b89-1be6-a701-efaefaceef8b/15804ff3-fc10-10cf-a9f7-06e0e02394d3/fd7fb072-f31b-1c7b-af7d-0f4cefecc5d1/471530da-d6fd-126d-ac5f-9b031c552ac9#4decebb449"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/ef09b65c-b8cb-1e0a-a6cb-0bcb1eca1c46"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/a79dce36-cbb8-1dd4-ab44-57670a302dd8/e9da65ef-93ef-1708-ab2f-9673ce7b92a3/1b3aa250-ecd3-1da4-a464-9ba3976fee4b/dcb17cfa-6b32-1db0-a9b5-7f20858a2bdd/007bacd6-a50d-185e-adbf-1ce1be65b827#06499f1c17"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/ce0c531b-4b23-147b-ab4b-c07a18bf46e3/f8fecf52-fb19-1af4-a3b3-abef0c4cfb5a"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"segments_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preserve"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/cac539f3-6c4c-12fa-ad04-a72edd4af2ec#6eae0d1760"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/ca0afb89-75e8-1080-ae62-4514e0bcc359/c9345e45-3f02-181b-a99d-ae46d8e2661c"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"segments_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ignore"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/83016abf-8ef1-1e2b-a54b-5e1c6df8d5bb/a417983f-d5cf-1800-aad9-bfe0dd9fc7c5#7efedaebb8"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/b94ada89-ddc9-1c7f-a93f-9bfe77be071e/a403d4af-c16b-19c9-a38f-dce75b1485ce/350866cf-9a54-13a2-aee8-b8b3d20bb15c"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"segments_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ignore"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/b6b57bfb-a7dd-17de-a39b-4fe5ea364292/c49f9fdb-3bf0-1535-af5f-faafaa8d6c40#b56c87cdf3"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/fcf1dd35-6d17-1aa4-afdd-05de74bbe1f8"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/77ef6c9c-a0a7-19db-acaf-e5ccd077c9b8#28fa27405d"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/aba5bee6-61c9-1c6e-a741-c1de7b9debcb/6f76b6eb-3c05-1df6-a04b-8ceedf50aabb"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/33f8ce8a-ed60-1cbf-abc9-a0ebd7b0570c/fcae5ebf-0896-19dd-af89-24ebcd5bfab9/d6b69282-6e8d-1fee-aceb-1a49feca3efb#07bd5f279c"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/3bc51209-f1fd-1cdd-afbd-24fefaaed492"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"segments_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preserve"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_request_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scelerisque. elit. malesuada sem habitant a Nam bibendum. ac eu Suspendisse risus ultricies non lorem pellentesque et dolor sit Nam non senectus Pellentesque turpis egestas. massa vel ac Sed finibus molestie Aenean in Quisque ipsum cursus orci lectus tristique tempor nibh fames volutpat mauris at Lorem vestibulum. risus suscipit amet est. tristique tempor consectetur libero. porttitor molestie adipiscing ac ac leo purus interdum. dolor eros. Ut nibh. interdum. netus Duis Mauris et Ut morbi eu imperdiet sollicitudin aliquet. hendrerit sagittis sed nisl vel"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"redirect"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-23T21:59:01+00:00"</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-19T07:02:20+00:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <hr>
@@ -735,7 +696,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>phase</strong><br/><code>string</code></td> <td>The service design phase of this content item - https://www.gov.uk/service-manual/phases<br/>Allowed values: <code>alpha</code>, <code>beta</code>, <code>live</code></td></tr>
 <tr><td><strong>previous_version</strong><br/><code>string</code></td> <td><br/></td></tr>
 <tr><td><strong>public_updated_at</strong><br/><code>string</code></td> <td>When the content was last significantly changed (a major update). Shown to users.  Automatically determined by the publishing-api, unless overridden by the publishing application.<br/></td></tr>
-<tr><td><strong>publishing_app</strong><br/><code>string</code></td> <td>The application that published this item.<br/>Allowed values: <code>account-api</code>, <code>calculators</code>, <code>calendars</code>, <code>collections-publisher</code>, <code>contacts</code>, <code>content-publisher</code>, <code>content-tagger</code>, <code>email-alert-frontend</code>, <code>external-link-tracker</code>, <code>feedback</code>, <code>frontend</code>, <code>government-frontend</code>, <code>hmrc-manuals-api</code>, <code>info-frontend</code>, <code>licencefinder</code>, <code>local-links-manager</code>, <code>manuals-publisher</code>, <code>maslow</code>, <code>performanceplatform-big-screen-view</code>, <code>publisher</code>, <code>rummager</code>, <code>search-admin</code>, <code>search-api</code>, <code>service-manual-publisher</code>, <code>share-sale-publisher</code>, <code>short-url-manager</code>, <code>smartanswers</code>, <code>special-route-publisher</code>, <code>specialist-publisher</code>, <code>static</code>, <code>tariff</code>, <code>travel-advice-publisher</code>, <code>whitehall</code></td></tr>
+<tr><td><strong>publishing_app</strong><br/><code>string</code></td> <td>The application that published this item.<br/>Allowed values: <code>account-api</code>, <code>calculators</code>, <code>calendars</code>, <code>collections-publisher</code>, <code>contacts</code>, <code>content-publisher</code>, <code>content-tagger</code>, <code>email-alert-frontend</code>, <code>external-link-tracker</code>, <code>feedback</code>, <code>frontend</code>, <code>government-frontend</code>, <code>hmrc-manuals-api</code>, <code>local-links-manager</code>, <code>manuals-publisher</code>, <code>maslow</code>, <code>performanceplatform-big-screen-view</code>, <code>publisher</code>, <code>rummager</code>, <code>search-admin</code>, <code>search-api</code>, <code>service-manual-publisher</code>, <code>share-sale-publisher</code>, <code>short-url-manager</code>, <code>smartanswers</code>, <code>special-route-publisher</code>, <code>specialist-publisher</code>, <code>static</code>, <code>tariff</code>, <code>travel-advice-publisher</code>, <code>whitehall</code></td></tr>
 <tr><td><strong>redirects</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>rendering_app</strong><br/><code>null</code></td> <td><br/></td></tr>
 <tr><td><strong>routes</strong><br/><code>array</code></td> <td><br/></td></tr>
@@ -762,7 +723,7 @@ a publishing application sends to the publishing-api in a
   </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tr"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"malesuada non aliquet. interdum. tristique sit nibh. dolor Aenean tempor adipiscing purus nisl amet fames ac Lorem pellentesque Mauris hendrerit porttitor in vel bibendum. et a sed senectus turpis Ut lectus Nam ac Pellentesque mauris tristique habitant ultricies orci non eu risus Suspendisse volutpat dolor Quisque nibh tempor leo finibus lorem molestie eu risus Sed at elit. ipsum sollicitudin"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-26T18:43:13+00:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"specialist-publisher"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tariff"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"redirects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/4b91adf5-c7a8-18a5-afef-1cebe9f9ce25#e8febb9397"</span><span class="p">,</span><span class="w">
