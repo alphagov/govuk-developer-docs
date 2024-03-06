@@ -562,7 +562,7 @@
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f35d456155d25b592a2c5b8992bd3d9504e4b1df">26 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b27c180826b43e51103be364abc44ffb5a507f6c">5 Mar 2024</a>
 </div>
 
  <h1 id='kuberneteseks-cheatsheet-for-gov-uk-developers'>Kubernetes/EKS cheatsheet for GOV.UK developers</h1><p>This page lists some example commands for interacting with the GOV.UK
@@ -571,13 +571,22 @@ Kubernetes clusters.</p>
 general quick-reference guide.</p>
 <h2 id='prerequisites'>Prerequisites</h2>
 <ol>
-<li><p>You need to have completed <a href="get-started/">Get started with the GOV.UK Kubernetes
-clusters</a>. If you skimmed those instructions, make sure you
-have configured your shell:</p>
+<li><p>You need to have completed <a href="get-started/access-eks-cluster/">Access an EKS
+cluster</a> from the <a href="get-started/">get started
+guide</a>. If you skimmed those instructions, make sure you have
+configured your shell:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
 <span class="nb">alias </span><span class="nv">k</span><span class="o">=</span>kubectl
 </code></pre></div></li>
-<li><p>Obtain credentials to access the cluster.</p>
+<li><p>Obtain credentials to access the cluster. Use an IAM role with sufficient permissions:</p>
+
+<ul>
+<li><code>-readonly</code> roles can view logs and configuration</li>
+<li><code>-poweruser</code> roles can run Rake tasks or open a shell</li>
+<li><code>-administrator</code> roles can modify base cluster services (you should not
+normally need this)</li>
+</ul>
+<p>For example:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="c"># Obtain IAM credentials for the AWS account (integration, staging, production).</span>
 <span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-poweruser <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
 
@@ -587,15 +596,9 @@ k config use-context integration
 <span class="c"># Use the `apps` namespace by default. You only need to do this the first</span>
 <span class="c"># time you use each cluster.</span>
 k config set-context <span class="nt">--current</span> <span class="nt">--namespace</span><span class="o">=</span>apps
-</code></pre></div><p>Use an IAM role with sufficient permissions:</p></li>
+</code></pre></div></li>
 </ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>- `-readonly` roles can view logs and configuration
-- `-poweruser` roles can run Rake tasks or open a shell
-- `-administrator` roles can modify base cluster services (you should not
-  normally need this)
-
-See [Access an EKS cluster](get-started/access-eks-cluster/) for more.
-</code></pre></div><h2 id='common-tasks'>Common tasks</h2><h3 id='view-recent-logs-for-an-app'>View recent logs for an app</h3><p>From one pod, chosen arbitrarily:</p>
+<h2 id='common-tasks'>Common tasks</h2><h3 id='view-recent-logs-for-an-app'>View recent logs for an app</h3><p>From one pod, chosen arbitrarily:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k logs deploy/account-api
 </code></pre></div><p>From all pods:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k logs <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span>account-api
