@@ -218,64 +218,70 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>👉 <a href="https://docs.publishing.service.gov.uk">https://docs.publishing.service.gov.uk</a></p>
+<p>👉 <a href="https://docs.publishing.service.gov.uk/">https://docs.publishing.service.gov.uk/</a></p>
 
 <p>This is a static site generated with Middleman, using <a href="https://github.com/alphagov/tech-docs-template">alphagov/tech-docs-template</a>.</p>
 
 <p>Some of the files (like the CSS, javascripts and layouts) are managed in the template and are not supposed to be modified here. Any project-specific
 Ruby code needs to go into <code>/app</code>.</p>
 
-<h2 id="technical-documentation">Technical documentation</h2>
+<h2 id="build-the-app-locally">Build the app locally</h2>
 
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-app">Running the app</h3>
-
-<pre><code>./startup.sh
+<pre lang="sh"><code>bundle install
 </code></pre>
 
-<p>The docs include pages pulled from other GitHub repositories. By default, all these &ldquo;proxy&rdquo; pages are pulled when you start the app, which can lead to rate limit error. Using a GitHub API token avoids this.</p>
-
-<p><a href="https://github.com/settings/tokens/new">Create a GitHub auth token</a> (the token doesn&rsquo;t need any permissions).</p>
-
-<p>Store the token in a <code>.env</code> file like this:</p>
-
-<pre><code>GITHUB_TOKEN=somethingsomething
-</code></pre>
-
-<p>Alternatively, you can also disable proxy pages temporarily e.g.</p>
-
-<pre><code>env SKIP_PROXY_PAGES=true ./startup.sh
-</code></pre>
-
-<p>Disabling proxy pages means you&rsquo;ll get a &ldquo;Not Found&rdquo; error if you try to access them locally.</p>
-
-<h3 id="testing-the-app">Testing the app</h3>
+<h2 id="run-the-tests-locally">Run the tests locally</h2>
 
 <pre><code>bundle exec rake
 </code></pre>
 
-<h3 id="updating-the-template">Updating the template</h3>
+<h2 id="run-the-app-locally">Run the app locally</h2>
 
-<p>You can pull down the latest version of the Tech Docs template by running:</p>
+<pre lang="sh"><code>SKIP_PROXY_PAGES=true ./startup.sh
+</code></pre>
+
+<h2 id="proxy-pages">Proxy pages</h2>
+
+<p>The live docs site includes pages from other alphagov GitHub repositories. To test this locally, omit <code>SKIP_PROXY_PAGES=true</code> from the command above.</p>
+
+<p>The app downloads these &ldquo;proxy pages&rdquo; at startup and this can cause GitHub to rate limit your requests. You can pass a valid GitHub API token to the app to help avoid this:</p>
+
+<ol>
+<li>
+<p><a href="https://github.com/settings/tokens/new">Create a GitHub token</a>. The token doesn&rsquo;t need any scopes.</p>
+</li>
+<li>
+<p>Store the token in a <code>.env</code> file:</p>
+<pre lang="sh"><code>GITHUB_TOKEN=somethingsomething
+</code></pre>
+</li>
+<li>
+<p>Start the application:</p>
+<pre lang="sh"><code>./startup.sh
+</code></pre>
+</li>
+</ol>
+
+<h2 id="update-to-the-latest-tech-docs-template">Update to the latest Tech Docs template</h2>
 
 <pre lang="sh"><code>bin/update
 </code></pre>
 
-<h3 id="deployment">Deployment</h3>
+<h2 id="deployment">Deployment</h2>
 
-<p>This project is hosted on GitHub Pages. It is <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/.github/workflows/ci.yml">redeployed hourly on weekdays</a>
-(to pick up changes to external docs) and whenever a PR is merged.</p>
+<p>We host GOV.UK Developer Docs as a static site on GitHub Pages. The <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/.github/workflows/ci.yml">ci.yml</a> GitHub Actions workflow updates the site automatically:</p>
 
-<p>As part of the deployment, we build a static set of pages to minimise the response time
-and potential issues with remote API calls.</p>
+<ul>
+<li>when a PR is merged to the default branch</li>
+<li>on an hourly schedule, to pick up changes to docs included from other repos</li>
+</ul>
+
+<h3 id="build-the-static-site-locally">Build the static site locally</h3>
 
 <pre lang="sh"><code>NO_CONTRACTS=true bundle exec middleman build
 </code></pre>
 
-<p>This will create a bunch of static files in <code>/build</code>.</p>
+<p>This will create a <code>build</code> directory containing a set of HTML files.</p>
 
 <h2 id="licence">Licence</h2>
 
