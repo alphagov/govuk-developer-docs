@@ -67,17 +67,20 @@ The nightly `signon-sync-token-secrets-to-k8s` cronjob will update the token in 
 
     Check that the result matches the new token in Signon and not the old one.
 
-1. You can also check that the token works by making an API call yourself from the client app's Rails console. For example, to check that Short URL Manager can talk to Publishing API:
+1. You can also check that the token works by making an API call yourself from the client app's Rails console. For example, to check that Short URL Manager can talk to Publishing API, you could:
 
-    ```ruby
-    client = GdsApi::PublishingApi.new(
-      Plek.new.find("publishing-api"),
-      bearer_token: ENV["PUBLISHING_API_BEARER_TOKEN"]
-    )
-    client.lookup_content_id(base_path: "/")
-    ```
+    1. Choose a method from the publishing-api client library in [gds-api-adaptors](https://github.com/alphagov/gds-api-adapters/tree/main/lib/gds_api).
+    1. Call the method from short-url-manager's Rails console:
 
-    The call should return some result and not raise an exception.
+        ```ruby
+        client = GdsApi::PublishingApi.new(
+          Plek.new.find("publishing-api"),
+          bearer_token: ENV["PUBLISHING_API_BEARER_TOKEN"]
+        )
+        client.lookup_content_id(base_path: "/")
+        ```
+
+        The call should return some result and not raise an exception.
 
 ### 3. Revoke the old token
 
