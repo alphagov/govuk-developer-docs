@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Signon API User Token Expires Soon - GOV.UK Developer Documentation</title>
+    <title>Signon API user token expires soon - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -20,12 +20,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Signon API User Token Expires Soon - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Signon API user token expires soon - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/alerts/signon-api-user-token-expires-soon.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Signon API User Token Expires Soon" />
+      <meta property="og:title" content="Signon API user token expires soon" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/alerts/signon-api-user-token-expires-soon.html" />
 
@@ -137,16 +137,24 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Signon API User Token Expires Soon</span></a>
+    <a href="#header"><span>Signon API user token expires soon</span></a>
     <ul>
       <li>
-        <a href="#updating-the-tokens-immediately"><span>Updating the tokens immediately</span></a>
-      </li>
-      <li>
-        <a href="#revoke-the-old-token"><span>Revoke the old token</span></a>
-      </li>
-      <li>
-        <a href="#special-cases"><span>Special Cases</span></a>
+        <a href="#rotate-a-signon-api-token"><span>Rotate a Signon API token</span></a>
+        <ul>
+          <li>
+            <a href="#special-cases"><span>Special cases</span></a>
+          </li>
+          <li>
+            <a href="#1-issue-a-new-token"><span>1. Issue a new token</span></a>
+          </li>
+          <li>
+            <a href="#2-check-that-the-client-application-works-with-the-new-token"><span>2. Check that the client application works with the new token</span></a>
+          </li>
+          <li>
+            <a href="#3-revoke-the-old-token"><span>3. Revoke the old token</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -197,52 +205,69 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/eda61e8e6685a87223d8ed9e571d674ea9c7f861">9 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4bb96aa0751cc7516d529094ef0afc75863c4ed9">7 Mar 2024</a>
 </div>
 
- <h1 id='header'>Signon API User Token Expires Soon</h1> <p>One or more tokens for API Users are about to expire. You should rotate
+ <h1 id='header'>Signon API user token expires soon</h1> <p>One or more tokens for API Users are about to expire. You should rotate
 expiring tokens to ensure the associated application keeps working.</p>
-
-<ul>
-<li>First login to <a href="https://signon.publishing.service.gov.uk/api_users">Signon</a>, go to API Users and click on the appropriate API User.</li>
-</ul>
+<h2 id='rotate-a-signon-api-token'>Rotate a Signon API token</h2>
+<blockquote>
+<p>🪨 This procedure is <a href="https://sre.google/workbook/eliminating-toil/">toil</a> and should be eliminated or automated away. For now, it&rsquo;s unfortunately still a manual process.</p>
+</blockquote>
+<h3 id='special-cases'>Special cases</h3><p>If the token is for <code>Trade Tariff Admin</code> or <code>Trade Tariff Backend</code>, see <a href="https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin">Trade Tariff Admin on the Wiki</a></p>
+<p>If the token is for <code>Signon API Client (permission and suspension updater)</code>, talk with the <a href="https://gds.slack.com/channels/govuk-publishing-access-and-permissions-team">Access and Permissions team</a>.</p>
+<h3 id='1-issue-a-new-token'>1. Issue a new token</h3>
+<ol>
+<li><p>Go to the <a href="https://signon.publishing.service.gov.uk/api_users">APIs page</a> in Signon.</p></li>
+<li><p>From the <strong>API users</strong> table, choose the API User whose <strong>Email</strong> matches the <code>api_user</code> field in the alert.</p>
 
 <blockquote>
-<p>Check the <em>Last synced at</em> time to see if the API User is still using the
-application. If you are confident the token is unused, the you can just
-click the <em>Revoke</em> button to remove it and there&rsquo;s no need to continue.</p>
-</blockquote>
+<p>Check the <strong>Last synced at</strong> time to see if the API User is still using the
+application. If you are sure the token is disused, you can choose
+<strong>Revoke</strong> to delete it and then you&rsquo;re done.</p>
+</blockquote></li>
+<li><p>Choose <strong>Manage tokens</strong>.</p></li>
+<li><p>Choose <strong>Add application token</strong>.</p></li>
+<li><p>From the <strong>Application</strong> dropdown, select the application that matches the <code>application</code> field in the alert.</p></li>
+<li><p>Choose <strong>Create access token</strong>.</p></li>
+</ol>
+<p>The nightly <code>signon-sync-token-secrets-to-k8s</code> cronjob will update the token in the Kubernetes secret that the application uses.</p>
+<h3 id='2-check-that-the-client-application-works-with-the-new-token'>2. Check that the client application works with the new token</h3>
+<ol>
+<li><p>Trigger the token sync cronjob to run now (or wait until the next day).</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k create job <span class="nt">--from</span> cronjob/signon-sync-token-secrets-to-k8s signon-token-sync-<span class="nv">$USER</span>
+</code></pre></div></li>
+</ol>
+<p>The job should finish within a few seconds. You can view the job&rsquo;s output to check that it succeeded:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>```sh
+k logs -f job/signon-token-sync-$USER
+```
+</code></pre></div>
+<ol>
+<li><p>Open a Rails console on the client app. For example, if the <code>api_user</code> is <code>short-url-manager@alphagov.co.uk</code>, open a console on <code>short-url-manager</code>.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/short-url-manager <span class="nt">--</span> rails c
+</code></pre></div></li>
+<li><p>Fetch the environment variable that contains the token. The variable name refers to the server (destination) application, which is the same as the <code>application</code> field in the alert. For example, for short-url-manager (client) talking to publishing-api (server):</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">ENV</span><span class="p">[</span><span class="s2">"PUBLISHING_API_BEARER_TOKEN"</span><span class="p">]</span>
+</code></pre></div><p>Check that the result matches the new token in Signon and not the old one.</p></li>
+<li><p>You can also check that the token works by making an API call yourself from the client app&rsquo;s Rails console. For example, to check that Short URL Manager can talk to Publishing API, you could:</p>
 
-<ul>
-<li><p>Click <em>Add application token</em>, select the application and click <em>Create
-access token</em>.</p></li>
-<li><p>At this point the new token is created, and will be picked up automatically by a job that runs once a day (around 1am) to sync tokens to the applications in Kubernetes. If you want to check that the token has been updated, you can wait until the next day and query the app: <code>kubectl -n apps exec -it deploy/&lt;your-app-name&gt; -- printenv | grep BEARER_TOKEN</code>, then find the relevant token in the output and compare the first and last 8 characters with the hidden token shown in Signon.</p></li>
-</ul>
-<h2 id='updating-the-tokens-immediately'>Updating the tokens immediately</h2><p>If the tokens have actually expired, or need to be rotated immediately in an emergency, you won&rsquo;t want to wait for the daily sync. You can request it to run immediately:</p>
+<ol>
+<li>Choose a method from the publishing-api client library in <a href="https://github.com/alphagov/gds-api-adapters/tree/main/lib/gds_api">gds-api-adaptors</a>.</li>
+<li><p>Call the method from short-url-manager&rsquo;s Rails console:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">client</span> <span class="o">=</span> <span class="no">GdsApi</span><span class="o">::</span><span class="no">PublishingApi</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
+  <span class="no">Plek</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"publishing-api"</span><span class="p">),</span>
+  <span class="ss">bearer_token: </span><span class="no">ENV</span><span class="p">[</span><span class="s2">"PUBLISHING_API_BEARER_TOKEN"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">client</span><span class="p">.</span><span class="nf">lookup_content_id</span><span class="p">(</span><span class="ss">base_path: </span><span class="s2">"/"</span><span class="p">)</span>
+</code></pre></div><p>The call should return some result and not raise an exception.</p></li>
+</ol></li>
+</ol>
+<h3 id='3-revoke-the-old-token'>3. Revoke the old token</h3><p>Once you have confirmed that the application is working with the new token, go back to Signon and revoke the old token.</p>
 
-<ul>
-<li><code>kubectl create job --from cronjob/signon-sync-token-secrets-to-k8s signon-token-sync-$USER</code></li>
-<li>You will then need to restart the relevant app to pick up the new token: <code>k rollout restart deploy/&lt;your-app-name&gt;</code></li>
-</ul>
-<p>At this point you can check that the app has the new token as above.</p>
-<h2 id='revoke-the-old-token'>Revoke the old token</h2><p>Once the new token is in place, you should check that it can be used:</p>
-
-<blockquote>
-<p>How to check the new token works depends on the application. One way to check
-the token works is to manually open a console for the application and call
-one of the remote APIs using <a href="https://github.com/alphagov/gds-api-adapters/blob/master/lib/gds_api.rb">gds-api-adapters</a>.</p>
-<p>For example, to open a console you can run</p>
-<p><code>kubectl -n apps exec -it deploy/&lt;your-app-name&gt; -- rails c</code></p>
-<p>The api call could be something like (example here with Publishing API)</p>
-<p><code>gds_api = GdsApi::PublisingApi.new(Plek.new.find(&quot;publishing-api&quot;), bearer_token: ENV[&quot;PUBLISHING_API_BEARER_TOKEN&quot;])</code></p>
-<p><code>gds_api.lookup_content_id(base_path: &quot;/&quot;)</code></p>
-<p>If the token works, then the above should get us something other than an unauthorised error.
-You could test this out by setting up <code>gds_api</code> with an incorrect token, e.g. <code>bearer_token: &quot;NOT_THE_REAL_TOKEN&quot;</code>
-and checking that this gives a different response to when it is set up with the new token.</p>
-</blockquote>
-<p>Once you&rsquo;ve confirmed that the new token can be used, go back to <a href="https://signon.publishing.service.gov.uk/api_users">Signon</a> and revoke the old token.</p>
-<h2 id='special-cases'>Special Cases</h2><p>If the tokens are for <code>New London: Trade Tariff Admin (PaaS) token for New London: Trade Tariff Backend (PaaS)</code> see <a href="https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin">Trade Tariff Admin on the Wiki</a></p>
-<p>If the tokens are for the <code>Signon API Client (permission and suspension updater)</code> you should contact the permissions team.</p>
+<ol>
+<li>On the <strong>Manage tokens</strong> page, choose the <strong>Revoke</strong> link for the old token.</li>
+</ol>
 
   <div class='related-content'>
 
@@ -255,7 +280,7 @@ and checking that this gives a different response to when it is set up with the 
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/alerts/signon-api-user-token-expires-soon.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Signon+API+User+Token+Expires+Soon%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Falerts%2Fsignon-api-user-token-expires-soon.html%29&amp;labels=bug&amp;title=Re%3A+%27Signon+API+User+Token+Expires+Soon%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Signon+API+user+token+expires+soon%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Falerts%2Fsignon-api-user-token-expires-soon.html%29&amp;labels=bug&amp;title=Re%3A+%27Signon+API+user+token+expires+soon%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
