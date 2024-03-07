@@ -1,63 +1,89 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
-title: Signon API User Token Expires Soon
+owner_slack: "#govuk-platform-engineering"
+title: Signon API user token expires soon
 parent: "/manual.html"
 layout: manual_layout
 section: Alertmanager alerts
 ---
 
-[signon]: https://signon.publishing.service.gov.uk/api_users
-[gds-api-adapters]: https://github.com/alphagov/gds-api-adapters/blob/master/lib/gds_api.rb
-
 One or more tokens for API Users are about to expire. You should rotate
 expiring tokens to ensure the associated application keeps working.
 
-- First login to [Signon], go to API Users and click on the appropriate API User.
+## Rotate a Signon API token
 
-> Check the *Last synced at* time to see if the API User is still using the
-> application. If you are confident the token is unused, the you can just
-> click the *Revoke* button to remove it and there's no need to continue.
+> 🪨 This procedure is [toil](https://sre.google/workbook/eliminating-toil/) and should be eliminated or automated away. For now, it's unfortunately still a manual process.
 
-- Click *Add application token*, select the application and click *Create
-  access token*.
+### Special cases
 
-- At this point the new token is created, and will be picked up automatically by a job that runs once a day (around 1am) to sync tokens to the applications in Kubernetes. If you want to check that the token has been updated, you can wait until the next day and query the app: `kubectl -n apps exec -it deploy/<your-app-name> -- printenv | grep BEARER_TOKEN`, then find the relevant token in the output and compare the first and last 8 characters with the hidden token shown in Signon.
+If the token is for `Trade Tariff Admin` or `Trade Tariff Backend`, see [Trade Tariff Admin on the Wiki](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin)
 
-## Updating the tokens immediately
+If the token is for `Signon API Client (permission and suspension updater)`, talk with the [Access and Permissions team](https://gds.slack.com/channels/govuk-publishing-access-and-permissions-team).
 
-If the tokens have actually expired, or need to be rotated immediately in an emergency, you won't want to wait for the daily sync. You can request it to run immediately:
+### 1. Issue a new token
 
-- `kubectl create job --from cronjob/signon-sync-token-secrets-to-k8s signon-token-sync-$USER`
-- You will then need to restart the relevant app to pick up the new token: `k rollout restart deploy/<your-app-name>`
+1. Go to the [APIs page](https://signon.publishing.service.gov.uk/api_users) in Signon.
 
-At this point you can check that the app has the new token as above.
+1. From the **API users** table, choose the API User whose **Email** matches the `api_user` field in the alert.
 
-## Revoke the old token
+    > Check the **Last synced at** time to see if the API User is still using the
+    > application. If you are sure the token is disused, you can choose
+    > **Revoke** to delete it and then you're done.
 
-Once the new token is in place, you should check that it can be used:
+1. Choose **Manage tokens**.
 
-> How to check the new token works depends on the application. One way to check
-> the token works is to manually open a console for the application and call
-> one of the remote APIs using [gds-api-adapters][].
->
-> For example, to open a console you can run
->
-> `kubectl -n apps exec -it deploy/<your-app-name> -- rails c`
->
-> The api call could be something like (example here with Publishing API)
->
-> `gds_api = GdsApi::PublisingApi.new(Plek.new.find("publishing-api"), bearer_token: ENV["PUBLISHING_API_BEARER_TOKEN"])`
->
-> `gds_api.lookup_content_id(base_path: "/")`
->
-> If the token works, then the above should get us something other than an unauthorised error.
-> You could test this out by setting up `gds_api` with an incorrect token, e.g. `bearer_token: "NOT_THE_REAL_TOKEN"`
-> and checking that this gives a different response to when it is set up with the new token.
+1. Choose **Add application token**.
 
-Once you've confirmed that the new token can be used, go back to [Signon] and revoke the old token.
+1. From the **Application** dropdown, select the application that matches the `application` field in the alert.
 
-## Special Cases
+1. Choose **Create access token**.
 
-If the tokens are for `New London: Trade Tariff Admin (PaaS) token for New London: Trade Tariff Backend (PaaS)` see [Trade Tariff Admin on the Wiki](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin)
+The nightly `signon-sync-token-secrets-to-k8s` cronjob will update the token in the Kubernetes secret that the application uses.
 
-If the tokens are for the `Signon API Client (permission and suspension updater)` you should contact the permissions team.
+### 2. Check that the client application works with the new token
+
+1. Trigger the token sync cronjob to run now (or wait until the next day).
+
+    ```sh
+    k create job --from cronjob/signon-sync-token-secrets-to-k8s signon-token-sync-$USER
+    ```
+
+   The job should finish within a few seconds. You can view the job's output to check that it succeeded:
+
+    ```sh
+    k logs -f job/signon-token-sync-$USER
+    ```
+
+1. Open a Rails console on the client app. For example, if the `api_user` is `short-url-manager@alphagov.co.uk`, open a console on `short-url-manager`.
+
+    ```sh
+    k exec -it deploy/short-url-manager -- rails c
+    ```
+
+1. Fetch the environment variable that contains the token. The variable name refers to the server (destination) application, which is the same as the `application` field in the alert. For example, for short-url-manager (client) talking to publishing-api (server):
+
+    ```ruby
+    ENV["PUBLISHING_API_BEARER_TOKEN"]
+    ```
+
+    Check that the result matches the new token in Signon and not the old one.
+
+1. You can also check that the token works by making an API call yourself from the client app's Rails console. For example, to check that Short URL Manager can talk to Publishing API, you could:
+
+    1. Choose a method from the publishing-api client library in [gds-api-adaptors](https://github.com/alphagov/gds-api-adapters/tree/main/lib/gds_api).
+    1. Call the method from short-url-manager's Rails console:
+
+        ```ruby
+        client = GdsApi::PublishingApi.new(
+          Plek.new.find("publishing-api"),
+          bearer_token: ENV["PUBLISHING_API_BEARER_TOKEN"]
+        )
+        client.lookup_content_id(base_path: "/")
+        ```
+
+        The call should return some result and not raise an exception.
+
+### 3. Revoke the old token
+
+Once you have confirmed that the application is working with the new token, go back to Signon and revoke the old token.
+
+1. On the **Manage tokens** page, choose the **Revoke** link for the old token.
