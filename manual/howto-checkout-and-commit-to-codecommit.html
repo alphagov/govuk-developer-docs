@@ -202,30 +202,23 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1417cd02583371123074325b976ecd9f525fe68a">4 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6a75f8b2f80d6f8988089dfa40219b12757f672f">8 Mar 2024</a>
 </div>
 
  <h1 id='header'>How to check and commit code to AWS CodeCommit</h1> <p>We use <a href="https://docs.aws.amazon.com/codecommit/latest/userguide/">AWS CodeCommit</a> as a backup for our GitHub repositories.</p>
 <p>The <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml"><code>mirror-repos.yml</code> GitHub Actions workflow</a> copies GitHub repositories tagged with <code>govuk</code> to CodeCommit 4 times daily Mon-Fri.</p>
 <p>Accessing CodeCommit requires AWS credentials, which you can obtain in the usual ways via <a href="https://github.com/alphagov/gds-cli">gds-cli</a>.</p>
-<h2 id='quick-reference-guide'>Quick reference guide</h2><p>This example demonstrates a simple workflow using the <code>whitehall</code> repository in CodeCommit.</p>
+<h2 id='quick-reference-guide'>Quick reference guide</h2><p>This example demonstrates a simple workflow using the <code>govuk-replatform-test-app</code> repository in CodeCommit.</p>
 
 <blockquote>
 <p>Follow <a href="#install-dependencies-and-set-up-local-environment">the installation steps</a> first.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># Clone the repo.
-gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall
+gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://govuk-replatform-test-app
 
 # Create a local branch.
-cd whitehall
+cd govuk-replatform-test-app
 git checkout -b mybranch
 
 # Commit a change locally.
@@ -259,7 +252,7 @@ git config --global credential.UseHttpPath true
 <li><p>In your shell, obtain AWS credentials and run <code>git clone</code> to clone the repository.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git clone &lt;repository url&gt;
 </code></pre></div><p>For example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://govuk-replatform-test-app
 </code></pre></div></li>
 </ol>
 
