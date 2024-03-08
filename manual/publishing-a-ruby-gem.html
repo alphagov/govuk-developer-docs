@@ -197,7 +197,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/853a866a823f2b76c807a426725fe457614c37a5">8 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2689cf0f9c8812eb894522a6a812f7d8e6fdf7c3">8 Mar 2024</a>
 </div>
 
  <h1 id='header'>Publish a Ruby gem</h1> <h2 id='conventions'>Conventions</h2><p>For conventions around naming, refer to the <a href="http://guides.rubygems.org/name-your-gem/">RubyGems naming guide</a> and the
@@ -210,8 +210,16 @@ build step in govuk_publishing_components), copy and adapt the shared workflow.<
 <p>Contact a <a href="mailto:govuk-github-owners@digital.cabinet-office.gov.uk">GOV.UK GitHub Owner</a> to grant your repository
 <a href="https://github.com/organizations/alphagov/settings/secrets/actions">access to the secret</a>.</p>
 <h2 id='ruby-version-compatibility'>Ruby version compatibility</h2><p>Ensure gems are compatible with all <a href="https://www.ruby-lang.org/en/downloads/branches/">supported minor Ruby
-versions</a>, specifying the minimum Ruby version in the <a href="https://guides.rubygems.org/specification-reference/#required_ruby_version">gemspec
-file</a> and matching it in .ruby-version.</p>
+versions</a>, specifying the minimum minor Ruby version in the gemspec
+file. For example: <code>spec.required_ruby_version = &quot;&gt;= 3.1&quot;</code>.</p>
+
+<blockquote>
+<p>Do not specify a patch (or &ldquo;tiny&rdquo;) Ruby version unless there is a particular issue with a Ruby patch release.</p>
+</blockquote>
+<p>The <code>.ruby-version</code> file should be the same minor version level as the
+<code>required_ruby_version</code> in the gemspec, it is typically the most recent patch version.
+For example: <code>spec.required_ruby_version &gt;= &quot;3.1&quot;</code> would correlate to a <code>.ruby-version</code>
+of 3.1.4.</p>
 <p>When Ruby versions reach end-of-life (typically April) we update gems
 to drop support for that Ruby version and update the <code>.ruby-version</code> files to
 the next supported version. For example, when Ruby 2.7 reached end of life, we dropped 2.7
