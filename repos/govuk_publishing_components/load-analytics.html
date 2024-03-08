@@ -263,7 +263,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/702a54a75186860dda573d873f326da20bb7fbee">5 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/743b2988cf90a6ad58a32ff18a2cce3430832a5b">29 Feb 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Loading analytics into our applications</h1>
@@ -288,9 +288,10 @@
 <code>auth</code> - this is used to authenticate analytics data being sent to another dashboard, such as an 'integration' dashboard. This can be determined through the browser so they're not classified as secret.</li>
 </ul>
 <h2 id="passing-extra-options">Passing extra options</h2>
-<p>If you wish to initialise the GA4 code on a new domain with different attributes, the code has been written to accept an array of additional values. Extra domains can be added before loading <code>dependencies.js</code> as below.</p>
+<p>If you wish to initialise the GA4 code on a new domain with different attributes, the code has been written to accept an array of additional values. Extra domains can be added at the end of your code as shown.</p>
 <pre lang="JavaScript"><code>window.GOVUK = window.GOVUK || {}
-window.GOVUK.analyticsGa4Domains = [
+window.GOVUK.vars = window.GOVUK.vars || {}
+window.GOVUK.vars.extraDomains = [
   {
     name: 'my-domain',
     domains: ['not-a-real-domain.co.org.uk'],
@@ -302,7 +303,6 @@ window.GOVUK.analyticsGa4Domains = [
     gaProperty: 'gaProperty', // for UA
     gaPropertyCrossDomain: 'gaPropertyCrossDomain' // for UA (optional)
   }
-  // add further into the array as required
 ]
 </code></pre>
 
