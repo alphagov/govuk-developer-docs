@@ -36,8 +36,15 @@ Contact a [GOV.UK GitHub Owner][] to grant your repository
 ## Ruby version compatibility
 
 Ensure gems are compatible with all [supported minor Ruby
-versions][supported-rubies], specifying the minimum Ruby version in the [gemspec
-file][gemspec-ruby-version] and matching it in .ruby-version.
+versions][supported-rubies], specifying the minimum minor Ruby version in the gemspec
+file (for example: `spec.required_ruby_version = ">= 3.1"`) - note, this should not
+be more specific than a minor Ruby version unless there is a particular issue with
+a Ruby patch release.
+
+The `.ruby-version` file should be the same minor version level as the
+`required_ruby_version` in the gemspec, it is typically the most recent patch version.
+For example: `spec.required_ruby_version >= "3.1"` would correlate to a `.ruby-version`
+of 3.1.4.
 
 When Ruby versions reach end-of-life (typically April) we update gems
 to drop support for that Ruby version and update the `.ruby-version` files to
@@ -55,7 +62,6 @@ which [apply only to patch and minor version upgrades][rfc-156-versions].
 Note that patch versions are generally reserved only for bug fixes.
 
 [example-pr-dropping-ruby-support]: https://github.com/alphagov/gds-api-adapters/pull/1191
-[gemspec-ruby-version]: https://guides.rubygems.org/specification-reference/#required_ruby_version
 [minimum-ruby-gem]: https://github.com/alphagov/govuk_sidekiq/blob/12183f8781f2755e185e6a14a722e6f3892bda4a/govuk_sidekiq.gemspec#L19
 [old-policy-major-version]: https://github.com/alphagov/govuk-developer-docs/pull/3932
 [rfc-156-versions]: https://github.com/alphagov/govuk-rfcs/blob/main/rfc-156-auto-merge-internal-prs.md#4-version-increase-is-patch-or-minor
