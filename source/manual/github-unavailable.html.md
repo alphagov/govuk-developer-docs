@@ -31,7 +31,7 @@ REPO=$(basename "$PWD")
 1. Build the container image and tag it appropriately.
 
 ```
-docker build --platform linux/amd64 -t $IMAGE_TAG .
+docker build --platform linux/amd64 -t $REGISTRY/$REPO:$IMAGE_TAG .
 ```
 
 1. Log into ECR and push the image:
