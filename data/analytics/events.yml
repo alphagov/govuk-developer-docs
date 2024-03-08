@@ -80,8 +80,8 @@
         - name: method
         - name: link_domain
 
-- name: back link
-  description:
+- name: back
+  description: Event tracking on 'back' links.
   events:
     - name: link click
       description: When the back link is used, on pages like the email subscription journeys
@@ -102,6 +102,7 @@
         - name: external
         - name: link_domain
         - name: method
+
 - name: banners
   description: Note that the presence of banners is tracked via our Pageview tracker.
   events:
@@ -157,7 +158,7 @@
         - name: action
           value: closed
 
-- name: breadcrumbs
+- name: breadcrumb
   events:
     - name: link clicks
       implemented: true
@@ -310,7 +311,7 @@
         - name: method
         - name: link_domain
 
-- name: call out boxes
+- name: callout
   events:
     - name: call out box link click
       description: Link tracking for warning text, and content banner components.
@@ -486,7 +487,8 @@
         - name: length
           value: The original length of the copied text, after the removal of extra spaces, line breaks, and PII
 
-- name: details elements
+- name: detail
+  description: Event tracking on details elements.
   events:
     - name: details expanded/collapsed
       implemented: true
@@ -514,7 +516,8 @@
         - name: type
           value: detail
 
-- name: email alerts and rss subscriptions
+- name: subscribe
+  description: Event tracking on email alerts and rss subscriptions
   events:
     - name: email alerts
       implemented: true
@@ -848,7 +851,7 @@
         - name: method
         - name: link_domain
 
-- name: html attachments
+- name: html attachment
   events:
     - name: link clicks
       implemented: true
@@ -967,7 +970,8 @@
           value: attachment
         - name: url
 
-- name: local lookup
+- name: special route
+  description: Event tracking on local lookup pages.
   events:
     - name: form submit
       implemented: true
@@ -996,6 +1000,7 @@
         - name: text
         - name: tool_name
         - name: type
+          value: special route
     - name: form error
       implemented: true
       priority: medium
@@ -1016,6 +1021,7 @@
         - name: text
         - name: tool_name
         - name: type
+          value: special route
     - name: form complete
       implemented: true
       priority: medium
@@ -1041,6 +1047,7 @@
         - name: text
         - name: tool_name
         - name: type
+          value: special route
     - name: change response
       implemented: true
       priority: medium
@@ -1063,6 +1070,7 @@
         - name: text
         - name: tool_name
         - name: type
+          value: licence transaction
         - name: link_domain
     - name: information click
       implemented: true
@@ -1097,6 +1105,7 @@
         - name: text
         - name: tool_name
         - name: type
+          value: special route
         - name: url
 
 - name: miscellaneous
@@ -1207,7 +1216,7 @@
         - name: method
         - name: link_domain
 
-- name: printing
+- name: print page
   events:
     - name: print page button
       implemented: true
@@ -1274,7 +1283,7 @@
         - name: method
         - name: link_domain
 
-- name: related navigation
+- name: related content
   description: Events gathered in the contextual sidebar, contextual footer and related navigation components.
   events:
     - name: related Navigation
@@ -1311,7 +1320,6 @@
         - name: external
 
 - name: scroll tracking
-  description: Scroll tracking is currently not being used on any pages on GOV.UK.
   events:
     - name: percentage scroll tracking
       implemented: true
@@ -1379,7 +1387,8 @@
         - name: type
           value: marker
 
-- name: see all link
+- name: content history
+  description: Event tracking on the 'see all' link
   events:
     - name: see all link click (in page)
       implemented: true
@@ -1429,7 +1438,8 @@
         - name: text
         - name: url
 
-- name: search
+- name: finder
+  description: Event tracking for search
   events:
     - name: search results/ecommerce product list views
       implemented: true
@@ -1553,7 +1563,7 @@
           - name: index_section
           - name: index_section_count
 
-- name: share this page
+- name: share page
   events:
     - name: follow us
       implemented: true
@@ -1612,7 +1622,7 @@
           value: share page
         - name: url
 
-- name: simple smart answers
+- name: simple smart answer
   events:
     - name: simple smart answer start
       implemented: true
@@ -1793,7 +1803,7 @@
         - name: link_domain
         - name: tool_name
 
-- name: smart answers
+- name: smart answer
   events:
     - name: smart answer start
       implemented: true
@@ -1998,7 +2008,8 @@
         - name: link_domain
         - name: tool_name
 
-- name: step by step navigation
+- name: step by step
+  description: Event tracking on the step by step navigation pages.
   events:
     - name: Open/close step
       implemented: true
@@ -2026,7 +2037,7 @@
         - name: text
           value: title of the opened/closed step
         - name: type
-          value: "step by step"
+          value: step by step
     - name: Show/hide all steps
       implemented: true
       priority: high
@@ -2053,7 +2064,7 @@
         - name: text
           value: Show/Hide all steps
         - name: type
-          value: "step by step"
+          value: step by step
     - name: link clicks
       implemented: true
       priority: high
@@ -2097,7 +2108,7 @@
       - name: event
         value: event_data
 
-- name: super navigation header
+- name: header menu bar
   events:
     - name: Crown icon link
       implemented: true
