@@ -14,16 +14,16 @@ Accessing CodeCommit requires AWS credentials, which you can obtain in the usual
 
 ## Quick reference guide
 
-This example demonstrates a simple workflow using the `whitehall` repository in CodeCommit.
+This example demonstrates a simple workflow using the `govuk-replatform-test-app` repository in CodeCommit.
 
 > Follow [the installation steps](#install-dependencies-and-set-up-local-environment) first.
 
 ```
 # Clone the repo.
-gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall
+gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://govuk-replatform-test-app
 
 # Create a local branch.
-cd whitehall
+cd govuk-replatform-test-app
 git checkout -b mybranch
 
 # Commit a change locally.
@@ -79,7 +79,7 @@ You need to have first [set up the GDS command line tools](/manual/get-started.h
     For example:
 
     ```
-    gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://whitehall
+    gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://govuk-replatform-test-app
     ```
 
 > `git clone` on CodeCommit can sometimes be very slow initially. If `git
