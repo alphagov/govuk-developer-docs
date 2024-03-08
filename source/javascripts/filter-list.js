@@ -12,6 +12,10 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
     if (!this.$module.input) {
       return
     }
+    this.$module.form = this.$module.input.closest('form')
+    if (this.$module.form) {
+      this.$module.form.addEventListener('submit', function (e) { e.preventDefault() })
+    }
 
     this.$module.input.addEventListener('input', function () {
       var searchTerm = this.$module.input.value
