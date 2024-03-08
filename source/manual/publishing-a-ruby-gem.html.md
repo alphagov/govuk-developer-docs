@@ -37,9 +37,9 @@ Contact a [GOV.UK GitHub Owner][] to grant your repository
 
 Ensure gems are compatible with all [supported minor Ruby
 versions][supported-rubies], specifying the minimum minor Ruby version in the gemspec
-file (for example: `spec.required_ruby_version = ">= 3.1"`) - note, this should not
-be more specific than a minor Ruby version unless there is a particular issue with
-a Ruby patch release.
+file. For example: `spec.required_ruby_version = ">= 3.1"`.
+
+> Do not specify a patch (or "tiny") Ruby version unless there is a particular issue with a Ruby patch release.
 
 The `.ruby-version` file should be the same minor version level as the
 `required_ruby_version` in the gemspec, it is typically the most recent patch version.
