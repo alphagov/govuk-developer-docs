@@ -31,7 +31,7 @@ REPO=$(basename "$PWD")
 1. Build the container image and tag it appropriately.
 
 ```
-docker build --platform linux/amd64 -t $IMAGE_TAG .
+docker build --platform linux/amd64 -t $REGISTRY/$REPO:$IMAGE_TAG .
 ```
 
 1. Log into ECR and push the image:
@@ -62,6 +62,10 @@ docker push $REGISTRY/$REPO:$IMAGE_TAG
 1. Find the `image:` field for the `app` container. It should look something like `172025368201.dkr.ecr.eu-west-1.amazonaws.com/<app-name>:release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e`.
 1. Update the tag part of the `image:` value to the new image tag that you pushed to ECR. The part you are changing should look something like `release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e`.
 1. Click `Save`. Argo CD will start the deployment, which should complete in under ten minutes.
+1. After confirming deployment of the app re-enable auto-sync for the `app-config` application:
+    1. From the Applications page (the Argo CD homepage), choose the `app-config` application.
+    1. Press the `App Details` button near the top of the page.
+    1. Scroll down to the bottom of the page and press `Enable auto-sync`.
 
 ## Troubleshooting 403 errors from AWS
 
