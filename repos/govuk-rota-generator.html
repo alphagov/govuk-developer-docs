@@ -251,9 +251,10 @@
 <li>Clone the <a href="https://docs.google.com/forms/d/1PvCMjzCZeELjflHY22p6FH5rtPp3Lvql7LmHGoUSFjM/edit">form template</a>
 </li>
 <li>Update the dates etc, but otherwise make no changes to the form structure</li>
-<li>Send out the form, gather responses</li>
 <li>Link it to a spreadsheet</li>
-<li>Share the spreadsheet with <code>google-sheet-fetcher@govuk-rota-generator.iam.gserviceaccount.com</code>, as a Viewer. (Dismiss the warning about sharing with external email addresses)</li>
+<li>Share the spreadsheet with <code>google-sheet-fetcher@govuk-rota-generator.iam.gserviceaccount.com</code>, as an Editor. (Dismiss the warning about sharing with external email addresses)</li>
+<li>Add a worksheet / &lsquo;tab&rsquo; called &ldquo;Auto-generated draft rota&rdquo; (which is where the draft rota will be pushed by govuk-rota-generator)</li>
+<li>Send out the form, gather responses</li>
 </ol>
 
 <h3 id="get-the-data-ready">Get the data ready</h3>
@@ -262,21 +263,49 @@
 
 <p><code>ruby bin/fetch_data.rb https://docs.google.com/spreadsheets/d/abc123def456hij789/edit</code></p>
 
-<p>This will generate a <code>data/combined.csv</code> file, combining your responses spreadsheet with the <a href="https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1249170615">Technical Support Google Sheet</a>.</p>
+<p>This will generate a <code>data/rota_inputs.yml</code> file, combining your responses spreadsheet with the <a href="https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1249170615">Technical Support Google Sheet</a>.</p>
 
 <p>The generated file will look something like:</p>
 
-<pre lang="csv"><code>name,team,can_do_inhours_primary,can_do_inhours_secondary,can_do_inhours_primary_standby,can_do_inhours_secondary_standby,can_do_oncall_primary,can_do_oncall_secondary,forbidden_weeks
-Some Person,Find and View,false,false,false,false,false,true,true,"6,10"
+<pre lang="yml"><code>---
+dates:
+- 01/04/2024
+- 02/04/2024
+- 03/04/2024
+- 04/04/2024
+- 05/04/2024
+- 06/04/2024
+- 07/04/2024
+people:
+- email: dev.eloper@digital.cabinet-office.gov.uk
+  team: Unknown
+  non_working_days: []
+  can_do_roles:
+  - :inhours_primary
+  - :inhours_secondary
+  - :inhours_primary_standby
+  - :inhours_secondary_standby
+  - :oncall_primary
+  - :oncall_secondary
+  forbidden_in_hours_days: []
+  forbidden_on_call_days: []
+  assigned_shifts: []
 </code></pre>
 
 <h3 id="generate-the-rota">Generate the rota</h3>
 
-<p>Run <code>ruby bin/generate_rota.rb</code> (it will output to STDOUT).</p>
+<p>Run <code>ruby bin/generate_rota.rb https://docs.google.com/spreadsheets/d/abc123def456hij789/edit</code>.</p>
 
-<p>You can tweak the weighting of each &lsquo;role&rsquo; (e.g. <code>oncall_primary</code>) by editing the values in <a href="https://github.com/alphagov/govuk-rota-generator/blob/main/config/roles.yml">config/roles.yml</a>.</p>
+<p>This generates a <code>data/generated_rota.yml</code> file, which has the same structure as the <code>data/rota_inputs.yml</code> file.
+But the script will also output a user-friendly CSV to the &ldquo;Auto-generated draft rota&rdquo; worksheet you set up earlier, or to STDOUT if you don&rsquo;t provide the Google Sheet CLI parameter. The worksheet/CSV can be used as the <code>data/rota.csv</code> in <a href="https://github.com/alphagov/pay-pagerduty">pay-pagerduty</a> (automating the overriding of PagerDuty schedules).</p>
 
-<p>The generated output can be used as the <code>data/rota.csv</code> in <a href="https://github.com/alphagov/pay-pagerduty">pay-pagerduty</a>, which automates the overriding of PagerDuty schedules.</p>
+<p>Note that you can tweak the weighting of each &lsquo;role&rsquo; (e.g. <code>oncall_primary</code>) by editing the values in <a href="https://github.com/alphagov/govuk-rota-generator/blob/main/config/roles.yml">config/roles.yml</a>, to influence how often folks are assigned to particular roles.</p>
+
+<h3 id="check-the-fairness-of-the-rota">Check the fairness of the rota</h3>
+
+<p>Run <code>ruby bin/calculate_fairness.rb https://docs.google.com/spreadsheets/d/abc123def456hij789/edit</code>.</p>
+
+<p>This summarises the fairness of the rota at the &ldquo;Auto-generated draft rota&rdquo; worksheet you set up earlier.</p>
 <p></div></p>
 
 
