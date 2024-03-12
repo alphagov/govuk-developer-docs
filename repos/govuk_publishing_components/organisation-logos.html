@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: # Trigger Event - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Organisation logos - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/lib/trigger_event.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/organisation-logos.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: # Trigger Event - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/lib/trigger_event.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Organisation logos - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/organisation-logos.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: # Trigger Event" />
+      <meta property="og:title" content="govuk_publishing_components: Organisation logos" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/lib/trigger_event.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/organisation-logos.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -263,39 +263,61 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/eb969c71d1f35241972a148eefba9358a220e617">28 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/da1a49e499a844dc0305fa318028693da66c33e7">5 Mar 2024</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: # Trigger Event</h1>
+  <h1 class="page-title">govuk_publishing_components: Organisation logos</h1>
 
-  <h2 id="trigger-event">Trigger Event</h2>
-<p>The trigger event script provides a cross browser compatible way of triggering a JavaScript event on a DOM element, such as a click or submit.</p>
-<h3 id="usage">Usage</h3>
-<p>Basic usage:</p>
-<pre lang="javascript"><code>window.GOVUK.triggerEvent(element, eventType)
+  
+<h2 id="overview">Overview</h2>
+<p>The <a href="https://components.publishing.service.gov.uk/component-guide/organisation_logo">Organisation logo component</a> can be used to render organisation logos that use either the <a href="https://gcs.civilservice.gov.uk/guidance/marketing/branding-guidelines/">Government Identity System</a>, such as <a href="https://components.publishing.service.gov.uk/component-guide/organisation_logo/hm_revenue_customs/preview">HMRC</a>, or have a <a href="https://gcs.civilservice.gov.uk/guidance/marketing/branding-guidelines/#Brand-exemption-process">brand exemption</a>, such as <a href="https://components.publishing.service.gov.uk/component-guide/organisation_logo/hm_prison_service/preview">HMPS</a>.</p>
+<p>This documentation provides details on how to update and add new logos that are part of the Government Identity System.</p>
+<h2 id="images-required">Images required</h2>
+<p>The four images below are required for the organisation logo component. The images should be added to <code>app/assets/images/govuk_publishing_components/crests</code>. The image format required is a transparent PNG with the whitespace trimmed.</p>
+<h3 id="naming-convention">Naming convention</h3>
+<ul>
+<li>
+<code>$crest</code> this is usually in the format <code>"[department_abbreviation]_crest"</code> all lowercase with underscores, for example <code>hmrc_crest</code>
+</li>
+<li>
+<code>_13px/_18px</code> refers to the font-size used</li>
+<li>
+<code>_x2</code> used to provide an @2x image for screens that support it</li>
+</ul>
+<h3 id="mobile">Mobile</h3>
+<p>By default, the logo image used on mobile screen sizes, will have a height of <code>20px</code>.</p>
+<ul>
+<li><code>#{$crest}_13px.png</code></li>
+<li><code>#{$crest}_13px_x2.png</code></li>
+</ul>
+<h3 id="tablet-and-desktop">Tablet and Desktop</h3>
+<p>By default, the logo image used from tablet screen sizes, will have a height of <code>26px</code>.</p>
+<ul>
+<li><code>#{$crest}_18px.png</code></li>
+<li><code>#{$crest}_18px_x2.png</code></li>
+</ul>
+<h2 id="add-the-css-required-for-new-organisation-logos">Add the CSS required for new organisation logos</h2>
+<p>If you have added a new organisation logo, you will also need to add the required CSS to ensure it is requested on page load and renders correctly.</p>
+<p>The first step is to add a new CSS class name in <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/stylesheets/govuk_publishing_components/components/_organisation-logo.scss">_organisation-logo.scss</a>.</p>
+<p>The class name should be in the format "gem-c-organisation-logo__crest--[LOWERCASE-ORGANISATION-ABBREVIATION]", for example <code>gem-c-organisation-logo__crest--hmrc</code></p>
+<p>The next step is to include the <code>crest</code> mixin to set the background image and styling for the new organisation logo, for example:</p>
+<pre lang="scss"><code>.gem-c-organisation-logo__crest--hmrc {
+  @include crest("hmrc_crest");
+}
 </code></pre>
-<p>Where <code>element</code> must be a valid DOM node and <code>eventType</code> must be a valid event type e.g. <code>'click'</code> or <code>'submit'</code>.</p>
-<p>With parameters:</p>
-<pre lang="javascript"><code>var element = document.querySelector('.my-element')
-window.GOVUK.triggerEvent(element, 'click', { detail: { test: true } })
+<p>The value passed to the <code>crest</code> mixin here follows the naming convention mentioned above.</p>
+<h3 id="adjusting-the-logo-height">Adjusting the logo height</h3>
+<p>You can also use the <code>tall-crest</code> mixin to set the height of the logo to <code>25px</code> on mobile, and <code>34px</code> for tablet and desktop screen sizes, this can be used to help avoid the organisation logo appearing too narrow.</p>
+<p>Example used on the MOD organisation logo:</p>
+<pre lang="scss"><code>.gem-c-organisation-logo__crest--mod {
+  @include crest("mod_crest");
+  @include tall-crest;
+}
 </code></pre>
-<p>With a keyCode:</p>
-<pre lang="javascript"><code>window.GOVUK.triggerEvent(element, 'keyup', { keyCode: 13 })
-</code></pre>
-<p>Prevent the event from bubbling up the DOM:</p>
-<pre lang="javascript"><code>window.GOVUK.triggerEvent(element, 'click', { bubbles: false })
-</code></pre>
-<p>Prevent the event from being cancelled:</p>
-<pre lang="javascript"><code>window.GOVUK.triggerEvent(element, 'keypress', { cancelable: false })
-</code></pre>
+<p>Ministry of Defence organisation logo preview - <a href="https://components.publishing.service.gov.uk/component-guide/organisation_logo/ministry_of_defence/preview">https://components.publishing.service.gov.uk/component-guide/organisation_logo/ministry_of_defence/preview</a></p>
+<h2 id="updating-the-organisation-logo-component-yml-file">Updating the Organisation logo component YML file</h2>
+<p>After adding a new logo to the organisation logo component, please add an example of this to the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/views/govuk_publishing_components/components/docs/organisation_logo.yml">organisation logo component YML file</a>.</p>
 
 
             
@@ -303,8 +325,8 @@ window.GOVUK.triggerEvent(element, 'click', { detail: { test: true } })
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/lib/trigger_event.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Flib%2Ftrigger_event.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/organisation-logos.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Forganisation-logos.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
