@@ -213,15 +213,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/59e28b1320cd3395efb706412f8a19cb2c98227f">11 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/17f1dc1da1ee02352fa59da68e17b9f201bdefb0">12 Mar 2024</a>
 </div>
 
   <h1 class="page-title">govuk-infrastructure: Upgrading the cluster</h1>
@@ -236,12 +229,14 @@ You can only upgrade from one version to the next, 1.17 to 1.18 for example but 
 Once an upgrade is done you cannot downgrade a cluster anymore, you will have to rebuild it from scratch if you want to downgrade.</p>
 <h2 id="step-by-step-procedure">Step by step procedure</h2>
 <ol>
-<li>Make sure the control plane version is the same as the nodegroup, it should already be the case. If not, applying the cluster-infrastructure terraform project should solve this.</li>
-<li>Increment cluster_version to the version you are upgrading to in terraform/deployment/variables/<!-- raw HTML omitted -->/common.tfvars</li>
-<li>Plan and apply the cluster-infrastructure terraform project, it should take about half an hour for the control plane, and another half hour for the nodegroup.</li>
-<li>During the upgrade monitor the health of the running apps to make sure there is no interruption of service.</li>
-<li>Upgrade the cluster add-ons. See the docs for each addon under <a href="https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html">EKS Addons</a> for Amazon's recommended addon versions to use for a given cluster version. Modify <code>cluster_addon_versions</code> accordingly.</li>
-<li>Plan and apply the cluster-infrastructure terraform project as before.</li>
+<li>Make sure the control plane version is the same as the nodegroup, it should already be the case. If not, applying a new run in the  <code>cluster-infrastructure-&lt;ENV&gt;</code> workspace in Terraform Cloud will solve this.</li>
+<li>In the AWS EKS console choose 'Update cluster version' and select the version you wish to update to</li>
+<li>Upgrade the cluster add-ons. See the docs for each addon under <a href="https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html">EKS Addons</a> for Amazon's recommended addon versions to use for a given cluster version.</li>
+<li>Upgrade the node group by selecting the 'Compute' tab in the AWS EKS console and select 'Update now'. Run <code>kubectl get nodes</code> to verify that the upgrade has completed successfully.</li>
+<li>In the ArgoCD console delete the <code>release</code> app and verify that it is re-created</li>
+<li>Increment cluster_version to the version you are upgrading to in terraform/tfc-configuration/variables-<!-- raw HTML omitted -->.tf</li>
+<li>Plan and apply a new run in the <code>tfc-configuration</code> workspace in Terraform Cloud. This will update the variable sets to the new cluster_version</li>
+<li>Plan and apply a new run in the <code>cluster-infrastructure-&lt;ENV&gt;</code> workspace in Terraform Cloud.</li>
 </ol>
 
 
