@@ -222,77 +222,74 @@
 
 <p><code>bundle exec rake</code></p>
 
+<h2 id="required-github-permissions">Required GitHub permissions</h2>
+
+<p>In order to run any of these commands, you will need to <a href="https://github.com/settings/personal-access-tokens/new">generate a personal access token</a>, with:</p>
+
+<ul>
+<li>Resource owner: alphagov</li>
+<li>Repository access: All repositories</li>
+<li>Repository permissions:
+<ul>
+<li>Contents: read and write</li>
+<li>Pull requests: read and write</li>
+<li>Workflows: read and write (only required if you will be using Bulk Changer to create or modify GitHub Actions workflows)</li>
+</ul>
+<p></li>
+</ul>
 <h2 id="commands">Commands</h2>
-
 <h3 id="bulk-update-file"><code>bulk-update-file</code></h3>
-
 <p>Ensures that a file exists in every GOV.UK repo, at the given path, with the given contents. If the file does not currently exist, or if its contents do not match the desired contents, then raises a PR to create or update the file.</p>
-
 <pre><code>usage: ./bulk-update-file [options]
     -h, --help          print this usage information
     --dry-run           simulate filtering repositories, but do not actually raise pull requests
-    --github-token      GitHub API token
-
-    --file-path         path to the file to create/update (required)
-    --file-content      desired content of the file (required)
-
-pull request options:
-    --branch            name of the branch to commit the change to (required)
-    --pr-title          title for the PR to raise (required)
-    --pr-description    description of the PR to raise (required)
-
-filtering options:
-    --if-any-exist      only raise a PR if any of the given paths exist on the main branch (may be specified multiple times)
-    --if-all-exist      only raise a PR if all of the given paths exist on the main branch (may be specified multiple times)
-    --unless-any-exist  only raise a PR if any of the given paths do not exist on the main branch (may be specified multiple times)
-    --unless-all-exist  only raise a PR if all of the given paths do not exist on the main branch (may be specified multiple times)
+    --github-token      GitHub API token</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>--file-path         path to the file to create/update (required)
+--file-content      desired content of the file (required)
+</code></pre></div><p>pull request options:
+    &ndash;branch            name of the branch to commit the change to (required)
+    &ndash;pr-title          title for the PR to raise (required)
+    &ndash;pr-description    description of the PR to raise (required)</p>
+<p>filtering options:
+    &ndash;if-any-exist      only raise a PR if any of the given paths exist on the main branch (may be specified multiple times)
+    &ndash;if-all-exist      only raise a PR if all of the given paths exist on the main branch (may be specified multiple times)
+    &ndash;unless-any-exist  only raise a PR if any of the given paths do not exist on the main branch (may be specified multiple times)
+    &ndash;unless-all-exist  only raise a PR if all of the given paths do not exist on the main branch (may be specified multiple times)
 </code></pre>
-
 <h3 id="bulk-replace"><code>bulk-replace</code></h3>
-
 <p>Look for a file in every GOV.UK repo, at the given path, with the given content and replace with new content. If the file does not currently exist, or if it doesn&rsquo;t have the given content, then that repo is skipped, otherwise a PR is raised.</p>
-
 <pre><code>usage: ./bulk-replace [options]
     -h, --help          print this usage information
-    --github-token      GitHub API token
-
-    --file-path         path to the file to update (required)
-    --old-content       content to be replaced in file (required)
-    --new-content       new content for file (required)
-    --global            replace all occurrences of content (true by default)
-
-pull request options:
-    --branch            name of the branch to commit the change to (required)
-    --pr-title          title for the PR to raise (required)
-    --pr-description    description of the PR to raise (required)
+    --github-token      GitHub API token</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>--file-path         path to the file to update (required)
+--old-content       content to be replaced in file (required)
+--new-content       new content for file (required)
+--global            replace all occurrences of content (true by default)
+</code></pre></div><p>pull request options:
+    &ndash;branch            name of the branch to commit the change to (required)
+    &ndash;pr-title          title for the PR to raise (required)
+    &ndash;pr-description    description of the PR to raise (required)
 </code></pre>
-
 <h2 id="examples">Examples</h2>
-
 <h3 id="create-workflows-to-copy-pr-template-onto-dependabot-prs">Create workflows to copy PR template onto Dependabot PRs</h3>
-
 <p>Several <code>alphagov</code> repositories contain pull request templates, to warn requesters about things like the fact that the repo is continuously deployed, that the repo requires manual pre- or post- merge steps, or that the repo lacks an automated test suite.</p>
-
 <p>The pull requests that Dependabot raises do not use these templates, which has led to issues in the past where reviewers have assumed that a Dependabot PR was safe to merge, when it was not.</p>
-
 <p>To find every GOV.UK repo that contains a pull request template, and automatically raise a PR to add a GitHub Actions workflow<a href="https://github.com/robinjam/dependabot-pr-sync/blob/main/templates/copy-pr-template-to-dependabot-prs.yaml">^workflow</a> that will post the pull request description as a comment on each pull request that Dependabot raises (this requires a GitHub API token with the <code>workflow</code> scope):</p>
-
 <pre lang="bash"><code>./bulk-update-file \
     --dry-run \
-    --github-token "..." \
+    --github-token &quot;...&quot; \
     --branch copy-pr-template-to-dependabot-prs \
-    --pr-title "Create workflow to copy PR template onto Dependabot PRs" \
-    --pr-description "$(&lt;./templates/copy-pr-template-to-dependabot-prs.pr-description.md)" \
-    --file-path ".github/workflows/copy-pr-template-to-dependabot-prs.yaml" \
-    --file-content "$(&lt;./templates/copy-pr-template-to-dependabot-prs.yaml)" \
-    --if-all-exist ".github/dependabot.yml" \
-    --if-any-exist "pull_request_template.md" \
-    --if-any-exist "docs/pull_request_template.md" \
-    --if-any-exist ".github/pull_request_template.md"
+    --pr-title &quot;Create workflow to copy PR template onto Dependabot PRs&quot; \
+    --pr-description &quot;$(&lt;./templates/copy-pr-template-to-dependabot-prs.pr-description.md)&quot; \
+    --file-path &quot;.github/workflows/copy-pr-template-to-dependabot-prs.yaml&quot; \
+    --file-content &quot;$(&lt;./templates/copy-pr-template-to-dependabot-prs.yaml)&quot; \
+    --if-all-exist &quot;.github/dependabot.yml&quot; \
+    --if-any-exist &quot;pull_request_template.md&quot; \
+    --if-any-exist &quot;docs/pull_request_template.md&quot; \
+    --if-any-exist &quot;.github/pull_request_template.md&quot;
 </code></pre>
-
-<!-- raw HTML omitted -->
-<p></div></p>
+&lt;!&ndash; raw HTML omitted &ndash;&gt;
+  </div></p>
 
 
             
