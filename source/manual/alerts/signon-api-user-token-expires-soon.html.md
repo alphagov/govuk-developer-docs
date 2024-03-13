@@ -17,7 +17,7 @@ expiring tokens to ensure the associated application keeps working.
 
 If the token is for `Trade Tariff Admin` or `Trade Tariff Backend`, see [Trade Tariff Admin on the Wiki](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin)
 
-If the token is for `Signon API Client (permission and suspension updater)`, talk with the [Access and Permissions team](https://gds.slack.com/channels/govuk-publishing-access-and-permissions-team).
+If the token is for `Signon API Client (permission and suspension updater)`, talk with the [Publishing Platform team](https://gds.slack.com/channels/govuk-publishing-platform).
 
 ### 1. Issue a new token
 
