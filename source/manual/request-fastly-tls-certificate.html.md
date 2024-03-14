@@ -9,7 +9,7 @@ related_repos: [bouncer, transition]
 
 When transitioning HTTPS domains, these are the steps to request a TLS certificate from Fastly.
 
-1. Login to Fastly. If you need access, speak to a member of the senior tech team. You will need "TLS management" permissions.
+1. Login to Fastly - you will need "TLS management" permissions. A [member of the senior tech team](https://docs.publishing.service.gov.uk/manual/ask-for-help.html#contact-senior-tech) should be able to grant access through the Fastly UI (it can't be done through govuk-user-reviewer).
 
 1. Search for "Production Bouncer"
 
