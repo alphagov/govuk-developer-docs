@@ -53,6 +53,9 @@ available for this:
 
 <%= RunRakeTask.links("asset-manager", "assets:redirect[ASSET_ID,REDIRECT_URL]") %>
 
+Also see [getting an asset's ID](#getting-an-asset39s-id) if you have only been
+provided the URL.
+
 ## Uploading an asset
 
 Some publishing apps such as [Mainstream Publisher](/repos/publisher.html) do
@@ -128,3 +131,28 @@ changing the URL, follow these steps:
    attachment_data = asset.assetable
    attachment_data.update(file_size: 123, number_of_pages: 28)
    ```
+
+## Getting an asset's ID
+
+You can get an asset's ID by using it's URL:
+
+1. Open a Rails console:
+
+    ```
+    k exec -it deploy/asset-manager -- rails c
+    ```
+
+2. Find the asset:
+
+    ```
+    asset = Asset.find_by(legacy_url_path: "/slug")
+    id = asset.id
+    ```
+
+    For example, if the URL is
+
+    ```
+    https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1234/document.pdf
+    ```
+
+    the slug would be `/government/uploads/system/uploads/attachment_data/file/1234/document.pdf`
