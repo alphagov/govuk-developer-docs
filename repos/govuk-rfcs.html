@@ -270,6 +270,31 @@
 <h2 id="historical-rfcs">Historical RFCs</h2>
 
 <p>Some RFCs in this repository were migrated from Confluence. They’ve been automatically converted to Markdown, so some formatting might be incorrect. Please fix any issues as you find them in new PRs.</p>
+
+<h2 id="rfc-metadata-as-yaml-frontmatter">RFC metadata as YAML frontmatter</h2>
+
+<p>Some RFCs have YAML frontmatter which allows us to track their status / implementation etc.</p>
+
+<!-- raw HTML omitted -->
+
+<pre lang="ruby"><code>#!/usr/bin/env ruby
+
+require "csv"
+require "yaml"
+
+frontmatter_columns = %w[status implementation status_last_reviewed status_notes]
+CSV do |csv|
+  csv &lt;&lt; ["filename", *frontmatter_columns]
+  Dir.glob("rfc-*.md") do |filename|
+    first_line = File.readlines(filename).first
+    frontmatter = {}
+    frontmatter = YAML.load_file(filename, permitted_classes: [Date]) if first_line =~ /^---$/
+    csv &lt;&lt; [filename, *frontmatter.values_at(*frontmatter_columns)]
+  end
+end
+</code></pre>
+
+<!-- raw HTML omitted -->
 <p></div></p>
 
 
