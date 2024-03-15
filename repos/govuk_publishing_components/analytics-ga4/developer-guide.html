@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Test a branch of the components gem - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: GA4 developer guide - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/test-a-branch-of-the-gem.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/developer-guide.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Test a branch of the components gem - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/test-a-branch-of-the-gem.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: GA4 developer guide - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/developer-guide.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Test a branch of the components gem" />
+      <meta property="og:title" content="govuk_publishing_components: GA4 developer guide" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/test-a-branch-of-the-gem.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/developer-guide.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -267,56 +267,73 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/93e6a89e9652107248ed53ca0078843e9ef992fe">8 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/3319cf3c19d5c25f2cab9d5f1569ed695c08d784">15 Mar 2024</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Test a branch of the components gem</h1>
+  <h1 class="page-title">govuk_publishing_components: GA4 developer guide</h1>
 
   
-<p>This document explains how to test a github branch of <code>govuk_publishing_components</code> in an application, either locally or for testing a change in the gem on integration.</p>
-<h2 id="prepare-a-branch-of-govuk_publishing_components">Prepare a branch of govuk_publishing_components</h2>
-<p>Create a branch of <code>govuk_publishing_components</code> with the changes that you want to test.</p>
-<p>In a separate commit, modify the <code>.gitignore</code> file, replacing the <code>node_modules</code> line with the following.</p>
-<pre><code>node_modules/@babel
-node_modules/@nodelib
-node_modules/@oclif
-node_modules/acorn
-node_modules/ajv
-node_modules/caniuse-lite
-node_modules/devtools-protocol
-node_modules/es-abstract
-node_modules/eslint
-node_modules/eslint-plugin-import
-node_modules/eslint-plugin-react
-node_modules/lodash
-node_modules/micromark
-node_modules/percy-client
-node_modules/postcss
-node_modules/puppeteer
-node_modules/stylelint
-node_modules/table
+<p>The following is intended for developers working on a part of GOV.UK that includes analytics.</p>
+<h2 id="identifying-tracking">Identifying tracking</h2>
+<p>Anything relating to GA4 will be prefixed with <code>ga4-</code>. This includes <code>data-ga4</code> attributes and module names. If you are modifying code that contains or is inside anything with a <code>ga4-</code> prefix you should check that the tracking still works after your change.</p>
+<p>Tracking is normally initialised on an element with a <code>data-module</code> for a <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-all-trackers.md">tracker</a> accompanied by a <code>data-ga4-(something)</code> attribute either on the same element or child elements. This attribute will usually contain a JSON snippet of data that will be picked up by the tracker and passed to GA4. See individual tracker documentation for more details.</p>
+<h2 id="testing-and-debugging">Testing and debugging</h2>
+<p>To see what events have already occurred on a page, type <code>window.dataLayer</code> into the browser console.</p>
+<p>To see events as they occur for the current page only, there is a <a href="https://github.com/alphagov/govuk_publishing_components/blob/00d81931a46e9826f07b939e0957ebc34d37f9ce/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-core.js#L36-L38">browser console command</a> to assist with debugging. Enter the following in your browser console.</p>
+<pre><code>window.GOVUK.analyticsGa4.showDebug = true
 </code></pre>
-<p>Commit and push the <code>.gitignore</code> and <code>node_modules</code> directory. This will add to the branch everything needed to make the components gem work - basically all the things that are normally installed as part of installing a gem.</p>
-<p><strong>DO NOT</strong> merge this change to <code>main</code> - once you have finished testing your branch, delete this commit.</p>
-<h2 id="prepare-the-application-to-use-the-gem-branch">Prepare the application to use the gem branch</h2>
-<p>The application to use the branch of the components gem may vary depending on what you are testing, however the process remains the same.</p>
-<p>Create a branch of the application and modify the Gemfile to point to the branch of <code>govuk_publishing_components</code>.</p>
-<pre><code>gem "govuk_publishing_components", git: 'https://github.com/alphagov/govuk_publishing_components.git', branch: 'branch-name'
-</code></pre>
-<p>Test your changes locally.</p>
+<p>This is useful for seeing what is being pushed to the dataLayer for in-page events such as tabs or accordions. Enabling 'Preserve log' in Chrome will allow link click and other page reload events to be seen, but the command will need to be run again after a page reload to see subsequent event data.</p>
+<h2 id="components-and-tracking">Components and tracking</h2>
+<p>Many of <a href="https://components.publishing.service.gov.uk/component-guide">our components</a> have GA4 tracking built in and enabled by default. This can be either:</p>
 <ul>
-<li>if you are using the startup scripts to run your application, stop the script, run <code>bundle update govuk_publishing_components</code> and restart</li>
-<li>if you are using govuk-docker, stop the application, run <code>govuk-docker-run bundle update govuk_publishing_components</code> and restart</li>
+<li>all of the tracking for the component can be determined automatically and is handled entirely by the component</li>
+<li>most of the tracking can be determined automatically, but some extra parameters may need to be passed</li>
 </ul>
-<p>You can also push this branch to github and the heroku preview generated from the pull request will use the branch of <code>govuk_publishing_components</code>. Once you have pushed to github you can also deploy this branch to integration for further testing. Note that you do not need to do anything with the branch of <code>govuk_publishing_components</code> - only the application needs to be deployed to integration.</p>
+<p>An example of the latter is the <a href="https://components.publishing.service.gov.uk/component-guide/details#with_ga4_tracking">Details component</a>.</p>
+<p>When a component includes tracking it should always be possible to disable this by passing a <code>disable_ga4</code> option to the component.</p>
+<h2 id="understanding-indexes">Understanding indexes</h2>
+<p>Often GA4 events will include index attributes. These are used by analysts to understand where on a page an event originates. Indexes can be applied to any element but are most often seen when tracking links. All indexes start at 1. The index attributes are:</p>
+<ul>
+<li>
+<code>index_link</code> should be the index of the link within this group of links</li>
+<li>
+<code>index_section</code> should be the index of this group of links, within groups of links in this part of the page</li>
+<li>
+<code>index_section_count</code> should be the total number of groups of links in this part of the page</li>
+<li>
+<code>index_total</code> should be the number of links within this group</li>
+</ul>
+<p>If you are adding or removing links to a part of a page where indexes are used for tracking, you may need to update the values accordingly. If you're uncertain, speak to a performance analyst.</p>
+<p>Here's a simplified example.</p>
+<pre lang="HTML"><code>&lt;h2&gt;Guidance on cheese&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;a href="/link1"&gt;Correct application of cheeses&lt;/a&gt;
+    &lt;!-- index_link: 1, index_section: 1, index_section_count: 2, index_total: 3 --&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/link2"&gt;Differences between hard and soft cheese&lt;/a&gt;
+    &lt;!-- index_link: 2, index_section: 1, index_section_count: 2, index_total: 3 --&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/link3"&gt;A balanced cheese diet&lt;/a&gt;
+    &lt;!-- index_link: 3, index_section: 1, index_section_count: 2, index_total: 3 --&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Popular links&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;a href="/link4"&gt;My favourite cheeses&lt;/a&gt;
+    &lt;!-- index_link: 1, index_section: 2, index_section_count: 2, index_total: 2 --&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="/link5"&gt;Cheese adventures abroad&lt;/a&gt;
+    &lt;!-- index_link: 2, index_section: 2, index_section_count: 2, index_total: 2 --&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
 
 
             
@@ -324,8 +341,8 @@ node_modules/table
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/test-a-branch-of-the-gem.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Ftest-a-branch-of-the-gem.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/developer-guide.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-ga4%2Fdeveloper-guide.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

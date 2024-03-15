@@ -163,6 +163,8 @@
           <li class="subdir__heading">analytics-ga4</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/consent.html" rel="noopener" class="govuk-link">GA4 and cookie consent</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/developer-guide.html" rel="noopener" class="govuk-link">GA4 developer guide</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-all-trackers.html" rel="noopener" class="govuk-link">Trackers</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-auto-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 auto tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-copy-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 copy tracker</a></li>
@@ -183,6 +185,8 @@
               <li><a href="/repos/govuk_publishing_components/load-analytics.html" rel="noopener" class="govuk-link">Loading analytics into our applications</a></li>
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/consent.html" rel="noopener" class="govuk-link">GA4 and cookie consent</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/developer-guide.html" rel="noopener" class="govuk-link">GA4 developer guide</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-all-trackers.html" rel="noopener" class="govuk-link">Trackers</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-auto-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 auto tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-copy-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 copy tracker</a></li>
@@ -264,14 +268,15 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/e0579378188bb2425760c892800bd363b60e5568">16 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/9c301346baacf425a422408fc26711882a02113f">15 Mar 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 and Google Tag Manager</h1>
 
   
 <p>This document describes the use of Google Tag Manager (GTM) with Google Analytics 4 (GA4) on GOV.UK Publishing. Further information can be found in our <a href="https://docs.publishing.service.gov.uk/analytics/">Implementation record</a>.</p>
-<p>No analytics code is initialised and no data is gathered without user consent.</p>
+<p>No analytics code is initialised and no data is gathered without user consent. For more information, see our <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/consent.md">consent</a> documentation.</p>
+<p>If you are a developer working on a part of GOV.UK that includes analytics, read our <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/developer-guide.md">developer guide</a>.</p>
 <h2 id="general-approach">General approach</h2>
 <p>We pass three types of data to GA4.</p>
 <ul>
@@ -283,15 +288,6 @@
 <p>Events happen when a user interacts with certain things, for example clicking on an accordion, tab, or link.</p>
 <p>Search data is gathered when users perform a search.</p>
 <p>For more information about different kinds of tracking, read our <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-all-trackers.md">overview of trackers</a>.</p>
-<h2 id="cookie-consent">Cookie consent</h2>
-<p>The analytics code is only loaded if users consent to cookies. This is managed by the <code>init-ga4.js</code> script.</p>
-<p>If the page loads and cookie consent has already been given, the analytics code is initialised. This includes sending a page view and creating any event listeners for analytics code such as link tracking.</p>
-<p>If the page loads and cookie consent has not been given, an event listener is created for the <code>cookie-consent</code> event, which is dispatched by the <a href="https://github.com/alphagov/govuk_publishing_components/pull/2041/commits/777a381d2ccb67f0a7e78ebf659be806d8d6442d">cookie banner component</a>. If triggered, the event listener will initialise the analytics code as described above. This allows analytics to begin on the page where the user consents to cookies.</p>
-<h2 id="testing-and-debugging">Testing and debugging</h2>
-<p>There is a <a href="https://github.com/alphagov/govuk_publishing_components/blob/00d81931a46e9826f07b939e0957ebc34d37f9ce/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-core.js#L36-L38">browser console command</a> to assist with debugging. Enter the following in your browser console to show the data of analytics events when they occur.</p>
-<pre><code>window.GOVUK.analyticsGa4.showDebug = true
-</code></pre>
-<p>This is useful for seeing what is being pushed to the dataLayer for in-page events such as tabs or accordions. Enabling 'Preserve log' in Chrome will allow link click and other page reload events to be seen, but the command will need to be run again after a page reload to see subsequent event data.</p>
 <h2 id="code-structure">Code structure</h2>
 <p>It is important that no analytics code runs until cookie consent is given. Code to be initialised as part of cookie consent should be attached to the <code>window.GOVUK.analyticsGa4.analyticsModules</code> object and include an <code>init</code> function, using the structure shown below.</p>
 <pre lang="JavaScript"><code>window.GOVUK = window.GOVUK || {}
