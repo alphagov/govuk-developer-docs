@@ -1,0 +1,15 @@
+<% content_for :title, create_page_title(data.analytics.navigation.consent.name) %>
+
+<h1 class="govuk-heading-l">
+  <%= data.analytics.navigation.consent.name %>
+</h1>
+
+<p class="govuk-body">The <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/consent.md" class="govuk-link">GOV.UK analytics JavaScript</a> has been implemented so that no analytics code is run until users consent to cookies. This includes calling the GA4/GTM script from Google.</p>
+
+<p class="govuk-body">This JavaScript implements a blocklist when initialising Google Tag Manager. This <a href="https://github.com/alphagov/govuk_publishing_components/blob/494c9fdbc50365a902e3e49a32b5417a4a761aad/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-core.js#L16" class="govuk-link">prevents various items from being included</a> from GTM, such as custom scripts and HTML.</p>
+
+<p class="govuk-body">Additionally, consent has been configured in GTM as an additional layer of certainty. All tags have the Exception - All Events - Declined Cookies exception (blocking trigger) applied, which prevents the tags from firing if the user's consent cookie does not match "usage":true.</p>
+
+<p class="govuk-body">The trigger leverages a Lookup variable (LT - cookies_policy - check) that returns 'true' where the string matches and 'false' where it does not. The exception then evaluates to TRUE (and will block tags from firing) when the LT - cookies_policy - check returns false.</p>
+
+<p class="govuk-body">Another exception (Exception - All Events - hostname filter) has also been added to all tags that prevents them from firing unless the Page Hostname matches one of the specified dev, integration, staging or production gov.uk domains.</p>
