@@ -50,31 +50,31 @@ the previous version of the software.
    ([example](https://govuk.zendesk.com/tickets/771694))
 1. Check that GOV.UK content teams are aware of the ticket. They may
    need to request further tickets to be raised to cover the content updates.
-1. Download all zip files and XML file in the ticket
+1. Download all zip files and XML files in the ticket
    **Note - make sure you're in the production context for kubectl - don't use integration or staging to test. There's a test procedure on production.**
+1. Get the name of an `asset-manager` pod and store it for future use, something like asset-manager-74765b58bb-hhcr - it will be the one that isn't -freshclam- or -worker-:
+
+   ```shell
+   pod_name=$(kubectl get pods | awk '{print $1}' | grep asset-manager | grep -vE 'worker|fresh' | head -n 1)
+   ```
+
 1. Create a directory for the files to go into:
 
    ```shell
-   kubectl exec -ti deploy/asset-manager -- mkdir /tmp/hmrc-paye
-   ```
-
-1. Get the name of the pod, something like asset-manager-74765b58bb-hhcr - it will be the one that isn't -freshclam- or -worker-:
-
-   ```shell
-   kubectl get pods | grep asset-manager
+   kubectl exec -it ${pod_name} -- mkdir /tmp/hmrc-paye
    ```
 
 1. Upload the new files:
 
    ```shell
-   kubectl cp <local zip file path/name> apps/<pod identified above>:/tmp/hmrc-paye
-   kubectl cp <local xml file path/name> apps/<pod identified above>:/tmp/hmrc-paye
+   kubectl cp <local zip file path/name> apps/${pod_name}:/tmp/hmrc-paye
+   kubectl cp <local xml file path/name> apps/${pod_name}:/tmp/hmrc-paye
    ```
 
 1. Upload the ZIP files into Asset Manager
 
    ```shell
-   kubectl exec -ti deploy/asset-manager -- "rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]"
+   kubectl exec -it ${pod_name} -- rake 'govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]'
    ```
 
    The command should take a few seconds to run, and the output will look something like this
@@ -86,10 +86,10 @@ the previous version of the software.
    https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/payetools-rti-[version-and-os].zip
    You may also see some "high memory for asset-manager app" alerts in the meantime.
 
-1. Now upload the manifest, **but with "test-" at the start of the filename**:
+1. Now upload the **test-** xml files:
 
    ```shell
-   kubectl exec -ti deploy/asset-manager -- "rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]"
+   kubectl exec -it ${pod_name} -- rake 'govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/test-realtimepayetools-update-vXX.xml]'
    ```
 
 1. [Purge the cache](/manual/purge-cache.html#assets) for the test file.
@@ -110,10 +110,10 @@ the previous version of the software.
    version number, ready to publish at the launch time.
 
 1. When the launch time comes (which should be specified in the Zendesk ticket),
-   re-load the test file to the production path:
+   upload the real xml manifest files:
 
    ```shell
-   kubectl exec -ti deploy/asset-manager -- "rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]"
+   kubectl -n apps exec -it ${pod_name} -- rake 'govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]'
    ```
 
    If the SSH connection fails, or if the file is missing, the machine has
