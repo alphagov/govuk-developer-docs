@@ -222,7 +222,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/161fc9f314f92e1559ce7791796ed980f1cd8aa5">15 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d8fc6ebf0479030a9529bce586b7f2e3fc395a27">18 Mar 2024</a>
 </div>
 
  <h1 id='header'>The development and deployment pipeline</h1> <blockquote>
@@ -255,15 +255,28 @@ order to test it works on real infrastructure. Refer to the <a href="/manual/dep
 <a href="/manual/github.html">configured GitHub to prevent merges</a> otherwise.</p>
 <h2 id='check-for-or-implement-a-deploy-freeze'>Check for or implement a deploy freeze</h2><p>In exceptional circumstances, we may wish to block or <em>freeze</em>
 deployments for a short period of time. This should be done by
+running a GitHub Action to toggle off continuous deployment,
 checking &ldquo;Freeze deployments?&rdquo; and adding an explanatory note
 to the application in the <a href="https://release.publishing.service.gov.uk">Release app</a>.</p>
 
 <blockquote>
-<p>Checking &ldquo;Freeze deployments?&rdquo; will turn off all automatic
-deployments for the application. You can still deploy urgent
-changes manually if necessary.</p>
+<p>Code freezes are now handled by toggling off Continuous deployments via a
+Github action named &ldquo;Set automatic deploys&rdquo; for the application.
+See <a href="https://github.com/alphagov/government-frontend/actions/workflows/set-automatic-deploys.yml">here</a> for government-frontend.</p>
+<p>You can still deploy urgent changes manually using the deploy
+GitHub Action if necessary.</p>
 </blockquote>
-<p>It is important to ensure people are aware of a code freeze.</p>
+<p>It is important to ensure people are aware of a code freeze</p>
+
+<blockquote>
+<p>Checking &ldquo;Freeze deployments?&rdquo; on Release will add an
+&ldquo;Automatic deployments disabled&rdquo; label to the application.
+This label will be visible on the landing page of release
+and in applications page underneath the title. It provides
+visiblity of the code freeze to other developers who may
+check Release to view the status of deploys for that app.</p>
+</blockquote>
+<p>Let people know on Slack</p>
 
 <blockquote>
 <p>Send a message to #govuk-developers on slack with the @channel
