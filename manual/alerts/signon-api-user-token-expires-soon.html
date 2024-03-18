@@ -205,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d45b485f8faeb75e87b351ad17bd2fd9b7d46b30">13 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/48ee7a639b88394be7982d40e7287a084331fb31">18 Mar 2024</a>
 </div>
 
  <h1 id='header'>Signon API user token expires soon</h1> <p>One or more tokens for API Users are about to expire. You should rotate
@@ -242,6 +242,8 @@ application. If you are sure the token is disused, you can choose
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>```sh
 k logs -f job/signon-token-sync-$USER
 ```
+
+Alternatively, this job can be triggered through the ArgoCD user interface. Navigate to the [console for Signon](https://argo.eks.production.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=), click the "signon-sync-token-secrets-to-k8s" cron job, then press the three dots in the top right, then "Create Job". The logs can be viewed by clicking the newly created job.
 </code></pre></div>
 <ol>
 <li><p>Open a Rails console on the client app. For example, if the <code>api_user</code> is <code>short-url-manager@alphagov.co.uk</code>, open a console on <code>short-url-manager</code>.</p>
