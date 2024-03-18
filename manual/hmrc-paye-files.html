@@ -194,7 +194,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1724a1ca29abc2983cf6946353b1a8a3762ca2e6">23 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4d019872c405e82bf6b32dfb4de6c61d9bccaeb4">15 Mar 2024</a>
 </div>
 
  <h1 id='header'>Upload HMRC PAYE files</h1> <p><a href="https://www.gov.uk/basic-paye-tools">Basic PAYE Tools</a> is a free software package HMRC provide for small employers to run their payroll. This is available on Windows, Linux, and OS X.</p>
@@ -233,27 +233,27 @@ the previous version of the software.</p>
 (<a href="https://govuk.zendesk.com/tickets/771694">example</a>)</li>
 <li>Check that GOV.UK content teams are aware of the ticket. They may
 need to request further tickets to be raised to cover the content updates.</li>
-<li>Download all zip files and XML file in the ticket
+<li>Download all zip files and XML files in the ticket
 <strong>Note - make sure you&rsquo;re in the production context for kubectl - don&rsquo;t use integration or staging to test. There&rsquo;s a test procedure on production.</strong></li>
-<li>Create a directory for the files to go into:</li>
+<li>Get the name of an <code>asset-manager</code> pod and store it for future use, something like asset-manager-74765b58bb-hhcr - it will be the one that isn&rsquo;t -freshclam- or -worker-:</li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl <span class="nb">exec</span> <span class="nt">-ti</span> deploy/asset-manager <span class="nt">--</span> <span class="nb">mkdir</span> /tmp/hmrc-paye
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">pod_name</span><span class="o">=</span><span class="si">$(</span>kubectl get pods | <span class="nb">awk</span> <span class="s1">'{print $1}'</span> | <span class="nb">grep </span>asset-manager | <span class="nb">grep</span> <span class="nt">-vE</span> <span class="s1">'worker|fresh'</span> | <span class="nb">head</span> <span class="nt">-n</span> 1<span class="si">)</span>
 </code></pre></div>
 <ol>
-<li>Get the name of the pod, something like asset-manager-74765b58bb-hhcr - it will be the one that isn&rsquo;t -freshclam- or -worker-:</li>
+<li>Create a directory for the files to go into:</li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl get pods | <span class="nb">grep </span>asset-manager
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl <span class="nb">exec</span> <span class="nt">-it</span> <span class="k">${</span><span class="nv">pod_name</span><span class="k">}</span> <span class="nt">--</span> <span class="nb">mkdir</span> /tmp/hmrc-paye
 </code></pre></div>
 <ol>
 <li>Upload the new files:</li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl <span class="nb">cp</span> &lt;<span class="nb">local </span>zip file path/name&gt; apps/&lt;pod identified above&gt;:/tmp/hmrc-paye
-   kubectl <span class="nb">cp</span> &lt;<span class="nb">local </span>xml file path/name&gt; apps/&lt;pod identified above&gt;:/tmp/hmrc-paye
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl <span class="nb">cp</span> &lt;<span class="nb">local </span>zip file path/name&gt; apps/<span class="k">${</span><span class="nv">pod_name</span><span class="k">}</span>:/tmp/hmrc-paye
+   kubectl <span class="nb">cp</span> &lt;<span class="nb">local </span>xml file path/name&gt; apps/<span class="k">${</span><span class="nv">pod_name</span><span class="k">}</span>:/tmp/hmrc-paye
 </code></pre></div>
 <ol>
 <li>Upload the ZIP files into Asset Manager</li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl <span class="nb">exec</span> <span class="nt">-ti</span> deploy/asset-manager <span class="nt">--</span> <span class="s2">"rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]"</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl <span class="nb">exec</span> <span class="nt">-it</span> <span class="k">${</span><span class="nv">pod_name</span><span class="k">}</span> <span class="nt">--</span> rake <span class="s1">'govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]'</span>
 </code></pre></div><p>The command should take a few seconds to run, and the output will look something like this
    (it can be safely ignored):
     &gt; <code>/home/yourname</code> is not writable.
@@ -263,9 +263,9 @@ need to request further tickets to be raised to cover the content updates.</li>
 <li><p>You should be able to access your zip, e.g. at
 https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/payetools-rti-[version-and-os].zip
 You may also see some &ldquo;high memory for asset-manager app&rdquo; alerts in the meantime.</p></li>
-<li><p>Now upload the manifest, <strong>but with &ldquo;test-&rdquo; at the start of the filename</strong>:</p></li>
+<li><p>Now upload the <strong>test-</strong> xml files:</p></li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl <span class="nb">exec</span> <span class="nt">-ti</span> deploy/asset-manager <span class="nt">--</span> <span class="s2">"rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]"</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl <span class="nb">exec</span> <span class="nt">-it</span> <span class="k">${</span><span class="nv">pod_name</span><span class="k">}</span> <span class="nt">--</span> rake <span class="s1">'govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/test-realtimepayetools-update-vXX.xml]'</span>
 </code></pre></div>
 <ol>
 <li><p><a href="/manual/purge-cache.html#assets">Purge the cache</a> for the test file.</p></li>
@@ -285,9 +285,9 @@ and <a href="https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem">Welsh tran
 The content team will prep these pages with the new links, file sizes and
 version number, ready to publish at the launch time.</p></li>
 <li><p>When the launch time comes (which should be specified in the Zendesk ticket),
-re-load the test file to the production path:</p></li>
+upload the real xml manifest files:</p></li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl <span class="nb">exec</span> <span class="nt">-ti</span> deploy/asset-manager <span class="nt">--</span> <span class="s2">"rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]"</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-it</span> <span class="k">${</span><span class="nv">pod_name</span><span class="k">}</span> <span class="nt">--</span> rake <span class="s1">'govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]'</span>
 </code></pre></div><p>If the SSH connection fails, or if the file is missing, the machine has
    likely been rebooted and you&rsquo;ll need to repeat some of the earlier steps
    to copy the XML file onto the machine again.</p>
