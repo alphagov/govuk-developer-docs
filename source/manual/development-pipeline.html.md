@@ -54,14 +54,27 @@ Only when the tests pass and the code has been approved the Pull Request can be 
 
 In exceptional circumstances, we may wish to block or _freeze_
 deployments for a short period of time. This should be done by
+running a GitHub Action to toggle off continuous deployment,
 checking "Freeze deployments?" and adding an explanatory note
 to the application in the [Release app][release].
 
-> Checking "Freeze deployments?" will turn off all automatic
-> deployments for the application. You can still deploy urgent
-> changes manually if necessary.
+> Code freezes are now handled by toggling off Continuous deployments via a
+> Github action named "Set automatic deploys" for the application.
+> See [here](https://github.com/alphagov/government-frontend/actions/workflows/set-automatic-deploys.yml) for government-frontend.
+>
+> You can still deploy urgent changes manually using the deploy
+> GitHub Action if necessary.
 
-It is important to ensure people are aware of a code freeze.
+It is important to ensure people are aware of a code freeze
+
+> Checking "Freeze deployments?" on Release will add an
+> "Automatic deployments disabled" label to the application.
+> This label will be visible on the landing page of release
+> and in applications page underneath the title. It provides
+> visiblity of the code freeze to other developers who may
+> check Release to view the status of deploys for that app.
+
+Let people know on Slack
 
 > Send a message to #govuk-developers on slack with the @channel
 > prefix (to ensure people who are offline are notified) and email
