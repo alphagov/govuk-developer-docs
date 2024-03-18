@@ -51,9 +51,9 @@
     <% end %>
 
     <% if page_event.component %>
-        <p class="govuk-body">
-          This event occurs on the <a href="https://components.publishing.service.gov.uk/component-guide/<%= page_event.component %>" class="govuk-link"><%= page_event.component %> component</a>.
-        </p>
+      <p class="govuk-body">
+        This event occurs on the <a href="https://components.publishing.service.gov.uk/component-guide/<%= page_event.component %>" class="govuk-link"><%= page_event.component %> component</a>.
+      </p>
     <% end %>
 
     <% if page_event.examples %>
@@ -73,5 +73,18 @@
       <%= to_html(event_hash) %>
     </div>
     <p class="govuk-body govuk-body-s">You can also view our <a href="/analytics/schema.html" class="govuk-link">complete schemas</a>.</p>
+
+    <% event_name = find_event_name(page_event.data) %>
+    <% if event_name != "undefined" %>
+      <h3 class="govuk-heading-s">Data reports</h3>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="https://analytics.google.com/analytics/web/?pli=1#/p330577055/reports/dashboard?params=_u..nav%3Dmaui%26_u.comparisonOption%3Ddisabled%26_u.date00%3D20240223%26_u.date01%3D20240226%26_r..dimension-value%3D%7B%22dimension%22:%22eventName%22,%22value%22:%22<%= event_name %>%22%7D&r=events-overview&collectionId=4445620817" class="govuk-link">GA4 report for <%= event_name %> events</a> (access required)
+        </li>
+        <li>
+          <a href="https://lookerstudio.google.com/reporting/6c39b1b2-d01c-43b3-bc24-7529e5bbb3f1/page/p_hbaakss8wc?params=%7B%22df66%22:%22include%25EE%2580%25800%25EE%2580%2580IN%25EE%2580%2580<%= event_name %>%22%7D" class="govuk-link">Looker studio report for <%= event_name %> events</a> (access required)
+        </li>
+      </ul>
+    <% end %>
   </div>
 <% end %>
