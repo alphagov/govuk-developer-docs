@@ -36,8 +36,7 @@
   }) %>
 </form>
 
-<% events = events_by_type %>
-<% events = events.sort_by { |key| key }.to_h %>
+<% events = events_by_type.sort_by { |key| key }.to_h %>
 <% events.each do |key, value| %>
   <div data-filter-section>
     <h2 data-filter-title class="govuk-heading-s"><%= key %></h2>
