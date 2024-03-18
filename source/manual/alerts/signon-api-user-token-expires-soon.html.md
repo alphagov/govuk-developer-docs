@@ -53,6 +53,8 @@ The nightly `signon-sync-token-secrets-to-k8s` cronjob will update the token in 
     k logs -f job/signon-token-sync-$USER
     ```
 
+    Alternatively, this job can be triggered through the ArgoCD user interface. Navigate to the [console for Signon](https://argo.eks.production.govuk.digital/applications/cluster-services/signon?view=tree&orphaned=false&resource=), click the "signon-sync-token-secrets-to-k8s" cron job, then press the three dots in the top right, then "Create Job". The logs can be viewed by clicking the newly created job.
+
 1. Open a Rails console on the client app. For example, if the `api_user` is `short-url-manager@alphagov.co.uk`, open a console on `short-url-manager`.
 
     ```sh
