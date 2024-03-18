@@ -203,45 +203,84 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ddf52e8aa11f1ed35e661e16359982c2f0565b89">15 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/776324a46d313586764ede41f954bb74acae6ebb">18 Mar 2024</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='removing-an-asset'>Removing an asset</h2><p>If you need to remove an asset manually from <code>assets.publishing.service.gov.uk</code>,
 follow these steps:</p>
 
+<blockquote>
+<p>Ideally, the deletion should be done in the publishing application that originally
+uploaded the file (e.g. Whitehall). Deleting an asset from Asset Manager without
+removing the record from the publishing application could cause problems if the
+asset is attempted to be re-published again in the future.</p>
+</blockquote>
+<p>If it isn&rsquo;t possible or desirable to remove the asset in the publishing app, use these
+steps to remove the asset in Asset Manager:</p>
+
 <ol>
-<li><p>Decide if the asset can be marked as deleted or whether all traces need to be
-removed (e.g. if it contains secret information). If all traces need to be
-removed, append <code>,true</code> in the square brackets when running the rake tasks
-below.</p>
-<p>To mark the file as deleted, run the following Rake task:</p>
-<p>The square brackets are part of the command, so don&rsquo;t remove them:
- <code>sh
-k exec deploy/asset-manager -- rake assets:delete[ASSET_ID]
-</code></p></li>
+<li>Get the asset ID. This can be obtained from the URL for most assets, e.g. the asset ID
+for <code>https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg</code>
+is <code>65f2c1110e1c2f8c4dffaa53</code>.</li>
+</ol>
+<p>For Whitehall assets that do not start <code>/media</code>, the ID can be obtained using the slug,
+   e.g. for <code>https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml&quot;</code>,
+   run the following in an Asset Manager rails console:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="no">WhitehallAsset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">legacy_url_path: </span><span class="s2">"/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml"</span><span class="p">).</span><span class="nf">id</span>
+</code></pre></div>
+<ol>
+<li>Decide if the asset can be marked as deleted or whether all traces need to be
+removed (e.g. if it contains secret information).</li>
+</ol>
+<p>To soft delete the asset (i.e. mark the asset as deleted in Asset Manager&rsquo;s database,
+   but retain the file in cloud storage), run:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID]
+</code></pre></div><p>To delete all traces of the asset (including the file from cloud storage), run:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID, <span class="nb">true</span><span class="o">]</span>
+</code></pre></div>
+<ol>
 <li><p>Add a query string to the URL (e.g. <code>?cache-bust=12345</code>) to bypass the cache
 and check that the asset responds with a 404 not found.</p></li>
-<li><p>Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache].</p></li>
-<li><p>Verify that the asset is not there without using query string.</p></li>
-<li><p>Request removal of the asset using the <a href="https://www.google.com/webmasters/tools/removals">Google Search Console</a>.</p></li>
+<li><p>Wait 5 minutes for the cache to clear, or <a href="/manual/purge-cache.html#assets">purge it yourself</a>.</p></li>
+<li><p>Verify that the URL returns a 404 response without using a query string.</p></li>
+<li><p>Request removal of the asset from Google&rsquo;s search results using the
+<a href="https://www.google.com/webmasters/tools/removals">Google Search Console</a>.</p></li>
 <li><p>Remove the asset from the Google Cloud Platform (GCP) mirror:</p>
 
 <ul>
 <li>Log into the <a href="https://console.cloud.google.com/">GCP console</a>.</li>
 <li>Go to the <code>GOVUK Production</code> project under the <code>DIGITAL.CABINET-OFFICE.GOV.UK</code>
 organisation.</li>
-<li>Select <code>Cloud Storage -&gt; Browser</code>, go to the [<code>govuk-production-mirror</code>
-bucket][govuk-production-mirror-gcp].</li>
+<li>Select <code>Cloud Storage -&gt; Browser</code>, go to the <a href="https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&amp;project=govuk-production"><code>govuk-production-mirror</code>
+bucket</a>.</li>
 <li>Navigate to the file, then delete it.</li>
 </ul></li>
 <li><p>Remove the asset from the Amazon Web Services (AWS) mirror:</p></li>
 </ol>
 <p><code>gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/&lt;slug&gt;</code></p>
-<p>[clear-cache]: /manual/purge-cache.html#assets
-[govuk-production-mirror-gcp]: https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&amp;project=govuk-production</p>
 <h2 id='redirecting-an-asset'>Redirecting an asset</h2><p>Sometimes it might be necessary to manually redirect an asset, for example if
-an associated document wasn&rsquo;t unpublished correctly. There are some Rake tasks
-available for this:</p>
+an associated document wasn&rsquo;t unpublished correctly.</p>
+
+<blockquote>
+<p>Ideally, the redirect should be done in the publishing application that originally
+uploaded the file (e.g. Whitehall).</p>
+</blockquote>
+<p>If it isn&rsquo;t possible or desirable to redirect the asset in the publishing app, use these
+steps to remove the asset in Asset Manager:</p>
+
+<ol>
+<li>Get the asset ID. This can be obtained from the URL, e.g. the asset ID for
+<code>https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg</code>
+is <code>65f2c1110e1c2f8c4dffaa53</code>.</li>
+</ol>
+<p>For Whitehall assets that do not start <code>/media</code>, the ID can be obtained using the slug,
+   e.g. for <code>https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml&quot;</code>,
+   run the following in an Asset Manager rails console:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="no">WhitehallAsset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">legacy_url_path: </span><span class="s2">"/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml"</span><span class="p">).</span><span class="nf">id</span>
+</code></pre></div>
+<ol>
+<li>Run the following rake task:</li>
+</ol>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:redirect[ASSET_ID,REDIRECT_URL]
 </code></pre></div><p>Also see <a href="#getting-an-asset39s-id">getting an asset&rsquo;s ID</a> if you have only been
 provided the URL.</p>
@@ -249,43 +288,93 @@ provided the URL.</p>
 not provide the facility for editors to upload assets such as images and PDFs.
 In these rare cases, we can upload assets to asset-manager manually and give
 the URL to content editors to embed.</p>
+
+<blockquote>
 <p>Production assets are replicated to staging and integration nightly, so it is
-best to simply perform the upload directly in production. First, upload the
-asset to a backend machine:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect scp-push <span class="nt">-e</span> production aws/backend:1 my_file.jpg /tmp
-</code></pre></div><p>Then SSH to the same machine and run the upload command:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect ssh <span class="nt">-e</span> production aws/backend:1
-<span class="nv">$ </span><span class="nb">cd</span> /var/apps/asset-manager
-<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> deploy govuk_setenv asset-manager bin/create_asset /tmp/my_file.jpg
-</code></pre></div><p>Note the <code>basepath</code> the script outputs. This should be appended to the asset
-host, for example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://assets.publishing.service.gov.uk/media/57358658ed915d58bd000000/my_file.jpg
-</code></pre></div><h2 id='replacing-an-asset'>Replacing an asset</h2><p>If you need to replace the file of an existing attachment without
-changing the URL, follow these steps:</p>
+best to simply perform the upload directly in production.</p>
+<p>If the pod terminates at any point during this process (e.g. a deployment occurs),
+you will need to start again as the <code>/tmp</code> directory is specific to the pod.</p>
+</blockquote>
 
 <ol>
-<li><p>Copy the new file from your computer to a <code>backend</code> server:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect scp-push <span class="nt">-e</span> &lt;environment&gt; aws/backend:1 filename.ext /tmp
-</code></pre></div></li>
-<li><p>Get an app console on that same server:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect ssh <span class="nt">-e</span> &lt;environment&gt; aws/backend:1
-<span class="nv">$ </span>govuk_app_console asset-manager
-</code></pre></div></li>
-<li><p>Find the asset:</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">asset</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"asset-id-from-url"</span><span class="p">)</span> <span class="c1"># e.g. `57a9c52b40f0b608a700000a`</span>
-</code></pre></div></li>
-<li><p>Check the asset is what you think it is.</p></li>
-<li><p>Replace the file (change 123 to the new attachment size in bytes):</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">asset</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">size: </span><span class="mi">123</span><span class="p">)</span>
-<span class="n">asset</span><span class="p">.</span><span class="nf">file</span> <span class="o">=</span> <span class="no">Pathname</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"/tmp/filename.ext"</span><span class="p">).</span><span class="nf">open</span>
-<span class="n">asset</span><span class="p">.</span><span class="nf">save!</span>
-</code></pre></div></li>
-<li><p>For a Whitehall pdf-attachments, update the file size and page count in Whitehall, where 123 is the new attachment size in bytes:</p></li>
+<li>Get the name of the asset-manager pod (you need the app pod, which will be named
+like <code>asset-manager-abc1234-abc123</code> and does not contain any extra words, such as
+<code>freshclam</code>, <code>pss</code> or <code>worker</code>):</li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps <span class="nt">-it</span> deploy/whitehall-admin <span class="nt">--</span> rails c
-</code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">asset</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">asset_manager_id: </span><span class="n">asset</span><span class="o">-</span><span class="nb">id</span><span class="o">-</span><span class="n">from</span><span class="o">-</span><span class="n">url</span><span class="p">).</span><span class="nf">first</span> <span class="c1"># e.g. 123456</span>
-   <span class="n">attachment_data</span> <span class="o">=</span> <span class="n">asset</span><span class="p">.</span><span class="nf">assetable</span>
-   <span class="n">attachment_data</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">file_size: </span><span class="mi">123</span><span class="p">,</span> <span class="ss">number_of_pages: </span><span class="mi">28</span><span class="p">)</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>kubectl <span class="nt">-n</span> apps get pods | <span class="nb">grep </span>asset-manager
+</code></pre></div>
+<ol>
+<li>Assign the pod name to a variable:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ POD_NAME</span><span class="o">={</span>name-of-app-pod-from-previous-output<span class="o">}</span>
+</code></pre></div>
+<ol>
+<li>Upload the file to the pod&rsquo;s <code>/tmp</code> directory:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>kubectl <span class="nb">cp </span>my_file.jpg apps/<span class="k">${</span><span class="nv">POD_NAME</span><span class="k">}</span>:/tmp
+</code></pre></div>
+<ol>
+<li>Run the upload command:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-it</span> <span class="k">${</span><span class="nv">POD_NAME</span><span class="k">}</span> <span class="nt">--</span> bin/create_asset /tmp/my_file.jpg
+</code></pre></div><p>The output will look like the following:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   Saved!
+   Asset <span class="nb">id</span>: 65f2c1110e1c2f8c4dffaa53
+   Asset name: my_file.jpg
+   Asset basepath: /media/65f2c1110e1c2f8c4dffaa53/my_file.jpg
+</code></pre></div><p>The asset can now be located at <code>https://assets.publishing.service.gov.uk/{base-path-from-previous-output}</code>,
+   e.g. <code>https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg</code>.</p>
+<h2 id='replacing-an-asset'>Replacing an asset</h2><p>If you need to replace the file of an existing attachment, follow these steps.</p>
+
+<blockquote>
+<p>The replacement file must have a different filename to the one it is replacing.</p>
+<p>Ideally, the replacement should be done in the publishing application that originally
+uploaded the file (e.g. Whitehall).</p>
+</blockquote>
+<p>If it isn&rsquo;t possible or desirable to replace the asset in the publishing app, use these
+steps to remove the asset in Asset Manager:</p>
+
+<ol>
+<li>Get the name of the asset-manager pod (you need the app pod, which will be named like
+<code>asset-manager-abc1234-abc123</code> and does not contain any extra words, such as <code>freshclam</code>,
+<code>pss</code> or <code>worker</code>):</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>kubectl <span class="nt">-n</span> apps get pods | <span class="nb">grep </span>asset-manager
+</code></pre></div>
+<ol>
+<li>Assign the pod name to a variable:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ POD_NAME</span><span class="o">={</span>name-of-app-pod-from-previous-output<span class="o">}</span>
+</code></pre></div>
+<ol>
+<li>Upload the file to the pod&rsquo;s <code>/tmp</code> directory:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>kubectl <span class="nb">cp </span>my_file.jpg apps/<span class="k">${</span><span class="nv">POD_NAME</span><span class="k">}</span>:/tmp
+</code></pre></div>
+<ol>
+<li>Get an app console on that same server:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-it</span> <span class="k">${</span><span class="nv">POD_NAME</span><span class="k">}</span> <span class="nt">--</span> rails c
+</code></pre></div>
+<ol>
+<li>Find the asset:</li>
+</ol>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">asset</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"asset-id-from-url"</span><span class="p">)</span> <span class="c1"># e.g. `57a9c52b40f0b608a700000a`</span>
+</code></pre></div>
+<ol>
+<li><p>Check the asset is what you think it is.</p></li>
+<li><p>Replace the file:</p></li>
+</ol>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">asset</span><span class="p">.</span><span class="nf">file</span> <span class="o">=</span> <span class="no">Pathname</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"/tmp/filename.ext"</span><span class="p">).</span><span class="nf">open</span>
+   <span class="n">asset</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="ss">:store_metadata</span><span class="p">)</span>
+   <span class="n">asset</span><span class="p">.</span><span class="nf">save!</span>
+</code></pre></div>
+<ol>
+<li>If the attachment is a PDF that was originally uploaded in Whitehall, update the page count field in Whitehall:</li>
+</ol>
+<div class="highlight"><pre class="highlight ssh" tabindex="0"><code>   <span class="err">$</span> <span class="k">kubectl</span> -n apps exec -it deploy/whitehall-admin -- rails c
+</code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">attachment_data</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">asset_manager_id: </span><span class="n">asset</span><span class="o">-</span><span class="nb">id</span><span class="o">-</span><span class="n">from</span><span class="o">-</span><span class="n">url</span><span class="p">).</span><span class="nf">assetable</span> <span class="c1"># e.g. `57a9c52b40f0b608a700000a`</span>
+   <span class="n">attachment_data</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">file_size: </span><span class="mi">123</span><span class="p">,</span> <span class="ss">number_of_pages: </span><span class="mi">28</span><span class="p">)</span> <span class="c1"># file size in bytes</span>
 </code></pre></div><h2 id='getting-an-asset39s-id'>Getting an asset&rsquo;s ID</h2><p>You can get an asset&rsquo;s ID by using it&rsquo;s URL:</p>
 
 <ol>
