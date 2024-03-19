@@ -29,7 +29,7 @@ build step in govuk_publishing_components), copy and adapt the shared workflow.
 Contact a [GOV.UK GitHub Owner][] to grant your repository
 [access to the secret][].
 
-[shared workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yaml
+[shared workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yml
 [GOV.UK GitHub Owner]: mailto:govuk-github-owners@digital.cabinet-office.gov.uk
 [access to the secret]: https://github.com/organizations/alphagov/settings/secrets/actions
 
