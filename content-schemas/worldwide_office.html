@@ -1251,8 +1251,7 @@ a publishing application sends to the publishing-api in a
 <a href="http://www.rubydoc.info/github/alphagov/gds-api-adapters/GdsApi/PublishingApiV2#patch_links-instance_method"><code>patch_links</code></a> call.</p>
 <h3 id='attributes'>Attributes</h3>
 <table class='schema-table'><tr><td><strong>bulk_publishing</strong><br/><code>boolean</code></td> <td><br/></td></tr>
-<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>contact</strong><br/></td> <td>Contact details for this Worldwide Office<br/></td></tr>
-<tr><td><strong>finder</strong><br/></td> <td>Powers links from content back to finders the content is surfaced on<br/></td></tr>
+<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>finder</strong><br/></td> <td>Powers links from content back to finders the content is surfaced on<br/></td></tr>
 <tr><td><strong>lead_organisations</strong><br/></td> <td>DEPRECATED: A subset of organisations that should be emphasised in relation to this content item. All organisations specified here should also be part of the organisations array.<br/></td></tr>
 <tr><td><strong>mainstream_browse_pages</strong><br/></td> <td>Powers the /browse section of the site. These are known as sections in some legacy apps.<br/></td></tr>
 <tr><td><strong>meets_user_needs</strong><br/></td> <td>The user needs this piece of content meets.<br/></td></tr>
@@ -1265,50 +1264,32 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>primary_publishing_organisation</strong><br/></td> <td>The organisation that published the page. Corresponds to the first of the &lsquo;Lead organisations&rsquo; in Whitehall, and is empty for all other publishing applications.<br/></td></tr>
 <tr><td><strong>suggested_ordered_related_items</strong><br/></td> <td>Used for displaying related content on most pages, except for step-by-step and fatality notices. Links and their ordering are determined by the machine learning algorithms.<br/></td></tr>
 <tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr>
-<tr><td><strong>topics</strong><br/></td> <td>Powers the /topic section of the site. These are known as specialist sectors in some legacy apps.<br/></td></tr>
-<tr><td><strong>worldwide_organisation</strong><br/></td> <td>The Worldwide Organisation that this Worldwide Office belongs to<br/></td></tr></table></td></tr>
+<tr><td><strong>topics</strong><br/></td> <td>Powers the /topic section of the site. These are known as specialist sectors in some legacy apps.<br/></td></tr></table></td></tr>
 <tr><td><strong>previous_version</strong><br/><code>string</code></td> <td><br/></td></tr></table>
 <p><a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/worldwide_office/publisher_v2/links.json">View this schema on GitHub</a></p>
 <h3 id='random-example'>Random example</h3><div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"bulk_publishing"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"finder"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"lead_organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"feb8cab4-bdc2-17e6-a7a8-c0fea6ef5174"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ordered_related_items_overrides"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"aaa5b4b9-0cdf-15a4-ab3a-deae7bad5ed3"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cd8e6cbd-31c3-1450-ae6d-da3ce6e5d3da"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"f01afd8d-d045-1efb-a2ef-9f0c41d942c3"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"c7a3aaec-3f6a-154b-a4aa-d1d71e255db6"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"original_primary_publishing_organisation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"8f788fcd-3d49-1c28-ac22-a92cfeaed226"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"c5a21eae-dea1-11fb-a73d-e1b3e6f10367"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"a4816aaa-975c-1681-a3f5-9a6a7b3dcdb4"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"f55fb35e-fc31-1bec-aeab-9bf06ff1cbe9"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"1fa7fb2e-45e8-1c0c-a07b-a47b7eeee2cf"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"b5fe9d0a-6be2-1a4b-a91a-df5c7a88a5fe"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
     </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"1cebe9f9-ce25-1e8f-aebb-9397579923c6"</span><span class="w">
+
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"policy_areas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"df34aa41-2fe8-1fa0-af5b-7a036b2feaf1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"60e5ccd3-5f12-12f6-aee2-4acceec0d92e"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"3e00ebf9-059f-1f3c-a054-53e5d2bdac45"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"eb9615ec-3092-173c-a53f-7e17a36e4286"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"b4c5ab17-bd6b-1eec-a0fc-e93f3f2f3bee"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"1a6eb9a9-8d96-168d-a0f5-9febaffb57d6"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"2fabc497-bfff-16d0-a46c-01c698aecdd7"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"d5ad895f-ffef-14e3-a4a9-decb9a96298a"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"6ec12e7f-99c8-1c01-a72a-c62188f7e001"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"0112a247-bbcf-15f8-ad99-b01db9f003f7"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"da56b0d7-0eba-1e02-a73b-bd3350abc1e5"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"2dd6ee32-cbcd-13a0-a589-ea400e0eed31"</span><span class="w">
+    </span><span class="nl">"suggested_ordered_related_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"a8fcd3d4-9c28-1c22-aa92-cfeaed226c5a"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"21eaedea-11fb-173d-ae1b-3e6f10367a48"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"16aaa975-c681-13f5-a9a6-a7b3dcdb4f55"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fb35efc3-1bec-1eab-a9bf-06ff1cbe91fa"</span><span class="w">
     </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"porttitor aliquet. molestie a malesuada turpis egestas. tempor volutpat interdum. Quisque ac at purus Nam sagittis morbi ac amet non dolor et tempor sit eu senectus consectetur"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 
