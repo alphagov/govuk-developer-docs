@@ -270,7 +270,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/a6218d4e9938c4198e7c1e2a53097a62714a1b5a">30 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/c8a873cd72da2c4289d3a768562591b2dacaa5cb">20 Mar 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics Specialist Link Tracker</h1>
@@ -346,7 +346,7 @@ window.GOVUK.analyticsGa4.linkTracker.init({
 }
 </code></pre>
 <p>Preview links would turn <code>type</code> to <code>preview</code>.</p>
-<p>External links would turn <code>event_name</code> to <code>navigation</code> and <code>type</code> to <code>generic link</code>.</p>
+<p>External links would turn <code>event_name</code> to <code>navigation</code> and <code>type</code> to <code>generic link</code>. <code>type</code> can be overridden by putting a <code>data-ga4-attributes</code> attribute on a link, containing a JSON snippet with an alternative <code>type</code>. This is done on 'Start now' buttons to uniquely identify them.</p>
 <p>Mailto links would turn turn <code>event_name</code> to <code>navigation</code> and <code>type</code> to <code>email</code>.</p>
 <p>Share links would turn <code>event_name</code> to <code>share</code> and type to <code>share this page</code>.</p>
 <p>Follow links would turn <code>event_name</code> to <code>navigation</code> and type to <code>follow us</code></p>
