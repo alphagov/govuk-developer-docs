@@ -11,23 +11,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Add an organisation's brand colour or logo - GOV.UK Developer Documentation</title>
+    <title>Add an organisation's brand colour - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/howto-add-organisation-brand-colour-logo.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/howto-add-organisation-brand-colour.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Add an organisation's brand colour or logo - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/howto-add-organisation-brand-colour-logo.html" />
+      <meta name="twitter:title" content="Add an organisation's brand colour - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/howto-add-organisation-brand-colour.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Add an organisation's brand colour or logo" />
+      <meta property="og:title" content="Add an organisation's brand colour" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/howto-add-organisation-brand-colour-logo.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/howto-add-organisation-brand-colour.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -137,44 +137,22 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Add an organisation's brand colour or logo</span></a>
+    <a href="#header"><span>Add an organisation's brand colour</span></a>
     <ul>
       <li>
-        <a href="#add-an-organisation39s-logo-in-the-publishing-components-gem"><span>Add an organisation’s logo in the publishing components gem</span></a>
-        <ul>
-          <li>
-            <a href="#1-add-the-organisation-logo-to-the-govuk-publishing-components-gem"><span>1. Add the organisation logo to the govuk-publishing-components gem</span></a>
-          </li>
-          <li>
-            <a href="#2-add-the-organisation-logo-as-an-option-in-whitehall"><span>2. Add the organisation logo as an option in Whitehall</span></a>
-          </li>
-        </ul>
+        <a href="#1-check-the-colour-passes-wcag-contrast-requirements"><span>1. Check the colour passes WCAG contrast requirements</span></a>
       </li>
       <li>
-        <a href="#add-a-custom-organisation-logo-in-whitehall"><span>Add a custom organisation logo in Whitehall</span></a>
+        <a href="#2-add-the-brand-colour-in-govuk_publishing_components"><span>2. Add the brand colour in govuk_publishing_components</span></a>
       </li>
       <li>
-        <a href="#add-an-organisation39s-brand-colour"><span>Add an organisation’s brand colour</span></a>
-        <ul>
-          <li>
-            <a href="#1-check-the-colour-passes-wcag-contrast-requirements"><span>1. Check the colour passes WCAG contrast requirements</span></a>
-          </li>
-          <li>
-            <a href="#2-add-the-brand-colour-in-govuk_publishing_components"><span>2. Add the brand colour in govuk_publishing_components</span></a>
-          </li>
-          <li>
-            <a href="#3-add-the-brand-colour-in-gov-uk-frontend"><span>3. Add the brand colour in GOV.UK Frontend</span></a>
-          </li>
-          <li>
-            <a href="#4-add-the-organisation-as-brand-colour-option-in-whitehall"><span>4. Add the organisation as brand colour option in Whitehall</span></a>
-          </li>
-        </ul>
+        <a href="#3-add-the-brand-colour-in-gov-uk-frontend"><span>3. Add the brand colour in GOV.UK Frontend</span></a>
       </li>
       <li>
-        <a href="#testing-your-changes"><span>Testing your changes</span></a>
+        <a href="#4-add-the-organisation-as-brand-colour-option-in-whitehall"><span>4. Add the organisation as brand colour option in Whitehall</span></a>
       </li>
       <li>
-        <a href="#further-info"><span>Further info</span></a>
+        <a href="#5-testing-your-changes"><span>5. Testing your changes</span></a>
       </li>
     </ul>
   </li>
@@ -224,30 +202,33 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/080499a3417ab59a9cefa22f963d7d3d2a69df72">8 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
 </div>
 
- <h1 id='header'>Add an organisation's brand colour or logo</h1> <h2 id='add-an-organisation39s-logo-in-the-publishing-components-gem'>Add an organisation&rsquo;s logo in the publishing components gem</h2><h3 id='1-add-the-organisation-logo-to-the-govuk-publishing-components-gem'>1. Add the organisation logo to the govuk-publishing-components gem</h3><p>The <a href="https://components.publishing.service.gov.uk/component-guide/organisation_logo">organisation logo component</a> is used to render organisation logos that use either the <a href="https://gcs.civilservice.gov.uk/guidance/marketing/branding-guidelines/">Government Identity System</a>, such as <a href="https://components.publishing.service.gov.uk/component-guide/organisation_logo/hm_revenue_customs/preview">HMRC</a>, or have a <a href="https://gcs.civilservice.gov.uk/guidance/marketing/branding-guidelines/#Brand-exemption-process">brand exemption</a>, such as <a href="https://components.publishing.service.gov.uk/component-guide/organisation_logo/hm_prison_service/preview">HMPS</a>.</p>
-<p>To add or update single identity logos in the publishing components gem, please refer to the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/organisation-logos.md">organisation-logos component documentation</a>.</p>
-<h3 id='2-add-the-organisation-logo-as-an-option-in-whitehall'>2. Add the organisation logo as an option in Whitehall</h3><p>Add a new entry for the organisation in <a href="https://github.com/alphagov/whitehall/blob/main/app/models/organisation_logo_type.rb">app/models/organisation_logo_type.rb</a>, which will show the organisation as an option under the <a href="https://github.com/alphagov/whitehall/blob/52aff8f61a29b3999054b5b5c94875a5534eaf9a/app/views/admin/organisations/_form.html.erb#L15">organisation logo drop down field</a> in Whitehall. The CSS class name should match the abbreviated organisation name added above in the govuk publishing components gem.</p>
-<h2 id='add-a-custom-organisation-logo-in-whitehall'>Add a custom organisation logo in Whitehall</h2><p>Policy approval is required to use any logo other than the crown crest. If approved, the custom organisation logo can be uploaded when editing the organisation in Whitehall. The image used should be a PNG image of the logo with a width between <code>288px</code> and <code>300px</code>.</p>
-<h2 id='add-an-organisation39s-brand-colour'>Add an organisation&rsquo;s brand colour</h2><p>An organisation&rsquo;s brand colour is used to style their organisation page (such as dividing lines, icons and link text). For example see the <a href="https://www.gov.uk/government/organisations/department-for-digital-culture-media-sport">DCMS organisation page</a>.</p>
+ <h1 id='header'>Add an organisation's brand colour</h1> <p>An organisation&rsquo;s brand colour is used to style their organisation page (such as dividing lines, icons and link text). For example see the <a href="https://www.gov.uk/government/organisations/department-for-digital-culture-media-sport">DCMS organisation page</a>.</p>
 <p>The colour is set as an option under a drop down field called &ldquo;brand colour&rdquo; when creating or editing an <a href="https://whitehall-admin.publishing.service.gov.uk/government/admin/organisations">organisation page in Whitehall Publisher</a>.</p>
 <p><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/component_branding.md">Documentation in govuk_publishing_components</a> explains how brand colours work in the code, for reference.</p>
-<h3 id='1-check-the-colour-passes-wcag-contrast-requirements'>1. Check the colour passes WCAG contrast requirements</h3><p>If an organisation&rsquo;s brand colour changes or a new one is required, check that it is of a high enough contrast against a white background to be accessible. Use a tool such as the <a href="https://webaim.org/resources/contrastchecker/">WebAIM Contrast Checker</a> to determine this.</p>
-<h3 id='2-add-the-brand-colour-in-govuk_publishing_components'>2. Add the brand colour in govuk_publishing_components</h3><p>If the brand colour is required urgently, follow this step to temporarily add it directly to <code>govuk_publishing_components</code>. Otherwise, skip to step 3.</p>
+<h2 id='1-check-the-colour-passes-wcag-contrast-requirements'>1. Check the colour passes WCAG contrast requirements</h2><p>If an organisation&rsquo;s brand colour changes or a new one is required, check that it is of a high enough contrast against a white background to be accessible. Use a tool such as the <a href="https://webaim.org/resources/contrastchecker/">WebAIM Contrast Checker</a> to determine this.</p>
+<h2 id='2-add-the-brand-colour-in-govuk_publishing_components'>2. Add the brand colour in govuk_publishing_components</h2><p>If the brand colour is required urgently, follow this step to temporarily add it directly to <code>govuk_publishing_components</code>. Otherwise, skip to step 3.</p>
 <p>Add styles to <code>_brand-colours.scss</code> as shown in this example for <a href="https://github.com/alphagov/govuk_publishing_components/blob/cefed3993d91f375a9990d703d49b41277acb189/app/assets/stylesheets/govuk_publishing_components/components/helpers/_brand-colours.scss#L58-L78">10 Downing Street</a>. Copy and paste these lines and modify the organisation CSS class name and colour as required.</p>
 <p>You will then need to ready a <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/publishing-to-rubygems.md">new release of the components gem</a> for deployment.</p>
-<h3 id='3-add-the-brand-colour-in-gov-uk-frontend'>3. Add the brand colour in GOV.UK Frontend</h3><p>Set up a fork of <code>govuk-frontend</code>, then add the colour to the <a href="https://github.com/alphagov/govuk-frontend/blob/main/src/govuk/settings/_colours-organisations.scss">_colours-organisations.scss file</a> and update the <a href="https://github.com/alphagov/govuk-frontend/blob/main/CHANGELOG.md">CHANGELOG</a>.
+<h2 id='3-add-the-brand-colour-in-gov-uk-frontend'>3. Add the brand colour in GOV.UK Frontend</h2><p>Set up a fork of <code>govuk-frontend</code>, then add the colour to the <a href="https://github.com/alphagov/govuk-frontend/blob/main/src/govuk/settings/_colours-organisations.scss">_colours-organisations.scss file</a> and update the <a href="https://github.com/alphagov/govuk-frontend/blob/main/CHANGELOG.md">CHANGELOG</a>.
 See <a href="https://github.com/alphagov/govuk-frontend/blob/main/docs/contributing/versioning.md#updating-changelog">updating changelog</a> and <a href="https://github.com/alphagov/govuk-frontend/pull/1918">example PR</a> for more details.</p>
 <p>Note that it may be some time before a new version of <code>govuk-frontend</code> is released.</p>
-<h3 id='4-add-the-organisation-as-brand-colour-option-in-whitehall'>4. Add the organisation as brand colour option in Whitehall</h3><p>Add a new entry for the organisation in <a href="https://github.com/alphagov/whitehall/blob/main/app/models/organisation_brand_colour.rb">app/models/organisation_brand_colour.rb</a>, which will show the organisation as an option under the <a href="https://github.com/alphagov/whitehall/blob/52aff8f61a29b3999054b5b5c94875a5534eaf9a/app/views/admin/organisations/_form.html.erb#L25">brand colour drop down field</a> in Whitehall. The CSS class name should match the name used earlier.</p>
-<h2 id='testing-your-changes'>Testing your changes</h2><p>If you have modified <code>govuk_publishing_components</code>:</p>
+<h2 id='4-add-the-organisation-as-brand-colour-option-in-whitehall'>4. Add the organisation as brand colour option in Whitehall</h2><p>Add a new entry for the organisation in <a href="https://github.com/alphagov/whitehall/blob/main/app/models/organisation_brand_colour.rb">app/models/organisation_brand_colour.rb</a>, which will show the organisation as an option under the <a href="https://github.com/alphagov/whitehall/blob/52aff8f61a29b3999054b5b5c94875a5534eaf9a/app/views/admin/organisations/_form.html.erb#L25">brand colour drop down field</a> in Whitehall. The CSS class name should match the name used earlier.</p>
+<h2 id='5-testing-your-changes'>5. Testing your changes</h2><p>If you have modified <code>govuk_publishing_components</code>:</p>
 
 <ol>
 <li>Run <code>collections</code> with your local version of <code>govuk_publishing_components</code> (see <a href="/manual/local-frontend-development.html">Local frontend development</a> if you need help).</li>
-<li>Go to an organisation page and use Chrome&rsquo;s developer tools to change the brand class of an element to match, check that the required colour/logo is applied.</li>
+<li>Go to an organisation page and use Chrome&rsquo;s developer tools to change the brand class of an element to match, check that the required colour is applied.</li>
 <li>Create a new release of <code>govuk_publishing_components</code> and get a branch of <code>collections</code> including this deployed to integration.</li>
 </ol>
 <p>If you have modified <code>govuk-frontend</code>:</p>
@@ -261,7 +242,7 @@ See <a href="https://github.com/alphagov/govuk-frontend/blob/main/docs/contribut
 
 <ol>
 <li>In integration <code>whitehall</code>, you should see the organisation as an option under the <code>brand colour</code> field (you will also need to update the <code>Status on GOV.UK</code> to <code>currently live</code> to view the page).</li>
-<li>Check the relevant organisation page has the new logo / colour.</li>
+<li>Check the relevant organisation page has the new colour.</li>
 </ol>
 
 <blockquote>
@@ -270,11 +251,6 @@ See <a href="https://github.com/alphagov/govuk-frontend/blob/main/docs/contribut
 You might be able to speed up the process by running the
 <code>publishing_api:republish_organisation[slug]</code> rake task in Whitehall.</p>
 </blockquote>
-<h2 id='further-info'>Further info</h2>
-<ul>
-<li><a href="https://www.gov.uk/guidance/how-to-publish-on-gov-uk/organisation-pages">How to publish on GOV.UK - Organisation pages</a></li>
-<li><a href="https://gcs.civilservice.gov.uk/guidance/marketing/branding-guidelines/">Government Communication Service - Branding Guidelines</a></li>
-</ul>
 
   <div class='related-content'>
     <h4>Related repositories</h4>
@@ -336,8 +312,8 @@ You might be able to speed up the process by running the
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-add-organisation-brand-colour-logo.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Add+an+organisation%27s+brand+colour+or+logo%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-add-organisation-brand-colour-logo.html%29&amp;labels=bug&amp;title=Re%3A+%27Add+an+organisation%27s+brand+colour+or+logo%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-add-organisation-brand-colour.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Add+an+organisation%27s+brand+colour%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-add-organisation-brand-colour.html%29&amp;labels=bug&amp;title=Re%3A+%27Add+an+organisation%27s+brand+colour%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
