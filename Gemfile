@@ -7,6 +7,7 @@ gem "ffi"
 gem "rake"
 gem "rspec"
 gem "rubocop-govuk", require: false
+gem "sanitize"
 gem "simplecov"
 gem "webmock"
 
