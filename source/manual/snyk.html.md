@@ -21,13 +21,15 @@ snyk-security:
   name: SNYK Security Analysis
   uses: alphagov/govuk-infrastructure/.github/workflows/snyk-security.yml@main
   secrets: inherit
+  permissions:
+    contents: read
+    security-events: write
+    actions: read
 ```
 
 ## Where to find Security Alerts
 
-The scan outputs the scan alerts in JSON format and then saves the JSON file as an artifact after the action completes. Artifacts can be found on the "run" page of a workflow. Read the [downloading a workflow][download-wf] page for details on retrieving this file.
-
-[download-wf]: https://docs.github.com/en/actions/managing-workflow-runs/downloading-workflow-artifacts
+The scan outputs the scan alerts in SARIF format and uploads the file to Code scanning. If alerts are present, they can be found in the Code scanning section in Github by selecting Security > Code scanning.
 
 ## Dealing with Security Alerts
 
