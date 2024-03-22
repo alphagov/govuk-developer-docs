@@ -162,7 +162,7 @@
         </ul>
       </li>
       <li>
-        <a href="#fastly39s-ip-ranges-and-our-access-controls-on-origin-servers"><span>Fastly’s IP ranges and our access controls on origin servers</span></a>
+        <a href="#fastlys-ip-ranges-and-our-access-controls-on-origin-servers"><span>Fastly’s IP ranges and our access controls on origin servers</span></a>
       </li>
       <li>
         <a href="#blocking-traffic-at-the-cdn-edge"><span>Blocking traffic at the CDN edge</span></a>
@@ -182,7 +182,7 @@
         </ul>
       </li>
       <li>
-        <a href="#bouncer39s-fastly-service"><span>Bouncer’s Fastly service</span></a>
+        <a href="#bouncers-fastly-service"><span>Bouncer’s Fastly service</span></a>
         <ul>
           <li>
             <a href="#new-solution-for-bouncer-and-fastly"><span>New solution for Bouncer and Fastly</span></a>
@@ -298,7 +298,7 @@ These logging endpoints are configured via <a href="https://github.com/alphagov/
 &lt; Vary: Accept-Encoding, Accept-Encoding
 </code></pre></div><p>See the Varnish/Fastly docs for what these mean. Check out the Fastly <a href="https://docs.fastly.com/guides/debugging/checking-cache#using-curl">debugging guide</a> for more details on testing.</p>
 <h3 id='access-controls-on-cache-clearing'>Access controls on cache clearing</h3><p>Our <a href="https://github.com/alphagov/govuk-fastly/">Fastly Varnish config</a> restricts HTTP purges to specific IP addresses (otherwise anyone would be able to purge the cache).</p>
-<h2 id='fastly39s-ip-ranges-and-our-access-controls-on-origin-servers'>Fastly&rsquo;s IP ranges and our access controls on origin servers</h2><p>Fastly publish their cache node <a href="https://api.fastly.com/public-ip-list">IP address ranges as JSON from their API</a>. We use these IP addresses in two places:</p>
+<h2 id='fastlys-ip-ranges-and-our-access-controls-on-origin-servers'>Fastly&rsquo;s IP ranges and our access controls on origin servers</h2><p>Fastly publish their cache node <a href="https://api.fastly.com/public-ip-list">IP address ranges as JSON from their API</a>. We use these IP addresses in two places:</p>
 
 <ul>
 <li>Origin has firewall rules in place so that only our office and Fastly can connect. This is updated automatically using the <a href="https://registry.terraform.io/providers/fastly/fastly/latest/docs">Fastly Terraform provider</a> when the <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-security-groups">infra-security-groups</a> module is deployed. Triggering the deployment is still a manual step though.</li>
@@ -323,7 +323,7 @@ These logging endpoints are configured via <a href="https://github.com/alphagov/
 <p>We have a mechanism for including VCL code from the private <code>govuk-cdn-config-secrets</code> repo into the Fastly config, so that mitigations we make during an attack are not published to the public repo for the attacker to see and work around. An example of this <a href="https://github.com/alphagov/govuk-fastly-secrets/blob/45381b4e0af022dfb4ba51c485551e023c2e2e12/secrets.yaml#L27-L35">can be found here</a>.</p>
 <h3 id='block-traffic-using-the-aws-waf'>Block traffic using the AWS WAF</h3><p>Even if we allow traffic through from Fastly, we can block it at the AWS level using the <a href="https://aws.amazon.com/waf/">AWS WAF (Web Application Firewall)</a>.</p>
 <p>See the <a href="https://github.com/alphagov/govuk-aws/tree/main/terraform/projects/infra-public-wafs">infra-public-wafs Terraform project</a> to see what configuration options are currently available.</p>
-<h2 id='bouncer39s-fastly-service'>Bouncer&rsquo;s Fastly service</h2><p>A Fastly CDN service can normally handle up to 1000 domains - this limit is currently undocumented.</p>
+<h2 id='bouncers-fastly-service'>Bouncer&rsquo;s Fastly service</h2><p>A Fastly CDN service can normally handle up to 1000 domains - this limit is currently undocumented.</p>
 <p>We have asked them to increase this limit for Bouncer&rsquo;s service a few times as the number of domains it handled grew, and the limit is <a href="https://fastly.zendesk.com/requests/7356">currently 3500</a>. We have <a href="https://transition.publishing.service.gov.uk/hosts">about 2000 domains</a> so shouldn&rsquo;t need to increase it again for a while.</p>
 <p>If we reach the limit then the <a href="https://deploy.blue.production.govuk.digital/job/Bouncer_CDN/">Jenkins job to update Bouncer&rsquo;s CDN config</a> should fail and new domains won&rsquo;t be added to the service.</p>
 <p>Configuring a new site in Transition generally adds at least 4 domains to the service, including the <code>aka</code> domain for each real domain. For example:</p>

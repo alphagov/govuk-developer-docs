@@ -143,7 +143,7 @@
         <a href="#checking-the-status-of-a-document"><span>Checking the status of a document</span></a>
       </li>
       <li>
-        <a href="#if-documents-aren39t-in-the-publishing-api"><span>If documents aren’t in the Publishing API</span></a>
+        <a href="#if-documents-arent-in-the-publishing-api"><span>If documents aren’t in the Publishing API</span></a>
         <ul>
           <li>
             <a href="#whitehall"><span>Whitehall</span></a>
@@ -160,13 +160,13 @@
         </ul>
       </li>
       <li>
-        <a href="#if-documents-aren39t-in-the-content-store"><span>If documents aren’t in the Content Store</span></a>
+        <a href="#if-documents-arent-in-the-content-store"><span>If documents aren’t in the Content Store</span></a>
       </li>
       <li>
-        <a href="#if-routes-aren39t-in-the-router"><span>If routes aren’t in the Router</span></a>
+        <a href="#if-routes-arent-in-the-router"><span>If routes aren’t in the Router</span></a>
       </li>
       <li>
-        <a href="#if-the-document-isn39t-live-after-all-this"><span>If the document isn’t live after all this</span></a>
+        <a href="#if-the-document-isnt-live-after-all-this"><span>If the document isn’t live after all this</span></a>
       </li>
     </ul>
   </li>
@@ -232,7 +232,7 @@ it may mean that it&rsquo;s got stuck somewhere.</p>
 <h2 id='checking-the-status-of-a-document'>Checking the status of a document</h2><p>To check the status of a document, there is a Rake task available in the
 Publishing API that will check where the content is currently available.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake data_hygiene:document_status_check[content_id,locale]
-</code></pre></div><h2 id='if-documents-aren39t-in-the-publishing-api'>If documents aren&rsquo;t in the Publishing API</h2><p>This likely means that the publishing app itself failed to send the document
+</code></pre></div><h2 id='if-documents-arent-in-the-publishing-api'>If documents aren&rsquo;t in the Publishing API</h2><p>This likely means that the publishing app itself failed to send the document
 correctly to the Publishing API. These fix here varies per publishing app, but
 you can start by trying to republish the document from within the user
 interface. If that doesn&rsquo;t work, there are some other things you can try:</p>
@@ -242,7 +242,7 @@ interface. If that doesn&rsquo;t work, there are some other things you can try:<
 </code></pre></div><h3 id='specialist-publisher'>Specialist Publisher</h3><p>The datastore for Specialist Publisher is the Publishing API directly.
 Therefore if the content isn&rsquo;t in the Publishing API, it means the content will
 also not be in Specialist Publisher and need redrafting.</p>
-<h2 id='if-documents-aren39t-in-the-content-store'>If documents aren&rsquo;t in the Content Store</h2><p>There is a Rake task available in the Publishing API that will represent the
+<h2 id='if-documents-arent-in-the-content-store'>If documents aren&rsquo;t in the Content Store</h2><p>There is a Rake task available in the Publishing API that will represent the
 content item to the Content Store.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake represent_downstream:high_priority:content_id[content_id]
 </code></pre></div>
@@ -252,10 +252,10 @@ See <a href="https://trello.com/c/bfAEuv4S/1576-consider-improving-documentation
 </blockquote>
 <p>Note that if you run this task to fix missing routes, it may not work correctly
 as the Content Store keeps a cache of what it thinks the routes are.</p>
-<h2 id='if-routes-aren39t-in-the-router'>If routes aren&rsquo;t in the Router</h2><p>There is a Rake task available in the Content Store that will register the
+<h2 id='if-routes-arent-in-the-router'>If routes aren&rsquo;t in the Router</h2><p>There is a Rake task available in the Content Store that will register the
 routes for a Content Item directly.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake routes:register[base_path]
-</code></pre></div><h2 id='if-the-document-isn39t-live-after-all-this'>If the document isn&rsquo;t live after all this</h2><p>If the document appears to be correct in all these places, it may just be
+</code></pre></div><h2 id='if-the-document-isnt-live-after-all-this'>If the document isn&rsquo;t live after all this</h2><p>If the document appears to be correct in all these places, it may just be
 necessary to <a href="/manual/purge-cache.html">clear the cache</a> for that document. 404 pages
 will be cached, although with a shorter expiration time, so if a publisher
 tries to view the page before it&rsquo;s live, they may end up caching the 404 page.</p>

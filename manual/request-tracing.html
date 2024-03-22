@@ -143,10 +143,10 @@
         <a href="#how-it-works"><span>How it works</span></a>
       </li>
       <li>
-        <a href="#when-it-quotjust-worksquot"><span>When it “just works”</span></a>
+        <a href="#when-it-just-works"><span>When it “just works”</span></a>
       </li>
       <li>
-        <a href="#when-it-doesn39t-quotjust-workquot"><span>When it doesn’t “just work”</span></a>
+        <a href="#when-it-doesnt-just-work"><span>When it doesn’t “just work”</span></a>
       </li>
     </ul>
   </li>
@@ -211,8 +211,8 @@
 <h2 id='how-it-works'>How it works</h2><p>Nginx <a href="https://github.com/alphagov/govuk-puppet/blob/05af15200690afdeb0f5a48c73601c3cabbadeae/modules/nginx/templates/proxy-vhost.conf#L7-L25">sets a <code>GOVUK-Request-Id</code> HTTP header</a> on the initial request. Apps then pass the header to any APIs that they call.</p>
 <p>For the most part, <a href="https://github.com/alphagov/gds-api-adapters">gds-api-adapters</a> handles this for you. The adapters read the <code>HTTP_GOVUK_REQUEST_ID</code> header and forward this onto backend services. A search can then be carried out against log files for a single request id to see all of the backend service requests that were made in consequence to the originating request.</p>
 <p>For example, the nginx logs in <code>/var/log/nginx/&lt;service&gt;-json.event.access.log</code>will include a <code>govuk_request_id</code> field. You can also filter on <code>govuk_request_id</code> in <a href="/manual/logit.html#viewing-kibana">Kibana</a>.</p>
-<h2 id='when-it-quotjust-worksquot'>When it &ldquo;just works&rdquo;</h2><p>If you are using <a href="https://github.com/alphagov/gds-api-adapters">gds-api-adapters</a> to speak to backend services and your requests are handled synchronously, you don&rsquo;t need to do anything. It should just work.</p>
-<h2 id='when-it-doesn39t-quotjust-workquot'>When it doesn&rsquo;t &ldquo;just work&rdquo;</h2><p>If you are running out-of-band processes via asynchronous workers (e.g. Sidekiq)the request id won&rsquo;t be available in the worker and will not be sent downstream. This also includes any rake tasks you may have, such as republishing tasks.</p>
+<h2 id='when-it-just-works'>When it &ldquo;just works&rdquo;</h2><p>If you are using <a href="https://github.com/alphagov/gds-api-adapters">gds-api-adapters</a> to speak to backend services and your requests are handled synchronously, you don&rsquo;t need to do anything. It should just work.</p>
+<h2 id='when-it-doesnt-just-work'>When it doesn&rsquo;t &ldquo;just work&rdquo;</h2><p>If you are running out-of-band processes via asynchronous workers (e.g. Sidekiq)the request id won&rsquo;t be available in the worker and will not be sent downstream. This also includes any rake tasks you may have, such as republishing tasks.</p>
 <p>For many of these cases, there isn&rsquo;t an originating request and so it&rsquo;s fine not to send a request id downstream. The request id will be generated and populated once a subsequent downstream request hits a load balancer, this will result in a partial trace.</p>
 <p>In cases where you do have a request id available, it is preferable to send this downstream as this could make it easier to debug in the future.</p>
 <p>Use <a href="https://github.com/alphagov/govuk_sidekiq">govuk_sidekiq</a> to do this. This gem injects middleware that will pass on the request id.</p>

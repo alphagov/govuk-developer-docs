@@ -160,7 +160,7 @@
         </ul>
       </li>
       <li>
-        <a href="#what-happens-when-someone-hits-39publish39"><span>What happens when someone hits ‘Publish’?</span></a>
+        <a href="#what-happens-when-someone-hits-publish"><span>What happens when someone hits ‘Publish’?</span></a>
         <ul>
           <li>
             <a href="#draft-and-live-stacks"><span>Draft and live stacks</span></a>
@@ -287,7 +287,7 @@ uploaded directly to Fastly via <a href="https://github.com/alphagov/govuk-cdn-c
 <p>Other redirects that happen at the Fastly level include <a href="https://github.com/alphagov/bouncer">bouncer</a>: a GOV.UK
 application responsible for redirecting traffic from old pre-GOV.UK websites.
 This is configured via <a href="https://github.com/alphagov/transition">transition</a>. Read <a href="/manual/transition-architecture.html">Transition architecture</a> for more detail.</p>
-<h3 id='routing-on-gov-uk'>Routing on GOV.UK</h3><h4 id='getting-to-the-39router39-application'>Getting to the &lsquo;router&rsquo; application</h4><p><a href="images/load-balancer.png" rel="noopener noreferrer"><img src="/manual/images/load-balancer.png" alt="" /></a></p>
+<h3 id='routing-on-gov-uk'>Routing on GOV.UK</h3><h4 id='getting-to-the-router-application'>Getting to the &lsquo;router&rsquo; application</h4><p><a href="images/load-balancer.png" rel="noopener noreferrer"><img src="/manual/images/load-balancer.png" alt="" /></a></p>
 <p>Some requests make it through the CDN and cache layers to &lsquo;origin&rsquo;. Origin is
 a stack of computers in the cloud - in this case, AWS - and its entry point is
 a load balancer.</p>
@@ -306,7 +306,7 @@ However, <a href="https://github.com/alphagov/govuk-puppet/blob/66b2f6c6d8e572d0
 If Varnish has the route response in its cache, that is returned, otherwise it
 proxies the request to <a href="https://github.com/alphagov/router">router</a>, which is a GOV.UK maintained application
 running on the cache machines.</p>
-<h4 id='routing-via-39router39'>Routing via &lsquo;router&rsquo;</h4><p>&lsquo;Router&rsquo; is a reverse proxy app written in Go. It is designed to be fast,
+<h4 id='routing-via-router'>Routing via &lsquo;router&rsquo;</h4><p>&lsquo;Router&rsquo; is a reverse proxy app written in Go. It is designed to be fast,
 storing all known routes in memory using a <a href="https://en.wikipedia.org/wiki/Trie">prefix trie</a>, which it loads
 from a MongoDB database of all known routes.</p>
 <p>The MongoDB database is written to via <a href="https://github.com/alphagov/router-api">router-api</a> whenever a route is
@@ -355,7 +355,7 @@ live in an <a href="https://aws.amazon.com/free/storage/">AWS S3 bucket</a>; rea
 layers. Some requests make it through to origin, where they&rsquo;re routed to the
 machine running the (usually Rails-based) rendering application that knows how
 to handle the request.</p>
-<h2 id='what-happens-when-someone-hits-39publish39'>What happens when someone hits &lsquo;Publish&rsquo;?</h2><h3 id='draft-and-live-stacks'>Draft and live stacks</h3><p><a href="images/draft-live-stacks.png" rel="noopener noreferrer"><img src="/manual/images/draft-live-stacks.png" alt="" /></a></p>
+<h2 id='what-happens-when-someone-hits-publish'>What happens when someone hits &lsquo;Publish&rsquo;?</h2><h3 id='draft-and-live-stacks'>Draft and live stacks</h3><p><a href="images/draft-live-stacks.png" rel="noopener noreferrer"><img src="/manual/images/draft-live-stacks.png" alt="" /></a></p>
 <p>Everything you&rsquo;ve just read about in the first section exists in two stacks:
 draft and live. These are very similar to each other: each is a collection
 of machines in the cloud, running GOV.UK applications. Everything that runs in

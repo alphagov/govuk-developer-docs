@@ -158,7 +158,7 @@
             <a href="#5-test-the-database-has-been-fully-restored"><span>5. Test the database has been fully restored</span></a>
           </li>
           <li>
-            <a href="#6-get-the-new-database39s-hostname"><span>6. Get the new database’s hostname</span></a>
+            <a href="#6-get-the-new-databases-hostname"><span>6. Get the new database’s hostname</span></a>
           </li>
           <li>
             <a href="#7-connect-to-the-restored-backup-database"><span>7. Connect to the restored backup database</span></a>
@@ -288,7 +288,7 @@ gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><s
   aws rds <span class="nb">wait </span>db-instance-available <span class="se">\</span>
     <span class="nt">--db-instance-identifier</span> restored-<span class="k">${</span><span class="nv">db_instance_identifier</span><span class="p">?</span><span class="k">}</span>
 </code></pre></div><p>This command will wait until the database is ready, and then exit without any output.</p>
-<h3 id='6-get-the-new-database39s-hostname'>6. Get the new database&rsquo;s hostname</h3><p>Once the database is ready, fetch its hostname:</p>
+<h3 id='6-get-the-new-databases-hostname'>6. Get the new database&rsquo;s hostname</h3><p>Once the database is ready, fetch its hostname:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><span class="p">?</span><span class="k">}</span><span class="nt">-admin</span> <span class="se">\</span>
   aws rds describe-db-instances <span class="se">\</span>
     <span class="nt">--db-instance-identifier</span> <span class="s2">"restored-</span><span class="k">${</span><span class="nv">db_instance_identifier</span><span class="p">?</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>

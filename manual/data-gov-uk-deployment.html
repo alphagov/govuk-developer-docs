@@ -149,7 +149,7 @@
             <a href="#integration-staging-and-production-environments"><span>Integration, Staging and Production Environments</span></a>
           </li>
           <li>
-            <a href="#staging-amp-production"><span>Staging & Production</span></a>
+            <a href="#staging-production"><span>Staging & Production</span></a>
           </li>
         </ul>
       </li>
@@ -217,7 +217,7 @@
 <h3 id='integration-staging-and-production-environments'>Integration, Staging and Production Environments</h3><p><a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> uses some of GOV.UK Kubernetes platform, which includes <a href="https://argo.eks.integration.govuk.digital/applications/datagovuk">Argo</a> for managing the application stack.</p>
 <p>Deployment of both apps in Integration, Staging and Production is triggered automatically via GitHub flow.</p>
 <h4 id='integration'>Integration</h4><p>To deploy to Integration merge a PR into <code>main</code>.</p>
-<h3 id='staging-amp-production'>Staging &amp; Production</h3><p>To deploy to Staging/Production you need to tag the release.
+<h3 id='staging-production'>Staging &amp; Production</h3><p>To deploy to Staging/Production you need to tag the release.
 The tag needs to be in this format <code>v9.9.9</code> - where 9 is a number and the leading <code>v</code> is required. E.g. <code>v0.1.11</code> is valid, <code>0.1.11</code> is not.</p>
 <p>This will create a PR on [govuk-dgu-charts][govuk-dgu-charts] which you should be able to approve and merge into <code>main</code> for testing.</p>
 <p>Test that your changes are working in <a href="http://staging.data.gov.uk">Staging</a> before releasing to Production.</p>

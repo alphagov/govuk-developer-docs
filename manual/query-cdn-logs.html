@@ -157,13 +157,13 @@
             <a href="#how-many-errors-were-served-to-users-in-a-timeframe"><span>How many errors were served to users in a timeframe</span></a>
           </li>
           <li>
-            <a href="#total-number-of-5xx39s-responses-total-requests-and-percentage-of-5xx39s-were-served-to-users-in-a-timeframe"><span>Total number of 5xx’s responses, total requests and percentage of 5xx’s were served to users in a timeframe</span></a>
+            <a href="#total-number-of-5xxs-responses-total-requests-and-percentage-of-5xxs-were-served-to-users-in-a-timeframe"><span>Total number of 5xx’s responses, total requests and percentage of 5xx’s were served to users in a timeframe</span></a>
           </li>
           <li>
             <a href="#find-out-the-number-of-requests-per-status-per-hour-for-a-gov-uk-url"><span>Find out the number of requests per status per hour for a GOV.UK URL</span></a>
           </li>
           <li>
-            <a href="#ips-with-gt-1000-requests-per-minute"><span>IPs with > 1000 requests per minute</span></a>
+            <a href="#ips-with-1000-requests-per-minute"><span>IPs with > 1000 requests per minute</span></a>
           </li>
           <li>
             <a href="#requests-by-ja3-signature"><span>Requests by JA3 signature</span></a>
@@ -205,7 +205,7 @@
             <a href="#http-response-code-rates"><span>HTTP response code rates</span></a>
           </li>
           <li>
-            <a href="#minutes-during-the-week-where-error-rate-was-gt0-1"><span>Minutes during the week where error rate was >0.1%</span></a>
+            <a href="#minutes-during-the-week-where-error-rate-was-0-1"><span>Minutes during the week where error rate was >0.1%</span></a>
           </li>
         </ul>
       </li>
@@ -373,7 +373,7 @@ scanned</li>
 <span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2018</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">url</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">count</span> <span class="k">DESC</span>
-</code></pre></div><h3 id='total-number-of-5xx39s-responses-total-requests-and-percentage-of-5xx39s-were-served-to-users-in-a-timeframe'>Total number of 5xx&rsquo;s responses, total requests and percentage of 5xx&rsquo;s were served to users in a timeframe</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"Total 5xx Responses"</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">requests</span><span class="p">)</span> <span class="nv">"Total Requests"</span><span class="p">,</span>
+</code></pre></div><h3 id='total-number-of-5xxs-responses-total-requests-and-percentage-of-5xxs-were-served-to-users-in-a-timeframe'>Total number of 5xx&rsquo;s responses, total requests and percentage of 5xx&rsquo;s were served to users in a timeframe</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"Total 5xx Responses"</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">requests</span><span class="p">)</span> <span class="nv">"Total Requests"</span><span class="p">,</span>
     <span class="k">SUM</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">SUM</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">requests</span><span class="p">))</span> <span class="n">OVER</span> <span class="p">()</span> <span class="k">AS</span> <span class="nv">"5xx % of Total Requests"</span>
 <span class="k">FROM</span> <span class="p">(</span>
     <span class="k">SELECT</span>
@@ -395,7 +395,7 @@ scanned</li>
 <span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">16</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">7</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2020</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'hour'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="nb">timestamp</span><span class="p">;</span>
-</code></pre></div><h3 id='ips-with-gt-1000-requests-per-minute'>IPs with &gt; 1000 requests per minute</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>  <span class="n">client_ip</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span>
+</code></pre></div><h3 id='ips-with-1000-requests-per-minute'>IPs with &gt; 1000 requests per minute</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>  <span class="n">client_ip</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span>
 <span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
 <span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">12</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2022</span>
 <span class="k">AND</span> <span class="n">request_received</span> <span class="o">&gt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2022-12-20 22:45:00'</span>
@@ -591,7 +591,7 @@ scanned</li>
 <span class="k">WHERE</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2021</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="n">X</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">1</span> <span class="k">ASC</span><span class="p">;</span>
-</code></pre></div><h3 id='minutes-during-the-week-where-error-rate-was-gt0-1'>Minutes during the week where error rate was &gt;0.1%</h3><p>This is the &ldquo;availability&rdquo; metric shown on the SMT dashboard.</p>
+</code></pre></div><h3 id='minutes-during-the-week-where-error-rate-was-0-1'>Minutes during the week where error rate was &gt;0.1%</h3><p>This is the &ldquo;availability&rdquo; metric shown on the SMT dashboard.</p>
 <div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>
   <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'week'</span><span class="p">,</span> <span class="k">minute</span><span class="p">)</span> <span class="k">AS</span> <span class="n">week</span><span class="p">,</span>
   <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">mins_with_bad_error_rate</span><span class="p">,</span>

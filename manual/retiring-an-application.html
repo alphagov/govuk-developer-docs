@@ -185,7 +185,7 @@
         <a href="#15-eks-apps-only-remove-from-govuk-helm-charts"><span>15. (EKS APPS ONLY) Remove from govuk-helm-charts</span></a>
       </li>
       <li>
-        <a href="#17-delete-the-app39s-kubernetes-resources-if-applicable"><span>17. Delete the app’s Kubernetes resources (if applicable)</span></a>
+        <a href="#17-delete-the-apps-kubernetes-resources-if-applicable"><span>17. Delete the app’s Kubernetes resources (if applicable)</span></a>
       </li>
       <li>
         <a href="#18-archive-the-repo"><span>18. Archive the repo</span></a>
@@ -301,7 +301,7 @@ items need to be unpublished and do it via the Publishing API.</p>
 Once the PR is merged ([Example PR][]), the app pods will automatically be removed by Argo.</p>
 <p><a href="https://github.com/alphagov/govuk-helm-charts/">govuk-helm-charts</a>
 <a href="https://github.com/alphagov/govuk-helm-charts/pull/1236">Example PR</a></p>
-<h2 id='17-delete-the-app39s-kubernetes-resources-if-applicable'>17. Delete the app&rsquo;s Kubernetes resources (if applicable)</h2><p>In the staging and production environments, deleting an Argo CD app will not <a href="https://github.com/alphagov/govuk-helm-charts/blob/c55a034/charts/app-config/templates/govuk-application.yaml#L10">automatically delete</a> the Kubernetes resources that it manages, such as <code>deployments</code>, <code>services</code>, <code>jobs</code> and <code>cronjobs</code>.</p>
+<h2 id='17-delete-the-apps-kubernetes-resources-if-applicable'>17. Delete the app&rsquo;s Kubernetes resources (if applicable)</h2><p>In the staging and production environments, deleting an Argo CD app will not <a href="https://github.com/alphagov/govuk-helm-charts/blob/c55a034/charts/app-config/templates/govuk-application.yaml#L10">automatically delete</a> the Kubernetes resources that it manages, such as <code>deployments</code>, <code>services</code>, <code>jobs</code> and <code>cronjobs</code>.</p>
 <p>You will need to list and delete these resources yourself, for example:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  kubectl --namespace apps get all | grep &lt;app-name&gt;
 
