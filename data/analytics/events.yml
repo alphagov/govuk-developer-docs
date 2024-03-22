@@ -673,7 +673,60 @@
           value: Get emails from GOV.UK
         - name: type
           value: email subscription
-
+- name: filter
+  description: Interactions that can be conducted after filtering the content using CSS instead of HTTP or API requests.
+  events:
+  - name: filter search
+    implemented: true
+    priority: low
+    description: When a search box is used to filter a long list of things on a page, by hiding irrelevant matches, rather than fetching a new page of results from the server.
+    tracker: focus_loss_tracker
+    examples:
+      - text: Government organisations page
+        link: https://www.gov.uk/government/organisations
+      - text: Help and services around the world page
+        link: https://www.gov.uk/world
+    data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: filter
+        - name: type
+          value: filter
+        - name: action
+          value: filter
+        - name: section
+        - name: text
+          value: the user's search term
+  - name: filter link clicks
+    implemented: true
+    priority: low
+    description: Link clicks in a filter search list
+    tracker: focus_loss_tracker
+    examples:
+      - text: Government organisations page
+        link: https://www.gov.uk/government/organisations
+      - text: Help and services around the world page
+        link: https://www.gov.uk/world
+    data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: filter
+        - name: type
+          value: filter
+        - name: action
+          value: filter
+        - name: section
+        - name: external
+        - name: link_domain
+        - name: method
+        - name: text
+        - name: url
 - name: feedback
   description: Tracking the 'is this page useful?' component at the bottom of every GOV.UK page.
   events:
