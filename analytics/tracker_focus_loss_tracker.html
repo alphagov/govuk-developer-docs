@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Link_domain attribute data | GOV.UK GA4 Implementation record</title>
+  <title>Focus loss tracker | GOV.UK GA4 Implementation record</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -14,12 +14,12 @@
     <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
     <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta name="twitter:title" content="GOV.UK Developer Documentation" />
-    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_link_domain.html" />
+    <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/analytics/tracker_focus_loss_tracker.html" />
 
     <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
     <meta property="og:site_name" content="GOV.UK Developer Documentation" />
     <meta property="og:type" content="object" />
-    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/attribute_link_domain.html" />
+    <meta property="og:url" content="https://docs.publishing.service.gov.uk/analytics/tracker_focus_loss_tracker.html" />
   <script>
   document.addEventListener('DOMContentLoaded', function () {
     var markup = `<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" data-module="cookie-banner" data-nosnippet role="region" aria-label="Can we store analytics cookies on your device?" hidden> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <span class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></span> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" data-module="gem-track-click" data-track-category="cookieBanner" data-track-action="Cookie banner settings clicked from confirmation" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" data-module="gem-track-click" data-track-category="cookieBanner" data-track-action="Cookie banner settings clicked from confirmation" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click" data-accept-cookies="true" data-track-category="cookieBanner" data-track-action="Cookie banner accepted" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click" data-reject-cookies="true" data-track-category="cookieBanner" data-track-action="Cookie banner rejected">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="gem-track-click ga4-event-tracker" data-track-category="cookieBanner" data-track-action="Hide cookie banner" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide this message </button> </div> </div> </div>`;
@@ -127,114 +127,36 @@
         <div class="govuk-grid-column-two-thirds" id="main-content" role="main">
           
 <h1 class="govuk-heading-l">
-  <span class="govuk-caption-l">Attribute</span>
-  link_domain
+  <span class="govuk-caption-l">Tracker</span>
+  Focus loss tracker
 </h1>
+
+  <p class="govuk-body">Tracks when a user moves their browser focus away from an element with this tracker initialised on it.</p>
 
 <dl class="govuk-summary-list">
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
-        Name
+        Technical documentation
       </dt>
       <dd class="govuk-summary-list__value">
-          link_domain
+        <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-focus-loss-tracker.md" class="govuk-link">focus_loss_tracker</a>
       </dd>
     </div>
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
-        Description
+        Tracker code
       </dt>
       <dd class="govuk-summary-list__value">
-          The protocol and domain of a link href attribute.
+        <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-focus-loss-tracker.js" class="govuk-link">focus_loss_tracker code</a>
       </dd>
     </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Value
-      </dt>
-      <dd class="govuk-summary-list__value">
-          
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Example
-      </dt>
-      <dd class="govuk-summary-list__value">
-          https://www.nhs.uk
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Required
-      </dt>
-      <dd class="govuk-summary-list__value">
-          true
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Type
-      </dt>
-      <dd class="govuk-summary-list__value">
-          string
-      </dd>
-    </div>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Redact
-      </dt>
-      <dd class="govuk-summary-list__value">
-          <a href="/analytics/pii.html" class="govuk-link">false</a>
-      </dd>
-    </div>
-
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
       Used by
     </dt>
     <dd class="govuk-summary-list__value">
-                  <a href="/analytics/event_accordion.html" class="govuk-link">accordion</a> (Accordion links)<br/>
-                  <a href="/analytics/event_back.html" class="govuk-link">back</a> (link click)<br/>
-                  <a href="/analytics/event_banners.html" class="govuk-link">banners</a> (link click)<br/>
-                  <a href="/analytics/event_breadcrumb.html" class="govuk-link">breadcrumb</a> (link clicks)<br/>
-                  <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (browse (browse level 0))<br/>
-                  <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (browse topic (browse level 1))<br/>
-                  <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (action link (browse level 1))<br/>
-                  <a href="/analytics/event_browse.html" class="govuk-link">browse</a> (browse subtopic (browse level 2))<br/>
-                  <a href="/analytics/event_callout.html" class="govuk-link">callout</a> (call out box link click)<br/>
-                  <a href="/analytics/event_contents_list.html" class="govuk-link">contents list</a> (link click)<br/>
-                  <a href="/analytics/event_subscribe.html" class="govuk-link">subscribe</a> (email alerts)<br/>
-                  <a href="/analytics/event_subscribe.html" class="govuk-link">subscribe</a> (rss subscriptions)<br/>
-                  <a href="/analytics/event_email_subscriptions.html" class="govuk-link">email subscriptions</a> (get emails about this page)<br/>
-                  <a href="/analytics/event_filter.html" class="govuk-link">filter</a> (filter link clicks)<br/>
-                  <a href="/analytics/event_footer.html" class="govuk-link">footer</a> (link clicks)<br/>
-                  <a href="/analytics/event_homepage.html" class="govuk-link">homepage</a> (Link clicks)<br/>
-                  <a href="/analytics/event_html_attachment.html" class="govuk-link">html attachment</a> (link clicks)<br/>
-                  <a href="/analytics/event_links.html" class="govuk-link">links</a> (External links)<br/>
-                  <a href="/analytics/event_links.html" class="govuk-link">links</a> (Download links)<br/>
-                  <a href="/analytics/event_links.html" class="govuk-link">links</a> (file attachment links)<br/>
-                  <a href="/analytics/event_special_route.html" class="govuk-link">special route</a> (change response)<br/>
-                  <a href="/analytics/event_special_route.html" class="govuk-link">special route</a> (information click)<br/>
-                  <a href="/analytics/event_previous_and_next.html" class="govuk-link">previous and next</a> (previous and next)<br/>
-                  <a href="/analytics/event_print_page.html" class="govuk-link">print page</a> (view printable version)<br/>
-                  <a href="/analytics/event_related_content.html" class="govuk-link">related content</a> (related Navigation)<br/>
-                  <a href="/analytics/event_content_history.html" class="govuk-link">content history</a> (see all link click (to another page))<br/>
-                  <a href="/analytics/event_share_page.html" class="govuk-link">share page</a> (follow us)<br/>
-                  <a href="/analytics/event_share_page.html" class="govuk-link">share page</a> (share this page)<br/>
-                  <a href="/analytics/event_simple_smart_answer.html" class="govuk-link">simple smart answer</a> (simple smart answer start)<br/>
-                  <a href="/analytics/event_simple_smart_answer.html" class="govuk-link">simple smart answer</a> (change answer)<br/>
-                  <a href="/analytics/event_simple_smart_answer.html" class="govuk-link">simple smart answer</a> (results link click)<br/>
-                  <a href="/analytics/event_simple_smart_answer.html" class="govuk-link">simple smart answer</a> (start again link click)<br/>
-                  <a href="/analytics/event_smart_answer.html" class="govuk-link">smart answer</a> (smart answer start)<br/>
-                  <a href="/analytics/event_smart_answer.html" class="govuk-link">smart answer</a> (change answer)<br/>
-                  <a href="/analytics/event_smart_answer.html" class="govuk-link">smart answer</a> (results link click)<br/>
-                  <a href="/analytics/event_smart_answer.html" class="govuk-link">smart answer</a> (start again link click)<br/>
-                  <a href="/analytics/event_step_by_step.html" class="govuk-link">step by step</a> (link clicks)<br/>
-                  <a href="/analytics/event_header_menu_bar.html" class="govuk-link">header menu bar</a> (Crown icon link)<br/>
-                  <a href="/analytics/event_header_menu_bar.html" class="govuk-link">header menu bar</a> (link clicks)<br/>
-                  <a href="/analytics/event_taxonomy_pages.html" class="govuk-link">taxonomy pages</a> (taxonomy page links)<br/>
-                  <a href="/analytics/event_webchat.html" class="govuk-link">webchat</a> (webchat available link click)<br/>
+            <a href="/analytics/event_filter.html" class="govuk-link">filter</a> (filter search)<br/>
+            <a href="/analytics/event_filter.html" class="govuk-link">filter</a> (filter link clicks)<br/>
     </dd>
   </div>
 </dl>
