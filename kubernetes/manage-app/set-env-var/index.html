@@ -561,15 +561,8 @@
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9b4c82b11b975c1e4c4a5a156afa58696bd26d83">25 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/335275178f4203e5697b62c11a4c82b62778488f">22 Mar 2024</a>
 </div>
 
  <h1 id='set-or-change-an-environment-variable-for-your-app'>Set or change an environment variable for your app</h1><h2 id='update-an-ordinary-non-secret-environment-variable'>Update an ordinary (non-secret) environment variable</h2><p>To update the value of an ordinary environment variable, raise a PR to change the value.</p>
@@ -590,7 +583,7 @@
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k rollout status deploy
 </code></pre></div><h2 id='update-an-environment-variable-from-a-secrets-manager-secret'>Update an environment variable from a Secrets Manager secret</h2><p>An environment variable can take its value from an AWS Secrets Manager secret.</p>
 <p>The flow of information is: Secrets Manager secret -&gt; <a href="https://external-secrets.io/">External Secrets Operator</a> (configured by an ExternalSecret k8s object) -&gt; Kubernetes <code>Secret</code> object (created/updated by External Secrets Operator) -&gt; <code>valueFrom</code> reference on the app&rsquo;s <code>Pod</code> spec.</p>
-<p>To create a new secret, see <a href="/manage-app/manage-secrets/">Add secrets to your app</a>.</p>
+<p>To create a new secret, see <a href="/kubernetes/manage-app/manage-secrets/">Add secrets to your app</a>.</p>
 <p>For now, apps are not automatically restarted when external (that is, Secrets Manager) secrets change.</p>
 <p>To update an existing secret:</p>
 
