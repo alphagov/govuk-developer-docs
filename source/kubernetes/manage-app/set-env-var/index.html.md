@@ -48,7 +48,7 @@ An environment variable can take its value from an AWS Secrets Manager secret.
 
 The flow of information is: Secrets Manager secret -> [External Secrets Operator](https://external-secrets.io/) (configured by an ExternalSecret k8s object) -> Kubernetes `Secret` object (created/updated by External Secrets Operator) -> `valueFrom` reference on the app's `Pod` spec.
 
-To create a new secret, see [Add secrets to your app](/manage-app/manage-secrets/).
+To create a new secret, see [Add secrets to your app](/kubernetes/manage-app/manage-secrets/).
 
 For now, apps are not automatically restarted when external (that is, Secrets Manager) secrets change.
 
