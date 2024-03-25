@@ -1,14 +1,20 @@
+require "sanitize"
+
 class Snippet
+  HEADINGS = %i[h1 h2 h3 h4 h5 h6].freeze
+
   def self.generate(html)
-    body_text = html
-      .split("</h1>")[1..].join # make sure we skip anything before <h1>
-      .gsub(/<h.+?>.+?<\/h.>/, "") # remove headings
-      .gsub(/<\/?[^>]*>/, "") # remove other HTML but keep the contents
-      .squish # remove whitespace
+    # Discard first heading and everything before it.
+    fragment = html.partition("</h1>")[2]
 
-    # unescape HTML entities to avoid double encoding
-    unescaped_text = Nokogiri::HTML.parse(body_text).text
+    remove_headings = Sanitize::Config.merge(
+      Sanitize::Config::DEFAULT,
+      remove_contents: Sanitize::Config::DEFAULT[:remove_contents] + HEADINGS,
+    )
 
-    unescaped_text.truncate(300) # http://stackoverflow.com/questions/8914476/facebook-open-graph-meta-tags-maximum-content-length
+    snippet = Sanitize.fragment(fragment, remove_headings)
+    Nokogiri::HTML.parse(snippet).text # Avoid double-encoding.
+      .squish
+      .truncate(300) # https://stackoverflow.com/a/8916327
   end
 end
