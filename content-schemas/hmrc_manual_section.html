@@ -437,7 +437,6 @@
 <tr><td><strong>secondary_to_step_navs</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
 <tr><td><strong>suggested_ordered_related_items</strong><br/></td> <td>Used for displaying related content on most pages, except for step-by-step and fatality notices. Links and their ordering are determined by the machine learning algorithms.<br/></td></tr>
 <tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr>
-<tr><td><strong>topic_taxonomy_taxons</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
 <tr><td><strong>topics</strong><br/></td> <td>Powers the /topic section of the site. These are known as specialist sectors in some legacy apps.<br/></td></tr></table></td></tr>
 <tr><td><strong>locale</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>ar</code>, <code>az</code>, <code>be</code>, <code>bg</code>, <code>bn</code>, <code>cs</code>, <code>cy</code>, <code>da</code>, <code>de</code>, <code>dr</code>, <code>el</code>, <code>en</code>, <code>es</code>, <code>es-419</code>, <code>et</code>, <code>fa</code>, <code>fi</code>, <code>fr</code>, <code>gd</code>, <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>, <code>hu</code>, <code>hy</code>, <code>id</code>, <code>is</code>, <code>it</code>, <code>ja</code>, <code>ka</code>, <code>kk</code>, <code>ko</code>, <code>lt</code>, <code>lv</code>, <code>ms</code>, <code>mt</code>, <code>ne</code>, <code>nl</code>, <code>no</code>, <code>pa</code>, <code>pa-pk</code>, <code>pl</code>, <code>ps</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>si</code>, <code>sk</code>, <code>sl</code>, <code>so</code>, <code>sq</code>, <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>, <code>th</code>, <code>tk</code>, <code>tr</code>, <code>uk</code>, <code>ur</code>, <code>uz</code>, <code>vi</code>, <code>yi</code>, <code>zh</code>, <code>zh-hk</code>, <code>zh-tw</code></td></tr>
 <tr><td><strong>need_ids</strong><br/><code>array</code></td> <td><br/></td></tr>
@@ -945,7 +944,7 @@
         </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/a3c303ac-27dc-1e66-ad39-56d561ee0e1d/7c258e94-0b3e-1f4d-a7c5-ebf122e399cc/68cfe8f9-7d7f-1ef4-a1bc-e6bdfd877bd6#34a2dfbb39"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"topic_taxonomy_taxons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/82bacf6e-1b6c-16fe-a4aa-b0e8e583e6ce"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2bd107f4-2cae-17bc-a9fa-898dbfbaad77"</span><span class="p">,</span><span class="w">
@@ -1019,21 +1018,18 @@
         </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"consectetur vel habitant tempor Mauris dolor senectus purus Duis imperdiet malesuada eros. interdum. ac in tristique sed libero. netus tristique ac aliquet. orci Nam lorem"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"molestie vel scelerisque. risus in purus Nam eu libero. netus Ut ac Duis habitant sagittis morbi fames aliquet. vestibulum. hendrerit interdum. massa ultricies nibh ac tempor tristique interdum. egestas. dolor nibh. senectus"</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ko"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lt"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"whitehall"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"specialist-publisher"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"publishing_scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"scheduled_publishing_delay_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"whitehall-frontend"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scheduled_publishing_delay_seconds"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hmrc_manual_section"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leo Ut egestas. sem hendrerit orci in dolor sed Ut pellentesque lorem sagittis lectus Mauris Quisque at risus aliquet. Nam tristique vestibulum. Aenean tempor nibh non est. dolor tempor vel libero. vel elit. turpis purus Pellentesque ac netus ac a ultricies porttitor cursus sit nibh. tristique adipiscing finibus consectetur ac eu et fames bibendum. malesuada Suspendisse nisl habitant molestie eu Nam interdum. et massa suscipit morbi sollicitudin interdum. ipsum volutpat molestie mauris risus imperdiet ac Sed eros. Duis Lorem senectus amet non scelerisque."</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-05-05T08:16:36+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leo Ut egestas. sem hendrerit orci in dolor sed Ut pellentesque"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-02T06:34:53+00:00"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"withdrawn_notice"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non nibh Sed senectus nisl sagittis volutpat est. libero. ac"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
