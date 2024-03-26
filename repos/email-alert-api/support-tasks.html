@@ -218,7 +218,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/4cbecd3e91d9b4d5365552f8214c415be9cb38a0">12 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/8a732f4cea7ada261b31b4e4890a48c0686c3209">20 Mar 2024</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Support tasks</h1>
@@ -288,10 +288,19 @@ Depending on the number of emails to send, the Rake task can take a few minutes 
 <p>This will report on the number of active subscriptions for a given path.</p>
 <blockquote>
 <p><strong>Warning</strong></p>
-<p>This is called simple because it only gets subscriber lists for a direct path. There may still be subscriptions by topic or link, so finding an empty or missing subcription list does not mean that no-one will receive email updates about that page! See below for a more detailed description of how to get the subscriber list.</p>
+<p>This is called simple because it only gets subscriber lists for a direct path. There may still be subscriptions by topic or link, so finding an empty or missing subcription list does not mean that no-one will receive email updates about that page! See below for a more detailed description of how to get the subscriber list.
+It also won't work that well if the path is a finder. See below for better tasks for finders or detailed subscriber lists.</p>
 </blockquote>
 <p>The path should be the full path on gov.uk (for instance /government/statistics/examples if the page you're interested in is <a href="https://www.gov.uk/government/statistics/examples">https://www.gov.uk/government/statistics/examples</a>)</p>
 <p>You can also pass it a :active_on_datetime which will count how many active subscriptions there were at the end of the day on a particular date. The active_on_date defaults to today if not specified, and should be in ISO8601 format, for example 2022-03-03T12:12:16+00:00. The time will always be rounded to the end of the day, even if that is in the future.</p>
+<h2 id="get-stats-for-subscribers-to-a-finder-by-its-url">Get stats for subscribers to a finder by its URL</h2>
+<p>To see a report on the number of subscribers to a finder, :</p>
+<pre lang="bash"><code>kubectl -n apps exec -it deploy/email-alert-api -- bundle exec rake 'report:finder_statistics[&lt;path&gt;]'
+</code></pre>
+<p>This will report on the number of subscriber lists to the finder on a given path.</p>
+<p>The path should be the full path on gov.uk (for instance /cma-cases if the page you're interested in is <a href="https://www.gov.uk/cma-cases">https://www.gov.uk/cma-cases</a>)</p>
+<p>Because finder subscriptions can include the filters active on the finder at the point the subscription was created, there may be more than one subscriber list. Finders require an email_alert_signup item in the links section of their content item to allow alerts, so if there are no subscriptions to a finder
+it may be because it cannot be signed up to.</p>
 <h2 id="finding-out-how-many-messages-were-sent-when-a-page-changed">Finding out how many messages were sent when a page changed</h2>
 <p>The previous rake task only gets subscriber lists that match a URL. But subscribers can match on topics/tags/links, so to get a full idea of how many people subscribe to a page:</p>
 <pre lang="bash"><code>kubectl -n apps exec -it deploy/email-alert-api -- bundle exec rake 'report:historical_content_change_statistics[&lt;path&gt;]'
