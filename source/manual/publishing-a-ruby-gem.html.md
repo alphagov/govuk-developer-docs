@@ -22,16 +22,28 @@ Follow the file and directory [conventions used by Bundler][].
 
 ## Releasing gem versions
 
-Use GitHub Actions for releasing gems, with our [shared workflow][] and the
+Use GitHub Actions for releasing gems, with our [shared publish workflow][] and the
 `ALPHAGOV_RUBYGEMS_API_KEY` secret. For builds with extra needs (e.g. the npm
 build step in govuk_publishing_components), copy and adapt the shared workflow.
 
 Contact a [GOV.UK GitHub Owner][] to grant your repository
 [access to the secret][].
 
-[shared workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yaml
+[shared publish workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yml
 [GOV.UK GitHub Owner]: mailto:govuk-github-owners@digital.cabinet-office.gov.uk
 [access to the secret]: https://github.com/organizations/alphagov/settings/secrets/actions
+
+## Automatically releasing patch-level versions
+
+Use the [shared autorelease workflow][] and the `GOVUK_CI_GITHUB_API_TOKEN`
+secret to automatically raise a PR to perform a patch-level version bump if the
+gem has unreleased changes, and all of those changes were authored by
+Dependabot.
+
+After a developer approves and merges that PR, the publish-rubygem workflow (if
+present) will automatically publish the next release to Rubygems.
+
+[shared autorelease workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/autorelease-rubygem.yml
 
 ## Ruby version compatibility
 
