@@ -146,6 +146,9 @@
         <a href="#releasing-gem-versions"><span>Releasing gem versions</span></a>
       </li>
       <li>
+        <a href="#automatically-releasing-patch-level-versions"><span>Automatically releasing patch-level versions</span></a>
+      </li>
+      <li>
         <a href="#ruby-version-compatibility"><span>Ruby version compatibility</span></a>
       </li>
     </ul>
@@ -197,18 +200,24 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2689cf0f9c8812eb894522a6a812f7d8e6fdf7c3">8 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f9c30a640368980b8ca38e91502bdaf2ddbbf399">19 Mar 2024</a>
 </div>
 
  <h1 id='header'>Publish a Ruby gem</h1> <h2 id='conventions'>Conventions</h2><p>For conventions around naming, refer to the <a href="http://guides.rubygems.org/name-your-gem/">RubyGems naming guide</a> and the
 <a href="/manual/naming.html#naming-gems">GOV.UK naming policy</a>.</p>
 <p>Follow <a href="https://semver.org/">Semantic Versioning</a> and put version updates in their own commit.</p>
 <p>Follow the file and directory <a href="https://bundler.io/guides/creating_gem.html">conventions used by Bundler</a>.</p>
-<h2 id='releasing-gem-versions'>Releasing gem versions</h2><p>Use GitHub Actions for releasing gems, with our <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yaml">shared workflow</a> and the
+<h2 id='releasing-gem-versions'>Releasing gem versions</h2><p>Use GitHub Actions for releasing gems, with our <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yml">shared publish workflow</a> and the
 <code>ALPHAGOV_RUBYGEMS_API_KEY</code> secret. For builds with extra needs (e.g. the npm
 build step in govuk_publishing_components), copy and adapt the shared workflow.</p>
 <p>Contact a <a href="mailto:govuk-github-owners@digital.cabinet-office.gov.uk">GOV.UK GitHub Owner</a> to grant your repository
 <a href="https://github.com/organizations/alphagov/settings/secrets/actions">access to the secret</a>.</p>
+<h2 id='automatically-releasing-patch-level-versions'>Automatically releasing patch-level versions</h2><p>Use the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/autorelease-rubygem.yml">shared autorelease workflow</a> and the <code>GOVUK_CI_GITHUB_API_TOKEN</code>
+secret to automatically raise a PR to perform a patch-level version bump if the
+gem has unreleased changes, and all of those changes were authored by
+Dependabot.</p>
+<p>After a developer approves and merges that PR, the publish-rubygem workflow (if
+present) will automatically publish the next release to Rubygems.</p>
 <h2 id='ruby-version-compatibility'>Ruby version compatibility</h2><p>Ensure gems are compatible with all <a href="https://www.ruby-lang.org/en/downloads/branches/">supported minor Ruby
 versions</a>, specifying the minimum minor Ruby version in the gemspec
 file. For example: <code>spec.required_ruby_version = &quot;&gt;= 3.1&quot;</code>.</p>
