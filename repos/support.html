@@ -244,9 +244,6 @@
 <p>Presents anonymous feedback about pages on GOV.UK in a &ldquo;feedback explorer&rdquo;. Anonymous feedback is collected via the <a href="https://github.com/alphagov/feedback">Feedback app</a> and retrieved from the <a href="https://github.com/alphagov/support-api">Support API</a>.</p>
 </li>
 <li>
-<p>Exposes <a href="https://github.com/alphagov/gds-api-adapters/blob/main/lib/gds_api/support.rb">internal APIs</a> to create Zendesk tickets e.g. <a href="https://github.com/alphagov/feedback/blob/7e6893c/app/models/contact_ticket.rb#L35">via the Feedback app</a>. Tickets are created using the <a href="https://github.com/alphagov/gds_zendesk">gds_zendesk gem</a>.</p>
-</li>
-<li>
 <p>Hosts internal forms for publishers to create Zendesk tickets.</p>
 </li>
 <li>
@@ -263,9 +260,6 @@ of some form or other and relates to pages published on GOV.UK.</li>
 <li>
 <strong>Anonymous Contact</strong>: Part of the feedback collected by this app is anonymous, when it&rsquo;s
 submitted via an anonymous contact form in the <a href="https://github.com/alphagov/feedback">feedback app</a>.</li>
-<li>
-<strong>Named Contact</strong>: In contrast with the <code>Anonymous Contact</code> feedback, this is submitted
-via a form that will require you to identify yourself.</li>
 </ul>
 
 <h2 id="technical-documentation">Technical documentation</h2>
@@ -294,7 +288,7 @@ via a form that will require you to identify yourself.</li>
 
 <ul>
 <li>
-<a href="https://docs.google.com/presentation/d/1KNJQsH7Stu1hAe8DL-Zs585Q_yXSleGYiH0G6Sw6rOw/edit#slide=id.g59de842929_0_5">An overview of how the Feedback, Support and Support-api applications fit together</a> (for internal use only)</li>
+<a href="https://docs.google.com/presentation/d/1KNJQsH7Stu1hAe8DL-Zs585Q_yXSleGYiH0G6Sw6rOw/edit#slide=id.g59de842929_0_5">An overview of how the Feedback, Support and Support API applications fit together</a> (for internal use only)</li>
 <li><a href="/repos/support/how-tickets-routed-to-zendesk.html">Zendesk routing</a></li>
 </ul>
 
