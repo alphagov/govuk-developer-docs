@@ -319,7 +319,7 @@
 <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"></a>
 <a href="https://github.com/alphagov/stylelint-config-gds/"><img src="https://img.shields.io/badge/code_style-stylelint-brightgreen.svg" alt="Stylelint Style Guide"></a></p>
 
-<p>A Ruby gem to document and distribute components for GOV.UK applications. It provides:</p>
+<p>govuk_publishing_components is a Ruby gem to document and distribute components for GOV.UK applications. It provides:</p>
 
 <ul>
 <li>a shared library of components</li>
@@ -329,29 +329,41 @@
 <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a> styles and components (via <a href="https://github.com/alphagov/govuk-frontend">GOV.UK Frontend</a>)</li>
 </ul>
 
-<p>Components should be added to this gem if they are required in more than one application, otherwise they should be added to that application. All components should meet the same standards of browser and assistive technology support described in <a href="https://github.com/alphagov/govuk-frontend#browser-and-assistive-technology-support">GOV.UK Frontend</a>.</p>
+<p>Only add a component to this gem if it is required in more than one application. Please do not add application-specific components to govuk_publishing_components.</p>
+
+<p>All components should meet the accessibility standards for browser and assistive technology support described in <a href="https://github.com/alphagov/govuk-frontend#browser-and-assistive-technology-support">GOV.UK Frontend</a>.</p>
 
 <h2 id="technical-documentation">Technical documentation</h2>
 
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> or the local <code>startup.sh</code> script to run the app. Read the <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">guidance on local frontend development</a> to find out more about each approach, before you get started.</p>
+<h3 id="run-the-application">Run the application</h3>
 
-<p>If you are using GOV.UK Docker, remember to combine it with the commands that follow. See the <a href="https://github.com/alphagov/govuk-docker#usage">GOV.UK Docker usage instructions</a> for examples.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<pre lang="sh"><code>bundle exec rake
+<pre lang="sh"><code>./startup.sh
 </code></pre>
 
-<p>To run JavaScript tests (only):</p>
+<p>See also <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">Local frontend development</a>.</p>
 
-<pre lang="sh"><code># run JS tests in browser
-yarn run jasmine:browser
+<h3 id="run-the-test-suite">Run the test suite</h3>
 
-# run JS tests on command line
-yarn run jasmine:ci
+<pre lang="sh"><code>bundle install
+yarn install
+bundle exec rake
 </code></pre>
 
-<h3 id="using-the-gem">Using the gem</h3>
+<h3 id="run-the-javascript-tests-alone">Run the JavaScript tests alone</h3>
+
+<p>With text-only output to the terminal:</p>
+
+<pre lang="sh"><code>yarn run jasmine:ci
+</code></pre>
+
+<p>With output viewable in a browser at <a href="http://localhost:8888/">http://localhost:8888/</a>:</p>
+
+<pre lang="sh"><code>yarn run jasmine:browser
+</code></pre>
+
+<p>You need to restart the <code>jasmine:browser</code> test server for it to pick up any changes to JavaScript code.</p>
+
+<h3 id="use-the-gem">Use the gem</h3>
 
 <ul>
 <li><a href="/repos/govuk_publishing_components/install-and-use.html">Install and use this gem</a></li>
@@ -359,7 +371,7 @@ yarn run jasmine:ci
 <li><a href="/repos/govuk_publishing_components/test-a-branch-of-the-gem.html">Test a branch of the gem</a></li>
 </ul>
 
-<h3 id="managing-the-gem">Managing the gem</h3>
+<h3 id="manage-the-gem">Manage the gem</h3>
 
 <ul>
 <li><a href="/repos/govuk_publishing_components/publishing-to-rubygems.html">Publish/release a new version of the gem</a></li>
@@ -367,7 +379,7 @@ yarn run jasmine:ci
 <li><a href="/repos/govuk_publishing_components/moving-components-upstream-into-this-gem.html">Move a component from an application to the gem</a></li>
 </ul>
 
-<h3 id="making-components">Making components</h3>
+<h3 id="make-a-new-component">Make a new component</h3>
 
 <ul>
 <li><a href="/repos/govuk_publishing_components/generate-a-new-component.html">Generate a new component</a></li>
@@ -378,13 +390,13 @@ yarn run jasmine:ci
 <h3 id="further-documentation">Further documentation</h3>
 
 <ul>
-<li><a href="/repos/govuk_publishing_components/testing-components.html">Testing a component</a></li>
+<li><a href="/repos/govuk_publishing_components/testing-components.html">Test a component</a></li>
 <li><a href="/repos/govuk_publishing_components/auditing.html">Component auditing</a></li>
 <li><a href="http://www.rubydoc.info/gems/govuk_publishing_components">Code documentation on rubydoc.info</a></li>
 <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/analytics.md">Our analytics approach</a></li>
 </ul>
 
-<p>More documentation can be found in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/">docs directory</a>.</p>
+<p>There is more documentation in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/">docs directory</a>.</p>
 
 <h2 id="licence">Licence</h2>
 

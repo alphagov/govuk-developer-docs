@@ -7,25 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: local-links-manager - GOV.UK Developer Documentation</title>
+    <title>imminence: Decision Record: Simplifying Data Set Actions - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/local-links-manager.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/imminence/adr/adr-002-simplify-data-set-actions.html">
 
-      <meta name="description" content="Everything about local-links-manager (Manages local links from local authorities on GOV.UK)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: local-links-manager - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/local-links-manager.html" />
+      <meta name="twitter:title" content="imminence: Decision Record: Simplifying Data Set Actions - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/imminence/adr/adr-002-simplify-data-set-actions.html" />
 
-      <meta property="og:description" content="Everything about local-links-manager (Manages local links from local authorities on GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: local-links-manager" />
+      <meta property="og:title" content="imminence: Decision Record: Simplifying Data Set Actions" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/local-links-manager.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/imminence/adr/adr-002-simplify-data-set-actions.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -134,20 +132,16 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                   <ul>
     <li>
-      <a href="/repos/local-links-manager.html" rel="noopener" class="govuk-link">local-links-manager</a>
+      <a href="/repos/imminence.html" rel="noopener" class="govuk-link">imminence</a>
     </li>
     <li>
       <ul>
-          <li><a href="/repos/local-links-manager/checking-links.html" rel="noopener" class="govuk-link">Checking Links</a></li>
-          <li><a href="/repos/local-links-manager/deleting-a-link.html" rel="noopener" class="govuk-link">Deleting a local transaction link</a></li>
-          <li><a href="/repos/local-links-manager/enable-or-create-service.html" rel="noopener" class="govuk-link">Enabling (or creating) a new service</a></li>
-          <li><a href="/repos/local-links-manager/example-api-output.html" rel="noopener" class="govuk-link"># Example API output</a></li>
-          <li><a href="/repos/local-links-manager/exporting-local-authority-links.html" rel="noopener" class="govuk-link">Exporting Local Authority links to services</a></li>
-          <li><a href="/repos/local-links-manager/google_analytics_custom_import.html" rel="noopener" class="govuk-link">Authorisation for Google Analytics custom import</a></li>
-          <li><a href="/repos/local-links-manager/importing-local-authorities-data.html" rel="noopener" class="govuk-link">Importing Local Authorities data</a></li>
-          <li><a href="/repos/local-links-manager/importing-service-links-from-csv.html" rel="noopener" class="govuk-link">Importing Service Links from a CSV</a></li>
-          <li><a href="/repos/local-links-manager/local-authority-changes.html" rel="noopener" class="govuk-link">Local Authority Changes</a></li>
-          <li><a href="/repos/local-links-manager/remove-a-service.html" rel="noopener" class="govuk-link">Remove a service</a></li>
+          <li><a href="/repos/imminence/adding-a-new-service.html" rel="noopener" class="govuk-link">Adding a new service</a></li>
+          <li class="subdir__heading">adr</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/imminence/adr/adr-001-department-permissions.html" rel="noopener" class="govuk-link">Decision Record: Department Permissions</a></li>
+              <li><a href="/repos/imminence/adr/adr-002-simplify-data-set-actions.html" rel="noopener" class="govuk-link">Decision Record: Simplifying Data Set Actions</a></li>
+          </ul>
       </ul>
     </li>
   </ul>
@@ -179,6 +173,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "imminence",
+        "@id": "http://www.dev.gov.uk/repos/imminence.html"
+      }
     }
   ]
 }
@@ -187,131 +189,56 @@
 <div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/imminence.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;imminence&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/imminence.html">imminence</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Application: local-links-manager</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Manages local links from local authorities on GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/local-links-manager">local-links-manager</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/tech-content-interactions-on-platform-govuk">#tech-content-interactions-on-platform-govuk</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Publishing apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://local-links-manager.publishing.service.gov.uk" class="govuk-link">local-links-manager.publishing.service.gov.uk</a></li>
-    <li><a href="https://sentry.io/govuk/app-local-links-manager" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?var-app=local-links-manager" class="govuk-link">App dashboard: request rates, errors, durations</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:local-links-manager),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:local-links-manager)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:local-links-manager-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:local-links-manager-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/local-links-manager" class="govuk-link">Argo CD (local-links-manager)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/imminence/commit/6378417a6d1b6110505bfb553dfe11b2a93f9875">14 Mar 2024</a>
 </div>
-<h2 id='example-pages-published-by-local-links-manager'>Example pages published by local-links-manager</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="https://www.argyll-bute.gov.uk/" class="govuk-link">Argyll and Bute Council</a></li>
-      <li><a href="https://www.inverclyde.gov.uk/" class="govuk-link">Inverclyde Council</a></li>
-      <li><a href="https://www.lancaster.gov.uk/" class="govuk-link">Lancaster City Council</a></li>
-      <li><a href="https://www.luton.gov.uk/" class="govuk-link">Luton Borough Council</a></li>
-      <li><a href="http://www.neath-porttalbot.gov.uk" class="govuk-link">Neath Port Talbot County Borough Council</a></li>
-      <li><a href="https://www.newark-sherwooddc.gov.uk/" class="govuk-link">Newark and Sherwood District Council</a></li>
-      <li><a href="https://www.newcastle-staffs.gov.uk/" class="govuk-link">Newcastle-under-Lyme District Council</a></li>
-      <li><a href="https://maidstone.gov.uk/" class="govuk-link">Maidstone Borough Council</a></li>
-      <li><a href="http://www.sevenoaks.gov.uk/" class="govuk-link">Sevenoaks District Council</a></li>
-      <li><a href="https://www.monmouthshire.gov.uk/" class="govuk-link">Monmouthshire County Council</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Admin interface for managing Local Authorities&rsquo; links including all their services and interactions.</p>
+  <h1 class="page-title">imminence: Decision Record: Simplifying Data Set Actions</h1>
 
-<p>For example, <a href="https://www.gov.uk/garden-waste-disposal">this service</a> uses Local Links Manager to determine the URL of the garden waste disposal page on the Local Authority website which corresponds to the postcode a user has entered.</p>
-
-<p>Note that Local Links Manager does not determine a user&rsquo;s Local Authority based on their postcode.</p>
-
-<p>This app maps RESTful URLs onto a persistence layer. It doesn&rsquo;t face public users.</p>
-
-<h2 id="nomenclature">Nomenclature</h2>
-
+  
+<h2 id="introduction">Introduction</h2>
+<p>In March 2024 a proposal was put to SteerCo to allow Departments direct access
+to Imminence to maintain their own datasets. Most of the outcome of that is
+mentioned in another ADR (<a href="https://github.com/alphagov/imminence/blob/main/docs/adr/adr-001-department-permissions.md">ADR-001-department-permissions</a>),
+but it also made sense to improve the user interface by updating it to use
+the Government Design System and removing some options which had not been used
+in practice.</p>
+<p>Imminence works on a hierarchy of data in which a service contains multiple
+data sets, which in turn contain multiple places. In the old admin interface,
+there was a feature to duplicate existing datasets and then directly edit the
+places in those datasets before the new dataset was made active.</p>
+<p>On consultation with the current users, though, it was found that these features
+were never used - the typical work cycle in Imminence is to download the current
+data set as a CSV (if you don't already have it), edit the CSV, and then upload
+it as a new data set. Error fixing is done at the file level rather than by
+directly editing places.</p>
+<h3 id="resulting-changes">Resulting changes</h3>
+<p>With this in mind, we can simplify both the UI and the codebase by removing
+the duplicate facility and the facility to edit places directly.</p>
+<p>We will</p>
 <ul>
-<li>
-<strong>SNAC</strong> - Standard Names And Code - The old identifier code for locations. This is being phased out in favour of GSS codes.</li>
-<li>
-<strong>GSS</strong>  - Government Statistical Service - The new identifier code for locations.</li>
-<li>
-<strong>LGSL</strong> - Local Government Services List</li>
-<li>
-<strong>LGIL</strong> - Local Government Interactions List</li>
+<li>Update the design from the old govuk_admin_template/bootstrap design to
+one based on the Government Design System (using the
+govuk_publishing_components gem)</li>
+<li>Remove the duplicate dataset functionality from the Data Set Controller.</li>
+<li>Remove the edit action / views from the Places Controller.</li>
+<li>Add a show action / view to the Places Controller so that place information
+can be viewed (previously the only way of doing this was thorugh the edit
+action)</li>
+<li>Allow the Data Set places list to be filtered to easily identify broken
+records that can then be fixed at the CSV level.</li>
 </ul>
-
-<p>Both LGSL and LGIL codes are used for the lookups for each Local Authority and its service interactions.</p>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow the <a href="https://github.com/alphagov/govuk-docker#usage">usage instructions</a> to get started.</p>
-
-<p>Running the bare application without any test data isn&rsquo;t very useful, you can replicate the app&rsquo;s Postgres database <a href="https://github.com/alphagov/govuk-docker/blob/master/docs/how-tos.md#how-to-replicate-data-locally">using GOV.UK Docker</a>.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<pre><code>$ bundle exec rake
-</code></pre>
-
-<h2 id="further-documentation">Further documentation</h2>
-
-<ul>
-<li><a href="/repos/local-links-manager/enable-or-create-service.html">Enable or create a service</a></li>
-<li><a href="/repos/local-links-manager/remove-a-service.html">Removing a service</a></li>
-<li><a href="/repos/local-links-manager/deleting-a-link.html">Deleting a local transaction link</a></li>
-<li><a href="/repos/local-links-manager/importing-local-authorities-data.html">Importing Local Authorities data</a></li>
-<li><a href="/repos/local-links-manager/exporting-local-authority-links.html">Exporting Local Authority links to services</a></li>
-<li><a href="/repos/local-links-manager/checking-links.html">Checking links</a></li>
-<li><a href="/repos/local-links-manager/example-api-output.html">Example API output</a></li>
-</ul>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/local-links-manager/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
 
 
             
@@ -319,8 +246,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Flocal-links-manager.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/imminence/blob/main/docs/adr/adr-002-simplify-data-set-actions.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fimminence%2Fadr%2Fadr-002-simplify-data-set-actions.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
