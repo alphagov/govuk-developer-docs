@@ -406,7 +406,7 @@
 <tr><td><strong>description</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
 <tr><td><strong>details</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>change_history</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>external_related_links</strong><br/><code>array</code></td> <td><br/></td></tr>
-<tr><td><strong>promotion</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>category</strong><br/></td> <td><br/>Allowed values: <code>mot_reminder</code>, <code>organ_donor</code>, <code>register_to_vote</code>, <code>electric_vehicle</code></td></tr>
+<tr><td><strong>promotion</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>category</strong><br/></td> <td><br/>Allowed values: <code>mot_reminder</code>, <code>organ_donor</code>, <code>register_to_vote</code>, <code>electric_vehicle</code>, <code>bring_id_to_vote</code></td></tr>
 <tr><td><strong>opt_in_url</strong><br/><code>string</code></td> <td><br/></td></tr>
 <tr><td><strong>opt_out_url</strong><br/><code>string</code></td> <td><br/></td></tr>
 <tr><td><strong>url</strong><br/><code>string</code></td> <td><br/></td></tr></table></td></tr></table></td></tr>
@@ -481,8 +481,8 @@
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"promotion"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"register_to_vote"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"opt_out_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/eee14a23-fe4c-166e-af8f-56778dd9c15d#ced49f6aa1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"organ_donor"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"opt_in_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/eee14a23-fe4c-166e-af8f-56778dd9c15d#ced49f6aa1"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/ebcca143-37d6-1ef9-ac1d-9fc6742eaa26#5baac33c86"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -1175,7 +1175,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>change_note</strong><br/><code>["null", "string"]</code></td> <td><br/></td></tr>
 <tr><td><strong>description</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
 <tr><td><strong>details</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>external_related_links</strong><br/><code>array</code></td> <td><br/></td></tr>
-<tr><td><strong>promotion</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>category</strong><br/></td> <td><br/>Allowed values: <code>mot_reminder</code>, <code>organ_donor</code>, <code>register_to_vote</code>, <code>electric_vehicle</code></td></tr>
+<tr><td><strong>promotion</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>category</strong><br/></td> <td><br/>Allowed values: <code>mot_reminder</code>, <code>organ_donor</code>, <code>register_to_vote</code>, <code>electric_vehicle</code>, <code>bring_id_to_vote</code></td></tr>
 <tr><td><strong>opt_in_url</strong><br/><code>string</code></td> <td><br/></td></tr>
 <tr><td><strong>opt_out_url</strong><br/><code>string</code></td> <td><br/></td></tr>
 <tr><td><strong>url</strong><br/><code>string</code></td> <td><br/></td></tr></table></td></tr></table></td></tr>
