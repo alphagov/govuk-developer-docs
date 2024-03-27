@@ -220,46 +220,45 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/content-data-api/commit/a14b7e95c083bf45ecc098760985f02e023da2ea">18 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/content-data-api/commit/6997022b5a5946d0379d8674dd3bb28998e7923e">27 Mar 2024</a>
 </div>
 
   <h1 class="page-title">content-data-api: Set up Google Analytics credentials in development</h1>
 
   
-<p>To be able to import data from Google Analytics, a few environment variables need to be set.</p>
-<ol>
-<li>Create files <code>config/local_env.yml</code>
-</li>
-</ol>
+<p>To import data from Google Analytics, you must set some environment variables.</p>
+<p>Create the file <code>config/local_env.yml</code> if it does not already exist. This file will contain the environment variables for Google Analytics.</p>
 <p>N.B. This file has been added to <code>.gitignore</code>, so you don't need to worry about accidentally checking it in.</p>
-<p><code>local_env.yml</code> is used to</p>
-<ul>
-<li>Create the environment variables required to connect to and query the Google API for Google Analytics</li>
-<li>Store your Google API credentials. They can either be downloaded from the <a href="https://console.developers.google.com/apis/credentials">google developers console</a> or from another team member.</li>
-</ul>
-<ol start="2">
-<li>Add an entry to <code>config/local_env.yml</code> for each of the following:</li>
-</ol>
+<h2 id="ua-analytics">UA analytics</h2>
+<p>Add an entry to <code>config/local_env.yml</code> for each of the following:</p>
 <ul>
 <li><code>GOOGLE_PRIVATE_KEY</code></li>
 <li><code>GOOGLE_CLIENT_EMAIL</code></li>
 <li><code>GOOGLE_ANALYTICS_GOVUK_VIEW_ID</code></li>
 </ul>
+<p>You can copy the credentials from the <a href="https://console.developers.google.com/apis/credentials">google developers console</a> or from the AWS Secrets Manager under <code>content-data-api/google-analytics</code>.</p>
 <p>e.g.</p>
 <pre lang="bash"><code>GOOGLE_ANALYTICS_GOVUK_VIEW_ID: "1234567"
 </code></pre>
 <p>This will make "1234567" available as <code>ENV["GOOGLE_ANALYTICS_GOVUK_VIEW_ID"]</code></p>
 <p><code>GOOGLE_ANALYTICS_GOVUK_VIEW_ID</code> is the view id on Google Analytics for <code>www.gov.uk</code></p>
+<p>See "Option Three" in <a href="http://railsapps.github.io/rails-environment-variables.html">Rails Environment Variables</a> for more information.</p>
+<h2 id="ga4-analytics">GA4 analytics</h2>
+<p>Add an entry to <code>config/local_env.yml</code> for each of the following:</p>
+<ul>
+<li><code>BIGQUERY_PROJECT</code></li>
+<li><code>BIGQUERY_CLIENT_EMAIL</code></li>
+<li><code>BIGQUERY_PRIVATE_KEY</code></li>
+</ul>
+<p>You can copy the credentials from the AWS Secrets Manager under <code>content-data-api/ga4</code>.</p>
+<p>e.g.</p>
+<pre lang="bash"><code>BIGQUERY_PROJECT: "bigquery-project-name"
+</code></pre>
+<p>This will make "bigquery-project-name" available as <code>ENV["BIGQUERY_PROJECT"]</code>. These variables are used to authenticate and create the <a href="https://github.com/alphagov/content-data-api/blob/main/app/domain/etl/ga/bigquery.rb">BigQuery client</a>.</p>
+<p><code>BIGQUERY_PROJECT</code> is the project ID in the <a href="https://console.cloud.google.com/">Google Cloud console</a>.</p>
 <p>See "Option Three" in <a href="http://railsapps.github.io/rails-environment-variables.html">Rails Environment Variables</a> for more information</p>
-<h3 id="update-facts-table-with-ga-metrics">Update facts table with GA metrics</h3>
+<h2 id="update-facts-table-with-ga-metrics">Update facts table with GA metrics</h2>
 <p>To populate GA metrics for a given day, open a Rails console and run:</p>
 <pre><code>&gt; GA.process(Date.today) 
 </code></pre>
