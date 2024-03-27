@@ -433,8 +433,7 @@
 <tr><td><strong>role_appointments</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
 <tr><td><strong>secondary_to_step_navs</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
 <tr><td><strong>suggested_ordered_related_items</strong><br/></td> <td>Used for displaying related content on most pages, except for step-by-step and fatality notices. Links and their ordering are determined by the machine learning algorithms.<br/></td></tr>
-<tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr>
-<tr><td><strong>topics</strong><br/></td> <td>Powers the /topic section of the site. These are known as specialist sectors in some legacy apps.<br/></td></tr></table></td></tr>
+<tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr></table></td></tr>
 <tr><td><strong>locale</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>ar</code>, <code>az</code>, <code>be</code>, <code>bg</code>, <code>bn</code>, <code>cs</code>, <code>cy</code>, <code>da</code>, <code>de</code>, <code>dr</code>, <code>el</code>, <code>en</code>, <code>es</code>, <code>es-419</code>, <code>et</code>, <code>fa</code>, <code>fi</code>, <code>fr</code>, <code>gd</code>, <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>, <code>hu</code>, <code>hy</code>, <code>id</code>, <code>is</code>, <code>it</code>, <code>ja</code>, <code>ka</code>, <code>kk</code>, <code>ko</code>, <code>lt</code>, <code>lv</code>, <code>ms</code>, <code>mt</code>, <code>ne</code>, <code>nl</code>, <code>no</code>, <code>pa</code>, <code>pa-pk</code>, <code>pl</code>, <code>ps</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>si</code>, <code>sk</code>, <code>sl</code>, <code>so</code>, <code>sq</code>, <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>, <code>th</code>, <code>tk</code>, <code>tr</code>, <code>uk</code>, <code>ur</code>, <code>uz</code>, <code>vi</code>, <code>yi</code>, <code>zh</code>, <code>zh-hk</code>, <code>zh-tw</code></td></tr>
 <tr><td><strong>need_ids</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>phase</strong><br/><code>string</code></td> <td>The service design phase of this content item - https://www.gov.uk/service-manual/phases<br/>Allowed values: <code>alpha</code>, <code>beta</code>, <code>live</code></td></tr>
@@ -1378,59 +1377,15 @@
         </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cursus massa Pellentesque risus Duis a"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ac consectetur Suspendisse lorem Nam bibendum. mauris sit ac sagittis molestie et tempor Quisque egestas."</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/4ff1cfdd-a428-14db-a55d-4bcac6bfd601/66fe964b-4ca6-1e6b-a3a1-01bb2aa1c7bb#9ab8cd0299"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a8fd899a-a3bd-1bde-a6ae-a2bfb7a4ff84/cd0c51f3-a4d0-17b3-a85c-cd308c8a30cc"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4df16ae1-cbfd-12bb-adec-f8ba51da0eea"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"so"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nibh porttitor et Quisque molestie hendrerit nisl dolor Pellentesque vestibulum. Lorem adipiscing est. aliquet. at ac sollicitudin malesuada consectetur sem nibh. lectus ipsum massa Aenean scelerisque. turpis Ut habitant ultricies lorem libero. tempor"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cursus Duis eu Quisque netus vel risus Aenean nisl tristique Suspendisse tempor turpis habitant aliquet. Nam Nam Pellentesque lectus amet molestie dolor adipiscing nibh senectus porttitor et ac interdum. Lorem ultricies risus massa ac interdum. purus Mauris egestas. orci ipsum suscipit et a non"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/04aa1c4a-1665-1dfe-a71d-5c0da3dc54d0#ebfc34ee73"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/7babb36f-22a4-1909-ad4b-c12b55ae9ddd/ebfc7fcb-f320-10dd-ad54-920d4d6ddb67/1fa58ad1-afcd-1f30-aa3b-ef3d5f45dec1/bbd20dfe-cfa5-1c8f-a73c-2bdb264113d4/bdf60e1a-8e0f-1a33-a4c0-a5755a0fe4da"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/66b9bebe-a8f1-16a1-a4ca-b7f6ce4f1be8#ba83aa77ef"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/bd22be5f-e80c-17f4-a9c5-ac90fc9aa10d/bf33d1b9-459f-15db-aeec-89bdad47dff1/a0caae7f-b9d7-1f0e-a4ab-cbd2ed83a1d8/bd546f84-60bf-1c07-af50-3cbebc9c2e78/fa5a618a-bf83-14c2-afc4-7b2ecc44da18"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ac986c81-4edd-1b56-ac18-062746124b56"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"th"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"netus malesuada sit tristique Nam purus eros. Duis vel et"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mauris Suspendisse tempor morbi risus Aenean lorem eu imperdiet at Ut egestas. a risus vel Duis Ut sed ultricies consectetur et cursus tristique netus amet massa dolor porttitor scelerisque. Sed Nam elit."</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/a7dfa92e-ffb2-12a1-ac1a-8b5fd3cedc00#e85aeeb89c"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/4aeb27a6-0e8a-1c59-acb6-005fec613820/fec02654-efeb-1842-aade-c0ae0cfdf6d0/6756e6ae-ffab-13ee-abeb-c5f4dd5b2f0c/0bab0f49-b9ef-1f34-ab6a-6b399fa09926/c2baecbe-bdc2-1052-a2db-ca2a3459abb8"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/593455fc-c035-10ca-ad3a-9ffebaef04fb/cb6bb73e-84bf-1ccf-a805-bee22f5aada3/a0b6d84c-e53b-1b64-a566-acfcb37c4f85/d3c61cc9-7e7f-1be5-aecb-ddf573bb07ff#e34afa8cf9"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/897c5fbd-04e6-1ebd-ac9b-ec95cda25a3e/ac6376b2-1b51-1274-add9-4165e40ac9cc/f32f0702-2e9c-1ac9-ae9a-edcbccc32b9e"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2bf6a64e-b2b2-1553-a31e-9c2ef5fc36c5"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tk"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-29T10:54:31+00:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"netus dolor nisl Lorem imperdiet lorem risus Suspendisse ac dolor risus mauris sit eu Quisque adipiscing molestie amet finibus morbi sollicitudin a aliquet. vel et fames Nam hendrerit vestibulum. eu est. turpis non sagittis leo in orci purus habitant interdum. scelerisque. bibendum. interdum. ac vel sed egestas. Duis massa lectus cursus ipsum at pellentesque senectus ultricies suscipit Pellentesque tristique libero. elit. malesuada Mauris Aenean et nibh Ut tristique sem porttitor tempor nibh. volutpat consectetur tempor Nam eros. ac Sed non ac Ut molestie"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"risus interdum. tempor Nam ac molestie cursus ac mauris imperdiet bibendum. dolor Lorem at sit et tempor porttitor Mauris nibh. Ut vel non lectus habitant tristique ac suscipit volutpat leo in sed Pellentesque aliquet. risus Suspendisse tristique dolor morbi nibh senectus egestas. vel hendrerit Quisque sagittis eu interdum. purus vestibulum. eros. sollicitudin nisl elit. est. Nam turpis et libero. pellentesque non Aenean scelerisque. consectetur orci molestie Sed a fames lorem finibus eu malesuada sem"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/eb5f3de1-cc57-1ab1-ad14-c7f66f5c43e0/db1249ac-f4bf-1cb1-ae7e-dfa108c9661b"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/1cf83e9d-06aa-1928-a9f6-b278ad6bcddb/cf2d2f40-dc0d-1e30-af2b-225efeee74ba/9f1f036e-f4bd-1742-aa27-7f5bdee71ff3/0a345ea4-6ed7-1c3d-a09b-bae02a5dec46"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fbaacbcb-ee75-1524-a894-451e01f6e0bd"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ja"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipsum bibendum. morbi molestie finibus ac in turpis orci Nam et et pellentesque porttitor tempor mauris eu vel leo massa cursus ac lectus interdum. Ut nibh adipiscing fames sagittis sollicitudin consectetur amet"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beta"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2027-04-27T15:31:26+00:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"publishing_request_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"publishing_scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-02-21T09:25:51+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sv"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email-alert-frontend"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"working_group"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"amet Pellentesque nibh lectus suscipit adipiscing leo interdum. consectetur eu eu Mauris Ut Aenean netus et bibendum. nisl ipsum nibh. libero. turpis tempor interdum. ac Suspendisse Lorem Nam in dolor cursus volutpat ac Duis massa senectus fames non Quisque sem risus orci ultricies tristique ac purus morbi vel est. aliquet. tempor tristique pellentesque lorem molestie vestibulum. hendrerit scelerisque. vel et Ut finibus non malesuada habitant a porttitor at elit. egestas. ac sit sed sollicitudin dolor eros. Nam"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-02T22:15:38+00:00"</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"habitant ultricies hendrerit at ac turpis fames senectus non pellentesque orci ac risus lorem Suspendisse imperdiet sem vel Quisque Nam interdum. vel finibus leo scelerisque. sit molestie libero. eu tristique purus adipiscing interdum. lectus netus bibendum. malesuada Nam vestibulum. suscipit amet consectetur risus cursus Lorem non a in nibh et ac dolor volutpat Ut ac sed aliquet. ipsum tempor eu nibh. dolor Aenean Sed morbi porttitor sollicitudin massa tempor elit. Ut tristique nisl Duis"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-04-10T07:59:05+00:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <hr>
@@ -1596,8 +1551,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr>
 <tr><td><strong>primary_publishing_organisation</strong><br/></td> <td>The organisation that published the page. Corresponds to the first of the &lsquo;Lead organisations&rsquo; in Whitehall, and is empty for all other publishing applications.<br/></td></tr>
 <tr><td><strong>suggested_ordered_related_items</strong><br/></td> <td>Used for displaying related content on most pages, except for step-by-step and fatality notices. Links and their ordering are determined by the machine learning algorithms.<br/></td></tr>
-<tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr>
-<tr><td><strong>topics</strong><br/></td> <td>Powers the /topic section of the site. These are known as specialist sectors in some legacy apps.<br/></td></tr></table></td></tr>
+<tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr></table></td></tr>
 <tr><td><strong>previous_version</strong><br/><code>string</code></td> <td><br/></td></tr></table>
 <p><a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/working_group/publisher_v2/links.json">View this schema on GitHub</a></p>
 <h3 id='random-example'>Random example</h3><div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
@@ -1621,8 +1575,7 @@ a publishing application sends to the publishing-api in a
       </span><span class="s2">"16aaa975-c681-13f5-a9a6-a7b3dcdb4f55"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fb35efc3-1bec-1eab-a9bf-06ff1cbe91fa"</span><span class="w">
     </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"porttitor aliquet. molestie a malesuada turpis egestas. tempor volutpat interdum. Quisque ac at purus Nam sagittis morbi ac amet non dolor et tempor sit eu senectus consectetur"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 

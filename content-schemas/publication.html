@@ -457,7 +457,6 @@
 <tr><td><strong>suggested_ordered_related_items</strong><br/></td> <td>Used for displaying related content on most pages, except for step-by-step and fatality notices. Links and their ordering are determined by the machine learning algorithms.<br/></td></tr>
 <tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr>
 <tr><td><strong>topical_events</strong><br/></td> <td><br/></td></tr>
-<tr><td><strong>topics</strong><br/></td> <td><br/></td></tr>
 <tr><td><strong>world_locations</strong><br/></td> <td><br/></td></tr></table></td></tr>
 <tr><td><strong>locale</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>ar</code>, <code>az</code>, <code>be</code>, <code>bg</code>, <code>bn</code>, <code>cs</code>, <code>cy</code>, <code>da</code>, <code>de</code>, <code>dr</code>, <code>el</code>, <code>en</code>, <code>es</code>, <code>es-419</code>, <code>et</code>, <code>fa</code>, <code>fi</code>, <code>fr</code>, <code>gd</code>, <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>, <code>hu</code>, <code>hy</code>, <code>id</code>, <code>is</code>, <code>it</code>, <code>ja</code>, <code>ka</code>, <code>kk</code>, <code>ko</code>, <code>lt</code>, <code>lv</code>, <code>ms</code>, <code>mt</code>, <code>ne</code>, <code>nl</code>, <code>no</code>, <code>pa</code>, <code>pa-pk</code>, <code>pl</code>, <code>ps</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>si</code>, <code>sk</code>, <code>sl</code>, <code>so</code>, <code>sq</code>, <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>, <code>th</code>, <code>tk</code>, <code>tr</code>, <code>uk</code>, <code>ur</code>, <code>uz</code>, <code>vi</code>, <code>yi</code>, <code>zh</code>, <code>zh-hk</code>, <code>zh-tw</code></td></tr>
 <tr><td><strong>need_ids</strong><br/><code>array</code></td> <td><br/></td></tr>
@@ -1550,7 +1549,6 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>related_statistical_data_sets</strong><br/></td> <td><br/></td></tr>
 <tr><td><strong>roles</strong><br/></td> <td>Government roles that are associated with this document, typically the role part of a role association<br/></td></tr>
 <tr><td><strong>topical_events</strong><br/></td> <td><br/></td></tr>
-<tr><td><strong>topics</strong><br/></td> <td><br/></td></tr>
 <tr><td><strong>world_locations</strong><br/></td> <td><br/></td></tr></table></td></tr>
 <tr><td><strong>locale</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>ar</code>, <code>az</code>, <code>be</code>, <code>bg</code>, <code>bn</code>, <code>cs</code>, <code>cy</code>, <code>da</code>, <code>de</code>, <code>dr</code>, <code>el</code>, <code>en</code>, <code>es</code>, <code>es-419</code>, <code>et</code>, <code>fa</code>, <code>fi</code>, <code>fr</code>, <code>gd</code>, <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>, <code>hu</code>, <code>hy</code>, <code>id</code>, <code>is</code>, <code>it</code>, <code>ja</code>, <code>ka</code>, <code>kk</code>, <code>ko</code>, <code>lt</code>, <code>lv</code>, <code>ms</code>, <code>mt</code>, <code>ne</code>, <code>nl</code>, <code>no</code>, <code>pa</code>, <code>pa-pk</code>, <code>pl</code>, <code>ps</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>si</code>, <code>sk</code>, <code>sl</code>, <code>so</code>, <code>sq</code>, <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>, <code>th</code>, <code>tk</code>, <code>tr</code>, <code>uk</code>, <code>ur</code>, <code>uz</code>, <code>vi</code>, <code>yi</code>, <code>zh</code>, <code>zh-hk</code>, <code>zh-tw</code></td></tr>
 <tr><td><strong>need_ids</strong><br/><code>array</code></td> <td><br/></td></tr>
@@ -1753,7 +1751,6 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>suggested_ordered_related_items</strong><br/></td> <td>Used for displaying related content on most pages, except for step-by-step and fatality notices. Links and their ordering are determined by the machine learning algorithms.<br/></td></tr>
 <tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr>
 <tr><td><strong>topical_events</strong><br/></td> <td><br/></td></tr>
-<tr><td><strong>topics</strong><br/></td> <td>Powers the /topic section of the site. These are known as specialist sectors in some legacy apps.<br/></td></tr>
 <tr><td><strong>world_locations</strong><br/></td> <td><br/></td></tr></table></td></tr>
 <tr><td><strong>previous_version</strong><br/><code>string</code></td> <td><br/></td></tr></table>
 <p><a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/publication/publisher_v2/links.json">View this schema on GitHub</a></p>
@@ -1807,17 +1804,15 @@ a publishing application sends to the publishing-api in a
       </span><span class="s2">"9f6aa154-bcca-1143-a37d-6ef9c1d9fc67"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"42eaa265-baac-133c-a86d-61d2bb50cb3e"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"world_locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"bf6ee542-6b0e-1bb4-a652-abdaec5f7e13"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"7bf81e30-2370-1edd-ab31-bbf9afb310bb"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"9ffc1adf-fb6e-1e5b-ab70-bfbc0a1b7fc9"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"a084effe-fe4e-1664-ac57-7639fa693fde"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"33ee495b-0ca0-101c-ad5e-afdfce4fb307"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"world_locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"ef7cbdac-b95f-19b6-a765-dcaad173c369"</span><span class="w">
     </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"et interdum. senectus vel Quisque dolor vel dolor lorem Duis finibus sit porttitor cursus ultricies orci non ac molestie"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 

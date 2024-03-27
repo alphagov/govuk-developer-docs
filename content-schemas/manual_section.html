@@ -436,8 +436,7 @@
 <tr><td><strong>role_appointments</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
 <tr><td><strong>secondary_to_step_navs</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
 <tr><td><strong>suggested_ordered_related_items</strong><br/></td> <td>Used for displaying related content on most pages, except for step-by-step and fatality notices. Links and their ordering are determined by the machine learning algorithms.<br/></td></tr>
-<tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr>
-<tr><td><strong>topics</strong><br/></td> <td>Powers the /topic section of the site. These are known as specialist sectors in some legacy apps.<br/></td></tr></table></td></tr>
+<tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr></table></td></tr>
 <tr><td><strong>locale</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>ar</code>, <code>az</code>, <code>be</code>, <code>bg</code>, <code>bn</code>, <code>cs</code>, <code>cy</code>, <code>da</code>, <code>de</code>, <code>dr</code>, <code>el</code>, <code>en</code>, <code>es</code>, <code>es-419</code>, <code>et</code>, <code>fa</code>, <code>fi</code>, <code>fr</code>, <code>gd</code>, <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>, <code>hu</code>, <code>hy</code>, <code>id</code>, <code>is</code>, <code>it</code>, <code>ja</code>, <code>ka</code>, <code>kk</code>, <code>ko</code>, <code>lt</code>, <code>lv</code>, <code>ms</code>, <code>mt</code>, <code>ne</code>, <code>nl</code>, <code>no</code>, <code>pa</code>, <code>pa-pk</code>, <code>pl</code>, <code>ps</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>si</code>, <code>sk</code>, <code>sl</code>, <code>so</code>, <code>sq</code>, <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>, <code>th</code>, <code>tk</code>, <code>tr</code>, <code>uk</code>, <code>ur</code>, <code>uz</code>, <code>vi</code>, <code>yi</code>, <code>zh</code>, <code>zh-hk</code>, <code>zh-tw</code></td></tr>
 <tr><td><strong>need_ids</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>phase</strong><br/><code>string</code></td> <td>The service design phase of this content item - https://www.gov.uk/service-manual/phases<br/>Allowed values: <code>alpha</code>, <code>beta</code>, <code>live</code></td></tr>
@@ -1340,34 +1339,22 @@
         </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-03-12T00:08:42+00:00"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/fbbc1568-04b0-1d2e-afd1-5ee50c8d9cc8/c513df35-5a6d-1efe-a5bd-591d692fbd3e/af6fdfc9-31eb-18ee-ad70-352e44ccbefa#fac4c3ebaf"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/631da9d8-688d-1c4c-a9c0-ddf35e54c599/e9adf508-fb12-1cc8-ad55-b82cb25eae7b/5400c9cc-73a4-1ec3-a60c-d91cab9b6bd7/bd12b250-ee2e-11c9-aa78-797d1dca490b/6f4585a7-ea6e-1cd5-ad86-0edaa9db5a69"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dceef3a2-2da6-13ba-ae30-1d4f0eae5cb0"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uk"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/89c4aafb-d8cf-1279-a23f-cf676bda7b0b/cf5baeb5-ccc4-130b-a0cf-b2fa7d78c00c/1d3a94da-a4a9-11fc-a54e-ce99460efbd3/3defadb2-f75c-1cc3-af9d-75ec4a92da80/4ecb648a-dd5f-1e81-a7fb-271cc4960e96#f375452b20"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es-419"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"si"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"need_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"vel ac finibus adipiscing volutpat"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"porttitor Nam fames molestie Lorem hendrerit finibus morbi orci netus risus elit. pellentesque sit lorem leo suscipit senectus ac tristique non mauris Aenean sem Duis ultricies habitant libero. risus Sed vel ac a Pellentesque egestas. sed eu tempor lectus vestibulum. amet dolor aliquet. ipsum cursus malesuada Suspendisse adipiscing est. turpis eros. bibendum. ac Mauris sagittis sollicitudin et eu scelerisque. Nam non at"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"est. dolor pellentesque morbi amet ac molestie Sed turpis tempor et sollicitudin interdum. orci Ut interdum. at dolor Suspendisse elit. eu fames sed libero. porttitor leo habitant ultricies lectus Pellentesque tempor a non vestibulum. ac finibus ac vel Nam cursus mauris tristique malesuada imperdiet Duis scelerisque. in purus Mauris sem ac nibh. volutpat bibendum. sit aliquet. sagittis Quisque Aenean suscipit risus hendrerit non eros. Lorem nisl et massa molestie egestas. risus vel ipsum netus eu Nam tristique senectus adipiscing nibh consectetur Ut lorem"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Lorem aliquet. interdum. ac Sed at libero. et lectus habitant ac ac molestie Nam mauris netus suscipit Quisque lorem morbi Pellentesque eu vestibulum. eu Ut turpis sagittis interdum. tempor Duis imperdiet Ut dolor nisl ac tristique tristique ultricies"</span><span class="w">
+    </span><span class="s2">"ac dolor sit a Ut vestibulum. netus hendrerit Mauris leo at ac Aenean pellentesque porttitor habitant mauris Duis Quisque nibh. ipsum malesuada ac amet Sed orci eu lorem tempor fames Pellentesque tempor risus molestie egestas."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amet porttitor non tristique cursus habitant mauris ultricies Aenean non vel turpis interdum. Suspendisse Quisque sollicitudin morbi vestibulum. finibus Nam Duis purus massa netus lectus eu"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nl">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beta"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-15T11:13:26+00:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"publishing_request_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"whitehall-admin"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"search-admin"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-02T03:50:01+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scheduled_publishing_delay_seconds"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"manual_section"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nibh. libero. Nam et senectus morbi et malesuada nibh bibendum. vestibulum. sagittis Nam consectetur Mauris risus eu nisl Ut sit volutpat non tempor tristique Aenean sed mauris molestie Suspendisse vel sollicitudin purus imperdiet pellentesque non molestie at ac scelerisque. ac in turpis habitant dolor leo suscipit risus"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-02-06T06:44:21+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suspendisse volutpat sollicitudin a ipsum imperdiet"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-02-28T05:27:31+00:00"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"withdrawn_notice"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ac bibendum. nibh. malesuada Ut scelerisque. tempor Aenean Suspendisse ultricies volutpat Ut senectus sem ac ac Sed risus vel mauris molestie pellentesque ipsum morbi Quisque adipiscing libero. sit molestie eros. et nibh fames sollicitudin eu purus non ac tristique tempor hendrerit interdum. suscipit orci habitant lectus vestibulum. Mauris consectetur Nam Pellentesque Nam tristique at Duis egestas. sagittis Lorem et interdum. a dolor leo elit. cursus dolor sed vel lorem in turpis porttitor imperdiet aliquet. risus amet non eu est. nisl netus finibus massa"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -1633,8 +1620,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr>
 <tr><td><strong>primary_publishing_organisation</strong><br/></td> <td>The organisation that published the page. Corresponds to the first of the &lsquo;Lead organisations&rsquo; in Whitehall, and is empty for all other publishing applications.<br/></td></tr>
 <tr><td><strong>suggested_ordered_related_items</strong><br/></td> <td>Used for displaying related content on most pages, except for step-by-step and fatality notices. Links and their ordering are determined by the machine learning algorithms.<br/></td></tr>
-<tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr>
-<tr><td><strong>topics</strong><br/></td> <td>Powers the /topic section of the site. These are known as specialist sectors in some legacy apps.<br/></td></tr></table></td></tr>
+<tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr></table></td></tr>
 <tr><td><strong>previous_version</strong><br/><code>string</code></td> <td><br/></td></tr></table>
 <p><a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/manual_section/publisher_v2/links.json">View this schema on GitHub</a></p>
 <h3 id='random-example'>Random example</h3><div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
@@ -1675,8 +1661,7 @@ a publishing application sends to the publishing-api in a
     </span><span class="nl">"taxons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
 
     </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"risus massa in Aenean at elit. a vel mauris fames"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 
