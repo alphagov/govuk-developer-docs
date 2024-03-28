@@ -43,6 +43,10 @@ steps to remove the asset in Asset Manager:
 
    <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID, true]") %>
 
+     For "Whitehall" Assets (that start with the path `/government/uploads/system`), there is a [slightly different Rake task]((https://github.com/alphagov/asset-manager/blob/main/lib/tasks/assets.rake#L9-L13)):
+
+     <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[ASSET_PATH]") %>
+
 1. Add a query string to the URL (e.g. `?cache-bust=12345`) to bypass the cache
    and check that the asset responds with a 404 not found.
 
