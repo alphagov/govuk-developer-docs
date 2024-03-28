@@ -202,29 +202,23 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/locations-api/commit/23c4f2229aecdb862b32564577456173dbbf26c0">20 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/locations-api/commit/ec0269c0a2be5adec02cb0db6ff01616ba519472">27 Mar 2024</a>
 </div>
 
   <h1 class="page-title">locations-api: Updating ONS Postcode Data</h1>
 
   
 <p>High-quality postcode data using in Locations API comes from the Ordnance Survey. But that dataset does not include all postcodes active (for instance, it excludes large user postcodes), nor does it include historical postcodes that people may still be using. To support this, we can import lower-quality postcode information from the Office for National Statistics Postcode Directory. The system will always use the high quality data where possible, but can use the low-quality data for geolocating in imminence datasets and lookups.</p>
-<p>The Postcode Directory is updated a couple of times a year. Every few months, someone should check to see if there is a new version of the data and update it.</p>
+<p>The Postcode Directory is updated a couple of times a year. An OnsUpdateCheckWorker checks the ONS rss feed once a day to see if a new version of the postcode data has been published, and if so starts an OnsDownloadWorker. This downloads the relevant file, splits out the multi-csv directory into an S3 bucket, and starts a single OnsImportWorker for each of the files.</p>
+<h2 id="manual-updates">Manual Updates</h2>
+<p>In the event that a manual update is necessary, you can start an OnsDownloadWorker like this.</p>
 <ul>
 <li>Visit <a href="https://geoportal.statistics.gov.uk/search?collection=Dataset&amp;sort=-created&amp;tags=all(PRD_ONSPD)">https://geoportal.statistics.gov.uk/search?collection=Dataset&amp;sort=-created&amp;tags=all(PRD_ONSPD)</a> to see if there is a new version.</li>
 <li>Visit the page for the new version. There should be a Download link on the page. Copy the URL from that link.</li>
 <li>On the locations-api shell, run the rake task: <code>rails import_ons_data[&lt;url you copied earlier&gt;]</code>
 </li>
 </ul>
-<p>This rake task will start an OnsDownloadWorker, which downloads the file, splits out the multi-csv directory into an S3 bucket, and starts a single OnsImportWorker for each of the files.</p>
 
 
             
