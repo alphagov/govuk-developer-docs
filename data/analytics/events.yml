@@ -353,6 +353,8 @@
         value:
           - name: event_name
             value: form_error
+          - name: action
+            value: error
           - name: type
             value: contact
           - name: section
@@ -1181,6 +1183,7 @@
         - name: content_id
         - name: cookie_banner
         - name: devolved_nations_banner
+        - name: discovery_engine_attribution_token
         - name: document_type
         - name: dynamic
         - name: emergency_banner
@@ -2231,6 +2234,35 @@
         - name: url
         - name: section
           value: The heading of the section the link is under, e.g. "Topics", "Government Activity"
+    - name: search form
+      implemented: true
+      priority: high
+      description: Triggered when a search is performed from the search input.
+      examples:
+        - text: GOV.UK homepage
+          link: https://www.gov.uk
+      tracker: form_tracker
+      component: layout_super_navigation_header
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: search
+        - name: action
+          value: search
+        - name: index
+          value:
+          - name: index_section
+          - name: index_section_count
+        - name: text
+        - name: type
+          value: header menu bar
+        - name: url
+          value: /search/all
+        - name: section
+          value: Search GOV.UK
 
 - name: tabs
   events:
