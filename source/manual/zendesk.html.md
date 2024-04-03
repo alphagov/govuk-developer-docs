@@ -13,7 +13,7 @@ Technical 2nd Line Zendesk tickets are technical errors reported by our users, i
 
 See the [Zendesk best practice slidedeck](https://docs.google.com/presentation/d/1iUbD-_uWyaNMeNj9h7Zvo9g2GWvRarg9kUh7pd0u32M/edit#slide=id.g134fafb13dc_0_0) for an overview and tour of the service.
 
-[Create an account][zendesk-create-account], then ask a fellow 2nd liner to assign a new ticket to
+[Create an account][zendesk-create-account] then assign a new ticket to
 `2nd/3rd Line--Zendesk Administration` asking to give you "GDS Resolver Agent" access to `2nd Line--GOV.UK Alerts and Issues`.
 
 When you're logged in, you should be looking at the [`2nd Line--GOV.UK Alerts and Issues` queue][zendesk-queue].
