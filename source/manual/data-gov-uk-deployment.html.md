@@ -49,8 +49,8 @@ Then merge in the Production release PR.
 
 All tagged releases can be viewed on these links for their respective applications:
 
-Publish - https://github.com/alphagov/datagovuk_publish/pkgs/container/datagovuk_publish
-Find - https://github.com/alphagov/datagovuk_find/pkgs/container/datagovuk_find
+[Publish](https://github.com/alphagov/datagovuk_publish/pkgs/container/datagovuk_publish)
+[Find](https://github.com/alphagov/datagovuk_find/pkgs/container/datagovuk_find)
 
 ## CKAN
 
@@ -62,9 +62,9 @@ After merging a pull request into the `main` branch, the build images will be cr
 
 All tagged releases can be viewed on these links for their respective applications:
 
-CKAN - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan
-PYCSW - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw
-Solr - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr
+[CKAN](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan)
+[PYCSW](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw)
+[Solr](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr)
 
 - Check that the changes have been successfully deployed to Integration and that CKAN is still working as expected, without pods failing in the cluster:
 
