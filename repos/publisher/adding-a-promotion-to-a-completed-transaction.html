@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publisher: ADR008 - Use Flipflop for feature toggles - GOV.UK Developer Documentation</title>
+    <title>publisher: # Adding new promotions to Completed Transactions - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-008-use-flipflop-for-feature-toggles.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/adding-a-promotion-to-a-completed-transaction.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publisher: ADR008 - Use Flipflop for feature toggles - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-008-use-flipflop-for-feature-toggles.html" />
+      <meta name="twitter:title" content="publisher: # Adding new promotions to Completed Transactions - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/adding-a-promotion-to-a-completed-transaction.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publisher: ADR008 - Use Flipflop for feature toggles" />
+      <meta property="og:title" content="publisher: # Adding new promotions to Completed Transactions" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-008-use-flipflop-for-feature-toggles.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/adding-a-promotion-to-a-completed-transaction.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -211,24 +211,23 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publisher/commit/e68fe73791411c6711a3961a8e0de542c3451621">15 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publisher/commit/5a39398124a16198ad64044fa2cb9b6fb2a39f79">4 Apr 2024</a>
 </div>
 
-  <h1 class="page-title">publisher: ADR008 - Use Flipflop for feature toggles</h1>
+  <h1 class="page-title">publisher: # Adding new promotions to Completed Transactions</h1>
 
-  
-<p>Date 2024-01-12</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="context">Context</h2>
-<p>As part of the migration of Mainstream Publisher away from Bootstrap and towards the GOV.UK Design System, we wish to be able to have work-in-progress changes viewable in deployed environments (integration/staging/production) without impacting the majority of users. As part of <a href="https://trello.com/c/uNr9SzAE/599-spike-learn-about-the-flipflop-library">this spike</a> we investigated the use of <a href="https://github.com/voormedia/flipflop">Flipflop</a>, a gem for feature toggles in Rails applications, and which was <a href="https://github.com/alphagov/whitehall/pull/8446">recently introduced into Whitehall</a>.</p>
-<p>Flipflop provides a dashboard for viewing the status of toggles at the path <code>/flipflop</code>. By default this page is disabled in "production" (which for us would mean all deployed environments), but since we are not planning on putting anything sensitive behind the toggles we have chosen to remove that restriction and make the dashboard always available.</p>
-<p>Flipflop provides several different "strategies" for managing toggle status, which summarise to some form of database or cookies. In terms of databases, Active Record, Sequel, and Redis are supported. Since Mainstream Publisher uses MongoDB, which is not supported, we will not be able to store feature toggles in the database (Mainstream Publisher does also connect to a Redis instance, but we have not investigated using that). This leaves us with Cookies as the means to toggle features.</p>
-<h2 id="decision">Decision</h2>
-<p>We will use Flipflop for feature-toggling within Mainstream Publisher, and the dashboard for toggling features on and off will be available in all environments (users will only be able to toggle features on and off for themselves).</p>
-<h2 id="consequences">Consequences</h2>
-<p>By not restricting access to the toggles dashboard, any user would be able to enable/disable a toggle for themselves. This should not be an issue, since this would just mean a user could potentially view work-in-progress changes for transitioning pages to the design system.</p>
-<p>Without storing toggle status in a database, changing a toggle's status will either be per-user, dynamic, (which each user would be able to do dynamically, using the dashboard), or globally, static, by changing the default value in the <code>config/features.rb</code> file (which would require a run through of the deployment pipeline whenever this is changed).</p>
+  <h2 id="adding-new-promotions-to-completed-transactions">Adding new promotions to Completed Transactions</h2>
+<p>Completed Transactions have a concept of "promotions". These are simple call-outs that are shown on the page by the rendering app (<a href="https://github.com/alphagov/feedback">Feedback</a>). The text displayed is not configurable within Mainstream Publisher, but is set in the rendering app.</p>
+<p>To make a new type of promotion available when editing Completed Transactions, there are two parts:</p>
+<ol>
+<li>Configuring the text displayed in Feedback.</li>
+<li>Adding the promotion to Mainstream Publisher.</li>
+</ol>
+<p>The text should be added to the Feedback app first, to avoid the possibility of someone attempting to add the new promotion to a Completed Transaction before Feedback knows how to render it (which would result in the Completed Transaction page not rendering, and an error being shown to the user).</p>
+<h3 id="configuring-the-text-displayed-in-feedback">Configuring the text displayed in Feedback</h3>
+<p>The text shown for a promotion is controlled by the Feedback app, in a couple of configuration files (one for English text, and one for Welsh text). You can see an example from <a href="https://github.com/alphagov/feedback/pull/1834/files">the changes that added the promotion for bringing photo ID when voting</a>.</p>
+<h3 id="adding-the-promotion-to-mainstream-publisher">Adding the promotion to Mainstream Publisher</h3>
+<p>There are a few code changes required to Mainstream Publisher when adding a promotion. You can see an example from <a href="https://github.com/alphagov/publisher/pull/2117/files">the changes that added the promotion for bringing photo ID when voting</a>.</p>
 
 
             
@@ -236,8 +235,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-008-use-flipflop-for-feature-toggles.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-008-use-flipflop-for-feature-toggles.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/adding-a-promotion-to-a-completed-transaction.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Fadding-a-promotion-to-a-completed-transaction.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
