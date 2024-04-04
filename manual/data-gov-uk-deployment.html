@@ -210,7 +210,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/afabe781156b555aca9051ca229ccce6c59bf125">13 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/85815a0b589098b77afd013cb58f944315f2d5f4">4 Apr 2024</a>
 </div>
 
  <h1 id='header'>Deployments for data.gov.uk</h1> <h2 id='find-and-publish-rails-apps'>Find and Publish (Rails Apps)</h2><h3 id='continuous-integration'>Continuous Integration</h3><p>Github Actions is configured for both <a href="https://github.com/alphagov/datagovuk_publish/tree/main/.github/workflows">Publish (CI)</a> and <a href="https://github.com/alphagov/datagovuk_find/tree/main/.github/workflows">Find (CI)</a>. Tests are run on pull requests.</p>
@@ -223,15 +223,15 @@ The tag needs to be in this format <code>v9.9.9</code> - where 9 is a number and
 <p>Test that your changes are working in <a href="http://staging.data.gov.uk">Staging</a> before releasing to Production.</p>
 <p>Then merge in the Production release PR.</p>
 <p>All tagged releases can be viewed on these links for their respective applications:</p>
-<p>Publish - https://github.com/alphagov/datagovuk_publish/pkgs/container/datagovuk_publish
-Find - https://github.com/alphagov/datagovuk_find/pkgs/container/datagovuk_find</p>
+<p><a href="https://github.com/alphagov/datagovuk_publish/pkgs/container/datagovuk_publish">Publish</a>
+<a href="https://github.com/alphagov/datagovuk_find/pkgs/container/datagovuk_find">Find</a></p>
 <h2 id='ckan'>CKAN</h2><p><a href="https://github.com/alphagov/ckanext-datagovuk">CKAN</a> uses some of GOV.UK Kubernetes platform, which includes <a href="https://argo.eks.integration.govuk.digital/applications/ckan">Argo</a> for managing the application stack and <a href="https://github.com/alphagov/ckanext-datagovuk/actions">Github Actions</a> for CI.</p>
 <p>Deployments for CKAN are initiated via updates to <a href="https://github.com/alphagov/ckanext-datagovuk">ckanext-datagovuk</a>. Whenever a CKAN extension (eg. spatial, harvest, dcat) is updated, the <a href="https://github.com/alphagov/ckanext-datagovuk/blob/main/bin/install-dependencies.sh">install-dependencies</a> file will need an update with the relevant extension&rsquo;s commit or version number.</p>
 <p>After merging a pull request into the <code>main</code> branch, the build images will be created for CKAN, PYCSW and Solr, and a pull request will be opened on the <a href="https://github.com/alphagov/govuk-ckan-charts/pulls">CKAN charts</a> Github repository. This will require approval and merge into the <code>main</code> branch.</p>
 <p>All tagged releases can be viewed on these links for their respective applications:</p>
-<p>CKAN - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan
-PYCSW - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw
-Solr - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr</p>
+<p><a href="https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan">CKAN</a>
+<a href="https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw">PYCSW</a>
+<a href="https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr">Solr</a></p>
 
 <ul>
 <li>Check that the changes have been successfully deployed to Integration and that CKAN is still working as expected, without pods failing in the cluster:</li>
