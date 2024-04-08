@@ -5,95 +5,122 @@ section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
 ---
-[publish]: repos/datagovuk_publish
-[find]: repos/datagovuk_find
+[publish]: https://github.com/alphagov/datagovuk_publish
+[find]: https://github.com/alphagov/datagovuk_find
 [publish-ci]: https://github.com/alphagov/datagovuk_publish/tree/main/.github/workflows
 [find-ci]: https://github.com/alphagov/datagovuk_find/tree/main/.github/workflows
-[staging]: http://staging.data.gov.uk
+[Staging]: https://staging.data.gov.uk/
 [CKAN]: https://github.com/alphagov/ckanext-datagovuk
 [ckanext-datagovuk]: https://github.com/alphagov/ckanext-datagovuk
-[install-dependencies]: https://github.com/alphagov/ckanext-datagovuk/blob/main/bin/install-dependencies.sh
-[ckan-publisher]: https://ckan.publishing.service.gov.uk
-[CKAN Argo]: https://argo.eks.integration.govuk.digital/applications/ckan
-[Github Actions]: https://github.com/alphagov/ckanext-datagovuk/actions
-[datagovuk Argo]: https://argo.eks.integration.govuk.digital/applications/datagovuk
-[CKAN charts]: https://github.com/alphagov/govuk-ckan-charts/pulls
-[build image on tag]: https://github.com/alphagov/ckanext-datagovuk/actions/workflows/build-image-on-tags.yaml
+[docker/ckan]: https://github.com/alphagov/ckanext-datagovuk/tree/main/docker/ckan
+[ckan-publisher]: https://ckan.publishing.service.gov.uk/
+[Argo CD]: https://argo.eks.integration.govuk.digital/
+[govuk-dgu-charts]: https://github.com/alphagov/govuk-dgu-charts/pulls
+[CSW]: https://opengeospatial.github.io/e-learning/cat/text/main.html
 
-## Find and Publish (Rails Apps)
+This document describes the release and rollout automation (CI/CD) for data.gov.uk and how to deploy a release to production.
 
-### Continuous Integration
+## Overview
 
-Github Actions is configured for both [Publish (CI)][publish-ci] and [Find (CI)][find-ci]. Tests are run on pull requests.
+The data.gov.uk applications run in the `datagovuk` namespace on the GOV.UK Kubernetes clusters. Builds and tests (CI) run in GitHub Actions.
 
-### Integration, Staging and Production Environments
+Rollout automation is in [Argo CD] under the `datagovuk`, `ckan` and `dgu-shared` Argo applications. These are configured via the `dgu-app-of-apps` Argo application.
 
-[Publish] and [Find] uses some of GOV.UK Kubernetes platform, which includes [Argo][datagovuk Argo] for managing the application stack.
+There are some differences between data.gov.uk and other GOV.UK applications in how rollouts work. In data.gov.uk, you need to:
 
-Deployment of both apps in Integration, Staging and Production is triggered automatically via GitHub flow.
+- push a Git tag to create a release, such as `v1.2.3`
+- approve and merge an automated PR to roll out a release to integration, staging or production
 
-#### Integration
+data.gov.uk's releases and rollouts tooling is otherwise similar to the rest of GOV.UK.
 
-To deploy to Integration merge a PR into `main`.
+## List existing releases of a data.gov.uk application
 
-### Staging & Production
+You can see a list of all the tagged releases for each application:
 
-To deploy to Staging/Production you need to tag the release.
-The tag needs to be in this format `v9.9.9` - where 9 is a number and the leading `v` is required. E.g. `v0.1.11` is valid, `0.1.11` is not.
+- [Publish](https://github.com/alphagov/datagovuk_publish/pkgs/container/datagovuk_publish)
+- [Find](https://github.com/alphagov/datagovuk_find/pkgs/container/datagovuk_find)
+- [CKAN](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan) (ckanext-datagovuk)
+- [PyCSW](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw)
+- [Solr](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr)
 
-This will create a PR on [govuk-dgu-charts][govuk-dgu-charts] which you should be able to approve and merge into `main` for testing.
+## Find and Publish
 
-Test that your changes are working in [Staging][staging] before releasing to Production.
+### Create a release
 
-Then merge in the Production release PR.
+Create a release of datagovuk_find or datagovuk_publish by pushing a Git tag to the application's GitHub repository.
 
-All tagged releases can be viewed on these links for their respective applications:
+You must name the tag using the format `v<major>.<minor>.<patch>`, where major, minor and patch are integers. For example `v1.0.23` is a valid release tag whereas `1.0.23` is not.
 
-[Publish](https://github.com/alphagov/datagovuk_publish/pkgs/container/datagovuk_publish)
-[Find](https://github.com/alphagov/datagovuk_find/pkgs/container/datagovuk_find)
+You should determine the version number for your release by looking up the current version and applying the principles of [semantic versioning](https://semver.org/) (semver). For example if your release includes a new feature but no breaking changes, you should increment the minor version number.
+
+1. Find the latest existing release tag.
+
+    ```sh
+    git tag --list --sort=-version:refname v\* | head
+    ```
+
+1. Tag your new release.
+
+    ```sh
+    git tag v1.0.23
+    ```
+
+1. Push your new release tag to GitHub.
+
+    ```sh
+    git push origin v1.0.23
+    ```
+
+    The `create-pr-on-tags` workflow in GitHub Actions will raise a PR in [govuk-dgu-charts] with a title like `Update <app> tags for integration (<commit_sha>)`.
+
+1. Merge the PR to roll the release out to the integration environment.
+
+Builds can take up to 10 minutes. You can view progress in GitHub Actions under the `build-and-push-images-on-tags` workflow in the app's repo.
+
+Deployments typically take 5 minutes. You can view progress in Argo CD.
+
+### Promote a release to staging or production
+
+Once you are happy that your change works well in the integration environment, you can promote it to staging and then to production.
+
+The `create-charts-pr` workflow in GitHub Actions will have automatically raised a pair of PRs after you merged the `Update <app> tags for integration` PR. See the [previous section](#create-a-release) if your release is not yet in integration.
+
+1. Merge the `Update <app> tags for staging` PR to roll your release out to staging.
+
+1. Test that your changes are working in [Staging].
+
+1. Merge the `Update <app> tags for production` PR.
 
 ## CKAN
 
-[CKAN] uses some of GOV.UK Kubernetes platform, which includes [Argo][CKAN Argo] for managing the application stack and [Github Actions][Github Actions] for CI.
+You can create a CKAN release by pushing a tag to the [ckanext-datagovuk] repo. CKAN releases and rollouts work the same way as [Find and Publish](#find-and-publish).
 
-Deployments for CKAN are initiated via updates to [ckanext-datagovuk][ckanext-datagovuk]. Whenever a CKAN extension (eg. spatial, harvest, dcat) is updated, the [install-dependencies][install-dependencies] file will need an update with the relevant extension's commit or version number.
+### Update a CKAN extension
 
-After merging a pull request into the `main` branch, the build images will be created for CKAN, PYCSW and Solr, and a pull request will be opened on the [CKAN charts][CKAN charts] Github repository. This will require approval and merge into the `main` branch.
+To update a CKAN extension such as `spatial`, `harvest` or `dcat`, you must update the extension's pinned version SHA in the Dockerfile for the appropriate version of CKAN under [docker/ckan].
 
-All tagged releases can be viewed on these links for their respective applications:
+### Manually test the CSW service
 
-[CKAN](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan)
-[PYCSW](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw)
-[Solr](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr)
+When deploying changes that affect the [CSW] service, such as OWSLib or PyCSW updates, you should test that the `/csw` endpoint still works properly.
 
-- Check that the changes have been successfully deployed to Integration and that CKAN is still working as expected, without pods failing in the cluster:
-
-```bash
-# show running pods
-$ kubectl get pods -n datagovuk
+```sh
+curl -v https://ckan.staging.publishing.service.gov.uk/csw
 ```
 
-- To promote the deployment to Staging and Production create a release tag on [ckanext-datagovuk][ckanext-datagovuk] in the semantic versioning form `v1.0.0`.
-  - This creates the relevant build images for use on the Kubernetes cluster and a pull request on the [CKAN charts][CKAN charts] Github repository for Staging and Production deployments.
-    - The build image can take up to 10 minutes to complete their build. Visit [build image on tag][build image on tag] to keep track of the build before merging the pull request.
-  - It's recommended that you approve and merge the pull request for Staging to `main`, and ensure that the deployment was successful, before merging the pull request for Production.
-  - You'll need to authenticate when switching between environments if you want to use `kubectl` to check the pods.
+Alternatively you can visit <https://ckan.staging.publishing.service.gov.uk/csw> in Firefox. Chrome and Safari don't display the XML very nicely.
 
-Deployments generally take up to 5 minutes to synchronise on the cluster. You can view the progress in [Argo][CKAN Argo]. The polling to synchronise changes are every 2 minutes.
+You can also test the daily sync between PyCSW and CKAN:
 
-### CSW
-
-When deploying changes that affect the CSW service (OWSLib or PyCSW updates) for the [CKAN publisher][ckan-publisher] (provided at the `/csw` endpoint) you should make sure that the endpoint is still running correctly by curling it, `curl "https://ckan.publishing.service.gov.uk/csw"`, or viewing it in Firefox. Chrome and Safari do not show the XML correctly.
-
-The daily sync between pycsw and ckan can also be tested:
-
-```bash
-$ ckan ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://ckan-ckan:5000
+```sh
+ckan ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://ckan-ckan:5000
 ```
 
-The PYCSW pod should be automatically updated for each deployment of CKAN. If changes are not appearing, you can try this command:
+PyCSW should automatically update as part of the CKAN rollout. If changes are not appearing, you can:
 
-```bash
-# show running csw pods
-$ kubectl get pods -n datagovuk | grep csw
-```
+- check the rollout status in Kubernetes
+
+    ```sh
+    kubectl -n datagovuk rollout status deploy/ckan-pycsw
+    ```
+
+- check the status of the `ckan-pycsw` pods in Argo CD, under the `ckan` Argo application
