@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publisher: Decision record: Why "Service sign in" pages are created using rake tasks - GOV.UK Developer Documentation</title>
+    <title>publisher: ADR009 - Replace MongoDb with Postgres - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-003-using-rake-to-create-service-sign-in-pages.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-009-replace-mongodb-with-postgres.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publisher: Decision record: Why &quot;Service sign in&quot; pages are created using rake tasks - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-003-using-rake-to-create-service-sign-in-pages.html" />
+      <meta name="twitter:title" content="publisher: ADR009 - Replace MongoDb with Postgres - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-009-replace-mongodb-with-postgres.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publisher: Decision record: Why &quot;Service sign in&quot; pages are created using rake tasks" />
+      <meta property="og:title" content="publisher: ADR009 - Replace MongoDb with Postgres" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-003-using-rake-to-create-service-sign-in-pages.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-009-replace-mongodb-with-postgres.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -211,50 +211,35 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publisher/commit/d950ddfbd22c87f2954dc46eadec3feab0d63967">24 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publisher/commit/1587bb086c1607b4c9ca4d864953bc46058a7949">5 Apr 2024</a>
 </div>
 
-  <h1 class="page-title">publisher: Decision record: Why "Service sign in" pages are created using rake tasks</h1>
+  <h1 class="page-title">publisher: ADR009 - Replace MongoDb with Postgres</h1>
 
   
+<p>Date 2024-04-03</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
 <h2 id="context">Context</h2>
-<p>For the Q3 Start Pages mission, we descoped creating a UI in Publisher to handle
-the workflow of managing Service sign in pages due to time constraints. As such
-we needed to find a way for developers to easily create and update service sign
-in pages.</p>
+<p>Publisher uses MongoDb for persistence and we use Amazon DocumentDB in our deployed environments. As described by Amazon,
+<code>Amazon DocumentDB (with MongoDB compatibility) is a fast, scalable, highly available, and fully managed document database service that supports MongoDB workloads.</code></p>
+<p>As there's no docker image available to support local development with DocumentDB we use the official mongo docker image locally and in the CI pipelines and connect to DocumentDB once deployed to Integration. We use standard Mongo features which are supported by DocumentDB so we don't usually experience any issues. When we have experienced issues they've been severe and time consuming to diagnose;</p>
+<ul>
+<li>A bug in a mongo driver update surfaced once connecting to DocumentDB and not in any of the unit tests, integration or smokey tests. It caused publisher to fail in production, resulting in a P3. Identifying the issue and attempting to set up a fast feedback environment to verify and experiment with it became quite a drain on our focus for more than a few weeks.</li>
+<li>Certain searches within publisher were failing due to hitting a proxy timeout of 15 seconds. Locally the searches were an order of magnitude quicker with the same data. Upon further investigation this was due to DocumentDB behaving slightly differently to Mongo in terms of the query strategy and which indexes to use.</li>
+</ul>
+<p>Though not the primary motive to switch, a document database isn't a great fit for publisher - based on the data model and usage patterns.</p>
+<p>Another influence in the decision is the longer term strategic goal of having an easier to maintain set of apps on a consistent platform.</p>
+<p>Considering the impact of the issues already experienced on team time along with the fact that less and less of the estate is going to be using DocumentDB gives us reason and motivation to make the change.</p>
 <h2 id="decision">Decision</h2>
-<p>One of the options was to hardcode the content within their own views, which
-would require a developer to manually update content when needed. While this is
-a simple approach, it isn't very scalable and is prone to error. With this
-approach we would not be sending the content to the Publishing API. As such we
-would have to remember to register routes ourselves, and wouldn't have other
-benefits of the Publishing API such as maintaining content history.</p>
-<p>We knew that Smart Answers made use of rake tasks to import content, so we
-considered following a similar approach. This would involve a content designer
-providing a YAML file containing the content, which would be imported using a
-rake task and then presented in a data format that could be sent to the
-Publishing API. The downside of this approach is that we assume that content
-designers have some level of familiarity with YAML and would be able to provide
-the file to us via Git. However we felt that this would be the best approach as
-a developer tasked with publishing a service sign in page in future would only
-need to invoke a simple rake task instead of manually updating content
-themselves. We've also provided an example YAML file so that content designers
-are able follow a template and ensure that all the data is supplied in a
-suitable format.</p>
+<p>We will migrate the database publisher uses from Mongo to Postgres and migrate the data from DocumentDB to RDS.</p>
 <h2 id="consequences">Consequences</h2>
-<p>Due to no UI being provided to create a Service sign in page, the workflow is
-unusual for content designers and as previously mentioned it does assume
-familiarity with YAML and Git. While we expect most content designers will have
-access to a developer who may be able to assist, we should acknowledge some
-potential risk here.</p>
+<ul>
+<li>Performance characteristics will differ. We will need to base-line current performance and track the effect of the change.</li>
+<li>The application will be unavailable for a period of time in each environment as we migrate - that period being at least the
+time required to export current data and import to the new datasource.</li>
+</ul>
 
 
             
@@ -262,8 +247,8 @@ potential risk here.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-003-using-rake-to-create-service-sign-in-pages.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-003-using-rake-to-create-service-sign-in-pages.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-009-replace-mongodb-with-postgres.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-009-replace-mongodb-with-postgres.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
