@@ -276,6 +276,11 @@ auto_merge:
 <pre><code>bundle exec ruby bin/merge_dependabot_prs.rb
 </code></pre>
 
+<p>If you want to do a dry run:</p>
+
+<pre><code>bundle exec ruby bin/merge_dependabot_prs.rb --dry-run
+</code></pre>
+
 <p>The repo also ships with a &ldquo;doctor&rdquo; script to help you to debug individual PRs and why they did or did not auto-merge.</p>
 
 <pre><code>bundle exec ruby bin/pr_doctor.rb https://github.com/alphagov/content-data-api/pull/1996

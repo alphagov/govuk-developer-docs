@@ -236,15 +236,22 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b594c084b2e0586c0bb56c343b7ab9e273c67b93">29 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0c6400ac9292e478525121b6fe4193de28714cc9">9 Apr 2024</a>
 </div>
 
  <h1 id='header'>How to add popular GOV.UK Slack integrations</h1> <h2 id='seal'>Seal</h2><p><a href="https://github.com/alphagov/seal">Seal</a> is a Slack bot that informs teams which pull requests they have open.</p>
-<h3 id='configuration'>Configuration</h3><p>Create a PR which adds some information (including team name and Slack channel) to <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">alphagov.yml in the Seal repo</a>. The Slack channel name does not need to match the team name.</p>
-<p>Add the team name to <a href="https://github.com/alphagov/seal/tree/main/.github/workflows">Morning Seal and Afternoon Seal</a> if you want two notifications a day, otherwise just pick one.</p>
+<h3 id='configuration'>Configuration</h3><p>Create a PR which adds some information (including team name and Slack channel) to <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">alphagov.yml in the Seal repo</a>. The Slack channel and team name must match the ones in the developer docs.</p>
+<p>You can then set the following values to <code>true</code> if you want to receive the respective alerts:</p>
+
+<ul>
+<li>morning_seal_quotes: Morning quotes set by your team</li>
+<li>afternoon_seal_quotes: Afternoon quotes set by your team</li>
+<li>seal_prs: Morning alerts about old and recent pull requests by team members</li>
+</ul>
+<p>If you choose to receive quotes, you will need to add them under a <code>quotes</code> key.</p>
 <p>Make sure that the Slack channel name has been set as the &lsquo;team&rsquo; in <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml in the GOV.UK Developer Docs repo</a>. This will <a href="/repos.json">update this JSON endpoint</a> which is <a href="https://github.com/alphagov/seal/blob/main/lib/team_builder.rb#L97">used by the Seal</a>.</p>
 <h2 id='dependapanda'>Dependapanda</h2><p>Dependapanda is a Slack bot which posts a list of open Dependabot Pull Requests for repos that a team owns.</p>
-<h3 id='configuration'>Configuration</h3><p>The process is the same as <a href="/manual/slack-integrations.html#configuration">configuring the Seal</a>. However, the team name will need to be added into <a href="https://github.com/alphagov/seal/blob/main/.github/workflows/dependapanda.yml">Dependapanda</a> as opposed to the morning/afternoon Seal files.</p>
+<h3 id='configuration'>Configuration</h3><p>The process is the same as <a href="/manual/slack-integrations.html#configuration">configuring the Seal</a>. Just find your team in the config file and set <code>dependapanda: true</code>.</p>
 <p><a href="https://github.com/alphagov/seal/tree/main">More information about the Seal can be found in Seal’s Github Readme</a>.</p>
 <h2 id='rotabot'>Rotabot</h2><p>The Rotabot calculates who’s turn it is to do the housekeeping today and tomorrow (usually tasks such as being in charge of Dependabots and Sentry alerts). The tasks in the Slack message are configured using Markdown, so it&rsquo;s fairly flexible.</p>
 <h3 id='configuration'>Configuration</h3><p>The Rotabot is configured using the <a href="https://github.com/alphagov/govuk-rota-announcer/">govuk-rota-announcer repo</a>. Add your team config to the <a href="https://github.com/alphagov/govuk-rota-announcer/blob/main/config/weekday.yml">weekday</a> or <a href="https://github.com/alphagov/govuk-rota-announcer/blob/main/config/weekly.yml">weekly</a> config depending on how often they want to be notified.</p>
