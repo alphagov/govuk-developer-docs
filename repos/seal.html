@@ -220,72 +220,38 @@
 
 <h2 id="what-is-it">What is it?</h2>
 
-<p>This is a Slack bot that publishes a team&rsquo;s pull requests, Dependabot updates, security alerts, and inspirational quotes to their Slack Channel. Once provided with the organization name, team names, and respective repositories, it posts messages as various animal characters such as the Seal and Dependapanda.</p>
+<p>This is a Slack bot that publishes a team&rsquo;s pull requests, Dependabot updates, security alerts, and inspirational quotes to their Slack Channel.</p>
 
 <p><img src="https://github.com/alphagov/seal/blob/main/images/readme/informative.png" alt="image">
 <img src="https://github.com/alphagov/seal/blob/main/images/readme/angry.png" alt="image"></p>
 
 <h2 id="how-to-use-it">How to use it?</h2>
 
-<h3 id="config">Config</h3>
+<p>Add your team&rsquo;s configuration to <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">config/alphagov.yml</a>. The process is slightly different depending on whether or not your team is part of GOV.UK.</p>
 
-<p>Fork the repo and add/change the config files that relate to your github organisation. For example, the alphagov config file is located at <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">config/alphagov.yml</a> and the config for scheduled daily visits can be found in <a href="https://github.com/alphagov/seal/blob/main/.github/workflows">.github/workflows</a></p>
+<h3 id="gov-uk-teams">GOV.UK teams</h3>
 
-<p>Include your team&rsquo;s name, repositories, and the Slack channel you want to post to. The Seal doesn&rsquo;t currently support private repos, but you can fork this repo and use your own token with your preferred permissions if that&rsquo;s required.</p>
+<p>Include your team&rsquo;s name and the Slack channel you want to post to. These <em>must match the team name and Slack channel</em> specified in the <a href="https://docs.publishing.service.gov.uk/repos.html#repos-by-team">Developer Docs</a>. Do not add a list of repos, they will be pulled from the developer docs automatically. Private repos are not currently supported.</p>
 
 <blockquote>
-<p>If your team is part of the GOV.UK programme, you do not need to add a list of repos to config/alphagov.yml.
-The <a href="https://docs.publishing.service.gov.uk/repos.json">Developer docs repos.json</a> is now the single source of truth for information about GOV.UK repositories and which team is responsible for them.</p>
+<p>The <a href="https://docs.publishing.service.gov.uk/repos.json">Developer docs repos.json</a> is now the single source of truth for information about GOV.UK repositories and which team is responsible for them.</p>
 </blockquote>
 
-<p>In your shell profile, put in:</p>
+<h3 id="other-teams">Other teams</h3>
 
-<pre lang="sh"><code>export SEAL_ORGANISATION="your_github_organisation"
-export GITHUB_TOKEN="get_your_github_token_from_yourgithub_settings"
-export SLACK_WEBHOOK="get_your_incoming_webhook_link_for_your_slack_group_channel"
-export GITHUB_API_ENDPOINT="your_github_api_endpoint" # OPTIONAL If you are using a Github Enterprise instance
-</code></pre>
+<p>Include your team&rsquo;s name, Slack channel and a list of repos you want to be notified about. Private repos are not currently supported.</p>
 
-<h3 id="env-variables">Env variables</h3>
+<h3 id="slack-alerts">Slack alerts</h3>
 
-<pre lang="sh"><code>export SEAL_ORGANISATION="your_github_organisation"
-export GITHUB_TOKEN="get_your_github_token_from_yourgithub_settings"
-export GITHUB_API_ENDPOINT="your_github_api_endpoint" # OPTIONAL If you are using a Github Enterprise instance
-export SLACK_WEBHOOK="get_your_incoming_webhook_link_for_your_slack_group_channel"
-export SLACK_CHANNEL="#whatever-channel-you-prefer"
-export GITHUB_USE_LABELS=true
-export GITHUB_SECURITY_ALERTS=true
-export GITHUB_EXCLUDE_LABELS="[DO NOT MERGE],Don't merge,DO NOT MERGE,Waiting on factcheck,wip"
-export GITHUB_REPOS="myapp,anotherrepo" # Repos you want to be notified about
-export COMPACT=true # Use a more compact version of the seal output
-export SEAL_QUOTES="Everyone should have the opportunity to learn. Don't be afraid to pick up stories on things you don't understand and ask for help with them. Try to pair when possible."
-</code></pre>
+<p>To customize which alerts your team channel gets, find your team in <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">config/alphagov.yml</a> and set the following values to <code>true</code> or <code>false</code>:</p>
 
 <ul>
-<li>To get a new <code>GITHUB_TOKEN</code>, head to: <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a>
-</li>
-<li>To get a new <code>SLACK_WEBHOOK</code>, head to: <a href="https://slack.com/services/new/incoming-webhook">https://slack.com/services/new/incoming-webhook</a>
-</li>
+<li>morning_seal_quotes: Morning quotes set by your team</li>
+<li>afternoon_seal_quotes: Afternoon quotes set by your team</li>
+<li>seal_prs: Morning alerts about old and recent pull requests by team members</li>
+<li>dependapanda: Morning alerts about Dependabot pull requests</li>
+<li>security_alerts: Security alerts (only available to teams receiving Dependabot alerts)</li>
 </ul>
-
-<h3 id="github-actions">GitHub Actions</h3>
-
-<p>This repository now utilizes GitHub Actions for automated Slack notifications. The workflows are defined in the <code>.github/workflows</code> directory and perform various tasks at different times of the day:</p>
-
-<ul>
-<li>
-<a href="https://github.com/alphagov/seal/blob/main/.github/workflows/morning_seal.yml">Morning Seal</a>: Runs the Seal bot in the morning, posting about old and recent pull requests by team members and also quotes.</li>
-<li>
-<a href="https://github.com/alphagov/seal/blob/main/.github/workflows/afternoon_seal.yml">Afternoon Seal</a>: Runs the Seal bot in the afternoon, posting quotes.</li>
-<li>
-<a href="https://github.com/alphagov/seal/blob/main/.github/workflows/dependapanda.yml">Dependapanda</a>: Runs the Dependapanda bot in the morning, posting about Dependabot pull requests and security information.</li>
-</ul>
-
-<p>The Morning Seal and Dependapanda workflows run every weekday morning, while the Afternoon Seal workflow runs every weekday afternoon.</p>
-
-<p>To customize which bots post to your team channel, add or remove your team name in the workflows above. The team name should correspond to a key in <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">config/alphagov.yml</a>, which should have a <code>channel</code> property denoting the name of your team&rsquo;s Slack channel.</p>
-
-<p>The <code>channel</code> property should match a channel name in the <a href="https://docs.publishing.service.gov.uk/repos.html#repos-by-team">list of repos by ownership in the Developer Docs</a>, otherwise Dependapanda won&rsquo;t know which repos to notify your channel about.</p>
 
 <h3 id="local-testing">Local testing</h3>
 
@@ -313,10 +279,6 @@ You can then run the <a href="https://github.com/alphagov/seal/actions">GitHub A
 </ul>
 
 <!-- raw HTML omitted -->
-
-<h2 id="deployment">Deployment</h2>
-
-<p>All of the code runs in GitHub Actions and does not need deploying.</p>
 
 <h2 id="how-to-run-the-tests">How to run the tests?</h2>
 
