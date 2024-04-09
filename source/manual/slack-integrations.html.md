@@ -13,9 +13,15 @@ parent: "/manual.html"
 
 ### Configuration
 
-Create a PR which adds some information (including team name and Slack channel) to [alphagov.yml in the Seal repo](https://github.com/alphagov/seal/blob/main/config/alphagov.yml). The Slack channel name does not need to match the team name.
+Create a PR which adds some information (including team name and Slack channel) to [alphagov.yml in the Seal repo](https://github.com/alphagov/seal/blob/main/config/alphagov.yml). The Slack channel and team name must match the ones in the developer docs.
 
-Add the team name to [Morning Seal and Afternoon Seal](https://github.com/alphagov/seal/tree/main/.github/workflows) if you want two notifications a day, otherwise just pick one.
+You can then set the following values to `true` if you want to receive the respective alerts:
+
+- morning_seal_quotes: Morning quotes set by your team
+- afternoon_seal_quotes: Afternoon quotes set by your team
+- seal_prs: Morning alerts about old and recent pull requests by team members
+
+If you choose to receive quotes, you will need to add them under a `quotes` key.
 
 Make sure that the Slack channel name has been set as the 'team' in [repos.yml in the GOV.UK Developer Docs repo](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml). This will [update this JSON endpoint](/repos.json) which is [used by the Seal](https://github.com/alphagov/seal/blob/main/lib/team_builder.rb#L97).
 
@@ -25,7 +31,7 @@ Dependapanda is a Slack bot which posts a list of open Dependabot Pull Requests 
 
 ### Configuration
 
-The process is the same as [configuring the Seal](/manual/slack-integrations.html#configuration). However, the team name will need to be added into [Dependapanda](https://github.com/alphagov/seal/blob/main/.github/workflows/dependapanda.yml) as opposed to the morning/afternoon Seal files.
+The process is the same as [configuring the Seal](/manual/slack-integrations.html#configuration). Just find your team in the config file and set `dependapanda: true`.
 
 [More information about the Seal can be found in Seal’s Github Readme](https://github.com/alphagov/seal/tree/main).
 
