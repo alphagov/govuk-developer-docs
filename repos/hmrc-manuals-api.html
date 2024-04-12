@@ -259,7 +259,7 @@ manual consists of two document types: the manual itself and manual sections.</p
 
 <ul>
 <li>
-<p><strong>Manual</strong>: HMRC manual with title and description, contains many Sections. See <a href="/repos/hmrc-manuals-api/extended_documentation.html">Adding or updating a manual</a> for more details. Before adding a manual through the api, a <a href="#adding-a-new-slug">new slug should be added</a> to the list of known slugs.</p>
+<p><strong>Manual</strong>: HMRC manual with title and description, contains many Sections. See <a href="/repos/hmrc-manuals-api/extended_documentation.html">Adding or updating a manual</a> for more details.</p>
 </li>
 <li>
 <p><strong>Section</strong>: Sections can contain sub-sections and/or a content body. See <a href="/repos/hmrc-manuals-api/extended_documentation.html">Adding or updating a section</a> for more details.</p>
@@ -278,16 +278,6 @@ manual consists of two document types: the manual itself and manual sections.</p
 
 <pre lang="sh"><code>bundle exec rspec
 </code></pre>
-
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-
-<h3 id="adding-a-new-slug">Adding a new slug</h3>
-
-<p>Before adding a new manual through the API, the slug for the manual must be added to <a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/config/initializers/known_manual_slugs.rb">/config/initializers/known_manual_slugs.rb</a> and the application re-deployed.</p>
-
-<p>The workflow for this is likely to be initiated by a Zendesk ticket raised by HMRC with
-the new slug. A developer can then add the slug and re-deploy the application and
-inform HMRC that the slug is ready to be published against.</p>
 
 <h2 id="manuals-and-decisions">Manuals and decisions</h2>
 
