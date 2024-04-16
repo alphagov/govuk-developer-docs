@@ -176,27 +176,23 @@ When logged in as a `sysadmin` you can access a [user list](https://ckan.publish
 There are two methods to create a new user account:
 
 1. An organisation's 'admin' user can [follow these instructions](https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins) to invite new users to create an account. This is the preferred approach, as the organisation admin is best placed to know whether the new user should be given access.
-2. A 'sysadmin' user (e.g. Technical 2nd Line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
+1. A 'sysadmin' user (e.g. Technical 2nd Line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
   - Follow the instructions to [assign users to publishers](#assigning-users-to-publishers-setting-user-permissions) inputting the user's email address instead of their username.
   - An invite email is generated and sent to the user.
 
 ### Updating a user's email address
 
-If a user has changed their email address (and so cannot log in) you can update the email address
-associated with their account:
+If a user has changed their email address (and so cannot log in) you can update the email address associated with their account:
 
 1. Login to [CKAN][dgu-ckan] as a 'sysadmin' user (see above for credentials).
-2. Click the 'Publishers' button.
-3. Search for the user's publishing organisation and click on it.
-4. Click on the 'Manage' button.
-5. Click on the 'Members' tab.
-6. Click on the user's username in the list.
-7. Click on the 'Manage' button.
-8. Change the email address.
-9. Enter the password you used to log in to CKAN in the 'Sysadmin password' field.
-10. Set a new password for the user.
-11. Click 'Update profile'.
-12. Reply to the user to tell them that their email address has been changed, what the new password you set is and strongly advise them to change the password when they log in.
+1. Search the [user list](https://ckan.publishing.service.gov.uk/user) for their old email address
+1. Click the user name
+1. Click the 'Manage' button.
+1. Change the email address.
+1. Enter your own CKAN password in the 'Old password' field.
+1. Set a temporary new password for the user (put that in the 'Confirm password' field too). This is required by CKAN, but you won't use that password.
+1. Click 'Update profile'.
+1. Reply to the user to tell them that their email address has been changed, and that they will need to reset their password via https://ckan.publishing.service.gov.uk/user/reset
 
 > Email addresses in CKAN are case-sensitive, and this can cause problems.
 >
@@ -207,26 +203,26 @@ associated with their account:
 Historical usernames with non-alphanumeric or uppercase characters are no longer valid, and so users cannot log in to change their password. Usernames can only be changed directly in the database:
 
 1. Follow the [instructions](#accessing-the-database) to access the CKAN database.
-2. Enter the following to find the user in the database `SELECT * from "user" where name = 'old-username' limit 1;`.
-3. Update the username `UPDATE "user" SET name = 'new-username' WHERE name = 'old-username';`
-4. Check they were updated by repeating step 2.
-5. Reply to the user to tell them that their username has been changed and what it's been changed to.
+1. Enter the following to find the user in the database `SELECT * from "user" where name = 'old-username' limit 1;`.
+1. Update the username `UPDATE "user" SET name = 'new-username' WHERE name = 'old-username';`
+1. Check they were updated by repeating step 2.
+1. Reply to the user to tell them that their username has been changed and what it's been changed to.
 
 ### Creating a new publishing organisation
 
 1. Login to [CKAN][dgu-ckan] as a 'sysadmin' user (see above for credentials).
-2. Click the 'Publishers' button.
-3. Click 'Add Publisher' and complete the form.
-4. Follow the instructions in the section below to add a user as an 'admin' for the organisation (this would normally be the person making the request, so they can then add further users themselves without needing to contact support).
+1. Click the 'Publishers' button.
+1. Click 'Add Publisher' and complete the form.
+1. Follow the instructions in the section below to add a user as an 'admin' for the organisation (this would normally be the person making the request, so they can then add further users themselves without needing to contact support).
 
 ### Assigning users to publishers (setting user permissions)
 
 1. Login to [CKAN][dgu-ckan] as a 'sysadmin' user (see above for credentials).
-2. Click the 'Publishers' button.
-3. Find the user's organisation and click on it.
-3. Click the 'Manage' button.
-4. Click the 'Members' tab, then the 'Add Member' button.
-5. Add the user's existing account, or enter their email address to send them an invite, ensuring you select the relevant role for the user (either admin or editor).
+1. Click the 'Publishers' button.
+1. Find the user's organisation and click on it.
+1. Click the 'Manage' button.
+1. Click the 'Members' tab, then the 'Add Member' button.
+1. Add the user's existing account, or enter their email address to send them an invite, ensuring you select the relevant role for the user (either admin or editor).
 
 > Users should first be asked to request addition by an admin of their organisation, if possible.  This is to reduce the burden of these requests on the 2nd line team and to ensure only those with the correct authority are added as publishers.
 >
@@ -249,10 +245,10 @@ Datasets are never hard-deleted (known as "purged" in CKAN), instead they are gi
 #### Deleting a dataset
 
 1. Login to [CKAN][dgu-ckan] as a 'sysadmin' user (see above for credentials).
-2. Navigate to the relevant dataset (use the 'Datasets' button).
-3. Click the 'Manage' button.
-4. Click the red 'Delete' button.
-5. Once withdrawn, it will take up to 30 minutes to sync across to data.gov.uk and clear the cache.
+1. Navigate to the relevant dataset (use the 'Datasets' button).
+1. Click the 'Manage' button.
+1. Click the red 'Delete' button.
+1. Once withdrawn, it will take up to 30 minutes to sync across to data.gov.uk and clear the cache.
 
 > The 'Delete' button is not available for draft datasets. To soft-delete a draft dataset, follow the above steps, but manually change `/edit/` to `/delete/` in the URL of the 'Manage' page for the dataset.
 
@@ -508,8 +504,8 @@ You can get a list all datasets (including those which have been soft-deleted) f
 https://data.gov.uk/api/3/action/organization_show?id=environment-agency
 ```
 
-2. Follow the [instructions to access the database](#accessing-the-database)
-3. This query will list all datasets for the Environment Agency, with the number of records for each, and export the result to a CSV file.
+1. Follow the [instructions to access the database](#accessing-the-database)
+1. This query will list all datasets for the Environment Agency, with the number of records for each, and export the result to a CSV file.
 
 ```sql
 \pset format csv
@@ -517,7 +513,7 @@ https://data.gov.uk/api/3/action/organization_show?id=environment-agency
 SELECT package.name, package.title, package.url, package.state, COUNT(resource.package_id) as num_resources FROM package LEFT JOIN resource ON (resource.package_id = package.id) WHERE package.owner_org='11c51f05-a8bf-4f58-9b95-7ab55f9546d7' GROUP BY package.id)
 ```
 
-4. You can then use scp-pull from the govuk-connect tool to download the file.
+1. You can then use scp-pull from the govuk-connect tool to download the file.
 
 ### Rebuilding the search index
 
@@ -578,15 +574,15 @@ In the response there should be `harvest_source_id` and `harvest_source_title` f
 ### Getting the status of a harvester
 
 1. Login to [CKAN][dgu-ckan] as a 'sysadmin' user (see above for credentials).
-2. Click the 'Harvest' button and find the relevant harvester.
-3. You will see a list of the datasets imported by this harvest source.
-4. Click the 'Admin' button to get the status.
-5. A summary of the current status will be shown.  Individual runs (and any error messages) can be accessed from the 'Jobs' tab.
+1. Click the 'Harvest' button and find the relevant harvester.
+1. You will see a list of the datasets imported by this harvest source.
+1. Click the 'Admin' button to get the status.
+1. A summary of the current status will be shown.  Individual runs (and any error messages) can be accessed from the 'Jobs' tab.
 
 ### Restart a harvest job
 
 1. Follow the steps to [get the status of a harvester](#getting-the-status-of-a-harvester).
-2. If the harvester is currently running, click the 'Stop' button. Once it's stopped, or if it's not currently running, click the 'Reharvest' button. You'll know if the harvester is running because the 'Reharvest' button will be disabled.
+1. If the harvester is currently running, click the 'Stop' button. Once it's stopped, or if it's not currently running, click the 'Reharvest' button. You'll know if the harvester is running because the 'Reharvest' button will be disabled.
 
 If the harvest job is hanging and the 'Stop' button is not responding, you'll have to log on to the `ckan` machine to restart it:
 
