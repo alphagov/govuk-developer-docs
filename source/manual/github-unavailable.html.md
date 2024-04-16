@@ -65,9 +65,9 @@ docker push $REGISTRY/$REPO:$IMAGE_TAG
 
 When GitHub is available again (or when you've completed the above as part of a Technical 2nd Line drill), return things to normal by re-enabling the auto-sync:
 
-    1. From the Applications page (the Argo CD homepage), choose the `app-config` application.
-    1. Press the `App Details` button near the top of the page.
-    1. Scroll down to the bottom of the page and press `Enable auto-sync`.
+  1. From the Applications page (the Argo CD homepage), choose the `app-config` application.
+  1. Press the `App Details` button near the top of the page.
+  1. Scroll down to the bottom of the page and press `Enable auto-sync`.
 
 ## Troubleshooting 403 errors from AWS
 
