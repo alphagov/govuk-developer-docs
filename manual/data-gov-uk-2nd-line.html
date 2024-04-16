@@ -399,7 +399,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/34a99998c30910cf1b23ab78209ebfff8a0d6245">5 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/170fc9a19446cb88cf96cdd832d51b539f011374">16 Apr 2024</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <blockquote>
@@ -490,22 +490,18 @@ organisations, with either the &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; role 
 <li>An invite email is generated and sent to the user.</li>
 </ul></li>
 </ol>
-<h3 id='updating-a-users-email-address'>Updating a user&rsquo;s email address</h3><p>If a user has changed their email address (and so cannot log in) you can update the email address
-associated with their account:</p>
+<h3 id='updating-a-users-email-address'>Updating a user&rsquo;s email address</h3><p>If a user has changed their email address (and so cannot log in) you can update the email address associated with their account:</p>
 
 <ol>
 <li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a &lsquo;sysadmin&rsquo; user (see above for credentials).</li>
-<li>Click the &lsquo;Publishers&rsquo; button.</li>
-<li>Search for the user&rsquo;s publishing organisation and click on it.</li>
-<li>Click on the &lsquo;Manage&rsquo; button.</li>
-<li>Click on the &lsquo;Members&rsquo; tab.</li>
-<li>Click on the user&rsquo;s username in the list.</li>
-<li>Click on the &lsquo;Manage&rsquo; button.</li>
+<li>Search the <a href="https://ckan.publishing.service.gov.uk/user">user list</a> for their old email address</li>
+<li>Click the user name</li>
+<li>Click the &lsquo;Manage&rsquo; button.</li>
 <li>Change the email address.</li>
-<li>Enter the password you used to log in to CKAN in the &lsquo;Sysadmin password&rsquo; field.</li>
-<li>Set a new password for the user.</li>
+<li>Enter your own CKAN password in the &lsquo;Old password&rsquo; field.</li>
+<li>Set a temporary new password for the user (put that in the &lsquo;Confirm password&rsquo; field too). This is required by CKAN, but you won&rsquo;t use that password.</li>
 <li>Click &lsquo;Update profile&rsquo;.</li>
-<li>Reply to the user to tell them that their email address has been changed, what the new password you set is and strongly advise them to change the password when they log in.</li>
+<li>Reply to the user to tell them that their email address has been changed, and that they will need to reset their password via https://ckan.publishing.service.gov.uk/user/reset</li>
 </ol>
 
 <blockquote>
