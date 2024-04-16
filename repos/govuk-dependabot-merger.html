@@ -225,13 +225,9 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>This repository runs a daily GitHub action that automatically approves and merges certain Dependabot PRs for opted-in GOV.UK repos, according to <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-156-auto-merge-internal-prs.md">strict criteria set out in RFC-156</a>, summarised below:</p>
+<p>This repository runs a daily GitHub action that automatically approves and merges certain Dependabot PRs for opted-in GOV.UK repos, according to <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-167-auto-patch-dependencies.md#conditions-required-for-automatic-patching">strict criteria set out in RFC-167</a>.</p>
 
-<blockquote>
-<p>This service should ONLY be used to merge internal dependencies (excluding &lsquo;major&rsquo; version updates). It should also only be enabled on repos which have sufficient test coverage (such as continuously deployed apps, as these have to reach 95% coverage). Deviate from the guidance at your own risk.</p>
-</blockquote>
-
-<p>Note that govuk-dependabot-merger will avoid merging a PR if it has a failing GitHub Action CI build called <code>test-ruby</code>, <a href="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-with-github-actions.html#branch-protection-rules">as per convention</a>. It will also avoid running altogether on weekends and bank holidays.</p>
+<p>Note that govuk-dependabot-merger will avoid merging a PR if it has a failing GitHub Action CI workflow called <code>CI</code>, <a href="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-with-github-actions.html#branch-protection-rules">as per convention</a>. It will also avoid running altogether on weekends and bank holidays.</p>
 
 <h2 id="usage">Usage</h2>
 
@@ -239,16 +235,26 @@
 
 <p>For example:</p>
 
-<pre lang="yaml"><code>api_version: 1
-auto_merge:
+<pre lang="yaml"><code>api_version: 2
+defaults:
+  update_external_dependencies: false # default: false
+  auto_merge: true # default: true
+  allowed_semver_bumps: # allowed values: `[patch, minor, major]`
+    - patch
+    - minor
+  # The above sets the default policy for all dependencies in your project.
+  # But each of the above properties can be overridden on a per-dependency basis below.
+overrides:
+  # Example of overriding `allowed_semver_bumps`:
+  - dependency: gds-api-adapters
+    allowed_semver_bumps:
+      - patch
+  # Example of opting a specific dependency out of automatic patching:
   - dependency: govuk_publishing_components
-    allowed_semver_bumps:
-      - patch
-      - minor
-  - dependency: rubocop-govuk
-    allowed_semver_bumps:
-      - patch
-      - minor
+    auto_merge: false
+  # Example of opting a specific dependency into automatic patching:
+  - dependency: rspec
+    update_external_dependencies: true
 </code></pre>
 
 <p>After you&rsquo;ve merged your config file into your main branch, you just need to add your repository to the <a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/config/repos_opted_in.yml">config/repos_opted_in.yml</a> list in govuk-dependabot-merger.</p>
