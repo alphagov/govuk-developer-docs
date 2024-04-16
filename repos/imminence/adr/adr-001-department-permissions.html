@@ -201,7 +201,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/imminence/commit/1a32931caea53628b64e25da4713d13ceaf11c74">7 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/imminence/commit/b66768f43601a6fd99f963b2a42d0ae67d55caa9">16 Apr 2024</a>
 </div>
 
   <h1 class="page-title">imminence: Decision Record: Department Permissions</h1>
@@ -209,10 +209,10 @@
   
 <h2 id="introduction">Introduction</h2>
 <p>In March 2024 a proposal was put to SteerCo to allow departments direct access
-to Imminence to maintain their own datasets. Although all data in Imminence is
+to Imminence to maintain their own data sets. Although all data in Imminence is
 publicly available, we agreed with John-Paul Dickie (and previously with Alex
-Pardoe) that it would make sense to restrict dataset updating to the owning
-department to avoid the risk of datasets being accidentally overwritten by
+Pardoe) that it would make sense to restrict data set updating to the owning
+department to avoid the risk of data sets being accidentally overwritten by
 non-owner departments.</p>
 <h2 id="requirements">Requirements</h2>
 <p>Each service would need to be owned by one or more departments. Only editors
@@ -229,7 +229,7 @@ of these apps.</p>
 us for existing services before departments are given access. This will
 be a simple string field, with comma separation for multiple owners.</li>
 <li>Add a "GDS Editor" permission. Anyone with this permission can see and
-edit all services/datasets/places. Anyone without this permission can
+edit all services/data sets/places. Anyone without this permission can
 only access services whose organisational_slugs field contains the same
 slug as reported for them by Signon.</li>
 <li>When new services are made they will automatically be assigned an

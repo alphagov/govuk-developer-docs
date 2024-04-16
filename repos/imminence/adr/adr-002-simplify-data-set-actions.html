@@ -201,7 +201,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/imminence/commit/6378417a6d1b6110505bfb553dfe11b2a93f9875">14 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/imminence/commit/b66768f43601a6fd99f963b2a42d0ae67d55caa9">16 Apr 2024</a>
 </div>
 
   <h1 class="page-title">imminence: Decision Record: Simplifying Data Set Actions</h1>
@@ -209,15 +209,15 @@
   
 <h2 id="introduction">Introduction</h2>
 <p>In March 2024 a proposal was put to SteerCo to allow Departments direct access
-to Imminence to maintain their own datasets. Most of the outcome of that is
+to Imminence to maintain their own data sets. Most of the outcome of that is
 mentioned in another ADR (<a href="https://github.com/alphagov/imminence/blob/main/docs/adr/adr-001-department-permissions.md">ADR-001-department-permissions</a>),
 but it also made sense to improve the user interface by updating it to use
 the Government Design System and removing some options which had not been used
 in practice.</p>
 <p>Imminence works on a hierarchy of data in which a service contains multiple
 data sets, which in turn contain multiple places. In the old admin interface,
-there was a feature to duplicate existing datasets and then directly edit the
-places in those datasets before the new dataset was made active.</p>
+there was a feature to duplicate existing data sets and then directly edit the
+places in those data sets before the new data set was made active.</p>
 <p>On consultation with the current users, though, it was found that these features
 were never used - the typical work cycle in Imminence is to download the current
 data set as a CSV (if you don't already have it), edit the CSV, and then upload
@@ -231,7 +231,7 @@ the duplicate facility and the facility to edit places directly.</p>
 <li>Update the design from the old govuk_admin_template/bootstrap design to
 one based on the Government Design System (using the
 govuk_publishing_components gem)</li>
-<li>Remove the duplicate dataset functionality from the Data Set Controller.</li>
+<li>Remove the duplicate data set functionality from the Data Set Controller.</li>
 <li>Remove the edit action / views from the Places Controller.</li>
 <li>Add a show action / view to the Places Controller so that place information
 can be viewed (previously the only way of doing this was thorugh the edit
