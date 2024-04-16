@@ -399,7 +399,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2bc38afb880016fe35c7388071ec3bb4dd41bb90">19 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/34a99998c30910cf1b23ab78209ebfff8a0d6245">5 Mar 2024</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <blockquote>
@@ -458,6 +458,10 @@ Example query: <code>kubernetes.namespace: datagovuk AND kubernetes.container.na
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
 rails console
 &gt;&gt;&gt; Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
+</code></pre></div><p>or on a single command line:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>echo 'Sidekiq::Queue.all.map(&amp;:size)' | k -n datagovuk exec -i deploy/datagovuk-publish -- rails c
+</code></pre></div><p>If there are issues processing the Sidekiq queue you can also clear it (this doesn&rsquo;t affect the operation of data.gov.uk):</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>echo 'Sidekiq::Queue.new("import").clear' | k -n datagovuk exec -i deploy/datagovuk-publish -- rails c
 </code></pre></div><h3 id='analytics'>Analytics</h3><p>Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.</p>
 <p>If a user requests analytics for data.gov.uk, we can provide them with access to <a href="https://lookerstudio.google.com/reporting/1dLIysu5Ie131ZL3gGT7zyWBhffNgTSX2/page/cduv">an analytics dashboard</a>. Assign tickets like this to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk queue.</p>
 <h2 id='updating-the-zendesk-password-for-find'>Updating the Zendesk password for Find</h2><p>The form at https://www.data.gov.uk/support uses the Zendesk API to create new tickets. If the account password expires, it&rsquo;ll need updating in <a href="/manual/secrets-manager.html">AWS Secrets Manager</a>:</p>
