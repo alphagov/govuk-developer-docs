@@ -125,6 +125,18 @@ rails console
 >>> Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
 ```
 
+or on a single command line:
+
+```
+echo 'Sidekiq::Queue.all.map(&:size)' | k -n datagovuk exec -i deploy/datagovuk-publish -- rails c
+```
+
+If there are issues processing the Sidekiq queue you can also clear it (this doesn't affect the operation of data.gov.uk):
+
+```
+echo 'Sidekiq::Queue.new("import").clear' | k -n datagovuk exec -i deploy/datagovuk-publish -- rails c
+```
+
 ### Analytics
 
 Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.
