@@ -202,7 +202,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/67070e6c7d8be9946aa1ceb57c5bde56e3bda539">8 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9c8db1327fd8ce311bf7fb96b110185eddbb9702">16 Apr 2024</a>
 </div>
 
  <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='aws-codecommit'>AWS CodeCommit</h2><p>We mirror all non-archived GitHub repositories tagged with <code>govuk</code> to AWS CodeCommit via the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml">&ldquo;Mirror repositories&rdquo; GitHub Actions workflow</a>. The workflow uses the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/mirror.tf"><code>github_action_mirror_repos_role</code> IAM role</a>.</p>
@@ -253,13 +253,13 @@ docker push $REGISTRY/$REPO:$IMAGE_TAG
 <li><p>Find the <code>image:</code> field for the <code>app</code> container. It should look something like <code>172025368201.dkr.ecr.eu-west-1.amazonaws.com/&lt;app-name&gt;:release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e</code>.</p></li>
 <li><p>Update the tag part of the <code>image:</code> value to the new image tag that you pushed to ECR. The part you are changing should look something like <code>release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e</code>.</p></li>
 <li><p>Click <code>Save</code>. Argo CD will start the deployment, which should complete in under ten minutes.</p></li>
-<li><p>After confirming deployment of the app re-enable auto-sync for the <code>app-config</code> application:</p>
+</ol>
+<p>When GitHub is available again (or when you&rsquo;ve completed the above as part of a Technical 2nd Line drill), return things to normal by re-enabling the auto-sync:</p>
 
 <ol>
 <li>From the Applications page (the Argo CD homepage), choose the <code>app-config</code> application.</li>
 <li>Press the <code>App Details</code> button near the top of the page.</li>
 <li>Scroll down to the bottom of the page and press <code>Enable auto-sync</code>.</li>
-</ol></li>
 </ol>
 <h2 id='troubleshooting-403-errors-from-aws'>Troubleshooting 403 errors from AWS</h2><p>If running any <code>git</code> commands against CodeCommit returns a 403 response, you probably
 have expired credentials stored in your macOS keychain from a previous attempt.
