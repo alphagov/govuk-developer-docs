@@ -189,8 +189,8 @@ If a user has changed their email address (and so cannot log in) you can update 
 1. Click the user name
 1. Click the 'Manage' button.
 1. Change the email address.
-1. Enter your own CKAN password in the 'Old password' field.
 1. Set a temporary new password for the user (put that in the 'Confirm password' field too). This is required by CKAN, but you won't use that password.
+1. Enter your own CKAN password in the 'Sysadmin password' field.
 1. Click 'Update profile'.
 1. Reply to the user to tell them that their email address has been changed, and that they will need to reset their password via https://ckan.publishing.service.gov.uk/user/reset
 
