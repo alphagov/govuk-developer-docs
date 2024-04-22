@@ -104,7 +104,7 @@ Ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant 
 [Sentry]: /manual/sentry.html
 [Pagerduty]: /manual/pagerduty.html
 [govuk-user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
-[instructions]: https://github.com/alphagov/govuk-user-reviewer#addingremoving-users
+[instructions]: https://github.com/alphagov/govuk-user-reviewer#adding-users
 
 ## 7. Install and configure the GDS CLI
 
