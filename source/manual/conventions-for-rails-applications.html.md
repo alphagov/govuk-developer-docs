@@ -281,19 +281,18 @@ Rails application with practices such as:
 
 ### Inject secrets with environment variables
 
-The conventional place to store secrets for a GOV.UK Rails application is
-`config/secrets.yml`. All production secrets should be populated with an
-environment variable; for dev and test environments it's preferred to leave
-a usable placeholder default if an actual secret isn't needed
-([example][secrets-example]).
-
-We haven't migrated to using the [encrypted `config/credentials.yml.enc`
-introduced in Rails 5.2][rails-credentials]. This approach presents us
-with a few problems, most notably that we run our apps in Rails
-"production" environment in numerous places (integration, staging,
+We don't make use of [Rails encrypted credentials][rails-credentials],
+preferring instead to use environment variables. Using Rails credentials
+would present us with numerous challenges, most notably that we run our
+apps in Rails "production" environment in numerous places (integration, staging,
 production) and need different secrets for them.
 
-[secrets-example]: https://github.com/alphagov/content-publisher/blob/654d1885dd94e347e236be73d20f2304913bc906/config/secrets.yml
+If you need to make dummy secrets available to dev and test environments
+configure these in the respective `config/environments/*.rb` configuration files.
+
+Applications should no longer make use of `config/secrets.yml` as this
+[is deprecated](https://github.com/rails/rails/pull/48472).
+
 [rails-credentials]: https://edgeguides.rubyonrails.org/security.html#custom-credentials
 
 ### Specify London as the timezone
