@@ -73,7 +73,7 @@ Sometimes a ticket relates to a service run by another government department. To
 
 ### Service Level Agreements
 
-GOV.UK have committed to a minimum service level agreement for Technical 2nd Line.
+GOV.UK have [committed to a minimum service level agreement](https://www.gov.uk/guidance/contact-the-government-digital-service/how-to-contact-gds) for Technical 2nd Line:
 
 * 80% of tickets get a first reply to the ticket within 2 working days
 * 80% of general enquiries (public tickets) resolved within 5 working days
