@@ -141,6 +141,7 @@
           <ul class="subdir__menu">
               <li><a href="/repos/imminence/adr/adr-001-department-permissions.html" rel="noopener" class="govuk-link">Decision Record: Department Permissions</a></li>
               <li><a href="/repos/imminence/adr/adr-002-simplify-data-set-actions.html" rel="noopener" class="govuk-link">Decision Record: Simplifying Data Set Actions</a></li>
+              <li><a href="/repos/imminence/adr/adr-003-renaming.html" rel="noopener" class="govuk-link">Decision Record: Renaming</a></li>
           </ul>
       </ul>
     </li>
@@ -200,25 +201,18 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/imminence/commit/be50fed49539dd36ded5714be039b4ef03c8c49a">1 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/imminence/commit/d93adc9fe56a63f1a74dabd55d864ffa5aa9baf5">15 Apr 2024</a>
 </div>
 
   <h1 class="page-title">imminence: Adding a new service</h1>
 
   
-<p>Adding a new service in Imminence is fairly straightforward and comprises of
+<p>Adding a new service in Places Manager is fairly straightforward and comprises of
 two main parts:</p>
 <ol>
 <li>
-<p>The <strong>service</strong> which is <a href="https://imminence.integration.publishing.service.gov.uk/admin/services/new">created in Imminence</a>. We need to provide the slug
+<p>The <strong>service</strong> which is <a href="https://places-manager.integration.publishing.service.gov.uk/admin/services/new">created in Places Manager</a>. We need to provide the slug
 (this isn't the slug for the live <a href="http://www.gov.uk">www.gov.uk</a> URL, rather the endpoint the
 service landing page will use internally to fetch the relevant locations), name
 and a CSV containing all the locations that provide the new service. Guidance
@@ -227,8 +221,8 @@ around the CSV data can be found on the service creation page.</p>
 <li>
 <p>The <strong>service landing page</strong> (Artefact) which is <a href="https://publisher.integration.publishing.service.gov.uk/artefacts/new">created in Publisher</a>. The
 Publisher format type for a new service is 'Place'. To link the Artefact
-created in Publisher to the service in Imminence, the field "This is the 'slug'
-assigned in the imminence app" needs to be populated with the internal slug
+created in Publisher to the service in Places Manager, the field "This is the 'slug'
+assigned in the places manager app" needs to be populated with the internal slug
 created in step 1. Once the Artefact is published, the service should be up and
 running.</p>
 </li>
