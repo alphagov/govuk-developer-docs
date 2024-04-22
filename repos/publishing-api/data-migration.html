@@ -227,15 +227,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/73a3232f25b3f8f04f21856974b6838293455fde">15 Apr 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/e1126aa22c43e7e3b003d4da9c212e437fd7415b">19 Apr 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Writing data migrations</h1>
@@ -269,7 +262,7 @@ fine without the data there that you are expecting.</p>
 <p>Representing the data downstream won't work on local machines, so you will need
 to have a check in the migration making sure it is running in the right
 environment (<code>Rails.env.production?</code>). Alternatively, and ideally, you can
-<a href="https://github.com/alphagov/publishing-api/blob/main/docs/lib/tasks/represent_downstream.rake">use the <code>represent_downstream:</code> class of rake tasks</a> in Jenkins to
+<a href="https://github.com/alphagov/publishing-api/blob/main/lib/tasks/represent_downstream.rake">use the <code>represent_downstream:</code> class of rake tasks</a> in Jenkins to
 achieve the same result. If you do decide to represent downstream in the
 migration itself, you must disable transactions for this migration (by running
 the <code>disable_ddl_transaction!</code> method) as otherwise you will be representing
