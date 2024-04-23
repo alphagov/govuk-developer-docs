@@ -221,7 +221,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/content-data-api/commit/6997022b5a5946d0379d8674dd3bb28998e7923e">27 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/content-data-api/commit/082d008f3a8139c28713fe4c18fc097fce967a46">22 Apr 2024</a>
 </div>
 
   <h1 class="page-title">content-data-api: Set up Google Analytics credentials in development</h1>
@@ -230,20 +230,6 @@
 <p>To import data from Google Analytics, you must set some environment variables.</p>
 <p>Create the file <code>config/local_env.yml</code> if it does not already exist. This file will contain the environment variables for Google Analytics.</p>
 <p>N.B. This file has been added to <code>.gitignore</code>, so you don't need to worry about accidentally checking it in.</p>
-<h2 id="ua-analytics">UA analytics</h2>
-<p>Add an entry to <code>config/local_env.yml</code> for each of the following:</p>
-<ul>
-<li><code>GOOGLE_PRIVATE_KEY</code></li>
-<li><code>GOOGLE_CLIENT_EMAIL</code></li>
-<li><code>GOOGLE_ANALYTICS_GOVUK_VIEW_ID</code></li>
-</ul>
-<p>You can copy the credentials from the <a href="https://console.developers.google.com/apis/credentials">google developers console</a> or from the AWS Secrets Manager under <code>content-data-api/google-analytics</code>.</p>
-<p>e.g.</p>
-<pre lang="bash"><code>GOOGLE_ANALYTICS_GOVUK_VIEW_ID: "1234567"
-</code></pre>
-<p>This will make "1234567" available as <code>ENV["GOOGLE_ANALYTICS_GOVUK_VIEW_ID"]</code></p>
-<p><code>GOOGLE_ANALYTICS_GOVUK_VIEW_ID</code> is the view id on Google Analytics for <code>www.gov.uk</code></p>
-<p>See "Option Three" in <a href="http://railsapps.github.io/rails-environment-variables.html">Rails Environment Variables</a> for more information.</p>
 <h2 id="ga4-analytics">GA4 analytics</h2>
 <p>Add an entry to <code>config/local_env.yml</code> for each of the following:</p>
 <ul>
