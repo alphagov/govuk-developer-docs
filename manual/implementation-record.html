@@ -11,23 +11,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Find a rails template based on a GOV.UK URL or vice verca - GOV.UK Developer Documentation</title>
+    <title>GA4 Implementation Record - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/find-a-rails-template-based-on-a-govuk-url.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/implementation-record.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Find a rails template based on a GOV.UK URL or vice verca - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/find-a-rails-template-based-on-a-govuk-url.html" />
+      <meta name="twitter:title" content="GA4 Implementation Record - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/implementation-record.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Find a rails template based on a GOV.UK URL or vice verca" />
+      <meta property="og:title" content="GA4 Implementation Record" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/find-a-rails-template-based-on-a-govuk-url.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/implementation-record.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -137,16 +137,13 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Find a rails template based on a GOV.UK URL or vice verca</span></a>
+    <a href="#header"><span>GA4 Implementation Record</span></a>
     <ul>
       <li>
-        <a href="#option-1-use-the-gov-uk-browser-extension"><span>Option 1: Use the GOV.UK browser extension</span></a>
+        <a href="#updating-the-record"><span>Updating the record</span></a>
       </li>
       <li>
-        <a href="#option-2-check-the-routes-file-in-a-given-app"><span>Option 2: Check the routes file in a given app</span></a>
-      </li>
-      <li>
-        <a href="#option-3-use-kibana-to-find-a-controller-or-path"><span>Option 3: Use Kibana to find a controller or path</span></a>
+        <a href="#how-to-make-changes"><span>How to make changes</span></a>
       </li>
     </ul>
   </li>
@@ -196,25 +193,38 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7434b1774dc9cc7509b3b49d88539210e80a15c4">16 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3f5a05cd492845b2fca1a11f5fc1c22fc967e6d3">19 Apr 2024</a>
 </div>
 
- <h1 id='header'>Find a rails template based on a GOV.UK URL or vice verca</h1> <p>When making changes to a template in one of our frontend apps it&rsquo;s often beneficial to see a rendered page with your change so that you can effectively test it. This can be difficult when developing within gov.uk as we have several frontend apps which control different parts of the site, sometimes overlapping in sections that they take responsibility for. This document details ways in which you can bypass this issue.</p>
-<h2 id='option-1-use-the-gov-uk-browser-extension'>Option 1: Use the GOV.UK browser extension</h2><p><a href="https://github.com/alphagov/govuk-browser-extension">The GOV.UK browser extension</a> provides a number of details on a given page on GOV.UK, including the app which renders that page. This can be a good start in working out which template renders a particular page, however doesn&rsquo;t help when you are trying to find a URL based on static analysis of our frontend apps.</p>
-<h2 id='option-2-check-the-routes-file-in-a-given-app'>Option 2: Check the routes file in a given app</h2><p>As our frontend apps are all ruby on rails apps, it can be assumed that most views follow <a href="https://www.sitepoint.com/model-view-controller-mvc-architecture-rails/">the typical MVC flow</a> of a route being specified in <code>routes.rb</code>, this route calling a controller, that controller rendering a view and that view being located in <code>app/views</code> of a given application, identified in line with the name of the controller and the action within that controller. For example: a route could be specified that whenever the path <code>/government/organisations</code> is hit, it calls the <code>index</code> action of the <code>organisations</code> controller (shorthanded to <code>organisations#index</code>), this controller would then render at <code>app/views/organisations/index.html.erb</code>. You can follow this both path to template and template to path.</p>
-<p>A downside of this technique is that we allow publishers to set unique slugs for their content, which can&rsquo;t be easily interpreted via static analysis.</p>
-<h2 id='option-3-use-kibana-to-find-a-controller-or-path'>Option 3: Use Kibana to find a controller or path</h2><p>Kibana is an interface for traversing logs on GOV.UK and includes a lot of useful information, such which controller and which route a given path is rendered by. In order to access it you&rsquo;ll first need access to <a href="/manual/logit.html">logit</a> (specific instructions on how to successfully sign into logit can be found <a href="https://reliability-engineering.cloudapps.digital/logging.html#content">here</a>, ensure that you&rsquo;re part of the govuk gmail group before following these steps).</p>
-<p>You can find a lot of useful tips and instructions on using Kibana, including this particular use case, <a href="/manual/kibana.html">here</a>.</p>
+ <h1 id='header'>GA4 Implementation Record</h1> <p>The GOV.UK <a href="/analytics">GA4 implementation record</a> holds information about our Google Analytics 4 data schemas, as well as other related information about our GA4 implementation.</p>
+<h2 id='updating-the-record'>Updating the record</h2><p>The implementation record should be kept up to date with any changes made to the GA4 implementation. For changes to existing content this will be possible if:</p>
+
+<ul>
+<li>you have a locally running version of this site</li>
+<li>you understand how to edit YML files</li>
+<li>you have access to the git repository for this site and can push changes</li>
+</ul>
+<p>For more complex changes such as adding a new page or changing how existing data is displayed, a developer may be required.</p>
+<h2 id='how-to-make-changes'>How to make changes</h2><p>Static page templates are stored in <code>/source/analytics</code>. They include pages like the <a href="/analytics/docs.html">Documentation pages</a> and are written using standard HTML/CSS using styles from the <a href="https://design-system.service.gov.uk/styles/">Design System</a>.</p>
+<p>Dynamic pages such as the <a href="/analytics/events.html">events</a>, <a href="/analytics/attributes.html">attributes</a> and <a href="/analytics/trackers.html">trackers</a> pages are generated automatically from the YAML files stored in <a href="https://github.com/alphagov/govuk-developer-docs/tree/main/data/analytics">/data/analytics/</a>.</p>
+<p>When editing events and attributes please note the following.</p>
+
+<ul>
+<li>YML files rely on specific indenting, if the page breaks during editing check that you have indented the YML correctly</li>
+<li>new events require a <code>data</code> section, including the minimum attributes: <code>event</code> and <code>event_data</code>. <code>event_data</code> must contain <code>event_name</code>. See existing events for examples</li>
+<li>attributes added to events in <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/analytics/events.yml">events.yml</a> will only appear if a corresponding entry for the attribute is added to <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/analytics/attributes.yml">attributes.yml</a></li>
+<li>new attributes should have the same detail provided as existing attributes, although the minimum requirement is a <code>name</code> and a <code>type</code></li>
+<li>if no value is provided in <code>events.yml</code> for an attribute, the <code>type</code> of the attribute will be shown</li>
+<li>the values of <code>implemented</code> for events are used to calculate the details on the <a href="/analytics/progress.html">implementation progress page</a></li>
+</ul>
 
   <div class='related-content'>
+    <h4>Related repositories</h4>
+
+    <ul class="govuk-list">
+      <li><a href="/repos/govuk_publishing_components.html">govuk_publishing_components</a></li>
+    </ul>
 
     <h3>More in the Frontend section</h3>
 
@@ -224,8 +234,8 @@
 
           <ul class="govuk-list">
             <li><a href="/manual/analytics.html">Analytics on GOV.UK</a></li>
+            <li><a href="/manual/find-a-rails-template-based-on-a-govuk-url.html">Find a rails template based on a GOV.UK URL or vice verca</a></li>
             <li><a href="/manual/frontend-architecture.html">Frontend architecture</a></li>
-            <li><a href="/manual/implementation-record.html">GA4 Implementation Record</a></li>
             <li><a href="/manual/gtm-change-process.html">Google Tag Manager change process</a></li>
             <li><a href="/manual/guidance-and-tools-for-digital-accessibility.html">Guidance and tools for digital accessibility</a></li>
             <li><a href="/manual/local-frontend-development.html">Local frontend development</a></li>
@@ -255,8 +265,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/find-a-rails-template-based-on-a-govuk-url.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Find+a+rails+template+based+on+a+GOV.UK+URL+or+vice+verca%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Ffind-a-rails-template-based-on-a-govuk-url.html%29&amp;labels=bug&amp;title=Re%3A+%27Find+a+rails+template+based+on+a+GOV.UK+URL+or+vice+verca%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/implementation-record.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27GA4+Implementation+Record%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fimplementation-record.html%29&amp;labels=bug&amp;title=Re%3A+%27GA4+Implementation+Record%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

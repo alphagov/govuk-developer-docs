@@ -140,10 +140,10 @@
     <a href="#header"><span>Google Tag Manager change process</span></a>
     <ul>
       <li>
-        <a href="#roles-and-responsibilities"><span>Roles and responsibilities</span></a>
+        <a href="#concerns-and-responses"><span>Concerns and responses</span></a>
       </li>
       <li>
-        <a href="#process"><span>Process</span></a>
+        <a href="#change-process"><span>Change process</span></a>
       </li>
     </ul>
   </li>
@@ -193,47 +193,30 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/59e96454e072b7bcee0c3a48306c9286313802ae">11 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/77d1aa9a6dc640ece2a6ab9b0c1208c3f08389be">19 Apr 2024</a>
 </div>
 
  <h1 id='header'>Google Tag Manager change process</h1> <p>GOV.UK has implemented Google Analytics 4 (GA4) using Google Tag Manager (GTM) to track user journeys through the site. This page describes the process of making changes to GTM to support improvements to our analytics.</p>
-<p>This process exists because some changes can increase the size of the JavaScript included from GTM in the public frontend of GOV.UK. We do not want to unnecessarily degrade the performance of GOV.UK.</p>
-<h2 id='roles-and-responsibilities'>Roles and responsibilities</h2><p>Performance analysts:</p>
-
-<ul>
-<li>to make changes in GTM and share the change with a succinct explanation of what it does and why it&rsquo;s needed</li>
-<li>to fully document the details of the change</li>
-</ul>
-<p>Developers:</p>
-
-<ul>
-<li>to review and publish the change in GTM</li>
-<li>to check that the changes don&rsquo;t increase the JavaScript size</li>
-</ul>
-<h2 id='process'>Process</h2><p>Analyst creates a change in the GTM web interface.</p>
+<h2 id='concerns-and-responses'>Concerns and responses</h2><p>This process exists because some changes in GTM could increase the size of the JavaScript (JS) included in the public frontend of GOV.UK, negatively impacting performance.</p>
+<p>To mitigate this concern a GTM blocklist has been implemented in our <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-core.js#L16">GA4 code</a>, specifically preventing <code>customPixels</code>, <code>customScripts</code>, <code>html</code> and <code>nonGoogleScripts</code>, which are the most likely cause of JS size increase.</p>
+<p>The size of the two scripts involved is also monitored by the <a href="https://govuk-public-asset-checker.herokuapp.com/">Public Asset Checker</a>, a tool built by the GA4 migration team. It monitors the size of <a href="https://govuk-public-asset-checker.herokuapp.com/public_assets/1">gtm.js</a> and <a href="https://govuk-public-asset-checker.herokuapp.com/public_assets/2">gtag</a>. Daily output is posted to <code>#govuk-frontenders</code> including warnings of any significant size increase.</p>
+<h2 id='change-process'>Change process</h2><p>Create a change in the GTM web interface.</p>
 
 <ul>
 <li>change is created in a new workspace</li>
 <li>change must include a clear description</li>
 <li>change can be checked in preview mode (optional)</li>
 </ul>
-<p>Analyst gets a second analyst to check the changes.</p>
-<p>Analyst raises a request to have the change approved.</p>
+<p>The change must be checked by a second performance analyst.</p>
+<p>Raise a request to have the change approved.</p>
 
 <ul>
-<li>can be raised in the <code>#user-experience-measurement-govuk</code> slack channel</li>
+<li>can be raised in the <code>#govuk-ga4</code> slack channel</li>
 <li>include a link to the workspace to review</li>
 <li>must specify which environment to publish to</li>
 </ul>
-<p>Developer reviews the change</p>
+<p>Change is reviewed.</p>
 
 <ul>
 <li><code>modified</code> is a change to an existing thing</li>
@@ -242,14 +225,14 @@
 <li><code>Activity history</code> shows previous changes</li>
 <li>ensure no custom HTML or JS included in tags</li>
 </ul>
-<p>Developer approves and publishes the change</p>
+<p>If the change is not rejected or returned for further discussion, it is approved and published.</p>
 
 <ul>
 <li>publish to the required environment - <code>Production</code>, <code>Staging</code> or <code>Integration</code></li>
 <li>publishing defaults to the <code>Production</code> environment, if it needs to be deployed to a different environment that must be selected first</li>
 <li>publishing may involve more than one publishing act e.g. publish version 35 to <code>Production</code>, publish version 36 to <code>Integration</code></li>
 </ul>
-<p>Analyst tests that change has been successful, in this order</p>
+<p>Test that the change has been successful, in the following order.</p>
 
 <ul>
 <li><code>Integration</code>: analyst checks that change has been implemented as per specifications</li>
@@ -274,6 +257,7 @@
             <li><a href="/manual/analytics.html">Analytics on GOV.UK</a></li>
             <li><a href="/manual/find-a-rails-template-based-on-a-govuk-url.html">Find a rails template based on a GOV.UK URL or vice verca</a></li>
             <li><a href="/manual/frontend-architecture.html">Frontend architecture</a></li>
+            <li><a href="/manual/implementation-record.html">GA4 Implementation Record</a></li>
             <li><a href="/manual/guidance-and-tools-for-digital-accessibility.html">Guidance and tools for digital accessibility</a></li>
             <li><a href="/manual/local-frontend-development.html">Local frontend development</a></li>
             <li><a href="/manual/components.html">The component system</a></li>
