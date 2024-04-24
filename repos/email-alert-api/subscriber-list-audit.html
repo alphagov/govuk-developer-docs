@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>email-alert-api: 7. Retain data for up to one year - GOV.UK Developer Documentation</title>
+    <title>email-alert-api: Subscriber List Audit - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-007-retain-data-for-up-to-one-year.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/email-alert-api/subscriber-list-audit.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="email-alert-api: 7. Retain data for up to one year - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-007-retain-data-for-up-to-one-year.html" />
+      <meta name="twitter:title" content="email-alert-api: Subscriber List Audit - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-api/subscriber-list-audit.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="email-alert-api: 7. Retain data for up to one year" />
+      <meta property="og:title" content="email-alert-api: Subscriber List Audit" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-007-retain-data-for-up-to-one-year.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-api/subscriber-list-audit.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -218,195 +218,48 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/db9997e567f41929e07171591413454e7e1d4c95">20 Nov 2020</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/80e666a2eb7ac76196d5ccbe9bc9f361639a767c">30 Jan 2024</a>
 </div>
 
-  <h1 class="page-title">email-alert-api: 7. Retain data for up to one year</h1>
+  <h1 class="page-title">email-alert-api: Subscriber List Audit</h1>
 
   
-<p>Date: 2020-11-19</p>
-<h2 id="context">Context</h2>
-<p>The original ADR concerning data retention resides <a href="https://github.com/alphagov/email-alert-api/blob/master/docs/adr/adr-003-data-retention.md">here</a> and
-outlines our approach from February 2018. At that point in time it was decided
-we should retain all data in Email Alert Api with the exception of
-emails which are <a href="https://github.com/alphagov/email-alert-api/blob/master/app/workers/email_archive_worker.rb">archived</a> to S3 &amp; <a href="https://github.com/alphagov/email-alert-api/blob/master/app/workers/email_deletion_worker.rb">deleted</a> after a week.</p>
-<p>Since then we've come to realise that a revision of our data retention policy
-is needed as we're generating more data that will never be used again - by us,
-or the system.</p>
-<p>This was initially prompted by recent work to <a href="https://github.com/alphagov/email-alert-api/pull/1352">migrate subscribers to daily
-digest emails</a> which lead to an increase in the amount of unmanaged data we
-produce and store locally in Email Alert Api. Consequently, this provoked worries
-that perpetually keeping data could result in capacity issues due to the rapid
-increase in data being stored. An example being we now generate ~430,000
-<code>DigestRunSubscriber</code> records each day which is about eight times the amount
-compared to that of ten months ago.</p>
-<p>We've also gained more insight into what data we're not using for analytics.
-The original plan documented in the previous retention policy was to retain as
-much data as possible to enable us to do as much analysis as needed in the
-future. However, much of this data is never used for analysis and so doesn't
-serve a purpose in the email system.</p>
-<p>Contrary to what was previously thought, storing lots of unused data
-indefinitely actually complicates and pollutes our auditing and analysis. An
-example of this can be seen if we look at subscriber lists. We have over
-~73,000 lists with active subscribers but in the last week alone, we've
-accumulated 1139 lists which don't have any subscriptions at all (ended or
-active). These unused lists prevent us from doing simple auditing tasks
-easily, like finding which lists to report on.</p>
-<p>Knowing the above, we thought about how we could clean-up this unused data to
-keep Email Alert Api's database manageable going forward. There are a couple of
-different approaches to consider, including storing unused data in cloud
-storage away from the system's database (like we do when archiving emails) and
-subsequently deleting the data locally. Or, setting up a means of removing the
-data we don't use from the system entirely.</p>
-<h2 id="decision">Decision</h2>
-<p>We decided that historic, unused data should be removed periodically from the
-system entirely. It was concluded that the data the system no longer uses
-should only exist for a maximum of 1 year before removal. We sometimes
-analyse historic data from up to a year ago but we have no evidence of needing
-this data for analytics beyond a year.</p>
-<p>The following list documents our approach to the decision for different data
-in the system.</p>
+<h2 id="background">Background</h2>
+<p>At the moment it's possible to get into a state where subscriber lists exist
+but cannot be triggered:</p>
 <ul>
-<li>
-<p><strong>ContentChange, Message &amp; DigestRun</strong>. Remove once their <code>created_at</code> value is
-over a year old.</p>
-</li>
-<li>
-<p><strong>MatchedContentChange, MatchedMessage &amp; DigestRunSubscriber</strong>. Removed
-automatically when their parent ContentChange/Message/DigestRun is
-deleted.</p>
-</li>
-<li>
-<p><strong>Subscription</strong>. Remove subscriptions when they've been ended for over a
-year, based on their <code>ended_at</code> value. Once a subscription is ended it <a href="https://github.com/alphagov/email-alert-api/blob/master/docs/adr/adr-003-data-retention.md#subscriber-and-subscription">can't
-currently be made active again</a> and so can be deleted.</p>
-</li>
-<li>
-<p><strong>Previously subscribed to SubscriberList</strong>. Remove lists when they have no
-active subscriptions and their latest, ended subscription is over a year old.
-It is possible for a list we deem as historic to be subscribed to again,
-however this seems unlikely due to the list not having any active
-subscriptions for over a year.  If this was to happen, after the list has
-been deleted then a new <code>SubscriberList</code> record will be generated.</p>
-</li>
-<li>
-<p><strong>Unused SubscriberList</strong>. Remove lists which have never had any
-subscriptions and are over 7 days old. A scenario of when this can happen is
-when a user quits their signup journey midway through. 7 days was the chosen
-retention period to allow users to complete their signup journey as they have
-a <a href="https://github.com/alphagov/email-alert-api/blob/f0c61539f7244bdb52db54d277a46412b728d642/app/services/auth_token_generator_service.rb#L7">7 day limit</a> to confirm their subscription. As mentioned in the context
-section, unused subscriber lists pollute our analytics and so we should
-remove them regularly.</p>
-</li>
-<li>
-<p><strong>Subscriber</strong>. Remove subscribers once their <code>created_at</code> is over a year old
-and they don't have any subscriptions (active or ended). Subscribers should
-only be without subscriptions when their historic subscriptions have been
-deleted. This means we should be able to delete all subscribers (under a year
-old too) that don't have any subscriptions. However, we don't delete these
-subscribers to prevent us from removing new subscribers that lack
-subscriptions, due to flaws in our code.  Some examples of where it was
-unintentionally possible to end up with subscribers with no subscriptions can
-be found <a href="https://github.com/alphagov/email-alert-api/pull/1462/commits/053859c5962eef104256661f28727b08a43e3d31">here</a> and <a href="https://github.com/alphagov/email-alert-api/pull/1462/commits/a4b3e82801d79abd3989b1dd60ffd499e7ce82ba">here</a>.</p>
-</li>
+<li>if the keys or fields used to trigger the list are out-of-date with real
+content,</li>
+<li>if a format is fully retired without the correct manual intervention to
+clean up the lists,</li>
+<li>if content is unpublished and the automatic list cleanup code fails.</li>
 </ul>
-<p>Emails (and their associated SubscriptionContents) are the one place where we
-already manage retention - these are held locally for 7 days, and also
-archived to Athena indefinitely. We still need this low retention for Emails in
-order to manage the size of the table. However, the archiving to Athena is
-inconsistent with the above decision to delete unused data entirely. While we
-originally thought Athena might serve as a data source for analytics, this has
-not happened in practice, so the archive data stored there is entirely unused.
-We therefore decided to remove the archiving mechanism for Emails, since it has
-no value.</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="consequences">Consequences</h2>
-<h3 id="historic-deletion-worker">Historic deletion worker</h3>
-<p>We implemented a <a href="https://github.com/alphagov/email-alert-api/blob/a62abc85453b723d683c2dc13f3bf0065fb86d5f/app/workers/historical_data_deletion_worker.rb">worker</a> which runs periodically every day at <a href="https://github.com/alphagov/email-alert-api/blob/master/config/sidekiq.yml#L23-L25">midday</a>.
-Removing this data was deemed as non urgent and so deleting once a day, in
-hours, seemed sufficient.</p>
-<h3 id="the-first-historic-deletion-run">The first historic deletion run</h3>
-<p>On the first run of the worker which handles deleting historical data we
-removed over 33 million records. A breakdown of the amount of deletions per
-model can be found below:</p>
-<ul>
-<li>
-<p>ContentChange - 148,617</p>
-</li>
-<li>
-<p>MatchedContentChange - 1,825,983</p>
-</li>
-<li>
-<p>Message - 15</p>
-</li>
-<li>
-<p>MatchedMessage - 16,099</p>
-</li>
-<li>
-<p>DigestRun - 677</p>
-</li>
-<li>
-<p>DigestRunSubscriber - 30,858,770</p>
-</li>
-<li>
-<p>Subscription - 1,046,576</p>
-</li>
-<li>
-<p>SubscriberList - 11,470</p>
-</li>
-<li>
-<p>Subscriber - 196,376</p>
-</li>
-</ul>
-<h3 id="restrict-analytics-to-1-year-of-unused-data">Restrict analytics to 1 year of unused data</h3>
-<p>We now restrict our unused data for analytics to a period of at most 1 year.
-This means any queries looking for this data (e.g. ended subscriptions over a
-year old) will be met with no results. We don't expect this to be an issue due
-to our current expectation of the data we'll need for future analytics.</p>
-<h3 id="modify-the-nullify-process-and-retire-the-deactivated-concept">Modify the nullify process and retire the deactivated concept</h3>
-<p>When documenting our data retention policy as described in this ADR, we found
-it difficult to understand and document the tangential concept of <a href="https://github.com/alphagov/email-alert-api/blob/master/docs/adr/adr-003-data-retention.md#subscriber-and-subscription">deactivating
-and nullifying</a> subscribers.</p>
-<p>To give some context on these concepts:</p>
-<ul>
-<li>
-<p>Nullifying subscribers means to update the <code>address</code> of <code>Subscriber</code> records
-to <code>nil</code> which have been unsubscribed from all subscriptions, for more than
-28 days.</p>
-</li>
-<li>
-<p>Deactivating subscribers is a concept that revolves around the
-<code>deactivated_at</code> field on the subscriber model. This field is populated when
-a subscriber unsubscribes from their last active subscription. It is used as
-a means to determine when a subscriber can be nullified.</p>
-</li>
-</ul>
-<p>We can however obtain the information held within <code>deactivated_at</code> through the
-<code>ended_at</code> field of the most recent ended subscription of an unsubscribed
-user, meaning the deactivated concept is superfluous.</p>
-<p>Subsequently we didn't want to spend energy documenting a process that didn't
-make much sense to begin with so it was decided that it would be easier (and
-beneficial as a whole) to just <a href="https://github.com/alphagov/email-alert-api/pull/1462">remove</a> the deactivated concept completely.</p>
-<p>In removing the deactivated concept we <a href="https://github.com/alphagov/email-alert-api/pull/1462/commits/cefdfa76b13915ea96b131490fd3186b6d52cf05">modified the nullify process</a> to use
-<code>ended_at</code>, as described above, instead of <code>deactivated_at</code>. We also updated
-the process to nullify subscribers which have no subscriptions (active or
-ended) and are older than 28 days. This prevents the system from storing user's
-personal data longer than needed, if for whatever reason, a subscriber is
-created without any subscriptions. See examples of where this happened
-<a href="https://github.com/alphagov/email-alert-api/pull/1462/commits/053859c5962eef104256661f28727b08a43e3d31">here</a> and <a href="https://github.com/alphagov/email-alert-api/pull/1462/commits/a4b3e82801d79abd3989b1dd60ffd499e7ce82ba">here</a>.</p>
-<h3 id="deprecate-archiving-email-to-athena">Deprecate archiving Email to Athena</h3>
-<p>We have planned work to remove it in the future. In the meantime, we consider
-archiving to Athena to be deprecated, and have updated <a href="https://github.com/alphagov/email-alert-api/blob/1a25d44126709bf8a98955d7609ced439095dd9c/docs/analytics.md">the documentation around
-it</a> to reflect this status.</p>
+<p>To determine whether untriggerable lists exist, we can run an audit over the
+gov.uk website using the sitemap. We iterate over the sitemap, getting the
+content item for each path and then comparing it against the EmailAlertCriteria
+(to check if the path would <em>ever</em> trigger a subscriber list), then if it passes
+that test against the ContentItemListQuery, which returns a list of SubscriberLists
+that would be triggered by major changes to that path. For each of those
+SubscriberLists, we update a last_audited_at field with the time the audit started.
+At the end of the process, any list that has an empty last_audited_at field or
+where the field is older than the time the audit started must not have been marked,
+so we know that it can't be triggered.</p>
+<h2 id="running-the-audit">Running the audit</h2>
+<p>This is a long-running job which needs to be run asynchronously. To kick it off, use:</p>
+<pre lang="bash"><code>kubectl -n apps exec -it deploy/email-alert-api -- rake 'subscriber_list_audit:start'
+</code></pre>
+<p>NB: It will probably only reliably run in production, as the time taken to iterate
+over the sight may be more than a day, which in integration will be interrupted
+by the environment sync.</p>
+<p>To check the number of workers remaining on the job:</p>
+<pre lang="bash"><code>kubectl -n apps exec -it deploy/email-alert-api -- rake 'subscriber_list_audit:queue_size'
+</code></pre>
+<p>When there are no workers remaining, you can run:</p>
+<pre lang="bash"><code>kubectl -n apps exec -it deploy/email-alert-api -- rake 'subscriber_list_audit:report[2024-04-16]'
+</code></pre>
+<p>to get a list of all subscriber lists that have either not been marked in an audit, or have not
+been marked in an audit since the specified date.</p>
 
 
             
@@ -414,8 +267,8 @@ it</a> to reflect this status.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/email-alert-api/blob/main/docs/adr/adr-007-retain-data-for-up-to-one-year.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Femail-alert-api%2Fadr%2Fadr-007-retain-data-for-up-to-one-year.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/email-alert-api/blob/main/docs/subscriber-list-audit.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Femail-alert-api%2Fsubscriber-list-audit.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
