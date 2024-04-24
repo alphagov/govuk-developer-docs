@@ -220,48 +220,41 @@
 
 <p><a href="https://badge.fury.io/rb/govuk_message_queue_consumer"><img src="https://badge.fury.io/rb/govuk_message_queue_consumer.svg" alt="Gem Version"></a></p>
 
-<p>Standardises the way GOV.UK consumes messages from <a href="https://www.rabbitmq.com/">RabbitMQ</a>.
-RabbitMQ is a messaging framework that allows applications to broadcast messages
-that can be picked up by other applications.</p>
+<p>govuk_message_queue_consumer is a wrapper around the
+<a href="https://github.com/ruby-amqp/bunny">Bunny</a> gem for communicating with
+<a href="https://www.rabbitmq.com/">RabbitMQ</a>. The user of govuk_message_queue_consumer
+supplies some configuration and a class that processes messages.</p>
 
-<p>On GOV.UK, <a href="https://github.com/alphagov/publishing-api">publishing-api</a> publishes
-the content-items it receives, so that applications such as
-<a href="https://github.com/alphagov/email-alert-service">email-alert-service</a> can be
-notified of changes in content.</p>
+<p>RabbitMQ is a multi-producer, multi-consumer message queue that allows
+applications to subscribe to notifications published by other applications.</p>
 
-<p>For detailed documentation, check out the <a href="http://www.rubydoc.info/gems/govuk_message_queue_consumer/GovukMessageQueueConsumer/Consumer#initialize-instance_method">gem documentation on rubydoc.info</a>.</p>
+<p>GOV.UK <a href="https://github.com/alphagov/publishing-api">publishing-api</a> publishes
+a message to RabbitMQ when a ContentItem is added or changed. Other
+applications (consumers) subscribe to these messages so that they can perform
+actions such as emailing users or updating a search index.</p>
 
-<p>This gem is used by:</p>
+<p>Several GOV.UK applications use govuk_message_queue_consumer:</p>
 
 <ul>
-<li>
-<a href="https://github.com/alphagov/content-data-api">Content Data API</a>.</li>
-<li>
-<a href="https://github.com/alphagov/email-alert-service/">Email Alert Service</a>.</li>
-<li>
-<a href="https://github.com/alphagov/search-api">Search API</a>.</li>
-<li>
-<a href="https://github.com/alphagov/search-api-v2">Search API v2</a>.</li>
+<li><a href="https://github.com/alphagov/content-data-api">Content Data API</a></li>
+<li><a href="https://github.com/alphagov/email-alert-service/">Email Alert Service</a></li>
+<li><a href="https://github.com/alphagov/search-api">Search API</a></li>
+<li><a href="https://github.com/alphagov/search-api-v2">Search API v2</a></li>
 </ul>
-
-<h2 id="overview-of-rabbitmq">Overview of RabbitMQ</h2>
-
-<p>To see an overview of RabbitMQ and how we use it, see <a href="https://docs.publishing.service.gov.uk/manual/rabbitmq.html#overview">here</a>.</p>
 
 <h2 id="technical-documentation">Technical documentation</h2>
 
-<p>This is a ruby gem that deals with the boiler plate code of communicating with
-<a href="https://www.rabbitmq.com/">RabbitMQ</a>. The user of this gem is left the task of
-supplying the configuration and a class that processes messages.</p>
+<p>You can browse the <a href="http://www.rubydoc.info/gems/govuk_message_queue_consumer/GovukMessageQueueConsumer/Consumer#initialize-instance_method">API documentation on
+rubydoc.info</a>.</p>
 
-<p>The gem is automatically released by Jenkins. To release a new version, raise a
-pull request with the version number incremented.</p>
+<h2 id="release-a-new-version">Release a new version</h2>
 
-<h3 id="dependencies">Dependencies</h3>
+<p>To release a new version, increment the <a href="https://github.com/alphagov/govuk_message_queue_consumer/blob/main/lib/govuk_message_queue_consumer/version.rb">version
+number</a> and raise a pull request.</p>
 
-<ul>
-<li>The <a href="https://github.com/ruby-amqp/bunny">Bunny</a> gem: to interact with RabbitMQ.</li>
-</ul>
+<p>The <a href="https://github.com/alphagov/govuk_message_queue_consumer/actions/workflows/ci.yml">CI GitHub Actions
+workflow</a>
+should automatically build and push the new release when you merge the PR.</p>
 
 <h2 id="usage">Usage</h2>
 
@@ -281,13 +274,14 @@ namespace :message_queue do
 end
 </code></pre>
 
-<p>More options are <a href="http://www.rubydoc.info/gems/govuk_message_queue_consumer/GovukMessageQueueConsumer/Consumer#initialize-instance_method">documented here</a>.</p>
+<p>See the <a href="http://www.rubydoc.info/gems/govuk_message_queue_consumer/GovukMessageQueueConsumer/Consumer#initialize-instance_method">API documentation</a> for the full list of parameters.</p>
 
-<p>The consumer expects the <a href="https://github.com/ruby-amqp/bunny/blob/066496d/docs/guides/connecting.md#paas-environments"><code>RABBITMQ_URL</code> environment
+<p><code>GovukMessageQueueConsumer::Consumer</code> expects the <a href="https://github.com/ruby-amqp/bunny/blob/066496d/docs/guides/connecting.md#paas-environments"><code>RABBITMQ_URL</code> environment
 variable</a>
 to be set to an AMQP connection string, for example:</p>
 
-<p><code>RABBITMQ_URL=amqp://mrbean:hunter2@rabbitmq.example.com:5672</code></p>
+<pre lang="sh"><code>RABBITMQ_URL=amqp://mrbean:hunter2@rabbitmq.example.com:5672
+</code></pre>
 
 <p>The GOV.UK-specific environment variables <code>RABBITMQ_HOSTS</code>, <code>RABBITMQ_VHOST</code>,
 <code>RABBITMQ_USER</code> and <code>RABBITMQ_PASSWORD</code> are deprecated. Support for these will
@@ -303,19 +297,12 @@ class MyProcessor
 end
 </code></pre>
 
-<p>The worker should also be added to the Procfile to run in production:</p>
+<p>You can start the worker by running the <code>message_queue:consumer</code> Rake task.</p>
 
-<pre><code># Procfile
-worker: bundle exec rake message_queue:consumer
+<pre lang="sh"><code>bundle exec rake message_queue:consumer
 </code></pre>
 
-<p>Because you need the environment variables when running the consumer, you should use
-<code>govuk_setenv</code> to run your app in development:</p>
-
-<pre><code>$ govuk_setenv app-name bundle exec rake message_queue:consumer
-</code></pre>
-
-<h3 id="processing-a-message">Processing a message</h3>
+<h3 id="process-a-message">Process a message</h3>
 
 <p>Once you receive a message, you <em>must</em> tell RabbitMQ once you&rsquo;ve processed it. This
 is called <em>acking</em>. You can also <em>discard</em> the message, or <em>retry</em> it.</p>
@@ -338,39 +325,11 @@ is called <em>acking</em>. You can also <em>discard</em> the message, or <em>ret
 end
 </code></pre>
 
-<h3 id="statsd-integration">Statsd integration</h3>
+<h3 id="test-your-processor">Test your processor</h3>
 
-<p>You can pass a <code>statsd_client</code> to the <code>GovukMessageQueueConsumer::Consumer</code> initializer. The consumer will emit counters to statsd with these keys:</p>
+<p>govuk_message_queue_consumer provides a test helper for your processor.</p>
 
-<ul>
-<li>
-<code>your_queue_name.started</code> - message picked up from the your_queue_name</li>
-<li>
-<code>your_queue_name.retried</code> - message has been retried</li>
-<li>
-<code>your_queue_name.acked</code> - message has been processed and acked</li>
-<li>
-<code>your_queue_name.discarded</code> - message has been discarded</li>
-<li>
-<code>your_queue_name.uncaught_exception</code> - an uncaught exception occured during processing</li>
-</ul>
-
-<p>Remember to use a namespace for the <code>Statsd</code> client:</p>
-
-<pre lang="ruby"><code>statsd_client = Statsd.new("localhost")
-statsd_client.namespace = "govuk.app.my_app_name"
-
-GovukMessageQueueConsumer::Consumer.new(
-  statsd_client: statsd_client
-  # ... other setup code omitted
-).run
-</code></pre>
-
-<h3 id="testing-your-processor">Testing your processor</h3>
-
-<p>This gem provides a test helper for your processor.</p>
-
-<pre lang="ruby"><code># eg. spec/queue_consumers/my_processor_spec.rb
+<pre lang="ruby"><code># e.g. spec/queue_consumers/my_processor_spec.rb
 require 'test_helper'
 require 'govuk_message_queue_consumer/test_helpers'
 
@@ -398,9 +357,9 @@ discarded. For example, with <code>MyProcessor</code> above:</p>
 end
 </code></pre>
 
-<p>For more test cases <a href="https://github.com/alphagov/govuk_message_queue_consumer/blob/main/spec/mock_message_spec.rb">see the spec for the mock itself</a>.</p>
+<p>For more test cases <a href="https://github.com/alphagov/govuk_message_queue_consumer/blob/main/spec/govuk_message_queue_consumer/test_helpers/mock_message_spec.rb">see the spec for the mock itself</a>.</p>
 
-<h3 id="running-the-test-suite">Running the test suite</h3>
+<h3 id="run-the-test-suite">Run the test suite</h3>
 
 <pre lang="bash"><code>bundle exec rake spec
 </code></pre>
@@ -411,10 +370,8 @@ end
 <li>
 <a href="https://github.com/ruby-amqp/bunny">Bunny</a> is the RabbitMQ client we use.</li>
 <li>
-<a href="http://rubybunny.info/articles/guides.html">The Bunny Guides</a> explain all
-AMQP concepts really well.</li>
-<li>The <a href="https://docs.publishing.service.gov.uk/manual/rabbitmq.html">Developer Docs</a>
-documents the usage of &ldquo;heartbeat&rdquo; messages, which this gem also supports.</li>
+<a href="https://github.com/ruby-amqp/bunny/tree/main/docs/guides">The Bunny Guides</a> explain
+AMQP concepts.</li>
 </ul>
 
 <h2 id="licence">Licence</h2>
