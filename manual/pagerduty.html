@@ -202,7 +202,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9018f0c5a286e9b20b7d470e1d9d9f8fcb30d142">6 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7a399a2094e23e840ae13b11bc1c0374aad1428c">24 Apr 2024</a>
 </div>
 
  <h1 id='header'>PagerDuty</h1> <p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming
@@ -221,11 +221,11 @@ them, otherwise they will be escalated further. NB, Technical 2nd Line shadowers
 <h2 id='creating-a-schedule-override'>Creating a schedule override</h2><p>There are times where developers need to make rota swaps or cover Technical 2nd Line last minute.
 See the <a href="https://support.pagerduty.com/docs/edit-schedules#create-overrides">Pagerduty documentation on how to schedule an override</a>.</p>
 <h2 id='pagerduty-drill'>PagerDuty drill</h2><p>Every week we test PagerDuty to make sure it can phone to alert us to
-any issues. This happens every Wednesday morning at 10am BST.</p>
+any issues. This happens every Wednesday morning at 10am UTC (11am BST).</p>
 <p>Prometheus is currently firing a constant <code>Watchdog</code> alert, which fires all the time so that
 developers can see the that prometheus is integrated with alertmanager. In the
 <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/templates/alertmanager-config.tpl#L79-L85">alertmanager configs</a>
-the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am BST every Wednesday.</p>
+the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am UTC (11am to 11:03am BST) every Wednesday.</p>
 <p>You don&rsquo;t need to take any action for this alert. The primary in-office
 Technical 2nd Line developer should escalate the call to the secondary who should escalate
 it to &ldquo;escalations&rdquo; to ensure that phone redirection is working. The
