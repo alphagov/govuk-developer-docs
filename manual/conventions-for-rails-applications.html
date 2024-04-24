@@ -266,7 +266,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e546d611341b1d9e7d2f238b2b8bcea026d77ca3">6 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b9f6f42942be909aa84e9517f376ef815cb84f7b">22 Apr 2024</a>
 </div>
 
  <h1 id='header'>Conventions for Rails applications</h1> <p>The majority of GOV.UK applications are built using <a href="https://rubyonrails.org">Ruby on Rails</a> and over
@@ -416,16 +416,15 @@ PostgreSQL for production;</li>
 <li>avoiding, where possible, the need for additional configuration on the
 serving machine, for example needing additional Nginx rules to serve requests.</li>
 </ul>
-<h3 id='inject-secrets-with-environment-variables'>Inject secrets with environment variables</h3><p>The conventional place to store secrets for a GOV.UK Rails application is
-<code>config/secrets.yml</code>. All production secrets should be populated with an
-environment variable; for dev and test environments it&rsquo;s preferred to leave
-a usable placeholder default if an actual secret isn&rsquo;t needed
-(<a href="https://github.com/alphagov/content-publisher/blob/654d1885dd94e347e236be73d20f2304913bc906/config/secrets.yml">example</a>).</p>
-<p>We haven&rsquo;t migrated to using the <a href="https://edgeguides.rubyonrails.org/security.html#custom-credentials">encrypted <code>config/credentials.yml.enc</code>
-introduced in Rails 5.2</a>. This approach presents us
-with a few problems, most notably that we run our apps in Rails
-&ldquo;production&rdquo; environment in numerous places (integration, staging,
+<h3 id='inject-secrets-with-environment-variables'>Inject secrets with environment variables</h3><p>We don&rsquo;t make use of <a href="https://edgeguides.rubyonrails.org/security.html#custom-credentials">Rails encrypted credentials</a>,
+preferring instead to use environment variables. Using Rails credentials
+would present us with numerous challenges, most notably that we run our
+apps in Rails &ldquo;production&rdquo; environment in numerous places (integration, staging,
 production) and need different secrets for them.</p>
+<p>If you need to make dummy secrets available to dev and test environments
+configure these in the respective <code>config/environments/*.rb</code> configuration files.</p>
+<p>Applications should no longer make use of <code>config/secrets.yml</code> as this
+<a href="https://github.com/rails/rails/pull/48472">is deprecated</a>.</p>
 <h3 id='specify-london-as-the-timezone'>Specify London as the timezone</h3><p>Configure your Rails application to consider the local timezone to be London
 time, this can be done with <code>config.time_zone = &quot;London&quot;</code> in your
 <code>config/application.rb</code>. This allows the presentation of dates to users, and
