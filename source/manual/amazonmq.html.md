@@ -1,26 +1,37 @@
 ---
 owner_slack: "#govuk-publishing-platform"
-title: Manage AmazonMQ
+title: Manage Amazon MQ
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 ---
 
-[RabbitMQ][RabbitMQ] is a message broker based on the [Advanced Message Queuing
-Protocol][AMQP] (AMQP). Publishing's RabbitMQ cluster is provided by AWS' [AmazonMQ][] service.
+[RabbitMQ] is a message broker based on the [Advanced Message Queuing
+Protocol][AMQP] (AMQP). Publishing's RabbitMQ cluster is hosted using [Amazon MQ].
 
 [Learn more about RabbitMQ][rabbitmq_tutorial].
 
-## Connecting to the RabbitMQ web control panel
+## Connect to the RabbitMQ web control panel
 
-Run `gds govuk connect amazonmq -e integration` and point your
-browser at the URL it gives you - it will look like <http://127.0.0.1:45612>, but will have a random port number. You can connect to `staging` and `production` the same way, just replace `integration` above with the environment of your choice.
+1. Install the [krelay](https://github.com/knight42/krelay#installation) kubectl plugin.
 
-The username is `root` and the passwords for each environment are in `2ndline/publishing-amazonmq` in [Secrets Manager](secrets-manager.html) in the **production** AWS account.
+    ```sh
+    brew install knight42/tap/krelay
+    ```
 
-## AmazonMQ metrics
+1. Forward the RabbitMQ HTTPS port to your local machine.
 
-A [generic AmazonMQ dashboard][amazonmq-dashboard] shows metrics for queues and exchanges.
+    ```sh
+    k relay host/publishingmq.integration.govuk-internal.digital 4430:443
+    ```
+
+1. Open <https://localhost:4430/> in your browser. The TLS certificate will not match `localhost`, so navigate past the certificate warnings. In Chrome, you can set <chrome://flags/#allow-insecure-localhost> if you prefer.
+
+1. Log into the RabbitMQ Management web interface. The username is `root` and the passwords for each environment are in `2ndline/publishing-amazonmq` in [Secrets Manager](secrets-manager.html) in the **production** AWS account.
+
+## Amazon MQ metrics
+
+A [generic Amazon MQ dashboard][amazonmq-dashboard] shows metrics for queues and exchanges.
 
 ## How we run RabbitMQ
 
@@ -81,24 +92,23 @@ connecting to the RabbitMQ control panel (see above).
 ## Further reading
 
 * [RabbitMQ Tutorials](https://www.rabbitmq.com/getstarted.html)
-* [AmazonMQ documentation][AmazonMQ]
+* [Amazon MQ documentation][Amazon MQ]
 * [Bunny](https://github.com/ruby-amqp/bunny) is the RabbitMQ client we use.
-* [The Bunny Guides](http://rubybunny.info/articles/guides.html) explain all
-  AMQP concepts really well.
+* [The Bunny Guides](http://rubybunny.info/articles/guides.html) explain AMQP
+  concepts.
 
 [rabbitmq_tutorial]: https://www.rabbitmq.com/tutorials/tutorial-one-ruby.html
-[AmazonMQ]: https://aws.amazon.com/amazon-mq/
+[Amazon MQ]: https://aws.amazon.com/amazon-mq/
 [RabbitMQ]: https://www.rabbitmq.com/
 [AMQP]: https://www.rabbitmq.com/tutorials/amqp-concepts.html
 [amazonmq-dashboard]: https://grafana.eks.production.govuk.digital/d/mq/
-[rabbitmq_overview]: https://github.com/alphagov/govuk_message_queue_consumer#Nomenclature
-[create_queues]: https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L9
-[publishing_api_publishes_message]: https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L26
-[publish_message_call]: https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L73
+[create_queues]: https://github.com/alphagov/email-alert-service/blob/f8485df/lib/tasks/message_queues.rake#L9
+[publishing_api_publishes_message]: https://github.com/alphagov/publishing-api/blob/1d6bf06/lib/queue_publisher.rb#L26
+[publish_message_call]: https://github.com/alphagov/publishing-api/blob/1d6bf06/lib/queue_publisher.rb#L73
 [rabbit_config_rake]: https://github.com/alphagov/email-alert-service/blob/main/lib/tasks/message_queues.rake#L17
-[rabbit_config_yml]: https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/config/rabbitmq.yml
-[message_processors]: https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L21
+[rabbit_config_yml]: https://github.com/alphagov/email-alert-service/blob/f8485df/config/rabbitmq.yml
+[message_processors]: https://github.com/alphagov/email-alert-service/blob/f8485df/lib/tasks/message_queues.rake#L21
 [message_consumer]: https://github.com/alphagov/govuk_message_queue_consumer
 [email-alert-service]: https://github.com/alphagov/email-alert-service
-[major_message_processor]: https://github.com/alphagov/email-alert-service/blob/2ba8ecd982c2226158b528e5442b012639797d41/email_alert_service/models/major_change_message_processor.rb#L35P
-[binding_config]: https://github.com/alphagov/govuk-aws/blob/854bf0a652af5badaedd0e14ae4e841807075519/terraform/projects/app-publishing-amazonmq/publishing-rabbitmq-schema.json.tpl#L260-L267
+[major_message_processor]: https://github.com/alphagov/email-alert-service/blob/2ba8ecd/email_alert_service/models/major_change_message_processor.rb#L35P
+[binding_config]: https://github.com/alphagov/govuk-aws/blob/854bf0a/terraform/projects/app-publishing-amazonmq/publishing-rabbitmq-schema.json.tpl#L260-L267
