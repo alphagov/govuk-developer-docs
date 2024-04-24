@@ -10,37 +10,31 @@ related_repos: [govuk_publishing_components]
 
 GOV.UK has implemented Google Analytics 4 (GA4) using Google Tag Manager (GTM) to track user journeys through the site. This page describes the process of making changes to GTM to support improvements to our analytics.
 
-This process exists because some changes can increase the size of the JavaScript included from GTM in the public frontend of GOV.UK. We do not want to unnecessarily degrade the performance of GOV.UK.
+## Concerns and responses
 
-## Roles and responsibilities
+This process exists because some changes in GTM could increase the size of the JavaScript (JS) included in the public frontend of GOV.UK, negatively impacting performance.
 
-Performance analysts:
+To mitigate this concern a GTM blocklist has been implemented in our [GA4 code](https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-core.js#L16), specifically preventing `customPixels`, `customScripts`, `html` and `nonGoogleScripts`, which are the most likely cause of JS size increase.
 
-- to make changes in GTM and share the change with a succinct explanation of what it does and why it's needed
-- to fully document the details of the change
+The size of the two scripts involved is also monitored by the [Public Asset Checker](https://govuk-public-asset-checker.herokuapp.com/), a tool built by the GA4 migration team. It monitors the size of [gtm.js](https://govuk-public-asset-checker.herokuapp.com/public_assets/1) and [gtag](https://govuk-public-asset-checker.herokuapp.com/public_assets/2). Daily output is posted to `#govuk-frontenders` including warnings of any significant size increase.
 
-Developers:
+## Change process
 
-- to review and publish the change in GTM
-- to check that the changes don't increase the JavaScript size
-
-## Process
-
-Analyst creates a change in the GTM web interface.
+Create a change in the GTM web interface.
 
 - change is created in a new workspace
 - change must include a clear description
 - change can be checked in preview mode (optional)
 
-Analyst gets a second analyst to check the changes.
+The change must be checked by a second performance analyst.
 
-Analyst raises a request to have the change approved.
+Raise a request to have the change approved.
 
-- can be raised in the `#user-experience-measurement-govuk` slack channel
+- can be raised in the `#govuk-ga4` slack channel
 - include a link to the workspace to review
 - must specify which environment to publish to
 
-Developer reviews the change
+Change is reviewed.
 
 - `modified` is a change to an existing thing
 - `added` is a new thing
@@ -48,13 +42,13 @@ Developer reviews the change
 - `Activity history` shows previous changes
 - ensure no custom HTML or JS included in tags
 
-Developer approves and publishes the change
+If the change is not rejected or returned for further discussion, it is approved and published.
 
 - publish to the required environment - `Production`, `Staging` or `Integration`
 - publishing defaults to the `Production` environment, if it needs to be deployed to a different environment that must be selected first
 - publishing may involve more than one publishing act e.g. publish version 35 to `Production`, publish version 36 to `Integration`
 
-Analyst tests that change has been successful, in this order
+Test that the change has been successful, in the following order.
 
 - `Integration`: analyst checks that change has been implemented as per specifications
 - `Staging`: for wider community/second analyst to check that the change fits the data requirement
