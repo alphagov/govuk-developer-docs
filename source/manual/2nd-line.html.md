@@ -86,7 +86,7 @@ We use Grafana dashboards to monitor the health of our applications and service 
 
 ### PagerDuty
 
-Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming unavailable or large quantities of error pages being served. We use [PagerDuty][] to notify the primary and secondary engineers on Technical 2nd Line during office hours (9:30am to 5:30pm), and on-call engineers outside of office hours. We carry out a [Pagerduty drill](/manual/pagerduty.html#pagerduty-drill) every Wednesday morning at 10am UTC.
+Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming unavailable or large quantities of error pages being served. We use [PagerDuty][] to notify the primary and secondary engineers on Technical 2nd Line during office hours (9:30am to 5:30pm), and on-call engineers outside of office hours. We carry out a [Pagerduty drill](/manual/pagerduty.html#pagerduty-drill) every Wednesday morning at 10am UTC (11am BST).
 
 [Read more about PagerDuty](/manual/pagerduty.html).
 

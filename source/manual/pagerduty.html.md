@@ -29,12 +29,12 @@ See the [Pagerduty documentation on how to schedule an override](https://support
 ## PagerDuty drill
 
 Every week we test PagerDuty to make sure it can phone to alert us to
-any issues. This happens every Wednesday morning at 10am BST.
+any issues. This happens every Wednesday morning at 10am UTC (11am BST).
 
 Prometheus is currently firing a constant `Watchdog` alert, which fires all the time so that
 developers can see the that prometheus is integrated with alertmanager. In the
 [alertmanager configs](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/templates/alertmanager-config.tpl#L79-L85)
-the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am BST every Wednesday.
+the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am UTC (11am to 11:03am BST) every Wednesday.
 
 You don't need to take any action for this alert. The primary in-office
 Technical 2nd Line developer should escalate the call to the secondary who should escalate
