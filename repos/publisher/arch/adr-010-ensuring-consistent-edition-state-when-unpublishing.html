@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publisher: Fact Checking - GOV.UK Developer Documentation</title>
+    <title>publisher: ADR010 - Ensuring consistent edition state when unpublishing - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/fact-checking.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-010-ensuring-consistent-edition-state-when-unpublishing.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publisher: Fact Checking - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/fact-checking.html" />
+      <meta name="twitter:title" content="publisher: ADR010 - Ensuring consistent edition state when unpublishing - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-010-ensuring-consistent-edition-state-when-unpublishing.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publisher: Fact Checking" />
+      <meta property="og:title" content="publisher: ADR010 - Ensuring consistent edition state when unpublishing" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/fact-checking.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-010-ensuring-consistent-edition-state-when-unpublishing.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -212,29 +212,64 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publisher/commit/d950ddfbd22c87f2954dc46eadec3feab0d63967">24 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publisher/commit/534d07836326e655a48df5b4974fddff7436dff3">25 Apr 2024</a>
 </div>
 
-  <h1 class="page-title">publisher: Fact Checking</h1>
+  <h1 class="page-title">publisher: ADR010 - Ensuring consistent edition state when unpublishing</h1>
 
   
-<p>Publisher comes with a system to allow editions not yet published to be externally fact checked.</p>
-<h2 id="process">Process</h2>
+<p>Date 2024-04-25</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="context">Context</h2>
+<p>There is a need to ensure consistency in state between the Publishing API and the Mainstream Publisher database when unpublishing an edition. Unpublishing is also known as archiving. This is a form of distributed transaction.</p>
+<p>There are a few options on how this can be achieved:</p>
 <ol>
-<li>When a content designer clicks the "Fact check" button on an edition, they are presented with a form allowing them to input the email addresses they would like the fact check request to go to.</li>
-<li>The fact checker who receives the email then reviews the draft version of the edition, and once happy, replies to the email with the review.</li>
-<li>The email arrives in a Gmail inbox. Details of which inbox can be found in secrets under <code>govuk::apps::publisher::fact_check_username</code> and <code>govuk::apps::publisher::fact_check_password</code>.</li>
-<li>Every 5 minutes, the <a href="https://github.com/alphagov/publisher/blob/main/script/mail_fetcher">mail_fetcher</a> script runs which reads any new emails from the inbox, parses the response and adds it to the edition in the database.</li>
+<li>Using a database transaction.</li>
+<li>Applying the change to the database, rolling back if the Publishing API returns an error.</li>
+<li>Applying the change to the Publishing API and, if successful, then updating the database.</li>
 </ol>
-<p><strong>Note:</strong> The ID of the edition is included in the subject line of the fact check email. It's important that this is never removed, otherwise the app will be <a href="https://docs.publishing.service.gov.uk/manual/alerts/publisher-unprocessed-fact-check-emails.html">unable to match the email with the edition</a>.</p>
+<h3 id="option-1-use-a-database-transaction">Option 1: Use a database transaction</h3>
+<p>A common pattern for achieving this would be to create a transaction on the database and, based on the result on calling the Publishing API, either commiting or rolling back the transaction.</p>
+<p>The version of Mongo that we are using (3.6) does not have transactions, instead applications have to replicate transactions by using two-phase commits. Version 4.0 does introduce transactions.</p>
+<h4 id="disadvantages">Disadvantages</h4>
+<ul>
+<li>A fair amount of effort to implement two-phase commits.</li>
+<li>Would increase the complexity of the upcoming planned work to migrate to Postgres.</li>
+</ul>
+<h4 id="advantages">Advantages</h4>
+<ul>
+<li>None</li>
+</ul>
+<h3 id="option-2-rollback-database-change-when-error-returned-by-publishing-api">Option 2: Rollback database change when error returned by Publishing API</h3>
+<p>The code currently applies the change to the database, and then calls the Publishing API. We could add some exception handling to the Publishing API call to then update the database again to undo the changes that were made.</p>
+<h4 id="disadvantages">Disadvantages</h4>
+<ul>
+<li>Due to the version of MongoDB in use not supporting transactions, the changes made by the first update (before calling Publishing API) will be visible until the second update (to reverse the change) is made.</li>
+<li>It’s possible that the second database change (to rollback the first update) could fail, which would result in an inconsistent state, as it does at the moment.</li>
+</ul>
+<h4 id="advantages">Advantages</h4>
+<ul>
+<li>Minimal change to the way that the code currently works.</li>
+</ul>
+<h4 id="questions">Questions</h4>
+<p>Is the system designed to make forward “rollbacks” in this way (i.e. to change the state of an edition after it has been archived)?</p>
+<h3 id="option-3-unpublish-via-the-publishing-api-first">Option 3: Unpublish via the Publishing API first</h3>
+<p>Instead of updating Mainstream Publisher’s database first, and then calling the Publishing API, the order could be reversed to call the Publishing API first, and then update the database if, and only if, the response from the Publishing API is a success.</p>
+<h4 id="disadvantages">Disadvantages</h4>
+<ul>
+<li>If the database update fails, the system will be in an inconsistent state (instead of the Publishing API being “out of date”, it will be Mainstream Publisher’s database that is “out of date”. The database update should be a lot more reliable than the call to the Publishing API, however (see advantages).</li>
+</ul>
+<h4 id="advantages">Advantages</h4>
+<ul>
+<li>Least complex solution to implement.</li>
+<li>The database update is unlikely to fail, and so the opportunity to get into an inconsistent state should be much reduced in comparison to the current implementation.</li>
+</ul>
+<h2 id="decision">Decision</h2>
+<p>We will implement Option 3 (unpublishing via the Publishing API first), as this is the simplest implementation change and the only failure scenario is when the database update fails, which is unlikely to happen. Furthermore, if this does happen, it is only Mainstream Publisher that is out of date, the actual unpublishing desired by the user will have happened.</p>
+<h2 id="consequences">Consequences</h2>
+<p>In the unlikely event that the database update fails, manual intervention will be required to unpublish the edition in Mainstream Publisher, to match the actual state in the Publishing API.</p>
 
 
             
@@ -242,8 +277,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/fact-checking.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Ffact-checking.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-010-ensuring-consistent-edition-state-when-unpublishing.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-010-ensuring-consistent-edition-state-when-unpublishing.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
