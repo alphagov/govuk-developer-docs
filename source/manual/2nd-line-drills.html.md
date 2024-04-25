@@ -21,11 +21,6 @@ You'll need to choose a non-serious and clearly fake news headline. For example:
 - `LINK`: https://en.wikipedia.org/wiki/Henry_Fielding
 - `LINK_TEXT`: More information
 
-## Run a Terraform `plan`
-
-Follow the [Deploy Terraform](/manual/deploying-terraform.html) instructions, picking a project at random.
-You can run this in any environment, as you're only running `plan` - not `apply` - so shouldn't be making any changes.
-
 ## Use a restored database in an app
 
 On Integration or Staging, follow the [Restore an RDS instance via the AWS CLI](/manual/howto-backup-and-restore-in-aws-rds.html#restore-an-rds-instance-via-the-aws-cli) instructions for an app of your choice.
