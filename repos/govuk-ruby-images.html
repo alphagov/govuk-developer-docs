@@ -220,67 +220,48 @@
 
 <h2 id="whats-in-this-repo">What&rsquo;s in this repo</h2>
 
-<p>This repo contains Docker images intented for use as a base for GOV.UK app containers.
-The govuk-ruby-base image contains a Ruby installation, along with node.js and yarn.
-The govuk-ruby-builder image contains environment variables and configuration for building Ruby applications.</p>
-
-<h2 id="usage">Usage</h2>
-
-<p>Use the two images in your app&rsquo;s Dockerfile:</p>
-
-<pre lang="dockerfile"><code>FROM ghcr.io/alphagov/govuk-ruby-builder:3.0 AS builder
-
-# your build steps here
-
-FROM ghcr.io/alphagov/govuk-ruby-base:3.0
-
-# your app image steps here
-</code></pre>
-
-<h2 id="common-problems-and-resolutions">Common problems and resolutions</h2>
-
-<p><code>ERROR: failed to solve: cannot copy to non-directory: /var/lib/docker/overlay2/.../merged/app/tmp</code></p>
-
-<p>Add <code>tmp/</code> to your <code>.dockerignore</code>. This is necessary because we symlink
-<code>$APP_HOME/tmp</code> to <code>/tmp</code> as a workaround for some badly-behaved gems that
-assume they can write to <code>Path.join(Rails.root, 'tmp')</code> so that we can run with
-<code>readOnlyRootFilesystem</code>.</p>
-
-<h2 id="managing-ruby-versions">Managing Ruby versions</h2>
-
-<p>Ruby version information is kept in the <a href="https://github.com/alphagov/govuk-ruby-images/blob/main/versions/">versions</a> directory. Each file in this directory is a shell script containing three variables that define a Ruby version:</p>
+<p>The govuk-ruby-images repository defines <a href="https://opencontainers.org/">OCI</a> container images for building and running production Ruby applications on Kubernetes.</p>
 
 <ul>
 <li>
-<code>RUBY_MAJOR</code>: The major and minor Ruby version, excluding the patch version. For example, <code>3.2</code>. The image will be tagged with this version number (with <code>.</code> instead of <code>_</code>) unless <code>RUBY_IS_PATCH</code> is equal to the string <code>true</code>.</li>
-<li>
-<code>RUBY_VERSION</code>: The full Ruby version, including patch version. This is used to download the Ruby source distribution. The image will be tagged with this version number, regardless of the value of <code>RUBY_IS_PATCH</code>.</li>
-<li>
-<code>RUBY_IS_PATCH</code>: If equal to the string <code>true</code> then this version will <strong>not</strong> be tagged with the major.minor version number. (It will be tagged only with the full version number that includes the patch version.)</li>
+<p><code>govuk-ruby-base</code> is a base image for production application containers; it provides:</p>
+<ul>
+<li>a Ruby runtime that can run as an unprivileged user with a read-only filesystem</li>
+<li>database client libraries</li>
+<li>a Node.js runtime</li>
 </ul>
-
-<h3 id="hashes-of-source-tarballs-for-verification">Hashes of source tarballs for verification</h3>
-
-<p>The file <a href="https://github.com/alphagov/govuk-ruby-images/blob/main/SHA256SUMS">SHA256SUMS</a> contains the SHA-256 hashes of the Ruby and OpenSSL source tarballs. These are verified at build-time.</p>
-
-<p>To add hashes for new Ruby/OpenSSL versions:</p>
-
-<ol>
+<p></li>
 <li>
-<p>Download the new source tarball(s).</p>
+<p><code>govuk-ruby-builder</code> is for building application container images; it provides the same as <code>govuk-ruby-base</code> plus:</p>
+<ul>
+<li>a C/C++ toolchain and various build tools and utilities</li>
+<li>Yarn, for building/installing Node.js package dependencies</li>
+<li>configuration to speed up and optimise building Ruby applications</li>
+</ul>
 </li>
-<li>
-<p>Run <code>sha256sum *gz &gt;&gt;SHA256SUMS</code>. If your system doesn&rsquo;t have <code>sha256sum</code>, try <code>shasum -a256</code>.</p>
-</li>
-<li>
-<p>Compare the new hashes with those listed on the <a href="https://www.ruby-lang.org/en/downloads/">Ruby downloads page</a> and <a href="https://www.openssl.org/source/">OpenSSL downloads page</a>.</p>
-</li>
-</ol>
-
+</ul>
+<h2 id="usage">Usage</h2>
+<p>Use the two images in your app&rsquo;s Dockerfile:</p>
+<pre lang="dockerfile"><code>ARG ruby_version=3.3
+ARG base_image=ghcr.io/alphagov/govuk-ruby-base:$ruby_version
+ARG builder_image=ghcr.io/alphagov/govuk-ruby-builder:$ruby_version</p>
+<p>FROM $builder_image AS builder</p>
+<h1 id='your-build-steps-here'>your build steps here</h1><p>FROM $base_image</p>
+<h1 id='your-app-image-steps-here'>your app image steps here</h1><p></code></pre>
+<p>See <a href="https://github.com/alphagov/frontend/blob/-/Dockerfile">alphagov/frontend/Dockerfile</a> for a full, real-world example.</p>
+<h2 id="common-problems-and-resolutions">Common problems and resolutions</h2>
+<p><code>ERROR: failed to solve: cannot copy to non-directory: /var/lib/docker/overlay2/.../merged/app/tmp</code></p>
+<p>Add <code>tmp/</code> to your <code>.dockerignore</code>. This is necessary because we symlink
+<code>$APP_HOME/tmp</code> to <code>/tmp</code> as a workaround for some badly-behaved gems that
+assume they can write to <code>Path.join(Rails.root, &#39;tmp&#39;)</code> so that we can run with
+<code>readOnlyRootFilesystem</code>.</p>
+<h2 id="add-or-update-a-ruby-version">Add or update a Ruby version</h2>
+<p>The file <a href="https://github.com/alphagov/govuk-ruby-images/blob/main/build-matrix.json">build-matrix.json</a> defines the Ruby versions and image tags that we build.</p>
+<p>The <code>checksum</code> field is currently the SHA-256 hash of the Ruby source tarball. We verify this in the build.</p>
+<p>See <a href="https://www.ruby-lang.org/en/downloads/releases/">Ruby Releases</a> for the list of available Ruby tarballs and their SHA digests.</p>
 <h2 id="team">Team</h2>
-
-<p><a href="https://github.com/orgs/alphagov/teams/gov-uk-platform-engineering">GOV.UK Platform Engineering team</a> looks after this repo. If you&rsquo;re inside GDS, you can find us in <a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a> or view our <a href="https://trello.com/b/u4FCzm53/">kanban board</a>.</p>
-<p></div></p>
+<p><a href="https://github.com/orgs/alphagov/teams/gov-uk-platform-engineering">GOV.UK Platform Engineering team</a> looks after this repo. If you&rsquo;re inside GDS, you can find us in <a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a> or view our <a href="https://github.com/orgs/alphagov/projects/71">kanban board</a>.</p>
+  </div></p>
 
 
             
