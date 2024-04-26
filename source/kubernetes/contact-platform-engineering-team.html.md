@@ -6,7 +6,7 @@ layout: multipage_layout
 
 # GOV.UK Platform Engineering team
 
-Platform Engineering team (previously known as Replatforming team) looks after the Kubernetes clusters, base services, build/release/rollout automation and Helm templates for hosting the GOV.UK website and content management system.
+Platform Engineering team (previously known as Replatforming team) looks after the Kubernetes clusters, base services, build/release/rollout automation (CI/CD) and Helm templates for hosting the GOV.UK website and content management system (CMS).
 
 ## Get in touch
 
