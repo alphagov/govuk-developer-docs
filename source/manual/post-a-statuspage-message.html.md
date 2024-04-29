@@ -26,6 +26,8 @@ Remember: government publishers are the main audience of the page, although it m
 Users will want to know what isn't working, and how long it will take to fix. Write in non-technical language.
 Use the pre-written templates below: they've been proof-read and can be customised to most situations.
 
+> Avoid using internal acronyms, e.g. write "data.gov.uk" instead of "DGU".
+
 ### Incident Name
 
 This is to say which application is affected and what the fault is. You *can* update
@@ -40,6 +42,10 @@ Example names:
 
 <!-- -->
 > Search isn't working on GOV.UK
+
+If a non-user facing part of the system (e.g. Publishing API or Content Store) is the affected application,
+don't include the application name in the status. Instead specify how the issue affects users. For example
+"Delay in publishing content" instead of "Publishing API is processing items slowly".
 
 ### Incident Status
 
