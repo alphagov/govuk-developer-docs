@@ -12,7 +12,7 @@ GOV.UK has to meet government [accessibility requirements](https://www.gov.uk/se
 
 ## Get set up
 
-Contact the Head of Frontend or a Lead Frontend Developer to request an account.
+Contact the [Engineering Enablement team](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/directorates-and-groups/cto-and-ciso-office/engineering-enablement#h.f8vfqmbkqtgf) to request an account.
 
 ## Local testing with AssistivTunnel
 
