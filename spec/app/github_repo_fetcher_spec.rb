@@ -1,3 +1,5 @@
+require "ostruct"
+
 RSpec.describe GitHubRepoFetcher do
   before :each do
     stub_request(:get, "https://api.github.com/users/alphagov/repos?per_page=100")
