@@ -42,7 +42,7 @@ Asset Manager.
 
    <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID, true]") %>
 
-   For "Whitehall" Assets (that start with the path `/government/uploads/system`), there is a [slightly different Rake task]((https://github.com/alphagov/asset-manager/blob/main/lib/tasks/assets.rake#L9-L13)):
+   For "Whitehall" Assets (paths starting with `/government/uploads/system`), use the [`assets:whitehall_delete` Rake task](https://github.com/alphagov/asset-manager/blob/796eb36/lib/tasks/assets.rake#L9-L13) instead:
 
    <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[ASSET_PATH]") %>
 
