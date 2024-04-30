@@ -1,3 +1,4 @@
+require "ostruct"
 require "spec_helper"
 require_relative "../../helpers/commit_helpers"
 
