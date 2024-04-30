@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-## Removing an asset
+## Remove an asset
 
 > Where possible, you should delete the asset in the publishing application
 > that originally uploaded the file, for example Whitehall. Deleting an asset
@@ -71,7 +71,7 @@ Asset Manager.
 [clear-cache]: /manual/purge-cache.html#assets
 [govuk-production-mirror-gcp]: https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&project=govuk-production
 
-## Redirecting an asset
+## Redirect an asset
 
 Sometimes it might be necessary to manually redirect an asset, for example if
 an associated document wasn't unpublished correctly.
@@ -101,7 +101,7 @@ steps to remove the asset in Asset Manager:
 Also see [getting an asset's ID](#getting-an-asset39s-id) if you have only been
 provided the URL.
 
-## Uploading an asset
+## Upload an asset
 
 Some publishing apps such as [Mainstream Publisher](/repos/publisher.html) do
 not provide the facility for editors to upload assets such as images and PDFs.
@@ -145,14 +145,14 @@ best to simply perform the upload directly in production.
    The asset should now be available at `https://assets.publishing.service.gov.uk/{base-path-from-previous-output}`,
    for example `https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg`.
 
-## Replacing an asset
+## Replace an asset
 
 If you need to replace the file of an existing attachment, follow these steps.
 
 > The replacement file must have a different filename to the one it is replacing.
 
-> Ideally, the replacement should be done in the publishing application that originally
-> uploaded the file, for example Whitehall.
+> Where possible, you should do the replacement in the publishing application
+> that originally uploaded the file, for example Whitehall.
 
 If it isn't possible or desirable to replace the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:
@@ -203,7 +203,7 @@ steps to remove the asset in Asset Manager:
    attachment_data.update(file_size: 123, number_of_pages: 28) # file_size in bytes
    ```
 
-## Getting an asset's ID
+## Get an asset's ID
 
 You can get an asset's ID by using it's URL:
 
