@@ -204,15 +204,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0e4119eae3317158940cbb30aa62bc4cd5798125">15 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6259a5c539bfa58f2a366377b69f7a10042f033f">29 Apr 2024</a>
 </div>
 
  <h1 id='header'>Post a message on the status page</h1> <p>When something goes wrong on GOV.UK, we follow our <a href="/manual/incident-management-guidance.html">incident management procedure</a>.
@@ -224,6 +217,10 @@ As part of that, we update our status page <a href="https://status.publishing.se
 <h2 id='create-an-incident'>Create an Incident</h2><p>Remember: government publishers are the main audience of the page, although it may also be used publicly depending on the incident.
 Users will want to know what isn&rsquo;t working, and how long it will take to fix. Write in non-technical language.
 Use the pre-written templates below: they&rsquo;ve been proof-read and can be customised to most situations.</p>
+
+<blockquote>
+<p>Avoid using internal acronyms, e.g. write &ldquo;data.gov.uk&rdquo; instead of &ldquo;DGU&rdquo;.</p>
+</blockquote>
 <h3 id='incident-name'>Incident Name</h3><p>This is to say which application is affected and what the fault is. You <em>can</em> update
 the name, but make sure it&rsquo;s consistent enough to track throughout the stages of the incident.</p>
 <p>Example names:</p>
@@ -243,6 +240,9 @@ the name, but make sure it&rsquo;s consistent enough to track throughout the sta
 <blockquote>
 <p>Search isn&rsquo;t working on GOV.UK</p>
 </blockquote>
+<p>If a non-user facing part of the system (e.g. Publishing API or Content Store) is the affected application,
+don&rsquo;t include the application name in the status. Instead specify how the issue affects users. For example
+&ldquo;Delay in publishing content&rdquo; instead of &ldquo;Publishing API is processing items slowly&rdquo;.</p>
 <h3 id='incident-status'>Incident Status</h3><p>When you list an incident, you&rsquo;ll need to select an &lsquo;incident status&rsquo;.</p>
 <h4 id='investigating-status'>&ldquo;Investigating&rdquo; status</h4><p>Provide reassurance to publishers that we know about a problem and are working to diagnose it.</p>
 <p>Example messages:</p>
