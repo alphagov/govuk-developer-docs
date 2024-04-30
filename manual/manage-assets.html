@@ -140,19 +140,19 @@
     <a href="#header"><span>Manage assets</span></a>
     <ul>
       <li>
-        <a href="#removing-an-asset"><span>Removing an asset</span></a>
+        <a href="#remove-an-asset"><span>Remove an asset</span></a>
       </li>
       <li>
-        <a href="#redirecting-an-asset"><span>Redirecting an asset</span></a>
+        <a href="#redirect-an-asset"><span>Redirect an asset</span></a>
       </li>
       <li>
-        <a href="#uploading-an-asset"><span>Uploading an asset</span></a>
+        <a href="#upload-an-asset"><span>Upload an asset</span></a>
       </li>
       <li>
-        <a href="#replacing-an-asset"><span>Replacing an asset</span></a>
+        <a href="#replace-an-asset"><span>Replace an asset</span></a>
       </li>
       <li>
-        <a href="#getting-an-assets-id"><span>Getting an asset’s ID</span></a>
+        <a href="#get-an-assets-id"><span>Get an asset’s ID</span></a>
       </li>
     </ul>
   </li>
@@ -203,10 +203,10 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8f2d2b4790700933028f1a3eae932ea913c68d16">30 Apr 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cb9a83f43a62d7eef5b8bc433374bb01092c773e">30 Apr 2024</a>
 </div>
 
- <h1 id='header'>Manage assets</h1> <h2 id='removing-an-asset'>Removing an asset</h2>
+ <h1 id='header'>Manage assets</h1> <h2 id='remove-an-asset'>Remove an asset</h2>
 <blockquote>
 <p>Where possible, you should delete the asset in the publishing application
 that originally uploaded the file, for example Whitehall. Deleting an asset
@@ -237,7 +237,7 @@ removed (e.g. if it contains secret information).</li>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID]
 </code></pre></div><p>To delete all traces of the asset (including the file from cloud storage), run:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID, <span class="nb">true</span><span class="o">]</span>
-</code></pre></div><p>For &ldquo;Whitehall&rdquo; Assets (that start with the path <code>/government/uploads/system</code>), there is a <a href="(https://github.com/alphagov/asset-manager/blob/main/lib/tasks/assets.rake#L9-L13)">slightly different Rake task</a>:</p>
+</code></pre></div><p>For &ldquo;Whitehall&rdquo; Assets (paths starting with <code>/government/uploads/system</code>), use the <a href="https://github.com/alphagov/asset-manager/blob/796eb36/lib/tasks/assets.rake#L9-L13"><code>assets:whitehall_delete</code> Rake task</a> instead:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:whitehall_delete[ASSET_PATH]
 </code></pre></div>
 <ol>
@@ -260,7 +260,7 @@ bucket</a>.</li>
 <li><p>Remove the asset from the Amazon Web Services (AWS) mirror:</p></li>
 </ol>
 <p><code>gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/&lt;slug&gt;</code></p>
-<h2 id='redirecting-an-asset'>Redirecting an asset</h2><p>Sometimes it might be necessary to manually redirect an asset, for example if
+<h2 id='redirect-an-asset'>Redirect an asset</h2><p>Sometimes it might be necessary to manually redirect an asset, for example if
 an associated document wasn&rsquo;t unpublished correctly.</p>
 
 <blockquote>
@@ -286,7 +286,7 @@ is <code>65f2c1110e1c2f8c4dffaa53</code>.</li>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:redirect[ASSET_ID,REDIRECT_URL]
 </code></pre></div><p>Also see <a href="#getting-an-asset39s-id">getting an asset&rsquo;s ID</a> if you have only been
 provided the URL.</p>
-<h2 id='uploading-an-asset'>Uploading an asset</h2><p>Some publishing apps such as <a href="/repos/publisher.html">Mainstream Publisher</a> do
+<h2 id='upload-an-asset'>Upload an asset</h2><p>Some publishing apps such as <a href="/repos/publisher.html">Mainstream Publisher</a> do
 not provide the facility for editors to upload assets such as images and PDFs.
 In these rare cases, we can upload assets to asset-manager manually and give
 the URL to content editors to embed.</p>
@@ -320,12 +320,12 @@ you will need to start again as the <code>/tmp</code> directory is specific to t
    Asset basepath: /media/65f2c1110e1c2f8c4dffaa53/my_file.jpg
 </code></pre></div><p>The asset should now be available at <code>https://assets.publishing.service.gov.uk/{base-path-from-previous-output}</code>,
    for example <code>https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg</code>.</p>
-<h2 id='replacing-an-asset'>Replacing an asset</h2><p>If you need to replace the file of an existing attachment, follow these steps.</p>
+<h2 id='replace-an-asset'>Replace an asset</h2><p>If you need to replace the file of an existing attachment, follow these steps.</p>
 
 <blockquote>
 <p>The replacement file must have a different filename to the one it is replacing.</p>
-<p>Ideally, the replacement should be done in the publishing application that originally
-uploaded the file, for example Whitehall.</p>
+<p>Where possible, you should do the replacement in the publishing application
+that originally uploaded the file, for example Whitehall.</p>
 </blockquote>
 <p>If it isn&rsquo;t possible or desirable to replace the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:</p>
@@ -365,7 +365,7 @@ steps to remove the asset in Asset Manager:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>   k <span class="nb">exec</span> <span class="nt">-it</span> deploy/whitehall-admin <span class="nt">--</span> rails c
 </code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">attachment_data</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">asset_manager_id: </span><span class="n">asset</span><span class="o">-</span><span class="nb">id</span><span class="o">-</span><span class="n">from</span><span class="o">-</span><span class="n">url</span><span class="p">).</span><span class="nf">assetable</span> <span class="c1"># e.g. 57a9c52b40f0b608a700000a</span>
    <span class="n">attachment_data</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">file_size: </span><span class="mi">123</span><span class="p">,</span> <span class="ss">number_of_pages: </span><span class="mi">28</span><span class="p">)</span> <span class="c1"># file_size in bytes</span>
-</code></pre></div><h2 id='getting-an-assets-id'>Getting an asset&rsquo;s ID</h2><p>You can get an asset&rsquo;s ID by using it&rsquo;s URL:</p>
+</code></pre></div><h2 id='get-an-assets-id'>Get an asset&rsquo;s ID</h2><p>You can get an asset&rsquo;s ID by using it&rsquo;s URL:</p>
 
 <ol>
 <li><p>Open a Rails console:</p>
