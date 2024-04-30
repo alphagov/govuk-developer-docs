@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: github.event.workflow_run.conclusion == 'success'
     permissions:
       contents: write 
     steps:
@@ -21,15 +21,17 @@ jobs:
           else
             echo "::set-output name=commit_message::Deploy via merge"
           fi
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          show-progress: false
       - name: Clone publishing api
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: alphagov/publishing-api
           ref: deployed-to-production
           path: tmp/publishing-api
+          show-progress: false
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
@@ -39,7 +41,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOVUK_CONTENT_SCHEMAS_PATH: tmp/publishing-api/content_schemas
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
