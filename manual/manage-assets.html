@@ -203,7 +203,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3f90561e1c0baffaa056053973572614d63a5b53">22 Apr 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/651f900b9131ae62233f9f76127435b362e429b5">30 Apr 2024</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='removing-an-asset'>Removing an asset</h2><p>If you need to remove an asset manually from <code>assets.publishing.service.gov.uk</code>,
@@ -237,16 +237,13 @@ removed (e.g. if it contains secret information).</li>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID]
 </code></pre></div><p>To delete all traces of the asset (including the file from cloud storage), run:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID, <span class="nb">true</span><span class="o">]</span>
-</code></pre></div><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code> For "Whitehall" Assets (that start with the path `/government/uploads/system`), there is a [slightly different Rake task]((https://github.com/alphagov/asset-manager/blob/main/lib/tasks/assets.rake#L9-L13)):
-
- ```sh
-</code></pre></div><p>k exec deploy/asset-manager &ndash; rake assets:whitehall_delete[ASSET_PATH]
-&ldquo;`</p>
-
+</code></pre></div><p>For &ldquo;Whitehall&rdquo; Assets (that start with the path <code>/government/uploads/system</code>), there is a <a href="(https://github.com/alphagov/asset-manager/blob/main/lib/tasks/assets.rake#L9-L13)">slightly different Rake task</a>:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:whitehall_delete[ASSET_PATH]
+</code></pre></div>
 <ol>
 <li><p>Add a query string to the URL (e.g. <code>?cache-bust=12345</code>) to bypass the cache
 and check that the asset responds with a 404 not found.</p></li>
-<li><p>Wait 5 minutes for the cache to clear, or [purge it yourself][clear-cache].</p></li>
+<li><p>Wait 5 minutes for the cache to clear, or <a href="/manual/purge-cache.html#assets">purge it yourself</a>.</p></li>
 <li><p>Verify that the URL returns a 404 response without using a query string.</p></li>
 <li><p>Request removal of the asset from Google&rsquo;s search results using the
 <a href="https://www.google.com/webmasters/tools/removals">Google Search Console</a>.</p></li>
@@ -256,15 +253,13 @@ and check that the asset responds with a 404 not found.</p></li>
 <li>Log into the <a href="https://console.cloud.google.com/">GCP console</a>.</li>
 <li>Go to the <code>GOVUK Production</code> project under the <code>DIGITAL.CABINET-OFFICE.GOV.UK</code>
 organisation.</li>
-<li>Select <code>Cloud Storage -&gt; Browser</code>, go to the [<code>govuk-production-mirror</code>
-bucket][govuk-production-mirror-gcp].</li>
+<li>Select <code>Cloud Storage -&gt; Browser</code>, go to the <a href="https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&amp;project=govuk-production"><code>govuk-production-mirror</code>
+bucket</a>.</li>
 <li>Navigate to the file, then delete it.</li>
 </ul></li>
 <li><p>Remove the asset from the Amazon Web Services (AWS) mirror:</p></li>
 </ol>
 <p><code>gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/&lt;slug&gt;</code></p>
-<p>[clear-cache]: /manual/purge-cache.html#assets
-[govuk-production-mirror-gcp]: https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&amp;project=govuk-production</p>
 <h2 id='redirecting-an-asset'>Redirecting an asset</h2><p>Sometimes it might be necessary to manually redirect an asset, for example if
 an associated document wasn&rsquo;t unpublished correctly.</p>
 
