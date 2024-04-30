@@ -8,16 +8,15 @@ parent: "/manual.html"
 
 ## Removing an asset
 
-If you need to remove an asset manually from `assets.publishing.service.gov.uk`,
-follow these steps:
+> Where possible, you should delete the asset in the publishing application
+> that originally uploaded the file, for example Whitehall. Deleting an asset
+> from Asset Manager without removing the record from the publishing
+> application could cause problems if the asset is attempted to be re-published
+> again in the future.
 
-> Ideally, the deletion should be done in the publishing application that originally
-> uploaded the file (e.g. Whitehall). Deleting an asset from Asset Manager without
-> removing the record from the publishing application could cause problems if the
-> asset is attempted to be re-published again in the future.
-
-If it isn't possible or desirable to remove the asset in the publishing app, use these
-steps to remove the asset in Asset Manager:
+If it isn't feasible to remove the asset in the publishing app, you can use
+these steps to remove the asset from `assets.publishing.service.gov.uk` in
+Asset Manager.
 
 1. Get the asset ID. This can be obtained from the URL for most assets, e.g. the asset ID
    for `https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg`
@@ -115,30 +114,23 @@ best to simply perform the upload directly in production.
 > If the pod terminates at any point during this process (e.g. a deployment occurs),
 > you will need to start again as the `/tmp` directory is specific to the pod.
 
-1. Get the name of the asset-manager pod (you need the app pod, which will be named
-   like `asset-manager-abc1234-abc123` and does not contain any extra words, such as
-   `freshclam`, `pss` or `worker`):
+1. Get the name of an asset-manager app pod.
 
    ```sh
-   $ kubectl -n apps get pods | grep asset-manager
+   POD=$(kubectl get pods -l app=asset-manager -o name | head -1)
+   echo $POD
    ```
-
-1. Assign the pod name to a variable:
-
-   ```sh
-   $ POD_NAME={name-of-app-pod-from-previous-output}
-   ````
 
 1. Upload the file to the pod's `/tmp` directory:
 
    ```sh
-   $ kubectl cp my_file.jpg apps/${POD_NAME}:/tmp
+   k cp my_file.jpg apps/$POD:/tmp
    ```
 
-1. Run the upload command:
+1. Run the create_asset command on the same pod:
 
    ```sh
-   $ kubectl -n apps exec -it ${POD_NAME} -- bin/create_asset /tmp/my_file.jpg
+   k exec -it $POD -- bin/create_asset /tmp/my_file.jpg
    ```
 
    The output will look like the following:
@@ -150,8 +142,8 @@ best to simply perform the upload directly in production.
    Asset basepath: /media/65f2c1110e1c2f8c4dffaa53/my_file.jpg
    ```
 
-   The asset can now be located at `https://assets.publishing.service.gov.uk/{base-path-from-previous-output}`,
-   e.g. `https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg`.
+   The asset should now be available at `https://assets.publishing.service.gov.uk/{base-path-from-previous-output}`,
+   for example `https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg`.
 
 ## Replacing an asset
 
@@ -160,35 +152,28 @@ If you need to replace the file of an existing attachment, follow these steps.
 > The replacement file must have a different filename to the one it is replacing.
 
 > Ideally, the replacement should be done in the publishing application that originally
-> uploaded the file (e.g. Whitehall).
+> uploaded the file, for example Whitehall.
 
 If it isn't possible or desirable to replace the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:
 
-1. Get the name of the asset-manager pod (you need the app pod, which will be named like
-   `asset-manager-abc1234-abc123` and does not contain any extra words, such as `freshclam`,
-   `pss` or `worker`):
+1. Get the name of an asset-manager app pod.
 
    ```sh
-   $ kubectl -n apps get pods | grep asset-manager
+   POD=$(kubectl get pods -l app=asset-manager -o name | head -1)
+   echo $POD
    ```
-
-1. Assign the pod name to a variable:
-
-   ```sh
-   $ POD_NAME={name-of-app-pod-from-previous-output}
-   ````
 
 1. Upload the file to the pod's `/tmp` directory:
 
    ```sh
-   $ kubectl cp my_file.jpg apps/${POD_NAME}:/tmp
+   k cp my_file.jpg apps/$POD:/tmp
    ```
 
-1. Get an app console on that same server:
+1. Open an app console on that same pod:
 
    ```sh
-   $ kubectl -n apps exec -it ${POD_NAME} -- rails c
+   k exec -it $POD -- rails c
    ```
 
 1. Find the asset:
@@ -209,13 +194,13 @@ steps to remove the asset in Asset Manager:
 
 1. If the attachment is a PDF that was originally uploaded in Whitehall, update the page count field in Whitehall:
 
-   ```ssh
-   $ kubectl -n apps exec -it deploy/whitehall-admin -- rails c
+   ```sh
+   k exec -it deploy/whitehall-admin -- rails c
    ```
 
    ```ruby
-   attachment_data = Asset.find_by(asset_manager_id: asset-id-from-url).assetable # e.g. `57a9c52b40f0b608a700000a`
-   attachment_data.update(file_size: 123, number_of_pages: 28) # file size in bytes
+   attachment_data = Asset.find_by(asset_manager_id: asset-id-from-url).assetable # e.g. 57a9c52b40f0b608a700000a
+   attachment_data.update(file_size: 123, number_of_pages: 28) # file_size in bytes
    ```
 
 ## Getting an asset's ID
@@ -224,13 +209,13 @@ You can get an asset's ID by using it's URL:
 
 1. Open a Rails console:
 
-    ```
+    ```sh
     k exec -it deploy/asset-manager -- rails c
     ```
 
 2. Find the asset:
 
-    ```
+    ```ruby
     asset = Asset.find_by(legacy_url_path: "/slug")
     id = asset.id
     ```
