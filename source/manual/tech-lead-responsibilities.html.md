@@ -34,7 +34,7 @@ If the developer is new to GOV.UK, then it’s worth taking them through the [ov
 
 ## Managing leavers
 
-When a team member leaves GOV.UK, the team's Delivery Manager should inform Business Operations of the leaver/mover.
+When a team member leaves GOV.UK, either the person's Line Manager or their team's Delivery Manager should submit a leaver ticket to the service desk.
 
 This eventually leads to a ticket in the [JML view](https://govuk.zendesk.com/agent/filters/63966232) Zendesk group, which Senior Tech will process.
 
