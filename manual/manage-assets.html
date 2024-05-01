@@ -203,7 +203,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cb9a83f43a62d7eef5b8bc433374bb01092c773e">30 Apr 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/008da7c893cee628314db5cf01d69408d9798d01">1 May 2024</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='remove-an-asset'>Remove an asset</h2>
@@ -245,8 +245,15 @@ removed (e.g. if it contains secret information).</li>
 and check that the asset responds with a 404 not found.</p></li>
 <li><p>Wait 5 minutes for the cache to clear, or <a href="/manual/purge-cache.html#assets">purge it yourself</a>.</p></li>
 <li><p>Verify that the URL returns a 404 response without using a query string.</p></li>
-<li><p>Request removal of the asset from Google&rsquo;s search results using the
-<a href="https://www.google.com/webmasters/tools/removals">Google Search Console</a>.</p></li>
+<li><p>Request removal of the asset from Google&rsquo;s search results:</p>
+
+<ul>
+<li>Go to the <a href="https://www.google.com/webmasters/tools/removals">Google Search Console</a></li>
+<li>Click &lsquo;New request&rsquo;</li>
+<li>Select &lsquo;To refresh Google&rsquo;s outdated result for a webpage that has changed&rsquo;</li>
+<li>Click &lsquo;Next&rsquo;</li>
+<li>Enter the page URL and click &lsquo;Submit&rsquo;</li>
+</ul></li>
 <li><p>Remove the asset from the Google Cloud Platform (GCP) mirror:</p>
 
 <ul>
