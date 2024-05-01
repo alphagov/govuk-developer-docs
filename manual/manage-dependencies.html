@@ -142,6 +142,9 @@
     <a href="#header"><span>Manage dependencies with Dependabot</span></a>
     <ul>
       <li>
+        <a href="#auto-merging-dependabot-prs"><span>Auto merging Dependabot PRs</span></a>
+      </li>
+      <li>
         <a href="#reviewing-dependabot-prs"><span>Reviewing Dependabot PRs</span></a>
       </li>
       <li>
@@ -154,9 +157,6 @@
             <a href="#ask-dependabot-to-bump-dependencies"><span>Ask Dependabot to bump dependencies</span></a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a href="#auto-merging-dependabot-prs"><span>Auto merging Dependabot PRs</span></a>
       </li>
       <li>
         <a href="#security"><span>Security</span></a>
@@ -210,15 +210,15 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9be67729aea1ef347ac8c19554e20a7c4e2de595">22 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/213b40915b71c6a4cbc731133d55757265d7705f">1 May 2024</a>
 </div>
 
  <h1 id='header'>Manage dependencies with Dependabot</h1> <p>We&rsquo;re <a href="/manual/keeping-software-current.html">obliged to keep our software current</a>. To help with this, we use a
 service called Dependabot (by GitHub) to open automated dependency upgrade PRs, and we use an in-house tool called the <a href="/repos/seal.html">Seal</a> to notify us of Dependabot PRs that have not yet been merged. We also have an in-house tool, <a href="https://github.com/alphagov/govuk-dependabot-merger">govuk-dependabot-merger</a>, for automatically merging <a href="#auto-merging-dependabot-prs">certain Dependabot PRs</a>.</p>
-<h2 id='reviewing-dependabot-prs'>Reviewing Dependabot PRs</h2><p>Dependabot updates occur relatively soon after a new version is published, which means
-there’s a risk of updating to a rogue version. Some updates also contain breaking
-changes, irrespective of when they are published.</p>
-<p>When reviewing a Dependabot PR you should do the following as a minimum:</p>
+<h2 id='auto-merging-dependabot-prs'>Auto merging Dependabot PRs</h2><p>According to the <a href="https://www.ncsc.gov.uk/collection/vulnerability-management/guidance/policy-update-by-default">National Cyber Security Centre</a>, we should apply updates as soon as possible, and ideally automatically.</p>
+<p>To facilitate that, we have a <a href="https://github.com/alphagov/govuk-dependabot-merger">govuk-dependabot-merger</a> service that can auto-merge certain Dependabot PRs, outlined in <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-167-auto-patch-dependencies.md">RFC-167</a>.</p>
+<p>Repos that wish to opt in to this service must have a <code>.govuk_dependabot_merger.yml</code> file at the root of the repository, configured as per the govuk-dependabot-merger README instructions. They must then be added to the <a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/config/repos_opted_in.yml">repos_opted_in.yml</a> list in govuk-dependabot-merger.</p>
+<h2 id='reviewing-dependabot-prs'>Reviewing Dependabot PRs</h2><p>Given the higher security risks associated with delaying updates, we should prioritize using the <a href="#auto-merging-dependabot-prs">auto merging tool</a> whenever possible. However, in cases where that cannot be used or a PR needs manual reviewing, we should follow the instructions for reviewing Dependabot PRs:</p>
 
 <ul>
 <li>Expand the &ldquo;Release notes&rdquo; or &ldquo;Changelog&rdquo; details.
@@ -248,7 +248,8 @@ changes, irrespective of when they are published.</p>
 <li>You may want to verify the author of the version bump commit is a regular contributor to the repo.</li>
 <li>If in doubt, get a second opinion from Senior Tech.</li>
 </ul>
-<p>For these reasons we’re not planning to enable auto-merge for Dependabot PRs for external dependencies.</p>
+<p>It&rsquo;s crucial to acknowledge that the traditional human review process may not offer significant security benefits. Instead, we should prioritize comprehensive test coverage and security scanning as our primary safeguards.
+RFC-167 <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-167-auto-patch-dependencies.md#justification">lists reasons</a> why the above steps are not sufficient to detect malicious activity.</p>
 <h2 id='managing-dependabot'>Managing Dependabot</h2><h3 id='add-dependabot-to-a-repo'>Add Dependabot to a repo</h3><p>Any GOV.UK developer with production access can enable GitHub for a repo.</p>
 
 <ol>
@@ -260,8 +261,6 @@ changes, irrespective of when they are published.</p>
 <p>To configure Dependabot, a PR will need to be created that adds a configuration file (<code>.github/dependabot.yml</code>). In <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md#custom-configuration">RFC #126</a> it was decided that a custom configuration would be used for GOV.UK applications, but this inadvertently disabled some security updates, so was reversed in <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-153-remove-allowlists-from-dependabot-configs.md">RFC-153</a>, and configuration is now largely limited to specifying the package ecosystem and schedule (<a href="https://github.com/alphagov/support-api/blob/070b2f3f8f97e5c3c7a21ec126e42bde54b89e6a/.github/dependabot.yml">example</a>).</p>
 <h3 id='ask-dependabot-to-bump-dependencies'>Ask Dependabot to bump dependencies</h3><p>By default Dependabot will bump dependencies at the frequency specified in the configuration file, but you can ask it to bump manually:</p>
 <p>Go to your project in GitHub and click on &ldquo;Insights&rdquo;, then &ldquo;Dependency graph&rdquo;, then &ldquo;Dependabot&rdquo;, then &ldquo;Last checked X minutes ago&rdquo; next to the package manager of choice (e.g. Gemfile). Then you can click &ldquo;Check for updates&rdquo;.</p>
-<h2 id='auto-merging-dependabot-prs'>Auto merging Dependabot PRs</h2><p>We have a <a href="https://github.com/alphagov/govuk-dependabot-merger">govuk-dependabot-merger</a> service that can auto-merge certain Dependabot PRs, outlined in <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-156-auto-merge-internal-prs.md">RFC-156</a>.</p>
-<p>Repos that wish to opt in to this service must have a <code>.govuk_dependabot_merger.yml</code> file at the root of the repository, configured as per the govuk-dependabot-merger README instructions. They must then be added to the <a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/config/repos_opted_in.yml">repos_opted_in.yml</a> list in govuk-dependabot-merger.</p>
 <h2 id='security'>Security</h2><p>We&rsquo;ve <a href="/manual/github.html">set up branch protection</a> for all repos with the <code>govuk</code> label. This prevents Dependabot from writing directly to main.</p>
 
   <div class='related-content'>
