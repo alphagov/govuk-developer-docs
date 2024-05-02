@@ -430,6 +430,16 @@
   required: no
   type: string
   redact: false
+  parameter_names:
+    - event_name: search
+      gtm_parameter: search_term
+      ga4_display: Search term
+    - event_name: navigation
+      gtm_parameter: link_text
+      ga4_display: Link text
+    - event_name: file_download
+      gtm_parameter: link_text
+      ga4_display: Link text
 
 - name: tool_name
   description: Refers to the tool being tracked, for example the name of a smart answer or 'Find your local council'.

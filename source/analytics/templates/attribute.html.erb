@@ -20,29 +20,51 @@
       </dd>
     </div>
   <% end %>
+</dl>
 
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Used by
-    </dt>
-    <dd class="govuk-summary-list__value">
-      <% data.analytics.events.each do |event| %>
-        <% event.events.each do |events| %>
-          <% events.data.each do |events_attribute| %>
-            <% if events_attribute.value.is_a?(Array) %>
-              <% events_attribute.value.each do |sub_attribute| %>
-                <% if sub_attribute.name == attribute.name %>
-                  <%= link_to event.name, "event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
-                <% end %>
-              <% end %>
-            <% else %>
-              <% if events_attribute.name == attribute.name %>
-                <%= link_to event.name, "event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
-              <% end %>
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">GA4 parameter names</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">event_name</th>
+      <th scope="col" class="govuk-table__header">GTM/GA4 parameter</th>
+      <th scope="col" class="govuk-table__header">GA4 display name</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <% attribute.parameter_names.each do |param| %>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header"><%= param.event_name %></th>
+        <td class="govuk-table__cell"><%= param.gtm_parameter %></td>
+        <td class="govuk-table__cell"><%= param.ga4_display %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2 class="govuk-heading-m">
+  Used in events
+</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <% data.analytics.events.each do |event| %>
+    <% event.events.each do |events| %>
+      <% events.data.each do |events_attribute| %>
+        <% if events_attribute.value.is_a?(Array) %>
+          <% events_attribute.value.each do |sub_attribute| %>
+            <% if sub_attribute.name == attribute.name %>
+              <li>
+                <%= link_to event.name, "event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)
+              </li>
             <% end %>
+          <% end %>
+        <% else %>
+          <% if events_attribute.name == attribute.name %>
+            <li>
+              <%= link_to event.name, "event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)
+            </li>
           <% end %>
         <% end %>
       <% end %>
-    </dd>
-  </div>
-</dl>
+    <% end %>
+  <% end %>
+</ul>
