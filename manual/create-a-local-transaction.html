@@ -143,6 +143,9 @@
         <a href="#outline"><span>Outline</span></a>
       </li>
       <li>
+        <a href="#assumptions"><span>Assumptions</span></a>
+      </li>
+      <li>
         <a href="#get-details-of-or-create-the-service-in-the-electronic-service-delivery-esd"><span>Get details of or create the service in the Electronic Service Delivery (ESD)</span></a>
       </li>
       <li>
@@ -231,15 +234,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/585cdcb71643c788001c40fcc9c66254e7999db3">6 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/07247190ea389490feebd99fbbaff5846d90ef0b">2 May 2024</a>
 </div>
 
  <h1 id='header'>Create a Local Transaction</h1> <p>This document describes the steps required to create a postcode-based local transaction similar to <a href="https://www.gov.uk/test-and-trace-support-payment">Apply for a Test and Trace Support Payment</a> and <a href="https://www.gov.uk/find-covid-19-lateral-flow-test-site">Find a rapid lateral flow test site in your area</a>.</p>
@@ -256,6 +252,12 @@
 <p><em>[1]: These steps are manual and can be very time consuming. It is recommended they are started as early as possible to reduce delay.</em></p>
 <p><em>[2]: This step requires a PR that can be created and deployed (once approved) at any point prior to publishing the service.</em></p>
 <p><em>[3]: This step requires a PR that can be created and deployed (once approved) at any point.</em></p>
+<h2 id='assumptions'>Assumptions</h2><p>The examples and procedures on this page make the following assumptions:</p>
+
+<ul>
+<li>You have set an alias for the <code>kubectl</code>, <a href="https://kubernetes.io/docs/reference/kubectl/quick-reference/">as per the Kubernetes Quick Reference</a>.</li>
+<li>You have set the <code>apps</code> namespace as the default namespace.</li>
+</ul>
 <h2 id='get-details-of-or-create-the-service-in-the-electronic-service-delivery-esd'>Get details of or create the service in the Electronic Service Delivery (ESD)</h2><p>Newly created services are automatically imported into <a href="https://local-links-manager.publishing.service.gov.uk/">Local Links Manager (LLM)</a> from <a href="#electronic-service-delivery-esd">Electronic Service Delivery (ESD)</a> via a nightly import process. So, if you know the ID of the service you want to use, <a href="https://standards.esd.org.uk/?tab=search">check if it exists in ESD</a> and <a href="https://local-links-manager.publishing.service.gov.uk/services">LLM</a>.</p>
 <p>If the service exists in <a href="#electronic-service-delivery-esd">ESD</a> but not LLM, and it is not possible to wait overnight, you can run <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/import/service_interactions.rake#L12">this rake task</a> to import them on demand.</p>
 <p>On occasion the service you are looking to use does not exist in <a href="#electronic-service-delivery-esd">ESD</a> and LLM. If this is the case, it may be possible to obtain a new service from&hellip;</p>
@@ -277,21 +279,23 @@ nicki.gill@esd.org.uk | esd.org.uk
 </ul>
 <h2 id='get-a-list-of-local-authority-slugs-and-urls'>Get a list of local authority slugs and URLs</h2><p>We need to create a CSV file containing the <code>name</code>, <code>slug</code> and an empty space for a <code>url</code> for all available local authorities currently in LLM.</p>
 <p>The service product owner (your PM or DM should be able to identify them for you) can then add the specific URLs for each local authority that offers the service and return the finished file to us for import. This is used to associate the URL with the service and the local authority in LLM.</p>
-<p>Log into the LLM console&hellip;</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect app-console <span class="nt">-e</span> integration local-links-manager
+<p>We&rsquo;ll want to pick a <code>local-links-manager</code> pod to connect to the Console - normally we&rsquo;d just run exec via the <code>deploy</code> resource and let Kubernetes pick for us, but as we&rsquo;ll need to download a file from the pod, we should make sure everything is run from the context of the same pod.</p>
+<p>List the LLM pods and select one:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-poweruser <span class="nt">-e</span>
+k get pods <span class="nt">-l</span><span class="o">=</span><span class="nv">app</span><span class="o">=</span>local-links-manager
 
-Connecting to the app console <span class="k">for </span>local-links-manager, <span class="k">in </span>the integration environment
-The relevant hosting provider is aws
-The relevant node class is backend
-There are 2 machines of this class
-Connecting to a random machine <span class="o">(</span>number 1<span class="o">)</span> <span class="c">#=&gt; Make a note of this MACHINE_NO</span>
-</code></pre></div><p>Then in the rails console&hellip;</p>
+NAME                                  READY   STATUS    RESTARTS   AGE
+local-links-manager-fdc5dbbb7-vrf96   2/2     Running   0          4h50m
+local-links-manager-fdc5dbbb7-x7rll   2/2     Running   0          4h50m
+</code></pre></div><p>Once you&rsquo;ve chosen a pod, connect to its Rails Console:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>local-links-manager-fdc5dbbb7-vrf96 <span class="nt">--</span> rails c
+</code></pre></div><p>Once in the rails console&hellip;</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">lgsl_code</span> <span class="o">=</span> <span class="mi">1234</span>
 
 <span class="n">file</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="si">}</span><span class="s2">/tmp/</span><span class="si">#{</span><span class="n">lgsl_code</span><span class="si">}</span><span class="s2">.csv"</span>
 
 <span class="c1"># Make a note of this REMOTE_FILE_PATH...</span>
-<span class="o">=&gt;</span> <span class="s2">"/data/vhost/local-links-manager/releases/20210507085218/tmp/1234.csv"</span>
+<span class="o">=&gt;</span> <span class="s2">"/app/tmp/1234.csv"</span>
 </code></pre></div><p>Generate the CSV file and exit out of the rails console.</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">CSV</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">csv</span><span class="o">|</span>
   <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="s2">"name"</span><span class="p">,</span> <span class="s2">"slug"</span><span class="p">,</span> <span class="s2">"url"</span><span class="p">]</span>
@@ -299,10 +303,8 @@ Connecting to a random machine <span class="o">(</span>number 1<span class="o">)
     <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="n">la</span><span class="p">.</span><span class="nf">name</span><span class="p">,</span> <span class="n">la</span><span class="p">.</span><span class="nf">slug</span><span class="p">,</span> <span class="kp">nil</span><span class="p">]</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><p>Download the CSV file just you just created to your local machine&hellip;</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect scp-pull <span class="nt">-e</span> integration backend:MACHINE_NO REMOTE_FILE_PATH ~/Downloads
-</code></pre></div><p>Substituting the MACHINE_NO and REMOTE_FILE_PATH from the earlier rails console session. For example:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect scp-pull <span class="nt">-e</span> integration backend:1 /data/vhost/local-links-manager/releases/20210507085218/tmp/1234.csv ~/Downloads
+</code></pre></div><p>Now using the same pod as before and the file path from above, run the <code>kubectl cp</code> command to pull the file:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">cp </span>local-links-manager-fdc5dbbb7-vrf96:/tmp/1234.csv ~/Downloads/1234.csv
 </code></pre></div><p>Hand this over to the service product owner.</p>
 <p><em>The <code>name</code> is only present in the CSV file to assist the product owner complete the URLs as differences between the local authority <code>name</code> and <code>slug</code> can make it tricky to match the local authority correctly. It is not used when importing the links into LLM.</em></p>
 <h2 id='add-the-service-to-publisher'>Add the service to Publisher</h2><p>Create a PR that adds the following to the bottom of <a href="https://github.com/alphagov/publisher/blob/a656ea44d0e3a086b096ff2b2053290f1b9fb4d9/data/local_services.csv">this</a> file:</p>
@@ -320,7 +322,7 @@ Connecting to a random machine <span class="o">(</span>number 1<span class="o">)
         </table>
       </div><p><em>Where <code>SERVICE_DESCRIPTION</code> is the service <a href="#seek-content-advice"><code>description</code></a>, and <code>PROVIDING_TIER</code> is the service <a href="#providing-tier"><code>providing tier(s)</code></a>.</em></p>
 <p>Once your PR is merged and deployed, run <a href="https://github.com/alphagov/publisher/blob/b65989d9c37df639d53666ccb3cd801c1155d247/lib/tasks/local_transactions.rake#L3">this rake task</a> in Publisher&hellip;</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rails local_transactions:fetch_and_clean
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>local-links-manager-fdc5dbbb7-vrf96 <span class="nt">--</span> bundle <span class="nb">exec </span>rails local_transactions:fetch_and_clean
 </code></pre></div><h2 id='make-the-service-unavailable-for-a-nation-in-frontend'>Make the service unavailable for a nation in Frontend</h2><p><strong>Note</strong>: This is an optional step that can be done when the new service is live.</p>
 <p>If the service is unavailable in one or more devolved nation, create a PR to add the service to the <a href="https://github.com/alphagov/frontend/blob/master/lib/config/local_transaction_config.yml">Frontend local transaction configuration file</a>.</p>
 <p>This can be configured with or without <code>button_text</code> and <code>button_link</code>. <a href="#seek-content-advice">Seek content advice</a> with the content.</p>
@@ -343,26 +345,24 @@ Connecting to a random machine <span class="o">(</span>number 1<span class="o">)
 <li>An association between the <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service.rb#L1"><code>Service</code></a> and <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/interaction.rb#L1"><code>Interaction</code></a> models, giving us a <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service_interaction.rb#L1"><code>ServiceInteraction</code></a></li>
 <li>Enables the <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service.rb#L1"><code>Service</code></a> and <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service_interaction.rb#L1"><code>ServiceInteraction</code></a></li>
 </ul>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rails service:enable[LGSL_CODE,LGIL_CODE,SERVICE_NAME,SERVICE_SLUG]
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>local-links-manager-fdc5dbbb7-vrf96 <span class="nt">--</span> bundle <span class="nb">exec </span>rails service:enable[LGSL_CODE,LGIL_CODE,SERVICE_NAME,SERVICE_SLUG]
 </code></pre></div><p><em>Where <code>SERVICE_NAME</code> is the service <a href="#seek-content-advice"><code>name</code></a>, and <code>SERVICE_SLUG</code> is the service <a href="#seek-content-advice"><code>slug</code></a>.</em></p>
 <p>Then run <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/import/missing_links.rake#L5">this rake task</a> in Local Links Manager to add (empty) links for all available local authorities&hellip;</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rails import:missing_links
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>local-links-manager-fdc5dbbb7-vrf96 <span class="nt">--</span> bundle <span class="nb">exec </span>rails import:missing_links
 </code></pre></div><h2 id='upload-local-authority-urls-to-local-links-manager-llm'>Upload Local Authority URLs to Local Links Manager (LLM)</h2><p>Upload the completed CSV file that was sent to the product owner <a href="#get-a-list-of-local-authority-slugs-and-urls">in this step</a>&hellip;</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect scp-push <span class="nt">-e</span> integration backend LOCAL_FILE_PATH REMOTE_FILE_PATH
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">cp </span>LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-vrf96:/REMOTE_FILE_PATH
 </code></pre></div><p>Run <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/import/service_links_from_csv.rake#L5">this rake task</a> to import the links from the CSV file.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rails import:service_links[LGSL_CODE,LGIL_CODE,REMOTE_FILE_PATH]
-</code></pre></div><p><strong>Note</strong>: If you intend to run the <code>import:service_links</code> rake task via Jenkins, you will need run scp-push against all of the backend machines. For example:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="c"># To find out how many machines you'll need to copy the file to...</span>
-<span class="nv">$ </span>gds govuk connect ssh <span class="nt">-e</span> integration backend
-There are 2 machines of this class  <span class="c">#=&gt; Make a note of the number of machines</span>
-Connecting to a random machine <span class="o">(</span>number 1<span class="o">)</span>
-<span class="nv">$ </span><span class="nb">exit</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>local-links-manager-fdc5dbbb7-vrf96 <span class="nt">--</span> bundle <span class="nb">exec </span>rails import:service_links[LGSL_CODE,LGIL_CODE,REMOTE_FILE_PATH]
+</code></pre></div><p><strong>Note</strong>: To run the <code>import:service_links</code> rake task, you will need to cp against one of the live pods. For example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="c"># To find out which pods you'll need to copy to, list the pods for that app.</span>
+k get pods <span class="nt">-l</span><span class="o">=</span><span class="nv">app</span><span class="o">=</span>local-links-manager
 
-<span class="c"># Copy the file...</span>
-<span class="nv">$ </span>gds govuk connect scp-push <span class="nt">-e</span> integration backend:1 LOCAL_FILE_PATH REMOTE_FILE_PATH
-<span class="nv">$ </span>gds govuk connect scp-push <span class="nt">-e</span> integration backend:2 LOCAL_FILE_PATH REMOTE_FILE_PATH
-<span class="c"># ...</span>
-<span class="nv">$ </span>gds govuk connect scp-push <span class="nt">-e</span> integration backend:n LOCAL_FILE_PATH REMOTE_FILE_PATH
+NAME                                  READY   STATUS    RESTARTS   AGE
+local-links-manager-fdc5dbbb7-vrf96   2/2     Running   0          4h50m
+local-links-manager-fdc5dbbb7-x7rll   2/2     Running   0          4h50m
+
+<span class="c"># Copy the file to each...</span>
+k <span class="nb">cp </span>LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-vrf96:/REMOTE_FILE_PATH
 </code></pre></div><h2 id='add-content-and-publish-the-service-in-publisher'>Add content and publish the service in Publisher</h2><p>Once <strong>all</strong> of the above steps are complete, ask a content designer to create a new local transaction page in <a href="https://publisher.publishing.service.gov.uk">Publisher</a> using the <a href="#lgsl-code">LGSL code</a> and <a href="#lgil-code">LGIL code</a>.</p>
 <h2 id='glossary'>Glossary</h2><h3 id='electronic-service-delivery-esd'>Electronic Service Delivery (ESD)</h3><p>Behind each local transaction is a public service, overseen and delivered by the <a href="https://www.local.gov.uk/">Local Government Association (LGA)</a>, that all local authorities should (in principle) offer and supply. These services are listed on the <a href="https://standards.esd.org.uk">Electronic Service Delivery (ESD)</a> website.</p>
 <p>The ESD <a href="https://standards.esd.org.uk/?uri=list%2Fservices&amp;tab=details">defines services</a> as&hellip;</p>
