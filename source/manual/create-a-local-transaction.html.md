@@ -68,6 +68,7 @@ The service product owner (your PM or DM should be able to identify them for you
 We'll want to pick a `local-links-manager` pod to connect to the Console - normally we'd just run exec via the `deploy` resource and let Kubernetes pick for us, but as we'll need to download a file from the pod, we should make sure everything is run from the context of the same pod.
 
 List the LLM pods and select one:
+
 ```bash
 gds aws govuk-integration-poweruser -e
 k get pods -l=app=local-links-manager
@@ -78,6 +79,7 @@ local-links-manager-fdc5dbbb7-x7rll   2/2     Running   0          4h50m
 ```
 
 Once you've chosen a pod, connect to its Rails Console:
+
 ```bash
 k exec local-links-manager-fdc5dbbb7-vrf96 -- rails c
 ```
