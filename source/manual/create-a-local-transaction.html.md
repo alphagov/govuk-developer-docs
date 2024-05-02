@@ -25,6 +25,13 @@ _[2]: This step requires a PR that can be created and deployed (once approved) a
 
 _[3]: This step requires a PR that can be created and deployed (once approved) at any point._
 
+## Assumptions
+
+The examples and procedures on this page make the following assumptions:
+
+* You have set an alias for the `kubectl`, [as per the Kubernetes Quick Reference](https://kubernetes.io/docs/reference/kubectl/quick-reference/).
+* You have set the `apps` namespace as the default namespace.
+
 ## Get details of or create the service in the Electronic Service Delivery (ESD)
 
 Newly created services are automatically imported into [Local Links Manager (LLM)](https://local-links-manager.publishing.service.gov.uk/) from [Electronic Service Delivery (ESD)](#electronic-service-delivery-esd) via a nightly import process. So, if you know the ID of the service you want to use, [check if it exists in ESD](https://standards.esd.org.uk/?tab=search) and [LLM](https://local-links-manager.publishing.service.gov.uk/services).
@@ -62,8 +69,8 @@ We'll want to pick a `local-links-manager` pod to connect to the Console - norma
 
 List the LLM pods and select one:
 ```bash
-$ gds aws govuk-integration-poweruser -e
-$ kubectl -n apps get pods -l=app=local-links-manager
+gds aws govuk-integration-poweruser -e
+k get pods -l=app=local-links-manager
 
 NAME                                  READY   STATUS    RESTARTS   AGE
 local-links-manager-fdc5dbbb7-vrf96   2/2     Running   0          4h50m
@@ -72,7 +79,7 @@ local-links-manager-fdc5dbbb7-x7rll   2/2     Running   0          4h50m
 
 Once you've chosen a pod, connect to its Rails Console:
 ```bash
-$ kubectl -n apps exec local-links-manager-fdc5dbbb7-vrf96 -- rails c
+k exec local-links-manager-fdc5dbbb7-vrf96 -- rails c
 ```
 
 Once in the rails console...
@@ -100,7 +107,7 @@ end
 Now using the same pod as before and the file path from above, run the `kubectl cp` command to pull the file:
 
 ```bash
-$ kubectl -n apps cp local-links-manager-fdc5dbbb7-vrf96:/app/tmp/1234.csv ~/Downloads/1234.csv
+k cp local-links-manager-fdc5dbbb7-vrf96:/tmp/1234.csv ~/Downloads/1234.csv
 ```
 
 Hand this over to the service product owner.
@@ -120,7 +127,7 @@ _Where `SERVICE_DESCRIPTION` is the service [`description`](#seek-content-advice
 Once your PR is merged and deployed, run [this rake task](https://github.com/alphagov/publisher/blob/b65989d9c37df639d53666ccb3cd801c1155d247/lib/tasks/local_transactions.rake#L3) in Publisher...
 
 ```bash
-$ kubectl -n apps exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails local_transactions:fetch_and_clean
+k exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails local_transactions:fetch_and_clean
 ```
 
 ## Make the service unavailable for a nation in Frontend
@@ -156,7 +163,7 @@ Run [this rake task](https://github.com/alphagov/local-links-manager/blob/a1a2b2
 * Enables the [`Service`](https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service.rb#L1) and [`ServiceInteraction`](https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service_interaction.rb#L1)
 
 ```bash
-$ kubectl -n apps exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails service:enable[LGSL_CODE,LGIL_CODE,SERVICE_NAME,SERVICE_SLUG]
+k exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails service:enable[LGSL_CODE,LGIL_CODE,SERVICE_NAME,SERVICE_SLUG]
 ```
 
 _Where `SERVICE_NAME` is the service [`name`](#seek-content-advice), and `SERVICE_SLUG` is the service [`slug`](#seek-content-advice)._
@@ -164,7 +171,7 @@ _Where `SERVICE_NAME` is the service [`name`](#seek-content-advice), and `SERVIC
 Then run [this rake task](https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/import/missing_links.rake#L5) in Local Links Manager to add (empty) links for all available local authorities...
 
 ```bash
-$ kubectl -n apps exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails import:missing_links
+k exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails import:missing_links
 ```
 
 ## Upload Local Authority URLs to Local Links Manager (LLM)
@@ -172,32 +179,27 @@ $ kubectl -n apps exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails 
 Upload the completed CSV file that was sent to the product owner [in this step](#get-a-list-of-local-authority-slugs-and-urls)...
 
 ```bash
-$ kubectl -n apps cp LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-vrf96:/REMOTE_FILE_PATH
+k cp LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-vrf96:/REMOTE_FILE_PATH
 ```
 
 Run [this rake task](https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/import/service_links_from_csv.rake#L5) to import the links from the CSV file.
 
 ```bash
-$ kubectl -n apps exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails import:service_links[LGSL_CODE,LGIL_CODE,REMOTE_FILE_PATH]
+k exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails import:service_links[LGSL_CODE,LGIL_CODE,REMOTE_FILE_PATH]
 ```
 
-__Note__: To run the `import:service_links` rake task, you will need to cp against all of the live pods. For example:
+__Note__: To run the `import:service_links` rake task, you will need to cp against one of the live pods. For example:
 
 ```bash
 # To find out which pods you'll need to copy to, list the pods for that app.
-$ kubectl -n apps get pods -l=app=local-links-manager
+k get pods -l=app=local-links-manager
 
 NAME                                  READY   STATUS    RESTARTS   AGE
 local-links-manager-fdc5dbbb7-vrf96   2/2     Running   0          4h50m
 local-links-manager-fdc5dbbb7-x7rll   2/2     Running   0          4h50m
 
 # Copy the file to each...
-$ kubectl -n apps cp LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-vrf96:/REMOTE_FILE_PATH
-$ kubectl -n apps cp LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-x7rll:/REMOTE_FILE_PATH
-
-# Alternatively, use a Bash loop to automate the process for you...
-for podname in $(kubectl -n apps get pods -l=app=local-links-manager -o json| jq -r '.items[].metadata.name'); do kubectl -n app cp LOCAL_FILE_PATH "${podname}":/REMOTE_FILE_PATH; done
-
+k cp LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-vrf96:/REMOTE_FILE_PATH
 ```
 
 ## Add content and publish the service in Publisher
