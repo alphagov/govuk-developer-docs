@@ -25,6 +25,13 @@ _[2]: This step requires a PR that can be created and deployed (once approved) a
 
 _[3]: This step requires a PR that can be created and deployed (once approved) at any point._
 
+## Assumptions
+
+The examples and procedures on this page make the following assumptions:
+
+* You have set an alias for the `kubectl`, [as per the Kubernetes Quick Reference](https://kubernetes.io/docs/reference/kubectl/quick-reference/).
+* You have set the `apps` namespace as the default namespace.
+
 ## Get details of or create the service in the Electronic Service Delivery (ESD)
 
 Newly created services are automatically imported into [Local Links Manager (LLM)](https://local-links-manager.publishing.service.gov.uk/) from [Electronic Service Delivery (ESD)](#electronic-service-delivery-esd) via a nightly import process. So, if you know the ID of the service you want to use, [check if it exists in ESD](https://standards.esd.org.uk/?tab=search) and [LLM](https://local-links-manager.publishing.service.gov.uk/services).
@@ -58,19 +65,26 @@ We need to create a CSV file containing the `name`, `slug` and an empty space fo
 
 The service product owner (your PM or DM should be able to identify them for you) can then add the specific URLs for each local authority that offers the service and return the finished file to us for import. This is used to associate the URL with the service and the local authority in LLM.
 
-Log into the LLM console...
+We'll want to pick a `local-links-manager` pod to connect to the Console - normally we'd just run exec via the `deploy` resource and let Kubernetes pick for us, but as we'll need to download a file from the pod, we should make sure everything is run from the context of the same pod.
+
+List the LLM pods and select one:
 
 ```bash
-$ gds govuk connect app-console -e integration local-links-manager
+gds aws govuk-integration-poweruser -e
+k get pods -l=app=local-links-manager
 
-Connecting to the app console for local-links-manager, in the integration environment
-The relevant hosting provider is aws
-The relevant node class is backend
-There are 2 machines of this class
-Connecting to a random machine (number 1) #=> Make a note of this MACHINE_NO
+NAME                                  READY   STATUS    RESTARTS   AGE
+local-links-manager-fdc5dbbb7-vrf96   2/2     Running   0          4h50m
+local-links-manager-fdc5dbbb7-x7rll   2/2     Running   0          4h50m
 ```
 
-Then in the rails console...
+Once you've chosen a pod, connect to its Rails Console:
+
+```bash
+k exec local-links-manager-fdc5dbbb7-vrf96 -- rails c
+```
+
+Once in the rails console...
 
 ```ruby
 lgsl_code = 1234
@@ -78,7 +92,7 @@ lgsl_code = 1234
 file = "#{Rails.root}/tmp/#{lgsl_code}.csv"
 
 # Make a note of this REMOTE_FILE_PATH...
-=> "/data/vhost/local-links-manager/releases/20210507085218/tmp/1234.csv"
+=> "/app/tmp/1234.csv"
 ```
 
 Generate the CSV file and exit out of the rails console.
@@ -92,16 +106,10 @@ CSV.open(file, 'w') do |csv|
 end
 ```
 
-Download the CSV file just you just created to your local machine...
+Now using the same pod as before and the file path from above, run the `kubectl cp` command to pull the file:
 
 ```bash
-$ gds govuk connect scp-pull -e integration backend:MACHINE_NO REMOTE_FILE_PATH ~/Downloads
-```
-
-Substituting the MACHINE_NO and REMOTE_FILE_PATH from the earlier rails console session. For example:
-
-```bash
-$ gds govuk connect scp-pull -e integration backend:1 /data/vhost/local-links-manager/releases/20210507085218/tmp/1234.csv ~/Downloads
+k cp local-links-manager-fdc5dbbb7-vrf96:/tmp/1234.csv ~/Downloads/1234.csv
 ```
 
 Hand this over to the service product owner.
@@ -121,7 +129,7 @@ _Where `SERVICE_DESCRIPTION` is the service [`description`](#seek-content-advice
 Once your PR is merged and deployed, run [this rake task](https://github.com/alphagov/publisher/blob/b65989d9c37df639d53666ccb3cd801c1155d247/lib/tasks/local_transactions.rake#L3) in Publisher...
 
 ```bash
-bundle exec rails local_transactions:fetch_and_clean
+k exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails local_transactions:fetch_and_clean
 ```
 
 ## Make the service unavailable for a nation in Frontend
@@ -157,7 +165,7 @@ Run [this rake task](https://github.com/alphagov/local-links-manager/blob/a1a2b2
 * Enables the [`Service`](https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service.rb#L1) and [`ServiceInteraction`](https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service_interaction.rb#L1)
 
 ```bash
-bundle exec rails service:enable[LGSL_CODE,LGIL_CODE,SERVICE_NAME,SERVICE_SLUG]
+k exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails service:enable[LGSL_CODE,LGIL_CODE,SERVICE_NAME,SERVICE_SLUG]
 ```
 
 _Where `SERVICE_NAME` is the service [`name`](#seek-content-advice), and `SERVICE_SLUG` is the service [`slug`](#seek-content-advice)._
@@ -165,7 +173,7 @@ _Where `SERVICE_NAME` is the service [`name`](#seek-content-advice), and `SERVIC
 Then run [this rake task](https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/import/missing_links.rake#L5) in Local Links Manager to add (empty) links for all available local authorities...
 
 ```bash
-bundle exec rails import:missing_links
+k exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails import:missing_links
 ```
 
 ## Upload Local Authority URLs to Local Links Manager (LLM)
@@ -173,29 +181,27 @@ bundle exec rails import:missing_links
 Upload the completed CSV file that was sent to the product owner [in this step](#get-a-list-of-local-authority-slugs-and-urls)...
 
 ```bash
-$ gds govuk connect scp-push -e integration backend LOCAL_FILE_PATH REMOTE_FILE_PATH
+k cp LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-vrf96:/REMOTE_FILE_PATH
 ```
 
 Run [this rake task](https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/import/service_links_from_csv.rake#L5) to import the links from the CSV file.
 
 ```bash
-bundle exec rails import:service_links[LGSL_CODE,LGIL_CODE,REMOTE_FILE_PATH]
+k exec local-links-manager-fdc5dbbb7-vrf96 -- bundle exec rails import:service_links[LGSL_CODE,LGIL_CODE,REMOTE_FILE_PATH]
 ```
 
-__Note__: If you intend to run the `import:service_links` rake task via Jenkins, you will need run scp-push against all of the backend machines. For example:
+__Note__: To run the `import:service_links` rake task, you will need to cp against one of the live pods. For example:
 
 ```bash
-# To find out how many machines you'll need to copy the file to...
-$ gds govuk connect ssh -e integration backend
-There are 2 machines of this class  #=> Make a note of the number of machines
-Connecting to a random machine (number 1)
-$ exit
+# To find out which pods you'll need to copy to, list the pods for that app.
+k get pods -l=app=local-links-manager
 
-# Copy the file...
-$ gds govuk connect scp-push -e integration backend:1 LOCAL_FILE_PATH REMOTE_FILE_PATH
-$ gds govuk connect scp-push -e integration backend:2 LOCAL_FILE_PATH REMOTE_FILE_PATH
-# ...
-$ gds govuk connect scp-push -e integration backend:n LOCAL_FILE_PATH REMOTE_FILE_PATH
+NAME                                  READY   STATUS    RESTARTS   AGE
+local-links-manager-fdc5dbbb7-vrf96   2/2     Running   0          4h50m
+local-links-manager-fdc5dbbb7-x7rll   2/2     Running   0          4h50m
+
+# Copy the file to each...
+k cp LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-vrf96:/REMOTE_FILE_PATH
 ```
 
 ## Add content and publish the service in Publisher
