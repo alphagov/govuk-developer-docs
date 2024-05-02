@@ -212,15 +212,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6ba97afdaca74fea3496faa65bb54b16a229b571">1 May 2024</a>
 </div>
 
  <h1 id='header'>Rename a country</h1> <blockquote>
@@ -241,21 +234,22 @@
 <h3 id='1-update-travel-advice-publisher'>1. Update Travel Advice Publisher</h3><p>This will update www.gov.uk/foreign-travel-advice/<code>&lt;country_slug&gt;</code> to www.gov.uk/foreign-travel-advice/<code>&lt;new_country_slug&gt;</code>.</p>
 
 <ol>
-<li><p>Change the relevant name and slug in the <code>lib/data/countries.yml</code> file. Keep <code>content_id</code> and <code>email_signup_content_id</code> the same, and ensure the alphabetical order of the list is respected. <a href="https://github.com/alphagov/travel-advice-publisher/pull/539/files#diff-e7c0733c6cf5a1d6fc1f2589a6d9f0f7">Example</a></p></li>
+<li><p>Change the relevant name and slug in the <code>lib/data/countries.yml</code> file. Keep <code>content_id</code> and <code>email_signup_content_id</code> the same, and ensure the alphabetical order of the list is respected. <a href="https://github.com/alphagov/travel-advice-publisher/pull/1876/files">Example</a></p></li>
 <li><p>Deploy Travel Advice Publisher</p>
 
 <ul>
-<li>Once the above pull request is ready, <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&amp;DEPLOY_TASK=deploy:with_hard_restart">deploy</a> Travel Advice Publisher with a hard restart to update the countries YAML file.</li>
+<li>Once the above pull request is ready, <a href="https://github.com/alphagov/travel-advice-publisher/actions/workflows/deploy.yml">deploy</a> Travel Advice Publisher to update the countries YAML file.</li>
 <li>You will see the country has updated in the list in <a href="https://travel-advice-publisher.integration.publishing.service.gov.uk/admin">Travel Advice Publisher</a></li>
 </ul></li>
-<li><p>Run Rake tasks</p>
+<li><p>Run Rake tasks</p></li>
+</ol>
+<p>kubectl exec deploy/travel-advice-publisher  &ndash; rake
+   * Run <code>country:rename[old_country_slug,new_country_slug]</code> to update the <code>TravelAdviceEdition</code>s.
+   * Run <code>publishing_api:republish_edition[new_country_slug]</code> to update the Publishing API.
+   * Run <code>publishing_api:republish_email_signups:country_edition[country-slug]</code> to update email subscriptions at <code>/foreign-travel-advice/&lt;country_slug&gt;/email-signup</code></p>
 
-<ul>
-<li>Run <code>country:rename[old_country_slug,new_country_slug]</code> to update the <code>TravelAdviceEdition</code>s.</li>
-<li>Run <code>publishing_api:republish_edition[new_country_slug]</code> to update the Publishing API.</li>
-<li>Run <code>publishing_api:republish_email_signups:country_edition[country-slug]</code> to update email subscriptions at <code>/foreign-travel-advice/&lt;country_slug&gt;/email-signup</code></li>
-</ul></li>
-<li><p>Update the search metadata</p>
+<ol>
+<li>Update the search metadata
 
 <ul>
 <li>In the <a href="https://travel-advice-publisher.integration.publishing.service.gov.uk/admin">UI</a>, go to the country and create a new edition</li>
@@ -263,12 +257,12 @@
 <li>Save and publish.</li>
 </ul></li>
 </ol>
-<h3 id='2-update-worldwide-taxons'>2. Update Worldwide Taxons</h3><p><strong>Example pull request:</strong> <a href="https://github.com/alphagov/search-api/pull/1436">https://github.com/alphagov/search-api/pull/1436</a></p>
+<h3 id='2-update-worldwide-taxons'>2. Update Worldwide Taxons</h3><p><strong>Example pull request:</strong> <a href="https://github.com/alphagov/search-api/pull/2884/files">https://github.com/alphagov/search-api/pull/2884/files</a></p>
 <p>This will update <code>www.gov.uk/world/&lt;country_slug&gt;</code> to <code>www.gov.uk/world/&lt;new_country_slug&gt;</code>.</p>
 <p>In <a href="https://github.com/alphagov/search-api">Search API</a>:</p>
 
 <ol>
-<li>Create a <a href="https://github.com/alphagov/search-api/pull/1436">pull request</a> with a change to the relevant country taxon in <code>config/govuk_index/migrated_formats.yaml</code></li>
+<li>Create a <a href="https://github.com/alphagov/search-api/pull/2884/files">pull request</a> with a change to the relevant country taxon in <code>config/govuk_index/migrated_formats.yaml</code></li>
 <li>Deploy Search API</li>
 </ol>
 <p>In <a href="https://content-tagger.integration.publishing.service.gov.uk/">Content Tagger</a>:</p>
@@ -284,12 +278,12 @@
 <p><strong>Note</strong></p>
 <p>Updating the child taxons linked to the country taxon (&ldquo;UK help and services in country&rdquo;) will be a content task.</p>
 </blockquote>
-<h3 id='3-update-whitehall'>3. Update Whitehall</h3><p><strong>Example pull request:</strong> <a href="https://github.com/alphagov/whitehall/pull/4643">https://github.com/alphagov/whitehall/pull/4643</a></p>
+<h3 id='3-update-whitehall'>3. Update Whitehall</h3><p><strong>Example pull request:</strong> <a href="https://github.com/alphagov/whitehall/pull/8963">https://github.com/alphagov/whitehall/pull/8963</a></p>
 <p>This will update <code>www.gov.uk/world/&lt;country_slug&gt;/news</code>.</p>
 <p>In <a href="https://github.com/alphagov/whitehall">Whitehall</a>:</p>
 
 <ol>
-<li><p>Create a <a href="https://github.com/alphagov/whitehall/pull/4643/files">data migration</a> to update the <code>slug</code> and <code>name</code> fields of the <code>WorldLocation</code> table.</p></li>
+<li><p>Create a <a href="https://github.com/alphagov/whitehall/pull/8963/files">data migration</a> to update the <code>slug</code> and <code>name</code> fields of the <code>WorldLocation</code> table.</p></li>
 <li><p>Deploy the changes</p></li>
 <li><p>Run the <code>db:data:migrate</code> rake task in Whitehall</p></li>
 <li><p>Update World Location News</p>
@@ -298,7 +292,7 @@
 <li>Go to the relevant country in <a href="https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations">World Location News</a>. In the &ldquo;Details&rdquo; tab, edit the <code>Title</code>, <code>Mission statement</code> and relevant <code>Featured links</code>.</li>
 </ul></li>
 </ol>
-<h3 id='4-update-smart-answers'>4. Update Smart-answers</h3><p><strong>Example pull request:</strong> <a href="https://github.com/alphagov/smart-answers/pull/3899/">https://github.com/alphagov/smart-answers/pull/3899/</a></p>
+<h3 id='4-update-smart-answers'>4. Update Smart-answers</h3><p><strong>Example pull request:</strong> <a href="https://github.com/alphagov/smart-answers/pull/6755">https://github.com/alphagov/smart-answers/pull/6755</a></p>
 
 <blockquote>
 <p><strong>Note</strong></p>
@@ -314,7 +308,7 @@
 <p>In <a href="https://github.com/alphagov/smart-answers">Smart-answers</a>:</p>
 
 <ol>
-<li><p>Create a <a href="https://github.com/alphagov/smart-answers/pull/3899/">pull request</a> that replaces all instances of <code>country_name</code> with <code>new_country_name</code>.</p></li>
+<li><p>Create a <a href="https://github.com/alphagov/smart-answers/pull/6755">pull request</a> that replaces all instances of <code>country_name</code> with <code>new_country_name</code>.</p></li>
 <li><p>Check changes are reflected in the affected smart answers</p></li>
 <li><p>Deploy the pull request</p></li>
 </ol>
@@ -335,11 +329,11 @@ with the country name to see which subscription lists need to be updated</li>
 <li>Run the rake task <code>data_migration:update_subscriber_list_slug[slug,new_slug]</code>
 to update the subscription lists</li>
 </ol>
-<h3 id='6-remove-duplicate-search-results'>6. Remove duplicate search results</h3><p>In <a href="https://github.com/alphagov/whitehall">Whitehall</a> run <code>SearchIndexDeleteWorker.perform_async(instance.search_index[&#39;slug&#39;], instance.rummager_index)</code></p>
-<p>Failing this, there is a <a href="https://github.com/alphagov/search-api/blob/4f106e40f2c1690d631f699bf8fc63dc39268866/lib/tasks/delete.rake#L9">rake task</a> that takes care of this.</p>
+<h3 id='6-remove-duplicate-search-results'>6. Remove duplicate search results</h3><p>In <a href="https://github.com/alphagov/whitehall">Whitehall</a> run <code>SearchIndexDeleteWorker.perform_async(link, index)</code></p>
+<p>For example <code>SearchIndexDeleteWorker.perform_async(&#39;/world/micronesia/news&#39;, &#39;government&#39;)</code></p>
 <h3 id='7-update-specialist-publisher'>7. Update Specialist Publisher</h3>
 <ol>
-<li><p>Create and deploy pull requests for schemas in publishing api  (<a href="https://github.com/alphagov/govuk-content-schemas/pull/1014">example</a>) and Specialist Publisher (<a href="https://github.com/alphagov/specialist-publisher/pull/1722/commits/79c10d173f8294fef25b07678a7e74213e78e424">example</a>) to support both countries temporarily (during the data migration). Note that the schema example PR given here is for the archived govuk-content-schemas repo - please update with a publishing api PR when this is available.</p></li>
+<li><p>Create and deploy pull requests for schemas in publishing api (<a href="https://github.com/alphagov/publishing-api/pull/2712">example</a>) and Specialist Publisher (<a href="https://github.com/alphagov/specialist-publisher/pull/2592">example</a>) to support both countries temporarily (during the data migration).</p></li>
 <li><p>Run the rake task <code>publishing_api:publish_finder[finder]</code> to republish the updated finders:</p>
 
 <ul>
@@ -350,10 +344,10 @@ to update the subscription lists</li>
 <li><p>Check the country filter options have updated and documents appear with the new country filter set. This could take a few minutes due to the time it takes to republish the finder and all its associated documents.</p>
 
 <ul>
-<li><a href="https://www-origin.integration.publishing.service.gov.uk/export-health-certificates?cachebust=123">Export Health Certificates</a>.</li>
-<li><a href="https://www-origin.integration.publishing.service.gov.uk/international-development-funding?cachebust=123">International Development Funds</a>.</li>
+<li><a href="https://www.integration.publishing.service.gov.uk/export-health-certificates?cachebust=123">Export Health Certificates</a>.</li>
+<li><a href="https://www.integration.publishing.service.gov.uk/international-development-funding?cachebust=123">International Development Funds</a>.</li>
 </ul></li>
-<li><p>Create and deploy another pull request for content schemas in publishing api (<a href="https://github.com/alphagov/govuk-content-schemas/pull/1015">example</a>) and Specialist Publisher (<a href="https://github.com/alphagov/specialist-publisher/pull/1724">example</a>) to remove support for the old country. Note that the schema example PR given here is for the archived govuk-content-schemas repo - please update with a publishing api PR when this is available.</p></li>
+<li><p>Create and deploy another pull request for content schemas in publishing api (<a href="https://github.com/alphagov/publishing-api/pull/2713">example</a>) and Specialist Publisher (<a href="https://github.com/alphagov/specialist-publisher/pull/2593">example</a>) to remove support for the old country.</p></li>
 <li><p>Re-publish the finders again, as above.</p></li>
 <li><p>Run the rake task <code>data_migration:update_subscriber_list_tag[field,country_slug,new_country_slug]</code> to update the matching criteria for any subscriber lists in Email Alert API with keys of:</p>
 
