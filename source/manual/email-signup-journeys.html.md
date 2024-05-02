@@ -24,12 +24,12 @@ Since its initial roll out, the component has been extended so that it can now b
 #### How does the skip account feature work?
 
 - By default, the button will post to `/email/subscriptions/single-page/new?topic_id=slug` which is served by email-alert-frontend's [govuk_account_signups controller][email-alert-frontend-account-controller]. This route enforces the GOV.UK account.
-- If the [skip_account paramater is present][govuk-publishing-components-present], the button will post to `/email-signup/?link=/slug` which is served by email-alert-frontend's [content_item_signups controller][email-alert-frontend-content-item-controller]. This route signs the user up by magic link.
+- If the [skip_account parameter is present][govuk-publishing-components-present], the button will post to `/email-signup/?link=/slug` which is served by email-alert-frontend's [content_item_signups controller][email-alert-frontend-content-item-controller]. This route signs the user up by magic link.
 
 [single-page-notification-button]: https://components.publishing.service.gov.uk/component-guide/single_page_notification_button
 [skip-account-documentation]: https://components.publishing.service.gov.uk/component-guide/single_page_notification_button/with_skip_account
 [email-alert-api-documentation-content-id]: https://github.com/alphagov/email-alert-api/blob/main/docs/matching-content-to-subscriber-lists.md#uuid-field
-[email-alert-frontend-account-controller]:https://github.com/alphagov/email-alert-frontend/blob/main/config/routes.rb#L39
+[email-alert-frontend-account-controller]:https://github.com/alphagov/email-alert-frontend/blob/810f3bd43dde903ca85cbf99c073c61bf037ca16/config/routes.rb#L39
 [govuk-publishing-components-present]: https://github.com/alphagov/govuk_publishing_components/blob/main/lib/govuk_publishing_components/presenters/single_page_notification_button_helper.rb#L64-L66
 
 ### Sign up link component
@@ -43,7 +43,7 @@ The signup journey does not enforce the GOV.UK account, the user must enter an e
 [sign-up-link]: https://components.publishing.service.gov.uk/component-guide/signup_link
 [taxonomy-topic-example]: https://www.gov.uk/education
 [email-alert-api-documentation-links]: https://github.com/alphagov/email-alert-api/blob/main/docs/matching-content-to-subscriber-lists.md#json-fields
-[email-alert-frontend-content-item-controller]: https://github.com/alphagov/email-alert-frontend/blob/main/config/routes.rb#L11
+[email-alert-frontend-content-item-controller]: https://github.com/alphagov/email-alert-frontend/blob/810f3bd43dde903ca85cbf99c073c61bf037ca16/config/routes.rb#L11
 
 ### Subscription links component
 
