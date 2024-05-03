@@ -55,4 +55,4 @@ The GOV.UK 2nd Line Tech Support team ([#govuk-2ndline-tech])
 [#govuk-developers]: https://gds.slack.com/channels/govuk-developers
 [#govuk-platform-engineering]: https://gds.slack.com/channels/govuk-platform-engineering
 [#govuk-platform-security-reliability-team]: https://gds.slack.com/channels/govuk-platform-security-reliability-team
-[Platform Engineering]: /platform-engineering
+[Platform Engineering]: /platform-engineering.html
