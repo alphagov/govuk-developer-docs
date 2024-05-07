@@ -288,7 +288,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/da1a49e499a844dc0305fa318028693da66c33e7">5 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/56d1617c7b354dfb1003448257e8c56eed04117b">3 May 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Organisation logos</h1>
@@ -297,29 +297,17 @@
 <h2 id="overview">Overview</h2>
 <p>The <a href="https://components.publishing.service.gov.uk/component-guide/organisation_logo">Organisation logo component</a> can be used to render organisation logos that use either the <a href="https://gcs.civilservice.gov.uk/guidance/marketing/branding-guidelines/">Government Identity System</a>, such as <a href="https://components.publishing.service.gov.uk/component-guide/organisation_logo/hm_revenue_customs/preview">HMRC</a>, or have a <a href="https://gcs.civilservice.gov.uk/guidance/marketing/branding-guidelines/#Brand-exemption-process">brand exemption</a>, such as <a href="https://components.publishing.service.gov.uk/component-guide/organisation_logo/hm_prison_service/preview">HMPS</a>.</p>
 <p>This documentation provides details on how to update and add new logos that are part of the Government Identity System.</p>
-<h2 id="images-required">Images required</h2>
-<p>The four images below are required for the organisation logo component. The images should be added to <code>app/assets/images/govuk_publishing_components/crests</code>. The image format required is a transparent PNG with the whitespace trimmed.</p>
+<h2 id="image-requirements">Image requirements</h2>
+<p>The image should be added to <code>app/assets/images/govuk_publishing_components/crests</code>. The image format required is a transparent PNG, with the whitespace trimmed, unless whitespace has been agreed with a designer.</p>
 <h3 id="naming-convention">Naming convention</h3>
 <ul>
 <li>
 <code>$crest</code> this is usually in the format <code>"[department_abbreviation]_crest"</code> all lowercase with underscores, for example <code>hmrc_crest</code>
 </li>
 <li>
-<code>_13px/_18px</code> refers to the font-size used</li>
+<code>_18px</code> (deprecated) referred to the font-size used</li>
 <li>
-<code>_x2</code> used to provide an @2x image for screens that support it</li>
-</ul>
-<h3 id="mobile">Mobile</h3>
-<p>By default, the logo image used on mobile screen sizes, will have a height of <code>20px</code>.</p>
-<ul>
-<li><code>#{$crest}_13px.png</code></li>
-<li><code>#{$crest}_13px_x2.png</code></li>
-</ul>
-<h3 id="tablet-and-desktop">Tablet and Desktop</h3>
-<p>By default, the logo image used from tablet screen sizes, will have a height of <code>26px</code>.</p>
-<ul>
-<li><code>#{$crest}_18px.png</code></li>
-<li><code>#{$crest}_18px_x2.png</code></li>
+<code>_x2</code> (deprecated) was used to provide an @2x image for screens that supported it</li>
 </ul>
 <h2 id="add-the-css-required-for-new-organisation-logos">Add the CSS required for new organisation logos</h2>
 <p>If you have added a new organisation logo, you will also need to add the required CSS to ensure it is requested on page load and renders correctly.</p>
@@ -332,7 +320,7 @@
 </code></pre>
 <p>The value passed to the <code>crest</code> mixin here follows the naming convention mentioned above.</p>
 <h3 id="adjusting-the-logo-height">Adjusting the logo height</h3>
-<p>You can also use the <code>tall-crest</code> mixin to set the height of the logo to <code>25px</code> on mobile, and <code>34px</code> for tablet and desktop screen sizes, this can be used to help avoid the organisation logo appearing too narrow.</p>
+<p>You can also use the <code>tall-crest</code> mixin to increase the height of the logo. This can be used to help avoid the organisation logo appearing too narrow.</p>
 <p>Example used on the MOD organisation logo:</p>
 <pre lang="scss"><code>.gem-c-organisation-logo__crest--mod {
   @include crest("mod_crest");
