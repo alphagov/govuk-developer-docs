@@ -1,0 +1,17 @@
+<% content_for :title, create_page_title(data.mobile.navigation.android.name) %>
+
+<h1 class="govuk-heading-l">
+  <%= data.mobile.navigation.android.name %>
+</h1>
+
+<p class="govuk-body"><%= data.mobile.navigation.android.desc %></p>
+
+<% if data.mobile.navigation.android.subsections %>
+  <ul class="govuk-list govuk-list--bullet">
+    <% data.mobile.navigation.android.subsections.each do |subsection| %>
+      <li>
+        <%= link_to subsection.name, subsection.link, class: "govuk-link" %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
