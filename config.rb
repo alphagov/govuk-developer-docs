@@ -77,3 +77,8 @@ data.analytics.trackers.each do |tracker|
   tracker_name = tracker["name"].downcase.gsub(" ", "_")
   proxy "analytics/tracker_#{tracker_name}.html", "analytics/templates/tracker.html", locals: { tracker: }
 end
+
+# Configuration for Mobile pages
+ignore "mobile/templates/*"
+
+page "mobile/*", layout: :mobile_layout
