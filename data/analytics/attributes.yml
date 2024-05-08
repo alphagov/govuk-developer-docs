@@ -5,6 +5,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: ab_test
+  ga4_display_name: AB test
 
 - name: action
   description: Shows the kind of thing the user has done.
@@ -13,6 +15,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: action
+  ga4_display_name: Action
 
 - name: browse_topic
   description: Used in the page_view object to record the parent browse topic for the page
@@ -21,6 +25,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: browse_topic
+  ga4_display_name: Browse topic
 
 - name: content_id
   description:
@@ -29,6 +35,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: content_id
+  ga4_display_name: Content ID
 
 - name: cookie_banner
   description: Used in the page_view object to record the presence of the cookie banner "You have accepted cookies" element on the page
@@ -37,6 +45,8 @@
   required: no
   type: string (boolean)
   redact: false
+  gtm_parameter: cookie_banner
+  ga4_display_name: Cookie banner
 
 - name: devolved_nations_banner
   description: Used in the page_view object to record the countries listed in a devolved nations banner on the page
@@ -45,6 +55,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: devolved_nations_banner
+  ga4_display_name: Devolved nations banner
 
 - name: discovery_engine_attribution_token
   description: Recorded in the page view event if the page view occurs on a search. The value is a unique token associated with the search query, which is used for debugging purposes to improve search results.
@@ -61,6 +73,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: document_type
+  ga4_display_name: Document type
 
 - name: dynamic
   description: The existence of a referrer parameter indicates that the page has been dynamically updated via an AJAX request and therefore we can use it to set the dynamic property appropriately. This value is used by analysts to differentiate between fresh page loads and dynamic page updates.
@@ -82,6 +96,8 @@
   required: no
   type: string (boolean)
   redact: false
+  gtm_parameter: emergency_banner
+  ga4_display_name: Emergency banner
 
 - name: event
   description: Needed by Google to contain a specific thing to cause a trigger to happen.
@@ -104,6 +120,8 @@
   required: yes
   type: string ("true" or "false")
   redact: false
+  gtm_parameter: external
+  ga4_display_name: External
 
 - name: first_published_at
   description: date and time the page was first published
@@ -112,6 +130,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: first_published_at
+  ga4_display_name: First published date
 
 - name: history
   description:
@@ -120,6 +140,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: history
+  ga4_display_name: Content has history
 
 - name: index (ecommerce)
   description: The position of the clicked result within an overall list of results e.g. 5 out of 20.
@@ -136,6 +158,8 @@
   required: no
   type: number
   redact: false
+  gtm_parameter: index
+  ga4_display_name: Index
 
 - name: index_section
   description: The index of the section that was interacted with, for example the index of the section the clicked link is in. Sections are usually segmented by headings within a component.
@@ -144,6 +168,8 @@
   required: no
   type: number
   redact: false
+  gtm_parameter: index_section
+  ga4_display_name: Index section
 
 - name: index_section_count
   description: The total number of sections in the thing being tracked, such as the header or sidebar. Sections are usually segmented by headings within a component.
@@ -152,6 +178,8 @@
   required: no
   type: number
   redact: false
+  gtm_parameter: index_section_total
+  ga4_display_name: Index section total
 
 - name: index_total
   description: Relates to index by showing the total number of things e.g. tabs or accordion sections.
@@ -159,6 +187,8 @@
   required: yes
   type: string (number)
   redact: false
+  gtm_parameter: index_total
+  ga4_display_name: Index total
 
 - name: intervention
   description: Used in the page_view object to record the presence of an intervention banner on the page
@@ -167,6 +197,8 @@
   required: no
   type: string (boolean)
   redact: false
+  gtm_parameter: intervention
+  ga4_display_name: Intervention
 
 - name: item_id
   description: The URL path of the clicked result.
@@ -191,6 +223,7 @@
   required: yes
   type: array
   redact: false
+  gtm_parameter: items
 
 - name: language
   description: the language the page is rendered in
@@ -199,6 +232,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: content_language
+  ga4_display_name: Content language
 
 - name: link_domain
   description: The protocol and domain of a link href attribute.
@@ -207,6 +242,8 @@
   required: yes
   type: string
   redact: false
+  gtm_parameter: link_domain
+  ga4_display_name: Link domain
 
 - name: location
   description:
@@ -215,6 +252,8 @@
   required: no
   type: string
   redact: true
+  gtm_parameter: page_location
+  ga4_display_name: Page location
 
 - name: method
   description: How a link was clicked.
@@ -223,6 +262,8 @@
   required: yes
   type: string
   redact: false
+  gtm_parameter: method
+  ga4_display_name: Method
 
 - name: navigation_list_type
   description: Used in the page view object to record the type of page being shown in browse, either 'curated' or 'alphabetical'
@@ -231,6 +272,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: navigation_list_type
+  ga4_display_name: Navigation list type
 
 - name: navigation_page_type
   description: Used in the page_view object to record the navigation page type. This meta tag is populated on topic pages (mainstream browse, specialist topic, and taxonomy topics) to identify which level it is in the topic structure. It's also used for tracking step by step navigation sidebars e.g. 'Primary step by step shown' or 'Secondary step by step shown'.
@@ -239,11 +282,15 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: navigation_page_type
+  ga4_display_name: Navigation page type
 
 - name: organisations
   required: no
   type: string
   redact: false
+  gtm_parameter: organisations
+  ga4_display_name: Publishing organisations IDs
 
 - name: phase_banner
   description: Used in the page_view object to record the presence of a phase banner on the page
@@ -252,6 +299,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: phase_banner
+  ga4_display_name: Phase banner
 
 - name: percent_scrolled
   description: indicates how far down the page was scrolled, typically 20%, 40%, 60%, 80% or 100%
@@ -260,21 +309,29 @@
   required: no
   type: string (number)
   redact: false
+  gtm_parameter: percent_scrolled
+  ga4_display_name: Percent scrolled
 
 - name: political_status
   required: no
   type: string
   redact: false
+  gtm_parameter: political_status
+  ga4_display_name: Political status
 
 - name: primary_publishing_organisation
   required: no
   type: string
   redact: false
+  gtm_parameter: primary_publishing_organisation
+  ga4_display_name: Primary publishing organisation
 
 - name: public_updated_at
   required: no
   type: string
   redact: false
+  gtm_parameter: public_updated_at
+  ga4_display_name: Last public update
 
 - name: publishing_app
   description: application that published the content
@@ -283,12 +340,16 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: publishing_app
+  ga4_display_name: Publishing application
 
 - name: publishing_government
   description: The government that was responsible for publishing a piece of content.
   required: no
   type: string
   redact: false
+  gtm_parameter: publishing_government
+  ga4_display_name: Publishing government
 
 - name: query_string
   description: Used in the page_view object to record the presence of a query_string in the URL
@@ -297,6 +358,8 @@
   required: no
   type: string
   redact: true
+  gtm_parameter: query_string
+  ga4_display_name: Query string
 
 - name: referrer
   description: The page the user was on before coming to this page.
@@ -313,12 +376,16 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: rendering_app
+  ga4_display_name: Rendering application
 
 - name: results
   description: Used by ecommerce to give a total number of the results/links on the page.
   required: no
   type: string
   redact: false
+  gtm_parameter: search_results
+  ga4_display_name: Search results
 
 - name: schema_name
   description:
@@ -327,6 +394,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: schema_name
+  ga4_display_name: Schema name
 
 - name: search_term
   description: Used in the page_view object to record the presence of a search term in the URL
@@ -335,6 +404,8 @@
   required: no
   type: string
   redact: true
+  gtm_parameter: search_term
+  ga4_display_name: Search term
 
 - name: section
   alias: section_event_data
@@ -344,6 +415,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: section
+  ga4_display_name: Section
 
 - name: sort
   description: The method of sorting (i.e. relevance/updated(newest)/updated(oldest))
@@ -351,6 +424,8 @@
   required: yes
   type: string
   redact: false
+  gtm_parameter: search_sort
+  ga4_display_name: Search sort
 
 - name: spelling_suggestion
   description: Used in the page_view object to record the presence of spelling suggestions on finder pages
@@ -359,6 +434,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: spelling_suggestion
+  ga4_display_name: Spelling suggestion
 
 - name: status_code
   description:
@@ -367,6 +444,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: status_code
+  ga4_display_name: Page status code
 
 - name: step_navs
   description: Used in the page_view object to record the id of the step nav that is related to the page
@@ -375,6 +454,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: step_navs
+  ga4_display_name: Step navs
 
 - name: taxonomy_all
   description: A string containing the content attribute of the meta tag govuk:taxon_slugs.
@@ -383,6 +464,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: taxonomy_all
+  ga4_display_name: Taxonomy topics
 
 - name: taxonomy_all_ids
   description: A string containing the content attribute of the meta tag govuk:taxon_ids.
@@ -391,6 +474,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: taxonomy_all_ids
+  ga4_display_name: Taxonomy topics IDs
 
 - name: taxonomy_level1
   description:
@@ -399,6 +484,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: taxonomy_level1
+  ga4_display_name: Taxonomy level 1
 
 - name: taxonomy_main
   description:
@@ -407,6 +494,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: taxonomy_main
+  ga4_display_name: Taxonomy main topic
 
 - name: taxonomy_main_id
   description:
@@ -415,6 +504,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: taxonomy_main_id
+  ga4_display_name: Taxonomy main topic ID
 
 - name: term
   description: The search term. The value is sanitised with PII removal, + characters converted to spaces, spaces and new lines trimmed, and downcasing.
@@ -423,6 +514,8 @@
   required: yes
   type: string
   redact: true
+  gtm_parameter: search_term
+  ga4_display_name: Search term
 
 - name: text
   description: The text of the thing being tracked, for example the text of a link, button or tab. This can either be read directly from the element, passed from a data attribute, or generated automatically for elements where the text changes, for example the 'Show all sections' link in an accordion, which can also read 'Hide all sections'.
@@ -430,6 +523,33 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: ui_text
+  ga4_display_name: UI text
+  variants:
+  - event_name: search
+    gtm_parameter: search_term
+    ga4_display_name: Search term
+  - event_name: navigation
+    gtm_parameter: link_text
+    ga4_display_name: Link text
+  - event_name: file_download
+    gtm_parameter: link_text
+    ga4_display_name: Link text
+  - event_name: form_response
+    gtm_parameter: response
+    ga4_display_name: Response
+  - event_name: video_start
+    gtm_parameter: video_title
+    ga4_display_name: Video title
+  - event_name: video_progress
+    gtm_parameter: video_title
+    ga4_display_name: Video title
+  - event_name: video_complete
+    gtm_parameter: video_title
+    ga4_display_name: Video title
+  - event_name: form_complete
+    gtm_parameter: outcome
+    ga4_display_name: Outcome
 
 - name: tool_name
   description: Refers to the tool being tracked, for example the name of a smart answer or 'Find your local council'.
@@ -437,6 +557,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: tool_name
+  ga4_display_name: Tool name
 
 - name: title
   description:
@@ -445,6 +567,8 @@
   required: no
   type: string
   redact: true
+  gtm_parameter: page_title
+  ga4_display_name: Page title
 
 - name: timestamp
   description: The user's unix timestamp during a dataLayer push. Performance Analysts use this to sort dataLayer pushes from a user in a sequential order.
@@ -452,6 +576,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: timestamp
+  ga4_display_name: Deliberately not sent to GA4 - just BigQuery
 
 - name: type
   description: Relates to the top level attribute of event_name but contains a value that we have defined.
@@ -459,6 +585,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: type
+  ga4_display_name: Type
 
 - name: updated_at
   description: date the content was last updated
@@ -467,6 +595,8 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: updated_at
+  ga4_display_name: Last internal update
 
 - name: url
   description: Used to communicate relevant location information, such as the URL of a tab that has been clicked or the href of the link where the user is going. Note that this can differ from the top level location attribute.
@@ -474,24 +604,47 @@
   required: no
   type: string
   redact: true
+  gtm_parameter: link_url
+  ga4_display_name: Link URL
+  variants:
+  - event_name: video
+    gtm_parameter: video_url
+    ga4_display_name: Video URL
 
 - name: video_current_time
   description: The current position of the video being played, in seconds.
   required: no
   type: string (number)
   redact: false
+  gtm_parameter: video_current_time
+  ga4_display_name: Video current time
 
 - name: length
   description: The length of something. This could be the number of seconds in a video, or the number of characters in a string.
   required: no
   type: string (number)
   redact: false
+  variants:
+  - event_name: copy
+    gtm_parameter: copy_length
+    ga4_display_name: Copy length
+  - event_name: video_start
+    gtm_parameter: video_duration
+    ga4_display_name: Video duration
+  - event_name: video_progress
+    gtm_parameter: video_duration
+    ga4_display_name: Video duration
+  - event_name: video_complete
+    gtm_parameter: video_duration
+    ga4_display_name: Video duration
 
 - name: video_percent
   description: Used to record when the video being played is at 0%, 25%, 50%, 75% or 100%.
   required: no
   type: string (number)
   redact: false
+  gtm_parameter: video_percent
+  ga4_display_name: Video percent
 
 - name: viewport_size
   description: Used in the page_view object to record the browser viewport size.
@@ -500,11 +653,15 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: viewport_size
+  ga4_display_name: Viewport size
 
 - name: world_locations
   required: no
   type: string
   redact: false
+  gtm_parameter: world_locations
+  ga4_display_name: World locations
 
 - name: withdrawn
   description:
@@ -513,3 +670,5 @@
   required: no
   type: string
   redact: false
+  gtm_parameter: withdrawn
+  ga4_display_name: Content withdrawn
