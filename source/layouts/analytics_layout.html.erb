@@ -65,12 +65,12 @@
 
           <ul class="govuk-list">
             <li>
-              <%= link_to data.analytics.navigation.data.name, data.analytics.navigation.data.link, class: "govuk-link" %>
+              <%= link_to data.analytics.navigation.data.name, "/analytics/#{data.analytics.navigation.data.link}", class: "govuk-link" %>
             </li>
             <ul class="govuk-list govuk-list--bullet">
               <% data.analytics.navigation.data.subsections.each do |subsection| %>
                 <li>
-                  <%= link_to subsection.name, subsection.link, class: "govuk-link" %>
+                  <%= link_to subsection.name, "/analytics/#{subsection.link}", class: "govuk-link" %>
                 </li>
               <% end %>
             </ul>
@@ -80,12 +80,12 @@
 
           <ul class="govuk-list">
             <li>
-              <%= link_to data.analytics.navigation.docs.name, data.analytics.navigation.docs.link, class: "govuk-link" %>
+              <%= link_to data.analytics.navigation.docs.name, "/analytics/#{data.analytics.navigation.docs.link}", class: "govuk-link" %>
             </li>
             <ul class="govuk-list govuk-list--bullet">
               <% data.analytics.navigation.docs.subsections.each do |subsection| %>
                 <li>
-                  <%= link_to subsection.name, subsection.link, class: "govuk-link" %>
+                  <%= link_to subsection.name, "/analytics/#{subsection.link}", class: "govuk-link" %>
                 </li>
               <% end %>
             </ul>
@@ -95,7 +95,7 @@
 
           <ul class="govuk-list">
             <li>
-              <%= link_to data.analytics.navigation.progress.name, data.analytics.navigation.progress.link, class: "govuk-link" %>
+              <%= link_to data.analytics.navigation.progress.name, "/analytics/#{data.analytics.navigation.progress.link}", class: "govuk-link" %>
             </li>
           </ul>
         </div>
