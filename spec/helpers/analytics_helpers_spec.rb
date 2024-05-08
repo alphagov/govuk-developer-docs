@@ -18,8 +18,14 @@ RSpec.describe AnalyticsHelpers do
       ]
 
       expected = {
-        "event_name" => "select_content",
-        "type" => "accordion",
+        "event_name" => {
+          "value" => "select_content",
+          "variant" => nil,
+        },
+        "type" => {
+          "value" => "accordion",
+          "variant" => nil,
+        },
       }
 
       expect(helper.build_event(input)).to eq(expected)
@@ -37,7 +43,7 @@ RSpec.describe AnalyticsHelpers do
       ]
 
       expected = {
-        "event_data" => { "event_name" => "select_content" },
+        "event_data" => { "event_name" => { "value" => "select_content", "variant" => nil } },
       }
 
       expect(helper.build_event(input)).to eq(expected)
@@ -66,9 +72,71 @@ RSpec.describe AnalyticsHelpers do
 
       expected = {
         "event_data" => {
-          "event_name" => "select_content",
+          "event_name" => {
+            "value" => "select_content",
+            "variant" => nil,
+          },
           "index" => {
-            "index_section" => "integer",
+            "index_section" => {
+              "value" => "integer",
+              "variant" => nil,
+            },
+          },
+        },
+      }
+
+      expect(helper.build_event(input, attributes)).to eq(expected)
+    end
+
+    it "returns a deeply nested ordered hash given an array of hashes with one
+      having a value that is an array and another where the value is also an array and requires attribute lookup and one with a matching variant" do
+      input = [
+        {
+          "name" => "event_data",
+          "value" => [
+            { "name" => "event_name", "value" => "select_content" },
+            {
+              "name" => "index",
+              "value" => [
+                { "name" => "index_section" },
+                { "name" => "index_link" },
+              ],
+            },
+          ],
+        },
+      ]
+
+      attributes = [
+        {
+          "name" => "index_section",
+          "type" => "integer",
+          "variants" => [
+            {
+              "event_name" => "select_content",
+            },
+          ],
+        },
+        {
+          "name" => "index_link",
+          "type" => "noun",
+        },
+      ]
+
+      expected = {
+        "event_data" => {
+          "event_name" => {
+            "value" => "select_content",
+            "variant" => nil,
+          },
+          "index" => {
+            "index_section" => {
+              "value" => "integer",
+              "variant" => "select_content",
+            },
+            "index_link" => {
+              "value" => "noun",
+              "variant" => nil,
+            },
           },
         },
       }
@@ -95,9 +163,15 @@ RSpec.describe AnalyticsHelpers do
 
       expected = {
         "event_data" => {
-          "event_name" => "select_content",
+          "event_name" => {
+            "value" => "select_content",
+            "variant" => nil,
+          },
           "index" => {
-            "index_section" => nil,
+            "index_section" => {
+              "value" => nil,
+              "variant" => nil,
+            },
           },
         },
       }
@@ -106,11 +180,69 @@ RSpec.describe AnalyticsHelpers do
     end
   end
 
+  describe "#find_variant" do
+    it "returns nothing if nothing is passed" do
+      expect(helper.find_variant(nil, {})).to eq(nil)
+    end
+
+    it "does not error if the passed data is incomplete" do
+      input = {
+        "name" => "text",
+      }
+
+      expect(helper.find_variant("not_in_the_data", input)).to eq(nil)
+    end
+
+    it "finds a variant in passed data" do
+      input = {
+        "name" => "text",
+        "variants" => [
+          {
+            "event_name" => "search",
+          },
+          {
+            "event_name" => "navigation",
+          },
+          {
+            "event_name" => "file_download",
+          },
+        ],
+      }
+
+      expect(helper.find_variant("search", input)).to eq("search")
+    end
+
+    it "returns nil if it cannot find a variant in passed data" do
+      input = {
+        "name" => "text",
+        "variants" => [
+          {
+            "event_name" => "search",
+          },
+          {
+            "event_name" => "navigation",
+          },
+          {
+            "event_name" => "file_download",
+          },
+        ],
+      }
+
+      expect(helper.find_variant("not_in_the_data", input)).to eq(nil)
+    end
+  end
+
   describe "#to_html" do
     it "returns an HTML list item set given a hash" do
       input = {
-        "event_name" => "select_content",
-        "type" => "accordion",
+        "event_name" => {
+          "value" => "select_content",
+          "variant" => nil,
+        },
+        "type" => {
+          "value" => "accordion",
+          "variant" => nil,
+        },
       }
 
       expected = <<~HTML.gsub(/^\s+/, "").gsub("\n", "")
@@ -127,9 +259,40 @@ RSpec.describe AnalyticsHelpers do
       expect(helper.to_html(input)).to eq(expected)
     end
 
+    it "returns an HTML list item set given a hash with variants" do
+      input = {
+        "event_name" => {
+          "value" => "select_content",
+          "variant" => "select_content",
+        },
+        "type" => {
+          "value" => "accordion",
+          "variant" => nil,
+        },
+      }
+
+      expected = <<~HTML.gsub(/^\s+/, "").gsub("\n", "")
+        <ul class='govuk-list indented-list'>
+          <li>
+            <a href='/analytics/attribute_event_name/variant_select_content.html' class='govuk-link'>event_name</a>: select_content
+          </li>
+          <li>
+            <a href='/analytics/attribute_type.html' class='govuk-link'>type</a>: accordion
+          </li>
+        </ul>
+      HTML
+
+      expect(helper.to_html(input)).to eq(expected)
+    end
+
     it "returns a nested HTML list item set given a nested hash" do
       input = {
-        "event_data" => { "event_name" => "select_content" },
+        "event_data" => {
+          "event_name" => {
+            "value" => "select_content",
+            "variant" => nil,
+          },
+        },
       }
 
       expected = <<~HTML.gsub(/^\s+/, "").gsub("\n", "")
@@ -149,9 +312,15 @@ RSpec.describe AnalyticsHelpers do
     it "returns a deeply nested HTML list item set given a deeply nested hash" do
       input = {
         "event_data" => {
-          "event_name" => "select_content",
+          "event_name" => {
+            "value" => "select_content",
+            "variant" => nil,
+          },
           "index" => {
-            "index_section" => "integer",
+            "index_section" => {
+              "value" => "integer",
+              "variant" => nil,
+            },
           },
         },
       }
