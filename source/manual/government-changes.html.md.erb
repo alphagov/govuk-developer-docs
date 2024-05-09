@@ -151,6 +151,15 @@ $ gds govuk connect scp-push --environment [integration|staging|integration] nam
 ```
 The rake task can then be run from the command line following [these instructions][running-rake-tasks-on-the-command-line].
 
+In Publishing Api, task responsible for retagging documents
+[`data_hygiene:bulk_update_organisation[csv_file]`][publishing-api-bulk-update-organisation]
+accepts CSV file listing document's slug and new associated organisations:
+
+| Column Header | Description |
+| --- | --- |
+| `path` | The slug of the document. |
+| `all organisations` | The slugs of the new organisations (separated by a comma). These will replace any existing organisations. |
+
 There is a similar [Rake task to change the organisations for Manuals][manuals-bulk-update-organisation].
 A data migration is required to change the organisations for (Mainstream) Publisher documents. This is an example PR: [Migrate Publisher docs][publisher-bulk-update-organisation-example]
 
@@ -158,6 +167,7 @@ A data migration is required to change the organisations for (Mainstream) Publis
 [running-rake-tasks-on-the-command-line]: /manual/running-rake-tasks.html#run-rake-tasks-from-the-command-line
 [manuals-bulk-update-organisation]: https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/update_manual_organisation.rake
 [publisher-bulk-update-organisation-example]: https://github.com/alphagov/publishing-api/pull/1981
+[publishing-api-bulk-update-organisation]: https://github.com/alphagov/publishing-api/blob/b08fbe0a3f58d827f38403c714920b69826f608f/lib/tasks/data_hygiene.rake#L41
 
 ### Reorder ministers/peoples role titles
 
