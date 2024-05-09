@@ -45,6 +45,8 @@ Make sure you can log into the following:
 1. [Rubygems](https://rubygems.org/sign_in) (`2ndline/rubygems` in [Secrets Manager](secrets-manager.html))
 1. [NPM](https://www.npmjs.com/login) (`2ndline/npm` in Secrets Manager)
 
+For more information about accessing shared credentials follow the [Retrieve shared credentials from AWS Secrets Manager](secrets-manager.html) doc.
+
 ## Drill scaling up an application
 
 In preparation for a large spike in traffic, you can increase the number of replicas for an app.
