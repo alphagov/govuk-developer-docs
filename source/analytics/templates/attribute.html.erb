@@ -1,9 +1,16 @@
 <% content_for :title, create_page_title("#{attribute.name.capitalize} attribute data") %>
-
+<%
+  attribute_name = attribute.name
+  attribute_name = attribute.name + " (#{variant.event_name})" if variant
+%>
 <h1 class="govuk-heading-l">
   <span class="govuk-caption-l">Attribute</span>
-  <%= attribute.name %>
+  <%= attribute_name %>
 </h1>
+
+<% if variant %>
+  <p class="govuk-body">This attribute is a variant of the <a href="/analytics/attribute_<%= attribute.name %>.html" class="govuk-link"><%= attribute.name %></a> attribute.</p>
+<% end %>
 
 <dl class="govuk-summary-list">
   <% %w[Name Description Value Example Required Type Redact].each do |name| %>
@@ -13,7 +20,7 @@
       </dt>
       <dd class="govuk-summary-list__value">
         <% if name == 'Redact' %>
-          <%= link_to attribute.send(name.downcase), "pii.html", class: "govuk-link" %>
+          <%= link_to attribute.send(name.downcase), "/analytics/pii.html", class: "govuk-link" %>
         <% else %>
           <%= attribute.send(name.downcase) %>
         <% end %>
@@ -21,28 +28,113 @@
     </div>
   <% end %>
 
+  <% if variant %>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        dataLayer event name
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <%= variant.event_name %>
+      </dd>
+    </div>
+  <% end %>
+
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Used by
+      GTM/GA4 parameter name
     </dt>
     <dd class="govuk-summary-list__value">
-      <% data.analytics.events.each do |event| %>
-        <% event.events.each do |events| %>
-          <% events.data.each do |events_attribute| %>
-            <% if events_attribute.value.is_a?(Array) %>
-              <% events_attribute.value.each do |sub_attribute| %>
-                <% if sub_attribute.name == attribute.name %>
-                  <%= link_to event.name, "event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
+      <% if variant %>
+        <%= variant.gtm_parameter %>
+      <% else %>
+        <%= attribute.gtm_parameter %>
+      <% end %>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      GA4 display name
+    </dt>
+    <dd class="govuk-summary-list__value">
+      <% if variant %>
+        <%= variant.ga4_display_name %>
+      <% else %>
+        <%= attribute.ga4_display_name %>
+      <% end %>
+    </dd>
+  </div>
+
+  <% if attribute.variants %>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Variants of this attribute
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <% if variant %>
+          <p class="govuk-body">This attribute is a variant of the <a href="/analytics/attribute_<%= attribute.name %>.html" class="govuk-link"><%= attribute.name %></a> attribute. Variants have the same name in the dataLayer but translate to different things in GA4 depending on the event_name.</p>
+        <% end %>
+        <ul class="govuk-list">
+          <% attribute.variants.each do |variant| %>
+            <li>
+              <a href="/analytics/attribute_<%= attribute.name %>/variant_<%= variant.event_name %>.html" class="govuk-link">
+                <%= variant.event_name %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </dd>
+    </div>
+  <% end %>
+  <% if variant %>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Used by events
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <% data.analytics.events.each do |event| %>
+          <% event.events.each do |events| %>
+            <% event_name = find_event_name(events.data) %>
+            <% events.data.each do |events_attribute| %>
+              <% if events_attribute.value.is_a?(Array) %>
+                <% events_attribute.value.each do |sub_attribute| %>
+                  <% if sub_attribute.name == attribute.name && event_name == variant.event_name %>
+                    <%= link_to event.name, "/analytics/event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
+                  <% end %>
                 <% end %>
-              <% end %>
-            <% else %>
-              <% if events_attribute.name == attribute.name %>
-                <%= link_to event.name, "event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
+              <% else %>
+                <% if events_attribute.name == attribute.name && event_name == variant.event_name %>
+                  <%= link_to event.name, "/analytics/event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
+                <% end %>
               <% end %>
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
-    </dd>
-  </div>
+      </dd>
+    </div>
+  <% else %>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Used by events
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <% data.analytics.events.each do |event| %>
+          <% event.events.each do |events| %>
+            <% events.data.each do |events_attribute| %>
+              <% if events_attribute.value.is_a?(Array) %>
+                <% events_attribute.value.each do |sub_attribute| %>
+                  <% if sub_attribute.name == attribute.name %>
+                    <%= link_to event.name, "/analytics/event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <% if events_attribute.name == attribute.name %>
+                  <%= link_to event.name, "/analytics/event_#{urlize(event.name)}.html", class: "govuk-link" %> (<%= events.name %>)<br/>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </dd>
+    </div>
+  <% end %>
 </dl>

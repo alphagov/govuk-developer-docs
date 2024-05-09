@@ -70,7 +70,14 @@ end
 
 data.analytics.attributes.each do |attribute|
   attribute_name = attribute["name"].downcase.gsub(" ", "_")
-  proxy "analytics/attribute_#{attribute_name}.html", "analytics/templates/attribute.html", locals: { attribute: }
+  proxy "analytics/attribute_#{attribute_name}.html", "analytics/templates/attribute.html", locals: { attribute:, variant: nil }
+
+  next unless attribute.variants
+
+  attribute.variants.each do |variant|
+    variant_name = variant["event_name"].downcase.gsub(" ", "_")
+    proxy "analytics/attribute_#{attribute_name}/variant_#{variant_name}.html", "analytics/templates/attribute.html", locals: { attribute:, variant: }
+  end
 end
 
 data.analytics.trackers.each do |tracker|
