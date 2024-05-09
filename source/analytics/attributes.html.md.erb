@@ -35,8 +35,11 @@
       <% attribute["variants"].each do |variant| %>
         <li data-filter-section>
           <a href="attribute_<%= urlize(attribute['name']) %>/variant_<%= variant["event_name"] %>.html" class="govuk-link">
-            <%= attribute.name %> (<%= variant["event_name"] %>)
+            <%= attribute.name %> / <%= variant["event_name"] %>
           </a>
+          <% if variant.ga4_display_name %>
+            (<%= variant.ga4_display_name %>)
+          <% end %>
         </li>
       <% end %>
     <% end %>
