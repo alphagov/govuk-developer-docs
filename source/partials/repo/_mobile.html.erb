@@ -1,0 +1,15 @@
+<%
+  mobile_repos = data["repos"].to_a.map do |repo|
+    if repo.type == "Mobile apps" && repo.repo_name.include?(os)
+      "<a href=\"https://github.com/alphagov/#{repo.repo_name}\" class=\"govuk-link\"
+      rel=\"noreferrer noopener\" target=\"_blank\">#{repo.repo_name}:</a> #{repo.description}"
+    end
+  end
+%>
+
+<%=
+  GovukPublishingComponents.render(
+    "govuk_publishing_components/components/list",
+    items: mobile_repos.compact
+  )
+%>
