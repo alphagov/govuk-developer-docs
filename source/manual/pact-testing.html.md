@@ -14,11 +14,11 @@ For example, a consumer might expect a certain field to be returned in a json re
 
 Since in tests we do not want to spin up both apps to test the interactions, pact provides us with a "broker" which deals with the interactions between the two apps in test.
 
-For example, the Imminence API has a "pact" or "contract" with GDS API Adapters:
+For example, the Places Manager API has a "pact" or "contract" with GDS API Adapters:
 
-- the expected interactions are defined in [imminence_api_pact_test.rb in GDS API Adapters](https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts/imminence_api_pact_test.rb)
+- the expected interactions are defined in [places_manager_api_pact_test.rb in GDS API Adapters](https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts/places_manager_api_pact_test.rb)
 - when these tests are run they output a JSON pactfile which is published to [our pact broker](https://github.com/alphagov/govuk-pact-broker) ([live site](https://govuk-pact-broker-6991351eca05.herokuapp.com/))
-- the build of Imminence will setup a [test environment](https://github.com/alphagov/imminence/blob/9a4801da9d58be0af886d9095328894aac56917c/spec/service_consumers/pact_helper.rb) and use this pactfile to test the real API
+- the build of Places Manager will setup a [test environment](https://github.com/alphagov/places-manager/blob/9a4801da9d58be0af886d9095328894aac56917c/spec/service_consumers/pact_helper.rb) and use this pactfile to test the real API
 
 GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. The gem includes [a set of shared stubs](https://github.com/alphagov/gds-api-adapters/tree/master/lib/gds_api/test_helpers) for use in each app's own tests ([example](https://github.com/alphagov/contacts-admin/blob/e935fa54bf71c0063bb92faeaf8a27d1618e00ee/spec/interactors/admin/clone_contact_spec.rb#L11)). Using the stubs ensures each app stays in sync with GDS API Adapters, which can then do contract testing on their behalf.
 
@@ -66,7 +66,7 @@ _If the app already had some Pact tests, follow [the steps for changing existing
 
 1. Write the consumer and provider tests.
   - [Consumer example](https://github.com/alphagov/gds-api-adapters/pull/1066) (Note: since this example was written [we now store pact tests in the `tests/pacts` directory](https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts)).
-  - [Provider example](https://github.com/alphagov/imminence/pull/644).
+  - [Provider example](https://github.com/alphagov/places-manager/pull/644).
 
 1. Check the tests pass locally for both provider and consumer
   - CI won't be able to test them yet as they won't be pushed to the pact broker.
@@ -109,3 +109,25 @@ different applications.
 
 When an application calls an API directly, not via GDS API Adapters, this application will be the consumer. For example, Publishing API
 is the consumer in the pact tests between it and Content Store, since it makes [direct calls to Content store](https://github.com/alphagov/publishing-api/blob/main/app/adapters/content_store.rb).
+
+## How GDS API Adapters retrieves tests from the Providers
+
+Each provider defines some details of its tests in the `.github/workflows/pact-verify.yml` file. This workflow is used by both
+the provider and the consumer (gds-api-adapters), and behaves differently based on the value of the pact_artifact input, which can
+be confusing if you're unused to it.
+
+When the provider runs its CI pipeline, it does not set the `pact_artifact` input when it runs the `pact_verify` job, which causes it
+to retrieve the pact artifacts from Github and verify against them.
+
+When the consumer runs its CI pipeline, it:
+
+- generates the pact artifacts in the `generate_pacts` job. This generates the artifacts, but also uploads them to Github
+- runs the `pact_verify` job from each provider in turn, setting the `pact_artifact` input, which causes it to download the
+  pact artifacts from the pact broker (ie it's not using the artifacts it just created, but the previous versions). At this
+  point it uses the `pact_artifact_file_to_verify` value from the provider's `pact-verify.yml` file, which must be explicitly
+  set to match the implicit artifact names used when getting the pacts from Github (see below)
+- if all the verify jobs complete, it triggers the `publish_pacts` job, which publishes the generated pacts to the broker.
+
+You should be careful that the names in the pact_helper.rb files in both the provider and consumer match, and that the value of
+`pact_artifact_file_to_verify` is "gds_api_adapters-<provider_id>.json", where the provider_id is the name from the pact_helper
+file in snake case.
