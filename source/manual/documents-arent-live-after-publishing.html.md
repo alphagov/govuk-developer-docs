@@ -27,9 +27,9 @@ interface. If that doesn't work, there are some other things you can try:
 
 ### Whitehall
 
-```bash
-$ bundle exec rake publishing_api:republish_document[slug]
-```
+Whitehall has a custom user interface for republishing individual pieces of
+content, including documents. A link to this can be found in the "More" section
+of the site.
 
 ### Publisher
 

@@ -76,8 +76,9 @@ Then:
 > **Note**
 >
 > It may take some time for the colour to update on the page in `integration`.
-> You might be able to speed up the process by running the
-> `publishing_api:republish_organisation[slug]` rake task in Whitehall.
+> You might be able to speed up the process by republishing the organisation via
+> Whitehall's content republishing interface, accessible via the "More" section
+> of the site.
 
 ## Further info
 
