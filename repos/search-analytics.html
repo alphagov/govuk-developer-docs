@@ -235,21 +235,18 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
+<p><strong>⚠️ This project makes use of Google Universal Analytics that is <a href="https://support.google.com/analytics/answer/11583528">due to
+be switched off on July 1st 2024</a></strong></p>
+
 <p>This code extracts analytics data from google analytics and processes it such
 that it can be used by the site search on gov.uk for improving search result
 quality.</p>
 
 <h2 id="installation">Installation</h2>
 
-<p>For developing and testing locally, it is recommended that you use the same
-Python version as the one set in <code>nightly-run.sh</code> currently this is <code>3.8.13</code>.</p>
+<p>For developing and testing locally, use <a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a>.</p>
 
-<p>To achieve this - if you do not already have this version available - is by
-using <a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a>. <code>pyenv</code> should be familiar
-to anyone who has used <code>rbenv</code> - in fact it is a clone of <code>rbenv</code> so shares
-many of the same commands and concepts.</p>
-
-<p>Once <code>pyenv</code> is installed and the above version is installed (<code>pyenv install 3.8.13</code>),
+<p>Once <code>pyenv</code> is installed and the necessary python version is installed (<code>pyenv install</code>)
 you should be able to <code>cd</code> into the root of the project where <code>pyenv</code> will read
 the <code>.python-version</code> file and load the correct version.</p>
 
@@ -272,43 +269,35 @@ $ pylint --recursive=y ./analytics_fetcher
 
 <h2 id="authentication-with-google-analytics">Authentication with Google Analytics</h2>
 
+<p><strong>⚠️  This guide does not represent best practices for Google API authentication -
+it is constrained by legacy libraries</strong></p>
+
 <p>To make the data-fetch from Google Analytics work, you&rsquo;ll need to fetch a
 <code>client_secrets.json</code> file from google containing credentials, and use that to
 generate a refresh token.  This refresh token must then be passed to the script
-via an environment variable.</p>
+via an environment variable. This token will be associated with your individual
+Google account.</p>
 
-<p>Some details on generating these credentials are given in <a href="https://developers.google.com/analytics/solutions/articles/hello-analytics-api">the GA
-tutorial</a>,
-but in summary:</p>
+<p>If you need to create a token:</p>
 
 <ul>
 <li>
-<p>create (or already have) a google account with access to the google
-analytics profile for <a href="http://www.gov.uk">www.gov.uk</a>.</p>
+<p>Check that your google account has access to GOV.UK Universal Analytics and
+to the appropriate analytics profile (56562468)</p>
 </li>
 <li>
-<p>create a project in <a href="https://console.developers.google.com/project">the google developers
-console</a></p>
+<p>Get access to the GDS GCP project: search-api-app</p>
 </li>
 <li>
-<p>For the project, go to the &ldquo;APIs &amp; auth&rdquo; section on the dashboard, and
-ensure that the &ldquo;Analytics API&rdquo; is turned on.</p>
+<p>Go to &ldquo;APIs and services&rdquo;, then &ldquo;Credentials&rdquo;</p>
 </li>
 <li>
-<p>Go to the &ldquo;Credentials&rdquo; section on the dashboard, and click the &ldquo;Create New
-Client ID&rdquo; button, to create a new OAuth 2.0 client ID.</p>
-</li>
-<li>
-<p>Pick the &ldquo;Installed Application&rdquo; option, and a type of &ldquo;other&rdquo;</p>
-</li>
-<li>
-<p>Download the JSON for the newly created client (using the &ldquo;Download JSON&rdquo;
-button underneath it).</p>
+<p>Download the &ldquo;Search API v1 developer permission&rdquo; OAuth client credentials,
+which will give you a client_secrets.json file</p>
 </li>
 <li>
 <p>Run the following command to generate the refresh token.</p>
-<pre><code>PYTHONPATH=. python scripts/setup_auth.py /path/to/client_secrets.json
-</code></pre>
+<p>PYTHONPATH=. python scripts/setup_auth.py /path/to/client_secrets.json</p>
 <p>It will display a url which you&rsquo;ll need to open with a browser that&rsquo;s signed
 in to the google account that the client JSON was downloaded from; paste the
 result into the prompt.  The command will output (to stdout) a &ldquo;GAAUTH&rdquo;
@@ -324,8 +313,11 @@ again, and this ensures it doesn&rsquo;t get leaked (eg, by committing it to git
 See below for details.</p>
 </li>
 <li>
-<p>Don&rsquo;t commit any of the generated secrets to this git repo!  For regular
-runs from Jenkins, pass the environment variables in from the Jenkins jobs.</p>
+<p>If needed, update the GitHub Action to have your new value for the GAAUTH
+secret</p>
+</li>
+<li>
+<p>Don&rsquo;t commit any of the generated secrets to this git repo</p>
 </li>
 </ul>
 
@@ -352,16 +344,6 @@ cache can be controlled by passing a path in the <code>CACHE_DIR</code> environm
 variable.  Entries which are older than 30 days will be removed from the cache
 at the end of each run of the fetch script.</p>
 
-<h2 id="running-popularity-update-without-retrieving-ga-data">Running popularity update without retrieving GA data</h2>
-
-<p>When running the full script on integration and staging it is desirable that
-we don&rsquo;t retrieve new data from GA.</p>
-
-<p>This can be achieved with the following command:</p>
-
-<pre lang="bash"><code>./nightly-run.sh SKIP_TRAFFIC_LOAD=true
-</code></pre>
-
 <h2 id="the-dump-format">The dump format</h2>
 
 <p>The dump is in Elasticsearch bulk load format.  It looks like this:</p>
@@ -385,6 +367,10 @@ days, though the nightly load script only uses 14-day ranges.</p>
 <li>
 <code>vf_%i</code>: the <code>vc_%i</code> of the page divided by the sum of the <code>vc_%i</code> values for all pages.</li>
 </ul>
+
+<h2 id="licence">Licence</h2>
+
+<p><a href="https://github.com/alphagov/search-analytics/blob/main/LICENCE">MIT License</a></p>
 <p></div></p>
 
 
