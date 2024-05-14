@@ -16,17 +16,27 @@ You may wish to test first on integration, prior to carrying out the republish i
 
 ## Whitehall
 
-If the documents are in Whitehall, there are Rake tasks you can run as outlined below. Try to pick the one most focused to the scope of what you need to republish to avoid unnecessary load. You can monitor the effect on the publishing queue via these Grafana dashboards:
+If the documents are in Whitehall, you can republish content either via a user interface or a Rake task, as outlined below. Try to pick the task most focused to the scope of what you need to republish to avoid unnecessary load. You can monitor the effect on the publishing queue via these Grafana dashboards:
 
 - [integration](https://grafana.integration.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
 - [staging](https://grafana.blue.staging.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
 - [production](https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
 
-### To republish a single document by slug
+### Individual content
 
-<%= RunRakeTask.links("whitehall-admin", "publishing_api:republish:document_by_slug[slug]") %>
+You can republish individual pieces of content - documents, organisations,
+people, roles, and a few specific pages (corresponding to custom presenters) -
+via a user interface. Links to the user interface in different environments are
+provided below, and can also be found in the "More" section of the site.
 
-> Replace `slug` with the document's slug, but not the full base path. For example the slug for `https://www.gov.uk/government/important-news` would be `important-news`.
+- [integration](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/republishing)
+- [staging](https://whitehall-admin.staging.publishing.service.gov.uk/government/admin/republishing)
+- [production](https://whitehall-admin.publishing.service.gov.uk/government/admin/republishing)
+
+### Bulk republishing
+
+For bulk republishing, the current approach requires running Rake tasks as
+documented below.
 
 ### To republish all documents of a specific type
 
@@ -86,6 +96,22 @@ For a significant number of documents, a CSV file should be added to the reposit
 
 <%= RunRakeTask.links("whitehall-admin", "publishing_api:bulk_republish:all") %>
 
+### Other bulk republishing tasks
+
+At the time of writing, there are additional bulk republishing tasks covering
+republishing:
+
+- About pages
+- documents with draft editions
+- editions which have attachments
+- documents with HTML attachments
+- draft editions with HTML attachments
+- Worldwide CorporateInformationPages
+- documents of a given organisation
+
+For more information about these Rake tasks, check out the [task definitions in
+the Whitehall repository][whitehall-rake-tasks].
+
 ## Content Publisher
 
 If the document is in content publisher, there is a [resync Rake task][resync-rake-task] you can run.
@@ -101,3 +127,4 @@ or you can resync all documents:
 [govspeak-repo]: https://github.com/alphagov/govspeak/
 [resync-rake-task]: https://github.com/alphagov/content-publisher/blob/main/lib/tasks/resync.rake
 [production-access]:/manual/rules-for-getting-production-access.html
+[whitehall-rake-tasks]: https://github.com/alphagov/whitehall/blob/main/lib/tasks/publishing_api.rake
