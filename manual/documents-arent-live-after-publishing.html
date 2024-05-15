@@ -216,15 +216,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0291b381b407cb478e80a397f50bf6e1e84d1ed5">14 May 2024</a>
 </div>
 
  <h1 id='header'>If documents aren't live after being published</h1> <p>If a document isn&rsquo;t live on GOV.UK after a publisher has published the document
@@ -236,8 +229,10 @@ Publishing API that will check where the content is currently available.</p>
 correctly to the Publishing API. These fix here varies per publishing app, but
 you can start by trying to republish the document from within the user
 interface. If that doesn&rsquo;t work, there are some other things you can try:</p>
-<h3 id='whitehall'>Whitehall</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake publishing_api:republish_document[slug]
-</code></pre></div><h3 id='publisher'>Publisher</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake publishing_api:republish_edition[slug]
+<h3 id='whitehall'>Whitehall</h3><p>Whitehall has a custom user interface for republishing individual pieces of
+content, including documents. A link to this can be found in the &ldquo;More&rdquo; section
+of the site.</p>
+<h3 id='publisher'>Publisher</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake publishing_api:republish_edition[slug]
 </code></pre></div><h3 id='travel-advice-publisher'>Travel Advice Publisher</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake publishing_api:republish_edition[country_slug]
 </code></pre></div><h3 id='specialist-publisher'>Specialist Publisher</h3><p>The datastore for Specialist Publisher is the Publishing API directly.
 Therefore if the content isn&rsquo;t in the Publishing API, it means the content will
