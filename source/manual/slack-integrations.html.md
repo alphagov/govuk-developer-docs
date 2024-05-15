@@ -63,7 +63,7 @@ In the Release app, the badger will notify teams [depending on the dependency_te
 
 We must ensure all our repositories undergo regular security scans to establish a fundamental level of security awareness, effectively addressing vulnerabilities in both our code and third-party dependencies and mitigating the risk of Common Vulnerabilities and Exposures (CVEs).
 
-To facilitate this, the CI Bot informs teams about missing scans in their repos' CI pipelines. It is currently configured to check if repos have [CodeQL(SAST)](https://docs.publishing.service.gov.uk/manual/codeql.html),[Dependency Review (SCA)](https://docs.publishing.service.gov.uk/manual/dependency-review.html) and [SNYK](https://docs.publishing.service.gov.uk/manual/snyk.html) scans.
+To facilitate this, the CI Bot informs teams about missing scans in their repos' CI pipelines. It is currently configured to check if repos have [CodeQL(SAST)](https://docs.publishing.service.gov.uk/manual/codeql.html) and [Dependency Review (SCA)](https://docs.publishing.service.gov.uk/manual/dependency-review.html) scans.
 
 ### Configuration
 
