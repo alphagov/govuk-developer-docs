@@ -144,7 +144,6 @@
               <li><a href="/repos/search-api/documents.html" rel="noopener" class="govuk-link">Documents API (to be deprecated)</a></li>
               <li><a href="/repos/search-api/how-search-works.html" rel="noopener" class="govuk-link">How Search Works</a></li>
               <li><a href="/repos/search-api/indexing.html" rel="noopener" class="govuk-link">Indexing</a></li>
-              <li><a href="/repos/search-api/learning-to-rank.html" rel="noopener" class="govuk-link">learning-to-rank</a></li>
               <li><a href="/repos/search-api/new-indexing-process.html" rel="noopener" class="govuk-link">Moving a format to the new indexing process</a></li>
               <li><a href="/repos/search-api/popularity.html" rel="noopener" class="govuk-link">Popularity information</a></li>
               <li><a href="/repos/search-api/publishing-finders.html" rel="noopener" class="govuk-link">Publishing finders</a></li>
@@ -228,15 +227,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/search-api/commit/2675a59c7c82a1000f9ac0baf9fa3f97fc68fa26">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/search-api/commit/e7512184dc5c71bc282428a8ff8b460438d2e9f1">15 May 2024</a>
 </div>
 
   <h1 class="page-title">search-api: Moving a format to the new indexing process</h1>
@@ -260,10 +252,6 @@
 <li><a href="https://github.com/alphagov/calendars/pull/160/files">Prepare for moving to rummager</a></li>
 <li><a href="https://github.com/alphagov/calendars/pull/162/files">Ensure we pass the description text to publishing API</a></li>
 </ul>
-<h2 id="add-the-format-to-the-list-in-liblearn_to_rankformat_enums-rb">Add the format to the list in <code>lib/learn_to_rank/format_enums.rb</code>
-</h2>
-<p>We take format into account in our machine learning, which means we
-need a mapping from formats to unique numbers.</p>
 <h2 id="update-the-presenter-to-handle-the-new-format">Update the presenter to handle the new format</h2>
 <p>You'll need to update the elasticsearch presenter in Search API so that it handles any fields which are not yet used by other formats in the govuk index.</p>
 <p>Fields that are common to multiple document types should be handled in a consistent way by Search API. Don't add in special cases without good reason, even if the publishing app used to do something different.</p>

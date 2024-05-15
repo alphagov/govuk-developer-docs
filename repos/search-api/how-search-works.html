@@ -144,7 +144,6 @@
               <li><a href="/repos/search-api/documents.html" rel="noopener" class="govuk-link">Documents API (to be deprecated)</a></li>
               <li><a href="/repos/search-api/how-search-works.html" rel="noopener" class="govuk-link">How Search Works</a></li>
               <li><a href="/repos/search-api/indexing.html" rel="noopener" class="govuk-link">Indexing</a></li>
-              <li><a href="/repos/search-api/learning-to-rank.html" rel="noopener" class="govuk-link">learning-to-rank</a></li>
               <li><a href="/repos/search-api/new-indexing-process.html" rel="noopener" class="govuk-link">Moving a format to the new indexing process</a></li>
               <li><a href="/repos/search-api/popularity.html" rel="noopener" class="govuk-link">Popularity information</a></li>
               <li><a href="/repos/search-api/publishing-finders.html" rel="noopener" class="govuk-link">Publishing finders</a></li>
@@ -228,15 +227,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/search-api/commit/2675a59c7c82a1000f9ac0baf9fa3f97fc68fa26">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/search-api/commit/e7512184dc5c71bc282428a8ff8b460438d2e9f1">15 May 2024</a>
 </div>
 
   <h1 class="page-title">search-api: How Search Works</h1>
@@ -254,13 +246,6 @@ stack don't need to know how to construct Elasticsearch queries.</p>
 <h2 id="relevancy">Relevancy</h2>
 <p>See the <a href="/repos/search-api/relevancy.html">relevancy documentation</a> to learn more about how
 Search API determines how relevant a document is to a query.</p>
-<h3 id="reranking">Reranking</h3>
-<p>Once Search API has retrieved a selection of relevant documents from
-Elasticsearch, the results are re-ranked by a machine learning model.</p>
-<p>This process ensures that we show the most relevant documents at the top
-of the search results.</p>
-<p>See the <a href="/repos/search-api/learning-to-rank.html">learning to rank documentation</a> to learn
-more about the reranking model.</p>
 <h2 id="evaluating-search-quality">Evaluating search quality</h2>
 <p>To ensure Search API returns good quality results, we use a combination of
 offline and online metrics.</p>
