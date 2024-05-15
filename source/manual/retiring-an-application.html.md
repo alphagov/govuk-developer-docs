@@ -84,18 +84,6 @@ Once the PR is merged ([Example PR][]), the app pods will automatically be remov
 [govuk-helm-charts] (https://github.com/alphagov/govuk-helm-charts/)
 [Example PR] (https://github.com/alphagov/govuk-helm-charts/pull/1236)
 
-## 12. Delete the app's Kubernetes resources (if applicable)
-
-In the staging and production environments, deleting an Argo CD app will not [automatically delete](https://github.com/alphagov/govuk-helm-charts/blob/c55a034/charts/app-config/templates/govuk-application.yaml#L10) the Kubernetes resources that it manages, such as `deployments`, `services`, `jobs` and `cronjobs`.
-
-You will need to list and delete these resources yourself, for example:
-
-```
-  kubectl --namespace apps get all | grep <app-name>
-
-  kubectl delete deploy/<app-name> svc/<app-name> job/<app-name>-upload-assets
-```
-
-## 13. Archive the repo
+## 12. Archive the repo
 
 Follow the steps at [Retire a repo](/manual/retiring-a-repo.html).
