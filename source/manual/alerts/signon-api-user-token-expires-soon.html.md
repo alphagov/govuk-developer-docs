@@ -13,6 +13,10 @@ expiring tokens to ensure the associated application keeps working.
 
 > 🪨 This procedure is [toil](https://sre.google/workbook/eliminating-toil/) and should be eliminated or automated away. For now, it's unfortunately still a manual process.
 
+Note that the overnight token sync cronjob will over-write any changes made in the Staging environment to match those in the Production environment so this procedure need only be followed for the Production and Integration environments. Any alerts relating to the Staging environment can be safely ignored.
+
+The Integration environment should also be updated overnight but this is not happening currently. It is a known issue that when fixed will mean this procedure will need only to be followed for the Production environment.
+
 ### Special cases
 
 If the token is for `Trade Tariff Admin` or `Trade Tariff Backend`, see [Trade Tariff Admin on the Wiki](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin)
