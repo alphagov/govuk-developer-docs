@@ -236,7 +236,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0c6400ac9292e478525121b6fe4193de28714cc9">9 Apr 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b32b9d8b0731c834508572f53566a44707f07e50">15 May 2024</a>
 </div>
 
  <h1 id='header'>How to add popular GOV.UK Slack integrations</h1> <h2 id='seal'>Seal</h2><p><a href="https://github.com/alphagov/seal">Seal</a> is a Slack bot that informs teams which pull requests they have open.</p>
@@ -260,7 +260,7 @@
 <h2 id='sentry'>Sentry</h2><p><a href="/manual/sentry.html">Sentry</a> is an error monitoring tool that we use on GOV.UK.</p>
 <h3 id='configuration'>Configuration</h3><p><a href="/manual/sentry.html#slack-alerts">Please see these docs</a>. When creating a rule to send a notification to Slack, you may find that you need to input a channel ID as well as channel name. The ID can be found by clicking on the channel name in Slack and scrolling down until you can see the channel ID.</p>
 <h2 id='ci-bot'>CI Bot</h2><p>We must ensure all our repositories undergo regular security scans to establish a fundamental level of security awareness, effectively addressing vulnerabilities in both our code and third-party dependencies and mitigating the risk of Common Vulnerabilities and Exposures (CVEs).</p>
-<p>To facilitate this, the CI Bot informs teams about missing scans in their repos&rsquo; CI pipelines. It is currently configured to check if repos have <a href="https://docs.publishing.service.gov.uk/manual/codeql.html">CodeQL(SAST)</a>,<a href="https://docs.publishing.service.gov.uk/manual/dependency-review.html">Dependency Review (SCA)</a> and <a href="https://docs.publishing.service.gov.uk/manual/snyk.html">SNYK</a> scans.</p>
+<p>To facilitate this, the CI Bot informs teams about missing scans in their repos&rsquo; CI pipelines. It is currently configured to check if repos have <a href="https://docs.publishing.service.gov.uk/manual/codeql.html">CodeQL(SAST)</a> and <a href="https://docs.publishing.service.gov.uk/manual/dependency-review.html">Dependency Review (SCA)</a> scans.</p>
 <h3 id='configuration'>Configuration</h3><p>These scans must be included as jobs in the CI pipeline of <a href="https://docs.publishing.service.gov.uk/manual/github.html#create-and-configure-a-new-gov-uk-repo">all GOV.UK repositories</a>.
 It&rsquo;s essential to ensure that every repository has these scans. If there&rsquo;s a compelling reason to exclude a repository from this check, please modify the <a href="https://github.com/alphagov/seal/blob/main/ignored_ci_repos.yml">ignored_ci_repos.yml</a> file in the Seal repository. Ensure that any exclusions are accompanied by a well-justified reason.</p>
 
