@@ -260,18 +260,23 @@
     &ndash;unless-all-exist  only raise a PR if all of the given paths do not exist on the main branch (may be specified multiple times)
 </code></pre>
 <h3 id="bulk-replace"><code>bulk-replace</code></h3>
-<p>Look for a file in every GOV.UK repo, at the given path, with the given content and replace with new content. If the file does not currently exist, or if it doesn&rsquo;t have the given content, then that repo is skipped, otherwise a PR is raised.</p>
+<p>Look for a file in every GOV.UK repo, at the given path, with the given content and replace with new content. If the file does not currently exist, or if it doesn&rsquo;t have the given content, then that repo is skipped, otherwise a PR is raised. If the branch already exists, a new commit can be added to it.</p>
 <pre><code>usage: ./bulk-replace [options]
-    -h, --help          print this usage information
-    --github-token      GitHub API token</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>--file-path         path to the file to update (required)
---old-content       content to be replaced in file (required)
---new-content       new content for file (required)
---global            replace all occurrences of content (true by default)
+    -h, --help                       print this usage information
+    --github-token                   GitHub API token</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>--file-path                      path to the file to update (required)
+--old-content                    content to be replaced in file (required)
+--new-content                    new content for file (required)
+--global                         replace all occurrences of content (true by default)
 </code></pre></div><p>pull request options:
-    &ndash;branch            name of the branch to commit the change to (required)
-    &ndash;pr-title          title for the PR to raise (required)
-    &ndash;pr-description    description of the PR to raise (required)
+    &ndash;branch                         name of the branch to commit the change to (required)
+    &ndash;pr-title                       title for the PR to raise
+    &ndash;pr-description                 description of the PR to raise
+    &ndash;commit-title                   title for the commit (required)
+    &ndash;commit-description             description of the commit (required)
+    &ndash;use-regex                      use a regex pattern to find content (false by default)
+    &ndash;continue-on-existing-branch    automatically confirm all &lsquo;Continue on existing branch?&rsquo; questions (false by default)
+    &ndash;file-path-is-regex             use a regex pattern to find file paths (false by default)
 </code></pre>
 <h2 id="examples">Examples</h2>
 <h3 id="create-workflows-to-copy-pr-template-onto-dependabot-prs">Create workflows to copy PR template onto Dependabot PRs</h3>
