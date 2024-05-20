@@ -14,11 +14,11 @@ For example, a consumer might expect a certain field to be returned in a json re
 
 Since in tests we do not want to spin up both apps to test the interactions, pact provides us with a "broker" which deals with the interactions between the two apps in test.
 
-For example, the Imminence API has a "pact" or "contract" with GDS API Adapters:
+For example, the Places Manager API has a "pact" or "contract" with GDS API Adapters:
 
-- the expected interactions are defined in [imminence_api_pact_test.rb in GDS API Adapters](https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts/imminence_api_pact_test.rb)
+- the expected interactions are defined in [places_manager_api_pact_test.rb in GDS API Adapters](https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts/places_manager_api_pact_test.rb)
 - when these tests are run they output a JSON pactfile which is published to [our pact broker](https://github.com/alphagov/govuk-pact-broker) ([live site](https://govuk-pact-broker-6991351eca05.herokuapp.com/))
-- the build of Imminence will setup a [test environment](https://github.com/alphagov/imminence/blob/9a4801da9d58be0af886d9095328894aac56917c/spec/service_consumers/pact_helper.rb) and use this pactfile to test the real API
+- the build of Places Manager will setup a [test environment](https://github.com/alphagov/places-manager/blob/9a4801da9d58be0af886d9095328894aac56917c/spec/service_consumers/pact_helper.rb) and use this pactfile to test the real API
 
 GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. The gem includes [a set of shared stubs](https://github.com/alphagov/gds-api-adapters/tree/master/lib/gds_api/test_helpers) for use in each app's own tests ([example](https://github.com/alphagov/contacts-admin/blob/e935fa54bf71c0063bb92faeaf8a27d1618e00ee/spec/interactors/admin/clone_contact_spec.rb#L11)). Using the stubs ensures each app stays in sync with GDS API Adapters, which can then do contract testing on their behalf.
 
@@ -66,7 +66,7 @@ _If the app already had some Pact tests, follow [the steps for changing existing
 
 1. Write the consumer and provider tests.
   - [Consumer example](https://github.com/alphagov/gds-api-adapters/pull/1066) (Note: since this example was written [we now store pact tests in the `tests/pacts` directory](https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts)).
-  - [Provider example](https://github.com/alphagov/imminence/pull/644).
+  - [Provider example](https://github.com/alphagov/places-manager/pull/644).
 
 1. Check the tests pass locally for both provider and consumer
   - CI won't be able to test them yet as they won't be pushed to the pact broker.
@@ -84,7 +84,7 @@ _If the app already had some Pact tests, follow [the steps for changing existing
 
 Follow these steps in order to change the provider and consumer in tandem.
 
-1. Make the change to the API (your provider, e.g. Imminence), in a branch.
+1. Make the change to the API (your provider, e.g. Places Manager), in a branch.
   - Its build should fail at the Pact test stage, because it is testing against the default branch of the consumer.
 
 1. Make the change to the pactfile in the consumer (see 'Where to define the consumer tests' below) in a branch.
