@@ -210,27 +210,20 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5907afc5e2f36d9cdc543d91055c889809a68ffd">6 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7143eaf7630a6dc821053fe9516fd7fb7cd68529">20 May 2024</a>
 </div>
 
  <h1 id='header'>Pact Testing</h1> <p><a href="https://docs.pact.io/">Pact</a> is a tool we use for <em>contract testing</em>. Contract testing involves creating a set of tests that are shared between an API (the &ldquo;provider&rdquo;) and its users (&ldquo;consumers&rdquo;). Contract tests allow consumers to define a contract that it expects its provider to uphold. This means that a consumer can specify what response (both status code and body) they expect from a provider given a certain http call.
 This is useful to ensure that changes to the provider do not break the interaction between it and its consumers.</p>
 <p>For example, a consumer might expect a certain field to be returned in a json response from a provider, and use that field in its application code. Without pact tests, we might be able to remove that field from the provider&rsquo;s response without knowing that it is a breaking change. Good pact tests will prevent such breaking changes from being made.</p>
 <p>Since in tests we do not want to spin up both apps to test the interactions, pact provides us with a &ldquo;broker&rdquo; which deals with the interactions between the two apps in test.</p>
-<p>For example, the Imminence API has a &ldquo;pact&rdquo; or &ldquo;contract&rdquo; with GDS API Adapters:</p>
+<p>For example, the Places Manager API has a &ldquo;pact&rdquo; or &ldquo;contract&rdquo; with GDS API Adapters:</p>
 
 <ul>
-<li>the expected interactions are defined in <a href="https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts/imminence_api_pact_test.rb">imminence_api_pact_test.rb in GDS API Adapters</a></li>
+<li>the expected interactions are defined in <a href="https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts/places_manager_api_pact_test.rb">places_manager_api_pact_test.rb in GDS API Adapters</a></li>
 <li>when these tests are run they output a JSON pactfile which is published to <a href="https://github.com/alphagov/govuk-pact-broker">our pact broker</a> (<a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/">live site</a>)</li>
-<li>the build of Imminence will setup a <a href="https://github.com/alphagov/imminence/blob/9a4801da9d58be0af886d9095328894aac56917c/spec/service_consumers/pact_helper.rb">test environment</a> and use this pactfile to test the real API</li>
+<li>the build of Places Manager will setup a <a href="https://github.com/alphagov/places-manager/blob/9a4801da9d58be0af886d9095328894aac56917c/spec/service_consumers/pact_helper.rb">test environment</a> and use this pactfile to test the real API</li>
 </ul>
 <p>GDS API Adapters is really a proxy for real &ldquo;consumer&rdquo; apps, like Whitehall. The gem includes <a href="https://github.com/alphagov/gds-api-adapters/tree/master/lib/gds_api/test_helpers">a set of shared stubs</a> for use in each app&rsquo;s own tests (<a href="https://github.com/alphagov/contacts-admin/blob/e935fa54bf71c0063bb92faeaf8a27d1618e00ee/spec/interactors/admin/clone_contact_spec.rb#L11">example</a>). Using the stubs ensures each app stays in sync with GDS API Adapters, which can then do contract testing on their behalf.</p>
 <h2 id='running-pact-tests-locally'>Running Pact tests locally</h2><h3 id='for-a-consumer-gds-api-adapters'>For a consumer (GDS API Adapters)</h3><p><a href="https://github.com/alphagov/gds-api-adapters/tree/main/test/pacts">Pact tests</a> are run as part of the regular test suite:</p>
@@ -251,7 +244,7 @@ This is useful to ensure that changes to the provider do not break the interacti
 
 <ul>
 <li><a href="https://github.com/alphagov/gds-api-adapters/pull/1066">Consumer example</a> (Note: since this example was written <a href="https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts">we now store pact tests in the <code>tests/pacts</code> directory</a>).</li>
-<li><a href="https://github.com/alphagov/imminence/pull/644">Provider example</a>.</li>
+<li><a href="https://github.com/alphagov/places-manager/pull/644">Provider example</a>.</li>
 </ul></li>
 <li><p>Check the tests pass locally for both provider and consumer</p>
 
@@ -277,7 +270,7 @@ This is useful to ensure that changes to the provider do not break the interacti
 <h2 id='changing-existing-pact-tests'>Changing existing Pact tests</h2><p>Follow these steps in order to change the provider and consumer in tandem.</p>
 
 <ol>
-<li><p>Make the change to the API (your provider, e.g. Imminence), in a branch.</p>
+<li><p>Make the change to the API (your provider, e.g. Places Manager), in a branch.</p>
 
 <ul>
 <li>Its build should fail at the Pact test stage, because it is testing against the default branch of the consumer.</li>
