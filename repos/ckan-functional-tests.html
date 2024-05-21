@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: ckan-functional-tests - GOV.UK Developer Documentation</title>
+    <title>Repository: ckan-functional-tests (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -17,13 +17,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: ckan-functional-tests - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: ckan-functional-tests (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/ckan-functional-tests.html" />
 
       <meta property="og:description" content="Everything about ckan-functional-tests (Functional tests for CKAN)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: ckan-functional-tests" />
+      <meta property="og:title" content="Repository: ckan-functional-tests (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/ckan-functional-tests.html" />
 
@@ -188,109 +188,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: ckan-functional-tests</h1>
+  <h1 class="page-title">Repository: ckan-functional-tests (retired)</h1>
 
-  <p>Functional tests for CKAN</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/ckan-functional-tests">ckan-functional-tests</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-datagovuk">#govuk-datagovuk</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">data.gov.uk apps</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Initially testing just the API.</p>
-
-<h2 id="setup-ckan-variables">Setup CKAN variables</h2>
-
-<ul>
-<li>
-<p>Before running these tests you will need to setup the test data in CKAN by running <code>ckan datagovuk create-dgu-test-data</code> in the CKAN container.</p>
-</li>
-<li>
-<p>Update <code>config.json</code> to point to the CKAN website that you want to run the tests against.</p>
-<ul>
-<li>make sure that you set the correct version of <code>ckan_version</code> as support for v1 API was dropped in 2.9.</li>
-<li>You may need to update the <code>ckan_mock_harvest_source</code> value in <code>config.json</code> if it has been remapped, the errors in the test results should give you a hint at the correct url which is normally running on port 11088. Other values that the tests need will be automatically generated in <code>ckan-vars.conf</code>.</li>
-<li>If you tear down the CKAN stack and rebuild everything it is probably a good idea to delete <code>ckan-vars.conf</code> so that it gets regenerated with the latest values.</li>
-</ul>
-<p></li>
-</ul>
-<p>After these steps you should be able to run the tests.</p>
-<h2 id="installing-running">Installing &amp; Running</h2>
-<p>Either use the <code>default.nix</code> file provided or, in a virtualenv, do a normal
-<code>pip install -r requirements.txt</code>. Running should just be a matter of calling</p>
-<pre><code>$ pytest ckanfunctionaltests/
-</code></pre>
-<p>By default these will run against the staging data.gov.uk instance.</p>
-<p>A number of settings controlling behaviour can be configured in the file <code>config.json</code>,
-notably this includes:</p>
-<ul>
-<li>
-<code>inc_sync_sensitive</code>: Set to <code>false</code>, this will skip assertions which could be sensitive to
-e.g. the target instance&rsquo;s database and search index having un-synchronized entries.</li>
-<li>
-<code>inc_fixed_data</code>: Set to <code>false</code>, this will skip tests that use fixed data usually
-considered &ldquo;stable&rdquo; to compare with results from the target. You may want to do so if e.g.
-your target instance is only filled with sparse demo data.</li>
-</ul>
-<p>To run against CKAN in Integration:</p>
-<ul>
-<li>
-<code>username</code>: set the basic auth username on the Integration environment.</li>
-<li>
-<code>password</code>: set the basic auth password on the Integration environment.</li>
-</ul>
-<h2 id="warnings">Warnings</h2>
-<p>This test suite <em>will</em> emit warnings if it is unable to complete an assertion for reasons that
-don&rsquo;t necessarily indicate a failure.</p>
-<p>Examples of such cases are where an expected value is notfound in a returned list, but the returned list has the maximum allowed number of values, eg 1000 returned results when in fact there may be 1005 in total, so the result might be item 1001.</p>
-<p>Rather than simply marking this as a &ldquo;pass&rdquo; and allowing a user to infer that a specific
-test is definitely working, we emit a warning summarizing the problem.</p>
-<p>Usually these warnings are nothing to worry about, but if you do want to explicitly assert that a particular feature
-is working, some tests may respond to being run repeatedly. The <code>-Werror</code> pytest option can be
-used to treat these warnings as test failures.</p>
-<h2 id="skipped-tests">Skipped tests</h2>
-<p>There are also some combinations of parametrization values which will always be skipped (because
-they are combinations of features which are not supported). These are nothing to worry about
-either - it&rsquo;s just that using <code>pytest.skip</code> was the least bad way of omitting these cases.</p>
-<h2 id="troubleshooting">Troubleshooting</h2>
-<p>If some tests are failing because of the mock harvest source not matching then it&rsquo;s likely that
-the <code>vars.conf</code> was not updated in nginx in the <code>static-mock-harvest-source</code> container.
-Run these commands to fix it without having to rebuild the <code>static-mock-harvest-source</code> image -</p>
-<pre><code>docker exec -it static-mock-harvest-source bash
-echo $&#39;\nmap $host $mock_absolute_root_url { default &quot;http://static-mock-harvest-source:11088/&quot;; }&#39; &gt;&gt; /etc/nginx/vars.conf
-service nginx reload
-</code></pre>
-<p>To make these changes more permanent add this to the end of <code>vars.conf</code> in the relevant source file if <code>bootstrap.sh</code>
-didn&rsquo;t update it, which can happen if you checked out a different branch on the <code>ckan-mock-harvest-sources</code> repo -</p>
-<p>map $host $mock_absolute_root_url { default &ldquo;<a href="http://static-mock-harvest-source:11088/">http://static-mock-harvest-source:11088/</a>&rdquo;; }</p>
-<p>and then run the <code>./scripts/rebuild-ckan.sh 2.7</code> script (substitute 2.7 for the version you want to rebuild).</p>
-<h2 id="licence">Licence</h2>
-<p><a href="https://github.com/alphagov/ckan-functional-tests/blob/main/LICENCE">MIT License</a></p>
-  </div></p>
+  <p>This application is retired.</p>
+<p><p>Functional tests for CKAN</p></p>
+<p><a href="https://github.com/alphagov/ckan-functional-tests">GitHub repository</a></p>
 
 
             
