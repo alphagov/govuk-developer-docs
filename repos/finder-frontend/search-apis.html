@@ -7,25 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: finder-frontend - GOV.UK Developer Documentation</title>
+    <title>finder-frontend: Search APIs - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/finder-frontend.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/finder-frontend/search-apis.html">
 
-      <meta name="description" content="Everything about finder-frontend (Serves finder and search pages for GOV.UK)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: finder-frontend - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend.html" />
+      <meta name="twitter:title" content="finder-frontend: Search APIs - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend/search-apis.html" />
 
-      <meta property="og:description" content="Everything about finder-frontend (Serves finder and search pages for GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: finder-frontend" />
+      <meta property="og:title" content="finder-frontend: Search APIs" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/finder-frontend/search-apis.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -186,6 +184,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "finder-frontend",
+        "@id": "http://www.dev.gov.uk/repos/finder-frontend.html"
+      }
     }
   ]
 }
@@ -194,134 +200,38 @@
 <div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/finder-frontend.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;finder-frontend&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/finder-frontend.html">finder-frontend</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Application: finder-frontend</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Serves finder and search pages for GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/finder-frontend">finder-frontend</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-patterns-and-pages">#govuk-patterns-and-pages</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Frontend apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-finder-frontend" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?var-app=finder-frontend" class="govuk-link">App dashboard: request rates, errors, durations</a></li>
-    <li></li>
-    <li><a href="https://finder-frontend.herokuapp.com/component-guide" class="govuk-link">Component guide</a></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:finder-frontend),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:finder-frontend)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:finder-frontend-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:finder-frontend-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/finder-frontend" class="govuk-link">Argo CD (finder-frontend)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/8d5627b50d1587319fef849773aea62d1866ce77">23 May 2024</a>
 </div>
-<h2 id='example-pages-rendered-by-finder-frontend'>Example pages rendered by finder-frontend</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="https://www.gov.uk/search/all" class="govuk-link">Search</a></li>
-      <li><a href="https://www.gov.uk/government/organisations/hm-revenue-customs/contact" class="govuk-link">Contact HM Revenue &amp; Customs</a></li>
-      <li><a href="https://www.gov.uk/search/news-and-communications" class="govuk-link">News and communications</a></li>
-      <li><a href="https://www.gov.uk/employment-tribunal-decisions" class="govuk-link">Employment tribunal decisions</a></li>
-      <li><a href="https://www.gov.uk/search/guidance-and-regulation" class="govuk-link">Guidance and regulation</a></li>
-      <li><a href="https://www.gov.uk/business-finance-support" class="govuk-link">Finance and support for your business</a></li>
-      <li><a href="https://www.gov.uk/search/policy-papers-and-consultations" class="govuk-link">Policy papers and consultations</a></li>
-      <li><a href="https://www.gov.uk/search/research-and-statistics" class="govuk-link">Research and statistics</a></li>
-      <li><a href="https://www.gov.uk/countryside-stewardship-grants" class="govuk-link">Countryside Stewardship grant finder</a></li>
-      <li><a href="https://www.gov.uk/find-funding-for-land-or-farms" class="govuk-link">Find funding for land or farms</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Renders search on GOV.UK:</p>
+  <h1 class="page-title">finder-frontend: Search APIs</h1>
 
-<ul>
-<li>
-<a href="https://www.gov.uk/search">Site search</a> is available from the header of every page.</li>
-<li>Finder pages provide facetted searching over a collection of documents.</li>
-<li>Most of these pages support <a href="/repos/finder-frontend/finder-email-alerts.html">subscribing to email alerts</a>.</li>
-</ul>
-
-<h2 id="live-examples">Live examples</h2>
-
-<ul>
-<li><a href="https://www.gov.uk/aaib-reports">gov.uk/aaib-reports</a></li>
-<li><a href="https://www.gov.uk/drug-device-alerts">gov.uk/drug-device-alerts</a></li>
-<li><a href="https://www.gov.uk/government/case-studies">gov.uk/government/case-studies</a></li>
-<li><a href="https://www.gov.uk/government/people">gov.uk/government/people</a></li>
-<li><a href="https://www.gov.uk/world/organisations">gov.uk/world/organisations</a></li>
-<li><a href="https://www.gov.uk/international-development-funding">gov.uk/international-development-funding</a></li>
-</ul>
-
-<h2 id="nomenclature">Nomenclature</h2>
-
-<ul>
-<li>Finder: Page containing a list of filterable documents and filters.</li>
-<li>Facets: Metadata associated with documents. See <code>app/models/*_facet.rb</code> for examples.</li>
-<li>Filters: Searchable/filterable metadata for example <code>case_state={open|closed}</code> for a CMA case.</li>
-<li>Parser: Transforms API responses into model objects.</li>
-</ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> or the local <code>startup.sh</code> script to run the app. Read the <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">guidance on local frontend development</a> to find out more about each approach, before you get started.</p>
-
-<p>If you are using GOV.UK Docker, remember to combine it with the commands that follow. See the <a href="https://github.com/alphagov/govuk-docker#usage">GOV.UK Docker usage instructions</a> for examples.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<pre lang="sh"><code># run all the tests
-bundle exec rake
-
-# run only feature tests
-bundle exec cucumber
-
-# run only JS tests
-bundle exec rake jasmine:ci
-</code></pre>
-
-<h3 id="further-documentation">Further documentation</h3>
-
-<p>See the <a href="https://github.com/alphagov/finder-frontend/blob/main/docs/"><code>docs/</code></a> directory for manuals and instructions.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/finder-frontend/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  
+<p>Finder Frontend can use either "v1" <a href="https://github.com/alphagov/search-api"><code>search-api</code></a> or <a href="https://github.com/alphagov/search-api-v2"><code>search-api-v2</code></a>
+depending on the finder in use and the parameters of a user's search.</p>
+<p>Note that v2 is not (yet) able to handle all the use cases of v1, and the extent to which v1 use
+cases will be migrated is still under discussion.</p>
+<h2 id="forcing-the-use-of-a-specific-api">Forcing the use of a specific API</h2>
+<p>The <code>use_v1</code> and <code>use_v2</code> query parameters are available on the <code>finders#show</code> action and take
+precedence over any other logic. These are useful for comparing results and debugging.</p>
+<h2 id="using-v1-as-a-backup-in-case-of-v2-issues">Using v1 as a backup in case of v2 issues</h2>
+<p>In the event of a major issue with <code>search-api-v2</code> or its underlying SaaS search product (Google
+Vertex AI Search), a feature flag <code>FORCE_USE_V1_SEARCH_API</code> is available and will force all search
+traffic to use the v1 API.</p>
+<p>The v1 API provides pure keyword search and lacks the "smart" semantic search of v2, leading to
+significantly poorer result quality for more complex searches. Consider whether the issue with v2 is
+uncontained, escalating, or has significant user impact before enabling the fallback.</p>
 
 
             
@@ -329,8 +239,8 @@ bundle exec rake jasmine:ci
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffinder-frontend.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/finder-frontend/blob/main/docs/search-apis.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffinder-frontend%2Fsearch-apis.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
