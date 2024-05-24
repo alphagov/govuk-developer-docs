@@ -6,6 +6,31 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+## Get an asset's ID
+
+You can get an asset's ID by using it's URL:
+
+1. Open a Rails console:
+
+    ```sh
+    k exec -it deploy/asset-manager -- rails c
+    ```
+
+2. Find the asset:
+
+    ```ruby
+    asset = Asset.find_by(legacy_url_path: "/slug")
+    id = asset.id
+    ```
+
+    For example, if the URL is
+
+    ```
+    https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1234/document.pdf
+    ```
+
+    the slug would be `/government/uploads/system/uploads/attachment_data/file/1234/document.pdf`
+
 ## Remove an asset
 
 > Where possible, you should delete the asset in the publishing application
@@ -18,7 +43,7 @@ If it isn't feasible to remove the asset in the publishing app, you can use
 these steps to remove the asset from `assets.publishing.service.gov.uk` in
 Asset Manager.
 
-1. Get the asset ID. This can be obtained from the URL for most assets, e.g. the asset ID
+1. [Get the asset ID](#getting-an-asset39s-id). This can be obtained from the URL for most assets, e.g. the asset ID
    for `https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg`
    is `65f2c1110e1c2f8c4dffaa53`.
 
@@ -104,6 +129,10 @@ steps to remove the asset in Asset Manager:
 
 Also see [getting an asset's ID](#getting-an-asset39s-id) if you have only been
 provided the URL.
+
+For Whitehall assets you will have to run:
+
+   <%= RunRakeTask.links("whitehall_redirect", "assets:redirect[LEGACY_PATH_URL,REDIRECT_URL]") %>
 
 ## Upload an asset
 
@@ -206,28 +235,3 @@ steps to remove the asset in Asset Manager:
    attachment_data = Asset.find_by(asset_manager_id: asset-id-from-url).assetable # e.g. 57a9c52b40f0b608a700000a
    attachment_data.update(file_size: 123, number_of_pages: 28) # file_size in bytes
    ```
-
-## Get an asset's ID
-
-You can get an asset's ID by using it's URL:
-
-1. Open a Rails console:
-
-    ```sh
-    k exec -it deploy/asset-manager -- rails c
-    ```
-
-2. Find the asset:
-
-    ```ruby
-    asset = Asset.find_by(legacy_url_path: "/slug")
-    id = asset.id
-    ```
-
-    For example, if the URL is
-
-    ```
-    https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1234/document.pdf
-    ```
-
-    the slug would be `/government/uploads/system/uploads/attachment_data/file/1234/document.pdf`
