@@ -1,11 +1,13 @@
 class DocumentTypes
   FACET_DOCUMENT_TYPES_QUERY = "https://www.gov.uk/api/search.json?facet_content_store_document_type=500,examples:10,example_scope:global&count=0".freeze
+  FACET_FORMATS_QUERY = "https://www.gov.uk/api/search.json?facet_format=500,examples:10,example_scope:global&count=0".freeze
   DOCUMENT_TYPES_URL = "https://raw.githubusercontent.com/alphagov/publishing-api/main/content_schemas/allowed_document_types.yml".freeze
 
   def self.pages
     all_document_types.map do |document_type|
-      from_search = pages_with_content_type(document_type)
-      from_search || Page.new(name: document_type, total_count: 0, examples: [])
+      pages_with_content_type(document_type) ||
+        pages_with_format(document_type) ||
+        Page.new(name: document_type, total_count: 0, examples: [])
     end
   end
 
@@ -15,6 +17,10 @@ class DocumentTypes
 
   def self.facet_document_types_query
     @facet_document_types_query ||= HTTP.get(FACET_DOCUMENT_TYPES_QUERY)
+  end
+
+  def self.facet_formats_query
+    @facet_formats_query ||= HTTP.get(FACET_FORMATS_QUERY)
   end
 
   def self.all_document_types
@@ -46,6 +52,20 @@ class DocumentTypes
 
   def self.all_pages_by_content_type
     @all_pages_by_content_type ||= facet_document_types_query.dig("facets", "content_store_document_type", "options").map do |o|
+      Page.new(
+        name: o.dig("value", "slug"),
+        total_count: o["documents"],
+        examples: o.dig("value", "example_info", "examples"),
+      )
+    end
+  end
+
+  def self.pages_with_format(format)
+    all_pages_by_format.find { |p| p.name == format }
+  end
+
+  def self.all_pages_by_format
+    @all_pages_by_format ||= facet_formats_query.dig("facets", "format", "options").map do |o|
       Page.new(
         name: o.dig("value", "slug"),
         total_count: o["documents"],

@@ -4,6 +4,9 @@ RSpec.describe DocumentTypesCsv do
       allow(DocumentTypes).to receive(:facet_document_types_query).and_return(
         JSON.parse(File.read("spec/fixtures/search-api-app-search-response.json")),
       )
+      allow(DocumentTypes).to receive(:facet_formats_query).and_return(
+        JSON.parse(File.read("spec/fixtures/search-api-format-search-response.json")),
+      )
       allow(DocumentTypes).to receive(:all_document_types).and_return(
         YAML.load_file("spec/fixtures/allowed-document-types-fixture.yml", aliases: true),
       )

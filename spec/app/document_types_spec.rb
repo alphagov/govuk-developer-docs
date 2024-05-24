@@ -9,6 +9,14 @@ RSpec.describe DocumentTypes do
           },
         )
 
+      stub_request(:get, "https://www.gov.uk/api/search.json?facet_format=500,examples:10,example_scope:global&count=0")
+        .to_return(
+          body: File.read("spec/fixtures/search-api-format-search-response.json"),
+          headers: {
+            content_type: "application/json",
+          },
+        )
+
       stub_request(:get, "https://raw.githubusercontent.com/alphagov/publishing-api/main/content_schemas/allowed_document_types.yml")
         .to_return(body: File.read("spec/fixtures/allowed-document-types-fixture.yml"))
 
