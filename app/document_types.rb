@@ -3,16 +3,8 @@ class DocumentTypes
   DOCUMENT_TYPES_URL = "https://raw.githubusercontent.com/alphagov/publishing-api/main/content_schemas/allowed_document_types.yml".freeze
 
   def self.pages
-    known_from_search = facet_document_types_query.dig("facets", "content_store_document_type", "options").map do |o|
-      Page.new(
-        name: o.dig("value", "slug"),
-        total_count: o["documents"],
-        examples: o.dig("value", "example_info", "examples"),
-      )
-    end
-
     all_document_types.map do |document_type|
-      from_search = known_from_search.find { |p| p.name == document_type }
+      from_search = pages_with_content_type(document_type)
       from_search || Page.new(name: document_type, total_count: 0, examples: [])
     end
   end
@@ -22,7 +14,7 @@ class DocumentTypes
   end
 
   def self.facet_document_types_query
-    @facet_query ||= HTTP.get(FACET_DOCUMENT_TYPES_QUERY)
+    @facet_document_types_query ||= HTTP.get(FACET_DOCUMENT_TYPES_QUERY)
   end
 
   def self.all_document_types
@@ -45,6 +37,20 @@ class DocumentTypes
         memo[document_type] ||= []
         memo[document_type] << schema_name
       end
+    end
+  end
+
+  def self.pages_with_content_type(content_type)
+    all_pages_by_content_type.find { |p| p.name == content_type }
+  end
+
+  def self.all_pages_by_content_type
+    @all_pages_by_content_type ||= facet_document_types_query.dig("facets", "content_store_document_type", "options").map do |o|
+      Page.new(
+        name: o.dig("value", "slug"),
+        total_count: o["documents"],
+        examples: o.dig("value", "example_info", "examples"),
+      )
     end
   end
 
