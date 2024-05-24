@@ -60,17 +60,19 @@ class DocumentTypes
           name: o.dig("value", "slug"),
           total_count: o["documents"],
           examples: o.dig("value", "example_info", "examples"),
+          document_type_field_name: facet_name,
         )
     end
   end
 
   class Page
-    attr_reader :name, :total_count, :examples
+    attr_reader :name, :total_count, :examples, :document_type_field_name
 
-    def initialize(name:, total_count:, examples:)
+    def initialize(name:, total_count:, examples:, document_type_field_name: nil)
       @name = name
       @total_count = total_count
       @examples = examples
+      @document_type_field_name = document_type_field_name
     end
 
     def url
@@ -83,7 +85,7 @@ class DocumentTypes
     end
 
     def search_url
-      "https://www.gov.uk/api/search.json?filter_content_store_document_type=#{name}&count=10"
+      "https://www.gov.uk/api/search.json?filter_#{document_type_field_name}=#{name}&count=10"
     end
 
     def schemas
