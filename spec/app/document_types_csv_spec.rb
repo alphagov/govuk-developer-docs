@@ -1,7 +1,7 @@
 RSpec.describe DocumentTypesCsv do
   describe ".to_csv" do
     it "returns document types" do
-      allow(DocumentTypes).to receive(:facet_query).and_return(
+      allow(DocumentTypes).to receive(:facet_document_types_query).and_return(
         JSON.parse(File.read("spec/fixtures/search-api-app-search-response.json")),
       )
       allow(DocumentTypes).to receive(:all_document_types).and_return(

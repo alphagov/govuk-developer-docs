@@ -1,9 +1,9 @@
 class DocumentTypes
-  FACET_QUERY = "https://www.gov.uk/api/search.json?facet_content_store_document_type=500,examples:10,example_scope:global&count=0".freeze
+  FACET_DOCUMENT_TYPES_QUERY = "https://www.gov.uk/api/search.json?facet_content_store_document_type=500,examples:10,example_scope:global&count=0".freeze
   DOCUMENT_TYPES_URL = "https://raw.githubusercontent.com/alphagov/publishing-api/main/content_schemas/allowed_document_types.yml".freeze
 
   def self.pages
-    known_from_search = facet_query.dig("facets", "content_store_document_type", "options").map do |o|
+    known_from_search = facet_document_types_query.dig("facets", "content_store_document_type", "options").map do |o|
       Page.new(
         name: o.dig("value", "slug"),
         total_count: o["documents"],
@@ -21,8 +21,8 @@ class DocumentTypes
     DocumentTypesCsv.new(pages).to_csv
   end
 
-  def self.facet_query
-    @facet_query ||= HTTP.get(FACET_QUERY)
+  def self.facet_document_types_query
+    @facet_query ||= HTTP.get(FACET_DOCUMENT_TYPES_QUERY)
   end
 
   def self.all_document_types
