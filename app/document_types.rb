@@ -5,8 +5,8 @@ class DocumentTypes
 
   def self.pages
     all_document_types.map do |document_type|
-      pages_with_content_type(document_type) ||
-        pages_with_format(document_type) ||
+      all_pages_by_content_type.find { |p| p.name == document_type } ||
+        all_pages_by_format.find { |p| p.name == document_type } ||
         Page.new(name: document_type, total_count: 0, examples: [])
     end
   end
@@ -46,31 +46,21 @@ class DocumentTypes
     end
   end
 
-  def self.pages_with_content_type(content_type)
-    all_pages_by_content_type.find { |p| p.name == content_type }
-  end
-
   def self.all_pages_by_content_type
-    @all_pages_by_content_type ||= facet_document_types_query.dig("facets", "content_store_document_type", "options").map do |o|
-      Page.new(
-        name: o.dig("value", "slug"),
-        total_count: o["documents"],
-        examples: o.dig("value", "example_info", "examples"),
-      )
-    end
-  end
-
-  def self.pages_with_format(format)
-    all_pages_by_format.find { |p| p.name == format }
+    @all_pages_by_content_type ||= examples_from_facet_search(facet_document_types_query, "content_store_document_type")
   end
 
   def self.all_pages_by_format
-    @all_pages_by_format ||= facet_formats_query.dig("facets", "format", "options").map do |o|
+    @all_pages_by_format ||= examples_from_facet_search(facet_formats_query, "format")
+  end
+
+  def self.examples_from_facet_search(query_response, facet_name)
+    query_response.dig("facets", facet_name, "options").map do |o|
       Page.new(
-        name: o.dig("value", "slug"),
-        total_count: o["documents"],
-        examples: o.dig("value", "example_info", "examples"),
-      )
+          name: o.dig("value", "slug"),
+          total_count: o["documents"],
+          examples: o.dig("value", "example_info", "examples"),
+        )
     end
   end
 
