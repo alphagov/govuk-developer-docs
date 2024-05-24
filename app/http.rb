@@ -15,7 +15,9 @@ module HTTP
   def self.get_without_cache(url)
     uri = URI.parse(url)
 
-    faraday = Faraday.new(url: uri) do |conn|
+    headers = { "User-Agent" => "https://github.com/alphagov/govuk-developer-docs" }
+
+    faraday = Faraday.new(url: uri, headers:) do |conn|
       conn.response :logger, nil, { headers: false }
       conn.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
       conn.use Octokit::Response::RaiseError
