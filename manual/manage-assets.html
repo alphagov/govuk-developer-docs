@@ -143,9 +143,6 @@
     <a href="#header"><span>Manage assets</span></a>
     <ul>
       <li>
-        <a href="#get-an-assets-id"><span>Get an asset’s ID</span></a>
-      </li>
-      <li>
         <a href="#remove-an-asset"><span>Remove an asset</span></a>
       </li>
       <li>
@@ -156,6 +153,9 @@
       </li>
       <li>
         <a href="#replace-an-asset"><span>Replace an asset</span></a>
+      </li>
+      <li>
+        <a href="#get-an-assets-id"><span>Get an asset’s ID</span></a>
       </li>
     </ul>
   </li>
@@ -206,23 +206,10 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/11bd810989e714c1c9a89f29a35ee0f21473010a">24 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/008da7c893cee628314db5cf01d69408d9798d01">1 May 2024</a>
 </div>
 
- <h1 id='header'>Manage assets</h1> <h2 id='get-an-assets-id'>Get an asset&rsquo;s ID</h2><p>You can get an asset&rsquo;s ID by using it&rsquo;s URL:</p>
-
-<ol>
-<li><p>Open a Rails console:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/asset-manager <span class="nt">--</span> rails c
-</code></pre></div></li>
-<li><p>Find the asset:</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">asset</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">legacy_url_path: </span><span class="s2">"/slug"</span><span class="p">)</span>
-<span class="nb">id</span> <span class="o">=</span> <span class="n">asset</span><span class="p">.</span><span class="nf">id</span>
-</code></pre></div><p>For example, if the URL is</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1234/document.pdf
-</code></pre></div><p>the slug would be <code>/government/uploads/system/uploads/attachment_data/file/1234/document.pdf</code></p></li>
-</ol>
-<h2 id='remove-an-asset'>Remove an asset</h2>
+ <h1 id='header'>Manage assets</h1> <h2 id='remove-an-asset'>Remove an asset</h2>
 <blockquote>
 <p>Where possible, you should delete the asset in the publishing application
 that originally uploaded the file, for example Whitehall. Deleting an asset
@@ -235,7 +222,7 @@ these steps to remove the asset from <code>assets.publishing.service.gov.uk</cod
 Asset Manager.</p>
 
 <ol>
-<li><a href="#getting-an-asset39s-id">Get the asset ID</a>. This can be obtained from the URL for most assets, e.g. the asset ID
+<li>Get the asset ID. This can be obtained from the URL for most assets, e.g. the asset ID
 for <code>https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg</code>
 is <code>65f2c1110e1c2f8c4dffaa53</code>.</li>
 </ol>
@@ -309,9 +296,7 @@ is <code>65f2c1110e1c2f8c4dffaa53</code>.</li>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:redirect[ASSET_ID,REDIRECT_URL]
 </code></pre></div><p>Also see <a href="#getting-an-asset39s-id">getting an asset&rsquo;s ID</a> if you have only been
 provided the URL.</p>
-<p>For Whitehall assets you will have to run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall_redirect <span class="nt">--</span> rake assets:redirect[LEGACY_PATH_URL,REDIRECT_URL]
-</code></pre></div><h2 id='upload-an-asset'>Upload an asset</h2><p>Some publishing apps such as <a href="/repos/publisher.html">Mainstream Publisher</a> do
+<h2 id='upload-an-asset'>Upload an asset</h2><p>Some publishing apps such as <a href="/repos/publisher.html">Mainstream Publisher</a> do
 not provide the facility for editors to upload assets such as images and PDFs.
 In these rare cases, we can upload assets to asset-manager manually and give
 the URL to content editors to embed.</p>
@@ -390,7 +375,20 @@ steps to remove the asset in Asset Manager:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>   k <span class="nb">exec</span> <span class="nt">-it</span> deploy/whitehall-admin <span class="nt">--</span> rails c
 </code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">attachment_data</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">asset_manager_id: </span><span class="n">asset</span><span class="o">-</span><span class="nb">id</span><span class="o">-</span><span class="n">from</span><span class="o">-</span><span class="n">url</span><span class="p">).</span><span class="nf">assetable</span> <span class="c1"># e.g. 57a9c52b40f0b608a700000a</span>
    <span class="n">attachment_data</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">file_size: </span><span class="mi">123</span><span class="p">,</span> <span class="ss">number_of_pages: </span><span class="mi">28</span><span class="p">)</span> <span class="c1"># file_size in bytes</span>
-</code></pre></div>
+</code></pre></div><h2 id='get-an-assets-id'>Get an asset&rsquo;s ID</h2><p>You can get an asset&rsquo;s ID by using it&rsquo;s URL:</p>
+
+<ol>
+<li><p>Open a Rails console:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/asset-manager <span class="nt">--</span> rails c
+</code></pre></div></li>
+<li><p>Find the asset:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">asset</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">legacy_url_path: </span><span class="s2">"/slug"</span><span class="p">)</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="n">asset</span><span class="p">.</span><span class="nf">id</span>
+</code></pre></div><p>For example, if the URL is</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1234/document.pdf
+</code></pre></div><p>the slug would be <code>/government/uploads/system/uploads/attachment_data/file/1234/document.pdf</code></p></li>
+</ol>
+
   <div class='related-content'>
 
     <h3>More in the Assets section</h3>
