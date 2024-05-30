@@ -143,7 +143,16 @@
     <a href="#header"><span>Brakeman</span></a>
     <ul>
       <li>
+        <a href="#add-brakeman-to-a-project"><span>Add Brakeman to a project</span></a>
+      </li>
+      <li>
+        <a href="#where-to-find-security-alerts"><span>Where to find Security Alerts</span></a>
+      </li>
+      <li>
         <a href="#dealing-with-false-positives"><span>Dealing with false positives</span></a>
+      </li>
+      <li>
+        <a href="#dealing-with-security-alerts"><span>Dealing with Security Alerts</span></a>
       </li>
     </ul>
   </li>
@@ -194,12 +203,25 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/91453ed331a6bddf84a51b71334bc393845835e9">8 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e31414fc92c7db7be4010de026f12bab260c16d4">30 May 2024</a>
 </div>
 
  <h1 id='header'>Brakeman</h1> <p><a href="https://github.com/presidentbeef/brakeman">Brakeman</a> is a static analysis tool which checks Rails applications
 for security vulnerabilities. It is effectively a type of linter, similar to
-<a href="https://github.com/rubocop-hq/rubocop">rubocop</a>.</p>
+<a href="https://github.com/rubocop-hq/rubocop">rubocop</a>. It is configured as a [reusable workflow][] and should be included
+as a job in the CI pipeline of all GOV.UK Ruby repositories.</p>
+<p>[reusable workflow][https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/brakeman.yml]</p>
+<h2 id='add-brakeman-to-a-project'>Add Brakeman to a project</h2><p>To use the Brakeman reusable workflow, add the following job to the <code>jobs</code> section of your CI workflow:</p>
+<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="na">security-analysis</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">Security Analysis</span>
+  <span class="na">uses</span><span class="pi">:</span> <span class="s">alphagov/govuk-infrastructure/.github/workflows/brakeman.yml@main</span>
+  <span class="na">secrets</span><span class="pi">:</span> <span class="s">inherit</span>
+  <span class="na">permissions</span><span class="pi">:</span>
+    <span class="na">contents</span><span class="pi">:</span> <span class="s">read</span>
+    <span class="na">security-events</span><span class="pi">:</span> <span class="s">write</span>
+    <span class="na">actions</span><span class="pi">:</span> <span class="s">read</span>
+</code></pre></div><h2 id='where-to-find-security-alerts'>Where to find Security Alerts</h2><p>To find the security alerts for a repo, first go to the Security tab of the repo and then the Code Scanning option under the Vulnerability Alerts in the sub menu. This is where <a href="https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository">all alerts</a> can be found.</p>
+<p>Additionally, when a PR is created, Brakeman scans the diff to identify vulnerabilities in the new code. These <a href="https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/triaging-code-scanning-alerts-in-pull-requests#code-scanning-results-check">PR specific alerts</a> can be found on the Checks tab of the PR: select &ldquo;Code scanning results&rdquo; and then &ldquo;Brakeman&rdquo;.</p>
 <h2 id='dealing-with-false-positives'>Dealing with false positives</h2><p>There will be times when Brakeman flags up false positives in your code. You
 should try to refactor the code to satisfy Brakeman in such a way that it would
 also pass a code review. There is no benefit to refactoring the code just for
@@ -214,6 +236,8 @@ useful tool for ignoring warnings:</p>
 </code></pre></div><p>It will help you decide what to do with each individual warning step by step.</p>
 <p>If you do decide to ignore a warning, you must include a note outlining why
 it is a false positive and not a security vulnerability.</p>
+<h2 id='dealing-with-security-alerts'>Dealing with Security Alerts</h2><p>If you do decide to ignore a Brakeman alert, as described above, you will also need to close the security alert in GitHub.</p>
+<p>Alerts can be resolved by dismissing the alert as a false positive. You must include a note outlining why it is a false positive and not a security vulnerability.</p>
 
   <div class='related-content'>
 
