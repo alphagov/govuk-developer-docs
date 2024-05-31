@@ -36,6 +36,8 @@ We no longer run these db_admin bastion instances.
 
 The jobs that used to run on db_admin instances now run as Kubernetes cronjobs, configured in the [db-backup](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/db-backup) and [search-index-env-sync](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/search-index-env-sync) charts. You can view job status in the Argo CD web UI (and of course `kubectl` on the command line).
 
+Read [more about the nightly data sync](/manual/govuk-env-sync.html).
+
 ### Open a database commmand-line session
 
 For a Rails app:
