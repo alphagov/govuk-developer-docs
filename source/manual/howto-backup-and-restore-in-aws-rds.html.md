@@ -10,10 +10,6 @@ This playbook describes how to restore a database instance using Amazon's [RDS B
 
 We use RDS Backups to give us fully nightly backups and point-in-time recovery (PITR) (also known as continuous data protection or CDP).
 
-> This playbook does not cover restoring from [govuk_env_sync backups](govuk-env-sync.html).
-
-<!-- Force markdown to separate these quotes -->
-
 > We only run RDS Backup in the production environment. To run a test restore in staging or integration, you must first take a manual snapshot from the AWS console.
 >
 > Make sure the snapshot's name contains the name of the app (e.g. `local-links-manager`), and remember to delete it afterwards.
