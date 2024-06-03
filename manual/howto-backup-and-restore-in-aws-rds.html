@@ -223,17 +223,11 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7ef01b2580ad201c9ec700efa727433287c66f42">22 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9b075f730ff5a2eede7bf9420411c6b86e0755a9">31 May 2024</a>
 </div>
 
  <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>This playbook describes how to restore a database instance using Amazon&rsquo;s <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html">RDS Backups</a> feature.</p>
 <p>We use RDS Backups to give us fully nightly backups and point-in-time recovery (PITR) (also known as continuous data protection or CDP).</p>
-
-<blockquote>
-<p>This playbook does not cover restoring from <a href="/manual/govuk-env-sync.html">govuk_env_sync backups</a>.</p>
-</blockquote>
-
-<!-- Force markdown to separate these quotes -->
 
 <blockquote>
 <p>We only run RDS Backup in the production environment. To run a test restore in staging or integration, you must first take a manual snapshot from the AWS console.</p>
@@ -360,7 +354,6 @@ gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><s
 
           <ul class="govuk-list">
             <li><a href="/manual/fix-out-of-date-search-indices.html">Fix out-of-date search indices</a></li>
-            <li><a href="/manual/howto-restore-an-individual-postgres-database.html">Restore an Individual Postgres Production Database in AWS RDS</a></li>
             <li><a href="/manual/elasticsearch-dumps.html">Restore Elasticsearch indices from backup</a></li>
           </ul>
         </div>

@@ -205,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6ff27354c7cc1eccf03c182b4c2dc6a98470cf4e">22 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5e69d61e6d02e5c648b8f5477a7239c49175e7b4">31 May 2024</a>
 </div>
 
  <h1 id='header'>Databases on GOV.UK</h1> <h2 id='database-engines'>Database engines</h2><p>GOV.UK uses mostly PostgreSQL and some MySQL for apps that require a relational database. There&rsquo;s no particular reason why we use both, and the fact that we do is considered <a href="https://trello.com/c/zlfgSJlV/69-govuk-uses-mysql-and-postgresql-and-mongo">tech debt</a>.</p>
@@ -224,6 +224,7 @@
 </ul>
 <p>We no longer run these db_admin bastion instances.</p>
 <p>The jobs that used to run on db_admin instances now run as Kubernetes cronjobs, configured in the <a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/db-backup">db-backup</a> and <a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/search-index-env-sync">search-index-env-sync</a> charts. You can view job status in the Argo CD web UI (and of course <code>kubectl</code> on the command line).</p>
+<p>Read <a href="/manual/govuk-env-sync.html">more about the nightly data sync</a>.</p>
 <h3 id='open-a-database-commmand-line-session'>Open a database commmand-line session</h3><p>For a Rails app:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/content-publisher <span class="nt">-it</span> <span class="nt">--</span> rails db <span class="nt">-p</span>
 </code></pre></div><p>For a non-Rails app:</p>
