@@ -56,7 +56,7 @@ A taxonomy topic email subscription is similar to a specialist topic subscriptio
 
 * Document collection pages by contrast used the [Single page notification button component][email-signup-single-button-heading] as a route into the sign up journey. This journey was hardcoded to enfore the GOV.UK Account, in other words clicking the button took the user directly to the account signup/signin page. It was not possible to subscribe to email alerts without having or creating a GOV.UK Account.
 
-To address this difference, and unblock the retirement of specialist topics, a new variant of the single page notification button component was rolled out on document collection pages. This variant is configured to skip the GOV.UK Account, and sign the user up via a magic link instead. More information on how this feature works can be found on the [Email Signup Journeys documentation][email-signup-skip-account-heading] page.
+To address this difference, and unblock the retirement of specialist topics, a new variant of the single page notification button component was rolled out on document collection pages. [This variant is configured to skip the GOV.UK Account][email-signup-skip-account-heading], and sign the user up via a magic link instead.
 
 It's worth highlighting that although the single page notification button looks the same to the user, the page they are taken to after clicking the button on a document collection page is different to the page they are taken to when clicking the identical button on all other page types.
 
@@ -67,22 +67,25 @@ It's worth highlighting that although the single page notification button looks 
 
 ### What is a Taxonomy topic email override
 
-* A taxonomy_topic_email_overide is a type of link that [can only be added to document collections][document-collection-schema] **that have never previously been published**.
-* The field is set via a rake task in Whitehall.
+* A `taxonomy_topic_email_override` is a type of edition_link that's added to the content item of a Document collection when it's [published][document-collection-presenter] from Whitehall.
 
-* The taxonomy_topic_email_overide stores the content_id of a taxonomy topic that a user will be subcribed to when signing up for emails on the document collection page.
+* It's set via a rake task in Whitehall, full guidance is given in the section [How to set a taxonomy_topic_email_override][how-to-set]
+
+* It stores the content_id of a taxonomy topic that a user will be subcribed to when signing up for emails on the document collection page.
+
+* **It [can only be added to document collections][document-collection-schema] that have never previously been published.**
 
 ### How does the Taxonomy topic email override field work
 
-When rendering a document collection page, government frontend checks for the presence of a taxonomy_topic_email_override link in the content item.
+When rendering a document collection page, government-frontend checks for the presence of a `taxonomy_topic_email_override` link in the content item.
 
 * If a link is found, the page is rendered with a [sign up link component][email-signup-documentation signup-link-heading] that will find or create a taxonomy topic email subscription for the topic stored in the field.
 
 * If no link is found, the page is rendered with a [single page notification button][email-signup-single-button-heading] that will sign the user up to a standard document collection email list instead.
 
+[document-collection-presenter]: https://github.com/alphagov/whitehall/blob/21f85c4b483e907e6e57aa27507c261d3f08a50a/app/presenters/publishing_api/document_collection_presenter.rb#L46
 [document-collection-schema]: https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/document_collection.jsonnet#L69-L71
-
-[email-signup-documentation signup-link-heading]:/manual/email-signup-journeys.html#signup-link-component
+[email-signup-documentation signup-link-heading]:/manual/email-signup-journeys.html#sign-up-link-component
 [email-signup-single-button-heading]:/manual/email-signup-journeys.html#single-page-notification-button-component
 [email-signup-subscription-link-heading]:/manual/email-signup-journeys.html#subscription-links-component
 [email-signup-subscription-link-heading]:/manual/email-signup-journeys.html#subscription-links-component
@@ -90,9 +93,9 @@ When rendering a document collection page, government frontend checks for the pr
 
 ### How to set a taxonomy_topic_email_override
 
-**As mentioned above, it is only possible to set this field on document collections that have never been published before.**
+It is only possible to set this field on document collections that have never been published before.
 
-> Once a document is published with a taxonomy_topic_email_override, the field cannot be changed.
+> Once a document is published with a `taxonomy_topic_email_override`, the field cannot be changed.
 
 #### Warning: Do not set this field unless you have an exceptionally good reason
 
@@ -100,30 +103,30 @@ The following developer steps should **only** be taken if the request has comes 
 
 [content_documentation]: https://docs.google.com/document/d/1MR5OaFG_DOCmWGL9o9MSGIPLMFe2mmSrV6Va-99cSzw/edit#heading=h.y6ckz26uo2lf
 
-#### 1. Find the id of the document collection
+#### Step one - Find the id of the document collection
 
-* Log into the whitehall admin UI via signon.
-* The ID can be taken from the URL of the document collection. E.g. `12345` for a document_collection at URL `whitehall-admin.publishing.service.gov.uk/government/admin/collections/12345`
+1. Log into the whitehall admin UI via signon.
+2. The ID can be taken from the URL of the document collection. E.g. `12345` for a document_collection at URL `whitehall-admin.publishing.service.gov.uk/government/admin/collections/12345`
 
-#### 2.  Run the rake task
+#### Step two -  Run the rake task
 
-The taxonomy_topic_email_override field can be set by running the following [rake task][whitehall_rake_task] from a Whitehall machine. This task runs in dry_run mode by default, unless a confirmation string is passed in. If the document collection has previously been published an error will be raised.
+The `taxonomy_topic_email_override` field can be set by running the following [rake task][whitehall_rake_task] from a Whitehall machine. This task runs in `dry_run` mode by default, unless a confirmation string is passed in. If the document collection has previously been published an error will be raised.
 
-DRY RUN:
->`rake:set_taxonomy_topic_email_override[document_collection_id,taxon_content_id]`
+Dry run: `rake:set_taxonomy_topic_email_override[document_collection_id,taxon_content_id]`
 
-FOR REAL:
->`rake:set_taxonomy_topic_email_override[document_collection_id,taxon_content_id,run_for_real]`
+For real: `rake:set_taxonomy_topic_email_override[document_collection_id,taxon_content_id,run_for_real]`
 
 [whitehall_rake_task]: https://github.com/alphagov/whitehall/blob/main/lib/tasks/set_taxonomy_topic_email_override.rake
 
 ### What to do if you're asked to set or update a taxonomy topic email override field on a live page
 
-As mentioned above, it is not possible to set this field unless the document collection is new and never before published. However it is possible to create new content with a taxonomy topic email override, to replace the original.
+As mentioned above, it is not possible to set this field unless the document collection is new and has not been published before.
 
-The steps to take depend on whether the original document collection was published with or without a taxonomy_topic_email_overide.
+However it is possible to create new content with a `taxonomy_topic_email_override`, to replace the original.
 
-#### Setting a taxonomy_topic_email_override on pages that have already been published without one
+The steps to take depend on whether the original document collection was published with or without an override.
+
+### Setting a `taxonomy_topic_email_override` if the original document collection was published without one
 
 #### Step one - create a replacement document collection
 
@@ -146,11 +149,11 @@ Run the `data_migration:move_all_subscribers` [rake task][bulk-migrate-rake] fro
 [how-does-it-work]: #how-does-the-taxonomy-topic-email-override-field-work
 [bulk-migrate-rake]:https://github.com/alphagov/email-alert-api/blob/main/lib/tasks/data_migration.rake#L4-L11
 
-#### Overriding an existing taxonomy_topic_email_override for previously published pages
+### Overriding an existing `taxonomy_topic_email_override` for previously published pages
 
 In this case, we can create replacement content as described in [step one][step-one] above. However we cannot migrate any email subscribers that have signed up whilst the page was live.
 
-This is because if the original page was published with an override, the page would have displayed a [Sign up link][how-it-works] that subscribed users to a taxonomy topic email list.
+This is because if the original page was published with an override, the page would have displayed a sign up link that subscribed users to a taxonomy topic email list as described in the section [How does the Taxonomy topic email override field work][how-it-works].
 
 Email alert API does not store information about the page from which a user subscribed to a links-based list. So it is not possible to confidently identify the users that need to be migrated (as some could have signed up from the taxonomy page itself). This limitation/risk was acknowledged by both the department, and senior leadership when the feature was rolled out.
 

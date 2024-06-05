@@ -19,7 +19,7 @@ The button was designed to enforce the GOV.UK account, in other words the user w
 
 Since its initial roll out, the component has been extended so that it can now be [configured][skip-account-documentation] to skip the account sign up flow, and allow users to sign up via a magic link instead. At the time of writing, this customisation has only been implemented on Document collection pages. You can read about the reasons for this feature here: [Document Collection emails - a special case][document-collection-emails-documenation]
 
-[document-collection-emails-documenation]: /manual/document-collection-emails-a-special-case.html.md
+[document-collection-emails-documenation]: /manual/document-collection-emails-a-special-case.html
 
 #### How does the skip account feature work?
 
@@ -62,12 +62,12 @@ The signup journey does not enforce the GOV.UK account, the user must enter an e
 
 On Travel advice pages, the component posts to `/email/subscriptions/new?frequency=whatever&topic_id=slug` which is served by email-alert-frontend's [subscriptions controller][email-alert-frontend-subscriptions-controller]. This signup flow is the only place that the legacy [email_alert_signup][email-alert-schema] schema is currently used. The subscription that is created is [tag-based][email-alert-api-documentation-links].
 
-You can read more about how email subscriptions work on specialist finders and the other page types mentioned above [here][finder-frontend-docs]
+The button is configured similarly on the other page types mentioned aboves, including on specialist finders. There is relevant documentation specifically about how specialist finders emails work [here][finder-frontend-docs]
 
 [subscription-links]: https://components.publishing.service.gov.uk/component-guide/subscription_links
 [people-finder]: https://www.gov.uk/government/people
-[rishi-sunak-page]: https://www.gov.uk/government/people/rishi-sunak
+[rishi-sunak-page]: https://www.gov.uk/government/people/rishi-sunak#announcements
 [email-alert-frontend-subscriptions-controller]:https://github.com/alphagov/email-alert-frontend/blob/main/config/routes.rb#L35
-[finder-frontend-docs]https://github.com/alphagov/finder-frontend/blob/main/docs/finder-email-alerts.md
+[finder-frontend-docs]: https://github.com/alphagov/finder-frontend/blob/main/docs/finder-email-alerts.md
 [email-alert-schema]: https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/email_alert_signup/notification/schema.json
 [email-alert-api-documentation-links]: https://github.com/alphagov/email-alert-api/blob/main/docs/matching-content-to-subscriber-lists.md#json-fields
