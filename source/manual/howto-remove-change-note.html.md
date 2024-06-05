@@ -45,6 +45,12 @@ https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edi
 1. If such an editorial remark is present, then destroy the `editorial_remark`
    and check that it is no longer displayed.
 
+## Manuals Publisher
+
+Removing change notes from manuals is now possible via the UI, for users with the `gds_editor` permission.
+
+See [this example document](https://manuals-publisher.integration.publishing.service.gov.uk/manuals/2606097c-e82a-4f5d-920a-5f360dcff626/change_history).
+
 ## Other apps
 
 **Note**
