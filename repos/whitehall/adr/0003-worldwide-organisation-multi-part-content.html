@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: 1. Add View Components - GOV.UK Developer Documentation</title>
+    <title>whitehall: 3. Using multi-part content for Worldwide Organisations - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/adr/0001-add-view-components.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/adr/0003-worldwide-organisation-multi-part-content.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: 1. Add View Components - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/adr/0001-add-view-components.html" />
+      <meta name="twitter:title" content="whitehall: 3. Using multi-part content for Worldwide Organisations - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/adr/0003-worldwide-organisation-multi-part-content.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: 1. Add View Components" />
+      <meta property="og:title" content="whitehall: 3. Using multi-part content for Worldwide Organisations" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/adr/0001-add-view-components.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/adr/0003-worldwide-organisation-multi-part-content.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -231,44 +231,55 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/ad83161a71eaaba1f548e297df2362ca5ef70eff">20 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/876a39198e0a6ccd20ca6ec3879b20832c6b990d">4 Jun 2024</a>
 </div>
 
-  <h1 class="page-title">whitehall: 1. Add View Components</h1>
+  <h1 class="page-title">whitehall: 3. Using multi-part content for Worldwide Organisations</h1>
 
   
-<p>Date: 2022-11-09</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
+<p>Date: 2024-06-04</p>
 <h2 id="context">Context</h2>
-<p>Whitehall has large complex views. The established pattern is to break down the pages into many partials. Each of these partials have different functions and vary in levels of complexity. We then test these views through a combination of feature specs and view controller specs.</p>
-<p>These specs are slow when it comes to performance. They're also often somewhat laborious to write as you are unable to isolate the section of the view that you are working on and subsequently interested in testing. As many views are large and complex, you often have to handle interactions with other applications. For example you may well have to stub out some calls to Publishing API when you only want to ensure specific fields are rendered on the page.</p>
-<p>Often there is quite a lot of logic that sits within partials in the form of conditionals, or is pulled in from the controller or helpers.</p>
-<p>This issue has been documented in GitHub Issue <a href="https://github.com/alphagov/whitehall/issues/6954">#6954</a>.</p>
-<h2 id="decision">Decision</h2>
-<p>To resolve these issues going forward, we are going to use <a href="https://viewcomponent.org/">View Components</a> with the following guidelines:</p>
+<p>Whilst converting Worldwide Organisations from being non-editionable to editionable entities in Whitehall Publisher, an investigation was carried out into the best way of modelling the child pages that belong to the organisation when sent to Publishing API (and therefore Content Store).</p>
+<p>There are two ways that a piece of content that is spread over several pages may currently be represented on GOV.UK:</p>
 <ol>
 <li>
-<p>View Components are intended for controller specific view needs, particularly to provide an easier way to test views. For components used in multiple places we have <a href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components.html">govuk_publishing_components</a>.</p>
+<p>Multiple pages (known as “parts”) on GOV.UK that are published as a single content item (i.e. all the sub-pages are in one content item). There are two existing uses of these:</p>
+<ul>
+<li>Mainstream guides</li>
+<li>Travel advice</li>
+</ul>
 </li>
 <li>
-<p>We consider View Components to be a part of the View layer of the application, so should only contain logic that relates to converting the input arguments into HTML. If more complex business logic is needed you can use Helper functions or add it to methods on the object passed into the component.</p>
-</li>
-<li>
-<p>Tests for View Components should be all based on HTML output. If you need to test something more than that, it's likely not something that belongs in a View Component.</p>
+<p>Multiple pages on GOV.UK that form part of the same piece of guidance, but are published as multiple content items (i.e. each part is in a separate content items). There are many examples of this:</p>
+<ul>
+<li>HTML attachments to Whitehall publications</li>
+<li>Manuals</li>
+</ul>
 </li>
 </ol>
-<h2 id="consequences">Consequences</h2>
-<p>We will adopt View Components as described.</p>
-<p>We will follow the <a href="/repos/whitehall/view_components.html">documentation</a> for implementation.</p>
+<p>The rest of this section will focus on the former case where content is published as one content item, herein referred to as “multi-part content”.</p>
+<h3 id="attributes-of-multi-part-content">Attributes of multi-part content</h3>
+<ul>
+<li>An audit history in the publishing application that spans all the parts.</li>
+<li>The parts are published as part of the main content item, at the same time and always have the same publishing state.</li>
+<li>The routes for the parts are included in the content item when presented to Publishing API. For example, in <a href="https://github.com/alphagov/travel-advice-publisher/blob/5f9bfde5c357467b41abb53eec59e6a3a30a54ba/app/presenters/edition_presenter.rb#L90">Travel Advice Publisher</a>.</li>
+<li>The routes for all parts are registered with Router API. A request to retrieve the content items for any of the parts redirects to the content item for the main page.</li>
+</ul>
+<h3 id="benefits-of-using-multi-part-content">Benefits of using multi-part content</h3>
+<ul>
+<li>The main page and parts share a publishing state. That means that there is no need to keep the main page and parts in sync in the Publishing application. This avoids the need for the publishing application to keep the child documents in sync (e.g. as is done by <a href="https://github.com/alphagov/whitehall/blob/be9de21be77a0ce0a2c7fe64d10307d4cd82b3be/app/services/service_listeners/publishing_api_html_attachments.rb">PublishingApiHtmlAttachments</a> in Whitehall).</li>
+<li>Don’t need to rely on link expansion for including content (e.g. page titles) from the parts in the parent page.</li>
+<li>Both of the above simplify the code needed in the publishing application.</li>
+</ul>
+<h3 id="drawbacks-of-multi-part-content">Drawbacks of multi-part content</h3>
+<ul>
+<li>The main content and all the parts must have a translation for every locale they can be translated into. This means they cannot have a document translated into a second language unless all the parts are also translated. Otherwise the content item will be missing sections for some languages that may be available to users in another translation. For mainstream guides and travel advice, there are no translations and these types of content can only be published in one language.</li>
+<li>A large number of parts and a large amount of content within those parts would make a content item sufficiently big that the end consumer (e.g. front end application) would encounter performance issues. Using manuals as an example, they could in theory have many thousands of parts and representing all of those in one content item would make it unmanageable and lots of the data would go unused on the final page.</li>
+</ul>
+<h2 id="decision">Decision</h2>
+<p>Multi-part content was considered for Worldwide Organisations, by including their Worldwide Offices and Corporate Information Pages within the organisation’s content item. However Worldwide Offices and Corporate Information Pages are not required to be translated into the same language as the organisation. This stopped us from being able to turn Worldwide Organisations into multi-part content, as it meant we could not consistently provide links to all the translations and pages available within the organisation.</p>
+<p>Instead, we opted for option 2, where all the pages are published as their own individual content items and code kept in sync. To manage the state of the child documents, we made PublishingApiHtmlAttachments more generic to handle all associated documents and renamed it <a href="https://github.com/alphagov/whitehall/commit/425edc8f446541134a8d4b6d3c423849c8cdcaf0">PublishingApiAssociatedDocuments</a>. By updating a model’s <code>associated_documents</code> method, other types of pages can be kept in sync with the parent document without needing any new callbacks.</p>
 
 
             
@@ -276,8 +287,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/adr/0001-add-view-components.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fadr%2F0001-add-view-components.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/adr/0003-worldwide-organisation-multi-part-content.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fadr%2F0003-worldwide-organisation-multi-part-content.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
