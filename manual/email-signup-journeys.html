@@ -205,13 +205,13 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b2b5ac2b940efea67bf8ad41de5db134fb45ec01">2 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5932c91070ca853b95532065b7cc5249c6beefe1">4 Jun 2024</a>
 </div>
 
  <h1 id='header'>Email signup journeys and email subscriptions across GOV.UK</h1> <p>There are a number of different ways that a user can subscribe to email notifications on GOV.UK. This documentation seeks to explain the different signup journeys, and types of subscription that are created.</p>
 <h2 id='email-sign-up-entry-points'>Email sign up entry points</h2><h3 id='single-page-notification-button-component'>Single page notification button component</h3><p><a href="https://components.publishing.service.gov.uk/component-guide/single_page_notification_button">The single page notification button component</a> was rolled out in early 2022, and is present on many pages types including Call for evidence, Consultations, Detailed guides, Document collections and Publications. This signup flow subscribes users to a <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/matching-content-to-subscriber-lists.md#uuid-field">content-id based</a> email subscription.</p>
 <p>The button was designed to enforce the GOV.UK account, in other words the user would be forced to sign-in or create an account to be able to complete their subscription journey. This tight coupling with the account was by design, to help increase the number of users signing up to the new GOV.UK account.</p>
-<p>Since its initial roll out, the component has been extended so that it can now be <a href="https://components.publishing.service.gov.uk/component-guide/single_page_notification_button/with_skip_account">configured</a> to skip the account sign up flow, and allow users to sign up via a magic link instead. At the time of writing, this customisation has only been implemented on Document collection pages. You can read about the reasons for this feature here: <a href="/manual/document-collection-emails-a-special-case.html.md">Document Collection emails - a special case</a></p>
+<p>Since its initial roll out, the component has been extended so that it can now be <a href="https://components.publishing.service.gov.uk/component-guide/single_page_notification_button/with_skip_account">configured</a> to skip the account sign up flow, and allow users to sign up via a magic link instead. At the time of writing, this customisation has only been implemented on Document collection pages. You can read about the reasons for this feature here: <a href="/manual/document-collection-emails-a-special-case.html">Document Collection emails - a special case</a></p>
 <h4 id='how-does-the-skip-account-feature-work'>How does the skip account feature work?</h4>
 <ul>
 <li>By default, the button will post to <code>/email/subscriptions/single-page/new?topic_id=slug</code> which is served by email-alert-frontend&rsquo;s <a href="https://github.com/alphagov/email-alert-frontend/blob/810f3bd43dde903ca85cbf99c073c61bf037ca16/config/routes.rb#L39">govuk_account_signups controller</a>. This route enforces the GOV.UK account.</li>
@@ -223,7 +223,7 @@
 <h3 id='subscription-links-component'>Subscription links component</h3><p><a href="https://components.publishing.service.gov.uk/component-guide/subscription_links">The Subscription links component</a> is used on many pages, including:</p>
 
 <ul>
-<li>the announcements section of some <a href="https://www.gov.uk/government/people">people pages</a> (there&rsquo;s an example <a href="https://www.gov.uk/government/people/rishi-sunak">here</a>)</li>
+<li>the announcements section of some <a href="https://www.gov.uk/government/people">people pages</a> (there&rsquo;s an example <a href="https://www.gov.uk/government/people/rishi-sunak#announcements">here</a>)</li>
 <li>organisation pages</li>
 <li>service manual pages</li>
 <li>specialist finders</li>
@@ -234,8 +234,7 @@
 </ul>
 <p>The signup journey does not enforce the GOV.UK account, the user must enter an email address and is sent a magic link to confirm their subscription.</p>
 <p>On Travel advice pages, the component posts to <code>/email/subscriptions/new?frequency=whatever&amp;topic_id=slug</code> which is served by email-alert-frontend&rsquo;s <a href="https://github.com/alphagov/email-alert-frontend/blob/main/config/routes.rb#L35">subscriptions controller</a>. This signup flow is the only place that the legacy <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/email_alert_signup/notification/schema.json">email_alert_signup</a> schema is currently used. The subscription that is created is <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/matching-content-to-subscriber-lists.md#json-fields">tag-based</a>.</p>
-<p>You can read more about how email subscriptions work on specialist finders and the other page types mentioned above [here][finder-frontend-docs]</p>
-<p>[finder-frontend-docs]https://github.com/alphagov/finder-frontend/blob/main/docs/finder-email-alerts.md</p>
+<p>The button is configured similarly on the other page types mentioned aboves, including on specialist finders. There is relevant documentation specifically about how specialist finders emails work <a href="https://github.com/alphagov/finder-frontend/blob/main/docs/finder-email-alerts.md">here</a></p>
 
   <div class='related-content'>
 
