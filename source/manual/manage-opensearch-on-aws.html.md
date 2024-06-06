@@ -56,7 +56,7 @@ We typically can't access an OpenSearch dashboard with the URL provided in the A
 
 1. Open <https://localhost:4443/_dashboards> in your browser. The TLS certificate will not match `localhost`, so navigate past the certificate warnings. In Chrome, you can set <chrome://flags/#allow-insecure-localhost> if you prefer.
 
-1. Enter the username and password credentials to log into the dashboard.
+1. Enter the username and password credentials obtained from Secrets Manager to log into the dashboard.
 
 [AWS OpenSearch]: https://aws.amazon.com/opensearch-service/
 [AWS Secrets Manager]: https://aws.amazon.com/secrets-manager/
