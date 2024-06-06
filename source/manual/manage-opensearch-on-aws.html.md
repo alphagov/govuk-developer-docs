@@ -8,11 +8,11 @@ parent: "/manual.html"
 
 [AWS OpenSearch] is an open source, distributed search and analytics suite derived from Elasticsearch.
 
-## Access OpenSearch Dashboard
+### Access OpenSearch Dashboard
 
 We typically can't access an OpenSearch dashboard with the URL provided in the AWS console because the endpoint is in a private subnet in a [virtual private cloud (VPC)](https://en.wikipedia.org/wiki/Virtual_private_cloud). Therefore to access it we need to configure our system to tunnel into the subnet in the VPC.
 
-## Prerequisites
+### Prerequisites
 
 1. Access to a [GOV.UK EKS cluster] with admin role permissions has been configured and established.
 
