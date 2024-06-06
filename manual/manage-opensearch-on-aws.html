@@ -11,23 +11,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Move apps between servers - GOV.UK Developer Documentation</title>
+    <title>Manage OpenSearch on AWS - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/move-apps-between-servers.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/manage-opensearch-on-aws.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Move apps between servers - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/move-apps-between-servers.html" />
+      <meta name="twitter:title" content="Manage OpenSearch on AWS - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/manage-opensearch-on-aws.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Move apps between servers" />
+      <meta property="og:title" content="Manage OpenSearch on AWS" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/move-apps-between-servers.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/manage-opensearch-on-aws.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -140,7 +140,20 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Move apps between servers</span></a>
+    <a href="#header"><span>Manage OpenSearch on AWS</span></a>
+    <ul>
+      <li>
+        <a href="#access-opensearch-dashboard"><span>Access OpenSearch Dashboard</span></a>
+        <ul>
+          <li>
+            <a href="#prerequisites"><span>Prerequisites</span></a>
+          </li>
+          <li>
+            <a href="#connect-to-the-opensearch-dashboard"><span>Connect to the OpenSearch Dashboard</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -188,37 +201,39 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0c4ed5637fa01eff6677d743bde90632df01a52f">6 Jun 2024</a>
 </div>
 
- <h1 id='header'>Move apps between servers</h1> <p>Most frontend and backend apps on GOV.UK share a small number of servers. In some circumstances, apps may use more than their share of resources and may affect other apps on the same server. In these cases, apps can be moved to their own servers using those steps.</p>
-
-<blockquote>
-<p><strong>Note</strong></p>
-<p>You need to be at least a Power User in AWS to be able to run the following procedure. You can check by looking in the [govuk-aws-data] repository. Some IAM changes may require Administrator access, so you&rsquo;ll need to ask someone in the GOV.UK Platform Engineering team to run these for you.</p>
-</blockquote>
-
+ <h1 id='header'>Manage OpenSearch on AWS</h1> <p><a href="https://aws.amazon.com/opensearch-service/">AWS OpenSearch</a> is an open source, distributed search and analytics suite derived from Elasticsearch.</p>
+<h2 id='access-opensearch-dashboard'>Access OpenSearch Dashboard</h2><p>We typically can&rsquo;t access an OpenSearch dashboard with the URL provided in the AWS console because the endpoint is in a private subnet in a <a href="https://en.wikipedia.org/wiki/Virtual_private_cloud">virtual private cloud (VPC)</a>. Therefore to access it we need to configure our system to tunnel into the subnet in the VPC.</p>
+<h3 id='prerequisites'>Prerequisites</h3>
 <ol>
-<li>Add Terraform configuration (<a href="https://github.com/alphagov/govuk-aws/pull/494">1</a>, <a href="https://github.com/alphagov/govuk-aws/pull/501">2</a>, <a href="https://github.com/alphagov/govuk-aws/pull/503/files#diff-c77caf224de69366e98d474cc9a6d473">3</a>) to create the new servers, load balancers, security groups, DNS entries etc.</li>
-<li>Add data to complement the configuration above (<a href="https://github.com/alphagov/govuk-aws-data/pull/103">1</a>, <a href="https://github.com/alphagov/govuk-aws-data/pull/104">2</a>).</li>
-<li><a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS/">Deploy</a> the Terraform configuration. You need to do this three times for each environment:
-
-<ol>
-<li><code>infra-security-groups</code> project in the <code>govuk</code> stack.</li>
-<li><code>app-name-of-your-app</code> project in the <code>blue</code> stack (replace <code>app-name-of-your-app</code> with the name you configured above).</li>
-<li><code>infra-public-services</code> project in the <code>govuk</code> stack (only if your app is accessible directly from the public internet).</li>
-</ol></li>
+<li><p>Access to a <a href="https://docs.publishing.service.gov.uk/kubernetes/get-started/access-eks-cluster/">GOV.UK EKS cluster</a> with admin role permissions has been configured and established.</p></li>
+<li><p>The <a href="https://github.com/knight42/krelay#installation">krelay</a> kubectl plugin and <a href="https://jqlang.github.io/jq/">jq</a> command have been installed.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>brew <span class="nb">install </span>knight42/tap/krelay jq
+</code></pre></div></li>
 </ol>
-<p>For each deployment, set the environment to one of <code>integration</code>, <code>staging</code> or <code>production</code> and run the <code>plan</code> command first to double-check the changes before running the <code>apply</code> command to make the changes.</p>
-<p>👉 <a href="/manual/deploying-terraform.html">Deploy AWS infrastructure with Terraform</a></p>
+<h3 id='connect-to-the-opensearch-dashboard'>Connect to the OpenSearch Dashboard</h3>
+<ol>
+<li><p>List OpenSearch domain names:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>aws opensearch list-domain-names | jq <span class="nt">-r</span> <span class="s1">'.DomainNames[]|.DomainName'</span>
+</code></pre></div></li>
+<li><p>Get OpenSearch host name for the OpenSearch Domain you want to access (e.g. for <code>chat-engine</code>):</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">OPENSEARCH_URL</span><span class="o">=</span><span class="si">$(</span>aws opensearch describe-domain <span class="nt">--domain-name</span> chat-engine | jq <span class="nt">-r</span> <span class="s1">'.DomainStatus.Endpoints.vpc'</span><span class="si">)</span>
+</code></pre></div></li>
+<li><p>Forward the OpenSearch HTTPS port to your local machine:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl relay host/<span class="nv">$OPENSEARCH_URL</span> 4443:443
+</code></pre></div></li>
+<li><p>The OpenSearch Dashboard web interface username and password for each environment can be found in <a href="https://aws.amazon.com/secrets-manager/">AWS Secrets Manager</a>. To find the <code>opensearch</code> secret name, use the command:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>aws secretsmanager list-secrets | jq <span class="nt">-r</span> <span class="s1">'.SecretList[]|select(.Name|contains("opensearch"))|.Name'</span>
+</code></pre></div></li>
+<li><p>Get the credentials from Secrets Manager and display them on screen (e.g. for <code>govuk/govuk-chat/opensearch</code>):</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>aws secretsmanager get-secret-value <span class="nt">--secret-id</span> govuk/govuk-chat/opensearch | jq <span class="nt">-r</span> <span class="s1">'.SecretString| tostring'</span> | jq
+</code></pre></div></li>
+<li><p>Open <a href="https://localhost:4443/_dashboards">https://localhost:4443/_dashboards</a> in your browser. The TLS certificate will not match <code>localhost</code>, so navigate past the certificate warnings. In Chrome, you can set <a href="chrome://flags/#allow-insecure-localhost">chrome://flags/#allow-insecure-localhost</a> if you prefer.</p></li>
+<li><p>Enter the username and password credentials obtained from Secrets Manager to log into the dashboard.</p></li>
+</ol>
 
   <div class='related-content'>
 
@@ -244,8 +259,8 @@
             <li><a href="/manual/ruby.html">Add a new Ruby version</a></li>
             <li><a href="/manual/databases.html">Databases on GOV.UK</a></li>
             <li><a href="/manual/amazonmq.html">Manage Amazon MQ</a></li>
-            <li><a href="/manual/manage-opensearch-on-aws.html">Manage OpenSearch on AWS</a></li>
             <li><a href="/manual/manually-resize-ebs.html">Manually resize EBSs (elastic block store)</a></li>
+            <li><a href="/manual/move-apps-between-servers.html">Move apps between servers</a></li>
             <li><a href="/manual/provision-machines-for-data-science-research.html">Provision machines for data science research</a></li>
             <li><a href="/manual/reprovision.html">Reprovision a machine</a></li>
           </ul>
@@ -260,8 +275,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/move-apps-between-servers.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Move+apps+between+servers%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fmove-apps-between-servers.html%29&amp;labels=bug&amp;title=Re%3A+%27Move+apps+between+servers%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/manage-opensearch-on-aws.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Manage+OpenSearch+on+AWS%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fmanage-opensearch-on-aws.html%29&amp;labels=bug&amp;title=Re%3A+%27Manage+OpenSearch+on+AWS%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
