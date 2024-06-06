@@ -151,6 +151,9 @@
       <li>
         <a href="#dealing-with-security-alerts"><span>Dealing with Security Alerts</span></a>
       </li>
+      <li>
+        <a href="#troubleshooting"><span>Troubleshooting</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -199,15 +202,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8683fc0d7708db22e8a210a376c06163f9eb5a5c">25 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0eb797a304e87b5baff4ee43e335ed3d02065630">6 Jun 2024</a>
 </div>
 
  <h1 id='header'>CodeQL</h1> <p><a href="https://codeql.github.com/">CodeQL</a> is a Static Application Security Testing (SAST) tool which checks for vulnerability signatures in a repository&rsquo;s codebase. It is <a href="https://github.com/alphagov/govuk-infrastructure/pull/936">configured as a reusable workflow</a> and should be included as a job in the CI pipeline of all GOV.UK repositories. A reusable workflow design was selected so that enhancements to the scanning process can be managed centrally.</p>
@@ -222,6 +218,15 @@
 <h2 id='dealing-with-security-alerts'>Dealing with Security Alerts</h2><p>Currently, CodeQL is configured to <a href="https://github.com/alphagov/govuk-infrastructure/blob/f9c3b2bddf407d78c04552563a4ba23a89c8af61/.github/workflows/codeql-analysis.yml#L24-L35">only identify vulnerabilities of a high severity and high precision</a>. Additionally, it will not fail the test when vulnerabilities are found: it will only create an alert and move on. This is to reduce the number of false positives and avoid wasting developer time. Over time, we intend to tune the dial to make CodeQL more strict.</p>
 <p>CodeQL will provide a recommendation on how to resolve a vulnerability along with references for additional research.</p>
 <p>Alerts can be resolved either by fixing the identified vulnerability or by dismissing the alert as a false positive. More details on this can be found in the <a href="https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository">CodeQL documentation</a>. If you do decide to ignore a warning, you must include a note outlining why it is a false positive and not a security vulnerability.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2><p>CodeQL scans may fail because they cannot find source code for a specified language, despite detecting other languages:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Extracting javascript
+Extracting ruby
+Finalizing javascript
+Finalizing ruby
+  /opt/hostedtoolcache/CodeQL/2.17.1/x64/codeql/codeql database finalize --finalize-dataset --threads=4 --ram=14567 /home/runner/work/_temp/codeql_databases/ruby
+  CodeQL detected code written in JavaScript/TypeScript, but not any written in Ruby. Confirm that there is some source code for Ruby in the project. For more information, review our troubleshooting guide at https://gh.io/troubleshooting-code-scanning/no-source-code-seen-during-build .
+  Error: Encountered a fatal error while running "/opt/hostedtoolcache/CodeQL/2.17.1/x64/codeql/codeql database finalize --finalize-dataset --threads=4 --ram=14567 /home/runner/work/_temp/codeql_databases/ruby". Exit code was 32 and last log line was: CodeQL detected code written in JavaScript/TypeScript, but not any written in Ruby. Confirm that there is some source code for Ruby in the project. For more information, review our troubleshooting guide at https://gh.io/troubleshooting-code-scanning/no-source-code-seen-during-build . See the logs for more details.
+</code></pre></div><p>There currently is <a href="https://github.com/alphagov/govuk-browser-extension/pull/196">no solution</a> to this problem. Removing all code in the problematic language might resolve the issue, but this is not a viable solution for most projects.</p>
 
   <div class='related-content'>
 
