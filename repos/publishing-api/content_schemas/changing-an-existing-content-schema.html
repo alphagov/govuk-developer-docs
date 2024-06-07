@@ -230,15 +230,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/698cbd6b87a2e55b743edc22a11e231e61c346f2">10 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/a276eaf533192db49fbd8f2bf0ebc91d57fa0c72">7 Jun 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Changing an existing content schema</h1>
@@ -278,8 +271,7 @@ add the new optional field</li>
 <li>[Optional step] you could add an additional example to illustrate how your new field should be used. You can add a new file in <a href="https://github.com/alphagov/publishing-api/blob/main/examples/case_study/frontend">examples/case_study/frontend</a>
 </li>
 <li>create a new branch and commit and push your changes.
-This will run a branch build of govuk-content-schemas.
-This includes running the contract tests for each application which relies on the schemas.
+This will run the contract tests for each application which relies on the schemas.
 You'll get immediate feedback about whether publishing applications generate content items compatible with the new schema.</li>
 <li>once the tests pass, someone will merge your pull request and the new schemas will be available to use</li>
 <li>Deploy your changes (see <a href="https://github.com/alphagov/publishing-api/blob/main/docs/content_schemas/deployment.md"><code>docs/deployment.md</code></a> for details).</li>

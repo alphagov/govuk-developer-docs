@@ -231,15 +231,14 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/cd16f792797939590199486942c8f7dbcca83df3">29 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/a276eaf533192db49fbd8f2bf0ebc91d57fa0c72">7 Jun 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
 
   
 <p>This is the primary interface from publishing apps to the publishing pipeline.
-Applications PUT items as JSON conforming to a schema specified in
-<a href="https://github.com/alphagov/govuk-content-schemas">govuk-content-schemas</a>.</p>
+Applications PUT items as JSON conforming to a schema specified in the <code>content_schemas</code> directory.</p>
 <p>Content locations are arbitrated internally by the Publishing API, the content
 is then forwarded to the live and draft content stores, and placed on the
 message queue for other apps (e.g. <code>email-alert-service</code>) to consume.</p>
@@ -292,8 +291,7 @@ publish of the draft, the blocking item will be unpublished.</p>
 <p>Used to create or update a draft edition of a document. It will restrict
 creation if there is different document with a draft edition using the same
 <code>base_path</code>. Uses <a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
-<p>The request must conform to the schema defined in govuk-content-schemas if it
-does not a 422 response will be returned.</p>
+<p>The request must conform to the schema. If it does not, a 422 response will be returned.</p>
 <p>If the request is successful, this endpoint will respond with the
 presented edition and <a href="#warnings">warnings</a>.</p>
 <h3 id="path-parameters">Path parameters</h3>
@@ -450,8 +448,7 @@ content.</li>
 <li>
 <code>schema_name</code> <em>(required)</em>
 <ul>
-<li>The name of the <a href="https://github.com/alphagov/govuk-content-schemas">GOV.UK content schema</a>
-that the request body will be validated against.</li>
+<li>The name of the schema that the request body will be validated against.</li>
 </ul>
 </li>
 <li>
@@ -1314,7 +1311,7 @@ cache should expire for a piece of content.</p>
 <ul>
 <li>
 <code>Array</code> - Fields supported are path and type, the exact requirements can be
-found <a href="https://github.com/alphagov/govuk-content-schemas/blob/master/formats/shared/definitions/routes_redirects.jsonnet">here</a>. This is optional as it is only
+found <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/definitions/routes_redirects.jsonnet">here</a>. This is optional as it is only
 required if there needs to be a route created in router-api for the
 <code>base_path</code> at the same time the publishing intent is made.</li>
 </ul>

@@ -230,15 +230,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/8119afa37fa0cabf655de35f312dc6097d6f9588">13 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/a276eaf533192db49fbd8f2bf0ebc91d57fa0c72">7 Jun 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing application examples</h1>
@@ -321,9 +314,9 @@ Please refer to the <a href="/repos/publishing-api/api.html">api documentation</
 the primary identifier for content in the Publishing API and content store.
 The convention is to use <code>SecureRandom.uuid</code> to generate a valid content_id.</p>
 <p>Details of how the payload should be constructed including required fields can
-be found in <a href="https://github.com/alphagov/govuk-content-schemas">govuk-content-schemas</a> where each format is
+be found in the content_schemas folder where each format is
 defined for both publishing and frontend applications. For example the payload
-for a <a href="https://github.com/alphagov/govuk-content-schemas/blob/master/dist/formats/case_study/publisher_v2/schema.json">case study</a> would need to provide <code>body</code> and
+for a <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/case_study/publisher_v2/schema.json">case study</a> would need to provide <code>body</code> and
 <code>first_public_at</code> attributes along with other mandatory attributes such as
 <code>title</code> and <code>base_path</code>.</p>
 <p>Using the Publishing API v2 client adapter with a valid content_id and payload,

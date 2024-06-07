@@ -230,27 +230,20 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/9dc6d2a7c36809069748cb5457465bebf983c558">8 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/a276eaf533192db49fbd8f2bf0ebc91d57fa0c72">7 Jun 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Contract Testing against Schemas</h1>
 
   
-<p>When changes are made to govuk-content-schemas, the test suite of each of the <a href="https://github.com/alphagov/govuk-content-schemas/blob/aad248a867e878a496dcb488a4ba2170cebdb86b/Jenkinsfile#L7-L38">dependent apps</a> is run against that branch, to ensure that any changes are compatible.</p>
+<p>When changes are made to the schemas, the test suite of each of the <a href="https://github.com/alphagov/publishing-api/blob/3fe9ae3b29b42bf6b9b5dcb8e71365a3a2d509d7/.github/workflows/test-content-schemas-1.yml#L17-L113">dependent apps</a> is run against that branch, to ensure that any changes are compatible.</p>
 <p>This method of contract testing is different to our usual <a href="https://docs.publishing.service.gov.uk/manual/pact-broker.html">Pact tests</a>.</p>
 <h2 id="background">Background</h2>
-<p>govuk-content-schemas contract testing was proposed in <a href="https://gov-uk.atlassian.net/wiki/display/WH/RFC+4+%3A+Enabling+the+independent+iteration+of+formats+on+government-frontend">RFC 4</a> and described in the GOV.UK blog post "<a href="https://gdstechnology.blog.gov.uk/2015/01/07/validating-a-distributed-architecture-with-json-schema/">Validating a distributed architecture with JSON Schema</a>".</p>
+<p>Contract testing (against what was at the time the "govuk-content-schemas" repo, which has since been merged into Publishing API) was proposed in <a href="https://gov-uk.atlassian.net/wiki/display/WH/RFC+4+%3A+Enabling+the+independent+iteration+of+formats+on+government-frontend">RFC 4</a> and described in the GOV.UK blog post "<a href="https://gdstechnology.blog.gov.uk/2015/01/07/validating-a-distributed-architecture-with-json-schema/">Validating a distributed architecture with JSON Schema</a>".</p>
 <p>We wanted to be able to evolve our publishing systems and have confidence that the changes we make will not break something. We could do this by running all the systems at the same time and testing end-to-end, but setting up such a configuration would be tricky, and keeping it working reliably in a reproducible way which avoids test interference would be very difficult.</p>
 <p>The idea of contract testing is to gain more confidence that the whole system works together properly, but without needing to run all the services at the same time. Instead we can test each service in isolation using a 'contract' which describes the expectations on each interacting service.</p>
-<h2 id="how-govuk-content-schemas-contract-testing-works">How govuk-content-schemas contract testing works</h2>
+<h2 id="how-schemas-contract-testing-works">How schemas contract testing works</h2>
 <p>Publishing involves three systems and two representations:</p>
 <pre><code>[publishing app] ------&gt; [publishing api/content store] ------&gt; [frontend app]
 </code></pre>
@@ -262,15 +255,15 @@ only contains content ids (for full info see <a href="https://github.com/alphago
 <li>json-schema files which define the <em>publishing representation</em> for a given format</li>
 <li>a curated set of frontend examples of that format, which are validated against the schemas</li>
 <li>
-<a href="https://github.com/alphagov/govuk-content-schemas/blob/main/lib/schema_generator/frontend_schema_generator.rb">a mechanism to convert from the 'publisher' schemas to the 'frontend' schemas</a>, simulating the behaviour of the content store</li>
+<a href="https://github.com/alphagov/publishing-api/blob/main/docs/lib/schema_generator/frontend_schema_generator.rb">a mechanism to convert from the 'publisher' schemas to the 'frontend' schemas</a>, simulating the behaviour of the content store</li>
 </ol>
 <p>With those three parts we are able to verify the examples against the schemas.</p>
 <p>This means that if the frontend works ok with the curated examples, and if the publishing tool produces output which matches the schema, then we can be quite confident that the frontends will work with the data produced by the publishing tool.</p>
-<h2 id="adding-govuk-content-schemas-contract-tests-to-your-app">Adding govuk-content-schemas contract tests to your app</h2>
+<h2 id="adding-schema-contract-tests-to-your-app">Adding schema contract tests to your app</h2>
 <p>You will need to provide tests in your app which are part of the full test suite, but can also be run separately from the other tests (unless your test suite is really fast and likely to stay fast). What you need to do differs depending upon the type of app.</p>
 <h3 id="frontend-apps">Frontend apps</h3>
-<p>You should include tests which use the examples from the govuk-content-schemas to test whether your frontend works or not. <a href="https://github.com/alphagov/govuk_schemas">govuk_schemas</a> provides code for doing this.</p>
-<p>Ideally you should have a test which checks your app against every example for the formats it supports dynamically - so that examples added later are still tested in your app - there is an example in the <a href="https://github.com/alphagov/govuk_schemas">govuk_schemas</a> README.</p>
+<p>You should include tests which use the examples from the schemas to test whether your frontend works or not. <a href="https://github.com/alphagov/govuk_schemas">govuk_schemas</a> provides code for doing this.</p>
+<p>Ideally you should have a test which checks your app against every example for the formats it supports dynamically - so that examples added later are still tested in your app.</p>
 <h3 id="publishing-apps">Publishing apps</h3>
 <p>You should include tests which generate the JSON your app would send to content-store and validate them against the schemas. <a href="https://github.com/alphagov/govuk_schemas">govuk_schemas</a> provides RSpec and test-unit helpers for this.</p>
 
