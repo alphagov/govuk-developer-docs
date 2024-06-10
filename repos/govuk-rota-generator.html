@@ -219,20 +219,15 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Generates a balanced rota, taking into account each developer&rsquo;s availability and eligibility for different cover types.</p>
-
-<p>There are some limitations to the generator, which we hope to resolve in future iterations:</p>
+<p>Generates a balanced rota, taking into account:</p>
 
 <ol>
-<li>Currently no way of capping certain shift types.</li>
-<li>It doesn&rsquo;t account for different working patterns (e.g. devs who don&rsquo;t work Fridays currently have to find cover)</li>
-<li>The week is marked as &lsquo;unavailable&rsquo; even if only one cover type is off limits. For example, a developer may say they&rsquo;re unavailable to do on-call at the weekend, but they would still be available to do in-hours shifts.</li>
-<li>It doesn&rsquo;t account for bank holidays.</li>
-<li>It doesn&rsquo;t account for team burden (i.e. there&rsquo;s nothing preventing it allocating multiple devs from the same team on one shift).</li>
-<li>It doesn&rsquo;t give a perfectly balanced rota (some devs will be allocated more slots than others), but a &lsquo;balancing&rsquo; step after a first pass could be something we look at in future.</li>
+<li>Each developer&rsquo;s availability and eligibility for different cover types.</li>
+<li>Team burden (it avoids allocating multiple devs from the same team on one shift).</li>
+<li>Different working patterns (e.g. devs who don&rsquo;t work Fridays will automatically have cover assigned for that day).</li>
+<li>Partial availability (e.g. a developer may say they&rsquo;re unavailable to do on-call at the weekend, but they would still be available to do in-hours shifts - the generator will make use of that).</li>
+<li>Bank holiday support - it uses the <a href="https://www.gov.uk/bank-holidays.json">GOV.UK bank holiday API</a> to detect bank holidays and ensure that the assigned on-call person that week is given the &lsquo;in-hours&rsquo; shift in PagerDuty.</li>
 </ol>
-
-<p>We hope one day to make the rota generator think in terms of days rather than weeks, and also have tighter integration with the <code>pay-pagerduty</code> repo (e.g. merging together under a new name).</p>
 
 <h2 id="setup">Setup</h2>
 
