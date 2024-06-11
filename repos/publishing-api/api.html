@@ -231,7 +231,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/a276eaf533192db49fbd8f2bf0ebc91d57fa0c72">7 Jun 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/555611fd234ff266e106fc21857f342cb51bf68e">11 Jun 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -259,6 +259,8 @@ message queue for other apps (e.g. <code>email-alert-service</code>) to consume.
 <li><a href="#get-v2linkschanges"><code>GET /v2/links/changes</code></a></li>
 <li><a href="#get-v2editions"><code>GET /v2/editions</code></a></li>
 <li><a href="#post-v2linksby-content-id"><code>POST /v2/links/by-content-id</code></a></li>
+<li><a href="#get-v2schemas"><code>GET /v2/schemas</code></a></li>
+<li><a href="#get-v2schemasschema_name"><code>GET /v2/schemas/:schema_name</code></a></li>
 <li><a href="#post-lookup-by-base-path"><code>POST /lookup-by-base-path</code></a></li>
 <li><a href="#put-pathsbase_path"><code>PUT /paths/:base_path</code></a></li>
 <li><a href="#delete-pathsbase_path"><code>DELETE /paths/:base_path</code></a></li>
@@ -1183,6 +1185,11 @@ mapping of <code>content_id</code> to <code>links</code> hash.</p>
 </ul>
 </li>
 </ul>
+<h2 id="get-v2schemas"><code>GET /v2/schemas</code></h2>
+<p>Lists all the schemas used by Publishing API. Returns an a mapping of a schema
+name to its JSON schema.</p>
+<h2 id="get-v2schemasschema_name"><code>GET /v2/schemas/:schema_name</code></h2>
+<p>Gets a schema by its name. Returns the relevant JSON schema if found, 404 if not.</p>
 <h2 id="post-lookup-by-base-path"><code>POST /lookup-by-base-path</code></h2>
 <p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_/lookup-by-base-path-request_given_there_are_live_content_items_with_base_paths_/foo_and_/bar">Request/Response detail</a></p>
 <p>Retrieves live editions for a given collection of base paths. Returns
