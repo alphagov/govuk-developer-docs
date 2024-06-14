@@ -29,9 +29,9 @@ Shifts start at 9:30 and end at 17:30. [You can check the Technical 2nd Line rot
 
 You are required to attend a daily morning standup with your paired 2nd Line partner and the Technical 2nd Line team. There’s a short retrospective at the handover meeting at the end of your shift.
 
-Standby developers are not expected to attend the standups or the incoming handover. If they're called onto the shift, they should attend the next standup, and may wish to attend the outgoing handover at the end of the shift.
+Standby developers are not expected to attend the standups or the incoming handover. If they're called onto the shift, they should attend the next standup, and should attend the outgoing handover at the end of the shift.
 
-If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, or there's a live incident, or an urgent Zendesk ticket, you’ll need to prioritise Technical 2nd Line above your meetings.
+Technical 2nd Line takes priority over the work you do in your usual team, but if there is nothing to action on 2nd line, you are of course free to return to team work. If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, or there's a live incident, or an urgent Zendesk ticket, you’ll need to prioritise Technical 2nd Line above your meetings.
 
 ## Rules for Primary, Secondary and On Call
 
@@ -53,8 +53,6 @@ A technologist apprentice will only fulfil the shadow role. However, if they are
 
 ## Shift swaps, working patterns and sickness
 
-Technical 2nd Line takes priority over the work you do in your usual team. It also takes priority over things like All Staff events, which you will be unable to attend in person, though can attend remotely (if possible) provided you keep on top of Zendesk and alerts. Note that standby developers can attend such events in person, but must be contactable by phone and able to access their laptop at short notice.
-
 If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.
 
 - If you need cover for a day or two, arrange a swap for those days with another developer. Please ensure delivery managers are aware of this.
@@ -69,6 +67,14 @@ The corresponding standby developer will then take your place.
 If your working patterns are not compatible with a 9.30am-5.30pm shift, let the Technical 2nd Line team know so they can find extra support.
 
 If you do not work a 5-day week, please talk to your delivery manager to arrange cover with another developer on your team.
+
+### Away days and all-staff events
+
+Before attending an all-staff event, team away-day or any other event that could keep you away from your laptop for long periods at a time: try to swap your shift with someone who is _not_ attending ([see above](#shift-swaps-working-patterns-and-sickness)).
+
+Otherwise, attending such events is allowed provided you are able to regularly check Zendesk (e.g. on an hourly basis) and are prepared to drop what you're doing and work on anything urgent that comes in. You must also be contactable by phone so that you can quickly respond to PagerDuty alerts.
+
+Those in a "standby" role don't need to actively check Zendesk or Slack, but as above, must be contactable by phone and within easy reach of their laptop.
 
 ## Monitoring
 
