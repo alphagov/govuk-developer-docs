@@ -72,7 +72,7 @@ If you do not work a 5-day week, please talk to your delivery manager to arrange
 
 Before attending an all-staff event, team away-day or any other event that could keep you away from your laptop for long periods at a time: try to swap your shift with someone who is _not_ attending ([see above](#shift-swaps-working-patterns-and-sickness)).
 
-Otherwise, attending such events is allowed provided you are able to regularly check Zendesk (e.g. on an hourly basis) and are prepared to drop what you're doing if anything urgent comes in. You must also be contactable by phone so that you can quickly respond to PagerDuty alerts.
+Otherwise, attending such events is allowed provided you are able to regularly check Zendesk (e.g. on an hourly basis) and are prepared to drop what you're doing and work on anything urgent that comes in. You must also be contactable by phone so that you can quickly respond to PagerDuty alerts.
 
 Those in a "standby" role don't need to actively check Zendesk or Slack, but as above, must be contactable by phone and within easy reach of their laptop.
 
