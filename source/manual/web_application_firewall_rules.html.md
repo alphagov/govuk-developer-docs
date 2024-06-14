@@ -42,3 +42,17 @@ The `backend_public` WAF ACL supports blocking requests by JA3 signature. The pr
 [staging](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-public-wafs/staging/common.tfvars#L4)).
 
 The `cache_public` and `bouncer_public` ACLs do not support JA3 denylisting, but this can instead be [configured at the CDN level](/manual/cdn.html#block-requests-based-on-their-ja3-signature).
+
+## AWS Shield Response Team (SRT) access
+
+We have pre-configured an [IAM role for the SRT team to use](https://github.com/alphagov/govuk-aws/pull/1550/files).
+
+It is currently not assigned to any resources, but when activated will allow the SRT to view our shielded resources and edit things such as Web Application Firewall (WAF) rules, Access Control Lists (webacls), Shield and CloudFront configurations.
+
+We should not enable the role unless we are [engaged with the team](https://docs.aws.amazon.com/waf/latest/developerguide/ddos-edit-drt.html) as a result of an incident.
+
+To enable the role:
+
+1. Open the AWS console for the affected environment, eg `gds aws govuk-integration-poweruser -l`
+1. Navigate to the [Edit AWS Shield Response Team (SRT) access page](https://console.aws.amazon.com/wafv2/shieldv2#/drt_settings/edit)
+1. In the AWS Shield Response Team (SRT) access section, select the "Choose an existing role for the SRT to access my accounts." radio button.
