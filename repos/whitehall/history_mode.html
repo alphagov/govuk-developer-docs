@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Finders - GOV.UK Developer Documentation</title>
+    <title>whitehall: History Mode - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/finders.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/history_mode.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Finders - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/finders.html" />
+      <meta name="twitter:title" content="whitehall: History Mode - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/history_mode.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Finders" />
+      <meta property="og:title" content="whitehall: History Mode" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/finders.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/history_mode.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -233,29 +233,20 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/e748b577e0f13c01fe62bad2a303340ab5acc7c4">24 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/cc8289747364aedbb85178484c16b33654b63339">19 Jun 2024</a>
 </div>
 
-  <h1 class="page-title">whitehall: Finders</h1>
+  <h1 class="page-title">whitehall: History Mode</h1>
 
   
-<h2 id="retired-finders">Retired finders</h2>
-<p>There used to be finders for announcements, publications and statistics in this
-application, however these have been replaced by new finders rendered by
-finder-frontend and published from <a href="https://github.com/alphagov/search-api/tree/master/config/finders">search-api</a>.</p>
-<p>We redirect searches from the old finders to the new in order to maintain a
-reasonable experience for users.  Because we need to translate some of the
-query parameters, we do it in the controllers:</p>
-<ul>
-<li><a href="https://github.com/alphagov/whitehall/blob/master/app/controllers/statistics_controller.rb">statistics</a></li>
-<li><a href="https://github.com/alphagov/whitehall/blob/master/app/controllers/statistics_announcements_controller.rb">statistics announcements</a></li>
-</ul>
-<h2 id="how-to-publish-a-finder-in-whitehall">How to publish a finder in whitehall</h2>
-<p><strong>Please consider publishing new finders from <a href="https://github.com/alphagov/search-api/tree/master/config/finders">search-api</a>. There are <a href="https://github.com/alphagov/search-api/tree/630a6947395d11267be3cc056c7370c65bb5723e/spec/unit/content_item_publisher">schema tests for both finders and email signup pages</a> there.</strong></p>
-<p>Create a JSON file in <a href="https://github.com/alphagov/whitehall/tree/master/lib/finders">lib/finders</a>. You can base it on one of the existing files in that folder.</p>
-<p>Double-check the filter format and document noun - the filter format is used for search_api to return the data, while the document noun is displayed to the user.</p>
-<p>The default_documents_per_page key can be used to paginate very long finders (see <a href="https://github.com/alphagov/whitehall/blob/master/lib/finders/case_studies.json">whitehall/lib/finders/case_studies.json</a> for an example).</p>
-<p>Running the <a href="https://github.com/alphagov/whitehall/blob/master/lib/tasks/publish_finders.rake">finders:publish rake task</a> will publish your new finder to the <a href="https://github.com/alphagov/publishing-api">publishing-api</a>, and the route defined in the JSON will be taken over by <a href="https://github.com/alphagov/finder-frontend">finder-frontend</a>.</p>
+<p>Documents published by Whitehall can be marked "political". This means that when there is a change of government, the document will be associated with the government that was in power at the time it was first published. This association will be indicated by a banner on GOV.UK which warns the user that the content is considered "historical" and is therefore no longer likely to be relevant.</p>
+<p>The <code>political</code> flag is stored as a boolean column on the <code>editions</code> database table, and its value is copied to each new edition of a document.</p>
+<h2 id="the-impact-of-edition-workflow-on-history-mode">The Impact of Edition Workflow on History Mode</h2>
+<p>Publishers cannot set the political flag on the first edition of a document. Instead, the political flag is set to a default value when the first edition is published based on several criteria such as the type of the document, whether it is associated with a political organisation, and whether it is associated with a government minister. This is done in the <a href="https://github.com/alphagov/whitehall/blob/main/docs/app/services/edition_publisher.rb">Edition Publisher</a>. The criteria are specified in the <a href="https://github.com/alphagov/whitehall/blob/main/docs/lib/political_content_identifier.rb">Political Content Identifier</a>.</p>
+<p>After the first edition is published, publishers can override the political flag on subsequent editions via the edition editing form. Overriding the flag requires that the publisher has managing editor or GDS editor permissions. The flag can be overridden on any type of document, irrespective of its eligibility as determined by the <a href="https://github.com/alphagov/whitehall/blob/main/docs/lib/political_content_identifier.rb">Political Content Identifier</a>.</p>
+<h2 id="applying-history-mode">Applying History Mode</h2>
+<p>When the government changes, it will be "closed" via the Whitehall user interface by a member of the GOV.UK content team. This will publish an update to the government content item. The content item will have its "current" value set to false, as specified in the <a href="https://github.com/alphagov/whitehall/blob/main/docs/app/presenters/publishing_api/government_presenter.rb">GovernmentPresenter</a>.</p>
+<p>Next, a developer will run the <code>election:republish_political_content</code> rake task. This task republishes all documents that have been marked as political. All documents have a link to their associated government, so Publishing API's <a href="https://docs.publishing.service.gov.uk/repos/publishing-api/link-expansion.html">link expansion</a> feature will ensure that the linked government is "closed" for each document when it is re-presented to the content store. This will result in <a href="https://github.com/alphagov/government-frontend">government-frontend</a> rendering the historical content banner on the documents. The banner is controlled in government frontend's <a href="https://github.com/alphagov/government-frontend/blob/a643a4a9175af953e5683ee2ca5464ec384ed28e/app/presenters/content_item/political.rb#L19">political content presenter</a>.</p>
 
 
             
@@ -263,8 +254,8 @@ query parameters, we do it in the controllers:</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/finders.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Ffinders.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/history_mode.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fhistory_mode.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
