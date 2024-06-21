@@ -71,9 +71,14 @@ be set manually.
 #### Reindexing political content in search
 
 There is a Rake task to reindex all political content in search. This must be
-done after a government is closed.
+done after a government is closed, but can be done before the publishing-api queues
+have completed their processing.
+
+This is necessary because [search is populated by whitehall][], which is a piece of technical debt.
 
 <%= RunRakeTask.links("whitehall-admin", "search:political") %>
+
+[search is populated by whitehall]: https://trello.com/c/vnrBGTvr/26-search-is-populated-by-whitehall-sending-data?filter=search
 
 ### Backdating
 
