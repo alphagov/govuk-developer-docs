@@ -3,12 +3,12 @@ owner_slack: "#govuk-whitehall-experience-tech"
 title: Whitehall scheduled publishing
 parent: "/manual.html"
 layout: manual_layout
-section: Icinga alerts
+section: Publishing
 ---
 
 ## Overdue publications in Whitehall
 
-This alert means that there are scheduled editions which have passed their
+Sometimes there may be scheduled editions which have passed their
 publication due date but haven't been published by the scheduled publishing
 workers. Scheduled publishing is performed by Sidekiq workers picking up jobs
 from a scheduled queue.
@@ -37,11 +37,11 @@ following:
 
 If the above rake tasks aren't working, it could be because the database was
 recently restored, perhaps due to the data sync. In that case, you can try
-running the following Rake task on a `whitehall_backend` machine:
+running the following Rake task:
 
 <%= RunRakeTask.links("whitehall-admin", "publishing:scheduled:requeue_all_jobs") %>
 
-Due to the overnight [data anonymisation process](https://github.com/alphagov/whitehall/blob/7b5c5a086b89cb62ffba62b152a0a8dcfc10c8e6/script/scrub-database) you may notice
+Due to the overnight [data anonymisation process](https://github.com/alphagov/govuk-helm-charts/blob/20a96dd5/charts/db-backup/scripts/whitehall.sql) you may notice
 that some of the pending documents have one or more edition that is in a
 `scheduled` state, is `access_limited`, and may have one or more attachments
 with the filename `redacted.pdf`.
@@ -54,8 +54,8 @@ the same documents/editions.
 
 ## Scheduled publications in Whitehall not queued
 
-This alert means that the number of editions in the database which are
-scheduled to be published in the future is different from the number currently
+It is also possible for the number of editions in the database which are
+scheduled to be published in the future to be different from the number currently
 in the queue.
 
 Run the `publishing:scheduled:requeue_all_jobs` Rake task to requeue all

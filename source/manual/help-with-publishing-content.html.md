@@ -39,7 +39,7 @@ necessary to help them to ensure it goes out as smoothly as possible.
   Safety Alerts go out correctly. Although an alert won't be triggered for other
   kinds of documents, the [guidance will still apply](alerts/email-alerts-travel-medical.html).
 
-- If [a scheduled publication hasn't gone live](alerts/whitehall-scheduled-publishing.html),
+- If [a scheduled publication hasn't gone live](whitehall-scheduled-publishing.html),
   start here: [if documents aren't live after being published][live].
   If it looks as though the content was never published from
   Whitehall, there is a Rake task available which will publish overdue
