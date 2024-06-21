@@ -97,7 +97,7 @@ Content Data API runs an [ETL (Extract, Transform, Load)](https://en.wikipedia.o
 
 ![Overview of the ETL Processor](/images/content-data-architecture-etl-processor.png)
 
-For more information see the [What is the ETL process](/manual/alerts/content-data-api-app-healthcheck-not-ok.html#what-is-the-etl-process) developer doc.
+For more information see the [What is the ETL process](/manual/content-data-api-app-healthcheck-not-ok.html#what-is-the-etl-process) developer doc.
 
 #### Streams Processor
 
