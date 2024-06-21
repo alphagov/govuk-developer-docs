@@ -33,14 +33,11 @@ API which might mean some delays on content being up to date on the website.
 Previous tests have shown that it takes around 3.5 hours for the queues to
 clear in integration / staging.
 
-Grafana monitoring for:
+Grafana monitoring for the Publishing API queues:
 
-- [Publishing API in Integration](https://grafana.integration.publishing.service.gov.uk/dashboard/file/publishing-api.json?refresh=5s&orgId=1)
-- [Publishing API in Staging](https://grafana.staging.govuk.digital/dashboard/file/publishing-api.json?refresh=5s&orgId=1)
-- [⚠️ Publishing API in Production ⚠️](https://grafana.production.govuk.digital/dashboard/file/publishing-api.json?refresh=5s&orgId=1)
-- [Sidekiq in Integration](https://grafana.integration.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=publishing-api&var-Aggregation=$__auto_interval)
-- [Sidekiq in Staging](https://grafana.staging.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=publishing-api&var-Aggregation=$__auto_interval)
-- [⚠️ Sidekiq in Production ⚠️](https://grafana.production.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=publishing-api&var-Aggregation=$__auto_interval)
+- [Integration](https://grafana.eks.integration.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&var-namespace=apps&var-app=publishing-api-worker)
+- [Staging](https://grafana.eks.staging.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&var-namespace=apps&var-app=publishing-api-worker)
+- [Production](https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&var-namespace=apps&var-app=publishing-api-worker)
 
 [ministerial appointments]: https://www.integration.publishing.service.gov.uk/government/ministers
 
