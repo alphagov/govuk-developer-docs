@@ -225,7 +225,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/55ea521b8e8e8b8a7a333696fec634aed0ae37bb">9 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e6fedebb3a977e5247912ec6b33cc9f34b76abbb">21 Jun 2024</a>
 </div>
 
  <h1 id='header'>Support government changes</h1> <h2 id='change-a-government-in-whitehall'>Change a government in Whitehall</h2><p>Following a General Election or other reason for governmental change the
@@ -238,29 +238,24 @@ will often be required to monitor the queues, as detailed below.</p>
 <ol>
 <li>Select the current government, and click the <code>Prepare to close this
 government</code> link.</li>
-<li>Close the government.</li>
+<li>Close the government - note that this may take some time, be patient after clicking the button</li>
 </ol>
 <p>This will close the current government and remove all <a href="https://www.integration.publishing.service.gov.uk/government/ministers">ministerial
 appointments</a>.</p>
 <p>This will cause a high number of documents to be represented by the Publishing
 API which might mean some delays on content being up to date on the website.
 Previous tests have shown that it takes around 3.5 hours for the queues to
-clear in integration.</p>
-<p>Grafana monitoring for:</p>
+clear in integration / staging.</p>
+<p>Grafana monitoring for the Publishing API queues:</p>
 
 <ul>
-<li><a href="https://grafana.integration.publishing.service.gov.uk/dashboard/file/publishing-api.json?refresh=5s&amp;orgId=1">Publishing API in Integration</a></li>
-<li><a href="https://grafana.staging.govuk.digital/dashboard/file/publishing-api.json?refresh=5s&amp;orgId=1">Publishing API in Staging</a></li>
-<li><a href="https://grafana.production.govuk.digital/dashboard/file/publishing-api.json?refresh=5s&amp;orgId=1">⚠️ Publishing API in Production ⚠️</a></li>
-<li><a href="https://grafana.integration.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=publishing-api&amp;var-Aggregation=$__auto_interval">Sidekiq in Integration</a></li>
-<li><a href="https://grafana.staging.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=publishing-api&amp;var-Aggregation=$__auto_interval">Sidekiq in Staging</a></li>
-<li><a href="https://grafana.production.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=publishing-api&amp;var-Aggregation=$__auto_interval">⚠️ Sidekiq in Production ⚠️</a></li>
+<li><a href="https://grafana.eks.integration.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&amp;var-namespace=apps&amp;var-app=publishing-api-worker">Integration</a></li>
+<li><a href="https://grafana.eks.staging.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&amp;var-namespace=apps&amp;var-app=publishing-api-worker">Staging</a></li>
+<li><a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&amp;var-namespace=apps&amp;var-app=publishing-api-worker">Production</a></li>
 </ul>
 <h3 id='open-a-new-government'>Open a new government</h3><p><a href="https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/governments/new">Create a new government</a></p>
 <p>This will instantly create a new government. Changes can be seen in the Rails
 console by running <code>Government.current</code>.</p>
-<p>The new government should also instantly appear in the response from
-<a href="https://www.integration.publishing.service.gov.uk/api/governments">/api/governments</a>.</p>
 <h3 id='applying-a-banner-to-political-content-published-by-the-previous-government'>Applying a banner to political content published by the previous government</h3><p>Content in Whitehall can be marked as political. Political content which was
 published under a previous government is <a href="https://github.com/alphagov/whitehall/blob/e518218355d158bfff036a02e312dda714da0aa6/app/models/edition.rb#L647"><code>historic?</code></a>. This is
 highlighted on the page, and in search results. This feature is also known as
@@ -272,7 +267,9 @@ highlighted on the page, and in search results. This feature is also known as
 <a href="https://github.com/alphagov/whitehall/blob/main/lib/political_content_identifier.rb">PoliticalContentIdentifier</a>. The <code>political</code> flag on an <code>Edition</code> can also
 be set manually.</p>
 <h4 id='reindexing-political-content-in-search'>Reindexing political content in search</h4><p>There is a Rake task to reindex all political content in search. This must be
-done after a government is closed.</p>
+done after a government is closed, but can be done before the publishing-api queues
+have completed their processing.</p>
+<p>This is necessary because <a href="https://trello.com/c/vnrBGTvr/26-search-is-populated-by-whitehall-sending-data?filter=search">search is populated by whitehall</a>, which is a piece of technical debt.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall-admin <span class="nt">--</span> rake search:political
 </code></pre></div><h3 id='backdating'>Backdating</h3><p>If we need to backdate a government or split a single government into two
 distinct dates, we need to run a rake task to republish all political content
