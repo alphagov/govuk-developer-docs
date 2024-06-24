@@ -231,6 +231,7 @@
 <li>Statsd client for reporting stats (deprecated; use Prometheus instead)</li>
 <li>Rails logging</li>
 <li>Content Security Policy generation for frontend apps</li>
+<li>Sets the time zone to London</li>
 </ul>
 
 <h2 id="installation">Installation</h2>
@@ -393,6 +394,10 @@ app with the following content:</p>
 <h2 id="internationalisation-rules">Internationalisation rules</h2>
 
 <p>Some frontend apps support languages that are not defined in the i18n gem. This provides them with our own custom rules for these languages.</p>
+
+<h2 id="time-zone">Time zone</h2>
+
+<p>This gem sets <code>config.time_zone</code> to <code>"London"</code> - this cannot currently be overridden in application config.</p>
 
 <h2 id="license">License</h2>
 
