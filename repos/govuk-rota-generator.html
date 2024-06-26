@@ -303,7 +303,7 @@ But the script will also output a user-friendly CSV to the &ldquo;Auto-generated
 
 <p>Run <code>ruby bin/calculate_fairness.rb https://docs.google.com/spreadsheets/d/abc123def456hij789/edit</code>.</p>
 
-<p>This summarises the fairness of the rota at the &ldquo;Auto-generated draft rota&rdquo; worksheet you set up earlier.</p>
+<p>This summarises the fairness of the rota. It looks for a &ldquo;Manually tweaked rota&rdquo; worksheet, so you&rsquo;ll first need to copy the &ldquo;Auto-generated draft rota&rdquo; into a new &ldquo;Manually tweaked rota&rdquo; worksheet in the same spreadsheet, and copy over the data. This allows you to freely tweak the output of the rota, without worrying about losing all of your changes next time you run the rota generator.</p>
 
 <h3 id="synchronise-the-rota-with-pagerduty">Synchronise the rota with PagerDuty</h3>
 
