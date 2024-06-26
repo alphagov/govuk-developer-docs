@@ -7,7 +7,7 @@
     <li>
       <%= sidebar_link 'Content schemas', '/content-schemas.html' %>
       <ul>
-        <% GovukSchemas::Schema.schema_names.sort.each do |schema_name| %>
+        <% SchemaNames.all.sort.each do |schema_name| %>
           <li>
             <%= sidebar_link schema_name, "/content-schemas/#{schema_name}.html" %>
             <% if current_page.path.include?("content-schemas/#{schema_name}.html") %>
