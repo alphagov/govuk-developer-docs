@@ -21,7 +21,7 @@ RSpec.describe DocumentTypes do
   describe "#schema_names_by_document_type" do
     it "returns schema names by document type" do
       schema_name = "aaib_report"
-      allow(GovukSchemas::Schema).to receive(:schema_names).and_return([schema_name])
+      allow(SchemaNames).to receive(:all).and_return([schema_name])
       allow(GovukSchemas::Schema).to receive(:find).with(notification_schema: schema_name).and_return({
         properties: {
           document_type: {
