@@ -59,7 +59,7 @@ If you need to swap your shift, it’s your responsibility to ensure that adequa
 
 - If you need a whole shift swap, arrange this with another developer from your team.
 
-For either of the above, let the Technical 2nd Line delivery manager know. Please update the schedule on [PagerDuty][].
+For either of the above, let the Technical 2nd Line delivery manager know, so that they can update the schedule on [PagerDuty][].
 
 If you cannot make your shift because you’re ill, message the delivery manager and #govuk-2ndline-tech Slack channel.
 The corresponding standby developer will then take your place.
