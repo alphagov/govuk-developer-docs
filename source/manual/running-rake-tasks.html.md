@@ -28,3 +28,17 @@ Nevertheless, it is possible to copy a local CSV file into a pod and reference t
 ```sh
 kubectl cp foo.csv $somepod:/tmp && kubectl exec $somepod -- rake name_of_task
 ```
+
+For example:
+
+```sh
+$ kubectl get pods
+# returns list of pods, including
+# whitehall-admin-c4c7c957c-9q966
+
+$ kubectl cp ~/Downloads/tag.csv whitehall-admin-c4c7c957c-9q966:/tmp
+# copies the file
+
+$ kubectl exec whitehall-admin-c4c7c957c-9q966 -- rake data_hygiene:bulk_update_organisation[/tmp/tag.csv]
+# runs the rake task
+```
