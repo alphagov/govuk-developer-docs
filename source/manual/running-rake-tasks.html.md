@@ -18,3 +18,13 @@ kubectl exec deploy/publishing-api -- rake 'represent_downstream:published_betwe
 ```
 
 The output of the command will be streamed to your terminal.
+
+## Working with CSVs on Kubernetes
+
+Some of our legacy rake tasks require uploading a CSV file. This is a throwback to our previous Puppet-based infrastructure and should be phased out now that we're on Kubernetes, as containers are meant to be immutable and ephemeral.
+
+Nevertheless, it is possible to copy a local CSV file into a pod and reference the file in the rake task, doing something like:
+
+```sh
+kubectl cp foo.csv $somepod:/tmp && kubectl exec $somepod -- rake name_of_task
+```

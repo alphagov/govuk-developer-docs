@@ -41,33 +41,6 @@ Grafana monitoring for the Publishing API queues:
 
 [ministerial appointments]: https://www.integration.publishing.service.gov.uk/government/ministers
 
-### Open a new government
-
-[Create a new government](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/governments/new)
-
-This will instantly create a new government. Changes can be seen in the Rails
-console by running `Government.current`.
-
-### Applying a banner to political content published by the previous government
-
-Content in Whitehall can be marked as political. Political content which was
-published under a previous government is [`historic?`][historic]. This is
-highlighted on the page, and in search results. This feature is also known as
-_history mode_.
-
-See these pages for example:
-
-[A content page](https://www.gov.uk/government/speeches/the-issuing-withdrawal-or-refusal-of-passports)
-[A search results page](https://www.gov.uk/search/all?keywords=The+issuing%2C+withdrawal+or+refusal+of+passports&order=relevance)
-
-[historic]: https://github.com/alphagov/whitehall/blob/e518218355d158bfff036a02e312dda714da0aa6/app/models/edition.rb#L647
-
-Marking content as political can happen automatically through the
-[PoliticalContentIdentifier][]. The `political` flag on an `Edition` can also
-be set manually.
-
-[PoliticalContentIdentifier]: https://github.com/alphagov/whitehall/blob/main/lib/political_content_identifier.rb
-
 #### Reindexing political content in search
 
 There is a Rake task to reindex all political content in search. This must be
@@ -80,11 +53,35 @@ This is necessary because [search is populated by whitehall][], which is a piece
 
 [search is populated by whitehall]: https://trello.com/c/vnrBGTvr/26-search-is-populated-by-whitehall-sending-data?filter=search
 
+### Open a new government
+
+[Create a new government](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/governments/new)
+
+This will instantly create a new government. Changes can be seen in the Rails
+console by running `Government.current`.
+
+### Applying a banner to political content published by the previous government
+
+Content in Whitehall can be marked as political, either automatically on publishing
+(if deemed political by the [PoliticalContentIdentifier][]), or manually post-publication
+(through checking the "Political?" checkbox). Political content which was published under
+a previous government is [`historic?`][historic], and is highlighted both on the page and
+in search results - see examples:
+
+- [A content page](https://www.gov.uk/government/speeches/the-issuing-withdrawal-or-refusal-of-passports)
+- [A search results page](https://www.gov.uk/search/all?keywords=The+issuing%2C+withdrawal+or+refusal+of+passports&order=relevance)
+
+This feature is also known as history mode][].
+
+[historic]: https://github.com/alphagov/whitehall/blob/e518218355d158bfff036a02e312dda714da0aa6/app/models/edition.rb#L647
+[history mode]: /repos/whitehall/history_mode.html
+[PoliticalContentIdentifier]: https://github.com/alphagov/whitehall/blob/main/lib/political_content_identifier.rb
+
 ### Backdating
 
 If we need to backdate a government or split a single government into two
 distinct dates, we need to run a rake task to republish all political content
-from Whitehall to properly associate content with the government at it's first
+from Whitehall to properly associate content with the government at its first
 published date:
 
 <%= RunRakeTask.links("whitehall-admin", "election:republish_political_content") %>
@@ -97,7 +94,8 @@ we can run a rake task:
 <%= RunRakeTask.links("whitehall-admin", "election:end_ministerial_appointments") %>
 
 This will end all ministerial roles except the Prime Minister. You might have to
-do that one manually.
+do that one manually. Note that the rake task takes an optional date parameter,
+if you wish to specify an end date other than 'today'.
 
 ## Machinery of Government Changes
 
@@ -107,7 +105,12 @@ designers make bulk changes to documents and users.
 ### Bulk changing users
 
 There is a Rake task in Signon to change the organisation that a user belongs
-to in bulk:
+to in bulk. **However**, it may be necessary to leave the old users around so they
+can still edit content for the old organisation (in which case you can bulk invite
+new users [using the interface in Signon][signon-batch-invitations]).
+
+The rake task for changing the organisation the user belongs to is:
+
 [`data_hygiene:bulk_update_organisation[csv_file]`][signon-bulk-update-organisation].
 
 It accepts a CSV file which should have at least the following columns (in any
@@ -119,9 +122,8 @@ order):
 | `New email` | The new email address of the user. |
 | `New organisation` | The slug of the new organisations for the user. |
 
-**Note:** It may be necessary to leave the old users around so they can still
-edit content for the old organisation. In that case you can bulk invite new
-users [using the interface in Signon][signon-batch-invitations].
+We should phase out CSV-reliant rake tasks now that we're on Kubernetes.
+In the meantime, follow the [working with CSVs on Kubernetes][running-csv-rake-tasks] instructions.
 
 [signon-bulk-update-organisation]: https://github.com/alphagov/signon/blob/256ede9caa6061fd68b1daffd7123fff49df679f/lib/tasks/data_hygiene.rake#L3
 [signon-batch-invitations]: https://signon.publishing.service.gov.uk/batch_invitations/new
@@ -142,15 +144,12 @@ order):
 | `New lead organisations` | The slugs of the new leading organisations (separated by a comma). These will replace any existing organisations. |
 | `New supporting organisations` | The slugs of the new supporting organisations (separated by a comma). These will replace any existing organisations. |
 
-To run on anything other than a local environment, the CSV needs to be added manually to the /tmp directory using scp-push.
-```
-$ gds govuk connect scp-push --environment [integration|staging|integration] name-of-machine[:1|:2|:3] path/to/file.csv /tmp/
-```
-The rake task can then be run from the command line following [these instructions][running-rake-tasks-on-the-command-line].
+We should phase out CSV-reliant rake tasks now that we're on Kubernetes.
+In the meantime, follow the [working with CSVs on Kubernetes][running-csv-rake-tasks] instructions.
 
-In Publishing Api, task responsible for retagging documents
-[`data_hygiene:bulk_update_organisation[csv_file]`][publishing-api-bulk-update-organisation]
-accepts CSV file listing document's slug and new associated organisations:
+In Publishing Api, the task responsible for retagging documents is
+[`data_hygiene:bulk_update_organisation[csv_file]`][publishing-api-bulk-update-organisation].
+It accepts a CSV file listing the document's slug and new associated organisations:
 
 | Column Header | Description |
 | --- | --- |
@@ -158,7 +157,8 @@ accepts CSV file listing document's slug and new associated organisations:
 | `all organisations` | The slugs of the new organisations (separated by a comma). These will replace any existing organisations. |
 
 There is a similar [Rake task to change the organisations for Manuals][manuals-bulk-update-organisation].
-A data migration is required to change the organisations for (Mainstream) Publisher documents. This is an example PR: [Migrate Publisher docs][publisher-bulk-update-organisation-example]
+A data migration is required to change the organisations for (Mainstream) Publisher documents.
+This is an example PR: [Migrate Publisher docs][publisher-bulk-update-organisation-example]
 
 [whitehall-bulk-update-organisation]: https://github.com/alphagov/whitehall/blob/main/lib/tasks/data_hygiene.rake
 [running-rake-tasks-on-the-command-line]: /manual/running-rake-tasks.html#run-rake-tasks-from-the-command-line
@@ -182,3 +182,5 @@ For example, for Rishi Sunak it would be:
 ```
 https://whitehall-admin.publishing.service.gov.uk/government/admin/people/rishi-sunak/reorder_role_appointments
 ```
+
+[running-csv-rake-tasks]: /manual/running-rake-tasks.html#working-with-csvs-on-kubernetes
