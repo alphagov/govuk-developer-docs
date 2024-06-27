@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Email delivery - GOV.UK Developer Documentation</title>
+    <title>whitehall: 4. content-object-store-added-with-a-rails-engine - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/email_delivery.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/adr/0004-content-object-store-added-with-a-rails-engine.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Email delivery - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/email_delivery.html" />
+      <meta name="twitter:title" content="whitehall: 4. content-object-store-added-with-a-rails-engine - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/adr/0004-content-object-store-added-with-a-rails-engine.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Email delivery" />
+      <meta property="og:title" content="whitehall: 4. content-object-store-added-with-a-rails-engine" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/email_delivery.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/adr/0004-content-object-store-added-with-a-rails-engine.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -233,40 +233,74 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/8abbeb107dae79e4c929a156198631a983de2df3">12 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/3375d41d987f9790e410eeb8bc6bc79aebfc1cab">27 Jun 2024</a>
 </div>
 
-  <h1 class="page-title">whitehall: Email delivery</h1>
+  <h1 class="page-title">whitehall: 4. content-object-store-added-with-a-rails-engine</h1>
 
   
-<p>Whitehall sends various kinds of <a href="https://github.com/alphagov/whitehall/blob/ad86a5ea8d7538f787c71cb586adb1b771ea08d9/app/mailers/mail_notifications.rb">email notifications</a> to users – for example, fact check requests and responses. These emails are delivered via <a href="https://www.notifications.service.gov.uk/">GOV.UK Notify</a> using the <a href="https://github.com/dxw/mail-notify">mail-notify</a> gem.</p>
-<h2 id="non-production-environments">Non-production environments</h2>
-<p>Emails sent from Whitehall's integration and staging environments are not delivered to end users.</p>
-<p>Instead, they're <a href="https://github.com/alphagov/whitehall/pull/7240">intercepted and re-routed</a> to a Google Group (shared mailbox) so they can be accessed for debugging purposes. The intended recipient is prepended to the email body so it's easy to see who it would've been delivered to.</p>
-<p>👉 <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/whitehall-emails-integration">See emails from integration</a></p>
-<p>👉 <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/whitehall-emails-staging">See emails from staging</a></p>
-<h2 id="send-a-test-email-from-the-rails-console">Send a test email from the Rails console</h2>
-<blockquote>
-<p><strong>⚠️ Warning</strong></p>
-<p>Running this in <strong>production</strong> will send an email to the specified recipient.
-Use <strong>integration or staging</strong> if you want the email to be intercepted.</p>
-</blockquote>
-<p>To send a test email, open a Rails console and run:</p>
-<pre lang="ruby"><code>ApplicationMailer.new.mail(
-  subject: "Test email",
-  to: "recipient@example.com",
-  body: "This is a test email",
-  template_id: ENV.fetch("GOVUK_NOTIFY_TEMPLATE_ID", "fake-test-template-id")
-).deliver
-</code></pre>
+<p>Date: 2024-06-27</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="context">Context</h2>
+<p>The content modelling team is going to be building features to allow small
+reusable content objects to be included or embedded into other GOV.UK documents.
+We plan to allow consistent reuse, and edit-once update-everywhere behaviour,
+valuable during uprating for example, or when highly-duplicated content, like
+phone numbers and email addresses change.</p>
+<ul>
+<li>What we build should in theory be able to be used by any publishing app
+Content Blocks have the same publishing process as documents (drafts, 2i,
+authorisation etc)</li>
+<li>When a Content Block is updated, any documents referencing it should also be
+updated</li>
+<li>Content Blocks can be categorised with meaning (so they're not just blocks of
+text)</li>
+<li>The structure of user-facing content within Content Blocks is customisable
+(Examples of content are email addresses and tax rates, but could include much
+more complicated structured data.)</li>
+</ul>
+<h3 id="further-context">Further context</h3>
+<ul>
+<li>There is a wider principle of not creating new publishing apps</li>
+<li>We don't have time to prototype this proof of concept in a new temporary app</li>
+<li>Whitehall offers behaviour that we are also likely to need, though we don't
+yet have a firm understanding of which parts</li>
+<li>
+<em>Contact</em> Blocks already exist to allow some reuse but only within Whitehall.
+This functionality was added directly into the Whitehall app. There is an
+opportunity to extract that and bring it closer to Content reuse</li>
+</ul>
+<h2 id="decisions-and-consequences">Decisions and Consequences</h2>
+<p>Our first step towards building this service is to begin building the
+create/edit functionality.</p>
+<ol>
+<li>
+<p>We will build the internal user-facing service in Whitehall</p>
+<ul>
+<li>Our users already have access to Whitehall</li>
+<li>Users will be able to add/edit content blocks with new user journeys</li>
+<li>We can reuse the existing infrastructure and deployment pipeline</li>
+</ul>
+</li>
+<li>
+<p>We will build it in an engine</p>
+<ul>
+<li>We want to ensure that we are 'good neighbours' and can create this
+service in a way that isn't polluting the Whitehall repo.</li>
+<li>We also want to build with a view to this service being used outside of
+Whitehall. It makes sense therefore to put the code in an engine separate
+from the rest of the repo.</li>
+<li>We may learn that this publishing journey should be in a separate
+publishing app, at which point extraction would be easier</li>
+<li>Our beta may not solve a problem in the right way, in which case deletion
+from Whitehall would be easier</li>
+<li>We will test the engine approach as a viable route and set an example for
+other publishing apps who also wish to merge into Whitehall</li>
+</ul>
+</li>
+</ol>
 
 
             
@@ -274,8 +308,8 @@ Use <strong>integration or staging</strong> if you want the email to be intercep
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/email_delivery.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Femail_delivery.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/adr/0004-content-object-store-added-with-a-rails-engine.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fadr%2F0004-content-object-store-added-with-a-rails-engine.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

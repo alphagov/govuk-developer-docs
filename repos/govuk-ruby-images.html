@@ -244,7 +244,8 @@
 </li>
 </ul>
 <h2 id="usage">Usage</h2>
-<p>Use the two images in your app&rsquo;s Dockerfile:</p>
+<p>Use the two images in your app&rsquo;s Dockerfile.</p>
+<p>Specify the image tag that corresponds to the <code>&lt;major&gt;.&lt;minor&gt;</code> Ruby version that your application needs.</p>
 <pre lang="dockerfile"><code>ARG ruby_version=3.3
 ARG base_image=ghcr.io/alphagov/govuk-ruby-base:$ruby_version
 ARG builder_image=ghcr.io/alphagov/govuk-ruby-builder:$ruby_version</p>
@@ -252,18 +253,45 @@ ARG builder_image=ghcr.io/alphagov/govuk-ruby-builder:$ruby_version</p>
 <h1 id='your-build-steps-here'>your build steps here</h1><p>FROM $base_image</p>
 <h1 id='your-app-image-steps-here'>your app image steps here</h1><p></code></pre>
 <p>See <a href="https://github.com/alphagov/frontend/blob/-/Dockerfile">alphagov/frontend/Dockerfile</a> for a full, real-world example.</p>
+<h2 id="supported-tags">Supported tags</h2>
+<p>Our version maintenance policy is similar to <a href="https://www.ruby-lang.org/en/downloads/branches/">upstream</a> except that we drop support for a (major.minor) version series once it&rsquo;s no longer in use in GOV.UK.</p>
+<p>See <a href="https://github.com/alphagov/govuk-ruby-images/blob/main/build-matrix.json#L2">build-matrix.json</a> for the list of Ruby versions we currently support.</p>
+<blockquote>
+<p>[!IMPORTANT]
+Please do not attempt to specify the Ruby patch version. See <a href="#if-you-suspect-a-bug">below</a> for alternatives.</p>
+</blockquote>
+<h3 id="if-you-suspect-a-bug">If you suspect a bug</h3>
+<p>If you encounter a bug in govuk-ruby-images that breaks your application or your build:</p>
+<ul>
+<li>
+<p>if absolutely necessary, you <strong>may</strong> <em>temporarily</em> pin a known-good <a href="https://github.com/alphagov/govuk-ruby-images/pkgs/container/govuk-ruby-base">base</a> and/or <a href="https://github.com/alphagov/govuk-ruby-images/pkgs/container/govuk-ruby-builder">builder</a> image by SHA or SHA prefix, for example:</p>
+<pre lang="Dockerfile"><code># TODO(https://github.com/alphagov/govuk-ruby-images/issues/96): remove pinned image once bug is fixed.
+ARG builder_image=ghcr.io/alphagov/govuk-ruby-builder:3.3-acecafe
+</code></pre>
+</li>
+<li>
+<p>if you pin a base/builder image SHA, you <strong>must</strong>:</p>
+<ul>
+<li>
+<a href="https://github.com/alphagov/govuk-ruby-images/issues/new">file an issue</a> so that the maintainers know there is a problem that needs to be addressed</li>
+<li>add a TODO containing a link to the issue, so that the workaround can be cleaned up once the issue is fixed</li>
+</ul>
+</li>
+</ul>
+<p>If you are unsure, ask <a href="#team">Platform Engineering team</a> for advice.</p>
 <h2 id="common-problems-and-resolutions">Common problems and resolutions</h2>
 <p><code>ERROR: failed to solve: cannot copy to non-directory: /var/lib/docker/overlay2/.../merged/app/tmp</code></p>
 <p>Add <code>tmp/</code> to your <code>.dockerignore</code>. This is necessary because we symlink
 <code>$APP_HOME/tmp</code> to <code>/tmp</code> as a workaround for some badly-behaved gems that
 assume they can write to <code>Path.join(Rails.root, &#39;tmp&#39;)</code> so that we can run with
 <code>readOnlyRootFilesystem</code>.</p>
-<h2 id="add-or-update-a-ruby-version">Add or update a Ruby version</h2>
+<h2 id="maintenance">Maintenance</h2>
+<h3 id="add-or-update-a-ruby-version">Add or update a Ruby version</h3>
 <p>The file <a href="https://github.com/alphagov/govuk-ruby-images/blob/main/build-matrix.json">build-matrix.json</a> defines the Ruby versions and image tags that we build.</p>
 <p>The <code>checksum</code> field is currently the SHA-256 hash of the Ruby source tarball. We verify this in the build.</p>
 <p>See <a href="https://www.ruby-lang.org/en/downloads/releases/">Ruby Releases</a> for the list of available Ruby tarballs and their SHA digests.</p>
-<h2 id="team">Team</h2>
-<p><a href="https://github.com/orgs/alphagov/teams/gov-uk-platform-engineering">GOV.UK Platform Engineering team</a> looks after this repo. If you&rsquo;re inside GDS, you can find us in <a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a> or view our <a href="https://github.com/orgs/alphagov/projects/71">kanban board</a>.</p>
+<h3 id="team">Team</h3>
+<p><a href="https://github.com/orgs/alphagov/teams/gov-uk-platform-engineering">GOV.UK Platform Engineering team</a> looks after this repo. If you&rsquo;re inside GDS, you can find us in <a href="https://gds.slack.com/channels/govuk-platform-engineering">#govuk-platform-engineering</a> or view our <a href="https://github.com/orgs/alphagov/projects/71">project board</a>.</p>
   </div></p>
 
 
