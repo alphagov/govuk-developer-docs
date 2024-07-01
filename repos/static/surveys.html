@@ -139,7 +139,6 @@
     </li>
     <li>
       <ul>
-          <li><a href="/repos/static/analytics.html" rel="noopener" class="govuk-link">Analytics</a></li>
           <li><a href="/repos/static/humans.html" rel="noopener" class="govuk-link">humans.txt</a></li>
           <li><a href="/repos/static/slimmer_templates.html" rel="noopener" class="govuk-link">Slimmer Templates</a></li>
           <li><a href="/repos/static/surveys.html" rel="noopener" class="govuk-link">Running test surveys on GOV.UK</a></li>
@@ -207,15 +206,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/static/commit/854faadee5ce63adebc51c6650f466c359363689">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/static/commit/79baef41a30c8ac12853cccef861a6afaf7619a0">19 Jun 2024</a>
 </div>
 
   <h1 class="page-title">static: Running test surveys on GOV.UK</h1>
@@ -247,7 +239,7 @@
 </code></pre>
 <h2 id="about-the-data-structure">About the data structure</h2>
 <h3 id="identifier"><code>identifier</code></h3>
-<p>This is used both as the Google Analytics tag to record events against, and used (after being transformed to camelCase) to set a cookie so a visitor is not prompted to take the survey more than once.</p>
+<p>This is used (after being transformed to camelCase) to set a cookie so a visitor is not prompted to take the survey more than once. It was also previously used as a tag to record events against in old analytics code.</p>
 <h3 id="frequency"><code>frequency</code></h3>
 <p>How frequently to show the survey. A frequency of <code>1</code> means the survey shows to every visitor. A frequency of <code>50</code> means the survey shows to 1 in 50 visitors.</p>
 <h3 id="surveytype-optional-default-url">
@@ -263,8 +255,6 @@
 <li>
 <code>https://www.smartsurvey.com/s/2AAAAAA?c={{currentPath}}</code> - will be transformed into <code>https://www.smartsurvey.com/s/2AAAAAA?c=/government/publications/the-kingdom-of-the-crystal-skull</code> (assuming the page the survey was shown on was <a href="https://www.gov.uk/government/publications/the-kindgom-of-the-crystal-skull">https://www.gov.uk/government/publications/the-kindgom-of-the-crystal-skull</a>).</li>
 </ul>
-<p>Please be aware that the GA client ID will also be appended to the end of the url, so the final result will be: <code>https://www.smartsurvey.com/s/2AAAAAA?c=/government/publications/the-kingdom-of-the-crystal-skull&amp;gcl=12345.67890</code>.
-If the <code>?c={{currentPath}}</code> template param is missing from the link, then the resulting url will be: <code>https://www.smartsurvey.com/s/2AAAAAA?gcl=12345.67890</code>.</p>
 <p>The value can be an array of URLs, in which case the URL to use will
 be chosen randomly from the array.</p>
 <h4 id="templateargs-for-url-survey">
@@ -330,7 +320,6 @@ be chosen randomly from the array.</p>
         &lt;/label&gt;
         &lt;input name="email_survey_signup[survey_id]" type="hidden" value="{{surveyId}}"&gt;
         &lt;input name="email_survey_signup[survey_source]" type="hidden" value="{{surveySource}}"&gt;
-        &lt;input name="email_survey_signup[ga_client_id]" type="hidden" value="{{gaClientId}}"&gt;
         &lt;input class="survey-form-input" name="email_survey_signup[email_address]" id="survey-email-address" type="text" aria-describedby="survey-form-description"&gt;
         &lt;button class="survey-form-button" type="submit"&gt;{{surveyFormCta}}&lt;/button&gt;
         &lt;a href="javascript:void()" id="take-survey" target="_blank" rel="noopener noreferrer"&gt;{{surveyFormNoEmailInvite}}&lt;/a&gt;
