@@ -238,9 +238,100 @@
 </div></dl>
     <div class="gem-c-summary__block"></div>
 </div>
-<h2 id='readme'>README</h2><p><span class="govuk-error-message">
-    This repo doesn&rsquo;t have a README.md file.
-  </span></p>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<p>The CKAN extension for data.gov.uk</p>
+
+<h2 id="features">Features</h2>
+
+<ul>
+<li>Configures Sentry automatically using a <code>SENTRY_DSN</code> environment variable.</li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+
+<p>To install ckanext-datagovuk:</p>
+
+<ol>
+<li>Activate your CKAN virtual environment, for example:</li>
+</ol>
+
+<pre><code>/usr/lib/ckan/default/bin/activate
+</code></pre>
+
+<ol>
+<li>Install the ckanext-datagovuk Python package into your virtual environment:</li>
+</ol>
+
+<pre><code>pip install ckanext-datagovuk
+</code></pre>
+
+<ol>
+<li>
+<p>Add <code>datagovuk</code> to the <code>ckan.plugins</code> setting in your CKAN config file (by default the config file is located at <code>/etc/ckan/default/production.ini</code>).</p>
+</li>
+<li>
+<p>Restart CKAN. For example if you&rsquo;ve deployed CKAN with Apache on Ubuntu:</p>
+</li>
+</ol>
+
+<pre><code>sudo service apache2 reload
+</code></pre>
+
+<h2 id="config-settings">Config Settings</h2>
+
+<p><code>ckan.datagovuk.trim_strings_for_index_limit</code>: when indexing packages, string fields will be truncated to this length unless they are known to be under a text-indexed key. Solr 6 has a field limit of 32k for string fields, but note that our truncation is applied per-json-value, and a Solr value can contain multiple json values which then get squashed together to a single field value, so using a number under half Solr&rsquo;s limit is wise.</p>
+
+<h2 id="development-installation">Development Installation</h2>
+
+<p>To install ckanext-datagovuk for development, activate your CKAN virtualenv and
+then:</p>
+
+<pre><code>git clone https://github.com/alphagov/ckanext-datagovuk.git
+cd ckanext-datagovuk
+python setup.py develop
+pip install -r dev-requirements.txt
+</code></pre>
+
+<h2 id="running-the-tests">Running the Tests</h2>
+
+<p>Start by running the <a href="https://github.com/alphagov/docker-ckan#development-mode">docker ckan</a> stack to set up the CKAN environment.</p>
+
+<p>Run the tests:</p>
+
+<pre><code>python -m pytest --ckan-ini=test.ini ckanext/datagovuk/tests/
+</code></pre>
+
+<h2 id="creating-test-data">Creating test data</h2>
+
+<p>To be able to run the <a href="https://github.com/alphagov/ckan-functional-tests">CKAN functional tests</a> we need to create test data.</p>
+
+<p>First set the environment variables:</p>
+
+<ul>
+<li>
+<code>CKAN_INI</code> - location of CKAN ini file, this is already set on the docker stack</li>
+<li>
+<code>CKAN_TEST_SYSADMIN_NAME</code> and <code>CKAN_TEST_SYSADMIN_PASSWORD</code>
+</li>
+</ul>
+
+<p>Then run the paster command:</p>
+
+<pre><code>ckan datagovuk create-dgu-test-data
+</code></pre>
+
+<p>To remove the test data:</p>
+
+<pre><code>ckan datagovuk remove-dgu-test-data
+</code></pre>
+
+<h2 id="deploying-ckan-pycsw-and-solr">Deploying CKAN, PyCSW and Solr</h2>
+
+<p>By default, merging a PR into main will trigger a build of the CKAN image and create PRs on the govuk-dgu-charts repo. Updating the tag will build and push a tagged image and create the PR for Staging and Production environments in the govuk-dgu-charts repo.</p>
+
+<p>If you want to deploy updates to PyCSW or Solr then you&rsquo;ll need to trigger the build manually via the github actions tab and manually update the pycsw or solr tag in govuk-dgu-charts repo for each environment.</p>
+<p></div></p>
 
 
             
