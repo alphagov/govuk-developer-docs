@@ -145,6 +145,9 @@
       <li>
         <a href="#run-a-rake-task-on-eks"><span>Run a Rake task on EKS</span></a>
       </li>
+      <li>
+        <a href="#working-with-csvs-on-kubernetes"><span>Working with CSVs on Kubernetes</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -194,14 +197,27 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c8665b31c856020e731d7fbebd5005039d6f73c4">30 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/67032c395bafbb0f5d1acce5f7b1d1499f59c91f">27 Jun 2024</a>
 </div>
 
  <h1 id='header'>Run a rake task</h1> <h2 id='run-a-rake-task-on-eks'>Run a Rake task on EKS</h2><p>To run a <a href="https://ruby.github.io/rake/">rake</a> task in Kubernetes, execute the rake command inside the application container.</p>
 <p>For example:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec </span>deploy/publishing-api <span class="nt">--</span> rake <span class="s1">'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'</span>
 </code></pre></div><p>The output of the command will be streamed to your terminal.</p>
+<h2 id='working-with-csvs-on-kubernetes'>Working with CSVs on Kubernetes</h2><p>Some of our legacy rake tasks require uploading a CSV file. This is a throwback to our previous Puppet-based infrastructure and should be phased out now that we&rsquo;re on Kubernetes, as containers are meant to be immutable and ephemeral.</p>
+<p>Nevertheless, it is possible to copy a local CSV file into a pod and reference the file in the rake task, doing something like:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">cp </span>foo.csv <span class="nv">$somepod</span>:/tmp <span class="o">&amp;&amp;</span> kubectl <span class="nb">exec</span> <span class="nv">$somepod</span> <span class="nt">--</span> rake name_of_task
+</code></pre></div><p>For example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>kubectl get pods
+<span class="c"># returns list of pods, including</span>
+<span class="c"># whitehall-admin-c4c7c957c-9q966</span>
 
+<span class="nv">$ </span>kubectl <span class="nb">cp</span> ~/Downloads/tag.csv whitehall-admin-c4c7c957c-9q966:/tmp
+<span class="c"># copies the file</span>
+
+<span class="nv">$ </span>kubectl <span class="nb">exec </span>whitehall-admin-c4c7c957c-9q966 <span class="nt">--</span> rake data_hygiene:bulk_update_organisation[/tmp/tag.csv]
+<span class="c"># runs the rake task</span>
+</code></pre></div>
   <div class='related-content'>
 
     <h3>More in the Deployment section</h3>
