@@ -32,7 +32,7 @@ In this tutorial, you will make a change to the example test app to print your m
 
 1. View app metrics on the Grafana dashboard
 
-    Change the status parameter in the test app url to a 5xx status in order to see the error appearing in the [Grafana dashboard](https://grafana.eks.integration.govuk.digital/d/000000111/app-request-rates-errors-durations?orgId=1&refresh=10s&var-namespace=apps&var-app=govuk-replatform-test-app&var-quantile=All&var-error_status=All) (login via your govuk Google SSO)
+    Change the status parameter in the test app url to a 5xx status in order to see the error appearing in the [Grafana dashboard](https://grafana.eks.integration.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&refresh=1m&var-namespace=apps&var-app=govuk-replatform-test-app&var-error_status=All) (login via your govuk Google SSO)
 
 1. View the messages in your text file in the logs
 
