@@ -32,7 +32,7 @@ kubectl -n apps exec deploy/<APPNAME> -c app -- env
 
 To change a plain text environment variable, edit the value in the `values-<ENVIRONMENT>.yaml` file.
 
-To change a Kubernetes secret, see the [Add secrets to your app documentation](/manage-app/manage-secrets).
+To change a Kubernetes secret, see the [Add secrets to your app documentation](/kubernetes/manage-app/manage-secrets).
 
 When you change a Kubernetes secret, run the following in the command line to restart your app so that the change takes effect:
 
@@ -50,7 +50,7 @@ To check why a container or pod has crashed, run `describe pods` in the command 
 kubectl -n apps describe pods -l=app=<APPNAME>
 ```
 
-If the pod or container crashes because of a lack of resources, you should [scale your app's resources](/manage-app/scale-app/).
+If the pod or container crashes because of a lack of resources, you should [scale your app's resources](/kubernetes/manage-app/scale-app/).
 
 You can monitor the pod resource usage of an app in the `General/Kubernetes/Compute Resources/Pod` Grafana dashboard for the appropriate environment.
 
@@ -68,7 +68,7 @@ To open the security groups to the worker nodes, make terraform changes to the [
 
 Use this [example pull request in the `govuk-infrastructure` repo](https://github.com/alphagov/govuk-infrastructure/pull/584/files) as a guide to making the necessary changes.
 
-Once you have made these changes, apply them by [deploying the `cluster-infrastructure` module](/manage-app/create-new-env/#2-deploy-the-cluster-infrastructure-module).
+Once you have made these changes, apply them by [deploying the `cluster-infrastructure` module](/kubernetes/manage-app/create-new-env/#2-deploy-the-cluster-infrastructure-module).
 
 ## If you suspect a problem with the cluster itself
 
@@ -84,7 +84,7 @@ If you suspect a problem with the cluster, [contact Platform Engineering team](/
 
 ### Getting logs for your apps
 
-To get logs for your apps, follow the [viewing app logs documentation](/manage-app/get-app-info/#view-app-logs).
+To get logs for your apps, follow the [viewing app logs documentation](/kubernetes/manage-app/get-app-info/#view-app-logs).
 
 ### Creating a shell inside a running container
 
