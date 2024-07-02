@@ -26,6 +26,18 @@ In [`app/views/components/_global_bar.html.erb`]:
    not disappear after being seen 3 times.
 1. [Deploy Static]. See the [guidance on deploying Static](/manual/deploy-static.html).
 
+### Timed Updates
+
+If you know about banner changes in advance and need the updates to show at a
+certain time that's not plausible to do manually (for instance, voter id banners for
+a general election turning off as the polls close, or banner changes on a weekend),
+you can instead use a timed update. Use the helper method `before_update_time?` in
+`app/views/components/_global_bar.html.erb` to specify what the values for the
+banner should be before and after the time. [example](https://github.com/alphagov/static/pull/3369/commits/f3ba36a232dc347a1c2034655c4f42337c1fbcf4#diff-67914e98e8ecc5d7dd31f95b11e199c03ef2164fb93958adf096e87398bda3c0)
+
+This utility function handles timezone issues so that deployment will work correctly
+in either GMT or BST.
+
 ![screenshot](images/global_banner.png)
 
 ## Exclude specific pages from showing the banner
