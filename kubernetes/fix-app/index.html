@@ -564,15 +564,8 @@
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9b4c82b11b975c1e4c4a5a156afa58696bd26d83">25 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8b6b9f7673d6aaa9e0354944ab95be5fb343cbc6">25 Jun 2024</a>
 </div>
 
  <h1 id='fix-your-app'>Fix your app</h1><p>Generally, the reasons why an app has functional or performance issues belong to the following categories:</p>
@@ -594,13 +587,13 @@
 <p>To check you have set up your app&rsquo;s environment variables correctly, run the following in the command line:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec </span>deploy/&lt;APPNAME&gt; <span class="nt">-c</span> app <span class="nt">--</span> <span class="nb">env</span>
 </code></pre></div><p>To change a plain text environment variable, edit the value in the <code>values-&lt;ENVIRONMENT&gt;.yaml</code> file.</p>
-<p>To change a Kubernetes secret, see the <a href="/manage-app/manage-secrets">Add secrets to your app documentation</a>.</p>
+<p>To change a Kubernetes secret, see the <a href="/kubernetes/manage-app/manage-secrets">Add secrets to your app documentation</a>.</p>
 <p>When you change a Kubernetes secret, run the following in the command line to restart your app so that the change takes effect:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps rollout restart deploy/&lt;APPNAME&gt;
 </code></pre></div><h2 id='allocating-more-resources-to-an-app'>Allocating more resources to an app</h2><p>An app might become unresponsive if its CPU usage far exceeds its limit. An app&rsquo;s container or pod can crash or be evicted if it exceeds its memory limit.</p>
 <p>To check why a container or pod has crashed, run <code>describe pods</code> in the command line:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps describe pods <span class="nt">-l</span><span class="o">=</span><span class="nv">app</span><span class="o">=</span>&lt;APPNAME&gt;
-</code></pre></div><p>If the pod or container crashes because of a lack of resources, you should <a href="/manage-app/scale-app/">scale your app&rsquo;s resources</a>.</p>
+</code></pre></div><p>If the pod or container crashes because of a lack of resources, you should <a href="/kubernetes/manage-app/scale-app/">scale your app&rsquo;s resources</a>.</p>
 <p>You can monitor the pod resource usage of an app in the <code>General/Kubernetes/Compute Resources/Pod</code> Grafana dashboard for the appropriate environment.</p>
 <p>For example, you can monitor the <a href="https://grafana.eks.integration.govuk.digital/">Grafana dashboard for the GOV.UK integration environment</a>.</p>
 <p>For more information on Grafana, see the <a href="https://docs.publishing.service.gov.uk/manual/grafana.html">Grafana developer documentation</a>.</p>
@@ -608,7 +601,7 @@
 <p>To fix this issue, you must make sure the security groups of these services are open to the <a href="https://kubernetes.io/docs/concepts/architecture/nodes/">Kubernetes worker nodes</a> where the app is running.</p>
 <p>To open the security groups to the worker nodes, make terraform changes to the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/govuk-publishing-infrastructure/security.tf"><code>security.tf</code> file in the <code>govuk-infrastructure</code> repo</a>.</p>
 <p>Use this <a href="https://github.com/alphagov/govuk-infrastructure/pull/584/files">example pull request in the <code>govuk-infrastructure</code> repo</a> as a guide to making the necessary changes.</p>
-<p>Once you have made these changes, apply them by <a href="/manage-app/create-new-env/#2-deploy-the-cluster-infrastructure-module">deploying the <code>cluster-infrastructure</code> module</a>.</p>
+<p>Once you have made these changes, apply them by <a href="/kubernetes/manage-app/create-new-env/#2-deploy-the-cluster-infrastructure-module">deploying the <code>cluster-infrastructure</code> module</a>.</p>
 <h2 id='if-you-suspect-a-problem-with-the-cluster-itself'>If you suspect a problem with the cluster itself</h2><p>An app may face issues if the cluster has a problem. Possible issues you might encounter include:</p>
 
 <ul>
@@ -617,7 +610,7 @@
 <li>a problem with a controller which might prevent an app&rsquo;s actual configuration from converging with its specified configuration</li>
 </ul>
 <p>If you suspect a problem with the cluster, <a href="/contact-platform-engineering-team.html">contact Platform Engineering team</a> to ask for help.</p>
-<h2 id='general-debugging'>General debugging</h2><h3 id='getting-logs-for-your-apps'>Getting logs for your apps</h3><p>To get logs for your apps, follow the <a href="/manage-app/get-app-info/#view-app-logs">viewing app logs documentation</a>.</p>
+<h2 id='general-debugging'>General debugging</h2><h3 id='getting-logs-for-your-apps'>Getting logs for your apps</h3><p>To get logs for your apps, follow the <a href="/kubernetes/manage-app/get-app-info/#view-app-logs">viewing app logs documentation</a>.</p>
 <h3 id='creating-a-shell-inside-a-running-container'>Creating a shell inside a running container</h3><p>If you cannot diagnose an issue by looking at the app logs, you can create a shell to run commands inside a running app container.</p>
 <p>Run the following in the command line:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl -n &lt;NAMESPACE&gt; exec -it &lt;POD&gt; sh -c &lt;CONTAINER&gt;

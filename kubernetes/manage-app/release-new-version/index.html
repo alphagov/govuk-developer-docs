@@ -565,14 +565,14 @@
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f5afc6ce41ef59e84cf54a714e8b53d56ae7d43f">30 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8b6b9f7673d6aaa9e0354944ab95be5fb343cbc6">25 Jun 2024</a>
 </div>
 
  <h1 id='how-a-new-version-of-an-app-is-released'>How a new version of an app is released</h1><p>A new release of an app automatically occurs when:</p>
 
 <ul>
 <li>a user merges a PR to the main branch of an app&rsquo;s GitHub repo</li>
-<li>the merge commit passes all <a href="/manage-app/access-ci-cd/#continuous-deployment-of-a-release-of-a-gov-uk-app">pre-release tests</a></li>
+<li>the merge commit passes all <a href="/kubernetes/manage-app/access-ci-cd/#continuous-deployment-of-a-release-of-a-gov-uk-app">pre-release tests</a></li>
 </ul>
 <p>The <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/release.yml"><code>release.yml</code> shared workflow</a> runs automatically in GitHub Actions and adds a Git tag for the release. Release tags are of the form <code>v</code> followed by a sequential number.</p>
 
