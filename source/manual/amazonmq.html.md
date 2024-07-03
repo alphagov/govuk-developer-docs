@@ -19,10 +19,20 @@ Protocol][AMQP] (AMQP). Publishing's RabbitMQ cluster is hosted using [Amazon MQ
     brew install knight42/tap/krelay
     ```
 
+1. Obtain admin credentials to access the GOV.UK EKS Cluster
+
+    ```sh
+    # Obtain IAM credentials for the AWS account (integration, staging, production).
+    eval $(gds aws govuk-<environment>-admin -e --art 8h)
+
+    # Select the corresponding kubectl context (or create a new admin context if needed)
+    kubectl config use-context <your-admin-context-name>
+    ```
+
 1. Forward the RabbitMQ HTTPS port to your local machine.
 
     ```sh
-    k relay host/publishingmq.integration.govuk-internal.digital 4430:443
+    k relay host/publishingmq.<environment>.govuk-internal.digital 4430:443
     ```
 
 1. Open <https://localhost:4430/> in your browser. The TLS certificate will not match `localhost`, so navigate past the certificate warnings. In Chrome, you can set <chrome://flags/#allow-insecure-localhost> if you prefer.
