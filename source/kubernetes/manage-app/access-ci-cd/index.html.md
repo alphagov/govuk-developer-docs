@@ -60,7 +60,7 @@ When the [post-sync Argo Workflow](https://github.com/alphagov/govuk-helm-charts
 
 Join the [#govuk-deploy-alerts Slack channel](https://gds.slack.com/archives/C01EE7US9R6) to get a notification when an app is deployed and whether the deployment succeeded or failed.
 
-If your app deployment failed, you should check the Argo CD logs to see why.
+If your app deployment failed, you should [check the Argo CD logs](#check-the-argo-cd-logs) to see why.
 
 ## Check the Argo CD logs
 
