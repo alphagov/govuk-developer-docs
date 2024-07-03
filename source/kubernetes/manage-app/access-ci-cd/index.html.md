@@ -40,7 +40,7 @@ The deployment process is as follows.
 
 1. Argo CD updates the Kubernetes deployment with the new image tag. Kubernetes then co-ordinates the deployment by creating new application containers using the new image tag and cleans up the old containers.
 
-After the Sync operation, Argo CD triggers the [post-sync Argo Workflow](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-workflows/templates/post-sync-workflow.yaml) to run [smokey tests](https://github.com/alphagov/smokey) for the app.
+After the Sync operation, Argo CD triggers the [post-sync Argo Workflow](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/post-sync/workflow.yaml) to run [smokey tests](https://github.com/alphagov/smokey) for the app.
 
 ## Continuous deployment of a release of a GOV.UK app
 
@@ -52,15 +52,15 @@ CI then updates the image tag value for integration in the [govuk-helm-charts re
 
 Argo CD automatically deploys the new release to the integration environment and then runs the smokey tests for the app in integration.
 
-If the smokey tests are successful in integration, the post-sync Argo Workflow will continue and [update the image tag](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-workflows/templates/update-image-tag.yaml) for the next environment. Argo CD deploys the release to the staging environment and runs smokey tests in staging.
+If the smokey tests are successful in integration, the post-sync Argo Workflow will continue and [update the image tag](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/update-image-tag/workflow.yaml) for the next environment. Argo CD deploys the release to the staging environment and runs smokey tests in staging.
 
-If the smokey tests are successful in staging, the post-sync Argo Workflow will continue and [update the image tag](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-workflows/templates/update-image-tag.yaml) for the next environment. Argo CD deploys the release to the production environment and runs the smokey test in production.
+If the smokey tests are successful in staging, the post-sync Argo Workflow will continue and [update the image tag](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/update-image-tag/workflow.yaml) for the next environment. Argo CD deploys the release to the production environment and runs the smokey test in production.
 
-When the [post-sync Argo Workflow](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-workflows/templates/update-image-tag.yaml) updates the image tag value, it creates and merges a branch into the main branch for the `govuk-helm-charts` repo without raising a pull request.
+When the [post-sync Argo Workflow](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/update-image-tag/workflow.yaml) updates the image tag value, it creates and merges a branch into the main branch for the `govuk-helm-charts` repo without raising a pull request.
 
 Join the [#govuk-deploy-alerts Slack channel](https://gds.slack.com/archives/C01EE7US9R6) to get a notification when an app is deployed and whether the deployment succeeded or failed.
 
-If your app deployment failed, you should check the Argo CD logs to see why.
+If your app deployment failed, you should [check the Argo CD logs](#check-the-argo-cd-logs) to see why.
 
 ## Check the Argo CD logs
 
