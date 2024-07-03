@@ -144,6 +144,11 @@
     <ul>
       <li>
         <a href="#activate-the-global-banner"><span>Activate the global banner</span></a>
+        <ul>
+          <li>
+            <a href="#timed-updates"><span>Timed Updates</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#exclude-specific-pages-from-showing-the-banner"><span>Exclude specific pages from showing the banner</span></a>
@@ -205,15 +210,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/303cd98f9ce7cd8f76901e07915daeb0e71acdc0">2 Jul 2024</a>
 </div>
 
  <h1 id='header'>Deploy non-emergency global banner</h1> <p>A site-wide (global) banner can be activated to convey important information on
@@ -232,6 +230,14 @@ the relevant info where applicable, otherwise set them to <code>false</code>.</l
 not disappear after being seen 3 times.</li>
 <li><a href="https://github.com/alphagov/static/actions/workflows/deploy.yml">Deploy Static</a>. See the <a href="/manual/deploy-static.html">guidance on deploying Static</a>.</li>
 </ol>
+<h3 id='timed-updates'>Timed Updates</h3><p>If you know about banner changes in advance and need the updates to show at a
+certain time that&rsquo;s not plausible to do manually (for instance, voter id banners for
+a general election turning off as the polls close, or banner changes on a weekend),
+you can instead use a timed update. Use the helper method <code>before_update_time?</code> in
+<code>app/views/components/_global_bar.html.erb</code> to specify what the values for the
+banner should be before and after the time. <a href="https://github.com/alphagov/static/pull/3369/commits/f3ba36a232dc347a1c2034655c4f42337c1fbcf4#diff-67914e98e8ecc5d7dd31f95b11e199c03ef2164fb93958adf096e87398bda3c0">example</a></p>
+<p>This utility function handles timezone issues so that deployment will work correctly
+in either GMT or BST.</p>
 <p><a href="images/global_banner.png" rel="noopener noreferrer"><img src="/manual/images/global_banner.png" alt="screenshot" /></a></p>
 <h2 id='exclude-specific-pages-from-showing-the-banner'>Exclude specific pages from showing the banner</h2><p>The target page linked to from the banner will automatically not show the banner.</p>
 <p>To prevent other pages from showing the banner, add them to <code>urlBlockList</code> in
