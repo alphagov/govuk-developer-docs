@@ -208,7 +208,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c6bec2d5b29f5dc2bb1e6ba96fb4ba13f392b7ce">23 Apr 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e2e9574ec9b70f98610cdeb7f41bd9362c285a45">3 Jul 2024</a>
 </div>
 
  <h1 id='header'>Manage Amazon MQ</h1> <p><a href="https://www.rabbitmq.com/">RabbitMQ</a> is a message broker based on the <a href="https://www.rabbitmq.com/tutorials/amqp-concepts.html">Advanced Message Queuing
@@ -219,8 +219,15 @@ Protocol</a> (AMQP). Publishing&rsquo;s RabbitMQ cluster is hosted using <a href
 <li><p>Install the <a href="https://github.com/knight42/krelay#installation">krelay</a> kubectl plugin.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>brew <span class="nb">install </span>knight42/tap/krelay
 </code></pre></div></li>
+<li><p>Obtain admin credentials to access the GOV.UK EKS Cluster</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="c"># Obtain IAM credentials for the AWS account (integration, staging, production).</span>
+<span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-&lt;environment&gt;-admin <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
+
+<span class="c"># Select the corresponding kubectl context (or create a new admin context if needed)</span>
+kubectl config use-context &lt;your-admin-context-name&gt;
+</code></pre></div></li>
 <li><p>Forward the RabbitMQ HTTPS port to your local machine.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k relay host/publishingmq.integration.govuk-internal.digital 4430:443
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k relay host/publishingmq.&lt;environment&gt;.govuk-internal.digital 4430:443
 </code></pre></div></li>
 <li><p>Open <a href="https://localhost:4430/">https://localhost:4430/</a> in your browser. The TLS certificate will not match <code>localhost</code>, so navigate past the certificate warnings. In Chrome, you can set <a href="chrome://flags/#allow-insecure-localhost">chrome://flags/#allow-insecure-localhost</a> if you prefer.</p></li>
 <li><p>Log into the RabbitMQ Management web interface. The username is <code>root</code> and the passwords for each environment are in <code>2ndline/publishing-amazonmq</code> in <a href="/manual/secrets-manager.html">Secrets Manager</a> in the <strong>production</strong> AWS account.</p></li>
