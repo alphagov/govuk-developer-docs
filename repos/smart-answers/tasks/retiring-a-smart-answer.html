@@ -239,28 +239,30 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/ebcb2a3c2060eb4e64f60837da9166cd9f6d59e7">24 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/542d10c909807e74397ce90fdd90b9dbec60288b">4 Jul 2024</a>
 </div>
 
   <h1 class="page-title">smart-answers: How to retire a Smart Answer</h1>
 
   
 <p>Retiring a published Smart Answer involves using a <a href="#removing-the-content-item">rake task</a> to update the content item that represents the Smart Answer flow, and then <a href="#remove-smart-answer-code">removing the code</a>.</p>
+<h2 id="important-considerations-about-smart-answers">Important considerations about Smart Answers</h2>
+<p>A smart answer document is a single content item that contains all possible question and answer paths for that item. Because of this, you <strong>can not simply partially retire a Smart Answer flow</strong>, it's an all-or-nothing affair.</p>
+<p>There have been cases wherein a small override has had to be put in place when we wished to transition a smart answer over a period of time, rather than a straight replacement. Special care should be considered on how to handle this transition on a case by case basis.</p>
+<blockquote>
+<p>In an example case, wherein we were transitioning the Married Abroad smart answer flow to a new service handled by FCDO, the goal was to redirect specific smart answer entries to the new service, starting with the immediate jump from the Start page. This was complicated by the need to keep some sections of the existing smart answer available while the transition was ongoing.</p>
+<p>However, as redirecting a single part of a smart answer is impossible (due to the whole document being a single content item in our data store), we had to <a href="https://github.com/alphagov/smart-answers/pull/6754/files#diff-40a1a603280835cef933a5c28f6a4248fd60cdc468d03988abc687ffcf5f7e7b">explicitly override</a> the start page link component to link to the new service.</p>
+<p>Because of how the flows are handled by, effectively, static URLs, the new service could now link back to the existing smart answer while we have effectively redirected most user-accessible ways to access the old system.</p>
+</blockquote>
+<p>Once the transition is complete, the old smart answer can be retired through the steps below, and the override removed.</p>
 <h2 id="removing-the-content-item">Removing the content item</h2>
 <p>Before removing a Smart Answer you will need its content_id. This is found in the relevant
 <code>app/flows/&lt;\smart-answer&gt;_flow.rb</code> file.</p>
 <p>For redirecting or replacing a Smart Answer you will also
 need to know the paths of the pages, which are based off the <code>name</code> attribute
 of the <code>app/flows/&lt;\smart-answer&gt;_flow.rb</code> file. For example, for
-the Marriage Abroad Smart Answer the path is <code>/marriage-abroad</code>.</p>
+the Check UK Visa Smart Answer the path is <code>/check-uk-visa</code>.</p>
 <blockquote>
 <p>NOTE: These URLs are usually cached, so you may need to wait 5-10 minutes to see the effect of these rake tasks.</p>
 </blockquote>
@@ -270,9 +272,9 @@ the Marriage Abroad Smart Answer the path is <code>/marriage-abroad</code>.</p>
 destination, <code>/random</code>, you'd run the following rake task:</p>
 <pre><code>bundle exec rake "publishing_api:unpublish_redirect[&lt;content_id&gt;,&lt;base_path&gt;,/random,prefix]"
 </code></pre>
-<p>Applying this to the <a href="https://github.com/alphagov/smart-answers/blob/main/app/flows/marriage_abroad_flow.rb">Marriage Abroad</a>
+<p>Applying this to the <a href="https://github.com/alphagov/smart-answers/blob/main/app/flows/check_uk_visa_flow.rb">Check UK Visa</a>
 Smart Answer you'd run the following command:</p>
-<pre><code>bundle exec rake "publishing_api:unpublish_redirect[d0a95767-f6ab-432a-aebc-096e37fb3039,/marriage-abroad,/random,prefix]"
+<pre><code>bundle exec rake "publishing_api:unpublish_redirect[dc1a1744-4089-43b3-b2e3-4e397b6b15b1,/check-uk-visa,/random,prefix]"
 </code></pre>
 <h3 id="showing-users-a-page-to-indicate-the-content-is-no-longer-available">Showing users a page to indicate the content is no longer available</h3>
 <p>If there is not content to replace the Smart Answer then the convention is to
