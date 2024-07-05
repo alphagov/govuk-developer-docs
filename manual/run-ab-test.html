@@ -210,15 +210,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e804c86219dda7714ec55edac54dce7488c5d137">20 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1d4954cc86343ce0ec11f8aee84b8e12470a3e23">5 Jul 2024</a>
 </div>
 
  <h1 id='header'>Run an A/B or multivariate test</h1> <p>Before you run an A/B or multivariate test, you should read the <a href="/manual/ab-testing.html">guidance on how A/B testing works</a>.</p>
@@ -236,7 +229,7 @@ testing headers on pages that you are measuring. See this <a href="https://githu
 <ol>
 <li>Write the A/B test. Use the information in the <a href="https://github.com/alphagov/govuk_ab_testing">govuk_ab_testing gem</a> to understand how to serve different versions to your users.</li>
 <li>Add your test to the <a href="https://docs.google.com/spreadsheets/d/1h4vGXzIbhOWwUzourPLIc8WM-iU1b6WYOVDOZxmU1Uo/edit">A/B test register</a>.</li>
-<li>If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a <a href="https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK">GA dimension</a> to use for your test. If you wish to run an A/B test in integration or staging you may need to ensure that analytics tracking exists in those environments.</li>
+<li>If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst.</li>
 <li>Add your test to the <a href="https://github.com/alphagov/govuk-fastly/blob/main/ab_tests.yaml">ab_tests configuration file</a> in the <a href="https://github.com/alphagov/govuk-fastly">govuk-fastly</a> repo and remove the relevant <a href="https://github.com/alphagov/govuk-fastly/blob/main/dictionaries.yaml">dictionary config</a>. See <a href="https://github.com/alphagov/govuk-fastly/pull/22">an example pull request updating this config</a>.</li>
 </ol>
 <h2 id='3-deploy-and-activate-an-ab-test'>3. Deploy and activate an A/B test</h2>
