@@ -30,3 +30,10 @@ Where a page offers the user navigation or interaction choices it is often desir
 Read our [developer guide](https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/developer-guide.md) to GA4 developing.
 
 Browser extensions such as [Omnibug](https://chromewebstore.google.com/detail/omnibug/bknpehncffejahipecakbfkomebjmokl) and [Analytics Debugger](https://chromewebstore.google.com/detail/analytics-debugger/ilnpmccnfdjdjjikgkefkcegefikecdc) show data being sent to Google Analytics. This is useful for testing what is being sent to GA and when. Other GA debuggers are also available.
+
+## GA4 and publishing applications
+
+Some publishing applications use the GA4 code from `govuk_publishing_components` to provide GA4 tracking in their systems, however some publishing applications have their own approach.
+
+- [Content Publisher analytics](https://github.com/alphagov/content-publisher/blob/main/docs/approach-to-analytics.md)
+- [Content Data Admin analytics code](https://github.com/alphagov/content-data-admin/blob/main/app/assets/javascripts/core/gtm.js)
