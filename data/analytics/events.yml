@@ -425,18 +425,6 @@
           value: "false"
         - name: method
         - name: link_domain
-    - name: back to contents link click
-      implemented: false
-      priority: low
-      description: Tracks the 'contents' link to return to the contents list, appearing either at the bottom of the left hand column or in an element fixed to the bottom of the page.
-      examples:
-        - text: Cost of living payments (fixed to bottom of page)
-          link: https://www.gov.uk/guidance/cost-of-living-payment
-        - text: Budget 2016 (bottom of left hand column)
-          link: https://www.gov.uk/government/publications/budget-2016-documents/budget-2016
-      data:
-      - name: event
-        value: event_data
 
 - name: copy
   events:
@@ -841,15 +829,6 @@
         - name: section
           value: One of "Services and information", "Government Activity", "Support Links", "Licence", or "Copyright"
 
-- name: forms
-  events:
-    - name: form success alert
-      implemented: false
-      priority: low
-      data:
-      - name: event
-        value: event_data
-
 - name: homepage
   events:
     - name: Link clicks
@@ -1141,25 +1120,7 @@
 
 - name: miscellaneous
   events:
-    - name: javascript error
-      implemented: false
-      priority: low
-      data:
-      - name: event
-        value: event_data
     - name: webchat
-      implemented: false
-      priority: low
-      data:
-      - name: event
-        value: event_data
-    - name: accessible format request
-      implemented: false
-      priority: low
-      data:
-      - name: event
-        value: event_data
-    - name: see all updates link click
       implemented: false
       priority: low
       data:
@@ -2139,6 +2100,22 @@
       data:
       - name: event
         value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: "false"
+        - name: index
+          value:
+          - name: index_link
+        - name: index_total
+        - name: link_domain
+        - name: method
+        - name: text
+        - name: type
+          value: super breadcrumb
+        - name: url
 
 - name: header menu bar
   events:
