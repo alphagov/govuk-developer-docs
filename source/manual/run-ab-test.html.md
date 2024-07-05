@@ -34,7 +34,7 @@ Make sure you monitor your test after deployment.
 
 1. Write the A/B test. Use the information in the [govuk_ab_testing gem][govuk_ab_testing] to understand how to serve different versions to your users.
 1. Add your test to the [A/B test register][register].
-1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test. If you wish to run an A/B test in integration or staging you may need to ensure that analytics tracking exists in those environments.
+1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst.
 1. Add your test to the [ab_tests configuration file][ab-tests-file] in the [govuk-fastly][govuk-fastly] repo and remove the relevant [dictionary config][dictionary-config]. See [an example pull request updating this config][pull-request-example].
 
 ## 3. Deploy and activate an A/B test
