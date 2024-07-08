@@ -225,7 +225,11 @@
 
 <ul>
 <li>
-<code>govuk_mirror_last_updated_time</code>: A unix timestamp representing the Last-Modified header of the page referenced by the MIRROR_FRESHNESS_URL. Has the label <code>backend</code> for each backend override being used.</li>
+<p><code>govuk_mirror_last_updated_time</code>: A unix timestamp representing the Last-Modified header of the page referenced by the MIRROR_FRESHNESS_URL. Has the label <code>backend</code> for each backend override being used.</p>
+</li>
+<li>
+<p><code>govuk_mirror_response_status_code</code>: An HTTP status code representing the response status of the page referenced by the MIRROR_AVAILABILITY_URL. Has the label <code>backend</code> for each backend override being used.</p>
+</li>
 </ul>
 
 <h2 id="usage">Usage</h2>
@@ -239,6 +243,12 @@
 </li>
 </ul>
 <p></li>
+<li>MIRROR_AVAILABILITY_URL: Specifies the URL to probe for Mirror availability.
+<ul>
+<li>Example: <code>MIRROR_AVAILABILITY_URL=https://www.gov.uk</code>
+</li>
+</ul>
+</li>
 <li>BACKENDS: A comma-separated list of backend overrides to collect metrics for.
 <ul>
 <li>Example: <code>BACKENDS=mirrorS3,mirrorS3Replica,mirrorGCS</code>
