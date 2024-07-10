@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-experience-tech"
+owner_slack: "#govuk-whitehall-experience-tech"
 title: Add Historical Accounts
 section: Publishing
 layout: manual_layout

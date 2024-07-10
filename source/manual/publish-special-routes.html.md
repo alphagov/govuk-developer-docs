@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-experience-tech"
+owner_slack: "#govuk-whitehall-experience-tech"
 title: Publish special routes
 section: Deployment
 layout: manual_layout
