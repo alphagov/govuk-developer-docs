@@ -67,7 +67,6 @@ You'll then need to [plan and apply the GitHub workspace in Terraform Cloud](htt
 
 - This updates the collaborators to the [default teams and access levels](https://github.com/alphagov/govuk-infrastructure/blob/83ff43c4e55f3d3273644e80897b58fd351f566a/terraform/deployments/github/main.tf#L76-L112).
   - If your repository access is sensitive, it should be tagged with the [`govuk-sensitive-access`](https://github.com/search?q=topic:govuk-sensitive-access) topic to avoid this automation: you would then need to manually manage its collaborators.
-- It also gives permissions to push to the ECR registry, to repositories that have the [`container`](https://github.com/search?q=user%3Aalphagov+topic%3Acontainer&type=repositories) topic.
 
 Finally, you should run the ["Configure GitHub" action in govuk-saas-config](https://github.com/alphagov/govuk-saas-config/actions/workflows/configure-github.yml). This:
 
