@@ -86,4 +86,4 @@ Apps that are automatically deployed all the way to Production should also follo
 - It has at least one JavaScript test, if it makes use of the language.
 - Its code coverage exceeds 95%.
 
-We use [GitHub Actions](/manual/test-and-build-a-project-with-github-actions.html) to run these tests for some repositories, but most Continuous Integration checks are run on [Jenkins](/manual/test-and-build-a-project-on-jenkins-ci.html).
+We use [GitHub Actions](/manual/test-and-build-a-project-with-github-actions.html) to run these tests.
