@@ -25,7 +25,7 @@ Run the following commands from the root directory of the repository.
 LOCAL_HEAD_SHA=$(git rev-parse HEAD)
 IMAGE_TAG="release-${LOCAL_HEAD_SHA}"
 REGISTRY="172025368201.dkr.ecr.eu-west-1.amazonaws.com"
-REPO=$(basename "$PWD")
+REPO="github/alphagov/govuk/$(basename $PWD)"
 ```
 
 1. Build the container image and tag it appropriately.
@@ -59,8 +59,8 @@ docker push $REGISTRY/$REPO:$IMAGE_TAG
 1. Repeat the steps above to turn off auto-sync for the application you wish to deploy.
 1. Close the `App details` sidebar, then select the Deploy object for the component of the application you'd like to redeploy. For example, to update the Sidekiq workers for Account API, you would open up the `account-api-worker` Deploy object.
 1. Go to `Live manifest` and select `Edit`.
-1. Find the `image:` field for the `app` container. It should look something like `172025368201.dkr.ecr.eu-west-1.amazonaws.com/<app-name>:release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e`.
-1. Update the tag part of the `image:` value to the new image tag that you pushed to ECR. The part you are changing should look something like `release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e`.
+1. Find the `image:` field for the `app` container. It should look something like `172025368201.dkr.ecr.eu-west-1.amazonaws.com/github/alphagov/govuk/<app-name>:v123`.
+1. Update the tag part of the `image:` value to the new image tag that you pushed to ECR. The part you are changing should look something like `v123`.
 1. Click `Save`. Argo CD will start the deployment, which should complete in under ten minutes.
 
 When GitHub is available again (or when you've completed the above as part of a Technical 2nd Line drill), return things to normal by re-enabling the auto-sync:
