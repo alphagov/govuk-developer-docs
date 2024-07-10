@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-experience-tech"
+owner_slack: "#govuk-whitehall-experience-tech"
 title: Rename a country
 parent: "/manual.html"
 layout: manual_layout
