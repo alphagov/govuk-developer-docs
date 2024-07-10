@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-experience-tech"
+owner_slack: "#govuk-whitehall-experience-tech"
 title: More items scheduled for publication than in queue for publisher
 parent: "/manual.html"
 layout: manual_layout
