@@ -24,15 +24,11 @@ Note: it's important that single-quotes are used in the tasks otherwise they wil
 
 ### 2. Update the organisation slug in Manuals Publisher
 
-Find out if any manuals are published by this organisation, by running the
-following in the Manuals Publisher Rails console:
+Run the following rake task in Manuals Publisher:
 
-```ruby
-ManualRecord.where(organisation_slug: "old-slug").exists?
 ```
-
-If there are, create a migration to update the slugs. Republish all affected
-manuals after deploying your change.
+rake reslug_organisation[old_slug,new_slug]
+```
 
 ### 3. Sync the organisations with Signon
 
@@ -47,9 +43,11 @@ permissions for the renamed organisation.
 
 ### 4. Update any best bet searches in Search Admin
 
-Search the best bets in [search-admin][search-admin] for references to the old
-organisation name and update them.
+Check the [best_bets.yml file in search-api-v2][search-api-v2] for any references to the old organisation name, and update them if so.
+
+Note: as of July 2024, the YAML file above is the only way to configure 'best bets', but the search team are working on building a feature in [search-admin][search-admin], which may replace the above instructions.
 
 [organisation-rake-task]: https://github.com/alphagov/whitehall/blob/900ab57004bb350eea409d06176e424bc9df0180/lib/tasks/reslugging.rake#L132
 [worldwide-organisation-rake-task]: https://github.com/alphagov/whitehall/blob/900ab57004bb350eea409d06176e424bc9df0180/lib/tasks/reslugging.rake#L146
 [search-admin]: https://search-admin.publishing.service.gov.uk/
+[search-api-v2]: https://github.com/alphagov/search-api-v2/blob/main/config/best_bets.yml
