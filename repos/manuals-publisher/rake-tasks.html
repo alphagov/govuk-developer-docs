@@ -202,15 +202,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/165c0f5cedef02bf17c38fd29441649c06c2b1de">7 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/d53cbb9411efad5297151cafc6d7adf899d9b6d5">11 Jul 2024</a>
 </div>
 
   <h1 class="page-title">manuals-publisher: Rake tasks</h1>
@@ -277,6 +270,10 @@ need to be resolved manually.</p>
 </code></pre>
 <p>This task will update a single section slug, this performs an update within
 the Manual Publisher application database and the Publishing API.</p>
+<h3 id="update-organisation-slug-for-manual-records">Update organisation slug for manual records</h3>
+<pre><code>rake reslug_organisation[old_slug,new_slug]
+</code></pre>
+<p>This is depended on by docs for <a href="https://docs.publishing.service.gov.uk/manual/changing-organisation-slug.html#2-update-the-organisation-slug-in-manuals-publisher">changing an organisation's slug</a>.</p>
 <h2 id="relocating-manuals">Relocating Manuals</h2>
 <p>NOTE. The behaviour of this script is a little confusing (essentially overwriting one published manual with another) so it's not entirely obvious that it's still required.</p>
 <pre><code>rake relocate_manual[from_slug,to_slug]

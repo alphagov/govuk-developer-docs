@@ -207,7 +207,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/723ccd1b6411f8c139d37f63c1d0945673d8f157">27 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4d343ece562b5236903a1afec2726063e163de9e">11 Jul 2024</a>
 </div>
 
  <h1 id='header'>Change an organisation's slug</h1> <blockquote>
@@ -223,18 +223,15 @@ multiple apps.</p>
 <li><a href="https://github.com/alphagov/whitehall/blob/900ab57004bb350eea409d06176e424bc9df0180/lib/tasks/reslugging.rake#L146">Worldwide Organisation</a>: <code>rake reslug:worldwide_organisation[&#39;old-slug&#39;,&#39;new-slug&#39;]</code></li>
 </ul>
 <p>Note: it&rsquo;s important that single-quotes are used in the tasks otherwise they will fail.</p>
-<h3 id='2-update-the-organisation-slug-in-manuals-publisher'>2. Update the organisation slug in Manuals Publisher</h3><p>Find out if any manuals are published by this organisation, by running the
-following in the Manuals Publisher Rails console:</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">ManualRecord</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">organisation_slug: </span><span class="s2">"old-slug"</span><span class="p">).</span><span class="nf">exists?</span>
-</code></pre></div><p>If there are, create a migration to update the slugs. Republish all affected
-manuals after deploying your change.</p>
-<h3 id='3-sync-the-organisations-with-signon'>3. Sync the organisations with Signon</h3><p><a href="https://signon.publishing.service.gov.uk/">Signon</a> assigns users to organisations. This is used by apps such as
+<h3 id='2-update-the-organisation-slug-in-manuals-publisher'>2. Update the organisation slug in Manuals Publisher</h3><p>Run the following rake task in Manuals Publisher:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>rake reslug_organisation[old_slug,new_slug]
+</code></pre></div><h3 id='3-sync-the-organisations-with-signon'>3. Sync the organisations with Signon</h3><p><a href="https://signon.publishing.service.gov.uk/">Signon</a> assigns users to organisations. This is used by apps such as
 Whitehall for authorisation.</p>
 <p>To sync all organisations from Whitehall to Signon, run the Signon rake task
 <code>rake organisations:fetch</code>. Users may have to log out and in again to pick up
 permissions for the renamed organisation.</p>
-<h3 id='4-update-any-best-bet-searches-in-search-admin'>4. Update any best bet searches in Search Admin</h3><p>Search the best bets in <a href="https://search-admin.publishing.service.gov.uk/">search-admin</a> for references to the old
-organisation name and update them.</p>
+<h3 id='4-update-any-best-bet-searches-in-search-admin'>4. Update any best bet searches in Search Admin</h3><p>Check the <a href="https://github.com/alphagov/search-api-v2/blob/main/config/best_bets.yml">best_bets.yml file in search-api-v2</a> for any references to the old organisation name, and update them if so.</p>
+<p>Note: as of July 2024, the YAML file above is the only way to configure &lsquo;best bets&rsquo;, but the search team are working on building a feature in <a href="https://search-admin.publishing.service.gov.uk/">search-admin</a>, which may replace the above instructions.</p>
 
   <div class='related-content'>
 
