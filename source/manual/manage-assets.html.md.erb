@@ -8,28 +8,14 @@ parent: "/manual.html"
 
 ## Get an asset's ID
 
-You can get an asset's ID by using it's URL:
+If the asset URL starts with `/media`, the asset ID is in the URL.
+For example, for the URL `https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg`, the ID is `65f2c1110e1c2f8c4dffaa53`.
 
-1. Open a Rails console:
+For assets that do not start `/media`, obtain the ID by running the following rake task:
 
-    ```sh
-    k exec -it deploy/asset-manager -- rails c
-    ```
+<%= RunRakeTask.links("asset-manager", "assets:get_id_by_legacy_url_path[SLUG]") %>
 
-2. Find the asset:
-
-    ```ruby
-    asset = Asset.find_by(legacy_url_path: "/slug")
-    id = asset.id
-    ```
-
-    For example, if the URL is
-
-    ```
-    https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1234/document.pdf
-    ```
-
-    the slug would be `/government/uploads/system/uploads/attachment_data/file/1234/document.pdf`
+For example, for `https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml"`, you would pass `/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml` as the argument.
 
 ## Remove an asset
 
@@ -43,17 +29,7 @@ If it isn't feasible to remove the asset in the publishing app, you can use
 these steps to remove the asset from `assets.publishing.service.gov.uk` in
 Asset Manager.
 
-1. [Get the asset ID](#getting-an-asset39s-id). This can be obtained from the URL for most assets, e.g. the asset ID
-   for `https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg`
-   is `65f2c1110e1c2f8c4dffaa53`.
-
-   For Whitehall assets that do not start `/media`, the ID can be obtained using the slug,
-   e.g. for `https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml"`,
-   run the following in an Asset Manager rails console:
-
-   ```ruby
-   WhitehallAsset.find_by(legacy_url_path: "/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml").id
-   ```
+1. [Get the asset ID](/manual/manage-assets.html#get-an-assets-id).
 
 1. Decide if the asset can be marked as deleted or whether all traces need to be
    removed (e.g. if it contains secret information).
@@ -111,24 +87,10 @@ an associated document wasn't unpublished correctly.
 If it isn't possible or desirable to redirect the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:
 
-1. Get the asset ID. This can be obtained from the URL, e.g. the asset ID for
-   `https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg`
-   is `65f2c1110e1c2f8c4dffaa53`.
-
-   For Whitehall assets that do not start `/media`, the ID can be obtained using the slug,
-   e.g. for `https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml"`,
-   run the following in an Asset Manager rails console:
-
-   ```ruby
-   WhitehallAsset.find_by(legacy_url_path: "/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml").id
-   ```
-
+1. [Get the asset ID](/manual/manage-assets.html#get-an-assets-id). 
 1. Run the following rake task:
 
    <%= RunRakeTask.links("asset-manager", "assets:redirect[ASSET_ID,REDIRECT_URL]") %>
-
-Also see [getting an asset's ID](#getting-an-asset39s-id) if you have only been
-provided the URL.
 
 For Whitehall assets you will have to run:
 
@@ -209,10 +171,10 @@ steps to remove the asset in Asset Manager:
    k exec -it $POD -- rails c
    ```
 
-1. Find the asset:
+1. Find the asset by its ID (see "[Get an asset's ID](/manual/manage-assets.html#get-an-assets-id)"):
 
    ```ruby
-   asset = Asset.find("asset-id-from-url") # e.g. `57a9c52b40f0b608a700000a`
+   asset = Asset.find(asset_id)
    ```
 
 1. Check the asset is what you think it is.
@@ -232,6 +194,6 @@ steps to remove the asset in Asset Manager:
    ```
 
    ```ruby
-   attachment_data = Asset.find_by(asset_manager_id: asset-id-from-url).assetable # e.g. 57a9c52b40f0b608a700000a
+   attachment_data = Asset.find_by(asset_manager_id: asset_id).assetable # e.g. 57a9c52b40f0b608a700000a
    attachment_data.update(file_size: 123, number_of_pages: 28) # file_size in bytes
    ```
