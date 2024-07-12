@@ -7,18 +7,6 @@ layout: manual_layout
 section: Monitoring
 ---
 
-## Search screen
-
-![Screen shot of the search screen](images/search-screen.png)
-
-The [search screen][search-screen] displays live data from GOV.UK. It includes the number of people on GOV.UK, latest
-searches, trending and recent content. It's not publicly accessible because there's sometimes personal data in the
-latest searches.
-
-The username and password can be obtained by logging in to Heroku and viewing the app's environment variables.
-
-[search-screen]: https://github.com/alphagov/govuk-display-screen
-
 ## Technical 2nd Line screens
 
 ![Photo of the Technical 2nd Line monitoring screens](images/monitoring.jpg)
