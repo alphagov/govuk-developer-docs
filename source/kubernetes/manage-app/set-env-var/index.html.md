@@ -62,10 +62,19 @@ To update an existing secret:
     k delete secret foo-app-api-key
     ```
 
-3. Do a rolling restart of the affected app:
+3. Do a rolling restart of the affected app and any worker processes
+
+    Restart the app:
 
     ```sh
     k rollout restart deploy/foo-app
+    k rollout status !$
+    ```
+
+    If the app has worker processes:
+
+    ```sh
+    k rollout restart deploy/foo-app-worker
     k rollout status !$
     ```
 
