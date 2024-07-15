@@ -298,7 +298,7 @@
       </strong>
     </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/8f063b4e9da085859aa6fb692f68c9d31a0447ac">18 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/306c227098258bf57f0d01ea62f2127362334651">15 Nov 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Install and use this gem</h1>
@@ -359,6 +359,28 @@ end
 //= require govuk_publishing_components/lib
 //= require govuk_publishing_components/components/button
 </code></pre>
+<h4 id="create-a-separate-js-bundle-for-govuk-frontend-components">Create a separate JS bundle for govuk-frontend components</h4>
+<p>As of <a href="https://github.com/alphagov/govuk-frontend/releases/tag/v5.0.0">govuk-frontend v5.0.0</a>, the target for browser support has changed to browsers that support using the <code>type="module"</code> attribute on <code>script</code> tags. This means that govuk_publishing_components JavaScript files that include files from govuk-frontend will now error ungracefully and potentially function in an unpredictable way if a browser that doesn't support <code>type="module"</code>, tries to evaluate the Javascript in a script tag without the <code>type="module"</code> attribute.</p>
+<p>To ensure that <a href="https://frontend.design-system.service.gov.uk/browser-support/#grade-x">grade X browsers</a> don't evaluate the JavaScript that they don't support, consider using a separate file called <code>es6-components.js</code> for these components, for example:</p>
+<pre lang="rb"><code># es6-components.js
+//= require govuk_publishing_components/lib
+//= require govuk_publishing_components/components/accordion
+</code></pre>
+<p>Then include this in a script tag with the <code>type="module</code> attribute:</p>
+<pre lang="ruby"><code># application.html.erb
+&lt;%= javascript_include_tag 'es6-components.js', type: "module" %&gt;
+</code></pre>
+<p>This will ensure that browsers will only be able to load the JavaScript that they are capable of running.</p>
+<p><strong>Note:</strong> You can get an up-to-date list of components that use govuk-frontend JS using the <a href="/repos/govuk_publishing_components/auditing.html">component auditing tools</a>, components that use JS from govuk-frontend will be marked as "Yes" under the "GF JS" column.</p>
+<h3 id="new-use_es6_components-config-option">New <code>use_es6_components</code> config option</h3>
+<p>If you are using the <code>layout_for_public</code> or <code>layout_for_admin</code> templates, you can use the new <code>use_es6_components</code> config option in your application to load the <code>es6-components.js</code> bundle you create. If this config is set to true and there is no <code>es6-components.js</code> file then an error will occur.</p>
+<pre lang="ruby"><code># config/initializers/govuk_publishing_components.rb
+GovukPublishingComponents.configure do |config|
+  config.use_es6_components = true
+end
+</code></pre>
+<h3 id="using-the-typemodule-attribute">Using the type="module" attribute</h3>
+<p>Scripts that use type=”module” will run in strict mode and be deferred by default. Please refer to the "Stop Internet Explorer 11 and other older browsers running unsupported JavaScript" section of the <a href="https://github.com/alphagov/govuk-frontend/releases/tag/v5.0.0">govuk-frontend v5.0.0</a> release notes further details and recommendations.</p>
 <h3 id="import-all-javascript-deprecated-will-be-removed-in-a-later-version">Import all JavaScript (deprecated, will be removed in a later version)</h3>
 <p>If your application doesn't use Slimmer/Static:</p>
 <pre lang="ruby"><code># application.js
