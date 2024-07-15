@@ -326,11 +326,19 @@ pip install -r dev-requirements.txt
 <pre><code>ckan datagovuk remove-dgu-test-data
 </code></pre>
 
+<h2 id="deploying-ckan-core-and-base-images">Deploying CKAN core and base images</h2>
+
+<p>The CKAN core and base images can be built on Github actions by selecting the <code>Build base images</code> under actions, Build and push images workflow. If you are releasing a change to the base image, which handles the extension versions or a change to the CKAN version, tests might fail until the images are built and pushed into GHCR.</p>
+
 <h2 id="deploying-ckan-pycsw-and-solr">Deploying CKAN, PyCSW and Solr</h2>
 
 <p>By default, merging a PR into main will trigger a build of the CKAN image and create PRs on the govuk-dgu-charts repo. Updating the tag will build and push a tagged image and create the PR for Staging and Production environments in the govuk-dgu-charts repo.</p>
 
 <p>If you want to deploy updates to PyCSW or Solr then you&rsquo;ll need to trigger the build manually via the github actions tab and manually update the pycsw or solr tag in govuk-dgu-charts repo for each environment.</p>
+
+<h2 id="deploying-test-branches-to-integration">Deploying test branches to integration</h2>
+
+<p>To deploy test branches to integration you will need to run the <code>Build and push images</code> workflow from your test branch, and then once that has finished run the <code>Create charts PR</code>  also from your test branch.</p>
 <p></div></p>
 
 
