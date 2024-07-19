@@ -50,22 +50,36 @@ The GDS Way has guidelines on [how to review code](https://gds-way.digital.cabin
 Only when the tests pass and the code has been approved the Pull Request can be merged, since we've
 [configured GitHub to prevent merges](/manual/github.html) otherwise.
 
-## Check for or implement a deploy freeze
+## Check for or implement a deployment freeze
 
 In exceptional circumstances, we may wish to block or _freeze_
 deployments for a short period of time. This should be done by
-running a GitHub Action to toggle off continuous deployment,
-checking "Freeze deployments?" and adding an explanatory note
+raising a PR against govuk-helm-charts then adding an explanatory note
 to the application in the [Release app][release].
 
-> Code freezes are now handled by toggling off Continuous deployments via a
-> Github action named "Set automatic deploys" for the application.
-> See [here](https://github.com/alphagov/government-frontend/actions/workflows/set-automatic-deploys.yml) for government-frontend.
->
-> You can still deploy urgent changes manually using the deploy
-> GitHub Action if necessary.
+To enable or disable automatic deployments of a particular app in a particular environment
+the relevant image tag needs to be updated for that app in `govuk-helm-charts`
 
-It is important to ensure people are aware of a code freeze
+For example to disable automatic deploys of the `govuk-replatform-test-app` to `staging`
+make the [following changes](https://github.com/alphagov/govuk-helm-charts/pull/2196)
+
+```
+image_tag: v22
+automatic_deploys_enabled: false
+promote_deployment: true
+```
+
+To re-enable automatic deploys of the `govuk-replatform-test-app` to `staging` make the [following changes](https://github.com/alphagov/govuk-helm-charts/pull/2197)
+
+```
+image_tag: v22
+automatic_deploys_enabled: true
+promote_deployment: true
+```
+
+You can still deploy urgent changes manually using the deploy GitHub Action if necessary.
+
+It is important to ensure people are aware of a code freeze:
 
 > Checking "Freeze deployments?" on Release will add an
 > "Automatic deployments disabled" label to the application.
