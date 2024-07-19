@@ -160,7 +160,7 @@
         <a href="#get-someone-to-review-your-pull-request"><span>Get someone to review your Pull Request</span></a>
       </li>
       <li>
-        <a href="#check-for-or-implement-a-deploy-freeze"><span>Check for or implement a deploy freeze</span></a>
+        <a href="#check-for-or-implement-a-deployment-freeze"><span>Check for or implement a deployment freeze</span></a>
       </li>
       <li>
         <a href="#merge-your-own-pull-request"><span>Merge your own Pull Request</span></a>
@@ -225,7 +225,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d8fc6ebf0479030a9529bce586b7f2e3fc395a27">18 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d7cb079e0f628d4b39322733e21f9da92aba726a">19 Jul 2024</a>
 </div>
 
  <h1 id='header'>The development and deployment pipeline</h1> <blockquote>
@@ -256,20 +256,23 @@ order to test it works on real infrastructure. Refer to the <a href="/manual/dep
 <h2 id='get-someone-to-review-your-pull-request'>Get someone to review your Pull Request</h2><p>The GDS Way has guidelines on <a href="https://gds-way.digital.cabinet-office.gov.uk/manuals/code-review-guidelines.html">how to review code</a>.</p>
 <p>Only when the tests pass and the code has been approved the Pull Request can be merged, since we&rsquo;ve
 <a href="/manual/github.html">configured GitHub to prevent merges</a> otherwise.</p>
-<h2 id='check-for-or-implement-a-deploy-freeze'>Check for or implement a deploy freeze</h2><p>In exceptional circumstances, we may wish to block or <em>freeze</em>
+<h2 id='check-for-or-implement-a-deployment-freeze'>Check for or implement a deployment freeze</h2><p>In exceptional circumstances, we may wish to block or <em>freeze</em>
 deployments for a short period of time. This should be done by
-running a GitHub Action to toggle off continuous deployment,
-checking &ldquo;Freeze deployments?&rdquo; and adding an explanatory note
+raising a PR against govuk-helm-charts then adding an explanatory note
 to the application in the <a href="https://release.publishing.service.gov.uk">Release app</a>.</p>
-
-<blockquote>
-<p>Code freezes are now handled by toggling off Continuous deployments via a
-Github action named &ldquo;Set automatic deploys&rdquo; for the application.
-See <a href="https://github.com/alphagov/government-frontend/actions/workflows/set-automatic-deploys.yml">here</a> for government-frontend.</p>
-<p>You can still deploy urgent changes manually using the deploy
-GitHub Action if necessary.</p>
-</blockquote>
-<p>It is important to ensure people are aware of a code freeze</p>
+<p>To enable or disable automatic deployments of a particular app in a particular environment
+the relevant image tag needs to be updated for that app in <code>govuk-helm-charts</code></p>
+<p>For example to disable automatic deploys of the <code>govuk-replatform-test-app</code> to <code>staging</code>
+make the <a href="https://github.com/alphagov/govuk-helm-charts/pull/2196">following changes</a></p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>image_tag: v22
+automatic_deploys_enabled: false
+promote_deployment: true
+</code></pre></div><p>To re-enable automatic deploys of the <code>govuk-replatform-test-app</code> to <code>staging</code> make the <a href="https://github.com/alphagov/govuk-helm-charts/pull/2197">following changes</a></p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>image_tag: v22
+automatic_deploys_enabled: true
+promote_deployment: true
+</code></pre></div><p>You can still deploy urgent changes manually using the deploy GitHub Action if necessary.</p>
+<p>It is important to ensure people are aware of a code freeze:</p>
 
 <blockquote>
 <p>Checking &ldquo;Freeze deployments?&rdquo; on Release will add an
