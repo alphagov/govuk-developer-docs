@@ -78,7 +78,7 @@ Sidekiq::RetrySet.new.filter { |job| job.delete if(job.klass == "PresentPageToPu
 ### Sidekiq Web
 
 Sidekiq comes with a web application, [`Sidekiq::Web`][sidekiq web] that can display the current state of Sidekiq's queues for an application.
-It needs to be configured and enabled on a per-app basis, and is currently only suited to apps that have a public URL (i.e. not suited to internal APIs like Publishing API).
+It needs to be configured and enabled on a per-app basis ([example](https://github.com/alphagov/whitehall/pull/8026)), and is currently only suited to apps that have a public URL (i.e. not suited to internal APIs like Publishing API).
 
 Sidekiq web is enabled for the following applications (and requires the `Sidekiq Admin` permission in the relevant app in Signon):
 
