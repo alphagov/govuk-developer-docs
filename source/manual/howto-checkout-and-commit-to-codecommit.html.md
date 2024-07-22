@@ -68,24 +68,6 @@ You need to have first [set up the GDS command line tools](/manual/get-started.h
         UseHttpPath = true
     ```
 
-## Clone a repository from CodeCommit
-
-1. In your shell, obtain AWS credentials and run `git clone` to clone the repository.
-
-    ```
-    gds aws govuk-tools-poweruser git clone <repository url>
-    ```
-
-    For example:
-
-    ```
-    gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://govuk-replatform-test-app
-    ```
-
-> `git clone` on CodeCommit can sometimes be very slow initially. If `git
-> clone` appears to hang at `remote:` or `remote: Enumerating objects`, it's
-> worth waiting several minutes as it may start working.
-
 ## Find a repository in CodeCommit
 
 Repository names should exactly match those in GitHub. If you are unsure whether a given repository exists in CodeCommit, you can browse the available repositories.
@@ -103,6 +85,25 @@ Repository names should exactly match those in GitHub. If you are unsure whether
 1. Find the repository you want to clone using the repository search bar.
 
 1. Select the "HTTPS (GRC)" repository URL.
+
+## Clone a repository from CodeCommit
+
+1. If you already have the repository checked out via github under `/govuk`, there will be a destination clash, so make sure to clone into a fresh directory.
+2. In your shell, obtain AWS credentials and run `git clone` to clone the repository.
+
+    ```
+    gds aws govuk-tools-poweruser git clone <repository url>
+    ```
+
+    For example:
+
+    ```
+    gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://govuk-replatform-test-app
+    ```
+
+> `git clone` on CodeCommit can sometimes be very slow initially. If `git
+> clone` appears to hang at `remote:` or `remote: Enumerating objects`, it's
+> worth waiting several minutes as it may start working.
 
 ## Pushing to a branch
 
