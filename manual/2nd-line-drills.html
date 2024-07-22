@@ -278,7 +278,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4fb52add28b00069b106e2bdbd4fadfbbdddda5e">9 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8dac2f251aa7902fa5594f54ebd43c2e780b1cec">22 Jul 2024</a>
 </div>
 
  <h1 id='header'>2nd line drills</h1> <p>There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going <a href="/manual/on-call.html">on call</a> if you are part of the out of hours rota.</p>
@@ -321,7 +321,29 @@ Walk through the <a href="/manual/incident-management-guidance.html">incident ma
 Use common sense when following the steps (i.e. don&rsquo;t actually publish an incident to Statuspage or email stakeholders).</p>
 <h3 id='drill-how-to-communicate-when-slack-is-down'>Drill how to communicate when Slack is down</h3><p>Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
 See <a href="/manual/slack-unavailable.html#2nd-line-google-space">Communicate when Slack is unavailable</a> for details.</p>
-<h2 id='drill-special-deployment-conditions'>Drill special deployment conditions</h2><h3 id='deploy-from-aws-codecommit-when-github-is-unavailable'>Deploy from AWS CodeCommit when Github is unavailable</h3><p>Follow the <a href="/manual/github-unavailable.html#create-and-deploy-an-image-to-ecr">Deploy when GitHub is unavailable</a> instructions.</p>
+<h2 id='drill-special-deployment-conditions'>Drill special deployment conditions</h2><h3 id='deploy-from-aws-codecommit-when-github-is-unavailable'>Deploy from AWS CodeCommit when Github is unavailable</h3><h4 id='warnings'>Warnings</h4>
+<ul>
+<li>Please run the following drill in <code>integration</code>. Some steps in the guide below refer to production, be mindful and choose the correct environment for the drill.</li>
+<li>Please choose a low impact deployable application that has a Dockerfile. The drill does not cater for repos that are dependencies such as gems and npm packages.</li>
+<li>This drill requires a pause of Continuous Deployment for <strong>all applications</strong> deployed through ArgoCD for about 1 hour.</li>
+</ul>
+<h4 id='steps'>Steps</h4>
+<ol>
+<li>Send a slack message to an announcement channel like <code>#govuk-developers</code> to schedule a time to run the drill.</li>
+</ol>
+<p>An example message:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>@here this week we're going to be drilling deploying from AWS CodeCommit without using GitHub on 2ndline.
+Part of this drill involves disabling CD for all applications in all environments for ~1 hour.
+We're planning on actioning the step of the documentation that disables auto-sync on Argo on &lt;Wednesday at 2.30pm&gt;.
+
+Please let us know if this timing will cause you any issues and we can reschedule.
+If there's no objections to the time i'll update the channel shortly before disabling and re-enabling CD.
+</code></pre></div>
+<ol>
+<li>Half an hour before scheduled time, follow the <a href="/manual/github-unavailable.html#create-and-deploy-an-image-to-ecr">Deploy when GitHub is unavailable</a> instructions, stopping at the &ldquo;Deploy image to ArgoCD&rdquo; step.</li>
+<li>At the scheduled time, post a message on slack to remind people about CD being disabled shortly.</li>
+<li>Continue the guide from the <a href="/manual/github-unavailable.html#deploy-the-image-to-kubernetes-using-argo-cd">Deploy image to ArgoCD</a> step</li>
+</ol>
 <h3 id='drill-enabling-a-code-freeze'>Drill enabling a code freeze</h3><p>Choose a continuously-deployed app where you can make a meaningful change to the default branch, such as fixing a typo or merging a Dependabot PR.</p>
 <p>Before merging the change, <a href="/manual/development-pipeline.html#check-for-or-implement-a-deploy-freeze">implement a deployment freeze</a> for that app.</p>
 <p>View the application&rsquo;s page in Argo CD in each environment to see whether a deployment happened or not.</p>

@@ -205,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9c8db1327fd8ce311bf7fb96b110185eddbb9702">16 Apr 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/53a63d35a6b5eae0fc4b53539a041d1e444a0492">22 Jul 2024</a>
 </div>
 
  <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='aws-codecommit'>AWS CodeCommit</h2><p>We mirror all non-archived GitHub repositories tagged with <code>govuk</code> to AWS CodeCommit via the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml">&ldquo;Mirror repositories&rdquo; GitHub Actions workflow</a>. The workflow uses the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/mirror.tf"><code>github_action_mirror_repos_role</code> IAM role</a>.</p>
@@ -233,6 +233,11 @@ REPO=$(basename "$PWD")
 </ol>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-production-poweruser aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $REGISTRY
 docker push $REGISTRY/$REPO:$IMAGE_TAG
+</code></pre></div>
+<ol>
+<li>Take a note of the image tag for the next deployment step:</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>echo $IMAGE_TAG
 </code></pre></div><h3 id='deploy-the-image-to-kubernetes-using-argo-cd'>Deploy the image to Kubernetes using Argo CD</h3>
 <blockquote>
 <p>⚠️ This procedure will disable automatic deployments <em>for all applications</em>, not only in the environment you are working on but also in higher environments. For example, performing this procedure on integration will prevent all automatic deployments in integration, staging and production.</p>
