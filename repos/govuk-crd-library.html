@@ -236,9 +236,71 @@
 </div></dl>
     <div class="gem-c-summary__block"></div>
 </div>
-<h2 id='readme'>README</h2><p><span class="govuk-error-message">
-    This repo doesn&rsquo;t have a README.md file.
-  </span></p>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<p>A tool to automatically fetch and process CRDs
+for use with kubeconform.</p>
+
+<h2 id="how-it-works">How it works</h2>
+
+<p>The fetcher tool takes a list of repositories to scan and outputs a
+directory with the CRDs found converted to JSON OpenAPI schemas
+for use with tools such as kubeconform.
+It also generates an HTML index page which lists the available schemas.</p>
+
+<p>This repo also contains a GitHub Actions workflow which runs the
+fetcher tool and uploads the result to GitHub Pages.</p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="running-the-fetcher-locally">Running the fetcher locally</h3>
+
+<h4 id="with-nix">With Nix</h4>
+
+<ol>
+<li>Start a shell
+<pre><code>nix-shell
+</code></pre>
+</li>
+<li>Run the fetcher
+<pre><code>python src -s sources.yaml -o out
+</code></pre>
+</li>
+</ol>
+
+<h4 id="without-nix">Without Nix</h4>
+
+<ol>
+<li>Ensure Python 3, Git and Helm are installed</li>
+<li>Set up the virtualenv
+<pre><code>python -m venv env
+pip install -r requirements.txt
+</code></pre>
+</li>
+<li>Run the fetcher
+<pre><code>python src -s sources.yaml -o out
+</code></pre>
+</li>
+</ol>
+
+<h3 id="adding-new-crd-sources">Adding new CRD sources</h3>
+
+<p>The repositories and charts scanned for CRDs is specified in <code>sources.yaml</code>.
+There is an example entry for both Git and Helm repositories in <code>sources.example.yaml</code>.</p>
+
+<h4 id="helm">Helm</h4>
+
+<p>Helm charts are rendered using <code>helm template</code> before being scanned for CRDs.
+Some charts require values to be specified for it to render CRDs.
+This can be done by providing the values in the form of a YAML string in the <code>values</code> key.</p>
+
+<p>#### Git</p>
+
+<p>Git repositories are cloned, then immediately scanned for CRDs.
+If the CRDs are templated or require additional processing before being consumed,
+this tool will not be able to parse them.
+In this case, if a Helm chart is also provided, that should be used instead.</p>
+<p></div></p>
 
 
             
