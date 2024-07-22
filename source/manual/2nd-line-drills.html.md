@@ -72,7 +72,30 @@ See [Communicate when Slack is unavailable](/manual/slack-unavailable.html#2nd-l
 
 ### Deploy from AWS CodeCommit when Github is unavailable
 
-Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#create-and-deploy-an-image-to-ecr) instructions.
+#### Warnings
+
+- Please run the following drill in `integration`. Some steps in the guide below refer to production, be mindful and choose the correct environment for the drill.
+- Please choose a low impact deployable application that has a Dockerfile. The drill does not cater for repos that are dependencies such as gems and npm packages.
+- This drill requires a pause of Continuous Deployment for __all applications__ deployed through ArgoCD for about 1 hour.
+
+#### Steps
+
+1. Send a slack message to an announcement channel like `#govuk-developers` to schedule a time to run the drill.
+
+An example message:
+
+```
+@here this week we're going to be drilling deploying from AWS CodeCommit without using GitHub on 2ndline.
+Part of this drill involves disabling CD for all applications in all environments for ~1 hour.
+We're planning on actioning the step of the documentation that disables auto-sync on Argo on <Wednesday at 2.30pm>.
+
+Please let us know if this timing will cause you any issues and we can reschedule.
+If there's no objections to the time i'll update the channel shortly before disabling and re-enabling CD.
+```
+
+2. Half an hour before scheduled time, follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#create-and-deploy-an-image-to-ecr) instructions, stopping at the "Deploy image to ArgoCD" step.
+4. At the scheduled time, post a message on slack to remind people about CD being disabled shortly.
+5. Continue the guide from the [Deploy image to ArgoCD](/manual/github-unavailable.html#deploy-the-image-to-kubernetes-using-argo-cd) step
 
 ### Drill enabling a code freeze
 
