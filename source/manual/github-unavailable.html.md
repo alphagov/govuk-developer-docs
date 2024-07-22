@@ -18,8 +18,8 @@ build and deploy a container image from your workstation.
 Run the following commands from the root directory of the repository.
 
 1. [Set up CodeCommit on your machine](/manual/howto-checkout-and-commit-to-codecommit.html#install-dependencies-and-set-up-local-environment) if you haven't already.
-1. Follow the [CodeCommit guide](/manual/howto-checkout-and-commit-to-codecommit.html#quick-reference-guide) to clone the repo and commit/push changes if needed.
-1. Set the image tag, image registry and image repository names that you will use by running the following commands. You don't need to modify any of the values in the commands.
+2. Follow the [CodeCommit guide](/manual/howto-checkout-and-commit-to-codecommit.html#quick-reference-guide) to clone the repo and commit/push changes if needed.
+3. Set the image tag, image registry and image repository names that you will use by running the following commands. You don't need to modify any of the values in the commands.
 
 ```
 LOCAL_HEAD_SHA=$(git rev-parse HEAD)
@@ -28,17 +28,23 @@ REGISTRY="172025368201.dkr.ecr.eu-west-1.amazonaws.com"
 REPO=$(basename "$PWD")
 ```
 
-1. Build the container image and tag it appropriately.
+4. Build the container image and tag it appropriately.
 
 ```
 docker build --platform linux/amd64 -t $REGISTRY/$REPO:$IMAGE_TAG .
 ```
 
-1. Log into ECR and push the image:
+5. Log into ECR and push the image:
 
 ```
 gds aws govuk-production-poweruser aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $REGISTRY
 docker push $REGISTRY/$REPO:$IMAGE_TAG
+```
+
+6. Take a note of the image tag for the next deployment step:
+
+```
+echo $IMAGE_TAG
 ```
 
 ### Deploy the image to Kubernetes using Argo CD
