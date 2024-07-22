@@ -32,7 +32,11 @@ There are three approaches for monitoring Sidekiq:
 
 ### Sidekiq Grafana Dashboard
 
-You can monitor Sidekiq queue lengths using the [Sidekiq: queue length, max delay](https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay) dashboard, which is available in all environments.
+You can monitor Sidekiq queue lengths using the "Sidekiq: queue length, max delay" dashboard, which is available in all environments:
+
+- [Integration](https://grafana.eks.integration.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay)
+- [Staging](https://grafana.eks.staging.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay)
+- [Production](https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay)
 
 ### Sidekiq from the console
 
