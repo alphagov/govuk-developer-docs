@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-security-reliability-team"
+owner_slack: "#govuk-platform-engineering"
 title: Ask for help
 parent: "/manual.html"
 layout: manual_layout
@@ -33,17 +33,12 @@ The GOV.UK 2nd Line Tech Support team ([#govuk-2ndline-tech])
 - supports each other with issues deploying changes to GOV.UK
 - ensures missions are delivered technically in the best and most appropriate way
 
-### GOV.UK Platform Security and Reliability team ([#govuk-platform-security-reliability-team])
-
-- works on long-term improvements to the reliability and security of GOV.UK
-- manages some access control automation such as govuk-user-reviewer
-- manages some AWS infrastructure that supports multiple teams (together with Platform Engineering team)
-
 ### GOV.UK [Platform Engineering] team ([#govuk-platform-engineering])
 
 - manages the Kubernetes clusters and base images for running GOV.UK applications
 - works on long-term improvements to the efficiency, reliability and security of GOV.UK
 - supports CI/CD (build, release, rollout) automation
+- manages some access control automation such as govuk-user-reviewer
 - can offer advice on monitoring and alerting
 - can offer design reviews and advice to help build your application for
   reliability, robustness and low maintenance (especially at the early stages of
@@ -54,5 +49,4 @@ The GOV.UK 2nd Line Tech Support team ([#govuk-2ndline-tech])
 [#govuk-2ndline-tech]: https://gds.slack.com/channels/govuk-2ndline-tech
 [#govuk-developers]: https://gds.slack.com/channels/govuk-developers
 [#govuk-platform-engineering]: https://gds.slack.com/channels/govuk-platform-engineering
-[#govuk-platform-security-reliability-team]: https://gds.slack.com/channels/govuk-platform-security-reliability-team
 [Platform Engineering]: /platform-engineering.html
