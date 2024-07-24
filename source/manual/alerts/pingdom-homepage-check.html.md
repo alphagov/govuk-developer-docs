@@ -3,7 +3,7 @@ owner_slack: "#govuk-2ndline-tech"
 title: Pingdom check for homepage failing
 parent: "/manual.html"
 layout: manual_layout
-section: Icinga alerts
+section: Pagerduty alerts
 ---
 
 [Pingdom][] monitors externally (from ~10 locations in Europe and America)

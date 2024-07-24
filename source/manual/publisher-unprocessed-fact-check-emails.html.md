@@ -1,20 +1,19 @@
 ---
 owner_slack: "#govuk-whitehall-experience-tech"
 title: "Publisher: Unprocessed fact-check emails"
-section: Icinga alerts
-subsection: Email alerts
+section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 ---
 
-As part of the [Publisher fact checking process], this alert appears if emails
+We send emails as part of the [Publisher fact checking process]. Sometimes emails may
 have arrived in the inbox but weren't able to be processed. This is usually
 because they're missing the identification for the edition they relate to
 (which is currently stored in the subject line).
 
 [Publisher fact checking process]: https://github.com/alphagov/publisher/blob/main/docs/fact-checking.md
 
-## Dealing with the alert
+## Dealing with the issue
 
 ### Log in to the inbox
 
@@ -31,7 +30,7 @@ The current email addresses used for the fact checking process are:
 ### Retrieve the mailbox credentials from the app
 
 ```sh
-echo 'Publisher::Application.mail_fetcher_config' | k exec -i deploy/publisher -- rails c
+k exec deploy/publisher -- rails runner 'pp Publisher::Application.mail_fetcher_config'
 ```
 
 ### Investigate the unprocessed emails

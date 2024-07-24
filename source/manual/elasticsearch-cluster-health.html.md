@@ -3,7 +3,7 @@ owner_slack: "#govuk-2ndline-tech"
 title: Elasticsearch cluster health
 parent: "/manual.html"
 layout: manual_layout
-section: Icinga alerts
+section: Infrastructure
 ---
 
 Elasticsearch reports cluster health as one of three possible states, based on
@@ -25,13 +25,6 @@ can be found in the Elasticsearch documentation.
 
 Make sure you understand the consequences of the problem before jumping to a
 solution.
-
-Icinga uses the `check_elasticsearch_aws` check from [nagios-plugins][] to
-monitor the health of the AWS managed Elasticsearch cluster. This plugin uses
-various endpoints of the Elasticsearch API, but also extrapolates additional
-information to help you diagnose any problems.
-
-[nagios-plugins]: https://github.com/alphagov/nagios-plugins/
 
 ### Investigating problems
 
@@ -69,17 +62,7 @@ Response JSON from the `/_cluster/health` endpoint looks like:
 ```
 
 A tunnel to Elasticsearch in a specific environment (e.g staging) can be created
-using the following:
-
-```
-gds govuk connect ssh --environment staging search -- -N -L 9200:elasticsearch6:80
-```
-
-Elasticsearch will then be available at <http://localhost:9200>.
-
-#### Logging
-
-Access to logs is detailed in the [logging documentation](/manual/logging.html#elasticsearch).
+in a similar manner to [accessing an OpenSearch Dashboard](/manual/manage-opensearch-on-aws.html)
 
 ### Fixing issues with the cluster
 
