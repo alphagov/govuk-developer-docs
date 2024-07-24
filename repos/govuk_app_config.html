@@ -397,7 +397,16 @@ app with the following content:</p>
 
 <h2 id="time-zone">Time zone</h2>
 
-<p>This gem sets <code>config.time_zone</code> to <code>"London"</code> - this cannot currently be overridden in application config.</p>
+<p>This gem sets <code>config.time_zone</code> to <code>"London"</code> by default.</p>
+
+<p>If you require a different time zone, you can set it with <code>config.govuk_time_zone</code>:</p>
+
+<pre lang="ruby"><code>config.govuk_time_zone = "UTC"
+</code></pre>
+
+<p>Note that we&rsquo;ve introduced a new config field (<code>govuk_time_zone</code>) here, because
+it&rsquo;s otherwise not possible to distinguish between an app using UTC as the
+default and an app explicitly asking for UTC.</p>
 
 <h2 id="license">License</h2>
 
