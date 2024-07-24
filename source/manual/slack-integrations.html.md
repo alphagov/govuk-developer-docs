@@ -69,3 +69,11 @@ To facilitate this, the CI Bot informs teams about missing scans in their repos'
 
 These scans must be included as jobs in the CI pipeline of [all GOV.UK repositories](https://docs.publishing.service.gov.uk/manual/github.html#create-and-configure-a-new-gov-uk-repo).
 It's essential to ensure that every repository has these scans. If there's a compelling reason to exclude a repository from this check, please modify the [ignored_ci_repos.yml](https://github.com/alphagov/seal/blob/main/ignored_ci_repos.yml) file in the Seal repository. Ensure that any exclusions are accompanied by a well-justified reason.
+
+## Gem Version Checker
+
+A [workflow](https://github.com/alphagov/seal/blob/main/.github/workflows/gem_version_checker.yml) that checks if our gems have unreleased versions and sends a Slack notification to the owning team warning them about it.
+
+### Configuration
+
+No configuration needed, the Seal will get a list of all the repos marked as gems from the [dev docs](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml).
