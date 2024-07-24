@@ -204,7 +204,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/d541bca4c3cc01fc35591c043560d715e5932ff8">27 Jun 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/157e91b0712b1d3a374c33e2f74b1da49fdb493b">23 Jul 2024</a>
 </div>
 
   <h1 class="page-title">signon: Access and permissions</h1>
@@ -357,7 +357,7 @@
     E --Pundit.policy_scope(current_user, SupportedPermission)--&gt; F("SupportedPermissionPolicy (scope)")
     F --Pundit.policy_scope(current_user, :user_permission_manageable_application)--&gt; G("UserPermissionManageableApplicationPolicy (scope)")
 </code></pre>
-<h2 id="for-another-user">For another user</h2>
+<h2 id="for-another-existing-user">For another existing user</h2>
 <p>In this section, the granter and grantee are different users: this is about managing another user's access and permissions.</p>
 <h3 id="what-can-you-do">What can you do?</h3>
 <h4 id="as-a-gov-uk-admin">As a GOV.UK admin</h4>
@@ -567,6 +567,65 @@
     E --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids--&gt; F(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
     F --Pundit.policy_scope(current_user, SupportedPermission)--&gt; G("SupportedPermissionPolicy (scope)")
     G --Pundit.policy_scope(current_user, :user_permission_manageable_application)--&gt; H("UserPermissionManageableApplicationPolicy (scope)")
+</code></pre>
+<h2 id="for-a-new-user">For a new user</h2>
+<h3 id="what-can-you-do">What can you do?</h3>
+<p>The following actions are taken in the process of inviting a new user - once the invitation is sent, refer to the <a href="#for-another-existing-user">For another existing user</a> section.</p>
+<h4 id="as-a-gov-uk-admin">As a GOV.UK admin</h4>
+<table>
+<thead>
+<tr>
+<th>Send invitation</th>
+<th>Grant access</th>
+<th>Edit permissions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h4 id="as-a-publishing-manager">As a publishing manager</h4>
+<table>
+<thead>
+<tr>
+<th>Send invitation</th>
+<th>Grant access</th>
+<th>Edit permissions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dependencies-by-route">Dependencies by route</h3>
+<h4 id="invitations-new">Invitations new</h4>
+<p>These dependencies determine whether a user can:</p>
+<ul>
+<li>access the page</li>
+<li>see certain apps to which to grant the new user access</li>
+<li>see certain permissions for those apps to grant the new user</li>
+</ul>
+<pre lang="mermaid"><code>flowchart TD
+    A(InvitationsController#new) --authorize User--&gt; B(UserPolicy#new?)
+    C(app/views/devise/invitations/new.html.erb) --policy_scope(:user_permission_manageable_application)--&gt; D("UserPermissionManageableApplicationPolicy (scope)")
+    C --"options_for_permission_option_select(application:, user: f.object)"--&gt; E(UsersHelper#options_for_permission_option_select)
+    E --application.sorted_supported_permissions_grantable_from_ui--&gt; F(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
+</code></pre>
+<h4 id="invitations-create">Invitations create</h4>
+<p>These dependencies determine whether a user can:</p>
+<ul>
+<li>complete the controller action</li>
+</ul>
+<pre lang="mermaid"><code>flowchart TD
+    A(InvitationsController#create) --authorize User--&gt; B(UserPolicy#create?)
 </code></pre>
 <h2 id="important-files">Important files</h2>
 <h3 id="models">Models</h3>
