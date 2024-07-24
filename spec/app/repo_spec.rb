@@ -105,6 +105,17 @@ RSpec.describe Repo do
 
       it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:content-publisher),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:content-publisher)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())"), "Actual URL returned: #{kibana_url.inspect}" }
     end
+
+    describe "hosted on EKS but custom URL provided" do
+      let(:options) do
+        default_options.merge(
+          "production_hosted_on" => "eks",
+          "kibana_url" => "https://kibana.logit.io/custom-url",
+        )
+      end
+
+      it { is_expected.to eql("https://kibana.logit.io/custom-url") }
+    end
   end
 
   describe "kibana_worker_url" do
@@ -120,6 +131,17 @@ RSpec.describe Repo do
       let(:options) { default_options.merge("production_hosted_on" => "eks") }
 
       it { is_expected.to eql("https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:content-publisher-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:content-publisher-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())"), "Actual URL returned: #{kibana_worker_url.inspect}" }
+    end
+
+    describe "hosted on EKS but custom URL provided" do
+      let(:options) do
+        default_options.merge(
+          "production_hosted_on" => "eks",
+          "kibana_worker_url" => "https://kibana.logit.io/custom-url",
+        )
+      end
+
+      it { is_expected.to eql("https://kibana.logit.io/custom-url") }
     end
   end
 end
