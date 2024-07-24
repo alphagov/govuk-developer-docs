@@ -114,15 +114,11 @@ class Repo
   end
 
   def kibana_url
-    return if repo_data["kibana_url"] == false
-
-    kibana_url_for(app: app_name, hours: 3)
+    repo_data["kibana_url"] || kibana_url_for(app: app_name, hours: 3)
   end
 
   def kibana_worker_url
-    return if repo_data["kibana_worker_url"] == false
-
-    kibana_url_for(app: "#{app_name}-worker", hours: 3, include: %w[level message])
+    repo_data["kibana_worker_url"] || kibana_url_for(app: "#{app_name}-worker", hours: 3, include: %w[level message])
   end
 
   def api_docs_url
