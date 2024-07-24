@@ -204,7 +204,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/157e91b0712b1d3a374c33e2f74b1da49fdb493b">23 Jul 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/69f99514abf5376dddaee2147102482f09029e7d">24 Jul 2024</a>
 </div>
 
   <h1 class="page-title">signon: Access and permissions</h1>
@@ -669,6 +669,10 @@
 <td>Managing own permissions</td>
 </tr>
 <tr>
+<td><a href="https://github.com/alphagov/signon/blob/main/app/controllers/invitations_controller.rb">InvitationsController</a></td>
+<td>Giving users access to apps and permissions while creating their account</td>
+</tr>
+<tr>
 <td><a href="https://github.com/alphagov/signon/blob/main/app/controllers/users/applications_controller.rb">Users::ApplicationsController</a></td>
 <td>Managing other users' access to apps and accessing other users' permissions routes</td>
 </tr>
@@ -697,7 +701,7 @@
 </tr>
 <tr>
 <td><a href="https://github.com/alphagov/signon/blob/main/app/policies/user_policy.rb">UserPolicy</a></td>
-<td>Determining whether a granter can update a grantee's access and permissions*</td>
+<td>Determining whether a granter can update a grantee's access and permissions*, and whether they can invite a new user and grant them access and permissions in the process</td>
 </tr>
 <tr>
 <td><a href="https://github.com/alphagov/signon/blob/main/app/policies/user_application_permission_policy.rb">UserApplicationPermissionPolicy</a></td>
@@ -709,7 +713,7 @@
 </tr>
 </tbody>
 </table>
-<p>* the responsibility of these two policies is hard to distinguish in this context, but as seen in the dependency trees, the <code>UserApplicationPermissionPolicy</code> depends on the <code>UserPolicy</code>, and in reality the latter is larger in scope</p>
+<p>* the responsibility of these two policies is hard to distinguish in this context, but as seen in the dependency trees for existing users, the <code>UserApplicationPermissionPolicy</code> depends on the <code>UserPolicy</code>, and in reality the latter is larger in scope. The <code>InvitationsController</code> depends on different parts of the <code>UserPolicy</code>, for instance.</p>
 <h3 id="others">Others</h3>
 <table>
 <thead>
@@ -734,6 +738,10 @@
 <tr>
 <td><a href="https://github.com/alphagov/signon/blob/main/app/models/user_update_permission_builder.rb">UserUpdatePermissionBuilder</a></td>
 <td>Generating a list of updated permissions</td>
+</tr>
+<tr>
+<td><a href="https://github.com/alphagov/signon/blob/main/app/helpers/users_helper.rb">UsersHelper</a></td>
+<td>Generating a list of permissions that can be granted when creating a new user</td>
 </tr>
 </tbody>
 </table>
