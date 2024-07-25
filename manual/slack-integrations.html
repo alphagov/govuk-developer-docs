@@ -190,6 +190,14 @@
           </li>
         </ul>
       </li>
+      <li>
+        <a href="#gem-version-checker"><span>Gem Version Checker</span></a>
+        <ul>
+          <li>
+            <a href="#configuration"><span>Configuration</span></a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
@@ -239,7 +247,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b32b9d8b0731c834508572f53566a44707f07e50">15 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bd76025914c413a7115449e0b20ccba052a4ace2">24 Jul 2024</a>
 </div>
 
  <h1 id='header'>How to add popular GOV.UK Slack integrations</h1> <h2 id='seal'>Seal</h2><p><a href="https://github.com/alphagov/seal">Seal</a> is a Slack bot that informs teams which pull requests they have open.</p>
@@ -266,6 +274,8 @@
 <p>To facilitate this, the CI Bot informs teams about missing scans in their repos&rsquo; CI pipelines. It is currently configured to check if repos have <a href="https://docs.publishing.service.gov.uk/manual/codeql.html">CodeQL(SAST)</a> and <a href="https://docs.publishing.service.gov.uk/manual/dependency-review.html">Dependency Review (SCA)</a> scans.</p>
 <h3 id='configuration'>Configuration</h3><p>These scans must be included as jobs in the CI pipeline of <a href="https://docs.publishing.service.gov.uk/manual/github.html#create-and-configure-a-new-gov-uk-repo">all GOV.UK repositories</a>.
 It&rsquo;s essential to ensure that every repository has these scans. If there&rsquo;s a compelling reason to exclude a repository from this check, please modify the <a href="https://github.com/alphagov/seal/blob/main/ignored_ci_repos.yml">ignored_ci_repos.yml</a> file in the Seal repository. Ensure that any exclusions are accompanied by a well-justified reason.</p>
+<h2 id='gem-version-checker'>Gem Version Checker</h2><p>A <a href="https://github.com/alphagov/seal/blob/main/.github/workflows/gem_version_checker.yml">workflow</a> that checks if our gems have unreleased versions and sends a Slack notification to the owning team warning them about it.</p>
+<h3 id='configuration'>Configuration</h3><p>No configuration needed, the Seal will get a list of all the repos marked as gems from the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">dev docs</a>.</p>
 
   <div class='related-content'>
 
