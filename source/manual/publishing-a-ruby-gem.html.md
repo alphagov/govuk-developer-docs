@@ -33,6 +33,15 @@ Contact a [GOV.UK GitHub Owner][] to grant your repository
 [GOV.UK GitHub Owner]: mailto:govuk-github-owners@digital.cabinet-office.gov.uk
 [access to the secret]: https://github.com/organizations/alphagov/settings/secrets/actions
 
+## Enforcing the release of new gem versions
+
+Code changes are often merged into gems without the version being bumped.
+This leads to changes not being released quickly and sometimes piling up.
+To prevent that, we have a [workflow][] that runs whenever a PR is open on our
+gems that checks if the user has bumped the gem version and updated the changelog.
+
+[workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/gem-bump-checker.yml
+
 ## Automatically releasing patch-level versions
 
 Use the [shared autorelease workflow][] and the `GOVUK_CI_GITHUB_API_TOKEN`
@@ -44,6 +53,13 @@ After a developer approves and merges that PR, the publish-rubygem workflow (if
 present) will automatically publish the next release to Rubygems.
 
 [shared autorelease workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/autorelease-rubygem.yml
+
+## Unreleased gem Slack alerts
+
+We have a weekly [check][] that alerts on team's Slack channels when there are
+unreleased changes in their gem repositories.
+
+[check]: https://github.com/alphagov/seal/blob/main/.github/workflows/gem_version_checker.yml
 
 ## Ruby version compatibility
 
