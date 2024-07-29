@@ -204,7 +204,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/69f99514abf5376dddaee2147102482f09029e7d">24 Jul 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/97fd88b8d9c35da0f7af49df606782a882b48d38">12 Jul 2024</a>
 </div>
 
   <h1 class="page-title">signon: Access and permissions</h1>
@@ -523,14 +523,16 @@
     A(Users::ApplicationsController#index) --authorize @user, :edit?--&gt; B(UserPolicy#edit?)
     C(app/views/users/applications/index.html.erb) --wrap_links_in_actions_markup--&gt; D(ApplicationTableHelper#wrap_links_in_actions_markup)
     C --users_applications_permissions_links--&gt; E(ApplicationTableHelper#users_applications_permissions_links)
-    E --policy(UserApplicationPermission.for(user:, supported_permission: application.signin_permission)).edit?--&gt; F(UserApplicationPermissionPolicy#edit?)
+    E --Users::ApplicationPolicy.new(current_user, { application:, user: }).view_permissions?--&gt; F(Users::ApplicationPolicy#view_permissions?)
     F --Pundit.policy(current_user, user).edit?--&gt; G(UserPolicy#edit?)
-    C --users_applications_remove_access_link--&gt; H(ApplicationTableHelper#users_applications_remove_access_link)
-    H --policy(UserApplicationPermission.for(user:, supported_permission: application.signin_permission)).delete?--&gt; I(UserApplicationPermissionPolicy#delete?)
-    I --Pundit.policy(current_user, user).edit?--&gt; G
-    C --users_applications_grant_access_link--&gt; J(ApplicationTableHelper#users_applications_grant_access_link)
-    J --policy(UserApplicationPermission.for(user:, supported_permission: application.signin_permission)).create?--&gt; K(UserApplicationPermissionPolicy#create?)
-    K --Pundit.policy(current_user, user).edit?--&gt; G
+    E --Users::ApplicationPolicy.new(current_user, { application:, user: }).edit_permissions?--&gt; H(Users::ApplicationPolicy#edit_permissions?)
+    H --Pundit.policy(current_user, user).edit?--&gt; G
+    C --users_applications_remove_access_link--&gt; I(ApplicationTableHelper#users_applications_remove_access_link)
+    I --Users::ApplicationPolicy.new(current_user, { application:, user: }).remove_signin_permission?--&gt; J(Users::ApplicationPolicy#remove_signin_permission?)
+    J --Pundit.policy(current_user, user).edit?--&gt; G
+    C --users_applications_grant_access_link--&gt; K(ApplicationTableHelper#users_applications_grant_access_link)
+    K --Users::ApplicationPolicy.new(current_user, { application:, user: }).grant_signin_permission?--&gt; L(Users::ApplicationPolicy#grant_signin_permission?)
+    L --Pundit.policy(current_user, user).edit?--&gt; G
 </code></pre>
 <h4 id="users-permissions-show">Users permissions show</h4>
 <p>These dependencies determine whether a user can:</p>
