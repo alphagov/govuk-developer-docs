@@ -15,6 +15,8 @@ Every morning, a [search-api-generate-sitemap cronjob](https://github.com/alphag
 
 The cronjob runs the [sitemap:generate_and_upload rake task](https://github.com/alphagov/search-api/blob/5636600a1dcb1517d30fe22334792b1e96537f6f/lib/tasks/sitemap.rake#L6) in search-api. This [enumerates over all documents in Search API](https://github.com/alphagov/search-api/blob/164b8ef982a7e360a05090676a158f05488365ce/lib/sitemap/generator.rb#L72) and [generates a sitemap](https://github.com/alphagov/search-api/blob/164b8ef982a7e360a05090676a158f05488365ce/lib/sitemap/generator.rb#L40-L41) matching the format specified in https://www.sitemaps.org/protocol.html. This job also [creates the sitemap index](https://github.com/alphagov/search-api/blob/164b8ef982a7e360a05090676a158f05488365ce/lib/sitemap/generator.rb#L32-L38).
 
+The sitemap generator is [configured](https://github.com/alphagov/search-api/blob/164b8ef982a7e360a05090676a158f05488365ce/lib/sitemap/generator.rb#L154-L156) to search for documents across all of [Search API's indexes](#indexes).
+
 ## How content gets into Search API
 
 The preferred pattern is for content to be published via Publishing API.
@@ -26,3 +28,14 @@ However, message queues aren't the only way to get content into Search API.
 Whitehall [calls Search API directly](https://github.com/alphagov/whitehall/blob/e748b577e0f13c01fe62bad2a303340ab5acc7c4/lib/whitehall/searchable.rb#L53), via [Whitehall::SearchIndex](https://github.com/alphagov/whitehall/blob/e748b577e0f13c01fe62bad2a303340ab5acc7c4/lib/whitehall/search_index.rb#L40), which is [called by](https://github.com/alphagov/whitehall/blob/a67fae1b8a0963927f38ce9987b99059fa9fff92/app/models/concerns/searchable.rb#L116) any model that includes the [Searchable](https://github.com/alphagov/whitehall/blob/a67fae1b8a0963927f38ce9987b99059fa9fff92/app/models/concerns/searchable.rb) module. This legacy behaviour is [recognised tech debt](https://trello.com/c/vnrBGTvr/26-search-is-populated-by-whitehall-sending-data) and should be removed.
 
 Note that there shouldn't be a situation where Whitehall submits content to Search API both directly _and_ via Publishing API. The [Search API's 'migrated formats' file](https://github.com/alphagov/search-api/blob/main/config/govuk_index/migrated_formats.yaml) controls which document types Search API expects from each source. There's a `non_indexable` section at the bottom that includes all of the Whitehall document types. Search API checks when processing messages from Publishing API whether or not the document type is indexable, and [ignores them if it's not](https://github.com/alphagov/search-api/blob/60a909bb51229fa5ad683be49f873084557fc0a9/lib/govuk_index/publishing_event_worker.rb#L88).
+
+## Indexes
+
+Documents are spread across three 'indexes' in Search API:
+
+* `govuk`: the index populated by Publishing API, intended to encapsulate all GOV.UK content
+* `government` and `detailed` - the remaining legacy '[content indexes](https://github.com/alphagov/search-api/blob/aef1da207bc6183e1681c405b8883f29a2d6fe56/elasticsearch.yml#L3)', encapsulating some Whitehall content and Detailed Guides respectively.
+
+There are two Search API ADRs documenting the decision to move to one `govuk` index: [ADR-04](repos/search-api/arch/adr-004-transition-mainstream-to-publishing-api-index.html) and [ADR-06](/repos/search-api/arch/adr-006-transition-whitehall-to-publishing-api-index.html). Some legacy indexes (e.g. `mainstream`) have been fully migrated into it, but the two legacy indexes listed above remain.
+
+One can find out which index a piece of content is saved under, using Search API's API: see `"index": "government"` on [this example](https://www.gov.uk/api/search.json?filter_link=/government/news/scottish-secretary-attends-royal-national-mod).
