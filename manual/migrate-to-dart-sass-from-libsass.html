@@ -247,15 +247,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/578ce4a27246833dd7fa48cb80e855211fc926ad">16 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/aff7261aac2526511e41fb1e938fad714088c28a">22 Jul 2024</a>
 </div>
 
  <h1 id='header'>Migrate to Dart Sass from LibSass</h1> <h2 id='what-is-dart-sass'>What is Dart Sass?</h2><p><a href="https://sass-lang.com/dart-sass/">Dart Sass is the primary implementation</a> of <a href="https://sass-lang.com/">Sass</a>, which means it gets new features before any other implementation.</p>
@@ -362,7 +355,9 @@
 <h3 id='digests'>Digests</h3><p>To see the latest stylesheet changes when developing your application, if running Sass in watch mode, you&rsquo;ll have to turn off digests. Update <code>config/environments/development.rb</code> to add</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">config</span><span class="p">.</span><span class="nf">assets</span><span class="p">.</span><span class="nf">digest</span> <span class="o">=</span> <span class="kp">false</span>
 </code></pre></div><p>See <a href="https://guides.rubyonrails.org/asset_pipeline.html#turning-digests-off">3.2 Turning Digests Off - The Asset Pipeline — Ruby on Rails Guides</a>.</p>
-<h2 id='troubleshooting'>Troubleshooting</h2><p>See <a href="https://github.com/rails/dartsass-rails#troubleshooting">common issues</a>.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2><p>If you see <code>LoadError: cannot load such file -- sassc</code> (e.g. when attempting to run tests), try running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk-docker-run rails assets:precompile
+</code></pre></div><p>If that doesn&rsquo;t work, read the <a href="https://github.com/rails/dartsass-rails#troubleshooting">rails/dartsass-rails troubleshooting guide</a>.</p>
 <h3 id='other-issues'>Other issues</h3><h4 id='globs'>Globs</h4><p>Any form of pattern matching added for importing Sass files will not work. Sass files needs to be imported individually.</p>
 <div class="highlight"><pre class="highlight diff" tabindex="0"><code><span class="gd">- @import "modules/*";
 </span><span class="gi">+ @import "modules/module-1";
