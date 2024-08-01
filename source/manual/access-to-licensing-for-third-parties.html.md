@@ -37,7 +37,7 @@ When a PR is merged into main and that merge commit sucessful passes, the GitHub
 
 ## Building an image and deployment
 
-When a new Release is created, the GitHub Actions [`Deploy` workflow](https://github.com/alphagov/licensify/actions/workflows/deploy.yml) builds a new container image, pushes the image into a private AWS ECR (Elastic Container Registry) and triggers a deployment in the Kubernetes cluster.
+When a new Release is created, the GitHub Actions [`Deploy` workflow](https://github.com/alphagov/licensify/actions/workflows/deploy.yml) builds a new container image, pushes the image to GitHub Packages and triggers a deployment in the Kubernetes cluster.
 
 Every new release is automatically deployed to integration.
 
