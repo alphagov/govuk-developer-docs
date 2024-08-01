@@ -42,16 +42,16 @@ This is an example deploying an application to integration:
 
 1. Developer merges a PR into main branch and it passes [CI](https://github.com/alphagov/whitehall/actions/workflows/ci.yml)
 1. Triggers the ["Deploy" workflow](https://github.com/alphagov/whitehall/actions/workflows/deploy.yml) in GitHub Actions
-    1. Builds and pushes an image to [AWS Elastic Container Registery (ECR)](https://aws.amazon.com/ecr/) in production
+    1. Builds and pushes an image to [GitHub Packages](https://github.com/orgs/alphagov/packages)
     1. Sends a webhook to [Argo Workflows in production](https://argo-workflows.eks.production.govuk.digital/workflows/apps)
 1. Triggers the ["deploy-image" workflow](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/deploy-image/workflow.yaml) in [Argo Workflows in production](https://argo-workflows.eks.production.govuk.digital/workflows/apps)
     1. Updates the image tag reference for integration in [govuk-helm-charts](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/image-tags) with a new commit
-    1. Adds a "deployed-to-<environment>" tag on the image in ECR
     1. Notifies the Release application of the deployment
 1. [Argo CD in integration](https://argo.eks.integration.govuk.digital/applications) polls [govuk-helm-charts](https://github.com/alphagov/govuk-helm-charts) and detects updated image tag reference
     1. Triggers sync of the [`app-config`](https://argo.eks.integration.govuk.digital/applications/cluster-services/app-config) ([app-of-apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern)) application in Argo CD
     1. Updates the Helm values for the deployed [app's Argo CD application resource](https://argo.eks.integration.govuk.digital/applications/cluster-services/whitehall-admin)
     1. Updates the Kubernetes deployment resource with the new image tag
+    1. Images are pulled-through [AWS Elastic Container Registery (ECR)](https://aws.amazon.com/ecr/) in production from GitHub Packages
 1. Kubernetes does a [rolling update of the pods](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/)
 1. Argo CD triggers the ["post-sync" workflow](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/post-sync/workflow.yaml) in [Argo Workflows in integration](https://argo-workflows.eks.integration.govuk.digital/workflows/apps)
     1. Runs smoke tests for the app
