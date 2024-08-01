@@ -205,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/53a63d35a6b5eae0fc4b53539a041d1e444a0492">22 Jul 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a78e9fc8ed4b69894e7837df6a8310f7f02471db">1 Aug 2024</a>
 </div>
 
  <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='aws-codecommit'>AWS CodeCommit</h2><p>We mirror all non-archived GitHub repositories tagged with <code>govuk</code> to AWS CodeCommit via the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml">&ldquo;Mirror repositories&rdquo; GitHub Actions workflow</a>. The workflow uses the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/mirror.tf"><code>github_action_mirror_repos_role</code> IAM role</a>.</p>
@@ -221,7 +221,7 @@ build and deploy a container image from your workstation.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>LOCAL_HEAD_SHA=$(git rev-parse HEAD)
 IMAGE_TAG="release-${LOCAL_HEAD_SHA}"
 REGISTRY="172025368201.dkr.ecr.eu-west-1.amazonaws.com"
-REPO=$(basename "$PWD")
+REPO="github/alphagov/govuk/$(basename $PWD)"
 </code></pre></div>
 <ol>
 <li>Build the container image and tag it appropriately.</li>
@@ -258,8 +258,8 @@ docker push $REGISTRY/$REPO:$IMAGE_TAG
 <li><p>Repeat the steps above to turn off auto-sync for the application you wish to deploy.</p></li>
 <li><p>Close the <code>App details</code> sidebar, then select the Deploy object for the component of the application you&rsquo;d like to redeploy. For example, to update the Sidekiq workers for Account API, you would open up the <code>account-api-worker</code> Deploy object.</p></li>
 <li><p>Go to <code>Live manifest</code> and select <code>Edit</code>.</p></li>
-<li><p>Find the <code>image:</code> field for the <code>app</code> container. It should look something like <code>172025368201.dkr.ecr.eu-west-1.amazonaws.com/&lt;app-name&gt;:release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e</code>.</p></li>
-<li><p>Update the tag part of the <code>image:</code> value to the new image tag that you pushed to ECR. The part you are changing should look something like <code>release-2e902e3df274a00bbabba7ccf84cbef96ccc9b9e</code>.</p></li>
+<li><p>Find the <code>image:</code> field for the <code>app</code> container. It should look something like <code>172025368201.dkr.ecr.eu-west-1.amazonaws.com/github/alphagov/govuk/&lt;app-name&gt;:v123</code>.</p></li>
+<li><p>Update the tag part of the <code>image:</code> value to the new image tag that you pushed to ECR. The part you are changing should look something like <code>v123</code>.</p></li>
 <li><p>Click <code>Save</code>. Argo CD will start the deployment, which should complete in under ten minutes.</p></li>
 </ol>
 <p>When GitHub is available again (or when you&rsquo;ve completed the above as part of a Technical 2nd Line drill), return things to normal by re-enabling the auto-sync:</p>
