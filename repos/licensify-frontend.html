@@ -7,25 +7,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: licensify - GOV.UK Developer Documentation</title>
+    <title>Application: licensify-frontend - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/licensify.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/licensify-frontend.html">
 
-      <meta name="description" content="Everything about licensify (GOV.UK Licensing (formerly ELMS, Licence Application Tool, &amp; Licensify))" />
+      <meta name="description" content="Everything about licensify-frontend (GOV.UK Licensing (formerly ELMS, Licence Application Tool, &amp; Licensify))" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: licensify - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/licensify.html" />
+      <meta name="twitter:title" content="Application: licensify-frontend - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/licensify-frontend.html" />
 
-      <meta property="og:description" content="Everything about licensify (GOV.UK Licensing (formerly ELMS, Licence Application Tool, &amp; Licensify))" />
+      <meta property="og:description" content="Everything about licensify-frontend (GOV.UK Licensing (formerly ELMS, Licence Application Tool, &amp; Licensify))" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: licensify" />
+      <meta property="og:title" content="Application: licensify-frontend" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/licensify.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/licensify-frontend.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -188,7 +188,7 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Application: licensify</h1>
+  <h1 class="page-title">Application: licensify-frontend</h1>
 
   <p>GOV.UK Licensing (formerly ELMS, Licence Application Tool, &amp; Licensify)</p>
 
@@ -227,8 +227,8 @@
     <li></li>
     <li></li>
     <li></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:licensify),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:licensify)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:licensify-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:licensify-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
+    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:licensify-frontend),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:licensify-frontend)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
+    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:licensify-frontend-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:licensify-frontend-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
     <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/licensify" class="govuk-link">Argo CD (licensify)</a></li>
 </dd>
 
@@ -248,7 +248,7 @@
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Flicensify.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Flicensify-frontend.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
