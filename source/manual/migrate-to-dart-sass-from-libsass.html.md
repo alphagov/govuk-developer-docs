@@ -191,7 +191,13 @@ See [3.2 Turning Digests Off - The Asset Pipeline — Ruby on Rails Guides](http
 
 ## Troubleshooting
 
-See [common issues](https://github.com/rails/dartsass-rails#troubleshooting).
+If you see `LoadError: cannot load such file -- sassc` (e.g. when attempting to run tests), try running:
+
+```
+govuk-docker-run rails assets:precompile
+```
+
+If that doesn't work, read the [rails/dartsass-rails troubleshooting guide](https://github.com/rails/dartsass-rails#troubleshooting).
 
 ### Other issues
 
