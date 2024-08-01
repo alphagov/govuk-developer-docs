@@ -39,20 +39,24 @@ Code changes are often merged into gems without the version being bumped.
 This leads to changes not being released quickly and sometimes piling up.
 To prevent that, we have a [workflow][] that runs whenever a PR is open on our
 gems that checks if the user has bumped the gem version and updated the changelog.
+See the [example of using the shared gem-bump-checker workflow][] in your project.
 
 [workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/gem-bump-checker.yml
+[example of using the shared gem-bump-checker workflow]: https://github.com/alphagov/govuk_app_config/blob/main/.github/workflows/gem-bump-checker.yml
 
 ## Automatically releasing patch-level versions
 
 Use the [shared autorelease workflow][] and the `GOVUK_CI_GITHUB_API_TOKEN`
 secret to automatically raise a PR to perform a patch-level version bump if the
 gem has unreleased changes, and all of those changes were authored by
-Dependabot.
+Dependabot. See the [example of using the shared autorelease-rubygem workflow][] in your project. You should ensure it runs after the [automatic dependency upgrades][] happened.
 
 After a developer approves and merges that PR, the publish-rubygem workflow (if
 present) will automatically publish the next release to Rubygems.
 
 [shared autorelease workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/autorelease-rubygem.yml
+[example of using the shared autorelease-rubygem workflow]: https://github.com/alphagov/rubocop-govuk/blob/main/.github/workflows/autorelease.yml
+[automatic dependency upgrades]: https://github.com/alphagov/govuk-dependabot-merger/blob/main/.github/workflows/merge-dependabot-prs.yml#L5-L6
 
 ## Unreleased gem Slack alerts
 
