@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publisher: Decision record: Forking frontend components from GOV.UK Frontend - GOV.UK Developer Documentation</title>
+    <title>publisher: Homepage - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-005-forking-frontend-components-from-govuk-frontend.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publisher/homepage.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publisher: Decision record: Forking frontend components from GOV.UK Frontend - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-005-forking-frontend-components-from-govuk-frontend.html" />
+      <meta name="twitter:title" content="publisher: Homepage - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publisher/homepage.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publisher: Decision record: Forking frontend components from GOV.UK Frontend" />
+      <meta property="og:title" content="publisher: Homepage" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/arch/adr-005-forking-frontend-components-from-govuk-frontend.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publisher/homepage.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -217,45 +217,37 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publisher/commit/d950ddfbd22c87f2954dc46eadec3feab0d63967">24 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publisher/commit/84261e06d115b15e8b232f9b54a40b38e7395609">1 Aug 2024</a>
 </div>
 
-  <h1 class="page-title">publisher: Decision record: Forking frontend components from GOV.UK Frontend</h1>
+  <h1 class="page-title">publisher: Homepage</h1>
 
   
-<h2 id="context">Context</h2>
-<p>We needed to add radio buttons to Government Frontend so that users can make a
-choice on the Service Sign In <code>choose_sign_in</code> page. The new
-<a href="https://github.com/alphagov/govuk-frontend">GOV.UK Frontend</a> project has a
-component for radio buttons, as does <a href="https://github.com/alphagov/govuk_elements">GOV.UK Elements</a>,
-so we needed to make a decision about which one to use.</p>
-<h2 id="decision">Decision</h2>
-<p>GOV.UK Elements is quite an old project that hasn't been kept up to date, and
-there have been issues in the past where it has conflicted with existing CSS in
-other GOV.UK projects. As such, the general recommendation is that <a href="https://docs.google.com/document/d/1ZQ3qfMAdGQWIt5oklvKDhhGfYb-4bct75ZwVPUbnN2k/edit">GOV.UK
-Elements shouldn't be used</a>
-for new GOV.UK projects.</p>
-<p>GOV.UK Frontend is expected to be the standard for future frontend work, and so
-ideally any new components should be
-<a href="https://docs.publishing.service.gov.uk/manual/components.html#building-components">built to meet its conventions</a>
-so that in future GOV.UK will be compatible with it. However, GOV.UK Frontend is
-currently in alpha and not suitable for production use. In order to use it and
-future-proof the frontend for this format, we forked the current alpha build of
-GOV.UK Frontend and tested it ourselves before using in Government Frontend.
-This has been done in such a way that files are isolated and can be updated to
-use the GOV.UK Frontend project in the future, removing the need for our own CSS
-and instead relying on the upstream.</p>
-<h2 id="consequences">Consequences</h2>
-<p>As we are using a fork of GOV.UK Frontend we may not always be using the most
-up-to-date version.</p>
+<h2 id="popular-links">Popular Links</h2>
+<p>Popular links are the links that are present on GOV.UK under <em>'Popular on GOV.UK'</em>.
+These links are maintained through this Mainstream Publisher app.</p>
+<h3 id="how-to-edit-popular-links">How to edit popular links</h3>
+<p>Popular links can be accessed and edited via the 'Homepage' link on Signon, for this we need the 'homepage_editor' permission inside the Mainstream Publisher app.</p>
+<h4 id="more-context-on-homepage-permissions">More context on homepage permissions</h4>
+<p>Signon by nature expects each link on the dashboard to link to a separate app, whereas the popular links editor lives inside the Mainstream Publisher app. The Homepage link on signon integration was generated by running the below command in signon kubernetes (refer to the <a href="https://docs.publishing.service.gov.uk/repos/signon/usage.html">signon usage documentation</a> for details).</p>
+<pre lang="shell"><code>rake applications:create name=Homepage description="Responsible for creating contents for homepage" \
+     home_uri="https://publisher.integration.publishing.service.gov.uk/homepage/popular-links" \
+     redirect_uri="https://publisher.integration.publishing.service.gov.uk/homepage/popular-links/auth/gds/callback"
+</code></pre>
+<p>We do not store the secrets generated by this command and just rely on the secrets already configured for Mainstream publisher. This makes Homepage appear as an app in signon, but it's really just a link to a page in Mainstream Publisher. This also means all the permissions related to the Homepage "app" can only be managed through Mainstream publisher. Hence, in order to get access to the Homepage "app" we need the <code>homepage_editor</code> permission for the user in Mainstream Publisher.</p>
+<h3 id="questions">Questions</h3>
+<h4 id="which-schema-in-publishing-api-does-popular-links-use">Which schema in publishing api does popular links use?</h4>
+<p>link_collection</p>
+<h4 id="why-popular-links-as-a-separate-content-item-instead-of-moving-the-whole-of-homepage-to-publisher">Why popular links as a separate content item instead of moving the whole of homepage to publisher?</h4>
+<p>Currently our use case is only to allow publishing of popular links and not any other content on the homepage, though in the future we might want to allow other content on the homepage to be published via Mainstream Publisher. Implementation-wise, we have investigated and understood how to allow publishing of popular link as a separate content item and link it to the homepage, and we think it is a simple approach to take at this point in time. If we want to allow other content items on the homepage to be publishable we can still create each of them as a separate content item and publish them separately, or move to a strategy of publishing homepage as a single content item. Though this strategy will require us to investigate more on how that can be done and understand the complexity and feasibility of it.</p>
+<h4 id="why-is-saving-and-publishing-popular-links-synchronous-instead-of-asynchronous-via-sidekiq">Why is saving and publishing popular links synchronous instead of asynchronous (via sidekiq)?</h4>
+<p>There are a few reasons why we chose to keep it synchronous:
+a. Allows us to give user real-time feedback in case of Publishing API failures.
+b. Allows us to handle and rescue Publishing API errors in desired ways. eg: handle a 'Cannot publish already published' error to give the user appropriate feedback.
+c. Unlike other editions which store their content-id in <code>Artefact</code>, popular links stores its content-id in <code>PopularLinksEdition</code>. This means that <code>publish_service.rb</code> (which is used to publish all editions) can't be used as-is to publish popular links because it reads edition's content-id from its artefact, which basically means we would have to introduce some logic to understand if the edition is a <code>PopularLinksEdition</code> or some other edition type, and based on that read content-id from the edition's artefact or from the <code>PopularLinksEdition</code> itself.</p>
+<h4 id="worth-reading">Worth Reading</h4>
+<p><a href="https://github.com/alphagov/publishing-api/pull/2750">PR with details of the schema changes</a> made for popular links inside Publishing API.</p>
 
 
             
@@ -263,8 +255,8 @@ up-to-date version.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/arch/adr-005-forking-frontend-components-from-govuk-frontend.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Farch%2Fadr-005-forking-frontend-components-from-govuk-frontend.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publisher/blob/main/docs/homepage.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublisher%2Fhomepage.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
