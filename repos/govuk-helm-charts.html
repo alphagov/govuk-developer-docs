@@ -284,18 +284,23 @@ git config core.hooksPath git-hooks
 
 <h3 id="installing-an-application-chart-without-argo-cd">Installing an application chart without Argo CD</h3>
 
+<p>Inspect the template output of your application chart:</p>
+
 <pre lang="sh"><code>cd charts/app-config
 
 ENVIRONMENT=integration
 APP=content-publisher
-helm install $USER-${APP?} ../generic-govuk-app --values &lt;(
+helm template $USER-${APP?} ../generic-govuk-app --values &lt;(
   helm template . --values values-${ENVIRONMENT}.yaml |
   yq e '.|select(.metadata.name=="'$APP'").spec.source.helm.values'
 ) --set sentry.enabled=false --set rails.createKeyBaseSecret=false
 </code></pre>
 
-<p>You can inspect the final template output by running <code>helm template</code> instead of
-<code>helm install</code>.</p>
+<p>To deploy it, run <code>helm install $USER-...</code> instead of <code>helm template $USER...</code>.
+You should see your deployed pod(s) in the list at <code>kubernetes get pods</code>, and
+be able to interact with it as normal.</p>
+
+<p>Use <code>helm uninstall $USER-${APP?}</code> to uninstall your chart when you&rsquo;ve finished.</p>
 
 <h3 id="chart-repository">Chart repository</h3>
 
