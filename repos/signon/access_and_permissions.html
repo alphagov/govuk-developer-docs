@@ -204,7 +204,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/97fd88b8d9c35da0f7af49df606782a882b48d38">12 Jul 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/82ea5b20e68c3777bd8f60e32cfd0596015a216b">7 Aug 2024</a>
 </div>
 
   <h1 class="page-title">signon: Access and permissions</h1>
@@ -355,7 +355,6 @@
     A --UserUpdate.new(current_user, { supported_permission_ids: }, current_user, user_ip_address).call--&gt; D(UserUpdate#call)
     D --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids--&gt; E(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
     E --Pundit.policy_scope(current_user, SupportedPermission)--&gt; F("SupportedPermissionPolicy (scope)")
-    F --Pundit.policy_scope(current_user, :user_permission_manageable_application)--&gt; G("UserPermissionManageableApplicationPolicy (scope)")
 </code></pre>
 <h2 id="for-another-existing-user">For another existing user</h2>
 <p>In this section, the granter and grantee are different users: this is about managing another user's access and permissions.</p>
@@ -568,7 +567,6 @@
     A --UserUpdate.new(@user, { supported_permission_ids: }, current_user, user_ip_address).call--&gt; E(UserUpdate#call)
     E --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids--&gt; F(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
     F --Pundit.policy_scope(current_user, SupportedPermission)--&gt; G("SupportedPermissionPolicy (scope)")
-    G --Pundit.policy_scope(current_user, :user_permission_manageable_application)--&gt; H("UserPermissionManageableApplicationPolicy (scope)")
 </code></pre>
 <h2 id="for-a-new-user">For a new user</h2>
 <h3 id="what-can-you-do">What can you do?</h3>
@@ -617,9 +615,8 @@
 </ul>
 <pre lang="mermaid"><code>flowchart TD
     A(InvitationsController#new) --authorize User--&gt; B(UserPolicy#new?)
-    C(app/views/devise/invitations/new.html.erb) --policy_scope(:user_permission_manageable_application)--&gt; D("UserPermissionManageableApplicationPolicy (scope)")
-    C --"options_for_permission_option_select(application:, user: f.object)"--&gt; E(UsersHelper#options_for_permission_option_select)
-    E --application.sorted_supported_permissions_grantable_from_ui--&gt; F(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
+    C(app/views/devise/invitations/new.html.erb) --"options_for_permission_option_select(application:, user: f.object)"--&gt; D(UsersHelper#options_for_permission_option_select)
+    D --application.sorted_supported_permissions_grantable_from_ui--&gt; E(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
 </code></pre>
 <h4 id="invitations-create">Invitations create</h4>
 <p>These dependencies determine whether a user can:</p>
@@ -708,10 +705,6 @@
 <tr>
 <td><a href="https://github.com/alphagov/signon/blob/main/app/policies/user_application_permission_policy.rb">UserApplicationPermissionPolicy</a></td>
 <td>Determining whether a granter can update a grantee's access and permissions*</td>
-</tr>
-<tr>
-<td><a href="https://github.com/alphagov/signon/blob/main/app/policies/user_permission_manageable_application_policy.rb">UserPermissionManageableApplicationPolicy</a></td>
-<td>Determing the apps to/for which a granter can manage access and permissions</td>
 </tr>
 </tbody>
 </table>
