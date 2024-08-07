@@ -206,7 +206,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bdd577f0660c759275c9bda67d4b85d675da1371">12 Jul 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2444829922ff4be1b8e162d82a77cab18e8d6e3c">6 Aug 2024</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='get-an-assets-id'>Get an asset&rsquo;s ID</h2><p>If the asset URL starts with <code>/media</code>, the asset ID is in the URL.
@@ -235,7 +235,7 @@ removed (e.g. if it contains secret information).</p></li>
    but retain the file in cloud storage), run:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID]
 </code></pre></div><p>To delete all traces of the asset (including the file from cloud storage), run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID, <span class="nb">true</span><span class="o">]</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID,true]
 </code></pre></div><p>For &ldquo;Whitehall&rdquo; Assets (paths starting with <code>/government/uploads/system</code>), use the <a href="https://github.com/alphagov/asset-manager/blob/796eb36/lib/tasks/assets.rake#L9-L13"><code>assets:whitehall_delete</code> Rake task</a> instead:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:whitehall_delete[ASSET_PATH]
 </code></pre></div>
