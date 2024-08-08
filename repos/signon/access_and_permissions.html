@@ -204,7 +204,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/82ea5b20e68c3777bd8f60e32cfd0596015a216b">7 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/3efa22df566cd06a0c58169329001a1546b95227">7 Aug 2024</a>
 </div>
 
   <h1 class="page-title">signon: Access and permissions</h1>
@@ -508,7 +508,8 @@
 <li>be redirected to the index</li>
 </ul>
 <pre lang="mermaid"><code>flowchart LR
-    A(Users::ApplicationsController#show) --authorize user, :edit?--&gt; B(UserPolicy#edit?)
+    A(Users::ApplicationsController#show) --authorize [{ user: }], policy_class: Users::ApplicationPolicy--&gt; B(Users::ApplicationPolicy#show?)
+    B --Pundit.policy(current_user, user).edit?--&gt; C(UserPolicy#edit?)
 </code></pre>
 <h4 id="users-applications-index">Users applications index</h4>
 <p>These dependencies determine whether a user can:</p>
@@ -519,19 +520,20 @@
 <li>see a link to edit or view permissions for a given app</li>
 </ul>
 <pre lang="mermaid"><code>flowchart TD
-    A(Users::ApplicationsController#index) --authorize @user, :edit?--&gt; B(UserPolicy#edit?)
-    C(app/views/users/applications/index.html.erb) --wrap_links_in_actions_markup--&gt; D(ApplicationTableHelper#wrap_links_in_actions_markup)
-    C --users_applications_permissions_links--&gt; E(ApplicationTableHelper#users_applications_permissions_links)
-    E --Users::ApplicationPolicy.new(current_user, { application:, user: }).view_permissions?--&gt; F(Users::ApplicationPolicy#view_permissions?)
-    F --Pundit.policy(current_user, user).edit?--&gt; G(UserPolicy#edit?)
-    E --Users::ApplicationPolicy.new(current_user, { application:, user: }).edit_permissions?--&gt; H(Users::ApplicationPolicy#edit_permissions?)
-    H --Pundit.policy(current_user, user).edit?--&gt; G
-    C --users_applications_remove_access_link--&gt; I(ApplicationTableHelper#users_applications_remove_access_link)
-    I --Users::ApplicationPolicy.new(current_user, { application:, user: }).remove_signin_permission?--&gt; J(Users::ApplicationPolicy#remove_signin_permission?)
-    J --Pundit.policy(current_user, user).edit?--&gt; G
-    C --users_applications_grant_access_link--&gt; K(ApplicationTableHelper#users_applications_grant_access_link)
-    K --Users::ApplicationPolicy.new(current_user, { application:, user: }).grant_signin_permission?--&gt; L(Users::ApplicationPolicy#grant_signin_permission?)
-    L --Pundit.policy(current_user, user).edit?--&gt; G
+    A(Users::ApplicationsController#index) --authorize [{ user: }], policy_class: Users::ApplicationPolicy--&gt; B(Users::ApplicationPolicy#index?)
+    B --Pundit.policy(current_user, user).edit?--&gt; C(UserPolicy#edit?)
+    D(app/views/users/applications/index.html.erb) --wrap_links_in_actions_markup--&gt; E(ApplicationTableHelper#wrap_links_in_actions_markup)
+    D --users_applications_permissions_links--&gt; F(ApplicationTableHelper#users_applications_permissions_links)
+    F --Users::ApplicationPolicy.new(current_user, { application:, user: }).view_permissions?--&gt; G(Users::ApplicationPolicy#view_permissions?)
+    G --Pundit.policy(current_user, user).edit?--&gt; H(UserPolicy#edit?)
+    F --Users::ApplicationPolicy.new(current_user, { application:, user: }).edit_permissions?--&gt; I(Users::ApplicationPolicy#edit_permissions?)
+    I --Pundit.policy(current_user, user).edit?--&gt; H
+    D --users_applications_remove_access_link--&gt; J(ApplicationTableHelper#users_applications_remove_access_link)
+    J --Users::ApplicationPolicy.new(current_user, { application:, user: }).remove_signin_permission?--&gt; K(Users::ApplicationPolicy#remove_signin_permission?)
+    K --Pundit.policy(current_user, user).edit?--&gt; H
+    D --users_applications_grant_access_link--&gt; L(ApplicationTableHelper#users_applications_grant_access_link)
+    L --Users::ApplicationPolicy.new(current_user, { application:, user: }).grant_signin_permission?--&gt; M(Users::ApplicationPolicy#grant_signin_permission?)
+    M --Pundit.policy(current_user, user).edit?--&gt; H
 </code></pre>
 <h4 id="users-permissions-show">Users permissions show</h4>
 <p>These dependencies determine whether a user can:</p>
@@ -550,7 +552,7 @@
 <li>manage (non-<code>signin</code>) permissions</li>
 </ul>
 <pre lang="mermaid"><code>flowchart TD
-    A(Users::PermissionsController#edit) --authorize UserApplicationPermission.for(user: @user, supported_permission: @application.signin_permission)--&gt; B(UserApplicationPermissionPolicy#edit?)
+    A(Users::PermissionsController#edit) --authorize [{ application: @application, user: @user }], :edit_permissions?, policy_class: Users::ApplicationPolicy--&gt; B(Users::ApplicationPolicy#edit_permissions?)
     B --Pundit.policy(current_user, user).edit?--&gt; C(UserPolicy#edit?)
     A --@application.sorted_supported_permissions_grantable_from_ui(include_signin: false)--&gt; D(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
 </code></pre>
@@ -561,7 +563,7 @@
 <li>update certain permissions</li>
 </ul>
 <pre lang="mermaid"><code>flowchart TD
-    A(Users::PermissionsController#update) --authorize UserApplicationPermission.for(user: @user, supported_permission: @application.signin_permission)--&gt; B(UserApplicationPermissionPolicy#update?)
+    A(Users::PermissionsController#update) --authorize [{ application: @application, user: @user }], :edit_permissions?, policy_class: Users::ApplicationPolicy--&gt; B(Users::ApplicationPolicy#edit_permissions?)
     B --Pundit.policy(current_user, user).edit?--&gt; C(UserPolicy#edit?)
     A --UserUpdatePermissionBuilder.new( [...] ).build--&gt; D(UserUpdatePermissionBuilder#build)
     A --UserUpdate.new(@user, { supported_permission_ids: }, current_user, user_ip_address).call--&gt; E(UserUpdate#call)
@@ -703,12 +705,12 @@
 <td>Determining whether a granter can update a grantee's access and permissions*, and whether they can invite a new user and grant them access and permissions in the process</td>
 </tr>
 <tr>
-<td><a href="https://github.com/alphagov/signon/blob/main/app/policies/user_application_permission_policy.rb">UserApplicationPermissionPolicy</a></td>
-<td>Determining whether a granter can update a grantee's access and permissions*</td>
+<td><a href="https://github.com/alphagov/signon/blob/main/app/policies/users/application_policy.rb">Users::ApplicationPolicy</a></td>
+<td>Determining whether a granter can see and update a grantee's access and permissions*</td>
 </tr>
 </tbody>
 </table>
-<p>* the responsibility of these two policies is hard to distinguish in this context, but as seen in the dependency trees for existing users, the <code>UserApplicationPermissionPolicy</code> depends on the <code>UserPolicy</code>, and in reality the latter is larger in scope. The <code>InvitationsController</code> depends on different parts of the <code>UserPolicy</code>, for instance.</p>
+<p>* the responsibility of these two policies is hard to distinguish in this context, but as seen in the dependency trees for existing users, the <code>Users::ApplicationPolicy</code> depends on the <code>UserPolicy</code>, and in reality the latter is larger in scope. The <code>InvitationsController</code> depends on different parts of the <code>UserPolicy</code>, for instance.</p>
 <h3 id="others">Others</h3>
 <table>
 <thead>
