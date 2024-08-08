@@ -1,4 +1,8 @@
 @import "govuk_tech_docs";
+// govuk_publishing_components uses dart-sass, dev docs (through Middleman)
+// does not, fortunately dev docs doesn't import the sass that would break
+// compilation, specifically _search.scss, _step-by-step-nav.scss, _grid-helper.scss
+// see https://github.com/alphagov/govuk_publishing_components/pull/4106
 @import "govuk_publishing_components/components/_summary-list";
 @import "govuk_publishing_components/components/_breadcrumbs";
 @import "govuk_publishing_components/components/_cookie-banner";
