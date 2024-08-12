@@ -204,7 +204,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/3efa22df566cd06a0c58169329001a1546b95227">7 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/8c478dbdbbf5a10c02678e4b667d7f0e32a6e663">9 Aug 2024</a>
 </div>
 
   <h1 class="page-title">signon: Access and permissions</h1>
@@ -542,8 +542,9 @@
 <li>see a list of (all) permissions</li>
 </ul>
 <pre lang="mermaid"><code>flowchart TD
-    A(Users::PermissionsController#show) --authorize @user, :edit?--&gt; B(UserPolicy#edit?)
-    A --@application.sorted_supported_permissions_grantable_from_ui--&gt; C(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
+    A(Users::PermissionsController#show) --authorize [{ application: @application, user: @user }], :view_permissions?, policy_class: Users::ApplicationPolicy--&gt; B(Users::ApplicationPolicy#view_permissions?)
+    B --Pundit.policy(current_user, user).edit?--&gt; C(UserPolicy#edit?)
+    A --@application.sorted_supported_permissions_grantable_from_ui--&gt; D(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
 </code></pre>
 <h4 id="users-permissions-edit">Users permissions edit</h4>
 <p>These dependencies determine whether a user can:</p>
