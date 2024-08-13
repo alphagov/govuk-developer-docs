@@ -291,15 +291,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-aws/commit/b1630817c9f783db8cdccfb54a96bdb4ed0e1ee3">14 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-aws/commit/96940812fa3241a52ad74beedbc798e4166b3533">13 Aug 2024</a>
 </div>
 
   <h1 class="page-title">govuk-aws: Environment Provisioning</h1>
@@ -439,12 +432,12 @@ is the infra-stack-dns-zones project, which uses 'blue').</p>
 <li><code>infra-stack-dns-zones</code></li>
 <li><code>infra-certificates</code></li>
 </ol>
-<p>You will need to purchase a certificate from Gandi.net for your new environment,
-and then upload the certificate to AWS Route53. The steps in <a href="https://docs.publishing.service.gov.uk/manual/renew-a-tls-certificate.html">Renew a TLS
+<p>You will need to purchase a certificate from Fastly for your new environment,
+and then upload the certificate to AWS Route53. The steps in <a href="https://docs.publishing.service.gov.uk/manual/request-fastly-tls-certificate.html">Renew a TLS
 certificate for GOV.UK</a> are broadly the same for creating a new certificate.
-Copy the approach that you see in staging/production. We use Gandi rather than AWS,
-because we need to upload the certificate to Fastly, and AWS does not permit
-downloading public certificates.</p>
+Copy the approach that you see in staging/production. We use Fastly rather than
+AWS, because AWS does not permit downloading public certificates and we need
+the certificate in both AWS Route53 and Fastly.</p>
 <ol start="8">
 <li><code>infra-security-groups</code></li>
 <li><code>infra-database-backups-bucket</code></li>
