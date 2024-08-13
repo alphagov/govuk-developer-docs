@@ -254,8 +254,7 @@
 <ol>
 <li><a href="#1-example-ab-test-logic">Some piece of logic to be A/B tested</a></li>
 <li><a href="#2-http-response-header-to-fastly">A response HTTP header that tells Fastly you&rsquo;re doing an A/B test</a></li>
-<li><a href="#3-add-html-metatag-tags-to-your-layouts">A HTML meta tag that will be used to measure the results, and which specifies
-the dimension to use in Google Analytics</a></li>
+<li><a href="#3-add-html-metatag-tags-to-your-layouts">A HTML meta tag that will be used to measure the results in Google Analytics</a></li>
 </ol>
 
 <h3 id="1-example-ab-test-logic">1. Example A/B test logic</h3>
@@ -267,7 +266,6 @@ class PartyController &lt; ApplicationController
   def show
     ab_test = GovukAbTesting::AbTest.new(
       "your_ab_test_name",
-      dimension: 300,
       allowed_variants: ['NoChange', 'LongTitle', 'ShortTitle'],
       control_variant: 'NoChange'
     )
@@ -370,7 +368,6 @@ end
 
 <ul>
 <li><code>assert_meta_tag: false</code></li>
-<li><code>dimension: &lt;number&gt;</code></li>
 </ul>
 
 <h4 id="minitest">Minitest</h4>
@@ -420,7 +417,7 @@ class PartyControllerTest &lt; ActionController::TestCase
   include GovukAbTesting::MinitestHelpers
 
   should "show the original" do
-    setup_ab_variant("your_ab_test_name", "B") # optionally pass in a analytics dimension as the third argument
+    setup_ab_variant("your_ab_test_name", "B")
 
     get :show
 
