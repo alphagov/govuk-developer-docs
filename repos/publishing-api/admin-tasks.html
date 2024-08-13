@@ -230,15 +230,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/d46ad53d419fe2e4e66eb8b37bb3abb5509a9514">22 Dec 2020</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/972325f0d9564ad14a018438f9ff731bbf0fa60b">9 Aug 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Admin Tasks</h1>
@@ -338,6 +331,16 @@ argument and a <code>until</code> timestamp argument.</p>
 <p>To see all the editions that were unpublished between two times run:</p>
 <pre><code>bundle exec rake "csv_report:unpublishings_by_date_range['2020-10-01 10:00', '2020-12-31 10:00']"
 </code></pre>
+<h2 id="viewing-the-sidekiq-ui">Viewing the Sidekiq UI</h2>
+<p>We have access to the Sidekiq UI but because Publishing API doesn't have a
+frontend we have to use port forwarding to see it in our live environments.</p>
+<p>You'll need to have access to our EKS clusters before you can follow these
+instructions. There's <a href="https://docs.publishing.service.gov.uk/kubernetes/get-started/access-eks-cluster/#access-a-cluster-that-you-have-accessed-before">documentation here</a> on how to do that. This means that
+you'll need full production access before you can view the Sidekiq UI.</p>
+<p>To view the UI run:</p>
+<pre><code>kubectl -n apps port-forward deployment/publishing-api 8080:8080
+</code></pre>
+<p>and then navigate to localhost:8080/sidekiq</p>
 
 
             
