@@ -204,7 +204,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/8c478dbdbbf5a10c02678e4b667d7f0e32a6e663">9 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/b3ddde81ff7e8c97003249c190191ea7c8af5940">12 Aug 2024</a>
 </div>
 
   <h1 class="page-title">signon: Access and permissions</h1>
@@ -283,18 +283,19 @@
 <td><code>signin</code></td>
 <td>❌</td>
 <td>✅</td>
-<td>✅</td>
+<td>❌</td>
 <td>✅</td>
 </tr>
 <tr>
 <td>Another permission</td>
 <td>❌</td>
 <td>❌</td>
-<td>❌</td>
+<td>✅*</td>
 <td>✅</td>
 </tr>
 </tbody>
 </table>
+<p>* only delegatable non-signin permissions</p>
 <h3 id="dependencies-by-route">Dependencies by route</h3>
 <h4 id="account-applications-show">Account applications show</h4>
 <p>These dependencies determine whether a user can:</p>
@@ -340,8 +341,8 @@
 <li>manage (non-<code>signin</code>) permissions</li>
 </ul>
 <pre lang="mermaid"><code>flowchart TD
-    A(Account::PermissionsController#edit) --authorize [:account, @application], :edit_permissions?--&gt; B(Account::ApplicationPolicy#edit_permissions?)
-    A --@application.sorted_supported_permissions_grantable_from_ui(include_signin: false)--&gt; C(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
+    A(Account::PermissionsController#edit) --@application.sorted_supported_permissions_grantable_from_ui( [...] )--&gt; B(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
+    A --authorize [:account, @application], :edit_permissions?--&gt; C(Account::ApplicationPolicy#edit_permissions?) 
 </code></pre>
 <h4 id="account-permissions-update">Account permissions update</h4>
 <p>These dependencies determine whether a user can:</p>
@@ -350,52 +351,18 @@
 <li>update certain permissions</li>
 </ul>
 <pre lang="mermaid"><code>flowchart TD
-    A(Account::PermissionsController#update) --authorize [:account, @application], :edit_permissions?--&gt; B(Account::ApplicationPolicy#edit_permissions?)
-    A --UserUpdatePermissionBuilder.new( [...] ).build--&gt; C(UserUpdatePermissionBuilder#build)
-    A --UserUpdate.new(current_user, { supported_permission_ids: }, current_user, user_ip_address).call--&gt; D(UserUpdate#call)
-    D --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids--&gt; E(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
-    E --Pundit.policy_scope(current_user, SupportedPermission)--&gt; F("SupportedPermissionPolicy (scope)")
+    A(Account::PermissionsController#update) --@application.sorted_supported_permissions_grantable_from_ui( [...] )--&gt; B(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
+    A --authorize [:account, @application], :edit_permissions?--&gt; C(Account::ApplicationPolicy#edit_permissions?)
+    A --UserUpdatePermissionBuilder.new( [...] ).build--&gt; D(UserUpdatePermissionBuilder#build)
+    A --UserUpdate.new(current_user, { supported_permission_ids: }, current_user, user_ip_address).call--&gt; E(UserUpdate#call)
+    E --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids--&gt; F(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
+    D --Pundit.policy_scope(current_user, SupportedPermission)--&gt; G("SupportedPermissionPolicy (scope)")
 </code></pre>
 <h2 id="for-another-existing-user">For another existing user</h2>
 <p>In this section, the granter and grantee are different users: this is about managing another user's access and permissions.</p>
 <h3 id="what-can-you-do">What can you do?</h3>
 <h4 id="as-a-gov-uk-admin">As a GOV.UK admin</h4>
-<h5 id="with-access-to-the-app">With access to the app</h5>
-<table>
-<thead>
-<tr>
-<th>Delegatable permissions</th>
-<th>Grant access</th>
-<th>Revoke access</th>
-<th>Edit permissions</th>
-<th>View permissions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>None</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>signin</code></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Another permission</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<h5 id="without-access-to-the-app">Without access to the app</h5>
+<h5 id="with-or-without-access-to-the-app">With or without access to the app</h5>
 <table>
 <thead>
 <tr>
@@ -454,18 +421,19 @@
 <td><code>signin</code></td>
 <td>✅</td>
 <td>✅</td>
-<td>✅</td>
+<td>❌</td>
 <td>✅</td>
 </tr>
 <tr>
 <td>Another permission</td>
 <td>❌</td>
 <td>❌</td>
-<td>❌</td>
+<td>✅*</td>
 <td>✅</td>
 </tr>
 </tbody>
 </table>
+<p>* only delegatable non-signin permissions</p>
 <h5 id="without-access-to-the-app">Without access to the app</h5>
 <table>
 <thead>
@@ -553,9 +521,9 @@
 <li>manage (non-<code>signin</code>) permissions</li>
 </ul>
 <pre lang="mermaid"><code>flowchart TD
-    A(Users::PermissionsController#edit) --authorize [{ application: @application, user: @user }], :edit_permissions?, policy_class: Users::ApplicationPolicy--&gt; B(Users::ApplicationPolicy#edit_permissions?)
-    B --Pundit.policy(current_user, user).edit?--&gt; C(UserPolicy#edit?)
-    A --@application.sorted_supported_permissions_grantable_from_ui(include_signin: false)--&gt; D(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
+    A(Users::PermissionsController#edit) --@application.sorted_supported_permissions_grantable_from_ui( [...] )--&gt; B(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
+    A --authorize [{ application: @application, user: @user }], :edit_permissions?, policy_class: Users::ApplicationPolicy--&gt; C(Users::ApplicationPolicy#edit_permissions?)
+    C --Pundit.policy(current_user, user).edit?--&gt; D(UserPolicy#edit?)
 </code></pre>
 <h4 id="users-permissions-update">Users permissions update</h4>
 <p>These dependencies determine whether a user can:</p>
@@ -564,12 +532,13 @@
 <li>update certain permissions</li>
 </ul>
 <pre lang="mermaid"><code>flowchart TD
-    A(Users::PermissionsController#update) --authorize [{ application: @application, user: @user }], :edit_permissions?, policy_class: Users::ApplicationPolicy--&gt; B(Users::ApplicationPolicy#edit_permissions?)
-    B --Pundit.policy(current_user, user).edit?--&gt; C(UserPolicy#edit?)
-    A --UserUpdatePermissionBuilder.new( [...] ).build--&gt; D(UserUpdatePermissionBuilder#build)
-    A --UserUpdate.new(@user, { supported_permission_ids: }, current_user, user_ip_address).call--&gt; E(UserUpdate#call)
-    E --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids--&gt; F(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
-    F --Pundit.policy_scope(current_user, SupportedPermission)--&gt; G("SupportedPermissionPolicy (scope)")
+    A(Users::PermissionsController#update) --@application.sorted_supported_permissions_grantable_from_ui( [...] )--&gt; B(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
+    A --authorize [{ application: @application, user: @user }], :edit_permissions?, policy_class: Users::ApplicationPolicy--&gt; C(Users::ApplicationPolicy#edit_permissions?)
+    C --Pundit.policy(current_user, user).edit?--&gt; D(UserPolicy#edit?)
+    A --UserUpdatePermissionBuilder.new( [...] ).build--&gt; E(UserUpdatePermissionBuilder#build)
+    A --UserUpdate.new(@user, { supported_permission_ids: }, current_user, user_ip_address).call--&gt; F(UserUpdate#call)
+    F --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids--&gt; G(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
+    G --Pundit.policy_scope(current_user, SupportedPermission)--&gt; H("SupportedPermissionPolicy (scope)")
 </code></pre>
 <h2 id="for-a-new-user">For a new user</h2>
 <h3 id="what-can-you-do">What can you do?</h3>
