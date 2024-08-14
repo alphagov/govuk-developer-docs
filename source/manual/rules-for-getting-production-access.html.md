@@ -41,7 +41,7 @@ any access issues.
 
 #### When you get Production Deploy access
 
-Access can be granted to both civil servants and contractors as needed, at the discretion of a "sponsor": either the engineer's (civil servant) tech lead, or a GOV.UK Senior Technologist.
+Access can be granted to both civil servants and contractors as needed, at the discretion of a "sponsor": either the engineer's (civil servant) tech lead, or a [GOV.UK Senior Tech member](/manual/ask-for-help.html#contact-senior-tech).
 
 Before approving access, the sponsor should ensure that the engineer:
 
