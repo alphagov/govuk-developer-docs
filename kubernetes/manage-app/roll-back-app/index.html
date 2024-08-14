@@ -565,7 +565,7 @@
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8b6b9f7673d6aaa9e0354944ab95be5fb343cbc6">25 Jun 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/86307dabf5932105438d0244f8d0344d919e87c5">14 Aug 2024</a>
 </div>
 
  <h1 id='roll-back-your-app'>Roll back your app</h1><p>You can roll back your app by:</p>
@@ -581,11 +581,10 @@
 
 <ul>
 <li>go to your app&rsquo;s repo</li>
-<li>go to <strong>Releases</strong> &gt; <strong>Tags</strong> and select the abbreviated SHA, for example <code>bc0b0b0</code></li>
-<li>copy the full SHA, for example <code>bc0b0b0c980f867b293cd40157c6da3a29186680</code></li>
+<li>go to <strong>Releases</strong> &gt; <strong>Tags</strong> and make a note of the tag of the version you intend to deploy, for example <code>v234</code></li>
 </ul></li>
-<li><p>Go to the <a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/image-tags"><code>image-tags</code> folder in the <code>govuk-helm-charts</code> repo</a>.</p></li>
-<li><p>Replace the contents of the relevant image tag file with the full commit SHA of the release you want to roll back to.</p></li>
+<li><p>Go to the <a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/image-tags"><code>image-tags</code> folder in the <code>govuk-helm-charts</code> repo</a> and find the file for your application in the appropriate environment(s).</p></li>
+<li><p>Update the image tag with the tag version you made a note of in step 1.</p></li>
 <li><p>Create a pull request and merge the change into the main branch.</p></li>
 </ol>
 <p>Once you have merged your pull request, <a href="/kubernetes/manage-app/access-ci-cd/#deploying-a-release-of-a-gov-uk-app">Argo CD automatically deploys the older version of the app to production</a>.</p>
