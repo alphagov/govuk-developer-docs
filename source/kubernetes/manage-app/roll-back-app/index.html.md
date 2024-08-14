@@ -17,12 +17,11 @@ You can roll back your app by:
 
     There are multiple ways to do this. For example, if you are using the GitHub user interface:
     - go to your app's repo
-    - go to __Releases__ > __Tags__ and select the abbreviated SHA, for example `bc0b0b0`
-    - copy the full SHA, for example `bc0b0b0c980f867b293cd40157c6da3a29186680`
+    - go to __Releases__ > __Tags__ and make a note of the tag of the version you intend to deploy, for example `v234`
 
-1. Go to the [`image-tags` folder in the `govuk-helm-charts` repo](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/image-tags).
+1. Go to the [`image-tags` folder in the `govuk-helm-charts` repo](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/image-tags) and find the file for your application in the appropriate environment(s).
 
-1. Replace the contents of the relevant image tag file with the full commit SHA of the release you want to roll back to.
+1. Update the image tag with the tag version you made a note of in step 1.
 
 1. Create a pull request and merge the change into the main branch.
 
