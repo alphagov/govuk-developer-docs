@@ -21,7 +21,7 @@ You can roll back your app by:
 
 1. Go to the [`image-tags` folder in the `govuk-helm-charts` repo](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/image-tags) and find the file for your application in the appropriate environment(s).
 
-1. Replace the contents of the image tag attribute with the tag version you made a note of in step 1.
+1. Update the image tag with the tag version you made a note of in step 1.
 
 1. Create a pull request and merge the change into the main branch.
 
