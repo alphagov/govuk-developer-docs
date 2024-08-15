@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk-docker: 0001-record-architecture-decisions - GOV.UK Developer Documentation</title>
+    <title>govuk-docker: How to Publish Content to a Finder in GOV.UK Docker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-docker/adr/0001-record-architecture-decisions.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-docker/how-tos/finder-setup.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk-docker: 0001-record-architecture-decisions - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/adr/0001-record-architecture-decisions.html" />
+      <meta name="twitter:title" content="govuk-docker: How to Publish Content to a Finder in GOV.UK Docker - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/how-tos/finder-setup.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk-docker: 0001-record-architecture-decisions" />
+      <meta property="og:title" content="govuk-docker: How to Publish Content to a Finder in GOV.UK Docker" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/adr/0001-record-architecture-decisions.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/how-tos/finder-setup.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -219,31 +219,56 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/e72e03e4d2fe1425eb289955bfbd99fdc7f5dbfa">19 Sep 2019</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/af6fdd08157c33c00b978fe472ce453f28f6a48d">15 Aug 2024</a>
 </div>
 
-  <h1 class="page-title">govuk-docker: 0001-record-architecture-decisions</h1>
+  <h1 class="page-title">govuk-docker: How to Publish Content to a Finder in GOV.UK Docker</h1>
 
   
-<p>Date: 2019-09-19</p>
-<h2 id="context">Context</h2>
-<p>We need to record the architectural decisions made on this project.</p>
-<p>The <a href="https://github.com/benthorner/govuk-docker">original govuk-docker repo</a> was written outside of GOV.UK. Major architectural decisions, as well as more minor decisions, were written as <a href="https://github.com/alphagov/govuk-docker/blob/main/docs/adr/0001/DECISIONS.md">documentation in the repo</a>, together with their associated user <a href="https://github.com/alphagov/govuk-docker/blob/main/docs/adr/0001/NEEDS.md">NEEDS</a>. While these documents have historical value, they are not being maintained and increasingly differ from the current state of the repo. As part of adopting an ADR approach, we should clearly deprecate these historical documents to avoid confusion.</p>
-<h2 id="decision">Decision</h2>
-<p>We will use Architecture Decision Records, as described by Michael Nygard in this article: <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions</a></p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="consequences">Consequences</h2>
-<p>See Michael Nygard's article, linked above. For a lightweight ADR toolset, see Nat Pryce's <em>adr-tools</em> at <a href="https://github.com/npryce/adr-tools">https://github.com/npryce/adr-tools</a>.</p>
-<p>We will deprecate the historical <a href="https://github.com/alphagov/govuk-docker/blob/main/docs/adr/0001/DECISIONS.md">DECISIONS</a> and <a href="https://github.com/alphagov/govuk-docker/blob/main/docs/adr/0001/NEEDS.md">NEEDS</a> documents, by writing a deprecation notice at the top of each document, and by moving them into the assets for this ADR.</p>
+<p>This guide explains how to use GOV.UK Docker to develop features for finders, and how to publish content to test your
+finder with locally. The instructions below assume that you have "made" all of the relevant projects before starting.</p>
+<p>This has been tested predominantly using Specialist Publisher, but other publishing apps should work just as well.</p>
+<ol>
+<li>Start your publishing app of choice, e.g. <code>govuk-docker up specialist-publisher-app</code>
+</li>
+<li>Start the finder-frontend app: <code>govuk-docker up finder-frontend-app</code>
+</li>
+<li>Create a router backend for finder frontend: <code>curl http://router-api.dev.gov.uk/backends/finder-frontend -X PUT \ -H 'Content-type: application/json' \ -d '{"backend": {"backend_url": "http://finder-frontend.dev.gov.uk/"}}'</code>
+</li>
+<li>Create a router backend for frontend (this is needed to serve the root taxon created in step 7): <code>curl http://router-api.dev.gov.uk/backends/frontend -X PUT \ -H 'Content-type: application/json' \ -d '{"backend": {"backend_url": "http://frontend.dev.gov.uk/"}}'</code>
+</li>
+<li>Create a router backend for collections (this is needed to serve the test taxon created in step 8): <code>curl http://router-api.dev.gov.uk/backends/collections -X PUT \ -H 'Content-type: application/json' \ -d '{"backend": {"backend_url": "http://collections.dev.gov.uk/"}}'</code>
+</li>
+<li>Publish Search API's routes by
+running <code>govuk-docker exec search-api-app bundle exec rake publishing_api:publish_special_routes</code>.</li>
+<li>Publish the root taxon for GOV.UK: <code>govuk-docker run special-route-publisher-lite rake publish_homepage</code>
+</li>
+<li>Publish a test taxon: <code>govuk-docker run whitehall-app-lite rails taxonomy:populate_end_to_end_test_data</code>, then <code>govuk-docker run whitehall-lite rails taxonomy:rebuild_cache</code>
+</li>
+<li>Publish your specialist finder or general finder page.
+<ul>
+<li>For a specialist
+finder: <code>govuk-docker exec specialist-publisher-app bundle exec rails publishing_api:publish_finder\[finder_name\]</code>
+</li>
+<li>For a general finder, e.g. the all content
+finder: <code>govuk-docker exec search-api-app env FINDER_CONFIG=all_content_finder.yml bundle exec rake publishing_api:publish_finder</code>
+</li>
+</ul>
+</li>
+<li>Create the search
+indices: <code>govuk-docker exec search-api-app env SEARCH_INDEX=all bundle exec rake search:create_all_indices</code>
+</li>
+<li>Create the publishing api RabbitMQ exchange so that Search API can listen for new content to
+index: <code>govuk-docker exec publishing-api-app bundle exec rake setup_exchange</code>
+</li>
+<li>Create the search API message
+queues: <code>govuk-docker exec search-api-worker bundle exec rake message_queue:create_queues</code>
+</li>
+<li>Run <code>govuk-docker exec search-api-worker bundle exec rake message_queue:insert_data_into_govuk</code> to listen for
+messages. This is a long-running process, so you may want to start it in the background.</li>
+<li>Publish a document. It should show up in the search results.</li>
+</ol>
 
 
             
@@ -251,8 +276,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-docker/blob/main/docs/adr/0001-record-architecture-decisions.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-docker%2Fadr%2F0001-record-architecture-decisions.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-docker/blob/main/docs/how-tos/finder-setup.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-docker%2Fhow-tos%2Ffinder-setup.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
