@@ -239,6 +239,46 @@
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
 <p>This repository contains static backend config for the GOV.UK mobile apps.</p>
+
+<h2 id="how-to-use">How to use</h2>
+
+<p>There are several subprograms that can be run to process the config, allowing for a modular design and running in a variety of contexts - e.g. on CI or local laptop. All of the subcommands can expose help information by running <code>npm start help &lt;subcommand&gt;</code>.</p>
+
+<p>There are some example config version documents in ./versions/appinfo</p>
+
+<pre lang="shell"><code># it is recommended to start here
+npm start help
+
+# validate input (a single config version document)
+npm start validate "&lt;filename&gt;"
+
+# process a single config version document (outputs to stdout)
+npm start generate "&lt;filename&gt;"
+
+# if you want to pipe the output (e.g. to jq)
+npm run --silent start generate "&lt;filename&gt;"
+
+# generate a tree of config using the latest version detected
+npm start build "[options]"
+</code></pre>
+
+<h2 id="linting">Linting</h2>
+
+<p>You can run the linter using <code>npm run lint</code>. This will output a set of warnings. This will run on the CI server so it&rsquo;s important to fix any linting issues before pushing.</p>
+
+<p>You can automagically fix linting issues with <code>npm run fix</code>.</p>
+
+<h2 id="testing">Testing</h2>
+
+<p>Run the tests with <code>npm test</code> which invokes Jest. Check code coverage with <code>npm test -- --coverage=true</code>.</p>
+
+<h2 id="todo">TODO</h2>
+
+<ul>
+<li>automatically fix lint issues on pre-commit</li>
+<li>potentially a set of bash scripts that invoke the npm equivalents, or one big one</li>
+<li>improve test coverage of file handling (essentially becomes integration tests though)</li>
+</ul>
 <p></div></p>
 
 
