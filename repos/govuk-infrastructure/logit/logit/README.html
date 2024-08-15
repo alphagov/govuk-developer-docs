@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk-infrastructure: 2. Use aws-eks terraform module - GOV.UK Developer Documentation</title>
+    <title>govuk-infrastructure: Intro - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/architecture/decisions/0002-use-aws-eks-terraform-module.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/logit/logit/README.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk-infrastructure: 2. Use aws-eks terraform module - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/architecture/decisions/0002-use-aws-eks-terraform-module.html" />
+      <meta name="twitter:title" content="govuk-infrastructure: Intro - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/logit/logit/README.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk-infrastructure: 2. Use aws-eks terraform module" />
+      <meta property="og:title" content="govuk-infrastructure: Intro" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/architecture/decisions/0002-use-aws-eks-terraform-module.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/logit/logit/README.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -220,32 +220,16 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/6ba43589d4e803c67d814b7f6026025e214b0e79">11 Aug 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/e7530c27502b7cc85c987d4d6f3b2048e1d4a096">15 Aug 2024</a>
 </div>
 
-  <h1 class="page-title">govuk-infrastructure: 2. Use aws-eks terraform module</h1>
+  <h1 class="page-title">govuk-infrastructure: Intro</h1>
 
   
-<p>Date: 2021-08-10</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="context">Context</h2>
-<p>A fully configured EKS cluster requires many AWS resources and a lot of configuration. Defining each resource in our own Terraform module maximises flexibility but also requires a significant level of effort. We could instead make use of the <a href="https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest">existing Terraform registry EKS module</a> to optimise for speed of delivery.</p>
-<h2 id="decision">Decision</h2>
-<p>Adopt the <a href="https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest">existing Terraform registry EKS module</a>.</p>
-<h2 id="consequences">Consequences</h2>
-<p>A fully configured EKS cluster can be defined quickly and easily, as many module defaults will be fine for our purposes for the foreseeable future.</p>
-<p>The EKS module has comprehensive support for many of the options for EKS cluster config (e.g. worker node types). This will allow us to make changes more easily, and to experiment with different options quickly.</p>
-<p>It is possible that we will in future discover some areas of the module that don't work for our needs. Potential options in that instance include contributing to the module, forking it, or moving to our own module (likely with large chunks of code taken from the EKS module).</p>
-<p>We must be careful to avoid errors and issues that may be caused by the module's default use of a terraform <code>kubernetes</code> provider that is configured by AWS resource outputs. The behaviour of providers derived from other providers' resources is non-deterministic and can lead to intermittent and unpredictable issues - see the <a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs#stacking-with-managed-kubernetes-cluster-resources">warning callout in the Kubernetes provider docs</a>. The approach for handling this limitation will be covered in a subsequent ADR.</p>
+<p>A collection of config files (mainly logstash) for use on logit.io.</p>
+<h2 id="usage">Usage</h2>
+<p>Currently these are uploaded to Logit via the dashboard.</p>
 
 
             
@@ -253,8 +237,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-infrastructure/blob/main/docs/architecture/decisions/0002-use-aws-eks-terraform-module.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-infrastructure%2Farchitecture%2Fdecisions%2F0002-use-aws-eks-terraform-module.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-infrastructure/blob/main/docs/logit/logit/README.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-infrastructure%2Flogit%2Flogit%2FREADME.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
