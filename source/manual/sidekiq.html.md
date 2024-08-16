@@ -82,13 +82,20 @@ Sidekiq::RetrySet.new.filter { |job| job.delete if(job.klass == "PresentPageToPu
 ### Sidekiq Web
 
 Sidekiq comes with a web application, [`Sidekiq::Web`][sidekiq web] that can display the current state of Sidekiq's queues for an application.
-It needs to be configured and enabled on a per-app basis ([example](https://github.com/alphagov/whitehall/pull/8026)), and is currently only suited to apps that have a public URL (i.e. not suited to internal APIs like Publishing API).
+It needs to be configured and enabled on a per-app basis ([example](https://github.com/alphagov/whitehall/pull/8026)).
 
 Sidekiq web is enabled for the following applications (and requires the `Sidekiq Admin` permission in the relevant app in Signon):
 
 | Application | Sidekiq Web URL                                                           |
 |-------------|---------------------------------------------------------------------------|
 | Whitehall   | https://whitehall-admin.publishing.service.gov.uk/sidekiq                 |
+
+Apps that don't have any ingress routes are accessed through port forwarding. Detailed instructions on how to do this will
+be in the relevant readme files for the following applications that have the Sidekiq Web UI enabled in this way:
+
+| Application    | Documentation URL                                                                               |
+|----------------|-------------------------------------------------------------------------------------------------|
+| Publishing API | https://github.com/alphagov/publishing-api/blob/main/docs/admin-tasks.md#viewing-the-sidekiq-ui |
 
 NB, GOV.UK used to have a [sidekiq-monitoring web app][sidekiq monitoring] which monitored all GOV.UK Sidekiq configurations in one place, but this was removed when GOV.UK was replatformed to Kubernetes.
 
