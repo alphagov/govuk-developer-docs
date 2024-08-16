@@ -211,7 +211,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/09c3d78e79e4e8f10c53e2f43a4641f9b2bf6ea0">22 Jul 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea3548c9b1772bcc44f65de4aa5785ddcb8575d4">16 Aug 2024</a>
 </div>
 
  <h1 id='header'>Sidekiq</h1> <p>Many of our applications use <a href="https://sidekiq.org">Sidekiq</a> (<a href="https://github.com/sidekiq/sidekiq">see repo</a>) for background job processing.</p>
@@ -257,7 +257,7 @@ We would have all sorts of race conditions and difficulties querying Sidekiq if 
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Sidekiq::Queue.new("default").filter { |job| job.delete if (job.klass == "PresentPageToPublishingApiWorker" &amp;&amp; job.args.first == "PublishingApi::EmbassiesIndexPresenter") }
 Sidekiq::RetrySet.new.filter { |job| job.delete if(job.klass == "PresentPageToPublishingApiWorker" &amp;&amp; job.args.first == "PublishingApi::EmbassiesIndexPresenter") }
 </code></pre></div><h3 id='sidekiq-web'>Sidekiq Web</h3><p>Sidekiq comes with a web application, <a href="https://github.com/sidekiq/sidekiq/wiki/Monitoring"><code>Sidekiq::Web</code></a> that can display the current state of Sidekiq&rsquo;s queues for an application.
-It needs to be configured and enabled on a per-app basis (<a href="https://github.com/alphagov/whitehall/pull/8026">example</a>), and is currently only suited to apps that have a public URL (i.e. not suited to internal APIs like Publishing API).</p>
+It needs to be configured and enabled on a per-app basis (<a href="https://github.com/alphagov/whitehall/pull/8026">example</a>).</p>
 <p>Sidekiq web is enabled for the following applications (and requires the <code>Sidekiq Admin</code> permission in the relevant app in Signon):</p>
 <div class="table-container">
         <table>
@@ -267,6 +267,18 @@ It needs to be configured and enabled on a per-app basis (<a href="https://githu
 </tr><tr>
 <td>Whitehall</td>
 <td>https://whitehall-admin.publishing.service.gov.uk/sidekiq</td>
+</tr>
+        </table>
+      </div><p>Apps that don&rsquo;t have any ingress routes are accessed through port forwarding. Detailed instructions on how to do this will
+be in the relevant readme files for the following applications that have the Sidekiq Web UI enabled in this way:</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Application</th>
+<th>Documentation URL</th>
+</tr><tr>
+<td>Publishing API</td>
+<td>https://github.com/alphagov/publishing-api/blob/main/docs/admin-tasks.md#viewing-the-sidekiq-ui</td>
 </tr>
         </table>
       </div><p>NB, GOV.UK used to have a <a href="https://github.com/alphagov/sidekiq-monitoring">sidekiq-monitoring web app</a> which monitored all GOV.UK Sidekiq configurations in one place, but this was removed when GOV.UK was replatformed to Kubernetes.</p>
