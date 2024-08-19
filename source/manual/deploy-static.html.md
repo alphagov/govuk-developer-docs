@@ -22,7 +22,7 @@ Before rolling out a release of Static to production, you must:
 ## Why?
 
 [Static](https://github.com/alphagov/static) requires extra care when
-deploying, because serves partial pages (for example the header and footer)
+deploying, because it serves partial pages (for example the header and footer)
 that are cached and reused by many of the frontend rendering apps via the
 [Slimmer](https://github.com/alphagov/slimmer/) library.
 
