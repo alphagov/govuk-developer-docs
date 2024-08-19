@@ -51,7 +51,7 @@ This is an example deploying an application to integration:
     1. Triggers sync of the [`app-config`](https://argo.eks.integration.govuk.digital/applications/cluster-services/app-config) ([app-of-apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern)) application in Argo CD
     1. Updates the Helm values for the deployed [app's Argo CD application resource](https://argo.eks.integration.govuk.digital/applications/cluster-services/whitehall-admin)
     1. Updates the Kubernetes deployment resource with the new image tag
-    1. Images are pulled-through [AWS Elastic Container Registery (ECR)](https://aws.amazon.com/ecr/) in production from GitHub Packages
+    1. Images are pulled-through [AWS Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) in production from GitHub Packages
 1. Kubernetes does a [rolling update of the pods](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/)
 1. Argo CD triggers the ["post-sync" workflow](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/post-sync/workflow.yaml) in [Argo Workflows in integration](https://argo-workflows.eks.integration.govuk.digital/workflows/apps)
     1. Runs smoke tests for the app
