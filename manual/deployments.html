@@ -200,7 +200,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5ab8efcfaf4ce17d7b3cd8e5f6abcb2cf0188b09">10 Jul 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/98b17252ba8a0c0c34ad3ba6c44ef0dd85796f7f">19 Aug 2024</a>
 </div>
 
  <h1 id='header'>Deployments</h1> <p>On GOV.UK, all applications are set up for continuous deployment to integration, with the majority also having continuous deployment configured for staging and production.  Additionally, you can manually deploy a git reference (tag, branch, or commit SHA) of an application to any environment.</p>
@@ -243,7 +243,7 @@
 <li>Triggers sync of the <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/app-config"><code>app-config</code></a> (<a href="https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern">app-of-apps</a>) application in Argo CD</li>
 <li>Updates the Helm values for the deployed <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/whitehall-admin">app&rsquo;s Argo CD application resource</a></li>
 <li>Updates the Kubernetes deployment resource with the new image tag</li>
-<li>Images are pulled-through <a href="https://aws.amazon.com/ecr/">AWS Elastic Container Registery (ECR)</a> in production from GitHub Packages</li>
+<li>Images are pulled-through <a href="https://aws.amazon.com/ecr/">AWS Elastic Container Registry (ECR)</a> in production from GitHub Packages</li>
 </ol></li>
 <li>Kubernetes does a <a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/">rolling update of the pods</a></li>
 <li>Argo CD triggers the <a href="https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/post-sync/workflow.yaml">&ldquo;post-sync&rdquo; workflow</a> in <a href="https://argo-workflows.eks.integration.govuk.digital/workflows/apps">Argo Workflows in integration</a>
