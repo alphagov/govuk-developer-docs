@@ -219,15 +219,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/4ce8b8d7e9ead535db33b206515763f96329caed">1 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/dac8f547b9c02390dd4327a3e62f4d0c68766895">16 Aug 2024</a>
 </div>
 
   <h1 class="page-title">govuk-docker: Troubleshooting</h1>
@@ -394,6 +387,16 @@ executor failed running [/bin/sh -c apt-get update -qq &amp;&amp; apt-get instal
 </code></pre>
 <p>This may resolve by removing orphan containers which were created in a previous run of docker-compose up, but which has since been deleted from the docker-compose.yml file</p>
 <pre><code>docker-compose down -v --rmi all --remove-orphans
+</code></pre>
+<h2 id="rails-database-schema-changed-unexpectedly-when-running-rake-dbmigrate">Rails database schema changed unexpectedly when running <code>rake db:migrate</code>
+</h2>
+<p>It is common to find that running <code>rake db:migrate</code> results in unexpected changes to the <code>schema.rb</code> file. This is caused by slight differences between databases running in GOV.UK Docker and the production databases on AWS.</p>
+<p>Unfortunately, to resolve the issue, the only solution is to drop the database in GOV.UK docker and create a new one.</p>
+<p>Once you have taken a backup, you can remove and re-create your local database using the following commands:</p>
+<pre lang="bash"><code>rake db:drop
+rake db:create
+rake db:schema:load
+rake db:schema:migrate // optional, but if you are adding a new migration this will now update the schema without creating a horrible diff
 </code></pre>
 
 

@@ -204,7 +204,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/b3ddde81ff7e8c97003249c190191ea7c8af5940">12 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/6107dc28a8efa2172bb4f2e88a5944667704f4ab">15 Aug 2024</a>
 </div>
 
   <h1 class="page-title">signon: Access and permissions</h1>
@@ -221,7 +221,7 @@
 </ul>
 <p>Each row represents an app with certain permissions set as delegatable, as indicated by the "Delegatable permissions" column. The "Grant access" column indicates whether a granter can give a grantee the <code>signin</code> permission, and the "Revoke access" column relates to removing the <code>signin</code> permission.</p>
 <h3 id="dependencies-by-route">Dependencies by route</h3>
-<p>Each "Dependencies by route" section provides a breakdown of which actions are determined by dependencies and a tree or trees of relevant depencencies. The aim of this section isn't to go all the way down every node of each dependency tree, but rather to provide enough context on what determines what you can do, and to make it easier to identify shared dependencies. There's a particular focus on the different policies that are hit by each route, since the policies are both fundamental to how everything works and the source of a lot of complexity.</p>
+<p>Each "Dependencies by route" section provides a breakdown of which actions are determined by dependencies and a tree or trees of relevant dependencies. The aim of this section isn't to go all the way down every node of each dependency tree, but rather to provide enough context on what determines what you can do, and to make it easier to identify shared dependencies. There's a particular focus on the different policies that are hit by each route, since the policies are both fundamental to how everything works and the source of a lot of complexity.</p>
 <h2 id="for-the-current-user-self">For the current user (self)</h2>
 <p>In this section, the granter and grantee are the same user: this is about managing your own access and permissions.</p>
 <h3 id="what-can-you-do">What can you do?</h3>
@@ -342,7 +342,7 @@
 </ul>
 <pre lang="mermaid"><code>flowchart TD
     A(Account::PermissionsController#edit) --@application.sorted_supported_permissions_grantable_from_ui( [...] )--&gt; B(Doorkeeper::Application#sorted_supported_permissions_grantable_from_ui)
-    A --authorize [:account, @application], :edit_permissions?--&gt; C(Account::ApplicationPolicy#edit_permissions?) 
+    A --authorize [:account, @application], :edit_permissions?--&gt; C(Account::ApplicationPolicy#edit_permissions?)
 </code></pre>
 <h4 id="account-permissions-update">Account permissions update</h4>
 <p>These dependencies determine whether a user can:</p>
@@ -357,6 +357,52 @@
     A --UserUpdate.new(current_user, { supported_permission_ids: }, current_user, user_ip_address).call--&gt; E(UserUpdate#call)
     E --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids--&gt; F(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
     D --Pundit.policy_scope(current_user, SupportedPermission)--&gt; G("SupportedPermissionPolicy (scope)")
+</code></pre>
+<h4 id="account-signin-permissions-create">Account signin permissions create</h4>
+<p>These dependencies determine whether a user can:</p>
+<ul>
+<li>complete the controller action</li>
+<li>grant themself access to an app</li>
+</ul>
+<pre lang="mermaid"><code>flowchart TD
+    A(Account::SigninPermissionsController#create)
+    --authorize [:account, Doorkeeper::Application], :grant_signin_permission?
+    --&gt; B(Account::ApplicationPolicy#grant_signin_permission?)
+
+    A --"UserUpdate.new(current_user, { supported_permission_ids: }, current_user, user_ip_address).call"
+    --&gt; C(UserUpdate#call)
+
+    C --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids
+    --&gt; D(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
+    D --Pundit.policy_scope(current_user, SupportedPermission)--&gt; E("SupportedPermissionPolicy (scope)")
+</code></pre>
+<h4 id="account-signin-permissions-delete">Account signin permissions delete</h4>
+<p>These dependencies determine whether a user can:</p>
+<ul>
+<li>view the confirmation screen for revoking access to a given app</li>
+</ul>
+<pre lang="mermaid"><code>flowchart TD
+    A(Account::SigninPermissionsController#delete)
+    --authorize [:account, application], :remove_signin_permission?
+    --&gt; B(Account::ApplicationPolicy#remove_signin_permission?)
+</code></pre>
+<h4 id="account-signin-permissions-destroy">Account signin permissions destroy</h4>
+<p>These dependencies determine whether a user can:</p>
+<ul>
+<li>complete the controller action</li>
+<li>revoke access to a given app</li>
+</ul>
+<pre lang="mermaid"><code>flowchart TD
+    A(Account::SigninPermissionsController#destroy)
+    --authorize [:account, Doorkeeper::Application], :remove_signin_permission?
+    --&gt; B(Account::ApplicationPolicy#remove_signin_permission?)
+
+    A --"UserUpdate.new(current_user, { supported_permission_ids: }, current_user, user_ip_address).call"
+    --&gt; C(UserUpdate#call)
+
+    C --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids
+    --&gt; D(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
+    D --Pundit.policy_scope(current_user, SupportedPermission)--&gt; E("SupportedPermissionPolicy (scope)")
 </code></pre>
 <h2 id="for-another-existing-user">For another existing user</h2>
 <p>In this section, the granter and grantee are different users: this is about managing another user's access and permissions.</p>
@@ -540,6 +586,52 @@
     F --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids--&gt; G(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
     G --Pundit.policy_scope(current_user, SupportedPermission)--&gt; H("SupportedPermissionPolicy (scope)")
 </code></pre>
+<h4 id="users-signin-permissions-create">Users signin permissions create</h4>
+<p>These dependencies determine whether a user can:</p>
+<ul>
+<li>complete the controller action</li>
+<li>grant a given user access to an app</li>
+</ul>
+<pre lang="mermaid"><code>flowchart TD
+    A(Users::SigninPermissionsController#create)
+    --authorize [application, user: @user], :grant_signin_permission?, policy_class: Users::ApplicationPolicy
+    --&gt; B(Users::ApplicationPolicy#grant_signin_permission?)
+
+    A --"UserUpdate.new(@user, { supported_permission_ids: }, current_user, user_ip_address).call"
+    --&gt; C(UserUpdate#call)
+
+    C --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids
+    --&gt; D(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
+    D --Pundit.policy_scope(current_user, SupportedPermission)--&gt; E("SupportedPermissionPolicy (scope)")
+</code></pre>
+<h4 id="users-signin-permissions-delete">Users signin permissions delete</h4>
+<p>These dependencies determine whether a user can:</p>
+<ul>
+<li>view the confirmation screen for revoking access to a given app</li>
+</ul>
+<pre lang="mermaid"><code>flowchart TD
+    A(Users::SigninPermissionsController#delete)
+    --authorize [application: @application, user: @user], :remove_signin_permission?, policy_class: Users::ApplicationPolicy
+    --&gt; B(Users::ApplicationPolicy#remove_signin_permission?)
+</code></pre>
+<h4 id="users-signin-permissions-destroy">Users signin permissions destroy</h4>
+<p>These dependencies determine whether a user can:</p>
+<ul>
+<li>complete the controller action</li>
+<li>revoke access to a given app</li>
+</ul>
+<pre lang="mermaid"><code>flowchart TD
+    A(Users::SigninPermissionsController#destroy)
+    --authorize [application, user: @user], :remove_signin_permission?, policy_class: Users::ApplicationPolicy
+    --&gt; B(Users::ApplicationPolicy#remove_signin_permission?)
+
+    A --"UserUpdate.new(@user, { supported_permission_ids: }, current_user, user_ip_address).call"
+    --&gt; C(UserUpdate#call)
+
+    C --SupportedPermissionParameterFilter.new(current_user, user, user_params) [...] .filtered_supported_permission_ids
+    --&gt; D(SupportedPermissionParameterFilter#filtered_supported_permission_ids)
+    D --Pundit.policy_scope(current_user, SupportedPermission)--&gt; E("SupportedPermissionPolicy (scope)")
+</code></pre>
 <h2 id="for-a-new-user">For a new user</h2>
 <h3 id="what-can-you-do">What can you do?</h3>
 <p>The following actions are taken in the process of inviting a new user - once the invitation is sent, refer to the <a href="#for-another-existing-user">For another existing user</a> section.</p>
@@ -633,11 +725,15 @@
 <tbody>
 <tr>
 <td><a href="https://github.com/alphagov/signon/blob/main/app/controllers/account/applications_controller.rb">Account::ApplicationsController</a></td>
-<td>Managing own access to apps and accessing own permissions routes</td>
+<td>Rendering index and individual pages for own app permissions</td>
 </tr>
 <tr>
 <td><a href="https://github.com/alphagov/signon/blob/main/app/controllers/account/permissions_controller.rb">Account::PermissionsController</a></td>
 <td>Managing own permissions</td>
+</tr>
+<tr>
+<td><a href="https://github.com/alphagov/signon/blob/main/app/controllers/account/signin_permissions_controller.rb">Account::SigninPermissionsController</a></td>
+<td>Managing own access to apps</td>
 </tr>
 <tr>
 <td><a href="https://github.com/alphagov/signon/blob/main/app/controllers/invitations_controller.rb">InvitationsController</a></td>
@@ -645,11 +741,15 @@
 </tr>
 <tr>
 <td><a href="https://github.com/alphagov/signon/blob/main/app/controllers/users/applications_controller.rb">Users::ApplicationsController</a></td>
-<td>Managing other users' access to apps and accessing other users' permissions routes</td>
+<td>Rendering index and individual pages for other users' app permissions</td>
 </tr>
 <tr>
 <td><a href="https://github.com/alphagov/signon/blob/main/app/controllers/users/permissions_controller.rb">Users::PermissionsController</a></td>
 <td>Managing other users' permissions</td>
+</tr>
+<tr>
+<td><a href="https://github.com/alphagov/signon/blob/main/app/controllers/users/signin_permissions_controller.rb">Users::SigninPermissionsController</a></td>
+<td>Managing other users' access to apps</td>
 </tr>
 </tbody>
 </table>
