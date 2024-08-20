@@ -301,9 +301,14 @@ But the script will also output a user-friendly CSV to the &ldquo;Auto-generated
 
 <h3 id="check-the-fairness-of-the-rota">Check the fairness of the rota</h3>
 
-<p>Run <code>ruby bin/calculate_fairness.rb https://docs.google.com/spreadsheets/d/abc123def456hij789/edit</code>.</p>
+<p>This summarises the fairness of the rota. Before running the script, you&rsquo;ll need to add two new worksheets to the spreadsheet:</p>
 
-<p>This summarises the fairness of the rota. It looks for a &ldquo;Manually tweaked rota&rdquo; worksheet, so you&rsquo;ll first need to copy the &ldquo;Auto-generated draft rota&rdquo; into a new &ldquo;Manually tweaked rota&rdquo; worksheet in the same spreadsheet, and copy over the data. This allows you to freely tweak the output of the rota, without worrying about losing all of your changes next time you run the rota generator.</p>
+<ol>
+<li>&ldquo;Manually tweaked rota&rdquo; - you should copy over the &ldquo;Auto-generated draft rota&rdquo; into this. You&rsquo;re then free to tweak the output of the rota here, without worrying about losing all your changes next time you run the rota generator.</li>
+<li>&ldquo;Fairness calculator&rdquo; - blank worksheet, which will be populated by running the command below.</li>
+</ol>
+
+<p>Run <code>ruby bin/calculate_fairness.rb https://docs.google.com/spreadsheets/d/abc123def456hij789/edit</code>.</p>
 
 <h3 id="synchronise-the-rota-with-pagerduty">Synchronise the rota with PagerDuty</h3>
 
