@@ -231,7 +231,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/77d1fe0a6694a3b3df0e73ccd338ce13d9ec17de">1 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/213e23f3ac5ed2873abd85ea26d773c7cac15442">20 Aug 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -790,37 +790,14 @@ and a state has been specified, the draft is returned.</p>
 <li>
 <code>fields[]</code> <em>(optional)</em>
 <ul>
-<li>Accepts an array of:
-<ul>
-<li>analytics_identifier</li>
-<li>base_path</li>
-<li>content_store</li>
-<li>description</li>
-<li>details</li>
-<li>document_type</li>
-<li>first_published_at</li>
-<li>last_edited_at</li>
-<li>links</li>
-<li>link_set_links</li>
-<li>major_published_at</li>
-<li>phase</li>
-<li>public_updated_at</li>
-<li>published_at</li>
-<li>publishing_api_first_published_at</li>
-<li>publishing_api_last_edited_at</li>
-<li>publishing_app</li>
-<li>redirects</li>
-<li>rendering_app</li>
-<li>routes</li>
-<li>schema_name</li>
-<li>state</li>
-<li>title</li>
-<li>user_facing_version</li>
-<li>update_type</li>
-</ul>
-</li>
-<li>Determines which fields will be returned in the response, if omitted all fields (with the exception of
-<code>link_set_links</code>) will be returned.</li>
+<li>Accepts an array of: analytics_identifier, base_path,
+content_store, description, details, document_type,
+first_published_at, last_edited_at, major_published_at, phase,
+public_updated_at, published_at, publishing_api_first_published_at,
+publishing_api_last_edited_at, publishing_app, redirects, rendering_app,
+routes, schema_name, state, title, user_facing_version, update_type</li>
+<li>Determines which fields will be returned in the response, if omitted all
+fields will be returned.</li>
 </ul>
 </li>
 <li>
