@@ -231,7 +231,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/213e23f3ac5ed2873abd85ea26d773c7cac15442">20 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/545adf6c466f37e7c80fa9fc77b62c3656fefac3">21 Aug 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -251,6 +251,7 @@ message queue for other apps (e.g. <code>email-alert-service</code>) to consume.
 <li><a href="#post-v2contentcontent_iddiscard-draft"><code>POST /v2/content/:content_id/discard-draft</code></a></li>
 <li><a href="#get-v2content"><code>GET /v2/content</code></a></li>
 <li><a href="#get-v2contentcontent_id"><code>GET /v2/content/:content_id</code></a></li>
+<li><a href="#get-v2contentcontent_idembedded"><code>GET /v2/content/:content_id/embedded</code></a></li>
 <li><a href="#patch-v2linkscontent_id"><code>PATCH /v2/links/:content_id</code></a></li>
 <li><a href="#get-v2linkscontent_id"><code>GET /v2/links/:content_id</code></a></li>
 <li><a href="#get-v2expanded-linkscontent_id"><code>GET /v2/expanded-links/:content_id</code></a></li>
@@ -896,6 +897,21 @@ included within the response.</p>
 <ul>
 <li>Specify a particular edition of this document</li>
 <li>If omitted the most recent edition.</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2contentcontent_idembedded"><code>GET /v2/content/:content_id/embedded</code></h2>
+<p>Retrieves a summary list of any draft or published content which has an embedded
+reference to the target <code>:content_id</code>.</p>
+<!-- raw HTML omitted -->
+<p>Content can include an embedded reference in its body when
+it wants to defer to a reusable piece of content, such as an email address.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the target document for the reusable piece of content</li>
 </ul>
 </li>
 </ul>

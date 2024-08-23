@@ -160,6 +160,7 @@
           <ul class="subdir__menu">
               <li><a href="/repos/govuk-docker/how-tos.html" rel="noopener" class="govuk-link">How To's</a></li>
               <li><a href="/repos/govuk-docker/how-tos/finder-setup.html" rel="noopener" class="govuk-link">How to Publish Content to a Finder in GOV.UK Docker</a></li>
+              <li><a href="/repos/govuk-docker/how-tos/publishing-content-on-whitehall.html" rel="noopener" class="govuk-link">Publishing Content from Whitehall for Developing Government Frontend</a></li>
           </ul>
       </ul>
     </li>
@@ -220,7 +221,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/af6fdd08157c33c00b978fe472ce453f28f6a48d">15 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/25e88611cf5e904e4f1eb42013f5405d82c10b50">22 Aug 2024</a>
 </div>
 
   <h1 class="page-title">govuk-docker: How to Publish Content to a Finder in GOV.UK Docker</h1>
@@ -234,17 +235,39 @@ finder with locally. The instructions below assume that you have "made" all of t
 </li>
 <li>Start the finder-frontend app: <code>govuk-docker up finder-frontend-app</code>
 </li>
-<li>Create a router backend for finder frontend: <code>curl http://router-api.dev.gov.uk/backends/finder-frontend -X PUT \ -H 'Content-type: application/json' \ -d '{"backend": {"backend_url": "http://finder-frontend.dev.gov.uk/"}}'</code>
+<li>Create a router backend for finder frontend:
+<pre lang="bash"><code>curl http://router-api.dev.gov.uk/backends/finder-frontend -X PUT \
+-H 'Content-type: application/json' \
+-d '{"backend": {"backend_url": "http://finder-frontend.dev.gov.uk/"}}
+</code></pre>
 </li>
-<li>Create a router backend for frontend (this is needed to serve the root taxon created in step 7): <code>curl http://router-api.dev.gov.uk/backends/frontend -X PUT \ -H 'Content-type: application/json' \ -d '{"backend": {"backend_url": "http://frontend.dev.gov.uk/"}}'</code>
+<li>Create a router backend for Search API:
+<pre lang="bash"><code>curl http://router-api.dev.gov.uk/backends/search-api -X PUT \
+-H 'Content-type: application/json' \
+-d '{"backend": {"backend_url": "http://search-api.dev.gov.uk/"}}'
+</code></pre>
 </li>
-<li>Create a router backend for collections (this is needed to serve the test taxon created in step 8): <code>curl http://router-api.dev.gov.uk/backends/collections -X PUT \ -H 'Content-type: application/json' \ -d '{"backend": {"backend_url": "http://collections.dev.gov.uk/"}}'</code>
+<li>Create a router backend for frontend (this is needed to serve the root taxon created in step 8):
+<pre lang="bash"><code>curl http://router-api.dev.gov.uk/backends/frontend -X PUT \
+  -H 'Content-type: application/json' \
+  -d '{"backend": {"backend_url": "http://frontend.dev.gov.uk/"}}'
+</code></pre>
 </li>
+<li>Create a router backend for collections (this is needed to serve the test taxon created in step 9):
+<pre lang="bash"><code>curl http://router-api.dev.gov.uk/backends/collections -X PUT \
+  -H 'Content-type: application/json' \
+  -d '{"backend": {"backend_url": "http://collections.dev.gov.uk/"}}'
+</code></pre>
+</li>
+<li>Publish special routes by running <code>govuk-docker run special-route-publisher-lite bundle exec rake publish_special_routes</code>.</li>
 <li>Publish Search API's routes by
 running <code>govuk-docker exec search-api-app bundle exec rake publishing_api:publish_special_routes</code>.</li>
 <li>Publish the root taxon for GOV.UK: <code>govuk-docker run special-route-publisher-lite rake publish_homepage</code>
 </li>
-<li>Publish a test taxon: <code>govuk-docker run whitehall-app-lite rails taxonomy:populate_end_to_end_test_data</code>, then <code>govuk-docker run whitehall-lite rails taxonomy:rebuild_cache</code>
+<li>Publish a test taxon:
+<pre lang="bash"><code>govuk-docker run whitehall-lite rails taxonomy:populate_end_to_end_test_data
+govuk-docker run whitehall-lite rails taxonomy:rebuild_cache
+</code></pre>
 </li>
 <li>Publish your specialist finder or general finder page.
 <ul>

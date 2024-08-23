@@ -254,6 +254,16 @@
 
 <p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
 
+<h3 id="relationship-with-bouncer">Relationship with Bouncer</h3>
+
+<p>Bouncer and Transition currently share a database. As a result, we aim to keep a
+few of their dependencies in sync (on the same version), namely:</p>
+
+<ul>
+<li>rails (Transition) and activerecord (Bouncer)</li>
+<li>optic14n</li>
+</ul>
+
 <h3 id="running-the-tests">Running the tests</h3>
 
 <pre><code>bundle exec rake

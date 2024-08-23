@@ -267,7 +267,9 @@ updates the Discovery Engine dataset accordingly</li>
 <p>The official way of running this application locally is through <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker</a>, where
 a project is defined for it. Because this application is deeply integrated with a SaaS product, you
 will have to have access to a GCP Discovery Engine engine to be able to do anything more meaningful
-than running the test suite. <code>govuk-docker</code> will do this for you by configuring the <code>DISCOVERY_ENGINE_SERVING_CONFIG</code> and <code>DISCOVERY_ENGINE_DATASTORE_BRANCH</code> environment variables your in local set-up to point to integration.</p>
+than running the test suite. <code>govuk-docker</code> will do this for you by configuring the environment to
+point to integration. If you want to run the application without GOV.UK Docker, you can reference
+the required <a href="https://github.com/alphagov/govuk-docker/blob/main/projects/search-api-v2/docker-compose.yml">environment variables</a> from there.</p>
 
 <p>You can run the application from within the <code>govuk-docker</code> repository directory as follows:</p>
 
