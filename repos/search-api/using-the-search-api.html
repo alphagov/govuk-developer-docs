@@ -166,11 +166,6 @@
               <li><a href="/repos/search-api/arch/adr-010-learn-to-rank.html" rel="noopener" class="govuk-link">Decision record: Learning To Rank</a></li>
               <li><a href="/repos/search-api/arch/adr-011-sagemaker.html" rel="noopener" class="govuk-link">Decision record: Sagemaker</a></li>
               <li><a href="/repos/search-api/arch/adr-012-learn-to-rank.html" rel="noopener" class="govuk-link">Decision record: Decommissioning Learning to Rank</a></li>
-              <li><a href="/repos/search-api/public-api/faceted-search.html" rel="noopener" class="govuk-link">Faceted search</a></li>
-          </ul>
-          <li class="subdir__heading">public-api</li>
-          <ul class="subdir__menu">
-              <li><a href="/repos/search-api/public-api/faceted-search.html" rel="noopener" class="govuk-link">Faceted search</a></li>
           </ul>
       </ul>
     </li>
@@ -230,111 +225,133 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/search-api/commit/1b0c73d31141a3572165d6cc34649dd52db9f526">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/search-api/commit/d65e449abaa3f547d2a1e00d69789932cde3b8bf">23 Aug 2024</a>
 </div>
 
   <h1 class="page-title">search-api: Using the search API</h1>
 
   
-<h2 id="quickstart">Quickstart</h2>
-<p>The user entered search query is specified using the <code>q</code> parameter. This should be exactly what the user typed into a search box, encoded as UTF-8. Any well-formed UTF-8 values are allowed.</p>
-<pre><code>curl 'https://www.gov.uk/api/search.json?q=taxes&amp;count=1'
+<p>Search API is publicly accessible at <a href="https://www.gov.uk/api/search.json">https://www.gov.uk/api/search.json</a>, and responds to different URL parameters, explained below. Parameters are strictly validated: if Search API encounters any unknown parameters (or known parameters but with invalid values) it returns a HTTP 422 error.</p>
+<h2 id="examples">Examples</h2>
+<p>Simple search query:</p>
+<p><a href="https://www.gov.uk/api/search.json?q=taxes&amp;count=1">https://www.gov.uk/api/search.json?q=taxes&amp;count=1</a></p>
+<p>Get the next result in the sequence by specifying <code>start=1</code>.</p>
+<p><a href="https://www.gov.uk/api/search.json?q=taxes&amp;count=1&amp;start=1">https://www.gov.uk/api/search.json?q=taxes&amp;count=1&amp;start=1</a></p>
+<p>Or if we want to get the oldest match:</p>
+<p><a href="https://www.gov.uk/api/search.json?q=taxes&amp;count=1&amp;order=public_timestamp">https://www.gov.uk/api/search.json?q=taxes&amp;count=1&amp;order=public_timestamp</a></p>
+<p>Retrieve just the title and 'mainstream browse pages' of documents matching search term "passport":</p>
+<p><a href="https://www.gov.uk/api/search.json?q=passport&amp;fields=mainstream_browse_pages&amp;fields=title">https://www.gov.uk/api/search.json?q=passport&amp;fields=mainstream_browse_pages&amp;fields=title</a></p>
+<p>Retrieve documents of a specific type:</p>
+<p><a href="https://www.gov.uk/api/search.json?q=test&amp;count=1&amp;filter_format=transaction">https://www.gov.uk/api/search.json?q=test&amp;count=1&amp;filter_format=transaction</a></p>
+<p>Retrieve documents for a given organisation:</p>
+<p><a href="https://www.gov.uk/api/search.json?q=policy&amp;count=1&amp;filter_organisations=cabinet-office">https://www.gov.uk/api/search.json?q=policy&amp;count=1&amp;filter_organisations=cabinet-office</a></p>
+<p>Retrieve documents for multiple organisations:</p>
+<p><a href="https://www.gov.uk/api/search.json?q=policy&amp;count=1&amp;filter_organisations=cabinet-office&amp;filter_organisations=home-office">https://www.gov.uk/api/search.json?q=policy&amp;count=1&amp;filter_organisations=cabinet-office&amp;filter_organisations=home-office</a></p>
+<p>Retrieve documents associated with Cabinet Office but not with Government Digital Service:</p>
+<p><a href="https://www.gov.uk/api/search.json?q=policy&amp;count=1&amp;filter_organisations=cabinet-office&amp;reject_organisations=government-digital-service">https://www.gov.uk/api/search.json?q=policy&amp;count=1&amp;filter_organisations=cabinet-office&amp;reject_organisations=government-digital-service</a></p>
+<p>Find documents published within a certain date range:</p>
+<p><a href="https://www.gov.uk/api/search.json?q=pig&amp;count=1&amp;filter_public_timestamp=from:2020-01-01,to:2020-12-31">https://www.gov.uk/api/search.json?q=pig&amp;count=1&amp;filter_public_timestamp=from:2020-01-01,to:2020-12-31</a></p>
+<p>Aggregated/grouped search query (fetch list of organisations and the number of documents published by each of them):</p>
+<pre><code>https://www.gov.uk/api/search.json?count=0&amp;aggregate_organisations=2
 </code></pre>
-<pre lang="json"><code>{
-    "facets": {},
-    "results": [
-        {
-            "_id": "/vehicle-tax",
-            "description": "Renew or tax your vehicle for the first time, apply online, by phone or at the Post Office",
-            "document_type": "edition",
-            "es_score": 0.191312,
-            "format": "transaction",
-            "index": "govuk",
-            "link": "/vehicle-tax",
-            "organisations": [
-                {
-                    "acronym": "DVLA",
-                    "content_id": "70580624-93b5-4aed-823b-76042486c769",
-                    "link": "/government/organisations/driver-and-vehicle-licensing-agency",
-                    "organisation_state": "live",
-                    "slug": "driver-and-vehicle-licensing-agency",
-                    "title": "Driver and Vehicle Licensing Agency"
-                }
-            ],
-            "public_timestamp": "2014-12-09T16:21:03+00:00",
-            "title": "Tax your vehicle"
+<h2 id="url-parameters">URL parameters</h2>
+<h3 id="q">q</h3>
+<p>Search query. Any well-formed UTF-8 values are allowed.</p>
+<h3 id="count">count</h3>
+<p>The <code>count</code> parameter limits the number of results returned (default: 10, maximum: 1500).
+If insufficient documents match, as many as possible are returned (subject to the supplied <a href="#start">start</a> offset).</p>
+<p>This may be set to 0 to return no results (which may be useful if only, say, facet values are wanted). Setting this to 0 will reduce processing time.</p>
+<h3 id="order">order</h3>
+<p>Defines the sort order. Takes a field name, with an optional preceding "<code>-</code>" to sort in descending order.
+If not specified, results are ordered by relevance. Only some fields can be sorted on.</p>
+<h3 id="start">start</h3>
+<p>The <code>start</code> parameter takes an integer, which is the position in the search result list to start returning results.
+It uses a 0-based index.</p>
+<p>If the <code>start</code> offset is greater than the number of matching results, no results will be returned (but also no error will be returned). <code>start</code> is used for implementing pagination.</p>
+<h3 id="fields">fields</h3>
+<p>Only a subset of fields are returned by default. You can override the fields returned using the <code>fields</code> parameter. Refer to the fields in <a href="https://github.com/alphagov/search-api/blob/main/config/schema/field_definitions.json">field_definitions.json</a>.</p>
+<p>Note that query parameters which are repeated may be specified in standard HTTP style (ie, <code>fields=value&amp;fields=another-value</code>, where the same name may be used multiple times), or in Ruby/PHP array style (ie, <code>fields[]=value&amp;fields[]=another-value</code>).</p>
+<h3 id="filter_-reject_">filter_* / reject_*</h3>
+<p>You can pass a <code>filter_&lt;field name&gt;</code> URL parameter to return documents that match a value. For example, <code>filter_format=transaction</code> retrieves only <code>transaction</code> documents (see <a href="https://github.com/alphagov/search-api/blob/main/content-schemas.html">Content schemas</a> for possible values).</p>
+<p>Equally, you can pass a <code>reject_&lt;field name&gt;</code> URL parameter to exclude documents that match that value.</p>
+<p>Multiple values per filter/reject may be given (see <a href="#fields">fields</a>), and multiple <code>filter_*</code>/<code>reject_*</code> parameters may be used in conjunction with one another.</p>
+<p>The filters are grouped by field name: documents will only be returned if they match all of these filter groups, and they will be considered to match a filter group if any of the individual filters in that group match (ie, only one of the values specified for a field needs to match, but all fields with any filters specified must match at least one value). The special value <code>_MISSING</code> may be specified as a filter value - this will match documents where the field is not present at all.</p>
+<p><code>filter_*</code>/<code>reject_*</code> works with date fields too, although unlike string fields, it is not permitted to provide multiple values for a single date field filter. The date field filter value should be either a <code>from:&lt;date&gt;</code>, <code>to:&lt;date&gt;</code> or both (comma separated), where <code>&lt;date&gt;</code> is an ISO formatted date (with no timezone: UTC is assumed). Date ranges are inclusive: for example, <code>from:2014-04-01 00:00,to:2014-04-02 00:00</code> is a range of 24 hours from midnight at the start of April the 1st 2014. If the time is omitted, the <code>from:</code> parameter defaults to <code>00:00</code> and the <code>to:</code> parameter defaults to <code>23:59</code>, i.e. <code>from:2014-04-01,to:2014-04-02</code> covers a full 48 hour period.</p>
+<h3 id="filter_any_-filter_all_-reject_any_-reject_all_">filter_any_* / filter_all_* / reject_any_* / reject_all_*</h3>
+<p>For filtering multivalued fields such as <code>part_of_taxonomy_tree</code>, you can use an additional operation:</p>
+<ul>
+<li>
+<code>filter_any_&lt;field name&gt;</code> returns documents that contain at least one of the specified values for the field name.</li>
+<li>
+<code>filter_all_&lt;field name&gt;</code> returns documents that contain all of the specified values for the field name.</li>
+<li>
+<code>reject_any_&lt;field name&gt;</code> same as filter_any, but rejects documents instead.</li>
+<li>
+<code>reject_all_&lt;field name&gt;</code> same as filter_all, but rejects documents instead.</li>
+</ul>
+<p>This can be useful to find all documents that are tagged to two taxons (use <code>filter_all_</code>), or documents that have been tagged to one of two taxons (use <code>filter_any_</code>).</p>
+<h3 id="aggregate_">aggregate_*</h3>
+<p>Aggregations look at all the values of a field and count up the number of times each one appears in documents matching the search. For example, the <code>aggregate_organisations</code> parameter will group search results by organisation, if it is set to a valid value.</p>
+<p>The value of an <code>aggregate_*</code> parameter is a comma separated list of options:</p>
+<ul>
+<li>
+<p>'Limit' (required): an integer which controls the requested number of distinct field values to be returned for the field, e.g. <code>aggregate_organisations=10</code>. Regardless of the number set here, a value will be returned for any filter which is in place on the field. This may cause the requested number of values to be exceeded.</p>
+</li>
+<li>
+<p><code>scope</code> (optional): either <code>exclude_field_filter</code> by default, or <code>all_filters</code>. If set to <code>all_filters</code>, the aggregate counts are made after applying all the filters. If set to <code>exclude_field_filter</code>, the aggregate counts are made after applying all filters <em>except</em> for those applied to the field that the aggregates are being counted for. This is a convenient option for calculating values to show in common interfaces which use aggregate for narrowing down search results.</p>
+</li>
+<li>
+<p><code>order</code> (optional): colon-separated list of ordering types. Multiple orderings can be specified, in priority order, and each can be preceded by a "<code>-</code>" to sort in descending order. The default ordering is <code>filtered:-count:slug</code>. The available ordering types are:</p>
+<ul>
+<li>
+<code>filtered</code>: whether the value is used in an active filter.  This can be used to sort such that the values which are being filtered on come first.</li>
+<li>
+<code>count</code>: order by the number of documents in the search matching the facet value.</li>
+<li>
+<code>value</code>: sort by value if the field values are string, sort by the <code>title</code> field in the value object if the value is an object. Sorting is case insensitive in either case.</li>
+<li>
+<code>value.slug</code>: the slug in the facet value object</li>
+<li>
+<code>value.link</code>: the link in the facet value object</li>
+<li>
+<code>value.title</code>: the title in the facet value object (case insensitive)</li>
+</ul>
+</li>
+<li>
+<p><code>examples</code> (optional): integer number of example values to return. This causes facet values to contain an "examples" hash as an additional field, which contains details of example documents which match the query. The examples are sorted by decreasing popularity. An example facet value in a response with this option set as "<code>examples:1</code>" might look like:</p>
+<pre><code>  "value" =&gt; {
+      "slug" =&gt; "an-example-facet-slug",
+        "example_info" =&gt; {
+          "total" =&gt; 3,  # The total number of matching examples
+            "examples" =&gt; [
+            {"title" =&gt; "Title of the first example", "link" =&gt; "/foo"},
+          ],
         }
-    ],
-    "start": 0,
-    "suggested_queries": [],
-    "total": 45118
-}
+    }
 </code></pre>
-<h2 id="pagination">Pagination</h2>
-<p>Pagination is controlled using the <code>start</code>, <code>count</code>, and <code>order</code> parameters.</p>
+</li>
+<li>
+<p><code>example_scope</code> (required if <code>examples</code> is provided): either <code>global</code> or <code>query</code>.</p>
 <ul>
 <li>
-<p><code>start</code>: (single integer) Position in search result list to start returning
-results (0-based)  If the <code>start</code> offset is greater than the number of
-matching results, no results will be returned (but also no error will be
-returned).</p>
+<code>global</code> causes the returned examples to be taken from all documents in which the facet field has the given slug.</li>
+<li>
+<code>query</code> causes the returned examples to be taken only from those documents which match the query (and all filters).</li>
+</ul>
 </li>
 <li>
-<p><code>count</code>: (single integer) Maximum number of search results to return.  If
-insufficient documents match, as many as possible are returned (subject to
-the supplied <code>start</code> offset).  This may be set to 0 to return no results
-(which may be useful if only, say, facet values are wanted).  Setting this
-to 0 will reduce processing time.</p>
-</li>
-<li>
-<p><code>order</code>: (single string) The sort order.  A field name, with an optional
-preceding "<code>-</code>" to sort in descending order.  If not specified, sort order
-is relevance.  Only some fields can be sorted on - an HTTP 422 error will be
-returned if the requested field is not a valid sort field.</p>
+<p><code>example_fields</code> (optional, and only used if <code>examples</code> is provided): colon-separated list of fields.
+If the examples option is supplied, this lists the fields which are returned for each example. By default, only a small number of fields are returned for each.</p>
 </li>
 </ul>
-<h2 id="error-reporting">Error reporting</h2>
-<p>The search API supports many query string parameters.  It validates
-parameters strictly - any unknown parameters, or parameters with invalid
-options, will cause an HTTP 422 error.  This means that typos do not make the
-API silently return the wrong results, and new features can be added to the API
-without changing what existing clients see.</p>
-<h2 id="returning-specific-document-fields">Returning specific document fields</h2>
-<p>See the <a href="https://github.com/alphagov/search-api/blob/main/config/schema/field_definitions.json">field reference</a> for a list of all fields returned by the search API.</p>
-<p>Only a few fields are returned by default. You can override the fields returned using the <code>fields</code> parameter. For example:</p>
-<pre><code>https://www.gov.uk/api/search.json?q=passport&amp;fields=mainstream_browse_pages&amp;fields=title
-</code></pre>
-<p>Note that query parameters which are repeated may be specified in standard HTTP
-style (ie, <code>name=value&amp;name=value</code>, where the same name may be used multiple
-times), or in Ruby/PHP array style (ie, <code>name[]=value&amp;name[]=value</code>).</p>
-<h2 id="using-faceted-search-parameters">Using faceted search parameters</h2>
-<p>You can use field prefixes such as <code>filter_&lt;foo&gt;</code>, <code>reject_&lt;foo&gt;</code> and <code>aggregate_&lt;foo&gt;</code> to further filter search results, for example:</p>
-<pre><code>https://www.gov.uk/api/search.json?filter_format=statistics_announcement&amp;fields=title,link,format,rendering_app
-</code></pre>
-<p>You can read more in the <a href="https://docs.publishing.service.gov.uk/repos/search-api/public-api/faceted-search">faceted search guide</a>.</p>
-<h2 id="other-parameters">Other parameters</h2>
-<ul>
-<li>
-<p><code>ab_tests</code>: a/b test with selected variant type. This allows test to be configured
-from upstream apps.</p>
-<p>Each a/b test name should be followed by a ':' and then the variant type to
-be used. If multiple a/b test setting are being passed in they should be
-comma separated.</p>
-<p>No validation is done to ensure the a/b test name provided is current implemented.</p>
-</li>
-<li>
-<p><code>c</code>: does nothing. By setting it to unique string, you can
-use it to bypass caching when testing.</p>
-</li>
-</ul>
+<p>Example of aggregate query with multiple options: <a href="https://www.gov.uk/api/search.json?count=0&amp;aggregate_organisations=1,scope:all_filters,order:filtered:-count">https://www.gov.uk/api/search.json?count=0&amp;aggregate_organisations=1,scope:all_filters,order:filtered:-count</a></p>
+<h3 id="ab_tests">ab_tests</h3>
+<p>The value of <code>ab_tests</code> should be whatever variant type you want to test (and can be configured from upstream apps).</p>
+<p>Each a/b test name should be followed by a ':' and then the variant type to be used. If multiple a/b test setting are being passed in they should be comma separated.</p>
+<p>No validation is done to ensure the a/b test name provided is currently implemented.</p>
+<h3 id="c">c</h3>
+<p>The <code>c</code> parameter is used for cachebusting. Set the value to a unique string to bypass caching. It doesn't affect the search itself.</p>
 
 
             
