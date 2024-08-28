@@ -217,59 +217,15 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/20988a7945d09396cb8774ce5ba00af33975b4be">30 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/09730bd3522071e6fe745d01d25a56fff486ed15">27 Aug 2024</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Local Development</h1>
 
   
-<p>It is possible to test changes to specialist finders end-to-end using the govuk docker stack. This is useful to avoid having to reindex all of the content on integration to test changes. Here's how to do it:</p>
-<ol>
-<li>Start the specialist publisher and finder frontend services. They will spin up all necessary dependencies.</li>
-</ol>
-<pre lang="bash"><code>govuk-docker up specialist-publisher-app -d
-govuk-docker up finder-frontend -d
-</code></pre>
-<ol start="2">
-<li>Create the search indices</li>
-</ol>
-<pre lang="bash"><code>govuk-docker exec search-api-app env SEARCH_INDEX=all bundle exec rake search:create_all_indices
-</code></pre>
-<ol start="3">
-<li>Create the RabbitMQ exchange for Publishing API to send messages to</li>
-</ol>
-<pre lang="bash"><code>govuk-docker exec publishing-api-app bundle exec rake setup_exchange
-</code></pre>
-<ol start="4">
-<li>Create the Search API message queues</li>
-</ol>
-<pre lang="bash"><code>govuk-docker exec search-api-app bundle exec rake message_queue:create_queues
-</code></pre>
-<ol start="5">
-<li>Publish the routes for the Search API endpoints</li>
-</ol>
-<pre lang="bash"><code>govuk-docker exec search-api-app bundle exec rake publishing_api:publish_special_routes
-</code></pre>
-<ol start="6">
-<li>Publish your finder, for example</li>
-</ol>
-<pre lang="bash"><code>govuk-docker exec specialist-publisher-app bundle exec rails publishing_api:publish_finder\[ai_assurance_portfolio_techniques\] 
-</code></pre>
-<ol start="7">
-<li>Run the Search API queue consumer. You need to keep this process running to index published documents.</li>
-</ol>
-<pre lang="bash"><code>govuk-docker exec search-api-worker bundle exec rake message_queue:insert_data_into_govuk
-</code></pre>
-<p>When you publish a specialist document, it should be updated in the search results.</p>
-<p>Note that elasticsearch data is not persisted when you stop the docker container at present.</p>
+<h2 id="testing-finders-end-to-end-locally">Testing finders end-to-end locally</h2>
+<p>See the <a href="https://docs.publishing.service.gov.uk/repos/govuk-docker/how-tos/finder-setup.html">GOV.UK Docker documentation</a>.</p>
 <h2 id="search-api-configuration-changes">Search API configuration changes</h2>
 <p>When you make changes to the Search API configuration, you will need to migrate to the new schema.</p>
 <pre lang="bash"><code>govuk-docker exec search-api-app env SEARCH_INDEX=govuk bundle exec rake search:migrate_schema
