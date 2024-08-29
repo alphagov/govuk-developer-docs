@@ -11,23 +11,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Redirect an HTML attachment's URL in Whitehall - GOV.UK Developer Documentation</title>
+    <title>Finder schema guidance - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/howto-redirect-html-attachment-urls-from-whitehall.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/finder_schema_breakdown.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Redirect an HTML attachment's URL in Whitehall - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/howto-redirect-html-attachment-urls-from-whitehall.html" />
+      <meta name="twitter:title" content="Finder schema guidance - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/finder_schema_breakdown.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Redirect an HTML attachment's URL in Whitehall" />
+      <meta property="og:title" content="Finder schema guidance" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/howto-redirect-html-attachment-urls-from-whitehall.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/finder_schema_breakdown.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -140,16 +140,7 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Redirect an HTML attachment's URL in Whitehall</span></a>
-    <ul>
-      <li>
-        <ul>
-          <li>
-            <a href="#redirect-an-editions-htmlattachments"><span>Redirect an Edition’s HtmlAttachments</span></a>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <a href="#header"><span>Finder schema guidance</span></a>
   </li>
 </ul>
 
@@ -197,53 +188,145 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2f7934c17ec88c45a6ed9d33948dd9ab87bc9bd6">22 Aug 2024</a>
 </div>
 
- <h1 id='header'>Redirect an HTML attachment's URL in Whitehall</h1> <p>HtmlAttachments belong to an Edition of a Document. When an Edition is unpublished or withdrawn,
-there is an option to add a redirect to the URL. This redirect should also be applied to the Edition&rsquo;s
-HtmlAttachments, and the new URL sent to the PublishingAPI.</p>
-<p>This process does not always work successfully, and HtmlAttachments for unpublished Editions remain
-accessible via their original URL.</p>
-<h3 id='redirect-an-editions-htmlattachments'>Redirect an Edition&rsquo;s HtmlAttachments</h3><h4 id='whitehall'>Whitehall</h4><p>A Rake Task exists in Whitehall to quickly redirect all HtmlAttachments for an unpublished Edition.
-The task takes the Edition&rsquo;s Document&rsquo;s content id, and the desired redirection URL.</p>
-<p>There are two interfaces for dry and real runs, to ensure the correct HtmlAttachments are being targeted before redirecting.</p>
-<p><strong>Note</strong></p>
-
-<blockquote>
-<p>The Rake task will search for most recent Edition belonging to the Document.
-The task will throw an <code>EditionNotUnpublished</code> error if the Edition is not <code>unpublished</code> or <code>withdrawn</code>.
-The task will throw a <code>HTMLAttachmentsNotFound</code> error if the Edition has no HtmlAttachments.</p>
-</blockquote>
-<h5 id='dry-run'>Dry run</h5><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake <span class="s1">'publishing_api:redirect_html_attachments:by_content_id_dry_run[document_content_id,redirection_url]'</span>
-</code></pre></div>
-<blockquote>
-<p>You need to find the <code>content_id</code> of the Document the attachment belongs to via Rails console if the Document has already been unpublished and redirected.
-Remember to use the relative path for an internal URL. Example:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>publishing_api:redirect_html_attachments:by_content_id_dry_run[f8781a75-9fb7-409a-a37d-3a5877ad28fb,/government/collections/trading-with-the-eu-if-the-uk-leaves-without-a-deal]
-</code></pre></div>
-<blockquote>
-<p>Note: Please make sure the REDIRECTION_URL starts with a <code>/</code>, otherwise the redirection will not work.</p>
-</blockquote>
-<p>This attempts to locate the HtmlAttachments for the latest unpublished Edition of the Document, and if found, report to the user the HtmlAttachment&rsquo;s slugs and where they would have been redirected to.</p>
-<h5 id='real-run'>Real run</h5><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake <span class="s1">'publishing_api:redirect_html_attachments:by_content_id[document_content_id,redirection_url]'</span>
-</code></pre></div><p>This will actually request that the PublishingApi redirects the selected HtmlAttachments.</p>
-<p><strong>Note</strong></p>
-
-<blockquote>
-<p>Republishing the Edition will cause all redirects to be removed, and the HtmlAttachments will again be accessible via their
-original URL&rsquo;s, as linked to in the Edition.</p>
-</blockquote>
-
+ <h1 id='header'>Finder schema guidance</h1> <p>The current schema for finders is defined within the <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/finder.jsonnet">Publishing API repository</a>. This document provides a comprehensive line-by-line analysis of the schema and details its functionality.</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Block</th>
+<th>Code</th>
+<th>What does it do?</th>
+</tr><tr>
+<td>Import Statement</td>
+<td>(import &ldquo;shared/default_format.jsonnet&rdquo;)</td>
+<td>Each content schema starts by importing default configuration settings. We introduced Jsonnet precisely because of its support for imports, which helped to significantly reduce duplication across various schema definitions. For a detailed explanation of the configuration options and their functions, refer to the <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/_example.jsonnet">example</a> file.</td>
+</tr><tr>
+<td>Document Type Definition</td>
+<td>{ document_type: [&ldquo;finder&rdquo;, &ldquo;search&rdquo;],</td>
+<td>The document types array allows us to specify which document types can be used with our schema.</td>
+</tr><tr>
+<td>Definitions</td>
+<td>definitions: {</td>
+<td>The &ldquo;definitions&rdquo; block is used to define the rules behind individual fields in the schema.</td>
+</tr><tr>
+<td>Details</td>
+<td>details: {</td>
+<td>Placing &ldquo;details&rdquo; under &ldquo;definitions&rdquo; allows it to be referenced throughout the schema, promoting reusability and consistency. &ldquo;Details&rdquo; can reference other parts of &ldquo;definitions&rdquo; within itself, enabling a modular approach that simplifies maintenance. Updating any referenced components in &ldquo;definitions&rdquo; will automatically apply those changes wherever they are used, including in &ldquo;details&rdquo;.</td>
+</tr><tr>
+<td></td>
+<td>type: &ldquo;object&rdquo;,</td>
+<td>Setting the type property to &ldquo;object&rdquo; indicates that details is expected to be a structured object with named properties and specific values. This establishes the basis for creating a complex, nested data structure.</td>
+</tr><tr>
+<td></td>
+<td>additionalProperties: false,</td>
+<td>Setting additionalProperties to false limits the object to just the properties defined in its schema. This helps keep the details object clean by preventing any extra, undefined properties that could cause issues or errors in how the application handles or shows detailed information.</td>
+</tr><tr>
+<td></td>
+<td>required: [&ldquo;document_noun&rdquo;,&ldquo;facets&rdquo;,]</td>
+<td>The required property lists the names of properties that must be included in the details object for it to be valid.</td>
+</tr><tr>
+<td>Properties</td>
+<td>properties: {</td>
+<td>The properties object within details allows us to define specific validation rules for each property. This helps in ensuring that the data conforms to expected formats and constraints.</td>
+</tr><tr>
+<td></td>
+<td>beta: {&ldquo;$ref&rdquo;: &ldquo;#/definitions/finder_beta&rdquo;,}</td>
+<td>The finder_beta property can be a boolean value (true or false) indicating whether the finder is in beta, with true meaning the finder is in beta, false meaning it is not, and null indicating that the beta status is undefined, not applicable, or not set.</td>
+</tr><tr>
+<td></td>
+<td>beta_message: {anyOf: [ {type: &ldquo;string&rdquo;,} ,{type: &ldquo;null&rdquo;,},],}</td>
+<td>The beta_message is an optional string that can contain HTML and be set to null; if the phase is beta, it will be displayed on the beta banner, as detailed <a href="https://design-system.service.gov.uk/components/phase-banner/">here</a>.</td>
+</tr><tr>
+<td></td>
+<td>no_index: {type: &ldquo;boolean&rdquo;,}</td>
+<td>The rationale for this property is that some finders are intended to support other content rather than being useful on their own, so instead of hard coding this configuration in finder-frontend, it would be more effective to configure it individually for each finder.</td>
+</tr><tr>
+<td></td>
+<td>generic_description: {type: &ldquo;boolean&rdquo;,}</td>
+<td>Adds an option for finders to show a generic filter description like &ldquo;X publications matched your criteria&rdquo; instead of generating a sentence based on the selected filters.</td>
+</tr><tr>
+<td></td>
+<td>document_noun: {&ldquo;$ref&rdquo;: &ldquo;#/definitions/finder_document_noun&rdquo;,},</td>
+<td>A required string representing the lowercase singular form of the format used by the Finder. For instance, /cma-cases has a document_noun of case, while /aaib-report has a document_noun of report. This value is used to construct sentences describing the user’s current search.</td>
+</tr><tr>
+<td></td>
+<td>default_documents_per_page: {&ldquo;$ref&rdquo;: &ldquo;#/definitions/finder_default_documents_per_page&rdquo;,},</td>
+<td>An optional integer used to build pagination when querying the Search API.</td>
+</tr><tr>
+<td></td>
+<td>logo_path: {type: &ldquo;string&rdquo;,},</td>
+<td>This adds the possibility to add a logo on a finder</td>
+</tr><tr>
+<td></td>
+<td>default_order: {&ldquo;$ref&rdquo;: &ldquo;#/definitions/finder_default_order&rdquo;,},</td>
+<td>An optional string where a minus (-) prefix can be used to sort in descending order here is an <a href="https://github.com/alphagov/whitehall/blob/main/lib/finders/case_studies.json#L13">example</a>; Search API must permit sorting on this field as noted <a href="https://github.com/alphagov/search-api/blob/main/lib/parameter_parser/base_parameter_parser.rb#L20">here</a>.</td>
+</tr><tr>
+<td></td>
+<td>sort: {&ldquo;$ref&rdquo;: &ldquo;#/definitions/finder_sort&rdquo;,},</td>
+<td>Initially added for sorting options in the &lsquo;latest documents list,&rsquo; this feature is now used on the GOV.UK search page and determines the available choices in the &lsquo;sort by&rsquo; dropdown menu, including Most Viewed, Relevance, Updated (Newest), and Updated (Oldest).</td>
+</tr><tr>
+<td></td>
+<td>filter: {$ref&quot;: &ldquo;#/definitions/finder_filter&rdquo;,},</td>
+<td>The finder_filter object is a structured configuration used to narrow searches within a system. It includes properties such as arrays of strings for categories (e.g., taxonomy, document types, organizations), single strings for document_type and format, and a boolean for has_official_document. To ensure consistency, the object disallows any additional properties.</td>
+</tr><tr>
+<td></td>
+<td>open_filter_on_load: {type: &ldquo;boolean&rdquo;,},</td>
+<td>Add the open_filter_on_load property to automatically open filters on mobile when the page loads. This configuration is specific to the Find a Licence (specialist finder) only.</td>
+</tr><tr>
+<td></td>
+<td>reject: {&ldquo;$ref&rdquo;: &ldquo;#/definitions/finder_reject_filter&rdquo;,},</td>
+<td>The finder_reject_filter object defines a filter that excludes documents based on specified criteria. It includes arrays of strings for properties like content purpose, document types, email document supertype, policies, and links. The object does not allow additional properties to ensure strict adherence to the defined criteria.</td>
+</tr><tr>
+<td></td>
+<td>facets: {&ldquo;$ref&rdquo;: &ldquo;#/definitions/finder_facets&rdquo;,},</td>
+<td>The finder_facets array defines the facets available for users to refine their search. Each facet is an object that includes several properties: key, which specifies the field name used for the facet; filterable, indicating whether the facet should be shown to users; display_as_result_metadata, which determines if the facet appears in search result metadata; name, the label for the facet; and type, which defines the UI component and query method, such as checkbox, date, or autocomplete. Additionally, the allowed_values property lists possible values for non-dynamic facets, while combine_mode specifies how the facet combines with others, using options like &ldquo;and&rdquo; or &ldquo;or&rdquo;. Other options control aspects of the facet’s appearance and behavior, such as whether it opens on page load or hides facet tags.</td>
+</tr><tr>
+<td></td>
+<td>format_name: {type: &ldquo;string&rdquo;,},</td>
+<td>An optional string, typically a singularized version of the Finder&rsquo;s title, such as &ldquo;Competition and Markets Authority case&rdquo; for /cma-cases. While it is generally aligned with the Finder’s title, there are exceptions like &ldquo;Medical safety alert&rdquo; for Alerts and recalls for drugs and medical devices.</td>
+</tr><tr>
+<td></td>
+<td>label_text: {type: &ldquo;string&rdquo;,},</td>
+<td>Adds a label_text property to rename the label from &ldquo;Search&rdquo; to &ldquo;Keywords&rdquo; specifically for the licence finder (specialist finder), helping users understand they should enter keywords rather than using it as a general search box.</td>
+</tr><tr>
+<td></td>
+<td>show_summaries: {&ldquo;$ref&rdquo;: &ldquo;#/definitions/finder_show_summaries&rdquo;,},</td>
+<td>A boolean that determines whether summaries for documents should be displayed in the results list, truncating each summary at the end of the first sentence.</td>
+</tr><tr>
+<td></td>
+<td>signup_link: {&ldquo;$ref&rdquo;: &ldquo;#/definitions/finder_signup_link&rdquo;,},</td>
+<td>This property enables finder-frontend to override the default email signup link if necessary. <a href="https://www.gov.uk/drug-safety-update">Here</a> is an example of where it is used. You can view its implementation in the code <a href="https://github.com/alphagov/specialist-publisher/blob/main/lib/documents/schemas/drug_safety_updates.json#L11">here</a>.</td>
+</tr><tr>
+<td></td>
+<td>canonical_link: {type: &ldquo;boolean&rdquo;,},</td>
+<td>An optional boolean that specifies whether a finder frontend page should be indexed by search engines with a canonical link.</td>
+</tr><tr>
+<td></td>
+<td>summary: {&ldquo;$ref&rdquo;: &ldquo;#/definitions/finder_summary&rdquo;,},</td>
+<td>An optional string that is displayed in the header following the metadata. It can include Govspeak and is rendered using the Govspeak component.</td>
+</tr><tr>
+<td>Links</td>
+<td>(import &ldquo;shared/base_links.jsonnet&rdquo;)</td>
+<td>Here we are importing default configuration settings for links. For a detailed explanation of the configuration options see <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/base_links.jsonnet">here</a>
+</td>
+</tr><tr>
+<td></td>
+<td>related: &ldquo;&rdquo;,</td>
+<td>The related field is set as an empty string, serving as a placeholder for a URL to related content or resources that have not yet been specified. As far as I know, related links can only be added or removed manually through Content Tagger, since the &ldquo;automatic related links&rdquo; pipeline has been broken since late 2022 and the associated machine learning service is now <a href="https://github.com/alphagov/govuk-related-links-recommender">archived</a>.</td>
+</tr><tr>
+<td></td>
+<td>email_alert_signup: &ldquo;&rdquo;,</td>
+<td>By default, the email alert signup link will direct to base_path/email-signup, where base_path is specified in the Finder object. For instance, for /drug-device-alerts, the default link would be /drug-device-alerts/email-signup.</td>
+</tr><tr>
+<td></td>
+<td>available_translations: &ldquo;&rdquo;,</td>
+<td>Available_translations is set to an empty string as a placeholder for a link to access content translations, if any exist. Documents can be available in multiple translations, distinguished by the same content_id but different locale values. Links for an edition will automatically include translations of other editions with the same content_id, including those in the current locale.</td>
+</tr>
+        </table>
+      </div>
   <div class='related-content'>
 
     <h3>More in the Publishing section</h3>
@@ -253,7 +336,6 @@ original URL&rsquo;s, as linked to in the Edition.</p>
           <h4>Learn</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/finder_schema_breakdown.html">Finder schema guidance</a></li>
             <li><a href="/manual/content-preview.html">How the draft stack works</a></li>
             <li><a href="/manual/taxonomy.html">How the topic taxonomy works</a></li>
             <li><a href="/manual/world-taxonomy.html">How the world taxonomy works</a></li>
@@ -281,6 +363,7 @@ original URL&rsquo;s, as linked to in the Edition.</p>
             <li><a href="/manual/documents-arent-live-after-publishing.html">If documents aren't live after being published</a></li>
             <li><a href="/manual/make-a-new-document-type-available-to-search.html">Make a new document type available to search</a></li>
             <li><a href="/manual/howto-modify-change-note.html">Modify a change note in Publishing API, Content Publisher or Whitehall</a></li>
+            <li><a href="/manual/howto-redirect-html-attachment-urls-from-whitehall.html">Redirect an HTML attachment's URL in Whitehall</a></li>
             <li><a href="/manual/reindex-elasticsearch.html">Reindex an Elasticsearch index</a></li>
             <li><a href="/manual/howto-remove-change-note.html">Remove a change note</a></li>
             <li><a href="/manual/rename-a-country.html">Rename a country</a></li>
@@ -299,8 +382,8 @@ original URL&rsquo;s, as linked to in the Edition.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-redirect-html-attachment-urls-from-whitehall.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Redirect+an+HTML+attachment%27s+URL+in+Whitehall%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-redirect-html-attachment-urls-from-whitehall.html%29&amp;labels=bug&amp;title=Re%3A+%27Redirect+an+HTML+attachment%27s+URL+in+Whitehall%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/finder_schema_breakdown.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Finder+schema+guidance%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Ffinder_schema_breakdown.html%29&amp;labels=bug&amp;title=Re%3A+%27Finder+schema+guidance%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
