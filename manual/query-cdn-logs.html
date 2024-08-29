@@ -299,15 +299,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/258f92490e8825824ba10286ce7b143e1563b58b">9 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1693bc63c72ace46aae42faade87c043714f4fc5">29 Aug 2024</a>
 </div>
 
  <h1 id='header'>Query CDN logs</h1> <p>Fastly, GOV.UK&rsquo;s <a href="/manual/cdn.html">content distribution network</a>, logs
@@ -651,7 +644,7 @@ you&rsquo;ve had two pairs of eyes on both the Athena/AWS Glue config changes an
 eventual JSON you will manually put into the Fastly web UI:</p>
 
 <ol>
-<li>Edit the [<code>infra-fastly-logs</code> Terraform][infra-fastly-logs-terraform].</li>
+<li>Edit the <a href="https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-fastly-logs/main.tf"><code>infra-fastly-logs</code> Terraform</a>.</li>
 <li>Find the <code>aws_glue_catalog_table</code> resource for the Fastly logs you want to
 add a column to (<code>govuk_www</code>, <code>govuk_assets</code> or <code>bouncer</code>).</li>
 <li>Copy the VCL for the log from
