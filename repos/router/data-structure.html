@@ -202,15 +202,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/router/commit/9cfa5870e7261be246e47b3d227650f06645ebb9">10 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/router/commit/89393870113acbb29d710842222b1b31a8a78a95">30 Aug 2024</a>
 </div>
 
   <h1 class="page-title">router: Data structure</h1>
@@ -224,16 +217,12 @@
   "route_type"    : ["prefix","exact"],
   "incoming_path" : "/url-path/here",
   "handler"       : ["backend", "redirect", "gone"],
-  "disabled"      : false
 }
 </code></pre>
 <p>Incoming paths with special characters must be in their % encoded form in the
 database (eg spaces must be stored as <code>%20</code>).</p>
 <p>The behaviour of an enabled route is determined by <code>handler</code>. See below for
 extra fields corresponding to <code>handler</code> types.</p>
-<p>If a route is disabled, the router will return a 503 for all matching requests.
-This is typically used if a service needs to be taken offline for maintenance
-etc.</p>
 <h3 id="backend-handler">
 <code>backend</code> handler</h3>
 <p>The <code>backend</code> handler causes the Router to reverse proxy to a named
