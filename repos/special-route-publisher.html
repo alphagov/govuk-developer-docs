@@ -288,12 +288,7 @@
 
 <p>As special-route-publisher isn&rsquo;t deployed anywhere we can&rsquo;t use the usual instructions for <a href="https://docs.publishing.service.gov.uk/manual/running-rake-tasks.html#run-a-rake-task-on-eks">running a rake task on EKS</a></p>
 
-<p>First you need to set your aws user, and the enviroment you want to publish in. For example:</p>
-
-<pre><code>eval $(gds aws govuk-integration-poweruser -e --art 8h)
-export AWS_REGION=eu-west-1
-kubectl config use-context integration
-</code></pre>
+<p>First you need to set up the <a href="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html#prerequisites">prerequisites</a>, including the enviroment you want to publish in and namespace.</p>
 
 <p>Then you need to get the publishing-api bearer token from the kubernetes secret (you may need to <code>brew install yq</code>):</p>
 
@@ -302,17 +297,17 @@ kubectl config use-context integration
 
 <p>Then, run the rake task in a new kubernetes pod. As special-route-publisher isn&rsquo;t deployed anywhere, you need to specify the image name. Also you must make sure that <code>PLEK_USE_HTTP_FOR_SINGLE_LABEL_DOMAINS</code> and <code>PUBLISHING_API_BEARER_TOKEN</code> are set:</p>
 
-<pre><code>kubectl run -napps --image 172025368201.dkr.ecr.eu-west-1.amazonaws.com/github/alphagov/govuk/special-route-publisher ${USER/./-}-special-route-pub -- sh -c "GOVUK_APP_DOMAIN= PLEK_USE_HTTP_FOR_SINGLE_LABEL_DOMAINS=1 PUBLISHING_API_BEARER_TOKEN=$token rake publish_special_routes"
+<pre><code>k run --image ghcr.io/alphagov/govuk/special-route-publisher ${USER/./-}-special-route-pub -- sh -c "GOVUK_APP_DOMAIN= PLEK_USE_HTTP_FOR_SINGLE_LABEL_DOMAINS=1 PUBLISHING_API_BEARER_TOKEN=$token rake publish_special_routes"
 </code></pre>
 
 <p>Use the <code>[]</code> notation to pass parameters to a task, for example:</p>
 
-<pre><code>kubectl run -napps --image 172025368201.dkr.ecr.eu-west-1.amazonaws.com/github/alphagov/govuk/special-route-publisher ${USER/./-}-special-route-pub -- sh -c "GOVUK_APP_DOMAIN= PLEK_USE_HTTP_FOR_SINGLE_LABEL_DOMAINS=1 PUBLISHING_API_BEARER_TOKEN=$token rake publish_one_special_route[/government/history/past-chancellors]"
+<pre><code>k run --image ghcr.io/alphagov/govuk/special-route-publisher ${USER/./-}-special-route-pub -- sh -c "GOVUK_APP_DOMAIN= PLEK_USE_HTTP_FOR_SINGLE_LABEL_DOMAINS=1 PUBLISHING_API_BEARER_TOKEN=$token rake publish_one_special_route[/government/history/past-chancellors]"
 </code></pre>
 
 <p>Important: finally, delete your pod when it has finished running:</p>
 
-<pre><code>kubectl run -napps delete pod ${USER/./-}-special-route-pub
+<pre><code>k delete pod ${USER/./-}-special-route-pub
 </code></pre>
 
 <p>This is especially important if your pod is in a <code>CrashLoopBackoff</code> state (usually when something has gone run with publishing). Leaving it in existence in this state will lead to continuous re-running of the rake task you specified, which can lead to continuous republishing.</p>
@@ -328,13 +323,20 @@ the image is tagged as &lsquo;latest&rsquo; and will be the version picked when 
 
 <p>If you want to test publishing special routes from code that is not merged into the main branch, first deploy your branch using the normal github actions flow. Note as above that this does not actually deploy an application anywhere.</p>
 
-<p>Grab the release tag for the pushed image from the github actions logs. This should be listed at the end of the &ldquo;Push image&rdquo; section, and will look something like: <code>release-[some-sha]</code></p>
+<p>Grab the image name and release tag for the new image from the github actions logs. This should be listed in either of the <code>Matrix: Build and publish image</code> jobs, in the <code>Generate Image Metadata</code> section, <code>JSON output</code> subsection, and will look something like:</p>
 
-<p>Then follow the instructions in the &ldquo;Publishing routes on EKS&rdquo; section above, but when you spin up the new pod, append the release tag to the end of the image name, separated by a colon.</p>
+<pre><code>   "tags": [
+      "ghcr.io/alphagov/govuk/special-route-publisher:c53f0dbfb5af836c01f4769401b30dc262afa59e"
+    ],
+</code></pre>
 
-<p>E.g. to publish all the routes:</p>
+<p>&hellip;</p>
 
-<pre><code>kubectl run -napps --image 172025368201.dkr.ecr.eu-west-1.amazonaws.com/github/alphagov/govuk/special-route-publisher:release-[some-sha] ${USER/./-}-special-route-pub -- sh -c "GOVUK_APP_DOMAIN= PLEK_USE_HTTP_FOR_SINGLE_LABEL_DOMAINS=1 PUBLISHING_API_BEARER_TOKEN=$token rake publish_special_routes"
+<p>Then follow the instructions in the &ldquo;Publishing routes on EKS&rdquo; section above, but when you spin up the new pod, use the full image name from above, including the tag (the part after the colon).</p>
+
+<p>E.g. to publish all the routes with the example release tag above:</p>
+
+<pre><code>k run --image ghcr.io/alphagov/govuk/special-route-publisher:c53f0dbfb5af836c01f4769401b30dc262afa59e ${USER/./-}-special-route-pub -- sh -c "GOVUK_APP_DOMAIN= PLEK_USE_HTTP_FOR_SINGLE_LABEL_DOMAINS=1 PUBLISHING_API_BEARER_TOKEN=$token rake publish_special_routes"
 </code></pre>
 
 <h2 id="licence">Licence</h2>
