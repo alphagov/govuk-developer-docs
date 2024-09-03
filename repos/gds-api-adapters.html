@@ -332,6 +332,45 @@ agent and run:</p>
 
 <p><code>template1=# CREATE EXTENSION IF NOT EXISTS "uuid-ossp";</code></p>
 
+<h2 id="releasing">Releasing</h2>
+
+<ol>
+<li>
+<p>Read the CHANGELOG.md and decide on the new semantic version number</p>
+</li>
+<li>
+<p>Create a release branch, eg. <code>release-96.0.3</code></p>
+</li>
+<li>
+<p>Update the CHANGELOG.md</p>
+<ul>
+<li>Declare a new version number</li>
+<li>Move all unreleased changes beneath it</li>
+</ul>
+</li>
+<li>
+<p>Update <code>lib/gds_api/version.rb</code> to match, eg</p>
+<pre lang="ruby"><code>  module GdsApi
+    VERSION = "96.0.3".freeze
+  end
+</code></pre>
+</li>
+<li>
+<p>Copy the lines from the CHANGELOG.md into the git commit</p>
+</li>
+<li>
+<p>Propose and merge the pull request into <code>main</code></p>
+</li>
+</ol>
+
+<p>Nb:</p>
+
+<ul>
+<li>You do not need to set any git tags</li>
+<li>After merging, CI will release the new version of the gem and Dependabot will
+propose the new version of the gem to help distribute the changes to consumers</li>
+</ul>
+
 <h2 id="licence">Licence</h2>
 
 <p>Released under the MIT Licence, a copy of which can be found in the file
