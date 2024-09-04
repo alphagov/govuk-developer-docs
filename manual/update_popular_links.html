@@ -143,7 +143,12 @@
     <a href="#header"><span>Update popular links</span></a>
     <ul>
       <li>
-        <a href="#updating-the-popular-links-on-the-homepage"><span>Updating the popular links on the homepage</span></a>
+        <a href="#how-to-access-and-edit-popular-links"><span>How to access and edit popular links</span></a>
+        <ul>
+          <li>
+            <a href="#note"><span>Note</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -194,13 +199,14 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bb5ec5f91acd3a6e1590033a40ea07a1a271bcc3">17 Jun 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f5598aad07a8d290366409cb72480edbbedbfb83">2 Aug 2024</a>
 </div>
 
- <h1 id='header'>Update popular links</h1> <p>Popular links on GOV.UK are shown on the home page.</p>
+ <h1 id='header'>Update popular links</h1> <p>Popular links on GOV.UK are shown on the home page under &lsquo;Popular on GOV.UK&rsquo;.</p>
 <p><a href="images/popular-links-on-homepage.jpeg" rel="noopener noreferrer"><img src="/images/popular-links-on-homepage.jpeg" alt="Image of the popular links on the GOV.UK homepage" /></a></p>
-<h2 id='updating-the-popular-links-on-the-homepage'>Updating the popular links on the homepage</h2><p>Popular links can be found in <a href="https://github.com/alphagov/frontend/blob/80ec5cb2840086e7f073ceeba89d5c07d581a02d/config/locales/en.yml#L363-L373">config/locales/en.yml on frontend</a></p>
-<p><a href="https://github.com/alphagov/frontend/pull/3155">Example PR</a></p>
+<h2 id='how-to-access-and-edit-popular-links'>How to access and edit popular links</h2><p>Popular links can be accessed and edited via the &lsquo;Homepage&rsquo; link on Signon, for this we need the &lsquo;homepage_editor&rsquo; permission inside the Mainstream Publisher app.</p>
+<h3 id='note'>Note</h3><p>There is no separate app for homepage, all the code for homepage lives inside the Mainstream Publisher app and hence any user permission required for homepage is also managed via the Mainstream Publisher app.</p>
+<p>To read more about the design and implementation decisions for homepage you can read <a href="https://github.com/alphagov/publisher/blob/main/docs/homepage.md">the documentation</a>.</p>
 
   <div class='related-content'>
 
