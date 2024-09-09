@@ -248,26 +248,24 @@ The VCL templates in this repository depend on secrets set in <a href="https://g
 <li>Ensure you have terraform installed (tfenv is preferable)</li>
 <li>Log in to your Terraform Cloud account with <code>terraform login</code>
 </li>
-<li>Run <code>terraform init</code> to initialise the providers and modules</li>
+<li>
+<code>cd</code> to the service module in which you wish to make changes</li>
+<li>Run <code>terraform init</code> and pick an environment to run the plan in</li>
 <li>Run <code>terraform plan</code> to run plans with your local copy of the config</li>
 </ol>
 
-<h2 id="directory-structure">Directory Structure</h2>
+<h2 id="file-structure">File Structure</h2>
 
 <ul>
 <li>
-<code>modules/</code> - contains reusable modules</li>
+<code>shared/</code> - contains common files that are used by multiple services</li>
 <li>
-<code>modules/www</code> - configuration for <a href="http://www.gov.uk">www.gov.uk</a> service</li>
-<li>
-<code>modules/assets</code> - configuration for assets service</li>
-<li>
-<code>modules/shared</code> - contains files that are required by multiple services</li>
-<li>
-<code>ab_tests.yaml</code> - list of AB test variants</li>
+<code>www/ab_tests.yaml</code> - list of AB test variants</li>
 <li>
 <code>dictionaries.yaml</code> - non-secret Fastly dictionaries (e.g. AB test expiry times)</li>
 </ul>
+
+<p>Each other directory in the root of this repo is a Fastly service.</p>
 
 <h2 id="getting-terraform-cloud-access">Getting Terraform Cloud access</h2>
 
@@ -277,7 +275,7 @@ The VCL templates in this repository depend on secrets set in <a href="https://g
 
 <ul>
 <li>If you update secrets in the <a href="https://github.com/alphagov/govuk-fastly-secrets">govuk-fastly-secrets</a> repository, you may need to also run an apply on this repository after for your changes to take effect</li>
-<li>Currently, all environments use the same configuration. If you need to make changes to only one environment, consider either adding an if block to the VCL template or <a href="https://github.com/alphagov/govuk-fastly/blob/04767ad5c256c39d9ffe5361b8d57c52e193700c/modules/www/variables.tf#L13">temporarily using a different VCL template</a>.</li>
+<li>All environments for a given service share a common VCL template. If you need to make changes to the VCL, you may want to wrap your changes in an <code>if</code> statement, or specify <code>vcl_template_file</code> in <code>govuk-fastly-secrets</code> to temporarily use a different template file for a given environment.</li>
 </ul>
 <p></div></p>
 
