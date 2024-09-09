@@ -164,9 +164,6 @@
             <a href="#governmentorganization"><span>GovernmentOrganization</span></a>
           </li>
           <li>
-            <a href="#howto"><span>HowTo</span></a>
-          </li>
-          <li>
             <a href="#newsarticle"><span>NewsArticle</span></a>
           </li>
         </ul>
@@ -219,15 +216,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6631409a7116e2e522ecb54fe0a3687adfc9728d">13 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9239fb65e95ba3d48014bb29b5e5d3f88531e233">9 Sep 2024</a>
 </div>
 
  <h1 id='header'>What data we expose as schema.org structured data</h1> <p><a href="https://schema.org/">Schema.org</a> is a community driven vocabulary (founded by Google, Microsoft et al) that allows us to add structured data to content.</p>
@@ -270,11 +260,6 @@
 <p>We may consolidate these at some point!</p>
 <h3 id='governmentorganization'>GovernmentOrganization</h3><p>We use <a href="https://schema.org/GovernmentOrganization">the GovernmentOrganization schema</a> on <a href="https://www.gov.uk/government/organisations/government-digital-service">organisation pages</a>.</p>
 <p>GOV.UK is the source of info on UK government organisations (we have an API which is used to power the register).</p>
-<h3 id='howto'>HowTo</h3><p><a href="https://schema.org/HowTo">The HowTo schema</a> is used on step by step pages. We use this particularly because it can result in a rich result on mobile <a href="https://search.google.com/test/rich-results?utm_campaign=devsite&amp;utm_medium=jsonld&amp;utm_source=how-to&amp;id=5DXkD7BHHFDFj-QuPvlQvQ&amp;view=search-preview">displaying each step with a thumbnail image</a>.</p>
-<p>Pages using this schema appear in <a href="https://search.google.com/search-console/how-to?resource_id=https%3A%2F%2Fwww.gov.uk%2F">the How-to &ldquo;enhancements&rdquo; section within the Google search console</a> which allows us to track whether errors have cropped up in the schema on specific pages.  This is useful because it means we don&rsquo;t have to manually check all the pages when we tweak things.</p>
-<p><a href="https://developers.google.com/search/docs/data-types/how-to">Google&rsquo;s requirements for pages that implement the HowTo schema</a>.</p>
-<p>You should always use the <a href="https://search.google.com/test/rich-results">rich results testing tool</a> to check changes to this schema.</p>
-<p><a href="https://github.com/alphagov/collections/blob/master/app/models/schemas/how_to.rb">The Howto schema&rsquo;s implemented in Collections</a></p>
 <h3 id='newsarticle'>NewsArticle</h3><p><a href="https://schema.org/NewsArticle">The NewsArticle schema</a> is implemented (surprise surprise) on <a href="https://github.com/alphagov/government-frontend/blob/11dfc12b47ede18897be28350db31ca23743c46c/app/views/content_items/news_article.html.erb#L3">news articles</a>.</p>
 <p>This seems more effective in generating rich results than Article, probably because GOV.UK news articles tend to have relevant images associated with them.</p>
 
