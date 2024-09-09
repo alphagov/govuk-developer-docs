@@ -77,18 +77,6 @@ We use [the GovernmentOrganization schema](https://schema.org/GovernmentOrganiza
 
 GOV.UK is the source of info on UK government organisations (we have an API which is used to power the register).
 
-### HowTo
-
-[The HowTo schema](https://schema.org/HowTo) is used on step by step pages. We use this particularly because it can result in a rich result on mobile [displaying each step with a thumbnail image](https://search.google.com/test/rich-results?utm_campaign=devsite&utm_medium=jsonld&utm_source=how-to&id=5DXkD7BHHFDFj-QuPvlQvQ&view=search-preview).
-
-Pages using this schema appear in [the How-to "enhancements" section within the Google search console](https://search.google.com/search-console/how-to?resource_id=https%3A%2F%2Fwww.gov.uk%2F) which allows us to track whether errors have cropped up in the schema on specific pages.  This is useful because it means we don't have to manually check all the pages when we tweak things.
-
-[Google's requirements for pages that implement the HowTo schema](https://developers.google.com/search/docs/data-types/how-to).
-
-You should always use the [rich results testing tool](https://search.google.com/test/rich-results) to check changes to this schema.
-
-[The Howto schema's implemented in Collections](https://github.com/alphagov/collections/blob/master/app/models/schemas/how_to.rb)
-
 ### NewsArticle
 
 [The NewsArticle schema](https://schema.org/NewsArticle) is implemented (surprise surprise) on [news articles](https://github.com/alphagov/government-frontend/blob/11dfc12b47ede18897be28350db31ca23743c46c/app/views/content_items/news_article.html.erb#L3).
