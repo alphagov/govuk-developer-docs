@@ -29,7 +29,7 @@ See the [Pagerduty documentation on how to schedule an override](https://support
 ## PagerDuty drill
 
 Every week we test PagerDuty to make sure it can phone to alert us to
-any issues. This happens every Wednesday morning at 10am UTC (11am BST).
+any issues. This happens every Monday morning at 10am UTC (11am BST).
 
 Prometheus is currently firing a constant `Watchdog` alert, which fires all the time so that
 developers can see the that prometheus is integrated with alertmanager. In the
