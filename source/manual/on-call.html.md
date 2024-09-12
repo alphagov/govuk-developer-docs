@@ -55,16 +55,17 @@ for automated monitoring. You can update your [notification rules](https://suppo
 in your PagerDuty account to notify you however you want (phone call, SMS, email,
 push notification). There are 2 ways that this might contact you:
 
-#### Icinga alerts
+#### Alertmanager alerts
 
-Any Icinga checks that use `govuk_urgent_priority` will cause PagerDuty to be notified:
+Any checks that use `severity: page` will cause PagerDuty to be notified:
 
-- [Travel advice emails not going out](/manual/alerts/email-alerts-travel-medical.html)
+- [Travel Advice or Drug and Medical Device emails not going out](/manual/alerts/email-alerts-travel-medical.html)
 - [Overdue publications in Whitehall](/manual/alerts/whitehall-scheduled-publishing.html#overdue-publications-in-whitehall)
 - [Scheduled publications in Whitehall not queued](/manual/alerts/whitehall-scheduled-publishing.html#scheduled-publications-in-whitehall-not-queued)
-- [High nginx 5xx rate for www-origin on cache machines](/manual/alerts/high-nginx-5xx-rate.html)
+- [High error ratio for requests to Router](/manual/alerts/RouterErrorRatioTooHigh.html)
+- Low disk space on Redis instances
 
-   You can get the most up to date list of these by searching the Puppet repo for [govuk_urgent_priority](https://github.com/alphagov/govuk-puppet/search?q=govuk_urgent_priority).
+   You can get the most up to date list of these by [searching the govuk-helm-charts repo for `severity: page`](https://github.com/search?q=repo%3Aalphagov%2Fgovuk-helm-charts%20severity%3A%20page).
 
 #### Pingdom alerts
 
@@ -98,8 +99,7 @@ for more information.
 
 ### Updating the homepage
 
-You might be asked to [update the homepage promotion slots](/repos/frontend/update-homepage-promotion-slots.html)
-to highlight important information on GOV.UK.
+You might be asked to [update the homepage promotion slots](/repos/frontend/update-homepage-promotion-slots.html) to highlight important information on GOV.UK.
 
 ## Responding to being contacted
 
