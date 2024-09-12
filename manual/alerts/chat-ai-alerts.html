@@ -1,5 +1,9 @@
 
 
+
+
+
+
 <!doctype html>
 <html lang="en" class="govuk-template no-js">
   <head>
@@ -7,23 +11,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk-infrastructure: Upgrading the cluster - GOV.UK Developer Documentation</title>
+    <title>Chat AI Alerts - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/cluster-upgrade.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/alerts/chat-ai-alerts.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk-infrastructure: Upgrading the cluster - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/cluster-upgrade.html" />
+      <meta name="twitter:title" content="Chat AI Alerts - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/alerts/chat-ai-alerts.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk-infrastructure: Upgrading the cluster" />
+      <meta property="og:title" content="Chat AI Alerts" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/cluster-upgrade.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/alerts/chat-ai-alerts.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -77,13 +81,13 @@
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
             </li>
-            <li class="govuk-header__navigation-item">
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
               <a class="govuk-header__link" href="/manual.html">Manual</a>
             </li>
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
             </li>
-            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+            <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/apps.html">Apps</a>
             </li>
             <li class="govuk-header__navigation-item">
@@ -133,38 +137,26 @@
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-                  <ul>
-    <li>
-      <a href="/repos/govuk-infrastructure.html" rel="noopener" class="govuk-link">govuk-infrastructure</a>
-    </li>
-    <li>
-      <ul>
-          <li><a href="/repos/govuk-infrastructure/README.html" rel="noopener" class="govuk-link">Introduction to GOV.UK infrastructure</a></li>
-          <li><a href="/repos/govuk-infrastructure/cluster-upgrade.html" rel="noopener" class="govuk-link">Upgrading the cluster</a></li>
-          <li><a href="/repos/govuk-infrastructure/create-a-new-environment.html" rel="noopener" class="govuk-link">Create a new environment</a></li>
-          <li><a href="/repos/govuk-infrastructure/kubernetes-external-secrets.html" rel="noopener" class="govuk-link">Kubernetes external secrets</a></li>
-          <li><a href="/repos/govuk-infrastructure/prerequisite-secrets.html" rel="noopener" class="govuk-link">Prerequisite Secrets</a></li>
-          <li><a href="/repos/govuk-infrastructure/setting-up-content-delivery-network.html" rel="noopener" class="govuk-link">Content Delivery Network (CDN) - Fastly</a></li>
-          <li class="subdir__heading">architecture/decisions</li>
-          <ul class="subdir__menu">
-              <li><a href="/repos/govuk-infrastructure/architecture/decisions/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">1. Record architecture decisions</a></li>
-              <li><a href="/repos/govuk-infrastructure/architecture/decisions/0002-use-aws-eks-terraform-module.html" rel="noopener" class="govuk-link">2. Use aws-eks terraform module</a></li>
-              <li><a href="/repos/govuk-infrastructure/architecture/decisions/0003-split-terraform-state-into-separate-aws-cluster-and-kubernetes-resource-phases.html" rel="noopener" class="govuk-link">3. Split terraform state into separate AWS cluster and Kubernetes resource phases</a></li>
-              <li><a href="/repos/govuk-infrastructure/architecture/decisions/0004-use-aws-load-balancer-controller-for-edge-traffic-services.html" rel="noopener" class="govuk-link">4. Use AWS Load Balancer Controller for edge traffic services</a></li>
-              <li><a href="/repos/govuk-infrastructure/architecture/decisions/0005-use-eks-managed-node-groups.html" rel="noopener" class="govuk-link">5. Use EKS managed node groups</a></li>
-              <li><a href="/repos/govuk-infrastructure/architecture/decisions/0006-use-helm-for-application-package-management.html" rel="noopener" class="govuk-link">6. Use Helm for application package management</a></li>
-              <li><a href="/repos/govuk-infrastructure/architecture/decisions/0007-use-fluentbit-elasticsearch-and-kibana-for-application-logs.html" rel="noopener" class="govuk-link">7. Use fluentbit, elasticsearch and kibana for application logs</a></li>
-              <li><a href="/repos/govuk-infrastructure/architecture/decisions/0008-use-external-secrets-for-secrets-storage.html" rel="noopener" class="govuk-link">8. Use external-secrets for secrets storage</a></li>
-              <li><a href="/repos/govuk-infrastructure/architecture/decisions/0009-use-external-dns-for-dns-record-management.html" rel="noopener" class="govuk-link">9. Use external-dns for DNS record management</a></li>
-              <li><a href="/repos/govuk-infrastructure/architecture/decisions/0010-use-dex-idp-for-user-web-auth.html" rel="noopener" class="govuk-link">10. Use Dex IdP for user web auth</a></li>
-          </ul>
-          <li class="subdir__heading">logit/logit</li>
-          <ul class="subdir__menu">
-              <li><a href="/repos/govuk-infrastructure/logit/logit/README.html" rel="noopener" class="govuk-link">Intro</a></li>
-          </ul>
-      </ul>
-    </li>
-  </ul>
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Chat AI Alerts</span></a>
+    <ul>
+      <li>
+        <a href="#alerts-by-priority"><span>Alerts by Priority</span></a>
+        <ul>
+          <li>
+            <a href="#pagerduty-alerts"><span>Pagerduty Alerts</span></a>
+          </li>
+          <li>
+            <a href="#slack-alerts"><span>Slack Alerts</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 
               </nav>
             </div>
@@ -172,7 +164,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-              
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -190,16 +182,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "Apps",
-        "@id": "http://www.dev.gov.uk/apps.html"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "name": "govuk-infrastructure",
-        "@id": "http://www.dev.gov.uk/repos/govuk-infrastructure.html"
+        "name": "Alertmanager alerts",
+        "@id": "http://www.dev.gov.uk/manual.html#alertmanager-alerts"
       }
     }
   ]
@@ -209,49 +193,54 @@
 <div data-module="ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-infrastructure.html">govuk-infrastructure</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#alertmanager-alerts">Alertmanager alerts</a>
         </li>
   </ol>
 </div>
-  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/17f1dc1da1ee02352fa59da68e17b9f201bdefb0">12 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ef62b5f20edef44ab4ee38b9017e0be6e9adb33e">12 Sep 2024</a>
 </div>
 
-  <h1 class="page-title">govuk-infrastructure: Upgrading the cluster</h1>
+ <h1 id='header'>Chat AI Alerts</h1> <h2 id='alerts-by-priority'>Alerts by Priority</h2>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>For any queries or assistance regarding Chat Alerts, please post in the #dev-notifications-ai-govuk Slack channel</p>
+</blockquote>
+<h3 id='pagerduty-alerts'>Pagerduty Alerts</h3>
+<ul>
+<li>High5xxRate</li>
+<li>LongRequestDuration</li>
+</ul>
+<p>These alerts indicate that a part of the service is not responding as expected, and as a result the user experience is severely impacted. For example, we have seen <code>LongRequestDuration</code> fire when the RDS Postgres Database is offline. For these alerts, it is worth checking the Grafana Dashboard <code>Chat AI Dashboard</code> to see if any of the backend services are showing signs of an issue.</p>
+<h3 id='slack-alerts'>Slack Alerts</h3>
+<ul>
+<li>HighPodCPUFE</li>
+<li>HighPodCPUWorker</li>
+<li>HighPodMemoryFE</li>
+<li>HighPodMemoryWorker</li>
+</ul>
+<p>Any of these alerts usually indicate that the service is under high load. In this situation, it may be necessary to increase the number of relevent pods running by modifying the <code>replicaCount</code> for FE or <code>workerReplicaCount</code> for Worker pods in the <code>govuk-chat</code> section of the values Helm Chart file.</p>
 
-  
-<p>This is a generic guide on how to upgrade the cluster to a newer version.
-As this cannot anticipate future changes, this should not be followed blindly and should be modified in accordance with the specific instructions that could arise for a particular version. Please consult AWS documentation and changelogs before using this procedure.</p>
-<h2 id="general-outline-and-things-to-know">General outline and things to know</h2>
-<p>To use this guide you should know <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/docs/applying-terraform.md">'how to apply terraform.'</a>
-We upgrade the cluster in place, starting with integration, followed by staging, and finally production. Integration and staging allow us to make sure that the upgrade goes without problems.
-You can only upgrade from one version to the next, 1.17 to 1.18 for example but not 1.17 to 1.21.
-Once an upgrade is done you cannot downgrade a cluster anymore, you will have to rebuild it from scratch if you want to downgrade.</p>
-<h2 id="step-by-step-procedure">Step by step procedure</h2>
-<ol>
-<li>Make sure the control plane version is the same as the nodegroup, it should already be the case. If not, applying a new run in the  <code>cluster-infrastructure-&lt;ENV&gt;</code> workspace in Terraform Cloud will solve this.</li>
-<li>In the AWS EKS console choose 'Update cluster version' and select the version you wish to update to</li>
-<li>Upgrade the cluster add-ons. See the docs for each addon under <a href="https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html">EKS Addons</a> for Amazon's recommended addon versions to use for a given cluster version.</li>
-<li>Upgrade the node group by selecting the 'Compute' tab in the AWS EKS console and select 'Update now'. Run <code>kubectl get nodes</code> to verify that the upgrade has completed successfully.</li>
-<li>In the ArgoCD console delete the <code>release</code> app and verify that it is re-created</li>
-<li>Increment cluster_version to the version you are upgrading to in terraform/tfc-configuration/variables-<!-- raw HTML omitted -->.tf</li>
-<li>Plan and apply a new run in the <code>tfc-configuration</code> workspace in Terraform Cloud. This will update the variable sets to the new cluster_version</li>
-<li>Plan and apply a new run in the <code>cluster-infrastructure-&lt;ENV&gt;</code> workspace in Terraform Cloud.</li>
-</ol>
+  <div class='related-content'>
+
+    <h3>More in the Alertmanager alerts section</h3>
+
+    <div class='govuk-grid-row'>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/alerts/signon-api-user-token-expires-soon.html">Signon API user token expires soon</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
 
 
             
@@ -259,8 +248,8 @@ Once an upgrade is done you cannot downgrade a cluster anymore, you will have to
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-infrastructure/blob/main/docs/cluster-upgrade.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-infrastructure%2Fcluster-upgrade.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/alerts/chat-ai-alerts.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Chat+AI+Alerts%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Falerts%2Fchat-ai-alerts.html%29&amp;labels=bug&amp;title=Re%3A+%27Chat+AI+Alerts%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
