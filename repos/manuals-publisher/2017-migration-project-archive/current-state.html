@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>manuals-publisher: Rake tasks - GOV.UK Developer Documentation</title>
+    <title>manuals-publisher: Current state - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/rake-tasks.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/current-state.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="manuals-publisher: Rake tasks - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/rake-tasks.html" />
+      <meta name="twitter:title" content="manuals-publisher: Current state - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/current-state.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="manuals-publisher: Rake tasks" />
+      <meta property="og:title" content="manuals-publisher: Current state" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/rake-tasks.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/current-state.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -139,11 +139,17 @@
     </li>
     <li>
       <ul>
-          <li><a href="/repos/manuals-publisher/current-state.html" rel="noopener" class="govuk-link">Current state</a></li>
-          <li><a href="/repos/manuals-publisher/fully-migrated-spike.html" rel="noopener" class="govuk-link">Fully-migrated spike</a></li>
-          <li><a href="/repos/manuals-publisher/history.html" rel="noopener" class="govuk-link">History</a></li>
-          <li><a href="/repos/manuals-publisher/next-steps.html" rel="noopener" class="govuk-link">Next steps</a></li>
-          <li><a href="/repos/manuals-publisher/rake-tasks.html" rel="noopener" class="govuk-link">Rake tasks</a></li>
+          <li><a href="/repos/manuals-publisher/data-model.html" rel="noopener" class="govuk-link">Manuals Publisher Data Model</a></li>
+          <li><a href="/repos/manuals-publisher/edition-workflow.html" rel="noopener" class="govuk-link">Manuals Publisher Edition Workflow</a></li>
+          <li class="subdir__heading">2017-migration-project-archive</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/current-state.html" rel="noopener" class="govuk-link">Current state</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/fully-migrated-spike.html" rel="noopener" class="govuk-link">Fully-migrated spike</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/history.html" rel="noopener" class="govuk-link">History</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/next-steps.html" rel="noopener" class="govuk-link">Next steps</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/rake-tasks.html" rel="noopener" class="govuk-link">Rake tasks</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/start-here.html" rel="noopener" class="govuk-link">Manuals Publisher Migration Project Documentation - Start Here</a></li>
+          </ul>
       </ul>
     </li>
   </ul>
@@ -203,82 +209,40 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/d53cbb9411efad5297151cafc6d7adf899d9b6d5">11 Jul 2024</a>
+  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/05d195c707f13e1ec36c3ad35f43170f4e58f894">8 Aug 2024</a>
 </div>
 
-  <h1 class="page-title">manuals-publisher: Rake tasks</h1>
+  <h1 class="page-title">manuals-publisher: Current state</h1>
 
   
-<h2 id="withdraw-and-redirect-manuals">Withdraw and redirect manuals</h2>
-<p>A manual can be withdrawn and redirected to another page on <a href="http://www.gov.uk">www.gov.uk</a>.</p>
-<p>There are a few rake tasks, depending on the requirements.</p>
-<h3 id="withdraw-and-redirect-a-single-manual-which-can-include-its-sections">Withdraw and redirect a single manual which can include its sections</h3>
-<p>The last two boolean arguments flag whether to include sections and discard
-drafts, respectively.</p>
-<pre><code>withdraw_and_redirect_manual[guidance/manual,/redirect/blah,true,true]
-</code></pre>
-<h3 id="withdraw-and-redirect-a-single-section">Withdraw and redirect a single section</h3>
-<p>The last boolean argument flags whether to discard drafts.</p>
-<pre><code>withdraw_and_redirect_section[guidance/manual,guidance/manual/section,/redirect/blah,true]
-</code></pre>
-<h3 id="bulk-withdraw-and-redirect-multiple-manuals-and-sections">Bulk withdraw and redirect multiple manuals and sections</h3>
-<p>If multiple manuals need to be redirected, or there are multiple redirect
-destinations within manuals, e.g sections need to redirect to different places,
-then we can do this by uploading a CSV and running the below tasks. Example CSV
-PR: <a href="https://github.com/alphagov/manuals-publisher/pull/1895">https://github.com/alphagov/manuals-publisher/pull/1895</a>.</p>
-<p><strong>Dry-run (checks all manuals exist in Manuals Publisher)</strong></p>
-<pre><code>withdraw_and_redirect_manuals_to_multiple_paths:dry_run[lib/tasks/path_to_csv.csv]
-</code></pre>
-<p><strong>Run the task for real</strong></p>
-<p>The last boolean argument flags whether to discard drafts.</p>
-<pre><code>withdraw_and_redirect_manuals_to_multiple_paths:real[lib/tasks/path_to_csv.csv,true]
-</code></pre>
-<h2 id="deleting-or-removing-draft-manuals">Deleting or removing draft manuals</h2>
-<h3 id="deleting-a-draft-manual">Deleting a draft manual</h3>
-<p>If a manual has been created in draft but never published it can be deleted using a rake task to delete draft manuals:</p>
-<pre><code>rake delete_draft_manual[manual-slug,manual-id]
-</code></pre>
-<p>This would need to be run using Jenkins on one of the backend boxes.</p>
-<h2 id="managing-section-slugs">Managing section slugs</h2>
-<p>Section slugs are automatically generated from the section title
-when the section is initially created. Subsequent updates to the title
-do not amend the slug. This is particularly obvious where the title was
-given a numerical prefix eg. <code>1. The first chapter</code> which generates the
-slug <code>1-the-first-chapter</code>.
-It's not uncommon for editors to need to reorder the sections which
-often leaves sections with numeric prefixes out of sync with their titles.
-There are a couple of rake tasks which can help with this issue:</p>
-<h3 id="reporting-on-section-slugs">Reporting on section slugs</h3>
-<pre><code>rake sections:report[manual_slug]
-</code></pre>
-<p>This task will identify slugs which no longer match their titles (where a
-match is a slug identical to the slugified title).
-The output will list:</p>
+<h2 id="overview">Overview</h2>
+<p>The purpose of the Manuals Publisher application is to allow content editors to update Manuals - a type of long-form document.</p>
+<p>The domain model for the application is quite simple. A <code>Manual</code> is composed of many <code>Section</code>s. Both the <code>Manual</code> and the <code>Section</code> have a version history which is known in the code base as an Edition (<code>ManualRecord::Edition</code> and <code>SectionEdition</code> concretely). Looking at editions of manuals and sections allows citizens to see when a document has changed in a significant way.</p>
+<p>Sections can have file <code>Attachment</code>s. Publishing a manual makes a call to the Publishing API (which updates the search index via Rummager). For historical reasons the application maintains its own state in MongoDB. The local state <em>should</em> reflect the state of the Publishing API's database at any particular time, although the application itself doesn't enforce this. A user of the application sees data read from the local MongoDB database, not the Publishing API.</p>
+<h2 id="models">Models</h2>
+<p>The following diagram illustrates the associations between the models in the application</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/manuals-publisher/main/docs/2017-migration-project-archive/diagram.png" alt="Class relationship diagram"></p>
+<p>This application models the "domain" and the "persistence" for Manuals and Sections separately. Unfortunately this separation is not rigidly and consistently held throughout the application</p>
 <ul>
-<li>Conflicts: slug updates which cannot be applied because
-the destination slug is already in use.</li>
-<li>Amendments: slug updates which can be applied.</li>
+<li>A "plain Ruby" class <code>Manual</code> is responsible for persisting its data into <code>ManualRecord</code> and <code>ManualRecord::Edition</code>.</li>
+<li>A "plain Ruby" class <code>Section</code> is responsible for persisting its data into <code>SectionEdition</code>.</li>
+<li>There is no section equivalent of <code>ManualRecord</code> (e.g. <code>SectionRecord</code>); the concept of a section is only persisted by one or more <code>SectionEdition</code>s having a specific <code>section_uuid</code>.</li>
+<li>A <code>SectionEdition</code>'s attachments are modelled using Mongoid's <code>embeds_many</code> association (in the underlying database, they are stored as a nested array of objects under <code>SectionEdition</code>).</li>
+<li>Some associations between objects are not modelled using Mongoid association methods (<code>has_many</code>, <code>embeds_many</code>, etc.) but rather rely on the presence of foreign keys, or arrays of foreign keys. For example the association between a <code>ManualRecord::Edition</code> and <code>Section</code> is via an array of <code>section_uuids</code>.</li>
+<li>It is not possible to explicitly determine which edition of a section belongs to which edition of a manual, although this can be determined implicitly for the first and last edition of a manual.</li>
 </ul>
-<h3 id="synchronising-section-slugs">Synchronising section slugs</h3>
-<pre><code>rake sections:synchronise[manual_slug]
-</code></pre>
-<p>This task will update the slugs of sections which have no conflicts as
-identified by the reporting task. Conflicts will be skipped, these will
-need to be resolved manually.</p>
-<h3 id="update-a-section-slug">Update a section slug</h3>
-<pre><code>rake reslug_section[manual_slug,old_section_slug,new_section_slug]
-</code></pre>
-<p>This task will update a single section slug, this performs an update within
-the Manual Publisher application database and the Publishing API.</p>
-<h3 id="update-organisation-slug-for-manual-records">Update organisation slug for manual records</h3>
-<pre><code>rake reslug_organisation[old_slug,new_slug]
-</code></pre>
-<p>This is depended on by docs for <a href="https://docs.publishing.service.gov.uk/manual/changing-organisation-slug.html#2-update-the-organisation-slug-in-manuals-publisher">changing an organisation's slug</a>.</p>
-<h2 id="relocating-manuals">Relocating Manuals</h2>
-<p>NOTE. The behaviour of this script is a little confusing (essentially overwriting one published manual with another) so it's not entirely obvious that it's still required.</p>
-<pre><code>rake relocate_manual[from_slug,to_slug]
-</code></pre>
-<p>Given the published manuals /guidance/manual-1 and /guidance/manual-2, this script will remove /guidance/manual-2 and update the manual and section slugs of /guidance/manual-1 to /guidance/manual-2.</p>
+<h2 id="controllers">Controllers</h2>
+<p>The application has three controllers, one for each of the main domain objects in the application - <code>ManualsController</code>, <code>SectionsController</code> and <code>SectionAttachmentsController</code>. These controllers are largely unsurprising. Most of the logic for each controller action is encapsulated in Service objects.</p>
+<h2 id="services">Services</h2>
+<p><code>Service</code> classes in the <code>app/services</code> directories (not to be confused with the Services module in <code>lib/services.rb</code>) contain the logic for creating and updating Mongoid models, logging events and interacting with the Publishing API.</p>
+<p>If you need to perform an action from outside of the context of a controller, for example in a one-off Rake task, ideally you should <code>call</code> a method on a Service instance as this ensures the correct sequence of side-effects.</p>
+<h2 id="adapters">Adapters</h2>
+<p>The Adapter classes encapsulate the API calls to 2 external APIs: The (version 2) <a href="https://github.com/alphagov/publishing-api">Publishing API</a> and the Organisations API. These Adapters should be used in preference to making API calls directly from scripts and services.</p>
+<p>The classes serve as application-specific wrappers around the <a href="https://github.com/alphagov/gds-api-adapters">GDS API adapters</a>. The idea is that methods on adapters should accept and return instances of domain models and not Hashes/JSON. The translation between domain model objects and Hashes/JSON (and vice versa) should only happen inside the adapters.</p>
+<h2 id="linkcheckerapi">LinkCheckerAPI</h2>
+<p>The <code>link-checker-api</code> has been integrated on the show page for both Manuals and Sections. It extracts all links from within any GovSpeak fields and sends them to the <code>/batch</code> endpoint of the API. In this request it also sends across a <code>webhook_callback</code> which then populates any information about broken/warning links. More reading about the endpoints can be found <a href="https://docs.publishing.service.gov.uk/apis/link-checker-api.html">here</a></p>
+<h2 id="rake-tasks">Rake tasks</h2>
+<p>A small number of Rake tasks exist. These perform actions that are not exposed via the user interface, or are required to be infrequently run (for example report generation). Some commonly used Rake tasks are <a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/rake-tasks.md">documented separately</a>.</p>
 
 
             
@@ -286,8 +250,8 @@ the Manual Publisher application database and the Publishing API.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/rake-tasks.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2Frake-tasks.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/current-state.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2F2017-migration-project-archive%2Fcurrent-state.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

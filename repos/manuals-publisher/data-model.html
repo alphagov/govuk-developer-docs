@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>manuals-publisher: History - GOV.UK Developer Documentation</title>
+    <title>manuals-publisher: Manuals Publisher Data Model - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/history.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/data-model.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="manuals-publisher: History - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/history.html" />
+      <meta name="twitter:title" content="manuals-publisher: Manuals Publisher Data Model - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/data-model.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="manuals-publisher: History" />
+      <meta property="og:title" content="manuals-publisher: Manuals Publisher Data Model" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/history.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/data-model.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -139,11 +139,17 @@
     </li>
     <li>
       <ul>
-          <li><a href="/repos/manuals-publisher/current-state.html" rel="noopener" class="govuk-link">Current state</a></li>
-          <li><a href="/repos/manuals-publisher/fully-migrated-spike.html" rel="noopener" class="govuk-link">Fully-migrated spike</a></li>
-          <li><a href="/repos/manuals-publisher/history.html" rel="noopener" class="govuk-link">History</a></li>
-          <li><a href="/repos/manuals-publisher/next-steps.html" rel="noopener" class="govuk-link">Next steps</a></li>
-          <li><a href="/repos/manuals-publisher/rake-tasks.html" rel="noopener" class="govuk-link">Rake tasks</a></li>
+          <li><a href="/repos/manuals-publisher/data-model.html" rel="noopener" class="govuk-link">Manuals Publisher Data Model</a></li>
+          <li><a href="/repos/manuals-publisher/edition-workflow.html" rel="noopener" class="govuk-link">Manuals Publisher Edition Workflow</a></li>
+          <li class="subdir__heading">2017-migration-project-archive</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/current-state.html" rel="noopener" class="govuk-link">Current state</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/fully-migrated-spike.html" rel="noopener" class="govuk-link">Fully-migrated spike</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/history.html" rel="noopener" class="govuk-link">History</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/next-steps.html" rel="noopener" class="govuk-link">Next steps</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/rake-tasks.html" rel="noopener" class="govuk-link">Rake tasks</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/start-here.html" rel="noopener" class="govuk-link">Manuals Publisher Migration Project Documentation - Start Here</a></li>
+          </ul>
       </ul>
     </li>
   </ul>
@@ -202,28 +208,22 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/77598a75d2be39d65e267aba3c9f9c82d8cf0dd8">22 Jun 2017</a>
+  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/9acb5e525b45115e6bfe6bcf6ad5da85c63400d4">9 Aug 2024</a>
 </div>
 
-  <h1 class="page-title">manuals-publisher: History</h1>
+  <h1 class="page-title">manuals-publisher: Manuals Publisher Data Model</h1>
 
   
-<p>This repository was forked from the <a href="https://github.com/alphagov/specialist-publisher">specialist-publisher repository</a> in November 2015, thus the two repositories have the first ~1800 commits in common. The last commit which the two repositories have in common is <a href="https://github.com/alphagov/manuals-publisher/commit/fd3ac12a2a5e4b4e48b79bb5dce0d211add53848">this one</a>.</p>
-<p>Immediately after the fork the code in specialist-publisher was <a href="https://github.com/alphagov/specialist-publisher/commit/e7dc17bf8dc57bfbc807f12d2373b27042bb296a">all removed</a> and the application re-written from scratch to support publishing of specialist documents using the Publishing API as the canonical/only persistence mechanism.</p>
-<p>At the point when the fork happened the application in <em>this</em> repository (now called <code>manuals-publisher</code>) was responsible for publishing both manuals (and their sections) <em>and</em> specialist documents. The application was originally written in Feb 2014 and started life only being able to <a href="https://github.com/alphagov/manuals-publisher/commit/ce78da77a0e8bb30fd253633da2b7640eebbf66e">publish specialist documents</a>. Publishing of manuals and their sections was added in Apr/May 2014 in <a href="https://github.com/alphagov/manuals-publisher/pull/76">PR #76</a> &amp; <a href="https://github.com/alphagov/manuals-publisher/pull/78">PR #78</a>.</p>
-<p>The application had been developed in a rather unconventional fashion - using a <a href="https://github.com/alphagov/manuals-publisher/blob/de505410d77af97f39b3531c2c3709ebea17fcef/lib/dependency_container.rb">custom dependency-injection container</a> and the <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain-Driven Design</a> / <a href="http://alistair.cockburn.us/Hexagonal+architecture">Hexagonal Architecture</a> idea of decoupling the persistence mechanism from the domain model using repository classes. The app also contained extensive use of anonymous procs and classes with a single <code>#call</code> method.</p>
-<p>In September 2016 the Rails app in this repository was <a href="https://github.com/alphagov/manuals-publisher/commit/3120a8755d6774ba2a0db0589016f6eacd043e01">renamed from <code>SpecialistPublisher</code> to <code>ManualsPublisher</code></a>. In October 2016, the UI for publishing specialist documents was <a href="https://github.com/alphagov/manuals-publisher/commit/3162f0e72fd53bfd1cf87f5661bb198ff785940e">removed</a>. Presumably before this point the re-written specialist-publisher app had taken over responsibility for publishing specialist documents.</p>
-<p>By early 2017 this application had become extremely difficult to maintain. The unconventional architecture had led to so many levels of indirection that it was extremely difficult to understand what effect executing a single controller action would have. It looks as if one consequence of this was that bug fixes and enhancements sometimes worked <em>around</em> the architectural patterns rather than with them, making the codebase even more confusing.</p>
-<p>From March 2017, developers from <a href="http://gofreerange.com">Go Free Range</a> spent a couple of months refactoring the codebase towards a simpler and more conventional Rails app. The dependency injection container was removed, many levels of indirection were collapsed, and anonymous procs were converted into named classes. The remaining code and data associated with specialist documents was removed and the main gems used by the application (Rails, Mongoid, etc) were upgraded to much more recent versions. The current state of the codebase is described in more detail <a href="/repos/manuals-publisher/current-state.html">here</a>.</p>
-<p>While investigating converting the domain model to be a more standard set of <code>Mongoid::Document</code> classes with all relationships defined as Mongoid associations, they decided that it might be simpler to convert the app to "fully-migrated" status with regard to the Publishing API, i.e. to use the Publishing API as the canonical/only persistence mechanism in the app. Their exploration of this idea is captured <a href="/repos/manuals-publisher/fully-migrated-spike.html">here</a> and their ideas for possible next steps are recorded <a href="/repos/manuals-publisher/next-steps.html">here</a>.</p>
+<p>There are two key data objects in the Manuals Publisher application: manuals and sections. The local state <em>should</em> reflect the state of the Publishing API's database at any particular time, although this is not enforced effectively by the application.</p>
+<p>A manual is composed of multiple sections, each of which are represented by their own page on GOV.UK. In addition to text content, sections may have binary file attachments. Both manuals and sections have editions so that users can draft new editions of the manual before publishing it to GOV.UK. You can read more about the edition workflow <a href="/repos/manuals-publisher/edition-workflow.html">here</a>.</p>
+<p>Manuals Publisher is relatively unusual among GOV.UK publishing applications in that it stores data in its own instance of DocumentDB. Unlike when using Active Record, there is not a one-to-one mapping between a model class and its data store. Only model classes that extend the <code>Mongoid::Document</code> class have their own document collection in DocumentDB.</p>
+<p>This is a class diagram of the application's model directory.</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/manuals-publisher/main/docs/data-model.png" alt="Class diagram"></p>
+<h2 id="manuals-and-sections">Manuals and Sections</h2>
+<p>This application partially separates the "domain" and the "persistence" for manuals and sections, which is unusual for a GOV.UK Ruby on Rails application. A "plain Ruby" class, <code>Manual</code>, is responsible for persisting and loading <code>ManualRecord</code> and <code>ManualRecord::Edition</code> Mongo documents. Another "plain Ruby" class, <code>Section</code>, is responsible for persisting and loading <code>SectionEdition</code> Mongo documents. There isn't a Mongo document representing a section. The section is constructed in memory from one or more <code>SectionEdition</code> documents with the same <code>section_uuid</code> using the <code>Section.find</code> method.</p>
+<p>Manuals reference their sections via a list of the sections' UUIDs stored in the <code>sections</code> attribute. The section edition does not store a reference to the parent manual, so given only a section it is not possible to access the manual. Manuals also keep a list of sections that have been withdrawn from the manual in the <code>removed_sections</code> attribute. The values of these attributes are serialised to a MongoDB array type.</p>
+<p>Sections may have many attachments, which are not represented as a Mongo document. Instead, attachments are embedded inside each <code>SectionEdition</code> Mongo document. This means that they have to be copied across from the previous section edition when a new section edition is created.</p>
 
 
             
@@ -231,8 +231,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/history.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2Fhistory.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/data-model.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2Fdata-model.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>manuals-publisher: Current state - GOV.UK Developer Documentation</title>
+    <title>manuals-publisher: Next steps - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/current-state.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/next-steps.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="manuals-publisher: Current state - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/current-state.html" />
+      <meta name="twitter:title" content="manuals-publisher: Next steps - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/next-steps.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="manuals-publisher: Current state" />
+      <meta property="og:title" content="manuals-publisher: Next steps" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/current-state.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/next-steps.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -139,11 +139,17 @@
     </li>
     <li>
       <ul>
-          <li><a href="/repos/manuals-publisher/current-state.html" rel="noopener" class="govuk-link">Current state</a></li>
-          <li><a href="/repos/manuals-publisher/fully-migrated-spike.html" rel="noopener" class="govuk-link">Fully-migrated spike</a></li>
-          <li><a href="/repos/manuals-publisher/history.html" rel="noopener" class="govuk-link">History</a></li>
-          <li><a href="/repos/manuals-publisher/next-steps.html" rel="noopener" class="govuk-link">Next steps</a></li>
-          <li><a href="/repos/manuals-publisher/rake-tasks.html" rel="noopener" class="govuk-link">Rake tasks</a></li>
+          <li><a href="/repos/manuals-publisher/data-model.html" rel="noopener" class="govuk-link">Manuals Publisher Data Model</a></li>
+          <li><a href="/repos/manuals-publisher/edition-workflow.html" rel="noopener" class="govuk-link">Manuals Publisher Edition Workflow</a></li>
+          <li class="subdir__heading">2017-migration-project-archive</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/current-state.html" rel="noopener" class="govuk-link">Current state</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/fully-migrated-spike.html" rel="noopener" class="govuk-link">Fully-migrated spike</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/history.html" rel="noopener" class="govuk-link">History</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/next-steps.html" rel="noopener" class="govuk-link">Next steps</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/rake-tasks.html" rel="noopener" class="govuk-link">Rake tasks</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/start-here.html" rel="noopener" class="govuk-link">Manuals Publisher Migration Project Documentation - Start Here</a></li>
+          </ul>
       </ul>
     </li>
   </ul>
@@ -202,48 +208,39 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/d3e7753370975e3f59c6fbfc33a5a946e2c61480">16 Jan 2018</a>
+  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/05d195c707f13e1ec36c3ad35f43170f4e58f894">8 Aug 2024</a>
 </div>
 
-  <h1 class="page-title">manuals-publisher: Current state</h1>
+  <h1 class="page-title">manuals-publisher: Next steps</h1>
 
   
-<h2 id="overview">Overview</h2>
-<p>The purpose of the Manuals Publisher application is to allow content editors to update Manuals - a type of long-form document.</p>
-<p>The domain model for the application is quite simple. A <code>Manual</code> is composed of many <code>Section</code>s. Both the <code>Manual</code> and the <code>Section</code> have a version history which is known in the code base as an Edition (<code>ManualRecord::Edition</code> and <code>SectionEdition</code> concretely). Looking at editions of manuals and sections allows citizens to see when a document has changed in a significant way.</p>
-<p>Sections can have file <code>Attachment</code>s. Publishing a manual makes a call to the Publishing API (which updates the search index via Rummager). For historical reasons the application maintains its own state in MongoDB. The local state <em>should</em> reflect the state of the Publishing API's database at any particular time, although the application itself doesn't enforce this. A user of the application sees data read from the local MongoDB database, not the Publishing API.</p>
-<h2 id="models">Models</h2>
-<p>The following diagram illustrates the associations between the models in the application</p>
-<p><img src="https://raw.githubusercontent.com/alphagov/manuals-publisher/main/docs/diagram.png" alt="Class relationship diagram"></p>
-<p>This application models the "domain" and the "persistence" for Manuals and Sections separately. Unfortunately this separation is not rigidly and consistently held throughout the application</p>
+<h2 id="bugs">Bugs</h2>
+<p>While refactoring the app we have discovered a <a href="https://github.com/alphagov/manuals-publisher/issues?q=is%3Aopen+is%3Aissue+label%3Abug">number of bugs</a>. We have also converted Errbit exceptions and reports from users into bugs in the Github issue tracker. These should be easier to fix now the application is in a simpler state. When fixing these be mindful that some may be easier to fix (or become redundant) if the app is "fully migrated" (see next section).</p>
+<h2 id="rely-solely-on-the-publishing-api-for-persistence">Rely solely on the Publishing API for persistence</h2>
+<p>There is an ambition to refactor all publishing applications such that they solely rely on external APIs for persistence. Currently the <a href="">specialist publisher</a> application is an example of an application that has been "fully migrated".</p>
+<p>Currently Manuals Publisher is not fully migrated. It stores state in its own MongoDB database and publishes via the Publishing API.</p>
+<p>As discussed above, one of the harder things to understand about this application is the separation between domain models and persistence (for example between <code>Manual</code> and <code>ManualRecord</code>).</p>
+<p>A future refactoring that fully migrates this application would mean that local persistence is removed (and therefore the persistence classes such as <code>ManualRecord</code> could be removed).</p>
+<p>We began a spike into this approach and it seems feasible. We have <a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/full-migrated-spike.md">added some notes</a> about the spike and some potential pain points.</p>
+<p>The work to date on this is tracked under the <a href="https://github.com/alphagov/manuals-publisher/milestone/6">Publishing API</a> milestone in Github.</p>
+<h2 id="refactor-test-suite">Refactor test suite</h2>
+<p>There are a number of changes to the test suite that would make future refactoring (and adding features) easier. In particular:</p>
 <ul>
-<li>A "plain Ruby" class <code>Manual</code> is responsible for persisting its data into <code>ManualRecord</code> and <code>ManualRecord::Edition</code>.</li>
-<li>A "plain Ruby" class <code>Section</code> is responsible for persisting its data into <code>SectionEdition</code>.</li>
-<li>There is no section equivalent of <code>ManualRecord</code> (e.g. <code>SectionRecord</code>); the concept of a section is only persisted by one or more <code>SectionEdition</code>s having a specific <code>section_uuid</code>.</li>
-<li>A <code>SectionEdition</code>'s attachments are modelled using Mongoid's <code>embeds_many</code> association (in the underlying database, they are stored as a nested array of objects under <code>SectionEdition</code>).</li>
-<li>Some associations between objects are not modelled using Mongoid association methods (<code>has_many</code>, <code>embeds_many</code>, etc.) but rather rely on the presence of foreign keys, or arrays of foreign keys. For example the association between a <code>ManualRecord::Edition</code> and <code>Section</code> is via an array of <code>section_uuids</code>.</li>
-<li>It is not possible to explicitly determine which edition of a section belongs to which edition of a manual, although this can be determined implicitly for the first and last edition of a manual.</li>
+<li>
+<a href="https://github.com/alphagov/manuals-publisher/issues/879">Choosing either Cucumber or RSpec</a> for feature tests, rather than using both.</li>
+<li>
+<a href="https://github.com/alphagov/manuals-publisher/issues/1015">Shorten the time it takes to run the suite</a> by adopting a better "test pyramid".</li>
 </ul>
-<h2 id="controllers">Controllers</h2>
-<p>The application has three controllers, one for each of the main domain objects in the application - <code>ManualsController</code>, <code>SectionsController</code> and <code>SectionAttachmentsController</code>. These controllers are largely unsurprising. Most of the logic for each controller action is encapsulated in Service objects.</p>
-<h2 id="services">Services</h2>
-<p><code>Service</code> classes in the <code>app/services</code> directories (not to be confused with the Services module in <code>lib/services.rb</code>) contain the logic for creating and updating Mongoid models, logging events and interacting with the Publishing API.</p>
-<p>If you need to perform an action from outside of the context of a controller, for example in a one-off Rake task, ideally you should <code>call</code> a method on a Service instance as this ensures the correct sequence of side-effects.</p>
-<h2 id="adapters">Adapters</h2>
-<p>The Adapter classes encapsulate the API calls to 2 external APIs: The (version 2) <a href="https://github.com/alphagov/publishing-api">Publishing API</a> and the Organisations API. These Adapters should be used in preference to making API calls directly from scripts and services.</p>
-<p>The classes serve as application-specific wrappers around the <a href="https://github.com/alphagov/gds-api-adapters">GDS API adapters</a>. The idea is that methods on adapters should accept and return instances of domain models and not Hashes/JSON. The translation between domain model objects and Hashes/JSON (and vice versa) should only happen inside the adapters.</p>
-<h2 id="linkcheckerapi">LinkCheckerAPI</h2>
-<p>The <code>link-checker-api</code> has been integrated on the show page for both Manuals and Sections. It extracts all links from within any GovSpeak fields and sends them to the <code>/batch</code> endpoint of the API. In this request it also sends across a <code>webhook_callback</code> which then populates any information about broken/warning links. More reading about the endpoints can be found <a href="https://docs.publishing.service.gov.uk/apis/link-checker-api.html">here</a></p>
-<h2 id="rake-tasks">Rake tasks</h2>
-<p>A small number of Rake tasks exist. These perform actions that are not exposed via the user interface, or are required to be infrequently run (for example report generation). Some commonly used Rake tasks are <a href="/repos/manuals-publisher/rake-tasks.html">documented separately</a>.</p>
+<p>We have captured these and other improvements in the <a href="https://github.com/alphagov/manuals-publisher/milestone/5">Testing</a> milestone.</p>
+<h2 id="replace-rake-tasks-with-features">Replace Rake tasks with features</h2>
+<p>There are some <a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/lib/tasks/">Rake Tasks</a> which can be replaced with features in the User Interface. This would allow an organisation editor (or a admin role) to achieve their aim without having to involve a developer. The following Rake tasks are suitable candidates for converting to features:</p>
+<ul>
+<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/delete_draft_manual.rake">delete_draft_manual.rake</a></li>
+<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/relocate_manual.rake">relocate_manual.rake</a></li>
+<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/reslug_section.rake">reslug_section.rake</a></li>
+<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/withdraw_manual.rake">withdraw_manual.rake</a></li>
+</ul>
 
 
             
@@ -251,8 +248,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/current-state.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2Fcurrent-state.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/next-steps.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2F2017-migration-project-archive%2Fnext-steps.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

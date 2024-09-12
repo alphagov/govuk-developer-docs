@@ -7,25 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: manuals-publisher - GOV.UK Developer Documentation</title>
+    <title>manuals-publisher: Rake tasks - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/rake-tasks.html">
 
-      <meta name="description" content="Everything about manuals-publisher (Publishes manuals on GOV.UK)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: manuals-publisher - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher.html" />
+      <meta name="twitter:title" content="manuals-publisher: Rake tasks - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/rake-tasks.html" />
 
-      <meta property="og:description" content="Everything about manuals-publisher (Publishes manuals on GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: manuals-publisher" />
+      <meta property="og:title" content="manuals-publisher: Rake tasks" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/rake-tasks.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -183,6 +181,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "manuals-publisher",
+        "@id": "http://www.dev.gov.uk/repos/manuals-publisher.html"
+      }
     }
   ]
 }
@@ -191,123 +197,94 @@
 <div data-module="ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/manuals-publisher.html">manuals-publisher</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Application: manuals-publisher</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Publishes manuals on GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/manuals-publisher">manuals-publisher</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-whitehall-experience-tech">#govuk-whitehall-experience-tech</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Publishing apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://manuals-publisher.publishing.service.gov.uk" class="govuk-link">manuals-publisher.publishing.service.gov.uk</a></li>
-    <li><a href="https://sentry.io/govuk/app-manuals-publisher" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?var-app=manuals-publisher" class="govuk-link">App dashboard: request rates, errors, durations</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:manuals-publisher),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:manuals-publisher)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:manuals-publisher-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:manuals-publisher-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/manuals-publisher" class="govuk-link">Argo CD (manuals-publisher)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/05d195c707f13e1ec36c3ad35f43170f4e58f894">8 Aug 2024</a>
 </div>
-<h2 id='example-pages-published-by-manuals-publisher'>Example pages published by manuals-publisher</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="https://www.gov.uk/guidance/mot-inspection-manual-for-private-passenger-and-light-commercial-vehicles" class="govuk-link">MOT inspection manual: cars and passenger vehicles</a></li>
-      <li><a href="https://www.gov.uk/guidance/the-highway-code" class="govuk-link">The Highway Code</a></li>
-      <li><a href="https://www.gov.uk/guidance/immigration-rules" class="govuk-link">Immigration Rules</a></li>
-      <li><a href="https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-skilled-worker" class="govuk-link">Immigration Rules Appendix Skilled Worker</a></li>
-      <li><a href="https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-skilled-occupations" class="govuk-link">Immigration Rules Appendix Skilled Occupations</a></li>
-      <li><a href="https://www.gov.uk/guidance/the-highway-code/traffic-signs" class="govuk-link">Traffic signs</a></li>
-      <li><a href="https://www.gov.uk/guidance/mot-inspection-manual-for-private-passenger-and-light-commercial-vehicles/5-axles-wheels-tyres-and-suspension" class="govuk-link">5. Axles, wheels, tyres and suspension</a></li>
-      <li><a href="https://www.gov.uk/guidance/understanding-your-driving-test-result/car-driving-test" class="govuk-link">Car driving test</a></li>
-      <li><a href="https://www.gov.uk/guidance/mot-inspection-manual-for-private-passenger-and-light-commercial-vehicles/4-lamps-reflectors-and-electrical-equipment" class="govuk-link">4. Lamps, reflectors and electrical equipment</a></li>
-      <li><a href="https://www.gov.uk/guidance/mot-testing-guide" class="govuk-link">MOT testing guide for test stations</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Publishing app for manuals. E.g. <a href="https://www.gov.uk/guidance/the-highway-code">The Highway Code</a>.</p>
+  <h1 class="page-title">manuals-publisher: Rake tasks</h1>
 
-<h2 id="nomenclature">Nomenclature</h2>
-
-<ul>
-<li>Manual: Parent document which is made up of a number of sections</li>
-<li>Section: Individual segment / page of a Manual</li>
-<li>Attachment: File attachment which can be added to a section</li>
-</ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app
-conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the
-application and its tests with all the necessary dependencies. Follow the
-<a href="https://github.com/alphagov/govuk-docker#usage">usage instructions</a> to get started.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<pre><code>$ bundle exec rake
+  
+<h2 id="withdraw-and-redirect-manuals">Withdraw and redirect manuals</h2>
+<p>A manual can be withdrawn and redirected to another page on <a href="http://www.gov.uk">www.gov.uk</a>.</p>
+<p>There are a few rake tasks, depending on the requirements.</p>
+<h3 id="withdraw-and-redirect-a-single-manual-which-can-include-its-sections">Withdraw and redirect a single manual which can include its sections</h3>
+<p>The last two boolean arguments flag whether to include sections and discard
+drafts, respectively.</p>
+<pre><code>withdraw_and_redirect_manual[guidance/manual,/redirect/blah,true,true]
 </code></pre>
-
-<h2 id="documentation">Documentation</h2>
-
+<h3 id="withdraw-and-redirect-a-single-section">Withdraw and redirect a single section</h3>
+<p>The last boolean argument flags whether to discard drafts.</p>
+<pre><code>withdraw_and_redirect_section[guidance/manual,guidance/manual/section,/redirect/blah,true]
+</code></pre>
+<h3 id="bulk-withdraw-and-redirect-multiple-manuals-and-sections">Bulk withdraw and redirect multiple manuals and sections</h3>
+<p>If multiple manuals need to be redirected, or there are multiple redirect
+destinations within manuals, e.g sections need to redirect to different places,
+then we can do this by uploading a CSV and running the below tasks. Example CSV
+PR: <a href="https://github.com/alphagov/manuals-publisher/pull/1895">https://github.com/alphagov/manuals-publisher/pull/1895</a>.</p>
+<p><strong>Dry-run (checks all manuals exist in Manuals Publisher)</strong></p>
+<pre><code>withdraw_and_redirect_manuals_to_multiple_paths:dry_run[lib/tasks/path_to_csv.csv]
+</code></pre>
+<p><strong>Run the task for real</strong></p>
+<p>The last boolean argument flags whether to discard drafts.</p>
+<pre><code>withdraw_and_redirect_manuals_to_multiple_paths:real[lib/tasks/path_to_csv.csv,true]
+</code></pre>
+<h2 id="deleting-or-removing-draft-manuals">Deleting or removing draft manuals</h2>
+<h3 id="deleting-a-draft-manual">Deleting a draft manual</h3>
+<p>If a manual has been created in draft but never published it can be deleted using a rake task to delete draft manuals:</p>
+<pre><code>rake delete_draft_manual[manual-slug,manual-id]
+</code></pre>
+<p>This would need to be run using Jenkins on one of the backend boxes.</p>
+<h2 id="managing-section-slugs">Managing section slugs</h2>
+<p>Section slugs are automatically generated from the section title
+when the section is initially created. Subsequent updates to the title
+do not amend the slug. This is particularly obvious where the title was
+given a numerical prefix eg. <code>1. The first chapter</code> which generates the
+slug <code>1-the-first-chapter</code>.
+It's not uncommon for editors to need to reorder the sections which
+often leaves sections with numeric prefixes out of sync with their titles.
+There are a couple of rake tasks which can help with this issue:</p>
+<h3 id="reporting-on-section-slugs">Reporting on section slugs</h3>
+<pre><code>rake sections:report[manual_slug]
+</code></pre>
+<p>This task will identify slugs which no longer match their titles (where a
+match is a slug identical to the slugified title).
+The output will list:</p>
 <ul>
-<li><a href="/repos/manuals-publisher/data-model.html">Manuals Publisher Data Model</a></li>
-<li><a href="/repos/manuals-publisher/edition-workflow.html">Manual and Section Edition Workflow</a></li>
+<li>Conflicts: slug updates which cannot be applied because
+the destination slug is already in use.</li>
+<li>Amendments: slug updates which can be applied.</li>
 </ul>
-
-<h2 id="2017-migration-project-archive">2017 Migration Project Archive</h2>
-
-<ul>
-<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/start-here.md">Introduction</a></li>
-<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/history.md">History of the development of the application</a></li>
-<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/current-state.md">Current state of the application</a></li>
-<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/rake-tasks.md">Information about Rake tasks</a></li>
-<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/next-steps.md">Possible next steps for development</a></li>
-<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/fully-migrated-spike.md">Notes on investigation into fully migrating app with respect to Publishing API</a></li>
-</ul>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/manuals-publisher/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+<h3 id="synchronising-section-slugs">Synchronising section slugs</h3>
+<pre><code>rake sections:synchronise[manual_slug]
+</code></pre>
+<p>This task will update the slugs of sections which have no conflicts as
+identified by the reporting task. Conflicts will be skipped, these will
+need to be resolved manually.</p>
+<h3 id="update-a-section-slug">Update a section slug</h3>
+<pre><code>rake reslug_section[manual_slug,old_section_slug,new_section_slug]
+</code></pre>
+<p>This task will update a single section slug, this performs an update within
+the Manual Publisher application database and the Publishing API.</p>
+<h3 id="update-organisation-slug-for-manual-records">Update organisation slug for manual records</h3>
+<pre><code>rake reslug_organisation[old_slug,new_slug]
+</code></pre>
+<p>This is depended on by docs for <a href="https://docs.publishing.service.gov.uk/manual/changing-organisation-slug.html#2-update-the-organisation-slug-in-manuals-publisher">changing an organisation's slug</a>.</p>
+<h2 id="relocating-manuals">Relocating Manuals</h2>
+<p>NOTE. The behaviour of this script is a little confusing (essentially overwriting one published manual with another) so it's not entirely obvious that it's still required.</p>
+<pre><code>rake relocate_manual[from_slug,to_slug]
+</code></pre>
+<p>Given the published manuals /guidance/manual-1 and /guidance/manual-2, this script will remove /guidance/manual-2 and update the manual and section slugs of /guidance/manual-1 to /guidance/manual-2.</p>
 
 
             
@@ -315,8 +292,8 @@ application and its tests with all the necessary dependencies. Follow the
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/rake-tasks.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2F2017-migration-project-archive%2Frake-tasks.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

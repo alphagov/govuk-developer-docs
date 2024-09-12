@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>manuals-publisher: Next steps - GOV.UK Developer Documentation</title>
+    <title>manuals-publisher: Manuals Publisher Migration Project Documentation - Start Here - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/next-steps.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/start-here.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="manuals-publisher: Next steps - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/next-steps.html" />
+      <meta name="twitter:title" content="manuals-publisher: Manuals Publisher Migration Project Documentation - Start Here - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/start-here.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="manuals-publisher: Next steps" />
+      <meta property="og:title" content="manuals-publisher: Manuals Publisher Migration Project Documentation - Start Here" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/next-steps.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/start-here.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -139,11 +139,17 @@
     </li>
     <li>
       <ul>
-          <li><a href="/repos/manuals-publisher/current-state.html" rel="noopener" class="govuk-link">Current state</a></li>
-          <li><a href="/repos/manuals-publisher/fully-migrated-spike.html" rel="noopener" class="govuk-link">Fully-migrated spike</a></li>
-          <li><a href="/repos/manuals-publisher/history.html" rel="noopener" class="govuk-link">History</a></li>
-          <li><a href="/repos/manuals-publisher/next-steps.html" rel="noopener" class="govuk-link">Next steps</a></li>
-          <li><a href="/repos/manuals-publisher/rake-tasks.html" rel="noopener" class="govuk-link">Rake tasks</a></li>
+          <li><a href="/repos/manuals-publisher/data-model.html" rel="noopener" class="govuk-link">Manuals Publisher Data Model</a></li>
+          <li><a href="/repos/manuals-publisher/edition-workflow.html" rel="noopener" class="govuk-link">Manuals Publisher Edition Workflow</a></li>
+          <li class="subdir__heading">2017-migration-project-archive</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/current-state.html" rel="noopener" class="govuk-link">Current state</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/fully-migrated-spike.html" rel="noopener" class="govuk-link">Fully-migrated spike</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/history.html" rel="noopener" class="govuk-link">History</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/next-steps.html" rel="noopener" class="govuk-link">Next steps</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/rake-tasks.html" rel="noopener" class="govuk-link">Rake tasks</a></li>
+              <li><a href="/repos/manuals-publisher/2017-migration-project-archive/start-here.html" rel="noopener" class="govuk-link">Manuals Publisher Migration Project Documentation - Start Here</a></li>
+          </ul>
       </ul>
     </li>
   </ul>
@@ -202,46 +208,29 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/77598a75d2be39d65e267aba3c9f9c82d8cf0dd8">22 Jun 2017</a>
+  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/05d195c707f13e1ec36c3ad35f43170f4e58f894">8 Aug 2024</a>
 </div>
 
-  <h1 class="page-title">manuals-publisher: Next steps</h1>
+  <h1 class="page-title">manuals-publisher: Manuals Publisher Migration Project Documentation - Start Here</h1>
 
   
-<h2 id="bugs">Bugs</h2>
-<p>While refactoring the app we have discovered a <a href="https://github.com/alphagov/manuals-publisher/issues?q=is%3Aopen+is%3Aissue+label%3Abug">number of bugs</a>. We have also converted Errbit exceptions and reports from users into bugs in the Github issue tracker. These should be easier to fix now the application is in a simpler state. When fixing these be mindful that some may be easier to fix (or become redundant) if the app is "fully migrated" (see next section).</p>
-<h2 id="rely-solely-on-the-publishing-api-for-persistence">Rely solely on the Publishing API for persistence</h2>
-<p>There is an ambition to refactor all publishing applications such that they solely rely on external APIs for persistence. Currently the <a href="">specialist publisher</a> application is an example of an application that has been "fully migrated".</p>
-<p>Currently Manuals Publisher is not fully migrated. It stores state in its own MongoDB database and publishes via the Publishing API.</p>
-<p>As discussed above, one of the harder things to understand about this application is the separation between domain models and persistence (for example between <code>Manual</code> and <code>ManualRecord</code>).</p>
-<p>A future refactoring that fully migrates this application would mean that local persistence is removed (and therefore the persistence classes such as <code>ManualRecord</code> could be removed).</p>
-<p>We began a spike into this approach and it seems feasible. We have <a href="/repos/manuals-publisher/full-migrated-spike.html">added some notes</a> about the spike and some potential pain points.</p>
-<p>The work to date on this is tracked under the <a href="https://github.com/alphagov/manuals-publisher/milestone/6">Publishing API</a> milestone in Github.</p>
-<h2 id="refactor-test-suite">Refactor test suite</h2>
-<p>There are a number of changes to the test suite that would make future refactoring (and adding features) easier. In particular:</p>
-<ul>
+<p>In 2017, the GoFreeRange team conducted an investigation into potentially migrating Manuals Publisher to persist manual document data in Publishing API rather than the application's own database.</p>
+<p>The project was not completed for unspecified reasons, but a substantial amount of documentation was left behind which may be interesting and/or useful to future developers.</p>
+<p>The project documentation includes:</p>
+<ol>
 <li>
-<a href="https://github.com/alphagov/manuals-publisher/issues/879">Choosing either Cucumber or RSpec</a> for feature tests, rather than using both.</li>
+<a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/history.md">History</a> - an exploration of the origins and subsequent development of Manuals Publisher up to 2017</li>
 <li>
-<a href="https://github.com/alphagov/manuals-publisher/issues/1015">Shorten the time it takes to run the suite</a> by adopting a better "test pyramid".</li>
-</ul>
-<p>We have captured these and other improvements in the <a href="https://github.com/alphagov/manuals-publisher/milestone/5">Testing</a> milestone.</p>
-<h2 id="replace-rake-tasks-with-features">Replace Rake tasks with features</h2>
-<p>There are some <a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/">Rake Tasks</a> which can be replaced with features in the User Interface. This would allow an organisation editor (or a admin role) to achieve their aim without having to involve a developer. The following Rake tasks are suitable candidates for converting to features:</p>
-<ul>
-<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/delete_draft_manual.rake">delete_draft_manual.rake</a></li>
-<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/relocate_manual.rake">relocate_manual.rake</a></li>
-<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/reslug_section.rake">reslug_section.rake</a></li>
-<li><a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/withdraw_manual.rake">withdraw_manual.rake</a></li>
-</ul>
+<a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/current-state.md">Current State</a> - a brief description of the data model and some parts of the application architecture</li>
+<li>
+<a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/fully-migrated-spike.md">Fully Migrated Spike</a> - documentation of early attempts to have Manuals Publisher store its data via Publishing API</li>
+<li>
+<a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/next-steps.md">Next Steps</a> - steps the GoFreeRange team recommended to continue developing Manuals Publisher. None of these steps were implemented</li>
+<li>
+<a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/rake-tasks.md">Rake Tasks</a> - a list of Rake tasks available for operating Manuals Publisher</li>
+</ol>
+<p>Note that while the application hasn't changed hugely since 2017 at the time of writing, this documentation is likely to be out of date in some areas.</p>
 
 
             
@@ -249,8 +238,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/next-steps.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2Fnext-steps.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/start-here.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2F2017-migration-project-archive%2Fstart-here.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
