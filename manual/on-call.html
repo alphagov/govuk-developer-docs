@@ -224,15 +224,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7782bea5b1a1b045cec6dfc988b4cea2724ff179">20 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/13fb9b21d5d4de9b109811b945e99035e2565fb4">12 Sep 2024</a>
 </div>
 
  <h1 id='header'>Out of hours support (on-call)</h1> <blockquote>
@@ -277,15 +270,16 @@ Get these numbers from PagerDuty.</li>
 for automated monitoring. You can update your <a href="https://support.pagerduty.com/docs/user-profile#notification-rules">notification rules</a>
 in your PagerDuty account to notify you however you want (phone call, SMS, email,
 push notification). There are 2 ways that this might contact you:</p>
-<h4 id='icinga-alerts'>Icinga alerts</h4><p>Any Icinga checks that use <code>govuk_urgent_priority</code> will cause PagerDuty to be notified:</p>
+<h4 id='alertmanager-alerts'>Alertmanager alerts</h4><p>Any checks that use <code>severity: page</code> will cause PagerDuty to be notified:</p>
 
 <ul>
-<li><a href="/manual/alerts/email-alerts-travel-medical.html">Travel advice emails not going out</a></li>
+<li><a href="/manual/alerts/email-alerts-travel-medical.html">Travel Advice or Drug and Medical Device emails not going out</a></li>
 <li><a href="/manual/alerts/whitehall-scheduled-publishing.html#overdue-publications-in-whitehall">Overdue publications in Whitehall</a></li>
 <li><a href="/manual/alerts/whitehall-scheduled-publishing.html#scheduled-publications-in-whitehall-not-queued">Scheduled publications in Whitehall not queued</a></li>
-<li><a href="/manual/alerts/high-nginx-5xx-rate.html">High nginx 5xx rate for www-origin on cache machines</a></li>
+<li><a href="/manual/alerts/RouterErrorRatioTooHigh.html">High error ratio for requests to Router</a></li>
+<li>Low disk space on Redis instances</li>
 </ul>
-<p>You can get the most up to date list of these by searching the Puppet repo for <a href="https://github.com/alphagov/govuk-puppet/search?q=govuk_urgent_priority">govuk_urgent_priority</a>.</p>
+<p>You can get the most up to date list of these by <a href="https://github.com/search?q=repo%3Aalphagov%2Fgovuk-helm-charts%20severity%3A%20page">searching the govuk-helm-charts repo for <code>severity: page</code></a>.</p>
 <h4 id='pingdom-alerts'>Pingdom alerts</h4><p>We have downtime checks configured in Pingdom which notify Pagerduty directly rather
 than using GOV.UK&rsquo;s internal monitoring. They are all configured in Pingdom to:</p>
 
@@ -310,8 +304,7 @@ rota for the ‘Escalations’ contact number.</p>
 <h3 id='emergency-publishing'>Emergency publishing</h3><p>The GOV.UK on-call escalations contact will call you to carry this out.  See the
 <a href="/manual/emergency-publishing.html">deploy an emergency banner doc</a>
 for more information.</p>
-<h3 id='updating-the-homepage'>Updating the homepage</h3><p>You might be asked to <a href="/repos/frontend/update-homepage-promotion-slots.html">update the homepage promotion slots</a>
-to highlight important information on GOV.UK.</p>
+<h3 id='updating-the-homepage'>Updating the homepage</h3><p>You might be asked to <a href="/repos/frontend/update-homepage-promotion-slots.html">update the homepage promotion slots</a> to highlight important information on GOV.UK.</p>
 <h2 id='responding-to-being-contacted'>Responding to being contacted</h2><h3 id='automated-monitoring'>Automated monitoring</h3><p>If you&rsquo;re available to investigate the problem, acknowledge the alert in
 PagerDuty to prevent the next person being phoned.</p>
 <p>Try to diagnose what the problem is. If you&rsquo;re comfortable that you understand
