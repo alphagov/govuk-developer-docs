@@ -264,15 +264,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b368425cf4b94ffb3383a75c03d1125e35978793">23 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/8e893fcc9b849fcc25c5c1229b12bc9b16b2c2d8">13 Sep 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Stripping Personally Identifiable Information (PII)</h1>
@@ -305,7 +298,7 @@
 var myInfo = 'this is an@email.com address, this is a 2019-01-21 date, this is a sw1a 1aa postcode,'
 
 var example1 = PIIRemover.stripPII(myInfo)
-// this is [email] address, this is a 2019-01-21 date, this is a sw1a 1aa postcode 
+// this is [email] address, this is a 2019-01-21 date, this is a sw1a 1aa postcode
 
 var example2 = PIIRemover.stripPIIWithOverride(myInfo, true, false)
 // this is [email] address, this is a [date] date, this is a sw1a 1aa postcode
@@ -322,7 +315,7 @@ var myArray = ['email@gov.uk', 'hello world']
 var example5 = PIIRemover.stripPII(myArray)
 // ['[email]', 'hello world']
 
-// Meta tag of &lt;meta name="govuk:static-analytics:strip-query-string-parameters" content="strip-parameter-1,strip-parameter-2" /&gt;
+// Meta tag of &lt;meta name="govuk:ga4-strip-query-string-parameters" content="strip-parameter-1,strip-parameter-2" /&gt;
 var myQueryString = '/test?strip-parameter-1=secret&amp;strip-parameter-2=more-secret'
 var example6 = PIIRemover.stripPII(myQueryString)
 // /test?strip-parameter-1=[strip-parameter-1]&amp;strip-parameter-2=[strip-parameter-2]
@@ -341,9 +334,9 @@ var example6 = PIIRemover.stripPII(myQueryString)
 <p>The <code>shouldStripDates()</code> and <code>shouldStripPostcodes()</code> functions in the JavaScript will then check if these values exist in order to strip dates and postcodes.</p>
 <p>However, this will redact dates and postcodes from every call of the PIIRemover. In order to apply extra redaction to specific values, you can use the <code>stripPIIWithOverride()</code> function.</p>
 <h3 id="for-query-string-parameters">For query string parameters:</h3>
-<p>Query string parameters are redacted if there is presence of a <code>meta[name="govuk:static-analytics:strip-query-string-parameters"]</code> meta tag, with comma separated query string parameters keys in its <code>content</code> attribute. The usage of this query string PII removal in production is unknown at this time.</p>
+<p>Query string parameters are redacted if there is presence of a <code>meta[name="govuk:ga4-strip-query-string-parameters"]</code> meta tag, with comma separated query string parameters keys in its <code>content</code> attribute. The usage of this query string PII removal in production is unknown at this time.</p>
 <p>Add this meta tag with your query string parameter keys in the <code>content</code> section:
-<code>&lt;meta name="govuk:static-analytics:strip-query-string-parameters" content="query-string-key-1,query-string-key-2"</code></p>
+<code>&lt;meta name="govuk:ga4-strip-query-string-parameters" content="query-string-key-1,query-string-key-2"</code></p>
 <h2 id="using-the-strippiiwithoverride-function">Using the stripPIIWithOverride() function</h2>
 <p>You can call this function to manually enable the date or postcode stripping on a specific value:</p>
 <pre lang="JavaScript"><code>var enableDateStripping = true
