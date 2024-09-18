@@ -17,7 +17,7 @@ section: Alertmanager alerts
 - High5xxRate
 - LongRequestDuration
 
-These alerts indicate that a part of the service is not responding as expected, and as a result the user experience is severely impacted. For example, we have seen `LongRequestDuration` fire when the RDS Postgres Database is offline. For these alerts, it is worth checking the Grafana Dashboard `Chat AI Dashboard` to see if any of the backend services are showing signs of an issue.
+These alerts indicate that a part of the service is not responding as expected, and as a result the user experience is severely impacted. For example, we have seen `LongRequestDuration` fire when the RDS Postgres Database is offline. For these alerts, it is worth checking the Grafana Dashboard `GOV.UK Chat Technical` to see if any of the backend services are showing signs of an issue.
 
 ### Slack Alerts
 
