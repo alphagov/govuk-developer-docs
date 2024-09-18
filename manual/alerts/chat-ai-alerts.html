@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Chat AI Alerts - GOV.UK Developer Documentation</title>
+    <title>GOV.UK Chat Alerts - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -20,12 +20,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Chat AI Alerts - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="GOV.UK Chat Alerts - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/alerts/chat-ai-alerts.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Chat AI Alerts" />
+      <meta property="og:title" content="GOV.UK Chat Alerts" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/alerts/chat-ai-alerts.html" />
 
@@ -140,7 +140,7 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Chat AI Alerts</span></a>
+    <a href="#header"><span>GOV.UK Chat Alerts</span></a>
     <ul>
       <li>
         <a href="#alerts-by-priority"><span>Alerts by Priority</span></a>
@@ -202,28 +202,35 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/09c108cc4461b095a544209b076601d5b40a2563">18 Sep 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7f5b50815fa4b849629a2f98154045c440b0a658">17 Sep 2024</a>
 </div>
 
- <h1 id='header'>Chat AI Alerts</h1> <h2 id='alerts-by-priority'>Alerts by Priority</h2>
-<blockquote>
+ <h1 id='header'>GOV.UK Chat Alerts</h1> <blockquote>
 <p><strong>Note</strong></p>
 <p>For any queries or assistance regarding Chat Alerts, please post in the #dev-notifications-ai-govuk Slack channel</p>
 </blockquote>
+<h2 id='alerts-by-priority'>Alerts by Priority</h2><p>For any alert, it is worth checking the Grafana <code>GOV.UK Chat Technical</code> Dashboards to see if any part of the service is showing signs of an issue:</p>
+
+<ul>
+<li><a href="https://grafana.eks.integration.govuk.digital/d/govuk-chat-techical">Integration</a></li>
+<li><a href="https://grafana.eks.staging.govuk.digital/d/govuk-chat-techical">Staging</a></li>
+<li><a href="https://grafana.eks.production.govuk.digital/d/govuk-chat-techical">Production</a></li>
+</ul>
 <h3 id='pagerduty-alerts'>Pagerduty Alerts</h3>
 <ul>
 <li>High5xxRate</li>
-<li>LongRequestDuration</li>
 </ul>
-<p>These alerts indicate that a part of the service is not responding as expected, and as a result the user experience is severely impacted. For example, we have seen <code>LongRequestDuration</code> fire when the RDS Postgres Database is offline. For these alerts, it is worth checking the Grafana Dashboard <code>GOV.UK Chat Technical</code> to see if any of the backend services are showing signs of an issue.</p>
+<p>The 503 error code has been excluded from being alerted on, as that will be used when the Chat service is disabled, so we do not want that to go to Pagerduty.</p>
 <h3 id='slack-alerts'>Slack Alerts</h3>
 <ul>
+<li>LongRequestDuration</li>
 <li>HighPodCPUFE</li>
 <li>HighPodCPUWorker</li>
 <li>HighPodMemoryFE</li>
 <li>HighPodMemoryWorker</li>
 </ul>
-<p>Any of these alerts usually indicate that the service is under high load. In this situation, it may be necessary to increase the number of relevent pods running by modifying the <code>replicaCount</code> for FE or <code>workerReplicaCount</code> for Worker pods in the <code>govuk-chat</code> section of the values Helm Chart file.</p>
+<p>The <code>LongRequestDuration</code> alert indicates that a backend part of the service is not responding as expected, and as a result the user experience is severely impacted. For example, we have seen it fire when the RDS Postgres Database is offline.</p>
+<p>Any of the <code>High</code> alerts usually indicate that the service is under heavy load. In this situation, it may be necessary to increase the number of relevent pods running by modifying the <code>replicaCount</code> for FE or <code>workerReplicaCount</code> for Worker pods in the <code>govuk-chat</code> section of the relevant values Helm Chart file found <a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config">here</a>.</p>
 
   <div class='related-content'>
 
@@ -249,7 +256,7 @@
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/alerts/chat-ai-alerts.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Chat+AI+Alerts%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Falerts%2Fchat-ai-alerts.html%29&amp;labels=bug&amp;title=Re%3A+%27Chat+AI+Alerts%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27GOV.UK+Chat+Alerts%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Falerts%2Fchat-ai-alerts.html%29&amp;labels=bug&amp;title=Re%3A+%27GOV.UK+Chat+Alerts%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
