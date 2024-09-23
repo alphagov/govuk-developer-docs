@@ -273,6 +273,22 @@
 
 <p>Check the <a href="https://github.com/alphagov/asset-manager/blob/main/docs/">docs</a> directory for detailed instructions, including API documentation.</p>
 
+<h2 id="viewing-the-sidekiq-ui">Viewing the Sidekiq UI</h2>
+
+<p>We have access to the Sidekiq UI but because Asset Manager doesn&rsquo;t have a
+frontend we have to use port forwarding to see it in our live environments.</p>
+
+<p>You&rsquo;ll need to have access to our EKS clusters before you can follow these
+instructions. There&rsquo;s <a href="https://docs.publishing.service.gov.uk/kubernetes/get-started/access-eks-cluster/#access-a-cluster-that-you-have-accessed-before">documentation here</a> on how to do that. This means that
+you&rsquo;ll need full production access before you can view the Sidekiq UI.</p>
+
+<p>To view the UI run:</p>
+
+<pre><code>kubectl -n apps port-forward deployment/asset-manager 8080:8080
+</code></pre>
+
+<p>and then navigate to localhost:8080/sidekiq</p>
+
 <h2 id="licence">Licence</h2>
 
 <p><a href="https://github.com/alphagov/asset-manager/blob/main/LICENCE">MIT License</a></p>
