@@ -231,7 +231,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/972325f0d9564ad14a018438f9ff731bbf0fa60b">9 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/3e73782d261fb3a0023fbb3de17d62559fde7a90">24 Sep 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Admin Tasks</h1>
@@ -321,6 +321,48 @@ a couple of rake commands.</p>
 </ul>
 <pre><code>bundle exec rake expanded_links:truncate
 </code></pre>
+<h2 id="publishing-special-routes">Publishing special routes</h2>
+<p>Special routes are content items that have to be put into publishing-api / content-store so that routes
+can be created for them in router-api's database (this includes things like assets that have to be available
+at route or hardcoded pages). The routes are described in lib/data/special_routes.yaml and lib/data/homepage.yaml</p>
+<ul>
+<li>To publish the homepage special route</li>
+</ul>
+<pre><code>bundle exec rake publish_homepage
+</code></pre>
+<ul>
+<li>To publish all special routes (except homepage)</li>
+</ul>
+<pre><code>bundle exec rake publish_special_routes
+</code></pre>
+<ul>
+<li>To publish all special routes for one application</li>
+</ul>
+<pre><code>bundle exec rake publish_special_routes[frontend]
+</code></pre>
+<ul>
+<li>To publish one route</li>
+</ul>
+<pre><code>bundle exec rake publish_one_special_route[/base-path]
+</code></pre>
+<ul>
+<li>To unpublish one route so that it will return Gone</li>
+</ul>
+<pre><code>bundle exec rake unpublish_one_special_route[/base-path]
+</code></pre>
+<ul>
+<li>To unpublish one route so that it will return Redirect</li>
+</ul>
+<pre><code>bundle exec rake unpublish_one_special_route[/base-path,/new-base-path]
+</code></pre>
+<h3 id="adding-new-special-routes">Adding new special routes</h3>
+<p>Add an entry to /lib/data/special_routes.yaml, for example:</p>
+<pre><code>- :content_id: 'c1f08359-21f7-49c1-8811-54bf6690b6a3'
+  :base_path: '/account/home'
+  :title: 'Account home page'
+  :rendering_app: 'frontend'
+</code></pre>
+<p>You can generate a new value for <code>content_id</code> by running <code>SecureRandom.uuid</code> in a ruby console.</p>
 <h2 id="generating-csv-reports-of-publishings-and-unpublishing-by-date-range">Generating CSV reports of publishings and unpublishing by date range</h2>
 <p>There are two tasks provided which create CSV reports of publishings and
 unpublishings within a given time range. Both task require a <code>from</code> timestamp
