@@ -218,7 +218,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/e4e3fb6b62222a4c166ddd82271bb89ba7281e00">12 Apr 2024</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/1ece134a38d8c239ff8b8305d0f07b742ed71867">2 Sep 2024</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating, editing and removing specialist document types and finders</h1>
@@ -257,7 +257,7 @@ irb(main):002:0&gt; SecureRandom.uuid
 <h2 id="2-create-a-new-specialist-document-format-in-specialist-publisher">2. Create a new specialist document format in Specialist Publisher</h2>
 <h3 id="create-the-schema">Create the schema</h3>
 <p>See <a href="https://github.com/alphagov/specialist-publisher/blob/main/lib/documents/schemas/cma_cases.json">CMA cases</a>.</p>
-<p>New formats are often requested to be deployed in "pre-production mode", which is configured in this step (<a href="https://github.com/alphagov/specialist-publisher/blob/f8e93142dfad6f3971a73c923b01f2e7352bdb54/lib/documents/schemas/tax_tribunal_decisions.json#L64">example</a>). <code>pre-production</code> documents are only publishable on development and integration.</p>
+<p>New formats should be added with <code>target_stack: "draft"</code> so that departments can preview the finder before you publish it.</p>
 <h3 id="create-the-model">Create the model</h3>
 <p>See <a href="https://github.com/alphagov/specialist-publisher/blob/main/app/models/cma_case.rb">CMA cases</a></p>
 <h3 id="create-the-view-template">Create the view template</h3>
@@ -284,16 +284,25 @@ irb(main):002:0&gt; SecureRandom.uuid
 <h2 id="4-configure-the-email-sign-up-page">4. Configure the email sign up page</h2>
 <p>The email sign up page is rendered by <a href="https://github.com/alphagov/finder-frontend">Finder Frontend</a> using the configuration in the new schema added to specialist publisher. The schema should specify <code>email_filter_by</code> and <code>email_filter_facets</code> (e.g. <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/documents/schemas/cma_cases.json#L29">cma-cases</a>).</p>
 <p>If your email sign up page should have checkboxes (e.g. <a href="https://www.gov.uk/cma-cases/email-signup">cma-cases</a>), you will need to edit email-alert-api by adding the new tags to <a href="https://github.com/alphagov/email-alert-api/blob/3e0018510ea85f5d561e2865ad149832b94688a1/lib/valid_tags.rb#L2">valid_tags.rb</a>.</p>
-<h2 id="5-deploy-and-publish-">5. Deploy and publish <!-- raw HTML omitted --><!-- raw HTML omitted -->
-</h2>
-<p>To deploy:</p>
+<h2 id="5-deploy-a-finder-to-the-draft-stack-for-previewing">5. Deploy a finder to the draft stack (for previewing)</h2>
+<p>To deploy a new finder for previewing:</p>
 <ol>
-<li>Deploy Publishing API (if you haven't already), Specialist Publisher and Search API.
+<li>Ensure the finder target_stack is set to <code>draft</code>
+</li>
+<li>Merge and deploy Publishing API and Specialist Publisher.
 <ul>
 <li>Ensure you deploy Publishing API first, to avoid schema validation errors.</li>
 <li>Also deploy Email Alert API if you have made changes to it.</li>
 </ul>
 </li>
+<li>Publish the finder to the draft stack by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
+<li>Wait for department's feedback and approval and agree on a release date</li>
+</ol>
+<h2 id="6-publish-a-finder">6. Publish a finder</h2>
+<p>To release the finder to the live stack:</p>
+<ol>
+<li>Prepare before the agreed release date. Merge PRs and release on agreed date.</li>
+<li>Merge and deploy Search API</li>
 <li>
 <a href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html#how-to-reindex-an-elasticsearch-index">Reindex the govuk Elasticsearch index</a>.
 <ul>
@@ -302,9 +311,11 @@ irb(main):002:0&gt; SecureRandom.uuid
 <li>NB: reindexing shouldn't really be necessary; Elasticsearch will dynamically create the field mappings the first time a new document of this type is published. In other words, if you publish a new document type, the finder will work and it will return the relevant documents even without a reindex. However, <strong>the filters on the finder would not work</strong>, as this reindexing job also builds the filters for the finder, so we have to run the job.</li>
 </ul>
 </li>
-<li>Publish the finder; run the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
+<li>Change the target_stack of the finder from <code>draft</code> to <code>live</code> in specialist-publisher json schema config</li>
+<li>Merge and deploy Specialist Publisher</li>
+<li>Publish the finder by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
 </ol>
-<h2 id="6-permissions">6. Permissions</h2>
+<h2 id="7-permissions">7. Permissions</h2>
 <p>Specialist Publisher grants access to the publishing interface for your new document type to the following Signon users:</p>
 <ul>
 <li>Users that belong to the owner organisation AND have <code>Editor</code> permissions</li>
@@ -332,10 +343,12 @@ irb(main):002:0&gt; SecureRandom.uuid
 <li>Add field to relevant <a href="https://github.com/alphagov/specialist-publisher/tree/main/app/views/metadata_fields">view</a>.</li>
 <li>Add fields to relevant <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> files.</li>
 </ul>
-<p>See <a href="https://github.com/alphagov/specialist-publisher/pull/1899/commits/cc9e8fe482dbca2ef678bb8219252e7bd4f4d154">this</a> commit for an example.</p>
 </li>
-<li>
-<p>In <code>search-api</code>, add the new field in the following places (see <a href="https://github.com/alphagov/search-api/pull/2320/commits/ca6d0142e29b9755aad2e6bd59a3f576b727bd24">this</a> commit for an example):</p>
+</ol>
+<!-- raw HTML omitted -->
+<p>See <a href="https://github.com/alphagov/specialist-publisher/pull/1899/commits/cc9e8fe482dbca2ef678bb8219252e7bd4f4d154">this</a> commit for an example.</p>
+<ol start="3">
+<li>In <code>search-api</code>, add the new field in the following places (see <a href="https://github.com/alphagov/search-api/pull/2320/commits/ca6d0142e29b9755aad2e6bd59a3f576b727bd24">this</a> commit for an example):
 <ul>
 <li>the relevant schema in the <a href="https://github.com/alphagov/search-api/tree/main/config/schema/elasticsearch_types">elasticsearch_types </a>directory.</li>
 <li>the <a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/elasticsearch_presenter.rb">elasticsearch_presenter</a>.</li>
@@ -343,11 +356,15 @@ irb(main):002:0&gt; SecureRandom.uuid
 <li>the <a href="https://github.com/alphagov/search-api/blob/main/config/schema/field_definitions.json">field_definitions</a> file.</li>
 </ul>
 </li>
-<li>
-<p>Follow steps in the <a href="#deploy-and-publish">Deploy and publish</a> section above, to re-publish the finder. It should suffice to run <code>search:update_schema</code> in <code>search-api</code>.</p>
-</li>
 </ol>
-<h2 id="adding-or-amending-values-for-existing-fields-on-a-specialist-document">Adding or amending values for existing fields on a specialist document</h2>
+<p>To republish the finder:</p>
+<ol>
+<li>Deploy Publishing API, Search API.</li>
+<li>Run <code>search:update_schema</code> on Search API. If this errors, you may have to do a <a href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html#how-to-reindex-an-elasticsearch-index">full reindex</a>.</li>
+<li>Deploy Specialist Publisher, deploy after the Search API schema update / reindex to avoid users publishing new documents with the new field.</li>
+<li>Publish the finder by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
+</ol>
+<h2 id="adding-values-for-existing-fields-on-a-specialist-document">Adding values for existing fields on a specialist document</h2>
 <ol>
 <li>
 <p>In <code>publishing-api</code>:</p>
@@ -363,9 +380,11 @@ irb(main):002:0&gt; SecureRandom.uuid
 <li>
 <p>In <code>search-api</code>, amend the value in the relevant schema in the <a href="https://github.com/alphagov/search-api/tree/main/config/schema/elasticsearch_types">elasticsearch_types</a> directory. See <a href="https://github.com/alphagov/search-api/pull/2320/commits/0f29e310581e30707eea7fe8c91063974636dbe2">this</a> commit for an example.</p>
 </li>
-<li>
-<p>Republish the finder, see step 3 in the <a href="#deploy-and-publish">Deploy and publish</a> section above. It should suffice to run <code>search:update_schema</code> in <code>search-api</code>.</p>
-</li>
+</ol>
+<p>To republish the finder:</p>
+<ol>
+<li>Deploy Publishing API, Search API, Deploy Specialist Publisher.</li>
+<li>Publish the finder by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
 </ol>
 <h1 id="editing-a-specialist-finder">
 <strong>Editing</strong> a specialist finder</h1>
