@@ -249,20 +249,16 @@ defaults:
   # But each of the above properties can be overridden on a per-dependency basis below.
 overrides:
   # Example of overriding `allowed_semver_bumps`:
-  - dependency: gds-api-adapters
+  - dependency: rails
     allowed_semver_bumps:
-      - patch
+      - patch # minor/major bumps should be upgraded manually. See https://docs.publishing.service.gov.uk/manual/keeping-software-current.html#rails
   # Example of opting a specific dependency out of automatic patching:
-  - dependency: rails # should be upgraded manually, see https://docs.publishing.service.gov.uk/manual/keeping-software-current.html#rails
+  - dependency: gds-api-adapters
     auto_merge: false
   # Example of opting a specific dependency into automatic patching:
   - dependency: rspec
     update_external_dependencies: true
 </code></pre>
-
-<blockquote>
-<p>We generally <a href="https://docs.publishing.service.gov.uk/manual/keeping-software-current.html#rails">advise taking extra care with Rails upgrades</a> therefore those upgrades shouldn&rsquo;t be auto-merged.</p>
-</blockquote>
 
 <p>After you&rsquo;ve merged your config file into your main branch, you just need to add your repository to the <a href="https://github.com/alphagov/govuk-dependabot-merger/blob/main/config/repos_opted_in.yml">config/repos_opted_in.yml</a> list in govuk-dependabot-merger.</p>
 
