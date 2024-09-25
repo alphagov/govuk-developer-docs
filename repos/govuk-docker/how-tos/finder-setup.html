@@ -221,7 +221,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/25e88611cf5e904e4f1eb42013f5405d82c10b50">22 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/5fe55228d8420a09096f698b3f6cbeba40130733">24 Sep 2024</a>
 </div>
 
   <h1 class="page-title">govuk-docker: How to Publish Content to a Finder in GOV.UK Docker</h1>
@@ -259,10 +259,10 @@ finder with locally. The instructions below assume that you have "made" all of t
   -d '{"backend": {"backend_url": "http://collections.dev.gov.uk/"}}'
 </code></pre>
 </li>
-<li>Publish special routes by running <code>govuk-docker run special-route-publisher-lite bundle exec rake publish_special_routes</code>.</li>
+<li>Publish special routes by running <code>govuk-docker run publishing-api-lite bundle exec rake publish_special_routes</code>.</li>
 <li>Publish Search API's routes by
 running <code>govuk-docker exec search-api-app bundle exec rake publishing_api:publish_special_routes</code>.</li>
-<li>Publish the root taxon for GOV.UK: <code>govuk-docker run special-route-publisher-lite rake publish_homepage</code>
+<li>Publish the root taxon for GOV.UK: <code>govuk-docker run publishing-api-lite rake publish_homepage</code>
 </li>
 <li>Publish a test taxon:
 <pre lang="bash"><code>govuk-docker run whitehall-lite rails taxonomy:populate_end_to_end_test_data
