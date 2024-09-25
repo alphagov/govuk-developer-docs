@@ -8,6 +8,6 @@ old_paths:
  - /manual/publish_special_routes.html
 ---
 
-[Special Route Publisher](https://github.com/alphagov/special-route-publisher) is a tool for loading a set of routes (a map of URL path to a rendering app and content ID) from a YAML file into Publishing API.
+[Publishing API](https://github.com/alphagov/publishing-api) has a set of rake tasks for loading routes (a map of URL path to a rendering app and content ID) from a YAML file into Publishing API.
 
-See [Publishing routes on EKS](https://github.com/alphagov/special-route-publisher#publishing-routes-on-eks) for usage.
+See [Publishing special routes](https://github.com/alphagov/publishing-api/blob/main/docs/admin-tasks.md#publishing-special-routes) for usage.
