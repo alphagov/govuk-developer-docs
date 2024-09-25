@@ -202,7 +202,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7f5b50815fa4b849629a2f98154045c440b0a658">17 Sep 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/10d7d816500f80e16f8939eec53e51e1c0339a53">25 Sep 2024</a>
 </div>
 
  <h1 id='header'>GOV.UK Chat Alerts</h1> <blockquote>
@@ -228,9 +228,12 @@
 <li>HighPodCPUWorker</li>
 <li>HighPodMemoryFE</li>
 <li>HighPodMemoryWorker</li>
+<li>NearTokensRateLimit</li>
+<li>NearRequestsRateLimit</li>
 </ul>
 <p>The <code>LongRequestDuration</code> alert indicates that a backend part of the service is not responding as expected, and as a result the user experience is severely impacted. For example, we have seen it fire when the RDS Postgres Database is offline.</p>
 <p>Any of the <code>High</code> alerts usually indicate that the service is under heavy load. In this situation, it may be necessary to increase the number of relevent pods running by modifying the <code>replicaCount</code> for FE or <code>workerReplicaCount</code> for Worker pods in the <code>govuk-chat</code> section of the relevant values Helm Chart file found <a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config">here</a>.</p>
+<p>The <code>NearTokensRateLimit</code> and <code>NearRequestsRateLimit</code> alerts indicate that over 80% of the OpenAI limit for tokens or requests per minute has been used.</p>
 
   <div class='related-content'>
 
