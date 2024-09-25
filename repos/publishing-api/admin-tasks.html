@@ -231,7 +231,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/3e73782d261fb3a0023fbb3de17d62559fde7a90">24 Sep 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/abb79c3ff7dd6f62a3faae37fdf2505a423f023f">25 Sep 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Admin Tasks</h1>
@@ -324,36 +324,36 @@ a couple of rake commands.</p>
 <h2 id="publishing-special-routes">Publishing special routes</h2>
 <p>Special routes are content items that have to be put into publishing-api / content-store so that routes
 can be created for them in router-api's database (this includes things like assets that have to be available
-at route or hardcoded pages). The routes are described in lib/data/special_routes.yaml and lib/data/homepage.yaml</p>
+at route or hardcoded pages). The routes are described in lib/data/special_routes.yaml</p>
 <ul>
 <li>To publish the homepage special route</li>
 </ul>
-<pre><code>bundle exec rake publish_homepage
+<pre><code>bundle exec rake special_routes:publish_homepage
 </code></pre>
 <ul>
 <li>To publish all special routes (except homepage)</li>
 </ul>
-<pre><code>bundle exec rake publish_special_routes
+<pre><code>bundle exec rake special_routes:publish
 </code></pre>
 <ul>
 <li>To publish all special routes for one application</li>
 </ul>
-<pre><code>bundle exec rake publish_special_routes[frontend]
+<pre><code>bundle exec rake special_routes:publish_for_app[frontend]
 </code></pre>
 <ul>
 <li>To publish one route</li>
 </ul>
-<pre><code>bundle exec rake publish_one_special_route[/base-path]
+<pre><code>bundle exec rake special_routes:publish_one_route[/base-path]
 </code></pre>
 <ul>
 <li>To unpublish one route so that it will return Gone</li>
 </ul>
-<pre><code>bundle exec rake unpublish_one_special_route[/base-path]
+<pre><code>bundle exec rake special_routes:unpublish_one_route[/base-path]
 </code></pre>
 <ul>
 <li>To unpublish one route so that it will return Redirect</li>
 </ul>
-<pre><code>bundle exec rake unpublish_one_special_route[/base-path,/new-base-path]
+<pre><code>bundle exec rake special_routes:unpublish_one_route[/base-path,/new-base-path]
 </code></pre>
 <h3 id="adding-new-special-routes">Adding new special routes</h3>
 <p>Add an entry to /lib/data/special_routes.yaml, for example:</p>
