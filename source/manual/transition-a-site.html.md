@@ -185,7 +185,7 @@ the day after.
 
 ### 9) Add the domain to Fastly
 
-Manually trigger govuk-fastly 'Plan and apply' run in [Terraform Cloud UI](https://app.terraform.io/app/govuk/workspaces/govuk-fastly/runs). Review the plan with changes to `module.bouncer-production.fastly_service_vcl.service` and apply the configuration.
+Manually trigger `govuk-fastly-bouncer-production` 'Plan and apply' run in [Terraform Cloud UI](https://app.terraform.io/app/govuk/workspaces/govuk-fastly-bouncer-production/runs). Review the plan with changes to `module.bouncer-production.fastly_service_vcl.service` and apply the configuration.
 
 ### 10) Point the domain at us
 
