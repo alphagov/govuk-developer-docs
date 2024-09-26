@@ -230,15 +230,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/17a5b39a3d161d47e741bef0e46a187ad0a9cfb5">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/01a0c466f173f535f1f098af61fe22e3579c4421">25 Sep 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Dependency Resolution</h1>
@@ -271,11 +264,11 @@ require this.</p>
 <h2 id="when-it-occurs">When it occurs</h2>
 <p>Dependency resolution occurs in a background process provided by a
 <a href="https://sidekiq.org">Sidekiq</a> worker:
-<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/dependency_resolution_worker.rb">DependencyResolutionWorker</a>. The dependency
+<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/dependency_resolution_worker.rb">DependencyResolutionJob</a>. The dependency
 resolution process itself is triggered as a result of different Sidekiq
-workers (<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/downstream_draft_worker.rb">DownstreamDraftWorker</a>,
-<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/downstream_live_worker.rb">DownstreamLiveWorker</a>, and
-<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/downstream_discard_draft_worker.rb">DownstreamDiscardDraftWorker</a>) who are
+workers (<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/downstream_draft_worker.rb">DownstreamDraftJob</a>,
+<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/downstream_live_worker.rb">DownstreamLiveJob</a>, and
+<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/downstream_discard_draft_worker.rb">DownstreamDiscardDraftJob</a>) who are
 responsible for updating the Content Stores any time an edition changes.</p>
 <p>Thus any time an edition is updated and re-presented in the content store
 the dependency resolution process will run and update items linked to the
@@ -297,8 +290,8 @@ for determining the locales of each <code>content_id</code>.</p>
 <h2 id="updating-content-store">Updating Content Store</h2>
 <p>As a result of the dependency resolution process, editions identified to
 be presented will be queued in the Sidekiq workers:
-<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/downstream_draft_worker.rb">DownstreamDraftWorker</a> and
-<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/downstream_live_worker.rb">DownstreamLiveWorker</a>. These workers communicate
+<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/downstream_draft_worker.rb">DownstreamDraftJob</a> and
+<a href="https://github.com/alphagov/publishing-api/blob/main/app/workers/downstream_live_worker.rb">DownstreamLiveJob</a>. These workers communicate
 with the content store.</p>
 <h3 id="content-store-http-headers">Content Store HTTP headers</h3>
 <p>HTTP Requests to the Content Store contain HTTP headers that can be used

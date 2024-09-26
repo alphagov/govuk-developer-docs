@@ -237,15 +237,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c62852572d88a7a6eac4a62056e2a7059ec150ca">27 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dc56d4de31b0f7b9691b3d7da015bf8abaee7fb0">26 Sep 2024</a>
 </div>
 
  <h1 id='header'>Transition a site to GOV.UK</h1> <p>When a site is going to move to GOV.UK, there are two ways that the old site
@@ -378,7 +371,11 @@ impression to stakeholders. We normally ask for this to be done a day in
 advance, and to be lowered to 300 seconds (5 minutes). It can be raised
 again once everyone is happy there is no need to switch back - normally
 the day after.</p>
-<h3 id='9-add-the-domain-to-fastly'>9) Add the domain to Fastly</h3><p>Manually trigger govuk-fastly &lsquo;Plan and apply&rsquo; run in <a href="https://app.terraform.io/app/govuk/workspaces/govuk-fastly/runs">Terraform Cloud UI</a>. Review the plan with changes to <code>module.bouncer-production.fastly_service_vcl.service</code> and apply the configuration.</p>
+<h3 id='9-add-the-domain-to-fastly'>9) Add the domain to Fastly</h3><p>Manually trigger <code>govuk-fastly-bouncer-production</code> &lsquo;Plan and apply&rsquo; run in <a href="https://app.terraform.io/app/govuk/workspaces/govuk-fastly-bouncer-production/runs">Terraform Cloud UI</a>. Review the plan with changes to <code>module.bouncer-production.fastly_service_vcl.service</code> and apply the configuration.</p>
+
+<blockquote>
+<p>If the domain currently has no DNS entries (e.g. it is brand new), this process will not set up the domain in Fastly (due to <a href="https://github.com/alphagov/transition/blob/8a532735ce8e61731986fd580a5d6ca1552e095f/app/controllers/hosts_controller.rb#L3C14-L3C49">this line of code</a>). Instead you should request the domain&rsquo;s owner point the DNS to us (see next step) before running this project.</p>
+</blockquote>
 <h3 id='10-point-the-domain-at-us'>10) Point the domain at us</h3><p>Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a <code>CNAME</code>
 record, this is <code>bouncer-cdn.production.govuk.service.gov.uk</code>.
