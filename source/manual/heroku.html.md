@@ -10,4 +10,4 @@ We use Heroku to host some non-critical applications like the [monitoring screen
 
 The credentials for Heroku are in `2ndline/heroku` in [Secrets Manager](secrets-manager.html).
 
-If you need to reset the password for the Heroku account, the email will be sent to a Google Group called [govuk-role-platform-accounts-members](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-role-platform-accounts-members). 2nd-line-support@digital.cabinet-office.gov.uk is a member of this group, and will receive any password reset emails.
+If you need to reset the password for the Heroku account, the email will be sent to a Google Group called [govuk-role-platform-accounts-members](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-role-platform-accounts-members). govuk-web-support@digital.cabinet-office.gov.uk (which you can request to join) is a member of this group, and will receive any password reset emails.
