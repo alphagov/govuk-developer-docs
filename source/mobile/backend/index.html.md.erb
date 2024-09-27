@@ -1,0 +1,25 @@
+---
+title: Back end
+weight: 20
+layout: multipage_layout
+---
+
+# Back end
+
+## Remote config
+
+Remote config enables us to do the following with the mobile apps, without needing to release a new version:
+<ul>
+    <li>Globally turn off the whole app (i.e. kill switch)</li>
+    <li>Turn off individual features</li>
+    <li>Force users to update their app if they are running too low a version</li>
+    <li>Recommend (but not force) users to update their app if they are running too low a version</li>
+    <li>Configure other general parameters for the app</li>
+</ul>
+
+### Runbook
+Instructions for updating remote config (the runbook) is available [here](/mobile/backend/remote-config-runbook.html)
+
+## GitHub repositories
+
+<%= partial "partials/repo/mobile", locals: { os: "backend" } %>
