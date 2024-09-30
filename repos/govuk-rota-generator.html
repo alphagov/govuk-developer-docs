@@ -312,6 +312,14 @@ But the script will also output a user-friendly CSV to the &ldquo;Auto-generated
 
 <h3 id="synchronise-the-rota-with-pagerduty">Synchronise the rota with PagerDuty</h3>
 
+<p>govuk-rota-generator automatically synchronises the Google Sheet rota with PagerDuty <a href="https://github.com/alphagov/govuk-rota-generator/blob/main/.github/workflows/sync_pagerduty.yml">on a regular basis</a>.</p>
+
+<p>The three ENV vars described in <a href="#run-the-synchroniser-script">Run the synchroniser script</a>, as well as the <code>GOOGLE_SERVICE_ACCOUNT_KEY</code> key from the <a href="#setup">setup</a> phase, are stored as secrets on this repository. A failure notification is sent to Slack if the sync fails - the destination is determined by the <code>SLACK_WEBHOOK_URL</code> secret (reused from govuk-saas-config).</p>
+
+<p>Every quarter, a developer will need to swap out the <code>ROTA_TAB_NAME</code> to reflect the name of the next rota that needs synchronising.</p>
+
+<p>Below are the instructions for running the synchroniser manually.</p>
+
 <h4 id="export-an-api-key">Export an API key</h4>
 
 <p>You&rsquo;ll need a PagerDuty API key associated with PagerDuty account that has &ldquo;Global Admin&rdquo; access (which can be <a href="https://github.com/alphagov/govuk-user-reviewer/blob/89102b7778cdf391e4aa6f3e830615093101cc39/config/govuk_tech.yml#L258-L260">configured in govuk-user-reviewer</a>):</p>
@@ -323,22 +331,23 @@ But the script will also output a user-friendly CSV to the &ldquo;Auto-generated
 <li>Click &ldquo;Create API User Token&rdquo;</li>
 </ol>
 
-<p>Export this token as an ENV variable:</p>
-
-<pre lang="sh"><code>export PAGER_DUTY_API_KEY=$(more ~/pagerduty_token.txt)
-</code></pre>
+<p>Store this token somewhere safe, e.g. <code>~/pagerduty_token.txt</code>.</p>
 
 <h4 id="run-the-synchroniser-script">Run the synchroniser script</h4>
 
 <p>You can now synchronise a rota with PagerDuty using:</p>
 
-<pre lang="sh"><code>ruby bin/sync_pagerduty.rb
+<pre lang="sh"><code>$ export ROTA_SHEET_URL="https://docs.google.com/spreadsheets/d/&lt;sheet id&gt;/edit"
+$ export ROTA_TAB_NAME="Q3 24/25 Rota"                                                                            
+$ export PAGER_DUTY_API_KEY=$(more ~/pagerduty_token.txt)
+$ bundle exec rake sync_pagerduty[false]
 </code></pre>
 
 <p>This will:</p>
 
 <ol>
-<li>Use the rota in <code>data/tmp_rota.yml</code> (created automatically by the &ldquo;calculate fairness&rdquo; script)</li>
+<li>Fetch the rota corresponding to <code>ROTA_SHEET_URL</code> and <code>ROTA_TAB_NAME</code>
+</li>
 <li>Map the roles in that rota to the roles in <code>config/roles.yml</code>, where it finds the corresponding PagerDuty schedule IDs</li>
 <li>Fetch the list of PagerDuty users and match these up with the users in your rota, warning on any names that are missing from PagerDuty (and skipping over those shifts)±</li>
 <li>Find conflicts between the PagerDuty schedule and the local rota, and apply overrides to fix them</li>
@@ -348,9 +357,9 @@ But the script will also output a user-friendly CSV to the &ldquo;Auto-generated
 
 <p>By default, the script will ask you to approve each override: <code>y</code> to override, <code>n</code> to skip, and <code>exit</code> to close the script altogether. This means you can do a &lsquo;dry run&rsquo; of the synchroniser by choosing <code>n</code> each time.</p>
 
-<p>If you wish to approve all of the overrides at once, you can pass the <code>--bulk</code> option:</p>
+<p>If you wish to approve all of the overrides at once, you can pass <code>true</code> to the rake task:</p>
 
-<pre lang="sh"><code>ruby bin/sync_pagerduty.rb --bulk
+<pre lang="sh"><code>bundle exec rake sync_pagerduty[true]
 </code></pre>
 <p></div></p>
 
