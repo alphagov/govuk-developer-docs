@@ -39,6 +39,31 @@ You can also access Secrets Manager via AWS CLI commands, for example [aws
 secretsmanager
 get-secret-value](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/secretsmanager/get-secret-value.html).
 
+## Set up OTP from 2FA seed
+
+Some of our 'secrets' are for shared accounts which require 2FA to log in. They may have a "2fa-seed" part of the secret that looks a bit like this: `otpauth://totp/YOUR_IDENTIFICATION?secret=YOUR_SECRET`.
+
+You can get a One-Time-Password by copying and pasting the secret (`YOUR-SECRET` in the example above) into totp-cli (installed via `brew install totp-cli`):
+
+```
+totp-cli instant
+# paste the secret, hit Enter
+```
+
+The above approach requires getting the secret from Secrets Manager every time you want to log into the shared account. If you anticipate logging in regularly, you can set up the OTP in your authenticating app by generating an ASCII QR code from the 2fa-seed:
+
+```
+# needed for `display` command
+brew update && brew install imagemagick
+
+# needed for qrencode
+brew install qrencode
+
+qrencode -o- -d 300 -s 10 "otpauth://totp/YOUR_IDENTIFICATION?secret=YOUR_SECRET" | display
+```
+
+The above outputs a QR code you can take a picture of from your authenticator app. You can then get a new OTP from the authenticator app whenever you want to log in.
+
 ## Rotate a credential
 
 Retrieve the credential, then press __Edit__.
