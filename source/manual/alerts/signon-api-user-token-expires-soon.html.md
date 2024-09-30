@@ -21,8 +21,6 @@ The Integration environment should also be updated overnight but this is not hap
 
 If the token is for `Trade Tariff Admin` or `Trade Tariff Backend`, see [Trade Tariff Admin on the Wiki](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin)
 
-If the token is for `Signon API Client (permission and suspension updater)` then the key will rotate automatically and the alert can be ignored.
-
 ### 1. Issue a new token
 
 1. Go to the [APIs page](https://signon.publishing.service.gov.uk/api_users) in Signon.
