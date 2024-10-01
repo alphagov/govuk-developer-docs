@@ -211,40 +211,14 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/f7aa98cc08925a36770e80514b11388b029a2b92">31 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/c23bf816b73e1d5d0d4cabbbb7dee551f6cab4fb">30 Sep 2024</a>
 </div>
 
   <h1 class="page-title">account-api: Rake Tasks</h1>
 
   
-<p>There are a number of Rake tasks available to help with
-sending content to the Publishing API and administrating users.</p>
-<h2 id="publishing-api-tasks">Publishing API Tasks</h2>
-<p>All content items are found in <code>config/content_items.yml</code></p>
-<h3 id="publish-redirects">Publish redirects</h3>
-<p>Publishes all routes in the <code>redirects</code> array</p>
-<pre lang="ruby"><code>publishing_api:publish_redirects
-</code></pre>
-<h3 id="publish_all-special_routes">Publish_all special_routes</h3>
-<p>Publishes all routes in the <code>special_routes</code> array</p>
-<pre lang="ruby"><code>publishing_api:publish_special_routes
-</code></pre>
-<h3 id="publish-a-help-page-by-name">Publish a help page by name</h3>
-<p>Publishes a single help page from the help_pages hash, the name
-being the first key for the required help page.</p>
-<pre lang="ruby"><code>publishing_api:publish_help_page[name]
-</code></pre>
-<h3 id="publish-single-special-route-by-content_id">Publish single special route by content_id</h3>
-<pre lang="ruby"><code>publishing_api:publish_special_route[content_id]
-</code></pre>
+<p>There are a number of Rake tasks available to help with administering users.</p>
 <h2 id="user-support-tasks">User Support Tasks</h2>
 <h3 id="checking-a-user-exists-by-email-address">Checking a user exists by email address</h3>
 <p>This will return a message confirming if such a
