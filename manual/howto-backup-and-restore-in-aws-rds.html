@@ -223,7 +223,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9b075f730ff5a2eede7bf9420411c6b86e0755a9">31 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea7349b43143075d4f0e0b238d6589eca72770f7">2 Oct 2024</a>
 </div>
 
  <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>This playbook describes how to restore a database instance using Amazon&rsquo;s <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html">RDS Backups</a> feature.</p>
@@ -325,7 +325,7 @@ gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><s
 <p>For reference, here is the <a href="https://docs.aws.amazon.com/cli/latest/reference/rds/delete-db-instance.html#delete-db-instance">AWS documentation for deleting a database instance</a>.</p>
 <p>It is likely that the restored database is missing data since the snapshot was taken and you
 will want to have a copy of the original database for comparison before deleting it.</p>
-<p>If you are drilling this on 2ndline then make sure you revert to the previous db credentials prior to deleting the database.</p>
+<p>If you are drilling this, then make sure you revert to the previous db credentials prior to deleting the database.</p>
 <p>The command below will create a DB snapshot before the DB instance is deleted. If you don&rsquo;t want this, replace the <code>--final-db-snapshot-identifier</code> parameter with <code>--skip-final-snapshot</code>.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">environment</span><span class="o">=</span>production
 <span class="nv">db_instance_identifier</span><span class="o">=</span>&lt;e.g. local-links-manager-postgres&gt;

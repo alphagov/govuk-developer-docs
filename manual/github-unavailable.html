@@ -205,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/69f47f28777da09b2dc327c1f56235231c0b6c3a">22 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea7349b43143075d4f0e0b238d6589eca72770f7">2 Oct 2024</a>
 </div>
 
  <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='aws-codecommit'>AWS CodeCommit</h2><p>We mirror all non-archived GitHub repositories tagged with <code>govuk</code> to AWS CodeCommit via the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/mirror-repos.yml">&ldquo;Mirror repositories&rdquo; GitHub Actions workflow</a>. The workflow uses the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/mirror.tf"><code>github_action_mirror_repos_role</code> IAM role</a>.</p>
@@ -259,7 +259,7 @@ docker push $REGISTRY/$REPO:$IMAGE_TAG
 <li>Update the tag part of the <code>image:</code> value to the new image tag that you pushed to ECR. The part you are changing should look something like <code>v123</code>.</li>
 <li>Click <code>Save</code>. Argo CD will start the deployment, which should complete in under ten minutes.</li>
 </ol>
-<p>When GitHub is available again (or when you&rsquo;ve completed the above as part of a Technical 2nd Line drill), return things to normal by re-enabling the auto-sync:</p>
+<p>When GitHub is available again (or when you&rsquo;ve completed the above as part of a drill), return things to normal by re-enabling the auto-sync:</p>
 
 <ol>
 <li>From the Applications page (the Argo CD homepage), choose the <code>app-config</code> application.</li>
