@@ -33,7 +33,7 @@ This backup CDN is currently provided by AWS CloudFront.
 
 Now follow the steps below for [**Production**](#production) or for [**Staging**](#staging), depending on your scenario:
 
-> Note: If you are undertaking this as a 2ndline drill, follow the steps for **Staging**.
+> Note: If you are undertaking this as a drill, follow the steps for **Staging**.
 
 ### Production
 
