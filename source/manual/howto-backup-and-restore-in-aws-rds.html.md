@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-platform-engineering"
 title: Backup and restore databases in AWS RDS
 section: Backups
 layout: manual_layout
@@ -172,7 +172,7 @@ For reference, here is the [AWS documentation for deleting a database instance](
 It is likely that the restored database is missing data since the snapshot was taken and you
 will want to have a copy of the original database for comparison before deleting it.
 
-If you are drilling this on 2ndline then make sure you revert to the previous db credentials prior to deleting the database.
+If you are drilling this, then make sure you revert to the previous db credentials prior to deleting the database.
 
 The command below will create a DB snapshot before the DB instance is deleted. If you don't want this, replace the `--final-db-snapshot-identifier` parameter with `--skip-final-snapshot`.
 

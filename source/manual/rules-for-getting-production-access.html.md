@@ -81,7 +81,7 @@ A new starter/engineer will be expected to work through the following checklist 
 - The different parts of the GOV.UK technical stack (CDN, frontends, publishing apps, etc). E.g. by attending an "Introduction to GOV.UK Technical Architecture" session (or watching the [recording](https://drive.google.com/file/d/1-az_Y_JeKJ2Xhqrc7VNVt1sKOTEpHbcM/view)).
 - The deployment pipeline - how code gets from your machine to running on production. E.g. by reading [the deployment docs](/manual#deployment), and learning on the job.
 - The incident management process. E.g. by reading through the [So, you're having an incident](/manual/incident-what-to-do) doc and completing the [incident preparedness quizzes](https://drive.google.com/drive/folders/1X9eGQMIl9ifb3X2jYcdjqrt01P9JYJzR).
-- Best practices around the principle of least privilege, how to safely debug production issues, and how to work with credentials and accounts. E.g. by pairing with another developer to [practise a drill](/manual/2nd-line-drills.html).
+- Best practices around the principle of least privilege, how to safely debug production issues, and how to work with credentials and accounts. E.g. by pairing with another developer to practise a drill on your product team.
 
 ## Temporarily revoking access
 
