@@ -63,7 +63,7 @@ echo $IMAGE_TAG
 1. Update the tag part of the `image:` value to the new image tag that you pushed to ECR. The part you are changing should look something like `v123`.
 1. Click `Save`. Argo CD will start the deployment, which should complete in under ten minutes.
 
-When GitHub is available again (or when you've completed the above as part of a Technical 2nd Line drill), return things to normal by re-enabling the auto-sync:
+When GitHub is available again (or when you've completed the above as part of a drill), return things to normal by re-enabling the auto-sync:
 
   1. From the Applications page (the Argo CD homepage), choose the `app-config` application.
   1. Press the `App Details` button near the top of the page.
