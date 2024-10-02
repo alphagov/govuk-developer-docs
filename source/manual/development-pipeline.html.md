@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-developers"
+owner_slack: "#govuk-platform-engineering"
 title: The development and deployment pipeline
 parent: "/manual.html"
 layout: manual_layout

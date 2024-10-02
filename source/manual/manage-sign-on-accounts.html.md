@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-publishing"
 title: Manage Signon user/API accounts and access tokens
 section: Accounts
 layout: manual_layout

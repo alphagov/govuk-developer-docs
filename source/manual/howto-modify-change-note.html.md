@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-publishing"
 title: Modify a change note in Publishing API, Content Publisher or Whitehall
 section: Publishing
 layout: manual_layout

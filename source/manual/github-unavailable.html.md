@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-developers"
+owner_slack: "#govuk-platform-engineering"
 title: Deploy when GitHub is unavailable
 section: Deployment
 layout: manual_layout
