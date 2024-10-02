@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-web-support"
 title: GOV.UK content mirrors
 section: Deployment
 layout: manual_layout

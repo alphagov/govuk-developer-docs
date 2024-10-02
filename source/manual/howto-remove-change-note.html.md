@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-developers"
+owner_slack: "#govuk-publishing"
 title: Remove a change note
 section: Publishing
 layout: manual_layout
