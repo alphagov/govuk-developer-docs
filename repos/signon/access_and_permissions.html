@@ -204,24 +204,27 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/6107dc28a8efa2172bb4f2e88a5944667704f4ab">15 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/8dcc4387219d2ac4370df956d662917a6a8bc094">1 Oct 2024</a>
 </div>
 
   <h1 class="page-title">signon: Access and permissions</h1>
 
   
 <p>In addition to providing a single sign on solution for the GOV.UK publishing app suite, Signon can be used to manage users' access to apps and the permissions they have for each app. The permissions can then be used within specific non-Signon apps to dictate behaviour. This document provides a primer on key parts of how the management of access and permissions is implemented.</p>
-<h2 id="section-notes">Section notes</h2>
-<h3 id="what-can-you-do">What can you do?</h3>
+<h2 id="notes">Notes</h2>
+<h3 id="what-can-you-do-sections">"What can you do?" sections</h3>
 <p>Each "What can you do?" section provides a breakdown of the actions a given user (a 'granter') can take to manage access to and permissions for an app for a given user (a 'grantee').</p>
 <p>The granter is either:</p>
 <ul>
 <li>a GOV.UK admin, meaning a user with the role "Superadmin" or "Admin"; or</li>
 <li>a publishing manager, meaning a user with the role "Super organisation admin" or "Organisation admin"</li>
 </ul>
-<p>Each row represents an app with certain permissions set as delegatable, as indicated by the "Delegatable permissions" column. The "Grant access" column indicates whether a granter can give a grantee the <code>signin</code> permission, and the "Revoke access" column relates to removing the <code>signin</code> permission.</p>
-<h3 id="dependencies-by-route">Dependencies by route</h3>
+<p>Each row represents an app with certain permissions set as delegated, as indicated by the "Delegated permissions" column. The "Grant access" column indicates whether a granter can give a grantee the <code>signin</code> permission, and the "Revoke access" column relates to removing the <code>signin</code> permission.</p>
+<h3 id="dependencies-by-route-sections">"Dependencies by route" sections</h3>
 <p>Each "Dependencies by route" section provides a breakdown of which actions are determined by dependencies and a tree or trees of relevant dependencies. The aim of this section isn't to go all the way down every node of each dependency tree, but rather to provide enough context on what determines what you can do, and to make it easier to identify shared dependencies. There's a particular focus on the different policies that are hit by each route, since the policies are both fundamental to how everything works and the source of a lot of complexity.</p>
+<h3 id="delegating-vs-granting-permissions">Delegating vs granting permissions</h3>
+<p>'Delegating' and 'granting' permissions are separate but related concepts. Permissions are 'granted' to individual users, while they are 'delegated' as grantable by publishing managers.</p>
+<p>When a permission is delegated, then, publishing managers have the authority to grant the permission to users they manage. When the 'signin' permission is delegated, publishing managers can grant or remove access to the given application.</p>
 <h2 id="for-the-current-user-self">For the current user (self)</h2>
 <p>In this section, the granter and grantee are the same user: this is about managing your own access and permissions.</p>
 <h3 id="what-can-you-do">What can you do?</h3>
@@ -229,7 +232,7 @@
 <table>
 <thead>
 <tr>
-<th>Delegatable permissions</th>
+<th>Delegated permissions</th>
 <th>Grant access</th>
 <th>Revoke access</th>
 <th>Edit permissions</th>
@@ -264,7 +267,7 @@
 <table>
 <thead>
 <tr>
-<th>Delegatable permissions</th>
+<th>Delegated permissions</th>
 <th>Grant access</th>
 <th>Revoke access</th>
 <th>Edit permissions</th>
@@ -295,7 +298,7 @@
 </tr>
 </tbody>
 </table>
-<p>* only delegatable non-signin permissions</p>
+<p>* only delegated non-signin permissions</p>
 <h3 id="dependencies-by-route">Dependencies by route</h3>
 <h4 id="account-applications-show">Account applications show</h4>
 <p>These dependencies determine whether a user can:</p>
@@ -315,14 +318,13 @@
 </ul>
 <pre lang="mermaid"><code>flowchart TD
     A(Account::ApplicationsController#index) --authorize [:account, Doorkeeper::Application]--&gt; B(Account::ApplicationPolicy#index?)
-    C(app/views/account/applications/index.html.erb) --wrap_links_in_actions_markup--&gt; D(ApplicationTableHelper#wrap_links_in_actions_markup)
-    C --account_applications_permissions_links--&gt; E(ApplicationTableHelper#account_applications_permissions_links)
-    E --policy([:account, application]).view_permissions?--&gt; F(Account::ApplicationPolicy#view_permissions?)
-    E --policy([:account, application]).edit_permissions?--&gt; G(Account::ApplicationPolicy#edit_permissions?)
-    C --account_applications_remove_access_link--&gt; H(ApplicationTableHelper#account_applications_remove_access_link)
-    H --policy([:account, application]).remove_signin_permission?--&gt; I(Account::ApplicationPolicy#remove_signin_permission?)
-    C --account_applications_grant_access_link--&gt; J(ApplicationTableHelper#account_applications_grant_access_link)
-    J --policy([:account, Doorkeeper::Application]).grant_signin_permission?--&gt; K(Account::ApplicationPolicy#grant_signin_permission?)
+    C(app/views/account/applications/index.html.erb) --account_applications_permissions_links--&gt; D(ApplicationTableHelper#account_applications_permissions_links)
+    D --policy([:account, application]).view_permissions?--&gt; E(Account::ApplicationPolicy#view_permissions?)
+    D --policy([:account, application]).edit_permissions?--&gt; F(Account::ApplicationPolicy#edit_permissions?)
+    C --account_applications_remove_access_link--&gt; G(ApplicationTableHelper#account_applications_remove_access_link)
+    G --policy([:account, application]).remove_signin_permission?--&gt; H(Account::ApplicationPolicy#remove_signin_permission?)
+    C --account_applications_grant_access_link--&gt; I(ApplicationTableHelper#account_applications_grant_access_link)
+    I --policy([:account, Doorkeeper::Application]).grant_signin_permission?--&gt; J(Account::ApplicationPolicy#grant_signin_permission?)
 </code></pre>
 <h4 id="account-permissions-show">Account permissions show</h4>
 <p>These dependencies determine whether a user can:</p>
@@ -412,7 +414,7 @@
 <table>
 <thead>
 <tr>
-<th>Delegatable permissions</th>
+<th>Delegated permissions</th>
 <th>Grant access</th>
 <th>Revoke access</th>
 <th>Edit permissions</th>
@@ -448,7 +450,7 @@
 <table>
 <thead>
 <tr>
-<th>Delegatable permissions</th>
+<th>Delegated permissions</th>
 <th>Grant access</th>
 <th>Revoke access</th>
 <th>Edit permissions</th>
@@ -479,12 +481,12 @@
 </tr>
 </tbody>
 </table>
-<p>* only delegatable non-signin permissions</p>
+<p>* only delegated non-signin permissions</p>
 <h5 id="without-access-to-the-app">Without access to the app</h5>
 <table>
 <thead>
 <tr>
-<th>Delegatable permissions</th>
+<th>Delegated permissions</th>
 <th>Grant access</th>
 <th>Revoke access</th>
 <th>Edit permissions</th>
@@ -536,18 +538,17 @@
 <pre lang="mermaid"><code>flowchart TD
     A(Users::ApplicationsController#index) --authorize [{ user: }], policy_class: Users::ApplicationPolicy--&gt; B(Users::ApplicationPolicy#index?)
     B --Pundit.policy(current_user, user).edit?--&gt; C(UserPolicy#edit?)
-    D(app/views/users/applications/index.html.erb) --wrap_links_in_actions_markup--&gt; E(ApplicationTableHelper#wrap_links_in_actions_markup)
-    D --users_applications_permissions_links--&gt; F(ApplicationTableHelper#users_applications_permissions_links)
-    F --Users::ApplicationPolicy.new(current_user, { application:, user: }).view_permissions?--&gt; G(Users::ApplicationPolicy#view_permissions?)
-    G --Pundit.policy(current_user, user).edit?--&gt; H(UserPolicy#edit?)
-    F --Users::ApplicationPolicy.new(current_user, { application:, user: }).edit_permissions?--&gt; I(Users::ApplicationPolicy#edit_permissions?)
-    I --Pundit.policy(current_user, user).edit?--&gt; H
-    D --users_applications_remove_access_link--&gt; J(ApplicationTableHelper#users_applications_remove_access_link)
-    J --Users::ApplicationPolicy.new(current_user, { application:, user: }).remove_signin_permission?--&gt; K(Users::ApplicationPolicy#remove_signin_permission?)
-    K --Pundit.policy(current_user, user).edit?--&gt; H
-    D --users_applications_grant_access_link--&gt; L(ApplicationTableHelper#users_applications_grant_access_link)
-    L --Users::ApplicationPolicy.new(current_user, { application:, user: }).grant_signin_permission?--&gt; M(Users::ApplicationPolicy#grant_signin_permission?)
-    M --Pundit.policy(current_user, user).edit?--&gt; H
+    D(app/views/users/applications/index.html.erb) --users_applications_permissions_links--&gt; E(ApplicationTableHelper#users_applications_permissions_links)
+    E --Users::ApplicationPolicy.new(current_user, { application:, user: }).view_permissions?--&gt; F(Users::ApplicationPolicy#view_permissions?)
+    F --Pundit.policy(current_user, user).edit?--&gt; G(UserPolicy#edit?)
+    E --Users::ApplicationPolicy.new(current_user, { application:, user: }).edit_permissions?--&gt; H(Users::ApplicationPolicy#edit_permissions?)
+    H --Pundit.policy(current_user, user).edit?--&gt; G
+    D --users_applications_remove_access_link--&gt; I(ApplicationTableHelper#users_applications_remove_access_link)
+    I --Users::ApplicationPolicy.new(current_user, { application:, user: }).remove_signin_permission?--&gt; J(Users::ApplicationPolicy#remove_signin_permission?)
+    J --Pundit.policy(current_user, user).edit?--&gt; G
+    D --users_applications_grant_access_link--&gt; K(ApplicationTableHelper#users_applications_grant_access_link)
+    K --Users::ApplicationPolicy.new(current_user, { application:, user: }).grant_signin_permission?--&gt; L(Users::ApplicationPolicy#grant_signin_permission?)
+    L --Pundit.policy(current_user, user).edit?--&gt; G
 </code></pre>
 <h4 id="users-permissions-show">Users permissions show</h4>
 <p>These dependencies determine whether a user can:</p>
