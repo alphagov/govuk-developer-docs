@@ -217,15 +217,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publisher/commit/d950ddfbd22c87f2954dc46eadec3feab0d63967">24 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publisher/commit/dc1456cae6b197e192a554d52f1f0e5c53857c2c">1 Oct 2024</a>
 </div>
 
   <h1 class="page-title">publisher: Fact Checking</h1>
@@ -240,6 +233,7 @@
 <li>Every 5 minutes, the <a href="https://github.com/alphagov/publisher/blob/main/script/mail_fetcher">mail_fetcher</a> script runs which reads any new emails from the inbox, parses the response and adds it to the edition in the database.</li>
 </ol>
 <p><strong>Note:</strong> The ID of the edition is included in the subject line of the fact check email. It's important that this is never removed, otherwise the app will be <a href="https://docs.publishing.service.gov.uk/manual/alerts/publisher-unprocessed-fact-check-emails.html">unable to match the email with the edition</a>.</p>
+<p><strong>Information:</strong> Sometimes fact check emails will fail to be processed. We use Prometheus to report this, and you can see how many are currently in the production fact-check inbox using <a href="https://grafana.eks.production.govuk.digital/explore?schemaVersion=1&amp;panes=%7B%22fj9%22%3A%7B%22datasource%22%3A%22prometheus%22%2C%22queries%22%3A%5B%7B%22refId%22%3A%22A%22%2C%22expr%22%3A%22publisher_fact_check_unprocessed_emails_total%22%2C%22range%22%3Atrue%2C%22instant%22%3Atrue%2C%22datasource%22%3A%7B%22type%22%3A%22prometheus%22%2C%22uid%22%3A%22prometheus%22%7D%2C%22editorMode%22%3A%22code%22%2C%22legendFormat%22%3A%22unprocessed_emails%22%7D%5D%2C%22range%22%3A%7B%22from%22%3A%22now-30d%22%2C%22to%22%3A%22now%22%7D%7D%7D&amp;orgId=1">this grafana page</a>.</p>
 
 
             
