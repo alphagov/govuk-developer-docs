@@ -236,6 +236,11 @@
   private_repo: true
   team: "#dev-notifications-ai-govuk"
   type: AI apps
+  production_hosted_on: eks
+  production_url: https://chat.publishing.service.gov.uk/
+  sentry_url: https://sentry.io/govuk/app-govuk-chat
+  kibana_url: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:whitehall-admin),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:govuk-chat)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())
+  kibana_worker_url: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:whitehall-admin-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:govuk-chat-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())
 
 - repo_name: govuk-content-api-docs
   team: "#govuk-publishing-platform"
