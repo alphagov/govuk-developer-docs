@@ -61,14 +61,8 @@ When creating a new GOV.UK repo, you must ensure it:
 - is tagged with the [`govuk`](https://github.com/search?q=topic:govuk) topic
 - has [Dependency Review](/manual/dependency-review.html) and [CodeQL](/manual/codeql.html) scans in its CI pipeline
 - is added to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the Developer Docs.
-  - We run a [daily script](https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml) to ensure that the Developer Docs' config is in sync with GitHub.
 
-You'll then need to [plan and apply the GitHub workspace in Terraform Cloud](https://app.terraform.io/app/govuk/workspaces/GitHub/runs):
-
-- This updates the collaborators to the [default teams and access levels](https://github.com/alphagov/govuk-infrastructure/blob/83ff43c4e55f3d3273644e80897b58fd351f566a/terraform/deployments/github/main.tf#L76-L112).
-  - If your repository access is sensitive, it should be tagged with the [`govuk-sensitive-access`](https://github.com/search?q=topic:govuk-sensitive-access) topic to avoid this automation: you would then need to manually manage its collaborators.
-
-Finally, you should run the ["Configure GitHub" action in govuk-saas-config](https://github.com/alphagov/govuk-saas-config/actions/workflows/configure-github.yml). This:
+You should add repository to [repos.yml in govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/repos.yml). This:
 
 - Applies [branch protection](https://help.github.com/articles/about-protected-branches) rules and configures PRs to be blocked on the outcome of the [GitHub Action CI](/manual/test-and-build-a-project-with-github-actions.html) workflow (if one exists)
 - Restricts the merging of PRs for continuously deployed apps, so that only those with Production Deploy or Production Admin access can merge
@@ -76,7 +70,10 @@ Finally, you should run the ["Configure GitHub" action in govuk-saas-config](htt
 - Sets up the webhook for [GitHub Trello Poster](/repos/github-trello-poster.html)
 - Sets some other default repo settings (e.g. delete branch on merge)
 
-The fact that we have two tools for managing GitHub resources is [recognised as technical debt](https://trello.com/c/mojlsebq/226-we-have-two-tools-for-managing-github-resources). The hope is to consolidate the GitHub code from govuk-saas-config into govuk-infrastructure.
+You'll then need to [plan and apply the GitHub workspace in Terraform Cloud](https://app.terraform.io/app/govuk/workspaces/GitHub/runs):
+
+- This automatilcally updates the collaborators to the [default teams and access levels](https://github.com/alphagov/govuk-infrastructure/blob/83ff43c4e55f3d3273644e80897b58fd351f566a/terraform/deployments/github/main.tf#L76-L112).
+  - If your repository access is sensitive, it should be tagged with the [`govuk-sensitive-access`](https://github.com/search?q=topic:govuk-sensitive-access) topic to avoid this automation: you would then need to manually manage its collaborators.
 
 [govuk-user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 [team-govuk]: https://github.com/orgs/alphagov/teams/gov-uk
