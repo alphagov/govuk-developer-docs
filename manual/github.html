@@ -211,7 +211,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5ab8efcfaf4ce17d7b3cd8e5f6abcb2cf0188b09">10 Jul 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/49cd57007f28c461468eb0e45b97a288dd08f51a">4 Oct 2024</a>
 </div>
 
  <h1 id='header'>GitHub</h1> <p>GOV.UK uses GitHub for version control, code deployments, authentication, CI, Dependabot and GitHub Pages. Read the &ldquo;<a href="https://docs.google.com/document/d/1KsYWCHSQZEwqB2NF1A7Z9rmP1s1azcZhEamaPsXAoxk/edit">GOV.UK reliance on GitHub features doc</a>&rdquo; Google doc for more information.</p>
@@ -253,22 +253,9 @@ Only content designers should be added to this team.</p></li>
 <li>has a well-written README (see <a href="/manual/readmes.html">READMEs for GOV.UK applications</a>, or the <a href="https://gds-way.digital.cabinet-office.gov.uk/manuals/readme-guidance.html#writing-readmes">GDS Way guidance</a> for general repositories)</li>
 <li>is tagged with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> topic</li>
 <li>has <a href="/manual/dependency-review.html">Dependency Review</a> and <a href="/manual/codeql.html">CodeQL</a> scans in its CI pipeline</li>
-<li>is added to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml</a> file in the Developer Docs.
-
-<ul>
-<li>We run a <a href="https://github.com/alphagov/govuk-saas-config/blob/main/.github/workflows/verify-repo-tags.yml">daily script</a> to ensure that the Developer Docs&rsquo; config is in sync with GitHub.</li>
-</ul></li>
+<li>is added to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">repos.yml</a> file in the Developer Docs.</li>
 </ul>
-<p>You&rsquo;ll then need to <a href="https://app.terraform.io/app/govuk/workspaces/GitHub/runs">plan and apply the GitHub workspace in Terraform Cloud</a>:</p>
-
-<ul>
-<li>This updates the collaborators to the <a href="https://github.com/alphagov/govuk-infrastructure/blob/83ff43c4e55f3d3273644e80897b58fd351f566a/terraform/deployments/github/main.tf#L76-L112">default teams and access levels</a>.
-
-<ul>
-<li>If your repository access is sensitive, it should be tagged with the <a href="https://github.com/search?q=topic:govuk-sensitive-access"><code>govuk-sensitive-access</code></a> topic to avoid this automation: you would then need to manually manage its collaborators.</li>
-</ul></li>
-</ul>
-<p>Finally, you should run the <a href="https://github.com/alphagov/govuk-saas-config/actions/workflows/configure-github.yml">&ldquo;Configure GitHub&rdquo; action in govuk-saas-config</a>. This:</p>
+<p>You should add repository to <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/repos.yml">repos.yml in govuk-infrastructure</a>. This:</p>
 
 <ul>
 <li>Applies <a href="https://help.github.com/articles/about-protected-branches">branch protection</a> rules and configures PRs to be blocked on the outcome of the <a href="/manual/test-and-build-a-project-with-github-actions.html">GitHub Action CI</a> workflow (if one exists)</li>
@@ -277,7 +264,15 @@ Only content designers should be added to this team.</p></li>
 <li>Sets up the webhook for <a href="/repos/github-trello-poster.html">GitHub Trello Poster</a></li>
 <li>Sets some other default repo settings (e.g. delete branch on merge)</li>
 </ul>
-<p>The fact that we have two tools for managing GitHub resources is <a href="https://trello.com/c/mojlsebq/226-we-have-two-tools-for-managing-github-resources">recognised as technical debt</a>. The hope is to consolidate the GitHub code from govuk-saas-config into govuk-infrastructure.</p>
+<p>You&rsquo;ll then need to <a href="https://app.terraform.io/app/govuk/workspaces/GitHub/runs">plan and apply the GitHub workspace in Terraform Cloud</a>:</p>
+
+<ul>
+<li>This automatilcally updates the collaborators to the <a href="https://github.com/alphagov/govuk-infrastructure/blob/83ff43c4e55f3d3273644e80897b58fd351f566a/terraform/deployments/github/main.tf#L76-L112">default teams and access levels</a>.
+
+<ul>
+<li>If your repository access is sensitive, it should be tagged with the <a href="https://github.com/search?q=topic:govuk-sensitive-access"><code>govuk-sensitive-access</code></a> topic to avoid this automation: you would then need to manually manage its collaborators.</li>
+</ul></li>
+</ul>
 
   <div class='related-content'>
 

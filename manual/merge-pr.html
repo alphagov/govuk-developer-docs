@@ -225,15 +225,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ba9ffde55d512ce00d9bd1754c8547ff1c4dae86">21 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/49cd57007f28c461468eb0e45b97a288dd08f51a">4 Oct 2024</a>
 </div>
 
  <h1 id='header'>Merge a Pull Request</h1> <p>There are five rules for reviewing and merging PRs, which apply to all applications:</p>
@@ -245,7 +238,7 @@
 <li>The GitHub review UI should be used to mark a PR as approved or requiring changes.</li>
 <li>The GitHub UI should be used to merge the PR. This ensures the PR number is added to the merge commit.</li>
 </ol>
-<p>We&rsquo;re doing more and more <a href="https://docs.google.com/document/d/1YhgjJjDRB57-IlgPNAAZzFTI3jIUucGJKokti_lQiRQ/edit">continuous deployment</a> these days, which means that merging to <code>main</code> on some apps is <a href="https://github.com/alphagov/govuk-saas-config/search?q=need_production_access_to_merge&amp;unscoped_q=need_production_access_to_merge">restricted to those with Production access</a>, as doing so auto-deploys to Production. If an app is continuously deployed, the PR template will show a warning triangle emoji. For apps that are not continuously deployed, you should deploy your changes all the way to Production as soon as possible after merging them.</p>
+<p>We&rsquo;re doing more and more <a href="https://docs.google.com/document/d/1YhgjJjDRB57-IlgPNAAZzFTI3jIUucGJKokti_lQiRQ/edit">continuous deployment</a> these days, which means that merging to <code>main</code> on some apps is <a href="https://github.com/search?q=repo%3Aalphagov%2Fgovuk-infrastructure+need_production_access_to_merge&amp;type=code">restricted to those with Production access</a>, as doing so auto-deploys to Production. If an app is continuously deployed, the PR template will show a warning triangle emoji. For apps that are not continuously deployed, you should deploy your changes all the way to Production as soon as possible after merging them.</p>
 <h2 id='example-scenarios'>Example scenarios</h2><h3 id='a-simple-change'>A simple change</h3><p>A small PR for a well-understood application, written by someone with good knowledge of the problem domain and with a well-defined scope. When a PR is created, someone with similar understanding of the application and change can approve and merge the PR. Both people are very confident that <code>main</code> will be deployable once this PR is merged.</p>
 <h3 id='a-simple-change-for-a-repository-that-has-a-long-running-test-suite'>A simple change for a repository that has a long-running test suite</h3><p>Similar to the above. If a PR is for an application that has a long-running test suite, you&rsquo;ve approved the change and are confident that the suite will pass, the reviewer can approve the PR. The author of the PR now has approval to merge it themselves once the test suite has passed.</p>
 <h3 id='a-simple-change-that-needs-a-small-rebase-before-being-merged'>A simple change that needs a small rebase before being merged</h3><p>Similar to the above, but it includes a change in the Gemfile which then conflicts with another, unrelated Gemfile change that is merged before this one. The author of the PR can keep any existing approvals on the PR, rebase the branch to remove the conflict, and merge the PR.</p>
