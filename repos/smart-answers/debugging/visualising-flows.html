@@ -174,7 +174,6 @@
               <li><a href="/repos/smart-answers/tasks/creating-a-new-smart-answer.html" rel="noopener" class="govuk-link">Creating a new Smart Answer</a></li>
               <li><a href="/repos/smart-answers/tasks/development-principles.html" rel="noopener" class="govuk-link">Smart Answer flows - Development principles</a></li>
               <li><a href="/repos/smart-answers/tasks/fact-check.html" rel="noopener" class="govuk-link">Deploying changes for fact-check</a></li>
-              <li><a href="/repos/smart-answers/tasks/flattening-outcomes.html" rel="noopener" class="govuk-link">Flattening Marriage Abroad outcomes for a country</a></li>
               <li><a href="/repos/smart-answers/tasks/publishing.html" rel="noopener" class="govuk-link">## Publishing</a></li>
               <li><a href="/repos/smart-answers/tasks/refactoring.html" rel="noopener" class="govuk-link">Refactoring existing Smart Answers</a></li>
               <li><a href="/repos/smart-answers/tasks/retiring-a-smart-answer.html" rel="noopener" class="govuk-link">How to retire a Smart Answer</a></li>
@@ -238,30 +237,23 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/5608a0ed738f0399d969fb8b80f04fa6e245d62e">5 Feb 2021</a>
+  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/95ae33309cd4225f5bd786e0dad3aba7fc76c9c8">2 Oct 2024</a>
 </div>
 
   <h1 class="page-title">smart-answers: Visualising flows</h1>
 
   
-<p>To see an interactive visualisation of a smart answer flow, append <code>/y/visualise</code> to the root of a smart answer URL e.g. <code>http://smartanswers.dev.gov.uk/&lt;smart-answer&gt;/y/visualise</code> or <code>https://www.gov.uk/&lt;smart-answer&gt;/y/visualise</code></p>
+<p>To see an interactive visualisation of a smart answer flow, append <code>/y/visualise</code> to the root of a smart answer URL e.g. <code>http://smart-answers.dev.gov.uk/&lt;smart-answer&gt;/y/visualise</code> or <code>https://www.gov.uk/&lt;smart-answer&gt;/y/visualise</code></p>
 <p>To see a static visualisation of a smart answer flow, using Graphviz:</p>
 <pre lang="bash"><code># Download graphviz representation
-$ curl https://www.gov.uk/marriage-abroad/y/visualise.gv --silent &gt; /tmp/marriage-abroad.gv
+$ curl https://www.gov.uk/check-uk-visa/y/visualise.gv --silent &gt; /tmp/check-uk-visa.gv
 
 # Use Graphviz to generate a PNG
-$ dot /tmp/marriage-abroad.gv -Tpng &gt; /tmp/marriage-abroad.png
+$ dot /tmp/check-uk-visa.gv -Tpng &gt; /tmp/check-uk-visa.png
 
 # Open the PNG
-$ open /tmp/marriage-abroad.png
+$ open /tmp/check-uk-visa.png
 </code></pre>
 <p><strong>NOTE.</strong> This assumes you already have Graphviz installed. You can install it using Homebrew on a Mac (<code>brew install graphviz</code>).</p>
 
