@@ -48,6 +48,7 @@ You will then need to ready a [new release of the components gem](https://github
 Set up a fork of `govuk-frontend`, then add the colour to the [_colours-organisations.scss file](https://github.com/alphagov/govuk-frontend/blob/main/packages/govuk-frontend/src/govuk/settings/_colours-organisations.scss) and update the [CHANGELOG](https://github.com/alphagov/govuk-frontend/blob/main/CHANGELOG.md).
 See [updating changelog](https://github.com/alphagov/govuk-frontend/blob/main/docs/contributing/versioning.md#updating-changelog) and [example PR](https://github.com/alphagov/govuk-frontend/pull/1918) for more details.
 
+You should then seek a code review from the Design System team.
 Note that it may be some time before a new version of `govuk-frontend` is released.
 
 ### 4. Add the organisation as brand colour option in Whitehall
