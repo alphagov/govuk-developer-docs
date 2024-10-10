@@ -221,7 +221,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/af6fdd08157c33c00b978fe472ce453f28f6a48d">15 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/5006b1f5a39e81076b452193f7c8f02f0aa024c5">10 Oct 2024</a>
 </div>
 
   <h1 class="page-title">govuk-docker: How To's</h1>
@@ -304,6 +304,12 @@ CTRL-P CTRL-Q
 </ul>
 <h2 id="how-to-publish-a-finder-and-specialist-documents-to-test-finders-end-to-end-locally">How to: publish a finder and specialist documents to test finders end-to-end locally</h2>
 <p>See <a href="https://github.com/alphagov/govuk-docker/blob/main/docs/how-tos/finder-setup.md">How to Publish Content to a Finder in GOV.UK Docker</a></p>
+<h2 id="how-to-re-run-make-without-branch-checks">How to: Re-run <code>make</code> without branch checks</h2>
+<p>If you have already run <code>make</code> for a project recently, and just want to re-run it without it
+checking for updates to all dependent repositories (for example if you do not have a stable internet
+connection), you can set the <code>SKIP_BRANCH_CHECKS</code> environment variable:</p>
+<pre lang="bash"><code>SKIP_BRANCH_CHECKS=1 make my-app
+</code></pre>
 
 
             
