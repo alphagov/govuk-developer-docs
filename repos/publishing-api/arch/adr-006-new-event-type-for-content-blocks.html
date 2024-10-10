@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publishing-api: Decision record: don't log events which result in an error - GOV.UK Developer Documentation</title>
+    <title>publishing-api: Decision Record: Add new event type to add custom dependency resolution behaviour when a Content Block is updated - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-002-dont-log-events-which-result-in-error.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-006-new-event-type-for-content-blocks.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publishing-api: Decision record: don't log events which result in an error - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-002-dont-log-events-which-result-in-error.html" />
+      <meta name="twitter:title" content="publishing-api: Decision Record: Add new event type to add custom dependency resolution behaviour when a Content Block is updated - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-006-new-event-type-for-content-blocks.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publishing-api: Decision record: don't log events which result in an error" />
+      <meta property="og:title" content="publishing-api: Decision Record: Add new event type to add custom dependency resolution behaviour when a Content Block is updated" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-002-dont-log-events-which-result-in-error.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-006-new-event-type-for-content-blocks.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -231,55 +231,64 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/fc2e037432f0371940a14e853644b89ef2ad88d0">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/c1a96f2337d9e1d016983c9020b17b192d7ab77c">4 Oct 2024</a>
 </div>
 
-  <h1 class="page-title">publishing-api: Decision record: don't log events which result in an error</h1>
+  <h1 class="page-title">publishing-api: Decision Record: Add new event type to add custom dependency resolution behaviour when a Content Block is updated</h1>
 
   
 <h2 id="context">Context</h2>
-<p>We made an architectural decision to use Event Sourcing to capture all
-requests to the Publishing API that mutate its data. Please refer to
-<a href="https://github.com/alphagov/publishing-api/blob/main/docs/arch/adr-001-use-event-sourcing-pattern.md">adr-001</a> for more information.</p>
-<p>There are some incoming requests to the API that are not accepted. For example,
-a request to create a content item might fail validation if it is missing
-mandatory fields.</p>
-<h2 id="proposal">Proposal</h2>
-<p>We should not capture events for requests that are rejected by the Publishing
-API.</p>
-<p>If these events were captured in the event log, the event log have an
-inconsistent view of the data that resides in the system. This is a problem
-because:</p>
-<ul>
-<li>The state of the system would be harder to understand because the event log
-contains information that has no bearing on the behaviour of the system</li>
-<li>An attempt to replay an event history containing rejected events would
-encounter errors</li>
-</ul>
-<h2 id="decision">Decision</h2>
-<p>We should not capture events that result in an error response from the
-Publishing API.</p>
-<p>It also follows that:</p>
-<p>In cases where an error response is returned from the Publishing API, the
-internal state of the system should not be mutated.</p>
-<h2 id="status">Status</h2>
-<p>Accepted.</p>
+<h3 id="existing-behaviour">Existing behaviour</h3>
+<p>The way content blocks are handled leans on a lot of existing functionality within the publishing platform.
+Previously to the introduction of content blocks, documents had (and still have!) the concept of “links”, so when a
+document is changed, this triggers the republication of all the documents that are associated with that page.</p>
+<p>A good example of this is an “Organisation” page (for example, the Cabinet Office). The Cabinet Office organisation
+page, as well as listing some information about the organisation, also lists the ministers for that organisation.</p>
+<p>When the frontend fetches the organisation from the content store, it also gets the ministers (stored as links).
+This information is static within the content store, so if information about those ministers changes, we need to
+send the organisation page back to the Content Store along with the new minister information.</p>
+<p>This is done through a process known as dependency resolution. When we publish a minister, we get all that
+minister’s dependent documents, and resend them to the content store as shown:</p>
+<p><a href="https://gist.github.com/pezholio/3b698953ec84b569a90df331e0b7c559">https://gist.github.com/pezholio/3b698953ec84b569a90df331e0b7c559</a></p>
+<h3 id="content-block-requirements">Content Block requirements</h3>
+<p>With content blocks, this process remains largely unchanged, when a block is changed, we fetch the dependent
+documents and send them to the content stores. As part of the process of sending the documents to the content stores,
+we perform a find/replace to find the embed code and replace it with the actual content of the blocks.</p>
+<p>Going forward, we’d like to do a couple of things:</p>
+<ol>
+<li>If a member of the public is signed up to receive email alerts on a dependent document, we’d like to alert them
+when content is changed as a result of a content block within that document changing; and</li>
+<li>Add a change note in publishing apps to inform the editors and the public that the document(s) have been
+republished as a result of a change to a content block</li>
+</ol>
+<p>For email alerts, there is already a mechanism to add a <code>major</code> event type to the RabbitMQ queue when a document is
+published and the change is a major change. This then gets picked up by the Email Alerts Service, which then
+triggers email notifications for subscribed users.</p>
+<p>We have looked into hooking into this behaviour to “fake” a <code>major</code> event message to then trigger email alerts when
+a dependent document is updated. This has a couple of issues:</p>
+<ol>
+<li>The code is already quite verbose, and this adds a bunch of complexities</li>
+<li>We need to reach into the payload and generate a new changenote for each dependent bit of content, which causes
+misdirection and is again, quite messy</li>
+</ol>
+<h2 id="decisions">Decisions</h2>
+<p>We therefore suggest updating the Publishing API code to:</p>
+<ol>
+<li>receive a new <code>content_block</code> update type</li>
+<li>when this update type is used, call a new Sidekiq Job to update host documents with a new <code>host_content</code> update type</li>
+</ol>
+<p>In the near future we will then be able to add Change Notes to the relevant Host Documents, and update the Email Alerts
+Service to subscribe to the <code>host_content</code> event.</p>
 <h2 id="consequences">Consequences</h2>
-<p>The event log should be updated in the same transaction as changes to the
-internal state of the Publishing API.</p>
-<p>Downstream asynchronous requests should not be allowed to fail. Validations must
-be performed in the Publishing API as part of the synchronous request/response
-cycle.</p>
-<p>If an asynchronous downstream request does fail, this should be regarded as a
-system error to be investigated by a developer.</p>
+<p>We believe that this will make the intent of the code clearer, as well as allow us to make changes in an incremental way.</p>
+<p>This will also enable two way communication between publishing apps, allowing users to see at a glance when content
+blocks have triggered a change.</p>
+<p>The work to implement Change Notes will require some changes to the publishing apps themselves, as
+well as potentially some duplication of code in each app. However, this is a good practical illustration of why we
+are trying to reduce the number of publishing apps in the estate.</p>
+<p>We could trial this with Whitehall at first, and then expand to Mainstream, Travel Advice etc if the ideal proves
+successful.</p>
 
 
             
@@ -287,8 +296,8 @@ system error to be investigated by a developer.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publishing-api/blob/main/docs/arch/adr-002-dont-log-events-which-result-in-error.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-api%2Farch%2Fadr-002-dont-log-events-which-result-in-error.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publishing-api/blob/main/docs/arch/adr-006-new-event-type-for-content-blocks.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-api%2Farch%2Fadr-006-new-event-type-for-content-blocks.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

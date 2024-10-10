@@ -154,6 +154,7 @@
               <li><a href="/repos/publishing-api/arch/adr-003-representation-for-multiple-content-types.html" rel="noopener" class="govuk-link"># Decision Record: Representation for Multiple Content Types</a></li>
               <li><a href="/repos/publishing-api/arch/adr-004-govspeak-and-embedded-content.html" rel="noopener" class="govuk-link"># Decision Record: Govspeak and embedded content</a></li>
               <li><a href="/repos/publishing-api/arch/adr-005-documents-and-editions.html" rel="noopener" class="govuk-link">Decision Record: Resolve consistency and uniqueness in content</a></li>
+              <li><a href="/repos/publishing-api/arch/adr-006-new-event-type-for-content-blocks.html" rel="noopener" class="govuk-link">Decision Record: Add new event type to add custom dependency resolution behaviour when a Content Block is updated</a></li>
               <li><a href="/repos/publishing-api/archive/data-cleanup-plan.html" rel="noopener" class="govuk-link">Data Cleanup Plan: 17th December, 2015</a></li>
           </ul>
           <li class="subdir__heading">archive</li>
@@ -231,7 +232,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/545adf6c466f37e7c80fa9fc77b62c3656fefac3">21 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/beb5ff1c48fdaedc87d689eae8629d438b67ac62">3 Oct 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -334,7 +335,7 @@ on the draft frontend applications. It has no effect on live content.</li>
 <code>change_note</code> <em>(optional)</em>
 <ul>
 <li>Specifies the <a href="/repos/publishing-api/model.html">change note</a>.</li>
-<li>Ignored if the <code>update_type</code> is not major.</li>
+<li>Ignored if the <code>update_type</code> is not "major" or "content_block".</li>
 </ul>
 </li>
 <li>
@@ -551,7 +552,7 @@ change state to "published"</li>
 to "superseded".</li>
 <li>For an <code>update_type</code> of "major" the <code>public_updated_at</code> field will be updated
 to the current time.</li>
-<li>For an <code>update_type</code> other than "major":
+<li>For an <code>update_type</code> other than "major" or "content_block":
 <ul>
 <li>If it exists, the <a href="/repos/publishing-api/model.html">change note</a> will be
 deleted, as change notes are only for major updates.</li>
