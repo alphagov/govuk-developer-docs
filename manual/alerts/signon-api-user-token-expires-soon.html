@@ -152,10 +152,7 @@
             <a href="#1-issue-a-new-token"><span>1. Issue a new token</span></a>
           </li>
           <li>
-            <a href="#2-check-that-the-client-application-works-with-the-new-token"><span>2. Check that the client application works with the new token</span></a>
-          </li>
-          <li>
-            <a href="#3-revoke-the-old-token"><span>3. Revoke the old token</span></a>
+            <a href="#2-update-the-token-in-the-secrets-used-by-the-consuming-application"><span>2. Update the token in the secrets used by the consuming application</span></a>
           </li>
         </ul>
       </li>
@@ -208,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5e78f845dd1019aa691ffe044b256639d084299d">16 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a65c0d4b448210c24ebce74904d24dad2a8fdfe2">10 Oct 2024</a>
 </div>
 
  <h1 id='header'>Signon API user token expires soon</h1> <p>One or more tokens for API Users are about to expire. You should rotate
@@ -235,21 +232,27 @@ application. If you are sure the token is disused, you can choose
 <li><p>Choose <strong>Add application token</strong>.</p></li>
 <li><p>From the <strong>Application</strong> dropdown, select the application that matches the <code>application</code> field in the alert.</p></li>
 <li><p>Choose <strong>Create access token</strong>.</p></li>
+<li><p>Take one of the following actions:</p></li>
 </ol>
-<p>The nightly <code>signon-sync-token-secrets-to-k8s</code> cronjob will update the token in the Kubernetes secret that the application uses.</p>
-<h3 id='2-check-that-the-client-application-works-with-the-new-token'>2. Check that the client application works with the new token</h3>
-<ol>
-<li><p>Trigger the token sync cronjob to run now (or wait until the next day).</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k create job <span class="nt">--from</span> cronjob/signon-sync-token-secrets-to-k8s signon-token-sync-<span class="nv">$USER</span>
-</code></pre></div></li>
-</ol>
-<p>The job should finish within a few seconds. You can view the job&rsquo;s output to check that it succeeded:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>```sh
-k logs -f job/signon-token-sync-$USER
-```
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>* For a token used in an application outside of GOV.UK (e.g. by HMRC): securely send the token to the consumer.
 
-Alternatively, this job can be triggered through the ArgoCD user interface. Navigate to the [console for Signon](https://argo.eks.production.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=), click the "signon-sync-token-secrets-to-k8s" cron job, then press the three dots in the top right, then "Create Job". The logs can be viewed by clicking the newly created job.
-</code></pre></div>
+* For a token used by another GOV.UK application: follow the steps in the section below.
+</code></pre></div><h3 id='2-update-the-token-in-the-secrets-used-by-the-consuming-application'>2. Update the token in the secrets used by the consuming application</h3>
+<blockquote>
+<p>This only applies for tokens used by internal GOV.UK applications.</p>
+</blockquote>
+
+<ol>
+<li><p>Update the token in the Kubernetes secret:</p>
+
+<ol>
+<li>Go to the Argo interface for the envrionment: <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=">integration</a>, <a href="https://argo.eks.staging.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=">staging</a> or <a href="https://argo.eks.production.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=">production</a>.</li>
+<li>Locate the <code>signon-sync-app-secrets-to-k8s</code> cron job.</li>
+<li>Click the three dots on this cron job and click <strong>Create job</strong>.</li>
+<li>Wait for the job to complete. A sucessful run will be labelled with a green checkmark and a label such as <code>Healthy 1 pods</code>. The logs can also be choosing the <strong>Logs</strong> option for the most recent run.</li>
+</ol></li>
+<li><p>Check that the client application works with the new token:</p>
+
 <ol>
 <li><p>Open a Rails console on the client app. For example, if the <code>api_user</code> is <code>short-url-manager@alphagov.co.uk</code>, open a console on <code>short-url-manager</code>.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/short-url-manager <span class="nt">--</span> rails c
@@ -269,11 +272,8 @@ Alternatively, this job can be triggered through the ArgoCD user interface. Navi
 <span class="n">client</span><span class="p">.</span><span class="nf">lookup_content_id</span><span class="p">(</span><span class="ss">base_path: </span><span class="s2">"/"</span><span class="p">)</span>
 </code></pre></div><p>The call should return some result and not raise an exception.</p></li>
 </ol></li>
-</ol>
-<h3 id='3-revoke-the-old-token'>3. Revoke the old token</h3><p>Once you have confirmed that the application is working with the new token, go back to Signon and revoke the old token.</p>
-
-<ol>
-<li>On the <strong>Manage tokens</strong> page, choose the <strong>Revoke</strong> link for the old token.</li>
+</ol></li>
+<li><p>Once you have confirmed that the application is working with the new token, go back to Signon and revoke the old token. On the <strong>Manage tokens</strong> page, choose the <strong>Revoke</strong> link for the old token.</p></li>
 </ol>
 
   <div class='related-content'>
