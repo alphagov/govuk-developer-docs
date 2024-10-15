@@ -232,64 +232,93 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/a276eaf533192db49fbd8f2bf0ebc91d57fa0c72">7 Jun 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/8ecd6fcf4d16e0b2f9a2a0d7641407326d51fccd">14 Oct 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Changing an existing content schema</h1>
 
   
-<h2 id="general-workflow">General workflow</h2>
-<ul>
-<li>create a branch</li>
-<li>make changes to the relevant schema fragment under <code>formats/&lt;format name&gt;.jsonnet</code>
-</li>
-<li>change the relevant frontend examples (or add a new example)</li>
-<li>run <code>rake build_schemas</code> to compile a new schema.json</li>
-<li>run <code>rake</code> to test the example against the schema</li>
-<li>commit and push</li>
-<li>open a PR</li>
-<li>watch the multi-build status to see if all apps are compatible with the change</li>
-<li>if the builds are successful, it can be merged</li>
-</ul>
-<h2 id="adding-a-new-field-to-a-content-schema">Adding a new field to a content schema</h2>
-<p>Follow the General workflow described above. You are now free to add support for the field to apps. If you are adding a mandatory field you will need to additionally:</p>
-<ul>
-<li>deploy the publishing app with changes to always populate the field</li>
-<li>populate the field in any records inside content-store</li>
-<li>follow the General workflow, adding the field to the <code>required</code> attribute</li>
-<li>you can then update the frontend app to expect the field to always be present</li>
-</ul>
-<p>For example, imagine that you need to add a new optional field to the details hash of the <code>case_study</code> schema. The steps would be:</p>
+<h2 id="when-not-adding-or-removing-top-level-fields">When not adding or removing top-level fields</h2>
+<p>This describes how to add or remove fields that extend the top-level fields
+defined in <code>default_format.jsonnet</code>. For example, if you wanted to submit an
+additional field via a form in a publishing app, you might add a field nested
+within <code>details</code> (a field already defined in <code>default_format.jsonnet</code>).</p>
 <ol>
-<li>edit <a href="https://github.com/alphagov/publishing-api/blob/main/formats/case_study.jsonnet"><code>formats/case_study.jsonnet</code></a> to
-add the new optional field</li>
-<li>run <code>rake</code>. This will:</li>
-<li>regenerate the publisher <a href="https://github.com/alphagov/publishing-api/blob/main/dist/formats/case_study/publisher/schema.json"><code>schema.json</code></a> to incorporate the changes you made to the <code>details</code>
-</li>
-<li>regenerate the notification <a href="https://github.com/alphagov/publishing-api/blob/main/dist/formats/case_study/notification/schema.json"><code>schema.json</code></a> to incorporate the changes</li>
-<li>regenerate the frontend <a href="https://github.com/alphagov/publishing-api/blob/main/dist/formats/case_study/frontend/schema.json"><code>schema.json</code></a> to incorporate the same changes</li>
-<li>revalidate all example files to check if they are still valid after this change. This will pass, because the new field is optional</li>
-<li>[Optional step] you could add an additional example to illustrate how your new field should be used. You can add a new file in <a href="https://github.com/alphagov/publishing-api/blob/main/examples/case_study/frontend">examples/case_study/frontend</a>
-</li>
-<li>create a new branch and commit and push your changes.
-This will run the contract tests for each application which relies on the schemas.
-You'll get immediate feedback about whether publishing applications generate content items compatible with the new schema.</li>
-<li>once the tests pass, someone will merge your pull request and the new schemas will be available to use</li>
-<li>Deploy your changes (see <a href="https://github.com/alphagov/publishing-api/blob/main/docs/content_schemas/deployment.md"><code>docs/deployment.md</code></a> for details).</li>
-</ol>
-<h2 id="removing-a-field-from-a-content-schema">Removing a field from a content schema</h2>
-<p>If the field was mandatory:</p>
+<li>If you're adding or removing a required field:
 <ul>
-<li>Remove the field from the <code>required</code> attribute by following the General workflow
-<ul>
-<li>Remove the field from examples to ensure that the frontend can handle the field being optional</li>
+<li>Update publishing app(s) to provide/stop providing the field</li>
+<li>If removing a field, update frontend app(s) to no longer access the
+soon-to-be-removed field</li>
+<li>Update existing data in Content Store to ensure they conform with the
+incoming schema changes</li>
 </ul>
 </li>
-<li>Deploy any frontend changes</li>
-<li>Change the publisher to stop sending the field</li>
-<li>Deploy the publisher</li>
-<li>Optional: change the records in content-store</li>
-<li>Remove the field by following the General workflow</li>
+<li>Update the relevant schema fragment under
+<code>content_schemas/formats/&lt;format_name&gt;.jsonnet</code>
+<ul>
+<li>Add or remove the desired <code>details</code> &gt; <code>properties</code> property</li>
+<li>If the field is/was required, update the <code>details</code> &gt; <code>required</code> array</li>
+</ul>
+</li>
+<li>If necessary, add, remove or update relevant definition file within
+<code>content_schemas/formats/shared/definitions</code> to add or remove the definition
+for the field</li>
+<li>Add, remove, or update the relevant example schemas in
+<code>content_schemas/examples/**/&lt;example_name&gt;.jsonnet</code>
+</li>
+<li>Run <code>rake build_schemas</code> to compile the updated schemas in
+<code>content_schemas/dist/</code> and validate the example schemas</li>
+<li>Check that all the CI workflows pass. These will verify that the content
+schemas are compatible with the suite of publishing apps</li>
+</ol>
+<h3 id="non-top-level-field-examples">Non-top-level field examples</h3>
+<ul>
+<li><a href="https://github.com/alphagov/publishing-api/pull/2780/commits/18611f4a7eae7083d8ec4db84c5968fe492fd37b">Adding a new optional field to the <code>details</code> property</a></li>
+<li><a href="https://github.com/alphagov/publishing-api/commit/ecae69f93d0fdf9b6edf9d45b35844e2c9965520#diff-0dc22d7709c7e0d783753fcb265d78c54c4d332cad274249944ca5cab297398f">Adding a new definition</a></li>
+<li><a href="https://github.com/alphagov/publishing-api/commit/cc282faa094e1cc176346b14a6d70b26c5fff120#diff-d3574f44494e19be552aba2ae11deeef2e321821bc8e2d7bac8c6e51408b784b">Updating a definition</a></li>
+<li><a href="https://github.com/alphagov/publishing-api/commit/3d141bd62ef6dcd8e1d0aa0224efaa8893ebb0fa#diff-d95f9261dcdb8098a73d80db7612b378c009f051f8cbbff8a0968ce9bafc665c">Requiring a property</a></li>
+</ul>
+<h2 id="when-adding-or-removing-top-level-fields">When adding or removing top-level fields</h2>
+<p>This describes how to add or remove top-level fields to the default format.
+These fields tend to be overridden in <code>.jsonnet</code> schemas that extend
+<code>default_format.jsonnet</code>. This allows you to, among other things, define a
+top-level <code>"forbidden"</code> field that should not be provided by consumers of the
+API, then allow it for schemas further down the chain by marking it as
+<code>"optional"</code>.</p>
+<ol>
+<li>If you're adding or removing a required field:
+<ul>
+<li>Update publishing app(s) to provide/stop providing the field</li>
+<li>If removing a field, update frontend app(s) to no longer access the
+soon-to-be-removed field</li>
+<li>Update existing data in Content Store to ensure they conform with the
+incoming schema changes</li>
+</ul>
+</li>
+<li>Add/remove the new field in <code>default_format.jsonnet</code>, giving it a status of
+<code>required</code>, <code>optional</code>, <code>forbidden</code> or <code>null</code>.</li>
+<li>Add/remove the new definition file for this field type in
+<code>content_schemas/formats/shared/definitions</code>. This will need to include a
+definition for the field and a definition for the
+<code>optional</code>/<code>required</code>/<code>forbidden</code> status where relevant. This will be read by
+the <code>format</code> code in the next step</li>
+<li>Add a new method named after this field to <code>lib/schema_generator/format.rb</code>
+to have it written to the generated files. This specifies which definition to
+use based on the status specified in <code>jsonnet</code> schema</li>
+<li>Add a new key to the <code>derived_properties</code> method's hash to read the value in
+<code>lib/schema_generator/{publisher_content/frontend/notification}_schema_generator.rb</code>
+when generating the schema</li>
+<li>Update any extending <code>jsonnet</code> files to override this value by setting a
+different status against this field where required, e.g. to mark a default
+<code>forbidden</code> field as <code>optional</code> at a lower level</li>
+<li>Run <code>rake build_schemas</code> to compile the updated schemas in
+<code>content_schemas/dist/</code> and validate the example schemas</li>
+<li>Check that all the CI workflows pass. These will verify that the content
+schemas are compatible with the suite of publishing apps</li>
+</ol>
+<h3 id="top-level-property-examples">Top-level property examples</h3>
+<ul>
+<li><a href="https://github.com/alphagov/publishing-api/commit/cacb7e7b1f8563587f0ee9aa08522b70d4c01b8c">Adding a new top-level property</a></li>
 </ul>
 
 
