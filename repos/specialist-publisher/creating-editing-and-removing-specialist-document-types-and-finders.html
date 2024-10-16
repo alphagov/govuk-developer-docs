@@ -218,7 +218,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/c781b3524507b16bb157535ff87ef3e65b2f9815">15 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/bae2fb7d30f68c72211cf870da753ced17d46190">16 Oct 2024</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating, editing and removing specialist document types and finders</h1>
@@ -233,6 +233,9 @@ applications.</p>
 <h2 id="1-add-a-schema-to-publishing-api">1. Add a schema to Publishing API</h2>
 <p>See <a href="https://github.com/alphagov/publishing-api/pull/2589/files">example PR here</a></p>
 <ol>
+<li>
+<p>Add the format to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/allowed_document_types.yml">allowed document types list</a>.</p>
+</li>
 <li>
 <p>Add any new field definitions to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">this file</a>.</p>
 <p><strong>Note</strong>: Do not specify the field values as an enum, as we're moving towards a more relaxed schema definition.</p>
@@ -399,6 +402,7 @@ If the code is not removed from all relevant repositories, there is a chance the
 <li>
 <p>Remove usages from <code>publishing-api</code>:</p>
 <ul>
+<li>Remove the format from <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/allowed_document_types.yml">allowed document types list</a>.</li>
 <li>Remove the field definitions from <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">this file</a>.</li>
 <li>If present, remove the example from <a href="https://github.com/alphagov/publishing-api/tree/main/content_schemas/examples/specialist_document/frontend">this directory</a>.</li>
 <li>Run <code>bundle exec rake build_schemas</code> to regenerate schemas.</li>
