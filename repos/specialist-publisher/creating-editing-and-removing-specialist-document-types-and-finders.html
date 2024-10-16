@@ -218,7 +218,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/1ece134a38d8c239ff8b8305d0f07b742ed71867">2 Sep 2024</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/c781b3524507b16bb157535ff87ef3e65b2f9815">15 Oct 2024</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating, editing and removing specialist document types and finders</h1>
@@ -229,25 +229,13 @@ application, <a href="https://github.com/alphagov/publishing-api">publishing-api
 applications.</p>
 <h1 id="creating-a-specialist-document-type">
 <strong>Creating</strong> a specialist document type</h1>
+<!-- raw HTML omitted -->
 <h2 id="1-add-a-schema-to-publishing-api">1. Add a schema to Publishing API</h2>
 <p>See <a href="https://github.com/alphagov/publishing-api/pull/2589/files">example PR here</a></p>
 <ol>
 <li>
-<p>Add the format to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/specialist_document.jsonnet#L2:L33">this list</a> and to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/allowed_document_types.yml">this list</a></p>
-</li>
-<li>
-<p>Add any new field definitions to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">this file</a></p>
-</li>
-<li>
-<p>Add examples <a href="https://github.com/alphagov/publishing-api/blob/main/docs/content_schemas/adding-a-new-schema.md">as instructed</a>.
-You can copy and paste from another specialist document format, only changing what is necessary (you can leave the body and headers unchanged).</p>
-<p>You'll need to generate your own UUIDs for the <code>content_id</code> and <code>signup_content_id</code> fields:</p>
-<pre><code>$ irb
-irb(main):001:0&gt; require "securerandom"
-=&gt; true
-irb(main):002:0&gt; SecureRandom.uuid
-=&gt; "5087e8b6-ee54-40f9-b592-8c2813c7037d"
-</code></pre>
+<p>Add any new field definitions to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">this file</a>.</p>
+<p><strong>Note</strong>: Do not specify the field values as an enum, as we're moving towards a more relaxed schema definition.</p>
 </li>
 <li>
 <p>Run <code>bundle exec rake build_schemas</code> to regenerate schemas.</p>
@@ -258,6 +246,13 @@ irb(main):002:0&gt; SecureRandom.uuid
 <h3 id="create-the-schema">Create the schema</h3>
 <p>See <a href="https://github.com/alphagov/specialist-publisher/blob/main/lib/documents/schemas/cma_cases.json">CMA cases</a>.</p>
 <p>New formats should be added with <code>target_stack: "draft"</code> so that departments can preview the finder before you publish it.</p>
+<p>You'll need to generate your own UUIDs for the <code>content_id</code> (of the finder), and the <code>signup_content_id</code> fields:</p>
+<pre><code>$ irb
+irb(main):001:0&gt; require "securerandom"
+=&gt; true
+irb(main):002:0&gt; SecureRandom.uuid
+=&gt; "5087e8b6-ee54-40f9-b592-8c2813c7037d"
+</code></pre>
 <h3 id="create-the-model">Create the model</h3>
 <p>See <a href="https://github.com/alphagov/specialist-publisher/blob/main/app/models/cma_case.rb">CMA cases</a></p>
 <h3 id="create-the-view-template">Create the view template</h3>
@@ -301,19 +296,29 @@ irb(main):002:0&gt; SecureRandom.uuid
 <h2 id="6-publish-a-finder">6. Publish a finder</h2>
 <p>To release the finder to the live stack:</p>
 <ol>
-<li>Prepare before the agreed release date. Merge PRs and release on agreed date.</li>
-<li>Merge and deploy Search API</li>
 <li>
-<a href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html#how-to-reindex-an-elasticsearch-index">Reindex the govuk Elasticsearch index</a>.
+<p>Prepare before the agreed release date. Merge PRs and release on agreed date.</p>
+</li>
+<li>
+<p>Merge and deploy Search API</p>
+</li>
+<li>
+<p><a href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html#how-to-reindex-an-elasticsearch-index">Reindex the govuk Elasticsearch index</a>.</p>
 <ul>
 <li>This takes around 30-45 minutes on Production, or 3-4 hours on Integration.</li>
 <li>Alternatively, run <code>search:update_schema</code> for a shorter run. Make sure the this is run before any documents are published, otherwise a full reindex will be required.</li>
-<li>NB: reindexing shouldn't really be necessary; Elasticsearch will dynamically create the field mappings the first time a new document of this type is published. In other words, if you publish a new document type, the finder will work and it will return the relevant documents even without a reindex. However, <strong>the filters on the finder would not work</strong>, as this reindexing job also builds the filters for the finder, so we have to run the job.</li>
 </ul>
+<p><strong>Note</strong>: reindexing shouldn't really be necessary; Elasticsearch will dynamically create the field mappings the first time a new document of this type is published. In other words, if you publish a new document type, the finder will work and it will return the relevant documents even without a reindex. However, <strong>the filters on the finder would not work</strong>, as this reindexing job also builds the filters for the finder, so we have to run the job.</p>
 </li>
-<li>Change the target_stack of the finder from <code>draft</code> to <code>live</code> in specialist-publisher json schema config</li>
-<li>Merge and deploy Specialist Publisher</li>
-<li>Publish the finder by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
+<li>
+<p>Change the target_stack of the finder from <code>draft</code> to <code>live</code> in specialist-publisher json schema config</p>
+</li>
+<li>
+<p>Merge and deploy Specialist Publisher</p>
+</li>
+<li>
+<p>Publish the finder by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</p>
+</li>
 </ol>
 <h2 id="7-permissions">7. Permissions</h2>
 <p>Specialist Publisher grants access to the publishing interface for your new document type to the following Signon users:</p>
@@ -328,16 +333,15 @@ irb(main):002:0&gt; SecureRandom.uuid
 <p>We often receive requests to add new fields to a specialist document or to add new values to existing fields.</p>
 <h2 id="adding-a-new-field-to-an-existing-specialist-document">Adding a new field to an existing specialist document</h2>
 <ol>
-<li>
-<p>In <code>publishing-api</code>:</p>
+<li>In <code>publishing-api</code>:
 <ul>
-<li>Add the new field in the <a href="https://github.com/alphagov/publishing-api/blob/6d5595470bd0e7f3072e06f0113e3ca5514b6e98/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">specialist_document schema</a>, and add the new values. See <a href="https://github.com/alphagov/publishing-api/pull/2479/files#diff-e427ec772dc2597718b907f2db7772ad580d90452a76ce291114ddd0cfacb289">example commit</a>.</li>
-<li>Update the facets in <a href="https://github.com/alphagov/publishing-api/blob/fb0761d7dae580500c294e7ed1382add0dfc5b55/content_schemas/examples/specialist_document/frontend/ai-assurance-portfolio-technique.json#L154">the corresponding example json</a> with the additional values.</li>
+<li>Add the new field in the <a href="https://github.com/alphagov/publishing-api/blob/6d5595470bd0e7f3072e06f0113e3ca5514b6e98/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">specialist_document schema</a>. See <a href="https://github.com/alphagov/publishing-api/pull/2479/files#diff-e427ec772dc2597718b907f2db7772ad580d90452a76ce291114ddd0cfacb289">example commit</a>.</li>
 </ul>
-<p><strong>NOTE</strong>: You will need to run <code>bundle exec rake build_schemas</code> to regenerate schemas after adding the new value(s).</p>
 </li>
-<li>
-<p>In <code>specialist publisher</code>:</p>
+</ol>
+<p><strong>NOTE</strong>: You will need to run <code>bundle exec rake build_schemas</code> to regenerate schemas after adding the new value(s). Do <strong>not</strong> specify the field values as an enum, as we're moving towards a more relaxed schema definition.</p>
+<ol start="2">
+<li>In <code>specialist publisher</code>:
 <ul>
 <li>Add the new field to the relevant <a href="https://github.com/alphagov/specialist-publisher/tree/main/app/models">model</a>.</li>
 <li>Add field to relevant <a href="https://github.com/alphagov/specialist-publisher/tree/main/app/views/metadata_fields">view</a>.</li>
@@ -367,14 +371,6 @@ irb(main):002:0&gt; SecureRandom.uuid
 <h2 id="adding-values-for-existing-fields-on-a-specialist-document">Adding values for existing fields on a specialist document</h2>
 <ol>
 <li>
-<p>In <code>publishing-api</code>:</p>
-<ul>
-<li>Add the new values to the field you are amending, in the <a href="https://github.com/alphagov/publishing-api/blob/6d5595470bd0e7f3072e06f0113e3ca5514b6e98/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">specialist_document schema</a>. See <a href="https://github.com/alphagov/publishing-api/pull/2659/files#diff-e427ec772dc2597718b907f2db7772ad580d90452a76ce291114ddd0cfacb289">example here</a>.</li>
-<li>Update the facets in example json with the additional values, as in <a href="https://github.com/alphagov/publishing-api/pull/2659/files#diff-b1571e1d36f1eb32ee304f39c39fd6d94c3be93a4bf88e56140fdf528a0d2338">this commit</a>.</li>
-</ul>
-<p><strong>NOTE</strong>: You will need to run <code>bundle exec rake build_schemas</code> to regenerate schemas after adding the new value(s).</p>
-</li>
-<li>
 <p>In <code>specialist publisher</code>, add the new values to the relevant file in the <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> directory. See <a href="https://github.com/alphagov/specialist-publisher/pull/1899/commits/97c8d713f8e62b0cb8763fe26e1dcf5a0435c12d">this</a> commit for an example.</p>
 </li>
 <li>
@@ -403,9 +399,8 @@ If the code is not removed from all relevant repositories, there is a chance the
 <li>
 <p>Remove usages from <code>publishing-api</code>:</p>
 <ul>
-<li>Remove the format from <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/specialist_document.jsonnet#L2:L33">this list</a> and <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/allowed_document_types.yml">this list</a>.</li>
 <li>Remove the field definitions from <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">this file</a>.</li>
-<li>Remove the example from <a href="https://github.com/alphagov/publishing-api/tree/main/content_schemas/examples/finder/frontend">this directory</a>.</li>
+<li>If present, remove the example from <a href="https://github.com/alphagov/publishing-api/tree/main/content_schemas/examples/specialist_document/frontend">this directory</a>.</li>
 <li>Run <code>bundle exec rake build_schemas</code> to regenerate schemas.</li>
 </ul>
 <p>See <a href="https://github.com/alphagov/publishing-api/pull/2706">example commit</a>.</p>
