@@ -58,7 +58,7 @@ You can give the application reference to Kibana in the relevant environment to 
 The Feeds application has a UI, but that isn't exposed publicly, so you need proxy to the service:
 
 ```bash
-kubectl -n apps port-forward svc/licensify-feed 9400:80
+kubectl -n licensify port-forward svc/licensify-feed 9400:80
 ```
 
 Once the tunnel above has been set up, the following pages are available:
