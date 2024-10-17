@@ -227,15 +227,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ca564de2ea452ad016e09e4a1d9cf792f4f90ce0">22 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/50ad3efa7c1fd75a91a84301e6b57b550df00ef0">17 Oct 2024</a>
 </div>
 
  <h1 id='header'>Licensify - supporting licensing</h1> <p>GOV.UK runs a Scala application (<a href="/repos/licensify.html">Licensify</a>) which allows users to apply and pay for licences from local authorities and other competent authorities.</p>
@@ -273,7 +266,7 @@
 </ol>
 <p>You can give the application reference to Kibana in the relevant environment to see the logs and any error messages. The application should speak to both the frontend and backend app servers at least once during the transaction. It may take up to five minutes to process the licence application, so it might be worth waiting for a few minutes before checking Kibana.</p>
 <h2 id='debugging'>Debugging</h2><p>The Feeds application has a UI, but that isn&rsquo;t exposed publicly, so you need proxy to the service:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps port-forward svc/licensify-feed 9400:80
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> licensify port-forward svc/licensify-feed 9400:80
 </code></pre></div><p>Once the tunnel above has been set up, the following pages are available:</p>
 
 <ul>
