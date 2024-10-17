@@ -232,7 +232,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/08c04881362eb50b8d3bf5b75fd7d893c265276e">15 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/87b8c8f06151d6219dad387c4d01884eb97f96ae">16 Oct 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Adding a new content schema</h1>
@@ -258,6 +258,10 @@ You can generate the corresponding schemas with the
 will be validated against the schema and can also be used by the corresponding
 frontend applications to verify that it can render examples of the schema. These
 examples should be added to the <code>examples/FORMAT_NAME/frontend</code> folder.</p>
+<h2 id="ensure-new-content-schema-text-can-be-parsed-by-content-data-api">Ensure new content schema text can be parsed by Content Data API</h2>
+<p>To ensure new content schema text can be parsed by Content Data API, it needs to be added to an  appropriate <a href="https://github.com/alphagov/content-data-api/tree/main/app/domain/etl/edition/content/parsers">Edition Content Parser</a> or a new praser should be created. This ensures that content quality metrics such as word count or reading time are available in <a href="https://content-data.publishing.service.gov.uk">Content Data</a>.</p>
+<p><a href="https://github.com/alphagov/content-data-api/pull/1906">Example of adding a new content schema to the Content Body parser</a>.</p>
+<p>Failing to do so, will cause <code>Etl::Edition::Content::Parser::InvalidSchemaError</code> in Content Data API but basic metrics will still be available in Content Data.</p>
 
 
             
