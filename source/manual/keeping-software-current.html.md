@@ -67,3 +67,8 @@ New versions of Ruby bring us improved performance and nicer syntax for certain 
 See [Add a new Ruby version][] for a guide on how to install a new version of Ruby.
 
 [Add a new Ruby version]: /manual/ruby.html
+
+### Deprecated repos
+
+There is little point in spending developer time on keeping a repository's dependencies fully up to date, if that repository is planned to be retired.
+These repositories can be configured to receive security updates only (see [example](https://github.com/alphagov/content-publisher/pull/3287)).
