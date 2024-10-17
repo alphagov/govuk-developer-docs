@@ -168,6 +168,9 @@
           <li>
             <a href="#ruby"><span>Ruby</span></a>
           </li>
+          <li>
+            <a href="#deprecated-repos"><span>Deprecated repos</span></a>
+          </li>
         </ul>
       </li>
     </ul>
@@ -218,15 +221,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222ff331b8a06166437ac5329bfe7b4a333ed4f">27 Jul 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/119a5cad1a0aa8151db8cdf8bd0456009f300244">17 Oct 2024</a>
 </div>
 
  <h1 id='header'>Policy on keeping software current</h1> <p>One of our core values is to use secure and up-to-date software. This document lays out the policy for keeping our software current.</p>
@@ -258,6 +254,8 @@ For patch increases, no manual steps are required and it is fine to merge the up
 <li>Maintain our gems to support all currently supported Ruby versions (see <a href="/manual/publishing-a-ruby-gem.html#ruby-version-compatibility">Ruby version compatibility for gems</a>)</li>
 </ul>
 <p>See <a href="/manual/ruby.html">Add a new Ruby version</a> for a guide on how to install a new version of Ruby.</p>
+<h3 id='deprecated-repos'>Deprecated repos</h3><p>There is little point in spending developer time on keeping a repository&rsquo;s dependencies fully up to date, if that repository is planned to be retired.
+These repositories can be configured to receive security updates only (see <a href="https://github.com/alphagov/content-publisher/pull/3287">example</a>).</p>
 
   <div class='related-content'>
 

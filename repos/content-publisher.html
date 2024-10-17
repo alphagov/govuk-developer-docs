@@ -278,56 +278,40 @@
 </ul></p>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
+<blockquote>
+<p><strong>NOTE</strong>: This project is deprecated and is <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-161-technical-direction-in-publishing-2023.md">planned to be retired</a>.</p>
+</blockquote>
+<p><hr>
 <p>A unified publishing application for content on GOV.UK</p>
-
 <h2 id="nomenclature">Nomenclature</h2>
-
 <ul>
 <li>Content - Some text (<a href="https://github.com/alphagov/govuk-content-schemas">and related fields</a>) a user wants to publish</li>
 <li>Revision - A version of a piece of content in a particular locale</li>
 <li>Edition - A revision that is in the Publishing API</li>
 <li>Document - All revisions of a piece of content in a particular locale</li>
 </ul>
-
 <h2 id="technical-documentation">Technical documentation</h2>
-
 <p>This is a Ruby on Rails application, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
 <p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
 <p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
 <h3 id="before-running-the-app">Before running the app</h3>
-
 <p>The first time you run this application for development, enable <code>debug</code> and <code>pre_release_features</code> permissions:</p>
-
 <pre><code>bundle exec rake development_permissions
 </code></pre>
-
 <p>To enable them for your GOV.UK account add them to your account in <a href="https://github.com/alphagov/signon">Signon</a>.</p>
-
 <h3 id="running-the-test-suite">Running the test suite</h3>
-
 <p><strong>Note:</strong> You will need to checkout <code>govuk-helm-charts</code> into your <code>govuk</code> repository in order to have local tests passing.</p>
-
 <pre><code>bundle exec rake
 </code></pre>
-
 <p>To run JavaScript tests (only):</p>
-
 <pre><code># run JS tests in browser
-yarn run jasmine:browser
-
-# run JS tests on command line
-yarn run jasmine:ci
+yarn run jasmine:browser</p>
+<h1 id='run-js-tests-on-command-line'>run JS tests on command line</h1><p>yarn run jasmine:ci
 </code></pre>
-
 <blockquote>
 <p><a href="https://github.com/alphagov/content-publisher/commit/184a93d23551161125c1ac6ff3d9287eafabbc3d">Our test environment is setup to render &lsquo;real&rsquo; error pages, instead of raising an exception</a>. This can make it hard to debug a test failure, as the actual error won&rsquo;t appear in the test output. Instead, you can see it in <code>log/test.log</code>.</p>
 </blockquote>
-
 <h3 id="further-documentation">Further documentation</h3>
-
 <ul>
 <li><a href="/repos/content-publisher/approach-to-analytics.html">Approach to analytics</a></li>
 <li><a href="/repos/content-publisher/edit-change-note-history.html">Editing change note history</a></li>
@@ -338,11 +322,9 @@ yarn run jasmine:ci
 <li><a href="/repos/content-publisher/testing-strategy.html">Testing strategy</a></li>
 <li><a href="/repos/content-publisher/user-permissions.html">User permissions</a></li>
 </ul>
-
 <h2 id="licence">Licence</h2>
-
 <p><a href="https://github.com/alphagov/content-publisher/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  </div></p>
 
 
             

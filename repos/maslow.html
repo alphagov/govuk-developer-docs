@@ -239,35 +239,26 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
+<blockquote>
+<p><strong>NOTE</strong>: This project is deprecated and is <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-161-technical-direction-in-publishing-2023.md">planned to be retired</a>.</p>
+</blockquote>
+<p><hr>
 <p>Maslow is a tool to create and manage user needs.</p>
-
 <h2 id="technical-documentation">Technical documentation</h2>
-
 <p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
 <p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies.  Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
 <p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
 <h3 id="testing">Testing</h3>
-
 <p>The default <code>rake</code> task runs all the tests and records code coverage:</p>
-
 <pre lang="sh"><code>bundle exec rake
 </code></pre>
-
 <p>After running the tests, the <code>coverage/</code> folder contains the generated report.</p>
-
 <h3 id="user-accounts">User accounts</h3>
-
 <p>Authentication is provided by the <a href="https://github.com/alphagov/gds-sso">GDS-SSO</a> gem.  In the production environment an instance of <a href="https://github.com/alphagov/signon">Signon</a> must be running in order to sign in.</p>
-
 <p>In the development environment, the mock strategy is used by default.  This removes the requirement for authentication, instead returning the first user in the database as the current user.  This user is defined in <code>db/seeds.rb</code>.</p>
-
 <h2 id="licence">Licence</h2>
-
 <p><a href="https://github.com/alphagov/maslow/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  </div></p>
 
 
             
