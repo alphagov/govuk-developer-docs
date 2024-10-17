@@ -253,7 +253,8 @@ installed from packages signed by Mozilla.</p>
 
 <ol>
 <li>
-<a href="https://github.com/alphagov/govuk-browser-extension/archive/master.zip">Download the source from GitHub</a> and unzip.</li>
+<a href="https://github.com/alphagov/govuk-browser-extension/archive/main.zip">Download the source from GitHub</a> and unzip.</li>
+<li>Remove the <code>background</code> section from <code>src/manifest.json</code>. The service worker specified in this section changes the colour of the icon when on a GOV.UK page, but it relies on <code>background.service_worker</code>, which is <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1573659">currently unsupported in Firefox with Manifest V3</a>.</li>
 <li>Visit <a href="about:debugging">about:debugging</a> in your browser.</li>
 <li>Click <code>Load Temporary Add-on</code> to pop up a file selection dialog.</li>
 <li>Navigate to <code>src</code> in the extension directory, and select <code>manifest.json</code>.</li>
