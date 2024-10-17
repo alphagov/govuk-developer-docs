@@ -970,6 +970,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>world_location</code></td></tr>
 <tr><td><strong>first_published_at</strong><br/><code>string</code></td> <td>The date the content was first published.  Automatically determined by the publishing-api, unless overridden by the publishing application.<br/></td></tr>
 <tr><td><strong>last_edited_at</strong><br/><code>string</code></td> <td>Last time when the content received a major or minor update.<br/></td></tr>
+<tr><td><strong>last_edited_by_editor_id</strong><br/><code>string</code></td> <td>The UUID of the editor who edited the content.<br/></td></tr>
 <tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>embed</strong><br/></td> <td>Content that will be embedded within the document, using embed tags.<br/></td></tr>
 <tr><td><strong>featured_policies</strong><br/></td> <td>Featured policies primarily for use with Whitehall organisations<br/></td></tr>
 <tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr></table></td></tr>
@@ -1003,24 +1004,21 @@ a publishing application sends to the publishing-api in a
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"world_location"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-20T04:33:41+00:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zh-hk"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"need_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"in et lectus leo libero. vel non vestibulum. nibh. turpis ac amet tempor vel ipsum Suspendisse nibh lorem eros. elit. Ut senectus nisl tristique hendrerit morbi massa a molestie netus mauris imperdiet porttitor Pellentesque sed fames eu scelerisque. volutpat Nam bibendum."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vel ac ac risus tempor massa Quisque nisl orci tristique ac nibh. risus morbi et egestas. molestie imperdiet cursus sit sed Duis Suspendisse a"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"molestie elit. lectus dolor finibus Mauris massa eu ac risus pellentesque orci habitant Suspendisse est. volutpat Pellentesque non eu imperdiet malesuada netus sed tempor Aenean Quisque ac Nam vel Ut tristique Ut cursus adipiscing turpis ipsum Nam in Lorem bibendum. consectetur egestas. ac tempor non scelerisque. lorem risus sem vestibulum. et porttitor interdum. morbi ultricies sagittis senectus interdum. Sed"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"molestie purus aliquet. Ut consectetur tempor vel nisl interdum. morbi non Mauris eu volutpat a"</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alpha"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hmrc-manuals-api"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"redirects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"at hendrerit Sed sem interdum. vestibulum. Quisque purus finibus et"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"morbi in malesuada Aenean risus est. finibus nisl Mauris sagittis vestibulum. elit. interdum. non ultricies ipsum ac sed pellentesque Nam consectetur tristique ac ac at Pellentesque ac Nam Duis eu fames Ut et lorem risus imperdiet tempor mauris porttitor non Ut vel purus massa dolor Lorem scelerisque. a leo molestie sem sollicitudin aliquet. volutpat hendrerit habitant Sed eu vel nibh tempor eros. molestie bibendum. dolor sit lectus cursus turpis nibh. senectus orci adipiscing egestas. netus"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Duis Suspendisse sollicitudin elit. Ut non orci adipiscing sagittis dolor consectetur vel pellentesque Nam lorem cursus molestie leo Lorem egestas. purus habitant massa Sed nibh tempor scelerisque. at est. eu vestibulum. ultricies interdum. a tristique in bibendum. ac molestie turpis aliquet. sit Mauris risus"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ac at sagittis tempor ipsum nibh. mauris habitant ac scelerisque. Nam ac porttitor lorem"</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"featured_policies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"dea11fb7-3de1-1b3e-a6f1-0367a4816aaa"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"975c6813-f59a-16a7-ab3d-cdb4f55fb35e"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fc31bece-ab9b-1f06-aff1-cbe91fa7fb2e"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"45e8c0c0-7ba4-17b7-aeee-e2cfb5fe9d0a"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"live"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ultricies hendrerit turpis egestas. Nam vel habitant est. vel molestie orci nibh. Ut et sit Ut fames interdum. lectus sed dolor scelerisque. massa risus dolor Nam vestibulum. amet non consectetur Aenean sem tristique ac finibus adipiscing libero. bibendum. suscipit porttitor morbi Quisque risus sagittis molestie cursus imperdiet elit. Suspendisse ac eu Pellentesque volutpat et nibh senectus aliquet. tempor lorem ac nisl leo Duis eu non"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"smartanswers"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"whitehall-frontend"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"world_location"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dolor Quisque nibh at Ut tempor sem cursus tristique suscipit ac turpis pellentesque Ut ultricies eu a"</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ac lectus tristique Ut sit ac sollicitudin purus ipsum interdum. hendrerit imperdiet finibus scelerisque. mauris amet ac vestibulum. nisl in risus malesuada sed porttitor eu molestie eu Aenean sagittis suscipit molestie fames leo Quisque vel aliquet. elit. cursus libero. turpis risus et at egestas. dolor adipiscing tempor"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"update_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"major"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <hr>

@@ -1130,6 +1130,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>about</code>, <code>about_our_services</code>, <code>access_and_opening</code>, <code>accessible_documents_policy</code>, <code>complaints_procedure</code>, <code>equality_and_diversity</code>, <code>media_enquiries</code>, <code>membership</code>, <code>modern_slavery_statement</code>, <code>our_energy_use</code>, <code>our_governance</code>, <code>personal_information_charter</code>, <code>petitions_and_campaigns</code>, <code>procurement</code>, <code>publication_scheme</code>, <code>recruitment</code>, <code>research</code>, <code>social_media_use</code>, <code>staff_update</code>, <code>statistics</code>, <code>terms_of_reference</code>, <code>welsh_language_scheme</code></td></tr>
 <tr><td><strong>first_published_at</strong><br/><code>string</code></td> <td>The date the content was first published.  Automatically determined by the publishing-api, unless overridden by the publishing application.<br/></td></tr>
 <tr><td><strong>last_edited_at</strong><br/><code>string</code></td> <td>Last time when the content received a major or minor update.<br/></td></tr>
+<tr><td><strong>last_edited_by_editor_id</strong><br/><code>string</code></td> <td>The UUID of the editor who edited the content.<br/></td></tr>
 <tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>corporate_information_pages</strong><br/></td> <td><br/></td></tr>
 <tr><td><strong>government</strong><br/></td> <td>The government associated with this document<br/></td></tr>
 <tr><td><strong>organisations</strong><br/></td> <td>All organisations linked to this content item. This should include lead organisations.<br/></td></tr>
@@ -1232,61 +1233,52 @@ a publishing application sends to the publishing-api in a
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"personal_information_charter"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2027-06-07T04:41:21+00:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"original_primary_publishing_organisation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"e3b9fabe-ee5f-1fe4-a7f5-a4a96b336c44"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"28e2cc8a-ef1b-185b-a407-596efd9aaf6b"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"e7ca4f3b-5a35-1ce9-ad2f-dd6f3f6e5bbd"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"primary_publishing_organisation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"c7766e91-07d5-1492-afcb-1eec6bdfd4aa"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cy"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beta"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"content-publisher"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-20T04:34:47+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"manuals-publisher"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"redirects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"molestie habitant at et tristique vel lorem vel eu in eu turpis Mauris consectetur molestie nisl amet a interdum. aliquet. est. volutpat ac tempor et"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Lorem mauris imperdiet ac cursus amet suscipit ipsum netus tristique non molestie Aenean et vel"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"dolor ac cursus ac Mauris non hendrerit"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"malesuada nibh. vel lorem senectus a scelerisque. molestie orci sagittis nibh mauris dolor in risus ac habitant interdum. sed suscipit"</span><span class="w">
+    </span><span class="s2">"volutpat risus Nam risus vestibulum. suscipit Aenean nisl ac netus orci finibus est. ac ac molestie morbi dolor tempor amet in turpis sem Ut purus vel senectus habitant bibendum. dolor elit. hendrerit Quisque libero. adipiscing sagittis eu eu lectus Ut malesuada cursus imperdiet nibh. Nam lorem et interdum. scelerisque. ipsum eros. leo sollicitudin Pellentesque Mauris tristique ultricies fames egestas."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"senectus elit. nisl eu non lectus dolor tristique consectetur imperdiet pellentesque interdum. Nam Lorem Ut nibh suscipit purus Aenean egestas. scelerisque. ac finibus morbi porttitor risus sed volutpat Suspendisse risus at netus fames amet a ac et"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"orci bibendum. leo scelerisque. Pellentesque malesuada netus ac interdum. eu ultricies elit. non sollicitudin tempor pellentesque ac hendrerit dolor vel est. aliquet. Aenean Mauris amet morbi massa molestie Sed ac interdum. eros. sem imperdiet non sit Nam Ut suscipit Duis fames tempor senectus Suspendisse purus finibus tristique Lorem risus nisl sed lorem Nam molestie egestas. habitant ipsum adipiscing cursus nibh risus turpis sagittis Quisque consectetur at et vel ac vestibulum. a libero. eu in porttitor tristique lectus Ut dolor nibh. mauris"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"et hendrerit molestie in orci Nam ipsum sollicitudin purus Pellentesque interdum. Ut senectus risus Nam suscipit mauris sagittis sit Mauris tristique Duis Sed nisl vel sed morbi turpis eu lectus Lorem nibh cursus fames amet netus aliquet. consectetur non est. ultricies imperdiet eros. elit. vel porttitor libero. at malesuada habitant tristique"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sed egestas. risus sollicitudin Nam habitant vel bibendum. vel lectus molestie scelerisque. et netus leo lorem adipiscing est. hendrerit interdum. non Quisque pellentesque eu ac suscipit a risus Nam nibh. at interdum. cursus non sit Pellentesque ipsum Aenean ultricies fames Sed imperdiet orci sagittis dolor aliquet. senectus Lorem sem dolor tristique"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tariff"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feedback"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"routes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bibendum. interdum. Ut nibh malesuada et Nam interdum. Ut mauris cursus Pellentesque lectus Mauris ac nibh."</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sollicitudin egestas. nibh Ut senectus ac dolor leo vel et tristique nisl ac suscipit molestie in Nam interdum. cursus habitant malesuada Suspendisse Quisque imperdiet consectetur tristique Aenean orci ipsum nibh. porttitor Mauris Ut bibendum. massa Pellentesque sed Nam molestie eros. risus netus sit dolor finibus interdum. libero. lorem morbi vel hendrerit fames pellentesque Duis turpis risus sem tempor mauris amet ac adipiscing sagittis vestibulum. Lorem Sed non purus et tempor scelerisque. aliquet. ultricies at ac non elit. eu volutpat eu lectus est. a"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"turpis nisl Ut scelerisque. sagittis risus Nam leo non tempor ac vel sed malesuada Aenean sem Nam orci suscipit fames Quisque in elit. massa sit mauris tristique ultricies et Ut ac adipiscing netus Suspendisse tristique Sed ac ac interdum. Mauris dolor cursus sollicitudin imperdiet purus Duis nibh ipsum vestibulum. hendrerit eu aliquet. porttitor volutpat non tempor risus dolor senectus lorem morbi at interdum. nibh."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leo sed ac Suspendisse Mauris imperdiet Quisque non dolor nibh. orci nisl amet vel mauris sollicitudin risus interdum. sit ac cursus scelerisque. senectus Lorem purus lorem Ut Ut in risus malesuada Nam ac libero. ultricies habitant finibus volutpat et Duis turpis aliquet. ipsum suscipit non consectetur molestie tempor est. vel tristique vestibulum. egestas. dolor eu interdum. bibendum. et Aenean morbi netus pellentesque sagittis Nam eros. tristique molestie ac porttitor tempor Sed lectus hendrerit"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sem Lorem Quisque Sed lorem lectus ac bibendum. dolor consectetur Aenean molestie Ut fames mauris cursus morbi scelerisque. dolor tristique ultricies egestas. ac suscipit molestie leo habitant est. turpis vel ipsum imperdiet risus Duis ac sagittis pellentesque eros. Nam Ut massa at nisl elit. orci amet non eu"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cursus purus et tristique non ac vel sagittis a bibendum. nibh Suspendisse eu Aenean molestie fames orci imperdiet eu"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vel habitant senectus Nam tristique ac sit eu sollicitudin porttitor Mauris sagittis nibh molestie est. Sed hendrerit et Lorem Nam eros. fames interdum. purus Duis mauris finibus a Aenean tempor ac bibendum. dolor Quisque lorem molestie ultricies ac sem suscipit scelerisque. egestas. morbi tempor non eu et interdum. Suspendisse"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sollicitudin tristique Nam ac est. nisl interdum. massa adipiscing porttitor Lorem amet purus tempor ipsum Sed morbi ac vel fames consectetur molestie lectus leo finibus dolor Duis scelerisque. vel mauris et Mauris sagittis turpis netus suscipit lorem at imperdiet eu Aenean dolor tempor Suspendisse cursus sed aliquet. volutpat tristique Quisque eu elit. in orci senectus a sit eros. bibendum. Ut ac Nam et nibh risus hendrerit ultricies risus molestie habitant ac vestibulum. pellentesque Pellentesque non interdum. Ut sem nibh. non libero. egestas. malesuada"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fames pellentesque tristique eros. ac massa nisl Nam purus dolor"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scelerisque. non ipsum nibh. nibh netus nisl interdum. bibendum. et ac lorem lectus Nam senectus turpis risus interdum. ac tempor in habitant purus et non hendrerit orci risus porttitor finibus Quisque Lorem cursus Nam malesuada molestie mauris leo molestie volutpat morbi tristique imperdiet elit. fames aliquet. sit massa eu pellentesque eros. tempor Aenean vestibulum. sollicitudin"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"morbi sed tristique senectus ac Aenean et eros. finibus massa porttitor amet Pellentesque in a Quisque Sed vel non ultricies nibh. molestie habitant nibh vel pellentesque Mauris libero. purus molestie egestas. adipiscing interdum. interdum. vestibulum. ipsum dolor orci eu ac risus sit Nam volutpat ac bibendum. aliquet. risus cursus hendrerit sagittis elit. leo tempor consectetur imperdiet est. turpis Ut at tempor lorem fames et lectus netus Lorem tristique Nam Ut malesuada non Suspendisse eu nisl sollicitudin suscipit dolor Duis sem scelerisque."</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"morbi vel lorem bibendum. ipsum nibh finibus eu Quisque eros. Nam a dolor massa aliquet. orci senectus risus non et nibh. amet pellentesque libero. at risus Duis est. Aenean purus non ac scelerisque. volutpat Nam sem lectus cursus Ut ultricies turpis habitant interdum. mauris Mauris netus molestie egestas. ac et porttitor malesuada Pellentesque"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"malesuada est. aliquet. molestie purus elit. ac a Pellentesque porttitor interdum. Mauris at netus mauris tempor et sem egestas. nisl vel tempor Duis ac sollicitudin nibh habitant leo interdum. lectus massa tristique morbi non consectetur non finibus Nam Sed eros. bibendum. dolor hendrerit molestie risus suscipit tristique Aenean amet in turpis volutpat ultricies ipsum vestibulum. fames lorem cursus dolor sed nibh. Ut scelerisque. eu Suspendisse Quisque orci"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vel Ut malesuada ipsum purus in fames mauris vestibulum. nibh. imperdiet et sit Mauris lectus vel scelerisque. non sed massa Suspendisse Pellentesque leo libero. risus sem tristique consectetur Nam volutpat hendrerit Nam ac finibus bibendum. suscipit ultricies tempor a senectus est. sollicitudin cursus Aenean netus Ut at tristique dolor porttitor molestie adipiscing et morbi eu dolor Duis risus pellentesque interdum. eros. tempor lorem egestas. ac sagittis orci habitant non Lorem nibh Quisque Sed molestie elit. ac turpis ac aliquet. nisl amet interdum. eu"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"corporate_information_page"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"et molestie tempor ac adipiscing leo consectetur egestas. volutpat"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"update_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"major"</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"egestas. risus cursus et lorem eros. aliquet. interdum. tristique purus Nam sem"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"update_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <hr>
