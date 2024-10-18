@@ -222,13 +222,14 @@
             <dd class="govuk-summary-list__value"><ul class="govuk-list">
     <li><a href="https://govspeak-preview.publishing.service.gov.uk" class="govuk-link">govspeak-preview.publishing.service.gov.uk</a></li>
     <li></li>
-    <li><a href="https://dashboard.heroku.com/apps/govspeak-preview" class="govuk-link">Manage repo</a></li>
+    <li></li>
+    <li><a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?var-app=govspeak-preview" class="govuk-link">App dashboard: request rates, errors, durations</a></li>
     <li></li>
     <li></li>
     <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
+    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:govspeak-preview),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:govspeak-preview)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
+    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:govspeak-preview-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:govspeak-preview-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
+    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/govspeak-preview" class="govuk-link">Argo CD (govspeak-preview)</a></li>
 </dd>
 
 
@@ -253,10 +254,6 @@
 <p>It shows how Govspeak looks on the GOV.UK website in mainstream formats.</p>
 
 <p>The guide also says when to use the various types of Govspeak, such as the different callout styles.</p>
-
-<h2 id="deployment">Deployment</h2>
-
-<p>It&rsquo;s hosted on <a href="http://govspeak-preview.herokuapp.com/">Heroku</a>, and automatically deployed when <code>main</code> changes.</p>
 
 <h2 id="running-locally">Running locally</h2>
 
