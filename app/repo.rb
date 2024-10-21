@@ -9,7 +9,7 @@ class Repo
     {
       app_name:, # beware renaming the key - it's used here: https://github.com/alphagov/seal/blob/36a897b099943713ea14fa2cfe1abff8b25a83a7/lib/team_builder.rb#L97
       team:,
-      dependencies_team:,
+      alerts_team:,
       shortname:,
       production_hosted_on:,
       links: {
@@ -141,9 +141,9 @@ class Repo
     repo_data["team"] || Repos::UNKNOWN
   end
 
-  def dependencies_team
+  def alerts_team
     repo_data
-      .fetch("dependencies_team", team)
+      .fetch("alerts_team", team)
   end
 
   def description
