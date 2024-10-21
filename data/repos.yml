@@ -10,17 +10,20 @@
 - repo_name: asset-manager
   type: APIs
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
 
 - repo_name: authenticating-proxy
   type: Supporting apps
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
   production_url: false
 
 - repo_name: bouncer
   type: Transition apps
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
   production_url: false
 
@@ -95,6 +98,7 @@
 - repo_name: content-store
   type: APIs
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
   production_url: https://www.gov.uk/api/content
   argo_cd_apps:
@@ -168,11 +172,13 @@
 
 - repo_name: gds-api-adapters
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   type: Gems
   sentry_url: false
 
 - repo_name: gds-sso
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   type: Gems
   description: OmniAuth adapter to allow apps to sign in via GOV.UK Signon.
   sentry_url: false
@@ -195,12 +201,14 @@
 
 - repo_name: govspeak
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   type: Gems
   sentry_url: false
 
 - repo_name: govspeak-preview
   production_url: https://govspeak-preview.publishing.service.gov.uk
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
   type: Utilities
   sentry_url: false
@@ -243,6 +251,7 @@
 
 - repo_name: govuk-content-api-docs
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   type: Utilities
 
 - repo_name: govuk-crd-library
@@ -440,6 +449,7 @@
 
 - repo_name: govuk-sli-collector
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   type: Utilities
   production_hosted_on: eks
 
@@ -470,6 +480,7 @@
 
 - repo_name: govuk_message_queue_consumer
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   type: Gems
   sentry_url: false
 
@@ -485,11 +496,13 @@
 
 - repo_name: govuk_schemas
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   type: Gems
   sentry_url: false
 
 - repo_name: govuk_sidekiq
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   type: Gems
   sentry_url: false
 
@@ -501,6 +514,7 @@
 - repo_name: hmrc-manuals-api
   type: APIs
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
 
 - repo_name: licensify
@@ -530,6 +544,7 @@
 - repo_name: link-checker-api
   type: APIs
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
 
 - repo_name: local-links-manager
@@ -562,6 +577,7 @@
 
 - repo_name: optic14n
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   type: Gems
   sentry_url: false
 
@@ -593,6 +609,7 @@
 - repo_name: publishing-api
   type: APIs
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
 
 - repo_name: rack-logstasher
@@ -676,6 +693,7 @@
 - repo_name: signon
   type: Supporting apps
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
 
 - repo_name: siteimprove_api_client
@@ -727,6 +745,7 @@
 - repo_name: transition
   type: Transition apps
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
   production_url: https://transition.publishing.service.gov.uk
 
@@ -748,3 +767,4 @@
 - repo_name: widdershins
   type: Gems
   team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"

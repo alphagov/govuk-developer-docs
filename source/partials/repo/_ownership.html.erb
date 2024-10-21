@@ -1,10 +1,10 @@
-<% if repo.team && repo.dependencies_team &&
-      repo.team != repo.dependencies_team %>
-  <strong><%= link_to repo.team, slack_url(repo.team) %></strong> owns the repo. <strong><%= links_to repo.dependencies_team, slack_url(repo.dependencies_team) %></strong> is responsible for updating its dependencies.
+<% if repo.team && repo.alerts_team &&
+      repo.team != repo.alerts_team %>
+  <strong><%= link_to repo.team, slack_url(repo.team) %></strong> owns the repo. <strong><%= links_to repo.alerts_team, slack_url(repo.alerts_team) %></strong> receives automated alerts for this repo.
 <% elsif repo.team %>
   <%= link_to repo.team, slack_url(repo.team) %>
-<% elsif repo.dependencies_team %>
-  <%= links_to repo.dependencies_team, slack_url(repo.dependencies_team) %>
+<% elsif repo.alerts_team %>
+  <%= links_to repo.alerts_team, slack_url(repo.alerts_team) %>
 <% else %>
   N/A
 <% end %>

@@ -34,13 +34,13 @@ RSpec.describe Repo do
       app_details = {
         "repo_name" => "foo",
         "team" => "bar",
-        "dependencies_team" => "baz",
+        "alerts_team" => "baz",
         "production_hosted_on" => "aws",
       }
       payload = Repo.new(app_details).api_payload
       expect(payload[:app_name]).to eq(app_details["repo_name"])
       expect(payload[:team]).to eq(app_details["team"])
-      expect(payload[:dependencies_team]).to eq(app_details["dependencies_team"])
+      expect(payload[:alerts_team]).to eq(app_details["alerts_team"])
       expect(payload[:production_hosted_on]).to eq(app_details["production_hosted_on"])
       expect(payload[:links]).to include(:self, :html_url, :repo_url, :sentry_url)
     end
