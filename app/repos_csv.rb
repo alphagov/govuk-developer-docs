@@ -15,7 +15,7 @@ class ReposCSV
         csv << [
           repo.repo_name,
           repo.team,
-          repo.dependencies_team,
+          repo.alerts_team,
           repo.html_url,
           repo.repo_url,
           repo.production_hosted_on,
