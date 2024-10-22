@@ -17,7 +17,7 @@ Technical 2nd Line’s main responsibilities are:
 
 You’ll be set up in [PagerDuty](/manual/2nd-line#pagerduty) so that you can be called if there are any urgent alerts during working hours. Technical 2nd Line shifts are a great opportunity to learn about the GOV.UK stack.
 
-Every Monday, at least 2 people from GOV.UK - a Primary and Secondary, and usually a Shadow - join the team to work on Technical 2nd Line. There are also standbys for the Primary and Secondary.
+Every Monday, 2 people from GOV.UK - a Primary and Secondary - join the team to work on Technical 2nd Line.
 
 All of these roles can be fulfilled by developers and Site Reliability Engineers (SREs), whereas only some can be fulfilled by frontend developers, junior technologists and apprentices. See [role specific policies](#role-specific-policies) for details.
 
@@ -27,15 +27,11 @@ Shifts start at 9:30 and end at 17:30. [You can check the Technical 2nd Line rot
 
 [2ndline-rota]: https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1297388378.
 
-You are required to attend a daily morning standup with your paired 2nd Line partner and the Technical 2nd Line team. There’s a short retrospective at the handover meeting at the end of your shift.
-
-Standby developers are not expected to attend the standups or the incoming handover. If they're called onto the shift, they should attend the next standup, and should attend the outgoing handover at the end of the shift.
-
 Technical 2nd Line takes priority over the work you do in your usual team, but if there is nothing to action on 2nd line, you are of course free to return to team work. If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, or there's a live incident, or an urgent Zendesk ticket, you’ll need to prioritise Technical 2nd Line above your meetings.
 
 ## Rules for Primary, Secondary and On Call
 
-[Production Admin access](/manual/rules-for-getting-production-access.html) is a pre-requisite for joining 2nd line, unless you're only shadowing.
+[Production Admin access](/manual/rules-for-getting-production-access.html) is a pre-requisite for joining 2nd line.
 
 Folks start out as a Secondary. After two shifts as a Secondary, they'll start to fill the Primary role, with some exceptions (see [role specific policies](#role-specific-policies)).
 
@@ -47,9 +43,9 @@ Backend developers and SREs are all expected to be on the in-hours and on-call r
 
 Frontend developers are expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out. They are _not_ expected to be on the on-call rota. Junior technologists and technologist apprentices are also expected to take part in the in-hours rota and not the on-call rota.
 
-A junior technologist can be a shadow or a secondary, but won't be a primary.
+A junior technologist can be a secondary, but won't be a primary.
 
-A technologist apprentice will only fulfil the shadow role. However, if they are confident, they can (at their Line Manager's discretion) go through the process to get Production Admin access, at which point they can request to be added to the secondary role.
+There is no expectation for technologist apprentices to do 2nd line, but if they are confident, they can (at their Line Manager's discretion) go through the process to get Production Admin access, at which point they can request to be added to the secondary role.
 
 ## Shift swaps, working patterns and sickness
 
@@ -62,7 +58,6 @@ If you need to swap your shift, it’s your responsibility to ensure that adequa
 For either of the above, let the Technical 2nd Line delivery manager know, so that they can update the schedule on [PagerDuty][].
 
 If you cannot make your shift because you’re ill, message the delivery manager and #govuk-2ndline-tech Slack channel.
-The corresponding standby developer will then take your place.
 
 If your working patterns are not compatible with a 9.30am-5.30pm shift, let the Technical 2nd Line team know so they can find extra support.
 
@@ -74,11 +69,7 @@ Before attending an all-staff event, team away-day or any other event that could
 
 Otherwise, attending such events is allowed provided you are able to regularly check Zendesk (e.g. on an hourly basis) and are prepared to drop what you're doing and work on anything urgent that comes in. You must also be contactable by phone so that you can quickly respond to PagerDuty alerts.
 
-Those in a "standby" role don't need to actively check Zendesk or Slack, but as above, must be contactable by phone and within easy reach of their laptop.
-
 ## Monitoring
-
-We have a [Technical 2nd Line dashboard][] showing a high level overview of the state of the GOV.UK environments. You can also [install our Chrome extension][] if you want a permanently visible overview.
 
 ### Grafana
 
@@ -136,13 +127,10 @@ This will help inform developers, Technical 2nd Line tech lead(s), and the GOV.U
 Follow these Slack channels while working on Technical 2nd Line:
 
 - [#govuk-2ndline-tech] - the main channel for people on Technical 2nd Line
-- [#govuk-deploy] - every time a Staging/Production deploy is done, this is automatically posted to - people also manually post when putting branches on Integration for testing
 - [#govuk-developers] - this is a general channel for developers and can be a good place to ask questions if you are struggling
 - [#govuk-platform-engineering] - Platform Engineering team looks after the GOV.UK Kubernetes clusters and base images
 
-[Technical 2nd Line dashboard]: https://govuk-2ndline-dashboard.herokuapp.com/
 [GOV.UK Technical 2nd Line Trello board]: https://trello.com/b/M7UzqXpk/govuk-2nd-line
-[install our Chrome extension]: https://github.com/alphagov/govuk-secondline-blinken#chrome-extension
 [PagerDuty]: https://governmentdigitalservice.pagerduty.com
 [Zendesk]: https://govuk.zendesk.com
 [You can check the Technical 2nd Line rota to find out when your shift is]:https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1297388378
