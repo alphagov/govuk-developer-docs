@@ -19,7 +19,7 @@ It is the responsibility of the people above to make sure their details are up t
 and that they're correctly scheduled in. You can [add your rota to Google calendar](#add-your-pagerduty-rota-to-google-calendar).
 
 When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
-them, otherwise they will be escalated further. NB, Technical 2nd Line shadowers are not required to be on PagerDuty.
+them, otherwise they will be escalated further.
 
 ## Creating a schedule override
 
