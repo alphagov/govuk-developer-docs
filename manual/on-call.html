@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Out of hours support (on-call) - GOV.UK Developer Documentation</title>
+    <title>On-call support - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -20,12 +20,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Out of hours support (on-call) - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="On-call support - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/on-call.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Out of hours support (on-call)" />
+      <meta property="og:title" content="On-call support" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/on-call.html" />
 
@@ -140,10 +140,10 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Out of hours support (on-call)</span></a>
+    <a href="#header"><span>On-call support</span></a>
     <ul>
       <li>
-        <a href="#on-call-checklist"><span>On call checklist</span></a>
+        <a href="#on-call-charter"><span>On call charter</span></a>
       </li>
       <li>
         <a href="#things-that-may-result-in-you-being-contacted"><span>Things that may result in you being contacted</span></a>
@@ -172,9 +172,6 @@
             <a href="#phone-calls-from-people"><span>Phone calls from people</span></a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a href="#on-call-charter"><span>On call charter</span></a>
       </li>
     </ul>
   </li>
@@ -225,47 +222,28 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/13fb9b21d5d4de9b109811b945e99035e2565fb4">12 Sep 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/180cf39a5af47b6da2583ec30f457115da47de7f">22 Oct 2024</a>
 </div>
 
- <h1 id='header'>Out of hours support (on-call)</h1> <blockquote>
-<p>See <a href="/manual/incident-what-to-do.html">So, you&rsquo;re having an incident</a>!</p>
-<p>This page is for before you go on call to prep for incident handling.</p>
+ <h1 id='header'>On-call support</h1> <blockquote>
+<p>In a hurry? You may be looking for <a href="/manual/incident-what-to-do.html">So, you&rsquo;re having an incident</a>!</p>
 </blockquote>
-<p>GOV.UK developers are part of an on-call rota to keep GOV.UK running at night, on
-the weekends and on public holidays.</p>
-<p>Developers are drafted on the on-call rota after:</p>
-
+<p>GOV.UK developers are part of an on-call rota to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they&rsquo;ve built up enough experience (see <a href="/manual/2nd-line.html#rules-for-primary-secondary-and-on-call">Rules for Primary, Secondary and On Call</a>).</p>
+<h2 id='on-call-charter'>On call charter</h2>
 <ul>
-<li>they have completed 2 shadow 2nd line shifts</li>
-<li>they have completed 2 in-hours Secondary 2nd line shifts</li>
+<li>Prepare for your shift by following the steps in the <a href="https://trello.com/c/mK6p8hH4/977-on-call-checklist">On-call Trello card template</a></li>
+<li>Be available to be phoned during your allocated shift</li>
+<li>Be able to be online to start investigating a problem within half an hour
+of being notified about it</li>
+<li>Don&rsquo;t worry if you&rsquo;re not able to answer the phone immediately - that&rsquo;s
+why we have more than one person on-call</li>
+<li>Nobody is expected to understand every part of GOV.UK - you don&rsquo;t need to
+know how to fix every issue on your own</li>
+<li>Logs are not as important as being available - if you need to lose some logs
+in order to bring the site back up, that&rsquo;s probably a good trade-off to make</li>
+<li>Get paid. Make sure you submit your <a href="https://forms.gle/yvPoANwrsHz8SrL4A">payment claim form</a> after your shift.
+Payment rates can be found on the <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/how-to-guides/out-of-hours-allowance">GDS Wiki</a>.</li>
 </ul>
-<p>They will be automatically opted into the rota the same time they join the Primary 2nd line rota.
-If a developer is unable to be rota&rsquo;d on-call, then they need to request to opt
-out by contacting their tech leads. This will only be granted if they have a strong
-reason be exempt (e.g. health issues, caring responsibilities).</p>
-<h2 id='on-call-checklist'>On call checklist</h2><p>You should do these things before going on call so you&rsquo;re prepared.</p>
-
-<ol>
-<li>Have the numbers of other people on your shift saved in your phone. This
-includes whoever is on <a href="https://governmentdigitalservice.pagerduty.com/schedules#PCK3XB2">Escalations</a>.
-Get these numbers from PagerDuty.</li>
-<li>Make sure you know <a href="https://drive.google.com/drive/search?q=%22smt%20escalations%20rota%22">how to contact the rest of SMT</a>, if the on-call SMT is unavailable.</li>
-<li>Ensure you have an up to date local copy of the <a href="https://github.com/alphagov/govuk-developer-docs/">Developer Docs</a> repository and that you can build it.</li>
-<li>Make sure you can <a href="/manual/get-started.html#sign-in-to-aws">access AWS</a> (using the web console and the <code>aws</code> CLI)</li>
-<li>Make sure you can <a href="/manual/google-cloud-platform-gcp.html">access GCP</a> (using the web console and the <code>gcloud</code> CLI)</li>
-<li>Make sure you can VPN to the office or disaster recovery location.</li>
-<li>Ensure your PagerDuty <a href="https://support.pagerduty.com/docs/user-profile#notification-rules">alert settings</a> will wake you if you&rsquo;re called. You might want to install the <a href="https://www.pagerduty.com/features/mobile-incident-management/">PagerDuty App</a> on your phone and <a href="https://support.pagerduty.com/docs/notification-troubleshooting#send-a-test-notification">send a test notification</a>.</li>
-<li>Read these documents:
-
-<ul>
-<li><a href="/manual/incident-what-to-do.html">So, you&rsquo;re having an incident</a></li>
-<li><a href="/manual/fall-back-to-mirror.html">Falling back to the static mirror</a></li>
-<li><a href="/manual/global-banner.html">Non-emergency global banner</a></li>
-</ul></li>
-</ol>
-<p>The steps above are outlined in the <a href="https://trello.com/c/mK6p8hH4/977-on-call-checklist">On call template Trello card</a>. Developers should speak to the 2nd line tech lead(s) if they have any issues with the above steps.</p>
-<p>You may also want to set to be notified for every new message in the <a href="https://gds.slack.com/archives/CAH9L36LR">#govuk-incident</a> Slack channel, but this is strictly optional. People should not expect to be able to contact you on Slack during your shift. You can change your Slack notification settings by clicking “Change notifications” and selecting “All new messages”.</p>
 <h2 id='things-that-may-result-in-you-being-contacted'>Things that may result in you being contacted</h2><h3 id='automated-monitoring'>Automated monitoring</h3><p>We use <a href="/manual/pagerduty.html">PagerDuty</a>
 for automated monitoring. You can update your <a href="https://support.pagerduty.com/docs/user-profile#notification-rules">notification rules</a>
 in your PagerDuty account to notify you however you want (phone call, SMS, email,
@@ -325,20 +303,6 @@ how serious the problem is and contact other people on GOV.UK if required.</p>
 </ul>
 <p>There&rsquo;s a separate process for urgent changes to content which doesn&rsquo;t require technical
 support (assuming everything is working).</p>
-<h2 id='on-call-charter'>On call charter</h2>
-<ul>
-<li>Be available to be phoned in the evenings and at weekends</li>
-<li>Be able to be online to start investigating a problem within half an hour
-of being notified about it</li>
-<li>Don&rsquo;t worry if you&rsquo;re not able to answer the phone immediately - that&rsquo;s
-why we have more than one person on-call</li>
-<li>Nobody is expected to understand every part of GOV.UK - you don&rsquo;t need to
-know how to fix every issue on your own</li>
-<li>Logs are not as important as being available - if you need to lose some logs
-in order to bring the site back up, that&rsquo;s probably a good trade-off to make</li>
-<li>Get paid. Make sure you submit your <a href="https://forms.gle/yvPoANwrsHz8SrL4A">payment claim form</a> after your shift.
-Payment rates can be found on the <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/how-to-guides/out-of-hours-allowance">GDS Wiki</a>.</li>
-</ul>
 
   <div class='related-content'>
 
@@ -382,7 +346,7 @@ Payment rates can be found on the <a href="https://sites.google.com/a/digital.ca
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/on-call.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Out+of+hours+support+%28on-call%29%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fon-call.html%29&amp;labels=bug&amp;title=Re%3A+%27Out+of+hours+support+%28on-call%29%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27On-call+support%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fon-call.html%29&amp;labels=bug&amp;title=Re%3A+%27On-call+support%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
