@@ -1,50 +1,36 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
-title: Out of hours support (on-call)
+title: On-call support
 section: 2nd line
 layout: manual_layout
 type: learn
 parent: "/manual.html"
 ---
 
-> See [So, you're having an incident]!
->
-> This page is for before you go on call to prep for incident handling.
+> In a hurry? You may be looking for [So, you're having an incident][]!
 
-GOV.UK developers are part of an on-call rota to keep GOV.UK running at night, on
-the weekends and on public holidays.
+GOV.UK developers are part of an on-call rota to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they've built up enough experience (see [Rules for Primary, Secondary and On Call][]).
 
-Developers are drafted on the on-call rota after:
+[So, you're having an incident]: /manual/incident-what-to-do.html
+[Rules for Primary, Secondary and On Call]: /manual/2nd-line.html#rules-for-primary-secondary-and-on-call
 
-- they have completed 2 shadow 2nd line shifts
-- they have completed 2 in-hours Secondary 2nd line shifts
+## On call charter
 
-They will be automatically opted into the rota the same time they join the Primary 2nd line rota.
-If a developer is unable to be rota'd on-call, then they need to request to opt
-out by contacting their tech leads. This will only be granted if they have a strong
-reason be exempt (e.g. health issues, caring responsibilities).
+- Prepare for your shift by following the steps in the [On-call Trello card template](https://trello.com/c/mK6p8hH4/977-on-call-checklist)
+- Be available to be phoned during your allocated shift
+- Be able to be online to start investigating a problem within half an hour
+  of being notified about it
+- Don't worry if you're not able to answer the phone immediately - that's
+  why we have more than one person on-call
+- Nobody is expected to understand every part of GOV.UK - you don't need to
+  know how to fix every issue on your own
+- Logs are not as important as being available - if you need to lose some logs
+  in order to bring the site back up, that's probably a good trade-off to make
+- Get paid. Make sure you submit your [payment claim form][] after your shift.
+  Payment rates can be found on the [GDS Wiki][].
 
-## On call checklist
-
-You should do these things before going on call so you're prepared.
-
-1. Have the numbers of other people on your shift saved in your phone. This
-   includes whoever is on [Escalations](https://governmentdigitalservice.pagerduty.com/schedules#PCK3XB2).
-   Get these numbers from PagerDuty.
-1. Make sure you know [how to contact the rest of SMT](https://drive.google.com/drive/search?q=%22smt%20escalations%20rota%22), if the on-call SMT is unavailable.
-1. Ensure you have an up to date local copy of the [Developer Docs][docs] repository and that you can build it.
-1. Make sure you can [access AWS][] (using the web console and the `aws` CLI)
-1. Make sure you can [access GCP][] (using the web console and the `gcloud` CLI)
-1. Make sure you can VPN to the office or disaster recovery location.
-1. Ensure your PagerDuty [alert settings](https://support.pagerduty.com/docs/user-profile#notification-rules) will wake you if you're called. You might want to install the [PagerDuty App](https://www.pagerduty.com/features/mobile-incident-management/) on your phone and [send a test notification](https://support.pagerduty.com/docs/notification-troubleshooting#send-a-test-notification).
-1. Read these documents:
-    - [So, you're having an incident](/manual/incident-what-to-do.html)
-    - [Falling back to the static mirror](/manual/fall-back-to-mirror.html)
-    - [Non-emergency global banner](/manual/global-banner.html)
-
-The steps above are outlined in the [On call template Trello card](https://trello.com/c/mK6p8hH4/977-on-call-checklist). Developers should speak to the 2nd line tech lead(s) if they have any issues with the above steps.
-
-You may also want to set to be notified for every new message in the [#govuk-incident](https://gds.slack.com/archives/CAH9L36LR) Slack channel, but this is strictly optional. People should not expect to be able to contact you on Slack during your shift. You can change your Slack notification settings by clicking “Change notifications” and selecting “All new messages”.
+[GDS Wiki]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/how-to-guides/out-of-hours-allowance
+[payment claim form]: https://forms.gle/yvPoANwrsHz8SrL4A
 
 ## Things that may result in you being contacted
 
@@ -130,23 +116,3 @@ If you're phoned by somebody who works on GOV.UK it's likely that this is becaus
 
 There's a separate process for urgent changes to content which doesn't require technical
 support (assuming everything is working).
-
-## On call charter
-
-- Be available to be phoned in the evenings and at weekends
-- Be able to be online to start investigating a problem within half an hour
-  of being notified about it
-- Don't worry if you're not able to answer the phone immediately - that's
-  why we have more than one person on-call
-- Nobody is expected to understand every part of GOV.UK - you don't need to
-  know how to fix every issue on your own
-- Logs are not as important as being available - if you need to lose some logs
-  in order to bring the site back up, that's probably a good trade-off to make
-- Get paid. Make sure you submit your [payment claim form][] after your shift.
-  Payment rates can be found on the [GDS Wiki](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/how-to-guides/out-of-hours-allowance).
-
-[So, you're having an incident]: /manual/incident-what-to-do.html
-[docs]: https://github.com/alphagov/govuk-developer-docs/
-[payment claim form]: https://forms.gle/yvPoANwrsHz8SrL4A
-[access AWS]: /manual/get-started.html#sign-in-to-aws
-[access GCP]: /manual/google-cloud-platform-gcp.html
