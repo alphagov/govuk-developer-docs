@@ -205,7 +205,7 @@
 </div>          <div class="govuk-summary-list__row">
 
             <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-publishing-platform">#govuk-publishing-platform</a></dd>
+            <dd class="govuk-summary-list__value"><strong><a href="https://gds.slack.com/channels/govuk-publishing-platform">#govuk-publishing-platform</a></strong> owns the repo. <strong><a href="https://gds.slack.com/channels/govuk-publishing-platform-system-alerts">#govuk-publishing-platform-system-alerts</a></strong> receives automated alerts for this repo.</dd>
 
 
 
@@ -845,6 +845,31 @@ they reference change.</p>
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
+</code></pre>
+
+<h3 id="content-blocks">Content blocks</h3>
+
+<p>Authors can embed different types of <a href="https://github.com/alphagov/govspeak/blob/main/lib/govspeak/embedded_content.rb#L3">supported content</a> created by the Content Block Manager</p>
+
+<pre><code>{{embed:content_block_email_address:d308f561-e5ee-45b5-90b2-3ac36a23fad9}}
+</code></pre>
+
+<p>with options provided</p>
+
+<pre><code>{
+  embeds: [
+    {
+      content_id: "d308f561-e5ee-45b5-90b2-3ac36a23fad9",
+      title: "Government Digital Service",
+      details: { email_address: "test@example.com" },
+    }
+  ]
+}
+</code></pre>
+
+<p>will output</p>
+
+<pre lang="html"><code>&lt;span class="embed_content_block_email_address" id="embed_d308f561-e5ee-45b5-90b2-3ac36a23fad9"&gt;test@example.com&lt;/span&gt;
 </code></pre>
 
 <h3 id="button">Button</h3>

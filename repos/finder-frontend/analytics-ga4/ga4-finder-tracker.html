@@ -210,15 +210,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/0107e65a56f583e15eae5eb9e94b5a32457a8b11">6 Dec 2023</a>
+  Last updated: <a href="https://github.com/alphagov/finder-frontend/commit/36860a6fd0521ad5285a7895f6b3cb131e8da0c1">18 Oct 2024</a>
 </div>
 
   <h1 class="page-title">finder-frontend: Google Analytics 4 finder tracker</h1>
@@ -281,8 +274,10 @@ For example if the event target is a checkbox, <code>&lt;input type="checkbox" d
 <p>"Sort by" selects have  <code>data-ga4-change-category="update-sort select"</code> on them. They send a separate "Sort event", so checking whether the filter was added or removed is irrelevant in this case.</p>
 <h3 id="radio-buttons-">Radio buttons (<code>&lt;input type="radio"&gt;</code>)</h3>
 <p>Radio buttons have <code>data-ga4-change-category="update-filter radio"</code> on them. If the changed radio button is not the <em>first radio button</em> (i.e. the default selection), then, the <code>update-filter</code> event will build an "Filter added" GTM Object. If the changed radio button is the <em>first radio button</em>, it will build a "Filter removed" GTM Object. This is because the first radio button in a list is typically the default "All XYZ" filter state. The value we grab for a radio button is the user friendly label associated with the <code>&lt;input&gt;</code>.</p>
-<h3 id="date-filters-">Date filters (<code>&lt;input type="text"&gt;</code>)</h3>
+<h3 id="date-filters-with-single-input-field-">Date filters with single input field (<code>&lt;input type="text"&gt;</code>)</h3>
 <p>Our date filters have <code>data-ga4-change-category="update-filter text"</code> on them. The value we grab is the text that is input into its text field. If the text is an empty string, we treat this as a "Filter removed" event, as this means the date was removed. If text is available in the text box, we treat this as a "Filter added" event.</p>
+<h3 id="date-filters-with-three-input-fields-daymonthyear">Date filters with three input fields (day/month/year)</h3>
+<p>These use the GOV.UK Design System date input pattern/component and have <code>data-ga4-change-category="update-filter date"</code> on them. To avoid excessive events and cardinality, despite technically allowing partial values, we expect users to mostly fill in complete dates and only track them as an entire value triggered by all fields being present, and combine the three into a single D/M/Y string. Conversely, it only counts as removed if all fields have been cleared.</p>
 <h3 id="search-keyword-changes-">Search keyword changes (<code>&lt;input type="text"&gt;</code>)</h3>
 <p>Search boxes have <code>data-ga4-change-category="update-keyword text"</code> on them. The value we grab on change is the text that was input into the text box.  Regardless if text is available in the text box, we always treat it as a "search" event. This is because an empty search box is still as search event but it just searches for everything in our database.</p>
 <p>The search value is sanitised with PII removal, + characters converted to spaces, spaces and new lines trimmed, and downcasing.</p>
