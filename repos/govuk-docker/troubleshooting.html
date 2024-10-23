@@ -221,7 +221,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/dac8f547b9c02390dd4327a3e62f4d0c68766895">16 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/8d3b1005676c8891b6e71ebd5e393e5d934ee722">23 Oct 2024</a>
 </div>
 
   <h1 class="page-title">govuk-docker: Troubleshooting</h1>
@@ -288,6 +288,10 @@ govuk-docker down
 git pull
 </code></pre>
 <h2 id="diagnose-issues-with-dev-gov-uk-domains-not-resolving">Diagnose issues with <code>dev.gov.uk</code> domains not resolving</h2>
+<ul>
+<li>Check if domain runs on HTTP</li>
+</ul>
+<p>Chrome browser redirects the domain to HTTPS, which doesn't load the page. You can disable this setting on your browser, test the domain on a private window or use another browser.</p>
 <ul>
 <li>Check if <code>dev.gov.uk</code> works end-to-end</li>
 </ul>
