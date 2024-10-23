@@ -17,6 +17,7 @@ The owner of an application is responsible for:
 - monitoring performance, including setting any Service Level Objectives/Indicators or similar measures
 - maintaining and prioritising a backlog, to include improvements and bug-fixing
 - dealing with any security issues arising from IT healthchecks etc
+- ensuring that any application-related workflows that may be required during an incident or high profile event, are sufficiently documented and regularly tested (which could mean an automated test, a manual drill, or something else)
 - actions arising from incident reviews (the Tech Lead and/or Product Manager should attend any incident review relating to the application)
 - making lifecycle decisions about the application, including if it should be retired. An application only exists to serve a purpose, and teams should feel empowered to create and retire them as needed
 - strategic thinking and planning around the application and how it fits with others

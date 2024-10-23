@@ -60,6 +60,12 @@ As tech lead you have the opportunity to champion good developer practice in ter
 
 Essentially a tech lead’s role is to be the face that represents all the standards and principles by which developers need to work with.
 
+## Being prepared for incidents and high profile events
+
+The sorts of things that used to be drilled on Technical 2nd Line are [now the responsibility of the product teams](https://docs.google.com/document/d/1I4o4hLjpjUMthTOXEbmecBqpHvms2HV3EXKCHSCAK3U/edit). In other words, processes like "drilling deploying the emergency banner" are now the responsibility of the publishing teams.
+
+In practice, this means all of the tech leads in the publishing space (in this example) should collaborate on a plan for replacing the old drill process. This might mean running the drill within a publishing team, or perhaps replacing the drill with an automated test. It is also the responsibility of the tech leads to disseminate any information necessary (e.g. via Tech Fortnightly) such that whoever is on-call is confidently able to deal with related incidents.
+
 ## Attending tech lead stand up and writing the weeknote
 
 Every week there’s a GOV.UK tech lead stand up where each tech lead will talk about the work their team did in the last week, and let other tech leads become aware of anything that might affect them. At the same time, this is a good opportunity to share things that you’ve found out with the rest of your team so they’re aware of wider changes happening on GOV.UK.
