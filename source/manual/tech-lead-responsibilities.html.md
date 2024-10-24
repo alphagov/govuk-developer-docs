@@ -62,7 +62,7 @@ Essentially a tech lead’s role is to be the face that represents all the stand
 
 ## Being prepared for incidents and high profile events
 
-The sorts of things that used to be drilled on Technical 2nd Line are [now the responsibility of the product teams](https://docs.google.com/document/d/1I4o4hLjpjUMthTOXEbmecBqpHvms2HV3EXKCHSCAK3U/edit). In other words, processes like "drilling deploying the emergency banner" are now the responsibility of the publishing teams.
+The sorts of things that used to be drilled on Technical 2nd Line are [now the responsibility of product teams](https://docs.google.com/document/d/1I4o4hLjpjUMthTOXEbmecBqpHvms2HV3EXKCHSCAK3U/edit). For example, a process like "drilling deploying the emergency banner" is now the responsibility of the publishing teams.
 
 In practice, this means all of the tech leads in the publishing space (in this example) should collaborate on a plan for replacing the old drill process. This might mean running the drill within a publishing team, or perhaps replacing the drill with an automated test. It is also the responsibility of the tech leads to disseminate any information necessary (e.g. via Tech Fortnightly) such that whoever is on-call is confidently able to deal with related incidents.
 
