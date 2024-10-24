@@ -37,6 +37,6 @@ If your space is "Restricted", you'll need to invite every relevant person, as t
 - Members of the Google group will be able to discover your space using "Browse spaces".
 - This means you won't have to worry about keeping your list of team members in sync with your 'space'.
 
-## 2nd line Google Space
+## On-Call Google Space
 
-There is a persistent [Technical 2nd Line space](https://mail.google.com/mail/u/0/#chat/space/AAAAuQLSk78), to which the [Technical 2nd Line Support Google Group](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/2nd-line-support) is invited as a member. Everyone on 2nd line should therefore be able to use the 2nd line space in the event of a Slack outage.
+There is a persistent [GOV.UK Technical On-Call - Google Space](https://mail.google.com/mail/u/0/#chat/space/AAAAuQLSk78), to which the [GOV.UK Technical On-Call Comms Google Group](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/gov-uk-technical-oncall-comms) is invited as a member. Everyone on call should therefore be able to use the Google space in the event of a Slack outage.
