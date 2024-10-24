@@ -39,6 +39,17 @@ You can also access Secrets Manager via AWS CLI commands, for example [aws
 secretsmanager
 get-secret-value](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/secretsmanager/get-secret-value.html).
 
+## Set up OTP from 2FA seed
+
+Some of our 'secrets' are for shared accounts which require 2FA to log in. They may have a "2fa-seed" part of the secret that looks a bit like this: `otpauth://totp/YOUR_IDENTIFICATION?secret=YOUR_SECRET`.
+
+You can set up the One-Time-Password in your authenticating app by generating an ASCII QR code from the 2fa-seed:
+
+```
+brew install qrencode
+qrencode -o- -d 300 -s 10 "otpauth://totp/YOUR_IDENTIFICATION?secret=YOUR_SECRET" | display
+```
+
 ## Rotate a credential
 
 Retrieve the credential, then press __Edit__.
