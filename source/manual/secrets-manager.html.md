@@ -39,6 +39,19 @@ You can also access Secrets Manager via AWS CLI commands, for example [aws
 secretsmanager
 get-secret-value](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/secretsmanager/get-secret-value.html).
 
+## Set up OTP from 2FA seed
+
+Some of our 'secrets' are for shared accounts which require 2FA to log in. They may have a "2fa-seed" part of the secret that looks a bit like this: `otpauth://totp/YOUR_IDENTIFICATION?secret=YOUR_SECRET`.
+
+You can get a One-Time-Password by copying and pasting the secret (`YOUR-SECRET` in the example above) into totp-cli (installed via `brew install totp-cli`):
+
+```
+totp-cli instant
+# paste the secret, hit Enter
+```
+
+The above approach requires getting the secret from Secrets Manager every time you want to log into the shared account.
+
 ## Rotate a credential
 
 Retrieve the credential, then press __Edit__.
