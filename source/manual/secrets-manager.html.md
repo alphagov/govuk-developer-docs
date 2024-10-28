@@ -50,19 +50,7 @@ totp-cli instant
 # paste the secret, hit Enter
 ```
 
-The above approach requires getting the secret from Secrets Manager every time you want to log into the shared account. If you anticipate logging in regularly, you can set up the OTP in your authenticating app by generating an ASCII QR code from the 2fa-seed:
-
-```
-# needed for `display` command
-brew update && brew install imagemagick
-
-# needed for qrencode
-brew install qrencode
-
-qrencode -o- -d 300 -s 10 "otpauth://totp/YOUR_IDENTIFICATION?secret=YOUR_SECRET" | display
-```
-
-The above outputs a QR code you can take a picture of from your authenticator app. You can then get a new OTP from the authenticator app whenever you want to log in.
+The above approach requires getting the secret from Secrets Manager every time you want to log into the shared account.
 
 ## Rotate a credential
 
