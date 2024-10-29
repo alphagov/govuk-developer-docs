@@ -4,7 +4,7 @@ title: Screens that we have in the office
 parent: "/manual.html"
 type: learn
 layout: manual_layout
-section: Monitoring
+section: Monitoring and alerting
 ---
 
 ## Technical 2nd Line screens
