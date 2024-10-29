@@ -4,7 +4,7 @@ title: Pingdom Bouncer canary check
 parent: "/manual.html"
 layout: manual_layout
 type: learn
-section: Monitoring
+section: Monitoring and alerting
 ---
 
 This alert is raised by [Pingdom](/manual/pingdom.html) when it cannot

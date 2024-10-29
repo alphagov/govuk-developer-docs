@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: Graphite and deployment dashboards
-section: Monitoring
+section: Monitoring and alerting
 type: learn
 layout: manual_layout
 parent: "/manual.html"
