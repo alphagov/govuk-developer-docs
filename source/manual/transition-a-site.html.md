@@ -15,6 +15,10 @@ The [Transition][] app exists to allow old URLs to be mapped to pages
 on GOV.UK. These mappings are stored in a database and used by [Bouncer][] to
 handle requests to those old domains.
 
+Transitioning a site takes time and has to be prioritised. Please submit a
+request for your site to be transitioned at least two weeks before you need
+the site to be redirected.
+
 This page covers adding a site so that we can handle traffic to
 it, or changing the configuration of an existing site in the Transition app.
 
