@@ -147,6 +147,14 @@
       </li>
       <li>
         <a href="#remove-an-asset"><span>Remove an asset</span></a>
+        <ul>
+          <li>
+            <a href="#remove-an-asset-via-the-originating-publishing-app"><span>Remove an asset via the originating publishing app</span></a>
+          </li>
+          <li>
+            <a href="#remove-an-asset-directly-in-asset-manager"><span>Remove an asset directly in Asset Manager</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#redirect-an-asset"><span>Redirect an asset</span></a>
@@ -206,7 +214,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2444829922ff4be1b8e162d82a77cab18e8d6e3c">6 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9d00c56f720351e3c1fe7fa3c0095fc821a87498">24 Oct 2024</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='get-an-assets-id'>Get an asset&rsquo;s ID</h2><p>If the asset URL starts with <code>/media</code>, the asset ID is in the URL.
@@ -214,17 +222,16 @@ For example, for the URL <code>https://assets.publishing.service.gov.uk/media/65
 <p>For assets that do not start <code>/media</code>, obtain the ID by running the following rake task:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:get_id_by_legacy_url_path[SLUG]
 </code></pre></div><p>For example, for <code>https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml&quot;</code>, you would pass <code>/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml</code> as the argument.</p>
-<h2 id='remove-an-asset'>Remove an asset</h2>
-<blockquote>
-<p>Where possible, you should delete the asset in the publishing application
-that originally uploaded the file, for example Whitehall. Deleting an asset
-from Asset Manager without removing the record from the publishing
-application could cause problems if the asset is attempted to be re-published
-again in the future.</p>
-</blockquote>
-<p>If it isn&rsquo;t feasible to remove the asset in the publishing app, you can use
-these steps to remove the asset from <code>assets.publishing.service.gov.uk</code> in
-Asset Manager.</p>
+<h2 id='remove-an-asset'>Remove an asset</h2><h3 id='remove-an-asset-via-the-originating-publishing-app'>Remove an asset via the originating publishing app</h3><p>Where possible, you should delete the asset in the publishing application that originally uploaded the file, for example Whitehall. Deleting an asset from Asset Manager without removing the record from the publishing application could cause problems if the asset is attempted to be re-published again in the future.</p>
+<p>For example, to delete a legacy Whitehall attachment of the form <code>/government/uploads/system/uploads/attachment_data/file/12345/foo.pdf</code>, you would:</p>
+
+<ol>
+<li><p>Open a Rails console in Whitehall</p></li>
+<li><p>Retrieve the content IDs (and some sense-checking attributes) of the attachments in Whitehall: <code>Attachment.where(attachment_data_id: 12345).pluck(:content_id, :deleted_at, :created_at)</code></p></li>
+<li><p>Exit the Rails console</p></li>
+<li><p>For each attachment that is marked <code>deleted: false</code>, mark them as deleted via the dedicated rake task, i.e. <code>k exec deploy/whitehall-admin -- rake delete_attachment[&quot;&lt;content id&gt;&quot;]</code></p></li>
+</ol>
+<h3 id='remove-an-asset-directly-in-asset-manager'>Remove an asset directly in Asset Manager</h3><p>If it isn&rsquo;t feasible to remove the asset in the publishing app, you can use these steps to remove the asset from <code>assets.publishing.service.gov.uk</code> in Asset Manager.</p>
 
 <ol>
 <li><p><a href="/manual/manage-assets.html#get-an-assets-id">Get the asset ID</a>.</p></li>

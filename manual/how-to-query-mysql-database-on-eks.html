@@ -1,5 +1,9 @@
 
 
+
+
+
+
 <!doctype html>
 <html lang="en" class="govuk-template no-js">
   <head>
@@ -7,25 +11,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-mobile-remote-config - GOV.UK Developer Documentation</title>
+    <title>How to query MySQL database on EKS - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-mobile-remote-config.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/how-to-query-mysql-database-on-eks.html">
 
-      <meta name="description" content="Everything about govuk-mobile-remote-config (Test repository looking at containerised remote config for the GOV.UK mobile apps)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-mobile-remote-config - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-mobile-remote-config.html" />
+      <meta name="twitter:title" content="How to query MySQL database on EKS - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/how-to-query-mysql-database-on-eks.html" />
 
-      <meta property="og:description" content="Everything about govuk-mobile-remote-config (Test repository looking at containerised remote config for the GOV.UK mobile apps)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-mobile-remote-config" />
+      <meta property="og:title" content="How to query MySQL database on EKS" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-mobile-remote-config.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/how-to-query-mysql-database-on-eks.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -79,13 +81,13 @@
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
             </li>
-            <li class="govuk-header__navigation-item">
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
               <a class="govuk-header__link" href="/manual.html">Manual</a>
             </li>
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
             </li>
-            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+            <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/apps.html">Apps</a>
             </li>
             <li class="govuk-header__navigation-item">
@@ -135,15 +137,32 @@
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-                  <ul>
-    <li>
-      <a href="/repos/govuk-mobile-remote-config.html" rel="noopener" class="govuk-link">govuk-mobile-remote-config</a>
-    </li>
-    <li>
-      <ul>
-      </ul>
-    </li>
-  </ul>
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>How to query MySQL database on EKS</span></a>
+    <ul>
+      <li>
+        <a href="#pre-requisites-logins-and-credentials"><span>Pre-requisites: Logins and Credentials</span></a>
+        <ul>
+          <li>
+            <a href="#log-into-an-eks-pod-bash-session"><span>Log into an EKS pod bash session</span></a>
+          </li>
+          <li>
+            <a href="#fetch-database-login-credentials-from-aws-secrets-manager"><span>Fetch Database login credentials from AWS Secrets Manager</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#how-to-query-database-through-mysql-console"><span>How to: Query database through MySQL console</span></a>
+      </li>
+      <li>
+        <a href="#how-to-export-query-into-a-csv-file-for-your-local-machine"><span>How to: Export query into a CSV file for your local machine</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 
               </nav>
             </div>
@@ -151,7 +170,7 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-              
+                
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -169,8 +188,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "Apps",
-        "@id": "http://www.dev.gov.uk/apps.html"
+        "name": "Databases",
+        "@id": "http://www.dev.gov.uk/manual.html#databases"
       }
     }
   ]
@@ -183,80 +202,95 @@
           <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#databases">Databases</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Repository: govuk-mobile-remote-config</h1>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Test repository looking at containerised remote config for the GOV.UK mobile apps</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-mobile-remote-config">govuk-mobile-remote-config</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-apps-notifications">#govuk-apps-notifications</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Mobile apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk-mobile-remote-config" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5ca1ba441fd7d3a4ddf026dd81cb0c65fc9fa48a">23 Oct 2024</a>
 </div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>This is a test repository looking at containerised remote config for the GOV.UK mobile apps.</p>
+ <h1 id='header'>How to query MySQL database on EKS</h1> <h2 id='pre-requisites-logins-and-credentials'>Pre-requisites: Logins and Credentials</h2><p>In order to run the SQL queries and extract files from EKS pods, you would need to be able to access:</p>
 
-<h2 id="usage">Usage</h2>
+<ol>
+<li>the bash shell from the desired EKS pod in the corresponding environment</li>
+<li>MySQL database login credentials from AWS Secrets Manager for the corresponding environment</li>
+</ol>
+<h3 id='log-into-an-eks-pod-bash-session'>Log into an EKS pod bash session</h3>
+<ol>
+<li><p>Setup Kubernetes and environments according to <a href="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html#content">the EKS setup guide</a></p></li>
+<li><p>Switch to desired environment, e.g.</p></li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>eval $(gds aws govuk-integration-poweruser -e --art 8h)
+kubectl config use-context integration
+</code></pre></div>
+<ol>
+<li>Log into shell for desired app, e.g.</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/whitehall-admin -- bash
+</code></pre></div>
+<ol>
+<li>Validate environment</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>echo $GOVUK_ENVIRONMENT
+</code></pre></div><h3 id='fetch-database-login-credentials-from-aws-secrets-manager'>Fetch Database login credentials from AWS Secrets Manager</h3>
+<ol>
+<li>Log into the AWS console with the desired role</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-integration-poweruser -l
+</code></pre></div>
+<ol>
+<li><p>Choose Secrets Manager from the Services menu</p></li>
+<li><p>Search for <code>mysql</code> and click on the desired mysql database, e.g. <code>govuk/whitehall-admin/mysql</code></p></li>
+<li><p>Under Secret value, choose the <code>Retrieve secret value</code> button on the right-hand side.</p></li>
+</ol>
+<h2 id='how-to-query-database-through-mysql-console'>How to: Query database through MySQL console</h2>
+<ol>
+<li><p><a href="#log-into-an-eks-pod-bash-session">Log into the desired EKS pod</a></p></li>
+<li><p>Log into MySQL console using the <a href="#fetch-database-login-credentials-from-aws-secrets-manager">MySQL credentials fetched from AWS</a>. You will be prompted for the password.</p></li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>mysql -h &lt;db-host&gt; -u &lt;db-username&gt; -p -D &lt;database name&gt;
+</code></pre></div>
+<ol>
+<li>Run any SQL statements to query the database</li>
+</ol>
+<h2 id='how-to-export-query-into-a-csv-file-for-your-local-machine'>How to: Export query into a CSV file for your local machine</h2>
+<ol>
+<li><p><a href="#log-into-an-eks-pod-bash-session">Log into the desired EKS pod</a></p></li>
+<li><p>Run direct query within command line and pipe the output to file. Note we are piping to <code>tr</code> first to get CSV format.</p></li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>mysql -h &lt;db-host&gt; \
+-u &lt;db-username&gt; -p \
+-D &lt;db name&gt; -B \
+-e "&lt;SQL Statement&gt;" \
+| tr '\t' ',' \
+&gt; &lt;output file e.g. output.csv&gt;
+</code></pre></div>
+<ol>
+<li><p>Log out of the EKS box <code>exit</code></p></li>
+<li><p>Copy the file from the EKS pod to local machine</p></li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl cp -n apps \
+&lt;pod-name&gt;:&lt;source file to copy&gt; \
+&lt;target location&gt;
+</code></pre></div>
+  <div class='related-content'>
 
-<h3 id="to-run-locally">To run locally</h3>
+    <h3>More in the Databases section</h3>
 
-<ul>
-<li><code>docker build -t remote-config .</code></li>
-<li><code>docker run -it -p 8080:80 remote-config</code></li>
-<li>Application will be available locally at <a href="http://localhost:8080">http://localhost:8080</a>
-</li>
-</ul>
+    <div class='govuk-grid-row'>
 
-<h3 id="updating-config">Updating config</h3>
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
 
-<p>Currently any static JSON files inside the /config directory will be included in the container and then served by the nginx server. There is no pre-processing step although we will be adding this soon.</p>
+          <ul class="govuk-list">
+            <li><a href="/manual/mongo-db-commands.html">MongoDB infra commands</a></li>
+          </ul>
+        </div>
 
-<p>Any requests which do not correspond to a file within the directory structure will default to serving the contents of /config/_404.json.</p>
-<p></div></p>
+    </div>
+</div>
 
 
             
@@ -264,8 +298,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-mobile-remote-config.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/how-to-query-mysql-database-on-eks.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27How+to+query+MySQL+database+on+EKS%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhow-to-query-mysql-database-on-eks.html%29&amp;labels=bug&amp;title=Re%3A+%27How+to+query+MySQL+database+on+EKS%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

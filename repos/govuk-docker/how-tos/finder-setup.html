@@ -221,7 +221,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/5fe55228d8420a09096f698b3f6cbeba40130733">24 Sep 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/82d2b14db497a474dee0b7069ac80dc2060f1f3e">25 Oct 2024</a>
 </div>
 
   <h1 class="page-title">govuk-docker: How to Publish Content to a Finder in GOV.UK Docker</h1>
@@ -231,45 +231,74 @@
 finder with locally. The instructions below assume that you have "made" all of the relevant projects before starting.</p>
 <p>This has been tested predominantly using Specialist Publisher, but other publishing apps should work just as well.</p>
 <ol>
-<li>Start your publishing app of choice, e.g. <code>govuk-docker up specialist-publisher-app</code>
+<li>
+<p>Start your publishing app of choice, e.g. <code>govuk-docker up specialist-publisher-app</code></p>
 </li>
-<li>Start the finder-frontend app: <code>govuk-docker up finder-frontend-app</code>
+<li>
+<p>Start the finder-frontend app: <code>govuk-docker up finder-frontend-app</code></p>
 </li>
-<li>Create a router backend for finder frontend:
+<li>
+<p>Create a router backend for finder frontend:</p>
 <pre lang="bash"><code>curl http://router-api.dev.gov.uk/backends/finder-frontend -X PUT \
 -H 'Content-type: application/json' \
 -d '{"backend": {"backend_url": "http://finder-frontend.dev.gov.uk/"}}
 </code></pre>
 </li>
-<li>Create a router backend for Search API:
+<li>
+<p>Create a router backend for Search API:</p>
 <pre lang="bash"><code>curl http://router-api.dev.gov.uk/backends/search-api -X PUT \
 -H 'Content-type: application/json' \
 -d '{"backend": {"backend_url": "http://search-api.dev.gov.uk/"}}'
 </code></pre>
 </li>
-<li>Create a router backend for frontend (this is needed to serve the root taxon created in step 8):
+<li>
+<p>Create a router backend for frontend (this is needed to serve the root taxon created in step 8):</p>
 <pre lang="bash"><code>curl http://router-api.dev.gov.uk/backends/frontend -X PUT \
   -H 'Content-type: application/json' \
   -d '{"backend": {"backend_url": "http://frontend.dev.gov.uk/"}}'
 </code></pre>
 </li>
-<li>Create a router backend for collections (this is needed to serve the test taxon created in step 9):
+<li>
+<p>Create a router backend for collections (this is needed to serve the test taxon created in step 9):</p>
 <pre lang="bash"><code>curl http://router-api.dev.gov.uk/backends/collections -X PUT \
   -H 'Content-type: application/json' \
   -d '{"backend": {"backend_url": "http://collections.dev.gov.uk/"}}'
 </code></pre>
 </li>
-<li>Publish special routes by running <code>govuk-docker run publishing-api-lite bundle exec rake publish_special_routes</code>.</li>
-<li>Publish Search API's routes by
-running <code>govuk-docker exec search-api-app bundle exec rake publishing_api:publish_special_routes</code>.</li>
-<li>Publish the root taxon for GOV.UK: <code>govuk-docker run publishing-api-lite rake publish_homepage</code>
+<li>
+<p>Publish special routes by running <code>govuk-docker run publishing-api-lite bundle exec rake special_routes:publish</code>.</p>
 </li>
-<li>Publish a test taxon:
+<li>
+<p>Publish Search API's routes by
+running <code>govuk-docker exec search-api-app bundle exec rake publishing_api:publish_special_routes</code>.</p>
+</li>
+<li>
+<p>Publish the root taxon for GOV.UK: <code>govuk-docker run publishing-api-lite rake special_routes:publish_homepage</code></p>
+</li>
+<li>
+<p>Publish a test taxon:</p>
 <pre lang="bash"><code>govuk-docker run whitehall-lite rails taxonomy:populate_end_to_end_test_data
 govuk-docker run whitehall-lite rails taxonomy:rebuild_cache
 </code></pre>
 </li>
-<li>Publish your specialist finder or general finder page.
+<li>
+<p>Create the search
+indices: <code>govuk-docker exec search-api-app env SEARCH_INDEX=all bundle exec rake search:create_all_indices</code></p>
+</li>
+<li>
+<p>Create the publishing api RabbitMQ exchange so that Search API can listen for new content to
+index: <code>govuk-docker exec publishing-api-app bundle exec rake setup_exchange</code></p>
+</li>
+<li>
+<p>Create the search API message
+queues: <code>govuk-docker exec search-api-worker bundle exec rake message_queue:create_queues</code></p>
+</li>
+<li>
+<p>Run <code>govuk-docker exec search-api-worker bundle exec rake message_queue:insert_data_into_govuk</code> to listen for
+messages. This is a long-running process, so you may want to start it in the background.</p>
+</li>
+<li>
+<p>Publish your specialist finder or general finder page.</p>
 <ul>
 <li>For a specialist
 finder: <code>govuk-docker exec specialist-publisher-app bundle exec rails publishing_api:publish_finder\[finder_name\]</code>
@@ -279,18 +308,9 @@ finder: <code>govuk-docker exec search-api-app env FINDER_CONFIG=all_content_fin
 </li>
 </ul>
 </li>
-<li>Create the search
-indices: <code>govuk-docker exec search-api-app env SEARCH_INDEX=all bundle exec rake search:create_all_indices</code>
+<li>
+<p>Publish a document. It should show up in the search results.</p>
 </li>
-<li>Create the publishing api RabbitMQ exchange so that Search API can listen for new content to
-index: <code>govuk-docker exec publishing-api-app bundle exec rake setup_exchange</code>
-</li>
-<li>Create the search API message
-queues: <code>govuk-docker exec search-api-worker bundle exec rake message_queue:create_queues</code>
-</li>
-<li>Run <code>govuk-docker exec search-api-worker bundle exec rake message_queue:insert_data_into_govuk</code> to listen for
-messages. This is a long-running process, so you may want to start it in the background.</li>
-<li>Publish a document. It should show up in the search results.</li>
 </ol>
 
 

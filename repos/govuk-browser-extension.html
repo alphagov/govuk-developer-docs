@@ -254,8 +254,7 @@ installed from packages signed by Mozilla.</p>
 <ol>
 <li>
 <a href="https://github.com/alphagov/govuk-browser-extension/archive/main.zip">Download the source from GitHub</a> and unzip.</li>
-<li>Remove the <code>background</code> section from <code>src/manifest.json</code>. The service worker specified in this section changes the colour of the icon when on a GOV.UK page, but it relies on <code>background.service_worker</code>, which is <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1573659">currently unsupported in Firefox with Manifest V3</a>.</li>
-<li>Visit <a href="about:debugging">about:debugging</a> in your browser.</li>
+<li>Visit <a href="about:debugging/runtime/this-firefox">about:debugging</a> in your browser.</li>
 <li>Click <code>Load Temporary Add-on</code> to pop up a file selection dialog.</li>
 <li>Navigate to <code>src</code> in the extension directory, and select <code>manifest.json</code>.</li>
 <li>Visit any page on <a href="https://www.gov.uk">GOV.UK</a>.</li>
@@ -295,14 +294,23 @@ installed from packages signed by Mozilla.</p>
 <h2 id="releasing-the-extension">Releasing the extension</h2>
 
 <ol>
-<li>Update the version in <code>manifest.json</code>
+<li>Install <code>jq</code>. For example, on mac, you can do it using brew &lsquo;brew install jq&rsquo;</li>
+<li>Update the version in <code>manifest_base.json</code>
 </li>
 <li>Run <code>npm run build</code>
 </li>
 <li>Create a Pull Request with the new package committed</li>
-<li>Upload newly created package in <code>/build</code> to the <a href="https://chrome.google.com/webstore/devconsole/06b3913d-07a7-479e-94aa-05bb5b3cd44d/dclfaikcemljbaoagjnedmlppnbiljen/edit/package">Chrome web store</a>.</li>
-<li>Upload newly created package in <code>/build</code> to <a href="https://addons.mozilla.org/en-US/developers/addon/govuk-browser-extension-ff/versions/submit/">Firefox Add-ons</a>. Account details in the <a href="https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/firefox/add-ons">2nd line password store</a>.</li>
+<li>Upload newly created package created for chrome at<code>/build/govuk-browser-extension-chrome-{version}.zip</code> to the <a href="https://chrome.google.com/webstore/devconsole/06b3913d-07a7-479e-94aa-05bb5b3cd44d/dclfaikcemljbaoagjnedmlppnbiljen/edit/package">Chrome web store</a>.</li>
+<li>Upload newly created package created for firefox at <code>/build/govuk-browser-extension-firefox-{version}.zip</code> to <a href="https://addons.mozilla.org/en-US/developers/addon/govuk-browser-extension-ff/versions/submit/">Firefox Add-ons</a>. Account details in the <a href="https://eu-west-1.console.aws.amazon.com/secretsmanager">AWS Secrets Manager</a>. See the documentation in <a href="https://docs.publishing.service.gov.uk/manual/secrets-manager.html#retrieve-a-credential-from-secrets-manager">Retrieve a credential from Secrets Manager</a>
+</li>
 </ol>
+
+<h3 id="note">Note</h3>
+
+<p>Firefox and chrome currently disagree on few things with respect to V3 of manifest.json, so inorder to accommodate for
+both the browser, we would need a separate build for each browser with their manifest.json catering to each of them. To
+do this, we have created two manifest.json for each browser and have updated build script to generate separate
+manifest.json for each of them during the build.</p>
 
 <h3 id="license">License</h3>
 
