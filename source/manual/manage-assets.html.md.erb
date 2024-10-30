@@ -6,6 +6,53 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+## Assets overview
+
+When investigating an asset, bear in mind that some cases might require setting a redirect or replacement, rather than deleting the asset. See a breakdown of the possible fields below.
+
+Asset Manager stores a a number of fields whose values work together to enforce how the asset is served.
+These fields are closely related to various document states from the publishing applications.
+Whitehall uses all of the main fields, since it implements a full "editioned" flow. The following examples are thus based on Whitehall's behaviour.
+
+1. Draft
+
+Assets are set to draft (boolean `true`) when they first get created on a draft edition. When the document gets published, the draft state of the `Asset` is also updated to `false`.
+All assets associated with live content must be publicly available.
+
+It is not a representation of all possible edition states, but rather a flag to determine whether the asset should be publicly accessible.
+One could say that draft is false if "the asset ever been made live". Once it is set to "false", it should not be set back to "true" - there are other ways to further represent that the asset is no longer live, such as setting a `redirect_url` or a `replacement_id`.
+
+The draft state should always match the state of the `parent_document_url`. Recently, a [validation rule](https://github.com/alphagov/asset-manager/blob/cffce4e0e1323eab138e016de9b33536f62fef60/app/models/asset.rb#L288) has been added to ensure this, though no data patch was run to patch the data.
+
+Assets must be in draft for certain authorisation protocols to apply. See [documentation](https://github.com/alphagov/asset-manager/blob/cffce4e0e1323eab138e016de9b33536f62fef60/docs/authorisation.md).
+
+2. State
+
+This is a representation of the internal Asset Manager processing of the asset, particularly around uploading and virus scanning status.
+The state machine includes `scanned_clean`, `clean`, `scanned_infected`, `upload_success`, `uploaded`.
+
+NB: There are some invalid remnants of a previous state machine, including state values such as "deleted", in the database. These should be removed.
+
+3. `deleted_at`
+
+This timestamp gets set when an asset is deleted in the corresponding publishing application, either by deleting an attachment or discarding a document.
+A 'nil' value means the asset has not been deleted (default).
+
+4. `replacement_id`
+
+This is a BSON object ID, set when the user uploads a new file in the place of a an old one, preserving some metadata from the previous. Default is `nil`.
+The replaced asset redirects to its replacement, provided the replacement is not in draft.
+
+Whilst deletion and replacements are mutually exclusive (an asset should not logically have both), they do coexist in the database.
+Deletion, replacement and draft work together to support previewing of draft content. An asset will not redirect to its replacement if the replacement is in draft.
+This ensures that until we've hit the publish button, we can preview images and documents on the draft stack.
+
+<!-- TODO: add details about how the replacement chain works and how all the assets in a chain point to the last one -->
+
+5. `redirect_url`
+   This is typically set when the parent edition is unpublished, and usually set to the parent document URL. Because of this, most redirected assets will 404.
+   Upon re-drafting the parent edition, the redirect URL gets set back to nil.
+
 ## Get an asset's ID
 
 If the asset URL starts with `/media`, the asset ID is in the URL.
