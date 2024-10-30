@@ -11,17 +11,21 @@ When transitioning HTTPS domains, these are the steps to request a TLS certifica
 
 1. Login to Fastly - you will need "TLS management" permissions. A [member of the senior tech team](https://docs.publishing.service.gov.uk/manual/ask-for-help.html#contact-senior-tech) should be able to grant access through the Fastly UI (it can't be done through govuk-user-reviewer).
 
-1. Search for "Production Bouncer"
+1. Select "Production Bouncer" from the list of services
 
-    ![Screenshot of the Fastly website user interface on the "Home" tab. The words "Production bouncer" have been typed in the search bar, which has shown two results: Production Bouncer and Production Bouncer HTTPS.](images/fastly/1.png)
+    ![Screenshot of the Fastly website user interface on the "Home" tab. "Production Bouncer is at the top of the list of services"](images/fastly/1.png)
 
 1. Select “Production Bouncer”, and then click "Service configuration". Search for the domain.
 
     ![Screenshot of the Fastly website user interface on the "Service configuration" tab, which is nested under "Delivery". The word "engineering" has been typed into the search bar, which has given two results: engineering.gov.uk and www.engineering.gov.uk.](images/fastly/2.png)
 
-1. Once you have completed the previous step to confirm that your domain is listed, click on "Secure" in the main header. Click the button **+ Secure another domain**, and select "Use certificates Fastly obtains for you".
+1. Once you have completed the previous step to confirm that your domain is listed, click on "Security" in the left hand toolbar, select "TLS Management" and then click "Domains". 
 
-    ![Screenshot of the Fastly website user interface on the "TLS management" tab which is nested under "Secure". There is a button in the top right labelled "+ Secure another domain".](images/fastly/3.png)
+    ![Screenshot of the Fastly website user interface with the left hand navigation bar open to the "Security" tab with the "TLS Management" section open](images/fastly/3.png)
+
+1. Click the button **+ Secure another domain**, and select "Use certificates Fastly obtains for you".
+
+    ![Screenshot of the Fastly website user interface on the "TLS management" tab which is nested under "Secure". There is a button in the top right labelled "+ Secure another domain".](images/fastly/4.png)
 
 1. Enter the domain name(s) that you want a TLS certificate to be created for. Select **Let's encrypt** as the certification authority. And select one of the following two TLS configurations. To decide, you need to know where your domain resolves to. A quick way to find out is:
 
@@ -56,7 +60,7 @@ When transitioning HTTPS domains, these are the steps to request a TLS certifica
     - 151.101.0.144, 151.101.64.144, 151.101.128.144, 151.101.192.144
     ```
 
-    ![Screnshot of the Fastly website user interface on the "TLS subscriptions" tab, nested under "TLS management". A form is shown where multiple domains can be added into a text area.](images/fastly/4.png)
+    ![Screnshot of the Fastly website user interface on the "TLS subscriptions" tab, nested under "TLS management". A form is shown where multiple domains can be added into a text area.](images/fastly/5.png)
 
     Click **Submit**
 
@@ -68,4 +72,4 @@ When transitioning HTTPS domains, these are the steps to request a TLS certifica
 
 1. After domain ownership is confirmed the certificate should be enabled.
 
-   ![Screenshot of the Fastly website user interface showing the TLS status is enabled for the domain find-coronavirus-support.service.gov.uk. Other information included on the screen is: certificate expiry, TLS version, HTTP protocols and details of all the DNS records for the domain.](images/fastly/5.png)
+   ![Screenshot of the Fastly website user interface showing the TLS status is enabled for the domain find-coronavirus-support.service.gov.uk. Other information included on the screen is: certificate expiry, TLS version, HTTP protocols and details of all the DNS records for the domain.](images/fastly/6.png)
