@@ -563,10 +563,10 @@ and passing a `-c` argument:
 
 ### Finding the harvest source of a dataset
 
-The harvest source of a dataset can be found using the CKAN API, using the dataset's slug:
+The harvest source of a dataset can be found using the CKAN API, using the dataset's slug or ID:
 
 ```
-https://ckan.publishing.service.gov.uk/api/3/action/package_show?id=<slug>
+https://ckan.publishing.service.gov.uk/api/3/action/package_show?id=<slug> or <id>
 ```
 
 In the response there should be `harvest_source_id` and `harvest_source_title` fields.
