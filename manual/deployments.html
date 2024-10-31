@@ -200,7 +200,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/98b17252ba8a0c0c34ad3ba6c44ef0dd85796f7f">19 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a4f8bfa37f2ea24cf3ea34faeb6d25b93a9f13a7">31 Oct 2024</a>
 </div>
 
  <h1 id='header'>Deployments</h1> <p>On GOV.UK, all applications are set up for continuous deployment to integration, with the majority also having continuous deployment configured for staging and production.  Additionally, you can manually deploy a git reference (tag, branch, or commit SHA) of an application to any environment.</p>
@@ -208,19 +208,26 @@
 <p>If the smoke tests pass and the application has continuous deployment enabled, the deployment is promoted to staging. In staging another set of smoke tests run, and if they pass, the deployment will be promoted to production.</p>
 <p>For applications without continuous deployment enabled, they will need to be manually deployed to staging and production.</p>
 <p>The <a href="https://release.publishing.service.gov.uk/applications">Release app</a> shows the currently deployed versions of each app and whether an app requires manual deployment to later environments.</p>
-<h2 id='manual-deployments'>Manual deployments</h2><p>You can manually deploy an application by triggering the &ldquo;Deploy&rdquo; GitHub Action workflow for that application’s repository.</p>
+<h2 id='manual-deployments'>Manual deployments</h2><p>You can manually deploy an application to a specific environment by triggering the &ldquo;Deploy&rdquo; GitHub Action workflow for that application’s repository.
+Manual deployments are never promoted to other environments.</p>
 <p>This can be done in <a href="https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow">GitHub’s web interface</a>:</p>
 
 <ol>
 <li>Go to the &ldquo;Actions&rdquo; page in the application repository</li>
 <li>Select the &ldquo;Deploy&rdquo; workflow from the list of workflows on the left hand side</li>
-<li>Click &ldquo;Run workflow&rdquo;</li>
-<li>Input the git reference and environment (ignore the &ldquo;Use workflow from&rdquo; option)</li>
-<li>Click &ldquo;Run workflow&rdquo;</li>
+<li>Click the &ldquo;Run workflow&rdquo; dropdown</li>
+<li>Input the git reference (e.g. branch name or commit sha) and environment (ignore the &ldquo;Use workflow from&rdquo; option)</li>
+<li>Click the &ldquo;Run workflow&rdquo; button</li>
 </ol>
 <p>Or using <a href="https://cli.github.com/manual/gh_workflow_run">GitHub’s CLI</a>:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gh workflow run <span class="nt">-R</span> <span class="s2">"alphagov/</span><span class="k">${</span><span class="nv">REPO</span><span class="k">}</span><span class="s2">"</span> deploy.yml <span class="nt">-F</span> <span class="nv">environment</span><span class="o">=</span><span class="k">${</span><span class="nv">ENVIRONMENT</span><span class="k">}</span> <span class="nt">-F</span> <span class="nv">gitRef</span><span class="o">=</span><span class="k">${</span><span class="nv">GIT_REF</span><span class="k">}</span>
-</code></pre></div><p>Manual deployments are never promoted to other environments.</p>
+</code></pre></div><p>When the workflow completes, you&rsquo;ll need to wait for the deployment to propagate.</p>
+
+<ol>
+<li>Navigate to the Argo app overview for your app and environment (e.g. <a href="https://argo.eks.integration.govuk.digital/applications/whitehall-admin?orphaned=false&amp;resource=">Whitehall on integration</a>)</li>
+<li>Click on the &ldquo;Details&rdquo; button and check that the &ldquo;ANNOTATIONS&rdquo; label references the commit sha you provided earlier. You can speed things along by clicking the &ldquo;Sync&rdquo; button.</li>
+<li>Finally, check that the &ldquo;Deployment&rdquo; pod for your app (e.g. <a href="https://argo.eks.integration.govuk.digital/applications/whitehall-admin?orphaned=false&amp;resource=&amp;node=apps%2FDeployment%2Fapps%2Fwhitehall-admin%2F0">deploy: whitehall-admin</a>) is not still being promoted (should have green tick).</li>
+</ol>
 <h2 id='overview-of-the-deployment-process'>Overview of the deployment process</h2><p>This is an example deploying an application to integration:</p>
 
 <ol>
