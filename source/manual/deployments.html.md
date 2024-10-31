@@ -18,15 +18,16 @@ The [Release app](https://release.publishing.service.gov.uk/applications) shows 
 
 ## Manual deployments
 
-You can manually deploy an application by triggering the "Deploy" GitHub Action workflow for that application’s repository.
+You can manually deploy an application to a specific environment by triggering the "Deploy" GitHub Action workflow for that application’s repository.
+Manual deployments are never promoted to other environments.
 
 This can be done in [GitHub’s web interface](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow):
 
 1. Go to the "Actions" page in the application repository
 1. Select the "Deploy" workflow from the list of workflows on the left hand side
-1. Click "Run workflow"
-1. Input the git reference and environment (ignore the "Use workflow from" option)
-1. Click "Run workflow"
+1. Click the "Run workflow" dropdown
+1. Input the git reference (e.g. branch name or commit sha) and environment (ignore the "Use workflow from" option)
+1. Click the "Run workflow" button
 
 Or using [GitHub’s CLI](https://cli.github.com/manual/gh_workflow_run):
 
@@ -34,7 +35,11 @@ Or using [GitHub’s CLI](https://cli.github.com/manual/gh_workflow_run):
 gh workflow run -R "alphagov/${REPO}" deploy.yml -F environment=${ENVIRONMENT} -F gitRef=${GIT_REF}
 ```
 
-Manual deployments are never promoted to other environments.
+When the workflow completes, you'll need to wait for the deployment to propagate.
+
+1. Navigate to the Argo app overview for your app and environment (e.g. [Whitehall on integration](https://argo.eks.integration.govuk.digital/applications/whitehall-admin?orphaned=false&resource=))
+1. Click on the "Details" button and check that the "ANNOTATIONS" label references the commit sha you provided earlier. You can speed things along by clicking the "Sync" button.
+1. Finally, check that the "Deployment" pod for your app (e.g. [deploy: whitehall-admin](https://argo.eks.integration.govuk.digital/applications/whitehall-admin?orphaned=false&resource=&node=apps%2FDeployment%2Fapps%2Fwhitehall-admin%2F0)) is not still being promoted (should have green tick).
 
 ## Overview of the deployment process
 
