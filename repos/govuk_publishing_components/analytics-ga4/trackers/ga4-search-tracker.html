@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Moving components from an application into this gem - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics 4 search tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/moving-components-upstream-into-this-gem.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/trackers/ga4-search-tracker.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Moving components from an application into this gem - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/moving-components-upstream-into-this-gem.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics 4 search tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/trackers/ga4-search-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Moving components from an application into this gem" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics 4 search tracker" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/moving-components-upstream-into-this-gem.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/trackers/ga4-search-tracker.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -266,31 +266,41 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/7ddc02a6c0bccecc434127578f0c68380e268bee">11 Jan 2018</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/cd910d394d81a6ac95796cf39be9384ecf1a7f1c">30 Oct 2024</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Moving components from an application into this gem</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics 4 search tracker</h1>
 
   
-<p>Normally you want to build components as close to their point of use, but at some point you will want to share a component between applications.</p>
-<p>Try not to move components into this gem 'just in case', only do so when there is a real need.</p>
-<h2 id="example">Example</h2>
-<p>We originally added some form components into <a href="https://github.com/alphagov/government-frontend"><code>government-frontend</code></a> which needed to be used in <a href="https://github.com/alphagov/email-alert-frontend"><code>email-alert-frontend</code></a>.</p>
-<p>This meant we moved these components into this gem. You can see how this worked happened with the following PRs. Generally the steps are as follows:</p>
-<ol>
-<li>
-<a href="https://github.com/alphagov/govuk_publishing_components/pull/138">Move the component into the gem (update the namespace from <code>app</code> to <code>gem</code>)</a>. Component tests in the gem use rspec, these made need to be updated if the app a component is ported from uses minitest or another test framework.</li>
-<li><a href="https://github.com/alphagov/govuk_publishing_components/pull/140">Release a new version of the gem</a></li>
-<li><a href="https://github.com/alphagov/government-frontend/pull/684">Update the application with this version and delete old app component files</a></li>
-</ol>
+<p>This module allows us to consistently track usage of search across the several different search
+fields from which a user can initiate a search on GOV.UK:</p>
+<ul>
+<li>the layout super navigation header</li>
+<li>the homepage</li>
+<li>the search page itself</li>
+</ul>
+<p>It is not used by the legacy UI for finders, which triggers search events on user input (rather than
+waiting for form submission) as part of its "live search" functionality.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>Annotate a <code>&lt;form&gt;</code> element containing a search field (<code>&lt;input type="search"&gt;</code>, for example the
+<code>search</code> or <code>search_with_autocomplete</code> publishing components) with the module and its required data
+fields:</p>
+<pre lang="html"><code>&lt;form
+  data-module="ga4-search-tracker"
+  data-ga4-search-type="site search"
+  data-ga4-search-url="/search"
+  data-ga4-search-section="section"
+  data-ga4-search-index-section="19"
+  data-ga4-search-index-section-count="89"
+&gt;
+</code></pre>
+<p>When the form is submitted, a <code>search</code> event with the will be tracked containing:</p>
+<ul>
+<li>the type, URL, section, index section, and index section count fields based on the data attributes
+outlined above</li>
+<li>the state (text) of the search field contained within</li>
+</ul>
 
 
             
@@ -298,8 +308,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/moving-components-upstream-into-this-gem.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fmoving-components-upstream-into-this-gem.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/trackers/ga4-search-tracker.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-ga4%2Ftrackers%2Fga4-search-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
