@@ -53,9 +53,9 @@ If the token is for `Signon API Client (permission and suspension updater)` then
 
 1. Update the token in the Kubernetes secret:
 
-    1. Go to the Argo interface for the envrionment: [integration](https://argo.eks.integration.govuk.digital/applications/cluster-services/signon?view=tree&orphaned=false&resource=), [staging](https://argo.eks.staging.govuk.digital/applications/cluster-services/signon?view=tree&orphaned=false&resource=) or [production](https://argo.eks.production.govuk.digital/applications/cluster-services/signon?view=tree&orphaned=false&resource=).
+    1. Go to the Argo interface for the environment: [integration](https://argo.eks.integration.govuk.digital/applications/cluster-services/signon?view=tree&orphaned=false&resource=), [staging](https://argo.eks.staging.govuk.digital/applications/cluster-services/signon?view=tree&orphaned=false&resource=) or [production](https://argo.eks.production.govuk.digital/applications/cluster-services/signon?view=tree&orphaned=false&resource=).
 
-    1. Locate the `signon-sync-app-secrets-to-k8s` cron job.
+    1. Locate the `signon-sync-token-secrets-to-k8s` cron job.
 
     1. Click the three dots on this cron job and click **Create job**.
 
