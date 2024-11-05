@@ -7,7 +7,9 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-Every night, production data is copied to the [staging and integration environments](/manual/environments.html) - often referred to as the "env sync" or "data sync" process. This allows us to more easily test changes against real data, as well as acting as an automated test of our disaster recovery capabilities.
+Production data is regularly copied to the [staging and integration environments](/manual/environments.html) - often referred to as the "env sync" or "data sync" process. This allows us to more easily test changes against real data, as well as acting as an automated test of our disaster recovery capabilities.
+
+Staging is overwritten every night, whereas integration is overwritten [every Monday](https://github.com/alphagov/govuk-helm-charts/commit/5afb13081c60a94d487c2a360c4a4ce3cf789b19) (in order to better support content designers, who use the environment for training, so need longer data retention).
 
 ## Troubleshooting
 
