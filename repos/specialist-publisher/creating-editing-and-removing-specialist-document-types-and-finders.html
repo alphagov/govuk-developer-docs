@@ -218,7 +218,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/bae2fb7d30f68c72211cf870da753ced17d46190">16 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/fa37494a401a05126133fb5a961021e4ebe519fd">1 Nov 2024</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating, editing and removing specialist document types and finders</h1>
@@ -287,15 +287,21 @@ irb(main):002:0&gt; SecureRandom.uuid
 <ol>
 <li>Ensure the finder target_stack is set to <code>draft</code>
 </li>
-<li>Merge and deploy Publishing API and Specialist Publisher.
+<li>Merge and deploy Publishing API, Specialist Publisher and Search API.
 <ul>
 <li>Ensure you deploy Publishing API first, to avoid schema validation errors.</li>
 <li>Also deploy Email Alert API if you have made changes to it.</li>
 </ul>
 </li>
-<li>Publish the finder to the draft stack by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
+<li>Run <code>search:update_schema</code> in Search API.</li>
+<li>Publish the finder to the draft stack by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[pluralised_format_name]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
 <li>Wait for department's feedback and approval and agree on a release date</li>
 </ol>
+<p>NB: Depending on the finder requirements, you may choose to allow the users to publish documents in preview mode, which
+would enable them to test the full finder filtering functionality. Changes to the schema requested after documents have been
+published, could require running a reindex, and there is a risk of loss of data. In order to prevent users from publishing,
+we could give only basic Signon permissions whilst in preview mode. Signon access to the Specialist Publisher app, only
+gives the user writer access (they may create, edit, and update, but not publish or unpublish).</p>
 <h2 id="6-publish-a-finder">6. Publish a finder</h2>
 <p>To release the finder to the live stack:</p>
 <ol>
