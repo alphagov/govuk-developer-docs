@@ -266,26 +266,21 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b9c91de862852621000e98d0a49bd846b0e723fd">16 May 2018</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/7303edb76d8efd0221fc0956da8cda301c9ab303">21 Oct 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component branding</h1>
 
   
 <h2 id="overview">Overview</h2>
-<p>Organisation pages in whitehall (<a href="https://www.gov.uk/government/organisations/attorney-generals-office">example</a>) have department-specific branding on them. This includes specific colours for links and borders. These pages are being migrated out of whitehall and will use components for their frontend, which means some components need a sensible way of displaying these colours.</p>
+<p>Organisation pages in <code>collections</code> have some department-specific branding on them. Custom border colours are used on all organisation pages (<a href="https://www.gov.uk/government/organisations/attorney-generals-office">example</a>), and custom colours for links are used on <a href="https://www.gov.uk/government/organisations/prime-ministers-office-10-downing-street">Prime Minister's Office, 10 Downing Street</a>.</p>
+<p><a href="https://github.com/alphagov/govuk-frontend/blob/main/packages/govuk-frontend/src/govuk/settings/_colours-organisations.scss">Most colours now come from govuk-frontend</a>, however custom colours can be added to <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/stylesheets/govuk_publishing_components/components/helpers/_brand-colours.scss">_brand_colours.scss</a> if required.</p>
 <p>This work follows <a href="https://github.com/alphagov/govuk_publishing_components/pull/287">this RFC</a> to discuss the approach taken.</p>
+<p><strong>Note: as of October 2024, the use of brand colours for styling was reduced to just borders and accents for most organisations. Brand colours should not be added to text or links, except for in specific agreed circumstances. Text and links should ideally always use our default styles for accessibility and to ensure that the user journey across GOV.UK is consistent from a design perspective.</strong></p>
 <h2 id="adding-to-a-component">Adding to a component</h2>
 <p>To add colours to a component, modify the component to follow the example below.</p>
-<pre><code>&lt;%
+<pre lang="erb"><code>&lt;%
   brand ||= false
   brand_helper = GovukPublishingComponents::AppHelpers::BrandHelper.new(brand)
 %&gt;
@@ -296,11 +291,40 @@
   &lt;/div&gt;
 
   &lt;a href="#" class="&lt;%= brand_helper.color_class %&gt;"&gt;
-    Example element that requires coloured text
+    Rare use case where a link requires coloured text
   &lt;/a&gt;
 &lt;/div&gt;
 </code></pre>
-<p>Note that the helper must be called for each element that needs a border or link colour applying. This allows for flexibility if one is required but not the other.</p>
+<p>The above will style borders with colours from the design system automatically, as we have a SASS mixin for this in <code>_brand_colours.scss</code> that will map the class to its colour in the design system.</p>
+<p>If your use case fits one of these scenarios:</p>
+<ul>
+<li>you need to use <code>brand_helper.color_class</code>
+</li>
+<li>a new brand name or colour outside of the design system needs to be used</li>
+<li>styles other than the border colour are needed</li>
+</ul>
+<p>Then a new class in <code>_brand_colours.scss</code> will need to be created, that is namespaced to the brand name:</p>
+<pre lang="scss"><code>.brand--your-brand-name-here {
+  .brand__color {
+    &amp;:link,
+    &amp;:visited,
+    &amp;:active {
+      color: govuk-colour("black"); // link colours ideally shouldn't be changed, so this is only shown here for demonstration purposes.
+    }
+
+    &amp;:hover,
+    &amp;:focus {
+      color: $govuk-focus-text-colour;
+    }
+  }
+
+  &amp;.brand__border-color,
+  .brand__border-color {
+    border-color: govuk-colour("black"); // your border colour here
+  }
+}
+</code></pre>
+<p>Note that the helper must be called for each element that needs a border or other brand-specific colour applied. This allows for flexibility if one is required but not the other.</p>
 <p>The <code>border_color_class</code> method/class can also be applied to the main element of a component if needed, for example where the component is only one element. This is currently not possible with <code>color_class</code> as there is no requirement for this.</p>
 <pre><code>&lt;h1 class="gem-c-component &lt;%= brand_helper.brand_class %&gt; &lt;%= brand_helper.border_color_class %&gt;"&gt;Heading&lt;/h1&gt;
 </code></pre>
@@ -313,7 +337,7 @@
 </code></pre>
 <p>The component can then be passed a string matching the required brand, for example:</p>
 <pre><code>&lt;%= render "govuk_publishing_components/components/example-component", {
-  brand: 'attorney-generals-office'
+  brand: 'prime-ministers-office-10-downing-street'
 } %&gt;
 </code></pre>
 
