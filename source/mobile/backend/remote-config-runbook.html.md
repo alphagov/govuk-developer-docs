@@ -8,7 +8,11 @@ parent: "/mobile/backend"
 
 ## General guidance
 
-Remote config is administered through the [alphagov/govuk-mobile-backend-config](https://github.com/alphagov/govuk-mobile-backend-config) repository. There is some guidance in the README as to how the repository works, but briefly:
+> High-level background information about the App, its architecture and general incident management information can be found on the [wiki](https://gov-uk.atlassian.net/wiki/spaces/GOVUK/pages/4137025538/Incident+management).
+
+Remote config is administered through the [alphagov/govuk-mobile-backend-config](https://github.com/alphagov/govuk-mobile-backend-config) repository. Outside of the GOV.UK App team, **in order to make changes you must be a member of [@gov-uk-production-admin](https://github.com/orgs/alphagov/teams/gov-uk-production-admin)**.
+
+There is some guidance in the README as to how the repository works, but briefly:
 
 * New versions of config are written into the `./versions` directory. You should not update config version documents, but create a new one each time you want to make an update.
 * Config version documents follow [semantic versioning](https://semver.org/). In general if you are making an emergency change, this should be a `PATCH` update on top of the existing version.
@@ -130,7 +134,8 @@ This is the most straightforward and least-granular way to deal with an urgent i
     ```
 
 5. Once happy, make a pull request to the repository and request a review.
-6. Once the PR is merged, allow the CI job to deploy the change, then verify that the endpoint has been updated by accessing [https://app.publishing.service.gov.uk/appinfo/ios](https://app.publishing.service.gov.uk/appinfo/ios) (N.B. this can take 5 minutes to propagate through the cache; if an urgent change is needed you can purge the cache manually following the instructions [here](/manual/purge-cache.html#purge-a-page-from-the-fastly-cdn))
+6. Once the PR is merged and you are happy to proceed to production, [manually run the CI job](https://github.com/alphagov/govuk-mobile-backend-config/actions/workflows/deploy-production.yaml) to deploy the change to production (select 'Run workflow' and click the green button).
+7. Verify that the endpoint has been updated by accessing [https://app.publishing.service.gov.uk/appinfo/ios](https://app.publishing.service.gov.uk/appinfo/ios) (N.B. this can take 5 minutes to propagate through the cache; if an urgent change is needed you can purge the cache manually following the instructions [here](/manual/purge-cache.html#purge-a-page-from-the-fastly-cdn))
 
 ## Disabling an individual feature
 
