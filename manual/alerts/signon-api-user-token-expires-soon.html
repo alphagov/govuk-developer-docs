@@ -205,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a65c0d4b448210c24ebce74904d24dad2a8fdfe2">10 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/87edfd7ca1b2375afcd4cc62c1b4b0acc482baff">5 Nov 2024</a>
 </div>
 
  <h1 id='header'>Signon API user token expires soon</h1> <p>One or more tokens for API Users are about to expire. You should rotate
@@ -246,8 +246,8 @@ application. If you are sure the token is disused, you can choose
 <li><p>Update the token in the Kubernetes secret:</p>
 
 <ol>
-<li>Go to the Argo interface for the envrionment: <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=">integration</a>, <a href="https://argo.eks.staging.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=">staging</a> or <a href="https://argo.eks.production.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=">production</a>.</li>
-<li>Locate the <code>signon-sync-app-secrets-to-k8s</code> cron job.</li>
+<li>Go to the Argo interface for the environment: <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=">integration</a>, <a href="https://argo.eks.staging.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=">staging</a> or <a href="https://argo.eks.production.govuk.digital/applications/cluster-services/signon?view=tree&amp;orphaned=false&amp;resource=">production</a>.</li>
+<li>Locate the <code>signon-sync-token-secrets-to-k8s</code> cron job.</li>
 <li>Click the three dots on this cron job and click <strong>Create job</strong>.</li>
 <li>Wait for the job to complete. A sucessful run will be labelled with a green checkmark and a label such as <code>Healthy 1 pods</code>. The logs can also be choosing the <strong>Logs</strong> option for the most recent run.</li>
 </ol></li>
