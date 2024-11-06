@@ -203,15 +203,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/f976e452491295b42a89f7f99978e7c2ac6317da">2 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/3ba1aa3208002cb6451d6cdede0c9907e092a528">5 Nov 2024</a>
 </div>
 
   <h1 class="page-title">signon: Usage Documentation</h1>
@@ -239,9 +232,13 @@ to access your it:</p>
 <li>Fill-in a name and email for the API client</li>
 <li>Once saved, click "Add application token", select "Stuff API" and press
 "Create access token"</li>
-<li>You should see an access token on the screen, which you must copy as it
-is the only time it'll be displayed on screen.</li>
+<li>You should see an access token on the screen. This is the only time it'll be displayed on screen, so make a note of it if you need to.</li>
 </ul>
+<p>Once you've created your access token, you'll probably need to:</p>
+<ol>
+<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/signon-api-user-token-expires-soon.html#2-update-the-token-in-the-secrets-used-by-the-consuming-application">Synchronise the token with Kubernetes secrets</a></li>
+<li>Expose the token as an environment variable in govuk-helm-charts (<a href="https://github.com/alphagov/govuk-helm-charts/pull/2742">example</a>)</li>
+</ol>
 <h2 id="development-">Development.</h2>
 <p>More detail is contained in the
 <a href="https://github.com/alphagov/gds-sso#use-in-development-mode">GDS-SSO Repo</a>, but
