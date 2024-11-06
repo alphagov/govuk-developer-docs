@@ -149,7 +149,12 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id='remote-config-runbook'>Remote config runbook</h1><h2 id='general-guidance'>General guidance</h2><p>Remote config is administered through the <a href="https://github.com/alphagov/govuk-mobile-backend-config">alphagov/govuk-mobile-backend-config</a> repository. There is some guidance in the README as to how the repository works, but briefly:</p>
+            <h1 id='remote-config-runbook'>Remote config runbook</h1><h2 id='general-guidance'>General guidance</h2>
+<blockquote>
+<p>High-level background information about the App, its architecture and general incident management information can be found on the <a href="https://gov-uk.atlassian.net/wiki/spaces/GOVUK/pages/4137025538/Incident+management">wiki</a>.</p>
+</blockquote>
+<p>Remote config is administered through the <a href="https://github.com/alphagov/govuk-mobile-backend-config">alphagov/govuk-mobile-backend-config</a> repository. Outside of the GOV.UK App team, <strong>in order to make changes you must be a member of <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">@gov-uk-production-admin</a></strong>.</p>
+<p>There is some guidance in the README as to how the repository works, but briefly:</p>
 
 <ul>
 <li>New versions of config are written into the <code>./versions</code> directory. You should not update config version documents, but create a new one each time you want to make an update.</li>
@@ -259,7 +264,8 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></li>
 <li><p>Once happy, make a pull request to the repository and request a review.</p></li>
-<li><p>Once the PR is merged, allow the CI job to deploy the change, then verify that the endpoint has been updated by accessing <a href="https://app.publishing.service.gov.uk/appinfo/ios">https://app.publishing.service.gov.uk/appinfo/ios</a> (N.B. this can take 5 minutes to propagate through the cache; if an urgent change is needed you can purge the cache manually following the instructions <a href="/manual/purge-cache.html#purge-a-page-from-the-fastly-cdn">here</a>)</p></li>
+<li><p>Once the PR is merged and you are happy to proceed to production, <a href="https://github.com/alphagov/govuk-mobile-backend-config/actions/workflows/deploy-production.yaml">manually run the CI job</a> to deploy the change to production (select &lsquo;Run workflow&rsquo; and click the green button).</p></li>
+<li><p>Verify that the endpoint has been updated by accessing <a href="https://app.publishing.service.gov.uk/appinfo/ios">https://app.publishing.service.gov.uk/appinfo/ios</a> (N.B. this can take 5 minutes to propagate through the cache; if an urgent change is needed you can purge the cache manually following the instructions <a href="/manual/purge-cache.html#purge-a-page-from-the-fastly-cdn">here</a>)</p></li>
 </ol>
 <h2 id='disabling-an-individual-feature'>Disabling an individual feature</h2><p>The steps for remotely disabling a specific feature are very similar to the steps above, except that you use the <code>releaseFlags</code> setting to achieve this. Here is an example of a config version document which turns off the &lsquo;search&rsquo; feature for Android in production. Here we will assume that we are incrementing the <code>PATCH</code> version to <code>0.0.3</code>:</p>
 <div class="highlight"><pre class="highlight toml" tabindex="0"><code><span class="nn">[metadata]</span>
