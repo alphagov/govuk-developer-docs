@@ -1404,6 +1404,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>details</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>link_items</strong><br/><code>array</code></td> <td><br/></td></tr></table></td></tr>
 <tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>link_collection</code></td></tr>
 <tr><td><strong>first_published_at</strong><br/><code>string</code></td> <td>The date the content was first published.  Automatically determined by the publishing-api, unless overridden by the publishing application.<br/></td></tr>
+<tr><td><strong>instructions_to_publishers</strong><br/><code>null</code></td> <td><br/></td></tr>
 <tr><td><strong>last_edited_at</strong><br/><code>string</code></td> <td>Last time when the content received a major or minor update.<br/></td></tr>
 <tr><td><strong>last_edited_by_editor_id</strong><br/><code>string</code></td> <td>The UUID of the editor who edited the content.<br/></td></tr>
 <tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>embed</strong><br/></td> <td>Content that will be embedded within the document, using embed tags.<br/></td></tr>
@@ -1458,28 +1459,12 @@ a publishing application sends to the publishing-api in a
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link_collection"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tempor Nam mauris ac molestie suscipit et sem leo at sit nibh. a lectus massa Aenean imperdiet nibh Sed ultricies tempor eu purus interdum. Suspendisse orci scelerisque. Ut Mauris"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calendars"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"redirects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/d417a36e-4286-1b4c-a5ab-17bd6beec0fc#e93f3f2f3b"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/e1a6eb9a-98d9-1668-ad0f-59febaffb57d/62fabc49-7bff-1f6d-a046-c01c698aecdd/725fd5ad-895f-1ffe-af4e-34a9decb9a96/298a6ec1-2e7f-199c-a8c0-172ac62188f7/e0010112-a247-1bbc-af5f-8d99b01db9f0"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/657da56b-0d70-1eba-ae02-73bbd3350abc/1e52dd6e-e32c-1bcd-a3a0-589ea400e0ee#d3109df8c9"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/b457df97-6231-1fd1-aa43-0a10ad170a26/5eb47e0d-e0aa-1009-a5ee-aedf7aec0b62/fdebfd5c-3a9d-181f-a342-9cca36e40990/aad62763-f5dc-1e8b-a261-3a18625dcc20"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/a90cec76-dade-1e7b-ad2c-4d8b6b696cb7/d8dacd7b-e5c6-1b25-a6c8-eee14a23fe4c/66ef8f56-778d-1d9c-a15d-ced49f6aa154/bcca1433-7d6e-1f9c-a1d9-fc6742eaa265/baac33c8-6d61-1d2b-ab50-cb3efbf6ee54#26b0ebb465"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/abdaec5f-7e13-17bf-a81e-302370eddb31/bbf9afb3-10bb-19ff-ac1a-dffb6ee5bb70/bfbc0a1b-7fc9-1a08-a4ef-fefe4e664c57"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beta"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-09-02T16:59:53+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feedback"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link_collection"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eu Ut nibh Aenean malesuada Nam bibendum. non pellentesque tempor Nam purus ac turpis Suspendisse senectus amet vestibulum. Sed ultricies cursus Ut vel adipiscing nibh. mauris et sollicitudin et dolor interdum. sed vel tristique dolor interdum. volutpat orci sem risus in eu morbi Quisque lorem ipsum Lorem hendrerit aliquet. tristique porttitor massa risus nisl leo est. consectetur sit fames netus tempor suscipit Duis lectus non libero. at molestie sagittis imperdiet habitant Pellentesque molestie finibus elit. egestas. Mauris ac scelerisque. a ac ac eros."</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"update_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pellentesque"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"update_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"major"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <hr>
