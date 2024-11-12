@@ -232,7 +232,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/beb5ff1c48fdaedc87d689eae8629d438b67ac62">3 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/61245f244c4f4a004b431a51e0b0d9e15e128680">12 Nov 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -913,6 +913,23 @@ it wants to defer to a reusable piece of content, such as an email address.</p>
 <a href="/repos/publishing-api/model.html"><code>content_id</code></a>
 <ul>
 <li>Identifies the target document for the reusable piece of content</li>
+</ul>
+</li>
+</ul>
+<h3 id="query-parameters">Query parameters</h3>
+<ul>
+<li>
+<code>order</code> <em>(optional, default: "unique_pageviews")</em>
+<ul>
+<li>The field to sort the results by.</li>
+<li>Returned in an ascending order unless prefixed with a hyphen, e.g.
+"-title".</li>
+</ul>
+</li>
+<li>
+<code>page</code> <em>(optional, default: "1")</em>
+<ul>
+<li>The page number of results to return</li>
 </ul>
 </li>
 </ul>
