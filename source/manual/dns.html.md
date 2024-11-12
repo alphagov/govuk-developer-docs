@@ -7,7 +7,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-> For **Technical 2nd Line documentation** on when and how to respond to DNS delegation and domain verification requests, read the [DNS change request and hostmaster Google doc](https://drive.google.com/drive/search?q=-%20type:document%20title:%22Tech%202nd%20Line%20-%20Handle%20Tickets%20on%20DNS%20Change%20request%20hostmaster%40%22).
+> For **Technical 2nd Line documentation** on when and how to respond to DNS delegation and domain verification requests, read the [DNS change request and hostmaster Google doc](https://docs.google.com/document/d/14M61iNjiNc2JcP5E5E3B9H54GCBnKKQKllhFr-PJlNI/edit).
 
 GOV.UK is responsible for managing several DNS zones, spanning a number of `*.gov.uk` domains. As of February 2024, there are 45 hosted zones, configuring many hundreds of domains. A list of hosted zones is retrievable from a terminal using:
 
