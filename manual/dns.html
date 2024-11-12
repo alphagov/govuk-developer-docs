@@ -208,19 +208,12 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9a02e59c15dd4b6a5e48d17bb56651421a4e6d36">7 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9334d29c6df976814853ec107c50ce0c01afa94f">8 Nov 2024</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <blockquote>
-<p>For <strong>Technical 2nd Line documentation</strong> on when and how to respond to DNS delegation and domain verification requests, read the <a href="https://drive.google.com/drive/search?q=-%20type:document%20title:%22Tech%202nd%20Line%20-%20Handle%20Tickets%20on%20DNS%20Change%20request%20hostmaster%40%22">DNS change request and hostmaster Google doc</a>.</p>
+<p>For <strong>Technical 2nd Line documentation</strong> on when and how to respond to DNS delegation and domain verification requests, read the <a href="https://docs.google.com/document/d/14M61iNjiNc2JcP5E5E3B9H54GCBnKKQKllhFr-PJlNI/edit">DNS change request and hostmaster Google doc</a>.</p>
 </blockquote>
 <p>GOV.UK is responsible for managing several DNS zones, spanning a number of <code>*.gov.uk</code> domains. As of February 2024, there are 45 hosted zones, configuring many hundreds of domains. A list of hosted zones is retrievable from a terminal using:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-production-poweruser <span class="nt">--</span> aws route53 list-hosted-zones | <span class="nb">grep </span>Name
