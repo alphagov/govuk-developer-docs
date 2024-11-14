@@ -16,9 +16,7 @@ The page is managed using a third party service called [Statuspage][sp].
 
 Use [manage.statuspage.io][man] to post messages.
 
-You should be able to log in using your Google account.
-
-If you don’t have access, ask on `#govuk-2ndline-tech` for help.
+You should be able to log in using your Google account. Someone in #govuk-platform-engineering will need to [manually invite you](https://admin.atlassian.com/o/7387b684-a116-15k9-6b37-47cc1ab98c44/users) first (something we're [hoping to automate later](https://github.com/alphagov/govuk-user-reviewer/issues/1353)).
 
 ## Create an Incident
 
