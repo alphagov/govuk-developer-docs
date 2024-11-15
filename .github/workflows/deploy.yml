@@ -49,3 +49,32 @@ jobs:
           publish_dir: ./build
           cname: docs.publishing.service.gov.uk
           commit_message: ${{steps.commit_message_writer.outputs.commit_message}}
+      - name: Notify failure
+        uses: slackapi/slack-github-action@v1
+        if: ${{ failure() }}
+        with:
+          payload: |
+            {
+              "text": "The <https://github.com/alphagov/govuk-developer-docs/blob/main/.github/workflows/deploy.yml|Developer Docs deployment script> failed.",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                     "text": "The <https://github.com/alphagov/govuk-developer-docs/blob/main/.github/workflows/deploy.yml|Developer Docs deployment script> failed.",
+                  },
+                  "accessory": {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": "Check the build logs for details"
+                    },
+                    "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+                    "action_id": "button-view-workflow"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
