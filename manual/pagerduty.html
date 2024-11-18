@@ -205,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/391bf8d786d6bff0edda54ff86069ff75ccf7b50">22 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/41f22a1012715d4df6313587a308654b2674ab30">18 Nov 2024</a>
 </div>
 
  <h1 id='header'>PagerDuty</h1> <p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming
@@ -228,7 +228,7 @@ any issues. This happens every Monday morning at 10am UTC (11am BST).</p>
 <p>Prometheus is currently firing a constant <code>Watchdog</code> alert, which fires all the time so that
 developers can see the that prometheus is integrated with alertmanager. In the
 <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/templates/alertmanager-config.tpl#L79-L85">alertmanager configs</a>
-the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am UTC (11am to 11:03am BST) every Wednesday.</p>
+the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am UTC (11am to 11:03am BST) every Monday.</p>
 <p>You don&rsquo;t need to take any action for this alert. The primary in-office
 Technical 2nd Line developer should escalate the call to the secondary who should escalate
 it to &ldquo;escalations&rdquo; to ensure that phone redirection is working. The
