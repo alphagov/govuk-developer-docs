@@ -41,6 +41,15 @@ When the workflow completes, you'll need to wait for the deployment to propagate
 1. Click on the "Details" button and check that the "ANNOTATIONS" label references the commit sha you provided earlier. You can speed things along by clicking the "Sync" button.
 1. Finally, check that the "Deployment" pod for your app (e.g. [deploy: whitehall-admin](https://argo.eks.integration.govuk.digital/applications/whitehall-admin?orphaned=false&resource=&node=apps%2FDeployment%2Fapps%2Fwhitehall-admin%2F0)) is not still being promoted (should have green tick).
 
+### Nudging Argo to speed up deployments
+
+Deployments are triggered by changes to [app-config/image-tags](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/image-tags), which Argo polls periodically.
+This includes image tags for all of the app repositories (e.g. Whitehall).
+
+If you don't want to wait for Argo to poll the `app-config` chart, you can click the Refresh button in the app-config application in Argo (e.g. [app-config on integration](https://argo.eks.integration.govuk.digital/applications/cluster-services/app-config)).
+
+This will then automatically trigger a Sync of any applications with changed image tags, which will ultimately update the deployment.
+
 ## Overview of the deployment process
 
 This is an example deploying an application to integration:
