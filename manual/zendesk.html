@@ -143,29 +143,16 @@
     <a href="#header"><span>Zendesk</span></a>
     <ul>
       <li>
-        <a href="#summary-of-gov-uk-zendesk-groups"><span>Summary of GOV.UK Zendesk groups</span></a>
-        <ul>
-          <li>
-            <a href="#slack-triggers"><span>Slack triggers</span></a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#useful-searches"><span>Useful searches</span></a>
-      </li>
-      <li>
         <a href="#service-level-agreements"><span>Service Level Agreements</span></a>
       </li>
       <li>
-        <a href="#technical-2nd-line"><span>Technical 2nd Line</span></a>
-        <ul>
-          <li>
-            <a href="#get-started"><span>Get started</span></a>
-          </li>
-          <li>
-            <a href="#workflow"><span>Workflow</span></a>
-          </li>
-        </ul>
+        <a href="#get-started"><span>Get started</span></a>
+      </li>
+      <li>
+        <a href="#where-to-triage-tickets"><span>Where to triage tickets</span></a>
+      </li>
+      <li>
+        <a href="#zendesk-triggers-for-technical-gov-uk-groups"><span>Zendesk triggers for technical GOV.UK groups</span></a>
       </li>
     </ul>
   </li>
@@ -216,82 +203,15 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7be4f8108a4bcb10149450f99fb395602768db98">14 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5f2381ef6b3b5d96f8a43b1ea26ddc408b611d56">18 Nov 2024</a>
 </div>
 
- <h1 id='header'>Zendesk</h1> <p>Zendesk is a support ticket system used across GOV.UK. See the <a href="https://docs.google.com/presentation/d/1iUbD-_uWyaNMeNj9h7Zvo9g2GWvRarg9kUh7pd0u32M/edit#slide=id.g134fafb13dc_0_0">Zendesk best practice slidedeck</a> for an overview and tour of the service. Zendesk includes tickets raised by:</p>
+ <h1 id='header'>Zendesk</h1> <p>Zendesk is a support ticket system used across GOV.UK. Tickets are raised by:</p>
 
 <ul>
 <li>Members of the public (e.g. via the <a href="https://www.gov.uk/contact/govuk">GOV.UK contact form</a>)</li>
 <li>Government departments (e.g. via one of the forms on the <a href="https://support.publishing.service.gov.uk/">GOV.UK Support app</a>)</li>
 <li>Members of GDS (e.g. directly through <a href="https://govuk.zendesk.com">https://govuk.zendesk.com</a>)</li>
-</ul>
-<p>Unless configured otherwise, many tickets go straight to GDS&rsquo;s User Support team, who then triage tickets on to other teams (such as Technical 2nd Line) where appropriate. GOV.UK has comitted to a <a href="#service-level-agreements">service level agreement</a> for ticket response and resolution times.</p>
-<h2 id='summary-of-gov-uk-zendesk-groups'>Summary of GOV.UK Zendesk groups</h2><p>Every product area should have its own view of Zendesk tickets, a macro to make it easier for staff to triage tickets into said view, and an optional set of &lsquo;triggers&rsquo; that automatically assign certain tickets to said view. Some triggers also <a href="#slack-triggers">notify Slack</a>.</p>
-<div class="table-container">
-        <table>
-          <tr>
-<th>Zendesk view</th>
-<th>Macro for triaging to this view</th>
-<th>Triggers</th>
-</tr><tr>
-<td><a href="https://govuk.zendesk.com/agent/filters/10864660813212">Technical 2nd Line</a></td>
-<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/14392327675292">Triage to GOV.UK Technical 2nd Line</a></td>
-<td>
-<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/11509330463644">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/35985647">Initial Routing: Gov&rsquo;t Form publisher tech fault requests to 2nd Line&ndash;GOV.UK Alerts and Issues</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14392628890268">Tell GOV.UK 2nd line tech about new ticket</a>
-</td>
-</tr><tr>
-<td><a href="https://govuk.zendesk.com/agent/filters/1900002360214">data.gov.uk support</a></td>
-<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13813477886620">Triage to data.gov.uk support</a></td>
-<td><a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14643274949020">Tell GOV.UK data.gov.uk Support about new ticket</a></td>
-</tr><tr>
-<td><a href="https://govuk.zendesk.com/agent/filters/12863141605916">GOV.UK Platform Support</a></td>
-<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13672505486492">Triage to GOV.UK Platform Support</a></td>
-<td>
-<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/13149293739804">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/13991870416156">Automatically close unactionable hostmaster tickets</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/12864044593692">Tell GOV.UK Platform Support about new ticket</a>
-</td>
-</tr><tr>
-<td><a href="https://govuk.zendesk.com/agent/filters/5273818481554">GOV.UK Publishing Service Support</a></td>
-<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13679777581980">Triage to GOV.UK Publishing Service Support</a></td>
-<td>
-<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/5591644703004">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14230797794460">Initial routing: Route &lsquo;publishing service&rsquo; tickets raised via Support app</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/13776514277660">Tell GOV.UK Publishing Service Support about new ticket</a>
-</td>
-</tr><tr>
-<td><a href="https://govuk.zendesk.com/agent/filters/360000012465">GOV.UK Web Support</a></td>
-<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13679771783708">Triage to GOV.UK Web Support</a></td>
-<td>
-<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14231993238556">Initial routing: Route &lsquo;web&rsquo; support tickets raised via Support app</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/13478776988188">Tell GOV.UK Web Support about new ticket</a>
-</td>
-</tr><tr>
-<td><a href="https://govuk.zendesk.com/agent/filters/8935249582876">GOV.UK Campaigns Tech Support</a></td>
-<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13792771654300">Triage to GOV.UK Campaign Support</a></td>
-<td>
-<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/4951487443986">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/30476171">Initial Routing: Gov&rsquo;t Form new campaign requests to 3rd Line - GOV.UK Policy and Strategy</a>
-</td>
-</tr><tr>
-<td><a href="https://govuk.zendesk.com/agent/filters/13388501247260">GOV.UK Data Support</a></td>
-<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13661730061340">Triage to GOV.UK Data Support</a></td>
-<td><a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14607012989980">Tell GOV.UK Data Support about new ticket</a></td>
-</tr>
-        </table>
-      </div><p>Other useful groups:</p>
-
-<ul>
-<li>Content support - <code>2nd Line--GOV.UK Content Triage, Gov&#39;t</code> and <code>2nd Line--GOV.UK Content Triage, Public</code></li>
-<li>Signon/permissions issues - <code>3rd line--GOV.UK Content Training and Accounts</code></li>
-<li>GOV.UK Policy &amp; Strategy - <code>3rd Line--GOV.UK Policy and Strategy</code></li>
-<li>GDPR and Privacy enquiries - <code>3rd Line--GDS Privacy</code></li>
-<li>Licensing - <code>1st Line--Licensing Support</code></li>
-<li>Security issues - <code>3rd Line--Cyber Security</code></li>
-<li>User Support - <code>2nd Line--User Support Escalation</code></li>
-</ul>
-<h3 id='slack-triggers'>Slack triggers</h3><p>We&rsquo;re making increasing use of the Zendesk/Slack integration, which is powered by Zendesk &lsquo;triggers&rsquo;.</p>
-<p>For example, the <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/12864044593692">Tell GOV.UK Platform Support about new ticket</a> trigger checks whether a <code>slack_has_been_notified</code> tag is present on the ticket, as well as whether or not this is the kind of ticket we&rsquo;re interested in (must be in <code>2nd Line--GOV.UK Alerts and Issues</code> and must have at least one tag relevant to Platform, e.g. <code>fault_with_content_data</code>).</p>
-<p>Only if the tag is absent do the corresponding trigger &lsquo;actions&rsquo; fire, which are &ldquo;Zendesk integration&rdquo; (the thing that fires the Slack message) and also &ldquo;Add tags&rdquo;. We add <code>slack_has_been_notified</code> (meaning only one notification is sent per ticket, which reduces noise), and also <code>govuk_platform_support</code>, which is the only tag that drives the <a href="https://govuk.zendesk.com/agent/filters/12863141605916">GOV.UK Platform Support view</a>. This means that the only place we need to define our set of platform-related tags is in the &ldquo;Tell GOV.UK Platform Support about new ticket&rdquo; trigger.</p>
-<h2 id='useful-searches'>Useful searches</h2>
-<ul>
-<li><a href="https://govuk.zendesk.com/agent/search/1?type=ticket&amp;q=commenter%3Ame">Tickets you have commented on</a></li>
-<li>Read the <a href="https://support.zendesk.com/hc/en-us/articles/4408835086106-Using-Zendesk-Support-advanced-search">Zendesk documentation</a> for advanced search options</li>
 </ul>
 <h2 id='service-level-agreements'>Service Level Agreements</h2><p>GOV.UK have <a href="https://www.gov.uk/guidance/contact-the-government-digital-service/how-to-contact-gds">committed to a minimum service level agreement</a> for tickets:</p>
 
@@ -300,18 +220,105 @@
 <li>80% of general enquiries (public tickets) resolved within 5 working days</li>
 <li>70% of department tickets are closed within 5 working days</li>
 </ul>
-<h2 id='technical-2nd-line'>Technical 2nd Line</h2><h3 id='get-started'>Get started</h3><p><a href="https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;amp;brand_id=3194076&amp;amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;amp;theme=hc">Create an account</a> then assign a new ticket to <code>2nd/3rd Line--Zendesk Administration</code> asking to give you &ldquo;GDS Resolver Agent&rdquo; access to <code>2nd Line--GOV.UK Alerts and Issues</code>.</p>
-<p>When you&rsquo;ve logged in, navigate to the <code>2nd Line--GOV.UK Alerts and Issues</code> view (see <a href="#summary-of-govuk-zendesk-groups">Summary of GOV.UK Zendesk groups</a>).</p>
-<h3 id='workflow'>Workflow</h3><p>Work on &lsquo;High&rsquo; priority tickets first - these will have been triaged by Technical 2nd Line already, so should be relevant and actionable - and start with the oldest &ldquo;Updated&rdquo; date. If there are no High priority tickets, work on the &ldquo;Normal&rdquo; priority tickets, again starting with the oldest &ldquo;Updated&rdquo; date.</p>
-<p>Most tickets should be triaged to the most relevant product team, who are more likely to be able to help the user more quickly than a 2nd line engineer who lacks context of the product. Follow the <a href="https://docs.google.com/presentation/d/1EotoM2CVtqlnx54Qz5bP7OyIx5c9ji_GptUuymHkBrc/edit">Zendesk flow diagram</a> to know who to triage to, and when. &lsquo;Urgent&rsquo; work should still be carried out by Technical 2nd Line at this stage.</p>
-<p>When picking up a ticket, click the &ldquo;take it&rdquo; link under &ldquo;Assignee&rdquo;, and write a &ldquo;Public Reply&rdquo; to inform the user you&rsquo;re looking into the issue (click &ldquo;Internal note&rdquo; to change the response type). Finally, click &ldquo;Submit as Open&rdquo;, to formally undertake a ticket.</p>
-<p>You can use Internal Notes to keep a log of actions you&rsquo;ve taken so far: this can make it easier for other staff to pick up where you left off if you&rsquo;re unable to solve the ticket yourself. If you run a rake task or execute code directly on a console, include a copy of the commands you ran as an internal note on the ticket.</p>
+<h2 id='get-started'>Get started</h2><p><a href="https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;amp;brand_id=3194076&amp;amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;amp;theme=hc">Create an account</a> then assign a new ticket to <code>2nd/3rd Line--Zendesk Administration</code> asking to give you &ldquo;GDS Resolver Agent&rdquo; access to <a href="#where-to-triage-tickets">your product team&rsquo;s Zendesk group</a>.</p>
+<p>See the <a href="https://docs.google.com/presentation/d/1iUbD-_uWyaNMeNj9h7Zvo9g2GWvRarg9kUh7pd0u32M/edit#slide=id.g134fafb13dc_0_0">Zendesk best practice slidedeck</a> for an overview and tour of the service.</p>
+<p>In addition, you may want to bookmark these links for searching Zendesk:</p>
 
-<blockquote>
-<p>Please note that departments can see internal notes, so don’t write anything you wouldn’t say to someone publicly.</p>
-</blockquote>
-<p>If you need more information from the user, fill in the &ldquo;Public reply&rdquo; as appropriate and click &ldquo;Submit as Pending&rdquo; to indicate the ticket is awaiting a response from the user. Note that if a ticket has been pending a response for 5 or more days with no response from the requester, you can submit it as solved: do this by clicking the &ldquo;Apply macro&rdquo; button at the bottom of the ticket screen, then choosing the &ldquo;GOV.UK 2nd line tech: pending for 5+ days&rdquo; option.</p>
-<p>When you think you&rsquo;ve resolved a ticket, click &ldquo;Submit as Solved&rdquo;. You do not need to wait for user confirmation to close the ticket - they can always reopen the ticket if they still need assistance.</p>
+<ul>
+<li><a href="https://govuk.zendesk.com/agent/search/1?type=ticket&amp;q=commenter%3Ame">Tickets you have commented on</a></li>
+<li>Read the <a href="https://support.zendesk.com/hc/en-us/articles/4408835086106-Using-Zendesk-Support-advanced-search">Zendesk documentation</a> for advanced search options</li>
+</ul>
+<h2 id='where-to-triage-tickets'>Where to triage tickets</h2><p>Triage to the most applicable area of GOV.UK using the associated macro below. This is also represented visually on the <a href="https://docs.google.com/presentation/d/1EotoM2CVtqlnx54Qz5bP7OyIx5c9ji_GptUuymHkBrc/edit">Zendesk flow diagram</a>.</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Zendesk view</th>
+<th>Macro for triaging to this view</th>
+<th>Responsible for</th>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/5273818481554">GOV.UK Publishing Service Support</a></td>
+<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13679777581980">Triage to GOV.UK Publishing Service Support</a></td>
+<td>Publishing apps, unpublishing content, etc</td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/360000012465">GOV.UK Web Support</a></td>
+<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13679771783708">Triage to GOV.UK Web Support</a></td>
+<td>User-facing GOV.UK, emails, GOV.UK search, GOV.UK chat, postcode lookup etc</td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/12863141605916">GOV.UK Platform Support</a></td>
+<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13672505486492">Triage to GOV.UK Platform Support</a></td>
+<td>Developer tools, Terraform, DNS / domains, Content Data, Slack bots, etc</td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/1900002360214">data.gov.uk support</a></td>
+<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13813477886620">Triage to data.gov.uk support</a></td>
+<td>data.gov.uk (DGU), CKAN</td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/13388501247260">GOV.UK Data Support</a></td>
+<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13661730061340">Triage to GOV.UK Data Support</a></td>
+<td>Related links, Google Analytics, GovSearch, etc</td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/8935249582876">GOV.UK Campaigns Tech Support</a></td>
+<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13792771654300">Triage to GOV.UK Campaign Support</a></td>
+<td>Anything to do with the <a href="https://userguide.campaign.gov.uk/">campaign platform</a>
+</td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/10864660813212">Technical 2nd Line</a></td>
+<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/14392327675292">Triage to GOV.UK Technical 2nd Line</a></td>
+<td>DEPRECATED</td>
+</tr>
+        </table>
+      </div><p>Most technical tickets are triaged automatically to the correct place via the &ldquo;trigger rules&rdquo; in Zendesk - see <a href="#zendesk-triggers-for-technical-govuk-groups">Zendesk triggers for technical GOV.UK groups</a>. If no specific trigger rule has been configured, tickets go straight to GDS&rsquo;s User Support team, who then triage tickets on to other teams where appropriate.</p>
+<p>Other useful groups:</p>
+
+<ul>
+<li>Content support for queries from publishers etc - <code>2nd Line--GOV.UK Content Triage, Gov&#39;t</code> (&ldquo;Triage to GOV.UK 2nd line content - govt support&rdquo; macro)</li>
+<li>Content support for queries from general public - <code>2nd Line--GOV.UK Content Triage, Public</code></li>
+<li>Content support for publishers with Signon/permissions issues - <code>3rd line--GOV.UK Content Training and Accounts</code></li>
+<li>GOV.UK Policy &amp; Strategy - <code>3rd Line--GOV.UK Policy and Strategy</code></li>
+<li>GDPR and Privacy enquiries - <code>3rd Line--GDS Privacy</code></li>
+<li>Licensing - <code>1st Line--Licensing Support</code></li>
+<li>Security issues - <code>3rd Line--Cyber Security</code></li>
+<li>User Support - <code>2nd Line--User Support Escalation</code></li>
+</ul>
+<h2 id='zendesk-triggers-for-technical-gov-uk-groups'>Zendesk triggers for technical GOV.UK groups</h2><p>Every product area should have its own view of Zendesk tickets and an optional set of &lsquo;triggers&rsquo; that automatically assign certain tickets to said view. Some triggers also <a href="#slack-triggers">notify Slack</a>.</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Zendesk view</th>
+<th>Triggers</th>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/5273818481554">GOV.UK Publishing Service Support</a></td>
+<td>
+<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/5591644703004">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14230797794460">Initial routing: Route &lsquo;publishing service&rsquo; tickets raised via Support app</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/13776514277660">Tell GOV.UK Publishing Service Support about new ticket</a>
+</td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/360000012465">GOV.UK Web Support</a></td>
+<td>
+<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/16165694317596">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14231993238556">Initial routing: Route &lsquo;web&rsquo; support tickets raised via Support app</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/13478776988188">Tell GOV.UK Web Support about new ticket</a>
+</td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/12863141605916">GOV.UK Platform Support</a></td>
+<td>
+<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/13149293739804">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/13991870416156">Automatically close unactionable hostmaster tickets</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/12864044593692">Tell GOV.UK Platform Support about new ticket</a>
+</td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/1900002360214">data.gov.uk support</a></td>
+<td><a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14643274949020">Tell GOV.UK data.gov.uk Support about new ticket</a></td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/13388501247260">GOV.UK Data Support</a></td>
+<td><a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14607012989980">Tell GOV.UK Data Support about new ticket</a></td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/8935249582876">GOV.UK Campaigns Tech Support</a></td>
+<td>
+<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/4951487443986">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/30476171">Initial Routing: Gov&rsquo;t Form new campaign requests to 3rd Line - GOV.UK Policy and Strategy</a>
+</td>
+</tr><tr>
+<td><a href="https://govuk.zendesk.com/agent/filters/10864660813212">Technical 2nd Line</a></td>
+<td>
+<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/11509330463644">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/35985647">Initial Routing: Gov&rsquo;t Form publisher tech fault requests to 2nd Line&ndash;GOV.UK Alerts and Issues</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14392628890268">Tell GOV.UK 2nd line tech about new ticket</a>
+</td>
+</tr>
+        </table>
+      </div><p>Some triggers power Slack notifications via the Zendesk/Slack integration. For example, the <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/12864044593692">Tell GOV.UK Platform Support about new ticket</a> trigger checks whether a <code>slack_has_been_notified</code> tag is present on the ticket, as well as whether or not this is the kind of ticket we&rsquo;re interested in (must be in <code>2nd Line--GOV.UK Alerts and Issues</code> and must have at least one tag relevant to Platform, e.g. <code>fault_with_content_data</code>). Only if the tag is absent do the corresponding trigger &lsquo;actions&rsquo; fire, which are &ldquo;Zendesk integration&rdquo; (the thing that fires the Slack message) and also &ldquo;Add tags&rdquo;. Here, we add the <code>slack_has_been_notified</code> tag, meaning only one notification is sent per ticket, which reduces noise. We also add the <code>govuk_platform_support</code> tag, which is the only tag that drives the <a href="https://govuk.zendesk.com/agent/filters/12863141605916">GOV.UK Platform Support view</a>, meaning that the only place we need to define our set of platform-related tags is in the &ldquo;Tell GOV.UK Platform Support about new ticket&rdquo; trigger.</p>
 
   <div class='related-content'>
 
