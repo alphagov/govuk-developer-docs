@@ -3,7 +3,7 @@ owner_slack: "#govuk-platform-engineering"
 title: Signon API user token expires soon
 parent: "/manual.html"
 layout: manual_layout
-section: Alertmanager alerts
+section: Monitoring and alerting
 ---
 
 One or more tokens for API Users are about to expire. You should rotate

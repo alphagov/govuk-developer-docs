@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: How we handle errors
-section: Monitoring
+section: Monitoring and alerting
 layout: manual_layout
 parent: "/manual.html"
 ---

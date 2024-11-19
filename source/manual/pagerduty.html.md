@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
 title: PagerDuty
-section: 2nd line
+section: Monitoring and alerting
 type: learn
 layout: manual_layout
 parent: "/manual.html"

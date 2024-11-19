@@ -3,7 +3,7 @@ owner_slack: "#govuk-2ndline-tech"
 title: Router error ratio too high
 parent: "/manual.html"
 layout: manual_layout
-section: Pagerduty alerts
+section: Monitoring and alerting
 ---
 
 You can find the router request error rates on this dashboard:

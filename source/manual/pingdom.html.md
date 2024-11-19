@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: Pingdom
-section: Monitoring
+section: Monitoring and alerting
 layout: manual_layout
 parent: "/manual.html"
 ---
