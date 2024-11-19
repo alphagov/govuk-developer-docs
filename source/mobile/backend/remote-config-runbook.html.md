@@ -52,6 +52,19 @@ Here, you can see that the default configuration is used in all environments - p
 
 Below are instructions for some common tasks that may be needed to fix urgent situations.
 
+## Pre-requisites
+
+> In an emergency, if you are struggling to install the pre-requisites, you could skip the local validation and generation steps and allow the CI pipeline to do this. This is not recommended, however.
+
+Node.js, npm and TypeScript must all be installed. 
+
+You can check if you have them available by running 
+`node -v` or `npm -v` or `tsc -v`.
+
+General installation instructions for node.js are [here](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs) although a popular approach is to use [nvm](https://github.com/nvm-sh/nvm).
+
+The installation of TypeScript can then normally be done with `npm install typescript`.
+
 ## Switching the app off entirely
 
 This is the most straightforward and least-granular way to deal with an urgent issue in production. The following steps are needed:
@@ -135,7 +148,7 @@ This is the most straightforward and least-granular way to deal with an urgent i
 
 5. Once happy, make a pull request to the repository and request a review.
 6. Once the PR is merged and you are happy to proceed to production, [manually run the CI job](https://github.com/alphagov/govuk-mobile-backend-config/actions/workflows/deploy-production.yaml) to deploy the change to production (select 'Run workflow' and click the green button).
-7. Verify that the endpoint has been updated by accessing [https://app.publishing.service.gov.uk/appinfo/ios](https://app.publishing.service.gov.uk/appinfo/ios) (N.B. this can take 5 minutes to propagate through the cache; if an urgent change is needed you can purge the cache manually following the instructions [here](/manual/purge-cache.html#purge-a-page-from-the-fastly-cdn))
+7. Verify that the endpoint has been updated by accessing [https://app.publishing.service.gov.uk/config/appinfo/ios](https://app.publishing.service.gov.uk/config/appinfo/ios) (N.B. this can take 5 minutes to propagate through the cache; if an urgent change is needed you can purge the cache manually following the instructions [here](/manual/purge-cache.html#purge-a-page-from-the-fastly-cdn))
 
 ## Disabling an individual feature
 
