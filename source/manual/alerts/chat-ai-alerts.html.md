@@ -3,7 +3,7 @@ owner_slack: "#dev-notifications-ai-govuk"
 title: GOV.UK Chat Alerts
 parent: "/manual.html"
 layout: manual_layout
-section: Alertmanager alerts
+section: Monitoring and alerting
 ---
 
 > **Note**

@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
 title: Travel Advice or Drug and Medical Device email alerts not sent
-section: Pagerduty alerts
+section: Monitoring and alerting
 layout: manual_layout
 parent: "/manual.html"
 ---

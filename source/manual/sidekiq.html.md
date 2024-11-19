@@ -3,7 +3,7 @@ owner_slack: "#govuk-developers"
 title: Sidekiq
 parent: "/manual.html"
 layout: manual_layout
-section: Monitoring
+section: Monitoring and alerting
 type: learn
 ---
 
