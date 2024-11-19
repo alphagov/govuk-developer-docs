@@ -130,6 +130,9 @@
         <a href="#general-guidance"><span>General guidance</span></a>
       </li>
       <li>
+        <a href="#pre-requisites"><span>Pre-requisites</span></a>
+      </li>
+      <li>
         <a href="#switching-the-app-off-entirely"><span>Switching the app off entirely</span></a>
       </li>
       <li>
@@ -190,6 +193,15 @@
 <span class="p">}</span>
 </code></pre></div><p>Here, you can see that the default configuration is used in all environments - production, staging and integration.</p>
 <p>Below are instructions for some common tasks that may be needed to fix urgent situations.</p>
+<h2 id='pre-requisites'>Pre-requisites</h2>
+<blockquote>
+<p>In an emergency, if you are struggling to install the pre-requisites, you could skip the local validation and generation steps and allow the CI pipeline to do this. This is not recommended, however.</p>
+</blockquote>
+<p>Node.js, npm and TypeScript must all be installed.</p>
+<p>You can check if you have them available by running
+<code>node -v</code> or <code>npm -v</code> or <code>tsc -v</code>.</p>
+<p>General installation instructions for node.js are <a href="https://nodejs.org/en/learn/getting-started/how-to-install-nodejs">here</a> although a popular approach is to use <a href="https://github.com/nvm-sh/nvm">nvm</a>.</p>
+<p>The installation of TypeScript can then normally be done with <code>npm install typescript</code>.</p>
 <h2 id='switching-the-app-off-entirely'>Switching the app off entirely</h2><p>This is the most straightforward and least-granular way to deal with an urgent issue in production. The following steps are needed:</p>
 
 <ol>
@@ -265,7 +277,7 @@
 </span></code></pre></div></li>
 <li><p>Once happy, make a pull request to the repository and request a review.</p></li>
 <li><p>Once the PR is merged and you are happy to proceed to production, <a href="https://github.com/alphagov/govuk-mobile-backend-config/actions/workflows/deploy-production.yaml">manually run the CI job</a> to deploy the change to production (select &lsquo;Run workflow&rsquo; and click the green button).</p></li>
-<li><p>Verify that the endpoint has been updated by accessing <a href="https://app.publishing.service.gov.uk/appinfo/ios">https://app.publishing.service.gov.uk/appinfo/ios</a> (N.B. this can take 5 minutes to propagate through the cache; if an urgent change is needed you can purge the cache manually following the instructions <a href="/manual/purge-cache.html#purge-a-page-from-the-fastly-cdn">here</a>)</p></li>
+<li><p>Verify that the endpoint has been updated by accessing <a href="https://app.publishing.service.gov.uk/config/appinfo/ios">https://app.publishing.service.gov.uk/config/appinfo/ios</a> (N.B. this can take 5 minutes to propagate through the cache; if an urgent change is needed you can purge the cache manually following the instructions <a href="/manual/purge-cache.html#purge-a-page-from-the-fastly-cdn">here</a>)</p></li>
 </ol>
 <h2 id='disabling-an-individual-feature'>Disabling an individual feature</h2><p>The steps for remotely disabling a specific feature are very similar to the steps above, except that you use the <code>releaseFlags</code> setting to achieve this. Here is an example of a config version document which turns off the &lsquo;search&rsquo; feature for Android in production. Here we will assume that we are incrementing the <code>PATCH</code> version to <code>0.0.3</code>:</p>
 <div class="highlight"><pre class="highlight toml" tabindex="0"><code><span class="nn">[metadata]</span>
