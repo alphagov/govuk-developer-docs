@@ -16,102 +16,17 @@ You may wish to test first on integration, prior to carrying out the republish i
 
 ## Whitehall
 
-If the documents are in Whitehall, you can republish content either via a user interface or a Rake task, as outlined below. Try to pick the task most focused to the scope of what you need to republish to avoid unnecessary load. You can monitor the effect on the publishing queue via these Grafana dashboards:
+If the documents are in Whitehall, you can republish content (individually or in bulk) via the user interface:
 
-- [integration](https://grafana.integration.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
-- [staging](https://grafana.blue.staging.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
-- [production](https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
+- [Whitehall integration](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/republishing)
+- [Whitehall staging](https://whitehall-admin.staging.publishing.service.gov.uk/government/admin/republishing)
+- [Whitehall production](https://whitehall-admin.publishing.service.gov.uk/government/admin/republishing)
 
-### Individual content
+Try to pick the task most focused to the scope of what you need to republish to avoid unnecessary load. You can monitor the effect on the publishing queue via these Grafana dashboards:
 
-You can republish individual pieces of content - documents, organisations,
-people, roles, and a few specific pages (corresponding to custom presenters) -
-via a user interface. Links to the user interface in different environments are
-provided below, and can also be found in the "More" section of the site.
-
-- [integration](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/republishing)
-- [staging](https://whitehall-admin.staging.publishing.service.gov.uk/government/admin/republishing)
-- [production](https://whitehall-admin.publishing.service.gov.uk/government/admin/republishing)
-
-### Bulk republishing
-
-For bulk republishing, the current approach requires running Rake tasks as
-documented below.
-
-### To republish all documents of a specific type
-
-To republish all instances of the following document types, run the following rake task.
-
-- CallForEvidence
-- CaseStudy
-- Consultation
-- Contact
-- CorporateInformationPage
-- DetailedGuide
-- DocumentCollection
-- FatalityNotice
-- Government
-- HistoricalAccount
-- NewsArticle
-- OperationalField
-- Organisation
-- Person
-- PolicyGroup
-- Publication
-- Role
-- RoleAppointment
-- Speech
-- StatisticalDataSet
-- StatisticsAnnouncement
-- TakePartPage
-- TopicalEvent
-- TopicalEventAboutPage
-- WorldLocationNews
-- WorldwideOffice
-- WorldwideOrganisation
-
-<%= RunRakeTask.links("whitehall-admin", "publishing_api:bulk_republish:document_type[DocumentClass]") %>
-
-> Replace `DocumentClass` with the camelized (i.e. as it is written above) class name.
-
-### To republish multiple documents
-
-For a small number of documents, use the following rake task:
-
-<%= RunRakeTask.links("whitehall-admin", "publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2]") %>
-
-> Replace `content_id_1` and `content_id_2` with the content ID (i.e. UUID) for the documents to republish. You can add more than 2 content IDs.
-
-For a significant number of documents, a CSV file should be added to the repository:
-
-1. Create a CSV file that contains a single column headed `content_id`. Put the content ID for each document on a separate line below this. The file should be saved in `lib/tasks/{FILENAME}.csv` and a PR raised.
-1. Merge and deploy the PR to the relevant environment.
-1. Run the `documents_by_content_ids_from_csv` rake task:
-   <%= RunRakeTask.links("whitehall-admin", "publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]") %>
-   > Replace `csv_file_name` with the filename of the CSV, including the `.csv` extension.
-1. After the job has completed, remove the CSV from the repository.
-
-### To republish all documents
-
-> Caution: this is a lot of content and will take hours to complete. If it is possible to scope the republish do so and use a different task, but if you have made a change such as something in govspeak that will affect the majority of content, this is available. Before running this job confirm with Technical 2nd Line that they are happy for you to proceed as it could cause backed up publishing queues and alerts.
-
-<%= RunRakeTask.links("whitehall-admin", "publishing_api:bulk_republish:all") %>
-
-### Other bulk republishing tasks
-
-At the time of writing, there are additional bulk republishing tasks covering
-republishing:
-
-- About pages
-- documents with draft editions
-- editions which have attachments
-- documents with HTML attachments
-- draft editions with HTML attachments
-- Worldwide CorporateInformationPages
-- documents of a given organisation
-
-For more information about these Rake tasks, check out the [task definitions in
-the Whitehall repository][whitehall-rake-tasks].
+- [Grafana integration](https://grafana.integration.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
+- [Grafana staging](https://grafana.blue.staging.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
+- [Grafana production](https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
 
 ## Content Publisher
 
@@ -128,4 +43,3 @@ or you can resync all documents:
 [govspeak-repo]: https://github.com/alphagov/govspeak/
 [resync-rake-task]: https://github.com/alphagov/content-publisher/blob/main/lib/tasks/resync.rake
 [production-access]:/manual/rules-for-getting-production-access.html
-[whitehall-rake-tasks]: https://github.com/alphagov/whitehall/blob/main/lib/tasks/publishing_api.rake
