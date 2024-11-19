@@ -56,9 +56,9 @@ Below are instructions for some common tasks that may be needed to fix urgent si
 
 > In an emergency, if you are struggling to install the pre-requisites, you could skip the local validation and generation steps and allow the CI pipeline to do this. This is not recommended, however.
 
-Node.js, npm and TypeScript must all be installed. 
+Node.js, npm and TypeScript must all be installed.
 
-You can check if you have them available by running 
+You can check if you have them available by running
 `node -v` or `npm -v` or `tsc -v`.
 
 General installation instructions for node.js are [here](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs) although a popular approach is to use [nvm](https://github.com/nvm-sh/nvm).
