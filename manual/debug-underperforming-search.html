@@ -169,8 +169,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "Monitoring",
-        "@id": "http://www.dev.gov.uk/manual.html#monitoring"
+        "name": "Monitoring and alerting",
+        "@id": "http://www.dev.gov.uk/manual.html#monitoring-and-alerting"
       }
     }
   ]
@@ -183,20 +183,13 @@
           <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#monitoring">Monitoring</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#monitoring-and-alerting">Monitoring and alerting</a>
         </li>
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/85a759e5aa68165cda2af12a33a6004d4b5b080a">21 Aug 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c08c287cf433603cf32ab3934e502a8d7ecf052f">29 Oct 2024</a>
 </div>
 
  <h1 id='header'>Debug underperforming search</h1> <p>Search is one of the more load-sensitive parts of GOV.UK, as it can&rsquo;t
@@ -236,15 +229,15 @@ being constantly close to 100%.</p></li>
 
   <div class='related-content'>
 
-    <h3>More in the Monitoring section</h3>
+    <h3>More in the Monitoring and alerting section</h3>
 
     <div class='govuk-grid-row'>
         <div class='govuk-grid-column-one-half'>
           <h4>Learn</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/govuk-env-sync.html">Environment data sync</a></li>
             <li><a href="/manual/graphite-and-deployment-dashboards.html">Graphite and deployment dashboards</a></li>
+            <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
             <li><a href="/manual/pingdom-bouncer-canary-check.html">Pingdom Bouncer canary check</a></li>
             <li><a href="/manual/screens.html">Screens that we have in the office</a></li>
             <li><a href="/manual/sentry.html">Sentry</a></li>
@@ -256,8 +249,12 @@ being constantly close to 100%.</p></li>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
+            <li><a href="/manual/alerts/chat-ai-alerts.html">GOV.UK Chat Alerts</a></li>
             <li><a href="/manual/errors.html">How we handle errors</a></li>
             <li><a href="/manual/pingdom.html">Pingdom</a></li>
+            <li><a href="/manual/alerts/RouterErrorRatioTooHigh.html">Router error ratio too high</a></li>
+            <li><a href="/manual/alerts/signon-api-user-token-expires-soon.html">Signon API user token expires soon</a></li>
+            <li><a href="/manual/alerts/email-alerts-travel-medical.html">Travel Advice or Drug and Medical Device email alerts not sent</a></li>
           </ul>
         </div>
 

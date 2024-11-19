@@ -180,8 +180,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "Pagerduty alerts",
-        "@id": "http://www.dev.gov.uk/manual.html#pagerduty-alerts"
+        "name": "Monitoring and alerting",
+        "@id": "http://www.dev.gov.uk/manual.html#monitoring-and-alerting"
       }
     }
   ]
@@ -194,20 +194,13 @@
           <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#pagerduty-alerts">Pagerduty alerts</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#monitoring-and-alerting">Monitoring and alerting</a>
         </li>
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/10ff5bb8ca4ed1f3660cb13f7863a992d444c4c8">16 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c08c287cf433603cf32ab3934e502a8d7ecf052f">29 Oct 2024</a>
 </div>
 
  <h1 id='header'>Router error ratio too high</h1> <p>You can find the router request error rates on this dashboard:</p>
@@ -232,14 +225,31 @@ Use <a href="https://grafana.eks.production.govuk.digital/d/app-requests/app-req
 
   <div class='related-content'>
 
-    <h3>More in the Pagerduty alerts section</h3>
+    <h3>More in the Monitoring and alerting section</h3>
 
     <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/graphite-and-deployment-dashboards.html">Graphite and deployment dashboards</a></li>
+            <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
+            <li><a href="/manual/pingdom-bouncer-canary-check.html">Pingdom Bouncer canary check</a></li>
+            <li><a href="/manual/screens.html">Screens that we have in the office</a></li>
+            <li><a href="/manual/sentry.html">Sentry</a></li>
+            <li><a href="/manual/sidekiq.html">Sidekiq</a></li>
+          </ul>
+        </div>
 
         <div class='govuk-grid-column-one-half'>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
+            <li><a href="/manual/debug-underperforming-search.html">Debug underperforming search</a></li>
+            <li><a href="/manual/alerts/chat-ai-alerts.html">GOV.UK Chat Alerts</a></li>
+            <li><a href="/manual/errors.html">How we handle errors</a></li>
+            <li><a href="/manual/pingdom.html">Pingdom</a></li>
+            <li><a href="/manual/alerts/signon-api-user-token-expires-soon.html">Signon API user token expires soon</a></li>
             <li><a href="/manual/alerts/email-alerts-travel-medical.html">Travel Advice or Drug and Medical Device email alerts not sent</a></li>
           </ul>
         </div>
