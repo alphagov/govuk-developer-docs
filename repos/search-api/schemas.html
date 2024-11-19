@@ -225,15 +225,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/search-api/commit/2675a59c7c82a1000f9ac0baf9fa3f97fc68fa26">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/search-api/commit/ec8d8f3ec13ae82bc9d09206a538cb723b8dcc5f">18 Nov 2024</a>
 </div>
 
   <h1 class="page-title">search-api: Schema definitions</h1>
@@ -330,8 +323,7 @@ directory.</p>
 type.  The field names must be defined in the <code>field_definitions.json</code> file.</p>
 </li>
 <li>
-<p><code>expanded_search_result_fields</code>: DEPRECATED. Sets up field "expansion" for a
-field. This is used by the search result presenter to replace a raw value.</p>
+<p><code>expanded_search_result_fields</code>: This is used by the search result presenter to replace a raw value with other data.</p>
 <p>For example:</p>
 <pre><code>"expanded_search_result_fields": {
   "foo": [
@@ -345,9 +337,10 @@ field. This is used by the search result presenter to replace a raw value.</p>
     }
   ],
 </code></pre>
-<p>Will return make the presenter replace the <code>foo</code> with value <code>bar</code>
+<p>Will make the search result presenter replace values of <code>bar</code>
 with the hash <code>{ "label": "Bar the bar", "value": "bar" }</code>. This can be used
-when displaying the search results.</p>
+when displaying the search results.
+For example, finder frontend depends on this behaviour to display readable labels in search result metadata.</p>
 </li>
 </ul>
 <p>Even though we have different schemas for different "elasticsearch
