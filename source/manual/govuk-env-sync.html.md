@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
 title: Environment data sync
-section: Monitoring
+section: Backups
 type: learn
 layout: manual_layout
 parent: "/manual.html"
