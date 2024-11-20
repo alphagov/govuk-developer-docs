@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>frontend: Add Flexible Landing Page Support to Frontend - GOV.UK Developer Documentation</title>
+    <title>frontend: Local Content Items - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/frontend/adr/0002-flexible-landing-pages.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/frontend/local-content-items.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="frontend: Add Flexible Landing Page Support to Frontend - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/frontend/adr/0002-flexible-landing-pages.html" />
+      <meta name="twitter:title" content="frontend: Local Content Items - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/frontend/local-content-items.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="frontend: Add Flexible Landing Page Support to Frontend" />
+      <meta property="og:title" content="frontend: Local Content Items" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/frontend/adr/0002-flexible-landing-pages.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/frontend/local-content-items.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -208,71 +208,17 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/380a4e0cebbf57b98691f35fb33bca1af2dfb189">31 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/7d49f2d9fa9f6e5420fac8bfcd42eb61dfa5dbf9">31 Oct 2024</a>
 </div>
 
-  <h1 class="page-title">frontend: Add Flexible Landing Page Support to Frontend</h1>
+  <h1 class="page-title">frontend: Local Content Items</h1>
 
   
-<p>Date: 2024-10-01</p>
-<h2 id="context">Context</h2>
-<p>Web group is sometimes asked to create entirely new landing-page-style pages for various initiatives,
-and although often these are more appropriate as campaign sites, sometimes it does make sense to put
-them on GOV.UK. This results in an awkward working process where either we have to put exceptions into
-the rendering of an existing schema type, or hardcode a page or pages in one of the frontend apps.</p>
-<p>It becomes even more complicated if the new pages are embargoed, so can't be developed in the open. We're then stuck with making the repo temporarily private, which is undesirable.</p>
-<h3 id="option-1">Option 1</h3>
-<p>We modify rendering of existing schemas to deal with the requests.</p>
-<h4 id="pros">Pros</h4>
-<ul>
-<li>No new schemas</li>
-<li>Limited need for publishing app support</li>
-</ul>
-<h4 id="cons">Cons</h4>
-<ul>
-<li>Exceptions added in existing page types are brittle and lead to significant tech debt</li>
-<li>Most existing schemas can only be modified so far</li>
-</ul>
-<h3 id="option-2">Option 2</h3>
-<p>Hardcode pages into Frontend as necessary</p>
-<h4 id="pros">Pros</h4>
-<ul>
-<li>Quickest in the short term</li>
-</ul>
-<h4 id="cons">Cons</h4>
-<ul>
-<li>Doing this time and again will quickly add up</li>
-<li>Codebase increases in size with every new page</li>
-<li>No ability to do this for embargoed data</li>
-<li>Even the smallest content change will require developer support</li>
-<li>Hardcoded pages can't get into the search engine easily</li>
-</ul>
-<h3 id="option-3">Option 3</h3>
-<p>New schema: "landing_page", whose content is a nested tree of blocks which loosely
-map to component-like partials. This allows the layout of the page to be specified
-in the content item and rendered in frontend. The content item can be edited in
-Whitehall and published in the normal manner.</p>
-<h4 id="pros">Pros</h4>
-<ul>
-<li>Very flexible, can render pages with very different layouts</li>
-<li>Might be able to replace some existing hard-coded pages (eg history pages, topical pages)</li>
-<li>Whitehall support for the schema allows development of embargoed content without
-having to make the repo private.</li>
-<li>Developer support needed initially, but as support improves in Whitehall that
-need will reduce.</li>
-</ul>
-<h4 id="cons">Cons</h4>
-<ul>
-<li>Initial work to do this quite involved</li>
-<li>Requires publishing support</li>
-</ul>
-<h2 id="decision">Decision</h2>
-<p>Option 3</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="consequences">Consequences</h2>
-<p>We will add support for the landing_page schema in frontend, and adding it as
-an editionable item in Whitehall.</p>
+<p>For local development and preview apps, it is sometimes desirable to have the ability to load content items that are specified locally rather than pointing to production/integration or having the content store running locally.</p>
+<p>To support this, set:</p>
+<p><code>ALLOW_LOCAL_CONTENT_ITEM_OVERRIDE=true</code></p>
+<p>...in your environment.</p>
+<p>With that environment variable set, the ContentItemLoader will add an additional check when loading a content item from the content store. Before making the GdsApi content store call, it will look in config/local-content-items/ for a JSON or YAML file matching the path of the content item (for instance, if you're looking for /find-licences/my-licence, it will look for config/local-content-items/find-licences/my-licence.json, then config/local-content-items/find-licences/my-licence.yml)</p>
 
 
             
@@ -280,8 +226,8 @@ an editionable item in Whitehall.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/frontend/blob/main/docs/adr/0002-flexible-landing-pages.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffrontend%2Fadr%2F0002-flexible-landing-pages.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/frontend/blob/main/docs/local-content-items.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffrontend%2Flocal-content-items.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

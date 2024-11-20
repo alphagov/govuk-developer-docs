@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>frontend: Add Flexible Landing Page Support to Frontend - GOV.UK Developer Documentation</title>
+    <title>publishing-api: Decision Record: Move Content Block rendering logic to external gem - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/frontend/adr/0002-flexible-landing-pages.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-007-move-content-block-rendering-logic-to-external-gem.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="frontend: Add Flexible Landing Page Support to Frontend - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/frontend/adr/0002-flexible-landing-pages.html" />
+      <meta name="twitter:title" content="publishing-api: Decision Record: Move Content Block rendering logic to external gem - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-007-move-content-block-rendering-logic-to-external-gem.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="frontend: Add Flexible Landing Page Support to Frontend" />
+      <meta property="og:title" content="publishing-api: Decision Record: Move Content Block rendering logic to external gem" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/frontend/adr/0002-flexible-landing-pages.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-007-move-content-block-rendering-logic-to-external-gem.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -135,19 +135,44 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                   <ul>
     <li>
-      <a href="/repos/frontend.html" rel="noopener" class="govuk-link">frontend</a>
+      <a href="/repos/publishing-api.html" rel="noopener" class="govuk-link">publishing-api</a>
     </li>
     <li>
       <ul>
-          <li><a href="/repos/frontend/building_blocks_for_flexible_content.html" rel="noopener" class="govuk-link">Building blocks for flexible content</a></li>
-          <li><a href="/repos/frontend/calendars.html" rel="noopener" class="govuk-link">Calendars</a></li>
-          <li><a href="/repos/frontend/elections-api.html" rel="noopener" class="govuk-link">Elections API</a></li>
-          <li><a href="/repos/frontend/local-content-items.html" rel="noopener" class="govuk-link">Local Content Items</a></li>
-          <li><a href="/repos/frontend/update-homepage-promotion-slots.html" rel="noopener" class="govuk-link">Update homepage promotion slots</a></li>
-          <li class="subdir__heading">adr</li>
+          <li><a href="/repos/publishing-api/admin-tasks.html" rel="noopener" class="govuk-link">Admin Tasks</a></li>
+          <li><a href="/repos/publishing-api/api.html" rel="noopener" class="govuk-link">Publishing API's API</a></li>
+          <li><a href="/repos/publishing-api/data-migration.html" rel="noopener" class="govuk-link">Writing data migrations</a></li>
+          <li><a href="/repos/publishing-api/deleting-content.html" rel="noopener" class="govuk-link">Deleting Documents, Editions and Links</a></li>
+          <li><a href="/repos/publishing-api/dependency-resolution.html" rel="noopener" class="govuk-link">Dependency Resolution</a></li>
+          <li><a href="/repos/publishing-api/link-expansion.html" rel="noopener" class="govuk-link">Links and Link Expansion</a></li>
+          <li><a href="/repos/publishing-api/publishing-application-examples.html" rel="noopener" class="govuk-link">Publishing application examples</a></li>
+          <li><a href="/repos/publishing-api/rabbitmq.html" rel="noopener" class="govuk-link">RabbitMQ</a></li>
+          <li class="subdir__heading">arch</li>
           <ul class="subdir__menu">
-              <li><a href="/repos/frontend/adr/0001-render-csv-previews-in-frontend.html" rel="noopener" class="govuk-link">Render CSV Previews in Frontend</a></li>
-              <li><a href="/repos/frontend/adr/0002-flexible-landing-pages.html" rel="noopener" class="govuk-link">Add Flexible Landing Page Support to Frontend</a></li>
+              <li><a href="/repos/publishing-api/arch/adr-001-use-event-sourcing-pattern.html" rel="noopener" class="govuk-link">Decision record: use event sourcing</a></li>
+              <li><a href="/repos/publishing-api/arch/adr-002-dont-log-events-which-result-in-error.html" rel="noopener" class="govuk-link">Decision record: don't log events which result in an error</a></li>
+              <li><a href="/repos/publishing-api/arch/adr-003-representation-for-multiple-content-types.html" rel="noopener" class="govuk-link"># Decision Record: Representation for Multiple Content Types</a></li>
+              <li><a href="/repos/publishing-api/arch/adr-004-govspeak-and-embedded-content.html" rel="noopener" class="govuk-link"># Decision Record: Govspeak and embedded content</a></li>
+              <li><a href="/repos/publishing-api/arch/adr-005-documents-and-editions.html" rel="noopener" class="govuk-link">Decision Record: Resolve consistency and uniqueness in content</a></li>
+              <li><a href="/repos/publishing-api/arch/adr-006-new-event-type-for-content-blocks.html" rel="noopener" class="govuk-link">Decision Record: Add new event type to add custom dependency resolution behaviour when a Content Block is updated</a></li>
+              <li><a href="/repos/publishing-api/arch/adr-007-move-content-block-rendering-logic-to-external-gem.html" rel="noopener" class="govuk-link">Decision Record: Move Content Block rendering logic to external gem</a></li>
+              <li><a href="/repos/publishing-api/archive/data-cleanup-plan.html" rel="noopener" class="govuk-link">Data Cleanup Plan: 17th December, 2015</a></li>
+          </ul>
+          <li class="subdir__heading">archive</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/publishing-api/archive/data-cleanup-plan.html" rel="noopener" class="govuk-link">Data Cleanup Plan: 17th December, 2015</a></li>
+          </ul>
+          <li class="subdir__heading">content_schemas</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/publishing-api/content_schemas/adding-a-new-schema.html" rel="noopener" class="govuk-link">Adding a new content schema</a></li>
+              <li><a href="/repos/publishing-api/content_schemas/changing-an-existing-content-schema.html" rel="noopener" class="govuk-link">Changing an existing content schema</a></li>
+              <li><a href="/repos/publishing-api/content_schemas/contract-testing-against-schemas.html" rel="noopener" class="govuk-link">Contract Testing against Schemas</a></li>
+              <li><a href="/repos/publishing-api/content_schemas/working-with-json-schema-keywords.html" rel="noopener" class="govuk-link">Working with JSON Schema keywords</a></li>
+          </ul>
+          <li class="subdir__heading">model</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/publishing-api/model.html" rel="noopener" class="govuk-link">Publishing API's Model</a></li>
+              <li><a href="/repos/publishing-api/model/README.html" rel="noopener" class="govuk-link">README</a></li>
           </ul>
       </ul>
     </li>
@@ -185,8 +210,8 @@
       "@type": "ListItem",
       "position": 3,
       "item": {
-        "name": "frontend",
-        "@id": "http://www.dev.gov.uk/repos/frontend.html"
+        "name": "publishing-api",
+        "@id": "http://www.dev.gov.uk/repos/publishing-api.html"
       }
     }
   ]
@@ -202,77 +227,78 @@
           <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/frontend.html">frontend</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/publishing-api.html">publishing-api</a>
         </li>
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/380a4e0cebbf57b98691f35fb33bca1af2dfb189">31 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/5d0f6fa985177f73df32f5ac4b95bac16304aa9e">11 Nov 2024</a>
 </div>
 
-  <h1 class="page-title">frontend: Add Flexible Landing Page Support to Frontend</h1>
+  <h1 class="page-title">publishing-api: Decision Record: Move Content Block rendering logic to external gem</h1>
 
   
-<p>Date: 2024-10-01</p>
 <h2 id="context">Context</h2>
-<p>Web group is sometimes asked to create entirely new landing-page-style pages for various initiatives,
-and although often these are more appropriate as campaign sites, sometimes it does make sense to put
-them on GOV.UK. This results in an awkward working process where either we have to put exceptions into
-the rendering of an existing schema type, or hardcode a page or pages in one of the frontend apps.</p>
-<p>It becomes even more complicated if the new pages are embargoed, so can't be developed in the open. We're then stuck with making the repo temporarily private, which is undesirable.</p>
-<h3 id="option-1">Option 1</h3>
-<p>We modify rendering of existing schemas to deal with the requests.</p>
-<h4 id="pros">Pros</h4>
-<ul>
-<li>No new schemas</li>
-<li>Limited need for publishing app support</li>
-</ul>
-<h4 id="cons">Cons</h4>
-<ul>
-<li>Exceptions added in existing page types are brittle and lead to significant tech debt</li>
-<li>Most existing schemas can only be modified so far</li>
-</ul>
-<h3 id="option-2">Option 2</h3>
-<p>Hardcode pages into Frontend as necessary</p>
-<h4 id="pros">Pros</h4>
-<ul>
-<li>Quickest in the short term</li>
-</ul>
-<h4 id="cons">Cons</h4>
-<ul>
-<li>Doing this time and again will quickly add up</li>
-<li>Codebase increases in size with every new page</li>
-<li>No ability to do this for embargoed data</li>
-<li>Even the smallest content change will require developer support</li>
-<li>Hardcoded pages can't get into the search engine easily</li>
-</ul>
-<h3 id="option-3">Option 3</h3>
-<p>New schema: "landing_page", whose content is a nested tree of blocks which loosely
-map to component-like partials. This allows the layout of the page to be specified
-in the content item and rendered in frontend. The content item can be edited in
-Whitehall and published in the normal manner.</p>
-<h4 id="pros">Pros</h4>
-<ul>
-<li>Very flexible, can render pages with very different layouts</li>
-<li>Might be able to replace some existing hard-coded pages (eg history pages, topical pages)</li>
-<li>Whitehall support for the schema allows development of embargoed content without
-having to make the repo private.</li>
-<li>Developer support needed initially, but as support improves in Whitehall that
-need will reduce.</li>
-</ul>
-<h4 id="cons">Cons</h4>
-<ul>
-<li>Initial work to do this quite involved</li>
-<li>Requires publishing support</li>
-</ul>
-<h2 id="decision">Decision</h2>
-<p>Option 3</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
+<p>Content blocks within Publishing API are a relatively new concept, that mainly sits with the Content
+Modelling Team. Whilst still in development, the basic concept is that a publishing user will be able
+to embed a "block" of reusable content within a document, and it will then be rendered within the
+document on publication. When the content of the block changes, all pages that use the block will
+change to show the latest information.</p>
+<p>When a piece of content that uses a content block (or content blocks) is sent to the publishing API,
+we first scan over each field within the content to find embed codes, which currently look like this:</p>
+<pre lang="markdown"><code>{{embed:$embed_type:$uuid}}
+</code></pre>
+<p>Where <code>$embed_type</code> is the type of content to be embedded and <code>$uuid</code> is the content ID of the content
+block.</p>
+<p>If there are any embed codes found, these are added as "links" to the content within Publishing API
+(<a href="/repos/publishing-api/link-expansion.html">See here for more information about links and link expansion</a>).</p>
+<p>When the piece of content is sent to the Content Store (either draft or live), we scan the content
+again for embed codes, and replace the embed code with the actual content block content.</p>
+<p>At the moment, this is fairly simple, contacts are replaced with the Title (as contacts work is
+still a work in progress) and email addresses are replaced with the email. However, as this work
+progresses, it is envisioned that embedded content rendering will get significantly more complex.</p>
+<p>Additionally, there are places where we need access to the embed logic outside of Publishing API:</p>
+<h3 id="whitehall-live-preview">Whitehall Live Preview</h3>
+<p>At the moment, when a user clicks on "Preview" within Whitehall, it takes the content from the
+body field, and  uses the Govspeak gem (and some additional Whitehall-specific logic) to
+render the Govspeak.</p>
+<p>Currently, Whitehall or Govspeak does not understand the embed code, so embed codes are left
+untouched:</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/publishing-api/main/docs/arch/images/live-preview-1.png" alt="Whitehall editor body field showing link to preview button"></p>
+<p><img src="https://raw.githubusercontent.com/alphagov/publishing-api/main/docs/arch/images/live-preview-2.png" alt="Live preview showing embed code left inplace"></p>
+<p>We therefore need a way to handle the embed codes within live preview</p>
+<h3 id="in-app-preview-within-content-block-manager">"In-app" preview within Content Block Manager</h3>
+<p>When editors are making changes to content blocks within the Content Block Manager, it's important
+for users to be able to see the changes they make within the context of the pages that use the
+blocks.</p>
+<p>We can't use the existing draft stack because:</p>
+<p>a) We want to show the content block changes in the context of the live documents; and
+b) Publishing content block changes to the draft stack could cause confusion when a user
+is previewing the changes to their own content and seeing unpublished changes to a content block</p>
+<p>With this in mind, we are proposing that we fetch the HTML of live content and then run a
+find/replace against the HTML of a content block with the HTML of the current draft, then rendering
+this HTML within our app.</p>
+<p>Both of these solutions require each application having knowledge of how a content block will be
+rendered.</p>
+<p>Initially we considered having an API endpoint within Publishing API to "preview" a content block.
+However, this was discounted because:</p>
+<p>a) We run the risk of overloading the Publishing API with extra API endpoints
+b) There is not much rendering logic in Publishing API itself, and logic will potentially get more
+complex as content blocks evolve
+c) If there are a number of content blocks within a page, this may cause a performance issues when
+making multiple calls to an API</p>
+<h2 id="decisions">Decisions</h2>
+<p>We are proposing moving the Content Block rendering and parsing logic to a new <a href="https://github.com/alphagov/content_block_tools">content_block_tools gem</a></p>
+<p>This will give a single source of truth for how content blocks are rendered, which can be easily pulled
+into other applications.</p>
 <h2 id="consequences">Consequences</h2>
-<p>We will add support for the landing_page schema in frontend, and adding it as
-an editionable item in Whitehall.</p>
+<p>Once the work to move the logic into the gem is approved, we will then need to add content_block_tools as
+a dependency in Publishing API to ensure the gem is the only source of truth.</p>
+<p>We will then be able to carry out the two pieces of work as detailed above. They are both contained within
+the Whitehall application, which already has govuk_publishing_components as a dependency.</p>
+<p>One possible downside is we will need to release a new version of a gem and ensure it is used in each application
+when a change occurs, but as we don't expect to be making changes regularly, we believe this risk is minimal.</p>
 
 
             
@@ -280,8 +306,8 @@ an editionable item in Whitehall.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/frontend/blob/main/docs/adr/0002-flexible-landing-pages.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffrontend%2Fadr%2F0002-flexible-landing-pages.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publishing-api/blob/main/docs/arch/adr-007-move-content-block-rendering-logic-to-external-gem.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-api%2Farch%2Fadr-007-move-content-block-rendering-logic-to-external-gem.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
