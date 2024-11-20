@@ -144,6 +144,11 @@
     <ul>
       <li>
         <a href="#manual-deployments"><span>Manual deployments</span></a>
+        <ul>
+          <li>
+            <a href="#nudging-argo-to-speed-up-deployments"><span>Nudging Argo to speed up deployments</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#overview-of-the-deployment-process"><span>Overview of the deployment process</span></a>
@@ -200,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a4f8bfa37f2ea24cf3ea34faeb6d25b93a9f13a7">31 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/339f86930db0db0aaa0b0bfffc8fd2baedf9b230">18 Nov 2024</a>
 </div>
 
  <h1 id='header'>Deployments</h1> <p>On GOV.UK, all applications are set up for continuous deployment to integration, with the majority also having continuous deployment configured for staging and production.  Additionally, you can manually deploy a git reference (tag, branch, or commit SHA) of an application to any environment.</p>
@@ -228,6 +233,10 @@ Manual deployments are never promoted to other environments.</p>
 <li>Click on the &ldquo;Details&rdquo; button and check that the &ldquo;ANNOTATIONS&rdquo; label references the commit sha you provided earlier. You can speed things along by clicking the &ldquo;Sync&rdquo; button.</li>
 <li>Finally, check that the &ldquo;Deployment&rdquo; pod for your app (e.g. <a href="https://argo.eks.integration.govuk.digital/applications/whitehall-admin?orphaned=false&amp;resource=&amp;node=apps%2FDeployment%2Fapps%2Fwhitehall-admin%2F0">deploy: whitehall-admin</a>) is not still being promoted (should have green tick).</li>
 </ol>
+<h3 id='nudging-argo-to-speed-up-deployments'>Nudging Argo to speed up deployments</h3><p>Deployments are triggered by changes to <a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/image-tags">app-config/image-tags</a>, which Argo polls periodically.
+This includes image tags for all of the app repositories (e.g. Whitehall).</p>
+<p>If you don&rsquo;t want to wait for Argo to poll the <code>app-config</code> chart, you can click the Refresh button in the app-config application in Argo (e.g. <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/app-config">app-config on integration</a>).</p>
+<p>This will then automatically trigger a Sync of any applications with changed image tags, which will ultimately update the deployment.</p>
 <h2 id='overview-of-the-deployment-process'>Overview of the deployment process</h2><p>This is an example deploying an application to integration:</p>
 
 <ol>
