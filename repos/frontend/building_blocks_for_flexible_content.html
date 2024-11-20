@@ -207,7 +207,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/6e09625b8532b9235a9a105c960abda5a453ab93">19 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/9e5521cdd11c2c42ccb8fc0e8a8dfa4549c4efad">14 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -314,7 +314,7 @@
       tablet_2x: "landing_page/placeholder/tablet_2x.png"
 </code></pre>
 <h4 id="main-navigation">Main Navigation</h4>
-<p>The landing-page top-level navigation. It supports a row of links, and sub-menus that will only appear on mobile (where the entire menu is compressed into a single drop-down). The only supported keys are the <code>type</code> key and the <code>navigation_group_id</code> key, which should point to an id of a <a href="#navigation-groups">navigation group</a> to use for the menu items. Note that the styling of the first link is different, and it is assumed to be the homepage in a group of landing pages.</p>
+<p>The landing-page top-level navigation. It supports multiple headings, each with a row of links. The only supported keys are the <code>type</code> key and the <code>navigation_group_id</code> key, which should point to an id of a <a href="#navigation-groups">navigation group</a> to use for the menu items.</p>
 <h5 id="example">Example</h5>
 <pre lang="yaml"><code>- type: main_navigation
   navigation_group_id: Top Menu
