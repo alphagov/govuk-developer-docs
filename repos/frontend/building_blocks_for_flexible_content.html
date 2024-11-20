@@ -207,7 +207,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/9e5521cdd11c2c42ccb8fc0e8a8dfa4549c4efad">14 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/0b1b9f02fc98fc8a042da26046977d11cc5e3502">20 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -629,25 +629,22 @@ A blocks container applied to a column so that everything in the column can be s
 </code></pre>
 <p>In the example above only the text in the govspeak and header blocks will be searchable.</p>
 <h2 id="navigation-groups">Navigation Groups</h2>
-<p>The top-level key <code>navigation_groups</code> contains an array of items with the keys <code>id</code> and <code>links</code>. The id is used to identify the group for navigation blocks like <a href="#main-navigation">main navigation</a> and <a href="#side-navigation">side navigation</a>, which reference a navigation group with their <code>navigation_group_id</code> key. The links key is an array of <code>text</code>/<code>href</code> values, although a links item can itself contain a <code>links</code> key pointing to an array of links for a submenu (main navigation supports sub menus, side navigation does not)</p>
+<p>The top-level key <code>navigation_groups</code> contains an array of items with the keys <code>id</code> and <code>links</code>. The id is used to identify the group for navigation blocks like <a href="#main-navigation">main navigation</a> and <a href="#side-navigation">side navigation</a>, which reference a navigation group with their <code>navigation_group_id</code> key. The <code>links</code> key contains an array of <code>text</code> keys. These <code>text</code> keys represent headings that are rendered on the navigation element. These <code>text</code> values also contain a child <code>links</code> item, with <code>links</code> being an array of links related to that heading.</p>
 <pre lang="yaml"><code>navigation_groups:
 - id: Top Menu
   links:
-  - text: Goals
-    href: /landing-page/goals
-  - text: Tasks
-    href: /landing-page/tasks
+  - text: First heading
     links:
-      - text: Be kinder
-        href: "/landing-page/be-kinder"
-      - text: Exercise more
-        href: "/landing-page/exercise-more"
-      - text: Donate to charity
-        href: "/landing-page/donate-to-charity"
-      - text: Learn something new
-        href: "/landing-page/learn-something-new"
-      - text: Be thankful
-        href: "/landing-page/be-thankful"
+    - text: Landing page
+      href: /landing-page/homepage/
+    - text: Another link
+      href: /landing-page/example/
+  - text: Second heading
+    links:
+    - text: Goal 1
+      href: /goal-1
+    - text: Goal 2
+      href: /goal-2
 </code></pre>
 <h2 id="extending-a-page-whitehall-only">Extending a page (Whitehall Only)</h2>
 <p>When editing a page in Whitehall, you may wish to use data from another flexible content page. Adding the top-level key <code>extends</code>, and the path of another landing page, will cause the data from the current block to be merged over the data from the extended block before publishing. This is a shallow merge (ie only top-level values are checked), and is currently used so that navigation groups can be specified in one page and used by sub-pages.</p>
