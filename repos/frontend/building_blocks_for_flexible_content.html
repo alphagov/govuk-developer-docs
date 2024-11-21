@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/1dede75145f57a57c02051ba029f6de5a7c7fa49">21 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/57a1f696fff885e2cfcf1a4c99538cb213a71a3f">21 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -257,8 +257,11 @@
 </code></pre>
 <h4 id="document-list">Document list</h4>
 <p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/document_list">Document list component</a></p>
+<p>The document list can either be populate with the most recent content tagged to a taxon, or from a hard-coded list.</p>
+<p>If the <code>taxon_base_path</code> is provided, the taxon exists and it has content tagged to it, the document list will be populated with that content, otherwise it will default to the hard-coded list.</p>
 <h5 id="example">Example</h5>
 <pre lang="yaml"><code>- type: document_list
+  taxon_base_path: /government/government-efficiency-transparency-and-accountability
   items:
   - text: An example link
     path: https://www.gov.uk
