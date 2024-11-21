@@ -3,24 +3,14 @@ owner_slack: "#govuk-platform-engineering"
 title: Raise issues with Reliability Engineering
 parent: "/manual.html"
 layout: manual_layout
-section: 2nd line
+section: Infrastructure
 ---
 
-When on 2nd-line Tech Support you may experience an issue with GOV.UK where you need help from a Site Reliability Engineer (SRE). The SREs generally work on the _Platform Engineering_ and _Platform Security and Reliability_ teams.
+You may experience an issue with GOV.UK where you need help from a Site Reliability Engineer (SRE). The SREs generally work on the _Platform Engineering_ team.
 
 ## If you require assistance
 
 Ask in `#govuk-platform-engineering`.
-
-## If a problem is not urgent
-
-If the issue you've identified seems like a non-urgent story you can add it the
-[GOV.UK Technical 2nd Line trello board][2nd-line-trello] in the "Ongoing issues to be aware
-of & unexplained events" column. The Technical 2nd Line tech lead(s) will then decide whether
-to pass this on to another team, manage the ticket through its life cycle, or to
-resolve this problem themselves.
-
-[2nd-line-trello]: https://trello.com/b/M7UzqXpk/govuk-2nd-line
 
 ## Understanding what SREs can assist with
 

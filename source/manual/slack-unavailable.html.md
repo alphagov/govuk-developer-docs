@@ -3,7 +3,7 @@ owner_slack: "#govuk-developers"
 title: Communicate when Slack is unavailable
 parent: "/manual.html"
 layout: manual_layout
-section: 2nd line
+section: Incident response
 type: learn
 ---
 

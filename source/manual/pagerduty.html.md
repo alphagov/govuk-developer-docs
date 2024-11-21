@@ -23,7 +23,7 @@ them, otherwise they will be escalated further.
 
 ## Creating a schedule override
 
-There are times where developers need to make rota swaps or cover Technical 2nd Line last minute.
+There are times where developers need to make rota swaps or cover someone at the last minute.
 See the [Pagerduty documentation on how to schedule an override](https://support.pagerduty.com/docs/edit-schedules#create-overrides).
 
 ## PagerDuty drill
@@ -36,8 +36,8 @@ developers can see the that prometheus is integrated with alertmanager. In the
 [alertmanager configs](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/templates/alertmanager-config.tpl#L79-L85)
 the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am UTC (11am to 11:03am BST) every Monday.
 
-You don't need to take any action for this alert. The primary in-office
-Technical 2nd Line developer should escalate the call to the secondary who should escalate
+You don't need to take any action for this alert. The primary in-hours
+technical on-call developer should escalate the call to the secondary who should escalate
 it to "escalations" to ensure that phone redirection is working. The
 person on "escalations" will resolve the PagerDuty alert to prevent
 anyone else being phoned.
@@ -68,7 +68,7 @@ To trigger the drill manually, follow these steps:
 
 ### Add your Pagerduty rota to Google calendar
 
-You can sync your Pagerduty with Google Calendar so you can see your Technical 2nd Line and
+You can sync your Pagerduty with Google Calendar so you can see your
 on-call shifts in one place.
 
 1. Go to https://governmentdigitalservice.pagerduty.com/my-on-call/month

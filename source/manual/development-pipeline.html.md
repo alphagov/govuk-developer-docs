@@ -123,8 +123,7 @@ the `main` branch may have changed since the tests last ran on the PR.
 
 Teams are responsible for deploying their own work. We believe that
 [regular releases minimise the risk of major problems](https://gds.blog.gov.uk/2012/11/02/regular-releases-reduce-risk)
-and improve recovery time. The [Technical 2nd Line team](/manual/welcome-to-2nd-line.html)
-is responsible for providing access to deploy software for teams who can't deploy it themselves.
+and improve recovery time.
 
 ### Continuous Deployment
 
@@ -158,7 +157,7 @@ Follow these rules:
   (4pm on Fridays), the core hours when most people are in the office.
 - If there's other people's code to deploy, ask them whether they're
   okay for the changes to go out.
-- Announce in `#govuk-2ndline-tech` if you anticipate your release causing
+- Announce in `#govuk-technical-on-call` if you anticipate your release causing
   any issues. Stay around for a while just in case something goes wrong.
 - Check the [Release app][release] for a deploy note for the application,
   to see if there are any special instructions or reasons not to deploy.

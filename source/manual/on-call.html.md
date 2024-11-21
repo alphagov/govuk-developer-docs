@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: GOV.UK Technical On-Call Support
-section: 2nd line
+section: Incident management
 layout: manual_layout
 type: learn
 parent: "/manual.html"
@@ -48,7 +48,7 @@ Frontend developers are expected to be on the in-hours rota, unless their head o
 
 A junior technologist can be a secondary, but won't be a primary.
 
-There is no expectation for technologist apprentices to do 2nd line, but if they are confident, they can (at their Line Manager's discretion) go through the process to get Production Admin access, at which point they can request to be added to the secondary role.
+There is no expectation for technologist apprentices to do technical on-call shifts, but if they are confident, they can (at their Line Manager's discretion) go through the process to get Production Admin access, at which point they can request to be added to the secondary role (in-hours).
 
 ## Shift swaps, working patterns and sickness
 
