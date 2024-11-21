@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-data-support"
-title: Common 2nd line support tasks for data.gov.uk and CKAN
+title: Common support tasks for data.gov.uk and CKAN
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
@@ -24,7 +24,7 @@ parent: "/manual.html"
 > In the meantime, if you're unable to figure out one of yet-to-be-updated
 > parts, #govuk-platform-engineering will be able to help you.
 
-This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).
+This document covers some of the requests that technical support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).
 
 [Separate documentation][dgu-docs] exists for publishers.
 
@@ -224,7 +224,7 @@ Historical usernames with non-alphanumeric or uppercase characters are no longer
 1. Click the 'Members' tab, then the 'Add Member' button.
 1. Add the user's existing account, or enter their email address to send them an invite, ensuring you select the relevant role for the user (either admin or editor).
 
-> Users should first be asked to request addition by an admin of their organisation, if possible.  This is to reduce the burden of these requests on the 2nd line team and to ensure only those with the correct authority are added as publishers.
+> Users should first be asked to request addition by an admin of their organisation, if possible. This is to reduce the burden of these requests on the technical support team and to ensure only those with the correct authority are added as publishers.
 >
 > Check the authenticity of a request before adding a user as a publisher (i.e. make sure they actually belong to the department they want to publish for, bearing in mind that some parent organisations may publish on behalf of child organisations, e.g. BEIS can publish for the Civil Nuclear Police Authority).
 
@@ -236,7 +236,7 @@ A log of publisher activity on a dataset is available by inserting `/activity` i
 
 ### Deleting (or withdrawing) a dataset
 
-Users are not permitted to remove their own datasets. There are a [limited number of circumstances](https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data) in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.
+Users are not permitted to remove their own datasets. There are a [limited number of circumstances](https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data) in which a dataset will be withdrawn. This is to be done by technical support, following a request from the publisher.
 
 Datasets are never hard-deleted (known as "purged" in CKAN), instead they are given the state "deleted" (a soft-deletion), which removes them from the public-facing site but allows them to be viewed through the CKAN publishing interface. Soft-deleted datasets can be undeleted.
 

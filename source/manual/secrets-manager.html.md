@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-platform-engineering"
 title: Retrieve shared credentials from AWS Secrets Manager
-section: 2nd line
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 ---

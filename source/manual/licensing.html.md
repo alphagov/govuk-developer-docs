@@ -3,7 +3,7 @@ owner_slack: "#govuk-licensing"
 title: Licensify - supporting licensing
 parent: "/manual.html"
 layout: manual_layout
-section: 2nd line
+section: Licensing
 type: learn
 ---
 

@@ -225,7 +225,7 @@ Production Signon accounts are copied automatically to the staging environment o
 Depending on your role and the team you've joined, you will likely need access to some other services. Your tech lead will know which ones you will need and can arrange access. For example:
 
 - [Logit](/manual/logit.html#accessing-logit) for reading application logs and request logs. New developers typically need access to logs for the integration environment.
-- [Zendesk](/manual/zendesk.html) for working with user support tickets. Usually you won't need this until you join the [2nd line tech support](/manual/2nd-line.html) rota.
+- [Zendesk](/manual/zendesk.html) for working with user support tickets.
 - [Google Analytics](/manual/analytics.html) for analysing trends in user behaviour. Most new developers won't need this at first.
 
 ## Supporting information

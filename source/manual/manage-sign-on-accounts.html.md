@@ -19,10 +19,9 @@ User accounts in integration are completely separate.
 
 ## How to create an account
 
-User accounts should be created by the tech lead on the user's team. In
-usual circumstances, Technical 2nd Line should not have to do this, although there
+User accounts should be created by the tech lead on the user's team. There
 are exceptions such as when the tech lead has no admin access, or if the
-user has no obvious tech lead.
+user has no obvious tech lead, in which a Senior Tech can create the account instead.
 
 ### User accounts
 
