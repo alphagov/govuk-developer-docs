@@ -5,7 +5,7 @@ RSpec.describe Snippet do
         <blockquote>
         <p><strong>This page was imported from <a href="https://github.com/alphagov/govuk-legacy-opsmanual">the opsmanual on GitHub Enterprise</a></strong>.
         It hasn&rsquo;t been reviewed for accuracy yet.
-        <a href="https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/howto-manually-remove-assets.md">View history in old opsmanual</a></p>
+        <a href="#">View history in old opsmanual</a></p>
         </blockquote>
         <h1 id='remove-an-asset'>Remove an asset</h1>
         <p>If you need to remove an asset manually from <code>assets.publishing.sevice.gov.uk</code>,
@@ -21,7 +21,7 @@ RSpec.describe Snippet do
       html = <<~HTML
         <h1 id='deploy-an-application-to-govuk'>Deploy an application to GOV.UK</h1>
         <h2 id='introduction'>Introduction</h2>
-        <p>Technical 2nd Line is responsible for:</p>
+        <p>We are responsible for:</p>
 
         <ul>
         <li>ensuring that software is released to GOV.UK responsibly</li>
@@ -35,7 +35,7 @@ RSpec.describe Snippet do
 
       snippet = Snippet.generate(html)
 
-      expect(snippet).to eql("Technical 2nd Line is responsible for: ensuring that software is released to GOV.UK responsibly providing access to deploy software for teams who can’t deploy it themselves As far as possible, teams are responsible for deploying their own work. We believe that regular releases minimise the risk o...")
+      expect(snippet).to eql("We are responsible for: ensuring that software is released to GOV.UK responsibly providing access to deploy software for teams who can’t deploy it themselves As far as possible, teams are responsible for deploying their own work. We believe that regular releases minimise the risk of major problem...")
     end
   end
 end

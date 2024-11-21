@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-web-support"
 title: Travel Advice or Drug and Medical Device email alerts not sent
 section: Monitoring and alerting
 layout: manual_layout

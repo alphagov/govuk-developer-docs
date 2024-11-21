@@ -1,7 +1,7 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-publishing-mainstream-experience"
 title: Update popular links
-section: 2nd line
+section: Applications
 layout: manual_layout
 parent: "/manual.html"
 ---

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-publishing"
 title: MongoDB infra commands
 section: Databases
 layout: manual_layout

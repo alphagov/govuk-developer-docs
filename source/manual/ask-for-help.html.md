@@ -16,14 +16,15 @@ If you and your colleagues can’t resolve a technical issue, problem or questio
 
 You can ping `@govuk-senior-tech-people` on Slack, or email [govuk-senior-tech-members](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members).
 
-## Contact 2nd Line Technical Support
+## Contact Technical Support of the relevant area of GOV.UK
 
-The GOV.UK 2nd Line Tech Support team ([#govuk-2ndline-tech])
+There are channels for each area of GOV.UK:
 
-- monitors the GOV.UK hosting platform and applications, and works to fix any issues
-- calls on experienced members of other teams to assist in incidents
-- deploys changes on behalf of teams that don’t have sufficient access
-- triages technical issues and recommends when to escalate to a site reliability engineer
+- `#govuk-platform-support`
+- `#govuk-publishing-service-support`
+- `#govuk-web-support`
+
+In addition, there's a `#govuk-technical-on-call` channel that can be used to communicate with the on-call engineers in a public forum. However, bear in mind that Slack does not page their phones, so whereas in-hours you may be able to `@` the on-call engineer, out-of-hours you'll need to contact via PagerDuty.
 
 ## Ask the developer communities
 
@@ -46,7 +47,6 @@ The GOV.UK 2nd Line Tech Support team ([#govuk-2ndline-tech])
 - can offer advice and assistance with changes such as migrating from one
   database to another safely and efficiently
 
-[#govuk-2ndline-tech]: https://gds.slack.com/channels/govuk-2ndline-tech
 [#govuk-developers]: https://gds.slack.com/channels/govuk-developers
 [#govuk-platform-engineering]: https://gds.slack.com/channels/govuk-platform-engineering
 [Platform Engineering]: /platform-engineering.html
