@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/57a1f696fff885e2cfcf1a4c99538cb213a71a3f">21 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/dff5778ed958a0d188d228ce0994adedf1a8d21e">21 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -677,7 +677,7 @@ blocks:
 - type: govspeak
   content: &lt;p&gt;Hello from the child!&lt;/p&gt;
 </code></pre>
-<p>...the navigation_groups element will be copied into the child page when it is saved (allowing you to specify a shared menu in one page and simply republish all the child pages with a standard Whitehall rake task).</p>
+<p>...the navigation_groups element will be copied into the child page when it is saved (allowing you to specify a shared menu in one page and simply <a href="#republishing-all-landing-pages">republish all the child pages</a> in Whitehall).</p>
 <p>The extends keyword copies over everything from the parent to the child. It then replaces parent elements with what's in the child if a duplicate top-level element exists in the child. For example, if the child page didn't specify any blocks, those too would be copied over from the parent. That's because <code>extends</code> does a shallow merge of everything in the <code>details</code> element of the parent. This means that it is possible to add more top-level elements that can be shared across child pages.</p>
 <p>The merging of elements is only visible in the content item. In the Whitehall editor you'll still only see the <code>extends</code> keyword, but in the content item the <code>navigation_groups</code> would be expanded on all child pages as well as the parent:</p>
 <pre lang="json"><code>"navigation_groups": [
@@ -700,7 +700,19 @@ blocks:
   }
 ]
 </code></pre>
-<p>If a <code>navigation_group</code> is modified on a parent page, all of the child pages will need to be republished to pick up the changes. There is a <a href="https://github.com/alphagov/whitehall/blob/ab6322aeca5011ad58210961400950c011daf750/lib/tasks/publishing_api.rake#L189">rake task</a> in Whitehall to aid with this:</p>
+<h3 id="republishing-all-landing-pages">Republishing all Landing Pages</h3>
+<p>If a <code>navigation_group</code> is modified on a parent page, all of the child pages will need to be republished to pick up the changes.</p>
+<p>Whitehall has a UI to help you do this.</p>
+<ol>
+<li>Go to "More" in menu (top right)</li>
+<li>Click on "Republish content"</li>
+<li>Scroll down to "Bulk republishing"</li>
+<li>Scroll to "All by type" and click "Republish"</li>
+<li>Select "LandingPage" from the drop-down and click "Continue"</li>
+<li>Provide a reason for the republish and click "Confirm republishing"</li>
+<li>You should see a Success message with "All by type 'LandingPage' have been queued for republishing"</li>
+</ol>
+<p>As a last ditch option there is also a <a href="https://github.com/alphagov/whitehall/blob/ab6322aeca5011ad58210961400950c011daf750/lib/tasks/publishing_api.rake#L189">rake task</a> that does the same thing:</p>
 <pre lang="ruby"><code>rake publishing_api:document_type["LandingPage"]
 </code></pre>
 
