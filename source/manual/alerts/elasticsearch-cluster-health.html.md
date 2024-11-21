@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-searchandnav"
 title: Elasticsearch cluster health
 parent: "/manual.html"
 layout: manual_layout
