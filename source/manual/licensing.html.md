@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-licensing"
 title: Licensify - supporting licensing
 parent: "/manual.html"
 layout: manual_layout
