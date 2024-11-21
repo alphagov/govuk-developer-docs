@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-licensing"
 title: Access to Licensify for Third Parties
 parent: "/manual.html"
 layout: manual_layout
