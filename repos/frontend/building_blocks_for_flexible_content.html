@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/0b1b9f02fc98fc8a042da26046977d11cc5e3502">20 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/1dede75145f57a57c02051ba029f6de5a7c7fa49">21 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -630,9 +630,10 @@ A blocks container applied to a column so that everything in the column can be s
 </code></pre>
 <p>In the example above only the text in the govspeak and header blocks will be searchable.</p>
 <h2 id="navigation-groups">Navigation Groups</h2>
-<p>The top-level key <code>navigation_groups</code> contains an array of items with the keys <code>id</code> and <code>links</code>. The id is used to identify the group for navigation blocks like <a href="#main-navigation">main navigation</a> and <a href="#side-navigation">side navigation</a>, which reference a navigation group with their <code>navigation_group_id</code> key. The <code>links</code> key contains an array of <code>text</code> keys. These <code>text</code> keys represent headings that are rendered on the navigation element. These <code>text</code> values also contain a child <code>links</code> item, with <code>links</code> being an array of links related to that heading.</p>
+<p>The top-level key <code>navigation_groups</code> contains an array of items with the keys <code>id</code>, <code>name</code> and <code>links</code>. The id is used to identify the group for navigation blocks like <a href="#main-navigation">main navigation</a> and <a href="#side-navigation">side navigation</a>, which reference a navigation group with their <code>navigation_group_id</code> key. The <code>name</code> key is used for the main button text (if the navigation collapses behind a button). The <code>links</code> key contains an array of <code>text</code> keys. These <code>text</code> keys represent headings that are rendered on the navigation element. These <code>text</code> values also contain a child <code>links</code> item, with <code>links</code> being an array of links related to that heading.</p>
 <pre lang="yaml"><code>navigation_groups:
 - id: Top Menu
+  name: Name for the main menu button
   links:
   - text: First heading
     links:
