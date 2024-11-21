@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-platform-engineering"
 title: Raise issues with Reliability Engineering
 parent: "/manual.html"
 layout: manual_layout
@@ -10,7 +10,7 @@ When on 2nd-line Tech Support you may experience an issue with GOV.UK where you 
 
 ## If you require assistance
 
-Ask in `#govuk-platform-reliability` or `#govuk-platform-engineering`.
+Ask in `#govuk-platform-engineering`.
 
 ## If a problem is not urgent
 
