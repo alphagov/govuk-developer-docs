@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/dff5778ed958a0d188d228ce0994adedf1a8d21e">21 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/8b075a3e26d775ad97b6b473ddaa22386e07cad2">21 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -407,7 +407,7 @@
       data_source_link: https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/ihyq/qna
 </code></pre>
 <h4 id="featured">Featured</h4>
-<p>A featured block renders a vertical column of blocks on the left of a large (but not full-width) image. It uses a picture element to allow multiple image versions for different devices.</p>
+<p>A featured block renders either a vertical column of blocks on the left of a large (but not full-width) image (it uses a picture element to allow multiple image versions for different devices) or a block of text without an image. The latter can be rendered by omitting the <code>image</code> value as demonstrated in the second example below.</p>
 <h5 id="example">Example</h5>
 <pre lang="yaml"><code>- type: featured
   image:
@@ -423,7 +423,15 @@
     blocks:
       - type: heading
         content: Our tasks
-        path: /landing-page/tasks
+      - type: govspeak
+        content: |
+          &lt;p&gt;Lorem ipsum dolor sit amet. In voluptas dolorum vel veniam nisi et voluptate dolores id voluptatem distinctio. Et quia accusantium At ducimus quis aut voluptates iusto aut esse suscipit.&lt;/p&gt;
+</code></pre>
+<pre lang="yaml"><code>- type: featured
+  featured_content:
+    blocks:
+      - type: heading
+        content: Our tasks
       - type: govspeak
         content: |
           &lt;p&gt;Lorem ipsum dolor sit amet. In voluptas dolorum vel veniam nisi et voluptate dolores id voluptatem distinctio. Et quia accusantium At ducimus quis aut voluptates iusto aut esse suscipit.&lt;/p&gt;
