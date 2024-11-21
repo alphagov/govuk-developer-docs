@@ -183,8 +183,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "2nd line",
-        "@id": "http://www.dev.gov.uk/manual.html#2nd-line"
+        "name": "Learning GOV.UK",
+        "@id": "http://www.dev.gov.uk/manual.html#learning-gov-uk"
       }
     }
   ]
@@ -197,13 +197,13 @@
           <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#2nd-line">2nd line</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#learning-gov-uk">Learning GOV.UK</a>
         </li>
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5f2381ef6b3b5d96f8a43b1ea26ddc408b611d56">18 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3c619c3277f4e6ee8cb8f6039c5e7331b9bb2d0c">21 Nov 2024</a>
 </div>
 
  <h1 id='header'>Zendesk</h1> <p>Zendesk is a support ticket system used across GOV.UK. Tickets are raised by:</p>
@@ -260,10 +260,6 @@
 <td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13792771654300">Triage to GOV.UK Campaign Support</a></td>
 <td>Anything to do with the <a href="https://userguide.campaign.gov.uk/">campaign platform</a>
 </td>
-</tr><tr>
-<td><a href="https://govuk.zendesk.com/agent/filters/10864660813212">Technical 2nd Line</a></td>
-<td><a href="https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/14392327675292">Triage to GOV.UK Technical 2nd Line</a></td>
-<td>DEPRECATED</td>
 </tr>
         </table>
       </div><p>Most technical tickets are triaged automatically to the correct place via the &ldquo;trigger rules&rdquo; in Zendesk - see <a href="#zendesk-triggers-for-technical-govuk-groups">Zendesk triggers for technical GOV.UK groups</a>. If no specific trigger rule has been configured, tickets go straight to GDS&rsquo;s User Support team, who then triage tickets on to other teams where appropriate.</p>
@@ -311,31 +307,23 @@
 <td>
 <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/4951487443986">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/30476171">Initial Routing: Gov&rsquo;t Form new campaign requests to 3rd Line - GOV.UK Policy and Strategy</a>
 </td>
-</tr><tr>
-<td><a href="https://govuk.zendesk.com/agent/filters/10864660813212">Technical 2nd Line</a></td>
-<td>
-<a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/11509330463644">Email</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/35985647">Initial Routing: Gov&rsquo;t Form publisher tech fault requests to 2nd Line&ndash;GOV.UK Alerts and Issues</a>, <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14392628890268">Tell GOV.UK 2nd line tech about new ticket</a>
-</td>
 </tr>
         </table>
-      </div><p>Some triggers power Slack notifications via the Zendesk/Slack integration. For example, the <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/12864044593692">Tell GOV.UK Platform Support about new ticket</a> trigger checks whether a <code>slack_has_been_notified</code> tag is present on the ticket, as well as whether or not this is the kind of ticket we&rsquo;re interested in (must be in <code>2nd Line--GOV.UK Alerts and Issues</code> and must have at least one tag relevant to Platform, e.g. <code>fault_with_content_data</code>). Only if the tag is absent do the corresponding trigger &lsquo;actions&rsquo; fire, which are &ldquo;Zendesk integration&rdquo; (the thing that fires the Slack message) and also &ldquo;Add tags&rdquo;. Here, we add the <code>slack_has_been_notified</code> tag, meaning only one notification is sent per ticket, which reduces noise. We also add the <code>govuk_platform_support</code> tag, which is the only tag that drives the <a href="https://govuk.zendesk.com/agent/filters/12863141605916">GOV.UK Platform Support view</a>, meaning that the only place we need to define our set of platform-related tags is in the &ldquo;Tell GOV.UK Platform Support about new ticket&rdquo; trigger.</p>
+      </div><p>Some triggers power Slack notifications via the Zendesk/Slack integration. For example, the <a href="https://govuk.zendesk.com/admin/objects-rules/rules/triggers/12864044593692">Tell GOV.UK Platform Support about new ticket</a> trigger checks whether a <code>slack_has_been_notified</code> tag is present on the ticket, as well as whether or not this is the kind of ticket we&rsquo;re interested in (must be in <code>1st Line--GOV.UK Web Support</code> and must not contain a tag irrelevant to Platform, e.g. <code>govuk_data_support</code>). Only if the tag is absent do the corresponding trigger &lsquo;actions&rsquo; fire, which are &ldquo;Zendesk integration&rdquo; (the thing that fires the Slack message) and also &ldquo;Add tags&rdquo;. Here, we add the <code>slack_has_been_notified</code> tag, meaning only one notification is sent per ticket, which reduces noise. We also add the <code>govuk_platform_support</code> tag here.</p>
 
   <div class='related-content'>
 
-    <h3>More in the 2nd line section</h3>
+    <h3>More in the Learning GOV.UK section</h3>
 
     <div class='govuk-grid-row'>
         <div class='govuk-grid-column-one-half'>
           <h4>Learn</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/access-to-licensing-for-third-parties.html">Access to Licensify for Third Parties</a></li>
-            <li><a href="/manual/slack-unavailable.html">Communicate when Slack is unavailable</a></li>
-            <li><a href="/manual/licensing.html">Licensify - supporting licensing</a></li>
-            <li><a href="/manual/on-call.html">On-call support</a></li>
-            <li><a href="/manual/rules-for-getting-production-access.html">Rules for getting production access</a></li>
-            <li><a href="/manual/subject-access-requests.html">Subject Access Request (SAR)</a></li>
-            <li><a href="/manual/2nd-line.html">Technical 2nd line</a></li>
+            <li><a href="/manual/dictionary.html">Dictionary of concepts on GOV.UK</a></li>
+            <li><a href="/manual/how-to-be-a-good-buddy.html">How to be a good buddy</a></li>
+            <li><a href="/manual/tech-lead-responsibilities.html">Responsibilities of a Tech Lead</a></li>
+            <li><a href="/manual/where-to-find-what.html">Where to find what documentation</a></li>
           </ul>
         </div>
 
@@ -343,11 +331,9 @@
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/incorrect-postcode-data.html">Incorrect postcode data</a></li>
-            <li><a href="/manual/raising-issues-with-reliability-engineering.html">Raise issues with Reliability Engineering</a></li>
-            <li><a href="/manual/secrets-manager.html">Retrieve shared credentials from AWS Secrets Manager</a></li>
-            <li><a href="/manual/smart-survey-scheduled-maintenance.html">SmartSurvey scheduled maintenance</a></li>
-            <li><a href="/manual/update_popular_links.html">Update popular links</a></li>
+            <li><a href="/manual/ask-for-help.html">Ask for help</a></li>
+            <li><a href="/manual/get-started.html">Get started developing on GOV.UK</a></li>
+            <li><a href="/manual/learn-govuk.html">Learn how GOV.UK works</a></li>
           </ul>
         </div>
 

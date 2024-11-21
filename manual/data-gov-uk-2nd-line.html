@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Common 2nd line support tasks for data.gov.uk and CKAN - GOV.UK Developer Documentation</title>
+    <title>Common support tasks for data.gov.uk and CKAN - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -20,12 +20,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Common 2nd line support tasks for data.gov.uk and CKAN - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Common support tasks for data.gov.uk and CKAN - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/data-gov-uk-2nd-line.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Common 2nd line support tasks for data.gov.uk and CKAN" />
+      <meta property="og:title" content="Common support tasks for data.gov.uk and CKAN" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/data-gov-uk-2nd-line.html" />
 
@@ -140,7 +140,7 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Common 2nd line support tasks for data.gov.uk and CKAN</span></a>
+    <a href="#header"><span>Common support tasks for data.gov.uk and CKAN</span></a>
     <ul>
       <li>
         <a href="#environments"><span>Environments</span></a>
@@ -402,15 +402,15 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e4bb1c4c53e2e72f5909f11f2b9e2ff7fb2cd0b6">2 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3c619c3277f4e6ee8cb8f6039c5e7331b9bb2d0c">21 Nov 2024</a>
 </div>
 
- <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <blockquote>
+ <h1 id='header'>Common support tasks for data.gov.uk and CKAN</h1> <blockquote>
 <p>🚧 This doc is being updated to reflect that CKAN now runs in Kubernetes.</p>
 <p>In the meantime, if you&rsquo;re unable to figure out one of yet-to-be-updated
 parts, #govuk-platform-engineering will be able to help you.</p>
 </blockquote>
-<p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
+<p>This document covers some of the requests that technical support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
 <p><a href="https://guidance.data.gov.uk">Separate documentation</a> exists for publishers.</p>
 <p>There&rsquo;s also <a href="/manual/data-gov-uk-architecture">an architectural overview of data.gov.uk</a> and <a href="/manual/data-gov-uk-deployment">a deployment guide</a>.</p>
 <p><a href="/repos/ckanext-datagovuk.html">ckanext-datagovuk</a> is the primary CKAN extension behind data.gov.uk.</p>
@@ -538,11 +538,11 @@ organisations, with either the &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; role 
 </ol>
 
 <blockquote>
-<p>Users should first be asked to request addition by an admin of their organisation, if possible.  This is to reduce the burden of these requests on the 2nd line team and to ensure only those with the correct authority are added as publishers.</p>
+<p>Users should first be asked to request addition by an admin of their organisation, if possible. This is to reduce the burden of these requests on the technical support team and to ensure only those with the correct authority are added as publishers.</p>
 <p>Check the authenticity of a request before adding a user as a publisher (i.e. make sure they actually belong to the department they want to publish for, bearing in mind that some parent organisations may publish on behalf of child organisations, e.g. BEIS can publish for the Civil Nuclear Police Authority).</p>
 </blockquote>
 <h2 id='datasets'>Datasets</h2><h3 id='viewing-a-log-of-dataset-activity'>Viewing a log of dataset activity</h3><p>A log of publisher activity on a dataset is available by inserting <code>/activity</code> into the dataset&rsquo;s URL, such as https://ckan.publishing.service.gov.uk/dataset/activity/monthly_statistics_of_building_materials_and_components.</p>
-<h3 id='deleting-or-withdrawing-a-dataset'>Deleting (or withdrawing) a dataset</h3><p>Users are not permitted to remove their own datasets. There are a <a href="https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data">limited number of circumstances</a> in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.</p>
+<h3 id='deleting-or-withdrawing-a-dataset'>Deleting (or withdrawing) a dataset</h3><p>Users are not permitted to remove their own datasets. There are a <a href="https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data">limited number of circumstances</a> in which a dataset will be withdrawn. This is to be done by technical support, following a request from the publisher.</p>
 <p>Datasets are never hard-deleted (known as &ldquo;purged&rdquo; in CKAN), instead they are given the state &ldquo;deleted&rdquo; (a soft-deletion), which removes them from the public-facing site but allows them to be viewed through the CKAN publishing interface. Soft-deleted datasets can be undeleted.</p>
 
 <blockquote>
@@ -866,7 +866,7 @@ caution as it may cause the database to restart to recover consistency.</p>
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/data-gov-uk-2nd-line.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Common+2nd+line+support+tasks+for+data.gov.uk+and+CKAN%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fdata-gov-uk-2nd-line.html%29&amp;labels=bug&amp;title=Re%3A+%27Common+2nd+line+support+tasks+for+data.gov.uk+and+CKAN%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Common+support+tasks+for+data.gov.uk+and+CKAN%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fdata-gov-uk-2nd-line.html%29&amp;labels=bug&amp;title=Re%3A+%27Common+support+tasks+for+data.gov.uk+and+CKAN%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

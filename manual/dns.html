@@ -209,11 +209,11 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9334d29c6df976814853ec107c50ce0c01afa94f">8 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3c619c3277f4e6ee8cb8f6039c5e7331b9bb2d0c">21 Nov 2024</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <blockquote>
-<p>For <strong>Technical 2nd Line documentation</strong> on when and how to respond to DNS delegation and domain verification requests, read the <a href="https://docs.google.com/document/d/14M61iNjiNc2JcP5E5E3B9H54GCBnKKQKllhFr-PJlNI/edit">DNS change request and hostmaster Google doc</a>.</p>
+<p>For documentation on when and how to respond to DNS delegation and domain verification requests, read the <a href="https://docs.google.com/document/d/14M61iNjiNc2JcP5E5E3B9H54GCBnKKQKllhFr-PJlNI/edit">DNS change request and hostmaster Google doc</a>.</p>
 </blockquote>
 <p>GOV.UK is responsible for managing several DNS zones, spanning a number of <code>*.gov.uk</code> domains. As of February 2024, there are 45 hosted zones, configuring many hundreds of domains. A list of hosted zones is retrievable from a terminal using:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-production-poweruser <span class="nt">--</span> aws route53 list-hosted-zones | <span class="nb">grep </span>Name
@@ -224,7 +224,7 @@
 We maintain records which point to Bouncer so that these URLs redirect.</li>
 <li><code>publishing.service.gov.uk</code> and <code>govuk.service.gov.uk</code> are where GOV.UK lives.</li>
 </ul>
-<h2 id='dns-for-service-gov-uk-domains'>DNS for <code>*.service.gov.uk</code> domains</h2><p>GOV.UK Technical 2nd Line are responsible for delegating DNS to other government services.
+<h2 id='dns-for-service-gov-uk-domains'>DNS for <code>*.service.gov.uk</code> domains</h2><p>GOV.UK Platform Engineering are responsible for delegating DNS to other government services.
 Note that we <strong>do not</strong> manage any other DNS records: if you get a request concerning anything other than <code>NS</code> records, it should be rejected.</p>
 <p>When you&rsquo;ve verified the authenticity of the request as per the SRE docs above, you should:</p>
 
@@ -255,11 +255,11 @@ need to make a change and don&rsquo;t have access.</p>
 requesting any changes:</p>
 
 <ul>
-<li>Technical 2nd Line (via email)</li>
+<li>GOV.UK Technical On Call (via Slack)</li>
 <li>GOV.UK&rsquo;s Head of Tech and the senior tech team</li>
 <li>The CDDO domains team (#team-domains)</li>
 </ul>
-<p>Technical 2nd Line should be notified of any planned changes via email.</p>
+<p>Note:</p>
 
 <ul>
 <li>The domain name <code>gov.uk.</code> is an apex domain so it <a href="https://tools.ietf.org/html/rfc1912#section-2.4">cannot have a CNAME record</a>.
@@ -280,7 +280,6 @@ providers. We can just change where the CNAME points to.</li>
           <h4>Learn</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/vpn.html">GOV.UK and Virtual Private Networks (VPNs)</a></li>
             <li><a href="/manual/environments.html">GOV.UK's environments (integration, staging, production)</a></li>
             <li><a href="/manual/rate-limiting.html">Rate Limiting</a></li>
             <li><a href="/manual/terraform-cloud.html">Terraform Cloud</a></li>
@@ -295,10 +294,9 @@ providers. We can just change where the CNAME points to.</li>
             <li><a href="/manual/databases.html">Databases on GOV.UK</a></li>
             <li><a href="/manual/amazonmq.html">Manage Amazon MQ</a></li>
             <li><a href="/manual/manage-opensearch-on-aws.html">Manage OpenSearch on AWS</a></li>
-            <li><a href="/manual/manually-resize-ebs.html">Manually resize EBSs (elastic block store)</a></li>
-            <li><a href="/manual/move-apps-between-servers.html">Move apps between servers</a></li>
             <li><a href="/manual/provision-machines-for-data-science-research.html">Provision machines for data science research</a></li>
-            <li><a href="/manual/reprovision.html">Reprovision a machine</a></li>
+            <li><a href="/manual/raising-issues-with-reliability-engineering.html">Raise issues with Reliability Engineering</a></li>
+            <li><a href="/manual/secrets-manager.html">Retrieve shared credentials from AWS Secrets Manager</a></li>
           </ul>
         </div>
 

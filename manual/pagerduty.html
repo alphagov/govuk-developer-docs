@@ -205,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c7c9eab925cea43dfa5cabdc05d0cd5e92f6924e">19 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3c619c3277f4e6ee8cb8f6039c5e7331b9bb2d0c">21 Nov 2024</a>
 </div>
 
  <h1 id='header'>PagerDuty</h1> <p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming
@@ -221,7 +221,7 @@ to escalate to these people (in order):</p>
 and that they&rsquo;re correctly scheduled in. You can <a href="#add-your-pagerduty-rota-to-google-calendar">add your rota to Google calendar</a>.</p>
 <p>When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
 them, otherwise they will be escalated further.</p>
-<h2 id='creating-a-schedule-override'>Creating a schedule override</h2><p>There are times where developers need to make rota swaps or cover Technical 2nd Line last minute.
+<h2 id='creating-a-schedule-override'>Creating a schedule override</h2><p>There are times where developers need to make rota swaps or cover someone at the last minute.
 See the <a href="https://support.pagerduty.com/docs/edit-schedules#create-overrides">Pagerduty documentation on how to schedule an override</a>.</p>
 <h2 id='pagerduty-drill'>PagerDuty drill</h2><p>Every week we test PagerDuty to make sure it can phone to alert us to
 any issues. This happens every Monday morning at 10am UTC (11am BST).</p>
@@ -229,8 +229,8 @@ any issues. This happens every Monday morning at 10am UTC (11am BST).</p>
 developers can see the that prometheus is integrated with alertmanager. In the
 <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/templates/alertmanager-config.tpl#L79-L85">alertmanager configs</a>
 the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am UTC (11am to 11:03am BST) every Monday.</p>
-<p>You don&rsquo;t need to take any action for this alert. The primary in-office
-Technical 2nd Line developer should escalate the call to the secondary who should escalate
+<p>You don&rsquo;t need to take any action for this alert. The primary in-hours
+technical on-call developer should escalate the call to the secondary who should escalate
 it to &ldquo;escalations&rdquo; to ensure that phone redirection is working. The
 person on &ldquo;escalations&rdquo; will resolve the PagerDuty alert to prevent
 anyone else being phoned.</p>
@@ -248,7 +248,7 @@ anyone else being phoned.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>amtool <span class="nt">--alertmanager</span>.url<span class="o">=</span>http://localhost:9093 alert query <span class="s1">'alertname=PagerDuty test drill. Developers: escalate this alert. SMT: resolve'</span>
 </code></pre></div></li>
 </ol>
-<h3 id='add-your-pagerduty-rota-to-google-calendar'>Add your Pagerduty rota to Google calendar</h3><p>You can sync your Pagerduty with Google Calendar so you can see your Technical 2nd Line and
+<h3 id='add-your-pagerduty-rota-to-google-calendar'>Add your Pagerduty rota to Google calendar</h3><p>You can sync your Pagerduty with Google Calendar so you can see your
 on-call shifts in one place.</p>
 
 <ol>
@@ -269,7 +269,6 @@ the link</p></li>
           <ul class="govuk-list">
             <li><a href="/manual/graphite-and-deployment-dashboards.html">Graphite and deployment dashboards</a></li>
             <li><a href="/manual/pingdom-bouncer-canary-check.html">Pingdom Bouncer canary check</a></li>
-            <li><a href="/manual/screens.html">Screens that we have in the office</a></li>
             <li><a href="/manual/sentry.html">Sentry</a></li>
             <li><a href="/manual/sidekiq.html">Sidekiq</a></li>
           </ul>

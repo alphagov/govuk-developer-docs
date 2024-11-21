@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>On-call support - GOV.UK Developer Documentation</title>
+    <title>GOV.UK Technical On-Call Support - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -20,12 +20,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="On-call support - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="GOV.UK Technical On-Call Support - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/on-call.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="On-call support" />
+      <meta property="og:title" content="GOV.UK Technical On-Call Support" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/on-call.html" />
 
@@ -140,10 +140,26 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>On-call support</span></a>
+    <a href="#header"><span>GOV.UK Technical On-Call Support</span></a>
     <ul>
       <li>
         <a href="#on-call-charter"><span>On call charter</span></a>
+      </li>
+      <li>
+        <a href="#rules-for-primary-secondary-and-on-call"><span>Rules for Primary, Secondary and On Call</span></a>
+        <ul>
+          <li>
+            <a href="#role-specific-policies"><span>Role specific policies</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#shift-swaps-working-patterns-and-sickness"><span>Shift swaps, working patterns and sickness</span></a>
+        <ul>
+          <li>
+            <a href="#away-days-and-all-staff-events"><span>Away days and all-staff events</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#things-that-may-result-in-you-being-contacted"><span>Things that may result in you being contacted</span></a>
@@ -202,8 +218,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "2nd line",
-        "@id": "http://www.dev.gov.uk/manual.html#2nd-line"
+        "name": "Incident management",
+        "@id": "http://www.dev.gov.uk/manual.html#incident-management"
       }
     }
   ]
@@ -216,22 +232,23 @@
           <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#2nd-line">2nd line</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#incident-management">Incident management</a>
         </li>
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/180cf39a5af47b6da2583ec30f457115da47de7f">22 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3c619c3277f4e6ee8cb8f6039c5e7331b9bb2d0c">21 Nov 2024</a>
 </div>
 
- <h1 id='header'>On-call support</h1> <blockquote>
+ <h1 id='header'>GOV.UK Technical On-Call Support</h1> <blockquote>
 <p>In a hurry? You may be looking for <a href="/manual/incident-what-to-do.html">So, you&rsquo;re having an incident</a>!</p>
 </blockquote>
-<p>GOV.UK developers are part of an on-call rota to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they&rsquo;ve built up enough experience (see <a href="/manual/2nd-line.html#rules-for-primary-secondary-and-on-call">Rules for Primary, Secondary and On Call</a>).</p>
+<p>GOV.UK developers are part of an <a href="https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit">on-call rota</a> to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they&rsquo;ve built up enough experience (see <a href="#rules-for-primary-secondary-and-on-call">Rules for Primary, Secondary and On Call</a>).</p>
 <h2 id='on-call-charter'>On call charter</h2>
 <ul>
-<li>Prepare for your shift by following the steps in the <a href="https://trello.com/c/mK6p8hH4/977-on-call-checklist">On-call Trello card template</a></li>
+<li>Attend the Monday morning handover, centered around the <a href="https://trello.com/b/M7UzqXpk">GOV.UK Technical On-Call Trello board</a></li>
+<li>Prepare for your shift by following the steps in the <a href="https://trello.com/c/mK6p8hH4/977-on-call-checklist">On-call Trello card template</a> (you&rsquo;ll be given your own card at the beginning of your shift)</li>
 <li>Be available to be phoned during your allocated shift</li>
 <li>Be able to be online to start investigating a problem within half an hour
 of being notified about it</li>
@@ -244,10 +261,30 @@ in order to bring the site back up, that&rsquo;s probably a good trade-off to ma
 <li>Get paid. Make sure you submit your <a href="https://forms.gle/yvPoANwrsHz8SrL4A">payment claim form</a> after your shift.
 Payment rates can be found on the <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/how-to-guides/out-of-hours-allowance">GDS Wiki</a>.</li>
 </ul>
+<h2 id='rules-for-primary-secondary-and-on-call'>Rules for Primary, Secondary and On Call</h2><p><a href="/manual/rules-for-getting-production-access.html">Production Admin access</a> is a pre-requisite for joining the on-call rota.</p>
+<p>Folks start out as a Secondary on the in-hours shift. After two shifts as a Secondary, they&rsquo;ll start to fill the Primary in-hours role, with some exceptions (see <a href="#role-specific-policies">role specific policies</a>).</p>
+<p>At this point they&rsquo;ll also start filling the out-of-hours on-call rota, as a Primary. After a couple of Primary out-of-hours on-call shifts, they&rsquo;ll start taking the out-of-hours on-call Secondary shifts. The thinking behind them starting out as Primary is that engineers who are new to on-call should be paged first and escalate to the Secondary, for the experience.</p>
+<h3 id='role-specific-policies'>Role specific policies</h3><p>Backend developers and SREs are all expected to be on the in-hours and on-call rota, unless their head of community agrees that they have reason to opt out.</p>
+<p>Frontend developers are expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out. They are <em>not</em> expected to be on the on-call rota. Junior technologists and technologist apprentices are also expected to take part in the in-hours rota and not the on-call rota.</p>
+<p>A junior technologist can be a secondary, but won&rsquo;t be a primary.</p>
+<p>There is no expectation for technologist apprentices to do technical on-call shifts, but if they are confident, they can (at their Line Manager&rsquo;s discretion) go through the process to get Production Admin access, at which point they can request to be added to the secondary role (in-hours).</p>
+<h2 id='shift-swaps-working-patterns-and-sickness'>Shift swaps, working patterns and sickness</h2><p>If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.</p>
+
+<ul>
+<li>If you need cover for a day or two, arrange a swap for those days with another developer. Please ensure delivery managers are aware of this.</li>
+<li>If you need a whole shift swap, arrange this with another developer from your team.</li>
+</ul>
+<p>For either of the above, let the Technical On-Call delivery manager know, so that they can update the schedule on PagerDuty.</p>
+<p>If you cannot make your shift because you’re ill, message the delivery manager and #govuk-technical-on-call Slack channel.</p>
+<p>If your working patterns are not compatible with a 9.30am-5.30pm shift, let the Technical On-Call team know so they can find extra support.</p>
+<p>If you do not work a 5-day week, please talk to your delivery manager to arrange cover with another developer on your team.</p>
+<h3 id='away-days-and-all-staff-events'>Away days and all-staff events</h3><p>Before attending an all-staff event, team away-day or any other event that could keep you away from your laptop for long periods at a time: try to swap your shift with someone who is <em>not</em> attending (<a href="#shift-swaps-working-patterns-and-sickness">see above</a>).</p>
+<p>Otherwise, attending such events is allowed provided you are able to regularly check Slack (e.g. on an hourly basis) and are prepared to drop what you&rsquo;re doing and work on anything urgent that comes in. You must also be contactable by phone so that you can quickly respond to PagerDuty alerts.</p>
 <h2 id='things-that-may-result-in-you-being-contacted'>Things that may result in you being contacted</h2><h3 id='automated-monitoring'>Automated monitoring</h3><p>We use <a href="/manual/pagerduty.html">PagerDuty</a>
 for automated monitoring. You can update your <a href="https://support.pagerduty.com/docs/user-profile#notification-rules">notification rules</a>
 in your PagerDuty account to notify you however you want (phone call, SMS, email,
-push notification). There are 2 ways that this might contact you:</p>
+push notification). We carry out a <a href="/manual/pagerduty.html#pagerduty-drill">Pagerduty drill</a> every Monday morning at 10am UTC (11am BST).</p>
+<p>There are 2 reasons that PagerDuty might contact you:</p>
 <h4 id='alertmanager-alerts'>Alertmanager alerts</h4><p>Any checks that use <code>severity: page</code> will cause PagerDuty to be notified:</p>
 
 <ul>
@@ -306,36 +343,6 @@ support (assuming everything is working).</p>
 
   <div class='related-content'>
 
-    <h3>More in the 2nd line section</h3>
-
-    <div class='govuk-grid-row'>
-        <div class='govuk-grid-column-one-half'>
-          <h4>Learn</h4>
-
-          <ul class="govuk-list">
-            <li><a href="/manual/access-to-licensing-for-third-parties.html">Access to Licensify for Third Parties</a></li>
-            <li><a href="/manual/slack-unavailable.html">Communicate when Slack is unavailable</a></li>
-            <li><a href="/manual/licensing.html">Licensify - supporting licensing</a></li>
-            <li><a href="/manual/rules-for-getting-production-access.html">Rules for getting production access</a></li>
-            <li><a href="/manual/subject-access-requests.html">Subject Access Request (SAR)</a></li>
-            <li><a href="/manual/2nd-line.html">Technical 2nd line</a></li>
-            <li><a href="/manual/zendesk.html">Zendesk</a></li>
-          </ul>
-        </div>
-
-        <div class='govuk-grid-column-one-half'>
-          <h4>How to...</h4>
-
-          <ul class="govuk-list">
-            <li><a href="/manual/incorrect-postcode-data.html">Incorrect postcode data</a></li>
-            <li><a href="/manual/raising-issues-with-reliability-engineering.html">Raise issues with Reliability Engineering</a></li>
-            <li><a href="/manual/secrets-manager.html">Retrieve shared credentials from AWS Secrets Manager</a></li>
-            <li><a href="/manual/smart-survey-scheduled-maintenance.html">SmartSurvey scheduled maintenance</a></li>
-            <li><a href="/manual/update_popular_links.html">Update popular links</a></li>
-          </ul>
-        </div>
-
-    </div>
 </div>
 
 
@@ -345,7 +352,7 @@ support (assuming everything is working).</p>
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/on-call.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27On-call+support%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fon-call.html%29&amp;labels=bug&amp;title=Re%3A+%27On-call+support%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27GOV.UK+Technical+On-Call+Support%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fon-call.html%29&amp;labels=bug&amp;title=Re%3A+%27GOV.UK+Technical+On-Call+Support%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

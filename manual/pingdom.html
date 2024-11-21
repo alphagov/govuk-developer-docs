@@ -197,7 +197,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c08c287cf433603cf32ab3934e502a8d7ecf052f">29 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b4c4332db0f71f0573e46539e62ecb9676ba7c3e">21 Nov 2024</a>
 </div>
 
  <h1 id='header'>Pingdom</h1> <p>GOV.UK uses <a href="https://www.pingdom.com/">Pingdom</a> to monitor the external availability of our services, integrating with <a href="/manual/pagerduty.html">PagerDuty</a> to notify developers if a service becomes unavailable (owing to a DNS issue or network misconfiguration, for example).</p>
@@ -217,9 +217,7 @@ section and click &ldquo;Add new&rdquo;.</li>
 <li>Leave the location as the default (North America/Europe).</li>
 <li>Leave &ldquo;Check importance&rdquo; at the default of &ldquo;High importance&rdquo;, we don&rsquo;t have
 different configurations for High or Low importance</li>
-<li>Select &ldquo;GOV.UK Technical 2nd Line&rdquo; in the &ldquo;Who to alert?&rdquo; section and
-uncheck &ldquo;Platform Team&rdquo;. This will mean the Technical 2nd Line email is
-notified when services are down for long enough to alert.</li>
+<li>Uncheck the &ldquo;GOV.UK Technical 2nd Line&rdquo; and &ldquo;Platform team&rdquo; teams in the &ldquo;Who to alert?&rdquo; section. Instead, enable the &ldquo;PagerDuty&rdquo; web hook, so that the #govuk-technical-on-call channel gets notified via Slack in the event of an outage.</li>
 <li>Leave &ldquo;When down, alert after&rdquo; at the default value of 5 minutes, this
 offers a buffer against alerting for a short lived spike.</li>
 <li>Update the &ldquo;Customized message&rdquo; to capture any links to documentation
@@ -241,7 +239,6 @@ alert threshold has passed.</li>
             <li><a href="/manual/graphite-and-deployment-dashboards.html">Graphite and deployment dashboards</a></li>
             <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
             <li><a href="/manual/pingdom-bouncer-canary-check.html">Pingdom Bouncer canary check</a></li>
-            <li><a href="/manual/screens.html">Screens that we have in the office</a></li>
             <li><a href="/manual/sentry.html">Sentry</a></li>
             <li><a href="/manual/sidekiq.html">Sidekiq</a></li>
           </ul>

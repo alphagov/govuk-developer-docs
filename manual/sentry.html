@@ -203,9 +203,6 @@
         </ul>
       </li>
       <li>
-        <a href="#special-sentry-accounts"><span>Special Sentry accounts</span></a>
-      </li>
-      <li>
         <a href="#gds-wide-usage-of-sentry"><span>GDS-wide usage of Sentry</span></a>
       </li>
       <li>
@@ -260,7 +257,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c08c287cf433603cf32ab3934e502a8d7ecf052f">29 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5c1a55755b6a21b6c36217397bb30f204b36d79a">21 Nov 2024</a>
 </div>
 
  <h1 id='header'>Sentry</h1> <p><a href="https://sentry.io/govuk/">Sentry</a> is a service that collates errors that happen on GOV.UK in one
@@ -436,9 +433,6 @@ the trash can and selecting &ldquo;Delete and discard future events&rdquo;.</p>
 our <a href="#rate-limiting">Sentry quota</a>. It is possible to &ldquo;undiscard&rdquo; the issue later,
 but this will only capture new events. Any events prior to the &ldquo;undiscard&rdquo; action
 are lost.</p>
-<h2 id='special-sentry-accounts'>Special Sentry accounts</h2><p>There is a <code>2ndLineBot</code> member on the <a href="https://sentry.io/settings/govuk/members/">members list</a>
-which is set up so that a weekly Sentry report is sent to the Technical 2nd Line email address.
-This bot account should not be deleted.</p>
 <h2 id='gds-wide-usage-of-sentry'>GDS-wide usage of Sentry</h2><p>Sentry is used by several programmes in GDS, not just GOV.UK. A report,
 <a href="https://docs.google.com/document/d/1yVa9iiu-DayGy-MtlrdXeV0E09CsetUenZJCmusLfLg/edit">GDS use of Sentry.io</a>,
 covers this in more detail, including documenting some of the limitations of the
@@ -457,7 +451,6 @@ setup.</p>
             <li><a href="/manual/graphite-and-deployment-dashboards.html">Graphite and deployment dashboards</a></li>
             <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
             <li><a href="/manual/pingdom-bouncer-canary-check.html">Pingdom Bouncer canary check</a></li>
-            <li><a href="/manual/screens.html">Screens that we have in the office</a></li>
             <li><a href="/manual/sidekiq.html">Sidekiq</a></li>
           </ul>
         </div>
