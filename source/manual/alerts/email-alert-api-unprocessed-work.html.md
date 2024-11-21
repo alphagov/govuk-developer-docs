@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-web-support"
 title: 'Email Alert API: Unprocessed work'
 section: Icinga alerts
 subsection: Email alerts
