@@ -291,12 +291,6 @@ are lost.
 
 [Delete and Discard]: https://blog.sentry.io/2018/01/03/delete-and-discard
 
-## Special Sentry accounts
-
-There is a `2ndLineBot` member on the [members list](https://sentry.io/settings/govuk/members/)
-which is set up so that a weekly Sentry report is sent to the Technical 2nd Line email address.
-This bot account should not be deleted.
-
 ## GDS-wide usage of Sentry
 
 Sentry is used by several programmes in GDS, not just GOV.UK. A report,

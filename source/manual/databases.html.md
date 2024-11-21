@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-platform-engineering"
 title: Databases on GOV.UK
 section: Infrastructure
 layout: manual_layout

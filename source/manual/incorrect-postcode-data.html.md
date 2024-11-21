@@ -1,9 +1,9 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-web-support"
 title: Incorrect postcode data
 parent: "/manual.html"
 layout: manual_layout
-section: 2nd line
+section: Applications
 ---
 
 We get our postcode data from Locations API, which uses OS Places API (Ordnance Survey) under the hood. Locations API postcodes [keep themselves up to date automatically](https://github.com/alphagov/locations-api/blob/main/docs/postcodes-added-cached-updated.md#how-postcodes-are-updated) and should never be more than about a week out of date.

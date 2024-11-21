@@ -1,9 +1,9 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-developers"
 title: Zendesk
 parent: "/manual.html"
 layout: manual_layout
-section: 2nd line
+section: Learning GOV.UK
 type: learn
 ---
 
@@ -44,7 +44,6 @@ Triage to the most applicable area of GOV.UK using the associated macro below. T
 | [data.gov.uk support](https://govuk.zendesk.com/agent/filters/1900002360214) | [Triage to data.gov.uk support](https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13813477886620) | data.gov.uk (DGU), CKAN |
 | [GOV.UK Data Support](https://govuk.zendesk.com/agent/filters/13388501247260) | [Triage to GOV.UK Data Support](https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13661730061340) | Related links, Google Analytics, GovSearch, etc |
 | [GOV.UK Campaigns Tech Support](https://govuk.zendesk.com/agent/filters/8935249582876) | [Triage to GOV.UK Campaign Support](https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/13792771654300) | Anything to do with the [campaign platform](https://userguide.campaign.gov.uk/) |
-| [Technical 2nd Line](https://govuk.zendesk.com/agent/filters/10864660813212) | [Triage to GOV.UK Technical 2nd Line](https://govuk.zendesk.com/admin/workspaces/agent-workspace/macros/14392327675292) | DEPRECATED |
 
 Most technical tickets are triaged automatically to the correct place via the "trigger rules" in Zendesk - see [Zendesk triggers for technical GOV.UK groups](#zendesk-triggers-for-technical-govuk-groups). If no specific trigger rule has been configured, tickets go straight to GDS's User Support team, who then triage tickets on to other teams where appropriate.
 
@@ -71,6 +70,5 @@ Every product area should have its own view of Zendesk tickets and an optional s
 | [data.gov.uk support](https://govuk.zendesk.com/agent/filters/1900002360214) | [Tell GOV.UK data.gov.uk Support about new ticket](https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14643274949020) |
 | [GOV.UK Data Support](https://govuk.zendesk.com/agent/filters/13388501247260) | [Tell GOV.UK Data Support about new ticket](https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14607012989980) |
 | [GOV.UK Campaigns Tech Support](https://govuk.zendesk.com/agent/filters/8935249582876) | [Email](https://govuk.zendesk.com/admin/objects-rules/rules/triggers/4951487443986), [Initial Routing: Gov't Form new campaign requests to 3rd Line - GOV.UK Policy and Strategy](https://govuk.zendesk.com/admin/objects-rules/rules/triggers/30476171) |
-| [Technical 2nd Line](https://govuk.zendesk.com/agent/filters/10864660813212) | [Email](https://govuk.zendesk.com/admin/objects-rules/rules/triggers/11509330463644), [Initial Routing: Gov't Form publisher tech fault requests to 2nd Line--GOV.UK Alerts and Issues](https://govuk.zendesk.com/admin/objects-rules/rules/triggers/35985647), [Tell GOV.UK 2nd line tech about new ticket](https://govuk.zendesk.com/admin/objects-rules/rules/triggers/14392628890268) |
 
-Some triggers power Slack notifications via the Zendesk/Slack integration. For example, the [Tell GOV.UK Platform Support about new ticket](https://govuk.zendesk.com/admin/objects-rules/rules/triggers/12864044593692) trigger checks whether a `slack_has_been_notified` tag is present on the ticket, as well as whether or not this is the kind of ticket we're interested in (must be in `2nd Line--GOV.UK Alerts and Issues` and must have at least one tag relevant to Platform, e.g. `fault_with_content_data`). Only if the tag is absent do the corresponding trigger 'actions' fire, which are "Zendesk integration" (the thing that fires the Slack message) and also "Add tags". Here, we add the `slack_has_been_notified` tag, meaning only one notification is sent per ticket, which reduces noise. We also add the `govuk_platform_support` tag, which is the only tag that drives the [GOV.UK Platform Support view](https://govuk.zendesk.com/agent/filters/12863141605916), meaning that the only place we need to define our set of platform-related tags is in the "Tell GOV.UK Platform Support about new ticket" trigger.
+Some triggers power Slack notifications via the Zendesk/Slack integration. For example, the [Tell GOV.UK Platform Support about new ticket](https://govuk.zendesk.com/admin/objects-rules/rules/triggers/12864044593692) trigger checks whether a `slack_has_been_notified` tag is present on the ticket, as well as whether or not this is the kind of ticket we're interested in (must be in `1st Line--GOV.UK Web Support` and must not contain a tag irrelevant to Platform, e.g. `govuk_data_support`). Only if the tag is absent do the corresponding trigger 'actions' fire, which are "Zendesk integration" (the thing that fires the Slack message) and also "Add tags". Here, we add the `slack_has_been_notified` tag, meaning only one notification is sent per ticket, which reduces noise. We also add the `govuk_platform_support` tag here.

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-web-support"
 title: 'Email Alert API: high latency for sidekiq queue'
 section: Icinga alerts
 subsection: Email alerts

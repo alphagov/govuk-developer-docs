@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-platform-engineering"
 title: Domain Name System (DNS) records
 section: Infrastructure
 type: learn
@@ -7,7 +7,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-> For **Technical 2nd Line documentation** on when and how to respond to DNS delegation and domain verification requests, read the [DNS change request and hostmaster Google doc](https://docs.google.com/document/d/14M61iNjiNc2JcP5E5E3B9H54GCBnKKQKllhFr-PJlNI/edit).
+> For documentation on when and how to respond to DNS delegation and domain verification requests, read the [DNS change request and hostmaster Google doc](https://docs.google.com/document/d/14M61iNjiNc2JcP5E5E3B9H54GCBnKKQKllhFr-PJlNI/edit).
 
 GOV.UK is responsible for managing several DNS zones, spanning a number of `*.gov.uk` domains. As of February 2024, there are 45 hosted zones, configuring many hundreds of domains. A list of hosted zones is retrievable from a terminal using:
 
@@ -25,7 +25,7 @@ We use a few domains:
 
 ## DNS for `*.service.gov.uk` domains
 
-GOV.UK Technical 2nd Line are responsible for delegating DNS to other government services.
+GOV.UK Platform Engineering are responsible for delegating DNS to other government services.
 Note that we __do not__ manage any other DNS records: if you get a request concerning anything other than `NS` records, it should be rejected.
 
 When you've verified the authenticity of the request as per the SRE docs above, you should:
@@ -69,11 +69,11 @@ need to make a change and don't have access.
 You should also make sure that the following groups of people are aware before
 requesting any changes:
 
-- Technical 2nd Line (via email)
+- GOV.UK Technical On Call (via Slack)
 - GOV.UK's Head of Tech and the senior tech team
 - The CDDO domains team (#team-domains)
 
-Technical 2nd Line should be notified of any planned changes via email.
+Note:
 
 - The domain name `gov.uk.` is an apex domain so it [cannot have a CNAME record](https://tools.ietf.org/html/rfc1912#section-2.4).
   Instead, it has A records that point directly to anycast virtual IP addresses (VIPs) for our CDN provider.
