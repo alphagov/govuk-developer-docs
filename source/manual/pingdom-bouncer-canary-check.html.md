@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-publishing-platform"
 title: Pingdom Bouncer canary check
 parent: "/manual.html"
 layout: manual_layout
