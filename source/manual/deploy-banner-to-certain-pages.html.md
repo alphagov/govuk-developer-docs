@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-web-support"
 title: Deploy a banner to certain pages
 parent: "/manual.html"
 layout: manual_layout
