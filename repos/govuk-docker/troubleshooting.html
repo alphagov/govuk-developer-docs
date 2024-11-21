@@ -158,7 +158,7 @@
           </ul>
           <li class="subdir__heading">how-tos</li>
           <ul class="subdir__menu">
-              <li><a href="/repos/govuk-docker/how-tos.html" rel="noopener" class="govuk-link">How To's</a></li>
+              <li><a href="/repos/govuk-docker/how-tos.html" rel="noopener" class="govuk-link">How Tos</a></li>
               <li><a href="/repos/govuk-docker/how-tos/finder-setup.html" rel="noopener" class="govuk-link">How to Publish Content to a Finder in GOV.UK Docker</a></li>
               <li><a href="/repos/govuk-docker/how-tos/publishing-content-on-whitehall.html" rel="noopener" class="govuk-link">Publishing Content from Whitehall for Developing Government Frontend</a></li>
           </ul>
@@ -221,7 +221,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/8d3b1005676c8891b6e71ebd5e393e5d934ee722">23 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/1fb632c90004bc284a48816d81d76a88edfcbdaf">20 Nov 2024</a>
 </div>
 
   <h1 class="page-title">govuk-docker: Troubleshooting</h1>
@@ -335,8 +335,8 @@ Target /usr/local/bin/docker-compose
 </code></pre>
 <p>A workaround is to get MySQL to fall back to using <code>mysql_native_password</code> as follows:</p>
 <ul>
-<li>Check that you can see <code>govuk-docker_mysql-8_1</code> when running <code>govuk-docker ps</code>, if not you will need to start a service that uses mysql (for example Whitehall).</li>
-<li>Bring up a mysql console inside the container: <code>docker exec -it govuk-docker_mysql-8_1 mysql --user=root --password=root</code>
+<li>Check that you can see <code>govuk-docker-mysql-8-1</code> when running <code>govuk-docker ps</code>, if not you will need to start a service that uses mysql (for example Whitehall).</li>
+<li>Bring up a mysql console inside the container: <code>docker exec -it govuk-docker-mysql-8-1 mysql --user=root --password=root</code>
 </li>
 <li>Alter the way the root user identifies itself. <code>ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'root';</code>
 </li>

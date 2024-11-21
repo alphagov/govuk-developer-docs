@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk-docker: How To's - GOV.UK Developer Documentation</title>
+    <title>govuk-docker: How Tos - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,12 +16,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk-docker: How To's - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="govuk-docker: How Tos - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/how-tos.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk-docker: How To's" />
+      <meta property="og:title" content="govuk-docker: How Tos" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/how-tos.html" />
 
@@ -158,7 +158,7 @@
           </ul>
           <li class="subdir__heading">how-tos</li>
           <ul class="subdir__menu">
-              <li><a href="/repos/govuk-docker/how-tos.html" rel="noopener" class="govuk-link">How To's</a></li>
+              <li><a href="/repos/govuk-docker/how-tos.html" rel="noopener" class="govuk-link">How Tos</a></li>
               <li><a href="/repos/govuk-docker/how-tos/finder-setup.html" rel="noopener" class="govuk-link">How to Publish Content to a Finder in GOV.UK Docker</a></li>
               <li><a href="/repos/govuk-docker/how-tos/publishing-content-on-whitehall.html" rel="noopener" class="govuk-link">Publishing Content from Whitehall for Developing Government Frontend</a></li>
           </ul>
@@ -221,10 +221,10 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/5006b1f5a39e81076b452193f7c8f02f0aa024c5">10 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/28dafc6034abb746e69a3ac81134ea2c4688ebdd">20 Nov 2024</a>
 </div>
 
-  <h1 class="page-title">govuk-docker: How To's</h1>
+  <h1 class="page-title">govuk-docker: How Tos</h1>
 
   
 <p>👉 <a href="/repos/govuk-docker/troubleshooting.html">Check the troubleshooting guide if you have a problem.</a></p>
@@ -259,14 +259,26 @@ alias gdbe="govuk-docker-run bundle exec"
 </ul>
 <p>You will need to assume-role into AWS using the <a href="https://docs.publishing.service.gov.uk/manual/access-aws-console.html">gds-cli</a> before running the scripts. For example, to replicate data for Content Publisher, run:</p>
 <pre><code># as an AWS PowerUser...
-gds aws govuk-integration-poweruser --assume-role-ttl 180m ./bin/replicate-postgresql.sh content-publisher
+gds aws govuk-integration-poweruser --assume-role-ttl 3h ./bin/replicate-postgresql.sh content-publisher
 
 # as an AWS User...
-gds aws govuk-integration-readonly --assume-role-ttl 180m ./bin/replicate-postgresql.sh content-publisher
+gds aws govuk-integration-readonly --assume-role-ttl 3h ./bin/replicate-postgresql.sh content-publisher
 </code></pre>
 <p>All the scripts, other than <code>replicate-elasticsearch.sh</code>, take the name of the app to replicate data for.</p>
 <p>Draft data can be replicated with <code>replicate-postgresql.sh draft-content-store</code> and <code>replicate-mongodb.sh draft-router</code>.</p>
 <p>If you want to download data without importing it, set the <code>SKIP_IMPORT</code> environment variable (to anything).</p>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>The replication scripts might fail for the following reasons:</p>
+<ul>
+<li>
+<code>pv</code> not being installed. This is used to display a progress bar. On macOS, you can <a href="https://formulae.brew.sh/formula/pv">install pv using Homebrew</a>.</li>
+<li>Running out of space in Docker. This might result in an error like <code>ERROR 1114 (HY000) at line 11768: The table 'govspeak_contents' is full</code>. If you see this, you could do either or both of the following:
+<ul>
+<li>If you're okay with removing some or all of your Docker containers, images, and possibly volumes and other data, run <a href="https://docs.docker.com/reference/cli/docker/system/prune">docker system prune</a>.</li>
+<li>If you have enough spare space on your local machine, allocate more space to Docker. Using Docker Desktop, this setting is under Settings &gt; Resources &gt; Advanced &gt; Resource Allocation &gt; Virtual disk limit.</li>
+</ul>
+</li>
+</ul>
 <h2 id="how-to-set-environment-variables">How to: set environment variables</h2>
 <p>While most environment variables should be set in the config for a project, sometimes it's necessary to set assign one or more variables at the point of running a command, such as a Rake task. This can be done using <code>env</code> e.g.</p>
 <pre><code>govuk-docker run content-publisher-lite env MY_VAR=my_val bundle exec rake my_task

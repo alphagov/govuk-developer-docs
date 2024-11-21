@@ -11,23 +11,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Republish content - GOV.UK Developer Documentation</title>
+    <title>Find usage of Govspeak in content - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/republishing-content.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/find-usage-of-govspeak-in-content.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Republish content - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/republishing-content.html" />
+      <meta name="twitter:title" content="Find usage of Govspeak in content - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/find-usage-of-govspeak-in-content.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Republish content" />
+      <meta property="og:title" content="Find usage of Govspeak in content" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/republishing-content.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/find-usage-of-govspeak-in-content.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -140,13 +140,18 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Republish content</span></a>
+    <a href="#header"><span>Find usage of Govspeak in content</span></a>
     <ul>
       <li>
-        <a href="#whitehall"><span>Whitehall</span></a>
+        <a href="#searching-for-raw-govspeak-in-whitehall"><span>Searching for raw Govspeak in Whitehall</span></a>
       </li>
       <li>
-        <a href="#content-publisher"><span>Content Publisher</span></a>
+        <a href="#searching-for-converted-html-in-publishing-api"><span>Searching for converted HTML in Publishing API</span></a>
+        <ul>
+          <li>
+            <a href="#example-commands"><span>Example commands</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -197,32 +202,40 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/12565ba7d2e5fae368d2e126aefe87e35bb8b935">19 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8cb57f659e7ca1ba396cbef657282b4a5f6d8c6a">20 Nov 2024</a>
 </div>
 
- <h1 id='header'>Republish content</h1> <p>Sometimes it may be necessary to republish content to the Publishing API. This will refresh the content on the website.</p>
-<p>For example if we make an update to <a href="https://github.com/alphagov/govspeak/">govspeak</a> and a publishing application pre-renders that content prior to its submission to Publishing API, that would require us to re-render and save new HTML for content.</p>
-<p>This process varies per app and requires <a href="/manual/rules-for-getting-production-access.html">Production access</a>.</p>
-<p>You may wish to test first on integration, prior to carrying out the republish in production.</p>
-<h2 id='whitehall'>Whitehall</h2><p>If the documents are in Whitehall, you can republish content (individually or in bulk) via the user interface:</p>
+ <h1 id='header'>Find usage of Govspeak in content</h1> <p><a href="https://govspeak-preview.publishing.service.gov.uk">Govspeak</a> is an extension for Markdown used in GOV.UK&rsquo;s publishing applications.</p>
+<p>After making a change to the Govspeak gem, you may need to republish content that uses that markdown.</p>
+<p>In nearly all cases, Govspeak is converted to HTML within the publishing application before being sent to Publishing API. This means there are two options for finding affected content: searching for raw Govspeak within the publishing application or converted HTML in Publishing API.</p>
+<h2 id='searching-for-raw-govspeak-in-whitehall'>Searching for raw Govspeak in Whitehall</h2><p>There is a Rake task to find published content that matches a regular expression:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>rake <span class="s1">'reporting:matching_docs[regex]'</span>
+</code></pre></div><p>Replace <code>regex</code> with an escaped version of the regular expression. Ruby&rsquo;s <code>Regexp.escape</code> method might escape too much; in general you&rsquo;ll need to escape things like backslashes and square brackets. For example, to find all uses of inline attachments contained within steps, you would use the following regex:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>^s[0-9]+\..*?\[AttachmentLink:.*?\].*$
+</code></pre></div><p>This would be escaped and used in the rake task as follows:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>rake <span class="s1">'reporting:matching_docs[s\[0-9\]+\\..*?\\\[AttachmentLink:.*?\\\].*$]'</span>
+</code></pre></div><p>You could try running the Rake task on a <code>whitehall-admin</code> pod using the instructions in <a href="https://docs.publishing.service.gov.uk/manual/running-rake-tasks.html#run-a-rake-task-on-eks">Run a rake task on EKS</a>. However, you might find that the task quickly times out with errors like those below.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ActiveRecord::StatementInvalid: Mysql2::Error: Timeout exceeded in regular expression match. (ActiveRecord::StatementInvalid)
 
-<ul>
-<li><a href="https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/republishing">Whitehall integration</a></li>
-<li><a href="https://whitehall-admin.staging.publishing.service.gov.uk/government/admin/republishing">Whitehall staging</a></li>
-<li><a href="https://whitehall-admin.publishing.service.gov.uk/government/admin/republishing">Whitehall production</a></li>
-</ul>
-<p>Try to pick the task most focused to the scope of what you need to republish to avoid unnecessary load. You can monitor the effect on the publishing queue via these Grafana dashboards:</p>
+Mysql2::Error: Timeout exceeded in regular expression match. (Mysql2::Error)
+</code></pre></div><p>In this case, you can:</p>
 
-<ul>
-<li><a href="https://grafana.integration.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=whitehall&amp;var-Interval=$__auto_interval">Grafana integration</a></li>
-<li><a href="https://grafana.blue.staging.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=whitehall&amp;var-Interval=$__auto_interval">Grafana staging</a></li>
-<li><a href="https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=whitehall&amp;var-Interval=$__auto_interval">Grafana production</a></li>
-</ul>
-<h2 id='content-publisher'>Content Publisher</h2><p>If the document is in content publisher, there is a <a href="https://github.com/alphagov/content-publisher/blob/main/lib/tasks/resync.rake">resync Rake task</a> you can run.</p>
-<p>You can resync a single document by passing it a content ID and locale:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/content-publisher <span class="nt">--</span> rake resync:document[a-content-id:locale]
-</code></pre></div><p>or you can resync all documents:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/content-publisher <span class="nt">--</span> rake resync:all
+<ol>
+<li><a href="https://github.com/alphagov/govuk-docker/blob/main/docs/how-tos.md#how-to-replicate-data-locally">Replicate the data locally</a>.</li>
+<li>Adjust your MySQL regex timeout by running the following in your <code>govuk-docker</code> directory:
+
+<ol>
+<li><code>docker exec -it govuk-docker-mysql-8-1 mysql --user=root --password=root</code>. If you get a <code>No such container</code> error, try starting up Whitehall in GOV.UK Docker and then stopping it.</li>
+<li><code>SET GLOBAL regexp_time_limit=20000;</code>. You could try a shorter limit to start. <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_regexp_time_limit">This variable is explained in the MySQL docs</a>.</li>
+</ol></li>
+<li>Run the Rake task locally with GOV.UK Docker.</li>
+</ol>
+<h2 id='searching-for-converted-html-in-publishing-api'>Searching for converted HTML in Publishing API</h2><p>Follow the instructions to <a href="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html#common-tasks">open a Rails console</a> for Publishing API.</p>
+<h3 id='example-commands'>Example commands</h3><p>Here&rsquo;s some example commands you can run, feel free to modify the regex for your specific usecase (and add more here if you fancy :))</p>
+<p>This will take a few minutes to execute since it&rsquo;s iterating over a lot of editions!</p>
+<h4 id='find-call-to-action'>Find &lsquo;call to action&rsquo;</h4><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/class=\\"call-to-action/</span> <span class="p">}</span>
+</code></pre></div><h4 id='find-youtube-links'>Find YouTube links</h4><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/href=\\"https:\/\/www.youtube.com\/watch?v=/</span> <span class="p">}</span>
+</code></pre></div><h4 id='find-hardcoded-buttons'>Find hardcoded buttons</h4><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Edition</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">content_store: </span><span class="kp">nil</span><span class="p">).</span><span class="nf">find_each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"https://gov.uk</span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">base_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="nf">details</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/class=\\"button/</span> <span class="p">}</span>
 </code></pre></div>
   <div class='related-content'>
 
@@ -256,7 +269,6 @@
             <li><a href="/manual/documents-are-published-but-links-arent-updated.html">Debug published documents with incorrect links</a></li>
             <li><a href="/manual/emergency-publishing.html">Deploy an emergency banner</a></li>
             <li><a href="/manual/global-banner.html">Deploy non-emergency global banner</a></li>
-            <li><a href="/manual/find-usage-of-govspeak-in-content.html">Find usage of Govspeak in content</a></li>
             <li><a href="/manual/help-with-publishing-content.html">Help with publishing content</a></li>
             <li><a href="/manual/documents-arent-live-after-publishing.html">If documents aren't live after being published</a></li>
             <li><a href="/manual/make-a-new-document-type-available-to-search.html">Make a new document type available to search</a></li>
@@ -265,6 +277,7 @@
             <li><a href="/manual/reindex-elasticsearch.html">Reindex an Elasticsearch index</a></li>
             <li><a href="/manual/howto-remove-change-note.html">Remove a change note</a></li>
             <li><a href="/manual/rename-a-country.html">Rename a country</a></li>
+            <li><a href="/manual/republishing-content.html">Republish content</a></li>
             <li><a href="/manual/government-changes.html">Support government changes</a></li>
             <li><a href="/manual/hmrc-paye-files.html">Upload HMRC PAYE files</a></li>
           </ul>
@@ -279,8 +292,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/republishing-content.html.md.erb">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Republish+content%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Frepublishing-content.html%29&amp;labels=bug&amp;title=Re%3A+%27Republish+content%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/find-usage-of-govspeak-in-content.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Find+usage+of+Govspeak+in+content%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Ffind-usage-of-govspeak-in-content.html%29&amp;labels=bug&amp;title=Re%3A+%27Find+usage+of+Govspeak+in+content%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
