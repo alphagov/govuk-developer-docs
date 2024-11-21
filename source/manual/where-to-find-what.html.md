@@ -29,7 +29,6 @@ These presentations are repeated semi-regularly at the GOV.UK Tech Fortnightly m
 
 <https://gov-uk.atlassian.net/wiki> (private)
 
-- The [Platform Operations wiki][plops] contains information about Technical 2nd Line and incident management
 - The [Product documentation][prod-docs] contains documentation about the features of the platform
 
 ## RFCs
@@ -48,6 +47,5 @@ These presentations are repeated semi-regularly at the GOV.UK Tech Fortnightly m
 
 [readme]: /manual/readmes.html
 [docs-folder]: https://github.com/alphagov/publishing-api/tree/main/doc
-[plops]: https://gov-uk.atlassian.net/wiki/display/PLOPS/GOV.UK+Platform+Operations+Home
 [prod-docs]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Product+documentation
 [learning-govuk]: https://drive.google.com/drive/u/0/folders/1AVoV4II9e7Wl59rNrkoy17XE4MxZHCyE
