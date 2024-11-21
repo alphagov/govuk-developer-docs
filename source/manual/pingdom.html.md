@@ -31,9 +31,7 @@ These instructions are for adding a standard HTTP request check.
 1. Leave the location as the default (North America/Europe).
 1. Leave "Check importance" at the default of "High importance", we don't have
    different configurations for High or Low importance
-1. Select "GOV.UK Technical 2nd Line" in the "Who to alert?" section and
-   uncheck "Platform Team". This will mean the Technical 2nd Line email is
-   notified when services are down for long enough to alert.
+1. Uncheck the "GOV.UK Technical 2nd Line" and "Platform team" teams in the "Who to alert?" section. Instead, enable the "PagerDuty" web hook, so that the #govuk-technical-on-call channel gets notified via Slack in the event of an outage.
 1. Leave "When down, alert after" at the default value of 5 minutes, this
    offers a buffer against alerting for a short lived spike.
 1. Update the "Customized message" to capture any links to documentation
