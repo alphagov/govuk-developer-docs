@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-developers"
 title: Post a message on the status page
 section: Incidents
 layout: manual_layout

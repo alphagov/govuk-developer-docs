@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-developers"
 title: PagerDuty
 section: Monitoring and alerting
 type: learn

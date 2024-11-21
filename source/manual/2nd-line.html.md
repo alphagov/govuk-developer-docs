@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-developers"
 title: Technical 2nd line
 parent: "/manual.html"
 layout: manual_layout

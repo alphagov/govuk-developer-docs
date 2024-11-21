@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-developers"
 title: On-call support
 section: 2nd line
 layout: manual_layout
