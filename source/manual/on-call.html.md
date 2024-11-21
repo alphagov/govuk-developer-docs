@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: On-call support
+title: GOV.UK Technical On-Call Support
 section: 2nd line
 layout: manual_layout
 type: learn
@@ -9,14 +9,14 @@ parent: "/manual.html"
 
 > In a hurry? You may be looking for [So, you're having an incident][]!
 
-GOV.UK developers are part of an on-call rota to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they've built up enough experience (see [Rules for Primary, Secondary and On Call][]).
+GOV.UK developers are part of an [on-call rota](https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit) to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they've built up enough experience (see [Rules for Primary, Secondary and On Call](#rules-for-primary-secondary-and-on-call)).
 
 [So, you're having an incident]: /manual/incident-what-to-do.html
-[Rules for Primary, Secondary and On Call]: /manual/2nd-line.html#rules-for-primary-secondary-and-on-call
 
 ## On call charter
 
-- Prepare for your shift by following the steps in the [On-call Trello card template](https://trello.com/c/mK6p8hH4/977-on-call-checklist)
+- Attend the Monday morning handover, centered around the [GOV.UK Technical On-Call Trello board](https://trello.com/b/M7UzqXpk)
+- Prepare for your shift by following the steps in the [On-call Trello card template](https://trello.com/c/mK6p8hH4/977-on-call-checklist) (you'll be given your own card at the beginning of your shift)
 - Be available to be phoned during your allocated shift
 - Be able to be online to start investigating a problem within half an hour
   of being notified about it
@@ -32,6 +32,45 @@ GOV.UK developers are part of an on-call rota to keep GOV.UK running 24/7. Engin
 [GDS Wiki]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/how-to-guides/out-of-hours-allowance
 [payment claim form]: https://forms.gle/yvPoANwrsHz8SrL4A
 
+## Rules for Primary, Secondary and On Call
+
+[Production Admin access](/manual/rules-for-getting-production-access.html) is a pre-requisite for joining the on-call rota.
+
+Folks start out as a Secondary on the in-hours shift. After two shifts as a Secondary, they'll start to fill the Primary in-hours role, with some exceptions (see [role specific policies](#role-specific-policies)).
+
+At this point they'll also start filling the out-of-hours on-call rota, as a Primary. After a couple of Primary out-of-hours on-call shifts, they'll start taking the out-of-hours on-call Secondary shifts. The thinking behind them starting out as Primary is that engineers who are new to on-call should be paged first and escalate to the Secondary, for the experience.
+
+### Role specific policies
+
+Backend developers and SREs are all expected to be on the in-hours and on-call rota, unless their head of community agrees that they have reason to opt out.
+
+Frontend developers are expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out. They are _not_ expected to be on the on-call rota. Junior technologists and technologist apprentices are also expected to take part in the in-hours rota and not the on-call rota.
+
+A junior technologist can be a secondary, but won't be a primary.
+
+There is no expectation for technologist apprentices to do 2nd line, but if they are confident, they can (at their Line Manager's discretion) go through the process to get Production Admin access, at which point they can request to be added to the secondary role.
+
+## Shift swaps, working patterns and sickness
+
+If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.
+
+- If you need cover for a day or two, arrange a swap for those days with another developer. Please ensure delivery managers are aware of this.
+- If you need a whole shift swap, arrange this with another developer from your team.
+
+For either of the above, let the Technical On-Call delivery manager know, so that they can update the schedule on PagerDuty.
+
+If you cannot make your shift because you’re ill, message the delivery manager and #govuk-technical-on-call Slack channel.
+
+If your working patterns are not compatible with a 9.30am-5.30pm shift, let the Technical On-Call team know so they can find extra support.
+
+If you do not work a 5-day week, please talk to your delivery manager to arrange cover with another developer on your team.
+
+### Away days and all-staff events
+
+Before attending an all-staff event, team away-day or any other event that could keep you away from your laptop for long periods at a time: try to swap your shift with someone who is _not_ attending ([see above](#shift-swaps-working-patterns-and-sickness)).
+
+Otherwise, attending such events is allowed provided you are able to regularly check Slack (e.g. on an hourly basis) and are prepared to drop what you're doing and work on anything urgent that comes in. You must also be contactable by phone so that you can quickly respond to PagerDuty alerts.
+
 ## Things that may result in you being contacted
 
 ### Automated monitoring
@@ -39,7 +78,9 @@ GOV.UK developers are part of an on-call rota to keep GOV.UK running 24/7. Engin
 We use [PagerDuty](/manual/pagerduty.html)
 for automated monitoring. You can update your [notification rules](https://support.pagerduty.com/docs/user-profile#notification-rules)
 in your PagerDuty account to notify you however you want (phone call, SMS, email,
-push notification). There are 2 ways that this might contact you:
+push notification). We carry out a [Pagerduty drill](/manual/pagerduty.html#pagerduty-drill) every Monday morning at 10am UTC (11am BST).
+
+There are 2 reasons that PagerDuty might contact you:
 
 #### Alertmanager alerts
 
