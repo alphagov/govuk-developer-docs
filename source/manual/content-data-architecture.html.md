@@ -67,6 +67,13 @@ This data is fed into content-data-api using the [ETL process](#etl-processor).
 
 These forms are managed and rendered by the [Feedback app][]. When a user fills in the form on GOV.UK and submits the information, the anonymous data is then sent to [Support API][] to be stored and processed further. Users of the Support app can then query the information in the Feedback Explorer.
 
+There are two kinds of feedback:
+
+1. "Named contact feedback": the public contact form at https://www.gov.uk/contact/govuk, which is the one technical means by which the public can start a two-way conversation with the government. It is rendered by Feedback, and form submissions are raised directly as new tickets in Zendesk, which are initially reviewed by User Support before being triaged elsewhere.
+1. "Anonymous feedback": the little "is this page useful?" prompt at the end of each page. If users choose "No", they’re invited to share their email and are then sent a SmartSurvey link where they can share further feedback. There’s also a "Report a problem with this page" button, which lets them describe what they were doing and what went wrong, but they’re not asked for an email address, so again it’s just one-way feedback.
+
+All of the anonymous feedback is rendered by Feedback and collected via Support API. The data is then pulled into Content Data, where it can be reviewed by content folks / performance analysts.
+
 ![Overview of Feedback Explorer](/images/content-data-architecture-feedback-explorer.png)
 
 Content Data API only collects metrics on the number of feedback comments for pages on GOV.UK from Support API. This data is fed into its data warehouse using the [Extract, Transform, Load (ETL) process](#etl-processor).
