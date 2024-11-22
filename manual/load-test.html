@@ -11,23 +11,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Dependency Review - GOV.UK Developer Documentation</title>
+    <title>Run a load test with k6 - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/dependency-review.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/load-test.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Dependency Review - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/dependency-review.html" />
+      <meta name="twitter:title" content="Run a load test with k6 - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/load-test.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Dependency Review" />
+      <meta property="og:title" content="Run a load test with k6" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/dependency-review.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/load-test.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -140,18 +140,7 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Dependency Review</span></a>
-    <ul>
-      <li>
-        <a href="#add-dependency-review-to-a-project"><span>Add Dependency Review to a project</span></a>
-      </li>
-      <li>
-        <a href="#where-to-find-security-alerts"><span>Where to find Security Alerts</span></a>
-      </li>
-      <li>
-        <a href="#dealing-with-security-alerts"><span>Dealing with Security Alerts</span></a>
-      </li>
-    </ul>
+    <a href="#header"><span>Run a load test with k6</span></a>
   </li>
 </ul>
 
@@ -199,25 +188,98 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/136ac0872e43193f2c26c748a6f1e1c6edd7fed9">26 Oct 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/52413f6bd0101669087ebc13df411195ae194cae">20 Nov 2024</a>
 </div>
 
- <h1 id='header'>Dependency Review</h1> <p>The <a href="https://github.com/marketplace/actions/dependency-review">Dependency Review action</a> is a Software Composition Analysis (SCA) scan which diffs the old code and new code to identify whether there are any changes to the dependencies included in the project. It is <a href="https://github.com/alphagov/govuk-infrastructure/pull/966">configured as a reusable workflow</a> and should be included as a job in the CI pipeline of all GOV.UK repositories. A reusable workflow design was selected so that enhancements to the scanning process can be managed centrally.</p>
-<h2 id='add-dependency-review-to-a-project'>Add Dependency Review to a project</h2><p>To use the Dependency Review reusable workflow, add the following job to the <code>jobs</code> section of your CI workflow:</p>
-<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="na">dependency-review</span><span class="pi">:</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s">Dependency Review scan</span>
-  <span class="na">uses</span><span class="pi">:</span> <span class="s">alphagov/govuk-infrastructure/.github/workflows/dependency-review.yml@main</span>
-</code></pre></div><h2 id='where-to-find-security-alerts'>Where to find Security Alerts</h2><p>Alerts can always be found in the job logs. Additionally, there is a job summary displayed beneath the GitHub Action run. Here, changes are summarised along with any vulnerabilities found.</p>
-<h2 id='dealing-with-security-alerts'>Dealing with Security Alerts</h2><p>Currently, Dependency Review is <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/dependency-review.yml">configured to find &ldquo;critical&rdquo; issues</a>. If issues are found, the check automatically &lsquo;fails&rsquo; and therefore blocks merging of the PR. We therefore want to avoid false positives and wasting developer time, so have set the bar high and only alert on critical issues. Over time, we intent to tune the dial so this becomes more strict.</p>
-<p>Alerts can be resolved only by fixing the issue and running the tests again. Vulnerability alerts provide a link to the <a href="https://github.com/advisories">GitHub advisory</a> database where advice on resolving the issue can be found. Dismissing an alert requires adding the GitHub Advisory Database ID (GHSA) to the inline configuration <a href="https://github.com/marketplace/actions/dependency-review#inline-configuration">via the <code>allow-ghsas</code> property</a>. As the workflow is a communal resource, this should be done sparingly and include a well detailed comment about why it is being skipped.</p>
+ <h1 id='header'>Run a load test with k6</h1> <p>These instructions are based on <a href="https://grafana.com/blog/2022/06/23/running-distributed-load-tests-on-kubernetes/">this blog post</a>.</p>
+
+<ol>
+<li><p>Determine the name of the Kubernetes context to use:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl config get-contexts
+</code></pre></div><p>The output will list the environments and their names (e.g. <code>integration</code>, <code>staging</code> or <code>production</code>, or however they are named in your <code>~/.kube/config</code> file).</p></li>
+<li><p>Log into AWS and set the context to the environment you wish to test (this is the context name from the previous step):</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">ENVIRONMENT</span><span class="o">=</span>staging
+<span class="nv">ROLE</span><span class="o">=</span>admin
+
+<span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-<span class="k">${</span><span class="nv">ENVIRONMENT</span><span class="k">}</span>-<span class="k">${</span><span class="nv">ROLE</span><span class="k">}</span> <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
+kubectl config use-context <span class="nv">$ENVIRONMENT</span>
+</code></pre></div>
+<blockquote>
+<p>You will need to assume the <code>admin</code> role in order to deploy k6 to the cluster.</p>
+</blockquote></li>
+<li><p>Clone the <code>k6-operator</code> repo and make this:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>git clone git@github.com:grafana/k6-operator.git <span class="o">&amp;&amp;</span> <span class="nb">cd </span>k6-operator
+make deploy
+</code></pre></div>
+<blockquote>
+<p>If you get an error similar to <code>invalid go version &#39;1.22.0&#39;: must match format 1.23</code> then you need to upgrade <code>go</code> to the correct version.
+This can be done by using Homebrew, e.g. <code>brew install go@1.23</code></p>
+</blockquote></li>
+<li><p>Write your test script, for example to test 3000 virtual users against the Collections app&rsquo;s <code>/world</code> page over 30 seconds (bypassing router):</p>
+<div class="highlight"><pre class="highlight javascript" tabindex="0"><code><span class="k">import</span> <span class="nx">http</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">k6/http</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">check</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">k6</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">vus</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+  <span class="na">duration</span><span class="p">:</span> <span class="dl">'</span><span class="s1">30s</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://collections.apps.svc.cluster.local/world</span><span class="dl">'</span><span class="p">);</span>
+
+  <span class="nx">check</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">is status 200</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">is status 2xx, not 200</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">201</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">299</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">is status 3xx</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">300</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">399</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">is status 4xx</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">400</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">499</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">is status 5xx</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">500</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">599</span><span class="p">,</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li><p>Run your code locally to make sure it works:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k6 run test.js
+</code></pre></div>
+<blockquote>
+<p>You may see errors related to connections as you may not be able to establish the correct number of connections from your machine.</p>
+</blockquote></li>
+<li><p>Deploy the test script:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl create configmap my-test-name <span class="nt">--from-file</span> /path/to/our/test.js
+</code></pre></div>
+<blockquote>
+<p>Replace <code>my-test-name</code> with a name for this load test. The name will be used later on, e.g. in the name of the pods that run the test.</p>
+</blockquote></li>
+<li><p>Create a YAML file to contain your custom resource:</p>
+<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">k6.io/v1alpha1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">K6</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">k6-load-test</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">parallelism</span><span class="pi">:</span> <span class="m">4</span>
+  <span class="na">script</span><span class="pi">:</span>
+    <span class="na">configMap</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">my-test-name</span>
+      <span class="na">file</span><span class="pi">:</span> <span class="s">test.js</span>
+</code></pre></div>
+<blockquote>
+<p>This resource will spawn 4 test runners. You may need to increase this value to run a large scale test.</p>
+</blockquote></li>
+<li><p>Deploy your custom resource:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl apply <span class="nt">-f</span> /path/to/our/k6/custom-resource.yml
+</code></pre></div>
+<blockquote>
+<p>At this point, your test will have started. You can track progress using <code>kubectl get pods</code>.</p>
+</blockquote></li>
+<li><p>Once all the pods are marked as <code>completed</code>, you can retrieve the output of each runner by requesting the logs.</p>
+<p>First get the names of each pod:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl get pods
+</code></pre></div><p>For each runner pod, retrieve the logs:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl logs my-test-name-1-abcde
+</code></pre></div></li>
+<li><p>After running the tests, tidy up by deleting your custom resource:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl delete <span class="nt">-f</span> /path/to/our/k6/custom-resource.yml
+</code></pre></div></li>
+</ol>
 
   <div class='related-content'>
 
@@ -230,6 +292,7 @@
           <ul class="govuk-list">
             <li><a href="/manual/brakeman.html">Brakeman</a></li>
             <li><a href="/manual/codeql.html">CodeQL</a></li>
+            <li><a href="/manual/dependency-review.html">Dependency Review</a></li>
             <li><a href="/manual/testing.html">How we test GOV.UK</a></li>
             <li><a href="/manual/pact-testing.html">Pact Testing</a></li>
           </ul>
@@ -239,7 +302,6 @@
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/load-test.html">Run a load test with k6</a></li>
             <li><a href="/manual/test-and-build-a-project-with-github-actions.html">Test & build a project with GitHub Actions</a></li>
           </ul>
         </div>
@@ -253,8 +315,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/dependency-review.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Dependency+Review%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fdependency-review.html%29&amp;labels=bug&amp;title=Re%3A+%27Dependency+Review%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/load-test.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Run+a+load+test+with+k6%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fload-test.html%29&amp;labels=bug&amp;title=Re%3A+%27Run+a+load+test+with+k6%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
