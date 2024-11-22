@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/a5655fe6a2c7ed9c73b01b9811114b828fd8048d">21 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/02735b36c24b1b7c8367ad278a3c9429468a3826">21 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -532,9 +532,19 @@ hold other elements. It is used when we don't want to want to create a row/grid 
 </code></pre>
 <p>This example uses the <code>blocks_container</code> for the element type in the second <a href="#two-column-layout">two-thirds width column</a>. Without this empty unstyled container we'd have no way of inserting multiple different blocks in the column.</p>
 <h4 id="columns-layout">Columns layout</h4>
-<p>Columns layout spreads its blocks out horizontally. Depending on the number of child blocks, each column will take all (1 block), 1/2 (2 blocks), 1/3 (3 blocks), or 1/4 (4 or more blocks) of the width. If there are more than 4 blocks, blocks will wrap around after every fourth block.</p>
+<p>Columns layout spreads its blocks out horizontally. The <code>columns</code> property determines how many columns will be in each row, and can accept the following values:</p>
+<ul>
+<li>
+<code>columns: 2</code> Two columns, each taking up half of the available space.</li>
+<li>
+<code>columns: 3</code> Three columns, each taking up one-third of the available space.</li>
+<li>any other value for <code>columns</code> will have no effect: all child elements will render the full width of this container.</li>
+</ul>
+<p>If <code>columns</code> is missing entirely, three columns will be rendered by default.</p>
 <h5 id="example">Example</h5>
+<p>In the following example, the first two <code>big_number</code> blocks will be side-by-side on the first row and the third block will drop down onto the next row, taking up the left hand column.</p>
 <pre lang="yaml"><code>- type: columns_layout
+  columns: 2
   blocks:
   - type: big_number
     number: £75m
