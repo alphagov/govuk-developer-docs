@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/8b075a3e26d775ad97b6b473ddaa22386e07cad2">21 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/a5655fe6a2c7ed9c73b01b9811114b828fd8048d">21 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -387,10 +387,26 @@
 <h3 id="compound-blocks">Compound blocks</h3>
 <p>Compound blocks generally render more than one component and can contain nested blocks. The nested blocks can be simple blocks or themselves compound blocks</p>
 <ul>
+<li><a href="#box">Box</a></li>
 <li><a href="#card">Card</a></li>
 <li><a href="#featured">Featured</a></li>
 <li><a href="#hero">Hero</a></li>
 </ul>
+<h4 id="box">Box</h4>
+<p>A box block renders its <code>content:</code> value as a <a href="https://components.publishing.service.gov.uk/component-guide/heading">Heading component</a>. If an <code>href:</code> is specified, the heading will link to that location. Subblocks are laid out vertically beneath the heading.</p>
+<p>Box blocks have a light grey background and can be styled with a predefined top border for colour-coded content using the <code>mission_type</code> property.</p>
+<h5 id="example">Example</h5>
+<pre lang="yaml"><code>- type: box
+  content: This is a heading
+  href: https://www.gov.uk
+  mission_type: 1
+  box_content:
+    blocks:
+      - type: govspeak
+        content: |
+          &lt;p&gt;Yorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis class.&lt;/p&gt;
+
+</code></pre>
 <h4 id="card">Card</h4>
 <p>A card block renders its <code>card_content:</code> value as a <a href="https://components.publishing.service.gov.uk/component-guide/heading">Heading component</a>, followed by the subblocks laid out vertically, followed by an image (if specified - at time of writing the image in the card block can not be taken from the content item and must be present in frontend).</p>
 <h5 id="example">Example</h5>
