@@ -201,15 +201,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/travel-advice-publisher/commit/9cb4241408e58baa892c99ee4e8295bcf987760a">23 May 2023</a>
+  Last updated: <a href="https://github.com/alphagov/travel-advice-publisher/commit/cf9f83f2023aeb23610120d38719e82c29cdb08b">18 Nov 2024</a>
 </div>
 
   <h1 class="page-title">travel-advice-publisher: # Further technical information</h1>
@@ -217,7 +210,7 @@
   <h2 id="further-technical-information">Further technical information</h2>
 <h3 id="models">Models</h3>
 <p>The list of countries is defined in <a href="https://github.com/alphagov/travel-advice-publisher/blob/main/lib/data/countries.yml"><code>lib/data/countries.yml</code></a>.</p>
-<p>Published travel advice is exposed through the <a href="https://github.com/alphagov/content-store">content-store</a> and presented in <a href="https://github.com/alphagov/frontend">frontend</a> and <a href="https://github.com/alphagov/government-frontend">government-frontend</a>.</p>
+<p>Published travel advice is exposed through the <a href="https://github.com/alphagov/content-store">content-store</a> and presented in <a href="https://github.com/alphagov/frontend">frontend</a>.</p>
 <h3 id="workflow">Workflow</h3>
 <p>Each country can have one or more editions. At any one time, there can be a single edition in draft, a single published edition and any number of archived editions. When an edition is published, the existing published edition will be archived.</p>
 <p>When published, unless the 'minor update' checkbox is checked, a change description must be provided. This is exposed in the API response and the frontend.</p>
