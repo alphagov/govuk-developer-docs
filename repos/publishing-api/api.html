@@ -233,7 +233,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/61245f244c4f4a004b431a51e0b0d9e15e128680">12 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/3b16af083c7d405a717831f11aa5f7bb04d7e8d2">20 Nov 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -253,7 +253,7 @@ message queue for other apps (e.g. <code>email-alert-service</code>) to consume.
 <li><a href="#post-v2contentcontent_iddiscard-draft"><code>POST /v2/content/:content_id/discard-draft</code></a></li>
 <li><a href="#get-v2content"><code>GET /v2/content</code></a></li>
 <li><a href="#get-v2contentcontent_id"><code>GET /v2/content/:content_id</code></a></li>
-<li><a href="#get-v2contentcontent_idembedded"><code>GET /v2/content/:content_id/embedded</code></a></li>
+<li><a href="#get-v2contentcontent_idhost-content"><code>GET /v2/content/:content_id/host-content</code></a></li>
 <li><a href="#patch-v2linkscontent_id"><code>PATCH /v2/links/:content_id</code></a></li>
 <li><a href="#get-v2linkscontent_id"><code>GET /v2/links/:content_id</code></a></li>
 <li><a href="#get-v2expanded-linkscontent_id"><code>GET /v2/expanded-links/:content_id</code></a></li>
@@ -902,9 +902,8 @@ included within the response.</p>
 </ul>
 </li>
 </ul>
-<h2 id="get-v2contentcontent_idembedded"><code>GET /v2/content/:content_id/embedded</code></h2>
-<p>Retrieves a summary list of any draft or published content which has an embedded
-reference to the target <code>:content_id</code>.</p>
+<h2 id="get-v2contentcontent_idhost-content"><code>GET /v2/content/:content_id/host-content</code></h2>
+<p>Retrieves a summary list of content which has an embedded reference to the target <code>:content_id</code>.</p>
 <!-- raw HTML omitted -->
 <p>Content can include an embedded reference in its body when
 it wants to defer to a reusable piece of content, such as an email address.</p>
