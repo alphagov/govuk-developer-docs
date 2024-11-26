@@ -121,7 +121,7 @@ Example message:
 
 > On 30 to 31 May 2022 users of GOV.UK were unable to subscribe and unsubscribe from email alerts to page changes.
 
-[inc]: /manual/incident-management-guidance.html
+[inc]: /manual.html#incident-management
 [status]: https://status.publishing.service.gov.uk
 [sp]: https://statuspage.io
 [man]: https://manage.statuspage.io
