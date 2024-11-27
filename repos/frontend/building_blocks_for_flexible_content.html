@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/02735b36c24b1b7c8367ad278a3c9429468a3826">21 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/8458dad43ac2be37600a6f75d3a8ee283d827f96">27 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -236,6 +236,7 @@
 <li><a href="#heading">Heading</a></li>
 <li><a href="#image">Image</a></li>
 <li><a href="#main-navigation">Main Navigation</a></li>
+<li><a href="#press-notices">Press notices</a></li>
 <li><a href="#quote">Quote</a></li>
 <li><a href="#share-links">Share links</a></li>
 <li><a href="#side-navigation">Side Navigation</a></li>
@@ -279,7 +280,7 @@
 <h4 id="govspeak">Govspeak</h4>
 <p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/govspeak">Govspeak content component</a>.</p>
 <p>Content for this block can either be written as <a href="https://govspeak-preview.publishing.service.gov.uk/guide">govspeak</a> or HTML. If you are adding a Govspeak block in config in the <code>frontend</code> application, it must be added as HTML. This is because, despite the name, the Govspeak component it calls actually renders HTML content.</p>
-<p>If you are adding the block in config in Whitehall you have a choice of writing it in either govspeak or HTML. That is because govspeak content added in Whitehall is automatically converted to HTML by publishing-api. However, if you use govspeak, you'll need to supply the <code>content-type</code> (see second example).</p>
+<p>If you are adding the block in config in Whitehall you have a choice of writing it in either govspeak or HTML. That is because govspeak content added in Whitehall is automatically converted to HTML by publishing-api. However, if you use govspeak, you'll need to supply the <code>content_type</code> (see second example).</p>
 <h5 id="examples">Examples</h5>
 <pre lang="yaml"><code>- type: govspeak
   content: |
@@ -289,7 +290,7 @@
 </code></pre>
 <pre lang="yaml"><code>- type: govspeak
   content:
-    content-type: text/govspeak
+    content_type: text/govspeak
     content: |
       ### Lorem heading
 
@@ -323,10 +324,36 @@
 <pre lang="yaml"><code>- type: main_navigation
   navigation_group_id: Top Menu
 </code></pre>
-<h4 id="quote">Quote</h4>
-<p>A blockquote.</p>
+<h4 id="press-notices">Press notices</h4>
+<p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/document_list">Document list component</a> with a hardcoded title that will only appear if there are any items in the list (if the list is entirely empty the heading will not appear either)</p>
+<p>The document list can either be populate with the most recent content tagged to a taxon, or from a hard-coded list.</p>
+<p>If the <code>taxon_base_path</code> is provided, the taxon exists and it has content tagged to it, the document list will be populated with that content, otherwise it will default to the hard-coded list.</p>
 <h5 id="example">Example</h5>
-<pre lang="yaml"><code>- type: quote
+<pre lang="yaml"><code>- type: press_notices
+  taxon_base_path: /government/government-efficiency-transparency-and-accountability
+  items:
+  - text: An example link
+    path: https://www.gov.uk
+    document_type: Press release
+    public_updated_at: "2016-06-27 10:29:44 +0000"
+  - text: Another example link
+    path: https://www.gov.uk
+    document_type: News article
+    public_updated_at: "2021-01-16 11:34:12 +0000"
+  - text: A third example link
+    path: https://www.gov.uk
+    document_type: Consultation
+    public_updated_at: "2024-02-01 09:00:11 +0000"
+
+
+#### Quote
+
+A blockquote.
+
+##### Example
+
+```yaml
+- type: quote
   text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis class"
   cite: "Lorem ipsum dolor sit, 28 September 2024"
 </code></pre>
