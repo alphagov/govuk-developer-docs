@@ -4,7 +4,6 @@ title: Configure a new GOV.UK repository
 parent: /manual.html
 layout: manual_layout
 section: GitHub
-type: learn
 ---
 
 When creating a new GOV.UK repo in Github, you must:
