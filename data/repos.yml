@@ -30,18 +30,21 @@
 - repo_name: bulk-changer
   type: Utilities
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   description: Command-line tools for bulk raising PRs across GOV.UK repos.
   sentry_url: false
 
 - repo_name: bulk-merger
   type: Utilities
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   description: For bulk merging Pull Requests for GOV.UK repos.
   sentry_url: false
 
 - repo_name: ckan-helm
   type: Utilities
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
 
 - repo_name: ckan-mock-harvest-sources
   type: data.gov.uk apps
@@ -83,11 +86,13 @@
 - repo_name: content-data-admin
   type: Supporting apps
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   production_hosted_on: eks
 
 - repo_name: content-data-api
   type: APIs
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   production_hosted_on: eks
 
 - repo_name: content-publisher
@@ -189,6 +194,7 @@
 
 - repo_name: github-trello-poster
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   management_url: https://dashboard.heroku.com/apps/govuk-github-trello-poster
   production_hosted_on: heroku
   type: Utilities
@@ -229,12 +235,14 @@
 
 - repo_name: govuk-aws
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   sentry_url: false
 
 - repo_name: govuk-aws-data
   private_repo: true
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   sentry_url: false
 
@@ -260,6 +268,7 @@
 
 - repo_name: govuk-crd-library
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
 
 - repo_name: govuk-data-science-workshop
@@ -268,12 +277,14 @@
 
 - repo_name: govuk-dependabot-merger
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   description: GitHub Action for auto-merging Dependabot PRs as per RFC-156
   sentry_url: false
 
 - repo_name: govuk-dependency-checker
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   production_hosted_on: eks
 
@@ -292,38 +303,45 @@
 - repo_name: govuk-dns-tf
   private_repo: true
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   description: Terraform configuration for managing DNS records
 
 - repo_name: govuk-dns-ui
   private_repo: true
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   description: Simple UI to help with management of GOV.UK DNS records
 
 - repo_name: govuk-docker
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   sentry_url: false
 
 - repo_name: govuk-e2e-tests
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   production_hosted_on: eks
   sentry_url: false
 
 - repo_name: govuk-exporter
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   sentry_url: false
 
 - repo_name: govuk-fastly
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   sentry_url: false
 
 - repo_name: govuk-fastly-secrets
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   sentry_url: false
   private_repo: true
@@ -331,10 +349,12 @@
 - repo_name: govuk-helm-charts
   type: Utilities
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
 
 - repo_name: govuk-infrastructure
   type: Utilities
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
 
 - repo_name: govuk-knowledge-graph-gcp
   team: "#data-engineering"
@@ -350,6 +370,7 @@
 
 - repo_name: govuk-mirror
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   description: A simple Go program used by GOV.UK to populate mirrors hosted by AWS S3 and GCP Storage
   sentry_url: false
@@ -411,6 +432,7 @@
 
 - repo_name: govuk-pact-broker
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   production_url: https://govuk-pact-broker-6991351eca05.herokuapp.com/
   production_hosted_on: heroku
   type: Utilities
@@ -418,6 +440,7 @@
 
 - repo_name: govuk-platform-internal
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   private_repo: true
   sentry_url: false
@@ -426,6 +449,7 @@
 - repo_name: govuk-replatform-test-app
   type: Utilities
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   sentry_url: false
 
 - repo_name: govuk-rfcs
@@ -435,16 +459,19 @@
 - repo_name: govuk-rota-announcer
   private_repo: true
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
 
 - repo_name: govuk-rota-generator
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   sentry_url: false
 
 - repo_name: govuk-ruby-images
   description: Base container images for GOV.UK Ruby apps
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   sentry_url: false
 
@@ -462,6 +489,7 @@
 - repo_name: govuk-user-reviewer
   private_repo: true
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   sentry_url: false
 
@@ -476,6 +504,7 @@
 
 - repo_name: govuk_app_config
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Gems
   sentry_url: false
 
@@ -519,6 +548,7 @@
 
 - repo_name: govuk_test
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Gems
   sentry_url: false
 
@@ -608,6 +638,7 @@
 
 - repo_name: plek
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Gems
   sentry_url: false
 
@@ -630,6 +661,7 @@
 
 - repo_name: rack-logstasher
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Gems
   sentry_url: false
 
@@ -641,11 +673,13 @@
 - repo_name: release
   type: Supporting apps
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   production_hosted_on: eks
 
 - repo_name: router
   type: Supporting apps
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   production_hosted_on: eks
   production_url: false
   argo_cd_apps:
@@ -655,6 +689,7 @@
 - repo_name: router-api
   type: APIs
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   production_hosted_on: eks
   argo_cd_apps:
     - router-api
@@ -662,11 +697,13 @@
 
 - repo_name: rubocop-govuk
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Gems
   sentry_url: false
 
 - repo_name: seal
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   sentry_url: false
 
@@ -708,6 +745,7 @@
 
 - repo_name: siteimprove_api_client
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Gems
   sentry_url: false
   description: |
@@ -725,6 +763,7 @@
 
 - repo_name: smokey
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   type: Utilities
   production_hosted_on: eks
   sentry_url: false
@@ -745,11 +784,13 @@
 - repo_name: support
   type: Supporting apps
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   production_hosted_on: eks
 
 - repo_name: support-api
   type: APIs
   team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
   production_hosted_on: eks
 
 - repo_name: transition
