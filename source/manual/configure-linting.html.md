@@ -2,7 +2,6 @@
 owner_slack: "#govuk-developers"
 title: Configure linting
 section: Applications
-type: learn
 layout: manual_layout
 parent: "/manual.html"
 ---

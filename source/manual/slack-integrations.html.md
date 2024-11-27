@@ -3,7 +3,6 @@ owner_slack: "#govuk-developers"
 title: How to add popular GOV.UK Slack integrations
 section: Team tools
 layout: manual_layout
-type: learn
 parent: "/manual.html"
 ---
 
