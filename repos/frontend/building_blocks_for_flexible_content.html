@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/95fc3ee8f2785661a6786cef3814f58b28d042fd">27 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/2f50e9c0694fa0d789ce588752aea4a4b75b6ef9">28 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -301,8 +301,10 @@
 </code></pre>
 <h4 id="image">Image</h4>
 <p>A simple image.</p>
-<p>6 versions of the image need to be supplied. This is also true for blocks like <a href="#featured">Featured</a> and <a href="#hero">Hero</a> that contain images.</p>
-<pre lang="yaml"><code>- type:
+<p>3 versions of the image need to be supplied. This is also true for blocks like <a href="#featured">Featured</a> and <a href="#hero">Hero</a> that contain images.</p>
+<p>NB: Like <a href="#hero">Hero</a> if you are adding this block in Whitehall you do not need to manually specify the <code>_x2</code> variants.</p>
+<p>NB: Unlike <a href="#hero">Hero</a> this image usually displays 3 different versions of the same image, with the same ratio, so although in Whitehall you have to specify the three tags (desktop, mobile, and tablet), you can usually use the same markdown image tag.</p>
+<pre lang="yaml"><code>- type: image
   image:
     alt: "Placeholder alt text"
     sources:
@@ -601,10 +603,6 @@ A blockquote.
         &lt;p&gt;Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.&lt;/p&gt;
     - type: heading
       content: "Title of content"
-    - type: image
-      theme: full_width
-      src: "landing_page/placeholder/960x640.png"
-      alt: "Placeholder image"
     - type: govspeak
       content: |
         &lt;p&gt;Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.&lt;/p&gt;
