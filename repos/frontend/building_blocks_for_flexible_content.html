@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/5584cb44c7557ce74a50cc9d3af1fadb2426f530">26 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/95fc3ee8f2785661a6786cef3814f58b28d042fd">27 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -504,7 +504,6 @@ A blockquote.
 <ul>
 <li><a href="#blocks-container">Blocks container</a></li>
 <li><a href="#columns-layout">Columns layout</a></li>
-<li><a href="#grid-container">Grid Container</a></li>
 <li><a href="#two-column-layout">Two column layout</a></li>
 </ul>
 <h4 id="blocks-container">Blocks container</h4>
@@ -565,55 +564,6 @@ A blockquote.
   - type: big_number
     number: £43
     label: Cost of a cup of coffee in Covent Garden
-</code></pre>
-<h4 id="grid-container">Grid Container</h4>
-<p>Like the blocks container, but uses <code>display: flex</code> to lay out the child blocks.</p>
-<p>The grid container automatically arranges blocks into their own columns, independently of using the design system’s row/columns approach. These new columns are equally sized and spaced to a maximum of three. If more than three, a second row is started. It was created to give us control of the three columns of charts on the landing page homepage, but could be used to arrange other content into columns too.</p>
-<p>Note: The grid container was developed specifically to be used with card blocks and has not been tested with other block types. It was necessary when the design had cards that had three elements: Title, body text, chart. The grid container was required to get all the charts to line up regardless of how much body text was in the card. It may be possible to remove this block as there is no longer a requirement for body text.</p>
-<pre lang="yaml"><code>- type: grid_container
-  blocks:
-  - type: card
-    card_content:
-      blocks:
-        - type: heading
-          content: Korem ipsum dolor sit
-          path: /landing-page/task
-        - type: statistics
-          title: "Chart to visually represent some data"
-          x_axis_label: "X Axis"
-          y_axis_label: "Y Axis"
-          csv_file: "data_one.csv"
-          data_source_link: https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/ihyq/qna
-          minimal: true
-          minimal_link: /landing-page/task
-  - type: card
-    card_content:
-      blocks:
-        - type: heading
-          content: Korem ipsum dolor sit
-          path: /landing-page/task
-        - type: statistics
-          title: "Chart to visually represent some data"
-          x_axis_label: "X Axis"
-          y_axis_label: "Y Axis"
-          csv_file: "data_one.csv"
-          data_source_link: https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/ihyq/qna
-          minimal: true
-          minimal_link: /landing-page/task
-  - type: card
-    card_content:
-      blocks:
-        - type: heading
-          content: Korem ipsum dolor sit
-          path: /landing-page/task
-        - type: statistics
-          title: "Chart to visually represent some data"
-          x_axis_label: "X Axis"
-          y_axis_label: "Y Axis"
-          csv_file: "data_one.csv"
-          data_source_link: https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/ihyq/qna
-          minimal: true
-          minimal_link: /landing-page/task
 </code></pre>
 <h4 id="two-column-layout">Two column layout</h4>
 <p>A two column layout takes one or two blocks, and depending on the theme (<code>one_third_two_thirds</code> or <code>two_thirds_one_third</code>), it lays them out horizontally with the first (left) or second (right) block getting twice the width of the other.</p>
