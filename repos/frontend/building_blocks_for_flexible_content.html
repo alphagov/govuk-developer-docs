@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/2f50e9c0694fa0d789ce588752aea4a4b75b6ef9">28 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/5a083c86d94d35520f49028a93e7006feaea3946">28 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -304,7 +304,9 @@
 <p>3 versions of the image need to be supplied. This is also true for blocks like <a href="#featured">Featured</a> and <a href="#hero">Hero</a> that contain images.</p>
 <p>NB: Like <a href="#hero">Hero</a> if you are adding this block in Whitehall you do not need to manually specify the <code>_x2</code> variants.</p>
 <p>NB: Unlike <a href="#hero">Hero</a> this image usually displays 3 different versions of the same image, with the same ratio, so although in Whitehall you have to specify the three tags (desktop, mobile, and tablet), you can usually use the same markdown image tag.</p>
+<p>If needed, an optional <code>theme_colour</code> integer value can be specified, which gives the image a border top utilising the theme colour you specified.</p>
 <pre lang="yaml"><code>- type: image
+  theme_colour: 1
   image:
     alt: "Placeholder alt text"
     sources:
