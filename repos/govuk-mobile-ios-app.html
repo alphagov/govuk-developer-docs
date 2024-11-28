@@ -237,6 +237,51 @@
     <div class="gem-c-summary__block"></div>
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<blockquote>
+<p>[!Note]
+This application is currently in a closed Beta and is not distributed for general use.</p>
+</blockquote>
+
+<h2 id="getting-started">Getting started:</h2>
+
+<h3 id="install-xcode">Install Xcode</h3>
+
+<p>The application will run on several Xcode versions. The working version of the project can be found <a href="https://github.com/alphagov/govuk-mobile-ios-app/blob/main/.xcode-version">here</a></p>
+
+<h3 id="resolve-packages">Resolve packages</h3>
+
+<p>Before the app will build, you will need to navigate to <code>File -&gt; Packages -&gt; Resolve Package Versions</code> to install required dependencies.</p>
+
+<h3 id="run">Run</h3>
+
+<p><!-- raw HTML omitted -->cmd<!-- raw HTML omitted --> + <!-- raw HTML omitted -->R<!-- raw HTML omitted --> <!-- raw HTML omitted --></p>
+
+<blockquote>
+<p>[!Note]
+You will need to have an Apple developer account to run the project on a physical device, but it can run on a simulator.</p>
+</blockquote>
+
+<h2 id="unit-tests">Unit tests</h2>
+
+<p>The application has several unit tests and snapshot tests. Although the unit tests do not depend on a specific simulator, the snapshot tests do.
+If you wish to run the full suite of tests successfully, the current device requirement can be found <a href="https://github.com/alphagov/govuk-mobile-ios-app/blob/main/Fastlane/.build.yml">here</a> under <code>[scan][devices]</code></p>
+
+<h2 id="linting">Linting</h2>
+
+<h3 id="swiftlint">SwiftLint</h3>
+
+<p>The application uses SwiftLint for linting swift code. Rules can be found <a href="https://github.com/alphagov/govuk-mobile-ios-app/blob/main/.swiftlint.yml">here</a>
+If you want swiftlint to highlight issues in Xcode, make sure you have it installed. You can do this using <a href="https://brew.sh/">Homebrew</a></p>
+
+<p><code>brew install swiftlint</code></p>
+
+<h3 id="rubocop">Rubocop</h3>
+
+<p>The application uses Rubocop for linting Ruby code used in CI builds.
+To run this before pushing, make sure you have rubocop installed. This can be done with <code>gem install rubocop</code> although the prefered method is to install all Gems using <a href="https://bundler.io/">Bundler</a> by running <code>bundle install</code></p>
+
+<p>Once you have Rubocop installed, you can check the app with <code>bundle exec rubocop</code> or <code>rubocop</code> if you aren&rsquo;t using Bundler</p>
 <p></div></p>
 
 
