@@ -221,13 +221,17 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/28dafc6034abb746e69a3ac81134ea2c4688ebdd">20 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/a9f1b7a26df82c0121661c78258d7ae11ce3dbd0">28 Nov 2024</a>
 </div>
 
   <h1 class="page-title">govuk-docker: How Tos</h1>
 
   
 <p>👉 <a href="/repos/govuk-docker/troubleshooting.html">Check the troubleshooting guide if you have a problem.</a></p>
+<h2 id="how-to-get-back-to-a-clean-slate">How to: get back to a clean slate</h2>
+<p>If you encounter an issue with your Docker setup and you've already exhausted all other ideas, here's a quick one-liner that stops and removes absolutely everything. You can then follow the govuk-docker README instructions for <code>make</code>-ing your app again.</p>
+<pre><code>docker stop $(docker ps -a -q) &amp;&amp; docker rm $(docker ps -a -q) &amp;&amp; docker rmi $(docker images -q) -f &amp;&amp; docker volume prune &amp;&amp; docker container prune &amp;&amp; docker image prune &amp;&amp; docker network prune &amp;&amp; docker system prune --all --volumes
+</code></pre>
 <h2 id="how-to-reduce-typing-with-shortcuts">How to: reduce typing with shortcuts</h2>
 <p>Typing the <a href="https://github.com/alphagov/govuk-docker/blob/main/README.md#usage">full commands</a> is likely to get tiring. We've added a couple of lightweight helper scripts alongside govuk-docker, which figure out the application you're running based on the name of the current directory.</p>
 <pre><code># full commands
