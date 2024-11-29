@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/5a083c86d94d35520f49028a93e7006feaea3946">28 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/d8bd7251b3264c354efef717b5993fa7966d637c">29 Nov 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -237,7 +237,6 @@
 <li><a href="#heading">Heading</a></li>
 <li><a href="#image">Image</a></li>
 <li><a href="#main-navigation">Main Navigation</a></li>
-<li><a href="#press-notices">Press notices</a></li>
 <li><a href="#quote">Quote</a></li>
 <li><a href="#share-links">Share links</a></li>
 <li><a href="#side-navigation">Side Navigation</a></li>
@@ -256,10 +255,12 @@
   label: amount of money that looks big
 </code></pre>
 <h4 id="document-list">Document list</h4>
-<p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/document_list">Document list component</a></p>
+<p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/document_list">Document list component</a> with a title that will only appear if there are any items in the list (if the list is entirely empty the heading will not appear either)</p>
 <p>The document list can either be populated with the most recent content tagged to a taxon or from a hard-coded list.</p>
 <p>If the <code>taxon_base_path</code> is provided and the taxon exists and it has content tagged to it, the document list will be populated with that content. If not, it will default to the hard-coded list.</p>
+<p>If the <code>heading</code> is provided that will be used, otherwise it will default to the hard-coded heading.</p>
 <pre lang="yaml"><code>- type: document_list
+  heading: My Favourite Things
   taxon_base_path: /government/government-efficiency-transparency-and-accountability
   items:
   - text: An example link
@@ -296,7 +297,9 @@
 </code></pre>
 <h4 id="heading">Heading</h4>
 <p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/heading">Heading component</a>. This block uses <code>content</code> where the component uses <code>text</code> for the title text key. This is so that headings can appear in search (only values inside a <code>content</code> key will be indexed when being published from Whitehall - see <a href="#indexing-block-content-in-search">Indexing block content in search</a>)</p>
+<p>If an <code>id</code> is added, the heading can be referenced in an anchor link.</p>
 <pre lang="yaml"><code>- type: heading
+  id: heading-id
   content: Porem ipsum dolor
 </code></pre>
 <h4 id="image">Image</h4>
@@ -322,34 +325,9 @@
 <pre lang="yaml"><code>- type: main_navigation
   navigation_group_id: Top Menu
 </code></pre>
-<h4 id="press-notices">Press notices</h4>
-<p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/document_list">Document list component</a> with a hardcoded title that will only appear if there are any items in the list (if the list is entirely empty the heading will not appear either)</p>
-<p>The document list can either be populate with the most recent content tagged to a taxon, or from a hard-coded list.</p>
-<p>If the <code>taxon_base_path</code> is provided, the taxon exists and it has content tagged to it, the document list will be populated with that content, otherwise it will default to the hard-coded list.</p>
-<h5 id="example">Example</h5>
-<pre lang="yaml"><code>- type: press_notices
-  taxon_base_path: /government/government-efficiency-transparency-and-accountability
-  items:
-  - text: An example link
-    path: https://www.gov.uk
-    document_type: Press release
-    public_updated_at: "2016-06-27 10:29:44 +0000"
-  - text: Another example link
-    path: https://www.gov.uk
-    document_type: News article
-    public_updated_at: "2021-01-16 11:34:12 +0000"
-  - text: A third example link
-    path: https://www.gov.uk
-    document_type: Consultation
-    public_updated_at: "2024-02-01 09:00:11 +0000"
-
-
-#### Quote
-
-A blockquote.
-
-```yaml
-- type: quote
+<h4 id="quote">Quote</h4>
+<p>A blockquote.</p>
+<pre lang="yaml"><code>- type: quote
   text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis class"
   cite: "Lorem ipsum dolor sit, 28 September 2024"
 </code></pre>
