@@ -259,9 +259,15 @@ This is used by GOV.UK to populate mirrors hosted by AWS S3 and GCP Storage.</p>
 </li>
 </ul>
 </li>
+<li>URL_RULES: A comma-separated list of regex patterns matching URLs that the crawler should crawl. All other URLs will be avoided.
+<ul>
+<li>Example: <code>URL_RULES=https://www.gov.uk/.<em></code>
+</li>
+</ul>
+</li>
 <li>DISALLOWED_URL_RULES: A comma-separated list of regex patterns matching URLs that the crawler should avoid.
 <ul>
-<li>Example: <code>DISALLOWED_URL_RULES=/search/.<em>,/government/.</em>.atom</code>
+<li>Example: <code>DISALLOWED_URL_RULES=/search/.</em>,/government/.*.atom</code>
 </li>
 </ul>
 </li>
