@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/d8bd7251b3264c354efef717b5993fa7966d637c">29 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/ed106471e5c3040269a96dcf79a0b79b25ac48cb">2 Dec 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -548,7 +548,13 @@
     label: Cost of a cup of coffee in Covent Garden
 </code></pre>
 <h4 id="two-column-layout">Two column layout</h4>
-<p>A two column layout takes one or two blocks, and depending on the theme (<code>one_third_two_thirds</code> or <code>two_thirds_one_third</code>), it lays them out horizontally with the first (left) or second (right) block getting twice the width of the other.</p>
+<p>A two column layout takes one or two blocks and a theme to determine the column layout. These options are:</p>
+<ul>
+<li><code>one_third_two_thirds</code></li>
+<li><code>two_thirds_one_third</code></li>
+<li>
+<code>two_thirds_right</code> - provides the same layout as <code>one_third_two_thirds</code> but content for the left column is not required</li>
+</ul>
 <p>Theme: one third / two thirds</p>
 <pre lang="yaml"><code>- type: two_column_layout
   theme: one_third_two_thirds
@@ -559,20 +565,9 @@
     blocks:
     - type: govspeak
       content: |
-        &lt;p&gt;Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
-        molestie, dictum esta, mattis tellus.&lt;/p&gt;
-    - type: statistics
-      title: "Chart to visually represent data"
-      x_axis_label: "X Axis"
-      y_axis_label: "Y Axis"
-      csv_file: "data_one.csv"
-      data_source_link: https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/ihyq/qna
-    - type: govspeak
-      content: |
-        &lt;p&gt;Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
-        molestie, dictum esta, mattis tellus.&lt;/p&gt;
+        &lt;p&gt;This content will be in a two thirds column.&lt;/p&gt;
 </code></pre>
-<p>Theme: two thirds / one third</p>
+<p>Theme: two thirds / one third (note that content is not required for the one third column)</p>
 <pre lang="yaml"><code>- type: two_column_layout
   theme: two_thirds_one_third
   blocks:
@@ -580,15 +575,21 @@
     blocks:
     - type: govspeak
       content: |
-        &lt;p&gt;Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.&lt;/p&gt;
-    - type: heading
-      content: "Title of content"
+        &lt;p&gt;This content will be in a two thirds column.&lt;/p&gt;
+  - type: govspeak
+      content: |
+        &lt;p&gt;This content will be in a one third column.&lt;/p&gt;
+</code></pre>
+<p>Theme: two thirds right</p>
+<pre lang="yaml"><code>- type: two_column_layout
+  theme: two_thirds_right
+  blocks:
+  - type: blocks_container
+    blocks:
     - type: govspeak
       content: |
-        &lt;p&gt;Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.&lt;/p&gt;
+        &lt;p&gt;This content will be in a two thirds column, offset one third from the left of the page.&lt;/p&gt;
 </code></pre>
-<p>The left column is always populated if only one column is defined.
-A blocks container applied to a column so that everything in the column can be styled relative to one and other.</p>
 <h2 id="indexing-block-content-in-search">Indexing block content in search</h2>
 <p>Only content in blocks that have a label of <code>content</code> will be indexed in site search.</p>
 <pre lang="yaml"><code>blocks:
