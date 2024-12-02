@@ -267,7 +267,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b15181fe9c677d7bb7c35e399fa0a08b13b0e786">21 Jun 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/7ba40bfbea1990afe11730ea5be6585dc9564a17">2 Dec 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component wrapper helper</h1>
@@ -305,7 +305,7 @@
 <li>
 <code>open</code> - accepts an open attribute value (true or false)</li>
 </ul>
-<p>To prevent breaking <a href="/repos/govuk_publishing_components/component_principles.html">component isolation</a>, passed classes should only be used for JavaScript hooks and not styling. All component styling should be included only in the component itself. Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code>, <code>app-c-</code> or <code>govuk-</code> are also permitted, but should only be used within the component and not passed to it.</p>
+<p>To prevent breaking <a href="/repos/govuk_publishing_components/component_principles.html">component isolation</a>, passed classes should only be used for JavaScript hooks and not styling. All component styling should be included only in the component itself. Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code>, <code>govuk-</code>, <code>app-c-</code>, <code>brand--</code>, or <code>brand__</code> are also permitted, as well as an exact match of <code>direction-rtl</code>, but these classes should only be used within the component and not passed to it.</p>
 <p>The helper checks that any passed <code>id</code> attribute is valid, specifically that it does not start with a number or contain whitespace or contain any characters other than letters, numbers, and <code>_</code> or <code>-</code>. It also checks that role and lang attribute values are valid, along with some other checks detailed below.</p>
 <p>An example of passing data to a component with the component wrapper:</p>
 <pre lang="ruby"><code>&lt;%= render "govuk_publishing_components/components/example", {
