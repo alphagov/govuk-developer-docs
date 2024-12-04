@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/ed106471e5c3040269a96dcf79a0b79b25ac48cb">2 Dec 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/ea2fd59095460dbb30159bd7a150b5c111996def">2 Dec 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -230,31 +230,31 @@
 <h3 id="simple-blocks">Simple blocks</h3>
 <p>Simple blocks generally render one component or "thing". They can either be rendered directly or as the children of compound blocks.</p>
 <ul>
-<li><a href="#action-link">Action link</a></li>
-<li><a href="#big-number">Big number</a></li>
-<li><a href="#document-list">Document list</a></li>
+<li><a href="#action-link">Action Link</a></li>
+<li><a href="#big-number">Big Number</a></li>
+<li><a href="#document-list">Document List</a></li>
 <li><a href="#govspeak">Govspeak</a></li>
 <li><a href="#heading">Heading</a></li>
 <li><a href="#image">Image</a></li>
 <li><a href="#main-navigation">Main Navigation</a></li>
 <li><a href="#quote">Quote</a></li>
-<li><a href="#share-links">Share links</a></li>
+<li><a href="#share-links">Share Links</a></li>
 <li><a href="#side-navigation">Side Navigation</a></li>
 <li><a href="#statistics">Statistics</a></li>
 </ul>
-<h4 id="action-link">Action link</h4>
+<h4 id="action-link">Action Link</h4>
 <p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/action_link">action link component</a>.</p>
 <pre lang="yaml"><code>- type: action_link
   text: "Learn more about our goals"
   href: "/landing-page/goals"
 </code></pre>
-<h4 id="big-number">Big number</h4>
+<h4 id="big-number">Big Number</h4>
 <p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/big_number">Big number component</a></p>
 <pre lang="yaml"><code>- type: big_number
   number: £75m
   label: amount of money that looks big
 </code></pre>
-<h4 id="document-list">Document list</h4>
+<h4 id="document-list">Document List</h4>
 <p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/document_list">Document list component</a> with a title that will only appear if there are any items in the list (if the list is entirely empty the heading will not appear either)</p>
 <p>The document list can either be populated with the most recent content tagged to a taxon or from a hard-coded list.</p>
 <p>If the <code>taxon_base_path</code> is provided and the taxon exists and it has content tagged to it, the document list will be populated with that content. If not, it will default to the hard-coded list.</p>
@@ -331,7 +331,7 @@
   text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis class"
   cite: "Lorem ipsum dolor sit, 28 September 2024"
 </code></pre>
-<h4 id="share-links">Share links</h4>
+<h4 id="share-links">Share Links</h4>
 <p>A wrapper around a <a href="https://components.publishing.service.gov.uk/component-guide/heading">Heading component</a> and a <a href="https://components.publishing.service.gov.uk/component-guide/share_links">Share links component</a>.</p>
 <p>The heading is hard-coded in the share links view and cannot be configured in the block.</p>
 <pre lang="yaml"><code>- type: share_links
@@ -484,11 +484,11 @@
 <h3 id="layout-blocks">Layout blocks</h3>
 <p>Layout blocks are similar to compound blocks in that they contain nested blocks. They are used to arrange blocks on the page, and to make it easier to apply styling to the blocks.</p>
 <ul>
-<li><a href="#blocks-container">Blocks container</a></li>
-<li><a href="#columns-layout">Columns layout</a></li>
-<li><a href="#two-column-layout">Two column layout</a></li>
+<li><a href="#blocks-container">Blocks Container</a></li>
+<li><a href="#columns-layout">Columns Layout</a></li>
+<li><a href="#two-column-layout">Two Column Layout</a></li>
 </ul>
-<h4 id="blocks-container">Blocks container</h4>
+<h4 id="blocks-container">Blocks Container</h4>
 <p>A blocks container is used as an empty unstyled parent container to hold other elements. It is used when we don't want to want to create a row/grid layout to contain nested blocks. It is for situations where the grids and columns have already been defined, and you are nesting other blocks within them (see second example).</p>
 <p>It does nothing except contain other blocks and is only required as the top level element within columns created by two column layouts. Without a blocks container, there’s no way to add more than one sub-block in the column or arrange blocks on top of each other in a single column.</p>
 <pre lang="yaml"><code>- type: blocks_container
@@ -523,7 +523,7 @@
         href: "todo"
 </code></pre>
 <p>This example uses the <code>blocks_container</code> for the element type in the second <a href="#two-column-layout">two-thirds width column</a>. Without this empty unstyled container we'd have no way of inserting multiple different blocks in the column.</p>
-<h4 id="columns-layout">Columns layout</h4>
+<h4 id="columns-layout">Columns Layout</h4>
 <p>Columns layout spreads its blocks out horizontally. The <code>columns</code> property determines how many columns will be in each row, and can accept the following values:</p>
 <ul>
 <li>
@@ -547,7 +547,7 @@
     number: £43
     label: Cost of a cup of coffee in Covent Garden
 </code></pre>
-<h4 id="two-column-layout">Two column layout</h4>
+<h4 id="two-column-layout">Two Column Layout</h4>
 <p>A two column layout takes one or two blocks and a theme to determine the column layout. These options are:</p>
 <ul>
 <li><code>one_third_two_thirds</code></li>
@@ -603,6 +603,13 @@
   content: searchable header
 </code></pre>
 <p>In the example above only the text in the govspeak and header blocks will be searchable.</p>
+<h3 id="utility-blocks">Utility blocks</h3>
+<p>Utility blocks exist to support development. They will not render on the published view of the page, although they may render on the draft view of pages.</p>
+<ul>
+<li><a href="#block-error">Block Error</a></li>
+</ul>
+<h4 id="block-error">Block Error</h4>
+<p>This is a special type of block that handles errors in other blocks. If a block raises an error during initialization, the block factory will turn it into an error block. This will only render in draft view, where it will display the error in place. It will not show on the live site.</p>
 <h2 id="navigation-groups">Navigation Groups</h2>
 <p>The top-level key <code>navigation_groups</code> contains an array of items with the keys <code>id</code>, <code>name</code> and <code>links</code>. The id is used to identify the group for navigation blocks like <a href="#main-navigation">main navigation</a> and <a href="#side-navigation">side navigation</a>, which reference a navigation group with their <code>navigation_group_id</code> key. The <code>name</code> key is used for the main button text (if the navigation collapses behind a button). The <code>links</code> key contains an array of <code>text</code> keys. These <code>text</code> keys represent headings that are rendered on the navigation element. These <code>text</code> values also contain a child <code>links</code> item, with <code>links</code> being an array of links related to that heading.</p>
 <pre lang="yaml"><code>navigation_groups:
