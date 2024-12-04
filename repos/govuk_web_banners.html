@@ -221,11 +221,12 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Proof of Concept for centralising handling of Recruitment, Global, and Emergency banners (currently spread across apps)</p>
+<p>Proof of Concept for centralising handling of Recruitment, Global, and Emergency
+banners (currently spread across apps)</p>
 
 <h2 id="usage">Usage</h2>
 
-<p>Currently, supports recruitment banners</p>
+<p>Currently supports recruitment banners</p>
 
 <h2 id="adding-the-gem-to-your-application">Adding the gem to your application</h2>
 
@@ -249,19 +250,34 @@
 <pre><code>//= require govuk_web_banners/dependencies
 </code></pre>
 
-<p>Add a call to the partial in the layout or view that you want banners to appear in:</p>
+<h2 id="adding-recruitment-banners">Adding recruitment banners</h2>
+
+<p>Add a call to the partial in the layout or view that you want banners to appear
+in (typically recruitment banners should be in the layout, below the breadcrumbs
+and just above the <code>main</code> element):</p>
 
 <pre><code>  &lt;%= render "govuk_web_banners/recruitment_banner" %&gt;
 </code></pre>
 
-<p>You should make sure this line is above the call to render_component_stylesheets call if your
-app is using individual component stylesheets.</p>
+<h3 id="required-stylesheets">Required stylesheets</h3>
+
+<p>If you are using individual component stylesheets in your app, you should make
+sure the call to the recruitment_banner partial is above the call to
+render_component_stylesheets in your layout.</p>
+
+<p>If you are <em>not</em> using individual component stylesheets in your app, you will
+have to make sure the intervention component&rsquo;s styles are included in your
+application stylesheet:</p>
+
+<p><code>@import "govuk_publishing_components/components/intervention"</code></p>
 
 <h2 id="updating-banner-information-in-the-gem">Updating banner information in the gem</h2>
 
-<p>Data for the current set of live banners can be found at <code>config/govuk_web_banners/recruitment_banners.yml</code>. To
-add a banner to the config, add an entry under the banners: array. Note that this array must always be valid,
-so if there are no banners in the file, it must contain at least <code>banners: []</code></p>
+<p>Data for the current set of live banners can be found at
+<code>config/govuk_web_banners/recruitment_banners.yml</code>. To add a banner to the
+config, add an entry under the banners: array. Note that this array must always
+be valid, so if there are no banners in the file, it must contain at least
+<code>banners: []</code></p>
 
 <h3 id="example-banner-entry">Example banner entry</h3>
 
@@ -277,40 +293,48 @@ so if there are no banners in the file, it must contain at least <code>banners: 
   end_date: 18/11/2024
 </code></pre>
 
-<p>The required keys are <code>suggestion_text</code>, <code>suggestion_link_text</code>, and <code>survey_url</code> (the values to appear in the
-banner), and <code>page_paths</code> (an array of paths on which the banner should be shown).</p>
+<p>The required keys are <code>suggestion_text</code>, <code>suggestion_link_text</code>, and
+<code>survey_url</code> (the values to appear in the banner), and <code>page_paths</code> (an array of
+paths on which the banner should be shown).</p>
 
-<p>Optional keys are <code>name</code> (an identifying name for this banner, not rendered anywhere), and <code>start_date</code> / <code>end_date</code>
-(the banner becomes active at the start of the day specified as <code>start_date</code>, and stops at the <em>start</em> of the day
-specified as <code>end_date</code>). Start and end dates must be in the DD/MM/YYYY format parsable as a YAML -&gt; Date.</p>
+<p>Optional keys are <code>name</code> (an identifying name for this banner, not rendered
+anywhere), and <code>start_date</code> / <code>end_date</code> (the banner becomes active at the start
+of the day specified as <code>start_date</code>, and stops at the <em>start</em> of the day
+specified as <code>end_date</code>). Start and end dates must be in the DD/MM/YYYY format
+parsable as a YAML -&gt; Date.</p>
 
 <h3 id="keeping-the-config-file-valid-and-tidy">Keeping the config file valid and tidy</h3>
 
-<p>The config file will be checked during CI, so an invalid file can&rsquo;t be released as a gem and we are forced
-to make sure it&rsquo;s kept tidy. These checks include:</p>
+<p>The config file will be checked during CI, so an invalid file can&rsquo;t be released
+as a gem and we are forced to make sure it&rsquo;s kept tidy. These checks include:</p>
 
 <ul>
 <li>the banners array must be a valid YAML array</li>
-<li>all banners have a suggestion_text, suggestion_link_text, survey_url and page_paths</li>
-<li>the same page_path is not present on two banners that are active at the same time</li>
+<li>all banners have a suggestion_text, suggestion_link_text, survey_url and
+page_paths</li>
+<li>the same page_path is not present on two banners that are active at the same
+time</li>
 <li>paths must start with a forward-slash (/)</li>
 </ul>
 
 <p>It will also display warnings (but not fail CI)</p>
 
 <ul>
-<li>if there are banners that have expired - you are encouraged to remove obsolete config, but it will not
-prevent you merging changes.</li>
-<li>if page_paths point to pages that are not currently live on GOV.UK - this may be intentional (if the banner
-is for a page that isn&rsquo;t yet published), or it may indicate a typo in the path.</li>
+<li>if there are banners that have expired - you are encouraged to remove obsolete
+config, but it will not prevent you merging changes.</li>
+<li>if page_paths point to pages that are not currently live on GOV.UK - this may
+be intentional (if the banner is for a page that isn&rsquo;t yet published), or it
+may indicate a typo in the path.</li>
 </ul>
 
-<p>Note that some of this validation code is in the lib/govuk_web_banners/validators path, which
-should be tested to ensure the checking is valid, but will not be bundled into the released gem.</p>
+<p>Note that some of this validation code is in the
+lib/govuk_web_banners/validators path, which should be tested to ensure the
+checking is valid, but will not be bundled into the released gem.</p>
 
 <h2 id="license">License</h2>
 
-<p>The gem is available as open source under the terms of the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
+<p>The gem is available as open source under the terms of the <a href="https://opensource.org/licenses/MIT">MIT
+License</a>.</p>
 <p></div></p>
 
 
