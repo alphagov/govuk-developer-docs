@@ -19,6 +19,8 @@ For example, for `https://assets.publishing.service.gov.uk/government/uploads/up
 
 ## Remove an asset
 
+Some applications, such as Whitehall, might require setting a redirect, rather than deleting the asset. Look out for replacements, or unpublished state of the parent edition, in the publishing application, and set the `replacement_id` or `redirect_url` in asset manager accordingly.
+
 ### Remove an asset via the originating publishing app
 
 Where possible, you should delete the asset in the publishing application that originally uploaded the file, for example Whitehall. Deleting an asset from Asset Manager without removing the record from the publishing application could cause problems if the asset is attempted to be re-published again in the future.
