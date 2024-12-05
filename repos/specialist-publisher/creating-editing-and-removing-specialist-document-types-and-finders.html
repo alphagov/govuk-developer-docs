@@ -218,7 +218,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/fa37494a401a05126133fb5a961021e4ebe519fd">1 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/067a41c520534be544a56e91be4f5dc8d04c3867">4 Dec 2024</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating, editing and removing specialist document types and finders</h1>
@@ -293,7 +293,7 @@ irb(main):002:0&gt; SecureRandom.uuid
 <li>Also deploy Email Alert API if you have made changes to it.</li>
 </ul>
 </li>
-<li>Run <code>search:update_schema</code> in Search API.</li>
+<li>Run <code>rake SEARCH_INDEX=govuk 'search:update_schema'</code> in Search API.</li>
 <li>Publish the finder to the draft stack by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[pluralised_format_name]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
 <li>Wait for department's feedback and approval and agree on a release date</li>
 </ol>
@@ -315,7 +315,7 @@ gives the user writer access (they may create, edit, and update, but not publish
 <p><a href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html#how-to-reindex-an-elasticsearch-index">Reindex the govuk Elasticsearch index</a>.</p>
 <ul>
 <li>This takes around 30-45 minutes on Production, or 3-4 hours on Integration.</li>
-<li>Alternatively, run <code>search:update_schema</code> for a shorter run. Make sure the this is run before any documents are published, otherwise a full reindex will be required.</li>
+<li>Alternatively, run <code>rake SEARCH_INDEX=govuk 'search:update_schema'</code> for a shorter run. Make sure the this is run before any documents are published, otherwise a full reindex will be required.</li>
 </ul>
 <p><strong>Note</strong>: reindexing shouldn't really be necessary; Elasticsearch will dynamically create the field mappings the first time a new document of this type is published. In other words, if you publish a new document type, the finder will work and it will return the relevant documents even without a reindex. However, <strong>the filters on the finder would not work</strong>, as this reindexing job also builds the filters for the finder, so we have to run the job.</p>
 </li>
@@ -373,7 +373,7 @@ gives the user writer access (they may create, edit, and update, but not publish
 <p>To republish the finder:</p>
 <ol>
 <li>Deploy Publishing API, Search API.</li>
-<li>Run <code>search:update_schema</code> on Search API. If this errors, you may have to do a <a href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html#how-to-reindex-an-elasticsearch-index">full reindex</a>.</li>
+<li>Run <code>rake SEARCH_INDEX=govuk 'search:update_schema'</code> on Search API. If this errors, you may have to do a <a href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html#how-to-reindex-an-elasticsearch-index">full reindex</a>.</li>
 <li>Deploy Specialist Publisher, deploy after the Search API schema update / reindex to avoid users publishing new documents with the new field.</li>
 <li>Publish the finder by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
 </ol>
