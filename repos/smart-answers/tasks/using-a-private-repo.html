@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>smart-answers: ERB templates - GOV.UK Developer Documentation</title>
+    <title>smart-answers: Using a private repo - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/smart-answers/design/erb-templates.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/smart-answers/tasks/using-a-private-repo.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="smart-answers: ERB templates - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/smart-answers/design/erb-templates.html" />
+      <meta name="twitter:title" content="smart-answers: Using a private repo - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/smart-answers/tasks/using-a-private-repo.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="smart-answers: ERB templates" />
+      <meta property="og:title" content="smart-answers: Using a private repo" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/smart-answers/design/erb-templates.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/smart-answers/tasks/using-a-private-repo.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -238,41 +238,63 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/1477fc852d0052f5c003cffd71ea34ed09d2dfc7">14 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/37f81d5ba6201bb3cc8f3dc4421596a130256124">5 Dec 2024</a>
 </div>
 
-  <h1 class="page-title">smart-answers: ERB templates</h1>
+  <h1 class="page-title">smart-answers: Using a private repo</h1>
 
   
-<p>Content is defined using one of three helpers to indicate the format with an argument to indicate the intent:</p>
-<pre lang="erb"><code>&lt;% text_for :title do %&gt;
-  This is plain text, any HTML characters used will be espaced. Any indentation is automatically removed.
-&lt;% end %&gt;
-</code></pre>
-<pre lang="erb"><code>&lt;% govspeak_for :body do %&gt;
-  This uses the GOV.UK markdown dialect, [govspeak](https://github.com/alphagov/govspeak),
-  and will be converted to HTML. Any indentation is automatically removed.
-&lt;% end %&gt;
-</code></pre>
-<pre lang="erb"><code>&lt;% html_for :body do %&gt;
-  &lt;p&gt;This is HTML, used when we need fine grained control over content&lt;/p&gt;
-&lt;% end %&gt;
-</code></pre>
-<p>See the template page documentation for the available contexts and their allowed formats:</p>
+<p>Some changes are sensitive and should not be applied to the public repository until they are ready to go live. Whilst such changes are being developed and reviewed, they should be made to a private clone of the Smart Answers repository.</p>
+<h2 id="workflow">Workflow</h2>
+<h3 id="creating-a-private-repository">Creating a private repository</h3>
+<p>The first step is to create a private fork of the Smart Answers repository, by following the first seven steps of <a href="https://docs.publishing.service.gov.uk/manual/make-github-repo-private.html#creating-a-private-fork">Creating a private fork</a>. Optionally, you can also copy the main branch protection settings from the public Smart Answers repository by choosing to create a "classic" branch protection rule (step 11 of the instructions); however, this will make it harder to keep the main branch of the private repo up-to-date with the main branch of the public repo, should you wish to do so.</p>
+<h3 id="setting-up-the-private-local-repository">Setting up the private local repository</h3>
+<p>Once the fork is ready (the import at step 2 can take a 10–15 minutes), clone the private repository locally, and follow the below steps:</p>
 <ul>
-<li><a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/erb-templates/landing-page-template.md">Landing page templates</a></li>
-<li><a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/erb-templates/question-templates.md">Question templates</a></li>
-<li><a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/erb-templates/outcome-templates.md">Outcome templates</a></li>
+<li>Add a remote link to the public repository:
+<pre lang="shell"><code>git remote add public [public repo link]
+</code></pre>
+[public repo link] should be replaced with the link you would use to clone the public repository.</li>
+<li>Create a local branch for development work.</li>
 </ul>
-<p>Any state variable defined in the flow is available to be used in the ERB template. See <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/storing-data.md">storing data</a> for the various ways that you can set state variables.</p>
+<h3 id="implement-the-changes">Implement the changes</h3>
+<p>Carry out the necessary work on your private local branch. We don't have Heroku app deployments set up, so we don't have a preview link to share with content designers for fact-check, so instead take appropriate screenshots, zip them up and attach to the Trello card.</p>
+<p>You can also create a PR in the private repository on GitHub for review by another developer, but you don't need to actually merge this PR once it's approved—leave the branch in place so that it can be used to open a PR on the public repository.</p>
+<h3 id="create-a-pr-on-the-public-repository">Create a PR on the public repository</h3>
+<p>Once it is time to make the changes public, you can create a PR on the public repository.</p>
+<ol>
+<li>In the <strong>public</strong> local repository, add a remote link to the private repository:
+<pre lang="shell"><code>git remote add private [private repo link]
+</code></pre>
+[private repo link] should be replaced with the link you would use to clone the private repository.</li>
+<li>Fetch the changes from the private repository:
+<pre lang="shell"><code>git fetch private
+</code></pre>
+</li>
+<li>Checkout the branch from the private repository:
+<pre lang="shell"><code>git checkout private/[branch name]
+git checkout -b [branch name]
+</code></pre>
+</li>
+<li>Rebase the branch onto the main branch of the public repository:
+<pre lang="shell"><code>git rebase origin/main
+</code></pre>
+</li>
+<li>Push the changes to the public repository on GitHub:
+<pre lang="shell"><code>git push -u origin head
+</code></pre>
+</li>
+<li>Raise the PR on the public repository on GitHub as usual.</li>
+</ol>
+<h3 id="cleanup">Cleanup</h3>
+<ul>
+<li>Delete the private repository remote from your public local repository:
+<pre lang="shell"><code>git remote remove private
+</code></pre>
+</li>
+<li>Archive the private repository on GitHub.</li>
+</ul>
 
 
             
@@ -280,8 +302,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/erb-templates.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsmart-answers%2Fdesign%2Ferb-templates.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/smart-answers/blob/main/docs/tasks/using-a-private-repo.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsmart-answers%2Ftasks%2Fusing-a-private-repo.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
