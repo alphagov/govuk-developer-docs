@@ -11,8 +11,6 @@ parent: "/manual.html"
 
 The purpose of the email notifications system is to inform users when content they are interested in is added to or changed on GOV.UK. Users can subscribe to receive updates for an area of interest, such as a topic, government department, or a set of search results. Current subscriptions to individual content items are not supported.
 
-**Update September 2019:** the email system also now supports highly customised subscriptions for users completing the [Brexit Checker][brexit-checker], which operates in isolation from the rest of GOV.UK, and specifies its own notifications. More information can be found in [the ADR][message-adr] for these changes.
-
 ## Types of email
 
 The email notification system generates 3 different types of email. These are transactional, immediate and digest.
