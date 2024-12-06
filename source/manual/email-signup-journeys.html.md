@@ -71,3 +71,13 @@ The button is configured similarly on the other page types mentioned aboves, inc
 [finder-frontend-docs]: https://github.com/alphagov/finder-frontend/blob/main/docs/finder-email-alerts.md
 [email-alert-schema]: https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/email_alert_signup/notification/schema.json
 [email-alert-api-documentation-links]: https://github.com/alphagov/email-alert-api/blob/main/docs/matching-content-to-subscriber-lists.md#json-fields
+
+## Email sign up from content published in a foreign language
+
+Whilst there is translated content on GOV.UK, the email notification system only supports subscriptions to English language pages. Unfortunately there are three different approaches we take to prevent users from signing up to foreign language emails on GOV.UK. This lack of constistency is a result of there being multiple email sign up entry points. It is also a result of there being two different ways that translated content is published to GOV.UK: Whitehall content has a link to the English equivalent, but translated mainstream content does not.
+
+Code links to illustrate the different approaches can be found [here][organisation-page-emails], [here][single-page-notification-emails] and [here][world-location-news-page-email].
+
+[organisation-page-emails]: https://github.com/alphagov/collections/pull/3489
+[single-page-notification-emails]: https://github.com/alphagov/government-frontend/pull/3467
+[world-location-news-page-email]:https://github.com/alphagov/collections/blob/ea307473313aa5138e6db6dd16eb26f1bf453bfd/app/views/world_location_news/show.html.erb#L56-L86
