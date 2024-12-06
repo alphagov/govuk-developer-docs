@@ -8,7 +8,7 @@ parent: "/manual.html"
 
 GOV.UK uses [Pingdom](https://www.pingdom.com/) to monitor the external availability of our services, integrating with [PagerDuty](/manual/pagerduty.html) to notify developers if a service becomes unavailable (owing to a DNS issue or network misconfiguration, for example).
 
-Our internal monitoring tool, [Smokey](https://github.com/alphagov/smokey), is not as reliable at detecting problems like these, as it runs on the same local network as our services, and thus can't necessarily guarantee for us that users can reach our services.
+Our [end-to-end tests](https://github.com/alphagov/govuk-e2e-tests), is not as reliable at detecting problems like these, as it runs on the same local network as our services, and thus can't necessarily guarantee for us that users can reach our services.
 
 Pingdom operates by making pre-defined requests at a regular interval (typically 1 minute) and if it returns a non-success response it will deem the host as down. After a suitable threshold (typically 5 minutes) of downtime it will alert that the host is down.
 

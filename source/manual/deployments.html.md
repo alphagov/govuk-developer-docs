@@ -80,4 +80,4 @@ If your release does not make it to production:
 2. Click on View workflow for your failed deployment.
 3. You may be presented with am ugly login error, in which case try logging out, logging in and then clicking the view workflow button again.
 4. The argo workflow will display a list of steps. To investigate the reason for failure, click on the failed job, and from the summary panel click on LOGS.
-5. If the failure is due to a flakey smokey test, you can hit the RESUBMIT button for the full workflow.
+5. If the failure is due to a flakey end-to-end test, you can hit the RESUBMIT button for the full workflow.

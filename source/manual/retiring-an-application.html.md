@@ -6,11 +6,11 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-## 1. Remove smoke tests
+## 1. Remove end-to-end tests
 
-Remove any [smokey tests][smokey] specific to the application.
+Remove any [end-to-end tests][end-to-end] specific to the application.
 
-[smokey]: https://github.com/alphagov/smokey
+[end-to-end]: https://github.com/alphagov/govuk-e2e-tests
 
 ## 2. Update Release app
 

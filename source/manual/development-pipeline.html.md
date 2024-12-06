@@ -131,7 +131,7 @@ and improve recovery time.
 - If so, after merging, you should check the Release app to see if the deployment succeeds.
 - If the latest release is not on Production within about 15 minutes, something went wrong:
   - Refer to the [deployment documentation](/kubernetes/manage-app/access-ci-cd/#how-apps-are-deployed) for details of the deployment process so you can pinpoint where in the pipeline it failed.
-  - You can manually deploy your change if the automation fails e.g. due to a flakey [Smokey test][smokey].
+  - You can manually deploy your change if the automation fails e.g. due to a flakey [Smokey test][e2e-tests].
 
 ### Manual Deployment
 
@@ -139,7 +139,7 @@ and improve recovery time.
 
 Refer to the [manual deployments documentation](/manual/deployments.html#manual-deployments). You should verify your changes work in Integration before deploying downstream:
 
-- Run a build of [smoke tests][smokey] in the environment you're deploying to.
+- Run a build of [smoke tests][e2e-tests] in the environment you're deploying to.
 
 Our apps should always be in a state where `main` is deployable. You
 should raise a PR to revert your changes if they cause a problem and
@@ -167,7 +167,7 @@ After a deployment:
 
 - [Check Sentry for any new errors](/manual/error-reporting.html).
 - Check the [Deployment Dashboard](/manual/deployment-dashboards.html) for any issues.
-- Run a build of [smoke tests][smokey] in the environment you're deploying to.
+- Run a build of [end-to-end tests][e2e-tests] in the environment you're deploying to.
 
 [release]: https://release.publishing.service.gov.uk
-[smokey]: https://github.com/alphagov/smokey
+[e2e-tests]: https://github.com/alphagov/govuk-e2e-tests
