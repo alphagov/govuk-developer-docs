@@ -11,6 +11,10 @@ parent: "/manual.html"
 
 The purpose of the email notifications system is to inform users when content they are interested in is added to or changed on GOV.UK. Users can subscribe to receive updates for an area of interest, such as a topic, government department, or a set of search results. Current subscriptions to individual content items are not supported.
 
+## Language support
+
+The email notification system will only alert uses to [content changes on pages published in English][email-alert-service-code-link].
+
 ## Types of email
 
 The email notification system generates 3 different types of email. These are transactional, immediate and digest.
@@ -55,6 +59,7 @@ The email notification system generates 3 different types of email. These are tr
 
 Communication from Email Alert API to Notify is done via a HTTP API which is authenticated by [an API key][notify-api-key]. Communication from Notify to Email Alert API is [authenticated][email-spam-auth] with Signon and a bearer token.  Email Alert API is an internal application, so to enable callbacks two endpoints are [exposed][email-spam-public] publicly through <https://email-alert-api-public.publishing.service.gov.uk> (similarly for Integration and Staging).
 
+[email-alert-service-code-link]: https://github.com/alphagov/email-alert-service/blob/main/email_alert_service/models/major_change_message_processor.rb#L23-L26
 [finder-frontend-email]: https://github.com/alphagov/finder-frontend/blob/main/app/controllers/email_alert_subscriptions_controller.rb
 [email-frontend-readme]: https://github.com/alphagov/email-alert-frontend
 [Specialist Publisher]: /repos/specialist-publisher.html
