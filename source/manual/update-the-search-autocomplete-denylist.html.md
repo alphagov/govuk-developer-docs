@@ -23,7 +23,10 @@ Then for each GOV.UK environment of integration, staging and production:
 1. [Log into][kube-auth] the appropriate environment for Kubernetes
 1. Run the `rake autocomplete:update_denylist` [rake task][] for `search-api-v2` to import the file
 
+If there are problems updating the denylist we can consider [disabling the autocomplete feature][disable-autocomplete] temporarily to provide time to resolve the problem.
+
 [the spreadsheet]: https://docs.google.com/spreadsheets/d/1aA2JapqNt0nu-MiFraP7p9flSDvNQCm0QvSZi2Unw48/edit?gid=0#gid=0
 [Google Cloud]: /manual/google-cloud-platform-gcp.html#gcp-access
 [kube-auth]: /kubernetes/cheatsheet.html#prerequisites
 [rake task]: /manual/running-rake-tasks.html#run-a-rake-task-on-eks
+[disable-autocomplete]: /manual/disable-autocomplete.html
