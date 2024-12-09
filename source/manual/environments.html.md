@@ -40,7 +40,7 @@ GOV.UK product teams use the _integration test_ environment for:
 
 - manual software testing, where automated test coverage is not yet sufficient
   and/or the [govuk-docker] local development environment is insufficient
-- automated end-to-end/system tests ([Smokey]) which determine whether a
+- automated end-to-end/system tests ([e2e-test]) which determine whether a
   software release is automatically promoted to the staging environment
 
 Currently, the integration environment is also used by content editors at GDS
@@ -79,5 +79,5 @@ The production environment runs the versions of the applications which serve con
 
 [govuk-docker]: https://github.com/alphagov/govuk-docker/
 [govuk-helm-charts]: https://github.com/alphagov/govuk-helm-charts/
-[Smokey]: /repos/smokey
+[e2e-test]: /repos/govuk-e2e-tests
 [VPN]: https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/preview

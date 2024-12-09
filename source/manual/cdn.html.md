@@ -59,9 +59,9 @@ If we mistakenly serve invalid responses with cache validation headers we will n
 
 ### Testing VCL
 
-VCL can be tricky to get right. When making changes to the VCL, add smoke tests [to smokey](https://github.com/alphagov/smokey/blob/master/features/caching.feature) and check that they don't fail in staging.
+VCL can be tricky to get right.
 
-You can also use Fastly's [Fiddle tool](https://fiddle.fastlydemo.net/) to manually test, and you can also test your changes with cURL by including a debug header:
+You can use Fastly's [Fiddle tool](https://fiddle.fastlydemo.net/) to manually test, and you can also test your changes with cURL by including a debug header:
 
 ```sh
 $ curl -svo /dev/null -H "Fastly-Debug: 1" https://www.gov.uk/
