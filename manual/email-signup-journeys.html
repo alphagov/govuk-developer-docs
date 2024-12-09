@@ -156,6 +156,9 @@
           </li>
         </ul>
       </li>
+      <li>
+        <a href="#email-sign-up-from-content-published-in-a-foreign-language"><span>Email sign up from content published in a foreign language</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -204,15 +207,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5932c91070ca853b95532065b7cc5249c6beefe1">4 Jun 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cc5eeb6242fd8d0f5f5842887083aa0b8164d929">6 Dec 2024</a>
 </div>
 
  <h1 id='header'>Email signup journeys and email subscriptions across GOV.UK</h1> <p>There are a number of different ways that a user can subscribe to email notifications on GOV.UK. This documentation seeks to explain the different signup journeys, and types of subscription that are created.</p>
@@ -242,6 +238,8 @@
 <p>The signup journey does not enforce the GOV.UK account, the user must enter an email address and is sent a magic link to confirm their subscription.</p>
 <p>On Travel advice pages, the component posts to <code>/email/subscriptions/new?frequency=whatever&amp;topic_id=slug</code> which is served by email-alert-frontend&rsquo;s <a href="https://github.com/alphagov/email-alert-frontend/blob/main/config/routes.rb#L35">subscriptions controller</a>. This signup flow is the only place that the legacy <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/email_alert_signup/notification/schema.json">email_alert_signup</a> schema is currently used. The subscription that is created is <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/matching-content-to-subscriber-lists.md#json-fields">tag-based</a>.</p>
 <p>The button is configured similarly on the other page types mentioned aboves, including on specialist finders. There is relevant documentation specifically about how specialist finders emails work <a href="https://github.com/alphagov/finder-frontend/blob/main/docs/finder-email-alerts.md">here</a></p>
+<h2 id='email-sign-up-from-content-published-in-a-foreign-language'>Email sign up from content published in a foreign language</h2><p>Whilst there is translated content on GOV.UK, the email notification system only supports subscriptions to English language pages. Unfortunately there are three different approaches we take to prevent users from signing up to foreign language emails on GOV.UK. This lack of constistency is a result of there being multiple email sign up entry points. It is also a result of there being two different ways that translated content is published to GOV.UK: Whitehall content has a link to the English equivalent, but translated mainstream content does not.</p>
+<p>Code links to illustrate the different approaches can be found <a href="https://github.com/alphagov/collections/pull/3489">here</a>, <a href="https://github.com/alphagov/government-frontend/pull/3467">here</a> and <a href="https://github.com/alphagov/collections/blob/ea307473313aa5138e6db6dd16eb26f1bf453bfd/app/views/world_location_news/show.html.erb#L56-L86">here</a>.</p>
 
   <div class='related-content'>
 

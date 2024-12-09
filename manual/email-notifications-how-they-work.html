@@ -146,6 +146,9 @@
         <a href="#high-level-overview"><span>High-level overview</span></a>
       </li>
       <li>
+        <a href="#language-support"><span>Language support</span></a>
+      </li>
+      <li>
         <a href="#types-of-email"><span>Types of email</span></a>
       </li>
       <li>
@@ -202,19 +205,12 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cc5eeb6242fd8d0f5f5842887083aa0b8164d929">6 Dec 2024</a>
 </div>
 
  <h1 id='header'>Email notifications: how they work</h1> <h2 id='high-level-overview'>High-level overview</h2><p>The purpose of the email notifications system is to inform users when content they are interested in is added to or changed on GOV.UK. Users can subscribe to receive updates for an area of interest, such as a topic, government department, or a set of search results. Current subscriptions to individual content items are not supported.</p>
-<p><strong>Update September 2019:</strong> the email system also now supports highly customised subscriptions for users completing the <a href="https://github.com/alphagov/finder-frontend/tree/main/app/lib/brexit_checker">Brexit Checker</a>, which operates in isolation from the rest of GOV.UK, and specifies its own notifications. More information can be found in <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/adr/adr-004-message-concept.md">the ADR</a> for these changes.</p>
+<h2 id='language-support'>Language support</h2><p>The email notification system will only alert uses to <a href="https://github.com/alphagov/email-alert-service/blob/main/email_alert_service/models/major_change_message_processor.rb#L23-L26">content changes on pages published in English</a>.</p>
 <h2 id='types-of-email'>Types of email</h2><p>The email notification system generates 3 different types of email. These are transactional, immediate and digest.</p>
 <p><strong>Transactional</strong> emails are sent to confirm a new subscription, and to authenticate an existing subscriber so they can manage their subscriptions.</p>
 <p><strong>Immediate</strong> emails are generated shortly after the email system receives a content change, or a message, that corresponds to a user&rsquo;s immediate subscription. It&rsquo;s worth noting that &ldquo;immediate&rdquo; is a somewhat misleading name as these emails can sometimes take a long time (hours) to be sent when the system is busy.</p>
