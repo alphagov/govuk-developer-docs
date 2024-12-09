@@ -233,7 +233,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/3b16af083c7d405a717831f11aa5f7bb04d7e8d2">20 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/0f833d1d8c100494f5b2024e2286d5575fdce8d9">9 Dec 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -254,6 +254,7 @@ message queue for other apps (e.g. <code>email-alert-service</code>) to consume.
 <li><a href="#get-v2content"><code>GET /v2/content</code></a></li>
 <li><a href="#get-v2contentcontent_id"><code>GET /v2/content/:content_id</code></a></li>
 <li><a href="#get-v2contentcontent_idhost-content"><code>GET /v2/content/:content_id/host-content</code></a></li>
+<li><a href="#get-v2contentcontent_idhost-contenthost_content_id"><code>GET /v2/content/:content_id/host-content/:host_content_id</code></a></li>
 <li><a href="#patch-v2linkscontent_id"><code>PATCH /v2/links/:content_id</code></a></li>
 <li><a href="#get-v2linkscontent_id"><code>GET /v2/links/:content_id</code></a></li>
 <li><a href="#get-v2expanded-linkscontent_id"><code>GET /v2/expanded-links/:content_id</code></a></li>
@@ -930,6 +931,24 @@ it wants to defer to a reusable piece of content, such as an email address.</p>
 <code>page</code> <em>(optional, default: "1")</em>
 <ul>
 <li>The page number of results to return</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2contentcontent_idhost-contenthost_content_id"><code>GET /v2/content/:content_id/host-content/:host_content_id</code></h2>
+<p>Returns metadata for a single item of content with ID <code>:host_content_id</code> that has an embedded reference to
+the target <code>:content_id</code>.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the target document for the reusable piece of content</li>
+</ul>
+</li>
+<li>
+<a href="/repos/publishing-api/model.html"><code>host_content_id</code></a>
+<ul>
+<li>Identifies the document to return the metadata for</li>
 </ul>
 </li>
 </ul>
