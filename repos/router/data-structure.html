@@ -203,20 +203,18 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/router/commit/f1de210e7c5451623ce8bc4b153867d0c199d433">4 Sep 2024</a>
+  Last updated: <a href="https://github.com/alphagov/router/commit/36427fbb1e2a95d42a35ea957310d1c890739084">4 Dec 2024</a>
 </div>
 
   <h1 class="page-title">router: Data structure</h1>
 
   
-<p>The Router requires two MongoDB collections: <code>routes</code> and <code>backends</code>.</p>
 <h2 id="routes">Routes</h2>
-<p>The <code>routes</code> collection uses the following data structure:</p>
+<p>The <code>routes</code> uses the following data structure:</p>
 <pre lang="json"><code>{
-  "_id"           : ObjectId(),
-  "route_type"    : ["prefix","exact"],
-  "incoming_path" : "/url-path/here",
-  "handler"       : ["backend", "redirect", "gone"],
+  "route_type": ["prefix", "exact"],
+  "incoming_path": "/url-path/here",
+  "handler": ["backend", "redirect", "gone"]
 }
 </code></pre>
 <p>Incoming paths with special characters must be in their % encoded form in the
@@ -228,7 +226,7 @@ extra fields corresponding to <code>handler</code> types.</p>
 <p>The <code>backend</code> handler causes the Router to reverse proxy to a named
 <code>backend</code>. The following extra fields are supported:</p>
 <pre lang="json"><code>{
-  "backend_id" : "backend-id-corresponding-to-backends-collection"
+  "backend_id": "backend-id-corresponding-to-backends-collection"
 }
 </code></pre>
 <h3 id="redirect-handler">
@@ -237,20 +235,12 @@ extra fields corresponding to <code>handler</code> types.</p>
 <code>incoming_path</code> to the path stored in <code>redirect_to</code>. The following
 extra fields are supported:</p>
 <pre lang="json"><code>{
-  "redirect_to"   : "/target-of-redirect"
+  "redirect_to": "/target-of-redirect"
 }
 </code></pre>
 <h3 id="gone-handler">
 <code>gone</code> handler</h3>
 <p>The <code>gone</code> handler causes the Router to return a 410 response.</p>
-<h2 id="backends">Backends</h2>
-<p>The <code>backends</code> collection uses the following data structure:</p>
-<pre lang="json"><code>{
-  "_id"         : ObjectId(),
-  "backend_id"  : "arbitrary-slug-or-name",
-  "backend_url" : "https://example.com:port/"
-}
-</code></pre>
 
 
             
