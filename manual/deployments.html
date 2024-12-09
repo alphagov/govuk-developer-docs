@@ -205,7 +205,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/339f86930db0db0aaa0b0bfffc8fd2baedf9b230">18 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dbef95782fc27f1b6278cfe12649f65ea8ba22c2">6 Dec 2024</a>
 </div>
 
  <h1 id='header'>Deployments</h1> <p>On GOV.UK, all applications are set up for continuous deployment to integration, with the majority also having continuous deployment configured for staging and production.  Additionally, you can manually deploy a git reference (tag, branch, or commit SHA) of an application to any environment.</p>
@@ -277,7 +277,7 @@ This includes image tags for all of the app repositories (e.g. Whitehall).</p>
 <li>Click on View workflow for your failed deployment.</li>
 <li>You may be presented with am ugly login error, in which case try logging out, logging in and then clicking the view workflow button again.</li>
 <li>The argo workflow will display a list of steps. To investigate the reason for failure, click on the failed job, and from the summary panel click on LOGS.</li>
-<li>If the failure is due to a flakey smokey test, you can hit the RESUBMIT button for the full workflow.</li>
+<li>If the failure is due to a flakey end-to-end test, you can hit the RESUBMIT button for the full workflow.</li>
 </ol>
 
   <div class='related-content'>

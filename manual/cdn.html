@@ -240,15 +240,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ac5789147568470ee1e6125b04a5892f8b93c4ce">31 Aug 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dbef95782fc27f1b6278cfe12649f65ea8ba22c2">6 Dec 2024</a>
 </div>
 
  <h1 id='header'>Our content delivery network (CDN)</h1> <p>GOV.UK uses Fastly as a CDN. Public users aren&rsquo;t accessing GOV.UK servers directly, they connect via the CDN. This is better because:</p>
@@ -287,8 +280,8 @@ These logging endpoints are configured via <a href="https://github.com/alphagov/
 <h3 id='conditional-request-caching'>Conditional request caching</h3><p>Fastly will cache HTTP responses that include cache validation headers (such as ETag or Last-Modified) indefinitely. GOV.UK typically serves these headers with <a href="/manual/assets.html#uploaded-assets">assets uploaded to Asset Manager</a>.</p>
 <p>When Fastly has a conditional response cached it will modify subsequent requests that it passes to origin to include <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests#conditional_headers">conditional HTTP headers</a>. This allows origin applications to return a 304 Not Modified status code to indicate the resource is unchanged and avoid an unnecessary data transfer. As Fastly, not the end user, has the resource cached a 304 response will need to be modified by Fastly into a 200 response with the cached resource attached.</p>
 <p>If we mistakenly serve invalid responses with cache validation headers we will need to change the validation headers or manually <a href="/manual/purge-cache.html">purge the resource from the Fastly cache</a>, otherwise the incorrect resource could be served for a long time.</p>
-<h3 id='testing-vcl'>Testing VCL</h3><p>VCL can be tricky to get right. When making changes to the VCL, add smoke tests <a href="https://github.com/alphagov/smokey/blob/master/features/caching.feature">to smokey</a> and check that they don&rsquo;t fail in staging.</p>
-<p>You can also use Fastly&rsquo;s <a href="https://fiddle.fastlydemo.net/">Fiddle tool</a> to manually test, and you can also test your changes with cURL by including a debug header:</p>
+<h3 id='testing-vcl'>Testing VCL</h3><p>VCL can be tricky to get right.</p>
+<p>You can use Fastly&rsquo;s <a href="https://fiddle.fastlydemo.net/">Fiddle tool</a> to manually test, and you can also test your changes with cURL by including a debug header:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-svo</span> /dev/null <span class="nt">-H</span> <span class="s2">"Fastly-Debug: 1"</span> https://www.gov.uk/
 </code></pre></div><p>This will give you various debugging headers that may be useful:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>&lt; Fastly-Debug-Path: &lt;nodes you hit&gt;

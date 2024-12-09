@@ -225,7 +225,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3c619c3277f4e6ee8cb8f6039c5e7331b9bb2d0c">21 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dbef95782fc27f1b6278cfe12649f65ea8ba22c2">6 Dec 2024</a>
 </div>
 
  <h1 id='header'>The development and deployment pipeline</h1> <blockquote>
@@ -321,13 +321,13 @@ and improve recovery time.</p>
 
 <ul>
 <li>Refer to the <a href="/kubernetes/manage-app/access-ci-cd/#how-apps-are-deployed">deployment documentation</a> for details of the deployment process so you can pinpoint where in the pipeline it failed.</li>
-<li>You can manually deploy your change if the automation fails e.g. due to a flakey <a href="https://github.com/alphagov/smokey">Smokey test</a>.</li>
+<li>You can manually deploy your change if the automation fails e.g. due to a flakey <a href="https://github.com/alphagov/govuk-e2e-tests">Smokey test</a>.</li>
 </ul></li>
 </ul>
 <h3 id='manual-deployment'>Manual Deployment</h3><h4 id='wait-for-the-release-to-deploy-to-integration'>Wait for the release to deploy to Integration</h4><p>Refer to the <a href="/manual/deployments.html#manual-deployments">manual deployments documentation</a>. You should verify your changes work in Integration before deploying downstream:</p>
 
 <ul>
-<li>Run a build of <a href="https://github.com/alphagov/smokey">smoke tests</a> in the environment you&rsquo;re deploying to.</li>
+<li>Run a build of <a href="https://github.com/alphagov/govuk-e2e-tests">smoke tests</a> in the environment you&rsquo;re deploying to.</li>
 </ul>
 <p>Our apps should always be in a state where <code>main</code> is deployable. You
 should raise a PR to revert your changes if they cause a problem and
@@ -354,7 +354,7 @@ Individual app deploy freezes are usually announced here.</li>
 <ul>
 <li><a href="/manual/error-reporting.html">Check Sentry for any new errors</a>.</li>
 <li>Check the <a href="/manual/deployment-dashboards.html">Deployment Dashboard</a> for any issues.</li>
-<li>Run a build of <a href="https://github.com/alphagov/smokey">smoke tests</a> in the environment you&rsquo;re deploying to.</li>
+<li>Run a build of <a href="https://github.com/alphagov/govuk-e2e-tests">end-to-end tests</a> in the environment you&rsquo;re deploying to.</li>
 </ul>
 
   <div class='related-content'>

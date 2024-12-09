@@ -197,11 +197,11 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b4c4332db0f71f0573e46539e62ecb9676ba7c3e">21 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dbef95782fc27f1b6278cfe12649f65ea8ba22c2">6 Dec 2024</a>
 </div>
 
  <h1 id='header'>Pingdom</h1> <p>GOV.UK uses <a href="https://www.pingdom.com/">Pingdom</a> to monitor the external availability of our services, integrating with <a href="/manual/pagerduty.html">PagerDuty</a> to notify developers if a service becomes unavailable (owing to a DNS issue or network misconfiguration, for example).</p>
-<p>Our internal monitoring tool, <a href="https://github.com/alphagov/smokey">Smokey</a>, is not as reliable at detecting problems like these, as it runs on the same local network as our services, and thus can&rsquo;t necessarily guarantee for us that users can reach our services.</p>
+<p>Our <a href="https://github.com/alphagov/govuk-e2e-tests">end-to-end tests</a>, is not as reliable at detecting problems like these, as it runs on the same local network as our services, and thus can&rsquo;t necessarily guarantee for us that users can reach our services.</p>
 <p>Pingdom operates by making pre-defined requests at a regular interval (typically 1 minute) and if it returns a non-success response it will deem the host as down. After a suitable threshold (typically 5 minutes) of downtime it will alert that the host is down.</p>
 <h2 id='access-pingdom'>Access Pingdom</h2><p>Login credentials for Pingdom are under <code>2ndline/pingdom</code> in <a href="/manual/secrets-manager.html">Secrets Manager</a>.</p>
 <h2 id='add-a-pingdom-check'>Add a Pingdom check</h2><p>Before you add a new check, see if an existing check covers your use case. For example, it&rsquo;s beneficial to have a single check on the <code>assets.publishing.service.gov.uk</code> hostname, as this determines an external user can reach that host. However, there&rsquo;d be no benefit in checking for <em>assets</em> served on that host, which should already be covered by internal tests in Smokey or Asset Manager, and from which we learn nothing extra if making the requests externally.</p>
