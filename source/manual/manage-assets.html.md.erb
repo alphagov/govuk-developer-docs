@@ -19,19 +19,19 @@ For example, for `https://assets.publishing.service.gov.uk/government/uploads/up
 
 ## Remove an asset
 
+When looking to remove an asset, keep in mind that some cases can be fixed less destructively, by setting a redirect or replacement.
+It depends on the case and user need.
+For Whitehall assets, see the [known bugs](#whitehall-known-bugs) section below.
+For more information on the asset state machine, see [this documentation](https://docs.publishing.service.gov.uk/repos/asset-manager/asset_state_machine_overview.html).
+
 ### Remove an asset via the originating publishing app
 
-Where possible, you should delete the asset in the publishing application that originally uploaded the file, for example Whitehall. Deleting an asset from Asset Manager without removing the record from the publishing application could cause problems if the asset is attempted to be re-published again in the future.
+Where possible, you should guide the user to remove the asset in the publishing application that originally uploaded the file, via the UI.
+Deleting an asset from Asset Manager without removing the record from the publishing application can surface broken links to the user.
+If the content is published, remove the attachment by redrafting the edition, making your changes, and republishing.
 
-For example, to delete a legacy Whitehall attachment of the form `/government/uploads/system/uploads/attachment_data/file/12345/foo.pdf`, you would:
-
-1. Open a Rails console in Whitehall
-
-1. Retrieve the content IDs (and some sense-checking attributes) of the attachments in Whitehall: `Attachment.where(attachment_data_id: 12345).pluck(:content_id, :deleted_at, :created_at)`
-
-1. Exit the Rails console
-
-1. For each attachment that is marked `deleted: false`, mark them as deleted via the dedicated rake task, i.e. `k exec deploy/whitehall-admin -- rake delete_attachment["<content id>"]`
+For superseded content, we recommend preserving the `Attachment`s relationship with the parent document, on the publishing app.
+You should only delete the asset in Asset Manager, using the `assets:delete` rake task described below.
 
 ### Remove an asset directly in Asset Manager
 
@@ -156,6 +156,9 @@ If you need to replace the file of an existing attachment, follow these steps.
 
 > Where possible, you should do the replacement in the publishing application
 > that originally uploaded the file, for example Whitehall.
+
+When a manual replacement in the UI is not possible, for example in the case of a bug related to superseded data, you can rerun the whitehall replacement update manually.
+See section below on [known bugs](#whitehall-known-bugs).
 
 If it isn't possible or desirable to replace the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:
