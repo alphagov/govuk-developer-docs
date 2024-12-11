@@ -68,17 +68,10 @@ For example, for `https://assets.publishing.service.gov.uk/government/uploads/up
 
 ### Remove an asset via the originating publishing app
 
-Where possible, you should delete the asset in the publishing application that originally uploaded the file, for example Whitehall. Deleting an asset from Asset Manager without removing the record from the publishing application could cause problems if the asset is attempted to be re-published again in the future.
-
-For example, to delete a legacy Whitehall attachment of the form `/government/uploads/system/uploads/attachment_data/file/12345/foo.pdf`, you would:
-
-1. Open a Rails console in Whitehall
-
-1. Retrieve the content IDs (and some sense-checking attributes) of the attachments in Whitehall: `Attachment.where(attachment_data_id: 12345).pluck(:content_id, :deleted_at, :created_at)`
-
-1. Exit the Rails console
-
-1. For each attachment that is marked `deleted: false`, mark them as deleted via the dedicated rake task, i.e. `k exec deploy/whitehall-admin -- rake delete_attachment["<content id>"]`
+Where possible, you should delete the asset in the publishing application that originally uploaded the file.
+Deleting an asset from Asset Manager without removing the record from the publishing application could cause problems if the asset is attempted to be re-published again in the future.
+For example, in Whitehall, you can manually delete an `Attachment` and republish the edition to ensure the file cannot be resurfaced any longer.
+Follow that up with a direct removal from Asset Manager, using the `assets:delete` rake task.
 
 ### Remove an asset directly in Asset Manager
 
@@ -203,6 +196,8 @@ If you need to replace the file of an existing attachment, follow these steps.
 
 > Where possible, you should do the replacement in the publishing application
 > that originally uploaded the file, for example Whitehall.
+
+When a manual replacement in the UI is not possible, for example in the case of a bug related to superseded data, you can rerun the whitehall replacement update manually. See section below on [Known bugs](#whitehall-known-bugs).
 
 If it isn't possible or desirable to replace the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:
