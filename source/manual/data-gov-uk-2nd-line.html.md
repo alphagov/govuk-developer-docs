@@ -19,11 +19,6 @@ parent: "/manual.html"
 [publish]: repos/datagovuk_publish
 [sentry]: https://sentry.io/govuk/
 
-> 🚧 This doc is being updated to reflect that CKAN now runs in Kubernetes.
->
-> In the meantime, if you're unable to figure out one of yet-to-be-updated
-> parts, #govuk-platform-engineering will be able to help you.
-
 This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).
 
 [Separate documentation][dgu-docs] exists for publishers.
