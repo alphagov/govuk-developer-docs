@@ -138,14 +138,9 @@ running on the cache machines.
 storing all known routes in memory using a [prefix trie], which it loads
 from a MongoDB database of all known routes.
 
-The MongoDB database is written to via [router-api] whenever a route is
-added or changed: the Content Store (which we'll cover later) talks to
-Router API [directly][register-route] to do this.
-
-Every Router instance [polls periodically][router-polls-periodically]
-for any changes to the MongoDB database; if and when changes are detected
-by a particular instance it reloads all routes held in memory - a process
-which is repeated across all instances.
+Every Router instance reloads it's in memory routes periodically or being
+triggered by LISTEN/NOTIFY notification from the Content Store Postgres
+database. This process is repeated across all instances.
 
 Routes have different handlers. Routes marked as `gone` return a 410 Gone
 response. Routes marked as `redirect` serve a 301 Moved Permanently
@@ -166,8 +161,6 @@ application.
 [frontend]: https://github.com/alphagov/frontend
 [prefix trie]: https://en.wikipedia.org/wiki/Trie
 [register-route]: https://github.com/alphagov/content-store/blob/08f02f990e621c9d2fd473e12a70a6805ddd8dcb/app/models/route_set.rb#L58-L82
-[router-api]: https://github.com/alphagov/router-api
-[router-polls-periodically]: https://github.com/alphagov/router/blob/811ed82d0ecc23b8077ed5dd2c460ccdfe2808ab/router.go#L154-L194
 [short-url-manager]: https://github.com/alphagov/short-url-manager
 
 ### Rendering
@@ -317,11 +310,6 @@ retrieve the content item and do something in response, such as:
   exceptions to this are `travel-advice` & `specialist-publisher`, which
   communicate directly with email-alert-api to ensure emails go out immediately)
 
-[Content Store registers the route][content-store-router-api] for the content
-item via Router API. This happens inside the Sidekiq job directly, rather than
-in a downstream process.
-
-[content-store-router-api]: https://github.com/alphagov/content-store/blob/dd79a03d74f130650bc97d1c84aae557ccea58d3/app/models/content_item.rb#L33
 [message-queues-rake]: https://github.com/alphagov/email-alert-service/blob/main/lib/tasks/message_queues.rake
 [AmazonMQ]: https://aws.amazon.com/amazon-mq/
 [RabbitMQ]: https://www.rabbitmq.com/

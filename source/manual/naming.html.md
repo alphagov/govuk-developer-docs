@@ -57,7 +57,6 @@ Good:
 
 - publishing-api
 - email-alert-api
-- router-api
 
 Not so good:
 
