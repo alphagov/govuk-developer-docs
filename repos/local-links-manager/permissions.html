@@ -214,7 +214,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/local-links-manager/commit/698c8105bab41c4ef1b5f9b2063259b032b94e8c">12 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/local-links-manager/commit/0e2699794fb05c5080bdb0d660b58f56fa51e3aa">11 Dec 2024</a>
 </div>
 
   <h1 class="page-title">local-links-manager: Permissions</h1>
@@ -223,18 +223,24 @@
 <h2 id="named-permissions">Named Permissions</h2>
 <ul>
 <li>
+<code>signin</code>: as with other apps, this is the basic permission needed to access
+the app.</li>
+<li>
 <code>GDS Editor</code>: gives the user permission to do all actions in the app.</li>
 </ul>
 <h2 id="department-permissions">Department Permissions</h2>
-<p>Other permissions are based on the organisation_slug of the current user. If a user does not have the <code>GDS Editor</code> permission they will be able to:</p>
+<p>Other permissions are based on the organisation_slug of the current user. If a
+user does not have the <code>GDS Editor</code> permission, they will be able to:</p>
 <ul>
-<li>visit the Services page <code>/services</code>, which will only show services where the current user's organisation slug is contained in the service's organisation_slugs array.</li>
+<li>visit the Services page <code>/services</code>. Only services with the current user's
+organisation slug in the service's organisation_slugs array will be visible.</li>
 <li>visit the specific service pages of those services</li>
 <li>download a csv of links for those services</li>
-<li>download a csv of new links for those services</li>
+<li>upload a csv including new links for those services</li>
 <li>edit links in those services.</li>
 </ul>
-<p>The organisation slugs array is editable only by people with the <code>GDS Editor</code> permission.</p>
+<p>The organisation slugs array is editable only by people with the <code>GDS Editor</code>
+permission.</p>
 
 
             
