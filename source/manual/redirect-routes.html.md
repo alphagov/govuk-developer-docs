@@ -20,11 +20,6 @@ Here is a guide for choosing the right one:
 That covers the service-specific redirects. We then have several options
 for applying redirects to most GOV.UK content:
 
-- Are you having an incident and need to apply a redirect _urgently_?
-  You can [apply the redirect directly in Router API][apply-redirect-in-router-api-section]
-  (though you'll need to do some housekeeping afterwards).
-- Is the redirect correctly showing in Content Store, but not in Router API?
-  You may just need to [nudge Content Store into updating Router API][register-redirect-from-content-store-section].
 - Is the redirect correctly showing in Publishing API, but not in Content Store?
   Try [re-presenting the content item downstream][represent-content-item-section].
 - Does the redirect not exist anywhere yet?
@@ -44,8 +39,7 @@ possible to set up the redirect from within the app UI itself. This usually
 involves unpublishing the content, whereupon the app gives the option to
 redirect the old route to another route. This approach is preferred as it
 keeps the workflow and publishing history within the app, as well as
-correctly propagating the changes through Publishing API, Content Store and
-Router API.
+correctly propagating the changes through Publishing API and Content Store.
 
 Not all applications support unpublishing / setting redirects. In these
 cases, you'll need to interact with Publishing API manually - see below.
@@ -65,11 +59,9 @@ You may want to log into the Content Store app console in another shell:
 
 In the Content Store console, run
 `content_item = ContentItem.find_by(content_id: "CONTENT_ID")` to get a
-handle on the current state of the content item. If the content item
+handle on the current state of the content item. Make sure content item
 already has a `document_type` of `redirect` and the `redirects` property
-has the `path` and `destination` properties you're aiming for, then all
-you may need to do is
-[nudge Content Store into talking to Router API][register-redirect-from-content-store-section].
+has the `path` and `destination` properties.
 If your content item doesn't have a redirect in Content Store, but you
 know a redirect has been applied in Publishing API, you may need to
 [re-present the edition in Publishing API][represent-content-item-section].
@@ -98,8 +90,7 @@ And you will see that the content item in the Content Store
 console has been updated, if you run `content_item.reload` in
 your other console.
 
-When Content Store is updated with a new route, it
-[talks directly to Router API](https://github.com/alphagov/content-store/blob/dd79a03d74f130650bc97d1c84aae557ccea58d3/app/models/content_item.rb#L33).
+When Content Store is updated with a new route, it should be updated in Router.
 You should now be redirected when you visit the route in your browser.
 
 ### Manually re-present the content item in Publishing API
@@ -126,68 +117,6 @@ unpublishing = Unpublishing.find_by(alternative_path: "/foo")
 unpublishing.edition.content_id
 => "ddcab6e2-8985-4646-9f3d-82d2f4770186"
 ```
-
-### Manually register a route in Content Store
-
-[register-redirect-from-content-store-section]: #manually-register-a-route-in-content-store
-
-Sometimes, our publishing platform prevents the creation of
-new routes (and the addition/removal of redirects) while we
-are scaling up certain parts of the stack.
-
-If the content item in Content Store is showing the correct
-route, but Router API is not, then re-publishing the item will
-not work, as the route in Content Store will be unchanged.
-Content Store only updates Router API
-[if it detects the route has changed](https://github.com/alphagov/content-store/blob/8651b9245046f0a0ae125dde018d39f8507226c5/app/models/content_item.rb#L224-L232).
-
-In such cases, you can get Content Store to register the route
-again, by opening the Content Store console and running:
-
-```ruby
-ContentItem.find_by(base_path: "/old-path-to-be-redirected").route_set.register!
-```
-
-### Manually apply a redirect in Router API
-
-[apply-redirect-in-router-api-section]: #manually-apply-a-redirect-in-router-api
-
-You might need to urgently apply a redirect, and Publishing API
-might have a large backlog of publishing in its downstream_high
-queue, making the Publishing API approach too slow.
-
-First, connect to the Router API console:
-
-`$ gds govuk connect -e production app-console router_backend/router-api`
-
-Then update the route directly:
-
-```ruby
-Route.find_by(incoming_path: "...").update!(redirect_to: "...", handler: "redirect", redirect_type: "permanent")
-```
-
-You should always go back and fix things properly in Publishing
-API afterwards, as a republish could easily undo any changes you've
-made.
-
-## Find out if the route exists
-
-[check-route-exists-section]: #find-out-if-the-route-exists
-
-Open a router-api console:
-
-```console
-$ gds govuk connect app-console -e production router_backend/router-api
-```
-
-Then search for the incoming path you are interested in:
-
-```console
-> Route.where(incoming_path: '/path-to-item')
-```
-
-If a route is found, and it has the handler `redirect`, then there is
-already a redirect in place.
 
 ## Find out which app owns the route
 
@@ -257,12 +186,6 @@ kubectl exec -n apps -it deploy/<app-name> -- rails c
 
 Removing the route, we need to know the slug that should be deleted. These examples use `/example-path`.
 
-Delete the route in `router-api`:
-
-```ruby
-Route.where(incoming_path: "/example-path").delete
-```
-
 In `publishing-api`, delete the reservation that makes sure that the route can't be used by any other app:
 
 ```ruby
@@ -291,33 +214,6 @@ RepublishWorker.perform_async(edition.id.to_s)
 For documents published in other publishing apps that are not Mainstream Publisher, the instructions will differ.
 
 The final step is to [clear the cache for the routes](/manual/purge-cache.html).
-
-## Fixing incorrect Corporate Information page redirects
-
-There have been a few occasions where Corporate Information pages have
-started redirecting the English version to a translation. Should this
-happen, the redirects can be identified with:
-
-```ruby
-Route.where(incoming_path: /\/about/).each do |route|
-  puts "#{route.id} #{route.incoming_path} -> #{route.redirect_to}" if route.handler == "redirect"
-end
-```
-
-That will list the id and paths for each redirect. Redirects from the
-English version to a translation, for example:
-
-```
-579a109cd068b406250014e4 /government/organisations/companies-house/about/access-and-opening -> /government/organisations/companies-house/about/access-and-opening.cy
-```
-
-...can be deleted with
-
-```ruby
-Route.find('579a109cd068b406250014e4').destroy
-```
-
-The deleted routes will take effect after a short delay (for Router instances to poll and apply updates).
 
 ## Redirects for HMRC manuals
 
