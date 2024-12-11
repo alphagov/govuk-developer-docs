@@ -219,7 +219,6 @@ Historical usernames with non-alphanumeric or uppercase characters are no longer
 1. Click 'update publisher'
 1. Changes in CKAN will be immediate. Changes on data.gov.uk may take up to 24 hours to appear.
 
-
 ### Assigning users to publishers (setting user permissions)
 
 1. Login to [CKAN][dgu-ckan] as a 'sysadmin' user (see above for credentials).
