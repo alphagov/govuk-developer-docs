@@ -205,3 +205,42 @@ steps to remove the asset in Asset Manager:
    attachment_data = Asset.find_by(asset_manager_id: asset_id).assetable # e.g. 57a9c52b40f0b608a700000a
    attachment_data.update(file_size: 123, number_of_pages: 28) # file_size in bytes
    ```
+
+## Whitehall known asset bugs
+
+There are a few known bugs in Whitehall, that cause assets to be live when they should not be.
+These are currently (end of 2024) being worked on, and a data clean up has been run.
+In case you see anything that matches the patterns below, here's how you can fix it.
+You can still just delete the asset, but this approach is less destructive and more aligned with the intended behaviour.
+
+1. On a new draft of a published edition, if the user replaces a previously published attachment, then deletes it, and publishes the draft. The original asset remains live. However, the attachment is deleted, so the user does not know anything has gone wrong.
+
+The problem seems to be that the deleted replacement's draft state is not set to false.
+
+NB: The issue is specific to assets with draft replacements. Do not change the replacement unless it is in draft!
+The original asset must only serve superseded editions.
+To check that the original asset is not used on a public edition run, from a Whitehall console:
+```
+   # This should be an array of "superseded" and nil ("deleted" state) attachables.
+   Asset.find_by(asset_manager_id: <your_asset_manager_id>).assetable.attachments.map(&:attachable).pluck(:state)
+```
+Fix the replacement asset by running the following code from an Asset Manager console:
+```
+   replacement = Asset.find(<your_asset_manager_id>).replacement
+   replacement.destroy! # if not already deleted
+   replacement.draft = false
+   replacement.save!
+```
+2. On a draft of a published edition, the user replaces a previously published attachment at least two successive times, without saving the draft first (or in between). The original asset remains live.
+
+To fix this, you can populate the `replacement_id` manually, mimicking the behaviour that happens on publish.
+After a publish event, all the assets in a chain of replacements will point to the last one.
+This fix is preferable to a deletion, especially if a redirected is needed anyway.
+You can extract the required `replacement_id` by following the chain of `AttachmentData` `replaced_by_id`s until the last. In a Whitehall console, run:
+```
+   original_attachment_data = Asset.where(asset_mnager_id: <your_asset_manager_id>).first&.assetable
+   next_attachment_data1 = AttachmentData.find(original_attachment_data.replaced_by_id)
+   next_attachment_data2 = AttachmentData.find(next_attachment_data1.replaced_by_id)
+   AssetManager::AssetUpdater.call(<your_asset_manager_id>, { "replacement_id" => next_attachment_data2.assets.first.asset_manager_id })
+
+```
