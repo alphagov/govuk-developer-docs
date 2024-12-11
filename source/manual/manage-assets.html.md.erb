@@ -6,6 +6,53 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+## Assets overview
+
+When investigating an asset, bear in mind that some cases might require setting a redirect or replacement, rather than deleting the asset. See a breakdown of the possible fields below.
+
+Asset Manager stores a a number of fields whose values work together to enforce how the asset is served.
+These fields are closely related to various document states from the publishing applications.
+Whitehall uses all of the main fields, since it implements a full "editioned" flow. The following examples are thus based on Whitehall's behaviour.
+
+1. Draft
+
+Assets are set to draft (boolean `true`) when they first get created on a draft edition. When the document gets published, the draft state of the `Asset` is also updated to `false`.
+All assets associated with live content must be publicly available.
+
+It is not a representation of all possible edition states, but rather a flag to determine whether the asset should be publicly accessible.
+One could say that draft is false if "the asset ever been made live". Once it is set to "false", it should not be set back to "true" - there are other ways to further represent that the asset is no longer live, such as setting a `redirect_url` or a `replacement_id`.
+
+The draft state should always match the state of the `parent_document_url`. Recently, a [validation rule](https://github.com/alphagov/asset-manager/blob/cffce4e0e1323eab138e016de9b33536f62fef60/app/models/asset.rb#L288) has been added to ensure this, though no data patch was run to patch the data.
+
+Assets must be in draft for certain authorisation protocols to apply. See [documentation](https://github.com/alphagov/asset-manager/blob/cffce4e0e1323eab138e016de9b33536f62fef60/docs/authorisation.md).
+
+2. State
+
+This is a representation of the internal Asset Manager processing of the asset, particularly around uploading and virus scanning status.
+The state machine includes `scanned_clean`, `clean`, `scanned_infected`, `upload_success`, `uploaded`.
+
+NB: There are some invalid remnants of a previous state machine, including state values such as "deleted", in the database. These should be removed.
+
+3. `deleted_at`
+
+This timestamp gets set when an asset is deleted in the corresponding publishing application, either by deleting an attachment or discarding a document.
+A 'nil' value means the asset has not been deleted (default).
+
+4. `replacement_id`
+
+This is a BSON object ID, set when the user uploads a new file in the place of a an old one, preserving some metadata from the previous. Default is `nil`.
+The replaced asset redirects to its replacement, provided the replacement is not in draft.
+
+Whilst deletion and replacements are mutually exclusive (an asset should not logically have both), they do coexist in the database.
+Deletion, replacement and draft work together to support previewing of draft content. An asset will not redirect to its replacement if the replacement is in draft.
+This ensures that until we've hit the publish button, we can preview images and documents on the draft stack.
+
+<!-- TODO: add details about how the replacement chain works and how all the assets in a chain point to the last one -->
+
+5. `redirect_url`
+   This is typically set when the parent edition is unpublished, and usually set to the parent document URL. Because of this, most redirected assets will 404.
+   Upon re-drafting the parent edition, the redirect URL gets set back to nil.
+
 ## Get an asset's ID
 
 If the asset URL starts with `/media`, the asset ID is in the URL.
@@ -21,17 +68,10 @@ For example, for `https://assets.publishing.service.gov.uk/government/uploads/up
 
 ### Remove an asset via the originating publishing app
 
-Where possible, you should delete the asset in the publishing application that originally uploaded the file, for example Whitehall. Deleting an asset from Asset Manager without removing the record from the publishing application could cause problems if the asset is attempted to be re-published again in the future.
-
-For example, to delete a legacy Whitehall attachment of the form `/government/uploads/system/uploads/attachment_data/file/12345/foo.pdf`, you would:
-
-1. Open a Rails console in Whitehall
-
-1. Retrieve the content IDs (and some sense-checking attributes) of the attachments in Whitehall: `Attachment.where(attachment_data_id: 12345).pluck(:content_id, :deleted_at, :created_at)`
-
-1. Exit the Rails console
-
-1. For each attachment that is marked `deleted: false`, mark them as deleted via the dedicated rake task, i.e. `k exec deploy/whitehall-admin -- rake delete_attachment["<content id>"]`
+Where possible, you should delete the asset in the publishing application that originally uploaded the file.
+Deleting an asset from Asset Manager without removing the record from the publishing application could cause problems if the asset is attempted to be re-published again in the future.
+For example, in Whitehall, you can manually delete an `Attachment` and republish the edition to ensure the file cannot be resurfaced any longer.
+Follow that up with a direct removal from Asset Manager, using the `assets:delete` rake task.
 
 ### Remove an asset directly in Asset Manager
 
@@ -157,6 +197,8 @@ If you need to replace the file of an existing attachment, follow these steps.
 > Where possible, you should do the replacement in the publishing application
 > that originally uploaded the file, for example Whitehall.
 
+When a manual replacement in the UI is not possible, for example in the case of a bug related to superseded data, you can rerun the whitehall replacement update manually. See section below on [Known bugs](#whitehall-known-bugs).
+
 If it isn't possible or desirable to replace the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:
 
@@ -205,3 +247,47 @@ steps to remove the asset in Asset Manager:
    attachment_data = Asset.find_by(asset_manager_id: asset_id).assetable # e.g. 57a9c52b40f0b608a700000a
    attachment_data.update(file_size: 123, number_of_pages: 28) # file_size in bytes
    ```
+
+
+## Whitehall known bugs
+
+There are a few known bugs in the `whitehall` app, that cause assets to be live when they should not be.
+These are currently (end of 2024) being worked on, and a data clean up has been run, but in case you see anything that looks like this:
+
+1. On a new draft off a published edition, the user replaces a previously published attachment, then deletes it, and published the new edition. The original asset remains live, but the attachment is not associated with the edition anymore, so the user does not know anything has gone wrong.
+
+This issue happens because the deleted replacement's draft state is not set to false. In this case the replacement is deleted.
+In some other cases, you may have to delete it yourself, and change the draft state after (to false).
+```
+   a = Asset.find(<your_asset_id>)
+   a.destroy! # if needed
+   a.draft = false
+   a.save!
+```
+
+NB: The original asset must only serve superseded editions. Do not change the replacement unless it is in draft!
+To check that the original asset is not used on a public edition run:
+```
+# This should be an array of "superseded" and nil ("deleted" state) attachables.
+Asset.find_by(asset_manager_id: <your_asset_manager_id>).assetable.attachments.map(&:attachable).pluck(:state)
+```
+2. On a draft off a published edition, the user replaces a previously published attachments at least 2 successive times. The original asset remains live, as well as all assets except the one before last replacement assets.
+
+You can populate the `replacement_id manually`. This is preferable to a deletion, especially if a redirected is needed anyway, as it's more aligned with the healthy code flow.
+
+You will need the asset ID which you can figure out following the instructions in [Get an asset ID](#get-an-assets-id).
+In some cases it could be enough to link the asset to the next replacement:
+```
+   attachment_data_to_replace = Asset.where(asset_mnager_id: <your_asset_id>).first&.assetable
+   AssetManager::AttachmentUpdater.replace(attachment_data_to_replace)
+```
+
+If the chain of replacements is longer, you can extract the required `replacement_id` by following the chain of `AttachmentData` `replaced_by_id`s until the last.
+This ensures you mimic the behaviour that happens on publish - all the assets in a chain of replacements will point to the last live one.
+```
+   original_attachment_data = Asset.where(asset_mnager_id: <your_asset_id>).first&.assetable
+   next_attachment_data1 = AttachmentData.find(original_attachment_data.replaced_by_id)
+   next_attachment_data2 = AttachmentData.find(next_attachment_data1.replaced_by_id)
+   AssetManager::AssetUpdater.call(<your_asset_id>, { "replacement_id" => next_attachment_data2.assets.first.asset_manager_id })
+
+```
