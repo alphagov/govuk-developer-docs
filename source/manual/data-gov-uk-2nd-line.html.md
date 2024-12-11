@@ -210,6 +210,15 @@ Historical usernames with non-alphanumeric or uppercase characters are no longer
 1. Click 'Add Publisher' and complete the form.
 1. Follow the instructions in the section below to add a user as an 'admin' for the organisation (this would normally be the person making the request, so they can then add further users themselves without needing to contact support).
 
+### Changing the name of a publishing organisation
+
+1. Login to [CKAN][dgu-ckan] as a 'sysadmin' user (see above for credentials).
+1. Click the 'Publishers' button.
+1. Find the relevant publisher organisation and click 'manage'
+1. Change the name, and if applicable the description and contact detail fields.
+1. Click 'update publisher'
+1. Changes in CKAN will be immediate. Changes on data.gov.uk may take up to 24 hours to appear.
+
 ### Assigning users to publishers (setting user permissions)
 
 1. Login to [CKAN][dgu-ckan] as a 'sysadmin' user (see above for credentials).
