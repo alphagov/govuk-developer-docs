@@ -267,7 +267,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/69e7f3e1a1aa55bf9e7c00c8259ff0e292836e87">6 Aug 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/4b752f010fc55833c33d2f1e341a9742d7a05312">5 Nov 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component Conventions</h1>
@@ -554,6 +554,37 @@ examples:
   }
 }
 </code></pre>
+<h3 id="print-style-conventions">Print style conventions</h3>
+<p>Ensure that colours are reset to black using the print specific variable <code>$govuk-print-text-colour</code>, for example:</p>
+<ul>
+<li>Text: <code>color: $govuk-print-text-colour;</code>
+</li>
+<li>Borders: <code>border-color: $govuk-print-text-colour;</code>
+</li>
+</ul>
+<p>Some elements such as background images do not print by default in most browsers. To force these to print as intended, use the CSS property <code>print-color-adjust</code>, for example:</p>
+<pre><code>  .gem-c-organisation-logo__container {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+</code></pre>
+<h3 id="print-styles-helpers">Print styles helpers</h3>
+<p>There are currently three helper classes available for controlling print output in <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/stylesheets/govuk_publishing_components/lib/_print_support.scss"><code>_print_support.scss</code></a>. These helper classes should be added to a component's view template in the appropriate places.</p>
+<h4 id="full-page-width-columns">Full page width columns</h4>
+<p><strong><code>.gem-print-columns-none</code></strong></p>
+<p>A helper class for removing column layouts when printing. This should be applied to row/column layouts, by adding the class to elements with a <code>govuk-grid-row</code> class. The columns will then print at the full width of the page.</p>
+<p>Note that only the immediate child columns will be affected. If a child column also contains a row/column layout of further elements, these will be unaffected and will retain their existing column layout. Use the class again on these nested grids to apply fullwidth column printing if required.</p>
+<h4 id="consistent-link-formatting">Consistent link formatting</h4>
+<p><strong><code>.gem-c-force-print-link-styles</code></strong></p>
+<p>This class ensures that printed links receive consistent formatting. It should be added to any link element that will be printed. Typically this  means applying it to links with the <code>govuk-link</code> class.</p>
+<p>Links with a <code>govuk-link</code> class will display their href when printed. This makes printed links more useful, but uses more space. When adding the <code>gem-c-force-print-link-styles</code> class to these links, the following changes are made to the printed output:</p>
+<ul>
+<li>the link colour is set to black</li>
+<li>the font size is reduced slighlty</li>
+<li>the layout of the href is improved by making it a block element and forcing it to display on a new line</li>
+</ul>
+<p><strong><code>.gem-c-force-print-link-styles-within</code></strong></p>
+<p>This is a variation of the previous class, to be used on parent elements that contain links with the <code>govuk-link</code> class. This can be used when the <code>gem-c-force-print-link-styles</code> class cannot be applied directly to a link, such as with the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/views/govuk_publishing_components/components/_inset_text.html.erb">inset_text component</a>.</p>
 <h3 id="linting">Linting</h3>
 <p>All stylesheets must be linted according to <a href="https://github.com/alphagov/govuk-lint/blob/master/configs/scss_lint/gds-sass-styleguide.yml">the style rules</a> in <a href="https://github.com/alphagov/govuk-lint">govuk-lint</a>.</p>
 <pre lang="sh"><code># Lint Sass in your application components using govuk-lint
