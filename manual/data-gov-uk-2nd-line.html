@@ -207,6 +207,9 @@
             <a href="#creating-a-new-publishing-organisation"><span>Creating a new publishing organisation</span></a>
           </li>
           <li>
+            <a href="#changing-the-name-of-a-publishing-organisation"><span>Changing the name of a publishing organisation</span></a>
+          </li>
+          <li>
             <a href="#assigning-users-to-publishers-setting-user-permissions"><span>Assigning users to publishers (setting user permissions)</span></a>
           </li>
         </ul>
@@ -402,15 +405,10 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3c619c3277f4e6ee8cb8f6039c5e7331b9bb2d0c">21 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/209f070868193daefb349227b5eb6a334699b709">11 Dec 2024</a>
 </div>
 
- <h1 id='header'>Common support tasks for data.gov.uk and CKAN</h1> <blockquote>
-<p>🚧 This doc is being updated to reflect that CKAN now runs in Kubernetes.</p>
-<p>In the meantime, if you&rsquo;re unable to figure out one of yet-to-be-updated
-parts, #govuk-platform-engineering will be able to help you.</p>
-</blockquote>
-<p>This document covers some of the requests that technical support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
+ <h1 id='header'>Common support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the user requests regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
 <p><a href="https://guidance.data.gov.uk">Separate documentation</a> exists for publishers.</p>
 <p>There&rsquo;s also <a href="/manual/data-gov-uk-architecture">an architectural overview of data.gov.uk</a> and <a href="/manual/data-gov-uk-deployment">a deployment guide</a>.</p>
 <p><a href="/repos/ckanext-datagovuk.html">ckanext-datagovuk</a> is the primary CKAN extension behind data.gov.uk.</p>
@@ -526,6 +524,15 @@ organisations, with either the &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; role 
 <li>Click the &lsquo;Publishers&rsquo; button.</li>
 <li>Click &lsquo;Add Publisher&rsquo; and complete the form.</li>
 <li>Follow the instructions in the section below to add a user as an &lsquo;admin&rsquo; for the organisation (this would normally be the person making the request, so they can then add further users themselves without needing to contact support).</li>
+</ol>
+<h3 id='changing-the-name-of-a-publishing-organisation'>Changing the name of a publishing organisation</h3>
+<ol>
+<li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a &lsquo;sysadmin&rsquo; user (see above for credentials).</li>
+<li>Click the &lsquo;Publishers&rsquo; button.</li>
+<li>Find the relevant publisher organisation and click &lsquo;manage&rsquo;</li>
+<li>Change the name, and if applicable the description and contact detail fields.</li>
+<li>Click &lsquo;update publisher&rsquo;</li>
+<li>Changes in CKAN will be immediate. Changes on data.gov.uk may take up to 24 hours to appear.</li>
 </ol>
 <h3 id='assigning-users-to-publishers-setting-user-permissions'>Assigning users to publishers (setting user permissions)</h3>
 <ol>
@@ -707,8 +714,8 @@ UUID.</p>
 You can do this by running the command from <a href="#accessing-the-database">Accessing the database</a>
 and passing a <code>-c</code> argument:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>&lt;psql_ckan_production_command&gt; -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
-</code></pre></div><h3 id='finding-the-harvest-source-of-a-dataset'>Finding the harvest source of a dataset</h3><p>The harvest source of a dataset can be found using the CKAN API, using the dataset&rsquo;s slug:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://ckan.publishing.service.gov.uk/api/3/action/package_show?id=&lt;slug&gt;
+</code></pre></div><h3 id='finding-the-harvest-source-of-a-dataset'>Finding the harvest source of a dataset</h3><p>The harvest source of a dataset can be found using the CKAN API, using the dataset&rsquo;s slug or <id>:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://ckan.publishing.service.gov.uk/api/3/action/package_show?id=&lt;slug&gt; or &lt;id&gt;
 </code></pre></div><p>In the response there should be <code>harvest_source_id</code> and <code>harvest_source_title</code> fields.</p>
 <h3 id='getting-the-status-of-a-harvester'>Getting the status of a harvester</h3>
 <ol>
