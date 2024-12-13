@@ -19,12 +19,7 @@ parent: "/manual.html"
 [publish]: repos/datagovuk_publish
 [sentry]: https://sentry.io/govuk/
 
-> 🚧 This doc is being updated to reflect that CKAN now runs in Kubernetes.
->
-> In the meantime, if you're unable to figure out one of yet-to-be-updated
-> parts, #govuk-platform-engineering will be able to help you.
-
-This document covers some of the requests that technical support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).
+This document covers some of the user requests regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).
 
 [Separate documentation][dgu-docs] exists for publishers.
 
@@ -214,6 +209,15 @@ Historical usernames with non-alphanumeric or uppercase characters are no longer
 1. Click the 'Publishers' button.
 1. Click 'Add Publisher' and complete the form.
 1. Follow the instructions in the section below to add a user as an 'admin' for the organisation (this would normally be the person making the request, so they can then add further users themselves without needing to contact support).
+
+### Changing the name of a publishing organisation
+
+1. Login to [CKAN][dgu-ckan] as a 'sysadmin' user (see above for credentials).
+1. Click the 'Publishers' button.
+1. Find the relevant publisher organisation and click 'manage'
+1. Change the name, and if applicable the description and contact detail fields.
+1. Click 'update publisher'
+1. Changes in CKAN will be immediate. Changes on data.gov.uk may take up to 24 hours to appear.
 
 ### Assigning users to publishers (setting user permissions)
 
@@ -563,10 +567,10 @@ and passing a `-c` argument:
 
 ### Finding the harvest source of a dataset
 
-The harvest source of a dataset can be found using the CKAN API, using the dataset's slug:
+The harvest source of a dataset can be found using the CKAN API, using the dataset's slug or <id>:
 
 ```
-https://ckan.publishing.service.gov.uk/api/3/action/package_show?id=<slug>
+https://ckan.publishing.service.gov.uk/api/3/action/package_show?id=<slug> or <id>
 ```
 
 In the response there should be `harvest_source_id` and `harvest_source_title` fields.
