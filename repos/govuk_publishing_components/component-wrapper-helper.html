@@ -267,7 +267,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/7ba40bfbea1990afe11730ea5be6585dc9564a17">2 Dec 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/f75cc44cf62c517a2d73eb948772e8684ee878ce">11 Dec 2024</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component wrapper helper</h1>
@@ -299,11 +299,19 @@
 <code>classes</code> - accepts a space separated string of classes, these should not be used for styling and must be prefixed with <code>js-</code>
 </li>
 <li>
+<code>margin_bottom</code> - accepts a number from <code>0</code> to <code>9</code> (<code>0px</code> to <code>60px</code>) using the <a href="https://design-system.service.gov.uk/styles/spacing/#the-responsive-spacing-scale">GOV.UK Frontend spacing scale</a> (defaults to no margin)</li>
+<li>
 <code>role</code> - accepts a space separated string of roles</li>
 <li>
 <code>lang</code> - accepts a language attribute value</li>
 <li>
 <code>open</code> - accepts an open attribute value (true or false)</li>
+<li>
+<code>hidden</code> - accepts an empty string, 'hidden', or 'until-found'</li>
+<li>
+<code>tabindex</code> - accepts an integer. The integer can also be passed as a string.</li>
+<li>
+<code>dir</code> - accepts 'rtl', 'ltr', or 'auto'.</li>
 </ul>
 <p>To prevent breaking <a href="/repos/govuk_publishing_components/component_principles.html">component isolation</a>, passed classes should only be used for JavaScript hooks and not styling. All component styling should be included only in the component itself. Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code>, <code>govuk-</code>, <code>app-c-</code>, <code>brand--</code>, or <code>brand__</code> are also permitted, as well as an exact match of <code>direction-rtl</code>, but these classes should only be used within the component and not passed to it.</p>
 <p>The helper checks that any passed <code>id</code> attribute is valid, specifically that it does not start with a number or contain whitespace or contain any characters other than letters, numbers, and <code>_</code> or <code>-</code>. It also checks that role and lang attribute values are valid, along with some other checks detailed below.</p>
@@ -328,6 +336,7 @@
   data_attributes ||= {}
   aria_attributes ||= {}
   role ||= nil
+  local_assigns[:margin_bottom] ||= 4
 
   component_helper = GovukPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
   component_helper.add_class("gem-c-example govuk-example") # combines the given class with any passed classes
@@ -337,6 +346,9 @@
   component_helper.add_role("button") # works like 'add_class'
   component_helper.set_lang("en") # works like 'set_id' (can only have one lang)
   component_helper.set_open(true) # can pass true or false
+  component_helper.set_tabindex(1)
+  component_helper.set_dir("rtl")
+  component_helper.set_margin_bottom(3) # can pass any number from 1 to 9
 %&gt;
 &lt;%= tag.div(**component_helper.all_attributes) do %&gt;
   component content
