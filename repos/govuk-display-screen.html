@@ -141,6 +141,7 @@
     </li>
     <li>
       <ul>
+          <li><a href="/repos/govuk-display-screen/Revival.html" rel="noopener" class="govuk-link">Context</a></li>
       </ul>
     </li>
   </ul>
@@ -238,20 +239,18 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p><strong>⚠️ This project was archived on 12th July 2024 due to it having been broken for a number of months and due to the Universal Analytics data source being retired</strong></p>
-
 <p>Screen to display live data from GOV.UK. It displays the number of GOV.UK users in last 30 mins, columns displaying the most recent searches on GOV.UK, the most popular pages and recently published content. Please note, the dashboard is intended as an internal tool only.</p>
 
 <p><img src="https://raw.githubusercontent.com/alphagov/govuk-display-screen/main/docs/screenshot.png" alt="screenshot"></p>
 
-<p><a href="http://govuk-display-screen.herokuapp.com/">http://govuk-display-screen.herokuapp.com/</a></p>
+<p><a href="https://govuk-display-screen-20e334eeb1ba.herokuapp.com/">https://govuk-display-screen-20e334eeb1ba.herokuapp.com/</a></p>
 
 <h2 id="running-locally">Running locally</h2>
 
 <p>To run the server you will need to set up some <code>ENV</code> variables.</p>
 
 <p>We are using the <a href="https://github.com/bkeepers/dotenv">dotenv gem</a> to load environment variables from a .env file into ENV in development. You will need to create
-a .env file, add it into .gitignore, and then add in the keys for the env vars which can be acquired from the 2nd line Heroku account.
+a .env file following the template of the .env.example file, add it into .gitignore, and then add in the keys for the env vars which can be acquired from the 2nd line Heroku account.
 You can access this account by using the 2nd line credentials held in <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass#usage">govuk-secrets</a>.</p>
 
 <p>Once you have them, you should be able to start the server by running:</p>

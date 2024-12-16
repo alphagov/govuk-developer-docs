@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/ea2fd59095460dbb30159bd7a150b5c111996def">2 Dec 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/fc3ec02643b22b18b29f99d04d241a028b974fd0">11 Dec 2024</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -222,7 +222,14 @@
 <pre lang="yaml"><code>blocks:
 - type: block_type
 </code></pre>
-<p>This may include a top-level <code>navigation_groups</code> element for use by blocks (See <a href="#navigation-groups">Navigation Groups</a>), or a top-level <code>extends</code> element to inherit configuration from another landing page (See <a href="#extending-a-page-whitehall-only">Extending a page (Whitehall Only)</a>).</p>
+<p>It may optionally include other top-level elements:</p>
+<ul>
+<li>a <code>breadcrumbs</code> element, an array of <code>title/href</code> pairs which will be used to create a breadcrumb list.</li>
+<li>an <code>extends</code> element to inherit configuration from another landing page (See <a href="#extending-a-page-whitehall-only">Extending a page (Whitehall Only)</a>).</li>
+<li>an <code>image</code> element. This has one sub-element (<code>url</code>) which should be the url for an image to use with social media metadata.</li>
+<li>a <code>navigation_groups</code> element for use by blocks (See <a href="#navigation-groups">Navigation Groups</a>)</li>
+<li>a <code>theme</code> element which will set the general appearance of the page. Valid themes are <code>default</code> or <code>prime-ministers-office-10-downing-street</code>) - if no theme is specified, <code>default</code> will be used (See <a href="#themes">Themes</a>)</li>
+</ul>
 <p>Block configuration is designed to be as flexible as possible, so blocks can be nested inside other blocks. An example configuration for each type of block is shown below.</p>
 <h2 id="types-of-block">Types of Block</h2>
 <p>Each block is rendered using its own partial template. The full list of available types of block available can be found by looking at the contents of: <code>app/views/landing_page/blocks</code>.</p>
@@ -629,6 +636,15 @@
     - text: Goal 2
       href: /goal-2
 </code></pre>
+<h2 id="themes">Themes</h2>
+<p>There are two types of <code>theme</code> key. If theme appears at the top-level, it affects the structure and layout of the whole page, and must be on the list below. Some blocks have their own themes, which have their own set of valid values and only affect that component. These two types of <code>theme</code> key work independently.</p>
+<h3 id="valid-top-level-themes">Valid top-level themes:</h3>
+<ul>
+<li>
+<code>default</code> (or no theme specified): a general-purpose page, with the gov.uk header and footer.</li>
+<li>
+<code>prime-ministers-office-10-downing-street</code>: similar to default, but has a dark background/inverted text for the breadcrumbs, and an inverted version of the No. 10 header, with the crest of the Prime Minister's office.</li>
+</ul>
 <h2 id="extending-a-page-whitehall-only">Extending a page (Whitehall Only)</h2>
 <p>When editing a page in Whitehall, you may wish to use data from another flexible content page. Adding the top-level key <code>extends</code>, and the path of another landing page, will cause the data from the current block to be merged over the data from the extended block before publishing. This is a shallow merge (ie only top-level values are checked), and is currently used so that navigation groups can be specified in one page and used by sub-pages.</p>
 <p>If you have a homepage (at /landing-page/homepage) like this:</p>
