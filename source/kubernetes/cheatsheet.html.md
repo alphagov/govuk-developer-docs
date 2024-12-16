@@ -63,7 +63,7 @@ k logs -l app=account-api
 ### Open a Rails console
 
 ```sh
-k exec -it deploy/router-api -- rails c
+k exec -it deploy/content-store -- rails c
 ```
 
 ### Open a shell in an app container
