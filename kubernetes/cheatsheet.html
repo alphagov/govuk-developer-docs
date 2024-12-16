@@ -564,15 +564,8 @@
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
                 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b27c180826b43e51103be364abc44ffb5a507f6c">5 Mar 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c52ac0ae43b5a36f98d717744e1f238391829202">11 Dec 2024</a>
 </div>
 
  <h1 id='kuberneteseks-cheatsheet-for-gov-uk-developers'>Kubernetes/EKS cheatsheet for GOV.UK developers</h1><p>This page lists some example commands for interacting with the GOV.UK
@@ -612,7 +605,7 @@ k config set-context <span class="nt">--current</span> <span class="nt">--namesp
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k logs deploy/account-api
 </code></pre></div><p>From all pods:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k logs <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span>account-api
-</code></pre></div><h3 id='open-a-rails-console'>Open a Rails console</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/router-api <span class="nt">--</span> rails c
+</code></pre></div><h3 id='open-a-rails-console'>Open a Rails console</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/content-store <span class="nt">--</span> rails c
 </code></pre></div><h3 id='open-a-shell-in-an-app-container'>Open a shell in an app container</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/government-frontend <span class="nt">--</span> bash
 </code></pre></div><h3 id='open-a-shell-on-router'>Open a shell on Router</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/router <span class="nt">-c</span> nginx
 </code></pre></div><h3 id='list-the-available-rake-tasks-for-an-app'>List the available Rake tasks for an app</h3><div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/email-alert-api <span class="nt">--</span> rake <span class="nt">-T</span>

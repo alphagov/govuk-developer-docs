@@ -148,16 +148,7 @@
           <li>
             <a href="#manually-re-present-the-content-item-in-publishing-api"><span>Manually re-present the content item in Publishing API</span></a>
           </li>
-          <li>
-            <a href="#manually-register-a-route-in-content-store"><span>Manually register a route in Content Store</span></a>
-          </li>
-          <li>
-            <a href="#manually-apply-a-redirect-in-router-api"><span>Manually apply a redirect in Router API</span></a>
-          </li>
         </ul>
-      </li>
-      <li>
-        <a href="#find-out-if-the-route-exists"><span>Find out if the route exists</span></a>
       </li>
       <li>
         <a href="#find-out-which-app-owns-the-route"><span>Find out which app owns the route</span></a>
@@ -172,9 +163,6 @@
             <a href="#removing-a-route-completely-so-it-can-be-replaced-with-another-route"><span>Removing a route completely so it can be replaced with another route</span></a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a href="#fixing-incorrect-corporate-information-page-redirects"><span>Fixing incorrect Corporate Information page redirects</span></a>
       </li>
       <li>
         <a href="#redirects-for-hmrc-manuals"><span>Redirects for HMRC manuals</span></a>
@@ -230,15 +218,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/87c10b3970f6a0b0d63941842fb71e9a8ae4b01b">10 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c52ac0ae43b5a36f98d717744e1f238391829202">11 Dec 2024</a>
 </div>
 
  <h1 id='header'>Redirect a route</h1> <p>There are a number of different ways of applying redirects on GOV.UK.
@@ -256,11 +237,6 @@ Read the <a href="#redirects-from-campaign-sites">campaign sites section</a>.</l
 for applying redirects to most GOV.UK content:</p>
 
 <ul>
-<li>Are you having an incident and need to apply a redirect <em>urgently</em>?
-You can <a href="#manually-apply-a-redirect-in-router-api">apply the redirect directly in Router API</a>
-(though you&rsquo;ll need to do some housekeeping afterwards).</li>
-<li>Is the redirect correctly showing in Content Store, but not in Router API?
-You may just need to <a href="#manually-register-a-route-in-content-store">nudge Content Store into updating Router API</a>.</li>
 <li>Is the redirect correctly showing in Publishing API, but not in Content Store?
 Try <a href="#manually-re-present-the-content-item-in-publishing-api">re-presenting the content item downstream</a>.</li>
 <li>Does the redirect not exist anywhere yet?
@@ -268,15 +244,14 @@ You&rsquo;ll need to <a href="#manually-apply-a-redirect-from-any-publishing-app
 </ul>
 <h2 id='manually-apply-a-redirect-from-any-publishing-app'>Manually apply a redirect from any publishing app</h2><p>The preferred method of creating redirects is to use the publishing app that
 originally published the content to set up the redirect. You can find out
-<a href="#find-out-if-the-route-exists">what exists at the incoming URL already</a> (if
-anything), and <a href="#find-out-which-app-owns-the-route">which app owns the route</a>.</p>
+[what exists at the incoming URL already]<a href="if
+anything">check-route-exists-section</a>, and <a href="#find-out-which-app-owns-the-route">which app owns the route</a>.</p>
 <p>Once you&rsquo;ve established which app owns the route, you should see if it is
 possible to set up the redirect from within the app UI itself. This usually
 involves unpublishing the content, whereupon the app gives the option to
 redirect the old route to another route. This approach is preferred as it
 keeps the workflow and publishing history within the app, as well as
-correctly propagating the changes through Publishing API, Content Store and
-Router API.</p>
+correctly propagating the changes through Publishing API and Content Store.</p>
 <p>Not all applications support unpublishing / setting redirects. In these
 cases, you&rsquo;ll need to interact with Publishing API manually - see below.</p>
 
@@ -293,11 +268,9 @@ information.</p>
 <p><code>$ gds govuk connect app-console -e production content_store/content-store</code></p>
 <p>In the Content Store console, run
 <code>content_item = ContentItem.find_by(content_id: &quot;CONTENT_ID&quot;)</code> to get a
-handle on the current state of the content item. If the content item
+handle on the current state of the content item. Make sure content item
 already has a <code>document_type</code> of <code>redirect</code> and the <code>redirects</code> property
-has the <code>path</code> and <code>destination</code> properties you&rsquo;re aiming for, then all
-you may need to do is
-<a href="#manually-register-a-route-in-content-store">nudge Content Store into talking to Router API</a>.
+has the <code>path</code> and <code>destination</code> properties.
 If your content item doesn&rsquo;t have a redirect in Content Store, but you
 know a redirect has been applied in Publishing API, you may need to
 <a href="#manually-re-present-the-content-item-in-publishing-api">re-present the edition in Publishing API</a>.</p>
@@ -316,8 +289,7 @@ console on the publishing app in question. Then run this command:</p>
 </code></pre></div><p>And you will see that the content item in the Content Store
 console has been updated, if you run <code>content_item.reload</code> in
 your other console.</p>
-<p>When Content Store is updated with a new route, it
-<a href="https://github.com/alphagov/content-store/blob/dd79a03d74f130650bc97d1c84aae557ccea58d3/app/models/content_item.rb#L33">talks directly to Router API</a>.
+<p>When Content Store is updated with a new route, it should be updated in Router.
 You should now be redirected when you visit the route in your browser.</p>
 <h3 id='manually-re-present-the-content-item-in-publishing-api'>Manually re-present the content item in Publishing API</h3><p>Sometimes, Publishing API and Content Store can end up out of sync
 with one another, whereby a redirect has been applied to a content
@@ -335,34 +307,7 @@ rake tasks.</p>
 
 unpublishing.edition.content_id
 =&gt; "ddcab6e2-8985-4646-9f3d-82d2f4770186"
-</code></pre></div><h3 id='manually-register-a-route-in-content-store'>Manually register a route in Content Store</h3><p>Sometimes, our publishing platform prevents the creation of
-new routes (and the addition/removal of redirects) while we
-are scaling up certain parts of the stack.</p>
-<p>If the content item in Content Store is showing the correct
-route, but Router API is not, then re-publishing the item will
-not work, as the route in Content Store will be unchanged.
-Content Store only updates Router API
-<a href="https://github.com/alphagov/content-store/blob/8651b9245046f0a0ae125dde018d39f8507226c5/app/models/content_item.rb#L224-L232">if it detects the route has changed</a>.</p>
-<p>In such cases, you can get Content Store to register the route
-again, by opening the Content Store console and running:</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">ContentItem</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">base_path: </span><span class="s2">"/old-path-to-be-redirected"</span><span class="p">).</span><span class="nf">route_set</span><span class="p">.</span><span class="nf">register!</span>
-</code></pre></div><h3 id='manually-apply-a-redirect-in-router-api'>Manually apply a redirect in Router API</h3><p>You might need to urgently apply a redirect, and Publishing API
-might have a large backlog of publishing in its downstream_high
-queue, making the Publishing API approach too slow.</p>
-<p>First, connect to the Router API console:</p>
-<p><code>$ gds govuk connect -e production app-console router_backend/router-api</code></p>
-<p>Then update the route directly:</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Route</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">incoming_path: </span><span class="s2">"..."</span><span class="p">).</span><span class="nf">update!</span><span class="p">(</span><span class="ss">redirect_to: </span><span class="s2">"..."</span><span class="p">,</span> <span class="ss">handler: </span><span class="s2">"redirect"</span><span class="p">,</span> <span class="ss">redirect_type: </span><span class="s2">"permanent"</span><span class="p">)</span>
-</code></pre></div><p>You should always go back and fix things properly in Publishing
-API afterwards, as a republish could easily undo any changes you&rsquo;ve
-made.</p>
-<h2 id='find-out-if-the-route-exists'>Find out if the route exists</h2><p>Open a router-api console:</p>
-<div class="highlight"><pre class="highlight console" tabindex="0"><code><span class="gp">$</span><span class="w"> </span>gds govuk connect app-console <span class="nt">-e</span> production router_backend/router-api
-</code></pre></div><p>Then search for the incoming path you are interested in:</p>
-<div class="highlight"><pre class="highlight console" tabindex="0"><code><span class="gp">&gt;</span><span class="w"> </span>Route.where<span class="o">(</span>incoming_path: <span class="s1">'/path-to-item'</span><span class="o">)</span>
-</code></pre></div><p>If a route is found, and it has the handler <code>redirect</code>, then there is
-already a redirect in place.</p>
-<h2 id='find-out-which-app-owns-the-route'>Find out which app owns the route</h2><p>Open a Content Store console:</p>
+</code></pre></div><h2 id='find-out-which-app-owns-the-route'>Find out which app owns the route</h2><p>Open a Content Store console:</p>
 <div class="highlight"><pre class="highlight console" tabindex="0"><code><span class="gp">$</span><span class="w"> </span>gds govuk connect app-console <span class="nt">-e</span> production content_store/content-store
 </code></pre></div><p>Then search for the incoming path you are interested in:</p>
 <div class="highlight"><pre class="highlight console" tabindex="0"><code><span class="go">ContentItem.find_by(base_path: "/path-to-item").publishing_app
@@ -388,9 +333,7 @@ kubectl config use-context &lt;your-context-name&gt;
 </code></pre></div><p>You can then access an app&rsquo;s Rails console using the following command:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps <span class="nt">-it</span> deploy/&lt;app-name&gt; <span class="nt">--</span> rails c
 </code></pre></div><p>Removing the route, we need to know the slug that should be deleted. These examples use <code>/example-path</code>.</p>
-<p>Delete the route in <code>router-api</code>:</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Route</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">incoming_path: </span><span class="s2">"/example-path"</span><span class="p">).</span><span class="nf">delete</span>
-</code></pre></div><p>In <code>publishing-api</code>, delete the reservation that makes sure that the route can&rsquo;t be used by any other app:</p>
+<p>In <code>publishing-api</code>, delete the reservation that makes sure that the route can&rsquo;t be used by any other app:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">PathReservation</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">base_path: </span><span class="s2">"/example-path"</span><span class="p">).</span><span class="nf">delete</span>
 </code></pre></div><p>In <code>content-store</code> <em>and</em> <code>draft-content-store</code>, remove the content item that used to inhabit the URL:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">ContentItem</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">base_path: </span><span class="s2">"/example-path"</span><span class="p">).</span><span class="nf">delete</span>
@@ -404,18 +347,6 @@ For documents published in Mainstream Publisher, update and republish the conten
 <span class="no">RepublishWorker</span><span class="p">.</span><span class="nf">perform_async</span><span class="p">(</span><span class="n">edition</span><span class="p">.</span><span class="nf">id</span><span class="p">.</span><span class="nf">to_s</span><span class="p">)</span>
 </code></pre></div><p>For documents published in other publishing apps that are not Mainstream Publisher, the instructions will differ.</p>
 <p>The final step is to <a href="/manual/purge-cache.html">clear the cache for the routes</a>.</p>
-<h2 id='fixing-incorrect-corporate-information-page-redirects'>Fixing incorrect Corporate Information page redirects</h2><p>There have been a few occasions where Corporate Information pages have
-started redirecting the English version to a translation. Should this
-happen, the redirects can be identified with:</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Route</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">incoming_path: </span><span class="sr">/\/about/</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">route</span><span class="o">|</span>
-  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">route</span><span class="p">.</span><span class="nf">id</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">route</span><span class="p">.</span><span class="nf">incoming_path</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">#{</span><span class="n">route</span><span class="p">.</span><span class="nf">redirect_to</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">route</span><span class="p">.</span><span class="nf">handler</span> <span class="o">==</span> <span class="s2">"redirect"</span>
-<span class="k">end</span>
-</code></pre></div><p>That will list the id and paths for each redirect. Redirects from the
-English version to a translation, for example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>579a109cd068b406250014e4 /government/organisations/companies-house/about/access-and-opening -&gt; /government/organisations/companies-house/about/access-and-opening.cy
-</code></pre></div><p>&hellip;can be deleted with</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Route</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s1">'579a109cd068b406250014e4'</span><span class="p">).</span><span class="nf">destroy</span>
-</code></pre></div><p>The deleted routes will take effect after a short delay (for Router instances to poll and apply updates).</p>
 <h2 id='redirects-for-hmrc-manuals'>Redirects for HMRC manuals</h2><p>There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be <a href="https://github.com/alphagov/hmrc-manuals-api/tree/main/lib/tasks">found in the hmrc-manuals-api repo</a>.</p>
 <p>An example of redirecting a HMRC manual section to another section would be to run <code>redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug]</code></p>
 <h2 id='redirects-from-campaign-sites'>Redirects from campaign sites</h2><p>The campaigns platform is a WordPress site managed by GDS (Business, Priority
@@ -439,8 +370,6 @@ Response and Campaigns team) and supported by dxw. Redirects from a
 
           <ul class="govuk-list">
             <li><a href="/manual/changing-organisation-slug.html">Change an organisation's slug</a></li>
-            <li><a href="/manual/check-for-gone-route.html">Check for a 'gone' route</a></li>
-            <li><a href="/manual/editing-an-existing-route.html">Edit an existing route in the Router</a></li>
           </ul>
         </div>
 

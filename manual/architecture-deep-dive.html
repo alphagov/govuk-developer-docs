@@ -238,15 +238,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fc1c15f062626b7242779032429d1d24ad81dcfb">30 Jan 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c52ac0ae43b5a36f98d717744e1f238391829202">11 Dec 2024</a>
 </div>
 
  <h1 id='header'>Architectural deep-dive of GOV.UK</h1> <p>We can cover a lot of GOV.UK architecture by asking ourselves three questions:</p>
@@ -319,13 +312,9 @@ running on the cache machines.</p>
 <h4 id='routing-via-router'>Routing via &lsquo;router&rsquo;</h4><p>&lsquo;Router&rsquo; is a reverse proxy app written in Go. It is designed to be fast,
 storing all known routes in memory using a <a href="https://en.wikipedia.org/wiki/Trie">prefix trie</a>, which it loads
 from a MongoDB database of all known routes.</p>
-<p>The MongoDB database is written to via <a href="https://github.com/alphagov/router-api">router-api</a> whenever a route is
-added or changed: the Content Store (which we&rsquo;ll cover later) talks to
-Router API <a href="https://github.com/alphagov/content-store/blob/08f02f990e621c9d2fd473e12a70a6805ddd8dcb/app/models/route_set.rb#L58-L82">directly</a> to do this.</p>
-<p>Every Router instance <a href="https://github.com/alphagov/router/blob/811ed82d0ecc23b8077ed5dd2c460ccdfe2808ab/router.go#L154-L194">polls periodically</a>
-for any changes to the MongoDB database; if and when changes are detected
-by a particular instance it reloads all routes held in memory - a process
-which is repeated across all instances.</p>
+<p>Every Router instance reloads it&rsquo;s in memory routes periodically or being
+triggered by LISTEN/NOTIFY notification from the Content Store Postgres
+database. This process is repeated across all instances.</p>
 <p>Routes have different handlers. Routes marked as <code>gone</code> return a 410 Gone
 response. Routes marked as <code>redirect</code> serve a 301 Moved Permanently
 response. These handlers are useful for when content is deleted or
@@ -431,9 +420,6 @@ retrieve the content item and do something in response, such as:</p>
 exceptions to this are <code>travel-advice</code> &amp; <code>specialist-publisher</code>, which
 communicate directly with email-alert-api to ensure emails go out immediately)</li>
 </ul>
-<p><a href="https://github.com/alphagov/content-store/blob/dd79a03d74f130650bc97d1c84aae557ccea58d3/app/models/content_item.rb#L33">Content Store registers the route</a> for the content
-item via Router API. This happens inside the Sidekiq job directly, rather than
-in a downstream process.</p>
 <h4 id='sidekiq-queues-high-and-low-priority'>Sidekiq queues: high and low priority</h4><p>Updating one content item often requires updating other pieces of content.
 For example, if a content item&rsquo;s title has been changed, then content items
 which refer to that content item will need to be updated to use the new
