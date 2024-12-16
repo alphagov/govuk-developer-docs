@@ -7,25 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: asset-manager - GOV.UK Developer Documentation</title>
+    <title>asset-manager: # Asset state machine overview - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/asset-manager.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/asset-manager/asset_state_machine_overview.html">
 
-      <meta name="description" content="Everything about asset-manager (Manages uploaded assets (images, PDFs etc.) for applications on GOV.UK)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: asset-manager - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/asset-manager.html" />
+      <meta name="twitter:title" content="asset-manager: # Asset state machine overview - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/asset-manager/asset_state_machine_overview.html" />
 
-      <meta property="og:description" content="Everything about asset-manager (Manages uploaded assets (images, PDFs etc.) for applications on GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: asset-manager" />
+      <meta property="og:title" content="asset-manager: # Asset state machine overview" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/asset-manager.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/asset-manager/asset_state_machine_overview.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -176,6 +174,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "asset-manager",
+        "@id": "http://www.dev.gov.uk/repos/asset-manager.html"
+      }
     }
   ]
 }
@@ -184,116 +190,60 @@
 <div data-module="ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/asset-manager.html">asset-manager</a>
         </li>
   </ol>
 </div>
-  
-  <h1 class="page-title">Application: asset-manager</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Manages uploaded assets (images, PDFs etc.) for applications on GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/asset-manager">asset-manager</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value"><strong><a href="https://gds.slack.com/channels/govuk-publishing-platform">#govuk-publishing-platform</a></strong> owns the repo. <strong><a href="https://gds.slack.com/channels/govuk-publishing-platform-system-alerts">#govuk-publishing-platform-system-alerts</a></strong> receives automated alerts for this repo.</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">APIs</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-asset-manager" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?var-app=asset-manager" class="govuk-link">App dashboard: request rates, errors, durations</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:asset-manager),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:asset-manager)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:asset-manager-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:asset-manager-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
-    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/asset-manager" class="govuk-link">Argo CD (asset-manager)</a></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/asset-manager/commit/f00ef55291708260657d298699e099e1f08d510d">11 Dec 2024</a>
 </div>
-<h2 id='relevant-manual-pages'>Relevant manual pages</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="/manual/assets.html" class="govuk-link">Assets: how they work</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Manages uploaded assets (images, PDFs etc.) for applications in the GOV.UK Publishing stack.</p>
+  <h1 class="page-title">asset-manager: # Asset state machine overview</h1>
 
-<p>The app receives uploaded files from publishing applications and returns the URLs that they will be made available at. Before an asset is available to the public, it is virus scanned. Once a file is found to be clean, Asset Manager serves it at the previously generated URL. Unscanned or Infected files return a 404 Not Found error.</p>
-
-<p>Scanning uses <a href="https://www.clamav.net/">ClamAV</a> and occurs asynchronously via <a href="https://github.com/alphagov/govuk_sidekiq">govuk_sidekiq</a>.</p>
-
-<h2 id="technical-documentation">Technical Documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rspec</code></p>
-
-<h3 id="assets-on-s3">Assets on S3</h3>
-
-<p>All assets are uploaded to the S3 bucket via a separate <code>govuk_sidekiq</code> job triggered if virus scanning succeeds. Assets are currently still also saved to the NFS mount as per the original behaviour.</p>
-
-<p>In non-production environments if the <code>AWS_S3_BUCKET_NAME</code> environment variable is not set, then a fake version of S3 (<code>S3Storage::Fake</code>) is used and the other <code>AWS_*</code> environment variables do not need to be set. In this case, files are saved to the local filesystem instead of S3 and are served via an instance of <code>Rack::Files</code> mounted on the appropriate route path prefix.</p>
-
-<h3 id="manuals-and-decisions">Manuals and decisions</h3>
-
-<p>Check the <a href="https://github.com/alphagov/asset-manager/blob/main/docs/">docs</a> directory for detailed instructions, including API documentation.</p>
-
-<h2 id="viewing-the-sidekiq-ui">Viewing the Sidekiq UI</h2>
-
-<p>We have access to the Sidekiq UI but because Asset Manager doesn&rsquo;t have a
-frontend we have to use port forwarding to see it in our live environments.</p>
-
-<p>You&rsquo;ll need to have access to our EKS clusters before you can follow these
-instructions. There&rsquo;s <a href="https://docs.publishing.service.gov.uk/kubernetes/get-started/access-eks-cluster/#access-a-cluster-that-you-have-accessed-before">documentation here</a> on how to do that. This means that
-you&rsquo;ll need full production access before you can view the Sidekiq UI.</p>
-
-<p>To view the UI run:</p>
-
-<pre><code>kubectl -n apps port-forward deployment/asset-manager 8080:8080
-</code></pre>
-
-<p>and then navigate to localhost:8080/sidekiq</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/asset-manager/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  <h2 id="asset-state-machine-overview">Asset state machine overview</h2>
+<p>Asset Manager stores a a number of fields whose values work together to represent the state of an asset.
+These fields are closely related to various document states from the publishing applications.</p>
+<ol>
+<li><code>draft</code></li>
+</ol>
+<p>Assets are set to draft (boolean <code>true</code>) when they first get created on a draft edition. When the document gets published, the draft state of the asset should be updated to <code>false</code> by the publishing application.
+All assets associated with live content must be publicly available. Once <code>draft</code> is set to <code>false</code>, it should not be set back to <code>true</code>. There are other ways to further represent that the asset is no longer live, such as setting a <code>redirect_url</code> or a <code>replacement_id</code>.</p>
+<p>The draft state should always match the state of the <code>parent_document_url</code>. Recently, a <a href="https://github.com/alphagov/asset-manager/blob/cffce4e0e1323eab138e016de9b33536f62fef60/app/models/asset.rb#L288">validation rule</a> has been added to ensure this, though no data patch was run for existing data.</p>
+<p>Assets must be in draft for certain authorisation protocols to apply. See <a href="https://github.com/alphagov/asset-manager/blob/cffce4e0e1323eab138e016de9b33536f62fef60/docs/authorisation.md">documentation</a>.</p>
+<ol start="2">
+<li><code>state</code></li>
+</ol>
+<p>This is a representation of the internal Asset Manager processing of the asset, particularly around uploading and virus scanning status.
+The state machine includes <code>scanned_clean</code>, <code>clean</code>, <code>scanned_infected</code>, <code>upload_success</code>, <code>uploaded</code>.</p>
+<p>NB: There are some invalid remnants of a previous state machine, including state values such as <code>deleted</code>, in the database. These should be removed.</p>
+<ol start="3">
+<li><code>deleted_at</code></li>
+</ol>
+<p>The deletion timestamp should be set by the publishing application when an asset is deleted.
+A <code>nil</code> value means the asset has not been deleted (default).</p>
+<ol start="4">
+<li><code>replacement_id</code></li>
+</ol>
+<p>This is a BSON object ID, set by the publishing app when the user uploads a new file in the place of an old one, typically with the intention of preserving some contextual document metadata.
+Default is <code>nil</code>. The replaced asset redirects to its replacement, provided the replacement is not in draft.</p>
+<p>Whilst deletion and replacements are mutually exclusive (an asset should not logically have both), they do coexist in the database.
+Deletion, replacement, and draft work together to support previewing of draft content. An asset will not redirect to its replacement if the replacement is in draft.
+This ensures that until the publish event is fired, the users can preview images and documents on the draft stack.</p>
+<p>Publishing applications only send the next-in-line <code>replacement_id</code>.
+It is Asset Manager that deals with backpropagating the replacement - see the <code>update_indirect_replacements_on_publish</code> <a href="https://github.com/alphagov/asset-manager/blob/13d68aee4d0c8cf2c81be7fafef309dc36436ca3/app/models/asset.rb#L174">callback</a>.
+This ensures that all assets in a chain of replacements redirect to the latest one.</p>
+<ol start="5">
+<li><code>redirect_url</code></li>
+</ol>
+<p>This is set by the publishing app when the parent edition is unpublished. Default is <code>nil</code>. It is usually set to the parent document URL.
+Upon creating a new draft of the parent edition, the publishing app should set the redirect URL back to <code>nil</code>.</p>
 
 
             
@@ -301,8 +251,8 @@ you&rsquo;ll need full production access before you can view the Sidekiq UI.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fasset-manager.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/asset-manager/blob/main/docs/asset_state_machine_overview.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fasset-manager%2Fasset_state_machine_overview.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
