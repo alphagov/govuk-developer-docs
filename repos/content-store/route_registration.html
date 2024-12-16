@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>content-store: # Registering routes with the router. - GOV.UK Developer Documentation</title>
+    <title>content-store: # How router loads routes - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,12 +16,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="content-store: # Registering routes with the router. - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="content-store: # How router loads routes - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/content-store/route_registration.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="content-store: # Registering routes with the router." />
+      <meta property="og:title" content="content-store: # How router loads routes" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/content-store/route_registration.html" />
 
@@ -144,7 +144,7 @@
           <li><a href="/repos/content-store/gone_item.html" rel="noopener" class="govuk-link"># Gone items</a></li>
           <li><a href="/repos/content-store/publish_intents.html" rel="noopener" class="govuk-link">Publish intents</a></li>
           <li><a href="/repos/content-store/redirect_item.html" rel="noopener" class="govuk-link"># Redirect items</a></li>
-          <li><a href="/repos/content-store/route_registration.html" rel="noopener" class="govuk-link"># Registering routes with the router.</a></li>
+          <li><a href="/repos/content-store/route_registration.html" rel="noopener" class="govuk-link"># How router loads routes</a></li>
           <li class="subdir__heading">adr</li>
           <ul class="subdir__menu">
               <li><a href="/repos/content-store/adr/0001-port-content-store-to-postgresql-on-rds.html" rel="noopener" class="govuk-link">1. Port Content Store to PostgreSQL on RDS</a></li>
@@ -207,24 +207,16 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/content-store/commit/bbe2fdad0de0d5df40c78948e72ce9bd083fdbda">12 Sep 2023</a>
+  Last updated: <a href="https://github.com/alphagov/content-store/commit/719a67ed20b8ea6739b291b092f0803cd2515630">3 Dec 2024</a>
 </div>
 
-  <h1 class="page-title">content-store: # Registering routes with the router.</h1>
+  <h1 class="page-title">content-store: # How router loads routes</h1>
 
-  <h2 id="registering-routes-with-the-router-">Registering routes with the router.</h2>
-<p>After saving an item, the content store will register routes with the router.
-All items listed in the routes array will be created as routes pointing at the
-<code>rendering_app</code>. The routes for a content item must contain a route for the
-<code>base_path</code>.</p>
+  <h2 id="how-router-loads-routes">How router loads routes</h2>
+<p>Router will query the content store database to load routes. All items listed
+in the routes array will be created as routes pointing at the <code>rendering_app</code>.
+The routes for a content item must contain a route for the <code>base_path</code>.</p>
 <p>All entries in the routes array must be under the <code>base_path</code> (ie either a
 subpath of the <code>base_path</code>, or the <code>base_path</code> with an extension)</p>
 <p>Given a request including the following fields:</p>
