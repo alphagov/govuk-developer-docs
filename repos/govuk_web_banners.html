@@ -226,7 +226,7 @@ banners (currently spread across apps)</p>
 
 <h2 id="usage">Usage</h2>
 
-<p>Currently supports recruitment banners</p>
+<p>Currently supports the emergency banner and recruitment banners.</p>
 
 <h2 id="adding-the-gem-to-your-application">Adding the gem to your application</h2>
 
@@ -248,6 +248,36 @@ banners (currently spread across apps)</p>
 <p>Add the JS dependencies to your existing asset dependencies file:</p>
 
 <pre><code>//= require govuk_web_banners/dependencies
+</code></pre>
+
+<h2 id="adding-emergency-banners">Adding emergency banners</h2>
+
+<p>Emergency banners are passed to the <a href="https://components.publishing.service.gov.uk/component-guide/layout_for_public">Layout for Public</a> component, which is currently applied to each frontend app by the slimmer/static wrapping code - so you will only need to handle emergency banners in your app when Slimmer is removed from it. Once Slimmer is removed and you are calling the layout_for_public component directly in your app, add the emergency banner partial to the component&rsquo;s <code>emergency_banner:</code> key:</p>
+
+<pre><code>&lt;%= render "govuk_publishing_components/components/layout_for_public", {
+  draft_watermark: draft_environment,
+  emergency_banner: render("govuk_web_banners/emergency_banner"), # &lt;-- Add this line
+  full_width: false,
+  ...etc
+</code></pre>
+
+<p>if you want the homepage variant of the banner, you can add <code>homepage: true</code> to the render call:</p>
+
+<pre><code>&lt;%= render "govuk_publishing_components/components/layout_for_public", {
+  draft_watermark: draft_environment,
+  emergency_banner: render("govuk_web_banners/emergency_banner", homepage: true), # &lt;-- Add this line
+  full_width: full_width,
+  ...etc
+</code></pre>
+
+<p>Your app will also need access to the whitehall shared redis cluster (which is used to signal the emergency banner is up), via the <code>EMERGENCY_BANNER_REDIS_URL</code> environment variable (here is an example of <a href="https://github.com/alphagov/govuk-helm-charts/blob/7818eaa22fc194d21548f316bcc5a46c2023dcb6/charts/app-config/values-staging.yaml#L3337-L3338">setting this in govuk-helm-charts</a>). You&rsquo;ll need to allow this in all three environments.</p>
+
+<p>Finally, you&rsquo;ll need to configure a connection to the redis cluster, available at <code>Rails.application.config.emergency_banner_redis_client</code>. The suggested way of doing this is creating an initializer at <code>/config/initializers/govuk_web_banners.rb</code> with the content:</p>
+
+<pre><code>Rails.application.config.emergency_banner_redis_client = Redis.new(
+  url: ENV["EMERGENCY_BANNER_REDIS_URL"],
+  reconnect_attempts: [15, 30, 45, 60],
+)
 </code></pre>
 
 <h2 id="adding-recruitment-banners">Adding recruitment banners</h2>
