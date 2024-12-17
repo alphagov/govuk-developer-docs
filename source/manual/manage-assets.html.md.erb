@@ -19,19 +19,19 @@ For example, for `https://assets.publishing.service.gov.uk/government/uploads/up
 
 ## Remove an asset
 
+When looking to remove an asset, keep in mind that some cases can be fixed less destructively, by setting a redirect or replacement.
+It depends on the case and user need.
+For Whitehall assets, see the [known bugs](#whitehall-known-bugs) section below.
+For more information on the asset state machine, see [this documentation](https://docs.publishing.service.gov.uk/repos/asset-manager/asset_state_machine_overview.html).
+
 ### Remove an asset via the originating publishing app
 
-Where possible, you should delete the asset in the publishing application that originally uploaded the file, for example Whitehall. Deleting an asset from Asset Manager without removing the record from the publishing application could cause problems if the asset is attempted to be re-published again in the future.
+Where possible, you should guide the user to remove the asset in the publishing application that originally uploaded the file, via the UI.
+Deleting an asset from Asset Manager without removing the record from the publishing application can surface broken links to the user.
+If the content is published, remove the attachment by redrafting the edition, making your changes, and republishing.
 
-For example, to delete a legacy Whitehall attachment of the form `/government/uploads/system/uploads/attachment_data/file/12345/foo.pdf`, you would:
-
-1. Open a Rails console in Whitehall
-
-1. Retrieve the content IDs (and some sense-checking attributes) of the attachments in Whitehall: `Attachment.where(attachment_data_id: 12345).pluck(:content_id, :deleted_at, :created_at)`
-
-1. Exit the Rails console
-
-1. For each attachment that is marked `deleted: false`, mark them as deleted via the dedicated rake task, i.e. `k exec deploy/whitehall-admin -- rake delete_attachment["<content id>"]`
+For superseded content, we recommend preserving the `Attachment`s relationship with the parent document, on the publishing app.
+You should only delete the asset in Asset Manager, using the `assets:delete` rake task described below.
 
 ### Remove an asset directly in Asset Manager
 
@@ -157,6 +157,9 @@ If you need to replace the file of an existing attachment, follow these steps.
 > Where possible, you should do the replacement in the publishing application
 > that originally uploaded the file, for example Whitehall.
 
+When a manual replacement in the UI is not possible, for example in the case of a bug related to superseded data, you can rerun the whitehall replacement update manually.
+See section below on [known bugs](#whitehall-known-bugs).
+
 If it isn't possible or desirable to replace the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:
 
@@ -205,3 +208,42 @@ steps to remove the asset in Asset Manager:
    attachment_data = Asset.find_by(asset_manager_id: asset_id).assetable # e.g. 57a9c52b40f0b608a700000a
    attachment_data.update(file_size: 123, number_of_pages: 28) # file_size in bytes
    ```
+
+## Whitehall known asset bugs
+
+There are a few known bugs in Whitehall, that cause assets to be live when they should not be.
+These are currently (end of 2024) being worked on, and a data clean up has been run.
+In case you see anything that matches the patterns below, here's how you can fix it.
+You can still just delete the asset, but this approach is less destructive and more aligned with the intended behaviour.
+
+1. On a new draft of a published edition, if the user replaces a previously published attachment, then deletes it, and publishes the draft. The original asset remains live. However, the attachment is deleted, so the user does not know anything has gone wrong.
+
+The problem seems to be that the deleted replacement's draft state is not set to false.
+
+NB: The issue is specific to assets with draft replacements. Do not change the replacement unless it is in draft!
+The original asset must only serve superseded editions.
+To check that the original asset is not used on a public edition run, from a Whitehall console:
+```
+   # This should be an array of "superseded" and nil ("deleted" state) attachables.
+   Asset.find_by(asset_manager_id: <your_asset_manager_id>).assetable.attachments.map(&:attachable).pluck(:state)
+```
+Fix the replacement asset by running the following code from an Asset Manager console:
+```
+   replacement = Asset.find(<your_asset_manager_id>).replacement
+   replacement.destroy! # if not already deleted
+   replacement.draft = false
+   replacement.save!
+```
+2. On a draft of a published edition, the user replaces a previously published attachment at least two successive times, without saving the draft first (or in between). The original asset remains live.
+
+To fix this, you can populate the `replacement_id` manually, mimicking the behaviour that happens on publish.
+After a publish event, all the assets in a chain of replacements will point to the last one.
+This fix is preferable to a deletion, especially if a redirected is needed anyway.
+You can extract the required `replacement_id` by following the chain of `AttachmentData` `replaced_by_id`s until the last. In a Whitehall console, run:
+```
+   original_attachment_data = Asset.where(asset_mnager_id: <your_asset_manager_id>).first&.assetable
+   next_attachment_data1 = AttachmentData.find(original_attachment_data.replaced_by_id)
+   next_attachment_data2 = AttachmentData.find(next_attachment_data1.replaced_by_id)
+   AssetManager::AssetUpdater.call(<your_asset_manager_id>, { "replacement_id" => next_attachment_data2.assets.first.asset_manager_id })
+
+```
