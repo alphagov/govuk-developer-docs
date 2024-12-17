@@ -165,6 +165,9 @@
       <li>
         <a href="#replace-an-asset"><span>Replace an asset</span></a>
       </li>
+      <li>
+        <a href="#whitehall-known-asset-bugs"><span>Whitehall known asset bugs</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -214,7 +217,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9d00c56f720351e3c1fe7fa3c0095fc821a87498">24 Oct 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/08a4094fafa6dd7e9b01ee452e979c27f5c44656">11 Dec 2024</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='get-an-assets-id'>Get an asset&rsquo;s ID</h2><p>If the asset URL starts with <code>/media</code>, the asset ID is in the URL.
@@ -222,15 +225,15 @@ For example, for the URL <code>https://assets.publishing.service.gov.uk/media/65
 <p>For assets that do not start <code>/media</code>, obtain the ID by running the following rake task:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:get_id_by_legacy_url_path[SLUG]
 </code></pre></div><p>For example, for <code>https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml&quot;</code>, you would pass <code>/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml</code> as the argument.</p>
-<h2 id='remove-an-asset'>Remove an asset</h2><h3 id='remove-an-asset-via-the-originating-publishing-app'>Remove an asset via the originating publishing app</h3><p>Where possible, you should delete the asset in the publishing application that originally uploaded the file, for example Whitehall. Deleting an asset from Asset Manager without removing the record from the publishing application could cause problems if the asset is attempted to be re-published again in the future.</p>
-<p>For example, to delete a legacy Whitehall attachment of the form <code>/government/uploads/system/uploads/attachment_data/file/12345/foo.pdf</code>, you would:</p>
-
-<ol>
-<li><p>Open a Rails console in Whitehall</p></li>
-<li><p>Retrieve the content IDs (and some sense-checking attributes) of the attachments in Whitehall: <code>Attachment.where(attachment_data_id: 12345).pluck(:content_id, :deleted_at, :created_at)</code></p></li>
-<li><p>Exit the Rails console</p></li>
-<li><p>For each attachment that is marked <code>deleted: false</code>, mark them as deleted via the dedicated rake task, i.e. <code>k exec deploy/whitehall-admin -- rake delete_attachment[&quot;&lt;content id&gt;&quot;]</code></p></li>
-</ol>
+<h2 id='remove-an-asset'>Remove an asset</h2><p>When looking to remove an asset, keep in mind that some cases can be fixed less destructively, by setting a redirect or replacement.
+It depends on the case and user need.
+For Whitehall assets, see the <a href="#whitehall-known-bugs">known bugs</a> section below.
+For more information on the asset state machine, see <a href="https://docs.publishing.service.gov.uk/repos/asset-manager/asset_state_machine_overview.html">this documentation</a>.</p>
+<h3 id='remove-an-asset-via-the-originating-publishing-app'>Remove an asset via the originating publishing app</h3><p>Where possible, you should guide the user to remove the asset in the publishing application that originally uploaded the file, via the UI.
+Deleting an asset from Asset Manager without removing the record from the publishing application can surface broken links to the user.
+If the content is published, remove the attachment by redrafting the edition, making your changes, and republishing.</p>
+<p>For superseded content, we recommend preserving the <code>Attachment</code>s relationship with the parent document, on the publishing app.
+You should only delete the asset in Asset Manager, using the <code>assets:delete</code> rake task described below.</p>
 <h3 id='remove-an-asset-directly-in-asset-manager'>Remove an asset directly in Asset Manager</h3><p>If it isn&rsquo;t feasible to remove the asset in the publishing app, you can use these steps to remove the asset from <code>assets.publishing.service.gov.uk</code> in Asset Manager.</p>
 
 <ol>
@@ -331,6 +334,8 @@ you will need to start again as the <code>/tmp</code> directory is specific to t
 <p>Where possible, you should do the replacement in the publishing application
 that originally uploaded the file, for example Whitehall.</p>
 </blockquote>
+<p>When a manual replacement in the UI is not possible, for example in the case of a bug related to superseded data, you can rerun the whitehall replacement update manually.
+See section below on <a href="#whitehall-known-bugs">known bugs</a>.</p>
 <p>If it isn&rsquo;t possible or desirable to replace the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:</p>
 
@@ -369,7 +374,40 @@ steps to remove the asset in Asset Manager:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>   k <span class="nb">exec</span> <span class="nt">-it</span> deploy/whitehall-admin <span class="nt">--</span> rails c
 </code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">attachment_data</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">asset_manager_id: </span><span class="n">asset_id</span><span class="p">).</span><span class="nf">assetable</span> <span class="c1"># e.g. 57a9c52b40f0b608a700000a</span>
    <span class="n">attachment_data</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">file_size: </span><span class="mi">123</span><span class="p">,</span> <span class="ss">number_of_pages: </span><span class="mi">28</span><span class="p">)</span> <span class="c1"># file_size in bytes</span>
-</code></pre></div>
+</code></pre></div><h2 id='whitehall-known-asset-bugs'>Whitehall known asset bugs</h2><p>There are a few known bugs in Whitehall, that cause assets to be live when they should not be.
+These are currently (end of 2024) being worked on, and a data clean up has been run.
+In case you see anything that matches the patterns below, here&rsquo;s how you can fix it.
+You can still just delete the asset, but this approach is less destructive and more aligned with the intended behaviour.</p>
+
+<ol>
+<li>On a new draft of a published edition, if the user replaces a previously published attachment, then deletes it, and publishes the draft. The original asset remains live. However, the attachment is deleted, so the user does not know anything has gone wrong.</li>
+</ol>
+<p>The problem seems to be that the deleted replacement&rsquo;s draft state is not set to false.</p>
+<p>NB: The issue is specific to assets with draft replacements. Do not change the replacement unless it is in draft!
+The original asset must only serve superseded editions.
+To check that the original asset is not used on a public edition run, from a Whitehall console:
+<code>
+   # This should be an array of &quot;superseded&quot; and nil (&quot;deleted&quot; state) attachables.
+   Asset.find_by(asset_manager_id: &lt;your_asset_manager_id&gt;).assetable.attachments.map(&amp;:attachable).pluck(:state)
+</code>
+Fix the replacement asset by running the following code from an Asset Manager console:
+<code>
+   replacement = Asset.find(&lt;your_asset_manager_id&gt;).replacement
+   replacement.destroy! # if not already deleted
+   replacement.draft = false
+   replacement.save!
+</code>
+2. On a draft of a published edition, the user replaces a previously published attachment at least two successive times, without saving the draft first (or in between). The original asset remains live.</p>
+<p>To fix this, you can populate the <code>replacement_id</code> manually, mimicking the behaviour that happens on publish.
+After a publish event, all the assets in a chain of replacements will point to the last one.
+This fix is preferable to a deletion, especially if a redirected is needed anyway.
+You can extract the required <code>replacement_id</code> by following the chain of <code>AttachmentData</code> <code>replaced_by_id</code>s until the last. In a Whitehall console, run:
+&ldquo;`
+   original_attachment_data = Asset.where(asset_mnager_id: <your_asset_manager_id>).first&amp;.assetable
+   next_attachment_data1 = AttachmentData.find(original_attachment_data.replaced_by_id)
+   next_attachment_data2 = AttachmentData.find(next_attachment_data1.replaced_by_id)
+   AssetManager::AssetUpdater.call(<your_asset_manager_id>, { &quot;replacement_id&rdquo; =&gt; next_attachment_data2.assets.first.asset_manager_id })</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code></code></pre></div>
   <div class='related-content'>
 
     <h3>More in the Assets section</h3>
