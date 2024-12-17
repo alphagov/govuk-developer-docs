@@ -158,12 +158,16 @@ It accepts a CSV file listing the document's slug and new associated organisatio
 
 There is a similar [Rake task to change the organisations for Manuals][manuals-bulk-update-organisation].
 A data migration is required to change the organisations for (Mainstream) Publisher documents.
-This is an example PR: [Migrate Publisher docs][publisher-bulk-update-organisation-example]
+Depending on the requirements, we might need to replace all currently tagged organisations with the new one only,
+(example PR: [Migrate Publisher docs for replacing all tagged organisations][publisher-bulk-update-organisation-example])
+or just replace the old one with a new one, leaving other tagged organisations intact
+(example PR: [Migrate Publisher docs for replacing only the old organisation][publisher-bulk-update-preserving-multiple-organisations-example]).
 
 [whitehall-bulk-update-organisation]: https://github.com/alphagov/whitehall/blob/main/lib/tasks/data_hygiene.rake
 [running-rake-tasks-on-the-command-line]: /manual/running-rake-tasks.html#run-rake-tasks-from-the-command-line
 [manuals-bulk-update-organisation]: https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/update_manual_organisation.rake
 [publisher-bulk-update-organisation-example]: https://github.com/alphagov/publishing-api/pull/1981
+[publisher-bulk-update-preserving-multiple-organisations-example]: https://github.com/alphagov/publishing-api/pull/2827
 [publishing-api-bulk-update-organisation]: https://github.com/alphagov/publishing-api/blob/b08fbe0a3f58d827f38403c714920b69826f608f/lib/tasks/data_hygiene.rake#L41
 
 ### Reorder ministers/peoples role titles
