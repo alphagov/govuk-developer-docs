@@ -233,7 +233,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/0f833d1d8c100494f5b2024e2286d5575fdce8d9">9 Dec 2024</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/dc7c239b4a912ee70da7441cb7075b81d931ab80">25 Nov 2024</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -255,6 +255,7 @@ message queue for other apps (e.g. <code>email-alert-service</code>) to consume.
 <li><a href="#get-v2contentcontent_id"><code>GET /v2/content/:content_id</code></a></li>
 <li><a href="#get-v2contentcontent_idhost-content"><code>GET /v2/content/:content_id/host-content</code></a></li>
 <li><a href="#get-v2contentcontent_idhost-contenthost_content_id"><code>GET /v2/content/:content_id/host-content/:host_content_id</code></a></li>
+<li><a href="#get-v2contentcontent_idevents"><code>GET /v2/content/:content_id/events</code></a></li>
 <li><a href="#patch-v2linkscontent_id"><code>PATCH /v2/links/:content_id</code></a></li>
 <li><a href="#get-v2linkscontent_id"><code>GET /v2/links/:content_id</code></a></li>
 <li><a href="#get-v2expanded-linkscontent_id"><code>GET /v2/expanded-links/:content_id</code></a></li>
@@ -900,6 +901,39 @@ included within the response.</p>
 <ul>
 <li>Specify a particular edition of this document</li>
 <li>If omitted the most recent edition.</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2contentcontent_idevents"><code>GET /v2/content/:content_id/events</code></h2>
+<p>Retrieves a list of all events for a given <code>:content_id</code></p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the document to return events for</li>
+</ul>
+</li>
+</ul>
+<h3 id="query-parameters">Query parameters</h3>
+<ul>
+<li>
+<code>action</code> <em>(optional)</em>
+<ul>
+<li>Specify what action type to filter for</li>
+<li>If omitted, returns all actions</li>
+</ul>
+</li>
+<li>
+<code>from</code> <em>(optional)</em>
+<ul>
+<li>Filter for actions created after that particular datetime</li>
+</ul>
+</li>
+<li>
+<code>to</code> <em>(optional)</em>
+<ul>
+<li>Filter for actions created before that particular datetime</li>
 </ul>
 </li>
 </ul>
