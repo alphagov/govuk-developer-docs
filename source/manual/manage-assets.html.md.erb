@@ -21,16 +21,16 @@ For example, for `https://assets.publishing.service.gov.uk/government/uploads/up
 
 When looking to remove an asset, keep in mind that some cases can be fixed less destructively, by setting a redirect or replacement.
 It depends on the case and user need.
-For Whitehall assets, see the [known bugs](#whitehall-known-bugs) section below.
+For Whitehall assets, see the [known bugs](#whitehall-known-asset-bugs) section below.
 For more information on the asset state machine, see [this documentation](https://docs.publishing.service.gov.uk/repos/asset-manager/asset_state_machine_overview.html).
 
 ### Remove an asset via the originating publishing app
 
 Where possible, you should guide the user to remove the asset in the publishing application that originally uploaded the file, via the UI.
 Deleting an asset from Asset Manager without removing the record from the publishing application can surface broken links to the user.
-If the content is published, remove the attachment by redrafting the edition, making your changes, and republishing.
+If the content is published, remove the attachment in a new draft of the edition, make your changes, and republish.
 
-For superseded content, we recommend preserving the `Attachment`s relationship with the parent document, on the publishing app.
+For superseded content, we recommend preserving the attachment's relationship with the parent document, on the publishing app.
 You should only delete the asset in Asset Manager, using the `assets:delete` rake task described below.
 
 ### Remove an asset directly in Asset Manager
@@ -39,50 +39,47 @@ If it isn't feasible to remove the asset in the publishing app, you can use thes
 
 1. [Get the asset ID](/manual/manage-assets.html#get-an-assets-id).
 
-1. Decide if the asset can be marked as deleted or whether all traces need to be
-   removed (e.g. if it contains secret information).
+2. Decide if the asset can be marked as deleted or whether all traces need to be removed (e.g. if it contains secret information).
 
-   To soft delete the asset (i.e. mark the asset as deleted in Asset Manager's database,
-   but retain the file in cloud storage), run:
+    To soft delete the asset (i.e. mark the asset as deleted in Asset Manager's database,
+    but retain the file in cloud storage), run:
 
-   <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID]") %>
+    <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID]") %>
 
-   To delete all traces of the asset (including the file from cloud storage), run:
+    To delete all traces of the asset (including the file from cloud storage), run:
 
-   <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID,true]") %>
+    <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID,true]") %>
 
-   For "Whitehall" Assets (paths starting with `/government/uploads/system`), use the [`assets:whitehall_delete` Rake task](https://github.com/alphagov/asset-manager/blob/796eb36/lib/tasks/assets.rake#L9-L13) instead:
+    For "Whitehall" Assets (paths starting with `/government/uploads/system`), use the [`assets:whitehall_delete`](https://github.com/alphagov/asset-manager/blob/796eb36/lib/tasks/assets.rake#L9-L13) rake task instead:
 
-   <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[ASSET_PATH]") %>
+    <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[ASSET_PATH]") %>
 
-1. Add a query string to the URL (e.g. `?cache-bust=12345`) to bypass the cache
+3. Add a query string to the URL (e.g. `?cache-bust=12345`) to bypass the cache
    and check that the asset responds with a 404 not found.
 
-1. Wait 5 minutes for the cache to clear, or [purge it yourself][clear-cache].
+4. Wait 5 minutes for the cache to clear, or [purge it yourself](/manual/purge-cache.html#assets).
 
-1. Verify that the URL returns a 404 response without using a query string.
+5. Verify that the URL returns a 404 response without using a query string.
 
-1. Request removal of the asset from Google's search results:
+6. Request removal of the asset from Google's search results:
    - Go to the [Google Search Console](https://www.google.com/webmasters/tools/removals)
    - Click 'New request'
    - Select 'To refresh Google's outdated result for a webpage that has changed'
    - Click 'Next'
    - Enter the page URL and click 'Submit'
 
-1. Remove the asset from the Google Cloud Platform (GCP) mirror:
+7. Remove the asset from the Google Cloud Platform (GCP) mirror:
    - Log into the [GCP console](https://console.cloud.google.com/).
    - Go to the `GOVUK Production` project under the `DIGITAL.CABINET-OFFICE.GOV.UK`
      organisation.
-   - Select `Cloud Storage -> Browser`, go to the [`govuk-production-mirror`
-     bucket][govuk-production-mirror-gcp].
+   - Select `Cloud Storage -> Browser`, go to the [`govuk-production-mirror`](https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&project=govuk-production) bucket.
    - Navigate to the file, then delete it.
 
-1. Remove the asset from the Amazon Web Services (AWS) mirror:
+8. Remove the asset from the Amazon Web Services (AWS) mirror:
 
-   `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
-
-[clear-cache]: /manual/purge-cache.html#assets
-[govuk-production-mirror-gcp]: https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&project=govuk-production
+    ```
+    gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>
+    ```
 
 ## Redirect an asset
 
@@ -98,11 +95,11 @@ steps to remove the asset in Asset Manager:
 1. [Get the asset ID](/manual/manage-assets.html#get-an-assets-id). 
 1. Run the following rake task:
 
-   <%= RunRakeTask.links("asset-manager", "assets:redirect[ASSET_ID,REDIRECT_URL]") %>
+    <%= RunRakeTask.links("asset-manager", "assets:redirect[ASSET_ID,REDIRECT_URL]") %>
 
-For Whitehall assets you will have to run:
+    For Whitehall assets you will have to run:
 
-   <%= RunRakeTask.links("whitehall_redirect", "assets:redirect[LEGACY_PATH_URL,REDIRECT_URL]") %>
+    <%= RunRakeTask.links("whitehall_redirect", "assets:redirect[LEGACY_PATH_URL,REDIRECT_URL]") %>
 
 ## Upload an asset
 
@@ -119,34 +116,34 @@ best to simply perform the upload directly in production.
 
 1. Get the name of an asset-manager app pod.
 
-   ```sh
-   POD=$(kubectl get pods -l app=asset-manager -o name | head -1)
-   echo $POD
-   ```
+    ```sh
+    POD=$(kubectl get pods -l app=asset-manager -o name | head -1)
+    echo $POD
+    ```
 
 1. Upload the file to the pod's `/tmp` directory:
 
-   ```sh
-   k cp my_file.jpg apps/$POD:/tmp
-   ```
+    ```sh
+    k cp my_file.jpg apps/$POD:/tmp
+    ```
 
 1. Run the create_asset command on the same pod:
 
-   ```sh
-   k exec -it $POD -- bin/create_asset /tmp/my_file.jpg
-   ```
+    ```sh
+    k exec -it $POD -- bin/create_asset /tmp/my_file.jpg
+    ```
 
-   The output will look like the following:
+    The output will look like the following:
 
-   ```sh
-   Saved!
-   Asset id: 65f2c1110e1c2f8c4dffaa53
-   Asset name: my_file.jpg
-   Asset basepath: /media/65f2c1110e1c2f8c4dffaa53/my_file.jpg
-   ```
+    ```sh
+    Saved!
+    Asset id: 65f2c1110e1c2f8c4dffaa53
+    Asset name: my_file.jpg
+    Asset basepath: /media/65f2c1110e1c2f8c4dffaa53/my_file.jpg
+    ```
 
-   The asset should now be available at `https://assets.publishing.service.gov.uk/{base-path-from-previous-output}`,
-   for example `https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg`.
+    The asset should now be available at `https://assets.publishing.service.gov.uk/{base-path-from-previous-output}`,
+    for example `https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg`.
 
 ## Replace an asset
 
@@ -158,56 +155,56 @@ If you need to replace the file of an existing attachment, follow these steps.
 > that originally uploaded the file, for example Whitehall.
 
 When a manual replacement in the UI is not possible, for example in the case of a bug related to superseded data, you can rerun the whitehall replacement update manually.
-See section below on [known bugs](#whitehall-known-bugs).
+See section below on [known bugs](#whitehall-known-asset-bugs).
 
 If it isn't possible or desirable to replace the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:
 
 1. Get the name of an asset-manager app pod.
 
-   ```sh
-   POD=$(kubectl get pods -l app=asset-manager -o name | head -1)
-   echo $POD
-   ```
+    ```sh
+    POD=$(kubectl get pods -l app=asset-manager -o name | head -1)
+    echo $POD
+    ```
 
 1. Upload the file to the pod's `/tmp` directory:
 
-   ```sh
-   k cp my_file.jpg apps/$POD:/tmp
-   ```
+    ```sh
+    k cp my_file.jpg apps/$POD:/tmp
+    ```
 
 1. Open an app console on that same pod:
 
-   ```sh
-   k exec -it $POD -- rails c
-   ```
+    ```sh
+    k exec -it $POD -- rails c
+    ```
 
 1. Find the asset by its ID (see "[Get an asset's ID](/manual/manage-assets.html#get-an-assets-id)"):
 
-   ```ruby
-   asset = Asset.find(asset_id)
-   ```
+    ```ruby
+    asset = Asset.find(asset_id)
+    ```
 
 1. Check the asset is what you think it is.
 
 1. Replace the file:
 
-   ```ruby
-   asset.file = Pathname.new("/tmp/filename.ext").open
-   asset.send(:store_metadata)
-   asset.save!
-   ```
+    ```ruby
+    asset.file = Pathname.new("/tmp/filename.ext").open
+    asset.send(:store_metadata)
+    asset.save!
+    ```
 
 1. If the attachment is a PDF that was originally uploaded in Whitehall, update the page count field in Whitehall:
 
-   ```sh
-   k exec -it deploy/whitehall-admin -- rails c
-   ```
+    ```sh
+    k exec -it deploy/whitehall-admin -- rails c
+    ```
 
-   ```ruby
-   attachment_data = Asset.find_by(asset_manager_id: asset_id).assetable # e.g. 57a9c52b40f0b608a700000a
-   attachment_data.update(file_size: 123, number_of_pages: 28) # file_size in bytes
-   ```
+    ```ruby
+    attachment_data = Asset.find_by(asset_manager_id: asset_id).assetable # e.g. 57a9c52b40f0b608a700000a
+    attachment_data.update(file_size: 123, number_of_pages: 28) # file_size in bytes
+    ```
 
 ## Whitehall known asset bugs
 
@@ -218,32 +215,36 @@ You can still just delete the asset, but this approach is less destructive and m
 
 1. On a new draft of a published edition, if the user replaces a previously published attachment, then deletes it, and publishes the draft. The original asset remains live. However, the attachment is deleted, so the user does not know anything has gone wrong.
 
-The problem seems to be that the deleted replacement's draft state is not set to false.
+    The problem seems to be that the deleted replacement's draft state is not set to false.
 
-NB: The issue is specific to assets with draft replacements. Do not change the replacement unless it is in draft!
-The original asset must only serve superseded editions.
-To check that the original asset is not used on a public edition run, from a Whitehall console:
-```
-   # This should be an array of "superseded" and nil ("deleted" state) attachables.
-   Asset.find_by(asset_manager_id: <your_asset_manager_id>).assetable.attachments.map(&:attachable).pluck(:state)
-```
-Fix the replacement asset by running the following code from an Asset Manager console:
-```
-   replacement = Asset.find(<your_asset_manager_id>).replacement
-   replacement.destroy! # if not already deleted
-   replacement.draft = false
-   replacement.save!
-```
+    NB: The issue is specific to assets with draft replacements. Do not change the replacement unless it is in draft!
+    The original asset must only serve superseded editions.
+    To check that the original asset is not used on a public edition run, from a Whitehall console:
+
+       ```ruby
+       # This should be an array of "superseded" and nil ("deleted" state) attachables.
+       Asset.find_by(asset_manager_id: <your_asset_manager_id>).assetable.attachments.map(&:attachable).pluck(:state)
+       ```
+
+    Fix the replacement asset by running the following code from an Asset Manager console:
+
+       ```ruby
+       replacement = Asset.find(<your_asset_manager_id>).replacement
+       replacement.destroy! # if not already deleted
+       replacement.draft = false
+       replacement.save!
+       ```
+
 2. On a draft of a published edition, the user replaces a previously published attachment at least two successive times, without saving the draft first (or in between). The original asset remains live.
 
-To fix this, you can populate the `replacement_id` manually, mimicking the behaviour that happens on publish.
-After a publish event, all the assets in a chain of replacements will point to the last one.
-This fix is preferable to a deletion, especially if a redirected is needed anyway.
-You can extract the required `replacement_id` by following the chain of `AttachmentData` `replaced_by_id`s until the last. In a Whitehall console, run:
-```
-   original_attachment_data = Asset.where(asset_mnager_id: <your_asset_manager_id>).first&.assetable
-   next_attachment_data1 = AttachmentData.find(original_attachment_data.replaced_by_id)
-   next_attachment_data2 = AttachmentData.find(next_attachment_data1.replaced_by_id)
-   AssetManager::AssetUpdater.call(<your_asset_manager_id>, { "replacement_id" => next_attachment_data2.assets.first.asset_manager_id })
+    To fix this, you can populate the `replacement_id` manually, mimicking the behaviour that happens on publish.
+    After a publish event, all the assets in a chain of replacements will point to the last one.
+    This fix is preferable to a deletion, especially if a redirected is needed anyway.
+    You can extract the required `replacement_id` by following the chain of `AttachmentData` `replaced_by_id`s until the last. In a Whitehall console, run:
 
-```
+       ```ruby
+       original_attachment_data = Asset.where(asset_mnager_id: <your_asset_manager_id>).first&.assetable
+       next_attachment_data1 = AttachmentData.find(original_attachment_data.replaced_by_id)
+       next_attachment_data2 = AttachmentData.find(next_attachment_data1.replaced_by_id)
+       AssetManager::AssetUpdater.call(<your_asset_manager_id>, { "replacement_id" => next_attachment_data2.assets.first.asset_manager_id })
+       ```
