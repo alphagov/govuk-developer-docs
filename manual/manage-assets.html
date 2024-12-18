@@ -217,7 +217,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/08a4094fafa6dd7e9b01ee452e979c27f5c44656">11 Dec 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dc4d1de3c5a15d2266a60318d3e5e6173f4d0f7c">18 Dec 2024</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='get-an-assets-id'>Get an asset&rsquo;s ID</h2><p>If the asset URL starts with <code>/media</code>, the asset ID is in the URL.
@@ -227,29 +227,26 @@ For example, for the URL <code>https://assets.publishing.service.gov.uk/media/65
 </code></pre></div><p>For example, for <code>https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml&quot;</code>, you would pass <code>/government/uploads/uploaded/hmrc/realtimepayetools-update-v23.xml</code> as the argument.</p>
 <h2 id='remove-an-asset'>Remove an asset</h2><p>When looking to remove an asset, keep in mind that some cases can be fixed less destructively, by setting a redirect or replacement.
 It depends on the case and user need.
-For Whitehall assets, see the <a href="#whitehall-known-bugs">known bugs</a> section below.
+For Whitehall assets, see the <a href="#whitehall-known-asset-bugs">known bugs</a> section below.
 For more information on the asset state machine, see <a href="https://docs.publishing.service.gov.uk/repos/asset-manager/asset_state_machine_overview.html">this documentation</a>.</p>
 <h3 id='remove-an-asset-via-the-originating-publishing-app'>Remove an asset via the originating publishing app</h3><p>Where possible, you should guide the user to remove the asset in the publishing application that originally uploaded the file, via the UI.
 Deleting an asset from Asset Manager without removing the record from the publishing application can surface broken links to the user.
-If the content is published, remove the attachment by redrafting the edition, making your changes, and republishing.</p>
-<p>For superseded content, we recommend preserving the <code>Attachment</code>s relationship with the parent document, on the publishing app.
+If the content is published, remove the attachment in a new draft of the edition, make your changes, and republish.</p>
+<p>For superseded content, we recommend preserving the attachment&rsquo;s relationship with the parent document, on the publishing app.
 You should only delete the asset in Asset Manager, using the <code>assets:delete</code> rake task described below.</p>
 <h3 id='remove-an-asset-directly-in-asset-manager'>Remove an asset directly in Asset Manager</h3><p>If it isn&rsquo;t feasible to remove the asset in the publishing app, you can use these steps to remove the asset from <code>assets.publishing.service.gov.uk</code> in Asset Manager.</p>
 
 <ol>
 <li><p><a href="/manual/manage-assets.html#get-an-assets-id">Get the asset ID</a>.</p></li>
-<li><p>Decide if the asset can be marked as deleted or whether all traces need to be
-removed (e.g. if it contains secret information).</p></li>
-</ol>
+<li><p>Decide if the asset can be marked as deleted or whether all traces need to be removed (e.g. if it contains secret information).</p>
 <p>To soft delete the asset (i.e. mark the asset as deleted in Asset Manager&rsquo;s database,
-   but retain the file in cloud storage), run:</p>
+but retain the file in cloud storage), run:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID]
 </code></pre></div><p>To delete all traces of the asset (including the file from cloud storage), run:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:delete[ASSET_ID,true]
-</code></pre></div><p>For &ldquo;Whitehall&rdquo; Assets (paths starting with <code>/government/uploads/system</code>), use the <a href="https://github.com/alphagov/asset-manager/blob/796eb36/lib/tasks/assets.rake#L9-L13"><code>assets:whitehall_delete</code> Rake task</a> instead:</p>
+</code></pre></div><p>For &ldquo;Whitehall&rdquo; Assets (paths starting with <code>/government/uploads/system</code>), use the <a href="https://github.com/alphagov/asset-manager/blob/796eb36/lib/tasks/assets.rake#L9-L13"><code>assets:whitehall_delete</code></a> rake task instead:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:whitehall_delete[ASSET_PATH]
-</code></pre></div>
-<ol>
+</code></pre></div></li>
 <li><p>Add a query string to the URL (e.g. <code>?cache-bust=12345</code>) to bypass the cache
 and check that the asset responds with a 404 not found.</p></li>
 <li><p>Wait 5 minutes for the cache to clear, or <a href="/manual/purge-cache.html#assets">purge it yourself</a>.</p></li>
@@ -269,13 +266,13 @@ and check that the asset responds with a 404 not found.</p></li>
 <li>Log into the <a href="https://console.cloud.google.com/">GCP console</a>.</li>
 <li>Go to the <code>GOVUK Production</code> project under the <code>DIGITAL.CABINET-OFFICE.GOV.UK</code>
 organisation.</li>
-<li>Select <code>Cloud Storage -&gt; Browser</code>, go to the <a href="https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&amp;project=govuk-production"><code>govuk-production-mirror</code>
-bucket</a>.</li>
+<li>Select <code>Cloud Storage -&gt; Browser</code>, go to the <a href="https://console.cloud.google.com/storage/browser/govuk-production-mirror;tab=objects?forceOnBucketsSortingFiltering=false&amp;project=govuk-production"><code>govuk-production-mirror</code></a> bucket.</li>
 <li>Navigate to the file, then delete it.</li>
 </ul></li>
-<li><p>Remove the asset from the Amazon Web Services (AWS) mirror:</p></li>
+<li><p>Remove the asset from the Amazon Web Services (AWS) mirror:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/&lt;slug&gt;
+</code></pre></div></li>
 </ol>
-<p><code>gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/&lt;slug&gt;</code></p>
 <h2 id='redirect-an-asset'>Redirect an asset</h2><p>Sometimes it might be necessary to manually redirect an asset, for example if
 an associated document wasn&rsquo;t unpublished correctly.</p>
 
@@ -288,12 +285,13 @@ steps to remove the asset in Asset Manager:</p>
 
 <ol>
 <li><a href="/manual/manage-assets.html#get-an-assets-id">Get the asset ID</a>. </li>
-<li>Run the following rake task:</li>
-</ol>
+<li><p>Run the following rake task:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/asset-manager <span class="nt">--</span> rake assets:redirect[ASSET_ID,REDIRECT_URL]
 </code></pre></div><p>For Whitehall assets you will have to run:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>deploy/whitehall_redirect <span class="nt">--</span> rake assets:redirect[LEGACY_PATH_URL,REDIRECT_URL]
-</code></pre></div><h2 id='upload-an-asset'>Upload an asset</h2><p>Some publishing apps such as <a href="/repos/publisher.html">Mainstream Publisher</a> do
+</code></pre></div></li>
+</ol>
+<h2 id='upload-an-asset'>Upload an asset</h2><p>Some publishing apps such as <a href="/repos/publisher.html">Mainstream Publisher</a> do
 not provide the facility for editors to upload assets such as images and PDFs.
 In these rare cases, we can upload assets to asset-manager manually and give
 the URL to content editors to embed.</p>
@@ -306,27 +304,23 @@ you will need to start again as the <code>/tmp</code> directory is specific to t
 </blockquote>
 
 <ol>
-<li>Get the name of an asset-manager app pod.</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">POD</span><span class="o">=</span><span class="si">$(</span>kubectl get pods <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span>asset-manager <span class="nt">-o</span> name | <span class="nb">head</span> <span class="nt">-1</span><span class="si">)</span>
-   <span class="nb">echo</span> <span class="nv">$POD</span>
-</code></pre></div>
-<ol>
-<li>Upload the file to the pod&rsquo;s <code>/tmp</code> directory:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   k <span class="nb">cp </span>my_file.jpg apps/<span class="nv">$POD</span>:/tmp
-</code></pre></div>
-<ol>
-<li>Run the create_asset command on the same pod:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   k <span class="nb">exec</span> <span class="nt">-it</span> <span class="nv">$POD</span> <span class="nt">--</span> bin/create_asset /tmp/my_file.jpg
+<li><p>Get the name of an asset-manager app pod.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">POD</span><span class="o">=</span><span class="si">$(</span>kubectl get pods <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span>asset-manager <span class="nt">-o</span> name | <span class="nb">head</span> <span class="nt">-1</span><span class="si">)</span>
+<span class="nb">echo</span> <span class="nv">$POD</span>
+</code></pre></div></li>
+<li><p>Upload the file to the pod&rsquo;s <code>/tmp</code> directory:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">cp </span>my_file.jpg apps/<span class="nv">$POD</span>:/tmp
+</code></pre></div></li>
+<li><p>Run the create_asset command on the same pod:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> <span class="nv">$POD</span> <span class="nt">--</span> bin/create_asset /tmp/my_file.jpg
 </code></pre></div><p>The output will look like the following:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   Saved!
-   Asset <span class="nb">id</span>: 65f2c1110e1c2f8c4dffaa53
-   Asset name: my_file.jpg
-   Asset basepath: /media/65f2c1110e1c2f8c4dffaa53/my_file.jpg
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>Saved!
+Asset <span class="nb">id</span>: 65f2c1110e1c2f8c4dffaa53
+Asset name: my_file.jpg
+Asset basepath: /media/65f2c1110e1c2f8c4dffaa53/my_file.jpg
 </code></pre></div><p>The asset should now be available at <code>https://assets.publishing.service.gov.uk/{base-path-from-previous-output}</code>,
-   for example <code>https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg</code>.</p>
+for example <code>https://assets.publishing.service.gov.uk/media/65f2c1110e1c2f8c4dffaa53/my_file.jpg</code>.</p></li>
+</ol>
 <h2 id='replace-an-asset'>Replace an asset</h2><p>If you need to replace the file of an existing attachment, follow these steps.</p>
 
 <blockquote>
@@ -335,79 +329,67 @@ you will need to start again as the <code>/tmp</code> directory is specific to t
 that originally uploaded the file, for example Whitehall.</p>
 </blockquote>
 <p>When a manual replacement in the UI is not possible, for example in the case of a bug related to superseded data, you can rerun the whitehall replacement update manually.
-See section below on <a href="#whitehall-known-bugs">known bugs</a>.</p>
+See section below on <a href="#whitehall-known-asset-bugs">known bugs</a>.</p>
 <p>If it isn&rsquo;t possible or desirable to replace the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:</p>
 
 <ol>
-<li>Get the name of an asset-manager app pod.</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">POD</span><span class="o">=</span><span class="si">$(</span>kubectl get pods <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span>asset-manager <span class="nt">-o</span> name | <span class="nb">head</span> <span class="nt">-1</span><span class="si">)</span>
-   <span class="nb">echo</span> <span class="nv">$POD</span>
-</code></pre></div>
-<ol>
-<li>Upload the file to the pod&rsquo;s <code>/tmp</code> directory:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   k <span class="nb">cp </span>my_file.jpg apps/<span class="nv">$POD</span>:/tmp
-</code></pre></div>
-<ol>
-<li>Open an app console on that same pod:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   k <span class="nb">exec</span> <span class="nt">-it</span> <span class="nv">$POD</span> <span class="nt">--</span> rails c
-</code></pre></div>
-<ol>
-<li>Find the asset by its ID (see &ldquo;<a href="/manual/manage-assets.html#get-an-assets-id">Get an asset&rsquo;s ID</a>&rdquo;):</li>
-</ol>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">asset</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">asset_id</span><span class="p">)</span>
-</code></pre></div>
-<ol>
+<li><p>Get the name of an asset-manager app pod.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">POD</span><span class="o">=</span><span class="si">$(</span>kubectl get pods <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span>asset-manager <span class="nt">-o</span> name | <span class="nb">head</span> <span class="nt">-1</span><span class="si">)</span>
+<span class="nb">echo</span> <span class="nv">$POD</span>
+</code></pre></div></li>
+<li><p>Upload the file to the pod&rsquo;s <code>/tmp</code> directory:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">cp </span>my_file.jpg apps/<span class="nv">$POD</span>:/tmp
+</code></pre></div></li>
+<li><p>Open an app console on that same pod:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> <span class="nv">$POD</span> <span class="nt">--</span> rails c
+</code></pre></div></li>
+<li><p>Find the asset by its ID (see &ldquo;<a href="/manual/manage-assets.html#get-an-assets-id">Get an asset&rsquo;s ID</a>&rdquo;):</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">asset</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">asset_id</span><span class="p">)</span>
+</code></pre></div></li>
 <li><p>Check the asset is what you think it is.</p></li>
-<li><p>Replace the file:</p></li>
+<li><p>Replace the file:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">asset</span><span class="p">.</span><span class="nf">file</span> <span class="o">=</span> <span class="no">Pathname</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"/tmp/filename.ext"</span><span class="p">).</span><span class="nf">open</span>
+<span class="n">asset</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="ss">:store_metadata</span><span class="p">)</span>
+<span class="n">asset</span><span class="p">.</span><span class="nf">save!</span>
+</code></pre></div></li>
+<li><p>If the attachment is a PDF that was originally uploaded in Whitehall, update the page count field in Whitehall:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec</span> <span class="nt">-it</span> deploy/whitehall-admin <span class="nt">--</span> rails c
+</code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">attachment_data</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">asset_manager_id: </span><span class="n">asset_id</span><span class="p">).</span><span class="nf">assetable</span> <span class="c1"># e.g. 57a9c52b40f0b608a700000a</span>
+<span class="n">attachment_data</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">file_size: </span><span class="mi">123</span><span class="p">,</span> <span class="ss">number_of_pages: </span><span class="mi">28</span><span class="p">)</span> <span class="c1"># file_size in bytes</span>
+</code></pre></div></li>
 </ol>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">asset</span><span class="p">.</span><span class="nf">file</span> <span class="o">=</span> <span class="no">Pathname</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"/tmp/filename.ext"</span><span class="p">).</span><span class="nf">open</span>
-   <span class="n">asset</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="ss">:store_metadata</span><span class="p">)</span>
-   <span class="n">asset</span><span class="p">.</span><span class="nf">save!</span>
-</code></pre></div>
-<ol>
-<li>If the attachment is a PDF that was originally uploaded in Whitehall, update the page count field in Whitehall:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   k <span class="nb">exec</span> <span class="nt">-it</span> deploy/whitehall-admin <span class="nt">--</span> rails c
-</code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">attachment_data</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">asset_manager_id: </span><span class="n">asset_id</span><span class="p">).</span><span class="nf">assetable</span> <span class="c1"># e.g. 57a9c52b40f0b608a700000a</span>
-   <span class="n">attachment_data</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">file_size: </span><span class="mi">123</span><span class="p">,</span> <span class="ss">number_of_pages: </span><span class="mi">28</span><span class="p">)</span> <span class="c1"># file_size in bytes</span>
-</code></pre></div><h2 id='whitehall-known-asset-bugs'>Whitehall known asset bugs</h2><p>There are a few known bugs in Whitehall, that cause assets to be live when they should not be.
+<h2 id='whitehall-known-asset-bugs'>Whitehall known asset bugs</h2><p>There are a few known bugs in Whitehall, that cause assets to be live when they should not be.
 These are currently (end of 2024) being worked on, and a data clean up has been run.
 In case you see anything that matches the patterns below, here&rsquo;s how you can fix it.
 You can still just delete the asset, but this approach is less destructive and more aligned with the intended behaviour.</p>
 
 <ol>
-<li>On a new draft of a published edition, if the user replaces a previously published attachment, then deletes it, and publishes the draft. The original asset remains live. However, the attachment is deleted, so the user does not know anything has gone wrong.</li>
-</ol>
+<li><p>On a new draft of a published edition, if the user replaces a previously published attachment, then deletes it, and publishes the draft. The original asset remains live. However, the attachment is deleted, so the user does not know anything has gone wrong.</p>
 <p>The problem seems to be that the deleted replacement&rsquo;s draft state is not set to false.</p>
 <p>NB: The issue is specific to assets with draft replacements. Do not change the replacement unless it is in draft!
 The original asset must only serve superseded editions.
-To check that the original asset is not used on a public edition run, from a Whitehall console:
-<code>
-   # This should be an array of &quot;superseded&quot; and nil (&quot;deleted&quot; state) attachables.
-   Asset.find_by(asset_manager_id: &lt;your_asset_manager_id&gt;).assetable.attachments.map(&amp;:attachable).pluck(:state)
-</code>
-Fix the replacement asset by running the following code from an Asset Manager console:
-<code>
-   replacement = Asset.find(&lt;your_asset_manager_id&gt;).replacement
-   replacement.destroy! # if not already deleted
-   replacement.draft = false
-   replacement.save!
-</code>
-2. On a draft of a published edition, the user replaces a previously published attachment at least two successive times, without saving the draft first (or in between). The original asset remains live.</p>
+To check that the original asset is not used on a public edition run, from a Whitehall console:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="c1"># This should be an array of "superseded" and nil ("deleted" state) attachables.</span>
+   <span class="no">Asset</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">asset_manager_id: </span><span class="o">&lt;</span><span class="n">your_asset_manager_id</span><span class="o">&gt;</span><span class="p">).</span><span class="nf">assetable</span><span class="p">.</span><span class="nf">attachments</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:attachable</span><span class="p">).</span><span class="nf">pluck</span><span class="p">(</span><span class="ss">:state</span><span class="p">)</span>
+</code></pre></div><p>Fix the replacement asset by running the following code from an Asset Manager console:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">replacement</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="o">&lt;</span><span class="n">your_asset_manager_id</span><span class="o">&gt;</span><span class="p">).</span><span class="nf">replacement</span>
+   <span class="n">replacement</span><span class="p">.</span><span class="nf">destroy!</span> <span class="c1"># if not already deleted</span>
+   <span class="n">replacement</span><span class="p">.</span><span class="nf">draft</span> <span class="o">=</span> <span class="kp">false</span>
+   <span class="n">replacement</span><span class="p">.</span><span class="nf">save!</span>
+</code></pre></div></li>
+<li><p>On a draft of a published edition, the user replaces a previously published attachment at least two successive times, without saving the draft first (or in between). The original asset remains live.</p>
 <p>To fix this, you can populate the <code>replacement_id</code> manually, mimicking the behaviour that happens on publish.
 After a publish event, all the assets in a chain of replacements will point to the last one.
 This fix is preferable to a deletion, especially if a redirected is needed anyway.
-You can extract the required <code>replacement_id</code> by following the chain of <code>AttachmentData</code> <code>replaced_by_id</code>s until the last. In a Whitehall console, run:
-&ldquo;`
-   original_attachment_data = Asset.where(asset_mnager_id: <your_asset_manager_id>).first&amp;.assetable
-   next_attachment_data1 = AttachmentData.find(original_attachment_data.replaced_by_id)
-   next_attachment_data2 = AttachmentData.find(next_attachment_data1.replaced_by_id)
-   AssetManager::AssetUpdater.call(<your_asset_manager_id>, { &quot;replacement_id&rdquo; =&gt; next_attachment_data2.assets.first.asset_manager_id })</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code></code></pre></div>
+You can extract the required <code>replacement_id</code> by following the chain of <code>AttachmentData</code> <code>replaced_by_id</code>s until the last. In a Whitehall console, run:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">original_attachment_data</span> <span class="o">=</span> <span class="no">Asset</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">asset_mnager_id: </span><span class="o">&lt;</span><span class="n">your_asset_manager_id</span><span class="o">&gt;</span><span class="p">).</span><span class="nf">first</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">assetable</span>
+   <span class="n">next_attachment_data1</span> <span class="o">=</span> <span class="no">AttachmentData</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">original_attachment_data</span><span class="p">.</span><span class="nf">replaced_by_id</span><span class="p">)</span>
+   <span class="n">next_attachment_data2</span> <span class="o">=</span> <span class="no">AttachmentData</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">next_attachment_data1</span><span class="p">.</span><span class="nf">replaced_by_id</span><span class="p">)</span>
+   <span class="no">AssetManager</span><span class="o">::</span><span class="no">AssetUpdater</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="o">&lt;</span><span class="n">your_asset_manager_id</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">{</span> <span class="s2">"replacement_id"</span> <span class="o">=&gt;</span> <span class="n">next_attachment_data2</span><span class="p">.</span><span class="nf">assets</span><span class="p">.</span><span class="nf">first</span><span class="p">.</span><span class="nf">asset_manager_id</span> <span class="p">})</span>
+</code></pre></div></li>
+</ol>
+
   <div class='related-content'>
 
     <h3>More in the Assets section</h3>
