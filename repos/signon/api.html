@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>signon: Troubleshooting - GOV.UK Developer Documentation</title>
+    <title>signon: API - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/signon/troubleshooting.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/signon/api.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="signon: Troubleshooting - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/signon/troubleshooting.html" />
+      <meta name="twitter:title" content="signon: API - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/signon/api.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="signon: Troubleshooting" />
+      <meta property="og:title" content="signon: API" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/signon/troubleshooting.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/signon/api.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -204,44 +204,43 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/signon/commit/72482d183ef60d0c4d0ede3174b25ea93edfacff">1 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/signon/commit/4f9713a3533098e3bfd07c3de5777a8073ecd04e">20 Dec 2024</a>
 </div>
 
-  <h1 class="page-title">signon: Troubleshooting</h1>
+  <h1 class="page-title">signon: API</h1>
 
   
-<p>This is a place to record workarounds to some common problems.</p>
-<h2 id="user-didnt-receive-password-reset-email">User didn't receive password reset email</h2>
-<p>When a user account is created, they are sent a link to reset their password. A similar email is sent when users request a password reset email.</p>
-<p>In the first instance, a new email should be requested. The route is different depending on the type of password reset email.</p>
-<h3 id="new-user-account">New user account</h3>
-<p>As a superadmin user, in Signon, find the user and press the 'Resend invitation email' button.</p>
-<h3 id="password-reset-email">Password reset email</h3>
-<p>The user can request a new password reset link themselves through the <a href="https://signon.publishing.service.gov.uk/users/password/new">password reset form</a>.</p>
-<h3 id="user-does-not-receive-the-email">User does not receive the email</h3>
-<p>If a user does not receive this email after attempting to reteieve it again themselves, you may wish to send it directly to their email address.</p>
-<p>There are two ways of retrieving the link:</p>
-<h4 id="notify-dashboard">Notify dashboard</h4>
-<p>This method is preferred as you do not need to open a Rails console on a production system.</p>
-<p>If the email was sent in the last 7 days, it can be retrieved by searching for the user's email address in the <a href="https://www.notifications.service.gov.uk/services/51c6b7b7-f7dc-421c-9105-7b73774cfb43">GOV.UK Notify dashboard</a>.</p>
-<h4 id="rails-console">Rails console</h4>
-<p>First, open a Rails console - you will need to <a href="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html#set-your-aws-environment-and-role">configure your EKS access</a>:</p>
-<pre><code>kubectl exec -it deploy/signon -- rails c
+<p>There is a lightweight API endpoint for signon, which returns information about users with
+given UUIDs.</p>
+<h2 id="accessing">Accessing</h2>
+<p>To access the API, you must have an API-only Application set up in Signon called "Signon API".
+This can be set up like so:</p>
+<pre lang="shell"><code>rake applications:create name="Signon API" description="API endpoints for user management in Signon" \
+  home_uri="https://signon.integration.publishing.service.gov.uk" \
+  redirect_uri="https://signon.integration.publishing.service.gov.uk" \
+  api_only="true"
 </code></pre>
-<p>Run the following to obtain a token:</p>
-<pre lang="ruby"><code>token = User.find_by(email: "name@example.com").send_reset_password_instructions
+<p>You can then create an API user in the Signon UI, grant them access to the Signon API, and
+access with the Bearer token like so:</p>
+<pre lang="shell"><code>curl --location --globoff 'https://SIGNON_DOMAIN/api/users?uuids[]=c514c7e0-a049-013d-c537-3209197caa3b' \
+--header 'Authorization: Bearer YOUR_BEARER_TOKEN'
 </code></pre>
-<p>Add it into the URL to give to the user (e.g. for production):</p>
-<pre><code>https://signon.publishing.service.gov.uk/users/password/edit?reset_password_token=&lt;token&gt;
-</code></pre>
+<h2 id="endpoints">Endpoints</h2>
+<ul>
+<li><a href="#get-apiusers"><code>GET /api/users</code></a></li>
+</ul>
+<h3 id="get-apiusers"><code>GET /api/users</code></h3>
+<p>Lists users for the given <code>uuids</code></p>
+<h4 id="query-string-parameters">Query string parameters</h4>
+<ul>
+<li>
+<code>uuids</code> (required)
+<ul>
+<li>An array of UUIDs to query for</li>
+</ul>
+</li>
+</ul>
 
 
             
@@ -249,8 +248,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/signon/blob/main/docs/troubleshooting.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsignon%2Ftroubleshooting.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/signon/blob/main/docs/api.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsignon%2Fapi.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
