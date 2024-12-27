@@ -121,4 +121,5 @@ These instructions are based on [this blog post](https://grafana.com/blog/2022/0
 
     ```sh
     kubectl delete -f /path/to/our/k6/custom-resource.yml
+    kubectl delete configmap my-test-name
     ```
