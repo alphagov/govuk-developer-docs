@@ -31,7 +31,7 @@ These instructions are based on [this blog post](https://grafana.com/blog/2022/0
 1. Clone the `k6-operator` repo and make this:
 
     ```sh
-    git clone git@github.com:grafana/k6-operator.git && cd k6-operator
+    git clone git@github.com:grafana/k6-operator.git && cd k6-operator && git checkout v0.0.18
     make deploy
     ```
 
@@ -121,4 +121,5 @@ These instructions are based on [this blog post](https://grafana.com/blog/2022/0
 
     ```sh
     kubectl delete -f /path/to/our/k6/custom-resource.yml
+    kubectl delete configmap my-test-name
     ```
