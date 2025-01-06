@@ -189,7 +189,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/52413f6bd0101669087ebc13df411195ae194cae">20 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/95695f847729a6b1d71467cf6fc407d4cc0294b6">27 Dec 2024</a>
 </div>
 
  <h1 id='header'>Run a load test with k6</h1> <p>These instructions are based on <a href="https://grafana.com/blog/2022/06/23/running-distributed-load-tests-on-kubernetes/">this blog post</a>.</p>
@@ -209,7 +209,7 @@ kubectl config use-context <span class="nv">$ENVIRONMENT</span>
 <p>You will need to assume the <code>admin</code> role in order to deploy k6 to the cluster.</p>
 </blockquote></li>
 <li><p>Clone the <code>k6-operator</code> repo and make this:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>git clone git@github.com:grafana/k6-operator.git <span class="o">&amp;&amp;</span> <span class="nb">cd </span>k6-operator
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>git clone git@github.com:grafana/k6-operator.git <span class="o">&amp;&amp;</span> <span class="nb">cd </span>k6-operator <span class="o">&amp;&amp;</span> git checkout v0.0.18
 make deploy
 </code></pre></div>
 <blockquote>
@@ -278,6 +278,7 @@ This can be done by using Homebrew, e.g. <code>brew install go@1.23</code></p>
 </code></pre></div></li>
 <li><p>After running the tests, tidy up by deleting your custom resource:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl delete <span class="nt">-f</span> /path/to/our/k6/custom-resource.yml
+kubectl delete configmap my-test-name
 </code></pre></div></li>
 </ol>
 
