@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/fc3ec02643b22b18b29f99d04d241a028b974fd0">11 Dec 2024</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/0dbbe743f8875bed6b1d76825923d1c19a0fd3a1">6 Jan 2025</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -238,7 +238,6 @@
 <p>Simple blocks generally render one component or "thing". They can either be rendered directly or as the children of compound blocks.</p>
 <ul>
 <li><a href="#action-link">Action Link</a></li>
-<li><a href="#big-number">Big Number</a></li>
 <li><a href="#document-list">Document List</a></li>
 <li><a href="#govspeak">Govspeak</a></li>
 <li><a href="#heading">Heading</a></li>
@@ -247,19 +246,12 @@
 <li><a href="#quote">Quote</a></li>
 <li><a href="#share-links">Share Links</a></li>
 <li><a href="#side-navigation">Side Navigation</a></li>
-<li><a href="#statistics">Statistics</a></li>
 </ul>
 <h4 id="action-link">Action Link</h4>
 <p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/action_link">action link component</a>.</p>
 <pre lang="yaml"><code>- type: action_link
   text: "Learn more about our goals"
   href: "/landing-page/goals"
-</code></pre>
-<h4 id="big-number">Big Number</h4>
-<p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/big_number">Big number component</a></p>
-<pre lang="yaml"><code>- type: big_number
-  number: £75m
-  label: amount of money that looks big
 </code></pre>
 <h4 id="document-list">Document List</h4>
 <p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/document_list">Document list component</a> with a title that will only appear if there are any items in the list (if the list is entirely empty the heading will not appear either)</p>
@@ -369,25 +361,6 @@
 <pre lang="yaml"><code>- type: side_navigation
   navigation_group_id: Sidebar
 </code></pre>
-<h4 id="statistics">Statistics</h4>
-<p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/chart">Chart</a> component. The <code>csv_file</code> key can be an uploaded file (from <code>/lib/data/landing_page_content_items/statistics</code>), or (preferably) an attachment from the content item, in which case the filename of the attachment will be matched to the <code>csv_file</code> key.</p>
-<pre lang="yaml"><code>- type: statistics
-  title: "Chart to visually represent data"
-  x_axis_label: "X Axis"
-  y_axis_label: "Y Axis"
-  csv_file: "data_one.csv"
-  data_source_link: https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/ihyq/qna
-</code></pre>
-<p>For a minimal chart add <code>minimal: true</code> to the block config. This will output a simplified graph with no interactivity.</p>
-<pre lang="yaml"><code>- type: statistics
-  title: "Chart to visually represent data"
-  x_axis_label: "X Axis"
-  y_axis_label: "Y Axis"
-  csv_file: "data_one.csv"
-  data_source_link: https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/ihyq/qna
-  minimal: true
-  minimal_link: /landing-page/task
-</code></pre>
 <h3 id="compound-blocks">Compound blocks</h3>
 <p>Compound blocks generally render more than one component and can contain nested blocks. The nested blocks can be simple blocks or themselves compound blocks</p>
 <ul>
@@ -417,11 +390,6 @@
     - type: heading
       content: Rorem ipsum dolor sit amet, consectetur adipiscing elit.
       path: http://gov.uk
-    - type: statistics
-      x_axis_label: "X Axis"
-      y_axis_label: "Y Axis"
-      csv_file: "data_one.csv"
-      data_source_link: https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/ihyq/qna
 </code></pre>
 <h4 id="featured">Featured</h4>
 <p>A featured block renders either a vertical column of blocks on the left of a large (but not full-width) image (it uses a picture element to allow multiple image versions for different devices) or a block of text without an image. The latter can be rendered by omitting the <code>image</code> value as demonstrated in the second example below.</p>
@@ -503,15 +471,6 @@
   - type: govspeak
     content: |
       &lt;p&gt;Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum esta, mattis tellus.&lt;/p&gt;
-  - type: statistics
-    title: "Chart to visually represent data"
-    x_axis_label: "X Axis"
-    y_axis_label: "Y Axis"
-    csv_file: "data_one.csv"
-    data_source_link: https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/ihyq/qna
-  - type: govspeak
-    content: |
-      &lt;p&gt;Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum esta, mattis tellus.&lt;/p&gt;
 </code></pre>
 <p>Nested blocks container:</p>
 <pre lang="yaml"><code>- type: two_column_layout
@@ -540,19 +499,19 @@
 <li>any other value for <code>columns</code> will have no effect: all child elements will render the full width of this container.</li>
 </ul>
 <p>If <code>columns</code> is missing entirely, three columns will be rendered by default.</p>
-<p>In the following example, the first two <code>big_number</code> blocks will be side-by-side on the first row and the third block will drop down onto the next row, taking up the left hand column.</p>
+<p>In the following example, the first two <code>govspeak</code> blocks will be side-by-side on the first row and the third block will drop down onto the next row, taking up the left hand column.</p>
 <pre lang="yaml"><code>- type: columns_layout
   columns: 2
   blocks:
-  - type: big_number
-    number: £75m
-    label: amount of money that looks big
-  - type: big_number
-    number: 100%
-    label: increase in the number of big_number components added to the columns at this point
-  - type: big_number
-    number: £43
-    label: Cost of a cup of coffee in Covent Garden
+  - type: govspeak
+    content: |
+      &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+  - type: govspeak
+    content: |
+      &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+  - type: govspeak
+    content: |
+      &lt;p&gt;Lorem ipsum...&lt;/p&gt;
 </code></pre>
 <h4 id="two-column-layout">Two Column Layout</h4>
 <p>A two column layout takes one or two blocks and a theme to determine the column layout. These options are:</p>
