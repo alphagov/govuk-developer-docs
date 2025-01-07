@@ -243,22 +243,18 @@ is hosted at <a href="https://content-api.publishing.service.gov.uk">https://con
 
 <p>This documentation is built from source files in this repository and an
 <a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI</a> specification
-<a href="https://github.com/alphagov/content-store/blob/deployed-to-production/openapi.yaml">file</a> for the
+<a href="https://github.com/alphagov/content-store/blob/main/openapi.yaml">file</a> for the
 <a href="https://github.com/alphagov/content-store">Content Store</a> application.</p>
 
 <p>The framework for this documentation
-is provided by the [GOV.UK Tech Docs Template][tech-docs-template] and through
-the use of a <a href="https://github.com/alphagov/widdershins">fork</a> of <a href="https://github.com/Mermade/widdershins">widdershins</a> to
-convert the <a href="https://github.com/alphagov/content-store/blob/deployed-to-production/openapi.yaml"><code>openapi.yaml</code></a> to Markdown.</p>
+is provided by the [GOV.UK Tech Docs Template][tech-docs-template].</p>
 
 <h2 id="updating-content">Updating content</h2>
 
 <p>The [<code>reference.html</code>][reference-page] page is built using the
-<a href="https://github.com/alphagov/content-store/blob/deployed-to-production/openapi.yaml"><code>openapi.yaml</code></a> file. Changes to content on this page
+<a href="https://github.com/alphagov/content-store/blob/main/openapi.yaml"><code>openapi.yaml</code></a> file. Changes to content on this page
 should be made by opening a pull request against the
-<a href="https://github.com/alphagov/content-store">Content Store</a> application. Some aspects of the reference.html
-page are controlled by templates which are stored in the
-<a href="https://github.com/alphagov/govuk-content-api-docs/tree/"><code>/templates</code></a> of this repository.</p>
+<a href="https://github.com/alphagov/content-store">Content Store</a> application.</p>
 
 <p>Other HTML pages are in the [<code>/source</code>][source-dir] of this repository and are
 authored using Markdown. You can suggest edits to these pages by making changes
@@ -271,8 +267,8 @@ as well as the <a href="https://github.com/alphagov/content-store">Content Store
 
 <h3 id="installing-dependencies">Installing dependencies</h3>
 
-<p>Setting up the documentation requires Ruby and Node. Run the following to
-install the necessary dependencies:</p>
+<p>Setting up the documentation requires Ruby. Run the following to install the
+necessary dependencies:</p>
 
 <pre><code>make requirements
 </code></pre>
@@ -282,14 +278,14 @@ install the necessary dependencies:</p>
 <p>Whilst writing documentation we can run a middleman server to preview how the
 published version will look in the browser. After saving a change the preview in
 the browser will automatically refresh on HTML pages. However for changes to
-<a href="https://github.com/alphagov/content-store/blob/deployed-to-production/openapi.yaml"><code>openapi.yaml</code></a> you will need to restart the preview.</p>
+<a href="https://github.com/alphagov/content-store/blob/main/openapi.yaml"><code>openapi.yaml</code></a> you will need to restart the preview.</p>
 
 <p>The preview is only available on our own computer. Others won&rsquo;t be able to
 access it if they are given the link.</p>
 
 <p>Type the following to start the server:</p>
 
-<pre><code>make server API_SPEC=../content-store/openapi.yaml
+<pre><code>make server
 </code></pre>
 
 <p>You should now be able to view a live preview at <a href="http://localhost:4567">http://localhost:4567</a>.</p>
@@ -304,7 +300,7 @@ changes will automatically display on the site within 30 minutes.</p>
 <p>If for some reason the automatic deployment fails you can deploy with the
 following command:</p>
 
-<pre><code>make publish API_SPEC=&lt;path/to/openapi.yaml&gt;
+<pre><code>make publish
 </code></pre>
 
 <p>This will push to the <code>gh-pages</code> branch and therefore deploy to GitHub Pages.</p>
