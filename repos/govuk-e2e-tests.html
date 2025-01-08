@@ -241,7 +241,14 @@
 
 <p>This repository contains the end-to-end (E2E) test suite for GOV.UK, built using the <a href="https://playwright.dev/">Playwright</a> framework.</p>
 
-<h2 id="running-the-tests">Running the tests</h2>
+<h2 id="deployment-operations">Deployment &amp; Operations</h2>
+
+<p>The test suite is automatically deployed to GOV.UK&rsquo;s Kubernetes infrastructure on merge, just like any of our continuously deployed applications. Test traffic therefore originates from one of our three <a href="https://eu-west-1.console.aws.amazon.com/vpcconsole/home?region=eu-west-1#NatGateways:sort=tag:Name">static NAT gateway IPs</a> (there are no other identifiers, e.g. custom UA string, for test traffic at present).</p>
+
+<p>The test suite is run regularly on weekdays only, <a href="https://github.com/alphagov/govuk-helm-charts/blob/bf5d180b110a16a36af4b4dac2812442a5a298f4/charts/govuk-e2e-tests/values.yaml#L8">as per the cron schedule</a>.
+Failures are not currently reported anywhere. Results can be seen <a href="https://argo.eks.production.govuk.digital/applications/cluster-services/govuk-e2e-tests?view=tree&amp;orphaned=false&amp;resource=">in Argo</a>.</p>
+
+<h2 id="running-the-tests-locally">Running the tests locally</h2>
 
 <h3 id="setup">Setup</h3>
 
