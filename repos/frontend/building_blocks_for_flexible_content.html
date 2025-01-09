@@ -208,7 +208,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/0dbbe743f8875bed6b1d76825923d1c19a0fd3a1">6 Jan 2025</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/2b00038117b9dedbcbd72ed79731658047afc5ab">9 Jan 2025</a>
 </div>
 
   <h1 class="page-title">frontend: Building blocks for flexible content</h1>
@@ -296,10 +296,11 @@
 </code></pre>
 <h4 id="heading">Heading</h4>
 <p>A wrapper around the <a href="https://components.publishing.service.gov.uk/component-guide/heading">Heading component</a>. This block uses <code>content</code> where the component uses <code>text</code> for the title text key. This is so that headings can appear in search (only values inside a <code>content</code> key will be indexed when being published from Whitehall - see <a href="#indexing-block-content-in-search">Indexing block content in search</a>)</p>
-<p>If an <code>id</code> is added, the heading can be referenced in an anchor link.</p>
+<p>If an <code>id</code> is added, the heading can be referenced in an anchor link. <code>heading_level</code> can be used to specify the heading level (the default is 2) - you should usually have at least one <code>heading_level: 1</code> towards the beginning of a page's content.</p>
 <pre lang="yaml"><code>- type: heading
   id: heading-id
   content: Porem ipsum dolor
+  heading_level: 3
 </code></pre>
 <h4 id="image">Image</h4>
 <p>A simple image.</p>
