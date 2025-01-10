@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>search-api-v2: ADR 004: Which documents to index - GOV.UK Developer Documentation</title>
+    <title>search-api-v2: Search autocomplete - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/004-which-documents-to-index.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-api-v2/search_autocomplete.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="search-api-v2: ADR 004: Which documents to index - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/004-which-documents-to-index.html" />
+      <meta name="twitter:title" content="search-api-v2: Search autocomplete - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2/search_autocomplete.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="search-api-v2: ADR 004: Which documents to index" />
+      <meta property="og:title" content="search-api-v2: Search autocomplete" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2/adr/004-which-documents-to-index.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-api-v2/search_autocomplete.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -208,62 +208,57 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/search-api-v2/commit/abdfc69df93050574356d135401375ad5b5b6bb3">2 Nov 2023</a>
+  Last updated: <a href="https://github.com/alphagov/search-api-v2/commit/cf044a3eef0990592ce44bee826d5153d1dc6ce4">9 Jan 2025</a>
 </div>
 
-  <h1 class="page-title">search-api-v2: ADR 004: Which documents to index</h1>
+  <h1 class="page-title">search-api-v2: Search autocomplete</h1>
 
   
-<p>2023-11-02</p>
-<h2 id="context">Context</h2>
-<p>Not every document that is on the Publishing API should be searchable. At the moment, documents are
-excluded from search for reasons such as:</p>
-<ul>
-<li>They are not in English (the existing search cannot cope well with other languages, and we want to
-replicate the existing behaviour for now until we are ready to iterate)</li>
-<li>They are not "individually identifiable", i.e. they are nested subdocuments of a parent document
-and don't have their own URL</li>
-<li>Their types are explicitly blocklisted from being indexed because having these kinds of documents
-show up in search wouldn't be helpful (e.g. <code>redirect</code>s), or their contents are indexed as part of
-a related primary document (e.g. <code>html_publication</code>)</li>
-</ul>
-<h2 id="considered-options">Considered options</h2>
-<p>We have considered replicating the existing logic as closely as possible, but this is complicated by
-the fact that content currently finds its way into search through two separate pathways (Publishing
-API message queue and legacy Whitehall push-based API), with the deciding logic residing across
-several applications.</p>
-<p>We have considered adding a dependency on the existing <code>search-api</code>, either in terms of logic or
-data ("does this document exist in Elasticsearch?"), but this would add undesirable coupling to the
-old API.</p>
-<p>Instead, a thorough analysis of existing data and document types across the GOV.UK estate has led us
-to simplify the approach to that outlined in "Decision".</p>
-<h2 id="decision">Decision</h2>
-<p>Content coming through from Publishing API will be indexed if and only if:</p>
-<ul>
-<li>it has a locale of <code>en</code>, <strong>and</strong>
+<p>We use Vertex AI Search's <a href="https://cloud.google.com/generative-ai-app-builder/docs/configure-autocomplete">built-in autocomplete functionality</a> to provide our users with
+helpful suggestions to complete their query as they type in search fields.</p>
+<p>Search API v2 provides an API to return suggestions, which the <a href="https://components.publishing.service.gov.uk/component-guide/search_with_autocomplete"><code>search_with_autocomplete</code>
+component</a> in frontend rendering apps accesses through a <a href="https://github.com/alphagov/finder-frontend/blob/main/app/controllers/api/autocompletes_controller.rb">proxy endpoint</a> on
+Finder Frontend. Other internal clients and the GOV.UK app may access it directly or through an API
+gateway.</p>
+<h2 id="update-denylist">Update denylist</h2>
+<p>We use a denylist to avoid the autocomplete returning suggestions that are not suitable or helpful.</p>
+<p>Updating this list currently requires a manual process until we complete the work to automate it:</p>
+<ol>
+<li>In a text editor create a new empty file, save this file as <code>denylist.jsonl</code> (<a href="https://jsonlines.org/">JSON Lines
+format</a>)</li>
+<li>Access <a href="https://docs.google.com/spreadsheets/d/1aA2JapqNt0nu-MiFraP7p9flSDvNQCm0QvSZi2Unw48">the denylist spreadsheet</a> and apply the desired changes to the appropriate tab</li>
+<li>Copy and paste the contents from the "denylist" column <strong>from each of the several tabs</strong> into
+your created <code>denylist.jsonl</code> file</li>
+</ol>
+<p>Then for each GOV.UK environment of integration, staging and production:</p>
+<ol>
+<li>Log into <a href="https://docs.publishing.service.gov.uk/manual/google-cloud-platform-gcp.html#gcp-access">Google Cloud</a> and access the <code>Search API V2 &lt;environment&gt;</code> project</li>
+<li>Access "Cloud Storage" &gt; "Buckets" and find the <code>search-api-v2-&lt;environment&gt;_vais_artifacts</code>
+bucket</li>
+<li>Upload the <code>denylist.jsonl</code> file to the bucket, replacing the existing file</li>
+<li>Leave Google Cloud and open your terminal</li>
+<li>
+<a href="https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html#prerequisites">Log into</a> the appropriate environment for Kubernetes</li>
+<li>Run the <code>rake autocomplete:update_denylist</code> <a href="https://docs.publishing.service.gov.uk/manual/running-rake-tasks.html#run-a-rake-task-on-eks">rake task</a> for <code>search-api-v2</code> to import the file</li>
+</ol>
+<p>If there are problems updating the denylist we can consider <a href="#disable-search-autocomplete">disabling the autocomplete
+feature</a> temporarily to provide time to resolve the problem.</p>
+<h2 id="disable-search-autocomplete">Disable search autocomplete</h2>
+<p>If poor suggestions are shown to users that cannot be mitigated through the denylist, or there is a
+problem updating the denylist, or autocomplete needs to be turned off for another reason, the
+<code>ENABLE_AUTOCOMPLETE</code> feature flag environment variable for Search API v2 can be turned off.</p>
+<p>This will cause an empty array of suggestions to be returned to all clients (web or otherwise).</p>
+<ol>
+<li>Open the appropriate <code>values-&lt;environment&gt;.yaml</code> file from GOV.UK Helm Charts, for example
+<a href="https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml">values-production.yaml</a>
 </li>
-<li>it is addressable (has a <code>base_path</code> or <code>details.url</code>), <strong>and</strong>
+<li>Set <code>ENABLE_AUTOCOMPLETE</code> in <code>extraEnv</code> to <code>false</code>
 </li>
-<li>its document type does not start with "placeholder", <strong>and</strong>
-</li>
-<li>either of the following apply:
-<ul>
-<li>its document type is not on an explicit blocklist (based on existing search behaviour), <strong>or</strong>
-</li>
-<li>its base_path is on an explicit allowlist (based on existing configuration in <code>search-api</code>)</li>
-</ul>
-</li>
-</ul>
-<h2 id="status">Status</h2>
-<p>Accepted.</p>
+<li>Open a PR to apply the change</li>
+<li>Once merged, a new deployment will be created for Search API v2 and no suggestions will be
+returned</li>
+</ol>
 
 
             
@@ -271,8 +266,8 @@ to simplify the approach to that outlined in "Decision".</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/search-api-v2/blob/main/docs/adr/004-which-documents-to-index.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-api-v2%2Fadr%2F004-which-documents-to-index.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/search-api-v2/blob/main/docs/search_autocomplete.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-api-v2%2Fsearch_autocomplete.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
