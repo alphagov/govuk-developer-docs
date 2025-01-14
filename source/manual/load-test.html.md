@@ -6,6 +6,62 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+## Writing a load test script
+
+k6 load test scripts are written in JavaScript.
+
+The following is an example which tests a specific endpoint with 3,000 virtual users making requests over 30 seconds. The status code of each response is reported.
+
+```javascript
+import http from 'k6/http';
+import { check } from 'k6';
+
+export const options = {
+  vus: 3000,
+  duration: '30s',
+}
+
+export default function() {
+  const res = http.get('https://www-origin.staging.publishing.service.gov.uk/world');
+
+  check(res, {
+    'is status 200': (r) => r.status === 200,
+    'is status 2xx, not 200': (r) => r.status >= 201 && r.status <= 299,
+    'is status 3xx': (r) => r.status >= 300 && r.status <= 399,
+    'is status 4xx': (r) => r.status >= 400 && r.status <= 499,
+    'is status 5xx': (r) => r.status >= 500 && r.status <= 599,
+  });
+}
+```
+
+A more [complex script](https://gist.github.com/brucebolt/54e6050dacb950155fc7fbb0b9ba8219) (with multiple scenarios, running sequentially) has previously been used and can be adjusted to suit future needs.
+
+Further details can be found in the [k6 documentation](https://grafana.com/docs/k6/latest/).
+
+## Running a load test
+
+In many cases, the load test can be run locally. However with larger levels of load, you may find that you are testing the capability of your internet connection, rather than the target server. In this case, it is possible to run a load test from within our kubernetes infrastructure.
+
+### Running the test locally
+
+1. Install k6:
+
+   ```sh
+   brew install k6
+   ```
+
+1. Run your script:
+
+   ```sh
+   k6 run test.js
+   ```
+
+   > There are [many forms of output](https://grafana.com/docs/k6/latest/results-output/end-of-test/) that be selected (e.g. CSV).
+   >
+   > If further processing of the data is required, you may wish to output as a JSON summary file, using the `--summary-export` option.
+
+### Running the test on Kubernetes
+
 These instructions are based on [this blog post](https://grafana.com/blog/2022/06/23/running-distributed-load-tests-on-kubernetes/).
 
 1. Determine the name of the Kubernetes context to use:
@@ -37,30 +93,6 @@ These instructions are based on [this blog post](https://grafana.com/blog/2022/0
 
     > If you get an error similar to `invalid go version '1.22.0': must match format 1.23` then you need to upgrade `go` to the correct version.
     > This can be done by using Homebrew, e.g. `brew install go@1.23`
-
-1. Write your test script, for example to test 3000 virtual users against the Collections app's `/world` page over 30 seconds (bypassing router):
-
-    ```javascript
-    import http from 'k6/http';
-    import { check } from 'k6';
-
-    export const options = {
-      vus: 3000,
-      duration: '30s',
-    }
-
-    export default function() {
-      const res = http.get('http://collections.apps.svc.cluster.local/world');
-
-      check(res, {
-        'is status 200': (r) => r.status === 200,
-        'is status 2xx, not 200': (r) => r.status >= 201 && r.status <= 299,
-        'is status 3xx': (r) => r.status >= 300 && r.status <= 399,
-        'is status 4xx': (r) => r.status >= 400 && r.status <= 499,
-        'is status 5xx': (r) => r.status >= 500 && r.status <= 599,
-      });
-    }
-    ```
 
 1. Run your code locally to make sure it works:
 
