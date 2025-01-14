@@ -248,7 +248,7 @@
 <p>There are currently 3 ways to run this repo locally:</p>
 
 <ol>
-<li>Via  <a href="https://github.com/alphagov/govuk-dgu-charts">govuk-dgu-charts</a> - An end to end setup from ckan to opensearch to Find. This is the presently most supported means for running Find and is recommended for local development. Instructions for how to setup and run Find this way available on the linked repo.</li>
+<li>Via  <a href="https://github.com/alphagov/govuk-dgu-charts">govuk-dgu-charts</a> - An end to end setup from ckan to Solr to Find. This is the presently most supported means for running Find and is recommended for local development. Instructions for how to setup and run Find this way available on the linked repo.</li>
 <li>Manual installation. Instructions for this below.</li>
 <li>Via <a href="https://github.com/alphagov/govuk-docker">govuk-docker</a> - You can <code>make</code> Find as you would any other repo supported by govuk-docker using this method. This is the quickest means to setup Find however this will not give you a complete visual setup and is primarily for running tests.</li>
 </ol>
@@ -265,13 +265,9 @@
 <li>
 <a href="https://rubygems.org/gems/bundler">bundler</a> to manage gems</li>
 <li>
-<a href="https://opensearch.org/">opensearch</a> search engine</li>
-<li>
 <a href="https://www.postgresql.org/">postgresql</a> database</li>
 <li>
 <a href="https://yarnpkg.com/en/">yarn</a> to manage node packages</li>
-<li>
-<a href="https://github.com/alphagov/datagovuk_publish/">data.gov.uk Publish</a> to populate opensearch</li>
 </ul>
 
 <p>Most of these can be installed with Homebrew on a Mac.</p>
