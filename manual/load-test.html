@@ -141,6 +141,22 @@
   <ul>
   <li>
     <a href="#header"><span>Run a load test with k6</span></a>
+    <ul>
+      <li>
+        <a href="#writing-a-load-test-script"><span>Writing a load test script</span></a>
+      </li>
+      <li>
+        <a href="#running-a-load-test"><span>Running a load test</span></a>
+        <ul>
+          <li>
+            <a href="#running-the-test-locally"><span>Running the test locally</span></a>
+          </li>
+          <li>
+            <a href="#running-the-test-on-kubernetes"><span>Running the test on Kubernetes</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -189,10 +205,49 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/95695f847729a6b1d71467cf6fc407d4cc0294b6">27 Dec 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2ce8e3d0192e5f584f6134be12bd2c4de8a95688">14 Jan 2025</a>
 </div>
 
- <h1 id='header'>Run a load test with k6</h1> <p>These instructions are based on <a href="https://grafana.com/blog/2022/06/23/running-distributed-load-tests-on-kubernetes/">this blog post</a>.</p>
+ <h1 id='header'>Run a load test with k6</h1> <h2 id='writing-a-load-test-script'>Writing a load test script</h2><p>k6 load test scripts are written in JavaScript.</p>
+<p>The following is an example which tests a specific endpoint with 3,000 virtual users making requests over 30 seconds. The status code of each response is reported.</p>
+<div class="highlight"><pre class="highlight javascript" tabindex="0"><code><span class="k">import</span> <span class="nx">http</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">k6/http</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">check</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">k6</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">vus</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+  <span class="na">duration</span><span class="p">:</span> <span class="dl">'</span><span class="s1">30s</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://www-origin.staging.publishing.service.gov.uk/world</span><span class="dl">'</span><span class="p">);</span>
+
+  <span class="nx">check</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">is status 200</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">is status 2xx, not 200</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">201</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">299</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">is status 3xx</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">300</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">399</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">is status 4xx</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">400</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">499</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">is status 5xx</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">500</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">599</span><span class="p">,</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div><p>A more <a href="https://gist.github.com/brucebolt/54e6050dacb950155fc7fbb0b9ba8219">complex script</a> (with multiple scenarios, running sequentially) has previously been used and can be adjusted to suit future needs.</p>
+<p>Further details can be found in the <a href="https://grafana.com/docs/k6/latest/">k6 documentation</a>.</p>
+<h2 id='running-a-load-test'>Running a load test</h2><p>In many cases, the load test can be run locally. However with larger levels of load, you may find that you are testing the capability of your internet connection, rather than the target server. In this case, it is possible to run a load test from within our kubernetes infrastructure.</p>
+<h3 id='running-the-test-locally'>Running the test locally</h3>
+<ol>
+<li>Install k6:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   brew <span class="nb">install </span>k6
+</code></pre></div>
+<ol>
+<li>Run your script:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   k6 run test.js
+</code></pre></div>
+<blockquote>
+<p>There are <a href="https://grafana.com/docs/k6/latest/results-output/end-of-test/">many forms of output</a> that be selected (e.g. CSV).</p>
+<p>If further processing of the data is required, you may wish to output as a JSON summary file, using the <code>--summary-export</code> option.</p>
+</blockquote>
+<h3 id='running-the-test-on-kubernetes'>Running the test on Kubernetes</h3><p>These instructions are based on <a href="https://grafana.com/blog/2022/06/23/running-distributed-load-tests-on-kubernetes/">this blog post</a>.</p>
 
 <ol>
 <li><p>Determine the name of the Kubernetes context to use:</p>
@@ -216,27 +271,6 @@ make deploy
 <p>If you get an error similar to <code>invalid go version &#39;1.22.0&#39;: must match format 1.23</code> then you need to upgrade <code>go</code> to the correct version.
 This can be done by using Homebrew, e.g. <code>brew install go@1.23</code></p>
 </blockquote></li>
-<li><p>Write your test script, for example to test 3000 virtual users against the Collections app&rsquo;s <code>/world</code> page over 30 seconds (bypassing router):</p>
-<div class="highlight"><pre class="highlight javascript" tabindex="0"><code><span class="k">import</span> <span class="nx">http</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">k6/http</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">check</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">k6</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="k">export</span> <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">vus</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
-  <span class="na">duration</span><span class="p">:</span> <span class="dl">'</span><span class="s1">30s</span><span class="dl">'</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://collections.apps.svc.cluster.local/world</span><span class="dl">'</span><span class="p">);</span>
-
-  <span class="nx">check</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="p">{</span>
-    <span class="dl">'</span><span class="s1">is status 200</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">,</span>
-    <span class="dl">'</span><span class="s1">is status 2xx, not 200</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">201</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">299</span><span class="p">,</span>
-    <span class="dl">'</span><span class="s1">is status 3xx</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">300</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">399</span><span class="p">,</span>
-    <span class="dl">'</span><span class="s1">is status 4xx</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">400</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">499</span><span class="p">,</span>
-    <span class="dl">'</span><span class="s1">is status 5xx</span><span class="dl">'</span><span class="p">:</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">500</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;=</span> <span class="mi">599</span><span class="p">,</span>
-  <span class="p">});</span>
-<span class="p">}</span>
-</code></pre></div></li>
 <li><p>Run your code locally to make sure it works:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>k6 run test.js
 </code></pre></div>
