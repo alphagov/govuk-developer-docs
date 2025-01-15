@@ -202,15 +202,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e31414fc92c7db7be4010de026f12bab260c16d4">30 May 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/520fac91c2ae1edb5495d217e9f15baec2a37b00">15 Jan 2025</a>
 </div>
 
  <h1 id='header'>Brakeman</h1> <p><a href="https://github.com/presidentbeef/brakeman">Brakeman</a> is a static analysis tool which checks Rails applications
@@ -222,7 +215,6 @@ as a job in the CI pipeline of all GOV.UK Ruby repositories.</p>
 <div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="na">security-analysis</span><span class="pi">:</span>
   <span class="na">name</span><span class="pi">:</span> <span class="s">Security Analysis</span>
   <span class="na">uses</span><span class="pi">:</span> <span class="s">alphagov/govuk-infrastructure/.github/workflows/brakeman.yml@main</span>
-  <span class="na">secrets</span><span class="pi">:</span> <span class="s">inherit</span>
   <span class="na">permissions</span><span class="pi">:</span>
     <span class="na">contents</span><span class="pi">:</span> <span class="s">read</span>
     <span class="na">security-events</span><span class="pi">:</span> <span class="s">write</span>
