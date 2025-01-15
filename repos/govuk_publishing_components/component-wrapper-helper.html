@@ -267,7 +267,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/28cd5ca99d8ffadb303daba3161c6347504c9323">14 Jan 2025</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0fd801ef73ab4153d7d14c780670a89d7aa81586">15 Jan 2025</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component wrapper helper</h1>
@@ -315,6 +315,8 @@
 <li>
 <code>type</code> - accepts any valid type attribute e.g. 'button', 'submit', 'text'</li>
 <li>
+<code>rel</code> - accepts any valid rel attribute e.g. 'nofollow'</li>
+<li>
 <code>draggable</code> - accepts a draggable attribute value ("true" or "false")</li>
 </ul>
 <p>To prevent breaking <a href="/repos/govuk_publishing_components/component_principles.html">component isolation</a>, passed classes should only be used for JavaScript hooks and not styling. All component styling should be included only in the component itself. Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code>, <code>govuk-</code>, <code>app-c-</code>, <code>brand--</code>, or <code>brand__</code> are also permitted, as well as an exact match of <code>direction-rtl</code>, but these classes should only be used within the component and not passed to it.</p>
@@ -354,11 +356,34 @@
   component_helper.set_dir("rtl")
   component_helper.set_type("text")
   component_helper.set_draggable("true")
+  component_helper.set_rel("nofollow") # overrides any existing rel
+  component_helper.add_rel("noopener") # adds to existing rel
   component_helper.set_margin_bottom(3) # can pass any number from 1 to 9
 %&gt;
 &lt;%= tag.div(**component_helper.all_attributes) do %&gt;
   component content
 &lt;% end %&gt;
+</code></pre>
+<h3 id="set-and-add-methods">Set and add methods</h3>
+<p>There are two kinds of methods for options shown above: <code>set</code> (e.g. <code>set_id</code>) and <code>add</code> (e.g. <code>add_class</code>). Either or both methods may be available for any option.</p>
+<p>Set methods are used to override a passed value with a new one, particularly for situations where the option can be only one value (e.g. <code>id</code>). This might be used with conditional logic or because the option should never be changed.</p>
+<pre lang="ruby"><code>&lt;%
+  component_helper = GovukPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+  component_helper.set_lang("en") if some_other_option # conditionally set the lang based on other variables
+%&gt;
+</code></pre>
+<pre lang="ruby"><code>&lt;%
+  component_helper = GovukPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+  component_helper.set_tabindex(-1) # effectively hardcode the option
+%&gt;
+</code></pre>
+<p>Add methods are used to combine one or more values. This includes adding to anything that has already been passed to the component.</p>
+<pre lang="ruby"><code>&lt;%
+  component_helper = GovukPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+  component_helper.add_class("gem-c-example")
+  component_helper.add_class("gem-c-example--large") if size == 'large'
+  # class output could be `js-passed-class gem-c-example gem-c-example--large
+%&gt;
 </code></pre>
 
 
