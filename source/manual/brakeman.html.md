@@ -24,7 +24,6 @@ To use the Brakeman reusable workflow, add the following job to the `jobs` secti
 security-analysis:
   name: Security Analysis
   uses: alphagov/govuk-infrastructure/.github/workflows/brakeman.yml@main
-  secrets: inherit
   permissions:
     contents: read
     security-events: write
