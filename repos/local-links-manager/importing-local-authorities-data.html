@@ -221,7 +221,7 @@
       </strong>
     </div>
 
-  Last updated: <a href="https://github.com/alphagov/local-links-manager/commit/52ee0076ccc68bc7f132f693bb0549460b011d37">27 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/local-links-manager/commit/b96c53dc9aac2123c872fa3efbc4d9fc52afd7cf">3 May 2023</a>
 </div>
 
   <h1 class="page-title">local-links-manager: Importing Local Authorities data</h1>
@@ -231,6 +231,11 @@
 <p><code>bundle exec rake import:local_authorities:import_all</code></p>
 <p>Then import services and interactions:</p>
 <p><code>bundle exec rake import:service_interactions:import_all</code></p>
+<h2 id="blank-csvs">Blank CSVs</h2>
+<p>Sometimes a local authority will ask for a blank CSV they can fill in which contains all the links supported for a particular level. You can get a blank CSV by running one of these tasks locally:</p>
+<p><code>bundle exec rake export:blank_csv[county]</code></p>
+<p><code>bundle exec rake export:blank_csv[district]</code></p>
+<p><code>bundle exec rake export:blank_csv[unitary]</code></p>
 
 
             

@@ -267,7 +267,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0fd801ef73ab4153d7d14c780670a89d7aa81586">15 Jan 2025</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/195e369627a7648de1df9dd0b50e708f4d94b3a2">15 Jan 2025</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component wrapper helper</h1>
@@ -317,6 +317,10 @@
 <li>
 <code>rel</code> - accepts any valid rel attribute e.g. 'nofollow'</li>
 <li>
+<code>target</code> - accepts a valid target attribute e.g. '_blank'</li>
+<li>
+<code>title</code> - accepts any string</li>
+<li>
 <code>draggable</code> - accepts a draggable attribute value ("true" or "false")</li>
 </ul>
 <p>To prevent breaking <a href="/repos/govuk_publishing_components/component_principles.html">component isolation</a>, passed classes should only be used for JavaScript hooks and not styling. All component styling should be included only in the component itself. Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code>, <code>govuk-</code>, <code>app-c-</code>, <code>brand--</code>, or <code>brand__</code> are also permitted, as well as an exact match of <code>direction-rtl</code>, but these classes should only be used within the component and not passed to it.</p>
@@ -358,6 +362,8 @@
   component_helper.set_draggable("true")
   component_helper.set_rel("nofollow") # overrides any existing rel
   component_helper.add_rel("noopener") # adds to existing rel
+  component_helper.set_target("_blank")
+  component_helper.set_title("this is a title")
   component_helper.set_margin_bottom(3) # can pass any number from 1 to 9
 %&gt;
 &lt;%= tag.div(**component_helper.all_attributes) do %&gt;
