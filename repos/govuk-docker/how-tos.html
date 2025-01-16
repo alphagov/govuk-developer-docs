@@ -221,7 +221,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/a9f1b7a26df82c0121661c78258d7ae11ce3dbd0">28 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/e69694f1714d086d0480b3cf9f77412d0e9e9e55">16 Jan 2025</a>
 </div>
 
   <h1 class="page-title">govuk-docker: How Tos</h1>
@@ -301,6 +301,7 @@ docker attach govuk-docker_content-publisher-app_1
 # detach from the container
 CTRL-P CTRL-Q
 </code></pre>
+<p>Note that many of the apps run using the Puma web server, which by default runs in cluster mode. This causes problems with using the debugger console. Puma routes the stdout from multiple processes back into the main container stdout, so the effect is often that keystrokes appear to be "lost" while output from non-paused processes is prioritised. To fix this, you can set the <code>WEB_CONCURRENCY</code> environment variable on the container to 0. That will force Puma to run in single process mode.</p>
 <h2 id="how-to-use-a-custom-working-directory">How to: use a custom working directory</h2>
 <p>GOV.UK Docker should respect the following environment variables:</p>
 <ul>
