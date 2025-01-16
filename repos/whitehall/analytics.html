@@ -7,23 +7,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Pushing content to Publishing API - GOV.UK Developer Documentation</title>
+    <title>whitehall: Analytics - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/pushing_content_to_publishing_api.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/analytics.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Pushing content to Publishing API - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/pushing_content_to_publishing_api.html" />
+      <meta name="twitter:title" content="whitehall: Analytics - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/analytics.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Pushing content to Publishing API" />
+      <meta property="og:title" content="whitehall: Analytics" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/pushing_content_to_publishing_api.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/analytics.html" />
 
       <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -237,39 +237,36 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/5493a8193f3099709fff1e2ff239f21c21ce4200">14 Nov 2024</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/b3d73d611616fd404beda007f43b50f21cecdd2b">16 Jan 2025</a>
 </div>
 
-  <h1 class="page-title">whitehall: Pushing content to Publishing API</h1>
+  <h1 class="page-title">whitehall: Analytics</h1>
 
   
-<p>After seeding the Whitehall database, not all content will automatically be
-pushed to the Publishing API. An example of this is role appointments: you might
-notice that pages like the prime minister page and the ministers index look a
-little bare.</p>
-<p>The <a href="http://whitehall-admin.dev.gov.uk/government/admin/republishing">republishing user
-interface</a> can
-be used to push the majority of content to the Publishing API:</p>
+<p>Events in Whitehall are tracked using Google Tag Manager by pushing directly to the data layer. Tracking can be verified by monitoring the <code>window.dataLayer</code> in the console.</p>
+<p>The majority of tracking code is defined and documented in govuk_publishing_components. This allows it to be more easily shared across publishing applications and the frontend - reducing developer burden and ensuring schema consistency across applications.</p>
+<p>Whilst we aim to share as much code between the frontend and publishing applications, there are some differences in approach due to the contrast in user numbers. Due to the large number of users on GOV.UK, frontend applications risk pushing too data if every event is written. Publishing applications see much lower user numbers and consequently a different approach is taken for some components, such as buttons.</p>
+<p>Tracking is built on a component level, that is to say, rather than focusing on individual pages or individual forms we aim to add tracking to a component such as a link or a button and use the same code across all pages and applications.</p>
+<p>Tracking in Whitehall and other applications is written in three ways:</p>
 <ul>
-<li>"All documents" - meaning all editionable content.</li>
-<li>"All individual pages" - certain individual pages represented in Whitehall by
-presenters. This doesn't cover every presenter-based page in Whitehall, only
-those listed at the top of the republishing user interface, and whose classes
-are referenced in <code>Admin::RepublishingHelper#republishable_pages</code>.</li>
-<li>"All non-editionable content" - meaning everything other that
-documents/editionable content but excluding individual pages.</li>
+<li>modules included in component markup</li>
+<li>modules that require setup</li>
+<li>modules that run on page load regardless of page content</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
-<p>The usefulness of the data pushed to the Publishing API is limited by the
-comprehensiveness of the seed data. Seed data might need expanding if this
-process doesn't provide the content needed to support specific development
-needs.</p>
-<p>As mentioned above, some individual pages/presenter-based content is currently
-unsupported.</p>
-<h2 id="alternatives">Alternatives</h2>
-<p>An alternative is to <a href="https://github.com/alphagov/govuk-docker/blob/main/docs/how-tos.md#how-to-replicate-data-locally">replicate data from
-integration</a>,
-but this is a slow process and not always successful.</p>
+<h2 id="modules-included-in-component-markup">Modules included in component markup</h2>
+<p>Some components have tracking built in. When these components are used in a page they will include a module in the page markup and as long as the core tracking code is included in the application these components will automatically push to the data layer. If a change to the schema or tracking code is required, it must be checked with all teams that use publishing components and made in the shared repository.</p>
+<p>Components that are automatically tracked include a <code>disable_ga4</code> parameter to disable tracking, examples of components with automatic tracking that are used in Whitehall include:</p>
+<ul>
+<li>Back links</li>
+<li>Details</li>
+<li>Phase banner</li>
+<li>Tabs</li>
+</ul>
+<h2 id="modules-that-require-setup">Modules that require setup</h2>
+<p>Modules such as the event-data-tracker and link-tracker must be added to the page manually and rely on attributes for contribution. This allows them to be restricted to a limited number of buttons, links or pages in the frontend applications.</p>
+<p>In Whitehall we would like track all buttons while at the same time sharing as much of the existing implementation with the frontend applications as possible. The approach we use is to initialise both the tracking module and a “setup” module at the same time at the top of the page. The purpose of the “setup” module is to automatically generate and add attributes to relevant elements of the page. The “setup” modules to not perform any tracking themselves but Without them, the tracking modules would not have all appropriate attributes to include in the events pushed to the data layer.</p>
+<h2 id="modules-that-run-on-page-load-regardless-of-page-content">Modules that run on page load regardless of page content</h2>
+<p>Some modules run on page load, regardless of the content of the page that is loaded. These modules are attached to the <code>window.GOVUK.analyticsGa4.analyticsModules</code> object and include an <code>init</code> function (which is run on page load). Examples of these modules are the page view tracker and the copy tracker.</p>
 
 
             
@@ -277,8 +274,8 @@ but this is a slow process and not always successful.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/pushing_content_to_publishing_api.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fpushing_content_to_publishing_api.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/analytics.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fanalytics.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
