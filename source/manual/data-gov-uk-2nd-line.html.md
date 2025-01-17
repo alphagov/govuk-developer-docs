@@ -16,7 +16,6 @@ parent: "/manual.html"
 [logit]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3
 [pagerduty]: https://govuk.pagerduty.com/
 [pingdom]: /manual/pingdom
-[publish]: repos/datagovuk_publish
 [sentry]: https://sentry.io/govuk/
 
 This document covers some of the user requests regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).
@@ -48,46 +47,11 @@ There are three environments for CKAN:
 
 ### Datagovuk kubernetes cluster
 
-Publish and Find are hosted on the same AWS cluster as GOV.UK but in its own namespace - `datagovuk`
+Find is hosted on the same AWS cluster as GOV.UK but in its own namespace - `datagovuk`
 
 So to manage data.gov.uk apps you will need to add `-n datagovuk` to any `kubectl` command or run `kubectl config set-context --current --namespace=datagovuk` to make it the default.
 
 You will be able to exec onto any datagovuk pod in a similar way to other GOV.UK apps.
-
-## Reindexing [Find]
-
-This is done using the `search:reindex` rake task in [Publish] and will not cause any app downtime.
-
-```
-kubectl exec deploy/datagovuk-publish -n datagovuk -- rails 'search:reindex[500]'
-```
-
-This will populate a new index and rotate the index alias to point to it when it's ready.
-
-## Perform a full re-sync from [CKAN]
-
-The sync is normally done automatically using Sidekiq Scheduler. There may be times when you need to throw away the existing Postgres database, sync all datasets from CKAN and reindex.
-
-This will not make any changes to the content on Find until the [reindex](#reindexing-find) has completed and the Elastic index is updated.  This will affect data served on Publish, however this service is not currently used for publishing or editing datasets.  In most cases, you should never need to do this as the sync performs incremental updates.
-
-```
-## drop tables in publish database so that the db setup can run
-kubectl exec deploy/datagovuk-publish -n datagovuk -- bash -c 'psql $DATABASE_URL -c "DROP OWNED BY ckan;"'
-
-# NOTE - ignore the server restart warnings after setting up the database
-kubectl exec deploy/datagovuk-publish -n datagovuk -- bin/setup
-
-## make sure the index is setup
-
-kubectl exec deploy/datagovuk-publish -n datagovuk -- rails search:reindex
-
-## update orgs or datasets
-
-kubectl exec deploy/datagovuk-publish -n datagovuk -- rails runner CKAN::V26::CKANOrgSyncWorker.new.perform
-kubectl exec deploy/datagovuk-publish -n datagovuk -- rails runner CKAN::V26::PackageSyncWorker.new.perform
-```
-
-Now run `kubectl exec deploy/datagovuk-publish -n datagovuk -- bundle exec sidekiq` and see the logs.
 
 ## Monitoring data.gov.uk
 
@@ -97,11 +61,11 @@ Now run `kubectl exec deploy/datagovuk-publish -n datagovuk -- bundle exec sidek
 
 ### Sentry
 
-[Sentry] monitors application errors. The Sentry pages for each app can be found on the [Find] and [Publish] app pages.
+[Sentry] monitors application errors. The Sentry pages for each app can be found on the [Find] app pages.
 
 ### Logs
 
-[Ckan][ckan-app], [Publish] and [Find] send their logs to [Logit].
+[Ckan][ckan-app] and [Find] send their logs to [Logit].
 Example query: `kubernetes.namespace: datagovuk AND kubernetes.container.name: find AND message: "status=404"`.
 
 [CDN logs for data.gov.uk are also available](/manual/query-cdn-logs.html).
@@ -109,28 +73,6 @@ Example query: `kubernetes.namespace: datagovuk AND kubernetes.container.name: f
 ### Grafana
 
 There is a [Grafana dashboard][Grafana] showing some metrics for datagovuk apps.
-
-### Sidekiq ([Publish])
-
-You can monitor the number of jobs in each queue using the following.
-
-```
-kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
-rails console
->>> Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
-```
-
-or on a single command line:
-
-```
-echo 'Sidekiq::Queue.all.map(&:size)' | k -n datagovuk exec -i deploy/datagovuk-publish -- rails c
-```
-
-If there are issues processing the Sidekiq queue you can also clear it (this doesn't affect the operation of data.gov.uk):
-
-```
-echo 'Sidekiq::Queue.new("import").clear' | k -n datagovuk exec -i deploy/datagovuk-publish -- rails c
-```
 
 ### Analytics
 
@@ -272,43 +214,13 @@ This is a generic response for such cases:
 >
 > I hope that helps. I’ll close this ticket now.
 
-### Different number of datasets in CKAN to data.gov.uk
+### Getting data directly from Solr
 
-Determine the number of datasets in CKAN using the API:
+There are times when it is useful to connect to the Solr search index server in order to get the raw data that generates the search results and dataset information. To do this you need this command -
 
-[https://data.gov.uk/api/3/search/dataset](https://data.gov.uk/api/3/search/dataset)
+`kubectl port-forward ckan-solr-0 8983:8983 -n datagovuk`
 
-Determine the number of datasets in the Publish Postgres database using the Rails console.
-
-```
-kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
-rails console
->>> Dataset.count
-```
-
-If these numbers match, but the number of datasets served on data.gov.uk is still different, identify the number of published datasets in the Postgres database:
-
-```
-kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
-rails console
->>> Dataset.published.count
-```
-
-All datasets that are available through the CKAN API will be marked as public in the Postgres database. Therefore, if you get a different number of datasets, you should mark them all as published in the Postgres database.
-
-```
-kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
-rails console
->>> Dataset.update(status: 'published')
-```
-
-A [reindex](#reindexing-find) is then needed to update the status with the Elastic instance that serves data.gov.uk.
-
-### Datasets published in CKAN are not appearing on data.gov.uk
-
-Check the Sidekiq queue (see [monitoring section](/manual/data-gov-uk-monitoring.html#sidekiq-publish)) to ensure the queue length is not too long.  You should not see more jobs than the number of datasets in CKAN.
-
-If the queue is too long, you should [clear the queue](https://github.com/mperham/sidekiq/wiki/API). The next sync process will repopulate the queue with any relevant datasets that require updating.
+You should now be able to access the Solr admin interface by browsing to http://localhost:8983/solr/#/ckan/query.
 
 ### Accessing withdrawn content
 
@@ -488,7 +400,7 @@ ckan dataset purge DATASET_NAME
 
 ### Bulk deleting datasets
 
-This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, which can be obtained from your user profile in the CKAN web interface. You might need to change [the limit to the number of datasets that can be deleted](https://github.com/alphagov/datagovuk_publish/blob/main/app/lib/ckan/v26/depaginator.rb#L5) - otherwise the deletion may appear to work in CKAN but the changes won't make it through to data.gov.uk and subsequent publish jobs could be blocked.
+This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, which can be obtained from your user profile in the CKAN web interface.
 
 Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following:
 

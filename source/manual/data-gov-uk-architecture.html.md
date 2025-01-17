@@ -13,14 +13,13 @@ parent: "/manual.html"
 [guidance]: https://guidance.data.gov.uk/
 [guidance-github]: https://github.com/datagovuk/guidance
 [open-data-policy]: https://www.gov.uk/government/publications/open-data-white-paper-unleashing-the-potential
-[publish]: repos/datagovuk_publish
 [statistics]: https://statistics.data.gov.uk
 
 The `data.gov.uk` (DGU) platform is used to publish and view datasets. A dataset contains the metadata for a collection of links to data hosted somewhere on the internet.
 
 ## Architectural overview of data.gov.uk
 
-![](/manual/images/2023-dgu-eks-architecture.png)
+![](/manual/images/2025-dgu-eks-architecture.png)
 
 The original for this diagram is available in [Google Drive](https://drive.google.com/open?id=1xnwgUBrwnQI2aIfZ0FT8nBQ-pERNRo2r) and can be edited with draw.io.
 
@@ -29,8 +28,7 @@ The original for this diagram is available in [Google Drive](https://drive.googl
 Services owned by data.gov.uk:
 
 * [CKAN] is the publishing app for datasets ('packages').
-* [Find] is the public frontend for viewing and searching for datasets (using Opensearch).
-* [Publish] was a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Opensearch for use in Find.
+* [Find] is the public frontend for viewing and searching for datasets (using Solr).
 
 Services on data.gov.uk sub-domains, but owned by other departments:
 
@@ -39,6 +37,6 @@ Services on data.gov.uk sub-domains, but owned by other departments:
 * [Guidance] is a set of manual pages hosted in [GitHub][guidance-github].
 * [Business] is a legacy redirect to Companies House.
 
-## [CKAN], [Publish] and [Find]
+## [CKAN] and [Find]
 
-[CKAN], [Publish] and [Find] are hosted on AWS EKS and are maintained/deployed in the same way as most other GOV.UK applications.
+[CKAN] and [Find] are hosted on AWS EKS and are maintained/deployed in the same way as most other GOV.UK applications.
