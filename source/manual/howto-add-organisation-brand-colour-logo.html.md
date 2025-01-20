@@ -15,7 +15,11 @@ The [organisation logo component](https://components.publishing.service.gov.uk/c
 
 To add or update single identity logos in the publishing components gem, please refer to the [organisation-logos component documentation](https://github.com/alphagov/govuk_publishing_components/blob/main/docs/organisation-logos.md).
 
-### 2. Add the organisation logo as an option in Whitehall
+### 2. Add the organisation to the corresponding schemas in Publishing API
+
+See [example](https://github.com/alphagov/publishing-api/pull/3091).
+
+### 3. Add the organisation logo as an option in Whitehall
 
 Add a new entry for the organisation in [app/models/organisation_logo_type.rb](https://github.com/alphagov/whitehall/blob/main/app/models/organisation_logo_type.rb), which will show the organisation as an option under the [organisation logo drop down field](https://github.com/alphagov/whitehall/blob/52aff8f61a29b3999054b5b5c94875a5534eaf9a/app/views/admin/organisations/_form.html.erb#L15) in Whitehall. The CSS class name should match the abbreviated organisation name added above in the govuk publishing components gem.
 
