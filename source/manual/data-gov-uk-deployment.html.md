@@ -5,10 +5,7 @@ section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
 ---
-[publish]: https://github.com/alphagov/datagovuk_publish
 [find]: https://github.com/alphagov/datagovuk_find
-[publish-ci]: https://github.com/alphagov/datagovuk_publish/tree/main/.github/workflows
-[find-ci]: https://github.com/alphagov/datagovuk_find/tree/main/.github/workflows
 [Staging]: https://staging.data.gov.uk/
 [CKAN]: https://github.com/alphagov/ckanext-datagovuk
 [ckanext-datagovuk]: https://github.com/alphagov/ckanext-datagovuk
@@ -37,17 +34,16 @@ data.gov.uk's releases and rollouts tooling is otherwise similar to the rest of 
 
 You can see a list of all the tagged releases for each application:
 
-- [Publish](https://github.com/alphagov/datagovuk_publish/pkgs/container/datagovuk_publish)
 - [Find](https://github.com/alphagov/datagovuk_find/pkgs/container/datagovuk_find)
 - [CKAN](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan) (ckanext-datagovuk)
 - [PyCSW](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw)
 - [Solr](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr)
 
-## Find and Publish
+## Find
 
 ### Create a release
 
-Create a release of datagovuk_find or datagovuk_publish by pushing a Git tag to the application's GitHub repository.
+Create a release of datagovuk_find by pushing a Git tag to the application's GitHub repository.
 
 You must name the tag using the format `v<major>.<minor>.<patch>`, where major, minor and patch are integers. For example `v1.0.23` is a valid release tag whereas `1.0.23` is not.
 
@@ -93,7 +89,7 @@ The `create-charts-pr` workflow in GitHub Actions will have automatically raised
 
 ## CKAN
 
-You can create a CKAN release by pushing a tag to the [ckanext-datagovuk] repo. CKAN releases and rollouts work the same way as [Find and Publish](#find-and-publish).
+You can create a CKAN release by pushing a tag to the [ckanext-datagovuk] repo. CKAN releases and rollouts work the same way as [Find](#Find).
 
 ### Update a CKAN extension
 
