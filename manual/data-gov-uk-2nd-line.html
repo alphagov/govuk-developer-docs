@@ -154,12 +154,6 @@
         </ul>
       </li>
       <li>
-        <a href="#reindexing-find"><span>Reindexing Find</span></a>
-      </li>
-      <li>
-        <a href="#perform-a-full-re-sync-from-ckan"><span>Perform a full re-sync from [CKAN]</span></a>
-      </li>
-      <li>
         <a href="#monitoring-data-gov-uk"><span>Monitoring data.gov.uk</span></a>
         <ul>
           <li>
@@ -173,9 +167,6 @@
           </li>
           <li>
             <a href="#grafana"><span>Grafana</span></a>
-          </li>
-          <li>
-            <a href="#sidekiq-publish"><span>Sidekiq (Publish)</span></a>
           </li>
           <li>
             <a href="#analytics"><span>Analytics</span></a>
@@ -227,10 +218,7 @@
             <a href="#a-dataset-is-wrong-in-some-way"><span>A dataset is wrong in some way</span></a>
           </li>
           <li>
-            <a href="#different-number-of-datasets-in-ckan-to-data-gov-uk"><span>Different number of datasets in CKAN to data.gov.uk</span></a>
-          </li>
-          <li>
-            <a href="#datasets-published-in-ckan-are-not-appearing-on-data-gov-uk"><span>Datasets published in CKAN are not appearing on data.gov.uk</span></a>
+            <a href="#getting-data-directly-from-solr"><span>Getting data directly from Solr</span></a>
           </li>
           <li>
             <a href="#accessing-withdrawn-content"><span>Accessing withdrawn content</span></a>
@@ -405,7 +393,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/209f070868193daefb349227b5eb6a334699b709">11 Dec 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a746d289b40514895aeaeadef2995ca4d09bda6e">17 Jan 2025</a>
 </div>
 
  <h1 id='header'>Common support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the user requests regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
@@ -426,44 +414,16 @@ fix it - open a PR to resolve the problem.</p>
 <li><a href="https://ckan.eks.staging.govuk.digital">Staging</a></li>
 <li><a href="https://ckan.eks.integration.govuk.digital">Integration</a></li>
 </ul>
-<h2 id='accessing-data-gov-uk'>Accessing data.gov.uk</h2><h3 id='datagovuk-kubernetes-cluster'>Datagovuk kubernetes cluster</h3><p>Publish and Find are hosted on the same AWS cluster as GOV.UK but in its own namespace - <code>datagovuk</code></p>
+<h2 id='accessing-data-gov-uk'>Accessing data.gov.uk</h2><h3 id='datagovuk-kubernetes-cluster'>Datagovuk kubernetes cluster</h3><p>Find is hosted on the same AWS cluster as GOV.UK but in its own namespace - <code>datagovuk</code></p>
 <p>So to manage data.gov.uk apps you will need to add <code>-n datagovuk</code> to any <code>kubectl</code> command or run <code>kubectl config set-context --current --namespace=datagovuk</code> to make it the default.</p>
 <p>You will be able to exec onto any datagovuk pod in a similar way to other GOV.UK apps.</p>
-<h2 id='reindexing-find'>Reindexing <a href="/repos/datagovuk_find.html">Find</a></h2><p>This is done using the <code>search:reindex</code> rake task in <a href="/repos/datagovuk_publish.html">Publish</a> and will not cause any app downtime.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec deploy/datagovuk-publish -n datagovuk -- rails 'search:reindex[500]'
-</code></pre></div><p>This will populate a new index and rotate the index alias to point to it when it&rsquo;s ready.</p>
-<h2 id='perform-a-full-re-sync-from-ckan'>Perform a full re-sync from [CKAN]</h2><p>The sync is normally done automatically using Sidekiq Scheduler. There may be times when you need to throw away the existing Postgres database, sync all datasets from CKAN and reindex.</p>
-<p>This will not make any changes to the content on Find until the <a href="#reindexing-find">reindex</a> has completed and the Elastic index is updated.  This will affect data served on Publish, however this service is not currently used for publishing or editing datasets.  In most cases, you should never need to do this as the sync performs incremental updates.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>## drop tables in publish database so that the db setup can run
-kubectl exec deploy/datagovuk-publish -n datagovuk -- bash -c 'psql $DATABASE_URL -c "DROP OWNED BY ckan;"'
-
-# NOTE - ignore the server restart warnings after setting up the database
-kubectl exec deploy/datagovuk-publish -n datagovuk -- bin/setup
-
-## make sure the index is setup
-
-kubectl exec deploy/datagovuk-publish -n datagovuk -- rails search:reindex
-
-## update orgs or datasets
-
-kubectl exec deploy/datagovuk-publish -n datagovuk -- rails runner CKAN::V26::CKANOrgSyncWorker.new.perform
-kubectl exec deploy/datagovuk-publish -n datagovuk -- rails runner CKAN::V26::PackageSyncWorker.new.perform
-</code></pre></div><p>Now run <code>kubectl exec deploy/datagovuk-publish -n datagovuk -- bundle exec sidekiq</code> and see the logs.</p>
 <h2 id='monitoring-data-gov-uk'>Monitoring data.gov.uk</h2><h3 id='pingdom'>Pingdom</h3><p><a href="/manual/pingdom">Pingdom</a> monitors <code>https://data.gov.uk</code> uptime and alerts <a href="https://govuk.pagerduty.com/">PagerDuty</a> when downtime is detected.</p>
-<h3 id='sentry'>Sentry</h3><p><a href="https://sentry.io/govuk/">Sentry</a> monitors application errors. The Sentry pages for each app can be found on the <a href="/repos/datagovuk_find.html">Find</a> and <a href="/repos/datagovuk_publish.html">Publish</a> app pages.</p>
-<h3 id='logs'>Logs</h3><p><a href="/repos/ckanext-datagovuk.html">Ckan</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> send their logs to <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3">Logit</a>.
+<h3 id='sentry'>Sentry</h3><p><a href="https://sentry.io/govuk/">Sentry</a> monitors application errors. The Sentry pages for each app can be found on the <a href="/repos/datagovuk_find.html">Find</a> app pages.</p>
+<h3 id='logs'>Logs</h3><p><a href="/repos/ckanext-datagovuk.html">Ckan</a> and <a href="/repos/datagovuk_find.html">Find</a> send their logs to <a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3">Logit</a>.
 Example query: <code>kubernetes.namespace: datagovuk AND kubernetes.container.name: find AND message: &quot;status=404&quot;</code>.</p>
 <p><a href="/manual/query-cdn-logs.html">CDN logs for data.gov.uk are also available</a>.</p>
 <h3 id='grafana'>Grafana</h3><p>There is a <a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&amp;refresh=1m&amp;var-namespace=datagovuk&amp;var-app=All&amp;var-error_status=All">Grafana dashboard</a> showing some metrics for datagovuk apps.</p>
-<h3 id='sidekiq-publish'>Sidekiq (<a href="/repos/datagovuk_publish.html">Publish</a>)</h3><p>You can monitor the number of jobs in each queue using the following.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
-rails console
-&gt;&gt;&gt; Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
-</code></pre></div><p>or on a single command line:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>echo 'Sidekiq::Queue.all.map(&amp;:size)' | k -n datagovuk exec -i deploy/datagovuk-publish -- rails c
-</code></pre></div><p>If there are issues processing the Sidekiq queue you can also clear it (this doesn&rsquo;t affect the operation of data.gov.uk):</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>echo 'Sidekiq::Queue.new("import").clear' | k -n datagovuk exec -i deploy/datagovuk-publish -- rails c
-</code></pre></div><h3 id='analytics'>Analytics</h3><p>Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.</p>
+<h3 id='analytics'>Analytics</h3><p>Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.</p>
 <p>If a user requests analytics for data.gov.uk, we can provide them with access to <a href="https://lookerstudio.google.com/reporting/1dLIysu5Ie131ZL3gGT7zyWBhffNgTSX2/page/cduv">an analytics dashboard</a>. Assign tickets like this to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk queue.</p>
 <h2 id='updating-the-zendesk-password-for-find'>Updating the Zendesk password for Find</h2><p>The form at https://www.data.gov.uk/support uses the Zendesk API to create new tickets. If the account password expires, it&rsquo;ll need updating in <a href="/manual/secrets-manager.html">AWS Secrets Manager</a>:</p>
 
@@ -577,23 +537,9 @@ organisations, with either the &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; role 
 <p>Contact details for each dataset are towards the bottom of the dataset page.</p>
 <p>I hope that helps. I’ll close this ticket now.</p>
 </blockquote>
-<h3 id='different-number-of-datasets-in-ckan-to-data-gov-uk'>Different number of datasets in CKAN to data.gov.uk</h3><p>Determine the number of datasets in CKAN using the API:</p>
-<p><a href="https://data.gov.uk/api/3/search/dataset">https://data.gov.uk/api/3/search/dataset</a></p>
-<p>Determine the number of datasets in the Publish Postgres database using the Rails console.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
-rails console
-&gt;&gt;&gt; Dataset.count
-</code></pre></div><p>If these numbers match, but the number of datasets served on data.gov.uk is still different, identify the number of published datasets in the Postgres database:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
-rails console
-&gt;&gt;&gt; Dataset.published.count
-</code></pre></div><p>All datasets that are available through the CKAN API will be marked as public in the Postgres database. Therefore, if you get a different number of datasets, you should mark them all as published in the Postgres database.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>kubectl exec -it deploy/datagovuk-publish -n datagovuk -- bash
-rails console
-&gt;&gt;&gt; Dataset.update(status: 'published')
-</code></pre></div><p>A <a href="#reindexing-find">reindex</a> is then needed to update the status with the Elastic instance that serves data.gov.uk.</p>
-<h3 id='datasets-published-in-ckan-are-not-appearing-on-data-gov-uk'>Datasets published in CKAN are not appearing on data.gov.uk</h3><p>Check the Sidekiq queue (see <a href="/manual/data-gov-uk-monitoring.html#sidekiq-publish">monitoring section</a>) to ensure the queue length is not too long.  You should not see more jobs than the number of datasets in CKAN.</p>
-<p>If the queue is too long, you should <a href="https://github.com/mperham/sidekiq/wiki/API">clear the queue</a>. The next sync process will repopulate the queue with any relevant datasets that require updating.</p>
+<h3 id='getting-data-directly-from-solr'>Getting data directly from Solr</h3><p>There are times when it is useful to connect to the Solr search index server in order to get the raw data that generates the search results and dataset information. To do this you need this command -</p>
+<p><code>kubectl port-forward ckan-solr-0 8983:8983 -n datagovuk</code></p>
+<p>You should now be able to access the Solr admin interface by browsing to http://localhost:8983/solr/#/ckan/query.</p>
 <h3 id='accessing-withdrawn-content'>Accessing withdrawn content</h3><p>If a user is asking for data that is no longer publicly available, e.g. a withdrawn dataset, they should email the organisation that originally published the dataset. You can find an email address for the organisation on CKAN.</p>
 <h2 id='using-the-ckan-api'>Using the CKAN api</h2><p>It can be useful to access the <a href="https://docs.ckan.org/en/2.9/api/index.html">CKAN API</a> when debugging or resolving issues. Note that the responses may be different depending on your access permissions.</p>
 <p>Where relevant, the number of results returned defaults to 10. Use a rows parameter to change this:</p>
@@ -673,7 +619,7 @@ ckan harvester initdb
 </code></pre></div><h3 id='purging-a-dataset'>Purging a dataset</h3><p>Where commands mention DATASET_NAME, this should either be the slug for the dataset, or the
 UUID.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ckan dataset purge DATASET_NAME
-</code></pre></div><h3 id='bulk-deleting-datasets'>Bulk deleting datasets</h3><p>This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, which can be obtained from your user profile in the CKAN web interface. You might need to change <a href="https://github.com/alphagov/datagovuk_publish/blob/main/app/lib/ckan/v26/depaginator.rb#L5">the limit to the number of datasets that can be deleted</a> - otherwise the deletion may appear to work in CKAN but the changes won&rsquo;t make it through to data.gov.uk and subsequent publish jobs could be blocked.</p>
+</code></pre></div><h3 id='bulk-deleting-datasets'>Bulk deleting datasets</h3><p>This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, which can be obtained from your user profile in the CKAN web interface.</p>
 <p>Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: &lt;your_api_key&gt;" http://localhost:&lt;ckan_port&gt;/api/3/action/package_delete; done &lt; list_of_ids.txt
 </code></pre></div><p>After deleting or purging a dataset, it will take up to 10 minutes to update on data.gov.uk, due to the sync process.</p>

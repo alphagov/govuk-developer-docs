@@ -149,7 +149,7 @@
         <a href="#list-existing-releases-of-a-data-gov-uk-application"><span>List existing releases of a data.gov.uk application</span></a>
       </li>
       <li>
-        <a href="#find-and-publish"><span>Find and Publish</span></a>
+        <a href="#find"><span>Find</span></a>
         <ul>
           <li>
             <a href="#create-a-release"><span>Create a release</span></a>
@@ -218,15 +218,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/262d9eb628f89a7080e393ffb1ae3e04a3c81ebb">5 Apr 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a746d289b40514895aeaeadef2995ca4d09bda6e">17 Jan 2025</a>
 </div>
 
  <h1 id='header'>Deployments for data.gov.uk</h1> <p>This document describes the release and rollout automation (CI/CD) for data.gov.uk and how to deploy a release to production.</p>
@@ -242,13 +235,12 @@
 <h2 id='list-existing-releases-of-a-data-gov-uk-application'>List existing releases of a data.gov.uk application</h2><p>You can see a list of all the tagged releases for each application:</p>
 
 <ul>
-<li><a href="https://github.com/alphagov/datagovuk_publish/pkgs/container/datagovuk_publish">Publish</a></li>
 <li><a href="https://github.com/alphagov/datagovuk_find/pkgs/container/datagovuk_find">Find</a></li>
 <li><a href="https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan">CKAN</a> (ckanext-datagovuk)</li>
 <li><a href="https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw">PyCSW</a></li>
 <li><a href="https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr">Solr</a></li>
 </ul>
-<h2 id='find-and-publish'>Find and Publish</h2><h3 id='create-a-release'>Create a release</h3><p>Create a release of datagovuk_find or datagovuk_publish by pushing a Git tag to the application&rsquo;s GitHub repository.</p>
+<h2 id='find'>Find</h2><h3 id='create-a-release'>Create a release</h3><p>Create a release of datagovuk_find by pushing a Git tag to the application&rsquo;s GitHub repository.</p>
 <p>You must name the tag using the format <code>v&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;</code>, where major, minor and patch are integers. For example <code>v1.0.23</code> is a valid release tag whereas <code>1.0.23</code> is not.</p>
 <p>You should determine the version number for your release by looking up the current version and applying the principles of <a href="https://semver.org/">semantic versioning</a> (semver). For example if your release includes a new feature but no breaking changes, you should increment the minor version number.</p>
 
@@ -274,7 +266,7 @@
 <li><p>Test that your changes are working in <a href="https://staging.data.gov.uk/">Staging</a>.</p></li>
 <li><p>Merge the <code>Update &lt;app&gt; tags for production</code> PR.</p></li>
 </ol>
-<h2 id='ckan'>CKAN</h2><p>You can create a CKAN release by pushing a tag to the <a href="https://github.com/alphagov/ckanext-datagovuk">ckanext-datagovuk</a> repo. CKAN releases and rollouts work the same way as <a href="#find-and-publish">Find and Publish</a>.</p>
+<h2 id='ckan'>CKAN</h2><p>You can create a CKAN release by pushing a tag to the <a href="https://github.com/alphagov/ckanext-datagovuk">ckanext-datagovuk</a> repo. CKAN releases and rollouts work the same way as <a href="#Find">Find</a>.</p>
 <h3 id='update-a-ckan-extension'>Update a CKAN extension</h3><p>To update a CKAN extension such as <code>spatial</code>, <code>harvest</code> or <code>dcat</code>, you must update the extension&rsquo;s pinned version SHA in the Dockerfile for the appropriate version of CKAN under <a href="https://github.com/alphagov/ckanext-datagovuk/tree/main/docker/ckan">docker/ckan</a>.</p>
 <h3 id='manually-test-the-csw-service'>Manually test the CSW service</h3><p>When deploying changes that affect the <a href="https://opengeospatial.github.io/e-learning/cat/text/main.html">CSW</a> service, such as OWSLib or PyCSW updates, you should test that the <code>/csw</code> endpoint still works properly.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>curl <span class="nt">-v</span> https://ckan.staging.publishing.service.gov.uk/csw

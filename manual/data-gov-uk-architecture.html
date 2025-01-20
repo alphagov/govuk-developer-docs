@@ -149,7 +149,7 @@
         <a href="#data-gov-uk-services"><span>data.gov.uk Services</span></a>
       </li>
       <li>
-        <a href="#ckan-publish-and-find"><span>CKAN, Publish and Find</span></a>
+        <a href="#ckan-and-find"><span>CKAN and Find</span></a>
       </li>
     </ul>
   </li>
@@ -199,26 +199,18 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3dfebff4115d8820d52469373b13815d5a71c0cc">2 Feb 2024</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a746d289b40514895aeaeadef2995ca4d09bda6e">17 Jan 2025</a>
 </div>
 
  <h1 id='header'>Architecture of data.gov.uk</h1> <p>The <code>data.gov.uk</code> (DGU) platform is used to publish and view datasets. A dataset contains the metadata for a collection of links to data hosted somewhere on the internet.</p>
-<h2 id='architectural-overview-of-data-gov-uk'>Architectural overview of data.gov.uk</h2><p><a href="/manual/images/2023-dgu-eks-architecture.png" rel="noopener noreferrer"><img src="/manual/images/2023-dgu-eks-architecture.png" alt="" /></a></p>
+<h2 id='architectural-overview-of-data-gov-uk'>Architectural overview of data.gov.uk</h2><p><a href="/manual/images/2025-dgu-eks-architecture.png" rel="noopener noreferrer"><img src="/manual/images/2025-dgu-eks-architecture.png" alt="" /></a></p>
 <p>The original for this diagram is available in <a href="https://drive.google.com/open?id=1xnwgUBrwnQI2aIfZ0FT8nBQ-pERNRo2r">Google Drive</a> and can be edited with draw.io.</p>
 <h2 id='data-gov-uk-services'>data.gov.uk Services</h2><p>Services owned by data.gov.uk:</p>
 
 <ul>
 <li><a href="/repos/ckanext-datagovuk.html">CKAN</a> is the publishing app for datasets (&lsquo;packages&rsquo;).</li>
-<li><a href="/repos/datagovuk_find.html">Find</a> is the public frontend for viewing and searching for datasets (using Opensearch).</li>
-<li><a href="/repos/datagovuk_publish.html">Publish</a> was a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Opensearch for use in Find.</li>
+<li><a href="/repos/datagovuk_find.html">Find</a> is the public frontend for viewing and searching for datasets (using Solr).</li>
 </ul>
 <p>Services on data.gov.uk sub-domains, but owned by other departments:</p>
 
@@ -228,7 +220,7 @@
 <li><a href="https://guidance.data.gov.uk/">Guidance</a> is a set of manual pages hosted in <a href="https://github.com/datagovuk/guidance">GitHub</a>.</li>
 <li><a href="http://business.data.gov.uk/id/company/09747720">Business</a> is a legacy redirect to Companies House.</li>
 </ul>
-<h2 id='ckan-publish-and-find'><a href="/repos/ckanext-datagovuk.html">CKAN</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a></h2><p><a href="/repos/ckanext-datagovuk.html">CKAN</a>, <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> are hosted on AWS EKS and are maintained/deployed in the same way as most other GOV.UK applications.</p>
+<h2 id='ckan-and-find'><a href="/repos/ckanext-datagovuk.html">CKAN</a> and <a href="/repos/datagovuk_find.html">Find</a></h2><p><a href="/repos/ckanext-datagovuk.html">CKAN</a> and <a href="/repos/datagovuk_find.html">Find</a> are hosted on AWS EKS and are maintained/deployed in the same way as most other GOV.UK applications.</p>
 
   <div class='related-content'>
 
