@@ -1,0 +1,22 @@
+// For format details, see https://aka.ms/devcontainer.json
+{
+	"name": "GOV.UK Developer Docs",
+	"image": "ruby:3.1",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"nodeGypDependencies": true,
+			"version": "lts",
+			"nvmVersion": "latest"
+		}
+	},
+	"forwardPorts": [4567],
+	"postCreateCommand": "bundle install",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Shopify.ruby-lsp",
+				"redhat.vscode-yaml"
+			]
+		}
+	}
+}
