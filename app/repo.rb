@@ -160,6 +160,10 @@ class Repo
     github_readme
   end
 
+  def skip_docs?
+    repo_data.fetch("skip_docs", false)
+  end
+
 private
 
   def kibana_url_for(app:, hours: 3, include: %w[level request status message])
