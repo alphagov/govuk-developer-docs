@@ -29,6 +29,16 @@ RSpec.describe Repo do
     end
   end
 
+  describe "skip_docs?" do
+    it "returns false if 'skip_docs' is omitted" do
+      expect(Repo.new({}).skip_docs?).to be(false)
+    end
+
+    it "returns true if 'skip_docs' is true" do
+      expect(Repo.new({ "skip_docs" => true }).skip_docs?).to be(true)
+    end
+  end
+
   describe "api_payload" do
     it "returns a hash of keys describing the app" do
       app_details = {

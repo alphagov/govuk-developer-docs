@@ -9,7 +9,7 @@ class ProxyPages
   end
 
   def self.repo_docs
-    docs = Repos.active_public.map do |repo|
+    docs = Repos.with_docs.map do |repo|
       docs_for_repo = GitHubRepoFetcher.instance.docs(repo.repo_name) || []
       docs_for_repo.map do |page|
         {
