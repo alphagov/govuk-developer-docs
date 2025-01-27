@@ -37,7 +37,11 @@ Archiving a repo does not remove its GitHub Pages site (if any). The site stays 
 Before you proceed with archving the repo, ensure that all workflow runs listed under "Actions" have completed or [cancel them](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/canceling-a-workflow#canceling-a-workflow-run).
 Go into the repository settings in GitHub, and [archive the repo](https://github.com/blog/2460-archiving-repositories).
 
-## 5. Update the Developer Docs
+## 5. Remove GitHub configuration for the repo
+
+Follow the steps in [GOV.UK GitHub Infrastructure configuration terraform project](https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/github#removing-repositories) to remove the repo from our GitHub configuration.
+
+## 6. Update the Developer Docs
 
 If the repo is listed in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml), mark the application as `retired`.
 
@@ -45,7 +49,7 @@ If the repo wasn't already listed in Developer Docs then don't add it.
 
 ([#4259](https://github.com/alphagov/govuk-developer-docs/issues/4259) would eliminate this toil if fixed.)
 
-## 6. Remove references
+## 7. Remove references
 
 [Search GitHub](https://github.com/search?q=org%3Aalphagov+panopticon&type=Code) for any references to the repository and update or remove them as appropriate.
 
