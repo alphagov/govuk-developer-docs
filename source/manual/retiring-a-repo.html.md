@@ -34,6 +34,7 @@ Archiving a repo does not remove its GitHub Pages site (if any). The site stays 
 
 ## 4. Archive the repo
 
+Before you proceed with archving the repo, ensure that all workflow runs listed under "Actions" have completed or [cancel them](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/canceling-a-workflow#canceling-a-workflow-run).
 Go into the repository settings in GitHub, and [archive the repo](https://github.com/blog/2460-archiving-repositories).
 
 ## 5. Update the Developer Docs
