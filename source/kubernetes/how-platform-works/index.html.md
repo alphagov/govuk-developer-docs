@@ -1,19 +1,24 @@
 ---
+owner_slack: "#govuk-platform-engineering"
 title: How the platform works
 weight: 60
+section: Kubernetes
+type: learn
 layout: multipage_layout
+parent: "/manual.html"
 ---
-
 # How the platform works
-
-## Introduction
 
 The GOV.UK Kubernetes platform is an AWS-hosted [Kubernetes](https://kubernetes.io) cluster built using Amazon's [Elastic Kubernetes Service (EKS)](https://aws.amazon.com/eks/). It provides a standardised environment for running containerised applications that power GOV.UK services.
 
 The platform is designed to:
+
 - Enable consistent application deployments across staging, integration, and production environments.
+
 - Automate tasks like scaling, load balancing, and secret management.
+
 - Centralise key infrastructure components, such as monitoring and alerting.
+
 
 To meet GOV.UK’s operational requirements, the platform integrates Kubernetes with AWS tools and additional Kubernetes add-ons. These include features for:
 - Managing secrets securely.
@@ -24,35 +29,37 @@ This document outlines the core components of the platform, including the add-on
 
 ## High-Level Architecture
 
-![High level overview of internal platform](images/internal-platform-high-level.png)
+![High level overview of internal platform](../../images/govuk-platform-1000ft.jpg)
 
 > Note: Source for the above diagram can be found [here](https://drive.google.com/file/d/1iYblqBbGXlkOScOBRlg8hqtFvVaA9CXp/view?usp=drive_link).
 
 The platform is designed to manage and deploy applications reliably and efficiently across multiple environments, including staging, integration, and production. The architecture integrates several components to handle deployment, monitoring, alerting, and logging:
 
 - **Infrastructure Deployment**: Terraform Cloud and the AWS API are used to manage and provision infrastructure, including Kubernetes clusters hosted on AWS Elastic Kubernetes Service (EKS).
+
 - **Application Deployment**: Developers push code to GitHub, which triggers GitHub Actions to build and deploy applications using Helm charts via Argo workflows.  
+
 - **Monitoring and Alerting**: Prometheus scrapes metrics from applications and infrastructure, with alerts routed through AlertManager to PagerDuty, Slack, and other channels. Grafana provides observability dashboards for performance monitoring.  
+
 - **Secret Management**: External-secrets fetches secrets from AWS Secrets Manager, making them available as Kubernetes Secrets for applications.  
+
 - **Logging**: Application and cluster logs are centralised in ELK/LogIt for analysis and debugging.  
+
 - **Operational Support**: Tools like Sentry capture exceptions, while monitoring systems like CloudWatch and Pingdom enhance reliability and alerting for both applications and infrastructure.
 
 This setup enables automated, scalable, and secure management of the platform while providing observability and operational insights for application teams.
 
 ### Application Deployment
 
-You can read more about how applications are deployed here [here](kubernetes/manage-app/access-ci-cd/index.html.md).
+You can read more about how applications are deployed [here](kubernetes/manage-app/access-ci-cd/index.html.md).
 
 ### Monitoring and Alerting
 
-![Model of the monitoring and alerting setup](images/internal-platform-monitoring-alerting.png)
+![Model of the monitoring and alerting setup](../../images/govuk-monitoring-alerting.jpg)
 
 > Note: Source for the above diagram can be found [here](https://drive.google.com/file/d/1pB3acw7CFtqTJe1nSyV391B8iPLrKYgC/view?usp=sharing).
 
 Monitoring and alerting in the GOV.UK Kubernetes platform ensure the stability, performance, and reliability of applications and infrastructure. The following diagram provides a high-level overview of the monitoring and alerting workflow:
-
-![Monitoring and Alerting Model](path/to/uploaded/image.png)  
-*Figure 1: Monitoring and Alerting Workflow*
 
 #### Key Components
 
