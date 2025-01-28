@@ -1,31 +1,66 @@
 ---
-title: GOV.UK Kubernetes cluster documentation for developers
+title: GOV.UK Internal Developer Platform
 weight: 1
 layout: multipage_layout
 ---
 
-# GOV.UK Kubernetes cluster documentation for developers
+# GOV.UK Internal Developer Platform
 
-Use this documentation to find out how to:
+The GOV.UK Internal Developer Platform is a centralised platform where teams can build, deploy, and manage applications in a reliable and secure environment.
 
-- start using the GOV.UK Kubernetes clusters
-- manage your GOV.UK app on Kubernetes
+This documentation is designed for both platform users and internal team members, providing guides, tools, and best practices to onboard, manage, and troubleshoot your applications effectively.
 
-## Introduction
+## Who is this for?
 
-The GOV.UK website and content management system (known internally as the publishing platform) are hosted on [Kubernetes](https://kubernetes.io/) clusters on Amazon Web Services (AWS), using [Elastic Kubernetes Service](https://aws.amazon.com/eks/) (EKS).
+This documentation is for:
 
-Kubernetes is a widely-used, open-source [container orchestration system](https://cloud.google.com/discover/what-is-container-orchestration) for managing containerised workloads such as GOV.UK's.
+- Developers, engineers, and stakeholders deploying and managing applications on the platform.
 
-Kubernetes is designed for automation and emphasises [declarative configuration](https://github.com/kubernetes/design-proposals-archive/blob/main/architecture/declarative-application-management.md#declarative-configuration) and [immutable infrastructure](https://thenewstack.io/a-brief-look-at-immutable-infrastructure-and-why-it-is-such-a-quest/). It provides mechanisms for:
+- Platform engineers and administrators responsible for maintaining and extending the platform.
 
-- efficiently and automatically fitting workloads into available compute resources
-- resilient, "self-healing" deployments
-- service discovery and load balancing
-- automated rollouts and rollbacks
-- quotas and isolation of compute resources between workloads
-- authentication, authorisation and audit logging
-- secrets and configuration management
-- managing persistent storage
+## User Guide
 
-See the official [Kubernetes overview documentation](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) for more information about Kubernetes.
+This section is specifically for application developers using the platform. The platform is designed to reduce cognitive load for developers by abstracting away infrastructure complexity and providing tools, guides, and automated workflows. 
+
+If there’s something missing, please either let us know and we’ll add a new article, or if you’re comfortable writing one yourself, PRs will be gratefully received.
+
+### Getting Started
+
+- [Gain access to a platform EKS Cluster](../../kubernetes/get-started/access-eks-cluster/index.html)
+- [Set up the recommended tools](../../kubernetes/get-started/set-up-tools/index.html)
+- [Understand how the platform works](../../kubernetes/how-platform-works/index.html)
+
+### Tutorials
+
+- [Create a new application](../../kubernetes/create-app/index.html)
+- [Update an application's environment in our Helm charts](../../kubernetes/get-started/tutorials/app-config-deploy-helm-chart/index.html)
+- [Update, deploy, and monitor an application](../../kubernetes/get-started/tutorials/app-update-deploy-monitor-logs/index.html)
+- [Set or change an environment variable in your application](../../kubernetes/manage-app/set-env-var/index.html)
+- [Add secrets to your application](../../kubernetes/manage-app/manage-secrets/index.html)
+- [Horizontally and vertically scale your application](../../kubernetes/manage-app/scale-app/index.html)
+- [Rolling Back Applications](../../kubernetes/manage-app/roll-back-app/index.html)
+- [Fix your application when something's gone wrong](../../kubernetes/fix-app/index.html)
+- [View your application and inspect Kubernetes via the command-line](../../kubernetes/manage-app/get-app-info/index.html)
+- [Troubleshoot your failed deployment](../../kubernetes/manage-app/manage-state/index.html)
+
+### Concepts
+
+- [How we release a new version of your app](../../kubernetes/manage-app/release-new-version/index.html)
+- [How is your application deployed](../../kubernetes/manage-app/access-ci-cd/index.html)
+
+## Runbooks
+
+This section is specifically for platform engineers and administrators and should act as a place for knowledge capture and ways of working practices.
+
+### Common tasks
+
+- [Create New Environments](../../kubernetes/manage-app/create-new-env/index.html)
+
+## Cheatsheet
+
+Quickly reference common commands and workflows in the [Cheatsheet](../../kubernetes/cheatsheet.html).
+
+## Contact the Platform Engineering Team
+
+Need help? Visit [Contact the Platform Engineering Team](../../kubernetes/contact-platform-engineering-team.html) for support options.
+
