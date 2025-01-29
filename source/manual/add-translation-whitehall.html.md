@@ -44,32 +44,11 @@ In [Government Frontend](https://github.com/alphagov/government-frontend):
 
 [Example PR](https://github.com/alphagov/whitehall/pull/4861)
 
-In [Whitehall](https://github.com/alphagov/whitehall):
+You will need the language's:
 
-1. Add the new locale to `lib/whitehall.rb` and `config/locales/en.yml` in alphabetical order
-2. Run the following commands to generate the locale files from the English template:
-
-    ```bash
-    $ echo "foo: bar" >> config/locales/<new_locale>.yml
-    $ # the contents will get overwritten below
-    $ rake translation:add_missing
-    ```
-
-3. In `config/locales/<new_locale>.yml` add:
-  - the language direction under the `i18n.direction` key
-  - the appropriate boolean under the `i18n.latin_script?` key
-  - the language translation under the `language_names` key
-
-    For example:
-
-     ```yaml
-     it:
-       i18n:
-         direction: ltr
-         latin_script?: true
-       language_names:
-         it: Italiano
-     ```
+- English name (e.g. Welsh)
+- Native name (e.g. Cymraeg)
+- Text direction (ltr or rtl)
 
 ### 3. Update content schemas in publishing api
 
