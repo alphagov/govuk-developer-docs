@@ -50,30 +50,15 @@ You will need the language's:
 - Native name (e.g. Cymraeg)
 - Text direction (ltr or rtl)
 
-### 3. Update content schemas in publishing api
+### 3. Update Publishing API
 
-Please note that this example PR is for the retired govuk-content-schemas repo - please add examples
-of adding to publishing api when it is available:
+[Example PR]([https://github.com/alphagov/govuk-content-schemas/pull/906)
 
-[Example PR](https://github.com/alphagov/govuk-content-schemas/pull/906)
-
-In [publishing api](https://github.com/alphagov/publishing-api):
-
-1. Edit `content_schemas/formats/shared/definitions/locale.jsonnet` to include the new locale in alphabetical order
+1. Edit `content_schemas/formats/shared/definitions/locale.jsonnet` and `config/application.rb` in alphabetical order
 2. Run `rake build_schemas` to generate all the schemas
 
 ### 4. Update Content Store
 
-[Example PR](https://github.com/alphagov/content-store/pull/580)
-
-In [Content Store](https://github.com/alphagov/content-store):
-
-- Add the locale key to `config/application.rb` in alphabetical order
-
-### 5. Update Publishing API
-
-[Example PR](https://github.com/alphagov/publishing-api/pull/1524)
-
-In [Publishing API](https://github.com/alphagov/publishing-api):
+[Example PR](https://github.com/alphagov/content-store/pull/1383)
 
 - Add the locale key to `config/application.rb` in alphabetical order
