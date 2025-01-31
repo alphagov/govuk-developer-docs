@@ -1,10 +1,12 @@
 analytics:
   name: Google Analytics 4 implementation record
   desc: This site contains a record of the data implementation for Google Analytics 4 (GA4) on GOV.UK Publishing. It was built to aid developers on GOV.UK Publishing but is available to anyone who may find our approach useful.
+  metadesc: This site contains a record of the data implementation for Google Analytics 4 (GA4) on GOV.UK Publishing.
 
 data:
   name: Data
   desc: Details of our data schema, including event and attribute details.
+  metadesc: Details of our GA4 data schema, including event and attribute details.
   link_title: Browse data
   link: data.html
   subsections:
@@ -18,6 +20,7 @@ data:
 docs:
   name: Documentation
   desc: Documentation relevant to GOV.UK's dataLayer approach.
+  metadesc: Documentation relevant to GOV.UK's dataLayer approach.
   link_title: Browse documentation
   link: docs.html
   subsections:
@@ -35,23 +38,29 @@ docs:
 progress:
   name: Implementation progress
   desc: Shows current percentage of implemented events by priority.
+  metadesc: Our progress in implementing GA4 on GOV.UK Publishing.
   link: progress.html
 
 approach:
   name: Development approach
+  metadesc: Our development approach for implementing GA4 on GOV.UK Publishing.
 
 consent:
   name: Consent handling
+  metadesc: How we're doing cookie consent handling for GA4 on GOV.UK Publishing.
 
 pii:
   name: Personally Identifiable Information
+  metadesc: How we're handling Personally Identifiable Information in GA4 on GOV.UK Publishing.
 
 trackers:
   name: Trackers
   desc: Trackers are distinct JavaScripts that collect GA4 data in specific ways. Each works differently but produces and sends data to GA4 in the same way.
+  metadesc: Details of the JavaScript trackers we've written for GA4 on GOV.UK Publishing.
 
 further_docs:
   name: Further reading
+  metadesc: Further reading around GA4 on GOV.UK Publishing.
 
 attributes:
   name: Attributes
@@ -59,6 +68,7 @@ attributes:
     Attributes are the key value pairs of data inside events. Attributes are often used by more than one event.
 
     Events use the following attributes.
+  metadesc: Attributes are the key value pairs of data inside events. Attributes are often used by more than one event.
 
 events:
   name: Events by event name
@@ -66,10 +76,22 @@ events:
     Events are collections of data that are sent to a GA4 property when users do certain things, like opening an accordion or clicking a link.
 
     We use the following events.
+  metadesc: All of our GA4 events on GOV.UK Publishing.
+
 events_by_group:
   name: Events by group
+  metadesc: All of our GA4 events on GOV.UK Publishing, organised by group.
+
+event:
+  name: Event
+  metadesc: Details of the GA4 data sent for the event
+
+attribute:
+  name: Attribute
+  metadesc: Details of the GA4 data contained in the attribute
 
 schema:
   name: Data schemas
   desc: |
     This page shows our complete schemas for our different events.
+  metadesc: Details of the data schema in use for GA4 on GOV.UK Publishing.
