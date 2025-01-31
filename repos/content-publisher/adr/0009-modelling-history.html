@@ -1,0 +1,590 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>content-publisher: 9. Modelling history - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/content-publisher/adr/0009-modelling-history.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="content-publisher: 9. Modelling history - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/content-publisher/adr/0009-modelling-history.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="content-publisher: 9. Modelling history" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/content-publisher/adr/0009-modelling-history.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" data-module="cookie-banner" data-nosnippet role="region" aria-label="Can we store analytics cookies on your device?" hidden> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <span class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></span> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide this message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          class="govuk-header__logotype-crown"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 32 30"
+          height="30"
+          width="32"
+        >
+          <path
+            fill="currentColor" fill-rule="evenodd"
+            d="M22.6 10.4c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-5.9 6.7c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m10.8-3.7c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s0 2-1 2.4m3.3 4.8c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4M17 4.7l2.3 1.2V2.5l-2.3.7-.2-.2.9-3h-3.4l.9 3-.2.2c-.1.1-2.3-.7-2.3-.7v3.4L15 4.7c.1.1.1.2.2.2l-1.3 4c-.1.2-.1.4-.1.6 0 1.1.8 2 1.9 2.2h.7c1-.2 1.9-1.1 1.9-2.1 0-.2 0-.4-.1-.6l-1.3-4c-.1-.2 0-.2.1-.3m-7.6 5.7c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m-5 3c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s.1 2 1 2.4m-3.2 4.8c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m14.8 11c4.4 0 8.6.3 12.3.8 1.1-4.5 2.4-7 3.7-8.8l-2.5-.9c.2 1.3.3 1.9 0 2.7-.4-.4-.8-1.1-1.1-2.3l-1.2 4c.7-.5 1.3-.8 2-.9-1.1 2.5-2.6 3.1-3.5 3-1.1-.2-1.7-1.2-1.5-2.1.3-1.2 1.5-1.5 2.1-.1 1.1-2.3-.8-3-2-2.3 1.9-1.9 2.1-3.5.6-5.6-2.1 1.6-2.1 3.2-1.2 5.5-1.2-1.4-3.2-.6-2.5 1.6.9-1.4 2.1-.5 1.9.8-.2 1.1-1.7 2.1-3.5 1.9-2.7-.2-2.9-2.1-2.9-3.6.7-.1 1.9.5 2.9 1.9l.4-4.3c-1.1 1.1-2.1 1.4-3.2 1.4.4-1.2 2.1-3 2.1-3h-5.4s1.7 1.9 2.1 3c-1.1 0-2.1-.2-3.2-1.4l.4 4.3c1-1.4 2.2-2 2.9-1.9-.1 1.5-.2 3.4-2.9 3.6-1.9.2-3.4-.8-3.5-1.9-.2-1.3 1-2.2 1.9-.8.7-2.3-1.2-3-2.5-1.6.9-2.2.9-3.9-1.2-5.5-1.5 2-1.3 3.7.6 5.6-1.2-.7-3.1 0-2 2.3.6-1.4 1.8-1.1 2.1.1.2.9-.3 1.9-1.5 2.1-.9.2-2.4-.5-3.5-3 .6 0 1.2.3 2 .9l-1.2-4c-.3 1.1-.7 1.9-1.1 2.3-.3-.8-.2-1.4 0-2.7l-2.9.9C1.3 23 2.6 25.5 3.7 30c3.7-.5 7.9-.8 12.3-.8"></path>
+        </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/content-publisher.html" rel="noopener" class="govuk-link">content-publisher</a>
+    </li>
+    <li>
+      <ul>
+          <li><a href="/repos/content-publisher/approach-to-analytics.html" rel="noopener" class="govuk-link">Approach to Analytics</a></li>
+          <li><a href="/repos/content-publisher/edit-change-note-history.html" rel="noopener" class="govuk-link">Editing a document's change history</a></li>
+          <li><a href="/repos/content-publisher/history-mode.html" rel="noopener" class="govuk-link">History mode</a></li>
+          <li><a href="/repos/content-publisher/import-from-whitehall.html" rel="noopener" class="govuk-link">Importing documents from Whitehall to Content Publisher</a></li>
+          <li><a href="/repos/content-publisher/removing-documents.html" rel="noopener" class="govuk-link">Removing or removing and redirecting a document</a></li>
+          <li><a href="/repos/content-publisher/scheduled-publishing.html" rel="noopener" class="govuk-link">Scheduled publishing</a></li>
+          <li><a href="/repos/content-publisher/testing-strategy.html" rel="noopener" class="govuk-link">Testing Strategy</a></li>
+          <li><a href="/repos/content-publisher/user-permissions.html" rel="noopener" class="govuk-link">User Permissions</a></li>
+          <li class="subdir__heading">adr</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/content-publisher/adr/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">1. Record architecture decisions</a></li>
+              <li><a href="/repos/content-publisher/adr/0002-use-local-datastore.html" rel="noopener" class="govuk-link">2: Use local datastore for publisher workflow</a></li>
+              <li><a href="/repos/content-publisher/adr/0003-initial-domain-modelling.html" rel="noopener" class="govuk-link">3. Initial Domain Modelling</a></li>
+              <li><a href="/repos/content-publisher/adr/0004-editing-microcopy.html" rel="noopener" class="govuk-link">4. Editing Microcopy</a></li>
+              <li><a href="/repos/content-publisher/adr/0005-avoiding-initialisation-flickers.html" rel="noopener" class="govuk-link">5. Avoiding initialisation flickering in HTML</a></li>
+              <li><a href="/repos/content-publisher/adr/0006-tagging-governments.html" rel="noopener" class="govuk-link">6. Tagging Content to Governments</a></li>
+              <li><a href="/repos/content-publisher/adr/0007-minimal-model.html" rel="noopener" class="govuk-link">7. Minimal Model</a></li>
+              <li><a href="/repos/content-publisher/adr/0008-restricted-deletion.html" rel="noopener" class="govuk-link">8. Restricted Deletion</a></li>
+              <li><a href="/repos/content-publisher/adr/0009-modelling-history.html" rel="noopener" class="govuk-link">9. Modelling history</a></li>
+              <li><a href="/repos/content-publisher/adr/0010-sending-email-notifications.html" rel="noopener" class="govuk-link">10. Sending email notifiations</a></li>
+              <li><a href="/repos/content-publisher/adr/0011-moving-business-logic-out-of-controllers.html" rel="noopener" class="govuk-link">11. Moving business logic out of controllers</a></li>
+              <li><a href="/repos/content-publisher/adr/0012-file-attachment-rendering.html" rel="noopener" class="govuk-link">12. Rendering File Attachments outside of Govspeak</a></li>
+              <li><a href="/repos/content-publisher/adr/0013-permitted-deletion.html" rel="noopener" class="govuk-link">13. Permitted Deletion</a></li>
+              <li><a href="/repos/content-publisher/adr/0014-political-and-government-tagging.html" rel="noopener" class="govuk-link">14. Political and Government Tagging</a></li>
+              <li><a href="/repos/content-publisher/adr/0015-bulk-data-loading.html" rel="noopener" class="govuk-link">15. Bulk data loading</a></li>
+              <li><a href="/repos/content-publisher/adr/0016-publishing-times-and-change-history.html" rel="noopener" class="govuk-link">16. Publishing times and change history</a></li>
+          </ul>
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "content-publisher",
+        "@id": "http://www.dev.gov.uk/repos/content-publisher.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/content-publisher.html">content-publisher</a>
+        </li>
+  </ol>
+</div>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/content-publisher/commit/0ef07917fe20c32351a2f3f54bcdbb49b0cb922f">7 Mar 2019</a>
+</div>
+
+  <h1 class="page-title">content-publisher: 9. Modelling history</h1>
+
+  
+<p>Date: 2018-12-17<br>
+Amended: 2019-01-29</p>
+<h2 id="context">Context</h2>
+<p>The Content Publisher domain model is focused on storing current
+information. There is a documents table which stores the most recent content of
+a document and an images table which stores the most recent version of
+a document's images. History of these changes is stored using <a href="https://github.com/paper-trail-gem/paper_trail">Papertrail</a>,
+which is not <a href="https://github.com/alphagov/content-publisher/pull/302">intended as a permanent store</a>.</p>
+<p>The presentation of a document's history is done via a TimelineEntry model
+which stores that a user did something, but lacks any further detail. In places
+where richer information was required there have been models such as Removal or
+Withdrawal associated with a TimelineEntry.</p>
+<p>This has led to a number of pain points:</p>
+<ul>
+<li>users cannot discard a new draft of a published document, because creating a
+new draft overwrites the data stored for the published edition</li>
+<li>Content Publisher can't show an accurate link or status for the live edition
+of a document when a new draft of a published document is created;</li>
+<li>users cannot edit or remove images on a document once the first
+edition is published;</li>
+<li>the TimelineEntry model stores aspects of a document's state, resulting in it
+needing to be queried outside a timeline context which limits flexibility
+for the timeline.</li>
+</ul>
+<p>And this prevents a number of intended features for Content Publisher:</p>
+<ul>
+<li>comparing different editions of a document;</li>
+<li>republishing live content if there are any problems (currently a common
+support task for Whitehall publisher);</li>
+<li>showing users what changes a user made in a particular edit.</li>
+</ul>
+<h2 id="decision">Decision</h2>
+<p>This ADR proposes changes to the domain model to resolve the aforementioned
+pain points and provide a means to support the future intended features. These
+changes provide the means to store the individual editions of a document,
+each revision of the content of a document and each status an edition has held.
+As per <a href="https://github.com/alphagov/content-publisher/blob/main/docs/adr/0003-initial-domain-modelling.md">ADR-3</a> it does not consider the
+option of sharing data between translations of a document as there are not
+the appropriate product decisions for this.</p>
+<p>A common theme in this decision is
+<a href="#approach-to-mutabilityimmutability">immutablity in models</a>, which is used
+as an implicit means of storing a history. Immutability is a key consideration
+in modelling <a href="#breakdown-of-revision">revisions of a document</a> and
+<a href="#image-modelling">images</a>. This ADR then considers the impacts of
+storing history for <a href="#timeline">timeline</a> and <a href="#topics">topics</a>, both areas
+where the usage/need of history is less clear. Finally, this ADR concludes with
+a <a href="#collated-diagram">collated diagram</a> of the domain model concepts.</p>
+<h3 id="core-concepts">Core Concepts</h3>
+<p><img src="https://raw.githubusercontent.com/alphagov/content-publisher/main/docs/adr/0009/main-concepts-diagram.png" alt="Main concepts"></p>
+<p><strong>Document</strong>: A record that represents all versions of a piece of content in a
+particular locale. It has many editions and at any time it will have a current
+edition - shown on Content Publisher index - and potentially a live edition
+which is currently on GOV.UK. The live and current edition can be
+the same. Each iteration of a document's content is represented as a revision
+on the current edition, thus a document has many revisions. Document is a
+mutable entity that is used to store data common across all editions (such as
+first publishing date) and it is expected to be a joining point for
+document-related data that is not associated with a particular edition.</p>
+<p><strong>Edition</strong>: A numbered version of a document that has been, or is
+expected to be, published on GOV.UK. It is associated with a revision
+and a status. It is mutable so that it can be a consistent object that
+joins to immutable data. It is a place where any edition-level
+database constraints can be placed, such as the constraint that only one live
+edition can exist per document. It is supported that two editions of the same
+document share the same revision. This allows them to explicitly reference the
+same content, which supports a future ability to revert a document to past
+content.</p>
+<p><strong>Revision</strong>: Represents an immutable snapshot of the content of a document at a
+particular point in time. It has a number to indicate which revision of the
+document it is and stores who created it. Any request by a user that changes
+content should result in a single new revision. This is to directly map the
+concept of a revision to each time a user revises a document. Data outside of
+content, such as state, should not be stored in a revision to ensure that
+differences between revisions can be represented to a user. The
+<a href="#breakdown-of-revision">anatomy of a Revision model</a> is explored further in
+this document.</p>
+<p><strong>Status</strong>: Represents a state that an edition can hold such as: "draft" or
+"submitted for review". This model is coupled to the concept of status that is
+shown and changed by a user. Each time a user changes the status of an edition
+a new Status model is created and the user who created it stored. An edition
+can only have one status at any one time. If a status has data specific to
+that status, such as an explanatory note for a withdrawal, this can be stored
+in a specific model associated by a polymorphic relation. This allows for
+models, such as Removal or Withdrawal, to no longer be the responsibility of
+TimelineEntry. Initially this object is intended to be immutable, however this
+may be changed if status changes become asynchronous operations. This is so
+that a single status change performed by a user can still be represented by
+a single record.</p>
+<h3 id="approach-to-mutabilityimmutability">Approach to mutability/immutability</h3>
+<p>A number of the models in Content Publisher are defined as immutable, most
+significantly <a href="#breakdown-of-revision">Revision and associated models</a>. These
+models should be persisted to the database once and never be updated or deleted.
+Any need to change them requires creating a new record. This allows us to store
+a full history by only appending to the database.</p>
+<p>For simplicity, performance and consistency with Rails idioms the accessing
+of immutable models is intended to be done by foreign key and not by the usage
+of <code>SELECT MAX</code> style queries. This maintains the ability to use the regular
+approach to ActiveRecord associations and the means to require the existence of
+a association (by specifying a foreign key cannot be null). An example of this
+modelling is the mutable Edition model which references an immutable model,
+Revision, that stores the content. Edition is accessed by a
+consistent primary key and the revision accessed by a foreign key stored on
+the edition.</p>
+<p>Since the data on a mutable model can be lost when the model is updated these
+should not be used for data where there is a need for history. For example, to
+store the statuses an edition has held there are individual status models that
+reference the Edition. This allows an edition to reference a single status that
+is replaced while a history is maintained.</p>
+<p>The choice of this immutability strategy is to store both present and
+historical concerns in the same way, thus ensuring history remains a
+first class citizen. A nice side effect of having immutable models is
+this opens options for caching. Since data for that
+model will never change it can effectively be cached forever.</p>
+<h3 id="breakdown-of-revision">Breakdown of Revision</h3>
+<p>As Revision is an immutable model, used to store each edit of a Document, there
+is likely to be a large amount of these with often only minor differences
+between them. To address this a Revision is not stored as a single model but
+instead as a collection of models, where the Revision model stores little data
+and joins to other models. This can be visualised as:</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/content-publisher/main/docs/adr/0009/revision-diagram.png" alt="Revision breakdown"></p>
+<p>The intention of breaking this up is to be conservative with the amount of data
+duplicated between consecutive revisions. For example when a user edits
+the title of an edition a new ContentRevision is created and the existing
+TagsRevision, MetadataRevision and ImageRevisions models are associated with
+the next revision. An ImageRevision is modelled in a similar way to a Revision
+and this is explained further in <a href="#image-modelling">Image modelling</a>.</p>
+<p>It is intended that <a href="https://api.rubyonrails.org/classes/Module.html#method-i-delegate">delegation</a> be used when interfacing with a
+revision so that the caller need not be concerned with which sub-revision
+stores particular fields. This allows a revision to have a rich interface
+despite storing a low amount of data directly.</p>
+<h3 id="image-modelling">Image modelling</h3>
+<p>Content Publisher supports a user uploading image files and referencing them
+in a revision of a document. They have metadata and editable properties that a
+user can change, of which a history is stored. A single image file uploaded
+produces multiple files that are uploaded to Asset Manager for different sizing
+variations. Images are modelled in a similar way to Revision with an
+immutable Image::Revision model, as represented below:</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/content-publisher/main/docs/adr/0009/image-revision-diagram.png" alt="Image Revision breakdown"></p>
+<p>The Image model itself is used for continuation between image revisions. It is
+known that two Image::Revisions are versions of the same item if they share the
+same Image association. The id of the Image is used in Content Publisher URLs
+to consistently reference the Image no matter which revision it is.</p>
+<p>The data of an Image::Revision is stored between an Image::FileRevision and an
+Image::MetadataRevision. Both are immutable and they differ by the fact that
+any change to Image::FileRevision requires changes to the resultant Asset
+Manager files (such as crop dimensions), whereas Image::MetadataRevision stores
+accompanying data that doesn't affect the Asset Manager files (such as alt
+text).</p>
+<p>Each Image::FileRevision is associated with an ActiveStorage::Blob object that
+is responsible for managing the storage of the source file. It also has a one
+to many association with Image::Asset. Each Image::Asset represents resultant
+files that are uploaded to Asset Manager for the various image sizes. The
+Image::Asset model stores the URL to the Asset Manager file and what state the
+file is on Asset Manager.</p>
+<h3 id="timeline">Timeline</h3>
+<p>The TimelineEntry model represents an event that should be shown to a user as
+part of a visual timeline of a document's history. In order for the timeline to
+be a flexible feature that can be iterated, this model should not be used
+outside of the timeline context. Previously models such as Removal and
+Withdrawal were associated directly with a TimelineEntry which
+meant state was accessed through the timeline. These are now suggested to be
+associated with a Status model.</p>
+<p>At the time of writing it wasn't yet determined what the
+timeline would show, and therefore it wasn't clear exactly how
+best to model an entry for it. Because of this TimelineEntry is modelled in a
+speculative way with a number of references to relevant data, including a
+polymorphic association for flexibility.</p>
+<p>The TimelineEntry model should not store data which could not be
+derived from other aspects of a document. This is the allow the ability to
+rebuild TimelineEntry models if the needs of the timeline changed and to avoid
+timeline being an aspect of a document's state.</p>
+<h3 id="topics">Topics</h3>
+<p>No data related to topics (otherwise known as GOV.UK taxonomy) is intended to
+be stored in Content Publisher at this current point in time. This is due to
+topics being accessed and edited by directly interacting with the Publishing
+API. Other applications, notably Content Tagger, can also edit topics which has
+the consequence that the Publishing API is the source of truth for this data
+rather than Content Publisher.</p>
+<p>This inconsistency makes it difficult to store the history of topics in a
+reliable way. Thus, until needs are determined to store past topics, Content
+Publisher will only know current topics (by querying Publishing API) and
+the history of topics will not be available.</p>
+<h3 id="collated-diagram">Collated diagram</h3>
+<p>The various aspects of this decision can be collated together to be represented
+in the following, somewhat daunting, diagram. It has been simplified for ease
+of reading with noticeable omissions being a User model, since most models have
+a creator, and the speculative joins of a TimelineEntry.</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/content-publisher/main/docs/adr/0009/domain-model-diagram.png" alt="Domain model diagram"></p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>This modelling should provide a basis to provide the richer history
+functionality that can enable meeting and exceeding the features offered by
+Whitehall and Mainstream Publisher.</p>
+<p>It does however come with a number of concerns that are highlighted below.</p>
+<h3 id="migrating-to-a-different-database-structure">Migrating to a different database structure</h3>
+<p>The changes introduced in this ADR are a fundamental restructuring of the
+database and are non-backwards compatible. The process of the adopting these
+changes carries a number of risks. These are:</p>
+<ul>
+<li>time and complexity of migrating data from one structure to another,
+assuming we have production data;</li>
+<li>development of new features hindered by having to write code that works
+with old and new data structures, which will likely lead to a split codebase.</li>
+</ul>
+<p>Both of these risks can be avoided by completing the migration as quickly
+possible, before Content Publisher is deployed to production. This avoids the
+need to migrate users' data and limits the time spent developing for old and
+new data structures. However this would present a new risk, that code quality
+may be reduced for the sake of completing the migration. This, if left
+unaddressed, may eventually lead to technical debt in the application.</p>
+<p>As the benefits of avoiding a data migration and a split codebase are high,
+these will be prioritised over the concerns of code quality. The approach to
+resolve code quality concerns is to identify and catalogue particular areas of
+concern - using the <a href="https://trello.com/b/z3EodJje/publisher-workflow-q4-2019-planning">wall of pain</a> Trello board - and then finding
+opportunities to work on them around other team priorities.</p>
+<h3 id="risks-of-concurrent-editing">Risks of concurrent editing</h3>
+<p>An indirect consequence of these changes will be that almost all requests that
+change the state of a document will involve multiple database writes. For
+instance, editing the content of an edition will involve at least creating a
+new revision and updating the edition to that revision. However if the
+application receives concurrent write requests there are risks that data
+integrity could be comprised.</p>
+<p>For example:</p>
+<ul>
+<li>Consider an edition with one revision</li>
+<li>User A submits a change to the content of an edition</li>
+<li>User B submits a change to the tags of an edition</li>
+<li>A's request creates a new revision with new content built off the first
+revision</li>
+<li>As A's revision hasn't been saved, B's request builds a new revision
+also based off the first revision</li>
+<li>A's revision is saved and set to the revision of the edition</li>
+<li>B's revision is saved and set to the revision of the edition</li>
+<li>A's edits are lost</li>
+</ul>
+<p>To protect against this it is suggested that <a href="https://api.rubyonrails.org/classes/ActiveRecord/Locking/Pessimistic.html">pessimistic locking</a> is used
+whenever mutating data related to a document (typically any non GET/HEAD
+requests). This will be done by wrapping code in a database transaction and
+running a <code>SELECT .. FOR UPDATE</code> query to load the document. This has the
+effect of making any subsequent locking queries wait until the first transaction
+is completed.</p>
+<p>With pessimistic locking the above scenario would be:</p>
+<ul>
+<li>User A submits a change to the content of an edition and locks the document</li>
+<li>User B submits a change to the tags of an edition and waits for the document
+lock to be released</li>
+<li>A's request creates a new revision with new content built off the first
+revision</li>
+<li>A's revision is saved and set to the revision of the edition</li>
+<li>A's lock on the document is released and B locks it</li>
+<li>B's request builds a new revision based off user A's created revision</li>
+<li>B's revision is saved and set to the revision of the edition and the document
+lock is released</li>
+<li>B's revision reflects both changes</li>
+</ul>
+<p>A consequence of this decision is that the application has a higher
+vulnerability to slow requests as these will block any other edits to the
+document and increase the risk of timeout errors.</p>
+<p>This locking approach provides the means to ensure that two edits cannot occur
+concurrently but does not attempt to resolve whether a form submission
+considers the most recent changes to a document. For example, if user A submits
+a form unbeknownst that user B has changed one of the fields since A
+started editing, then A's edits will overwrite B's. This is the scenario that
+<a href="https://api.rubyonrails.org/classes/ActiveRecord/Locking/Optimistic.html">optimistic locking</a> in Rails provides the means to resolve. This is a
+distinct feature that should be applied to Content Publisher in the future.</p>
+<h3 id="mo-models-mo-problems">Mo' models, mo' problems</h3>
+<p>With an increase in the number of models there is more for a developer to
+understand and a higher barrier for entry. For every action there are either
+more database queries or a more complicated single query to look up information.</p>
+<p>Some ideas to alleviate this are:</p>
+<ul>
+<li>the use of <a href="https://api.rubyonrails.org/classes/Module.html#method-i-delegate">delegate</a> with ActiveRecord to make it simpler to access and
+update data without interacting with individual models;</li>
+<li>use of <a href="https://guides.rubyonrails.org/active_record_querying.html#scopes">scopes</a> and/or find methods to alleviate join knowledge;</li>
+<li>A <a href="https://github.com/scenic-views/scenic">materialized view</a> or <a href="https://github.com/elastic/elasticsearch-rails">search index</a> to have
+current and live edition data in a flat form.</li>
+</ul>
+<h3 id="no-removal-of-past-data">No removal of past data</h3>
+<p>This data model is built around the expectation that the history of documents
+published to GOV.UK is something to be preserved. Over time this may
+lead to a large amount of data usage. At some point in the future it may need
+to be evaluated whether it is appropriate to have some form of archiving
+strategy for older data.</p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/content-publisher/blob/main/docs/adr/0009-modelling-history.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fcontent-publisher%2Fadr%2F0009-modelling-history.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
