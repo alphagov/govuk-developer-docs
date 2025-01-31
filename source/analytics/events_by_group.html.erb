@@ -1,7 +1,8 @@
-<% content_for :title, create_page_title(data.analytics.navigation.events.name) %>
+<% content_for :title, create_page_title(data.analytics.navigation.events_by_group.name) %>
+<% content_for :metadesc, data.analytics.navigation.events_by_group.metadesc %>
 
 <h1 class="govuk-heading-l">
-  <%= data.analytics.navigation.events.name %>
+  <%= data.analytics.navigation.events_by_group.name %>
 </h1>
 
 <p class="govuk-body">

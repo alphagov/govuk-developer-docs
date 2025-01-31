@@ -1,10 +1,12 @@
-<% content_for :title, create_page_title("#{attribute.name.capitalize} attribute data") %>
 <%
+  content_for :title, create_page_title("#{attribute.name.capitalize} attribute data")
   attribute_name = attribute.name
   attribute_name = attribute.name + " (#{variant.event_name})" if variant
+  content_for :metadesc, "#{data.analytics.navigation.attribute.metadesc} '#{attribute_name}'"
 %>
+
 <h1 class="govuk-heading-l">
-  <span class="govuk-caption-l">Attribute</span>
+  <span class="govuk-caption-l"><%= data.analytics.navigation.attribute.name %></span>
   <%= attribute_name %>
 </h1>
 
