@@ -1,7 +1,8 @@
 <% content_for :title, create_page_title("#{event.name.capitalize} event data") %>
+<% content_for :metadesc, "#{data.analytics.navigation.event.metadesc} '#{event.name}'" %>
 
 <h1 class="govuk-heading-l analytics-heading">
-  <span class="govuk-caption-l">Event</span>
+  <span class="govuk-caption-l"><%= data.analytics.navigation.event.name %></span>
   <%= event.name %>
 </h1>
 

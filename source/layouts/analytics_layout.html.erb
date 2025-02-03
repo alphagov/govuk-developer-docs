@@ -17,6 +17,7 @@
   <% meta_tags.opengraph_tags.each do |property, content| %>
     <%= tag :meta, property: property, content: content %>
   <% end %>
+  <meta name="description" content="<%= yield_content(:metadesc) %>">
   <%= partial 'partials/cookie_wrapper' %>
 </head>
 
