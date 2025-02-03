@@ -295,16 +295,26 @@ Applications should no longer make use of `config/secrets.yml` as this
 
 [rails-credentials]: https://edgeguides.rubyonrails.org/security.html#custom-credentials
 
-### Specify London as the timezone
+### Consider specifying UTC as the timezone for API projects
 
-Configure your Rails application to consider the local timezone to be London
-time, this can be done with `config.time_zone = "London"` in your
-`config/application.rb`. This allows the presentation of dates to users, and
-any time based logic, to automatically be in UK time.
+By default, GOV.UK apps consider the local timezone to be London time. This is
+set via [govuk_app_config][govuk_app_config timezone setting]. This allows the
+presentation of dates to users, and any time-based logic, to automatically be in
+UK time.
+
+For API projects, consider overriding the timezone to UTC (examples:
+[publishing-api][publishing-api-timezone],
+[travel-advice-publisher][travel-advice-publisher-timezone];
+[related discussion][api-timezone-setting-discussion]).
 
 Note, you shouldn't change the default configuration for the ActiveRecord
 timezone (`config.active_record.default_timezone`). This should remain as UTC
 which keeps the database un-opinionated on timezone.
+
+[api-timezone-setting-discussion]: https://github.com/alphagov/publishing-api/pull/2786
+[govuk_app_config timezone setting]: https://github.com/alphagov/govuk_app_config/pull/381
+[publishing-api-timezone]: https://github.com/alphagov/publishing-api/commit/b3fe972bf9a40de6867efec478825b942478c6c4
+[travel-advice-publisher-timezone]: https://github.com/alphagov/travel-advice-publisher/commit/0d7e25b674827b9382a13415ccbf03942fffba9c
 
 ### Use `api_only` mode for API projects
 
