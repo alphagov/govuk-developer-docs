@@ -30,16 +30,15 @@ for applying redirects to most GOV.UK content:
 [apply-redirect-from-publishing-app-section]: #manually-apply-a-redirect-from-any-publishing-app
 
 The preferred method of creating redirects is to use the publishing app that
-originally published the content to set up the redirect. You can find out
-[what exists at the incoming URL already][check-route-exists-section] (if
-anything), and [which app owns the route][find-owning-app].
+originally published the content to set up the redirect.
 
-Once you've established which app owns the route, you should see if it is
-possible to set up the redirect from within the app UI itself. This usually
-involves unpublishing the content, whereupon the app gives the option to
-redirect the old route to another route. This approach is preferred as it
-keeps the workflow and publishing history within the app, as well as
-correctly propagating the changes through Publishing API and Content Store.
+Once you've established [which app owns the route][find-owning-app],
+you should see if it is possible to set up the redirect from within the app
+UI itself. This usually involves unpublishing the content, whereupon the app
+gives the option to redirect the old route to another route. This approach
+is preferred as it keeps the workflow and publishing history within the app,
+as well as correctly propagating the changes through Publishing API and
+Content Store.
 
 Not all applications support unpublishing / setting redirects. In these
 cases, you'll need to interact with Publishing API manually - see below.
