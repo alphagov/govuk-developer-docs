@@ -121,7 +121,6 @@
 
 - repo_name: datagovuk-tech-docs
   production_url: https://guidance.data.gov.uk/
-  type: Utilities
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
   sentry_url: false
@@ -345,12 +344,6 @@
   alerts_team: "#govuk-platform-support"
 
 - repo_name: govuk-infrastructure
-  type: Utilities
-  team: "#govuk-platform-engineering"
-  alerts_team: "#govuk-platform-support"
-
-- repo_name: terraform-govuk-infrastructure-sensitive
-  private_repo: true
   type: Utilities
   team: "#govuk-platform-engineering"
   alerts_team: "#govuk-platform-support"
@@ -780,6 +773,12 @@
   team: "#govuk-platform-engineering"
   alerts_team: "#govuk-platform-support"
   production_hosted_on: eks
+
+- repo_name: terraform-govuk-infrastructure-sensitive
+  private_repo: true
+  type: Utilities
+  team: "#govuk-platform-engineering"
+  alerts_team: "#govuk-platform-support"
 
 - repo_name: transition
   type: Transition apps
