@@ -166,7 +166,11 @@ If you're still unsure about a change:
 
 #### Guidance for upgrades to specific versions
 
-To follow.
+Version-specific guidance is available, starting from Rails 8.0:
+
+- [8.0][]
+
+[8.0]: /manual/guidance-for-upgrades-to-rails-8-0
 
 ### Switch to the new version defaults
 
