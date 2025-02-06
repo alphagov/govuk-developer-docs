@@ -1,0 +1,816 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>govuk-aws: Environment Provisioning - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-aws/guides/environment-provisioning.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="govuk-aws: Environment Provisioning - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-aws/guides/environment-provisioning.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="govuk-aws: Environment Provisioning" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-aws/guides/environment-provisioning.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" data-module="cookie-banner" data-nosnippet role="region" aria-label="Can we store analytics cookies on your device?" hidden> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <span class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></span> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide this message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          class="govuk-header__logotype-crown"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 32 30"
+          height="30"
+          width="32"
+        >
+          <path
+            fill="currentColor" fill-rule="evenodd"
+            d="M22.6 10.4c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-5.9 6.7c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m10.8-3.7c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s0 2-1 2.4m3.3 4.8c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4M17 4.7l2.3 1.2V2.5l-2.3.7-.2-.2.9-3h-3.4l.9 3-.2.2c-.1.1-2.3-.7-2.3-.7v3.4L15 4.7c.1.1.1.2.2.2l-1.3 4c-.1.2-.1.4-.1.6 0 1.1.8 2 1.9 2.2h.7c1-.2 1.9-1.1 1.9-2.1 0-.2 0-.4-.1-.6l-1.3-4c-.1-.2 0-.2.1-.3m-7.6 5.7c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m-5 3c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s.1 2 1 2.4m-3.2 4.8c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m14.8 11c4.4 0 8.6.3 12.3.8 1.1-4.5 2.4-7 3.7-8.8l-2.5-.9c.2 1.3.3 1.9 0 2.7-.4-.4-.8-1.1-1.1-2.3l-1.2 4c.7-.5 1.3-.8 2-.9-1.1 2.5-2.6 3.1-3.5 3-1.1-.2-1.7-1.2-1.5-2.1.3-1.2 1.5-1.5 2.1-.1 1.1-2.3-.8-3-2-2.3 1.9-1.9 2.1-3.5.6-5.6-2.1 1.6-2.1 3.2-1.2 5.5-1.2-1.4-3.2-.6-2.5 1.6.9-1.4 2.1-.5 1.9.8-.2 1.1-1.7 2.1-3.5 1.9-2.7-.2-2.9-2.1-2.9-3.6.7-.1 1.9.5 2.9 1.9l.4-4.3c-1.1 1.1-2.1 1.4-3.2 1.4.4-1.2 2.1-3 2.1-3h-5.4s1.7 1.9 2.1 3c-1.1 0-2.1-.2-3.2-1.4l.4 4.3c1-1.4 2.2-2 2.9-1.9-.1 1.5-.2 3.4-2.9 3.6-1.9.2-3.4-.8-3.5-1.9-.2-1.3 1-2.2 1.9-.8.7-2.3-1.2-3-2.5-1.6.9-2.2.9-3.9-1.2-5.5-1.5 2-1.3 3.7.6 5.6-1.2-.7-3.1 0-2 2.3.6-1.4 1.8-1.1 2.1.1.2.9-.3 1.9-1.5 2.1-.9.2-2.4-.5-3.5-3 .6 0 1.2.3 2 .9l-1.2-4c-.3 1.1-.7 1.9-1.1 2.3-.3-.8-.2-1.4 0-2.7l-2.9.9C1.3 23 2.6 25.5 3.7 30c3.7-.5 7.9-.8 12.3-.8"></path>
+        </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/govuk-aws.html" rel="noopener" class="govuk-link">govuk-aws</a>
+    </li>
+    <li>
+      <ul>
+          <li class="subdir__heading">architecture</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-aws/architecture/README.html" rel="noopener" class="govuk-link">Architecture</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">1. Record architecture decisions</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0002-hosting-platforms.html" rel="noopener" class="govuk-link">2. Hosting Platforms</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0003-aws-networking-outline.html" rel="noopener" class="govuk-link">3. Networking Outline</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0004-dns-definitions-for-hosts-and-services.html" rel="noopener" class="govuk-link">4. DNS definitions for hosts and services</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0005-terraform-module-location.html" rel="noopener" class="govuk-link">5. Terraform Module Location</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0006-puppet-architecture.html" rel="noopener" class="govuk-link">6. Puppet architecture</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0007-puppet-cert-management.html" rel="noopener" class="govuk-link">7. Puppet certificate management</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0008-postgres-on-puppetmaster.html" rel="noopener" class="govuk-link">8. Postgres on Puppetmaster</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0009-environment-bootstrapping-process.html" rel="noopener" class="govuk-link">9. Environment bootstrapping process</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0010-terraform-directory-structure.html" rel="noopener" class="govuk-link">10. Terraform directory structure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0011-migration-strategy.html" rel="noopener" class="govuk-link">11. Migration Strategy</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0012-security-groups-in-terraform.html" rel="noopener" class="govuk-link">12. Security Groups in Terraform</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0013-userdata-provisioning-snippets.html" rel="noopener" class="govuk-link">13. Userdata provisioning snippets</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0014-launch-config-change-propagation-process.html" rel="noopener" class="govuk-link">14. Launch Config change propagation process</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0015-dns-infrastructure.html" rel="noopener" class="govuk-link">15. DNS infrastructure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0016-internal-dns-zones.html" rel="noopener" class="govuk-link">16. internal DNS zones</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0017-terraform-data-structure.html" rel="noopener" class="govuk-link">17. Terraform Data Structure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0018-use-rds-instead-of-provisioned-ec2-databases.html" rel="noopener" class="govuk-link">18. Use RDS instead of provisioned EC2 databases</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0019-centralise-mysql-databases.html" rel="noopener" class="govuk-link">19. Centralise MySQL Databases</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0020-merge-api-postgresql-instance-into-main-postgresql-instance.html" rel="noopener" class="govuk-link">20. Merge API PostgreSQL instance into main PostgreSQL instance</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0021-use-acm-for-ssl-purchases-and-terminate-certificates-on-elbs.html" rel="noopener" class="govuk-link">21. Use ACM for SSL purchases and terminate certificates on ELBs</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0022-remove-the-elasticsearch-proxy.html" rel="noopener" class="govuk-link">22. Remove the Elasticsearch proxy</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0023-use-separate-data-repository.html" rel="noopener" class="govuk-link">23. Use separate data repository</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0024-ami-lookups.html" rel="noopener" class="govuk-link">24. AMI Lookups</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0025-use-elasticache-for-redis.html" rel="noopener" class="govuk-link">25. Use Elasticache for Redis</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0026-remove-load-balancer-tier.html" rel="noopener" class="govuk-link">26. Remove load balancer tier</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0027-move-publicapi-away-from-frontend-lb.html" rel="noopener" class="govuk-link">27. Move PublicAPI away from frontend-lb</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0028-combine-api-mongo-cluster-into-mongo-cluster.html" rel="noopener" class="govuk-link">28. Combine api-mongo cluster into mongo cluster</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0029-combine-api-redis-into-backend-redis.html" rel="noopener" class="govuk-link">29. Combine api-redis into backend-redis</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0030-change-in-architecture-to-asset-master.html" rel="noopener" class="govuk-link">30. Change in architecture to Asset Master</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0031-security-group-naming.html" rel="noopener" class="govuk-link">31. Security Groups in Terraform</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0032-transfer-artefact-binary.html" rel="noopener" class="govuk-link">32. transfer artefact binary</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0033-ip-ranges.html" rel="noopener" class="govuk-link">3. Networking Outline</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0035-bouncer-load-balancer-on-port-80-and-443.html" rel="noopener" class="govuk-link">3. Bouncer Public Load Balancer Configuration</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0036-performance-platform-and-backdrop-architecture.html" rel="noopener" class="govuk-link">36. Performance-Platform-And-BackDrop-Architecture</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0037-alb-health-checks.html" rel="noopener" class="govuk-link">37. ALB Health Checks</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0038-mongo_replacement_by_documentdb.html" rel="noopener" class="govuk-link">38. Mongo Replacement by DocumentDB</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0039-non-govuk-domain-policy.html" rel="noopener" class="govuk-link">39. Non-GOV.UK domain policy</a></li>
+          </ul>
+          <li class="subdir__heading">architecture/decisions</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-aws/architecture/decisions/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">1. Record architecture decisions</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0002-hosting-platforms.html" rel="noopener" class="govuk-link">2. Hosting Platforms</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0003-aws-networking-outline.html" rel="noopener" class="govuk-link">3. Networking Outline</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0004-dns-definitions-for-hosts-and-services.html" rel="noopener" class="govuk-link">4. DNS definitions for hosts and services</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0005-terraform-module-location.html" rel="noopener" class="govuk-link">5. Terraform Module Location</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0006-puppet-architecture.html" rel="noopener" class="govuk-link">6. Puppet architecture</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0007-puppet-cert-management.html" rel="noopener" class="govuk-link">7. Puppet certificate management</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0008-postgres-on-puppetmaster.html" rel="noopener" class="govuk-link">8. Postgres on Puppetmaster</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0009-environment-bootstrapping-process.html" rel="noopener" class="govuk-link">9. Environment bootstrapping process</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0010-terraform-directory-structure.html" rel="noopener" class="govuk-link">10. Terraform directory structure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0011-migration-strategy.html" rel="noopener" class="govuk-link">11. Migration Strategy</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0012-security-groups-in-terraform.html" rel="noopener" class="govuk-link">12. Security Groups in Terraform</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0013-userdata-provisioning-snippets.html" rel="noopener" class="govuk-link">13. Userdata provisioning snippets</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0014-launch-config-change-propagation-process.html" rel="noopener" class="govuk-link">14. Launch Config change propagation process</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0015-dns-infrastructure.html" rel="noopener" class="govuk-link">15. DNS infrastructure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0016-internal-dns-zones.html" rel="noopener" class="govuk-link">16. internal DNS zones</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0017-terraform-data-structure.html" rel="noopener" class="govuk-link">17. Terraform Data Structure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0018-use-rds-instead-of-provisioned-ec2-databases.html" rel="noopener" class="govuk-link">18. Use RDS instead of provisioned EC2 databases</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0019-centralise-mysql-databases.html" rel="noopener" class="govuk-link">19. Centralise MySQL Databases</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0020-merge-api-postgresql-instance-into-main-postgresql-instance.html" rel="noopener" class="govuk-link">20. Merge API PostgreSQL instance into main PostgreSQL instance</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0021-use-acm-for-ssl-purchases-and-terminate-certificates-on-elbs.html" rel="noopener" class="govuk-link">21. Use ACM for SSL purchases and terminate certificates on ELBs</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0022-remove-the-elasticsearch-proxy.html" rel="noopener" class="govuk-link">22. Remove the Elasticsearch proxy</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0023-use-separate-data-repository.html" rel="noopener" class="govuk-link">23. Use separate data repository</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0024-ami-lookups.html" rel="noopener" class="govuk-link">24. AMI Lookups</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0025-use-elasticache-for-redis.html" rel="noopener" class="govuk-link">25. Use Elasticache for Redis</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0026-remove-load-balancer-tier.html" rel="noopener" class="govuk-link">26. Remove load balancer tier</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0027-move-publicapi-away-from-frontend-lb.html" rel="noopener" class="govuk-link">27. Move PublicAPI away from frontend-lb</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0028-combine-api-mongo-cluster-into-mongo-cluster.html" rel="noopener" class="govuk-link">28. Combine api-mongo cluster into mongo cluster</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0029-combine-api-redis-into-backend-redis.html" rel="noopener" class="govuk-link">29. Combine api-redis into backend-redis</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0030-change-in-architecture-to-asset-master.html" rel="noopener" class="govuk-link">30. Change in architecture to Asset Master</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0031-security-group-naming.html" rel="noopener" class="govuk-link">31. Security Groups in Terraform</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0032-transfer-artefact-binary.html" rel="noopener" class="govuk-link">32. transfer artefact binary</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0033-ip-ranges.html" rel="noopener" class="govuk-link">3. Networking Outline</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0035-bouncer-load-balancer-on-port-80-and-443.html" rel="noopener" class="govuk-link">3. Bouncer Public Load Balancer Configuration</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0036-performance-platform-and-backdrop-architecture.html" rel="noopener" class="govuk-link">36. Performance-Platform-And-BackDrop-Architecture</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0037-alb-health-checks.html" rel="noopener" class="govuk-link">37. ALB Health Checks</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0038-mongo_replacement_by_documentdb.html" rel="noopener" class="govuk-link">38. Mongo Replacement by DocumentDB</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0039-non-govuk-domain-policy.html" rel="noopener" class="govuk-link">39. Non-GOV.UK domain policy</a></li>
+          </ul>
+          <li class="subdir__heading">guides</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-aws/guides/bootstrap-aws.html" rel="noopener" class="govuk-link">Bootstrap GOV.UK AWS</a></li>
+              <li><a href="/repos/govuk-aws/guides/certificate-validation.html" rel="noopener" class="govuk-link">Certificate Validation</a></li>
+              <li><a href="/repos/govuk-aws/guides/db-admin-database-restore-process.html" rel="noopener" class="govuk-link">db-admin-database-restore-process</a></li>
+              <li><a href="/repos/govuk-aws/guides/deploying-google-terraform.html" rel="noopener" class="govuk-link"># Deploying Google Terraform</a></li>
+              <li><a href="/repos/govuk-aws/guides/environment-provisioning.html" rel="noopener" class="govuk-link">Environment Provisioning</a></li>
+              <li><a href="/repos/govuk-aws/guides/getting-started.html" rel="noopener" class="govuk-link">Getting Started</a></li>
+              <li><a href="/repos/govuk-aws/guides/rds-database-management.html" rel="noopener" class="govuk-link">RDS Database Management</a></li>
+              <li><a href="/repos/govuk-aws/guides/redeploying-applications-on-rebuild.html" rel="noopener" class="govuk-link">Redeploying Applications on Rebuild</a></li>
+          </ul>
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-aws",
+        "@id": "http://www.dev.gov.uk/repos/govuk-aws.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-aws.html">govuk-aws</a>
+        </li>
+  </ol>
+</div>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-aws/commit/96940812fa3241a52ad74beedbc798e4166b3533">13 Aug 2024</a>
+</div>
+
+  <h1 class="page-title">govuk-aws: Environment Provisioning</h1>
+
+  
+<p>This document discusses how to create a new environment in AWS. Discussion as to the decisions taken can be found in the <a href="https://github.com/alphagov/govuk-aws/blob/main/docs/architecture/decisions">docs/architecture/decisions</a> directory, of particular note is <a href="https://github.com/alphagov/govuk-aws/blob/main/docs/architecture/decisions/0009-environment-bootstrapping-process.md">the environment bootstrapping process</a>.</p>
+<p>To clarify terms used here there is a <a href="#glossary">glossary</a>. Throughout this document <code>&lt;foo&gt;</code> indicates a value you supply (e.g. a stack name) and:</p>
+<pre><code>bar
+</code></pre>
+<p>indicates a command to be run from a shell.</p>
+<h2 id="cautionary-note">Cautionary note</h2>
+<p>Creating a new environment can take up to three weeks.
+You may find things that are broken, such as outdated docs, Puppet, Jenkins,
+and application deployment pipelines.</p>
+<p>You may find that steps are missing from the list below.</p>
+<p>Seek help in the Slack channels #re-govuk and #reliability-eng.</p>
+<h2 id="overview">Overview</h2>
+<p>The general steps for provisioning a new environment are:</p>
+<ol>
+<li><a href="#cloning-the-repositories">Clone all the relevant repositories</a></li>
+<li><a href="#build-the-s3-bucket">Build the S3 bucket for Terraform state</a></li>
+<li><a href="#provision-the-base-infrastructure">Provision the base infrastructure</a></li>
+<li><a href="#add-dns-ns-records">Add DNS NS records</a></li>
+<li><a href="#create-hieradata-for-new-environments">Create hieradata for new environments</a></li>
+<li><a href="#build-the-puppet-master">Build the Puppet master</a></li>
+<li><a href="#deploy-the-puppet-code-and-secrets">Deploy the puppet code and secrets</a></li>
+<li><a href="#build-the-deploy-jenkins">Build the deploy Jenkins</a></li>
+<li><a href="#do-the-jenkins-token-shuffle">Do the Jenkins token shuffle</a></li>
+<li>Rebuild everything else in the usual deployment ways</li>
+</ol>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>
+<p>Install <a href="https://brew.sh">Homebrew</a> on macOS or Linux.</p>
+</li>
+<li>
+<p>Install necessary packages:</p>
+<pre lang="shell"><code>brew install git tfenv ssh-copy-id awscli sops
+</code></pre>
+</li>
+<li>
+<p>Install the version of Terraform specified in <code>.terraform-version</code> with <code>tfenv install</code>.</p>
+</li>
+<li>
+<p>Clone the following repositories to your local machine</p>
+<ul>
+<li><a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a></li>
+<li><a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a></li>
+<li><a href="https://github.com/alphagov/govuk-aws-data">govuk-aws-data</a></li>
+<li><a href="https://github.com/alphagov/govuk-aws">govuk-aws (this one)</a></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>NOTE: Ensure Puppet has all dependencies installed</strong></p>
+<p>Follow the instructions <a href="https://github.com/alphagov/govuk-puppet#installing">in the govuk-puppet repository</a>
+to ensure that all Puppet modules and dependencies are pulled in.</p>
+<p>If this step is not completed you may see errors when deploying about
+missing functions</p>
+</blockquote>
+<h2 id="glossary">Glossary</h2>
+<p>This explains how these terms are used in this document.</p>
+<p><strong>Environment</strong> - A collection of stacks, these generally correspond to an AWS account. Multiple stacks may exist within a single environment (e.g. "integration-blue" &amp; "integration-green" may both exist in the integration environment).</p>
+<p><strong>Stack</strong> - An arbitrary label for a grouping of deployed resources. In general resources within one stack work together but they may depend on resources from other stacks within the same environment (e.g. blue/green stacks which may share networking resources).</p>
+<p><strong>Project</strong> - The Terraform code to deploy some resources as a single unit. A single project may contain components to support other projects (these are generally prefixed with 'infra' e.g. <code>infra-security-groups</code>) or a single project (generally prefixed with 'app' e.g. <code>app-graphite</code>).</p>
+<h2 id="a-note-on-stacks">A note on stacks</h2>
+<p>'Stacks' are pseudo-environments within environments, which are to
+be deprecated.</p>
+<p>The intent of introducing stacks was to provide via DNS a mechanism of
+<a href="https://martinfowler.com/bliki/BlueGreenDeployment.html">blue-green deployments</a>.</p>
+<p>For example, there exist current the <code>blue</code>, <code>govuk</code>, and <code>pink</code> stacks.
+You may also see reference to a <code>green</code> stack.</p>
+<p>An environment such as <code>production</code> or <code>staging</code> can contain multiple
+stacks. So one could make requests to "<a href="https://my-app.blue.production.govuk.digital">https://my-app.blue.production.govuk.digital</a>"
+or "<a href="https://my-app.green.production.govuk.digital">https://my-app.green.production.govuk.digital</a>", in order to gracefully deploy
+changes in a single environment.</p>
+<p>However, the stacks approach has been deprecated. One should avoid using stacks
+where possible. Where a stack is required, try to use the same one everywhere,
+such as <code>govuk</code>.</p>
+<p>Avoid adding new stack names such as 'yellow'. In the terraform in this repo
+you'll find the <code>blue</code> and <code>govuk</code> stack names hard coded. You'll need to fix
+those if you've chosen a different name for your stack.</p>
+<p>When using multiple stacks, you should be really careful about choosing the
+correct one when applying terraform projects, since you may later find that
+you need to destroy and re-apply changes with the correct stack.</p>
+<h2 id="build-the-s3-bucket">Build the S3 bucket</h2>
+<p>An <a href="https://aws.amazon.com/s3/">S3</a> bucket needs to be created to store state for Terraform. If you're using an account that already has this set up you can skip this step, check by running:</p>
+<pre><code>export ENVIRONMENT=&lt;environment&gt;
+export TERRAFORM_BUCKET="govuk-terraform-steppingstone-${ENVIRONMENT}"
+aws s3 ls $TERRAFORM_BUCKET
+</code></pre>
+<p>If the bucket is missing you'll see an error:</p>
+<pre><code>An error occurred (NoSuchBucket) when calling the ListObjects operation: The specified bucket does not exist
+</code></pre>
+<p>otherwise you'll see the bucket's contents, one directory per existing stack:</p>
+<pre><code>PRE blue/
+PRE green/
+PRE govuk/
+...
+</code></pre>
+<p>Create an S3 bucket and enable versioning on it:</p>
+<pre><code>aws s3 mb "s3://${TERRAFORM_BUCKET}"
+aws s3api put-bucket-versioning  \
+      --bucket ${TERRAFORM_BUCKET} \
+      --versioning-configuration Status=Enabled
+</code></pre>
+<h2 id="provision-the-base-infrastructure">Provision the base infrastructure</h2>
+<blockquote>
+<p><strong>Note:</strong> in a new AWS account you'll need to apply projects like infra-security
+using the AWS account root user since no other users will exist. Make sure
+you don't delete or lose access to this user's credentials, since you won't
+be able to recover the AWS account if someone deletes the infra-security project.</p>
+</blockquote>
+<p>There are several Terraform projects that need to be run to set up the base infrastructure. For each of these you should run <code>plan</code> and <code>apply</code> in the build script. If you're setting up a new stack you'll also need to create <code>.backend</code> files for each project (see <a href="#creating-backend-files-for-a-new-stack">below</a>), otherwise you should use an existing one (e.g. <code>integration-green</code> or <code>integration-blue</code>).</p>
+<pre><code>export DATA_DIR=&lt;path to govuk-aws-data repository&gt;/data
+export STACKNAME=&lt;stackname&gt;
+NOTE: the ENVIRONMENT variable also needs to be set or passed to this script.
+
+tools/build-terraform-project.sh -c plan -p &lt;project name&gt;
+...terraform output...
+tools/build-terraform-project.sh -c apply -p &lt;project name&gt;
+...terraform output...
+</code></pre>
+<p>If you choose not to use environment variables for configuration, the full command line arguments need to include path to the govuk-aws-data/data directory, environment and stack, e.g.</p>
+<pre><code>tools/build-terraform-project.sh -d &lt;/path/to/govuk-aws-data/data&gt; -e &lt;environment&gt; -s &lt;stack&gt; -c apply -p &lt;project name&gt;
+</code></pre>
+<p><strong>Important</strong>: As a rule of thumb, projects names infra-* are using the 'govuk'
+stack, while projects named app-* use the 'blue' stack (exception to this rule
+is the infra-stack-dns-zones project, which uses 'blue').</p>
+<p>The projects that need to be initially run in this way are:</p>
+<ol>
+<li><code>infra-security</code></li>
+<li><code>infra-monitoring</code></li>
+<li><code>infra-vpc</code></li>
+<li><code>infra-networking</code></li>
+<li><code>infra-root-dns-zones</code></li>
+<li><code>infra-stack-dns-zones</code></li>
+<li><code>infra-certificates</code></li>
+</ol>
+<p>You will need to purchase a certificate from Fastly for your new environment,
+and then upload the certificate to AWS Route53. The steps in <a href="https://docs.publishing.service.gov.uk/manual/request-fastly-tls-certificate.html">Renew a TLS
+certificate for GOV.UK</a> are broadly the same for creating a new certificate.
+Copy the approach that you see in staging/production. We use Fastly rather than
+AWS, because AWS does not permit downloading public certificates and we need
+the certificate in both AWS Route53 and Fastly.</p>
+<ol start="8">
+<li><code>infra-security-groups</code></li>
+<li><code>infra-database-backups-bucket</code></li>
+<li><code>infra-artefact-bucket</code></li>
+<li><code>infra-mirror-bucket</code></li>
+<li><code>infra-public-services</code></li>
+</ol>
+<p>You will find that applying the <code>infra-public-services</code> project fails until
+you have applied the <code>backend</code> and <code>cache</code> projects.</p>
+<p>If you are using the <a href="https://github.com/alphagov/gds-cli">GDS CLI</a> you can authenticate with AWS and run a
+terraform command as below. This will only work once you have applied
+<code>infra-security</code> since this creates the IAM roles.</p>
+<pre lang="sh"><code>gds aws &lt;env&gt; -- tools/build-terraform-project.sh ...
+</code></pre>
+<h3 id="update-the-ns-records-if-rebuilding-infra-root-dns-zones-in-staging-or-integration">Update the NS records (if rebuilding infra-root-dns-zones in staging or integration)</h3>
+<p>Since we do not access multiple accounts for a single terraform run, the apex NS
+records for the environment specific subdomains have to be updated if the
+<code>infra-networking</code> project is rebuilt and the subdomain NS resources are rewritten.</p>
+<p>For integration these are:</p>
+<ul>
+<li>integration.publishing.service.gov.uk</li>
+<li>integration.govuk-internal.digital</li>
+<li>integration.govuk.digital</li>
+</ul>
+<p>For staging these are:</p>
+<ul>
+<li>staging.publishing.service.gov.uk</li>
+<li>staging.govuk-internal.digital</li>
+<li>staging.govuk.digital</li>
+</ul>
+<h3 id="creating-backend-files-for-a-new-stack">Creating backend files for a new stack</h3>
+<p><strong>This is not currently required as we are only using a single "blue" stack and it's configuration is complete for the current set of projects.</strong> It is however
+required if you are creating a new environment.</p>
+<p>Each project stores its state in an S3 bucket in AWS. These are configured using a backend file which looks like and lives in the project directory.</p>
+<pre><code># terraform/projects/&lt;project name&gt;/&lt;environment&gt;.&lt;stack name&gt;.backend
+bucket  = "govuk-terraform-steppingstone-&lt;environment&gt;"
+key     = "&lt;stack name&gt;/&lt;project name&gt;.tfstate"
+encrypt = true
+region  = "&lt;region&gt;"
+</code></pre>
+<p>If you are adding a new environment, you'll need to create a backend file for
+each project. Additionally, you'll need to create tfvars files in <code>govuk-aws-data</code>.
+See that repo for more detail on what tfvars files each project requires.</p>
+<h2 id="add-dns-ns-records">Add DNS NS records</h2>
+<p>For internal and external networking in a new environment to work, you must
+also create CNAME records in the production AWS account's Route53 service.</p>
+<p>The production AWS account route53 hosted zones must be updated:</p>
+<ul>
+<li>the production DNS entries must be updated manually for
+<code>.&lt;environment&gt;.govuk-internal.digital</code> and <code>.&lt;environment&gt;.govuk.digital</code>.</li>
+<li>for the publishing.service.gov.uk domain, e.g. <code>*.&lt;environment&gt;.publishing.service.gov.uk</code>,
+one must update the records using govuk-dns-config (see below)</li>
+</ul>
+<h3 id="manually-create-environment-subdomain-records-for-digital-in-production">Manually create environment subdomain records for .digital in production</h3>
+<p>As mentioned in <a href="https://github.com/alphagov/govuk-aws/blob/master/docs/architecture/decisions/0015-dns-infrastructure.md">RFC 0015</a> one must create new NS records for a new environment's
+subdomain in the production AWS account's Route53 service.</p>
+<p>E.g. <code>.&lt;environment&gt;.govuk-internal.digital</code> and <code>.&lt;environment&gt;.govuk.digital</code>.</p>
+<h3 id="use-govuk-dns-to-create-environment-subdomains-for-publishing-service-gov-uk">Use govuk-dns to create environment subdomains for publishing.service.gov.uk</h3>
+<p>If you are running the signon application in the new environment
+you will need to create a CNAME for <code>signon.&lt;env&gt;.publishing.service.gov.uk</code>
+that (probably) points to <code>signon.&lt;env&gt;.govuk.digital</code>, the A records for
+the environment are all contained in Route53 of the environment's AWS account.</p>
+<p>This change is done using <a href="https://github.com/alphagov/govuk-dns">govuk-dns</a> and <a href="https://github.com/alphagov/govuk-dns-config">govuk-dns-config</a>. Here's <a href="https://github.com/alphagov/govuk-dns-config/pull/568">an
+example PR</a> - you
+can copy the records used for other environments if you're creating a new
+environment.</p>
+<h2 id="create-hieradata-for-new-environments">Create hieradata for new environments</h2>
+<p>If you're creating a completely new environment, you will need to duplicate
+quite a few hieradata files in govuk-puppet and govuk-secrets.</p>
+<p>A good approach would be to find every environment-specific hieradata
+directory and file and duplicate it for your new environment.</p>
+<p>Remember to update the files with new values once you have them.</p>
+<p>You will also need to set configuration in 'sops' and tfvars files in
+govuk-aws-data. These configuration variables must be in-sync with
+hieradata in govuk-secrets and govuk-puppet.</p>
+<p>Important! Make sure that when you update sops, that you also update govuk-secrets.
+For example, db creds are set in both places.</p>
+<p>Consistency between the tfvars data and puppet hieradata can be incredibly
+important. For example, the VPC subnet addresses should be the same in both
+puppet and govuk-aws-data.</p>
+<h2 id="build-the-puppet-master">Build the Puppet Master</h2>
+<blockquote>
+<p><strong>Warning:</strong> Try to keep the instance sizes consistent with production,
+especially with the puppetmaster instance. You may see errors like
+<code>Exception in thread "main" java.lang.Error: Not enough RAM. Puppet Server requires at least 10904MB of RAM.</code>
+if you try to use too small an instance.</p>
+</blockquote>
+<blockquote>
+<p><strong>Warning:</strong> The puppet hostname (<a href="https://puppet">https://puppet</a>) is used to communicate with
+puppet. This relies on /etc/resolv.conf files on instances having a
+<code>search &lt;env&gt;.govuk-internal.digital</code> entry and there being a DNS record in
+the <!-- raw HTML omitted -->.govuk-internal.digital private hosted zone in AWS Route53 for puppet.
+If this isn't present, puppet can't run on any machines. Try <code>dig puppet</code> to debug.</p>
+</blockquote>
+<blockquote>
+<p><strong>Warning:</strong> You may find puppet's userdata script (run when booting a machine)
+times out when running (e.g. when installing secrets, running <code>bundle</code>). It
+adds user ssh keys as a final step, so if it fails you won't be able to ssh in
+to debug the issue. To debug it, you can look at the userdata script logs in the
+AWS console. The solution is usually to fix the script and get it to install
+things more efficiently.</p>
+</blockquote>
+<p>Puppet master configuration/installation is triggered by a terraform userdata snippet which clones govuk-aws and executes tools/govuk-puppetmaster-<!-- raw HTML omitted -->-bootstrap.sh.</p>
+<ol>
+<li>Create new govuk-aws-data files in the app-puppetmaster directory for your environment</li>
+<li>Create new userdata snippet for the new puppetmaster environment: <code>terraform/userdata/20-puppetmaster-&lt;environment&gt;</code>
+</li>
+<li>Create new bootstrap script for the environment: <code>tools/govuk-puppetmaster-&lt;environment&gt;-bootstrap.sh</code>. Make sure the file is executable</li>
+</ol>
+<pre><code>chmod 755 tools/govuk-puppetmaster-&lt;environment&gt;-bootstrap.sh
+</code></pre>
+<ol start="4">
+<li>Add SSM parameters for the Puppetmaster bootstrap:</li>
+</ol>
+<p>The bootstrap script requires for secrets to be available to the <code>&lt;stackname&gt;-puppetmaster</code> role in the AWS SSM parameter store in base64 encoding:</p>
+<ul>
+<li>
+<code>govuk_base64_github.com_hostkey</code>, The public host key of github.com used to automatically clone repositories</li>
+<li>
+<code>govuk_base64_github.com_ssh_readonly</code>, The private SSH key to allow access to github.com:alphagov/govuk-secrets</li>
+<li>
+<code>govuk_base64_gpg_1_of_3</code>, First part of the GPG key. See below.</li>
+<li>
+<code>govuk_base64_gpg_2_of_3</code>, Second part of the GPG key. See below.</li>
+<li>
+<code>govuk_base64_gpg_3_of_3</code>, Third part of the GPG key. At the moment the length of SecretString in the AWS SSM parameter store is limited to 4096 characters.</li>
+</ul>
+<ol start="5">
+<li>Create Hieradata files for the new environment, changing relevant values:</li>
+</ol>
+<ul>
+<li>govuk-puppet/hieradata_aws/<!-- raw HTML omitted -->.yaml</li>
+<li>Credential files in govuk-secrets for the environment and apps/<!-- raw HTML omitted -->
+</li>
+</ul>
+<ol start="6">
+<li>Build the Terraform project with <code>enable_bootstrap</code> variable, to create an ELB with SSH access to the machine (We don't have any Jumpbox on the environment yet)</li>
+</ol>
+<pre><code>TF_VAR_enable_bootstrap=1 ./tools/build-terraform-project.sh -c plan -p app-puppetmaster -e &lt;environment&gt; -d ../govuk-aws-data/data -s govuk
+...terraform output...
+TF_VAR_enable_bootstrap=1 ./tools/build-terraform-project.sh -c apply -p app-puppetmaster -e &lt;environment&gt; -d ../govuk-aws-data/data -s govuk
+...terraform output...
+</code></pre>
+<p>If you need to verify the Puppetmaster provisioning, you can access the Puppetmaster using the bootstrap ELB DNS record.</p>
+<p>If the puppetmaster is rebuilt (i.e. clients already have certificates in place) it is then required to cycle the Puppet certificates by deleting the directory /etc/puppet/ssl and run <code>sudo puppet agent -t</code> on all nodes before issuing <code>sudo puppet cert sign --all</code> on the Puppet master.</p>
+<p>After building a Jumpbox, you should run again Terraform without <code>enable_bootstrap</code> to destroy the initial boostrap ELB:</p>
+<pre><code>./tools/build-terraform-project.sh -c apply -p app-puppetmaster -e &lt;environment&gt; -d ../govuk-aws-data/data -s govuk
+...terraform output...
+</code></pre>
+<h2 id="build-the-jumpbox">Build the jumpbox</h2>
+<p>Without the jumpbox, it's impossible to SSH into the environment once we've
+deleted the Puppetmaster's ELB.</p>
+<pre><code>tools/build-terraform-project.sh -p app-jumpbox -c plan
+...terraform output...
+tools/build-terraform-project.sh -p app-jumpbox -c apply
+</code></pre>
+<p>If the jumpbox is built and provisioned successfully, you should be able
+to SSH onto it using the GDS CLI, e.g.</p>
+<pre lang="sh"><code>gds govuk connect ssh -e &lt;environment&gt; jumpbox
+</code></pre>
+<h2 id="build-the-deploy-jenkins">Build the deploy Jenkins</h2>
+<blockquote>
+<p><strong>Warning:</strong> Use the same instance size as in production for Jenkins, i.e.
+this has been a t2.medium, but check!</p>
+</blockquote>
+<blockquote>
+<p><strong>Warning:</strong> You may find Python dependencies are out of date, or incompatible.
+The solution is to update all Python dependencies and pip in Puppet. For example
+the python scripts <code>jenkins-jobs</code> and <code>jenkins-cli</code> won't run successfully until
+Python dependencies are installed/upgraded. <code>jenkins-cli</code> also has a hardcoded
+API token, so make sure you've updated govuk-secrets with the token it needs,
+it may be that you need to the token shuffle first.</p>
+</blockquote>
+<p>You'll first want to ensure that Jenkins has the right credentials in
+the govuk-secrets hieradata.</p>
+<ol>
+<li>Get a GitHub admin to <a href="https://github.com/organizations/alphagov/settings/applications">create a GitHub OAuth token for Jenkins</a>.</li>
+<li>Add the github_client_id and github_client_secret to govuk-secrets.</li>
+</ol>
+<pre><code>tools/build-terraform-project.sh -c plan -p app-deploy
+...terraform output...
+tools/build-terraform-project.sh -c apply -p app-deploy
+...terraform output...
+</code></pre>
+<p>Once this has built and provisioned, you can navigate to
+<code>deploy.&lt;stackname&gt;.&lt;environment&gt;.govuk.digital</code>.</p>
+<h2 id="do-the-jenkins-token-shuffle">Do the Jenkins token shuffle</h2>
+<p><strong>If Jenkins already has a list of jobs when it launches, this is not required.</strong></p>
+<p>For each user, Jenkins automatically generates an API token which is based upon
+the machine it's installed on, which means that each token is unique to each
+instance. Additionally, tokens stored on disk are encrypted so we are not able
+to manage these with Puppet in the Jenkins configuration.</p>
+<p>We use Jenkins Job Builder to manage our jobs. This tool requires a Jenkins API
+user and token to be able to create jobs, and use Puppet to manage these credentials.
+Therefore we need to generate a token for the API user that Puppet creates, and
+add this token to our Puppet credentials.</p>
+<p>Jenkins does not allow admins to view other users tokens, so there is a manual
+step involved.</p>
+<ol>
+<li>
+<p>SSH to the Jenkins instance</p>
+</li>
+<li>
+<p>Edit the start up options: <code>sudo vim /etc/default/jenkins</code></p>
+</li>
+<li>
+<p>Append the following line to the end of <code>JAVA_ARGS</code>:</p>
+<p><code>-Djenkins.security.ApiTokenProperty.showTokenToAdmins=true</code></p>
+<p>It will probably look something like this:</p>
+<p><code>JAVA_ARGS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false -Djenkins.security.ApiTokenProperty.showTokenToAdmins=true"</code></p>
+</li>
+<li>
+<p>Save and quit, and restart the Jenkins service: <code>sudo service jenkins restart</code></p>
+</li>
+<li>
+<p>You should now be able to login by going to <a href="https://deploy.%5C">https://deploy.\</a>&lt;stackname&gt;.&lt;environment&gt;.govuk.digital</p>
+</li>
+<li>
+<p>Find the API user you want the token from by searching in the top bar (the default is "jenkins_api_user")</p>
+<p>If the API user doesn't exist (puppet doesn't create it),
+you need to manually create the user by going to
+Manage Jenkins &gt; Configure Global Security &gt; change the radio button
+“Jenkins’ own user database”, save, log out, then sign up as
+jenkins_api_user, generate a token for that user, save that, then go
+back to Manage Jenkins &gt; Configure Global Security, click the radio
+button “Github Authentication Plugin” and adding the github credentials
+through UI on the same page then saving and logging out, then signing in
+again as a github user. Then test the API token you have generated for
+the api_user by running the command within the <code>jenkins-cli</code> script manually.</p>
+</li>
+<li>
+<p>Click configure, and then "Show API token". Save the token, and update the credentials in the <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets repo</a></p>
+</li>
+<li>
+<p>The hiera key you're looking to update is called: <code>govuk::node::s_jenkins::jenkins_api_token</code></p>
+</li>
+<li>
+<p>As the Deploy_Puppet job won't yet exist, you will be unable to deploy Puppet at this point. Manually edit <code>/etc/jenkins_jobs/jenkins_jobs.ini</code> with the new token, and run the update job by running <code>sudo jenkins-jobs update /etc/jenkins_jobs/jobs/</code>.</p>
+</li>
+</ol>
+<p>When Jenkins Job Builder has successfully created jobs, deploy Puppet.</p>
+<h2 id="deploy-the-rest-of-the-management-stack">Deploy the rest of the management stack</h2>
+<p>Create the following projects (in no particular order):</p>
+<p><code>app-apt</code>
+<code>app-db-admin</code>
+<code>app-content-data-api-db-admin</code>
+<code>app-transition-db-admin</code>
+<code>app-graphite</code>
+<code>app-monitoring</code></p>
+<p><code>app-apt</code> is a dependency for deploying any application instances because we need Gemstash for deployments.</p>
+<h2 id="deploy-datastores">Deploy datastores</h2>
+<p>To ensure that applications deploy correctly, ensure that the datastores exist:</p>
+<p><code>app-backend-redis</code>
+<code>app-elasticsearch6</code>
+<code>app-mongo</code>
+<code>app-mysql</code>
+<code>app-postgresql</code>
+<code>app-publishing-amazonmq</code>
+<code>app-rate-limit-redis</code>
+<code>app-router-backend</code>
+<code>app-shared-documentdb</code>
+<code>app-transition-postgresql</code></p>
+<p>Be aware that both RDS and Elasticache can take some time to deploy.</p>
+<h2 id="deploy-the-core-applications">Deploy the core applications</h2>
+<p>The following applications are core to the GOV.UK stack:</p>
+<p><code>app-cache</code>
+<code>app-content-store</code>
+<code>app-draft-cache</code>
+<code>app-draft-content-store</code>
+<code>app-publishing-api</code>
+<code>app-router-backend</code>
+<code>app-search</code>
+<code>app-signon</code></p>
+<p>Before deploying apps via Jenkins deploy jobs, you'll first need to go to
+Jenkins (<code>https://deploy.&lt;stack&gt;.&lt;env&gt;.govuk.digital/credentials/store/system/domain/_/</code>)
+and manually add a <code>govukci</code> credential for DockerHub, so that Jenkins can push
+new images to Docker Hub.</p>
+<p>You may find that deploying apps fails due to various issues such as migrations
+failing. Apps are not frequently tested in new environments, so may behave
+strangely when coming up for the first time.</p>
+<p>For example, expected environments are often hard coded into dependencies
+such as govuk-app-deployment and govuk_admin_template. You'll need to add your
+new environment name in there to avoid unexpected failures.</p>
+<p><strong>Note:</strong> To get router to deploy, you'll need to run <code>infra-artefact-bucket</code>.</p>
+<h3 id="enable-oauth-authentication-between-apps">Enable OAuth authentication between apps</h3>
+<p>Signon enables applications to authenticate with each other. <a href="https://github.com/alphagov/signon/blob/master/docs/usage.md#setup-rake-tasks">Refer to signons
+docs</a>
+to find out how to create users, applications, and bearer tokens if you are not
+using the data sync to populate the signon db.</p>
+<p>Once you have generated the signon credentials, add them to govuk-secrets,
+and deploy puppet.</p>
+<p>For example, content store currently requires the following hieradata in
+govuk-secrets:</p>
+<pre><code>govuk::apps::content_store::oauth_id
+govuk::apps::content_store::oauth_secret
+govuk::apps::content_store::publishing_api_bearer_token
+govuk::apps::content_store::draft_router_api_bearer_token
+govuk::apps::content_store::router_api_bearer_token
+</code></pre>
+<h2 id="deploy-the-rest-of-the-projects">Deploy the rest of the projects</h2>
+<p>Once the core of GOV.UK has been deployed, you should be able to deploy the rest of the stack. Be
+aware that due to some dependencies between apps they may not come up cleanly and may need to be
+redeployed.</p>
+<p>Additionally, you may find that some apps depend on their equivalent draft machine
+to be up and running in order for the deploy pipeline to function. For example,
+to deploy content-store via Jenkins, you first need to apply the terraform
+project <code>app-draft-content-store</code>.</p>
+<p>Finally, unless you do a data sync, or use db backups, you'll find that <a href="http://www.gov.uk">www.gov.uk</a>
+returns a 404 to every request. This is expected, since you will need to publish
+content items.</p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-aws/blob/main/docs/guides/environment-provisioning.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-aws%2Fguides%2Fenvironment-provisioning.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
