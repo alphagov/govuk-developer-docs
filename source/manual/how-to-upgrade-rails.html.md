@@ -147,6 +147,23 @@ If you're still unsure about a change:
   https://guides.rubyonrails.org/configuring.html
 [Rails source code]: https://github.com/rails/rails
 
+#### Guidance for upgrades to Rails 8.0.x
+
+- In `config/application.rb`, no changes, so be careful not to lose any
+  customisation.
+- In `config/environment/development.rb`:
+  - Retain deprecation warnings. A lot of our apps are sufficiently old that
+    they could contain could marked for deprecation. It's useful for this to be
+    flagged before support is dropped.
+  - Caching settings generally seem to have been set to Rails defaults. In this
+    case, accept changes.
+  - Accept the new query log tags setting: this seems useful and harmless.
+- In `config/environment/test.rb`:
+  - Retain deprecation warnings per the development environment.
+
+**TODO:** finish this section after mobbing; should each version be in a
+separate file/page to avoid this page getting bloated?
+
 ### Update the Rails database schema
 
 If the app has a Rails database schema, which should be located at
