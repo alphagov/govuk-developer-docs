@@ -10,22 +10,17 @@ The GOV.UK Internal Developer Platform is a centralised platform where teams can
 
 This documentation is for both platform users and internal team members. It provides guides, tools, and best practices to help onboard, manage, and troubleshoot applications efficiently.
 
-## Who this guide is for
-
-This documentation is for:
-
-- **Developers and engineers**: Deploying and managing applications on the platform.
-- **Platform engineers and administrators**: Maintaining and extending the platform.
-
 ## User Guide
 
-This section is for application developers using the platform. The platform reduces cognitive load by abstracting infrastructure complexity and providing tools, guides, and automated workflows.
+This section is for application developers using the platform. The platform intends to reduce cognitive load by abstracting infrastructure complexity and providing tools, guides, and automated workflows.
 
 If something is missing, let us know, and we’ll add an article. If you're comfortable contributing, pull requests (PRs) are welcome.
 
+It would also be helpful to hear how you've found this documentation. Did it help or hinder? Let us know using the contact us links below.
+
 ### Getting Started
 
-- [Gain access to a platform EKS cluster](../../kubernetes/get-started/access-eks-cluster/index.html)
+- [Gain access to a platform cluster](../../kubernetes/get-started/access-eks-cluster/index.html)
 - [Set up the recommended tools](../../kubernetes/get-started/set-up-tools/index.html)
 - [Understand how the platform works](../../kubernetes/how-platform-works/index.html)
 
@@ -47,6 +42,10 @@ If something is missing, let us know, and we’ll add an article. If you're comf
 - [How we release a new version of your app](../../kubernetes/manage-app/release-new-version/index.html)
 - [How applications are deployed](../../kubernetes/manage-app/access-ci-cd/index.html)
 
+### Cheatsheet
+
+Quickly reference common commands and workflows in the [cheatsheet](../../kubernetes/cheatsheet.html).
+
 ## Runbooks
 
 This section is for **platform engineers and administrators**. It serves as a central place for capturing knowledge and documenting ways of working.
@@ -54,10 +53,6 @@ This section is for **platform engineers and administrators**. It serves as a ce
 ### Common tasks
 
 - [Create new environments](../../kubernetes/manage-app/create-new-env/index.html)
-
-## Cheatsheet
-
-Quickly reference common commands and workflows in the [cheatsheet](../../kubernetes/cheatsheet.html).
 
 ## Contact the Platform Engineering Team
 
