@@ -13,9 +13,8 @@ This guide assumes the following:
 - You have completed all the steps in the ["get started" guide][get-started] of the developer docs
 - You are deploying an application named `example` (make sure to replace this with your
   application name in all steps as needed)
-- You have pushed the application source code to a Github repository under the `alphagov`
-  organisation with the `govuk` and `container` labels applied (this triggers setup of a number of
-  Github Actions secrets from the organisation and permissions required for workflows)
+- You have followed the steps in the ["Configure a new GOV.UK repository"
+  guide][new-repo]. Specifically, you have pushed the application source code to a Github repository under the `alphagov` organisation with the `govuk` and `container` labels applied (this triggers setup of a number of Github Actions secrets from the organisation and permissions required for workflows)
 - You have a Sentry project configured for your application (through `govuk-infrastructure`)
 
 ## Allow your application to be built as a Docker image
@@ -110,4 +109,5 @@ You've deployed an application to the Kubernetes platform!
 [argo]: https://argo.eks.integration.govuk.digital/applications
 [generic-app]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/generic-govuk-app/
 [get-started]: /manual/get-started.html
+[new-repo]: /manual/github-new-repo.html
 [images]: https://github.com/alphagov/govuk-ruby-images
