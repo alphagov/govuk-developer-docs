@@ -4,9 +4,9 @@ weight: 1
 layout: multipage_layout
 ---
 
-# GOV.UK Internal Developer Platform
+# GOV.UK Internal Platform
 
-The GOV.UK Internal Developer Platform is a centralised platform where teams can build, deploy, and manage applications in a reliable and secure environment.
+The GOV.UK Internal Platform is a centralised platform where teams can build, deploy, and manage applications in a reliable and secure environment.
 
 This documentation is for both platform users and internal team members. It provides guides, tools, and best practices to help onboard, manage, and troubleshoot applications efficiently.
 
