@@ -20,31 +20,31 @@ It would also be helpful to hear how you've found this documentation. Did it hel
 
 ### Getting Started
 
-- [Gain access to a platform cluster](../../kubernetes/get-started/access-eks-cluster/index.html)
-- [Set up the recommended tools](../../kubernetes/get-started/set-up-tools/index.html)
-- [Understand how the platform works](../../kubernetes/how-platform-works/index.html)
+- [Gain access to a platform cluster](/kubernetes/get-started/access-eks-cluster/index.html)
+- [Set up the recommended tools](/kubernetes/get-started/set-up-tools/index.html)
+- [Understand how the platform works](/kubernetes/how-platform-works/index.html)
 
 ### Tutorials
 
-- [Create a new application](../../kubernetes/create-app/index.html)
-- [Update an application's environment in Helm charts](../../kubernetes/get-started/tutorials/app-config-deploy-helm-chart/index.html)
-- [Update, deploy, and monitor an application](../../kubernetes/get-started/tutorials/app-update-deploy-monitor-logs/index.html)
-- [Set or change an environment variable](../../kubernetes/manage-app/set-env-var/index.html)
-- [Add secrets to your application](../../kubernetes/manage-app/manage-secrets/index.html)
-- [Horizontally and vertically scale your application](../../kubernetes/manage-app/scale-app/index.html)
-- [Roll back applications](../../kubernetes/manage-app/roll-back-app/index.html)
-- [Fix your application when something goes wrong](../../kubernetes/fix-app/index.html)
-- [View your application and inspect Kubernetes using the command line](../../kubernetes/manage-app/get-app-info/index.html)
-- [Troubleshoot failed deployments](../../kubernetes/manage-app/manage-state/index.html)
+- [Create a new application](/kubernetes/create-app/index.html)
+- [Update an application's environment in Helm charts](/kubernetes/get-started/tutorials/app-config-deploy-helm-chart/index.html)
+- [Update, deploy, and monitor an application](/kubernetes/get-started/tutorials/app-update-deploy-monitor-logs/index.html)
+- [Set or change an environment variable](/kubernetes/manage-app/set-env-var/index.html)
+- [Add secrets to your application](/kubernetes/manage-app/manage-secrets/index.html)
+- [Horizontally and vertically scale your application](/kubernetes/manage-app/scale-app/index.html)
+- [Roll back applications](/kubernetes/manage-app/roll-back-app/index.html)
+- [Fix your application when something goes wrong](/kubernetes/fix-app/index.html)
+- [View your application and inspect Kubernetes using the command line](/kubernetes/manage-app/get-app-info/index.html)
+- [Troubleshoot failed deployments](/kubernetes/manage-app/manage-state/index.html)
 
 ### Concepts
 
-- [How we release a new version of your app](../../kubernetes/manage-app/release-new-version/index.html)
-- [How applications are deployed](../../kubernetes/manage-app/access-ci-cd/index.html)
+- [How we release a new version of your app](/kubernetes/manage-app/release-new-version/index.html)
+- [How applications are deployed](/kubernetes/manage-app/access-ci-cd/index.html)
 
 ### Cheatsheet
 
-Quickly reference common commands and workflows in the [cheatsheet](../../kubernetes/cheatsheet.html).
+Quickly reference common commands and workflows in the [cheatsheet](/kubernetes/cheatsheet.html).
 
 ## Runbooks
 
@@ -52,8 +52,8 @@ This section is for **platform engineers and administrators**. It serves as a ce
 
 ### Common tasks
 
-- [Create new environments](../../kubernetes/manage-app/create-new-env/index.html)
+- [Create new environments](/kubernetes/manage-app/create-new-env/index.html)
 
 ## Contact the Platform Engineering Team
 
-Need help? Visit [Contact the Platform Engineering Team](../../kubernetes/contact-platform-engineering-team.html) for support options.
+Need help? Visit [Contact the Platform Engineering Team](/kubernetes/contact-platform-engineering-team.html) for support options.
