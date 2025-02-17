@@ -32,7 +32,7 @@ systems. Access includes:
 - Permission to [merge pull requests](/manual/merge-pr.html#header) in continuously deployed applications
 - Read-only access to logging systems such as Logit, etc.
 - Read-only access to dashboards in staging and production, such as the Argo CD web UI.
-- AWS readonly access via the `role_user_user_arns` role in [Staging](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/staging/common.tfvars) and [Production](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/production/common.tfvars)
+- AWS read-only access in Staging and Production environments (via the `production_deploy_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml).)
 - "Normal" role in to GOV.UK Signon on Staging and Production (with app permissions granted as needed)
 
 The steps above are outlined in the [GOV.UK Production Deploy template Trello card](https://trello.com/c/S9sex2XU/1391-govuk-production-deploy-access-for-name), which can be copied to
@@ -60,7 +60,7 @@ Note that a technologist apprentice is limited to Production Deploy access. Howe
 Gives:
 
 - Write access to Argo CD in staging and production via the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production-admin)
-- Privileged AWS Access in [Production](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars), [Staging](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/staging/common.tfvars) and [Tools](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/tools/common.tfvars) environments (via the `role_admin_user_arns` role)
+- Privileged AWS Access in Production and Staging environments (via the `production_admin_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml).)
 - [Google Cloud Platform (GCP)](/manual/google-cloud-platform-gcp.html) access to role to manage [static mirrors](/manual/fall-back-to-mirror.html) and DNS
 - Signon "Super Admin" access in production
 - `engineer` and "Access all services" permissions in Fastly
