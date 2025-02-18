@@ -23,18 +23,18 @@ Status: 🧪 Experimental
 
 This session is dedicated to reviewing and improving how we collaborate, communicate, and deliver work. It focuses on our processes, tooling, and team interactions, so we can continually refine and adapt our approach.
 
-    - Frequency: Once per sprint (or after a major milestone/quarterly goal), to ensure regular reflection.
-    - Duration: 45–60 minutes.
-    - Attendees: Entire team (including any stakeholders or leadership who want to provide input).
-    - Goals:
-        - Discuss any proposed changes to our Ways of Working or new ideas (for example, adopting a new collaboration tool, revising sprint lengths).
-        - Review feedback and suggestions from previous sprints or retrospectives that might require broader team agreement or testing.
-        - Decide whether to formalise certain experiments or retire them if they’re no longer useful.
-    - Typical Agenda:
-        - Check-Ins (5 min): Quick team round-table on how our current processes are feeling (any major friction points?).
-        - Review Proposed Changes (15–20 min): Present any new or updated ideas for ways of working. Team discusses feasibility, potential benefits, and risks.
-        - Decision & Next Steps (15–20 min): Agree on any changes to pilot, document them in this guide (if accepted), and assign owners or next steps.
-        - Open Discussion (5–10 min): Any final thoughts or concerns before closing.
+  - Frequency: Once per sprint (or after a major milestone/quarterly goal), to ensure regular reflection.
+  - Duration: 45–60 minutes.
+  - Attendees: Entire team (including any stakeholders or leadership who want to provide input).
+  - Goals:
+      - Discuss any proposed changes to our Ways of Working or new ideas (for example, adopting a new collaboration tool, revising sprint lengths).
+      - Review feedback and suggestions from previous sprints or retrospectives that might require broader team agreement or testing.
+      - Decide whether to formalise certain experiments or retire them if they’re no longer useful.
+  - Typical Agenda:
+      - Check-Ins (5 min): Quick team round-table on how our current processes are feeling (any major friction points?).
+      - Review Proposed Changes (15–20 min): Present any new or updated ideas for ways of working. Team discusses feasibility, potential benefits, and risks.
+      - Decision & Next Steps (15–20 min): Agree on any changes to pilot, document them in this guide (if accepted), and assign owners or next steps.
+      - Open Discussion (5–10 min): Any final thoughts or concerns before closing.
 
 ### Infrastructure Weekly Attendance  
 
