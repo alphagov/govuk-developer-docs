@@ -19,7 +19,7 @@ Statuses:
 
 ### Ways of Working
 
-Status: 💡New idea**
+**Status: 💡New idea**
 
 This session is dedicated to reviewing and improving how we collaborate, communicate, and deliver work. It focuses on our processes, tooling, and team interactions, so we can continually refine and adapt our approach.
 
