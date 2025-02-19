@@ -439,3 +439,9 @@ approach][rspec-request-moj] to replace [controller specs][] reflecting a
 [The RSpec Styleguide][]
 
 [The RSpec Styleguide]: https://rspec.rubystyle.guide
+
+## Upgrading Rails
+
+See our guide on [how to upgrade Rails][].
+
+[how to upgrade Rails]: /manual/setting-up-new-rails-app.html
