@@ -17,7 +17,7 @@ Statuses:
 
 ## Ceremonies
 
-### Ways of Engineering
+### Ways of Working
 
 Status: 💡New idea**
 
@@ -25,7 +25,7 @@ This session is dedicated to reviewing and improving how we collaborate, communi
 
   - Frequency: Once per sprint (or after a major milestone/quarterly goal), to ensure regular reflection.
   - Duration: 45–60 minutes.
-  - Attendees: Entire team (including any stakeholders or leadership who want to provide input).
+  - Attendees: An optional attendance.
   - Goals:
       - Discuss any proposed changes to our Ways of Working or new ideas (for example, adopting a new collaboration tool, revising sprint lengths).
       - Review feedback and suggestions from previous sprints or retrospectives that might require broader team agreement or testing.
