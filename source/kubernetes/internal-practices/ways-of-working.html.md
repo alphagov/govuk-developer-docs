@@ -19,7 +19,7 @@ Statuses:
 
 ### Ways of Engineering
 
-Status: 🧪 Experimental
+Status: 💡New idea**
 
 This session is dedicated to reviewing and improving how we collaborate, communicate, and deliver work. It focuses on our processes, tooling, and team interactions, so we can continually refine and adapt our approach.
 
@@ -38,7 +38,7 @@ This session is dedicated to reviewing and improving how we collaborate, communi
 
 ### Infrastructure Weekly Attendance  
 
-**Status: 🧪 Experimental**
+**Status: 💡New idea**
 
 We aim to have at least one member of the GOV.UK Platform Engineering team attend the weekly **Infrastructure Weekly** meeting. This meeting brings together all Site Reliability Engineering (SRE) staff to share updates and discuss current priorities. Our presence ensures visibility, facilitates collaboration, and highlights GOV.UK Platform needs or insights.
 
