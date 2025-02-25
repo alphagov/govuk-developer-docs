@@ -12,64 +12,17 @@ GOV.UK which is not deemed emergency-level information. Unlike the [emergency
 banner](/manual/emergency-publishing.html), we show a user the global banner no
 more than 3 times, by storing the view count in a cookie.
 
-The content of the global banner is contained in
-[`app/views/components/_global_bar.html.erb`] in Static.
+The [configuration for the global banner](https://github.com/alphagov/govuk_web_banners/blob/main/config/govuk_web_banners/global_banners.yml) is contained in the govuk_web_banners gem.
 
 ## Activate the global banner
 
-In [`app/views/components/_global_bar.html.erb`]:
-
-1. Update the variables `title`, `title_href`, `link_href` and `link_text` with
-   the relevant info where applicable, otherwise set them to `false`.
-1. Change the value of `show_global_bar` to `true`.
-1. Optional: set the `always_visible` boolean to `true` if the banner should
-   not disappear after being seen 3 times.
+1. Follow the instructions in the [govuk_web_banners README.md](https://github.com/alphagov/govuk_web_banners?tab=readme-ov-file#adding-global-banners)
+1. Make a minor release of the gem.
+1. Update static with this version of the gem.
 1. [Deploy Static]. See the [guidance on deploying Static](/manual/deploy-static.html).
 
-### Timed Updates
-
-If you know about banner changes in advance and need the updates to show at a
-certain time that's not plausible to do manually (for instance, voter id banners for
-a general election turning off as the polls close, or banner changes on a weekend),
-you can instead use a timed update. Use the helper method `before_update_time?` in
-`app/views/components/_global_bar.html.erb` to specify what the values for the
-banner should be before and after the time. [example](https://github.com/alphagov/static/pull/3369/commits/f3ba36a232dc347a1c2034655c4f42337c1fbcf4#diff-67914e98e8ecc5d7dd31f95b11e199c03ef2164fb93958adf096e87398bda3c0)
-
-This utility function handles timezone issues so that deployment will work correctly
-in either GMT or BST.
-
-![screenshot](images/global_banner.png)
-
-## Exclude specific pages from showing the banner
-
-The target page linked to from the banner will automatically not show the banner.
-
-To prevent other pages from showing the banner, add them to `urlBlockList` in
-`app/assets/javascripts/global-bar-init.js` in Static.
-
-## Update the global banner version
-
-The number of times a user has viewed the banner is stored in a
-`global_bar_seen` cookie. Once the view count reaches 3, that user will not see
-that banner again, even if new banner content is deployed.
-
-The user will only see the banner again after the third time if either:
-
-- their `global_bar_seen` cookie expires, or
-- the `version` field in their cookie differs from the value of
-  `BANNER_VERSION` in [`global-bar-init.js`]
-
-To show the global banner again for all users including those who have already
-seen it 3 times:
-
-1. Increment the value of `BANNER_VERSION` in [`global-bar-init.js`].
-1. [Deploy Static].
-
-## Remove the global banner
-
-1. In [`app/views/components/_global_bar.html.erb`], change the value of
-   `show_global_bar` to `false`.
-2. [Deploy Static].
+As shown in the instructions the banner can be configured ahead of time - it must have
+a specified start date, but that can be the current date to deploy immediately.
 
 ## Troubleshoot the banner
 
@@ -97,6 +50,4 @@ the underlying issue is fixed.
    pages expire from the CDN cache within 5 minutes so this is unlikely (though
    not impossible) to be the issue.
 
-[`app/views/components/_global_bar.html.erb`]: https://github.com/alphagov/static/blob/main/app/views/components/_global_bar.html.erb
-[`global-bar-init.js`]: https://github.com/alphagov/static/blob/main/app/assets/javascripts/global-bar-init.js
 [Deploy Static]: https://github.com/alphagov/static/actions/workflows/deploy.yml
