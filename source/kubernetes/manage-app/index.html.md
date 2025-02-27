@@ -13,5 +13,5 @@ You can:
 - scale your app up or down
 - release a new version of your app
 - roll back your app
-- set access permissions for your app
+- set security restrictions for your app
 - manage secrets in your app
