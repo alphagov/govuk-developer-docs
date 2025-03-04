@@ -1,0 +1,40 @@
+---
+title: Content Modelling
+weight: 1
+layout: multipage_layout
+---
+
+# Content Modelling
+
+The aim of the Content Modelling team is to:
+
+> ... enable a single source of content truth, using modelled content across documents and channels, to promote efficiency and accuracy
+
+Within publishing, we do this via the [Content Block Manager](/repos/whitehall/content_block_manager.html) and
+functionality within Publishing API to process embed codes, which allow content to be embedded in documents and
+automatically update when the block changes.
+
+## Contact
+
+The Content Modelling Team are available via Slack at [#govuk-publishing-content-modelling-dev](https://gds.slack.com/archives/C0776B04EJU)
+
+## Related pages
+
+### Content Block Manager
+
+<ul>
+<% GitHubRepoFetcher.instance.docs("whitehall").select { |p| p[:path].start_with?("/repos/whitehall/content_block_manager") }.each do |page| %>
+  <li><a href="<%= page[:path] %>"><%= page[:title] %></a>
+<% end %>
+</ul>
+
+### Content Block Tools
+
+<ul>
+<li><a href="/repos/govuk_content_block_tools.html">README</a></li>
+<% (GitHubRepoFetcher.instance.docs("govuk_content_block_tools") || []).each do |page| %>
+  <li><a href="<%= page[:path] %>"><%= page[:title] %></a>
+<% end %>
+</ul>
+
+
