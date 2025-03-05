@@ -1,0 +1,51 @@
+---
+title: Adding a new content block type
+weight: 2
+layout: multipage_layout
+---
+
+# Adding a new content block type
+
+To add a new content block type, follow the instructions below:
+
+## Create a new schema in Publishing API
+
+Follow steps 1 to 5 in the [instructions in Publishing API for adding a new schema](https://github.com/alphagov/publishing-api/blob/main/docs/content_schemas/adding-a-new-schema.md)
+
+**NOTE:** Schemas MUST be prefixed with `content_block_*` for Content Block Manager to pick them up.
+
+If a content block type has embedded objects, you can use the `embedded_object` helper, which ensures that all embedded
+objects have a title and a key to ensure they can be referenced correctly ([Example here](https://github.com/alphagov/publishing-api/blob/9d4ce614ee3e95e82e5399201e4315ec9625e152/content_schemas/formats/content_block_pension.jsonnet#L13))
+
+## Add expansion rules for your new schema
+
+A good example is in [this commit](https://github.com/alphagov/publishing-api/commit/ae69bd878c87d475ace819acc6b7d76b60f5c360). Failure
+to do this will mean that updates to content will not get picked up when changes are made
+
+## Open a pull request
+
+Once these changes are made, open a pull request to Publishing API and get it approved
+
+## Add the schema to Content Block Manager
+
+Update the [`VALID_SCHEMAS` constant](https://github.com/alphagov/whitehall/blob/65a5c382d64466d666317b0eee8957c98b27b276/lib/engines/content_block_manager/app/models/content_block_manager/content_block/schema.rb#L6)
+in Content Block Manager (and, if necessary, the [`valid_schemas` method](https://github.com/alphagov/whitehall/blob/65a5c382d64466d666317b0eee8957c98b27b276/lib/engines/content_block_manager/app/models/content_block_manager/content_block/schema.rb#L12C13-L12C26)).
+
+## Add any customisations
+
+There is a [config file](https://github.com/alphagov/whitehall/blob/main/lib/engines/content_block_manager/config/content_block_manager.yml)
+which allows you to configure (amongst other things):
+
+- The order of the fields; and
+- What fields are judged to be "embeddable" (this will ensure a `Copy Code` link appears by that field)
+
+## Open another pull request
+
+Once these changes are made, open pull request to Whitehall and get these changes approved
+
+## Optional: Add a presenter to Content Block Tools
+
+If there are any custom behaviours required for a content block, you can add a presenter to the
+[Content Block Tools gem](https://github.com/alphagov/govuk_content_block_tools).
+
+You can see [an example presenter here](https://github.com/alphagov/govuk_content_block_tools/blob/main/lib/content_block_tools/presenters/pension_presenter.rb).
