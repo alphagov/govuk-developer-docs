@@ -9,7 +9,7 @@
     </li>
     <li>
       <ul>
-        <%= partial("partials/repo/sidebar", locals: { items: RepoSidebar.new(repo.repo_name).items }) %>
+        <%= partial("partials/repo/sidebar", locals: { items: RepoSidebar.new(repo.repo_name).items }) unless repo.private_repo? %>
       </ul>
     </li>
   </ul>
