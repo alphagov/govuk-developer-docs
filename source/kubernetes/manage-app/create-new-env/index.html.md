@@ -12,10 +12,15 @@ layout: multipage_layout
 
 To create a new environment, you must:
 
+- create a new AWS account
 - create secrets for the new environment
 - create a new empty environment
 - deploy the Terraform modules
 - check the environment is working
+
+## Create a new AWS account
+
+To create a new AWS account, you will need to speak to the GDS Engineering Enablement team and obtain access to the private repo with the AWS Account Terraform - once done, instructions on how to create an AWS account are in the relevant repository.
 
 ## Create secrets for the new environment
 
@@ -26,27 +31,17 @@ Copy the secrets from an existing environment, for example by running [the `copy
 
 You can edit the copied secrets for the new environment using the AWS console for Secrets Manager.
 
-## Create a new cluster
-
-1. Run `export ENV=<ENVIRONMENT>` in the command line to define the type of environment you’re creating.
-
-    `<ENVIRONMENT>` can be `test`, `staging`, `integration` or `production`.
-
-1. Create the Terraform state file and store it in an S3 bucket in your new AWS account:
-
-    ```
-    gds aws govuk-${ENV?}-admin -- terraform init -backend-config=${ENV?}.backend -reconfigure -upgrade
-    ```
-
-1. Update your AWS account to match the Terraform state file and create the new environment:
-
-    ```
-    gds aws govuk-${ENV?}-admin -- terraform apply -var-file ../variables/common.tfvars -var-file ../variables/${ENV?}/common.tfvars
-    ```
-
 ## Deploy the Terraform modules
 
-Deploy the Terraform root modules in order.
+Deploy the Terraform root modules in order. You need to make sure you are using the correct Terraform Workspace for the environment you are working in - if you've just created a new environment and new AWS account, you will need to make sure you create the Terraform Workspace for each of the modules you are working with, e.g.
+
+* cluster-infrastructure-`<ENVIRONMENT>`
+* cluster-services-`<ENVIRONMENT>`
+* ecr-`<ENVIRONMENT>`
+* tfc-aws-config-`<ENVIRONMENT>`
+* vpc-`<ENVIRONMENT>`
+
+Replace `<ENVIRONMENT>` with the name of your environment. You must also ensure that the credentials/variables are created and set correctly for each of the modules to run.
 
 ### 1. Deploy the `ecr` module
 
@@ -143,6 +138,10 @@ To check the environment is working, go to the new environment URL endpoint at `
 You must be in the office or on the VPN to access this endpoint.
 
 If the environment URL endpoint is not behaving as expected or shows an error, contact [#govuk-platform-engineering team].
+
+## Setting access permissions
+
+You may want to ensure that the correct engineers have access to the account/environment you have just set up. You can check and configure this in the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository.
 
 ## Supporting information
 
