@@ -1,0 +1,475 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>content-publisher: Approach to Analytics - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/content-publisher/approach-to-analytics.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="content-publisher: Approach to Analytics - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/content-publisher/approach-to-analytics.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="content-publisher: Approach to Analytics" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/content-publisher/approach-to-analytics.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" data-module="cookie-banner" data-nosnippet role="region" aria-label="Can we store analytics cookies on your device?" hidden> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <span class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></span> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide this message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          class="govuk-header__logotype-crown"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 32 30"
+          height="30"
+          width="32"
+        >
+          <path
+            fill="currentColor" fill-rule="evenodd"
+            d="M22.6 10.4c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-5.9 6.7c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m10.8-3.7c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s0 2-1 2.4m3.3 4.8c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4M17 4.7l2.3 1.2V2.5l-2.3.7-.2-.2.9-3h-3.4l.9 3-.2.2c-.1.1-2.3-.7-2.3-.7v3.4L15 4.7c.1.1.1.2.2.2l-1.3 4c-.1.2-.1.4-.1.6 0 1.1.8 2 1.9 2.2h.7c1-.2 1.9-1.1 1.9-2.1 0-.2 0-.4-.1-.6l-1.3-4c-.1-.2 0-.2.1-.3m-7.6 5.7c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m-5 3c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s.1 2 1 2.4m-3.2 4.8c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m14.8 11c4.4 0 8.6.3 12.3.8 1.1-4.5 2.4-7 3.7-8.8l-2.5-.9c.2 1.3.3 1.9 0 2.7-.4-.4-.8-1.1-1.1-2.3l-1.2 4c.7-.5 1.3-.8 2-.9-1.1 2.5-2.6 3.1-3.5 3-1.1-.2-1.7-1.2-1.5-2.1.3-1.2 1.5-1.5 2.1-.1 1.1-2.3-.8-3-2-2.3 1.9-1.9 2.1-3.5.6-5.6-2.1 1.6-2.1 3.2-1.2 5.5-1.2-1.4-3.2-.6-2.5 1.6.9-1.4 2.1-.5 1.9.8-.2 1.1-1.7 2.1-3.5 1.9-2.7-.2-2.9-2.1-2.9-3.6.7-.1 1.9.5 2.9 1.9l.4-4.3c-1.1 1.1-2.1 1.4-3.2 1.4.4-1.2 2.1-3 2.1-3h-5.4s1.7 1.9 2.1 3c-1.1 0-2.1-.2-3.2-1.4l.4 4.3c1-1.4 2.2-2 2.9-1.9-.1 1.5-.2 3.4-2.9 3.6-1.9.2-3.4-.8-3.5-1.9-.2-1.3 1-2.2 1.9-.8.7-2.3-1.2-3-2.5-1.6.9-2.2.9-3.9-1.2-5.5-1.5 2-1.3 3.7.6 5.6-1.2-.7-3.1 0-2 2.3.6-1.4 1.8-1.1 2.1.1.2.9-.3 1.9-1.5 2.1-.9.2-2.4-.5-3.5-3 .6 0 1.2.3 2 .9l-1.2-4c-.3 1.1-.7 1.9-1.1 2.3-.3-.8-.2-1.4 0-2.7l-2.9.9C1.3 23 2.6 25.5 3.7 30c3.7-.5 7.9-.8 12.3-.8"></path>
+        </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/content-publisher.html" rel="noopener" class="govuk-link">content-publisher</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/content-publisher/approach-to-analytics.html" rel="noopener" class="govuk-link">Approach to Analytics</a></li>
+    <li><a href="/repos/content-publisher/edit-change-note-history.html" rel="noopener" class="govuk-link">Editing a document's change history</a></li>
+    <li><a href="/repos/content-publisher/history-mode.html" rel="noopener" class="govuk-link">History mode</a></li>
+    <li><a href="/repos/content-publisher/import-from-whitehall.html" rel="noopener" class="govuk-link">Importing documents from Whitehall to Content Publisher</a></li>
+    <li><a href="/repos/content-publisher/removing-documents.html" rel="noopener" class="govuk-link">Removing or removing and redirecting a document</a></li>
+    <li><a href="/repos/content-publisher/scheduled-publishing.html" rel="noopener" class="govuk-link">Scheduled publishing</a></li>
+    <li><a href="/repos/content-publisher/testing-strategy.html" rel="noopener" class="govuk-link">Testing Strategy</a></li>
+    <li><a href="/repos/content-publisher/user-permissions.html" rel="noopener" class="govuk-link">User Permissions</a></li>
+    <li class="subdir__heading">adr</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/content-publisher/adr/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">1. Record architecture decisions</a></li>
+    <li><a href="/repos/content-publisher/adr/0002-use-local-datastore.html" rel="noopener" class="govuk-link">2: Use local datastore for publisher workflow</a></li>
+    <li><a href="/repos/content-publisher/adr/0003-initial-domain-modelling.html" rel="noopener" class="govuk-link">3. Initial Domain Modelling</a></li>
+    <li><a href="/repos/content-publisher/adr/0004-editing-microcopy.html" rel="noopener" class="govuk-link">4. Editing Microcopy</a></li>
+    <li><a href="/repos/content-publisher/adr/0005-avoiding-initialisation-flickers.html" rel="noopener" class="govuk-link">5. Avoiding initialisation flickering in HTML</a></li>
+    <li><a href="/repos/content-publisher/adr/0006-tagging-governments.html" rel="noopener" class="govuk-link">6. Tagging Content to Governments</a></li>
+    <li><a href="/repos/content-publisher/adr/0007-minimal-model.html" rel="noopener" class="govuk-link">7. Minimal Model</a></li>
+    <li><a href="/repos/content-publisher/adr/0008-restricted-deletion.html" rel="noopener" class="govuk-link">8. Restricted Deletion</a></li>
+    <li><a href="/repos/content-publisher/adr/0009-modelling-history.html" rel="noopener" class="govuk-link">9. Modelling history</a></li>
+    <li><a href="/repos/content-publisher/adr/0010-sending-email-notifications.html" rel="noopener" class="govuk-link">10. Sending email notifiations</a></li>
+    <li><a href="/repos/content-publisher/adr/0011-moving-business-logic-out-of-controllers.html" rel="noopener" class="govuk-link">11. Moving business logic out of controllers</a></li>
+    <li><a href="/repos/content-publisher/adr/0012-file-attachment-rendering.html" rel="noopener" class="govuk-link">12. Rendering File Attachments outside of Govspeak</a></li>
+    <li><a href="/repos/content-publisher/adr/0013-permitted-deletion.html" rel="noopener" class="govuk-link">13. Permitted Deletion</a></li>
+    <li><a href="/repos/content-publisher/adr/0014-political-and-government-tagging.html" rel="noopener" class="govuk-link">14. Political and Government Tagging</a></li>
+    <li><a href="/repos/content-publisher/adr/0015-bulk-data-loading.html" rel="noopener" class="govuk-link">15. Bulk data loading</a></li>
+    <li><a href="/repos/content-publisher/adr/0016-publishing-times-and-change-history.html" rel="noopener" class="govuk-link">16. Publishing times and change history</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "content-publisher",
+        "@id": "http://www.dev.gov.uk/repos/content-publisher.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/content-publisher.html">content-publisher</a>
+        </li>
+  </ol>
+</div>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/content-publisher/commit/3f6bd072e6d178c91fcfc4dac4b4a6a2b7601006">27 Jun 2019</a>
+</div>
+
+  <h1 class="page-title">content-publisher: Approach to Analytics</h1>
+
+  
+<p>Content Publisher uses <a href="https://analytics.google.com/analytics/web/#/report-home/a124922226w186404040p183397753">Google Analytics</a> (GA) to store events that describe a user action, such as when a user clicks the "<a href="https://github.com/alphagov/content-publisher/blob/4b088834621787009528afecb4c3fe876b9cf577/app/views/documents/index.html.erb#L4">Create new document</a>" button. Rather than dispatching events to GA directly, we use <a href="https://tagmanager.google.com/#/container/accounts/3880990677/containers/9704122">Google Tag Manager</a> (GTM) to reduce the need for custom analytics code in the app. In order to keep our analytics robust, we use special 'data-gtm' attributes to consistently identify elements on a page, as other attributes, like CSS classes, will change over time.</p>
+<p><strong>Note:</strong> data submitted by the user should not be tracked. Such data is already stored in the relational database for the app. Developers can provide support on analytics work involving this kind of data.</p>
+<h2 id="tracking-at-a-high-level">Tracking at a High Level</h2>
+<p>We track most events using a set of <code>data-gtm</code> attributes:</p>
+<ul>
+<li>
+<code>data-gtm</code> uniquely describes the intent of the element (<em>required</em>)</li>
+<li>
+<code>data-gtm-value</code> indicates the value in a choice</li>
+<li>
+<code>data-gtm-click-tracking=true</code> is used to track custom elements</li>
+<li>
+<code>data-gtm-visibility-tracking=true</code> tracks when an element appears</li>
+</ul>
+<p>The <code>data-gtm</code> attribute is the most important to get right. It uniquely describes what we believe the user is doing when they interact with an element (e.g. links, buttons) or a group of elements (e.g. radio buttons).</p>
+<ul>
+<li>
+<code>new-document</code> - intent is to create a new document (via a button)</li>
+<li>
+<code>create-new-edition</code> - intent is to create a new edition (via a form)</li>
+<li>
+<code>choose-supertype</code> - intent is to choose a type (via radio buttons)</li>
+<li>
+<code>footer-raise-support-request</code> - intent is to ask for support (via a link)</li>
+</ul>
+<p>In the last example, we want to make a distinction between two identical links on the same page: one in the header and one in the footer. GTM is then setup to use these standard attributes in the events it sends to GA:</p>
+<ul>
+<li>
+<strong>Category</strong> = <code>data-gtm</code>
+</li>
+<li>
+<strong>Action</strong> (<em>set in GTM</em>) = Click, Visible, Check, Uncheck</li>
+<li>
+<strong>Label</strong> = <code>data-gtm-value</code>
+</li>
+</ul>
+<p>We also send <a href="https://github.com/alphagov/content-publisher/blob/4b088834621787009528afecb4c3fe876b9cf577/app/views/layouts/application.html.erb#L9">additional fields</a> to GA that describe the page itself.</p>
+<ul>
+<li>
+<strong>User Organisation</strong> e.g. <code>government-digital-service</code>
+</li>
+<li>
+<strong>User ID</strong> e.g. <code>c78492f0-0356-0136-a017-02ada856ca8e</code>
+<ul>
+<li>This is also used to <a href="https://support.google.com/analytics/answer/3123662?hl=en">enable a bunch of GA User-ID features</a>
+</li>
+</ul>
+</li>
+<li>
+<strong>Page Name</strong> e.g. <code>documents-show</code>
+<ul>
+<li>This is also used to <a href="https://support.google.com/analytics/answer/2853423?hl=en">automatically specify content groupings</a>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="basic-tracking-by-element">Basic Tracking by Element</h2>
+<p>Currently it's not clear what data we need to collect. Until the app reaches maturity, <strong>we've decided to track all user actions</strong>. The following is a list of what this means in terms of HTML Elements.</p>
+<h3 id="links">Links</h3>
+<pre><code>&lt;a ... data-gtm="new-document" ...&gt;Create new document&lt;/a&gt;
+</code></pre>
+<h3 id="forms">Forms</h3>
+<pre><code>&lt;form ... data-gtm="create-new-edition" ...&gt;
+  &lt;button ...&gt;Create new edition&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>Note we track the submission of the form and not the 'submit' button. There are multiple ways to submit a form and tracking the 'submit' button itself (a) won't work and (b) won't capture other ways of submitting the form.</p>
+<h3 id="buttons">Buttons</h3>
+<pre><code>&lt;button ... data-gtm="copy-url-for-2i-approval" ...&gt;Copy link&lt;/button&gt;
+</code></pre>
+<h3 id="radios">Radios</h3>
+<pre><code>&lt;input type="radio" ... data-gtm="choose-supertype" data-gtm-value="News" ...&gt;
+</code></pre>
+<p>Note we track the click/selection of the radio buttons and not the value submitted with the form; as mentioned above, we do not track form submission data. All radios in a radio button group should use the same value for <code>data-gtm</code>.</p>
+<h3 id="checkboxes">Checkboxes</h3>
+<p>This looks the same as they way we track radio buttons and is based on clicks.</p>
+<pre><code>&lt;input type="checkbox" ... data-gtm="is-lead-image" data-gtm-value="Select as lead image"&gt;
+</code></pre>
+<p>Unlike radios, we do a bit of post-processing in GTM to detect when the box is checked or unchecked.</p>
+<h2 id="other-tracking-techniques">Other Tracking Techniques</h2>
+<h3 id="visibility">Visibility</h3>
+<p>Sometimes we need to track when something is shown to a user on a page (e.g. an error message).</p>
+<pre><code>&lt;a ... data-gtm="requirements-issue"
+       data-gtm-value="Enter a change note"
+       data-gtm-visibility-tracking="true" ...&gt;Enter a change note&lt;/a&gt;
+</code></pre>
+<p>This example also shows how we can combine different kinds of tracking (click, visible) for an element.</p>
+<h3 id="custom-elements">Custom Elements</h3>
+<p>We need to manually enable tracking for clicks on elements that aren't buttons, links, etc.</p>
+<pre><code>&lt;md-header-2 ... data-gtm="markdown-toolbar-h2" data-gtm-click-tracking="true" ...&gt;
+  ...
+&lt;/md-header-2&gt;
+</code></pre>
+<h3 id="utm-inbound-links">UTM / Inbound Links</h3>
+<p>GA has fields to track the origin of inbound links to a site. Unfortunately, this mechanism was only designed with paid advertising as the use case, so the fields don't make much sense for things like links in emails. Our take on it:</p>
+<ul>
+<li>
+<strong>Source</strong> is the place the user found a link; usually this is on another site like 'Google', but in our case it makes more sense to refer to the feature they were using, such as '2i-link' or 'publish-email'</li>
+<li>
+<strong>Medium</strong> is the context in which a user uses a link; usually this is something like 'email', or 'cpc' for paid adverts; in our case we use 'email' and 'copy-paste' (for explicit URLs we give out in the app)</li>
+<li>
+<strong>Campaign</strong> is just a way of grouping the other attributes, in case other people pollute our analytics with their own source/medium for some reason; we always set this to <code>govuk-publishing</code>
+</li>
+</ul>
+<p>The following example is for a link shown in the app itself.</p>
+<pre><code>http://content-publisher.dev.gov.uk/documents/900969d4-a919-4d3d-bd16-eee8b6c5cd94:en?utm_campaign=govuk-publishing&amp;utm_medium=copy-paste&amp;utm_source=2i-link
+</code></pre>
+<p>This shows the different query params we set in order to populate the above fields in GA. Note that <code>utm_source</code> and <code>utm_medium</code> are required params: if one is not set then the other fields will not be set either.</p>
+<ul>
+<li>
+<strong>Source</strong> = <code>utm_source</code> e.g. <code>2i-link</code>
+</li>
+<li>
+<strong>Medium</strong> = <code>utm_medium</code> e.g. <code>copy-paste</code>
+</li>
+<li>
+<strong>Campaign</strong> = <code>utm_campaign</code> i.e. <code>govuk-publishing</code>
+</li>
+</ul>
+<h3 id="copy-paste">Copy / Paste</h3>
+<p>Copy/paste events are not supported by GTM directly, so we have some <a href="https://github.com/alphagov/content-publisher/blob/4b088834621787009528afecb4c3fe876b9cf577/app/assets/javascripts/modules/gtm-copy-paste-listener.js">in-app code</a> to listen for them and manually push them into GTM, which is setup to receive the custom events and send them to GA like this:</p>
+<ul>
+<li>
+<strong>Category</strong> = <code>data-gtm</code>
+</li>
+<li>
+<strong>Action</strong> = Copy, Paste</li>
+</ul>
+<p>The following example shows how to enable copy/paste tracking for an input element. We still make use of our standard <code>data-gtm</code> attribute to describe the intent of the element.</p>
+<pre><code>&lt;input ... data-gtm="published-content-link-input" data-gtm-copy-paste-tracking="true" ...&gt;
+</code></pre>
+<h3 id="topics">Topics</h3>
+<p>Analytics for topics is hard because the elements the user interacts with - to search for topics and to remove selected topics - are generated dynamically, so we can't annotate them with <code>data-gtm</code> attributes like we do normally.</p>
+<p>In order to track these actions, we have some <a href="https://github.com/alphagov/content-publisher/blob/222570884b6c20f3e5dab85a30a1ed5c837d492b/app/assets/javascripts/modules/gtm-topics-listener.js#L3">in-app code</a> to listen for special, internal events that we generate when a user <a href="https://github.com/alphagov/content-publisher/pull/1211">selects a topic from search results</a> or <a href="https://github.com/alphagov/miller-columns-element/pull/15">removes a selected topic</a>. We then take the same approach for copy/paste and manually push the events into GTM, which is setup to receive the events and send them to GA like this:</p>
+<ul>
+<li>
+<strong>Category</strong> = select-topic-from-search-results, remove-topic</li>
+<li>
+<strong>Action</strong> = Click</li>
+<li>
+<strong>Label</strong> = e.g. <em>Level 1 Topic &gt; Level 2 Topic &gt; Level 3 Topic</em>
+</li>
+</ul>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/content-publisher/blob/main/docs/approach-to-analytics.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fcontent-publisher%2Fapproach-to-analytics.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
