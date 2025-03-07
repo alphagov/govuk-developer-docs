@@ -17,9 +17,9 @@ jobs:
         id: commit_message_writer
         run: | # `github.event.number` will be blank if this is a cron
           if [ "${{ github.event.number }}" == "" ]; then
-            echo "::set-output name=commit_message::Hourly scheduled redeploy"
+            echo "commit_message=Hourly scheduled redeploy" >> "$GITHUB_OUTPUT"
           else
-            echo "::set-output name=commit_message::Deploy via merge"
+            echo "commit_message=Deploy via merge" >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/checkout@v4
         with:
