@@ -35,11 +35,11 @@ You can edit the copied secrets for the new environment using the AWS console fo
 
 Deploy the Terraform root modules in order. You need to make sure you are using the correct Terraform Workspace for the environment you are working in - if you've just created a new environment and new AWS account, you will need to make sure you create the Terraform Workspace for each of the modules you are working with, e.g.
 
-* cluster-infrastructure-`<ENVIRONMENT>`
-* cluster-services-`<ENVIRONMENT>`
-* ecr-`<ENVIRONMENT>`
-* tfc-aws-config-`<ENVIRONMENT>`
-* vpc-`<ENVIRONMENT>`
+- cluster-infrastructure-`<ENVIRONMENT>`
+- cluster-services-`<ENVIRONMENT>`
+- ecr-`<ENVIRONMENT>`
+- tfc-aws-config-`<ENVIRONMENT>`
+- vpc-`<ENVIRONMENT>`
 
 Replace `<ENVIRONMENT>` with the name of your environment. You must also ensure that the credentials/variables are created and set correctly for each of the modules to run.
 
