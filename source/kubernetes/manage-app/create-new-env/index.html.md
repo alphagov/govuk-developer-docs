@@ -141,7 +141,9 @@ If the environment URL endpoint is not behaving as expected or shows an error, c
 
 ## Setting access permissions
 
-You may want to ensure that the correct engineers have access to the account/environment you have just set up. You can check and configure this in the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository.
+You may want to ensure that the correct engineers have access to the account/environment you have just set up. You can check and configure this in the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) (internal) repository.
+
+If a user requires credentials, you should ensure they first have a "GDS Users" AWS user created prior to granting them roles via the `govuk-user-reviewer` repository above. There is a [self-service portal](https://gds-request-an-aws-account.cloudapps.digital/) to do this.
 
 ## Supporting information
 
