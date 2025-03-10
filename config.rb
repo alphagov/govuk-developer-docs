@@ -24,6 +24,12 @@ set :url_root, config[:tech_docs][:host]
 activate :search_engine_sitemap,
          default_change_frequency: "weekly"
 
+# Load all the `dist/` directories from direct dependencies specified in package.json
+package = JSON.parse(File.read("package.json"))
+package.fetch("dependencies", []).each_key do |dep|
+  sprockets.append_path File.join(__dir__, "node_modules", dep, "dist")
+end
+
 helpers do
   def dashboard
     Dashboard.new
