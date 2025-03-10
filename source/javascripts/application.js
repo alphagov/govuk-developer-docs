@@ -1,4 +1,5 @@
 //= require govuk_tech_docs
+//= require govuk_frontend
 //= require dependencies
 //= require govuk_publishing_components/lib/trigger-event
 //= require govuk_publishing_components/lib/cookie-functions
