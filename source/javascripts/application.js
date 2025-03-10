@@ -7,3 +7,4 @@
 //= require govuk_publishing_components/components/cookie-banner
 //= require govuk_publishing_components/load-analytics
 //= require filter-list
+//= require mermaid-init
