@@ -32,8 +32,7 @@ information publicly (as per their [security policy](https://github.com/ckan/cka
 
 If you find an issue that does not appear to be a security vulnerability you
 should first search the [issues of the upstream CKAN repository](https://github.com/ckan/ckan/issues) to see if it has already been reported and if there's a workaround.
-If there is not an issue, considering opening a new one or - if you know how to
-fix it - open a PR to resolve the problem.
+If there's not already an issue logged, consider opening a new one or - if you know how to fix it - open a PR to resolve the problem.
 
 ## Environments
 
@@ -47,11 +46,11 @@ There are three environments for CKAN:
 
 ### Datagovuk kubernetes cluster
 
-Find is hosted on the same AWS cluster as GOV.UK but in its own namespace - `datagovuk`
+Find is hosted on the same AWS cluster as GOV.UK but in its own `datagovuk` namespace.
 
-So to manage data.gov.uk apps you will need to add `-n datagovuk` to any `kubectl` command or run `kubectl config set-context --current --namespace=datagovuk` to make it the default.
+To manage data.gov.uk apps you'll need to add `-n datagovuk` to any `kubectl` command or run `kubectl config set-context --current --namespace=datagovuk` to make it the default.
 
-You will be able to exec onto any datagovuk pod in a similar way to other GOV.UK apps.
+You'll be able to exec onto any datagovuk pod in a similar way to other GOV.UK apps.
 
 ## Monitoring data.gov.uk
 
@@ -61,7 +60,7 @@ You will be able to exec onto any datagovuk pod in a similar way to other GOV.UK
 
 ### Sentry
 
-[Sentry] monitors application errors. The Sentry pages for each app can be found on the [Find] app pages.
+[Sentry] monitors application errors.
 
 ### Logs
 
@@ -72,50 +71,35 @@ Example query: `kubernetes.namespace: datagovuk AND kubernetes.container.name: f
 
 ### Grafana
 
-There is a [Grafana dashboard][Grafana] showing some metrics for datagovuk apps.
+There's a [Grafana dashboard][Grafana] showing some metrics for datagovuk apps.
 
 ### Analytics
 
-Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.
+Traffic for data.gov.uk is recorded using Google Analytics. If a user requests analytics for data.gov.uk, we can provide access to [an analytics dashboard][dgu-analytics].
 
-If a user requests analytics for data.gov.uk, we can provide them with access to [an analytics dashboard][dgu-analytics]. Assign tickets like this to the `3rd Line--GOV.UK Product Requests` Zendesk queue.
-
-## Updating the Zendesk password for Find
-
-The form at https://www.data.gov.uk/support uses the Zendesk API to create new tickets. If the account password expires, it'll need updating in [AWS Secrets Manager](/manual/secrets-manager.html):
-
-1. Get the existing `govuk/dgu/datagovuk` credentials from AWS Secrets Manager
-1. Log into Zendesk using the username and password obtained from the previous step
-1. Reset the password through the UI and copy the password to your clipboard
-1. Update the password in AWS Secrets Manager.
-
-## Logging into the publisher
+## Logging into CKAN, the publishing application
 
 You can log into [CKAN][dgu-ckan] using a shared account. The credentials are available in [Secrets Manager](secrets-manager.html) under `2ndline/datagovuk/ckan`.
 
-For commands not available via the user interface you need to `kubectl exec` into a CKAN pod.
+For commands not available via the user interface you need to `kubectl exec` into a CKAN pod. Further instructions and sample commands are in the relevant section below.
 
 ## Users and publishing organisations
 
-Publishers login using their email address. A user can be a member of one or more publishing
-organisations, with either the 'Admin' or 'Editor' role for each organisation.
+Publishers login using their email address. A user can be a member of one or more publishing organisations, with either the 'Admin' or 'Editor' role for each organisation.
 
-'Admin' users can add/remove users from their own organisation.
-
-A 'sysadmin' has admin rights across all organisations.
+'Admin' users can add/remove users from their own organisation. A 'sysadmin' has admin rights across all organisations.
 
 ### Finding a user
 
-When logged in as a `sysadmin` you can access a [user list](https://ckan.publishing.service.gov.uk/user). This is useful where a user does not know their username or no longer has access to their registered email account - it is searchable by email address even though that's not obvious.
+When logged in as a `sysadmin` you can access a [user list](https://ckan.publishing.service.gov.uk/user). This is useful where a user does not know their username or no longer has access to their registered email account - it's searchable by email address even though that's not obvious.
 
 ### Creating a user account
 
 There are two methods to create a new user account:
 
 1. An organisation's 'admin' user can [follow these instructions](https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins) to invite new users to create an account. This is the preferred approach, as the organisation admin is best placed to know whether the new user should be given access.
-1. A 'sysadmin' user (e.g. Technical 2nd Line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
+1. A 'sysadmin' user can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
   - Follow the instructions to [assign users to publishers](#assigning-users-to-publishers-setting-user-permissions) inputting the user's email address instead of their username.
-  - An invite email is generated and sent to the user.
 
 ### Updating a user's email address
 
@@ -167,26 +151,26 @@ Historical usernames with non-alphanumeric or uppercase characters are no longer
 1. Click the 'Publishers' button.
 1. Find the user's organisation and click on it.
 1. Click the 'Manage' button.
-1. Click the 'Members' tab, then the 'Add Member' button.
-1. Add the user's existing account, or enter their email address to send them an invite, ensuring you select the relevant role for the user (either admin or editor).
+1. Click the 'Members' tab, to see a list of all users for that organisation, then the 'Add Member' button.
+1. Add the user's existing account, or enter their email address to send them an invite, after selecting the relevant role for the user (admin or editor).
 
 > Users should first be asked to request addition by an admin of their organisation, if possible. This is to reduce the burden of these requests on the technical support team and to ensure only those with the correct authority are added as publishers.
 >
-> Check the authenticity of a request before adding a user as a publisher (i.e. make sure they actually belong to the department they want to publish for, bearing in mind that some parent organisations may publish on behalf of child organisations, e.g. BEIS can publish for the Civil Nuclear Police Authority).
+> Check the authenticity of a request before adding a user as a publisher (i.e. make sure they actually belong to the department they want to publish for, bearing in mind that some parent organisations may publish on behalf of child organisations, e.g. DBT can publish for the Civil Nuclear Police Authority).
 
 ## Datasets
 
 ### Viewing a log of dataset activity
 
-A log of publisher activity on a dataset is available by inserting `/activity` into the dataset's URL, such as https://ckan.publishing.service.gov.uk/dataset/activity/monthly_statistics_of_building_materials_and_components.
+A log of publisher activity on a dataset is available by inserting `/activity` into the dataset's URL e.g. https://ckan.publishing.service.gov.uk/dataset/activity/monthly_statistics_of_building_materials_and_components.
 
 ### Deleting (or withdrawing) a dataset
 
-Users are not permitted to remove their own datasets. There are a [limited number of circumstances](https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data) in which a dataset will be withdrawn. This is to be done by technical support, following a request from the publisher.
+Users are generally not permitted to remove their own datasets. There are a [limited number of circumstances](https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data) in which a dataset will be withdrawn. This is to be done by technical support, following a request from the publisher.
 
 Datasets are never hard-deleted (known as "purged" in CKAN), instead they are given the state "deleted" (a soft-deletion), which removes them from the public-facing site but allows them to be viewed through the CKAN publishing interface. Soft-deleted datasets can be undeleted.
 
-> Before making any deletions, check that the person making the request actually belongs to the organisation which owns the document (or are from a superseding department, e.g. someone from BEIS could request withdrawal of a dataset published by BIS).
+> Before making any deletions, check that the person making the request actually belongs to the organisation which owns the document (or are from a superseding department, e.g. someone from DBT could request withdrawal of a dataset published by BIS).
 
 #### Deleting a dataset
 
@@ -194,7 +178,7 @@ Datasets are never hard-deleted (known as "purged" in CKAN), instead they are gi
 1. Navigate to the relevant dataset (use the 'Datasets' button).
 1. Click the 'Manage' button.
 1. Click the red 'Delete' button.
-1. Once withdrawn, it will take up to 30 minutes to sync across to data.gov.uk and clear the cache.
+1. Once withdrawn, it will take up to 10 minutes to sync across to data.gov.uk and clear the cache.
 
 > The 'Delete' button is not available for draft datasets. To soft-delete a draft dataset, follow the above steps, but manually change `/edit/` to `/delete/` in the URL of the 'Manage' page for the dataset.
 
@@ -202,7 +186,7 @@ You can bulk soft-delete datasets using [these instructions](#bulk-deleting-data
 
 ### A dataset is wrong in some way
 
-Responsibility for individual datasets lies with the publishing organisation. Unless it's clearly a data.gov.uk problem (eg a dataset page is returning an error response when it shouldn't be), users reporting a problem with a dataset should be directed to the publisher.
+Responsibility for individual datasets lies with the publishing organisation. Unless it's clearly a data.gov.uk problem (e.g. a dataset page is returning an error response), users reporting a problem with a dataset should be directed to the publisher.
 
 This is a generic response for such cases:
 
@@ -211,12 +195,10 @@ This is a generic response for such cases:
 > Individual datasets are the responsibility of the publishing organisation, rather than the data.gov.uk team. This means that you’ll need to get in touch with the publishing organisation directly to request any changes to the dataset.
 >
 > Contact details for each dataset are towards the bottom of the dataset page.
->
-> I hope that helps. I’ll close this ticket now.
 
 ### Getting data directly from Solr
 
-There are times when it is useful to connect to the Solr search index server in order to get the raw data that generates the search results and dataset information. To do this you need this command -
+It can be useful to connect to the Solr search index server to get the raw data that generates the search results and dataset information. Use  this command:
 
 `kubectl port-forward ckan-solr-0 8983:8983 -n datagovuk`
 
@@ -224,7 +206,7 @@ You should now be able to access the Solr admin interface by browsing to http://
 
 ### Accessing withdrawn content
 
-If a user is asking for data that is no longer publicly available, e.g. a withdrawn dataset, they should email the organisation that originally published the dataset. You can find an email address for the organisation on CKAN.
+If a user is asking for data that's no longer publicly available, e.g. a withdrawn dataset, they should email the organisation that originally published the dataset. You can find an email address for the organisation on CKAN.
 
 ## Using the CKAN api
 
@@ -286,7 +268,7 @@ There's some [API documentation][dgu-api-docs] aimed at general users of data.go
 
 ## Organogram publishing
 
-Organograms are files that visualise the people structure of an organisation. They're split into two files: one for senior staff (grades SCS1, SCS2 and SCS3, or equivalent) and another for junior staff (all other grades). The senior staff file is more detailed than the junior staff file, with staff names included for posts classified as grades SCS2 and SCS3.
+Organograms are files that list the people structure of an organisation. They're split into two files: one for senior staff (grades SCS1, SCS2 and SCS3, or equivalent) and another for junior staff (all other grades). The senior staff file is more detailed than the junior staff file, with staff names included for posts classified as grades SCS2 and SCS3.
 
 Organograms are the only datasets on data.gov.uk where we host the data itself, rather than linking to an external resource.
 
@@ -296,9 +278,9 @@ There's [guidance for users on publishing organograms](https://guidance.data.gov
 
 ### XLS to CSV Conversion
 
-Publishers upload their organograms as an Excel (XLS) file that contains macros.  A script converts these to the two CSV files (junior staff and senior staff).
+Publishers upload their organograms as an Excel (XLS) file that contains macros. A script converts these to the two CSV files (junior staff and senior staff). This will not work if the correct template hasn't been used, or has been changed. This is covered in [the user guidance](https://guidance.data.gov.uk/publish_and_manage_data/harvest_or_add_data/add_data/#publishing-organograms).
 
-> Publishers **must** select the correct 'Schema Vocabulary' for their organogram dataset (i.e. one of the two 'organisation structure' values) in order for the upload option to become available and for the conversion script to run.
+> Publishers **must** select the correct 'Schema Vocabulary' for their organogram dataset (i.e. one of the two 'organisation structure' values) for the upload option to become available and for the conversion script to run.
 
 ## Connecting to CKAN via kubectl exec
 
@@ -316,13 +298,13 @@ Once connected to the `ckan` pod, the commands can be run using the `ckan` CLI, 
 ckan [COMMAND]
 ```
 
-If you need to view the CKAN configuration it is located at `/config/production.ini` which has been set to the `CKAN_INI` environment variable.
+The CKAN configuration is at `/config/production.ini` which has been set to the `CKAN_INI` environment variable.
 
 ### Initialising the database
 
 There may be times when you need to start with an empty database (e.g. on integration).
 The following commands will create the relevant schema for core CKAN and the harvesting
-extension on integration.
+extension on integration:
 
 ```
 ckan db init
@@ -408,7 +390,7 @@ Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, 
 while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: <your_api_key>" http://localhost:<ckan_port>/api/3/action/package_delete; done < list_of_ids.txt
 ```
 
-After deleting or purging a dataset, it will take up to 10 minutes to update on data.gov.uk, due to the sync process.
+After deleting or purging a dataset, it will take up to 10 minutes to update on data.gov.uk.
 
 ### Exporting a list of datasets to CSV
 
@@ -485,7 +467,7 @@ The harvest source of a dataset can be found using the CKAN API, using the datas
 https://ckan.publishing.service.gov.uk/api/3/action/package_show?id=<slug> or <id>
 ```
 
-In the response there should be `harvest_source_id` and `harvest_source_title` fields.
+In the response there should be `harvest_source_id` and `harvest_source_title` fields. If neither of these is present, the dataset will have been manually published.
 
 ### Getting the status of a harvester
 
@@ -493,7 +475,7 @@ In the response there should be `harvest_source_id` and `harvest_source_title` f
 1. Click the 'Harvest' button and find the relevant harvester.
 1. You will see a list of the datasets imported by this harvest source.
 1. Click the 'Admin' button to get the status.
-1. A summary of the current status will be shown.  Individual runs (and any error messages) can be accessed from the 'Jobs' tab.
+1. A summary of the current status will be shown. Individual runs (and any error messages) can be accessed from the 'Jobs' tab.
 
 ### Restart a harvest job
 
@@ -541,7 +523,7 @@ ckan harvester purge-queues
 ### Restarting the harvest service
 
 The harvesting process runs as single pod. If the harvesting process crashes, the pod will terminate and a new pod should automatically
-be started. If the pod continues to crash you will probably need to look at the pod to investigate what is going on, it could be something like it is using an incorrect image or not connecting to the solr service.
+be started. If the pod continues to crash you'll probably need to look at the pod to investigate, it could be something like it is using an incorrect image or not connecting to the solr service.
 
 ```bash
 $ kubectl describe pod deploy/ckan-ckan -n datagovuk
@@ -560,27 +542,25 @@ Or you can check that the pods are all showing as `running`:
 $ kubectl get pods -n datagovuk | grep -E "ckan-gather|ckan-fetch"
 ```
 
-If any of the pods are not showing as `Running`, you may need to investigate why they are not Running. It is best to use the `kubectl describe` command to give you an idea as to the cause of the error:
+If any of the pods are not showing as `Running`, you may need to investigate why. It is best to use the `kubectl describe` command to give you an idea as to the cause of the error:
 
 ```bash
 $ kubectl describe pod deploy/ckan-gather -n datagovuk"
 ```
 
-This will give you some information on the health of the pod, one reason for a pod to fail is because it is not picking up the latest image in which case you can check that the relevant image has been pushed up by visiting these pages:
+This will give you information on the health of the pod. One reason for a pod to fail is because it is not picking up the latest image. In this case you can check that the relevant image has been pushed up by visiting these pages:
 
-CKAN - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan
-PYCSW - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw
-Solr - https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr
+CKAN - [https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/ckan)
+PYCSW - [https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/pycsw)
+Solr - [https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr](https://github.com/alphagov/ckanext-datagovuk/pkgs/container/solr)
 
-'Gather' jobs retrieve the identifiers of the updated datasets and create jobs
-in the fetch queue. To restart a failing pod just delete it:
+'Gather' jobs retrieve the identifiers of the updated datasets and create jobs in the fetch queue. To restart a failing pod just delete it:
 
 ```bash
 $ kubectl delete pod deploy/ckan-gather -n datagovuk
 ```
 
-'Fetch' jobs retrieve the datasets from the remote source and perform the relevant
-updates in CKAN. To restart a failing pod just delete it:
+'Fetch' jobs retrieve the datasets from the remote source and perform the relevant updates in CKAN. To restart a failing pod just delete it:
 
 ```bash
 $ kubectl delete pod deploy/ckan-fetch -n datagovuk
@@ -588,19 +568,19 @@ $ kubectl delete pod deploy/ckan-fetch -n datagovuk
 
 ### Managing cronjob pods
 
-There are a number of cronjob pods which run periodically, you can give the list of cronjob pods using this command:
+There are a number of cronjob pods which run periodically. You can get the list of cronjob pods using this command:
 
 ```bash
 $ kubectl get cronjobs -n datagovuk
 ```
 
-Sometimes they will get into a state where they are hanging. If this happens check their health by running a `kubectl describe`:
+Sometimes they'll get into a state where they're hanging. You can check their health by running a `kubectl describe`:
 
 ```bash
 $ kubectl describe cronjob/ckan-harvester-run -n datagovuk
 ```
 
-When running a `kubectl get pods -n datagovuk` command to view all running pods you will be able to see all completed and running pods. If there are a number of running cronjob pods they might be hanging due to things like a failure to pull the image. In this case you should delete the cronjob so that it gets redeployed rather than remove the pod as this will simply recreate the pod and not clear up the hanging pods.
+When running a `kubectl get pods -n datagovuk` command to view all running pods you'll be able to see all completed and running pods. If there are a number of running cronjob pods they might be hanging due to things like a failure to pull the image. In this case you should delete the cronjob so that it gets redeployed, rather than remove the pod as this will simply recreate the pod and not clear up the hanging pods.
 
 ```bash
 $ kubectl delete cronjob ckan-harvester-run -n datagovuk
@@ -613,22 +593,22 @@ The `csw` endpoint is available at <https://data.gov.uk/csw> which redirects to
 
 #### `csw` endpoint unavailable
 
-If it is not showing xml with an error `Missing keyword: service` you can check
+If it's not showing xml with an error `Missing keyword: service` you can check
 that the `pycsw` pod is running:
 
 ```bash
 $ kubectl get pods -n datagovuk | grep pycsw
 ```
 
-If no running pods are found then you can start investigating why by running this command:
+If no running pods are found then you can investigate why by running this command:
 
 ```bash
 $ kubectl describe deploy/ckan-pycsw -n datagovuk
 ```
 
-Delete the `pycsw` pod if it is not clear why it is failing as this can sometimes help it restart successfully.
+Delete the `pycsw` pod if it's not clear why it's failing as this can sometimes help it restart successfully.
 
-It is worth checking the `pycsw` logs to investigate why it failed:
+You can check the `pycsw` logs to investigate why it failed:
 
 ```bash
 $ kubectl logs deploy/ckan-pycsw -n datagovuk
@@ -638,19 +618,18 @@ You can get a summary of `csw` records available from this url <https://ckan.pub
 
 #### Syncing the `csw` records with `ckan` datasets
 
-Normally the sync between `csw` and `ckan` will start at 6am each day, but in
-case it should fail or if the sync needs to happen sooner you can manually
-trigger the sync after Solr has been reindexed.
+Normally the sync between `csw` and `ckan` will start at 6am each day, but if it fails or if the sync needs to happen sooner you can manually
+trigger the sync after Solr has been reindexed:
 
 ```sh
 $ ckan ckan-pycsw load -p /config/pycsw.cfg -u http://ckan-ckan:5000
 ```
 
-## Map previews
+## Map previews (deprecated)
 
 Map previews on data.gov.uk have been deprecated. Map preview links are no longer available and existing map preview pages will have a note about them being deprecated.
 
-The Ordnance Survey API that sat behind this service was turned off. We also conducted an audit of the use of map previews, which showed that less than 1% of requests were to map preview datasets and of the 6% of map preview datasets available on DGU, only 2% were working as expected.
+The Ordnance Survey API that sat behind this service was turned off. We also conducted an audit of the use of map previews, which showed that less than 1% of requests were to map preview datasets and of the 6% of map preview datasets available, only 2% were working as expected.
 
 ## Register a brownfield dataset
 
@@ -684,7 +663,7 @@ FATAL:  too many connections for role "ckan"
 SELECT COUNT(*) FROM pg_stat_activity WHERE datname = 'ckan_production';
 ```
 
-In the past, during an overnight sync one of the queries has been found to cause a large number of db connections. This captures part of that query and uses it to target the pid:
+In the past, during an overnight sync one of the queries was found to cause a large number of db connections. This captures part of that query and uses it to target the pid:
 
 ```sql
 SELECT pid FROM pg_stat_activity WHERE datname = 'ckan_production' and query LIKE 'SELECT "user".password AS user_password%';
