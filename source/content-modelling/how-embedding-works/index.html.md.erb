@@ -1,0 +1,93 @@
+---
+title: How embedding works
+weight: 4
+layout: multipage_layout
+---
+
+# How embedding works
+
+Content Block Embedding is mainly handled in the [Publishing API](https://github.com/alphagov/publishing-api/), with some shared code in the
+[Content Block Tools gem](https://github.com/alphagov/govuk_content_block_tools) detailed in the diagram and steps below:
+
+<pre lang="mermaid">
+  <code>
+flowchart-elk TD;
+  subgraph Publishing App
+      A(Save draft)
+      L(Publish Saved Draft)
+  end
+
+  subgraph Content Block Manager
+      P[Content Block updated]
+  end
+
+  subgraph Publishing API
+    A --> B(Host Document sent to PUT content endpoint)
+    B --> C(Embedded Content Finder Service is called)
+    C --> D(Iterates through details to find embedded content blocks)
+    D --> E(Content Block Tools finds all Content Block References)
+    E --> F(References passed back to Service)
+    F --> G{Live editions found?}
+    G -- Yes --> H(Create embed link for Host Document)
+    H --> I(Send Downstream to DownstreamDraftJob)
+    I --> J(DownstreamPayload calls EditionPresenter)
+    J --> K(ContentEmbedPresenter replaces embed codes with relevant content)
+
+    L --> M(DownstreamDraftJob and DownstreamLiveJob executed)
+    M --> J
+
+    P --> Q
+    Q(Publishing API calls send_downstream to DownstreamLiveJob) --> R(DownstreamLiveJob calls HostContentUpdateJob)
+    R --> S(Fetch all linked documents)
+    S --> T(Republish linked documents)
+    T --> J
+    T --> U(Create event to record republished documents)
+  end
+  </code>
+</pre>
+
+## Adding embed code to a host document
+
+### Saving a draft
+
+When saving the changes to a Host Document, we trigger an update of the draft Content Store:
+
+1. The publishing app updates the Host Document via the PUT content endpoint in Publishing API
+
+1. The [Embedded Content Finder Service](https://github.com/alphagov/publishing-api/blob/15753423c1f19b279b7bfa450d0b6f24dc08c427/app/commands/v2/put_content.rb#L118) is called.
+
+1. The service then iterates through the `details` of an Edition to [pass it to the Content Block Tools](https://github.com/alphagov/publishing-api/blob/434588a9117b177d6646d84d76a7c242829368f8/app/services/embedded_content_finder_service.rb#L17) to find any embedded content blocks
+
+1. Content Block Tools finds all the [Content Block References](https://github.com/alphagov/govuk_content_block_tools/blob/afba7f4973ab3b4a2818a2a0df5aae58dbcbf3c7/lib/content_block_tools/content_block_reference.rb#L45) and passes them back to the Service.
+
+1. If live editions are found of the references, then a link of type `embed` is [created for the Host Document](https://github.com/alphagov/publishing-api/blob/15753423c1f19b279b7bfa450d0b6f24dc08c427/app/commands/v2/put_content.rb#L94) with the `content_id` of the embedded block.
+
+1. Once the links have been created, the Publishing API calls `send_downstream` to send to the `DownstreamDraftJob`.
+
+1. The Downstream job then calls, via `DownstreamPayload`, an `EditionPresenter`, which eventually gets to the `ContentEmbedPresenter`
+
+1. The `ContentEmbedPresenter` then looks for any `embed` Links and [replaces any embed codes with the relevant content for the latest live edition of the Block](https://github.com/alphagov/publishing-api/blob/434588a9117b177d6646d84d76a7c242829368f8/app/presenters/content_embed_presenter.rb#L78).
+
+### Publishing a saved draft
+
+Once the draft is saved, the publishing app makes a subsequent call to the Publishing API to publish:
+
+1. The Publishing API calls `send_downstream` to send to the `DownstreamDraftJob` and `DownstreamLiveJob`.
+
+1. The Downstream jobs then call, via `DownstreamPayload`, an `EditionPresenter`, which eventually gets to the `ContentEmbedPresenter`
+
+1. The `ContentEmbedPresenter` then looks for any `embed` Links and [replaces any embed codes with the relevant content for the latest live edition of the Block](https://github.com/alphagov/publishing-api/blob/434588a9117b177d6646d84d76a7c242829368f8/app/presenters/content_embed_presenter.rb#L78).
+
+## Updating a content block
+
+When a change to a content block is published, we trigger the following process in Publishing API:
+
+1. The Publishing API calls `send_downstream` to send to the `DownstreamLiveJob`.
+
+1. The Downstream job then calls the [`HostContentUpdateJob`](https://github.com/alphagov/publishing-api/blob/main/app/sidekiq/host_content_update_job.rb) (which is a subclass of [`DependencyResolutionJob`](https://github.com/alphagov/publishing-api/blob/main/app/sidekiq/dependency_resolution_job.rb)
+
+1. The Host Content Update job then [fetches all the linked documents](https://github.com/alphagov/publishing-api/blob/a00f2957e6738eee71ebec1f59f22666f1793eb1/app/sidekiq/dependency_resolution_job.rb#L70)
+
+1. Each of the linked documents is then [republished](https://github.com/alphagov/publishing-api/blob/a00f2957e6738eee71ebec1f59f22666f1793eb1/app/sidekiq/host_content_update_job.rb#L4). This kicks off the process outlined in [Publishing a saved draft](#publishing-a-saved-draft) to re-render the page and send the new version to the Content Store.
+
+1. The Host Content Update job also [creates an Event to record that the linked document was republished by a change to a content block](https://github.com/alphagov/publishing-api/blob/a00f2957e6738eee71ebec1f59f22666f1793eb1/app/sidekiq/host_content_update_job.rb#L19). This can be used by publishing apps to track changes to a content block. See [tracking when a content block changes](/content-modelling/tracking-when-a-content-block-changes) for more.

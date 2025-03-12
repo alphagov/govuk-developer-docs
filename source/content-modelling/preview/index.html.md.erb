@@ -30,24 +30,7 @@ We are currently only actively supporting this for Mainstream and Whitehall.
 
 #### Technical explanation
 
-When saving the changes to the Host Document, we trigger an update of the draft Content Store:
-
-1. The updated Host Document is sent to the PUT content endpoint in Publishing API
-
-2. The [Embedded Content Finder Service](https://github.com/alphagov/publishing-api/blob/15753423c1f19b279b7bfa450d0b6f24dc08c427/app/commands/v2/put_content.rb#L118) is called.
-
-3. The service then iterates through the `details` of an Edition to [pass it to the Content Block Tools](https://github.com/alphagov/publishing-api/blob/434588a9117b177d6646d84d76a7c242829368f8/app/services/embedded_content_finder_service.rb#L17) to find any embedded content blocks
-
-4. Content Block Tools finds all the [Content Bock References](https://github.com/alphagov/govuk_content_block_tools/blob/afba7f4973ab3b4a2818a2a0df5aae58dbcbf3c7/lib/content_block_tools/content_block_reference.rb#L45) and passes them back to the Service.
-
-5. If live editions are found of the references, then a link of type `embed` is [created for the Host Document](https://github.com/alphagov/publishing-api/blob/15753423c1f19b279b7bfa450d0b6f24dc08c427/app/commands/v2/put_content.rb#L94) with the `content_id` of the embedded block.
-
-6. Once the links have been created, the Publishing API calls `send_downstream` to send to the `DownstreamDraftJob`.
-
-7. The Downstream job then calls, via `DownstreamPayload`, an `EditionPresenter`, which eventually gets to the `ContentEmbedPresenter`
-
-8. The `ContentEmbedPresenter` then looks for any `embed` Links and [replaces any embed codes with the relevant content for the latest live edition of the Block](https://github.com/alphagov/publishing-api/blob/434588a9117b177d6646d84d76a7c242829368f8/app/presenters/content_embed_presenter.rb#L78).
-
+When saving the changes to the Host Document, we trigger an update of the draft Content Store as outlined in [Saving a draft](/content-modelling/how-embedding-works/#saving-a-draft)
 
 ### Whitehall
 
@@ -55,11 +38,11 @@ When saving the changes to the Host Document, we trigger an update of the draft 
 
 1. Copy the embed code from the block's page on the Content Block Manager, this will look something like `{{embed:content_block_pension:0d7102ad-4481-490a-b768-4a67a2a267dc/rates/third-rate/amount}}`
 
-2. Paste the embed code into the body of the Document you are editing
+1. Paste the embed code into the body of the Document you are editing
 
-3. Click the 'Preview' button at top of text area input
+1. Click the 'Preview' button at top of text area input
 
-4. The rendered contents of the block should be visible
+1. The rendered contents of the block should be visible
 
 #### Technical explanation
 
@@ -67,7 +50,7 @@ This is a different process than the one above for Whitehall, because it's using
 
 1. Inline preview in Whitehall calls the `AdminGovspeakHelper` to convert the textarea govspeak to HTML
 
-2. This then calls the Content Block Manager's `FindAndReplaceEmbedCodesService` which [replaces the embed codes in the HTML with the latest content of the block] (https://github.com/alphagov/whitehall/blob/12dd4f0fbacc6ee1abcf106426f00c73ac9d368f/lib/engines/content_block_manager/app/services/content_block_manager/find_and_replace_embed_codes_service.rb#L8) (using Content Block Tools as above).
+1. This then calls the Content Block Manager's `FindAndReplaceEmbedCodesService` which [replaces the embed codes in the HTML with the latest content of the block] (https://github.com/alphagov/whitehall/blob/12dd4f0fbacc6ee1abcf106426f00c73ac9d368f/lib/engines/content_block_manager/app/services/content_block_manager/find_and_replace_embed_codes_service.rb#L8) (using Content Block Tools as above).
 
 
 ## Preview in Content Block Manager
@@ -76,9 +59,9 @@ This is a different process than the one above for Whitehall, because it's using
 
 1. Given there is a Content Block that is being embedded by some Host Documents.
 
-2. Using the edit form for that Content Block, you will come across a "Preview" page containing links to the Host Documents.
+1. Using the edit form for that Content Block, you will come across a "Preview" page containing links to the Host Documents.
 
-3. These links will open up a new tab rendering the frontend content, with the new embed code content highlighted in yellow.
+1. These links will open up a new tab rendering the frontend content, with the new embed code content highlighted in yellow.
 
 #### Technical explanation
 
@@ -86,15 +69,10 @@ There are a few differences in the code to the preview processes in publishing a
 
 1. For this Content Block flow, the block has not yet been published, so we don't want to update the Host Documents yet
 
-2. When the Host Document Preview page loads (step 3 of user journey), we go get a `PreviewContent` class, [which calls the Publishing API](https://github.com/alphagov/whitehall/blob/e730288e14d939af99286f66a7e07672e67d7925/lib/engines/content_block_manager/app/models/content_block_manager/preview_content.rb#L5) to get the latest content for a Host Document
+1. When the Host Document Preview page loads (step 3 of user journey), we go get a `PreviewContent` class, [which calls the Publishing API](https://github.com/alphagov/whitehall/blob/e730288e14d939af99286f66a7e07672e67d7925/lib/engines/content_block_manager/app/models/content_block_manager/preview_content.rb#L5) to get the latest content for a Host Document
 
-3. We then make a GET request to the Host Documents live frontend page on [Gov.UK, to transform it's HTML](https://github.com/alphagov/whitehall/blob/d54af5d472380b456dcb89461e176fd2cc47c6ec/lib/engines/content_block_manager/app/services/content_block_manager/generate_preview_html.rb#L16)
+1. We then make a GET request to the Host Documents live frontend page on [Gov.UK, to transform it's HTML](https://github.com/alphagov/whitehall/blob/d54af5d472380b456dcb89461e176fd2cc47c6ec/lib/engines/content_block_manager/app/services/content_block_manager/generate_preview_html.rb#L16)
 
-4. And use the data attribute on the content block `<span>` to replace [the block content with the current draft content](https://github.com/alphagov/whitehall/blob/d54af5d472380b456dcb89461e176fd2cc47c6ec/lib/engines/content_block_manager/app/services/content_block_manager/generate_preview_html.rb#L75)
+1. And use the data attribute on the content block `<span>` to replace [the block content with the current draft content](https://github.com/alphagov/whitehall/blob/d54af5d472380b456dcb89461e176fd2cc47c6ec/lib/engines/content_block_manager/app/services/content_block_manager/generate_preview_html.rb#L75)
 
-5. The transformed page is then served in [an iFrame on the Content Block Manager](https://github.com/alphagov/whitehall/blob/13f3549498a77be0fb73c77a6701aefb2ded9dc5/lib/engines/content_block_manager/app/views/content_block_manager/content_block/editions/host_content/preview.html.erb#L15)
-
-
-
-
-
+1. The transformed page is then served in [an iFrame on the Content Block Manager](https://github.com/alphagov/whitehall/blob/13f3549498a77be0fb73c77a6701aefb2ded9dc5/lib/engines/content_block_manager/app/views/content_block_manager/content_block/editions/host_content/preview.html.erb#L15)
