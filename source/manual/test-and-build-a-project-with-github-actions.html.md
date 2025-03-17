@@ -147,6 +147,7 @@ jobs:
     name: Lint Ruby
     uses: alphagov/govuk-infrastructure/.github/workflows/rubocop.yml@main
 ```
+
 ### Pin untrusted GitHub Actions to a commit SHA
 
 To reduce security risks such as supply chain attacks and unexpectedly
