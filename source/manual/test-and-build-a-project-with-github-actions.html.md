@@ -65,7 +65,7 @@ as better code reuse through reusable workflows.
 
 The workflow should be configured to run when there is a [`push`][push-event]
 to the default branch (typically "main") and when a
-[`pull_request`][pull-request-event] opened. This means CI runs when a branch
+[`pull_request`][pull-request-event] is opened. This means CI runs when a branch
 is merged (the `push` to main) and it runs against any changes introduced
 in a pull request. We prefer to run against a `pull_request` event to all
 `push` events, as this allows external contributors to have pull requests
@@ -74,7 +74,7 @@ tested and because `pull_request` runs against a version of the codebase
 
 Example configuration:
 
-```yml
+```yaml
 # ./github/workflows/ci.yml
 name: CI
 
@@ -83,7 +83,6 @@ on:
     branches:
       - main
   pull_request:
-
 ```
 
 We previously recommended CI jobs to run on `[push, pull_request]` as per
@@ -148,6 +147,26 @@ jobs:
     name: Lint Ruby
     uses: alphagov/govuk-infrastructure/.github/workflows/rubocop.yml@main
 ```
+### Pin untrusted GitHub Actions to a commit SHA
+
+To reduce security risks such as supply chain attacks and unexpectedly
+breaking changes, it is important to pin your versions of untrusted (third-party)
+GitHub Actions to a commit SHA rather than using a floating version or tag.
+GitHub’s [Security Hardening for GitHub Actions][gh-hardening] guidance provides
+further details. For example:
+
+```yaml
+jobs:
+  security-analysis:
+    # Instead of: uses: some/action@v2
+    # Pin to a specific commit SHA:
+    uses: some/action@c86d0dc2cb1a4ca77a7ba2912c5fd6912bf12a05
+    # ...
+```
+
+Pins can still be updated periodically (manually or via Dependabot), ensuring
+that you are in control of version changes. This is particularly important for
+any external or untrusted actions that GOV.UK does not maintain directly.
 
 ### CI workflow for Ruby gems
 
@@ -234,3 +253,4 @@ Notes:
 [build matrix]: https://docs.github.com/en/actions/using-workflows/advanced-workflow-features#using-a-build-matrix
 [ruby-branches]: https://www.ruby-lang.org/en/downloads/branches/
 [govuk_admin_template]: https://github.com/alphagov/govuk_admin_template
+[gh-hardening]: https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
