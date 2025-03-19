@@ -64,6 +64,9 @@ items need to be unpublished and do it via the Publishing API.
 
 Since the application has been retired, it shouldn't be tracked in Sentry.
 
+Do not do this through the Sentry UI, instead remove the application from
+[this configuration file](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/sentry/locals.tf).
+
 ## 10. Remove from Heroku
 
 If relevant (e.g. if Heroku was used for previews).
