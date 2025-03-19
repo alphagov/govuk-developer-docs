@@ -17,7 +17,7 @@ Remove any [end-to-end tests][end-to-end] specific to the application.
 Mark the application as archived in the Release app.
 
 Edit the application in the release app (you'll need the `deploy` permission to
-do this), and check the `archived` checkbox. This will hide it from the UI.
+do this), and press the 'Delete application' button.
 
 ## 3. Update Signon
 
