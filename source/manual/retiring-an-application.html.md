@@ -47,7 +47,7 @@ these.
 
 ## 6. Remove from the GOV.UK architecture diagram
 
-- Remove the application from the [GOV.UK architecture diagram](/manual/architecture.html)
+Remove the application from the [GOV.UK architecture diagram](/manual/architecture.html).
 
 ## 7. Drop database
 
