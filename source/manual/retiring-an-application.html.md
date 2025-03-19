@@ -73,7 +73,7 @@ If relevant (e.g. if Heroku was used for previews).
 
 ## 11. Remove from govuk-helm-charts
 
-Remove the app's entry in [govuk-helm-charts] from:
+Remove the app's entry in [govuk-helm-charts](https://github.com/alphagov/govuk-helm-charts/) from:
 
 - /charts/app-config/values-integration.yaml
 - /charts/app-config/values-staging.yaml
@@ -82,10 +82,7 @@ Remove the app's entry in [govuk-helm-charts] from:
 - (if present) /charts/external-secrets/templates/<app name>
 
 It's also wise to search that repo for other references to the app being retired.
-Once the PR is merged ([Example PR][]), the app pods will automatically be removed by Argo.
-
-[govuk-helm-charts] (https://github.com/alphagov/govuk-helm-charts/)
-[Example PR] (https://github.com/alphagov/govuk-helm-charts/pull/1236)
+Once the PR is merged ([Example PR](https://github.com/alphagov/govuk-helm-charts/pull/1236)), the app pods will automatically be removed by Argo.
 
 ## 12. Archive the repo
 
