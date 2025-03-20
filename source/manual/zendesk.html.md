@@ -29,12 +29,14 @@ See the [Zendesk best practice slidedeck](https://docs.google.com/presentation/d
 
 In addition, you may want to bookmark these links for searching Zendesk:
 
-- [Tickets you have commented on](https://govuk.zendesk.com/agent/search/1?type=ticket&q=commenter%3Ame)
-- Read the [Zendesk documentation](https://support.zendesk.com/hc/en-us/articles/4408835086106-Using-Zendesk-Support-advanced-search) for advanced search options
+- [Tickets you've commented on](https://govuk.zendesk.com/agent/search/1?type=ticket&q=commenter%3Ame)
+- [Tickets you've been cc'd on](https://govuk.zendesk.com/agent/search/1?q=cc%3Ame)
+
+Read the [Zendesk documentation](https://support.zendesk.com/hc/en-us/articles/4408835086106-Using-Zendesk-Support-advanced-search) for advanced search options.
 
 ## Where to triage tickets
 
-Triage to the most applicable area of GOV.UK using the associated macro below. This is also represented visually on the [Zendesk flow diagram](https://docs.google.com/presentation/d/1EotoM2CVtqlnx54Qz5bP7OyIx5c9ji_GptUuymHkBrc/edit).
+Triage to the most applicable area of GOV.UK using the associated macro below. After using the macro, submit the ticket as open. This is also represented visually on the [Zendesk flow diagram](https://docs.google.com/presentation/d/1EotoM2CVtqlnx54Qz5bP7OyIx5c9ji_GptUuymHkBrc/edit).
 
 | Zendesk view | Macro for triaging to this view | Responsible for |
 |--------------|---------------------------------|----------|
