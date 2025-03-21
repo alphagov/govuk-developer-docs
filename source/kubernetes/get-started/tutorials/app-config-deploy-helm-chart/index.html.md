@@ -22,9 +22,7 @@ The govuk-helm-chart repository contains configuration for how an app is deploye
 
     Create the pull request (PR) on your branch. Your changes will get posted automatically to the #govuk-platform-engineering Slack channel for review by a member of the team. After your PR has been approved and passed status checks you can merge your PR.
 
-1. See the changes in [Argo CD](https://argoproj.github.io/cd/) (a tool to help manage app deployments)
-
-    You should be able to see your changes in the [manifest within Argo](https://argo.eks.integration.govuk.digital/applications/govuk-replatform-test-app?view=tree&orphaned=false&resource=&node=argoproj.io%2FApplication%2Fcluster-services%2Fgovuk-replatform-test-app%2F0&tab=manifest)
+1. See the changes in the [manifest within Argo](https://argo.eks.integration.govuk.digital/applications/govuk-replatform-test-app?view=tree&orphaned=false&resource=&node=argoproj.io%2FApplication%2Fcluster-services%2Fgovuk-replatform-test-app%2F0&tab=manifest). If making changes to a worker, you can press 'Restart' on the relevant node in Argo UI (e.g. asset-manager-worker), which should restart all the worker pods to pick up the new config change.
 
 1. See your message from the environment variable in the example test app
 
