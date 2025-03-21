@@ -10,22 +10,24 @@ HtmlAttachments belong to an Edition of a Document. When an Edition is unpublish
 there is an option to add a redirect to the URL. This redirect should also be applied to the Edition's
 HtmlAttachments, and the new URL sent to the PublishingAPI.
 
-This process does not always work successfully, and HtmlAttachments for unpublished Editions remain
-accessible via their original URL.
+This process is mainly designed for unpublished Editions, ensuring that their HtmlAttachments are redirected as well.
+However, in some cases, HtmlAttachments from older Editions, which still have an active document, may persist and remain
+accessible through their original URL. In such situations, the Rake Task outlined below can still be used to redirect
+these attachments, ensuring outdated links are no longer publicly accessible.
 
 ### Redirect an Edition's HtmlAttachments
 
 #### Whitehall
 
-A Rake Task exists in Whitehall to quickly redirect all HtmlAttachments for an unpublished Edition.
-The task takes the Edition's Document's content id, and the desired redirection URL.
+The Rake Task in Whitehall allows you to quickly redirect all HtmlAttachments for an Edition. The task takes the Edition's
+Document's content id, and the desired redirection URL.
 
 There are two interfaces for dry and real runs, to ensure the correct HtmlAttachments are being targeted before redirecting.
 
 **Note**
-> The Rake task will search for most recent Edition belonging to the Document.
-> The task will throw an `EditionNotUnpublished` error if the Edition is not `unpublished` or `withdrawn`.
-> The task will throw a `HTMLAttachmentsNotFound` error if the Edition has no HtmlAttachments.
+> The task will raise an EditionNotUnpublished error if the Edition is neither unpublished nor withdrawn. Note that this does not necessarily conflict with cases
+> where old HTML attachments persist while the parent document remains live, as the edition associated with the attachment may be unpublished.
+> The task will raise a HtmlAttachmentsNotFound error if the Edition contains no HtmlAttachments.
 
 ##### Dry run
 
