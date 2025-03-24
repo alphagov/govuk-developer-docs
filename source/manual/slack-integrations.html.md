@@ -76,3 +76,11 @@ A [workflow](https://github.com/alphagov/seal/blob/main/.github/workflows/gem_ve
 ### Configuration
 
 No configuration needed, the Seal will get a list of all the repos marked as gems from the [dev docs](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml).
+
+## Report GitHub workflow run failure to Slack
+
+A [custom GitHub action](https://github.com/alphagov/govuk-infrastructure/tree/main/.github/actions/report-run-failure) that sends a notification to a nominated Slack channel when a GitHub workflow run fails. The action is typically used to notify a team about critical CI failures on the main branch.
+
+### Configuration
+
+Add the GitHub action as a step by following the instructions in the [README](https://github.com/alphagov/govuk-infrastructure/blob/main/.github/actions/report-run-failure/README.md).
