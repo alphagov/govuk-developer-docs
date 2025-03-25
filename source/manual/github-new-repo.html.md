@@ -17,6 +17,7 @@ When creating a new GOV.UK repo in Github, you must:
   - restricts the merging of PRs for continuously deployed apps, so that only those with Production Deploy or Production Admin access can merge
   - enables vulnerability alerts and security fixes
   - sets up the webhook for [GitHub Trello Poster](/repos/github-trello-poster.html)
+  - sets up the webhook for Slack integrations
   - sets some other default repo settings (e.g. delete branch on merge)
 
 You'll then need to [plan and apply the GitHub workspace in Terraform Cloud](https://app.terraform.io/app/govuk/workspaces/GitHub/runs), which automatically updates the collaborators to the [default teams and access levels](https://github.com/alphagov/govuk-infrastructure/blob/83ff43c4e55f3d3273644e80897b58fd351f566a/terraform/deployments/github/main.tf#L76-L112).
