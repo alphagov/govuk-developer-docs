@@ -25,6 +25,7 @@ GOV.UK maintains at least <%= Repos.active.size %> repositories including apps, 
 <% Repos.active.group_by(&:team).sort.each do |name, repos| %>
 | # <%= name %> | <%= repos.count %> | <%= repos.map { |repo| "[#{repo.repo_name}](/repos/#{repo.repo_name}.html)" }.join(", ") %> |
 <% end %>
+| # <%= "content-modelling" %> | <%= "1" %> | <%= "[Content Block Manager](/repos/whitehall/content_block_manager.html)" %> |
 
 ## Reuse this data
 
