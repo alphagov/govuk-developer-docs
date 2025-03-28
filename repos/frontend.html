@@ -1,0 +1,609 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Application: frontend - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/frontend.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/manifest.json">
+
+      <meta name="description" content="Everything about frontend (Serves the homepage, transactions and some index pages on GOV.UK)" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="Application: frontend - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/frontend.html" />
+
+      <meta property="og:description" content="Everything about frontend (Serves the homepage, transactions and some index pages on GOV.UK)" />
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Application: frontend" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/frontend.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" data-module="cookie-banner" data-nosnippet role="region" aria-label="Can we store analytics cookies on your device?" hidden> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <span class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></span> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide this message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          class="govuk-header__logotype"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 148 30"
+          height="30"
+          width="148"
+          aria-label="GOV.UK"
+        >
+          <title>GOV.UK</title>
+          <path d="M22.6 10.4c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-5.9 6.7c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m10.8-3.7c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s0 2-1 2.4m3.3 4.8c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4M17 4.7l2.3 1.2V2.5l-2.3.7-.2-.2.9-3h-3.4l.9 3-.2.2c-.1.1-2.3-.7-2.3-.7v3.4L15 4.7c.1.1.1.2.2.2l-1.3 4c-.1.2-.1.4-.1.6 0 1.1.8 2 1.9 2.2h.7c1-.2 1.9-1.1 1.9-2.1 0-.2 0-.4-.1-.6l-1.3-4c-.1-.2 0-.2.1-.3m-7.6 5.7c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m-5 3c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s.1 2 1 2.4m-3.2 4.8c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m14.8 11c4.4 0 8.6.3 12.3.8 1.1-4.5 2.4-7 3.7-8.8l-2.5-.9c.2 1.3.3 1.9 0 2.7-.4-.4-.8-1.1-1.1-2.3l-1.2 4c.7-.5 1.3-.8 2-.9-1.1 2.5-2.6 3.1-3.5 3-1.1-.2-1.7-1.2-1.5-2.1.3-1.2 1.5-1.5 2.1-.1 1.1-2.3-.8-3-2-2.3 1.9-1.9 2.1-3.5.6-5.6-2.1 1.6-2.1 3.2-1.2 5.5-1.2-1.4-3.2-.6-2.5 1.6.9-1.4 2.1-.5 1.9.8-.2 1.1-1.7 2.1-3.5 1.9-2.7-.2-2.9-2.1-2.9-3.6.7-.1 1.9.5 2.9 1.9l.4-4.3c-1.1 1.1-2.1 1.4-3.2 1.4.4-1.2 2.1-3 2.1-3h-5.4s1.7 1.9 2.1 3c-1.1 0-2.1-.2-3.2-1.4l.4 4.3c1-1.4 2.2-2 2.9-1.9-.1 1.5-.2 3.4-2.9 3.6-1.9.2-3.4-.8-3.5-1.9-.2-1.3 1-2.2 1.9-.8.7-2.3-1.2-3-2.5-1.6.9-2.2.9-3.9-1.2-5.5-1.5 2-1.3 3.7.6 5.6-1.2-.7-3.1 0-2 2.3.6-1.4 1.8-1.1 2.1.1.2.9-.3 1.9-1.5 2.1-.9.2-2.4-.5-3.5-3 .6 0 1.2.3 2 .9l-1.2-4c-.3 1.1-.7 1.9-1.1 2.3-.3-.8-.2-1.4 0-2.7l-2.9.9C1.3 23 2.6 25.5 3.7 30c3.7-.5 7.9-.8 12.3-.8m28.3-11.6c0 .9.1 1.7.3 2.5.2.8.6 1.5 1 2.2.5.6 1 1.1 1.7 1.5.7.4 1.5.6 2.5.6.9 0 1.7-.1 2.3-.4s1.1-.7 1.5-1.1c.4-.4.6-.9.8-1.5.1-.5.2-1 .2-1.5v-.2h-5.3v-3.2h9.4V28H55v-2.5c-.3.4-.6.8-1 1.1-.4.3-.8.6-1.3.9-.5.2-1 .4-1.6.6s-1.2.2-1.8.2c-1.5 0-2.9-.3-4-.8-1.2-.6-2.2-1.3-3-2.3-.8-1-1.4-2.1-1.8-3.4-.3-1.4-.5-2.8-.5-4.3s.2-2.9.7-4.2c.5-1.3 1.1-2.4 2-3.4.9-1 1.9-1.7 3.1-2.3 1.2-.6 2.6-.8 4.1-.8 1 0 1.9.1 2.8.3.9.2 1.7.6 2.4 1s1.4.9 1.9 1.5c.6.6 1 1.3 1.4 2l-3.7 2.1c-.2-.4-.5-.9-.8-1.2-.3-.4-.6-.7-1-1-.4-.3-.8-.5-1.3-.7-.5-.2-1.1-.2-1.7-.2-1 0-1.8.2-2.5.6-.7.4-1.3.9-1.7 1.5-.5.6-.8 1.4-1 2.2-.3.8-.4 1.9-.4 2.7zM71.5 6.8c1.5 0 2.9.3 4.2.8 1.2.6 2.3 1.3 3.1 2.3.9 1 1.5 2.1 2 3.4s.7 2.7.7 4.2-.2 2.9-.7 4.2c-.4 1.3-1.1 2.4-2 3.4-.9 1-1.9 1.7-3.1 2.3-1.2.6-2.6.8-4.2.8s-2.9-.3-4.2-.8c-1.2-.6-2.3-1.3-3.1-2.3-.9-1-1.5-2.1-2-3.4-.4-1.3-.7-2.7-.7-4.2s.2-2.9.7-4.2c.4-1.3 1.1-2.4 2-3.4.9-1 1.9-1.7 3.1-2.3 1.2-.5 2.6-.8 4.2-.8zm0 17.6c.9 0 1.7-.2 2.4-.5s1.3-.8 1.7-1.4c.5-.6.8-1.3 1.1-2.2.2-.8.4-1.7.4-2.7v-.1c0-1-.1-1.9-.4-2.7-.2-.8-.6-1.6-1.1-2.2-.5-.6-1.1-1.1-1.7-1.4-.7-.3-1.5-.5-2.4-.5s-1.7.2-2.4.5-1.3.8-1.7 1.4c-.5.6-.8 1.3-1.1 2.2-.2.8-.4 1.7-.4 2.7v.1c0 1 .1 1.9.4 2.7.2.8.6 1.6 1.1 2.2.5.6 1.1 1.1 1.7 1.4.6.3 1.4.5 2.4.5zM88.9 28 83 7h4.7l4 15.7h.1l4-15.7h4.7l-5.9 21h-5.7zm28.8-3.6c.6 0 1.2-.1 1.7-.3.5-.2 1-.4 1.4-.8.4-.4.7-.8.9-1.4.2-.6.3-1.2.3-2v-13h4.1v13.6c0 1.2-.2 2.2-.6 3.1s-1 1.7-1.8 2.4c-.7.7-1.6 1.2-2.7 1.5-1 .4-2.2.5-3.4.5-1.2 0-2.4-.2-3.4-.5-1-.4-1.9-.9-2.7-1.5-.8-.7-1.3-1.5-1.8-2.4-.4-.9-.6-2-.6-3.1V6.9h4.2v13c0 .8.1 1.4.3 2 .2.6.5 1 .9 1.4.4.4.8.6 1.4.8.6.2 1.1.3 1.8.3zm13-17.4h4.2v9.1l7.4-9.1h5.2l-7.2 8.4L148 28h-4.9l-5.5-9.4-2.7 3V28h-4.2V7zm-27.6 16.1c-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7-1.2-2.7-2.7-2.7z"></path>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/frontend.html" rel="noopener" class="govuk-link">frontend</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/frontend/building_blocks_for_flexible_content.html" rel="noopener" class="govuk-link">Building blocks for flexible content</a></li>
+    <li><a href="/repos/frontend/calendars.html" rel="noopener" class="govuk-link">Calendars</a></li>
+    <li><a href="/repos/frontend/elections-api.html" rel="noopener" class="govuk-link">Elections API</a></li>
+    <li><a href="/repos/frontend/local-content-items.html" rel="noopener" class="govuk-link">Local Content Items</a></li>
+    <li><a href="/repos/frontend/update-homepage-promotion-slots.html" rel="noopener" class="govuk-link">Update homepage promotion slots</a></li>
+    <li class="subdir__heading">adr</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/frontend/adr/0001-render-csv-previews-in-frontend.html" rel="noopener" class="govuk-link">Render CSV Previews in Frontend</a></li>
+    <li><a href="/repos/frontend/adr/0002-flexible-landing-pages.html" rel="noopener" class="govuk-link">Add Flexible Landing Page Support to Frontend</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+  
+  <h1 class="page-title">Application: frontend</h1>
+
+  <p>Serves the homepage, transactions and some index pages on GOV.UK</p>
+
+<div class="gem-c-summary-list  ">
+
+      <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">GitHub</dt>
+            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/frontend">frontend</a></dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Ownership</dt>
+            <dd class="govuk-summary-list__value"><a href="https://gds.slack.com/channels/govuk-navigation-tech">#govuk-navigation-tech</a></dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Category</dt>
+            <dd class="govuk-summary-list__value">Frontend apps</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Links</dt>
+            <dd class="govuk-summary-list__value"><ul class="govuk-list">
+    <li></li>
+    <li><a href="https://sentry.io/govuk/app-frontend" class="govuk-link">Sentry (error tracking)</a></li>
+    <li></li>
+    <li><a href="https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?var-app=frontend&amp;var-app=draft-frontend" class="govuk-link">App dashboard: request rates, errors, durations</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,request,status,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:frontend),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:frontend)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana App Logs (Production, last 3 hours)</a></li>
+    <li><a href="https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&amp;_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:frontend-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:frontend-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())" class="govuk-link">Kibana Worker Logs (Production, last 3 hours)</a></li>
+    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/frontend" class="govuk-link">Argo CD (frontend)</a></li>
+    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/draft-frontend" class="govuk-link">Argo CD (draft-frontend)</a></li>
+</dd>
+
+
+
+</div></dl>
+    <div class="gem-c-summary__block"></div>
+</div>
+<h2 id='example-pages-rendered-by-frontend'>Example pages rendered by frontend</h2><p><ul class="gem-c-list govuk-list">
+      <li><a href="https://www.gov.uk/check-mot-history" class="govuk-link">Check the MOT history of a vehicle</a></li>
+      <li><a href="https://www.gov.uk/sign-in-universal-credit" class="govuk-link">Sign in to your Universal Credit account</a></li>
+      <li><a href="https://www.gov.uk/get-information-about-a-company" class="govuk-link">Get information about a company</a></li>
+      <li><a href="https://www.gov.uk/check-vehicle-tax" class="govuk-link">Check if a vehicle is taxed</a></li>
+      <li><a href="https://www.gov.uk/vehicle-tax" class="govuk-link">Tax your vehicle</a></li>
+      <li><a href="https://www.gov.uk/view-prove-immigration-status" class="govuk-link">View and prove your immigration status: get a share code</a></li>
+      <li><a href="https://www.gov.uk/view-driving-licence" class="govuk-link">View or share your driving licence information</a></li>
+      <li><a href="https://www.gov.uk/book-driving-test" class="govuk-link">Book your driving test</a></li>
+      <li><a href="https://www.gov.uk/student-finance-register-login" class="govuk-link">Student finance login</a></li>
+      <li><a href="https://www.gov.uk/sign-in-childcare-account" class="govuk-link">Sign in to your childcare account</a></li>
+</ul></p>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<p>Frontend renders the citizen-facing part of content items stored in the Content Store, and
+some hard-coded routes.</p>
+
+<h2 id="formats">Formats</h2>
+
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Schema/Document Type</th>
+<th>Live example(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AB testing</td>
+<td>hardcoded</td>
+<td><a href="https://www.gov.uk/help/ab-testing">https://www.gov.uk/help/ab-testing</a></td>
+</tr>
+<tr>
+<td>Asset placeholder</td>
+<td>hardcoded</td>
+<td><a href="https://assets.publishing.service.gov.uk/government/placeholder">https://assets.publishing.service.gov.uk/government/placeholder</a></td>
+</tr>
+<tr>
+<td>Calendars</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/calendar.html">calendar</a></td>
+<td><a href="https://www.gov.uk/bank-holidays">https://www.gov.uk/bank-holidays</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="https://www.gov.uk/when-do-the-clocks-change">https://www.gov.uk/when-do-the-clocks-change</a></td>
+</tr>
+<tr>
+<td>Case studies</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/case_study.html">case_study</a></td>
+<td><a href="https://www.gov.uk/government/case-studies/aiding-capability-decision-making-for-the-royal-navy">https://www.gov.uk/government/case-studies/aiding-capability-decision-making-for-the-royal-navy</a></td>
+</tr>
+<tr>
+<td>Cookies</td>
+<td>hardcoded</td>
+<td><a href="https://www.gov.uk/help/cookies">https://www.gov.uk/help/cookies</a></td>
+</tr>
+<tr>
+<td>Fatality notice</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/fatality_notice.html">fatality_notice</a></td>
+<td><a href="https://www.gov.uk/government/fatalities/corporal-lee-churcher-dies-in-iraq">https://www.gov.uk/government/fatalities/corporal-lee-churcher-dies-in-iraq</a></td>
+</tr>
+<tr>
+<td>Find electoral office</td>
+<td>hardcoded</td>
+<td><a href="https://www.gov.uk/contact-electoral-registration-office">https://www.gov.uk/contact-electoral-registration-office</a></td>
+</tr>
+<tr>
+<td>Find local council</td>
+<td>hardcoded</td>
+<td><a href="https://www.gov.uk/find-local-council">https://www.gov.uk/find-local-council</a></td>
+</tr>
+<tr>
+<td>Foreign travel advice index</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/travel_advice_index.html">travel_advice_index</a></td>
+<td><a href="https://www.gov.uk/foreign-travel-advice">https://www.gov.uk/foreign-travel-advice</a></td>
+</tr>
+<tr>
+<td>Foreign travel advice</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/travel_advice.html">travel_advice</a></td>
+<td><a href="https://www.gov.uk/foreign-travel-advice/azerbaijan">https://www.gov.uk/foreign-travel-advice/azerbaijan</a></td>
+</tr>
+<tr>
+<td>Guidance</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/detailed_guide.html">detailed_guide</a></td>
+<td><a href="https://www.gov.uk/guidance/travel-to-england-from-another-country-during-coronavirus-covid-19">https://www.gov.uk/guidance/travel-to-england-from-another-country-during-coronavirus-covid-19</a></td>
+</tr>
+<tr>
+<td>Help index</td>
+<td>hardcoded</td>
+<td><a href="https://www.gov.uk/help">https://www.gov.uk/help</a></td>
+</tr>
+<tr>
+<td>Help</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/help_page.html">help_page</a></td>
+<td><a href="https://www.gov.uk/help/browsers">https://www.gov.uk/help/browsers</a></td>
+</tr>
+<tr>
+<td>Homepage</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/homepage.html">homepage</a></td>
+<td><a href="https://www.gov.uk/">https://www.gov.uk/</a></td>
+</tr>
+<tr>
+<td>Get involved</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/get_involved.html">get_involved</a></td>
+<td><a href="https://www.gov.uk/government/get-involved">https://www.gov.uk/government/get-involved</a></td>
+</tr>
+<tr>
+<td>Licence finder</td>
+<td>schema: <a href="https://docs.publishing.service.gov.uk/content-schemas/specialist_document.html">specialist_document</a>
+</td>
+<td><a href="https://www.gov.uk/find-licences/premises-licence">https://www.gov.uk/find-licences/premises-licence</a></td>
+</tr>
+<tr>
+<td></td>
+<td>document_type: <a href="https://docs.publishing.service.gov.uk/document-types/licence_transaction.html">licence_transaction</a>
+</td>
+<td><a href="https://www.gov.uk/find-licences/zoo-licence">https://www.gov.uk/find-licences/zoo-licence</a></td>
+</tr>
+<tr>
+<td>Local transaction</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/specialist_document.html">local_transaction</a></td>
+<td><a href="http://www.gov.uk/school-term-holiday-dates">http://www.gov.uk/school-term-holiday-dates</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="http://www.gov.uk/apply-council-tax-reduction">http://www.gov.uk/apply-council-tax-reduction</a></td>
+</tr>
+<tr>
+<td>News Article</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/news_article.html">news_article</a></td>
+<td><a href="https://www.gov.uk/government/news/the-personal-independence-payment-amendment-regulations-2017-statement-by-paul-gray">https://www.gov.uk/government/news/the-personal-independence-payment-amendment-regulations-2017-statement-by-paul-gray</a></td>
+</tr>
+<tr>
+<td>Place</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/place.html">place</a></td>
+<td><a href="http://www.gov.uk/register-offices">http://www.gov.uk/register-offices</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="http://www.gov.uk/register-offices">http://www.gov.uk/register-offices</a></td>
+</tr>
+<tr>
+<td>Roadmap</td>
+<td>hardcoded</td>
+<td><a href="https://www.gov.uk/roadmap">https://www.gov.uk/roadmap</a></td>
+</tr>
+<tr>
+<td>Simple smart answer</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/simple_smart_answer.html">simple_smart_answer</a></td>
+<td><a href="https://www.gov.uk/sold-bought-vehicle">https://www.gov.uk/sold-bought-vehicle</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="https://www.gov.uk/contact-the-dvla">https://www.gov.uk/contact-the-dvla</a></td>
+</tr>
+<tr>
+<td>Specialist Document</td>
+<td>schema: <a href="https://docs.publishing.service.gov.uk/content-schemas/specialist_document.html">specialist_document</a>
+</td>
+<td><a href="https://www.gov.uk/cma-cases/veterinary-services-market-for-pets-review">https://www.gov.uk/cma-cases/veterinary-services-market-for-pets-review</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="https://www.gov.uk/aaib-reports/aaib-investigation-to-aw189-g-fsar">https://www.gov.uk/aaib-reports/aaib-investigation-to-aw189-g-fsar</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="https://www.gov.uk/protected-food-drink-names/pitahaya-amazonica-de-palora">https://www.gov.uk/protected-food-drink-names/pitahaya-amazonica-de-palora</a></td>
+</tr>
+<tr>
+<td>Speech</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/speech.html">speech</a></td>
+<td><a href="https://www.gov.uk/government/speeches/motorcycle-testing">https://www.gov.uk/government/speeches/motorcycle-testing</a></td>
+</tr>
+<tr>
+<td>Take part</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/take_part.html">take_part</a></td>
+<td><a href="https://www.gov.uk/government/get-involved/take-part/improve-your-social-housing">https://www.gov.uk/government/get-involved/take-part/improve-your-social-housing</a></td>
+</tr>
+<tr>
+<td>Transaction start page</td>
+<td><a href="https://docs.publishing.service.gov.uk/content-schemas/transaction.html">transaction</a></td>
+<td><a href="https://www.gov.uk/register-to-vote">https://www.gov.uk/register-to-vote</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="https://www.gov.uk/vehicle-tax">https://www.gov.uk/vehicle-tax</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><a href="https://www.gov.uk/find-a-job">https://www.gov.uk/find-a-job</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="nomenclature">Nomenclature</h2>
+
+<ul>
+<li>
+<strong>format</strong>: our phrase for a type of content</li>
+</ul>
+
+<h2 id="technical-documentation">Technical documentation</h2>
+
+<p>Frontend is a Ruby on Rails application and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
+
+<p>See the <a href="https://github.com/alphagov/frontend/blob/main/CONTRIBUTING.md">CONTRIBUTING</a> guide for more information.</p>
+
+<h3 id="dependencies">Dependencies</h3>
+
+<ul>
+<li>
+<a href="https://github.com/alphagov/static">alphagov/static</a> - provides shared templates, styles, and JavaScript</li>
+<li>
+<a href="https://github.com/alphagov/content-store">alphagov/content-store</a> - provides raw data for rendering formats</li>
+<li>
+<a href="https://github.com/alphagov/local-links-manager">alphagov/local-links-manager</a> - provides council info lookups</li>
+<li>
+<a href="https://github.com/alphagov/locations-api">alphagov/locations-api</a> - provides postcode lookups</li>
+<li>
+<a href="https://github.com/alphagov/places-manager">alphagov/places-manager</a> - provides places lookups (e.g. for find-my-nearest)</li>
+<li>
+<a href="https://github.com/alphagov/publishing-api">alphagov/publishing-api</a> - this app sends data to the content-store</li>
+</ul>
+
+<h3 id="running-the-application">Running the application</h3>
+
+<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> or the local <code>startup.sh</code> script to run the app. Read the <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">guidance on local frontend development</a> to find out more about each approach, before you get started.</p>
+
+<p>If you are using GOV.UK Docker, remember to combine it with the commands that follow. See the <a href="https://github.com/alphagov/govuk-docker#usage">GOV.UK Docker usage instructions</a> for examples.</p>
+
+<p>If you are using the <code>startup.sh</code> script, first run <a href="https://github.com/alphagov/static">static</a> and execute the following command:</p>
+
+<pre><code>PLEK_SERVICE_STATIC_URI=http://static.dev.gov.uk ./startup.sh --live
+</code></pre>
+
+<p>which uses a local copy of static and content from production.</p>
+
+<p>Note that you will have to have <a href="https://github.com/alphagov/locations-api">GOV.UK Locations API</a> running locally. A valid dataset will have to be loaded for Locations API or postcode lookups will not succeed. This is part of the standard GOV.UK data replication steps.</p>
+
+<h3 id="running-the-test-suite">Running the test suite</h3>
+
+<pre><code>bundle exec rake
+</code></pre>
+
+<h3 id="further-documentation">Further documentation</h3>
+
+<ul>
+<li><a href="/repos/frontend/calendars.html">Calendars</a></li>
+<li><a href="/repos/frontend/elections-api.html">Elections</a></li>
+</ul>
+
+<h2 id="licence">Licence</h2>
+
+<p><a href="https://github.com/alphagov/frontend/blob/main/LICENCE.txt">MIT Licence</a></p>
+<p></div></p>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Ffrontend.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
