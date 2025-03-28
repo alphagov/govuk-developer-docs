@@ -1,0 +1,21 @@
+---
+title: All GOV.UK repositories by team and type
+---
+
+<% content_for :head do %>
+  <%= partial 'partials/cookie_wrapper' %>
+<% end %>
+
+# All GOV.UK repositories by team and type
+
+Check [All GOV.UK repositories](/repos.html) for a condensed breakdown.
+
+<% Repos.active.group_by(&:team).sort.map { |(team, type_and_repos_by_type)| [team, type_and_repos_by_type.group_by(&:type).sort] }.each do |team, repos_by_type| %>
+## <%= team %>
+
+| Type | Count | Repos |
+| --- | --- | --- |
+<% repos_by_type.each do |name, repos| %>
+| # <%= name %> | <%= repos.count %> | <%= repos.map { |repo| "[#{repo.repo_name}](/repos/#{repo.repo_name}.html)" }.join(", ") %> |
+<% end %>
+<% end %>
