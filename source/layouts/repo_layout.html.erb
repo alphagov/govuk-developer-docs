@@ -20,7 +20,7 @@
   <%= GovukPublishingComponents.render("govuk_publishing_components/components/breadcrumbs", {
     breadcrumbs: [
       { title: "Home", url: "/" },
-      { title: "Apps", url: "/apps.html" },
+      repo.is_app? ? { title: "Apps", url: "/apps.html" } : { title: "Repos", url: "/repos.html" },
       repo_slug ? { title: repo_slug[1], url: "/repos/#{repo_slug[1]}.html" } : nil,
     ].compact,
   }) %>
