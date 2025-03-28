@@ -16,12 +16,12 @@
 <% end %>
 
 <% wrap_layout :core do %>
-  <% app_slug = current_page.path.match(/repos\/([^\/]+)\//) %>
+  <% repo_slug = current_page.path.match(/repos\/([^\/]+)\//) %>
   <%= GovukPublishingComponents.render("govuk_publishing_components/components/breadcrumbs", {
     breadcrumbs: [
       { title: "Home", url: "/" },
-      current_page.path != "apps.html" ? { title: "Apps", url: "/apps.html" } : nil,
-      app_slug ? { title: app_slug[1], url: "/repos/#{app_slug[1]}.html" } : nil,
+      repo.is_app? ? { title: "Apps", url: "/apps.html" } : { title: "Repos", url: "/repos.html" },
+      repo_slug ? { title: repo_slug[1], url: "/repos/#{repo_slug[1]}.html" } : nil,
     ].compact,
   }) %>
   <%= partial 'partials/last_updated' if current_page.data.show_last_updated %>
