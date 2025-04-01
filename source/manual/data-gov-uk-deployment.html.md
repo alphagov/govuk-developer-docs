@@ -75,6 +75,16 @@ Builds can take up to 10 minutes. You can view progress in GitHub Actions under 
 
 Deployments typically take 5 minutes. You can view progress in Argo CD.
 
+### Check that your release has been successfully deployed
+
+In order to validate that your release has been deployed, you will need to check the status of the relevant pod in the appropriate environment in Argo CD.
+
+For changes to `CKAN` you will need to look under the `ckan` application and for the `Find` app you will need to look under the `datagovuk` application. For example [datagovuk application in integration in Argo CD](https://argo.eks.integration.govuk.digital/applications/cluster-services/datagovuk)
+
+If the application sync status does not match your deployment, i.e. the commit sha doesn't match or the sync status comment is referring to an older pull request merge, then you will need to click on `sync` to manually trigger the sync to the latest commit on the `main` branch.
+
+When the Argo app health status is not "Healthy" this indicates that the deployment has not been successful and will need to be investigated by checking the failing pod's logs, or by running something like `kubectl describe pod <pod name> -n datagovuk` on your terminal if the logs are not available or useful. The deployment needs to be fixed before you should start testing the web application, as web traffic will be served by pods running the previous successful release.
+
 ### Promote a release to staging or production
 
 Once you are happy that your change works well in the integration environment, you can promote it to staging and then to production.
