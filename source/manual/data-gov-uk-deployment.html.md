@@ -81,7 +81,9 @@ In order to validate that your release has been deployed, you will need to check
 
 For changes to `CKAN` you will need to look under the `ckan` application and for the `Find` app you will need to look under the `datagovuk` application. For example [datagovuk application in integration in Argo CD](https://argo.eks.integration.govuk.digital/applications/cluster-services/datagovuk)
 
-If the Argo app health status is not green then the deployment has not been successful and will need investigating before you continue testing the web application as you will not be testing your release but the previous release as that will still be running.
+If the application sync status does not match your deployment, i.e. the commit sha doesn't match or the sync status comment is referring to an older pull request merge, then you will need to click on `sync` to manually trigger the sync to the latest commit on the `main` branch.
+
+When the Argo app health status is not "Healthy" this indicates that the deployment has not been successful and will need to be investigated by checking the failing pod's logs, or by running something like `kubectl describe pod <pod name> -n datagovuk` on your terminal if the logs are not available or useful. The deployment needs to be fixed before you should start testing the web application, as web traffic will be served by pods running the previous successful release.
 
 ### Promote a release to staging or production
 
