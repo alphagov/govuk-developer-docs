@@ -75,9 +75,9 @@ Builds can take up to 10 minutes. You can view progress in GitHub Actions under 
 
 Deployments typically take 5 minutes. You can view progress in Argo CD.
 
-### How to check that your release has been successfully deployed
+### Check that your release has been successfully deployed
 
-In order to validate that your release has been deployed you will need to check the relevant pod in the relevant environment for Argo CD.
+In order to validate that your release has been deployed, you will need to check the status of the relevant pod in the appropriate environment in Argo CD.
 
 For changes to `CKAN` you will need to look under the `ckan` application and for the `Find` app you will need to look under the `datagovuk` application. For example [datagovuk application in integration in Argo CD](https://argo.eks.integration.govuk.digital/applications/cluster-services/datagovuk)
 
