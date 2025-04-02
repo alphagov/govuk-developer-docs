@@ -77,12 +77,11 @@ example process is provided below. The first step is the key entry point.
 
 1. Run the following command to start the interactive update process.
 
-   ```sh
-   bundle exec rails app:update
-   ```
+    ```sh
+    bundle exec rails app:update
+    ```
 
 1. Accept all the changes with `a`.
-
    > You can alternatively review each individual change via the interactive
    > update process if you're comfortable reviewing and making decisions on
    > diffs in the command line. It's a similar interface to `git add --patch`.
@@ -90,12 +89,11 @@ example process is provided below. The first step is the key entry point.
 1. Run Rubocop to bring the code changes in line with our formatting/linting
    standards (and remove superficial changes from the diff).
 
-   ```sh
-   bundle exec rubocop --autocorrect
-   ```
+    ```sh
+    bundle exec rubocop --autocorrect
+    ```
 
 1. Review the diff and decide which changes to accept and commit.
-
    > The changes that get suggested by the update task will vary between apps.
    > They are based on a few settings, including which railties and engines are
    > enabled in `config/application.rb` and whether `config.api_only` is set to
@@ -105,11 +103,11 @@ example process is provided below. The first step is the key entry point.
    appropriate version-specific guide) and in the commit message, following the
    [GDS guidance on commit messages][].
 
-   Even if your decision is to accept a default, it's useful to know whether
-   you're just opting into a new default in the absence of a strong opinion, or
-   if you think the new setting is important and should be retained in future
-   upgrades. Documenting this will make decisions easier when performing future
-   upgrades.
+    Even if your decision is to accept a default, it's useful to know whether
+    you're just opting into a new default in the absence of a strong opinion, or
+    if you think the new setting is important and should be retained in future
+    upgrades. Documenting this will make decisions easier when performing future
+    upgrades.
 
 [GDS guidance on commit messages]:
   https://gds-way.digital.cabinet-office.gov.uk/standards/source-code/working-with-git.html#commit-messages
@@ -125,19 +123,18 @@ guidance][] that follows.
 - For changes to settings in `config/environment`, work out if we were using a
   previous Rails default.
 
-  If we weren't using a previous Rails default, look for an explanation in the
-  app's git history.
+    If we weren't using a previous Rails default, look for an explanation in the
+    app's git history.
 
-  If we were using a previous Rails default, consult the following to inform
-  your decision on whether to move to the new default:
-
-  - [GOV.UK Helm Charts][] - does the config change affect an environment
+    If we were using a previous Rails default, consult the following to inform
+    your decision on whether to move to the new default:
+    - [GOV.UK Helm Charts][] - does the config change affect an environment
     variable that we've set for the app?
-  - The app’s git history
-  - [Rails version-specific guidance][official Rails guidance]
-  - [Rails source code][] and git history related to the change
-  - [Rails change log][] for the given release
-  - [Rails configuration documentation][]
+    - The app’s git history
+    - [Rails version-specific guidance][official Rails guidance]
+    - [Rails source code][] and git history related to the change
+    - [Rails change log][] for the given release
+    - [Rails configuration documentation][]
 
 - For changes in `public/*`, in general you can leave out HTML and image files
   (and consider removing any existing ones). We serve our own error pages and

@@ -15,21 +15,20 @@ This document assumes that you have already followed the steps in [Get started d
 ## Obtain AWS credentials for your role in the cluster's AWS account
 
 1. Choose the [AWS IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) that you will use to access the cluster:
-
     - `admin`: has read-write access to everything in the cluster, including secrets
     - `poweruser`: has read-write access to everything in the `apps` namespace, but cannot view or modify secrets
     - `readonly`: can read everything in the `apps` namespace, except for secrets
 
 1. Obtain AWS credentials using `gds-cli` for the desired GOV.UK environment and role:
 
-  ```sh
-  eval $(gds aws govuk-<govuk-environment>-<role> -e --art 8h)
-  export AWS_REGION=eu-west-1
-  ```
+     ```sh
+     eval $(gds aws govuk-<govuk-environment>-<role> -e --art 8h)
+     export AWS_REGION=eu-west-1
+     ```
 
-  where:
-  - `<govuk-environment>` is `integration`, `staging`, or `production`
-  - `<role>` is `admin`, `poweruser`, or `readonly`
+    where:
+    - `<govuk-environment>` is `integration`, `staging`, or `production`
+    - `<role>` is `admin`, `poweruser`, or `readonly`
 
 ## Access a cluster for the first time
 
