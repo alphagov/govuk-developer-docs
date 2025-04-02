@@ -80,11 +80,13 @@ how lists get rendered by running the app locally or deploying to integration
 before merging changes. Formatters like Prettier are unlikely format lists in a
 Redcarpet-compliant way.
 
-Example of addressing list parsing issues:
+Examples of addressing list parsing issues:
 
-- 75666849c773549572decedf883cea1e8f1743ee
-- 897595e7704e96fc302a58b913e7b3f5a0594953
+- [7566684][]
+- [897595e][]
 
+[7566684]: https://github.com/alphagov/govuk-developer-docs/commit/75666849c773549572decedf883cea1e8f1743ee
+[897595e]: https://github.com/alphagov/govuk-developer-docs/commit/897595e7704e96fc302a58b913e7b3f5a0594953
 [issues with list parsing]:
   https://github.com/vmg/redcarpet/issues?q=is%3Aissue%20state%3Aopen%20list
 [Markdown engine]:
