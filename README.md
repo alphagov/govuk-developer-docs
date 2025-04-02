@@ -66,6 +66,30 @@ We host GOV.UK Developer Docs as a static site on GitHub Pages. The [ci.yml] Git
 - when a PR is merged to the default branch
 - on an hourly schedule, to pick up changes to docs included from other repos
 
+## List markup
+
+The Tech Docs template uses Redcarpet as its [Markdown engine][], which is quite
+particular about how to nest lists and different types of content within them.
+The gem has an infrequent release cadence and many known [issues with list
+parsing][].
+
+A different number of line breaks and spaces (for indentation) are needed for
+different types/combinations of content, and existing code is not guaranteed to
+be 'correct' as far as Redcarpet is concerned, so be sure to pay attention to
+how lists get rendered by running the app locally or deploying to integration
+before merging changes. Formatters like Prettier are unlikely format lists in a
+Redcarpet-compliant way.
+
+Example of addressing list parsing issues:
+
+- 75666849c773549572decedf883cea1e8f1743ee
+- 897595e7704e96fc302a58b913e7b3f5a0594953
+
+[issues with list parsing]:
+  https://github.com/vmg/redcarpet/issues?q=is%3Aissue%20state%3Aopen%20list
+[Markdown engine]:
+  https://github.com/alphagov/tech-docs-gem/blob/3720daadaf3f8e4693fe74c1c591493fe567b7fc/lib/govuk_tech_docs.rb#L56
+
 ## Licence
 
 [MIT License](LICENCE)
