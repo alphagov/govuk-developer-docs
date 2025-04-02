@@ -35,7 +35,7 @@ Make sure you monitor your test after deployment.
 1. Write the A/B test. Use the information in the [govuk_ab_testing gem][govuk_ab_testing] to understand how to serve different versions to your users.
 1. Add your test to the [A/B test register][register].
 1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst.
-1. Add your test to the [ab_tests configuration file][ab-tests-file] in the [govuk-fastly][govuk-fastly] repo and remove the relevant [dictionary config][dictionary-config]. See [an example pull request updating this config][pull-request-example].
+1. Add your test to the [ab_tests configuration file][ab-tests-file] in the [govuk-fastly][govuk-fastly] repo and add the relevant [dictionary config][dictionary-config]. See [an example pull request updating this config][pull-request-example].
 
 ## 3. Deploy and activate an A/B test
 
@@ -54,6 +54,6 @@ Make sure you monitor your test after deployment.
 
 [govuk-fastly]: https://github.com/alphagov/govuk-fastly
 [terraform-cloud]: https://app.terraform.io/app/govuk/workspaces/govuk-fastly
-[ab-tests-file]: https://github.com/alphagov/govuk-fastly/blob/main/ab_tests.yaml
+[ab-tests-file]: https://github.com/alphagov/govuk-fastly/blob/main/www/ab_tests.yaml
 [dictionary-config]: https://github.com/alphagov/govuk-fastly/blob/main/dictionaries.yaml
 [register]: https://docs.google.com/spreadsheets/d/1h4vGXzIbhOWwUzourPLIc8WM-iU1b6WYOVDOZxmU1Uo/edit
