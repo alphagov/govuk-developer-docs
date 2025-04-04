@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-platform-engineering"
-title: The development and deployment pipeline
+title: The development pipeline
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
@@ -52,55 +52,9 @@ Only when the tests pass and the code has been approved the Pull Request can be 
 
 ## Check for or implement a deployment freeze
 
-In exceptional circumstances, we may wish to block or _freeze_
-deployments for a short period of time. This should be done by
-raising a PR against govuk-helm-charts then adding an explanatory note
-to the application in the [Release app][release].
+We sometimes have a deployment freeze on applications, e.g. during periods where accidental bad deploys would be particularly disruptive, such as during an election.
 
-To enable or disable automatic deployments of a particular app in a particular environment
-the relevant image tag needs to be updated for that app in `govuk-helm-charts`
-
-For example to disable automatic deploys of the `govuk-replatform-test-app` to `staging`
-make the [following changes](https://github.com/alphagov/govuk-helm-charts/pull/2196)
-
-```
-image_tag: v22
-automatic_deploys_enabled: false
-promote_deployment: true
-```
-
-To re-enable automatic deploys of the `govuk-replatform-test-app` to `staging` make the [following changes](https://github.com/alphagov/govuk-helm-charts/pull/2197)
-
-```
-image_tag: v22
-automatic_deploys_enabled: true
-promote_deployment: true
-```
-
-You can still deploy urgent changes manually using the deploy GitHub Action if necessary.
-
-It is important to ensure people are aware of a code freeze:
-
-> Checking "Freeze deployments?" on Release will add an
-> "Automatic deployments disabled" label to the application.
-> This label will be visible on the landing page of release
-> and in applications page underneath the title. It provides
-> visiblity of the code freeze to other developers who may
-> check Release to view the status of deploys for that app.
-
-Let people know on Slack
-
-> Send a message to #govuk-developers on slack with the @channel
-> prefix (to ensure people who are offline are notified) and email
-> <govuk-tech-members@digital.cabinet-office.gov.uk>. Your message
-> should include the repo you are freezing, the reason why, and the
-> expected duration. Follow up to let people know when the freeze
-> is lifted.
-
-When a deploy freeze is in effect, you should avoid merging any PRs.
-This is because your changes may block other, urgent changes related
-to the deploy freeze. Your changes will also remain undeployed for a
-long time.
+You should check whether or not there is a code freeze in effect by referring to the relevant section in the [deployments documentation](/manual/deployments.html#deployment-freezes).
 
 ## Merge your own Pull Request
 
@@ -125,49 +79,10 @@ Teams are responsible for deploying their own work. We believe that
 [regular releases minimise the risk of major problems](https://gds.blog.gov.uk/2012/11/02/regular-releases-reduce-risk)
 and improve recovery time.
 
-### Continuous Deployment
-
-- Check the notes in the [Release app][release] to see if Continuous Deployment is enabled.
-- If so, after merging, you should check the Release app to see if the deployment succeeds.
-- If the latest release is not on Production within about 15 minutes, something went wrong:
-  - Refer to the [deployment documentation](/kubernetes/manage-app/access-ci-cd/#how-apps-are-deployed) for details of the deployment process so you can pinpoint where in the pipeline it failed.
-  - You can manually deploy your change if the automation fails e.g. due to a flakey [Smokey test][e2e-tests].
-
-### Manual Deployment
-
-#### Wait for the release to deploy to Integration
-
-Refer to the [manual deployments documentation](/manual/deployments.html#manual-deployments). You should verify your changes work in Integration before deploying downstream:
-
-- Run a build of [smoke tests][e2e-tests] in the environment you're deploying to.
-
-Our apps should always be in a state where `main` is deployable. You
-should raise a PR to revert your changes if they cause a problem and
-you're unable to resolve that problem straight away.
-
-#### Manually deploy to Staging, then Production
-
-Deployments to these environments are manual and require
-[production access](/manual/rules-for-getting-production-access.html).
-Go to the [Release application][release] and find the application you
-want to deploy, then select the release tag you want to deploy.
-Follow these rules:
-
-- Deployments should generally take place between 9.30am and 5pm
-  (4pm on Fridays), the core hours when most people are in the office.
-- If there's other people's code to deploy, ask them whether they're
-  okay for the changes to go out.
-- Announce in `#govuk-technical-on-call` if you anticipate your release causing
-  any issues. Stay around for a while just in case something goes wrong.
-- Check the [Release app][release] for a deploy note for the application,
-  to see if there are any special instructions or reasons not to deploy.
-  Individual app deploy freezes are usually announced here.
+Refer to the [deployments documentation](/manual/deployments.html#deployment-freezes).
 
 After a deployment:
 
 - [Check Sentry for any new errors](/manual/error-reporting.html).
-- Check the [Deployment Dashboard](/manual/deployment-dashboards.html) for any issues.
-- Run a build of [end-to-end tests][e2e-tests] in the environment you're deploying to.
-
-[release]: https://release.publishing.service.gov.uk
-[e2e-tests]: https://github.com/alphagov/govuk-e2e-tests
+- Check the [Deployment Dashboard](/manual/graphite-and-deployment-dashboards.htmll) for any issues.
+- Run a build of [end-to-end tests](https://github.com/alphagov/govuk-e2e-tests) in the environment you're deploying to.
