@@ -14,7 +14,7 @@ If user demand on your app increases, you must increase the resources available 
 2. Change your app's configuration by [following the guidance](#what-you-can-scale) below
 3. Commit this change
 
-When you merge the pull request, the changed configuration file will be [automatically synced by the Argo CD tool](/kubernetes/manage-app/access-ci-cd/#deploying-a-release-of-a-gov-uk-app).
+When you merge the pull request, the changed configuration file will be [automatically synced by the Argo CD tool](/manual/deployments.html#overview-of-the-deployment-process).
 
 You should be aware of:
 
