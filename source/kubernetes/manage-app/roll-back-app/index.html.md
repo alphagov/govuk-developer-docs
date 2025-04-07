@@ -25,7 +25,7 @@ You can roll back your app by:
 
 1. Create a pull request and merge the change into the main branch.
 
-Once you have merged your pull request, [Argo CD automatically deploys the older version of the app to production](/kubernetes/manage-app/access-ci-cd/#deploying-a-release-of-a-gov-uk-app).
+Once you have merged your pull request, [Argo CD automatically deploys the older version of the app to production](/manual/deployments.html#overview-of-the-deployment-process).
 
 ## Triggering the deploy GitHub Action to deploy an older release
 
