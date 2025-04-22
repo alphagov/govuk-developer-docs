@@ -29,7 +29,7 @@ Useful links:
 
 ## Getting access to Sentry
 
-Your tech lead should raise a PR to give you Sentry access in the [govuk_tech.yml file in govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml). Once the PR is merged and the Terraform has been applied, you'll be able to [sign in](https://sentry.io/auth/login/) using your GDS Google account.
+Your tech lead should manually add you to Sentry via the Sentry UI. Once you've been added, you'll be able to [sign in](https://sentry.io/auth/login/) using your GDS Google account.
 
 ## Nomenclature
 
