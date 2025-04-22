@@ -95,9 +95,11 @@ You should [use your Yubikey as your MFA device][yubikey-aws-mfa] if you have on
 
 ## 6. Get permissions for AWS, GitHub and other third party services
 
-Permissions to GOV.UK's AWS, [GitHub], [Fastly], [Sentry] and [Pagerduty] accounts are managed by the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) private repository. You won't be able to see this repo until you are added to the alphagov GitHub organisation.
+Permissions to GOV.UK's AWS, [GitHub], [Fastly] and [Pagerduty] accounts are managed by the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) private repository. You won't be able to see this repo until you are added to the alphagov GitHub organisation.
 
 Ask your tech lead to follow the [instructions] in govuk-user-reviewer to grant you access.
+
+For [Sentry], your tech lead should manually add you via the Sentry UI. Once you've been added, you can [sign in](https://sentry.io/auth/login/) using your GDS Google account.
 
 [Fastly]: /manual/cdn.html
 [GitHub]: /manual/github.html
