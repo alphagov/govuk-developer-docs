@@ -6,12 +6,14 @@
   type: APIs
   team: "#govuk-patterns-and-pages"
   production_hosted_on: eks
+  services: [postgres, memcached, redis]
 
 - repo_name: asset-manager
   type: APIs
   team: "#govuk-publishing-platform"
   alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
+  services: [mongo, redis]
 
 - repo_name: authenticating-proxy
   type: Supporting apps
@@ -19,6 +21,7 @@
   alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
   production_url: false
+  services: [postgres]
 
 - repo_name: bouncer
   type: Transition apps
@@ -26,6 +29,7 @@
   alerts_team: "#govuk-publishing-platform-system-alerts"
   production_hosted_on: eks
   production_url: false
+  services: [postgres]
 
 - repo_name: bulk-changer
   type: Utilities
@@ -76,6 +80,7 @@
   type: Publishing apps
   team: "#govuk-publishing-mainstream-experience-tech"
   production_hosted_on: eks
+  services: [mysql]
 
 - repo_name: contacts-admin
   type: Publishing apps
