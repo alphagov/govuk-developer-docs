@@ -8,8 +8,8 @@ parent: "/manual.html"
 ---
 
 [Brakeman][brakeman] is a static analysis tool which checks Rails applications
-for security vulnerabilities. It is effectively a type of linter, similar to
-[rubocop][]. It is configured as a [reusable workflow][] and should be included
+for security vulnerabilities. It's effectively a type of linter, similar to
+[rubocop][]. It's configured as a [reusable workflow][] and should be included
 as a job in the CI pipeline of all GOV.UK Ruby repositories.
 
 [brakeman]: https://github.com/presidentbeef/brakeman
@@ -32,7 +32,7 @@ security-analysis:
 
 ## Where to find Security Alerts
 
-To find the security alerts for a repo, first go to the Security tab of the repo and then the Code Scanning option under the Vulnerability Alerts in the sub menu. This is where [all alerts][alerts] can be found.
+To find the security alerts for a repo, go to the Security tab of the repo and select the Code Scanning option in the Vulnerability Alerts sub menu. This is where [all alerts][alerts] can be found.
 
 Additionally, when a PR is created, Brakeman scans the diff to identify vulnerabilities in the new code. These [PR specific alerts][pr-alerts] can be found on the Checks tab of the PR: select "Code scanning results" and then "Brakeman".
 
@@ -41,12 +41,12 @@ Additionally, when a PR is created, Brakeman scans the diff to identify vulnerab
 
 ## Dealing with false positives
 
-There will be times when Brakeman flags up false positives in your code. You
+Brakeman may occasionally flag up false positives in your code. You
 should try to refactor the code to satisfy Brakeman in such a way that it would
-also pass a code review. There is no benefit to refactoring the code just for
+also pass a code review. There's no benefit to refactoring the code just for
 Brakeman, if the resulting code is harder to understand.
 
-There is an [example of refactoring the Content Store][content-store-example]
+There's an [example of refactoring the Content Store][content-store-example]
 to satisfy Brakeman where the resulting code could be considered slightly less
 elegant, but still suitable without having to ignore the warning.
 
@@ -60,13 +60,11 @@ useful tool for ignoring warnings:
 $ brakeman -I
 ```
 
-It will help you decide what to do with each individual warning step by step.
+It'll help you decide what to do with each individual warning step by step.
 
-If you do decide to ignore a warning, you must include a note outlining why
-it is a false positive and not a security vulnerability.
+If you decide to ignore a warning, you must include a note outlining why
+it's a false positive and not a security vulnerability.
 
 ## Dealing with Security Alerts
 
-If you do decide to ignore a Brakeman alert, as described above, you will also need to close the security alert in GitHub.
-
-Alerts can be resolved by dismissing the alert as a false positive. You must include a note outlining why it is a false positive and not a security vulnerability.
+See [this guidance on security alerts](/manual/security-alerts.html).

@@ -21,13 +21,7 @@ When a security alert is raised, follow these steps:
 
 ### Dismissing Alerts
 
-When dismissing an alert, choose one of the predefined reasons in GitHub:
-
-- False positive
-- Used in tests
-- Won't fix
-
-You must add a comment explaining your reasoning and any supporting investigation. This ensures traceability and context for future reviewers.
+When dismissing an alert, choose one of the predefined reasons in GitHub. You must add a comment explaining your reasoning and any supporting investigation. This ensures traceability and context for future reviewers.
 
 ---
 
@@ -42,15 +36,15 @@ Brakeman alerts are static analysis results for Ruby applications.
 
 ### CodeQL (Code Scanning)
 
-CodeQL identifies vulnerabilities of **high severity and precision**.
+CodeQL is currently [configured to only identify vulnerabilities of high severity and precision](https://github.com/alphagov/govuk-infrastructure/blob/f9c3b2bddf407d78c04552563a4ba23a89c8af61/.github/workflows/codeql-analysis.yml#L24-L35).
 
 - CodeQL does **not block builds**; it simply creates alerts for later review.
-- Alerts include recommendations and references for resolving issues.
+- Alerts include recommendations and references for resolving issues. More details on this can be found in the [CodeQL documentation](https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository).
 - You may fix or dismiss alerts, but dismissals **must** include a comment explaining why.
 
 ### Dependency Review
 
-Dependency Review checks for known critical vulnerabilities in pull requests.
+Dependency Review checks for known vulnerabilities in pull requests. It's currently [configured to find "critical" issues](https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/dependency-review.yml).
 
 - It **blocks merges** when critical issues are found.
 - Alerts are resolved by updating the dependency and re-running the checks.
