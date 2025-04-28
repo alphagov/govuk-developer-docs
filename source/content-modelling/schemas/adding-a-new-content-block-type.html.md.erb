@@ -8,6 +8,14 @@ layout: multipage_layout
 
 To add a new content block type, follow the instructions below:
 
+## Add the new type to Content Data API
+
+We need to add the new type to the `no_content` Parser as they do not need frontend Parsers, [as in this commit](https://github.com/alphagov/content-data-api/commit/e02a85381dac95a7a08964e81587a1b49e384554)
+
+## Open a pull request
+
+Once these changes are made, open a pull request to Content Data API and get it approved
+
 ## Create a new schema in Publishing API
 
 Follow steps 1 to 5 in the [instructions in Publishing API for adding a new schema](https://github.com/alphagov/publishing-api/blob/main/docs/content_schemas/adding-a-new-schema.md)
