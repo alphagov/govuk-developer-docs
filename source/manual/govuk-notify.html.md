@@ -56,9 +56,8 @@ for each environment):
 
 **[👉 Sign in to the GOV.UK Notify dashboard](https://www.notifications.service.gov.uk/sign-in)**
 
-Use your own account if you have one, otherwise you can use the shared
-credentials under `2ndline/notify` in [Secrets Manager](secrets-manager.html)
-if necessary.
+You'll need to use your own account, which should have been created as part of [getting production admin access](/manual/rules-for-getting-production-access.html#production-admin-access).
+If you lack an account, ask Platform Engineering to invite you to the [GOV.UK](https://www.notifications.service.gov.uk/services/ca5ec9d0-3074-4495-bb15-dd6cf176d7ce/users), [GOV.UK Email](https://www.notifications.service.gov.uk/services/539d63a1-701d-400d-ab11-f3ee2319d4d4/users) and [GOV.UK Publishing](https://www.notifications.service.gov.uk/services/a4b5303c-bea0-4aa7-b3bd-7e5f1d25ff65/users) services in Notify.
 
 ## Receiving emails from GOV.UK Notify
 
