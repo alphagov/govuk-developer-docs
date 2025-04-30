@@ -60,6 +60,12 @@ Use your own account if you have one, otherwise you can use the shared
 credentials under `2ndline/notify` in [Secrets Manager](secrets-manager.html)
 if necessary.
 
+## Getting urgent support
+
+GOV.UK Notify provides 24/7 support for emergencies. They commit to providing a response to emergencies within 30 minutes.
+
+Request support here: <https://www.notifications.service.gov.uk/support>.
+
 ## Receiving emails from GOV.UK Notify
 
 **Note:** we have [specific documentation][email-alert-api-receive-emails] for
