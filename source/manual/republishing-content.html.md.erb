@@ -24,9 +24,9 @@ If the documents are in Whitehall, you can republish content (individually or in
 
 Try to pick the task most focused to the scope of what you need to republish to avoid unnecessary load. You can monitor the effect on the publishing queue via these Grafana dashboards:
 
-- [Grafana integration](https://grafana.integration.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
-- [Grafana staging](https://grafana.blue.staging.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
-- [Grafana production](https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
+- [Grafana integration](https://grafana.eks.integration.govuk.digital/d/sidekiq-queues/f0958a1?orgId=1&from=now-3h&to=now&timezone=browser&var-namespace=apps&var-app=whitehall-admin&refresh=auto)
+- [Grafana staging](https://grafana.eks.staging.govuk.digital/d/sidekiq-queues/f0958a1?orgId=1&from=now-3h&to=now&timezone=browser&var-namespace=apps&var-app=whitehall-admin&refresh=auto)
+- [Grafana production](https://grafana.eks.production.govuk.digital/d/sidekiq-queues/f0958a1?orgId=1&from=now-3h&to=now&timezone=browser&var-namespace=apps&var-app=whitehall-admin&refresh=auto)
 
 ## Content Publisher
 
