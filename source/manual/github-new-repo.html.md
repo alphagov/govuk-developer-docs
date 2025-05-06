@@ -10,7 +10,7 @@ When creating a new GOV.UK repo in Github, you must:
 
 - make a well-written README (see [READMEs for GOV.UK applications](/manual/readmes.html), or the [GDS Way guidance](https://gds-way.digital.cabinet-office.gov.uk/manuals/readme-guidance.html#writing-readmes) for general repositories)
 - tag it with the [`govuk`](https://github.com/search?q=topic:govuk) topic
-- add a licence following [Licensing Guidelines](/manual/licensing.html)
+- add a licence following [Licensing Guidelines](https://gds-way.digital.cabinet-office.gov.uk/manuals/licensing.html#specifying-the-licence)
 - add [Dependency Review](/manual/dependency-review.html) and [CodeQL](/manual/codeql.html) scans to its CI pipeline
 - add it to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file
 - add it to [repos.yml in govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/repos.yml). This:
