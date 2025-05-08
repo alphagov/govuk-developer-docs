@@ -19,11 +19,6 @@ Useful links:
 - [Sentry Projects](https://sentry.io/organizations/govuk/projects/)
   for a per-project view, enabling you to see which ones are causing the
   most errors right now.
-- Sentry Grafana dashboards:
-  [Production](https://grafana.production.govuk.digital/dashboard/file/sentry_errors_across_all_environments.json),
-  [Staging](https://grafana.staging.govuk.digital/dashboard/file/sentry_errors_across_all_environments.json)
-  and [Integration](https://grafana.integration.publishing.service.gov.uk/dashboard/file/sentry_errors_across_all_environments.json)
-  (all require VPN), for a per-environment breakdown of Sentry errors.
 
 [Sentry]: https://sentry.io/govuk/
 
