@@ -169,6 +169,22 @@ Pins can still be updated periodically (manually or via Dependabot), ensuring
 that you are in control of version changes. This is particularly important for
 any external or untrusted actions that GOV.UK does not maintain directly.
 
+### Only one workflow for a given branch should run at once
+
+Under certain conditions, the deployment system can number releases in the
+incorrect order if two pull requests are merged in to `main` at the same time.
+This is caused by GitHub sometimes running the CI and release workflows in the wrong order.
+
+To ensure the deployment system numbers releases in the correct order,
+you should ensure only one CI run can be active at once for a given branch.
+This can be done by adding the following to your CI file:
+
+```yaml
+concurrency:
+  group: ${{ github.workflow }}-${{ github.repository }}-${{ github.ref_name }}
+  cancel-in-progress: false
+```
+
 ### CI workflow for Ruby gems
 
 This differs to a simple Ruby application because Ruby gems are not tied to
