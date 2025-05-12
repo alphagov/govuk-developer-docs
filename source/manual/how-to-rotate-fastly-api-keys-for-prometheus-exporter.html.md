@@ -40,7 +40,7 @@ Follow these steps to revoke old tokens and issue new one.
 1. Under Access, choose __One or more services__ and select all Services under the filter `Integration`.
 1. Under Expiration, select 1 year after the current date.
 1. Choose __Create Token__.
-1. Copy the token and update the secret `govuk/fastly/prometheus-exporter` in AWS secrets manager for the Integration environment.
+1. Copy the token and update the secret `govuk/fastly/api` in AWS secrets manager for the Integration environment.
 1. In Argo CD select the `monitoring-config` application and click `Refresh` on the external secret for `fastly-exporter` to pick up the updated token.
 1. Then select the `fastly-exporter` application and delete the running `fastly-exporter-prometheus` pod to trigger a deployment of a new `fastly-exporter-prometheus` to use the new token.
 1. Check that the token is being used by clicking on `Logs` for the `fastly-exporter-prometheus` pod.
