@@ -22,23 +22,22 @@ GOV.UK publishes an emergency banner when there is:
 - a national emergency
 - a local emergency
 
-The [GOV.UK Programme Team
-on-call](https://governmentdigitalservice.pagerduty.com/schedules/PCK3XB2)
-(also known as the Senior Management Team escalations contact) will tell you if
-you need to deploy an emergency banner. This could happen outside normal office
-hours if you are on-call.
+The [GOV.UK Programme Team on-call](https://governmentdigitalservice.pagerduty.com/schedules/PCK3XB2) (also known as the Senior Management Team escalations contact) make the decision as to whether to deploy an emergency banner.
+
+Whilst this used to be a developer task, it is now expected to be actioned by a GDS content designer (from Content Operations if in office hours, or the on-call content person if out of hours).
+The content designer must have GDS Admin permission in Whitehall Publisher in order to deploy the emergency banner.
 
 ## Deploy an emergency banner
 
 ### 1. Obtain the content for the banner
 
-The GOV.UK Programme Team on-call will give you:
+The GOV.UK Programme Team on-call will provide:
 
 - the [type of emergency banner](#types-of-emergency-banners):
   notable death, national emergency or local emergency.
 - text for the heading
 
-They may optionally also give you:
+They may optionally also provide:
 
 - text for the 'short description' (a sentence displayed under the heading)
 - a URL for users to find more information (a relative URL if it's on www.gov.uk)
@@ -51,8 +50,6 @@ Navigate to one of the following locations in Whitehall Publisher and enter the 
 - [Integration](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/emergency_banner)
 - [Staging](https://whitehall-admin.staging.publishing.service.gov.uk/government/admin/emergency_banner)
 - [Production](https://whitehall-admin.publishing.service.gov.uk/government/admin/emergency_banner)
-
-> You must have GDS Admin permission for Whitehall Publisher in order to deploy the emergency banner.
 
 ### 3. Check that the banner works
 
