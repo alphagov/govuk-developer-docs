@@ -15,9 +15,8 @@ This document assumes that you have already followed the steps in [Get started d
 ## Obtain AWS credentials for your role in the cluster's AWS account
 
 1. Choose the [AWS IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) that you will use to access the cluster:
-    - `admin`: has read-write access to everything in the cluster, including secrets
-    - `poweruser`: has read-write access to everything in the `apps` namespace, but cannot view or modify secrets
-    - `readonly`: can read everything in the `apps` namespace, except for secrets
+    - `fulladmin`: has read-write "cluster-admin" access to everything in the cluster, across all namespaces, including secrets
+    - `developer`: has read-write access to most things in the `apps` and `datagovuk` namespaces, but cannot view or modify secrets
 
 1. Obtain AWS credentials using `gds-cli` for the desired GOV.UK environment and role:
 
@@ -28,7 +27,13 @@ This document assumes that you have already followed the steps in [Get started d
 
     where:
     - `<govuk-environment>` is `integration`, `staging`, or `production`
-    - `<role>` is `admin`, `poweruser`, or `readonly`
+    - `<role>` is `developer`, or `fulladmin`
+
+## Note: About using the correct role
+
+You should alwaus assume the correct role for the job. For the majority of tasks, you should try to assume the `developer` role first.
+
+Only "Production Admin" users can assume the `fulladmin` role, and should only do so if they have proven the `developer` role is insufficient. Usage of the `fulladmin` role is monitored and may cause a notification to be raised in future.
 
 ## Access a cluster for the first time
 
@@ -84,7 +89,7 @@ To switch to a cluster that you have previously configured in `~/.kube/config` a
 
     where:
     - `<govuk-environment>` is `integration`, `staging`, or `production`
-    - `<role>` is `admin`, `poweruser`, or `readonly`
+    - `<role>` is `fulladmin` or `developer`
 
 1. Switch to the corresponding kubectl context:
 
@@ -97,3 +102,13 @@ To switch to a cluster that you have previously configured in `~/.kube/config` a
      ```sh
      kubectl config get-contexts
      ```
+
+## Working with multiple clusters at once
+
+If you are working between multiple clusters, you may choose to use the GDS CLI and Kubectl commands like this:
+
+```sh
+gds aws govuk-[environment]-developer -- kubectl --context govuk-[environment] -n apps get pods
+```
+
+With this, you won't need to keep exporting and juggling different AWS credentials when swapping back and forth between environments or clusters.
