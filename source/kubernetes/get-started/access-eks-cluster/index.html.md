@@ -31,7 +31,7 @@ This document assumes that you have already followed the steps in [Get started d
 
 ## Note: About using the correct role
 
-You should alwaus assume the correct role for the job. For the majority of tasks, you should try to assume the `developer` role first.
+You should always assume the correct role for the job. For the majority of tasks, you should try to assume the `developer` role first.
 
 Only "Production Admin" users can assume the `fulladmin` role, and should only do so if they have proven the `developer` role is insufficient. Usage of the `fulladmin` role is monitored and may cause a notification to be raised in future.
 
