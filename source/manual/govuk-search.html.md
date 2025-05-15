@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-search-improvement"
+owner_slack: "#govuk-search"
 title: "GOV.UK Search: how it works"
 parent: "/manual.html"
 layout: manual_layout
