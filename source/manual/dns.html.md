@@ -12,7 +12,7 @@ parent: "/manual.html"
 GOV.UK is responsible for managing several DNS zones, spanning a number of `*.gov.uk` domains. As of February 2024, there are 45 hosted zones, configuring many hundreds of domains. A list of hosted zones is retrievable from a terminal using:
 
 ```sh
-gds aws govuk-production-poweruser -- aws route53 list-hosted-zones | grep Name
+gds aws govuk-production-developer -- aws route53 list-hosted-zones | grep Name
 ```
 
 ## Records for GOV.UK systems

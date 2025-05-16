@@ -173,7 +173,7 @@ To access an app's Rails console you’ll need to set your region and context as
 
 ```bash
 export AWS_REGION=eu-west-1
-eval $(gds aws govuk-integration-poweruser -e --art 8h)
+eval $(gds aws govuk-integration-developer -e --art 8h)
 kubectl config use-context <your-context-name>
 ```
 

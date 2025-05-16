@@ -25,16 +25,15 @@ general quick-reference guide.
     ```
 
 1. Obtain credentials to access the cluster. Use an IAM role with sufficient permissions:
-    - `-readonly` roles can view logs and configuration
-    - `-poweruser` roles can run Rake tasks or open a shell
-    - `-administrator` roles can modify base cluster services (you should not
+    - `-developer` roles can view logs, configuration and run Rake tasks or open a shell
+    - `-fulladmin` roles can modify base cluster services (you should not
       normally need this)
 
     For example:
 
     ```sh
     # Obtain IAM credentials for the AWS account (integration, staging, production).
-    eval $(gds aws govuk-integration-poweruser -e --art 8h)
+    eval $(gds aws govuk-integration-developer -e --art 8h)
 
     # Select the corresponding kubectl context. `k config get-contexts` lists them.
     k config use-context integration

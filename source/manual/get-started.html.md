@@ -149,7 +149,7 @@ You must be a member of the [alphagov GitHub org](https://github.com/alphagov/) 
     1. Run any `gds aws` command to start the first-time setup process:
 
         ```sh
-        gds aws govuk-integration-readonly -l
+        gds aws govuk-integration-developer -l
         ```
 
     1. Enter your Access Key ID and Secret Access Key when prompted.
@@ -170,7 +170,7 @@ You must be a member of the [alphagov GitHub org](https://github.com/alphagov/) 
 You can now use `gds aws` to run [AWS CLI](https://aws.amazon.com/cli/) commands by prefixing them with `gds aws <role>`. You can use `--` to avoid ambiguity between `gds` options and options for the wrapped command. For example:
 
 ```sh
-gds aws govuk-integration-readonly -- aws s3 ls
+gds aws govuk-integration-developer -- aws s3 ls
 ```
 
 [gds-users-aws-signin]: https://gds-users.signin.aws.amazon.com/console

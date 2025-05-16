@@ -70,7 +70,7 @@ We'll want to pick a `local-links-manager` pod to connect to the Console - norma
 List the LLM pods and select one:
 
 ```bash
-gds aws govuk-integration-poweruser -e
+gds aws govuk-integration-developer -e
 k get pods -l=app=local-links-manager
 
 NAME                                  READY   STATUS    RESTARTS   AGE

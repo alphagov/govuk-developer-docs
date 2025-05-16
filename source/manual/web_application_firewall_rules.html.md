@@ -53,6 +53,6 @@ We should not enable the role unless we are [engaged with the team](https://docs
 
 To enable the role:
 
-1. Open the AWS console for the affected environment, eg `gds aws govuk-integration-poweruser -l`
+1. Open the AWS console for the affected environment, eg `gds aws govuk-integration-developer -l`
 1. Navigate to the [Edit AWS Shield Response Team (SRT) access page](https://console.aws.amazon.com/wafv2/shieldv2#/drt_settings/edit)
 1. In the AWS Shield Response Team (SRT) access section, select the "Choose an existing role for the SRT to access my accounts." radio button.

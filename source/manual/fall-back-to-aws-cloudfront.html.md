@@ -28,7 +28,7 @@ This backup CDN is currently provided by AWS CloudFront.
 1. Confirm that Fastly is the cause of the incident (check [https://status.fastly.com/](https://status.fastly.com/)
   and keep an eye on twitter - if there's a major Fastly outage there will be a lot of noise)
 2. Escalate to GOV.UK SMT as soon as you begin to consider failing over
-3. Sign in to the AWS console as an admin (`gds aws govuk-production-admin -l`, or however you prefer to sign in to AWS)
+3. Sign in to the AWS console as an fulladmin (`gds aws govuk-production-fulladmin -l`, or however you prefer to sign in to AWS)
 4. Sign in to [the `govuk-production` project on GCP console](https://console.cloud.google.com/home/dashboard?project=govuk-production)
 
 Now follow the steps below for [**Production**](#production) or for [**Staging**](#staging), depending on your scenario:
@@ -55,10 +55,10 @@ You can also get the `CNAME`s to use for the secondary CDN from the AWS CLI:
 
 ```bash
   # www-cdn.production.govuk.service.gov.uk
-  gds aws govuk-production-readonly aws cloudfront list-distributions \
+  gds aws govuk-production-developer aws cloudfront list-distributions \
     --query "DistributionList.Items[?Aliases.Items[0]=='www.gov.uk'].DomainName | [0]"
   # assets.publishing.service.gov.uk
-  gds aws govuk-production-readonly aws cloudfront list-distributions \
+  gds aws govuk-production-developer aws cloudfront list-distributions \
     --query "DistributionList.Items[?Aliases.Items[0]=='assets.publishing.service.gov.uk'].DomainName | [0]"
 ```
 
@@ -95,10 +95,10 @@ You can get the `CNAME`s to use for the secondary CDN from the AWS CLI:
 
 ```bash
   # www.staging.publishing.service.gov.uk
-  gds aws govuk-staging-readonly aws cloudfront list-distributions \
+  gds aws govuk-staging-developer aws cloudfront list-distributions \
     --query "DistributionList.Items[?Aliases.Items[0]=='www.staging.publishing.service.gov.uk'].DomainName | [0]"
   # assets.staging.publishing.service.gov.uk
-  gds aws govuk-staging-readonly aws cloudfront list-distributions \
+  gds aws govuk-staging-developer aws cloudfront list-distributions \
     --query "DistributionList.Items[?Aliases.Items[0]=='assets.staging.publishing.service.gov.uk'].DomainName | [0]"
 ```
 

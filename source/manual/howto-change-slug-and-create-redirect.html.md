@@ -27,7 +27,7 @@ To run a Rake task you need to:
 
 ```bash
 export AWS_REGION=eu-west-1
-eval $(gds aws govuk-integration-poweruser -e --art 8h)
+eval $(gds aws govuk-integration-developer -e --art 8h)
 kubectl config use-context <your-context-name>
 ```
 

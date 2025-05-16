@@ -20,7 +20,7 @@ This example demonstrates a simple workflow using the `govuk-replatform-test-app
 
 ```
 # Clone the repo.
-gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://govuk-replatform-test-app
+gds aws govuk-tools-developer git clone codecommit::eu-west-2://govuk-replatform-test-app
 
 # Create a local branch.
 cd govuk-replatform-test-app
@@ -31,10 +31,10 @@ touch mychange
 git commit -m "DO NOT MERGE: testing push to CodeCommit" -- mychange
 
 # Push the branch to CodeCommit.
-gds aws govuk-tools-poweruser git push origin mybranch
+gds aws govuk-tools-developer git push origin mybranch
 
 # Clean up by deleting the example branch we just created.
-gds aws govuk-tools-poweruser git push -d origin mybranch
+gds aws govuk-tools-developer git push -d origin mybranch
 ```
 
 ## Install dependencies and set up local environment
@@ -75,7 +75,7 @@ Repository names should exactly match those in GitHub. If you are unsure whether
 1. Log into the AWS console to see the available repositories using [the GDS command line tool](/manual/get-started.html#3-install-gds-command-line-tools)
 
     ```
-    gds aws govuk-tools-poweruser --login
+    gds aws govuk-tools-developer --login
     ```
 
 1. Select the London (`eu-west-2`) region.
@@ -92,13 +92,13 @@ Repository names should exactly match those in GitHub. If you are unsure whether
 2. In your shell, obtain AWS credentials and run `git clone` to clone the repository.
 
     ```
-    gds aws govuk-tools-poweruser git clone <repository url>
+    gds aws govuk-tools-developer git clone <repository url>
     ```
 
     For example:
 
     ```
-    gds aws govuk-tools-poweruser git clone codecommit::eu-west-2://govuk-replatform-test-app
+    gds aws govuk-tools-developer git clone codecommit::eu-west-2://govuk-replatform-test-app
     ```
 
 > `git clone` on CodeCommit can sometimes be very slow initially. If `git
@@ -112,5 +112,5 @@ Once you have cloned a repository from CodeCommit, you can create local branches
 For example:
 
 ```
-gds aws govuk-tools-poweruser git push origin mybranch
+gds aws govuk-tools-developer git push origin mybranch
 ```

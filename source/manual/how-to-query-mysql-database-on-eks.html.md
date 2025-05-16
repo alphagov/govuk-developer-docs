@@ -20,7 +20,7 @@ In order to run the SQL queries and extract files from EKS pods, you would need 
 2. Switch to desired environment, e.g.
 
 ```
-eval $(gds aws govuk-integration-poweruser -e --art 8h)
+eval $(gds aws govuk-integration-developer -e --art 8h)
 kubectl config use-context integration
 ```
 
@@ -41,7 +41,7 @@ echo $GOVUK_ENVIRONMENT
 1. Log into the AWS console with the desired role
 
 ```
-gds aws govuk-integration-poweruser -l
+gds aws govuk-integration-developer -l
 ```
 
 2. Choose Secrets Manager from the Services menu
