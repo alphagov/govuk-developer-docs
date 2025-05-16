@@ -78,7 +78,7 @@ purge its cache.
 If an item urgently needs to be removed from the cache, you can create an
 invalidation from the AWS console.
 
-1. Log into the AWS console with `gds aws govuk-production-poweruser -l`.
+1. Log into the AWS console with `gds aws govuk-production-developer -l`.
 1. Under the [CloudFront distributions page](https://us-east-1.console.aws.amazon.com/cloudfront/v4/home?region=eu-west-1#/distributions),
    choose the appropriate distribution: `WWW` for www.gov.uk or `Assets` for assets.publishing.service.gov.uk.
 1. Select the "Invalidations" tab, and click "Create invalidation".

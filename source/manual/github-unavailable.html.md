@@ -37,7 +37,7 @@ docker build --platform linux/amd64 -t $REGISTRY/$REPO:$IMAGE_TAG .
 5. Log into ECR and push the image:
 
 ```
-gds aws govuk-production-poweruser aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $REGISTRY
+gds aws govuk-production-developer aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $REGISTRY
 docker push $REGISTRY/$REPO:$IMAGE_TAG
 ```
 
