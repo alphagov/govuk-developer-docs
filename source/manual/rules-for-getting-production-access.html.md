@@ -32,7 +32,7 @@ systems. Access includes:
 - Permission to [merge pull requests](/manual/merge-pr.html#header) in continuously deployed applications
 - Read-only access to logging systems such as Logit, etc.
 - Read-only access to dashboards in staging and production, such as the Argo CD web UI
-- AWS "developer" access in Staging and Production environments (via the `production_deploy_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml)) which grants read-only access to all services plus additional access to Athena, EKS and other components that are regarded as having a low potential for misuse
+- AWS "developer" access in Staging environment (via the `production_deploy_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml)) which grants read-only access to all services plus additional access to Athena, EKS and other components that are regarded as having a low potential for misuse
 - The AWS "developer" Role will also grant to access to most resources and actions in EKS (using `kubectl`) through RBAC (Role-Based Access Control)
 - "Normal" role in to GOV.UK Signon on Staging and Production (with app permissions granted as needed)
 
