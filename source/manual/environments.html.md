@@ -69,7 +69,7 @@ new releases to production.
 
 Front ends in the staging environment are reachable from GDS network addresses
 only. This is to prevent content in staging being mistakenly linked to. If you
-are working outside a GDS office, you will need to connect via the [VPN] in
+are working outside a GDS office, you will need to connect via the VPN in
 order to view the website on the staging environment. Apps that require you to
 log in via GOV.UK Signon do not require the VPN.
 
@@ -80,4 +80,3 @@ The production environment runs the versions of the applications which serve con
 [govuk-docker]: https://github.com/alphagov/govuk-docker/
 [govuk-helm-charts]: https://github.com/alphagov/govuk-helm-charts/
 [e2e-test]: /repos/govuk-e2e-tests
-[VPN]: https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/preview
