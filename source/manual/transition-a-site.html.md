@@ -50,7 +50,31 @@ For security reasons, Fastly require that *.gov.uk domains are verified before t
 
 We need to:
 
-1. Obtain the TXT record by submitting a Fastly support request. You will need to provide the 'Production bouncer' service ID and the subdomain you want to add. See an [example of support request](https://support.fastly.com/hc/en-us/requests/700875).
+1. Obtain the TXT record by submitting a Fastly support request. You will need to provide the 'Production bouncer' service ID and the subdomain you want to add.
+
+    Support requests are created on the [Fastly Support Case Management](https://support.fastly.com/s/case-management) website. You must login before creating the request, to verify you can perform actions on GOV.UK's account.
+
+    You will need the 'Service ID', which is obtained by logging into [Fastly](https://manage.fastly.com/home) and navigating to the 'Production Bouncer' service, then locating the value labelled 'ID' on the service page.
+
+    For the request type, select 'Other' and the subject can be 'Verify a subdomain'.
+
+    An example request may be as follows:
+
+    > Hi,
+    >
+    > Similar to our previous requests, we would like to add a new *.gov.uk domain to our service and understand that you now require explicit verification.
+    >
+    > Can you please provide me with the details of a TXT record we need to add to manually verify the addition?
+    >
+    > Details below:
+    >
+    > Service ID: [add the service ID here]
+    >
+    > Subdomain: [add the domain here]
+    >
+    > Kind regards,
+    >
+    > [your name]
 
 1. If the domain's DNS is managed by GOV.UK: add the DNS record to [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf) and apply terraform configuration. If the domain's DNS is managed by the department: send the TXT record to the department and ask them to add this record to the DNS.
 
