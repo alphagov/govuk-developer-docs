@@ -82,9 +82,35 @@ We need to:
 
 ### 2) Add a site to the Transition app
 
-If you have the Site Manager permission for Transition, you will see an "Add a transition site" button on each organisation page (for example, [Department for Education’s organisation page](https://transition.integration.publishing.service.gov.uk/organisations/department-for-education). Follow the instructions on that form to add a site.
+If you have the Site Manager permission for Transition, you will see an "Add a transition site" button on each organisation page. Follow the instructions on that form to add a site, using the following as guidance for common cases.
 
-If the organisation would like to manually specify paths, see the ['Configure transition mappings for a site' guidance](/manual/configure-transition-mappings.html).
+#### If the organisation would like all paths redirecting to the same domain
+
+Use the following settings for the site. All other form fields can be ignored.
+
+- TNA timestamp: get the latest timestamp as advised by the form guidance. Otherwise use the default specified on the form.
+- Homepage: the URL where all requests will be redirected to.
+- Hostname: the old domain that the requests come from (do not add `www`).
+- Global type: select 'Redirect'.
+- Global new URL: the URL where all requests will be redirected to.
+- Global redirect append path: check this option if the requester would like the path appended to the redirect (e.g. they want `https://www.my-old-domain.gov.uk/some-path` to redirect to `https://www.my-new-domain.gov.uk/some-path`). When this option is not checked, `https://www.my-old-domain.gov.uk/some-path` will redirect to `https://www.my-new-domain.gov.uk`.
+- Aliases: add the www version of the domain to this list.
+
+#### If the organisation would like all paths to return an 'archived' page
+
+Use the following settings for the site. All other form fields can be ignored.
+
+- TNA timestamp: get the latest timestamp as advised by the form guidance. Otherwise use the default specified on the form.
+- Homepage: the URL for the organisation's homepage.
+- Hostname: the old domain that the requests come from (do not add `www`).
+- Homepage title: the name for the website that will appear on the 'archived' page.
+- Homepage full URL: the URL where that will be given as an alternative on the 'archived' page.
+- Global type: select 'Archive'.
+- Aliases: add the www version of the domain to this list.
+
+#### If the organisation would like to manually specify paths
+
+See the ['Configure transition mappings for a site' guidance](/manual/configure-transition-mappings.html).
 
 ### 3) Get the organisation to lower the TTL on the DNS records a day ahead
 
