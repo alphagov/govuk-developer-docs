@@ -79,6 +79,8 @@ We need to:
 
 If you have the Site Manager permission for Transition, you will see an "Add a transition site" button on each organisation page. Follow the instructions on that form to add a site, using the following as guidance for common cases.
 
+> Note: the Transition app only displays organisations that have existing transitioned sites. To add a domain to an organisation without any existing transition sites, navigate to `https://transition.publishing.service.gov.uk/organisations/[organisation-slug]`, where the slug is that from the organisation's public page on GOV.UK.
+
 #### If the organisation would like all paths redirecting to the same domain
 
 Use the following settings for the site. All other form fields can be ignored.
