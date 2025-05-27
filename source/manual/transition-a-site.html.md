@@ -7,16 +7,11 @@ parent: "/manual.html"
 related_repos: [bouncer, transition]
 ---
 
-When a site is going to move to GOV.UK, there are two ways that the old site
-can be redirected. They can do it themselves, or they can repoint the domain at
-us. This page is about the latter.
+When a site is going to move to GOV.UK, there are two ways that the old site can be redirected. They can do it themselves, or they can repoint the domain at us. This page is about the latter.
 
-The [Transition][] app exists to allow old URLs to be mapped to pages
-on GOV.UK. These mappings are stored in a database and used by [Bouncer][] to
-handle requests to those old domains.
+The [Transition][] app exists to allow old URLs to be mapped to pages on GOV.UK. These mappings are stored in a database and used by [Bouncer][] to handle requests to those old domains.
 
-This page covers adding a site so that we can handle traffic to
-it, or changing the configuration of an existing site in the Transition app.
+This page covers adding a site so that we can handle traffic to it, or changing the configuration of an existing site in the Transition app.
 
 ## Changing the configuration of a site that is already in the Transition app
 
@@ -114,14 +109,7 @@ See the ['Configure transition mappings for a site' guidance](/manual/configure-
 
 ### 3) Get the organisation to lower the TTL on the DNS records a day ahead
 
-In order to cleanly switch the domain from the old site, the TTL needs
-to be low enough that there isn't a significant period where some users
-will get the old site and some get the new one. This is important for
-several reasons, including user experience and giving a professional
-impression to stakeholders. We normally ask for this to be done a day in
-advance, and to be lowered to 300 seconds (5 minutes). It can be raised
-again once everyone is happy there is no need to switch back - normally
-the day after.
+In order to cleanly switch the domain from the old site, the TTL needs to be low enough that there isn't a significant period where some users will get the old site and some get the new one. This is important for several reasons, including user experience and giving a professional impression to stakeholders. We normally ask for this to be done a day in advance, and to be lowered to 300 seconds (5 minutes). It can be raised again once everyone is happy there is no need to switch back - normally the day after.
 
 ### 4) Add the domain to Fastly
 
@@ -131,19 +119,12 @@ Manually trigger `govuk-fastly-bouncer-production` 'Plan and apply' run in [Terr
 
 ### 5) Point the domain at us
 
-Once the site has been imported successfully, the domain can be pointed
-at us by the organisation. For hostnames which can have a `CNAME`
-record, this is `bouncer-cdn.production.govuk.service.gov.uk`.
-Domains at the root of their zone can't use `CNAME` records, so must use
-an `A` record and point at one of the [Fastly GOV.UK IP
+Once the site has been imported successfully, the domain can be pointed at us by the organisation. For hostnames which can have a `CNAME` record, this is `bouncer-cdn.production.govuk.service.gov.uk`. Domains at the root of their zone can't use `CNAME` records, so must use an `A` record and point at one of the [Fastly GOV.UK IP
 addresses](https://github.com/alphagov/transition/blob/016c3d30e190c41eaa912ed554384a49f3418a91/app/models/host.rb#L22).
 
-If the site is one that was [administered by GDS](https://github.com/alphagov/gds-dns-config/tree/master/zones)
-(e.g. theorytest.direct.gov.uk), you will need to [update and re-deploy the DNS config](/manual/dns.html#dns-for-the-publishingservicegovuk-domain).
+If the site is one that was [administered by GDS](https://github.com/alphagov/gds-dns-config/tree/master/zones) (e.g. theorytest.direct.gov.uk), you will need to [update and re-deploy the DNS config](/manual/dns.html#dns-for-the-publishingservicegovuk-domain).
 
-You'll need to create a TLS certificate in Fastly for HTTPS domains, otherwise
-users will see a certificate error when being redirected from an external
-HTTPS URL to GOV.UK via Bouncer. Read how to [request a Fastly TLS certificate][]
+You'll need to create a TLS certificate in Fastly for HTTPS domains, otherwise users will see a certificate error when being redirected from an external HTTPS URL to GOV.UK via Bouncer. Read how to [request a Fastly TLS certificate][]
 
 ## Further reading
 
