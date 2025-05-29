@@ -109,7 +109,9 @@ Use the following settings for the site. All other form fields can be ignored.
 
 See the ['Configure transition mappings for a site' guidance](/manual/configure-transition-mappings.html).
 
-### 3) Get the organisation to lower the TTL on the DNS records a day ahead
+### 3) Get the domain owner to lower the TTL on the DNS records a day ahead
+
+> This step is only required if the domain currently has DNS records.
 
 In order to cleanly switch the domain from the old site, the TTL needs to be low enough that there isn't a significant period where some users will get the old site and some get the new one. This is important for several reasons, including user experience and giving a professional impression to stakeholders. We normally ask for this to be done a day in advance, and to be lowered to 300 seconds (5 minutes). It can be raised again once everyone is happy there is no need to switch back - normally the day after.
 
