@@ -121,12 +121,18 @@ Manually trigger `govuk-fastly-bouncer-production` 'Plan and apply' run in [Terr
 
 > If the domain currently has no DNS entries (e.g. it is brand new), this process will not set up the domain in Fastly (due to [this line of code](https://github.com/alphagov/transition/blob/8a532735ce8e61731986fd580a5d6ca1552e095f/app/controllers/hosts_controller.rb#L3C14-L3C49)). Instead you should request the domain's owner point the DNS to us (see next step) before running this project.
 
-### 5) Point the domain at us
+### 5) Change the domain's DNS to point at Bouncer
 
-Once the site has been imported successfully, the domain can be pointed at us by the organisation. For hostnames which can have a `CNAME` record, this is `bouncer-cdn.production.govuk.service.gov.uk`. Domains at the root of their zone can't use `CNAME` records, so must use an `A` record and point at one of the [Fastly GOV.UK IP
-addresses](https://github.com/alphagov/transition/blob/016c3d30e190c41eaa912ed554384a49f3418a91/app/models/host.rb#L22).
+Once the transition is ready to be deployed, the domain must be pointed at Bouncer.
 
-If the site is one that was [administered by GDS](https://github.com/alphagov/gds-dns-config/tree/master/zones) (e.g. theorytest.direct.gov.uk), you will need to [update and re-deploy the DNS config](/manual/dns.html#dns-for-the-publishingservicegovuk-domain).
+This is done is one of two ways:
+
+- Adding a 'CNAME' record: `bouncer-cdn.production.govuk.service.gov.uk` (preferred, where possible).
+- Adding an 'A' record pointing at one of the [Fastly GOV.UK IP addresses](https://github.com/alphagov/transition/blob/016c3d30e190c41eaa912ed554384a49f3418a91/app/models/host.rb#L22) (discouraged, as this hardcodes Fastly IP addresses that may change in the future).
+
+If the domain is [administered by GDS](https://github.com/alphagov/govuk-dns-tf/tree/main/zones), you will need to [update and re-deploy the DNS config](/manual/dns.html#dns-for-the-publishingservicegovuk-domain). See an [example PR](https://github.com/alphagov/govuk-dns-tf/pull/405/files) for adding a new domain with a CNAME.
+
+If the domain is administered by the requester, you must send them the new DNS details and ask them to update the DNS records.
 
 ### 6) Obtain a TLS certificate
 
