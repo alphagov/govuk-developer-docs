@@ -128,7 +128,9 @@ addresses](https://github.com/alphagov/transition/blob/016c3d30e190c41eaa912ed55
 
 If the site is one that was [administered by GDS](https://github.com/alphagov/gds-dns-config/tree/master/zones) (e.g. theorytest.direct.gov.uk), you will need to [update and re-deploy the DNS config](/manual/dns.html#dns-for-the-publishingservicegovuk-domain).
 
-You'll need to create a TLS certificate in Fastly for HTTPS domains, otherwise users will see a certificate error when being redirected from an external HTTPS URL to GOV.UK via Bouncer. Read how to [request a Fastly TLS certificate][]
+### 6) Obtain a TLS certificate
+
+You'll need to create a TLS certificate in Fastly, otherwise users will see a certificate error when being redirected from an external HTTPS URL to GOV.UK via Bouncer. Read how to [request a Fastly TLS certificate][].
 
 ## Further reading
 
