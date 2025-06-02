@@ -20,6 +20,7 @@ We have two types of production access:
 
 1. [Production Deploy access](#production-deploy-access)
 2. [Production Admin access](#production-admin-access)
+3. [Platform Engineer access](#platform-engineer-access)
 
 We have a [spreadsheet documenting the full list of permissions for both access levels](https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing).
 
@@ -83,6 +84,14 @@ A new starter/engineer will be expected to work through the following checklist 
 - The deployment pipeline - how code gets from your machine to running on production. E.g. by reading [the deployment docs](/manual#deployment), and learning on the job.
 - The incident management process. E.g. by reading through the [So, you're having an incident](/manual/incident-what-to-do) doc and completing the [incident preparedness quizzes](https://drive.google.com/drive/folders/1X9eGQMIl9ifb3X2jYcdjqrt01P9JYJzR).
 - Best practices around the principle of least privilege, how to safely debug production issues, and how to work with credentials and accounts. E.g. by pairing with another developer to practise a drill on your product team.
+
+### Platform Engineer access
+
+Platform Engineer access is a special set of access permissions that are very similar to Production Admin, except with specific additional access to aid Platform Engineers with their day-to-day operational needs. In addition to the access granted by Production Admin, it also gives:
+
+- A special set of `-platformengineer` IAM roles for each environment that provide an access level similar to the `-developer` roles except also grants "Cluster Admin" access to our EKS clusters to allow Platform Engineers to access and manage all namespaces and resources
+
+This is necessary because without this, the only way to obtain Cluster Admin access would be to assule the `fulladmin` role on a regular basis, which we are trying to discourage except for "break glass" type scenarios that may trigger alerting.
 
 ## Temporarily revoking access
 

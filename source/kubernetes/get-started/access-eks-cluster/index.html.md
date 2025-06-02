@@ -15,8 +15,9 @@ This document assumes that you have already followed the steps in [Get started d
 ## Obtain AWS credentials for your role in the cluster's AWS account
 
 1. Choose the [AWS IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) that you will use to access the cluster:
-    - `fulladmin`: has read-write "cluster-admin" access to everything in the cluster, across all namespaces, including secrets
     - `developer`: has read-write access to most things in the `apps` and `datagovuk` namespaces, but cannot view or modify secrets
+    - `fulladmin`: has read-write "cluster-admin" access to everything in the cluster, across all namespaces, including secrets
+    - `platformengineer`: also has read-write "cluster-admin access to everything in the cluster, across all namespaces, including secrets, but can be used by Platform Engineers on a regular basis without requiring an approval process
 
 1. Obtain AWS credentials using `gds-cli` for the desired GOV.UK environment and role:
 
@@ -31,9 +32,9 @@ This document assumes that you have already followed the steps in [Get started d
 
 ## Note: About using the correct role
 
-You should always assume the correct role for the job. For the majority of tasks, you should try to assume the `developer` role first.
+You should always assume the correct role for the job. For the majority of tasks, you should try to assume the `developer` role first. Platform Engineers may use the `platformengineer` role if they need to perform actions in the EKS cluster that require "Cluster Admin" permissions but don't need Admin access to other AWS services.
 
-Only "Production Admin" users can assume the `fulladmin` role, and should only do so if they have proven the `developer` role is insufficient. Usage of the `fulladmin` role is monitored and may cause a notification to be raised in future.
+Only "Platform Engineer" and "Production Admin" users can assume the `fulladmin` role, and should only do so if they have proven the `developer` or `platformengineer` roles are insufficient. Usage of the `fulladmin` role is monitored and may cause an alert to be raised in future.
 
 ## Access a cluster for the first time
 
@@ -89,7 +90,7 @@ To switch to a cluster that you have previously configured in `~/.kube/config` a
 
     where:
     - `<govuk-environment>` is `integration`, `staging`, or `production`
-    - `<role>` is `fulladmin` or `developer`
+    - `<role>` is `developer`, `fulladmin` or `platformengineer`
 
 1. Switch to the corresponding kubectl context:
 
