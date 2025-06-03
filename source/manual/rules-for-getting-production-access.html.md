@@ -91,7 +91,7 @@ Platform Engineer access is a special set of access permissions that are very si
 
 - A special set of `-platformengineer` IAM roles for each environment that provide an access level similar to the `-developer` roles except also grants "Cluster Admin" access to our EKS clusters to allow Platform Engineers to access and manage all namespaces and resources
 
-This is necessary because without this, the only way to obtain Cluster Admin access would be to assule the `fulladmin` role on a regular basis, which we are trying to discourage except for "break glass" type scenarios that may trigger alerting.
+This is necessary because without this, the only way to obtain Cluster Admin access would be to assume the `fulladmin` role on a regular basis, which we are trying to discourage except for "break glass" type scenarios that may trigger alerting.
 
 ## Temporarily revoking access
 
