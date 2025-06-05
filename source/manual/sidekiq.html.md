@@ -96,6 +96,7 @@ be in the relevant readme files for the following applications that have the Sid
 | Application    | Documentation URL                                                                               |
 |----------------|-------------------------------------------------------------------------------------------------|
 | Asset Manager  | https://github.com/alphagov/asset-manager?tab=readme-ov-file#viewing-the-sidekiq-ui             |
+| Email Alert API| https://docs.publishing.service.gov.uk/repos/email-alert-api/sidekiq-web.html                   |
 | Publishing API | https://github.com/alphagov/publishing-api/blob/main/docs/admin-tasks.md#viewing-the-sidekiq-ui |
 
 NB, GOV.UK used to have a [sidekiq-monitoring web app][sidekiq monitoring] which monitored all GOV.UK Sidekiq configurations in one place, but this was removed when GOV.UK was replatformed to Kubernetes.
