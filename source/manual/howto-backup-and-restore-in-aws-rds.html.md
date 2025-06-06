@@ -31,7 +31,7 @@ In this example we are using `local-links-manager`:
 
 ```sh
 environment=production
-gds-cli aws govuk-${environment?}-admin \
+gds-cli aws govuk-${environment?}-fulladmin \
   aws rds describe-db-snapshots \
     --query 'DBSnapshots[].DBSnapshotArn' \
   | grep local-links-manager
@@ -48,7 +48,7 @@ If no snapshots are available on Integration for the drill you can manually take
 Alternatively, you can take a snapshot via the AWS CLI:
 
 ```sh
-gds-cli aws govuk-${environment?}-admin \
+gds-cli aws govuk-${environment?}-fulladmin \
   aws rds create-db-snapshot \
     --db-instance-identifier ${db-instance-name} \
     --db-snapshot-identifier ${your-snapshot-name}
@@ -57,7 +57,7 @@ gds-cli aws govuk-${environment?}-admin \
 You can check the snapshot progress by running:
 
 ```sh
-gds-cli aws govuk-${environment?}-admin \
+gds-cli aws govuk-${environment?}-fulladmin \
   aws rds describe-db-snapshots \
     --db-snapshot-identifier ${your-snapshot-name} \
     --query 'DBSnapshots[DBSnapshotArn,Status,PercentProgress]'
@@ -70,7 +70,7 @@ Once the snapshot has been created, copy the ARN.
 For example:
 
 ```sh
-gds-cli aws govuk-${environment?}-admin \
+gds-cli aws govuk-${environment?}-fulladmin \
   aws rds describe-db-snapshots \
     --db-snapshot-identifier ${snapshot_arn} \
     --query 'DBSnapshots[].DBInstanceIdentifier'
@@ -89,7 +89,7 @@ The restored database must have the same security groups and be in the same VPC 
 After running the command below, you now have all the parameters you need (snapshot-arn, db-instance-identifier, security-group-id, db-parameter-group-name, and db-subnet-group-name) to restore the database and change the restored database's security groups to match the original's.
 
 ```sh
-gds-cli aws govuk-${environment?}-admin \
+gds-cli aws govuk-${environment?}-fulladmin \
   aws rds describe-db-instances \
     --db-instance-identifier ${db_instance_identifier?} \
     --query 'DBInstances[].[VpcSecurityGroups[].VpcSecurityGroupId,DBParameterGroups[].DBParameterGroupName,DBSubnetGroup.DBSubnetGroupName]'
@@ -114,7 +114,7 @@ db_subnet_group_name="<replace_with_previous_output>"
 Using the stored variables from the previous steps:
 
 ```sh
-gds-cli aws govuk-${environment?}-admin \
+gds-cli aws govuk-${environment?}-fulladmin \
   aws rds restore-db-instance-from-db-snapshot \
     --db-subnet-group-name ${db_subnet_group_name?} \
     --db-instance-identifier restored-${db_instance_identifier?} \
@@ -128,7 +128,7 @@ To see the newly created database instance, log into AWS Console > RDS > Databas
 Before moving on to the next step we need to ensure that the database has been fully restored and is ready to be used:
 
 ```sh
-gds-cli aws govuk-${environment?}-admin \
+gds-cli aws govuk-${environment?}-fulladmin \
   aws rds wait db-instance-available \
     --db-instance-identifier restored-${db_instance_identifier?}
 ```
@@ -140,7 +140,7 @@ This command will wait until the database is ready, and then exit without any ou
 Once the database is ready, fetch its hostname:
 
 ```sh
-gds-cli aws govuk-${environment?}-admin \
+gds-cli aws govuk-${environment?}-fulladmin \
   aws rds describe-db-instances \
     --db-instance-identifier "restored-${db_instance_identifier?}" \
     --query 'DBInstances[].Endpoint.Address'
@@ -152,7 +152,7 @@ Make a note of this.
 
 This requires updating the `govuk/local-links-manager/postgres` secret in AWS Secrets Manager.
 
-1. Log in to AWS in the correct environment: `gds aws govuk-${environment?}-admin -l`
+1. Log in to AWS in the correct environment: `gds aws govuk-${environment?}-fulladmin -l`
 1. In AWS Secrets Manager, search for and click on `govuk/local-links-manager/postgres`.
 1. Under the "Overview" tab, in the "Secret Value" section, select "Retrieve Secret Value".
 1. Make a note of the existing value, in case you need to revert the changes (for example, if performing a drill).
@@ -198,7 +198,7 @@ The command below will create a DB snapshot before the DB instance is deleted. I
 environment=production
 db_instance_identifier=<e.g. local-links-manager-postgres>
 snapshot_name=<e.g. local-links-manager-postgres-final-snapshot>
-gds-cli aws govuk-${environment?}-admin \
+gds-cli aws govuk-${environment?}-fulladmin \
   aws rds delete-db-instance \
     --db-instance-identifier ${db_instance_identifier?} \
     --final-db-snapshot-identifier ${snapshot_name?}
