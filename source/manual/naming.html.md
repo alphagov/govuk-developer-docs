@@ -32,7 +32,6 @@ Good:
 Not so good:
 
 - publisher (too generic)
-- contacts-admin (could be contacts-publisher)
 
 ### Frontend applications
 
