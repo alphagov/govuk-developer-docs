@@ -6,28 +6,21 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-## 1. Remove end-to-end tests
+## 0. Unpublish routes
+
+Some applications are responsible for publishing certain routes. If you're retiring a publishing application, make sure you check if any of its content items need to be unpublished and do it via the Publishing API.
+
+This step is marked as step 0 as really it is a pre-requisite step you ought to do _before_ retiring the application.
+
+## 1. Raise PRs to remove the app from dependent places
+
+### Remove end-to-end tests
 
 Remove any [end-to-end tests][end-to-end] specific to the application.
 
 [end-to-end]: https://github.com/alphagov/govuk-e2e-tests
 
-## 2. Update Release app
-
-Mark the application as archived in the Release app.
-
-Edit the application in the release app (you'll need the `deploy` permission to
-do this), and press the 'Delete application' button.
-
-## 3. Update Signon
-
-Mark the application as "retired" in signon, if it used it.
-
-Click on the Applications tab. Find the application that is being retired and
-click the "edit" button. Tick the box that says "This application is being
-retired", then save your changes.
-
-## 4. Remove from GOV.UK Docker
+### Remove from GOV.UK Docker
 
 Remove from the [projects directory] and any references
 in [docker compose] or throughout the repo.
@@ -35,7 +28,7 @@ in [docker compose] or throughout the repo.
 [projects directory]: https://github.com/alphagov/govuk-docker/tree/master/projects
 [docker compose]: https://github.com/alphagov/govuk-docker/blob/master/docker-compose.yml
 
-## 5. Update DNS
+### Remove public DNS entries
 
 Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the `publishing.service.gov.uk` domain.
@@ -45,33 +38,7 @@ these.
 
 [dns-changes]: /manual/dns.html#dns-for-the-publishingservicegovuk-domain
 
-## 6. Remove from the GOV.UK architecture diagram
-
-Remove the application from the [GOV.UK architecture diagram](/manual/architecture.html).
-
-## 7. Drop database
-
-Drop the database, if present - note that this might be in RDS, but it might also exist
-as a MongoDB or DocumentDB database.
-
-## 8. Unpublish routes
-
-Some applications are responsible for publishing certain routes. If you're
-retiring a publishing application, make sure you check if any of its content
-items need to be unpublished and do it via the Publishing API.
-
-## 9. Remove from Sentry
-
-Since the application has been retired, it shouldn't be tracked in Sentry.
-
-Do not do this through the Sentry UI, instead remove the application from
-[this configuration file](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/sentry/locals.tf).
-
-## 10. Remove from Heroku
-
-If relevant (e.g. if Heroku was used for previews).
-
-## 11. Remove from govuk-helm-charts
+### Remove from govuk-helm-charts
 
 Remove the app's entry in [govuk-helm-charts](https://github.com/alphagov/govuk-helm-charts/) from:
 
@@ -84,6 +51,50 @@ Remove the app's entry in [govuk-helm-charts](https://github.com/alphagov/govuk-
 It's also wise to search that repo for other references to the app being retired.
 Once the PR is merged ([Example PR](https://github.com/alphagov/govuk-helm-charts/pull/1236)), the app pods will automatically be removed by Argo.
 
-## 12. Archive the repo
+### Remove from govuk-infrastructure
+
+Remove govuk-infrastructure's references to the app.
+
+This includes Terraform-managed resources as well as the Sentry integration. See [example](https://github.com/alphagov/govuk-infrastructure/pull/2264).
+
+Note that this will automatically destroy the corresponding resources in AWS (e.g. database) on merge.
+
+## 2. Soft-mark the application as retired
+
+### Archive the repo
 
 Follow the steps at [Retire a repo](/manual/retiring-a-repo.html).
+
+### Remove from Heroku
+
+If relevant (e.g. if Heroku was used for previews).
+
+### Update Signon
+
+Mark the application as "retired" in signon, if it used it:
+
+- Click on the Applications tab.
+- Find the application that is being retired and click the "edit" button.
+- Tick the box that says "This application is retired", then save your changes.
+
+Do this in both Integration and Production, since Signon is one of the few places where Production doesn't automatically overwrite Integration.
+(Production does overwrite Staging, however, so that will have the same changes applied automatically.)
+
+### Remove from the GOV.UK architecture diagram
+
+Remove the application from the [GOV.UK architecture diagram](/manual/architecture.html).
+
+## 3. Apply the destructive actions
+
+### Merge the PRs raised earlier
+
+See step 1.
+
+### Delete the app in the Release app
+
+- Edit the application in the release app (you'll need the `deploy` permission to do this)
+- Press the 'Delete application' button.
+
+### Manually delete any AWS resources not managed by Terraform
+
+If your app is particularly unique/legacy and uses any resources that are not managed by Terraform, those resources will need manually deleting in AWS.
