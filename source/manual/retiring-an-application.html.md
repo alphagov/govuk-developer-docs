@@ -59,6 +59,14 @@ This includes Terraform-managed resources as well as the Sentry integration. See
 
 Note that this will automatically destroy the corresponding resources in AWS (e.g. database) on merge.
 
+### Remove from govuk-dependabot-merger (if applicable)
+
+[Example](https://github.com/alphagov/govuk-dependabot-merger/pull/105).
+
+### Remove from Publishing API content schema tests (if applicable)
+
+[Example](https://github.com/alphagov/publishing-api/pull/3387)
+
 ## 2. Soft-mark the application as retired
 
 ### Archive the repo
