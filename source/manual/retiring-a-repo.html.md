@@ -43,9 +43,7 @@ Follow the steps in [GOV.UK GitHub Infrastructure configuration terraform projec
 
 ## 6. Update the Developer Docs
 
-If the repo is listed in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml), mark the application as `retired`.
-
-If the repo wasn't already listed in Developer Docs then don't add it.
+Remove the repo's entry from [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml).
 
 ([#4259](https://github.com/alphagov/govuk-developer-docs/issues/4259) would eliminate this toil if fixed.)
 
