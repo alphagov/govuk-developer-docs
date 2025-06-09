@@ -13,7 +13,7 @@ Staging is overwritten every night, whereas integration is overwritten [every Mo
 
 ## Troubleshooting
 
-To check whether the env sync has succeeded for a given app and environment, visit the 'db-backup' application in Argo in the relevant environment, and search for the corresponding cronjob (or use the `kubectl` command line). For example, to check Contacts Admin on Integration, you could [visit the db-backup application in Argo Integration](https://argo.eks.integration.govuk.digital/applications/db-backup) and check the logs for the latest `db-backup-contacts-admin-mysql` job.
+To check whether the env sync has succeeded for a given app and environment, visit the 'db-backup' application in Argo in the relevant environment, and search for the corresponding cronjob (or use the `kubectl` command line). For example, to check Contacts Admin on Integration, you could [visit the db-backup application in Argo Integration](https://argo.eks.integration.govuk.digital/applications/db-backup) and check the logs for the latest `db-backup-whitehall-mysql` job.
 
 ## How it works
 
