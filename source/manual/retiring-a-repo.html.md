@@ -37,9 +37,11 @@ Archiving a repo does not remove its GitHub Pages site (if any). The site stays 
 Before you proceed with archving the repo, ensure that all workflow runs listed under "Actions" have completed or [cancel them](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/canceling-a-workflow#canceling-a-workflow-run).
 Go into the repository settings in GitHub, and [archive the repo](https://github.com/blog/2460-archiving-repositories).
 
-## 5. Remove GitHub configuration for the repo
+## 5. Stop managing GitHub configuration via Terraform
 
-Follow the steps in [GOV.UK GitHub Infrastructure configuration terraform project](https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/github#removing-repositories) to remove the repo from our GitHub configuration.
+⚠️ Ensure you follow this step, otherwise your repo will be automatically deleted rather than archived.
+
+Follow the steps in [GOV.UK GitHub Infrastructure configuration terraform project](https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/github#removing-repositories) to remove the repo configuration from our terraform state.
 
 ## 6. Update the Developer Docs
 

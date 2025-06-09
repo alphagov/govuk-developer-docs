@@ -73,6 +73,8 @@ Note that this will automatically destroy the corresponding resources in AWS (e.
 
 Follow the steps at [Retire a repo](/manual/retiring-a-repo.html).
 
+Pay special attention to the Terraform aspects of those steps: you'll want to ensure those steps are followed prior merging your govuk-infrastructure PR from earlier.
+
 ### Remove from Heroku
 
 If relevant (e.g. if Heroku was used for previews).
