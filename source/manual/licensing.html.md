@@ -107,3 +107,25 @@ All newly-uploaded documents are stored within an S3 bucket; the credentials for
 ### Anti-virus scans of uploaded documents
 
 All documents uploaded as part of the application process are scanned using ClamAV. The process to re-check any previously uploaded files against the latest definitions is currently disabled. The risks disabling this poses are mitigated due to the fact that we are purging all applications after 90+7 days.
+
+## Configuration
+
+Licensify uses a `.properties` file for configuration. This config file contains secrets such as AWS access keys. The config file is templated via external-secrets. The config file template is stored as the `licensify-config-template` ConfigMap, and external-secrets is used to render the template with secrets pulled from the `licensify-envs` secret.
+
+### Rotating AWS Access Keys
+
+To rotate the AWS access key used by Licensify:
+
+1. Create a new access key for the `licensing-application-forms` IAM user
+1. Update the `govuk/licensify` secret in Secrets Manager to include the new credentials
+1. Annotate the `licensify-envs` and `licensify-config` ExternalSecrets to trigger a refresh and restart Licensify apps
+
+```sh
+# Tell external-secrets to reload secret contents from Secrets Manager
+kubectl annotate externalsecret licensify-envs force-sync=$(date +%s) --overwrite
+kubectl annotate externalsecret licensify-config force-sync=$(date +%s) --overwrite
+# Restart Licensify apps
+kubectl rollout restart deploy/licensify-frontend deploy/licensify-feed deploy/licensify-admin
+```
+
+Keep Apto informed throughout the process via the `#gds-apto-collaboration` Slack channel. They are able to run E2E tests against Licensify to ensure everything is still working.
