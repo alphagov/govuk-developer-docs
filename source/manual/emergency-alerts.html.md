@@ -26,6 +26,8 @@ This is configured in govuk-fastly, by [dynamically selecting the backend](https
 
 We [only have one backend](https://github.com/alphagov/govuk-fastly-secrets/blob/fbf5333dafdca0250d67c043b15750a6b160de6a/secrets.yaml#L58-L61), at the time of writing. Backends have [POP shield enabled by default](https://github.com/alphagov/govuk-fastly/blob/ffd54b5c495a6daad6f6a774d53296924cb4e784/modules/www/service.tf#L83).
 
+In production, Fastly is [configured](https://github.com/alphagov/govuk-fastly-secrets/pull/62) to forward logs for `/alerts` to an S3 bucket owned by the Emergency Alerts team. This is done via an IAM role, so no secrets are maintained by us.
+
 ## Fastly automation token for cache purge
 
 The Emergency Alerts team has a Fastly automation token which allows their
