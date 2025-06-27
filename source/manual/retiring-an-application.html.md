@@ -31,7 +31,8 @@ in [docker compose] or throughout the repo.
 ### Remove public DNS entries
 
 Request any public DNS entries be removed. If the app had an admin UI, it will
-have had public DNS entries in the `publishing.service.gov.uk` domain.
+have had public DNS entries in the `publishing.service.gov.uk` domain (likely one per
+environment, all of which need removing).
 
 Follow the [instructions for DNS changes][dns-changes] in order to remove
 these.
