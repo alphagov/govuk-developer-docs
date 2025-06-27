@@ -26,11 +26,9 @@ GOV.UK developers are part of an [on-call rota](https://docs.google.com/spreadsh
   know how to fix every issue on your own
 - Logs are not as important as being available - if you need to lose some logs
   in order to bring the site back up, that's probably a good trade-off to make
-- Get paid. Make sure you submit your [payment claim form][] after your shift.
-  Payment rates can be found on the [GDS Wiki][].
+- Get paid. Follow the [documented process on the GDS Wiki][GDS Wiki].
 
-[GDS Wiki]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/how-to-guides/out-of-hours-allowance
-[payment claim form]: https://forms.gle/yvPoANwrsHz8SrL4A
+[GDS Wiki]: https://sites.google.com/digital.cabinet-office.gov.uk/the-gds-wiki/info-for-employees/people-services-hr-help/miscellaneous/out-of-hours-allowance
 
 ## Rules for Primary, Secondary and On Call
 
