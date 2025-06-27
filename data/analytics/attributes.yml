@@ -30,7 +30,7 @@
 
 - name: content_id
   description:
-  value: content attribute of meta tag govuk:content-id
+  value: content attribute of meta tag govuk:content-id or used in event_data to record the document that an interacted form is associated with
   example: a6bb0fc8-753f-4732-aabc-ff727dcf1262
   required: no
   type: string
@@ -672,3 +672,12 @@
   redact: false
   gtm_parameter: withdrawn
   ga4_display_name: Content withdrawn
+
+- name: user_id
+  value: ID of the user that has interacted with a form
+  example: random consistent string
+  required: no
+  type: string
+  redact: false
+  gtm_parameter: user_id
+  ga4_display_name: User ID
