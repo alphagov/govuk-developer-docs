@@ -37,7 +37,7 @@ class ProxyPages
   end
 
   def self.govuk_schema_names
-    SchemaNames.all.map do |schema_name|
+    GovukSchemas::Schema.schema_names.map do |schema_name|
       schema = ContentSchema.new(schema_name)
 
       {
