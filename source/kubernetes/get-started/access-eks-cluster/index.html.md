@@ -17,7 +17,8 @@ This document assumes that you have already followed the steps in [Get started d
 1. Choose the [AWS IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) that you will use to access the cluster:
     - `readonly`: has read-only access to AWS and the Kubernetes `apps` and `datagovuk` namespaces. In AWS, access to
      secrets and objects in S3 is not granted.
-    - `developer`: has read-write access to most things in the `apps` and `datagovuk` namespaces, but cannot view or modify secrets
+    - `developer`: has read-write access to most things in the `apps` and `datagovuk` namespaces, and can read the value
+      of secrets with the `2ndline/` or `govuk/` prefixes. It cannot modify the secrets in any way.
     - `fulladmin`: has read-write "cluster-admin" access to everything in the cluster, across all namespaces, including secrets
     - `platformengineer`: also has read-write "cluster-admin access to everything in the cluster, across all namespaces, including secrets, but can be used by Platform Engineers on a regular basis without requiring an approval process
 
