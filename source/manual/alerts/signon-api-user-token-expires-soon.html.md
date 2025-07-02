@@ -19,9 +19,15 @@ The Integration environment should also be updated overnight but this is not hap
 
 ### Special cases
 
-If the token is for `Trade Tariff Admin` or `Trade Tariff Backend`, see [Trade Tariff Admin on the Wiki](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin)
+If the token is for:
 
-If the token is for `Signon API Client (permission and suspension updater)` then the key will rotate automatically and the alert can be ignored.
+* `Trade Tariff Admin` or `Trade Tariff Backend`, see [Trade Tariff Admin on the Wiki](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin).
+* `Signon API Client (permission and suspension updater)` then the key will rotate automatically and the alert can be ignored.
+
+If the API user is:
+
+* a human, ask them to follow the steps below if the token is still in use.
+* an app external to GOV.UK, contact the owner to ask if the token is still in use. If so, follow step 1 below, concluding with sending the user the new token.
 
 ### 1. Issue a new token
 
