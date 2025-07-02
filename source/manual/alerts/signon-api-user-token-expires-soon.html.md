@@ -29,10 +29,6 @@ If the token is for `Signon API Client (permission and suspension updater)` then
 
 1. From the **API users** table, choose the API User whose **Email** matches the `api_user` field in the alert.
 
-    > Check the **Last synced at** time to see if the API User is still using the
-    > application. If you are sure the token is disused, you can choose
-    > **Revoke** to delete it and then you're done.
-
 1. Choose **Manage tokens**.
 
 1. Choose **Add application token**.
