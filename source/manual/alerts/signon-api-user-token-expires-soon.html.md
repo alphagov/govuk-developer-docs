@@ -13,25 +13,27 @@ expiring tokens to ensure the associated application keeps working.
 
 > 🪨 This procedure is [toil](https://sre.google/workbook/eliminating-toil/) and should be eliminated or automated away. For now, it's unfortunately still a manual process.
 
-Note that the overnight token sync cronjob will over-write any changes made in the Staging environment to match those in the Production environment so this procedure need only be followed for the Production and Integration environments. Any alerts relating to the Staging environment can be safely ignored.
+Note that the overnight token sync cronjob will overwrite any changes made in the staging environment to match those in the production environment so this procedure need only be followed for the production and integration environments. Any alerts relating to the staging environment can be safely ignored.
 
-The Integration environment should also be updated overnight but this is not happening currently. It is a known issue that when fixed will mean this procedure will need only to be followed for the Production environment.
+The integration environment should also be updated overnight but this is not happening currently. It is a known issue that when fixed will mean this procedure will need only to be followed for the production environment.
 
 ### Special cases
 
-If the token is for `Trade Tariff Admin` or `Trade Tariff Backend`, see [Trade Tariff Admin on the Wiki](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin)
+If the token is for:
 
-If the token is for `Signon API Client (permission and suspension updater)` then the key will rotate automatically and the alert can be ignored.
+* `Trade Tariff Admin` or `Trade Tariff Backend`, see [Trade Tariff Admin on the Wiki](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin).
+* `Signon API Client (permission and suspension updater)` then the key will rotate automatically and the alert can be ignored.
+
+If the API user is:
+
+* a human, ask them to follow the steps below if the token is still in use.
+* an app external to GOV.UK, contact the owner to ask if the token is still in use. If so, follow step 1 below, concluding with sending the user the new token.
 
 ### 1. Issue a new token
 
 1. Go to the [APIs page](https://signon.publishing.service.gov.uk/api_users) in Signon.
 
 1. From the **API users** table, choose the API User whose **Email** matches the `api_user` field in the alert.
-
-    > Check the **Last synced at** time to see if the API User is still using the
-    > application. If you are sure the token is disused, you can choose
-    > **Revoke** to delete it and then you're done.
 
 1. Choose **Manage tokens**.
 
@@ -42,9 +44,7 @@ If the token is for `Signon API Client (permission and suspension updater)` then
 1. Choose **Create access token**.
 
 1. Take one of the following actions:
-
     * For a token used in an application outside of GOV.UK (e.g. by HMRC): securely send the token to the consumer.
-
     * For a token used by another GOV.UK application: follow the steps in the section below.
 
 ### 2. Update the token in the secrets used by the consuming application
@@ -79,7 +79,7 @@ If the token is for `Signon API Client (permission and suspension updater)` then
 
     1. You can also check that the token works by making an API call yourself from the client app's Rails console. For example, to check that Short URL Manager can talk to Publishing API, you could:
 
-        1. Choose a method from the publishing-api client library in [gds-api-adaptors](https://github.com/alphagov/gds-api-adapters/tree/main/lib/gds_api).
+        1. Choose a method from the publishing-api client library in [gds-api-adapters](https://github.com/alphagov/gds-api-adapters/tree/main/lib/gds_api).
         1. Call the method from short-url-manager's Rails console:
 
             ```ruby
