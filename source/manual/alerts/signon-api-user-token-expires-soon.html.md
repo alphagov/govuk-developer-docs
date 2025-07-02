@@ -42,9 +42,7 @@ If the token is for `Signon API Client (permission and suspension updater)` then
 1. Choose **Create access token**.
 
 1. Take one of the following actions:
-
     * For a token used in an application outside of GOV.UK (e.g. by HMRC): securely send the token to the consumer.
-
     * For a token used by another GOV.UK application: follow the steps in the section below.
 
 ### 2. Update the token in the secrets used by the consuming application
