@@ -13,9 +13,9 @@ expiring tokens to ensure the associated application keeps working.
 
 > 🪨 This procedure is [toil](https://sre.google/workbook/eliminating-toil/) and should be eliminated or automated away. For now, it's unfortunately still a manual process.
 
-Note that the overnight token sync cronjob will over-write any changes made in the Staging environment to match those in the Production environment so this procedure need only be followed for the Production and Integration environments. Any alerts relating to the Staging environment can be safely ignored.
+Note that the overnight token sync cronjob will overwrite any changes made in the staging environment to match those in the production environment so this procedure need only be followed for the production and integration environments. Any alerts relating to the staging environment can be safely ignored.
 
-The Integration environment should also be updated overnight but this is not happening currently. It is a known issue that when fixed will mean this procedure will need only to be followed for the Production environment.
+The integration environment should also be updated overnight but this is not happening currently. It is a known issue that when fixed will mean this procedure will need only to be followed for the production environment.
 
 ### Special cases
 
@@ -79,7 +79,7 @@ If the API user is:
 
     1. You can also check that the token works by making an API call yourself from the client app's Rails console. For example, to check that Short URL Manager can talk to Publishing API, you could:
 
-        1. Choose a method from the publishing-api client library in [gds-api-adaptors](https://github.com/alphagov/gds-api-adapters/tree/main/lib/gds_api).
+        1. Choose a method from the publishing-api client library in [gds-api-adapters](https://github.com/alphagov/gds-api-adapters/tree/main/lib/gds_api).
         1. Call the method from short-url-manager's Rails console:
 
             ```ruby
