@@ -74,7 +74,7 @@ Follow steps 2, 3 and 4 from the [previous section](#1-add-support-for-your-new-
 
 ### 3. Update Whitehall
 
-[Example PR](https://github.com/alphagov/whitehall/pull/4861)
+[Example PR](https://github.com/alphagov/whitehall/pull/9856)
 
 You will need the language's:
 
@@ -84,7 +84,7 @@ You will need the language's:
 
 ### 4. Update Publishing API
 
-[Example PR]([https://github.com/alphagov/govuk-content-schemas/pull/906)
+[Example PR](https://github.com/alphagov/publishing-api/pull/3104)
 
 1. Edit `content_schemas/formats/shared/definitions/locale.jsonnet` and `config/application.rb` in alphabetical order
 2. Run `rake build_schemas` to generate all the schemas
