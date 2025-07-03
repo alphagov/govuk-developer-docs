@@ -34,7 +34,7 @@ class DocumentTypes
   end
 
   def self.schema_names_by_document_type
-    @schema_names_by_document_type ||= SchemaNames.all.each_with_object({}) do |schema_name, memo|
+    @schema_names_by_document_type ||= GovukSchemas::Schema.schema_names.each_with_object({}) do |schema_name, memo|
       # Notification schema is used as that is the only schema type that is currently generated for every type
       schema = GovukSchemas::Schema.find(notification_schema: schema_name)
       document_types = schema.dig("properties", "document_type", "enum")

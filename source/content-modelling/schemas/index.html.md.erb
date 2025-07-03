@@ -54,11 +54,7 @@ becomes `rate-1`. This is immutable, so if a title changes, the key remains the 
 
 ### Currently supported schemas
 
-<% schemas = SchemaNames.all.select { |s| s.start_with?("content_block") } %>
-<%
-  # Note - we have to add `content_block_email_address` manually - see https://github.com/alphagov/govuk-developer-docs/blob/main/app/schema_names.rb#L1
-  schemas << "content_block_email_address"
-%>
+<% schemas = GovukSchemas::Schema.schema_names.select { |s| s.start_with?("content_block") } %>
 
 There are currently <%= schemas.count %> supported schemas in Content Block Manager:
 
