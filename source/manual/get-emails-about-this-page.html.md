@@ -12,12 +12,10 @@ The [‘get emails about this page’ button][get-emails-about-this-page] was ro
 
 Before rolling out the feature, the GOV.UK account team contacted 14 departments who had content that offered users a work-around for subscribing to page-level updates.
 
-Departments asked for these 4 pages to be excluded from the roll-out:
+Departments asked for 4 pages to be exluded, of which 2 now no longer exist. The remaining 2 are:
 
 - <https://www.gov.uk/guidance/dvsa-email-alerts>
-- <https://www.gov.uk/guidance/hmcts-reform-programme-monthly-bulletin>
 - <https://www.gov.uk/guidance/coronavirus-guidance-for-the-sellafield-ltd-supply-chain>
-- <https://www.gov.uk/government/collections/ip-connect-newsletter>
 
 If content teams in departments ever ask us to add the button to these pages, it’s OK to do that.
 
