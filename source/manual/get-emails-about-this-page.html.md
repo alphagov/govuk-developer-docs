@@ -15,9 +15,7 @@ Before rolling out the feature, the GOV.UK account team contacted 14 departments
 Departments asked for these 4 pages to be excluded from the roll-out:
 
 - <https://www.gov.uk/guidance/dvsa-email-alerts>
-- <https://www.gov.uk/guidance/hmcts-reform-programme-monthly-bulletin>
 - <https://www.gov.uk/guidance/coronavirus-guidance-for-the-sellafield-ltd-supply-chain>
-- <https://www.gov.uk/government/collections/ip-connect-newsletter>
 
 If content teams in departments ever ask us to add the button to these pages, it’s OK to do that.
 
@@ -34,4 +32,4 @@ If departments ask for any more pages to be excluded, we should try to refuse th
 If you must add or remove an exemption, update the [exemption list][exemption-list] by adding or removing the `content_id` of the publication which needs to be added or removed from the list.
 
 [get-emails-about-this-page]: https://components.publishing.service.gov.uk/component-guide/single_page_notification_button
-[exemption-list]: https://github.com/alphagov/government-frontend/blob/6ecd50c198565dc9bafdb72cb42b15411e795ad2/app/presenters/content_item/single_page_notification_button.rb#L4
+[exemption-list]: https://github.com/alphagov/frontend/blob/5ebabc8d1fd547b210be65be7e2877682e961339/app/models/concerns/single_page_notification_button.rb#L4
