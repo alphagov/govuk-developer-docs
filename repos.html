@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>All GOV.UK repositories - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="All GOV.UK repositories - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="All GOV.UK repositories" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" data-module="cookie-banner" data-nosnippet role="region" aria-label="Can we store analytics cookies on your device?" hidden> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <span class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></span> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide this message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          class="govuk-header__logotype"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 148 30"
+          height="30"
+          width="148"
+          aria-label="GOV.UK"
+        >
+          <title>GOV.UK</title>
+          <path d="M22.6 10.4c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-5.9 6.7c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m10.8-3.7c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s0 2-1 2.4m3.3 4.8c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4M17 4.7l2.3 1.2V2.5l-2.3.7-.2-.2.9-3h-3.4l.9 3-.2.2c-.1.1-2.3-.7-2.3-.7v3.4L15 4.7c.1.1.1.2.2.2l-1.3 4c-.1.2-.1.4-.1.6 0 1.1.8 2 1.9 2.2h.7c1-.2 1.9-1.1 1.9-2.1 0-.2 0-.4-.1-.6l-1.3-4c-.1-.2 0-.2.1-.3m-7.6 5.7c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m-5 3c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s.1 2 1 2.4m-3.2 4.8c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m14.8 11c4.4 0 8.6.3 12.3.8 1.1-4.5 2.4-7 3.7-8.8l-2.5-.9c.2 1.3.3 1.9 0 2.7-.4-.4-.8-1.1-1.1-2.3l-1.2 4c.7-.5 1.3-.8 2-.9-1.1 2.5-2.6 3.1-3.5 3-1.1-.2-1.7-1.2-1.5-2.1.3-1.2 1.5-1.5 2.1-.1 1.1-2.3-.8-3-2-2.3 1.9-1.9 2.1-3.5.6-5.6-2.1 1.6-2.1 3.2-1.2 5.5-1.2-1.4-3.2-.6-2.5 1.6.9-1.4 2.1-.5 1.9.8-.2 1.1-1.7 2.1-3.5 1.9-2.7-.2-2.9-2.1-2.9-3.6.7-.1 1.9.5 2.9 1.9l.4-4.3c-1.1 1.1-2.1 1.4-3.2 1.4.4-1.2 2.1-3 2.1-3h-5.4s1.7 1.9 2.1 3c-1.1 0-2.1-.2-3.2-1.4l.4 4.3c1-1.4 2.2-2 2.9-1.9-.1 1.5-.2 3.4-2.9 3.6-1.9.2-3.4-.8-3.5-1.9-.2-1.3 1-2.2 1.9-.8.7-2.3-1.2-3-2.5-1.6.9-2.2.9-3.9-1.2-5.5-1.5 2-1.3 3.7.6 5.6-1.2-.7-3.1 0-2 2.3.6-1.4 1.8-1.1 2.1.1.2.9-.3 1.9-1.5 2.1-.9.2-2.4-.5-3.5-3 .6 0 1.2.3 2 .9l-1.2-4c-.3 1.1-.7 1.9-1.1 2.3-.3-.8-.2-1.4 0-2.7l-2.9.9C1.3 23 2.6 25.5 3.7 30c3.7-.5 7.9-.8 12.3-.8m28.3-11.6c0 .9.1 1.7.3 2.5.2.8.6 1.5 1 2.2.5.6 1 1.1 1.7 1.5.7.4 1.5.6 2.5.6.9 0 1.7-.1 2.3-.4s1.1-.7 1.5-1.1c.4-.4.6-.9.8-1.5.1-.5.2-1 .2-1.5v-.2h-5.3v-3.2h9.4V28H55v-2.5c-.3.4-.6.8-1 1.1-.4.3-.8.6-1.3.9-.5.2-1 .4-1.6.6s-1.2.2-1.8.2c-1.5 0-2.9-.3-4-.8-1.2-.6-2.2-1.3-3-2.3-.8-1-1.4-2.1-1.8-3.4-.3-1.4-.5-2.8-.5-4.3s.2-2.9.7-4.2c.5-1.3 1.1-2.4 2-3.4.9-1 1.9-1.7 3.1-2.3 1.2-.6 2.6-.8 4.1-.8 1 0 1.9.1 2.8.3.9.2 1.7.6 2.4 1s1.4.9 1.9 1.5c.6.6 1 1.3 1.4 2l-3.7 2.1c-.2-.4-.5-.9-.8-1.2-.3-.4-.6-.7-1-1-.4-.3-.8-.5-1.3-.7-.5-.2-1.1-.2-1.7-.2-1 0-1.8.2-2.5.6-.7.4-1.3.9-1.7 1.5-.5.6-.8 1.4-1 2.2-.3.8-.4 1.9-.4 2.7zM71.5 6.8c1.5 0 2.9.3 4.2.8 1.2.6 2.3 1.3 3.1 2.3.9 1 1.5 2.1 2 3.4s.7 2.7.7 4.2-.2 2.9-.7 4.2c-.4 1.3-1.1 2.4-2 3.4-.9 1-1.9 1.7-3.1 2.3-1.2.6-2.6.8-4.2.8s-2.9-.3-4.2-.8c-1.2-.6-2.3-1.3-3.1-2.3-.9-1-1.5-2.1-2-3.4-.4-1.3-.7-2.7-.7-4.2s.2-2.9.7-4.2c.4-1.3 1.1-2.4 2-3.4.9-1 1.9-1.7 3.1-2.3 1.2-.5 2.6-.8 4.2-.8zm0 17.6c.9 0 1.7-.2 2.4-.5s1.3-.8 1.7-1.4c.5-.6.8-1.3 1.1-2.2.2-.8.4-1.7.4-2.7v-.1c0-1-.1-1.9-.4-2.7-.2-.8-.6-1.6-1.1-2.2-.5-.6-1.1-1.1-1.7-1.4-.7-.3-1.5-.5-2.4-.5s-1.7.2-2.4.5-1.3.8-1.7 1.4c-.5.6-.8 1.3-1.1 2.2-.2.8-.4 1.7-.4 2.7v.1c0 1 .1 1.9.4 2.7.2.8.6 1.6 1.1 2.2.5.6 1.1 1.1 1.7 1.4.6.3 1.4.5 2.4.5zM88.9 28 83 7h4.7l4 15.7h.1l4-15.7h4.7l-5.9 21h-5.7zm28.8-3.6c.6 0 1.2-.1 1.7-.3.5-.2 1-.4 1.4-.8.4-.4.7-.8.9-1.4.2-.6.3-1.2.3-2v-13h4.1v13.6c0 1.2-.2 2.2-.6 3.1s-1 1.7-1.8 2.4c-.7.7-1.6 1.2-2.7 1.5-1 .4-2.2.5-3.4.5-1.2 0-2.4-.2-3.4-.5-1-.4-1.9-.9-2.7-1.5-.8-.7-1.3-1.5-1.8-2.4-.4-.9-.6-2-.6-3.1V6.9h4.2v13c0 .8.1 1.4.3 2 .2.6.5 1 .9 1.4.4.4.8.6 1.4.8.6.2 1.1.3 1.8.3zm13-17.4h4.2v9.1l7.4-9.1h5.2l-7.2 8.4L148 28h-4.9l-5.5-9.4-2.7 3V28h-4.2V7zm-27.6 16.1c-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7-1.2-2.7-2.7-2.7z"></path>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#all-gov-uk-repositories"><span>All GOV.UK repositories</span></a>
+    <ul>
+      <li>
+        <a href="#repos-by-type"><span>Repos by type</span></a>
+      </li>
+      <li>
+        <a href="#repos-by-team"><span>Repos by team</span></a>
+      </li>
+      <li>
+        <a href="#reuse-this-data"><span>Reuse this data</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id='all-gov-uk-repositories'>All GOV.UK repositories</h1><p>GOV.UK maintains at least 126 repositories including apps, services, gems and documentation.</p>
+<h2 id='repos-by-type'>Repos by type</h2><div class="table-container">
+        <table>
+          <tr>
+<th>Type</th>
+<th>Count</th>
+<th>Repos</th>
+</tr><tr>
+<th scope="row">AI apps</th>
+<td>1</td>
+<td><a href="/repos/govuk-chat.html">govuk-chat</a></td>
+</tr><tr>
+<th scope="row">APIs</th>
+<td>13</td>
+<td>
+<a href="/repos/account-api.html">account-api</a>, <a href="/repos/asset-manager.html">asset-manager</a>, <a href="/repos/content-data-api.html">content-data-api</a>, <a href="/repos/content-store.html">content-store</a>, <a href="/repos/email-alert-api.html">email-alert-api</a>, <a href="/repos/hmrc-manuals-api.html">hmrc-manuals-api</a>, <a href="/repos/link-checker-api.html">link-checker-api</a>, <a href="/repos/locations-api.html">locations-api</a>, <a href="/repos/places-manager.html">places-manager</a>, <a href="/repos/publishing-api.html">publishing-api</a>, <a href="/repos/search-api.html">search-api</a>, <a href="/repos/search-api-v2.html">search-api-v2</a>, <a href="/repos/support-api.html">support-api</a>
+</td>
+</tr><tr>
+<th scope="row">Data engineering</th>
+<td>3</td>
+<td>
+<a href="/repos/ga4-dataform.html">ga4-dataform</a>, <a href="/repos/govuk-polling-dataform.html">govuk-polling-dataform</a>, <a href="/repos/search-api-v2-dataform.html">search-api-v2-dataform</a>
+</td>
+</tr><tr>
+<th scope="row">Data science</th>
+<td>5</td>
+<td>
+<a href="/repos/govuk-analytics-engineering.html">govuk-analytics-engineering</a>, <a href="/repos/govuk-data-science-workshop.html">govuk-data-science-workshop</a>, <a href="/repos/govuk-knowledge-graph-gcp.html">govuk-knowledge-graph-gcp</a>, <a href="/repos/govuk-knowledge-graph-search.html">govuk-knowledge-graph-search</a>, <a href="/repos/govuk-s3-mirror.html">govuk-s3-mirror</a>
+</td>
+</tr><tr>
+<th scope="row">Design System</th>
+<td>1</td>
+<td><a href="/repos/govuk-design-guide.html">govuk-design-guide</a></td>
+</tr><tr>
+<th scope="row">Frontend apps</th>
+<td>8</td>
+<td>
+<a href="/repos/collections.html">collections</a>, <a href="/repos/email-alert-frontend.html">email-alert-frontend</a>, <a href="/repos/feedback.html">feedback</a>, <a href="/repos/finder-frontend.html">finder-frontend</a>, <a href="/repos/frontend.html">frontend</a>, <a href="/repos/government-frontend.html">government-frontend</a>, <a href="/repos/smart-answers.html">smart-answers</a>, <a href="/repos/static.html">static</a>
+</td>
+</tr><tr>
+<th scope="row">Gems</th>
+<td>24</td>
+<td>
+<a href="/repos/gds-api-adapters.html">gds-api-adapters</a>, <a href="/repos/gds-sso.html">gds-sso</a>, <a href="/repos/govspeak.html">govspeak</a>, <a href="/repos/govuk_ab_testing.html">govuk_ab_testing</a>, <a href="/repos/govuk_admin_template.html">govuk_admin_template</a>, <a href="/repos/govuk_app_config.html">govuk_app_config</a>, <a href="/repos/govuk_chat_private.html">govuk_chat_private</a>, <a href="/repos/govuk_content_block_tools.html">govuk_content_block_tools</a>, <a href="/repos/govuk_document_types.html">govuk_document_types</a>, <a href="/repos/govuk_message_queue_consumer.html">govuk_message_queue_consumer</a>, <a href="/repos/govuk_personalisation.html">govuk_personalisation</a>, <a href="/repos/govuk_publishing_components.html">govuk_publishing_components</a>, <a href="/repos/govuk_schemas.html">govuk_schemas</a>, <a href="/repos/govuk_sidekiq.html">govuk_sidekiq</a>, <a href="/repos/govuk_test.html">govuk_test</a>, <a href="/repos/govuk_web_banners.html">govuk_web_banners</a>, <a href="/repos/optic14n.html">optic14n</a>, <a href="/repos/plek.html">plek</a>, <a href="/repos/rack-logstasher.html">rack-logstasher</a>, <a href="/repos/rails_translation_manager.html">rails_translation_manager</a>, <a href="/repos/rubocop-govuk.html">rubocop-govuk</a>, <a href="/repos/select-with-search-component.html">select-with-search-component</a>, <a href="/repos/siteimprove_api_client.html">siteimprove_api_client</a>, <a href="/repos/slimmer.html">slimmer</a>
+</td>
+</tr><tr>
+<th scope="row">Licensing apps</th>
+<td>1</td>
+<td><a href="/repos/licensify.html">licensify</a></td>
+</tr><tr>
+<th scope="row">Publishing apps</th>
+<td>13</td>
+<td>
+<a href="/repos/collections-publisher.html">collections-publisher</a>, <a href="/repos/content-publisher.html">content-publisher</a>, <a href="/repos/content-tagger.html">content-tagger</a>, <a href="/repos/govuk-graphql.html">govuk-graphql</a>, <a href="/repos/local-links-manager.html">local-links-manager</a>, <a href="/repos/manuals-publisher.html">manuals-publisher</a>, <a href="/repos/maslow.html">maslow</a>, <a href="/repos/publisher.html">publisher</a>, <a href="/repos/service-manual-publisher.html">service-manual-publisher</a>, <a href="/repos/short-url-manager.html">short-url-manager</a>, <a href="/repos/specialist-publisher.html">specialist-publisher</a>, <a href="/repos/travel-advice-publisher.html">travel-advice-publisher</a>, <a href="/repos/whitehall.html">whitehall</a>
+</td>
+</tr><tr>
+<th scope="row">Services</th>
+<td>1</td>
+<td><a href="/repos/email-alert-service.html">email-alert-service</a></td>
+</tr><tr>
+<th scope="row">Supporting apps</th>
+<td>7</td>
+<td>
+<a href="/repos/authenticating-proxy.html">authenticating-proxy</a>, <a href="/repos/content-data-admin.html">content-data-admin</a>, <a href="/repos/release.html">release</a>, <a href="/repos/router.html">router</a>, <a href="/repos/search-admin.html">search-admin</a>, <a href="/repos/signon.html">signon</a>, <a href="/repos/support.html">support</a>
+</td>
+</tr><tr>
+<th scope="row">Transition apps</th>
+<td>2</td>
+<td>
+<a href="/repos/bouncer.html">bouncer</a>, <a href="/repos/transition.html">transition</a>
+</td>
+</tr><tr>
+<th scope="row">Utilities</th>
+<td>42</td>
+<td>
+<a href="/repos/bulk-changer.html">bulk-changer</a>, <a href="/repos/bulk-merger.html">bulk-merger</a>, <a href="/repos/ckan-helm.html">ckan-helm</a>, <a href="/repos/content-block-editor.html">content-block-editor</a>, <a href="/repos/content-modelling-e2e.html">content-modelling-e2e</a>, <a href="/repos/data-community-tech-docs.html">data-community-tech-docs</a>, <a href="/repos/fastly-exporter.html">fastly-exporter</a>, <a href="/repos/github-trello-poster.html">github-trello-poster</a>, <a href="/repos/govspeak-preview.html">govspeak-preview</a>, <a href="/repos/govspeak-visual-editor.html">govspeak-visual-editor</a>, <a href="/repos/govuk-browser-extension.html">govuk-browser-extension</a>, <a href="/repos/govuk-content-api-docs.html">govuk-content-api-docs</a>, <a href="/repos/govuk-crd-library.html">govuk-crd-library</a>, <a href="/repos/govuk-dependabot-merger.html">govuk-dependabot-merger</a>, <a href="/repos/govuk-dependency-checker.html">govuk-dependency-checker</a>, <a href="/repos/govuk-developer-docs.html">govuk-developer-docs</a>, <a href="/repos/govuk-display-screen.html">govuk-display-screen</a>, <a href="/repos/govuk-dns-tf.html">govuk-dns-tf</a>, <a href="/repos/govuk-dns-ui.html">govuk-dns-ui</a>, <a href="/repos/govuk-docker.html">govuk-docker</a>, <a href="/repos/govuk-e2e-tests.html">govuk-e2e-tests</a>, <a href="/repos/govuk-exporter.html">govuk-exporter</a>, <a href="/repos/govuk-fastly.html">govuk-fastly</a>, <a href="/repos/govuk-fastly-secrets.html">govuk-fastly-secrets</a>, <a href="/repos/govuk-helm-charts.html">govuk-helm-charts</a>, <a href="/repos/govuk-infrastructure.html">govuk-infrastructure</a>, <a href="/repos/govuk-mirror.html">govuk-mirror</a>, <a href="/repos/govuk-pact-broker.html">govuk-pact-broker</a>, <a href="/repos/govuk-platform-internal.html">govuk-platform-internal</a>, <a href="/repos/govuk-replatform-test-app.html">govuk-replatform-test-app</a>, <a href="/repos/govuk-rfcs.html">govuk-rfcs</a>, <a href="/repos/govuk-rota-announcer.html">govuk-rota-announcer</a>, <a href="/repos/govuk-rota-generator.html">govuk-rota-generator</a>, <a href="/repos/govuk-ruby-images.html">govuk-ruby-images</a>, <a href="/repos/govuk-user-reviewer.html">govuk-user-reviewer</a>, <a href="/repos/markdown-toolbar-element.html">markdown-toolbar-element</a>, <a href="/repos/miller-columns-element.html">miller-columns-element</a>, <a href="/repos/paste-html-to-govspeak.html">paste-html-to-govspeak</a>, <a href="/repos/public-asset-checker.html">public-asset-checker</a>, <a href="/repos/seal.html">seal</a>, <a href="/repos/terraform-govuk-infrastructure-sensitive.html">terraform-govuk-infrastructure-sensitive</a>, <a href="/repos/terraform-govuk-tfe-workspacer.html">terraform-govuk-tfe-workspacer</a>
+</td>
+</tr><tr>
+<th scope="row">data.gov.uk apps</th>
+<td>5</td>
+<td>
+<a href="/repos/ckan-mock-harvest-sources.html">ckan-mock-harvest-sources</a>, <a href="/repos/ckanext-datagovuk.html">ckanext-datagovuk</a>, <a href="/repos/ckanext-spatial.html">ckanext-spatial</a>, <a href="/repos/datagovuk-tech-docs.html">datagovuk-tech-docs</a>, <a href="/repos/datagovuk_find.html">datagovuk_find</a>
+</td>
+</tr>
+        </table>
+      </div><h2 id='repos-by-team'>Repos by team</h2><p>You can also view a <a href="/repos/by-team-and-type.html">breakdown of repositories by team and type</a>.</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Team</th>
+<th>Count</th>
+<th>Repos</th>
+</tr><tr>
+<th scope="row">#data-engineering</th>
+<td>8</td>
+<td>
+<a href="/repos/data-community-tech-docs.html">data-community-tech-docs</a>, <a href="/repos/ga4-dataform.html">ga4-dataform</a>, <a href="/repos/govuk-analytics-engineering.html">govuk-analytics-engineering</a>, <a href="/repos/govuk-data-science-workshop.html">govuk-data-science-workshop</a>, <a href="/repos/govuk-knowledge-graph-gcp.html">govuk-knowledge-graph-gcp</a>, <a href="/repos/govuk-knowledge-graph-search.html">govuk-knowledge-graph-search</a>, <a href="/repos/govuk-polling-dataform.html">govuk-polling-dataform</a>, <a href="/repos/govuk-s3-mirror.html">govuk-s3-mirror</a>
+</td>
+</tr><tr>
+<th scope="row">#dev-notifications-ai-govuk</th>
+<td>4</td>
+<td>
+<a href="/repos/govuk-chat.html">govuk-chat</a>, <a href="/repos/govuk_ab_testing.html">govuk_ab_testing</a>, <a href="/repos/govuk_chat_private.html">govuk_chat_private</a>, <a href="/repos/search-api.html">search-api</a>
+</td>
+</tr><tr>
+<th scope="row">#gds-apto-collaboration</th>
+<td>1</td>
+<td><a href="/repos/licensify.html">licensify</a></td>
+</tr><tr>
+<th scope="row">#govuk-datagovuk</th>
+<td>6</td>
+<td>
+<a href="/repos/ckan-helm.html">ckan-helm</a>, <a href="/repos/ckan-mock-harvest-sources.html">ckan-mock-harvest-sources</a>, <a href="/repos/ckanext-datagovuk.html">ckanext-datagovuk</a>, <a href="/repos/ckanext-spatial.html">ckanext-spatial</a>, <a href="/repos/datagovuk-tech-docs.html">datagovuk-tech-docs</a>, <a href="/repos/datagovuk_find.html">datagovuk_find</a>
+</td>
+</tr><tr>
+<th scope="row">#govuk-developers</th>
+<td>2</td>
+<td>
+<a href="/repos/govuk-developer-docs.html">govuk-developer-docs</a>, <a href="/repos/govuk-rfcs.html">govuk-rfcs</a>
+</td>
+</tr><tr>
+<th scope="row">#govuk-insights-and-analytics</th>
+<td>1</td>
+<td><a href="/repos/govuk-display-screen.html">govuk-display-screen</a></td>
+</tr><tr>
+<th scope="row">#govuk-navigation-tech</th>
+<td>7</td>
+<td>
+<a href="/repos/collections.html">collections</a>, <a href="/repos/frontend.html">frontend</a>, <a href="/repos/government-frontend.html">government-frontend</a>, <a href="/repos/govuk_document_types.html">govuk_document_types</a>, <a href="/repos/rails_translation_manager.html">rails_translation_manager</a>, <a href="/repos/slimmer.html">slimmer</a>, <a href="/repos/static.html">static</a>
+</td>
+</tr><tr>
+<th scope="row">#govuk-patterns-and-pages</th>
+<td>11</td>
+<td>
+<a href="/repos/account-api.html">account-api</a>, <a href="/repos/email-alert-api.html">email-alert-api</a>, <a href="/repos/email-alert-frontend.html">email-alert-frontend</a>, <a href="/repos/email-alert-service.html">email-alert-service</a>, <a href="/repos/feedback.html">feedback</a>, <a href="/repos/finder-frontend.html">finder-frontend</a>, <a href="/repos/govuk_personalisation.html">govuk_personalisation</a>, <a href="/repos/govuk_web_banners.html">govuk_web_banners</a>, <a href="/repos/local-links-manager.html">local-links-manager</a>, <a href="/repos/locations-api.html">locations-api</a>, <a href="/repos/places-manager.html">places-manager</a>
+</td>
+</tr><tr>
+<th scope="row">#govuk-platform-engineering</th>
+<td>37</td>
+<td>
+<a href="/repos/bulk-changer.html">bulk-changer</a>, <a href="/repos/bulk-merger.html">bulk-merger</a>, <a href="/repos/content-data-admin.html">content-data-admin</a>, <a href="/repos/content-data-api.html">content-data-api</a>, <a href="/repos/fastly-exporter.html">fastly-exporter</a>, <a href="/repos/github-trello-poster.html">github-trello-poster</a>, <a href="/repos/govuk-crd-library.html">govuk-crd-library</a>, <a href="/repos/govuk-dependabot-merger.html">govuk-dependabot-merger</a>, <a href="/repos/govuk-dependency-checker.html">govuk-dependency-checker</a>, <a href="/repos/govuk-dns-tf.html">govuk-dns-tf</a>, <a href="/repos/govuk-dns-ui.html">govuk-dns-ui</a>, <a href="/repos/govuk-docker.html">govuk-docker</a>, <a href="/repos/govuk-e2e-tests.html">govuk-e2e-tests</a>, <a href="/repos/govuk-exporter.html">govuk-exporter</a>, <a href="/repos/govuk-fastly.html">govuk-fastly</a>, <a href="/repos/govuk-fastly-secrets.html">govuk-fastly-secrets</a>, <a href="/repos/govuk-helm-charts.html">govuk-helm-charts</a>, <a href="/repos/govuk-infrastructure.html">govuk-infrastructure</a>, <a href="/repos/govuk-mirror.html">govuk-mirror</a>, <a href="/repos/govuk-pact-broker.html">govuk-pact-broker</a>, <a href="/repos/govuk-platform-internal.html">govuk-platform-internal</a>, <a href="/repos/govuk-replatform-test-app.html">govuk-replatform-test-app</a>, <a href="/repos/govuk-rota-announcer.html">govuk-rota-announcer</a>, <a href="/repos/govuk-rota-generator.html">govuk-rota-generator</a>, <a href="/repos/govuk-ruby-images.html">govuk-ruby-images</a>, <a href="/repos/govuk-user-reviewer.html">govuk-user-reviewer</a>, <a href="/repos/govuk_app_config.html">govuk_app_config</a>, <a href="/repos/govuk_test.html">govuk_test</a>, <a href="/repos/plek.html">plek</a>, <a href="/repos/rack-logstasher.html">rack-logstasher</a>, <a href="/repos/release.html">release</a>, <a href="/repos/router.html">router</a>, <a href="/repos/rubocop-govuk.html">rubocop-govuk</a>, <a href="/repos/seal.html">seal</a>, <a href="/repos/siteimprove_api_client.html">siteimprove_api_client</a>, <a href="/repos/terraform-govuk-infrastructure-sensitive.html">terraform-govuk-infrastructure-sensitive</a>, <a href="/repos/terraform-govuk-tfe-workspacer.html">terraform-govuk-tfe-workspacer</a>
+</td>
+</tr><tr>
+<th scope="row">#govuk-publishing-components</th>
+<td>1</td>
+<td><a href="/repos/public-asset-checker.html">public-asset-checker</a></td>
+</tr><tr>
+<th scope="row">#govuk-publishing-content-modelling-dev</th>
+<td>3</td>
+<td>
+<a href="/repos/content-block-editor.html">content-block-editor</a>, <a href="/repos/content-modelling-e2e.html">content-modelling-e2e</a>, <a href="/repos/govuk_content_block_tools.html">govuk_content_block_tools</a>
+</td>
+</tr><tr>
+<th scope="row">#govuk-publishing-design-guide</th>
+<td>1</td>
+<td><a href="/repos/govuk-design-guide.html">govuk-design-guide</a></td>
+</tr><tr>
+<th scope="row">#govuk-publishing-mainstream-experience-tech</th>
+<td>4</td>
+<td>
+<a href="/repos/collections-publisher.html">collections-publisher</a>, <a href="/repos/content-tagger.html">content-tagger</a>, <a href="/repos/publisher.html">publisher</a>, <a href="/repos/smart-answers.html">smart-answers</a>
+</td>
+</tr><tr>
+<th scope="row">#govuk-publishing-platform</th>
+<td>21</td>
+<td>
+<a href="/repos/asset-manager.html">asset-manager</a>, <a href="/repos/authenticating-proxy.html">authenticating-proxy</a>, <a href="/repos/bouncer.html">bouncer</a>, <a href="/repos/content-store.html">content-store</a>, <a href="/repos/gds-api-adapters.html">gds-api-adapters</a>, <a href="/repos/gds-sso.html">gds-sso</a>, <a href="/repos/govspeak.html">govspeak</a>, <a href="/repos/govspeak-preview.html">govspeak-preview</a>, <a href="/repos/govuk-content-api-docs.html">govuk-content-api-docs</a>, <a href="/repos/govuk-graphql.html">govuk-graphql</a>, <a href="/repos/govuk_message_queue_consumer.html">govuk_message_queue_consumer</a>, <a href="/repos/govuk_schemas.html">govuk_schemas</a>, <a href="/repos/govuk_sidekiq.html">govuk_sidekiq</a>, <a href="/repos/hmrc-manuals-api.html">hmrc-manuals-api</a>, <a href="/repos/link-checker-api.html">link-checker-api</a>, <a href="/repos/optic14n.html">optic14n</a>, <a href="/repos/publishing-api.html">publishing-api</a>, <a href="/repos/signon.html">signon</a>, <a href="/repos/support.html">support</a>, <a href="/repos/support-api.html">support-api</a>, <a href="/repos/transition.html">transition</a>
+</td>
+</tr><tr>
+<th scope="row">#govuk-ruby-frontenders</th>
+<td>1</td>
+<td><a href="/repos/govuk_publishing_components.html">govuk_publishing_components</a></td>
+</tr><tr>
+<th scope="row">#govuk-search</th>
+<td>3</td>
+<td>
+<a href="/repos/search-admin.html">search-admin</a>, <a href="/repos/search-api-v2.html">search-api-v2</a>, <a href="/repos/search-api-v2-dataform.html">search-api-v2-dataform</a>
+</td>
+</tr><tr>
+<th scope="row">#govuk-whitehall-experience-tech</th>
+<td>15</td>
+<td>
+<a href="/repos/content-publisher.html">content-publisher</a>, <a href="/repos/govspeak-visual-editor.html">govspeak-visual-editor</a>, <a href="/repos/govuk-browser-extension.html">govuk-browser-extension</a>, <a href="/repos/govuk_admin_template.html">govuk_admin_template</a>, <a href="/repos/manuals-publisher.html">manuals-publisher</a>, <a href="/repos/markdown-toolbar-element.html">markdown-toolbar-element</a>, <a href="/repos/maslow.html">maslow</a>, <a href="/repos/miller-columns-element.html">miller-columns-element</a>, <a href="/repos/paste-html-to-govspeak.html">paste-html-to-govspeak</a>, <a href="/repos/select-with-search-component.html">select-with-search-component</a>, <a href="/repos/service-manual-publisher.html">service-manual-publisher</a>, <a href="/repos/short-url-manager.html">short-url-manager</a>, <a href="/repos/specialist-publisher.html">specialist-publisher</a>, <a href="/repos/travel-advice-publisher.html">travel-advice-publisher</a>, <a href="/repos/whitehall.html">whitehall</a>
+</td>
+</tr>
+        </table>
+      </div><h2 id='reuse-this-data'>Reuse this data</h2><p>You can download this data as JSON or as CSV (<a href="/repos.json">repos.json</a> and <a href="/repos.csv">repos.csv</a>).</p>
+<p>In Google Spreadsheets, use the following formula to import all of the data:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>=importData("https://docs.publishing.service.gov.uk/repos.csv")
+</code></pre></div>
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/repos.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27All+GOV.UK+repositories%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos.html%29&amp;labels=bug&amp;title=Re%3A+%27All+GOV.UK+repositories%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
