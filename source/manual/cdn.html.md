@@ -96,6 +96,30 @@ Fastly publish their cache node [IP address ranges as JSON from their API][fastl
 
 [fastly_ips]: https://api.fastly.com/public-ip-list
 
+## DDOS protection
+
+Our services that sit behind Fastly have [DDOS protection enabled](https://manage.fastly.com/security/ddos/protection).
+
+If we are experiencing an attack, and this is providing insufficient mitigation [start an incident](/manual/incident-what-to-do.html).
+
+Sign in to Fastly and check for [DDOS events](https://manage.fastly.com/security/ddos/protection/events). There should be more information about any attack there.
+
+If you need to raise a support ticket with Fastly, use the contact details on the ["So you're having an incident" document](https://docs.google.com/document/d/1ty12B5eBWB9YSfnD9xY1mr5rtTQxdNxRdmEGgibilN0).
+
+You may want to consider adjusting the other [Web Application Firewalls](/manual/web_application_firewall_rules.html) we use. Further CDN traffic management options are below.
+
+### Unblocking legitimate traffic
+
+It's possible that the automatic protection may block legitimate traffic. In this case, you may wish to [start an incident](/manual/incident-what-to-do.html).
+
+Sign in to Fastly and check for [DDOS events](https://manage.fastly.com/security/ddos/protection/events). There should be more information about any detected events there.
+
+You can inspect all the [matched rules for each event](https://www.fastly.com/documentation/guides/security/ddos-protection/about-the-ddos-protection-controls/#about-the-events-page) to check if any of them look like they're incorrectly matching legitimate traffic.
+
+You can [override any of the generated DDOS protection rules](https://www.fastly.com/documentation/guides/security/ddos-protection/about-the-ddos-protection-controls/#modifying-rule-behavior) to block, log only, accept the default, or just turn them off.
+
+If you need to do this, raise a support ticket with Fastly so that they can investigate false positives.
+
 ## Blocking traffic at the CDN edge
 
 If you need to block some subset of traffic, identify a unique field or set of fields to block on that will catch that traffic, but avoid blocking legitimate user traffic as far as possible. There are several options below.
