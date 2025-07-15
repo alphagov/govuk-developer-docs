@@ -55,7 +55,7 @@ At the time of writing, Whitehall content is rendered by either Frontend or Gove
 4. Run the following commands to import your csv, and create a new locale file.
 
     ```bash
-    $ rake translation:import_all
+    $ rake translation:import:all
     ```
 
 3. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key.
@@ -72,7 +72,13 @@ At the time of writing, Whitehall content is rendered by either Frontend or Gove
 
 Follow steps 2, 3 and 4 from the [previous section](#1-add-support-for-your-new-language-to-the-frontend-rendering-applications) from within the govuk-publishing-components repo.
 
-### 3. Update Whitehall
+### 3. Add support for your new language to govspeak
+
+Add a new locale file to [the `locales` directory](https://github.com/alphagov/govspeak/tree/main/locales) containing translations for this language. Use the `en.yml` file as a template for obtaining the keys.
+
+After making this change, [release a new version the gem](/manual/publishing-a-ruby-gem.html#releasing-gem-versions) then update Whitehall and Publishing API to use the new version of the gem.
+
+### 4. Update Whitehall
 
 [Example PR](https://github.com/alphagov/whitehall/pull/9856)
 
@@ -82,14 +88,14 @@ You will need the language's:
 - Native name (e.g. Cymraeg)
 - Text direction (ltr or rtl)
 
-### 4. Update Publishing API
+### 5. Update Publishing API
 
 [Example PR](https://github.com/alphagov/publishing-api/pull/3104)
 
 1. Edit `content_schemas/formats/shared/definitions/locale.jsonnet` and `config/application.rb` in alphabetical order
 2. Run `rake build_schemas` to generate all the schemas
 
-### 5. Update Content Store
+### 6. Update Content Store
 
 [Example PR](https://github.com/alphagov/content-store/pull/1383)
 
