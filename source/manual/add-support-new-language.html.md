@@ -55,7 +55,7 @@ At the time of writing, Whitehall content is rendered by either Frontend or Gove
 4. Run the following commands to import your csv, and create a new locale file.
 
     ```bash
-    $ rake translation:import_all
+    $ rake translation:import:all
     ```
 
 3. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key.
