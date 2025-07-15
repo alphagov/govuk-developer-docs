@@ -12,12 +12,10 @@ The [‘get emails about this page’ button][get-emails-about-this-page] was ro
 
 Before rolling out the feature, the GOV.UK account team contacted 14 departments who had content that offered users a work-around for subscribing to page-level updates.
 
-Departments asked for these 4 pages to be excluded from the roll-out:
+Departments asked for 4 pages to be exluded, of which 2 now no longer exist. The remaining 2 are:
 
 - <https://www.gov.uk/guidance/dvsa-email-alerts>
-- <https://www.gov.uk/guidance/hmcts-reform-programme-monthly-bulletin>
 - <https://www.gov.uk/guidance/coronavirus-guidance-for-the-sellafield-ltd-supply-chain>
-- <https://www.gov.uk/government/collections/ip-connect-newsletter>
 
 If content teams in departments ever ask us to add the button to these pages, it’s OK to do that.
 
@@ -34,4 +32,4 @@ If departments ask for any more pages to be excluded, we should try to refuse th
 If you must add or remove an exemption, update the [exemption list][exemption-list] by adding or removing the `content_id` of the publication which needs to be added or removed from the list.
 
 [get-emails-about-this-page]: https://components.publishing.service.gov.uk/component-guide/single_page_notification_button
-[exemption-list]: https://github.com/alphagov/government-frontend/blob/6ecd50c198565dc9bafdb72cb42b15411e795ad2/app/presenters/content_item/single_page_notification_button.rb#L4
+[exemption-list]: https://github.com/alphagov/frontend/blob/01235d11381a43f0ea961c4d659bb4dc09c59b92/app/models/concerns/single_page_notification_button.rb#L5
