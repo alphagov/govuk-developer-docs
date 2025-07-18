@@ -1,0 +1,494 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>content-publisher: 16. Publishing times and change history - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/content-publisher/adr/0016-publishing-times-and-change-history.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="content-publisher: 16. Publishing times and change history - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/content-publisher/adr/0016-publishing-times-and-change-history.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="content-publisher: 16. Publishing times and change history" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/content-publisher/adr/0016-publishing-times-and-change-history.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" data-module="cookie-banner" data-nosnippet role="region" aria-label="Can we store analytics cookies on your device?" hidden> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <span class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></span> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide this message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          class="govuk-header__logotype"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 148 30"
+          height="30"
+          width="148"
+          aria-label="GOV.UK"
+        >
+          <title>GOV.UK</title>
+          <path d="M22.6 10.4c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-5.9 6.7c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m10.8-3.7c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s0 2-1 2.4m3.3 4.8c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4M17 4.7l2.3 1.2V2.5l-2.3.7-.2-.2.9-3h-3.4l.9 3-.2.2c-.1.1-2.3-.7-2.3-.7v3.4L15 4.7c.1.1.1.2.2.2l-1.3 4c-.1.2-.1.4-.1.6 0 1.1.8 2 1.9 2.2h.7c1-.2 1.9-1.1 1.9-2.1 0-.2 0-.4-.1-.6l-1.3-4c-.1-.2 0-.2.1-.3m-7.6 5.7c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m-5 3c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s.1 2 1 2.4m-3.2 4.8c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m14.8 11c4.4 0 8.6.3 12.3.8 1.1-4.5 2.4-7 3.7-8.8l-2.5-.9c.2 1.3.3 1.9 0 2.7-.4-.4-.8-1.1-1.1-2.3l-1.2 4c.7-.5 1.3-.8 2-.9-1.1 2.5-2.6 3.1-3.5 3-1.1-.2-1.7-1.2-1.5-2.1.3-1.2 1.5-1.5 2.1-.1 1.1-2.3-.8-3-2-2.3 1.9-1.9 2.1-3.5.6-5.6-2.1 1.6-2.1 3.2-1.2 5.5-1.2-1.4-3.2-.6-2.5 1.6.9-1.4 2.1-.5 1.9.8-.2 1.1-1.7 2.1-3.5 1.9-2.7-.2-2.9-2.1-2.9-3.6.7-.1 1.9.5 2.9 1.9l.4-4.3c-1.1 1.1-2.1 1.4-3.2 1.4.4-1.2 2.1-3 2.1-3h-5.4s1.7 1.9 2.1 3c-1.1 0-2.1-.2-3.2-1.4l.4 4.3c1-1.4 2.2-2 2.9-1.9-.1 1.5-.2 3.4-2.9 3.6-1.9.2-3.4-.8-3.5-1.9-.2-1.3 1-2.2 1.9-.8.7-2.3-1.2-3-2.5-1.6.9-2.2.9-3.9-1.2-5.5-1.5 2-1.3 3.7.6 5.6-1.2-.7-3.1 0-2 2.3.6-1.4 1.8-1.1 2.1.1.2.9-.3 1.9-1.5 2.1-.9.2-2.4-.5-3.5-3 .6 0 1.2.3 2 .9l-1.2-4c-.3 1.1-.7 1.9-1.1 2.3-.3-.8-.2-1.4 0-2.7l-2.9.9C1.3 23 2.6 25.5 3.7 30c3.7-.5 7.9-.8 12.3-.8m28.3-11.6c0 .9.1 1.7.3 2.5.2.8.6 1.5 1 2.2.5.6 1 1.1 1.7 1.5.7.4 1.5.6 2.5.6.9 0 1.7-.1 2.3-.4s1.1-.7 1.5-1.1c.4-.4.6-.9.8-1.5.1-.5.2-1 .2-1.5v-.2h-5.3v-3.2h9.4V28H55v-2.5c-.3.4-.6.8-1 1.1-.4.3-.8.6-1.3.9-.5.2-1 .4-1.6.6s-1.2.2-1.8.2c-1.5 0-2.9-.3-4-.8-1.2-.6-2.2-1.3-3-2.3-.8-1-1.4-2.1-1.8-3.4-.3-1.4-.5-2.8-.5-4.3s.2-2.9.7-4.2c.5-1.3 1.1-2.4 2-3.4.9-1 1.9-1.7 3.1-2.3 1.2-.6 2.6-.8 4.1-.8 1 0 1.9.1 2.8.3.9.2 1.7.6 2.4 1s1.4.9 1.9 1.5c.6.6 1 1.3 1.4 2l-3.7 2.1c-.2-.4-.5-.9-.8-1.2-.3-.4-.6-.7-1-1-.4-.3-.8-.5-1.3-.7-.5-.2-1.1-.2-1.7-.2-1 0-1.8.2-2.5.6-.7.4-1.3.9-1.7 1.5-.5.6-.8 1.4-1 2.2-.3.8-.4 1.9-.4 2.7zM71.5 6.8c1.5 0 2.9.3 4.2.8 1.2.6 2.3 1.3 3.1 2.3.9 1 1.5 2.1 2 3.4s.7 2.7.7 4.2-.2 2.9-.7 4.2c-.4 1.3-1.1 2.4-2 3.4-.9 1-1.9 1.7-3.1 2.3-1.2.6-2.6.8-4.2.8s-2.9-.3-4.2-.8c-1.2-.6-2.3-1.3-3.1-2.3-.9-1-1.5-2.1-2-3.4-.4-1.3-.7-2.7-.7-4.2s.2-2.9.7-4.2c.4-1.3 1.1-2.4 2-3.4.9-1 1.9-1.7 3.1-2.3 1.2-.5 2.6-.8 4.2-.8zm0 17.6c.9 0 1.7-.2 2.4-.5s1.3-.8 1.7-1.4c.5-.6.8-1.3 1.1-2.2.2-.8.4-1.7.4-2.7v-.1c0-1-.1-1.9-.4-2.7-.2-.8-.6-1.6-1.1-2.2-.5-.6-1.1-1.1-1.7-1.4-.7-.3-1.5-.5-2.4-.5s-1.7.2-2.4.5-1.3.8-1.7 1.4c-.5.6-.8 1.3-1.1 2.2-.2.8-.4 1.7-.4 2.7v.1c0 1 .1 1.9.4 2.7.2.8.6 1.6 1.1 2.2.5.6 1.1 1.1 1.7 1.4.6.3 1.4.5 2.4.5zM88.9 28 83 7h4.7l4 15.7h.1l4-15.7h4.7l-5.9 21h-5.7zm28.8-3.6c.6 0 1.2-.1 1.7-.3.5-.2 1-.4 1.4-.8.4-.4.7-.8.9-1.4.2-.6.3-1.2.3-2v-13h4.1v13.6c0 1.2-.2 2.2-.6 3.1s-1 1.7-1.8 2.4c-.7.7-1.6 1.2-2.7 1.5-1 .4-2.2.5-3.4.5-1.2 0-2.4-.2-3.4-.5-1-.4-1.9-.9-2.7-1.5-.8-.7-1.3-1.5-1.8-2.4-.4-.9-.6-2-.6-3.1V6.9h4.2v13c0 .8.1 1.4.3 2 .2.6.5 1 .9 1.4.4.4.8.6 1.4.8.6.2 1.1.3 1.8.3zm13-17.4h4.2v9.1l7.4-9.1h5.2l-7.2 8.4L148 28h-4.9l-5.5-9.4-2.7 3V28h-4.2V7zm-27.6 16.1c-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7-1.2-2.7-2.7-2.7z"></path>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/content-publisher.html" rel="noopener" class="govuk-link">content-publisher</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/content-publisher/approach-to-analytics.html" rel="noopener" class="govuk-link">Approach to Analytics</a></li>
+    <li><a href="/repos/content-publisher/edit-change-note-history.html" rel="noopener" class="govuk-link">Editing a document's change history</a></li>
+    <li><a href="/repos/content-publisher/history-mode.html" rel="noopener" class="govuk-link">History mode</a></li>
+    <li><a href="/repos/content-publisher/import-from-whitehall.html" rel="noopener" class="govuk-link">Importing documents from Whitehall to Content Publisher</a></li>
+    <li><a href="/repos/content-publisher/removing-documents.html" rel="noopener" class="govuk-link">Removing or removing and redirecting a document</a></li>
+    <li><a href="/repos/content-publisher/scheduled-publishing.html" rel="noopener" class="govuk-link">Scheduled publishing</a></li>
+    <li><a href="/repos/content-publisher/testing-strategy.html" rel="noopener" class="govuk-link">Testing Strategy</a></li>
+    <li><a href="/repos/content-publisher/user-permissions.html" rel="noopener" class="govuk-link">User Permissions</a></li>
+    <li class="subdir__heading">adr</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/content-publisher/adr/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">1. Record architecture decisions</a></li>
+    <li><a href="/repos/content-publisher/adr/0002-use-local-datastore.html" rel="noopener" class="govuk-link">2: Use local datastore for publisher workflow</a></li>
+    <li><a href="/repos/content-publisher/adr/0003-initial-domain-modelling.html" rel="noopener" class="govuk-link">3. Initial Domain Modelling</a></li>
+    <li><a href="/repos/content-publisher/adr/0004-editing-microcopy.html" rel="noopener" class="govuk-link">4. Editing Microcopy</a></li>
+    <li><a href="/repos/content-publisher/adr/0005-avoiding-initialisation-flickers.html" rel="noopener" class="govuk-link">5. Avoiding initialisation flickering in HTML</a></li>
+    <li><a href="/repos/content-publisher/adr/0006-tagging-governments.html" rel="noopener" class="govuk-link">6. Tagging Content to Governments</a></li>
+    <li><a href="/repos/content-publisher/adr/0007-minimal-model.html" rel="noopener" class="govuk-link">7. Minimal Model</a></li>
+    <li><a href="/repos/content-publisher/adr/0008-restricted-deletion.html" rel="noopener" class="govuk-link">8. Restricted Deletion</a></li>
+    <li><a href="/repos/content-publisher/adr/0009-modelling-history.html" rel="noopener" class="govuk-link">9. Modelling history</a></li>
+    <li><a href="/repos/content-publisher/adr/0010-sending-email-notifications.html" rel="noopener" class="govuk-link">10. Sending email notifiations</a></li>
+    <li><a href="/repos/content-publisher/adr/0011-moving-business-logic-out-of-controllers.html" rel="noopener" class="govuk-link">11. Moving business logic out of controllers</a></li>
+    <li><a href="/repos/content-publisher/adr/0012-file-attachment-rendering.html" rel="noopener" class="govuk-link">12. Rendering File Attachments outside of Govspeak</a></li>
+    <li><a href="/repos/content-publisher/adr/0013-permitted-deletion.html" rel="noopener" class="govuk-link">13. Permitted Deletion</a></li>
+    <li><a href="/repos/content-publisher/adr/0014-political-and-government-tagging.html" rel="noopener" class="govuk-link">14. Political and Government Tagging</a></li>
+    <li><a href="/repos/content-publisher/adr/0015-bulk-data-loading.html" rel="noopener" class="govuk-link">15. Bulk data loading</a></li>
+    <li><a href="/repos/content-publisher/adr/0016-publishing-times-and-change-history.html" rel="noopener" class="govuk-link">16. Publishing times and change history</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "content-publisher",
+        "@id": "http://www.dev.gov.uk/repos/content-publisher.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/content-publisher.html">content-publisher</a>
+        </li>
+  </ol>
+</div>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/content-publisher/commit/adfc9d715d519b1008e89fbf9fc0bd9d6ce461bf">12 Mar 2020</a>
+</div>
+
+  <h1 class="page-title">content-publisher: 16. Publishing times and change history</h1>
+
+  
+<p>Date: 2020-03-20</p>
+<h2 id="context">Context</h2>
+<p>Content that is published on GOV.UK has metadata to indicate the history of
+the content. This is comprised of a time to indicate when the first iteration of
+that content was published (<code>first_published_at</code>), a time for when the content
+was last changed in a meaningful way (<code>public_updated_at</code>) and a
+change history which records a change note and the publishing time of each of
+these meaningful changes. By convention, the first item in a change history of
+GOV.UK content is provided by the publishing application without publisher
+input. This item has a change note of "First published." and has the time the
+content was initially published on GOV.UK.</p>
+<p>To set these metadata fields Content Publisher has relied on the Publishing API
+automatically setting the time fields and using it's
+<a href="https://github.com/alphagov/publishing-api/blob/master/doc/model.md#changenote">ChangeNote</a> model. This model stores a record for each
+major change published on GOV.UK and can collate them to build a change
+history. This meant that Content Publisher has not needed to store
+<code>first_published_at</code>, <code>public_updated_at</code> or a full change history and has only
+needed to store a change note for an edition.</p>
+<p>We had concerns that continued usage of the Publishing API time and change
+history system would lead to discrepancies when migrating content from Whitehall
+to Content Publisher. This led to us doing a review of the system and problems,
+where some relate to migration and others are broader.</p>
+<h3 id="problems-identified">Problems identified</h3>
+<h4 id="1-having-accurate-times-for-whitehall-migrated-content">1. Having accurate times for Whitehall migrated content</h4>
+<p>When content is migrated from Whitehall to Content Publisher we want all the
+times associated with that content to remain the same. Whitehall complicates
+this by passing two time values to represent the first publishing time: the
+aforementioned <code>first_published_at</code> field and a deprecated time value,
+<code>first_public_at</code>, which is used <a href="https://github.com/alphagov/government-frontend/blob/a800707ddafacfa9cea2a5ac0e8f9dfad4eed8d3/app/presenters/content_item/updatable.rb#L17-L19">preferentially to
+<code>first_published_at</code></a> when rendering the content. Content
+Publisher does not populate the <code>first_public_at</code> field.</p>
+<p>Some content items, notably older ones that pre-date Whitehall sending a
+<code>first_published_at</code> value, can have different values for
+each of these times - A consequence of these not matching is that migrated
+content would show a different first publishing time.</p>
+<h4 id="2-migrating-change-notes-from-whitehall">2. Migrating change notes from Whitehall</h4>
+<p>Whitehall doesn't make use of the <a href="https://github.com/alphagov/publishing-api/blob/master/doc/model.md#changenote">Publishing API ChangeNote</a>
+model to build a change history, instead Whitehall creates it's own change
+history for content and includes it when updating content with the Publishing
+API. This has a consequence that the data stored in ChangeNote models in
+Publishing API for Whitehall content cannot be relied upon as there are no
+guarantees of its accuracy. There is also not an expectation that this data is
+accurate as many pieces of Whitehall content were created before the
+ChangeNote model was introduced to Publishing API.</p>
+<p>For Content Publisher to migrate change histories for Whitehall content it
+would need to ensure the entire change history is in sync with the Publishing
+API.</p>
+<h4 id="3-removingediting-change-notes">3. Removing/editing change notes</h4>
+<p>It is a relatively common task that GOV.UK 2nd line support engineers are
+<a href="https://docs.publishing.service.gov.uk/manual/howto-remove-change-note-from-whitehall.html">requested to remove or modify a change note</a> for a published
+piece of content. To resolve this in Whitehall a developer would modify a past
+edition of a piece of content to either remove or amend the change note.</p>
+<p>In Content Publisher it is not ideal to modify a past edition. An
+<a href="https://github.com/alphagov/content-publisher/blob/481f4cb2af21918d115fe542601a101db622f9b5/docs/adr/0009-modelling-history.md#core-concepts">edition</a> represents a snapshot of the content as it was
+published on GOV.UK and any edits invalidate the accuracy of this snapshot.</p>
+<h4 id="4-backdating-content">4. Backdating content</h4>
+<p>The backdating feature in Content Publisher supports only backdating the first
+edition of a piece of content and not subsequent ones as is allowed by
+Whitehall. This is because the Publishing API does not have the means to change
+the initial item in the change history for content and thus would cause a
+change history that is inconsistent with the <code>first_published_at</code> time. This
+has a consequence for publishers that if they make a mistake with backdating
+or forget to backdate in Content Publisher then they cannot rectify this
+without creating a new document or requesting support from developers.</p>
+<h3 id="approaches-considered">Approaches considered</h3>
+<h4 id="1-correct-whitehall-data-in-the-publishing-api">1. Correct Whitehall data in the Publishing API</h4>
+<p>We considered doing an audit and syncing exercise for times and change
+histories from Whitehall to the Publishing API. This would involve either
+doing a large data modification exercise or creating new endpoints
+in the Publishing API that allow importing this data.</p>
+<p>The positive of this approach was that it could mean Content Publisher
+could continue to rely on the Publishing API for time and change history
+management without needing this data stored in Content Publisher.</p>
+<p>The negatives to this were that there would be no guarantees that this data
+would remain accurate once the work was complete, as Whitehall continues to
+operate; nor would it be easy to check whether data is still
+accurate during migration as Content Publisher does not store it. This also
+didn't allow any improvements in removing/editing change history or allowing
+backdating past the first edition.</p>
+<h4 id="2-store-times-and-change-history-in-content-publisher-and-sync-them-to-publishing-api">2. Store times and change history in Content Publisher and sync them to Publishing API</h4>
+<p>We considered changing Content Publisher to be similar in approach to
+Whitehall and be the canonical source of publishing times and change history.
+Each time Content Publisher content is updated the Publishing API would be
+sent the times and change history.</p>
+<p>This approach offers a greater degree of control over data, which allows
+Content Publisher to enhance the backdating feature and provide more support for
+change history removal/editing. This also offers a higher degree of
+compatibility with Whitehall for migrating content due to it being a similar
+model.</p>
+<p>This negative is that it increases Content Publisher's responsibilities
+to storing time and change history. It also means that prior to publishing
+content Content Publisher would need to update timestamps in the Publishing API
+which adds an additional API call.</p>
+<h4 id="3-adapt-publishing-api-to-support-an-altering-change-history">3. Adapt Publishing API to support an altering change history</h4>
+<p>We considered modifying the Publishing API to allow the altering of change
+histories. This would involve change notes having a particular id value that
+could be used to identify them in requests.</p>
+<p>As a positive, this allows each change note to be treated as a separate concept
+to content and, compared to other approaches, allows a reduction in duplicate
+data shared between different editions of content.</p>
+<p>A negative of this is that it requires additional development and complexity
+for the Publishing API with a potential migration needed for existing content.
+It also presented a number of complications over whether change history would
+be part of a draft/live workflow, since content already has this concern.</p>
+<h2 id="decision">Decision</h2>
+<p>We decided to take the approach of storing times and change history in Content
+Publisher.</p>
+<p>We felt that this was the most pragmatic approach as it didn't require
+additional development to the Publishing API and was the most compatible with
+Whitehall's approach to change history. The increased control this offered
+was also consistent with a potential future feature of allowing change history
+to be modified via a user interface.</p>
+<p>We concluded that the recommended approach for change history in the Publishing
+API was ultimately flawed and should be reconsidered as a recommendation. Our
+concerns were:</p>
+<ul>
+<li>all publishing applications, with the exception of Specialist Publisher,
+use the Publishing API as a syncing target rather than a store of publishing
+history, which is a reversal from the unrealised intention that Publishing
+API is the canonical store for content and history;</li>
+<li>change history is the lone outlier as user visible data on GOV.UK that a
+publishing application cannot fix in case of any issues;</li>
+<li>the Publishing API ChangeNote model was designed to be append-only and
+is therefore incompatible with the ability to change the time that content
+is marked as first published (as the change history will disagree with this
+value) or to resolve any mistakes.</li>
+</ul>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>Content Publisher will store all the information needed to present
+<code>first_published_at</code>, <code>public_updated_at</code> and change history to the Publishing
+API. In doing so Content Publisher will be considered the canonical source
+of this data. This data will be reflected by non user editable data of
+<code>first_published_at</code> on a Document model and <code>published_at</code> on an Edition model,
+which reflects the time that Content Publisher published the content. In
+addition to the existing <code>change_note</code> field on a MetadataRevision there
+will also be a <code>change_history</code> field that stores a JSON representation of all
+the previous change history entries for the content.</p>
+<p>This <code>change_history</code> field will be used to store a collection of timestamps
+with notes. These will not include the fixed "First published." change note as
+this will automatically be appended to the start of a change history with a time
+based on either the <code>first_published_at</code> or backdating value. It also
+does not include the current change note of an edition because this does not
+become an aspect of change history until the content is published and the
+update type and publishing time are fixed. It was noted that having both
+<code>change_note</code> and <code>change_history</code> fields risks confusion for developers,
+however this seemed preferable to complicating the <code>change_history</code> field with
+data that is not yet historical.</p>
+<p>Initially the only means to edit items in a change history will be via a rake
+task that developers can perform. This will provide a means to add, edit and
+delete items. Eventually we may choose to build a Web UI to edit this.</p>
+<p>We will expand the <a href="https://github.com/alphagov/content-publisher/blob/5aa0e3bf6d6ed04c44166c15b1aa15e8ad1645fa/lib/whitehall_importer/integrity_checker.rb">IntegrityChecker</a> system used by Content Publisher to
+verify that the times and change history sent to the Publishing API match what
+is already stored for Whitehall content. This will ensure that these remain
+consistent through a migration.</p>
+<p>The Publishing API had previously <a href="https://github.com/alphagov/publishing-api/pull/576/files">deprecated</a> the
+<code>change_history</code> field in favour of using the <code>change_note</code> field. We will
+remove this deprecation to reflect that using the <code>change_history</code> field is
+still a valid approach that is in active use.</p>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/content-publisher/blob/main/docs/adr/0016-publishing-times-and-change-history.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fcontent-publisher%2Fadr%2F0016-publishing-times-and-change-history.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
