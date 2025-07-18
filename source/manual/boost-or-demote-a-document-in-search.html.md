@@ -3,7 +3,7 @@ owner_slack: "#govuk-search"
 title: "Boost or demote a document in site search"
 parent: "/manual.html"
 layout: manual_layout
-section: Search
+section: Search on GOV.UK
 ---
 
 Some kinds of content are more useful to our users than others. To account for this, we configure the VAIS engine to always apply certain “boosts” to search results. These are generally applied by [document type] but some documents are boosted based on their [base path].

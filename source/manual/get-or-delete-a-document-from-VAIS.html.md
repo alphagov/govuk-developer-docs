@@ -3,7 +3,7 @@ owner_slack: "#govuk-search"
 title: "How to get or delete a document from Vertex"
 parent: "/manual.html"
 layout: manual_layout
-section: Search
+section: Search on GOV.UK
 ---
 [link-1]: https://cloud.google.com/generative-ai-app-builder/docs/reference/rest
 [link-2]: /google-cloud-platform-gcp.html.md
