@@ -3,7 +3,7 @@ owner_slack: "#govuk-search"
 title: "How to resync content in Vertex"
 parent: "/manual.html"
 layout: manual_layout
-section: Search
+section: Search on GOV.UK
 ---
 
 To resync content items in Vertex search, publishing-api needs to push the documents to search-api-v2.

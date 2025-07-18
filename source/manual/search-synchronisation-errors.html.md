@@ -3,7 +3,7 @@ owner_slack: "#govuk-search"
 title: "Search synchronisation errors"
 parent: "/manual.html"
 layout: manual_layout
-section: Search
+section: Search on GOV.UK
 ---
 
 ## A document doesn't appear in site search after it is published

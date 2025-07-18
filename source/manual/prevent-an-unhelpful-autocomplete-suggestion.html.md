@@ -3,7 +3,7 @@ owner_slack: "#govuk-search"
 title: "Prevent an unhelpful autocomplete suggestion"
 parent: "/manual.html"
 layout: manual_layout
-section: Search
+section: Search on GOV.UK
 ---
 
 To prevent unhelpful autocomplete suggestions on GOV.UK, you can add them to a 'denylist' using the [Search Admin] application. This mechanism allows you to override and exclude undesirable terms from being returned by the autocomplete feature.

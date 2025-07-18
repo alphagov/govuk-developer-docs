@@ -3,7 +3,7 @@ owner_slack: "#govuk-search"
 title: "Add a best bet to site search"
 parent: "/manual.html"
 layout: manual_layout
-section: Search
+section: Search on GOV.UK
 ---
 
 ### What is a best bet?

@@ -3,7 +3,7 @@ owner_slack: "#govuk-search"
 title: "Prevent a page being returned in search results"
 parent: "/manual.html"
 layout: manual_layout
-section: Search
+section: Search on GOV.UK
 ---
 
 ## How to filter a page from Site search results
