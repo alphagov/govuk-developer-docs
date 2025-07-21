@@ -1,22 +1,25 @@
 ---
 owner_slack: "#govuk-whitehall-experience-tech"
 title: Whitehall scheduled publishing
+section: Monitoring and alerting
 parent: "/manual.html"
 layout: manual_layout
-section: Icinga alerts
+section: Alerts
 ---
 
-## Overdue publications in Whitehall
+## Alertmanager
 
-This alert means that there are scheduled editions which have passed their
+Whitehall has the following alertmanager rules configured in govuk-helm-charts
+
+## Whitehall scheduled publications are overdue
+
+[This alert][link-1] means that there are scheduled editions which have passed their
 publication due date but haven't been published by the scheduled publishing
 workers. Scheduled publishing is performed by Sidekiq workers picking up jobs
 from a scheduled queue.
 
 You can see whether Sidekiq picked up the job for processing, and the current
-state of the job using [Sidekiq monitoring apps][sidekiq-monitoring].
-
-[sidekiq-monitoring]: /manual/sidekiq.html#monitoring
+state of the job using [Sidekiq monitoring apps][link-2].
 
 You can verify that there are overdue published documents using:
 
@@ -41,7 +44,7 @@ running the following Rake task on a `whitehall_backend` machine:
 
 <%= RunRakeTask.links("whitehall-admin", "publishing:scheduled:requeue_all_jobs") %>
 
-Due to the overnight [data anonymisation process](https://github.com/alphagov/whitehall/blob/7b5c5a086b89cb62ffba62b152a0a8dcfc10c8e6/script/scrub-database) you may notice
+Due to the overnight [data anonymisation process][link-4] you may notice
 that some of the pending documents have one or more edition that is in a
 `scheduled` state, is `access_limited`, and may have one or more attachments
 with the filename `redacted.pdf`.
@@ -54,7 +57,7 @@ the same documents/editions.
 
 ## Scheduled publications in Whitehall not queued
 
-This alert means that the number of editions in the database which are
+[This alert][link-2] means that the number of editions in the database which are
 scheduled to be published in the future is different from the number currently
 in the queue.
 
@@ -62,3 +65,8 @@ Run the `publishing:scheduled:requeue_all_jobs` Rake task to requeue all
 scheduled editions:
 
 <%= RunRakeTask.links("whitehall-admin", "publishing:scheduled:requeue_all_jobs") %>
+
+[link-1]: https://github.com/alphagov/govuk-helm-charts/blob/d88d3a7b4dd160f91863fe50c80f79dedb947f08/charts/monitoring-config/rules/whitehall.yaml#L34
+[link-2]: /manual/sidekiq.html#monitoring
+[link-3]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/whitehall.yaml#L47
+[link-4]: https://github.com/alphagov/whitehall/blob/7b5c5a086b89cb62ffba62b152a0a8dcfc10c8e6/script/scrub-database
