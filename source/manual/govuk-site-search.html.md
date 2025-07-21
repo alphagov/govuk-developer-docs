@@ -92,15 +92,7 @@ There are two separate top level Terraform deployments in the infrastructure rep
 
 ### Monitoring & alerting
 
-A [Grafana][link-2] monitoring dashboard for production tracks some of our core metrics.
-[Sentry][link-6] is set up to track application errors in Search API v2 including the sync process and API calls from frontend apps.
-We are aware of the following occasional errors which should not be considered critical and do not need intervention unless they occur consistently for a large number of users and don’t go away by themselves within a few minutes:
-
-- Google::Cloud::DeadlineExceededError: A timeout occurred on the Google API
-- Google::Cloud::InternalError: An internal error occurred on the Google API
-- AMQ::Protocol::EmptyResponseError: RabbitMQ sent an unexpected response, possibly due to restarting (the listener will restart by itself in most cases)
-
-[Kibana on Logit][link-7] can be used to query application logs as per all other GOV.UK apps.
+See [GOV.UK Site search alerts and monitoring][link-9]
 
 [link-1]: ../images/site-search-diagram.png
 [link-2]: https://grafana.eks.production.govuk.digital/d/govuk-search/gov-uk-search?orgId=1&from=now-24h&to=now&timezone=browser
@@ -110,3 +102,4 @@ We are aware of the following occasional errors which should not be considered c
 [link-6]: https://govuk.sentry.io/projects/app-search-api-v2/?project=4505862568935424
 [link-7]: https://dashboard.logit.io/sign-in
 [link-8]: /manual/google-cloud-platform-gcp
+[link-9]: /manual/search-alerts-and-monitoring.html.md
