@@ -42,6 +42,14 @@ There are three environments for CKAN:
 - [Staging](https://ckan.eks.staging.govuk.digital)
 - [Integration](https://ckan.eks.integration.govuk.digital)
 
+There are three environments for data.gov.uk:
+
+- [Production](data.gov.uk)
+- [Staging](https://www.staging.data.gov.uk/)
+- [Integration](https://www.integration.data.gov.uk/)
+
+The non-production environments require a VPN connection.
+
 ## Accessing data.gov.uk
 
 ### Datagovuk kubernetes cluster
@@ -97,7 +105,7 @@ When logged in as a `sysadmin` you can access a [user list](https://ckan.publish
 
 There are two methods to create a new user account:
 
-1. An organisation's 'admin' user can [follow these instructions](https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins) to invite new users to create an account. This is the preferred approach, as the organisation admin is best placed to know whether the new user should be given access.
+1. An organisation's 'admin' user can [invite new users to create an account](https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins). This is the preferred approach, as the organisation admin is best placed to know whether the new user should be given access.
 1. A 'sysadmin' user can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
   - Follow the instructions to [assign users to publishers](#assigning-users-to-publishers-setting-user-permissions) inputting the user's email address instead of their username.
 
@@ -373,8 +381,7 @@ ckan search-index rebuild [PUBLISHER]
 
 ### Purging a dataset
 
-Where commands mention DATASET_NAME, this should either be the slug for the dataset, or the
-UUID.
+Where commands mention DATASET_NAME, this should either be the slug for the dataset, or the UUID.
 
 ```
 ckan dataset purge DATASET_NAME
@@ -382,7 +389,7 @@ ckan dataset purge DATASET_NAME
 
 ### Bulk deleting datasets
 
-This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, which can be obtained from your user profile in the CKAN web interface.
+This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, obtained from your user profile in the CKAN web interface.
 
 Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following:
 
@@ -394,7 +401,7 @@ After deleting or purging a dataset, it will take up to 10 minutes to update on 
 
 ### Exporting a list of datasets to CSV
 
-You can get a list all datasets (including those which have been soft-deleted) for an organisation by exporting a CSV from the database.
+You can get a list all datasets for an organisation (including any which have been soft-deleted) by exporting a CSV from the database:
 
 1. Find the id of the organisation you want via an API call, eg:
 
@@ -461,19 +468,19 @@ and passing a `-c` argument:
 
 ### Finding the harvest source of a dataset
 
-The harvest source of a dataset can be found using the CKAN API, using the dataset's slug or <id>:
+The harvest source of a dataset can be found using the CKAN API, using the dataset's slug or id:
 
 ```
 https://ckan.publishing.service.gov.uk/api/3/action/package_show?id=<slug> or <id>
 ```
 
-In the response there should be `harvest_source_id` and `harvest_source_title` fields. If neither of these is present, the dataset will have been manually published.
+The response may include `harvest_source_id` and `harvest_source_title` fields. If neither of these is present, the dataset will have been manually published.
 
 ### Getting the status of a harvester
 
 1. Login to [CKAN][dgu-ckan] as a 'sysadmin' user (see above for credentials).
 1. Click the 'Harvest' button and find the relevant harvester.
-1. You will see a list of the datasets imported by this harvest source.
+1. You'll see a list of the datasets imported by this harvest source.
 1. Click the 'Admin' button to get the status.
 1. A summary of the current status will be shown. Individual runs (and any error messages) can be accessed from the 'Jobs' tab.
 
@@ -580,7 +587,7 @@ Sometimes they'll get into a state where they're hanging. You can check their he
 $ kubectl describe cronjob/ckan-harvester-run -n datagovuk
 ```
 
-When running a `kubectl get pods -n datagovuk` command to view all running pods you'll be able to see all completed and running pods. If there are a number of running cronjob pods they might be hanging due to things like a failure to pull the image. In this case you should delete the cronjob so that it gets redeployed, rather than remove the pod as this will simply recreate the pod and not clear up the hanging pods.
+When running a `kubectl get pods -n datagovuk` command to view all running pods you'll be able to see all completed and running pods. If there are several running cronjob pods they might be hanging due to things like a failure to pull the image. In this case you should delete the cronjob so that it gets redeployed, rather than remove the pod as this will simply recreate the pod and not clear up the hanging pods.
 
 ```bash
 $ kubectl delete cronjob ckan-harvester-run -n datagovuk
