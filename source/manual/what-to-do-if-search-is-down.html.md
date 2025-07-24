@@ -8,6 +8,8 @@ section: Search on GOV.UK
 
 As described in [GOV.UK Search: how it works][link-1], there are two Search stacks on GOV.UK. This documentation aims to provide some debugging steps to take in the event that someone tells you "search is down".
 
+If you are confident there is an outage caused by GCP or Google Vertex AI Search, skip to [How to contact Google if there is a critical issue with GCP or Google Vertex AI Search](./search-alerts-and-monitoring.html.md#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-google-vertex-ai-search)
+
 This information is currently summarised as a [flow chart][link-2]
 
 ![Screenshot of flow chart][link-2]
@@ -35,20 +37,26 @@ If both of those pages fail to load, it is highly unlikely that the cause is a f
 
 ## If site search is unavailable
 
-If the problem appears to be with Site search, is the problem is with SearchAPI v2 or with Google Vertex which provides our search results?
+If the problem appears to be with Site search, is the problem with SearchAPI v2 or with Google Vertex which provides our search results?
 
-Things to check:
+Check for unexpected errors in Sentry and Kibana that might help identify issues. See [GOV.UK Site search alerts and monitoring](./search-alerts-and-monitoring.html.md) for an overview of the alerting in place.
 
-### 1. Sentry alerts in #govuk-search-alerts
+### Types of alerts
 
-Check for unexpected sentry errors that might help identify issues. In addition to catching general exceptions,
+#### Degradation of service alerts
+
+ See [Causes and steps to take in the event of a Degradation of service alert firing](./search-alerts-and-monitoring.html.md#causes-and-steps-to-take-in-the-event-of-a-degradation-of-service-alert-firing).
+
+#### Synchronisation errors
+
+In addition to catching general exceptions,
 Sentry is [also used][link-6] to catch synchronisation errors (when new content is pushed to the VAIS datastore).
 
-A high number of synchronisation errors would suggest that new content is failing to reach our datastore, rather than failing to be returned as search results.
+A high number of synchronisation errors would suggest that new/updated content is failing to reach our datastore, rather than failing to be returned as search results.
 
-### 2. Application logs in Kibana
+#### DiscoveryEngine::InternalError
 
-SearchAPIv2 raises a [DiscoveryEngine::InternalError][link-7] in the event of an error from Vertex. We do not surface those errors in Sentry, but they can be found in Kibana. A quick hacky way to find errors is to search for the Rails logger message ["Did not get search results"][link-9]. A high number of these requests suggests a problem with Vertex, which should be raised with [Google support][link-8].
+SearchAPIv2 raises a [DiscoveryEngine::InternalError][link-7] in the event of an error from Vertex. A quick hacky way to find these errors in Kibana is to search for the Rails logger message ["Did not get search results"][link-9]. A high number of these requests suggests a problem with Vertex, which should be raised with Google support, see [How to contact Google if there is a critical issue with GCP or Google Vertex AI Search](./search-alerts-and-monitoring.html.md#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-google-vertex-ai-search)
 
 ## If site search is returning bad results
 
@@ -67,7 +75,6 @@ Recent changes to these files, or a failure of the user event data import would 
 [link-5]: https://www.gov.uk/search/all
 [link-6]: https://github.com/search?q=repo%3Aalphagov%2Fsearch-api-v2+GovukError&type=code
 [link-7]: https://github.com/alphagov/search-api-v2/blob/d820f02b1bd94a5f34eb44ca67b536b85e630f96/app/services/discovery_engine/query/search.rb#L31-L37
-[link-8]: to-come
 [link-9]: https://github.com/alphagov/search-api-v2/blob/d820f02b1bd94a5f34eb44ca67b536b85e630f96/app/services/discovery_engine/query/search.rb#L34
 [link-10]: https://grafana.eks.production.govuk.digital/d/govuk-search/gov-uk-search?orgId=1&from=now-24h&to=now&timezone=browser
 [link-11]: https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&from=now-30m&to=now&timezone=browser&var-namespace=apps&var-app=search-api-v2&var-app=search-api&var-error_status=$__all&refresh=1m
