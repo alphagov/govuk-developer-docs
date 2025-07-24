@@ -36,7 +36,7 @@ Rules:
 
 - [AutocompleteDegradedAcute][link-8] 5 minute rolling success rate for autocomplete requests has dropped below 90% for more than 10 minutes.
 
-### Causes and steps to take in the event of an alert firing
+### Causes and steps to take in the event of a Degradation of service alert firing
 
 We are aware of the following occasional errors which should not be considered critical and do not need intervention unless they occur consistently for a large number of users and don’t go away by themselves within a few minutes.
 
@@ -44,11 +44,16 @@ We are aware of the following occasional errors which should not be considered c
 - `Google::Cloud::InternalError` An internal error occurred on the Google API
 - `AMQ::Protocol::EmptyResponseError` RabbitMQ sent an unexpected response, possibly due to restarting (the listener will restart by itself in most cases)
 
-If these errors persist and trigger alerts, this indicates an issue with GCP or Google Vertex AI Search.
+If these errors persist and trigger the Degradation of service alerts, this indicates an issue with GCP or Google Vertex AI Search.
 
-1. Under "APIs & Services" in the GCP Console, review the Discovery Engine API usage for traffic and error rates.
-2. Raise a support ticket via the Google Cloud console's "Get Help" button, ensuring to provide comprehensive reproduction steps.
-3. For catastrophic issues or if regular support is unresponsive, escalate the problem in the Google Chat space, tagging contacts listed in the GOV.UK Tech Atlas linked to from the #govuk-search team slack channel. Always include the support case number.
+1. Login to the [Google Cloud console][link-9], and make sure that the project Search API v2 Production is selected.
+2. Under "APIs & Services" in the GCP Console, review the Discovery Engine API usage for traffic and error rates.
+
+#### How to contact Google if there is a critical issue with GCP or Google Vertex AI Search
+
+1. To raise a support ticket, you will first need to login to the [GCP console][link-9]
+2. Navigate to the [Support/Cases section][link-10] and press the GET HELP button, ensuring to provide comprehensive reproduction steps.
+3. For catastrophic issues or if regular support is unresponsive, escalate the problem in the Google Chat space, instructions are linked from the #govuk-search team slack channel. Always include the support case number.
 
 [link-0]: ./govuk-search.html.md
 [link-1]: https://govuk.sentry.io/insights/projects/app-finder-frontend/?project=202224
@@ -59,3 +64,6 @@ If these errors persist and trigger alerts, this indicates an issue with GCP or 
 [link-6]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L54
 [link-7]: https://github.com/alphagov/govuk-helm-charts/blob/3b2fa64a2811ed6b775754938e7270f0dee53d02/charts/monitoring-config/rules/search_api_v2.yaml#L89
 [link-8]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L41
+[link-9]: https://console.cloud.google.com/welcome?inv=1&invt=Ab3mhA&project=search-api-v2-production
+[link-10]: https://console.cloud.google.com/support/cases?inv=1&invt=Ab3mhA&project=search-api-v2-production
+[link-11]: https://docs.google.com/document/d/1Q98DcnLVcjAThP686Cf86TFrQnVbhAZ1PPEE1fxcmBo/edit?tab=t.0
