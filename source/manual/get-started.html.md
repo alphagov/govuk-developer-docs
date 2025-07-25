@@ -32,13 +32,10 @@ xcode-select --install
 
 ## 2. Install the Homebrew package manager
 
-Run the following in your command line to install the [Homebrew package manager](https://brew.sh):
+To install the [Homebrew package manager](https://brew.sh):
 
-```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-This command works for macOS or Linux.
+1. Download the latest .pkg from the [Homebrew releases](https://github.com/Homebrew/brew/releases/)
+1. Double click on the downloaded .pkg file, and complete the installer steps
 
 ## 3. Fill out your Slack profile
 
