@@ -13,7 +13,26 @@ Staging is overwritten every night, whereas integration is overwritten [every Mo
 
 ## Troubleshooting
 
-To check whether the env sync has succeeded for a given app and environment, visit the 'db-backup' application in Argo in the relevant environment, and search for the corresponding cronjob (or use the `kubectl` command line). For example, to check Contacts Admin on Integration, you could [visit the db-backup application in Argo Integration](https://argo.eks.integration.govuk.digital/applications/db-backup) and check the logs for the latest `db-backup-whitehall-mysql` job.
+To check whether the env sync has succeeded for a given app and environment, visit the 'db-backup' application in Argo in the relevant environment, and search for the corresponding cronjob (or use the `kubectl` command line). For example, to check Link Checker API on Integration, you could [visit the db-backup application in Argo Integration](https://argo.eks.integration.govuk.digital/applications/db-backup) and check the logs for the latest `db-backup-link-checker-api-postgres` job. Here's how you might do that:
+
+```
+# Find the relevant db-backup jobs
+$ kubectl get jobs -n apps | grep db-backup-link-checker-api-postgres
+
+db-backup-link-checker-api-postgres-29219143                  Complete   1/1           62s        33h
+db-backup-link-checker-api-postgres-29220583                  Complete   1/1           58s        9h
+
+# Get the status of the job
+$ kubectl describe job db-backup-link-checker-api-postgres-29220583 | grep Status
+Pods Statuses:            0 Active (0 Ready) / 1 Succeeded / 0 Failed
+
+# Assuming the job has failed, get the pod name for the job...
+$ kubectl get pods -n apps -l job-name=db-backup-link-checker-api-postgres-29220583
+db-backup-link-checker-api-postgres-29220583-abcde
+
+# ...then get the logs for the container (assuming the container inside the pod is named 0-restore)
+$ kubectl logs -n apps db-backup-link-checker-api-postgres-29220583-abcde -c 0-restore
+```
 
 ## How it works
 
