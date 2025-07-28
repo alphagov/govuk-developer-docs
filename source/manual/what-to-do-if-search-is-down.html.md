@@ -14,7 +14,7 @@ This information is currently summarised as a [flow chart][link-2]
 
 ## Identify what exactly is broken
 
-Searches from [search/all][link-5] with a query param are sent to SearchAPI v2, and google vertex. [Without a query param][link-12], requests are sent to search-api (v1), which talks to Elasticsearch. So a quick way to identify which search stack is implicated is to see if searching with or without a query param results in different behaviour.
+Searches from [search/all][link-5] with a query param are sent to SearchAPI v2, and google vertex. [Without a query param][link-12], requests are sent to SearchAPI (v1), which talks to Elasticsearch. So a quick way to identify which search stack is implicated is to see if searching with or without a query param results in different behaviour.
 
 ### Check the error rates for site search
 
@@ -60,7 +60,7 @@ Search result relevance is fine tuned via a combination of:
 
 Recent changes to these files, or a failure of the user event data import would all be candidate causes of a reduction in search result quality. But they would be unlikely to have a catastrophically bad impact.
 
-[link-1]: govuk-search.html.md
+[link-1]: ./govuk-search.html.md
 [link-2]: ../images/search-debugging-steps.png
 [link-3]: https://www.gov.uk/complain-about-your-council
 [link-4]: https://www.gov.uk/search/guidance-and-regulation
