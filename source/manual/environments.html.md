@@ -23,6 +23,13 @@ workstations.
 The [Release dashboard](https://release.publishing.service.gov.uk/) shows which
 application versions have been rolled out in each environment.
 
+## Determining your environment
+
+The best way to determine your current environment is to use the dedicated `GovukEnvironment.current` method shipped by [govuk_app_config](https://github.com/alphagov/govuk_app_config) (and therefore available by default to all GOV.UK apps).
+The method returns "production", "staging", "integration" or "local".
+
+However, exercise caution before writing code that is environment-dependent. It can lead to brittle, hard-to-test systems where certain logic only executes in specific environments (like production), making bugs difficult to detect during development or testing, increasing the risk of runtime failures and complicates debugging. Instead, we prefer feature flags or configuration-driven behaviour, allowing code paths to be exercised consistently across environments.
+
 ## Local development environments
 
 Software developers working on GOV.UK generally either use [govuk-docker] or
