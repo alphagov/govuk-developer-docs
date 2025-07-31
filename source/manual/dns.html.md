@@ -25,7 +25,7 @@ We use a few domains:
 
 ## DNS for `*.service.gov.uk` domains
 
-GOV.UK Platform Engineering are responsible for delegating DNS to other government services.
+The GOV.UK Platform Engineering team is responsible for delegating DNS to other government services.
 Note that we __do not__ manage any other DNS records: if you get a request concerning anything other than `NS` records, it should be rejected.
 
 When you've verified the authenticity of the request as per the SRE docs above, you should:
@@ -47,7 +47,7 @@ Currently these zones are only used in environments running on AWS.
 These DNS zones are hosted in Route53 and managed by Terraform. Changes can be
 made in the [govuk-aws](https://github.com/alphagov/govuk-aws/) and
 [govuk-aws-data](https://github.com/alphagov/govuk-aws-data/) repositories.
-Ask the Platform teams if you need help making your changes.
+Ask the Platform Engineering team if you need help making your changes.
 
 ## DNS for the `publishing.service.gov.uk` domain
 
@@ -63,7 +63,7 @@ UK education and government. They host DNS for the `gov.uk.` zone.
 
 Requests to modify the DNS records for `gov.uk.` should be sent by
 email to `naming@ja.net` from someone on Jisc's approved contacts
-list. Speak to a member of Senior Tech or someone in the Platform teams if you
+list. Speak to a member of Senior Tech or someone in the Platform Engineering team if you
 need to make a change and don't have access.
 
 You should also make sure that the following groups of people are aware before
