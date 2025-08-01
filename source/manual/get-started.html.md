@@ -62,7 +62,7 @@ You should [use your Yubikey as your MFA device][yubikey-aws-mfa] if you have on
 
 [aws-account-info]: https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws
 [iam-role-creation]: #6-get-permissions-for-aws-github-and-other-third-party-services
-[request-aws-user]: https://request-an-aws-account.gds-reliability.engineering/
+[request-aws-user]: https://request-an-aws-user.digital.cabinet-office.gov.uk/user
 [enable-mfa]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user
 [yubikey-aws-mfa]: /manual/setup-a-yubikey.html#set-up-as-an-mfa-device-for-aws
 [aws-cli-auth]: https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html#cli-authentication-user-get
