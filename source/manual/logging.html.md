@@ -21,10 +21,6 @@ environment has its own ELK stack in Logit.
 > [Fastly CDN request logs](/manual/query-cdn-logs.html) use a different system
 > to this because of the much higher data rates involved.
 
-> [Kuberenetes events](https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/event-v1/)
-> use a different method of shipping the logs, but they are delivered to the same ElasticSearch instances
-> as the application logs
-
 ### Architecture of application log delivery
 
 ![Block diagram showing data flow from containers in Kubernetes through to the
@@ -36,12 +32,24 @@ stack.](https://docs.google.com/drawings/d/1m0ls6d7dEkHeRgLLnrXrtDOUSnptF3npzJCx
 
 ### Architecture of Kubernetes Events log delivery
 
-![Block diagram showing data flow from Events API in Kubernetes through to the
-managed ELK
-stack.](https://docs.google.com/drawings/d/1zvTZQP27sYLrmvnaiku8PpKNswDO978I9f3kn80tXqQ/export/svg)
-<small>
-[edit diagram](https://docs.google.com/drawings/d/1zvTZQP27sYLrmvnaiku8PpKNswDO978I9f3kn80tXqQ/edit)
-</small>
+```mermaid
+flowchart LR
+subgraph EKS["EKS Cluster"]
+  kubernetes-events-shipper --read--> events-api
+end
+style EKS stroke-dasharray: 5 5
+
+subgraph ELK["logit.io managed ELK stack"]
+  direction BT
+  kibana
+  elasticsearch
+end
+style ELK stroke-dasharray: 5 5
+
+kubernetes-events-shipper --write--> elasticsearch
+kibana --read--> elasticsearch
+user((user)) --> kibana
+```
 
 ## Components in the logging path for applications
 
@@ -126,9 +134,9 @@ It exposes all of the [kuberenetes events](https://kubernetes.io/docs/reference/
 
 The [fluentbit](https://fluentbit.io/) daemon is responsible for:
 
-* watching the Kubernetes events API
-* keeping track of which events have been sent to Elasticsearch
-* sending the events to Elasticsearch (at Logit)
+- watching the Kubernetes events API
+- keeping track of which events have been sent to Elasticsearch
+- sending the events to Elasticsearch (at Logit)
 
 Fluentbit runs as a [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) in the `cluster-services` namespace.
 
