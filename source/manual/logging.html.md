@@ -11,13 +11,21 @@ parent: "/manual.html"
 
 ## Overview
 
-GOV.UK sends its application logs and origin HTTP request logs to managed [ELK
+GOV.UK sends its application logs, origin HTTP request logs, and [kubernetes
+events](https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/event-v1/)
+to managed [ELK
 stacks](https://logit.io/blog/post/elk-stack-guide/#what-is-the-elk-stack)
 hosted by [Logit.io](https://logit.io/), a software-as-a-service provider. Each
 environment has its own ELK stack in Logit.
 
 > [Fastly CDN request logs](/manual/query-cdn-logs.html) use a different system
 > to this because of the much higher data rates involved.
+
+> [Kuberenetes events](https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/event-v1/)
+> use a different method of shipping the logs, but they are delivered to the same ElasticSearch instances
+> as the application logs
+
+### Architecture of application log delivery
 
 ![Block diagram showing data flow from containers in Kubernetes through to the
 managed ELK
@@ -26,7 +34,16 @@ stack.](https://docs.google.com/drawings/d/1m0ls6d7dEkHeRgLLnrXrtDOUSnptF3npzJCx
 [edit diagram](https://docs.google.com/drawings/d/1m0ls6d7dEkHeRgLLnrXrtDOUSnptF3npzJCxrYqmZ5I/edit)
 </small>
 
-## Components in the logging path
+### Architecture of Kubernetes Events log delivery
+
+![Block diagram showing data flow from Events API in Kubernetes through to the
+managed ELK
+stack.](https://docs.google.com/drawings/d/1zvTZQP27sYLrmvnaiku8PpKNswDO978I9f3kn80tXqQ/export/svg)
+<small>
+[edit diagram](https://docs.google.com/drawings/d/1zvTZQP27sYLrmvnaiku8PpKNswDO978I9f3kn80tXqQ/edit)
+</small>
+
+## Components in the logging path for applications
 
 ### Application container
 
@@ -89,6 +106,38 @@ Logstash is responsible for:
   Schema](https://www.elastic.co/guide/en/ecs/current/index.html)
 - loading the logs into Elasticsearch for storage and indexing
 
+### Vulnerability Scanners
+
+Occasionally you may see some logs that look suspicious. For example, see the `controller` part of the following made up example:
+
+`http_request_duration_seconds_count { action="1", container="app", controller="../../../../../etc/passwd", endpoint="metrics", job="govuk", namespace="apps", pod="static-abc123-de7f" }`
+
+This sort of thing often originates from vulnerability scanners and isn't necessarily something to worry about. However, you should consider _how_ such activity ended up leaking into your logs, and whether or not there's anything you could/should do to patch it up. Read our [internal guidance on the issue](https://docs.google.com/document/d/1BZ_SBPuZmO8pseniqj1tlq7pss9iU3JslqQHp_JS9Wg/edit#heading=h.17fwpvs3mt0x).
+
+## Components in the logging path for Kubernetes Events
+
+### Kubernetes Events API
+
+This is exposed by the Kubernetes API server, it is part of the control plane for Kubernetes which is wholly managed by AWS as part of their Elastic Kubernetes Service (EKS) offering.
+
+It exposes all of the [kuberenetes events](https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/event-v1/) that occur within the EKS cluster.
+
+### Fluentbit
+
+The [fluentbit](https://fluentbit.io/) daemon is responsible for:
+
+* watching the Kubernetes events API
+* keeping track of which events have been sent to Elasticsearch
+* sending the events to Elasticsearch (at Logit)
+
+Fluentbit runs as a [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) in the `cluster-services` namespace.
+
+Fluentbit is deployed by the [kubernetes-events-shipper Helm chart](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/kubernetes-events-shipper) and is deployed via the [cluster-services terraform](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/kubernetes-events-shipper.tf).
+
+The configuration of fluentbit is stored in a [ConfigMap in the kubernetes-events-shipper Helm chart](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/kubernetes-events-shipper/templates/config-map.yaml).
+
+## Components common to all logging paths
+
 ### Elasticsearch
 
 [Elasticsearch](https://www.elastic.co/what-is/elasticsearch) is a search
@@ -107,11 +156,3 @@ viewing logs. It is responsible for:
 - parsing user queries written in Lucene/KQL into Elastic
 - querying the Elasticsearch indices
 - displaying the results
-
-### Vulnerability Scanners
-
-Occasionally you may see some logs that look suspicious. For example, see the `controller` part of the following made up example:
-
-`http_request_duration_seconds_count { action="1", container="app", controller="../../../../../etc/passwd", endpoint="metrics", job="govuk", namespace="apps", pod="static-abc123-de7f" }`
-
-This sort of thing often originates from vulnerability scanners and isn't necessarily something to worry about. However, you should consider _how_ such activity ended up leaking into your logs, and whether or not there's anything you could/should do to patch it up. Read our [internal guidance on the issue](https://docs.google.com/document/d/1BZ_SBPuZmO8pseniqj1tlq7pss9iU3JslqQHp_JS9Wg/edit#heading=h.17fwpvs3mt0x).
