@@ -9,7 +9,7 @@ important: true
 All logs for GOV.UK on all environments are collected in Kibana, which you can
 access through [Logit](logit.html).
 
-Kibana can be [searched using the Lucene search syntax or full JSON-based
+Kibana can be [searched using DQL syntax, Lucene search syntax or full JSON-based
 Elasticsearch queries][kibana-search]. See an [example Elasticsearch query](#example-elasticsearch-query) below.
 
 ## Set up the UI
@@ -28,7 +28,9 @@ You can specify a field in the logs list by navigating the "Available Fields" li
 
 You can additionally remove fields by following the same steps above for "Selected Fields" and clicking "remove".
 
-You can also manage the timeline bar chart at the top fo the view by changing the dropdown above the bar chart from "auto" to whichever delimitater suits your needs (hourly, daily, weekly etc) and specify the time frame of the bar chart by clicking the time range in the top right-hand corner.
+You can also manage the timeline bar chart at the top of the view by changing the dropdown above the bar chart from "auto" to whichever delimitater suits your needs (hourly, daily, weekly etc) and specify the time frame of the bar chart by clicking the time range in the top right-hand corner.
+
+You can change which indices you are searching, in the top left of the Kibana interface there is a dropdown which will default to `filebeat-*`. If you wish to query the kubernetes events you need to change this to `kubernetes-events-*`.
 
 ## Examples
 
@@ -96,6 +98,36 @@ syslog_program:"govuk_sync_mirror"
 
 ```rb
 message:"TimedOutException" AND (application:"specialist-publisher" OR application:"whitehall" OR application:"content-tagger")
+```
+
+### Kubernetes events
+
+Change the index pattern in the top left to `kubernetes-events-*` (it will default to `filebeat-*`), then you can execute the following queries.
+
+In all cases the "message" field will give you a human readable description of the event.
+
+#### Publisher kubernetes events
+
+```rb
+involvedObject.name: "publisher"
+```
+
+#### Search for pods in a backoff restart
+
+```rb
+reason: "BackOff"
+```
+
+#### Search for pods which fail to be started
+
+```rb
+reason: "Failed"
+```
+
+#### Search for all events about deployment of a specific appear
+
+```rb
+involvedObject.kind: "Deployment" AND involvedObject.name: "frontend"
 ```
 
 ### Example Elasticsearch query
