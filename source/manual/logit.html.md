@@ -11,6 +11,10 @@ software-as-a-service log storage and retrieval system based on the
 [Elasticsearch, Logstash, Kibana
 stack](https://logit.io/blog/post/elk-stack-guide/#what-is-the-elk-stack).
 
+GOV.UK also sends Kubernetes Events to logit, these are stored in a separate set of
+indexes which all begin with the prefix `kubernetes-events-`. There is an index pattern
+already created in Kibana in every environment to query these indexes.
+
 > **Fastly CDN logs are not stored in Logit.** See [Query CDN
 > logs](/manual/query-cdn-logs.html).
 
