@@ -126,9 +126,9 @@ This sort of thing often originates from vulnerability scanners and isn't necess
 
 ### Kubernetes Events API
 
-This is exposed by the Kubernetes API server, it is part of the control plane for Kubernetes which is wholly managed by AWS as part of their Elastic Kubernetes Service (EKS) offering.
+This is exposed by the Kubernetes API server. It's part of the control plane for Kubernetes, which is managed by AWS as part of the Elastic Kubernetes Service (EKS).
 
-It exposes all of the [kuberenetes events](https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/event-v1/) that occur within the EKS cluster.
+It exposes all of the [kubernetes events](https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/event-v1/) that occur within the EKS cluster.
 
 ### Fluentbit
 
