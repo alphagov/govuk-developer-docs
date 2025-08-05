@@ -88,9 +88,44 @@ You can filter the logs in Logit by app, pod, container and other parameters.
 
 ## View Kubernetes events
 
-An event is any action that Kubernetes takes. For example, starting a container in a pod.
+An event is any action that Kubernetes takes. For example, starting a pod, pulling an image, a pod crashing.
 
 Viewing Kubernetes events is helpful for debugging an app.
+
+### Via logit
+
+Events are stored in Logit for 14 days in production, and 7 days in other environments. They are stored in an ElasticSearch index with the name prefix of `kubernetes-events-`.
+
+In logit, when viewing Kibana, on the left side of the interface there is a dropdown box which defaults to `filebeat-*`, you should change this to `kubernetes-events-*`, alternatively you can use the links below:
+
+- [Kubernetes Events in Logit for Production](https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/data-explorer/discover#?_a=(discover:(columns:!(_source),isDirty:!f,sort:!()),metadata:(indexPattern:'918b7520-6d5c-11f0-a0c2-616481b44018',view:discover))&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_q=(filters:!(),query:(language:lucene,query:'')))
+- [Kubernetes Events in Logit for Staging](https://kibana.logit.io/s/b8a10798-a30e-4611-9393-8843d2339dd2/app/data-explorer/discover#?_a=(discover:(columns:!(_source),isDirty:!f,sort:!()),metadata:(indexPattern:'192c7c50-6d5c-11f0-a036-ab90a4a466d2',view:discover))&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_q=(filters:!(),query:(language:lucene,query:'')))
+- [Kubernetes Events in Logit for Integration](https://kibana.logit.io/s/42f4d2d5-e9ce-451f-8ffc-cdb25bd624f8/app/data-explorer/discover#?_a=(discover:(columns:!(_source),isDirty:!f,sort:!()),metadata:(indexPattern:fd31bca0-6d28-11f0-aee7-6b9a180d0701,view:discover))&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_q=(filters:!(),query:(language:lucene,query:'')))
+
+Logit supports querying via either the Lucene syntax, or the DQL syntax, to the right of the search box it will show you which you are set to, all the following queries use DQL, to do them in lucene the syntax is `field = value` instead of `field: value`.
+
+To see Kubernetes events for a namespace, search for:
+
+```
+involvedObject.namespace: "<namespace>"
+```
+
+To get events for a specific Kubernetes resource, search for:
+
+```sh
+involvedObject.name: "<resource>"
+```
+
+For example, to get events for the pod `publisher-7795bd698-v6bfc`, search for:
+
+```sh
+involvedObject.name: "publisher-7795bd698-v6bfc"
+```
+
+### Via kubectl (only the last 1 hour)
+
+Logs are available via the cli for only 1 hour, if you wish to see logs older than this you should [view them
+using Logit](#via-logit)
 
 To see Kubernetes events for a namespace, run:
 
