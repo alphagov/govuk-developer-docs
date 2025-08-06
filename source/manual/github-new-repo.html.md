@@ -27,12 +27,12 @@ your-repo-name: # Set this to the Repo Name you wish to create
     pull_request_bypassers:
       - "/some-name-here"
     require_code_owner_reviews: [false/true]
-  
+
   required_status_checks:
     standard_contexts: *anchor_name_of_standard_contexts
     additional_contexts: # List of Additional named Github Checks
       - Some Test Name
-  
+
   strict: [false/true]
   teams:
     some_team_name: [read/triage/write/maintain/admin] # Set permissions as necessary.
@@ -42,7 +42,7 @@ your-repo-name: # Set this to the Repo Name you wish to create
 
 ### Configuration Best Practices
 
-When configuring and creating your Repo, you can change and override many of the default settings we apply for you.  
+When configuring and creating your Repo, you can change and override many of the default settings we apply for you.
 Generally, you will want to leave most of the defaults set, as this will:
 
 - Apply [branch protection](https://help.github.com/articles/about-protected-branches) rules and configure PRs to be blocked on the outcome of your [GitHub Action CI](/manual/test-and-build-a-project-with-github-actions.html) workflow (if one exists)
@@ -101,7 +101,7 @@ Once your Repo is configured and created as above, you should follow these next 
 
 GOV.UK no longer relies on the use of Github "topic" tags as a way to select and configure Deployment access, to prevent the following situations:
 
-* Accidentally (or intentionally) granting Repositories access to deployment credentials.
-* Removing the Github Search API as a "SPoF" (Single Point of Failure) for configuration errors.
+- Accidentally (or intentionally) granting Repositories access to deployment credentials.
+- Removing the Github Search API as a "SPoF" (Single Point of Failure) for configuration errors.
 
 By "rationalising" our Repo configuration, we are reducing our reliance on "magic" or poorly-understood processes and thus reducing risk. Instead, granting access to things like Deployment secrets should always be done explicitly through our `govuk-infrastructure` repo.
