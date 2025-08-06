@@ -33,6 +33,7 @@ stack.](https://docs.google.com/drawings/d/1m0ls6d7dEkHeRgLLnrXrtDOUSnptF3npzJCx
 ### Architecture of Kubernetes Events log delivery
 
 <pre lang="mermaid">
+<code>
 flowchart LR
 subgraph EKS["EKS Cluster"]
   kubernetes-events-shipper --read--> events-api
@@ -49,6 +50,7 @@ style ELK stroke-dasharray: 5 5
 kubernetes-events-shipper --write--> elasticsearch
 kibana --read--> elasticsearch
 user((user)) --> kibana
+</code>
 </pre>
 
 ## Components in the logging path for applications
