@@ -23,12 +23,18 @@ system that sends the bulk email to subscribers.
 
 ## Find out which mailshot was affected
 
-Search for recent WARN-level [logs from email-alert-api-worker]. Workers log a
+Search for recent [WARN-level logs from email-alert-api-worker]. Workers log a
 `Couldn't find any delivered emails for ...` warning periodically when there
 are potentially undelivered medical/travel alerts.
 
 The log message should contain the Content ID and path of the affected
 mailshot. Visit the path on GOV.UK to find the title of the alert.
+
+You can also look at recent [INFO-level logs from email-alert-api-worker],
+to check the current state of all alerts under consideration and check whether
+more than one alert is affected. You'll see messages like
+`Checking #{document_type.titleize} records: 5 out of 5 alerts have been delivered to at least one recipient`
+(eg) every 15 minutes.
 
 ## Verify whether the email was received
 
@@ -88,7 +94,8 @@ advice and medical safety alerts. Check whether the message appears there.
 [medical safety alerts]: https://www.gov.uk/drug-device-alerts
 [travel advice alerts]: https://www.gov.uk/foreign-travel-advice
 [email-alert-api]: https://github.com/alphagov/email-alert-api
-[logs from email-alert-api-worker]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/view/4147d5b0-99f8-11ee-aed3-9b7debb07809?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-24h,to:now))&_a=(columns:!(_source),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:email-alert-api-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:email-alert-api-worker))),('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:level,negate:!f,params:(query:WARN),type:phrase),query:(match_phrase:(level:WARN)))),index:'filebeat-*',interval:auto,query:(language:lucene,query:'%22any%20delivered%22'),sort:!())
+[WARN-level logs from email-alert-api-worker]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/view/4147d5b0-99f8-11ee-aed3-9b7debb07809?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-24h,to:now))&_a=(columns:!(_source),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:email-alert-api-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:email-alert-api-worker))),('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:level,negate:!f,params:(query:WARN),type:phrase),query:(match_phrase:(level:WARN)))),index:'filebeat-*',interval:auto,query:(language:lucene,query:'%22any%20delivered%22'),sort:!())
+[INFO-level logs from email-alert-api-worker]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/data-explorer/discover/#/view/4147d5b0-99f8-11ee-aed3-9b7debb07809?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1h,to:now))&_a=(discover:(columns:!(message,level),interval:auto,sort:!()),metadata:(indexPattern:'filebeat-*',view:discover))&_q=(filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:email-alert-api-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:email-alert-api-worker))),('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:level,negate:!f,params:(query:INFO),type:phrase),query:(match_phrase:(level:INFO)))),query:(language:lucene,query:'%22have%20been%20delivered%22'))
 [email statistics rake task]: https://github.com/alphagov/email-alert-api/blob/main/docs/alert_check_scheduled_jobs.md#support-tasks
 [Sidekiq dashboard]: https://grafana.eks.production.govuk.digital/d/sidekiq-queues/?var-namespace=apps&var-app=email-alert-api-worker&from=now-24h&to=now
 [email-alert-api dashboard]: https://grafana.eks.production.govuk.digital/d/app-requests/?var-namespace=apps&var-app=email-alert-api&var-error_status=All&from=now-24h&to=now
