@@ -112,6 +112,10 @@ See step 1.
 - Find the correct "tfvars" blocks for any relevant Databases and make sure that `deletion_protecton = false` is set and applied for each environment
 - Remove the Terraform variables that define the Databases and run the apply again - the Databases should produce a final snapshot and then be destroyed
 
+### Retire a Document DB from the Shared DocumentDB Instance
+
+See the [DocumentDB and MongoDB](/manual/documentdb-mongodb.html) Documentation for instructions on how to do this.
+
 ### Manually delete any AWS resources not managed by Terraform
 
 If your app is particularly unique/legacy and uses any resources that are not managed by Terraform, those resources will need manually deleting in AWS.
