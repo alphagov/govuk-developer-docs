@@ -47,7 +47,7 @@ spec:
     runAsGroup: 1000
 ```
 
-Once you've done this, you will want to apply this pod definition to the environment/cluster required - 
+Once you've done this, you will want to apply this pod definition to the environment/cluster required -
 you will need either `platformengineer` or `fulladmin` roles to do this:
 
 ```sh
@@ -72,7 +72,7 @@ First, log into the AWS Console for the relevant environment:
 $ gds aws govuk-some-environment-developer -l
 ```
 
-Navigate to Secrets Manager. Search for and access the secret `govuk/common/shared-documentdb`. 
+Navigate to Secrets Manager. Search for and access the secret `govuk/common/shared-documentdb`.
 Retrieve the values as you will require the `host` and `password` keys.
 
 Now, run the following command in the bash session you opened earlier:
@@ -132,8 +132,8 @@ https://www.mongodb.com/developer/products/mongodb/cheat-sheet/
 
 ## Deleting a Database
 
-> **WARNING**: This is obviously going to be dangerous. Data destruction lies ahead.  
-> Check that you are running things in the correct environment and check that you 
+> **WARNING**: This is obviously going to be dangerous. Data destruction lies ahead.
+> Check that you are running things in the correct environment and check that you
 > have selected the correct Database.
 
 To delete a Database (not the Database Cluster or Instance), connect and log in to the Database as directed above. Then select the Database you wish to delete:
@@ -148,7 +148,7 @@ Perform any checks to make sure you have selected the correct database, and then
 db.dropDatabase()
 ```
 
-...and you're done. You check show the Databases again to confirm the deletion:
+...and you're done. You can show the Databases again to confirm the deletion:
 
 ```mongo
 show dbs
@@ -161,17 +161,18 @@ exit
 ```
 
 ...and then exit the pod:
+
 ```sh
 $ exit
 ```
 
-> Note: DocumentDB is not synced between Production and Staging.  
-> If you delete a Database in Production, you will also need to manually delete it in 
+> Note: DocumentDB is not synced between Production and Staging.
+> If you delete a Database in Production, you will also need to manually delete it in
 > Staging as well.
 
 ## Destroying the Bastion Pod
 
-Once you have completed your work interacting with the Database, you should delete the pod. 
+Once you have completed your work interacting with the Database, you should delete the pod.
 Using the same Pod definition as earlier, you should run this command from the same directory:
 
 ```sh
