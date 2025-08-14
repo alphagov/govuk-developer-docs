@@ -30,9 +30,13 @@ GOV.UK developers are part of an [on-call rota](https://docs.google.com/spreadsh
 
 [GDS Wiki]: https://sites.google.com/digital.cabinet-office.gov.uk/the-gds-wiki/info-for-employees/people-services-hr-help/miscellaneous/out-of-hours-allowance
 
-## Rules for Primary, Secondary and On Call
+## When are you added to the on-call rota?
 
-[Production Admin access](/manual/rules-for-getting-production-access.html) is a pre-requisite for joining the on-call rota.
+When you have passed probation, you will be drafted onto the (in-hours) on-call rota, unless you and your head of community have agreed you can opt out.
+
+You will need to ensure you arrange to get [Production Admin access](/manual/rules-for-getting-production-access.html) in advance of your first allocated shift.
+
+## Rules for Primary, Secondary and On Call
 
 Folks start out as a Secondary on the in-hours shift. After two shifts as a Secondary, they'll start to fill the Primary in-hours role, with some exceptions (see [role specific policies](#role-specific-policies)).
 
@@ -42,9 +46,9 @@ At this point they'll also start filling the out-of-hours on-call rota, as a Pri
 
 Backend developers and SREs are all expected to be on the in-hours and on-call rota, unless their head of community agrees that they have reason to opt out.
 
-Frontend developers are expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out. They are _not_ expected to be on the on-call rota. Junior technologists and technologist apprentices are also expected to take part in the in-hours rota and not the on-call rota.
+Frontend developers are expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out. They are _not_ expected to be on the out-of-hours rota.
 
-A junior technologist can be a secondary, but won't be a primary.
+Junior technologists are also expected to take part in the in-hours rota only. A junior technologist can be a Secondary, but won't be a Primary.
 
 There is no expectation for technologist apprentices to do technical on-call shifts, but if they are confident, they can (at their Line Manager's discretion) go through the process to get Production Admin access, at which point they can request to be added to the secondary role (in-hours).
 
