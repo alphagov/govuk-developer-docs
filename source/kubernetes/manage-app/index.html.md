@@ -15,3 +15,4 @@ You can:
 - roll back your app
 - set security restrictions for your app
 - manage secrets in your app
+- control healthchecks and kubernetes probes for your app
