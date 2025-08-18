@@ -108,7 +108,13 @@ again.
 
 ### Probe lifecycle
 
-<pre lang="mermaid">
+<details><summary>Mermaidjs diagram source</summary>
+
+SVG generated with mermaid cli:
+
+<code>npx --package=@mermaid-js/mermaid-cli --  mmdc -i mermaid.yaml -o kubernetes-pod-lifecycle.svg -w 760</code>
+
+<pre>
 <code>
 stateDiagram-v2
   podStarted : Pod Started
@@ -197,4 +203,9 @@ stateDiagram-v2
 
   terminatePod --> [*]
 </code>
+</pre>
+</details>
+
+![Kubernetes Pod Lifecycle as described above](/images/kubernetes-pod-lifecycle.svg)
+
 </pre>
