@@ -145,6 +145,17 @@ For example, to get events for the pod `publisher-7795bd698-v6bfc`, run:
 kubectl -n apps get events --field-selector=involvedObject.name=publisher-7795bd698-v6bfc
 ```
 
+## View Out of Memory Events
+
+Kubernetes will kill your pod if it consumes more memory than has been allocated to the pod.
+You can view pods that have been killed by Kubernetes for running out of memory via the CloudWatch Logs Insights console.
+
+1. Log in to the AWS console
+1. Go to [CloudWatch Logs Insights](https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#logsV2:logs-insights)
+1. Select 'Saved and sample queries', then pick the 'Pods Killed (Out of Memory)' saved query
+
+Querying CloudWatch Logs in this way can be expensive. Try to limit your queries to a day of logs at a time to keep costs down.
+
 ## Further information
 
 For more information on `kubectl`, see the [Kubernetes kubectl documentation](https://kubernetes.io/docs/reference/kubectl/).
