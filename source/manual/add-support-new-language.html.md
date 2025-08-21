@@ -100,3 +100,7 @@ You will need the language's:
 [Example PR](https://github.com/alphagov/content-store/pull/1383)
 
 - Add the locale key to `config/application.rb` in alphabetical order
+
+### 7. Get the guidance updated
+
+Inform the [#govuk-guidance](https://gds.slack.com/archives/CKPMRB8UB) Slack channel that support for a new language has been added, so that they can update the relevant guidance.
