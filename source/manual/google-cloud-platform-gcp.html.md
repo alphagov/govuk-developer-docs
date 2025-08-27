@@ -19,7 +19,7 @@ Access to GCP is managed through the [GOV.UK GCP access Google Group](https://gr
 Access to this group is granted manually once [permanent Production access](/manual/rules-for-getting-production-access.html) is
 approved and merged to [GOV.UK user reviewer](https://github.com/alphagov/govuk-user-reviewer) repository.
 
-If you should have access but don't, Platform Engineering should be able to add you to the Google Group.
+If you should have access but don’t, ask your (civil servant) tech lead or a [Senior Tech member](https://docs.publishing.service.gov.uk/manual/ask-for-help.html#contact-senior-tech) in your group to add you to the Google Group.
 
 ### Accessing the console
 
