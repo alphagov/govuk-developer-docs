@@ -35,21 +35,20 @@ Archiving a repo does not remove its GitHub Pages site (if any). The site stays 
 ## 4. Archive the repo
 
 Before you proceed with archving the repo, ensure that all workflow runs listed under "Actions" have completed or [cancel them](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/canceling-a-workflow#canceling-a-workflow-run).
-Go into the repository settings in GitHub, and [archive the repo](https://github.com/blog/2460-archiving-repositories).
 
-## 5. Stop managing GitHub configuration via Terraform
+Head to the `govuk-infrastructure` repository and find the `repos.yaml` [file inside the Github Terraform Deployment](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/repos.yml).
 
-⚠️ Ensure you follow this step, otherwise your repo will be automatically deleted rather than archived.
+Find your Repository in the YAML file and add the `archived: true` property to it. You may also wish to remove any status checks as these can result in additional Terraform resources being created and managed in Terraform State and can cause plans and applies to take longer unnecessarily.
 
-Follow the steps in [GOV.UK GitHub Infrastructure configuration terraform project](https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/github#removing-repositories) to remove the repo configuration from our terraform state.
+Submit your changes as a PR, have it approved, merge it and then ensure the Github Terraform applies in Terraform Cloud. The Terraform Deployment will run a series of precondition checks to catch any outstanding PRs or unaddressed Github Pages configuration. If you have missed any, the Terraform Plan will fail and you should back go over Steps 2-3 again to make sure nothing has been overlooked.
 
-## 6. Update the Developer Docs
+## 5. Update the Developer Docs
 
 Remove the repo's entry from [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml).
 
 ([#4259](https://github.com/alphagov/govuk-developer-docs/issues/4259) would eliminate this toil if fixed.)
 
-## 7. Remove references
+## 6. Remove references
 
 [Search GitHub](https://github.com/search?q=org%3Aalphagov+panopticon&type=Code) for any references to the repository and update or remove them as appropriate.
 
