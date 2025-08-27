@@ -28,7 +28,7 @@ These logging endpoints are configured via [the secrets repo](https://github.com
 
 ### Deploying Fastly
 
-1. Make your changes in the [govuk-fastly]() or [govuk-fastly-secrets]() repositories and open a PR
+1. Make your changes in the [govuk-fastly] or [govuk-fastly-secrets] repositories and open a PR
 2. Once the PR has been merged, check the proposed changes in the Terraform Cloud console
   * Check the `fastly-vcl-diff` post-plan task to view a diff of your VCL changes
 3. If you are happy with your changes, confirm the plan and wait for Terraform Cloud to deploy your changes
@@ -163,7 +163,7 @@ We have a mechanism for including VCL code from the private `govuk-cdn-config-se
 
 Even if we allow traffic through from Fastly, we can block it at the AWS level using the [AWS WAF (Web Application Firewall)](https://aws.amazon.com/waf/).
 
-See the [infra-public-wafs Terraform project](https://github.com/alphagov/govuk-aws/tree/main/terraform/projects/infra-public-wafs) to see what configuration options are currently available.
+See WAF configuration located in [cloudfront](https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/cloudfront) and [publishing](https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/govuk-publishing-infrastructure).
 
 ## Bouncer's Fastly service
 
