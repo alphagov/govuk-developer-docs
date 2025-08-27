@@ -6,8 +6,9 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-GOV.UK uses Google Cloud Platform (GCP) for three main things:
+GOV.UK uses Google Cloud Platform (GCP) for four main things:
 
+- general site search on GOV.UK through [Search API V2 project](https://github.com/alphagov/search-api-v2)
 - [Static mirrors of GOV.UK](/manual/fall-back-to-mirror.html) (these are hosted in AWS and GCP).
 - [DNS](/manual/dns.html) (DNS for www.gov.uk, service.gov.uk and other domains we manage is mirrored to name servers in AWS Route53 and Google CloudDNS)
 - Various data science tasks such as [BigQuery](/manual/view-extract-feedback-data-bigquery.html)
@@ -20,6 +21,8 @@ Access to this group is granted manually once [permanent Production access](/man
 approved and merged to [GOV.UK user reviewer](https://github.com/alphagov/govuk-user-reviewer) repository.
 
 If you should have access but don’t, ask your (civil servant) tech lead or a [Senior Tech member](https://docs.publishing.service.gov.uk/manual/ask-for-help.html#contact-senior-tech) in your group to add you to the Google Group.
+
+Those without Production access can request to join the [GOV.UK GCP Access - Integration Google Group](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-gcp-access-integration/about) which grants access to integration only.
 
 ### Accessing the console
 
