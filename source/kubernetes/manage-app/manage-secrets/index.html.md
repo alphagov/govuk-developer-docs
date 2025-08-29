@@ -90,7 +90,7 @@ The Kubernetes `ExternalSecret` defines the mapping between the AWS Secrets Mana
 1. Define the `ExternalSecret`, using the following format:
 
     ```yaml
-    apiVersion: external-secrets.io/v1beta1
+    apiVersion: external-secrets.io/v1
     kind: ExternalSecret
     metadata:
       name: <APPNAME-SECRETNAME>
@@ -118,7 +118,7 @@ The Kubernetes `ExternalSecret` defines the mapping between the AWS Secrets Mana
     For example, to create a secret for the Elections API for the [GOV.UK Frontend app](https://github.com/alphagov/govuk-frontend), use the following format:
 
     ```yaml
-    apiVersion: external-secrets.io/v1beta1
+    apiVersion: external-secrets.io/v1
     kind: ExternalSecret
     metadata:
       name: frontend-elections-api
