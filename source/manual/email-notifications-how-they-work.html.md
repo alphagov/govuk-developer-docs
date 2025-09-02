@@ -68,7 +68,7 @@ Communication from Email Alert API to Notify is done via a HTTP API which is aut
 [email-alert-api-technical]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api_technical.json
 [email-alert-api-product]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api_product.json
 [email-alert-api-matching]: https://github.com/alphagov/email-alert-api/blob/main/docs/matching-content-to-subscriber-lists.md
-[receiving-integration-staging-email]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
+[receiving-integration-staging-email]: /repos/email-alert-api/receiving-emails-from-email-alert-api-in-integration-and-staging.html
 [google-group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govuk-email-courtesy-copies
 [courtesy-subscription-page]: https://www.gov.uk/search/all/email-signup
 [email-spam-report]: https://github.com/alphagov/email-alert-api/blob/main/app/controllers/spam_reports_controller.rb
