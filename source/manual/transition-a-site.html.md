@@ -125,7 +125,7 @@ Manually trigger `govuk-fastly-bouncer-production` 'Plan and apply' run in [Terr
 
 Once the transition is ready to be deployed, the domain must be pointed at Bouncer.
 
-This is done is one of two ways:
+This is done in one of two ways:
 
 - Adding a 'CNAME' record: `bouncer-cdn.production.govuk.service.gov.uk` (preferred, where possible).
 - Adding an 'A' record pointing at one of the [Fastly GOV.UK IP addresses](https://github.com/alphagov/transition/blob/016c3d30e190c41eaa912ed554384a49f3418a91/app/models/host.rb#L22) (discouraged, as this hardcodes Fastly IP addresses that may change in the future).
