@@ -31,7 +31,7 @@ REPO="github/alphagov/govuk/$(basename $PWD)"
 4. Build the container image and tag it appropriately.
 
 ```
-docker build --platform linux/amd64 -t $REGISTRY/$REPO:$IMAGE_TAG .
+docker buildx build --platform linux/arm64 -t $REGISTRY/$REPO:$IMAGE_TAG .
 ```
 
 5. Log into ECR and push the image:
