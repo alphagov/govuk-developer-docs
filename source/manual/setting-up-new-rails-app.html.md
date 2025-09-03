@@ -140,6 +140,31 @@ You should:
     end
     ```
 
+1. If your app will include assets (such as images, CSS, Javascript etc), replace the content  of `config/initializers/assets.rb` with the following (where `YOUR_APP_NAME` is the repo name of your application):
+
+   ```rb
+   # Be sure to restart your server when you modify this file.
+
+   # Path within public/ where assets are compiled to
+   Rails.application.config.assets.prefix = "/assets/YOUR_APP_NAME"
+
+   # Version of your assets, change this if you want to expire all your assets.
+   Rails.application.config.assets.version = "1.0"
+   ```
+
+  This can also be done in `config/application.rb` if you prefer (this is done in some existing apps) eg:
+
+   ```
+   module YourApp
+     class Application < Rails::Application
+       ...
+       # Path within public/ where assets are compiled to
+       config.assets.prefix = "/assets/your-app"
+       ...
+     end
+   end
+   ```
+
 1. Configure linting for your Rails app to make sure the app's code is consistent with other GOV.UK apps. Find out more information about [configuring linting][linting].
 
 ### Setting up a Puma web server
