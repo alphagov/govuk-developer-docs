@@ -27,7 +27,7 @@ When transitioning HTTPS domains, these are the steps to request a TLS certifica
 
     ![Screenshot of the Fastly website user interface on the "TLS management" tab which is nested under "Secure". There is a button in the top right labelled "+ Secure another domain".](images/fastly/4.png)
 
-1. Enter the domain name(s) that you want a TLS certificate to be created for. Select **Let's encrypt** as the certification authority. And select one of the following two TLS configurations. To decide, you need to know where your domain resolves to. A quick way to find out is:
+1. Enter the domain name(s) that you want a TLS certificate to be created for. Select **GlobalSign** as the certification authority. And select one of the following two TLS configurations. To decide, you need to know where your domain resolves to. A quick way to find out is:
 
     ```
     ping <your-domain-name>
