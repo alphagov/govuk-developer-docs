@@ -51,10 +51,10 @@ Ask the Platform Engineering team if you need help making your changes.
 
 ## DNS for the `publishing.service.gov.uk` domain
 
-To make a change to this zone, begin by adding the records to the yaml file for
-the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-tf).
+To make a change to this zone, begin by adding the records to [the Terraform configuration](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/tfc-configuration/govuk-publishing-infrastructure.tf)
+for the GOV.UK publishing infrastructure.
 
-The deployment process is the same as for [`service.gov.uk`](#dns-for-service-gov-uk-domains)
+The deployment process is the same as for any other Terraform root in the `govuk-infrastructure` repository.
 
 ## DNS for the `gov.uk` top level domain
 
