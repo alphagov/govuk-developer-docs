@@ -49,7 +49,7 @@ You are going to update the `CNAME` records for two different domains, in both G
 - `www-cdn.production.govuk.service.gov.uk`
 - `assets.publishing.service.gov.uk`
 
-This [Draft PR to Failover to AWS CloudFront](https://github.com/alphagov/govuk-dns-tf/pull/69) shows the `CNAME`s you need to change, and how to test that they are correct
+Their values can be found in [the Terraform configuration](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/tfc-configuration/variables-production.tf) for GOV.UK publishing infrastructure.
 
 You can also get the `CNAME`s to use for the secondary CDN from the AWS CLI:
 
@@ -75,8 +75,8 @@ curl -vs https://assets.staging.publishing.service.gov.uk/media/662a74aa45f183ec
   - There will be a missing key: `fastly-backend-name`
   - Look for a value of `xxxxx.cloudfront.net` in the `via` key.
 - After performing the manual failover, you should also update our infrastructure-as-code to match the changes you just made:
-  - Merge [the PR to Failover to AWS CloudFront](https://github.com/alphagov/govuk-dns-tf/pull/69)
-  - Terraform Cloud should automatically perform a plan when your PR is merged, but the apply will require manual approval - you can do this in the [govuk-dns-tf workspace](https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf)
+  - Raise and merge a PR in `govuk-infrastructure` to fail over to CloudFront
+  - Terraform Cloud should automatically perform a plan when your PR is merged, but the apply will require manual approval - you can do this in the [govuk-publishing-inrastructure-production workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-production)
 
 ### Staging
 
@@ -120,4 +120,4 @@ curl -vs https://assets.staging.publishing.service.gov.uk/media/662a74aa45f183ec
 - Once you've failed over, keep a close eye on Fastly's status
 - As soon as you are confident that Fastly has recovered
   - Manually set each of the `CNAME` records you changed above back to `www-gov-uk.map.fastly.net.`
-  - If you previously raised a PR in [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf), raise another PR to revert your changes and restore the old records. Get it approved, merged and approve the Terraform apply via the [govuk-dns-tf workspace](https://app.terraform.io/app/govuk/workspaces/govuk-dns-tf) on Terraform Cloud.
+  - If you previously raised a PR in [govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure), raise another PR to revert your changes and restore the old records. Get it approved, merged and approve the Terraform apply via the the [govuk-publishing-infrastructure-production workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-production) on Terraform Cloud.
