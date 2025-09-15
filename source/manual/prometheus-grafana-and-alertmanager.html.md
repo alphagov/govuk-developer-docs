@@ -44,6 +44,16 @@ It is also possible to see all of the configured alerts via the Prometheus UI it
 
 Somewhat confusingly, the [Alertmanager UI][link-14] does not show all configured alerts, only those which are currently firing.
 
+### Alert severity levels
+
+As part of the rule definition, each alert is labelled with one of the following severity levels (in decreasing order of urgency), to indicate the impact and expected response time:
+
+- **Page:** Used for urgent, severe conditions that require an immediate response, even out-of-hours. These alerts will be forwarded to [PagerDuty][link-15]. Examples include conditions that make the service unusable or imminently unusable e.g. database is out of disk space.
+- **Critical:** Used for conditions that should be addressed promptly within usual business hours, but do not require immediate out-of-hours attention. Examples include conditions that are likely to cause an outage soon e.g. disk usage at 90% with less than a day of capacity left.
+- **Warning:** Used as an early indicator of abnormal conditions, that might require investigation during usual business hours if they persist e.g. disk usage at 70%.
+
+Alerts for purely informational or debugging conditions should be avoided, to reduce noise and alert fatigue.
+
 [link-1]: https://github.com/prometheus/prometheus?tab=readme-ov-file#----prometheus
 [link-2]: https://github.com/prometheus/client_ruby?tab=readme-ov-file#rack-middleware
 [link-3]: https://github.com/alphagov/govuk_app_config/blob/main/lib/govuk_app_config/govuk_prometheus_exporter.rb#L6
@@ -58,3 +68,4 @@ Somewhat confusingly, the [Alertmanager UI][link-14] does not show all configure
 [link-12]: https://github.com/alphagov/govuk-helm-charts
 [link-13]: https://prometheus.eks.production.govuk.digital/alerts?search=Search-
 [link-14]: https://alertmanager.eks.production.govuk.digital/#/alerts
+[link-15]: https://docs.publishing.service.gov.uk/manual/pagerduty.html
