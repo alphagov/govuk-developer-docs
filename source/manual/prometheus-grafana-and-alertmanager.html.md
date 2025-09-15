@@ -38,7 +38,7 @@ Grafana provides a frontend for visualizing the Prometheus data. A common workfl
 
 ## Alertmanager
 
-Alertmanager reads data directly data from Prometheus, and sends notifications when metrics cross predefined thresholds. These thresholds are defined as [rules][link-11] in the monitoring-config folder of [govuk-helm-charts][link-12].
+Alertmanager reads data directly from Prometheus, and sends notifications when metrics cross predefined thresholds. These thresholds are defined as [rules][link-11] in the monitoring-config folder of [govuk-helm-charts][link-12].
 
 It is also possible to see all of the configured alerts via the Prometheus UI itself, by clicking the [Alerts tab][link-13].
 
