@@ -24,9 +24,9 @@ The [GOV.UK Search Grafana dashboard][link-4] visualizes core metrics for site s
 
 We have an informal SLO to maintain a search and autocomplete success rate of about 99.99% over any 24 hour period. If rates drop below this, there are currently four Alertmanager rules configured in govuk-helm-charts to notify the #govuk-search-alerts channel.
 
-> These alerts are purely based on the ratio of error responses to success responses served by SearchAPI v2. In other words they are **not** alerting on search result _quality_. Those alerts are coming soon!
+We also have alerting on search result quality. Currently there are three Alertmanager rules related to search result quality configured in govuk-helm-charts to notify the #govuk-search-alerts channel.
 
-Rules:
+Success rate rules:
 
 - [SearchDegradedAcute][link-5] 5 minute rolling success rate for search requests has dropped below 99% for more than 10 minutes.
 
@@ -35,6 +35,14 @@ Rules:
 - [SearchDegradedLong][link-7] 24 hour rolling success rate for search requests has dropped below 99.99% for more than 24 hours.
 
 - [AutocompleteDegradedAcute][link-8] 5 minute rolling success rate for autocomplete requests has dropped below 90% for more than 10 minutes.
+
+Search quality rules:
+
+- SearchSeverelyDegradedBinaryRecall Top 3 recall for binary query set has dropped below 90%.
+
+- SearchDegradedClickstreamNDCG Top 10 NDCG for clickstream query set has dropped below 85%.
+
+- SearchSeverelyDegradedClickstreamNDCG Top 10 NDCG for clickstream query set has dropped below 75%.
 
 ### Causes and steps to take in the event of a Degradation of service alert firing
 
