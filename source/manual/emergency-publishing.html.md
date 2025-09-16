@@ -184,11 +184,11 @@ deceased and the years of their life, for example 'His Royal Highness Henry VIII
 
 #### GOV.UK Homepage
 
-![Banner with large, bold, white heading text on a black background, above the the usual Welcome to GOV.UK heading](images/emergency_publishing/notable-death-homepage.png)
+![Banner with large, bold, white heading text on a black background, above the the usual Welcome to GOV.UK heading](images/emergency_publishing/notable-death-homepage.jpg)
 
 #### Other pages
 
-![Banner with small, bold heading text on a black background, above the breadcrumb bar and ordinary page title](images/emergency_publishing/notable-death.png)
+![Banner with small, bold heading text on a black background, above the breadcrumb bar and ordinary page title](images/emergency_publishing/notable-death.jpg)
 
 ### National emergency (level 1 or category 2)
 
@@ -196,11 +196,11 @@ A large **red** banner is displayed on all GOV.UK pages, including the homepage.
 
 #### GOV.UK Homepage
 
-![Banner with large, bold, white heading text on a red background, above the usual Welcome to GOV.UK heading](images/emergency_publishing/national-emergency-homepage.png)
+![Banner with large, bold, white heading text on a red background, above the usual Welcome to GOV.UK heading](images/emergency_publishing/national-emergency-homepage.jpg)
 
 #### Other pages
 
-![Banner with small, bold heading text on a red background, above the breadcrumb bar and ordinary page title](images/emergency_publishing/national-emergency.png)
+![Banner with small, bold heading text on a red background, above the breadcrumb bar and ordinary page title](images/emergency_publishing/national-emergency.jpg)
 
 ### Localised large-scale emergency (level 2 or category 1)
 
@@ -210,8 +210,8 @@ These incidents will not be processed outside of business hours.
 
 #### GOV.UK Homepage
 
-![Banner with large, bold, white heading text on a green background, above the the usual Welcome to GOV.UK heading](images/emergency_publishing/local-emergency_homepage.png)
+![Banner with large, bold, white heading text on a green background, above the the usual Welcome to GOV.UK heading](images/emergency_publishing/local-emergency-homepage.jpg)
 
 #### Other pages
 
-![Banner with small, bold heading text on a green background, above the breadcrumb bar and ordinary page title](images/emergency_publishing/local-emergency.png)
+![Banner with small, bold heading text on a green background, above the breadcrumb bar and ordinary page title](images/emergency_publishing/local-emergency.jpg)
