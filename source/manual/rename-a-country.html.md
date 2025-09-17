@@ -30,13 +30,10 @@ This will update www.gov.uk/foreign-travel-advice/`<country_slug>` to www.gov.uk
    * Once the above pull request is ready, [deploy](https://github.com/alphagov/travel-advice-publisher/actions/workflows/deploy.yml) Travel Advice Publisher to update the countries YAML file.
    * You will see the country has updated in the list in [Travel Advice Publisher](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin)
 
-3. Run Rake tasks
-
-   kubectl exec deploy/travel-advice-publisher  -- rake
+3. Run Rake tasks with `kubectl exec deploy/travel-advice-publisher  -- rake ...`
    * Run `country:rename[old_country_slug,new_country_slug]` to update the `TravelAdviceEdition`s.
    * Run `publishing_api:republish_edition[new_country_slug]` to update the Publishing API.
    * Run `publishing_api:republish_email_signups:country_edition[country-slug]` to update email subscriptions at `/foreign-travel-advice/<country_slug>/email-signup`
-
 4. Update the search metadata
    * In the [UI](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin), go to the country and create a new edition
    * Tick the "minor update" checkbox and update the `Search title` and `Search description` fields with the updated country name.
