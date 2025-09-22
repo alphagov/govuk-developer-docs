@@ -4,6 +4,8 @@ title: How to disable or re-enable an app in EKS
 layout: multipage_layout
 ---
 
+# How to disable or re-enable an app in EKS
+
 ## Pre-requisites
 
 * An app configured in [govuk-helm-charts app-config chart](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config)
