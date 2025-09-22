@@ -77,7 +77,7 @@ In [Whitehall](https://github.com/alphagov/whitehall):
 3. Run the `db:data:migrate` rake task in Whitehall
 
 4. Update World Location News
-   * Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations). In the "Details" tab, edit the `Title`, `Mission statement` and relevant `Featured links`.
+   * Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_location_news). In the "Details" tab, edit the `Title`, `Mission statement` and relevant `Featured links`.
 
 ### 4. Update Smart-answers
 
