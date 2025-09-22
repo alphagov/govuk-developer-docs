@@ -1,9 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: How to disable or re-enable an app in EKS
-section: Deployment
-layout: manual_layout
-parent: "/manual.html"
+layout: multipage_layout
 ---
 
 ## Pre-requisites
