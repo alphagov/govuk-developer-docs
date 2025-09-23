@@ -169,6 +169,14 @@ Pins can still be updated periodically (manually or via Dependabot), ensuring
 that you are in control of version changes. This is particularly important for
 any external or untrusted actions that GOV.UK does not maintain directly.
 
+To find the commit SHA for a given version tag, visit the repository on GitHub
+and look at the commit history at that specific tag. The format of the  URL for
+this is `https://github.com/owner/repository/commits/TAG`. The URL for `v5` of
+the `setup-node` action, for example, is
+`https://github.com/actions/setup-node/commits/v5/`. Choose the SHA hash of the
+first commit in the history. This will be the commit to which the tag has been
+applied.
+
 ### Only one workflow for a given branch should run at once
 
 Under certain conditions, the deployment system can number releases in the
