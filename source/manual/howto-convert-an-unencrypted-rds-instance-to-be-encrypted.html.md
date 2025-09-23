@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-platform-engineering"
 title: Convert an unencrypted AWS RDS instance into an encrypted one
-section: Backups
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 ---
