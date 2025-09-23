@@ -11,9 +11,13 @@ on:
         description: The branch, tag or SHA to checkout
         default: main
         type: string
-  schedule:
-    # Deploy hourly between 9am and 7pm on weekdays
-    - cron: "0 9-19 * * 1-5"
+# Temporarilily disabled while the developer docs deployment is broken.
+# govuk_schemas needs to be updated to >= 6.1.1 but dependency hell
+# is blocking it. All current builds and deploys of this repo are broken
+# and notifying us every hour, as well as on every real build
+#  schedule:
+#    # Deploy hourly between 9am and 7pm on weekdays
+#    - cron: "0 9-19 * * 1-5"
 
 jobs:
   test-ruby:
