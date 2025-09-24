@@ -78,6 +78,15 @@ In [Whitehall](https://github.com/alphagov/whitehall):
 
 4. Update World Location News
    * Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_location_news). In the "Details" tab, edit the `Title`, `Mission statement` and relevant `Featured links`.
+5. Check and republish any `WorldwideOrganisations` linked to the country
+   * In the Whitehall Rails console, run:
+
+   ```
+   location = WorldLocation.where(slug: <location_slug>)
+   location.published_editions.where(type: "WorldwideOrganisation")
+   ```
+
+   * Check that the renamed location is being surfaced as expected. If not, use the [republish tool](https://whitehall-admin.publishing.service.gov.uk/government/admin/republishing) to trigger an update on the worldwide organisation pages.
 
 ### 4. Update Smart-answers
 
