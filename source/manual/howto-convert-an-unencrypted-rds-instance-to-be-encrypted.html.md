@@ -8,15 +8,14 @@ parent: "/manual.html"
 
 This playbook describes how to convert an AWS RDS instance which does not have encryption at rest enabled, into an encrypted at rest instance.
 
-These instructions will incur around 1 to 2 hours of downtime. It is possible to do this with only a minute or so downtime, but this requires
-manually setting up logical replication to a secondary RDS instance which is beyond the scope of this guide.
+These instructions will incur around 1 to 2 hours of downtime.
 
 ## Overview
 
 The general process of converting to an encrypted database is
 
 1. [Take your app(s) offline and ensure there are no possible writes to the RDS instance](#take-your-app-offline)
-2. [Make an encrypted snapshot of your RDS instance](#make-an-encrypted-snapshot-of-your-rds-instance). This cannot be done in 1 step so you will need to:
+2. [Make an encrypted snapshot of your RDS instance](#make-an-encrypted-snapshot-of-your-rds-instance). This cannot be done in a single step so you will need to:
     1. Take an unencrypted snapshot of the RDS instance; and then
     2. Copy the unencrypted snapshot to a new snapshot while enabling encryption
 4. [Recreate the RDS instance from the encrypted snapshot](#recreate-the-rds-instance-from-the-encrypted-snapshot)
