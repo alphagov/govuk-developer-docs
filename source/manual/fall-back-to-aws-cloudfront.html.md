@@ -58,10 +58,10 @@ You can also get the `CNAME`s to use for the secondary CDN from the AWS CLI:
 
 ```bash
   # www-cdn.production.govuk.service.gov.uk
-  gds aws govuk-production-developer aws cloudfront list-distributions \
+  gds aws govuk-production-developer aws cloudfront list-distributions --output text \
     --query "DistributionList.Items[?Aliases.Items[0]=='www.gov.uk'].DomainName | [0]"
   # assets.publishing.service.gov.uk
-  gds aws govuk-production-developer aws cloudfront list-distributions \
+  gds aws govuk-production-developer aws cloudfront list-distributions --output text \
     --query "DistributionList.Items[?Aliases.Items[0]=='assets.publishing.service.gov.uk'].DomainName | [0]"
 ```
 
@@ -70,11 +70,13 @@ The records should look like `d0000000000000.cloudfront.net.` (with 0s replaced 
 Prior to changing the CNAMEs, do a quick test to ensure CloudFront is serving requests:
 
 ```bash
-curl --fail -vs --header "Host: www.gov.uk" \
-  https://<www cloudfront domain e.g. d0000000000000.cloudfront.net>/browse/benefits && echo "Success"
+curl --fail -vs \
+  --connect-to www.gov.uk:443:<www cloudfront domain e.g. d0000000000000.cloudfront.net> \
+  https://www.gov.uk/browse/benefits && echo "Success"
 
-curl --fail -vs --header "Host: assets.publishing.service.gov.uk" \
-  https://<assests cloudfront domain e.g. d0000000000000.cloudfront.net>/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview && echo success
+curl --fail -vs \
+  --connect-to assets.publishing.service.gov.uk:443:<assets cloudfront domain e.g. d0000000000000.cloudfront.net> \
+  https://assets.publishing.service.gov.uk/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview && echo success
 ```
 
 - Change the canonical name from `www-gov-uk.map.fastly.net.` to the CloudFront domain name you found before, including the trailing period (e.g. `d0000000000000.cloudfront.net.`)
@@ -115,10 +117,10 @@ You can get the `CNAME`s to use for the secondary CDN from the AWS CLI:
 
 ```bash
   # www.staging.publishing.service.gov.uk
-  gds aws govuk-staging-developer aws cloudfront list-distributions \
+  gds aws govuk-staging-developer aws cloudfront list-distributions --output text \
     --query "DistributionList.Items[?Aliases.Items[0]=='www.staging.publishing.service.gov.uk'].DomainName | [0]"
   # assets.staging.publishing.service.gov.uk
-  gds aws govuk-staging-developer aws cloudfront list-distributions \
+  gds aws govuk-staging-developer aws cloudfront list-distributions --output text \
     --query "DistributionList.Items[?Aliases.Items[0]=='assets.staging.publishing.service.gov.uk'].DomainName | [0]"
 ```
 
@@ -127,11 +129,14 @@ The records should look like `d0000000000000.cloudfront.net.` (with 0s replaced 
 Prior to changing the CNAMEs, do a quick test to ensure CloudFront is serving requests:
 
 ```bash
-curl --fail -vs --header "Host: www.staging.publishing.service.gov.uk" \
-  https://<www cloudfront domain e.g. d0000000000000.cloudfront.net>/browse/benefits && echo "Success"
+curl --fail -vs \
+  --connect-to www.staging.publishing.service.gov.uk:443:<www cloudfront domain e.g. d0000000000000.cloudfront.net> \
+  https://www.staging.publishing.service.gov.uk/browse/benefits && echo "Success"
 
-curl --fail -vs --header "Host: assets.staging.publishing.service.gov.uk" \
-  https://<assests cloudfront domain e.g. d0000000000000.cloudfront.net>/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview && echo success
+curl --fail -vs \
+  --connect-to assets.staging.publishing.service.gov.uk:443:<assets cloudfront domain e.g. d0000000000000.cloudfront.net> \
+  https://assets.staging.publishing.service.gov.uk/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview && echo success
+
 ```
 
 - Change the canonical name from `www-gov-uk.map.fastly.net.` to the CloudFront domain name you found before, including the trailing period (e.g. `d0000000000000.cloudfront.net.`)
