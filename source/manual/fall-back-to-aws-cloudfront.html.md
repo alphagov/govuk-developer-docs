@@ -28,7 +28,9 @@ This backup CDN is currently provided by AWS CloudFront.
 1. Confirm that Fastly is the cause of the incident (check [https://status.fastly.com/](https://status.fastly.com/)
   and keep an eye on X/Bluesky/Mastodon - if there's a major Fastly outage there will be a lot of noise)
 2. Escalate to GOV.UK SMT as soon as you begin to consider failing over
-3. Sign in to the AWS console as an fulladmin (`gds aws govuk-production-fulladmin -l`, or however you prefer to sign in to AWS)
+3. Sign in to the AWS console as a fulladmin in the appropriate environment using the gds cli (or however you prefer to sign in to AWS):
+  - For production: `gds aws govuk-production-fulladmin -l`
+  - For staging: `gds aws govuk-staging-fulladmin -l`
 4. Sign in to [the `govuk-production` project on GCP console](https://console.cloud.google.com/home/dashboard?project=govuk-production)
 
 Now follow the steps below for [**Production**](#production) or for [**Staging**](#staging), depending on your scenario:
@@ -79,7 +81,7 @@ curl --fail -vs \
   https://assets.publishing.service.gov.uk/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview && echo success
 ```
 
-- Change the canonical name from `www-gov-uk.map.fastly.net.` to the CloudFront domain name you found before, including the trailing period (e.g. `d0000000000000.cloudfront.net.`)
+- Change the canonical name from `www-gov-uk.map.fastly.net.` to the CloudFront domain name you found before, including the trailing period (e.g. `d0000000000000.cloudfront.net.`), and also set the TTL to 60 seconds
 - Test if the new Cloudfront domain is serving assets correctly, for example:
 
 ```bash
@@ -105,7 +107,7 @@ Open the following page:
 
 - [AWS Route 53 publishing.service.gov.uk (in the staging AWS account)](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z05513091E15C53LVTH47)
 
-You are going to update the `CNAME` records for two different domains, in both GCP and AWS. These two domains are:
+You are going to update the `CNAME` records for two different domains, in AWS. These two domains are:
 
 - `www.staging.publishing.service.gov.uk`
 - `assets.staging.publishing.service.gov.uk`
@@ -139,7 +141,7 @@ curl --fail -vs \
 
 ```
 
-- Change the canonical name from `www-gov-uk.map.fastly.net.` to the CloudFront domain name you found before, including the trailing period (e.g. `d0000000000000.cloudfront.net.`)
+- Change the canonical name from `www-gov-uk.map.fastly.net.` to the CloudFront domain name you found before, including the trailing period (e.g. `d0000000000000.cloudfront.net.`), and also set the TTL to 60 seconds.
 - Test if the new Cloudfront domain is serving assets correctly, for example:
 
 ```bash
@@ -157,4 +159,8 @@ curl -vs https://assets.staging.publishing.service.gov.uk/media/662a74aa45f183ec
 - Once you've failed over, keep a close eye on Fastly's status
 - As soon as you are confident that Fastly has recovered
   - Manually set each of the `CNAME` records you changed above back to `www-gov-uk.map.fastly.net.`
-  - If you previously raised a PR in [govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure), raise another PR to revert your changes and restore the old records. Get it approved, merged and approve the Terraform apply via the the [govuk-publishing-infrastructure-production workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-production) on Terraform Cloud.
+  - If you previously raised a PR in [govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure), raise another PR to revert your changes and restore the old records.
+  - Apply the [tfc-configuration terraform workspace](https://app.terraform.io/app/govuk/workspaces/tfc-configuration).
+  - Apply the appropriate govuk-publishing terraform workspace:
+    - [govuk-publishing-infrastructure-production terraform workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-production)
+    - [govuk-publishing-infrastructure-staging terraform workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-staging)
