@@ -26,7 +26,7 @@ This backup CDN is currently provided by AWS CloudFront.
 ### Initial steps
 
 1. Confirm that Fastly is the cause of the incident (check [https://status.fastly.com/](https://status.fastly.com/)
-  and keep an eye on twitter - if there's a major Fastly outage there will be a lot of noise)
+  and keep an eye on X/Bluesky/Mastodon - if there's a major Fastly outage there will be a lot of noise)
 2. Escalate to GOV.UK SMT as soon as you begin to consider failing over
 3. Sign in to the AWS console as an fulladmin (`gds aws govuk-production-fulladmin -l`, or however you prefer to sign in to AWS)
 4. Sign in to [the `govuk-production` project on GCP console](https://console.cloud.google.com/home/dashboard?project=govuk-production)
@@ -51,69 +51,106 @@ You are going to update the `CNAME` records for two different domains, in both G
 
 Their values can be found in [the Terraform configuration](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/tfc-configuration/variables-production.tf) for GOV.UK publishing infrastructure.
 
+In order to stop these being reverted accidentally go to the [govuk-publishing-infrastructure-production terraform workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-production)
+and lock the workspace (press the Lock button in the top right of the page).
+
 You can also get the `CNAME`s to use for the secondary CDN from the AWS CLI:
 
 ```bash
   # www-cdn.production.govuk.service.gov.uk
-  gds aws govuk-production-developer aws cloudfront list-distributions \
+  gds aws govuk-production-developer aws cloudfront list-distributions --output text \
     --query "DistributionList.Items[?Aliases.Items[0]=='www.gov.uk'].DomainName | [0]"
   # assets.publishing.service.gov.uk
-  gds aws govuk-production-developer aws cloudfront list-distributions \
+  gds aws govuk-production-developer aws cloudfront list-distributions --output text \
     --query "DistributionList.Items[?Aliases.Items[0]=='assets.publishing.service.gov.uk'].DomainName | [0]"
 ```
 
 The records should look like `d0000000000000.cloudfront.net.` (with 0s replaced with letters and numbers). Now you can manually update the `CNAME` records for both domains in both GCP and AWS, via the tabs you opened in your web browser earlier:
 
+Prior to changing the CNAMEs, do a quick test to ensure CloudFront is serving requests:
+
+```bash
+curl --fail -vs \
+  --connect-to www.gov.uk:443:<www cloudfront domain e.g. d0000000000000.cloudfront.net> \
+  https://www.gov.uk/browse/benefits && echo "Success"
+
+curl --fail -vs \
+  --connect-to assets.publishing.service.gov.uk:443:<assets cloudfront domain e.g. d0000000000000.cloudfront.net> \
+  https://assets.publishing.service.gov.uk/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview && echo success
+```
+
 - Change the canonical name from `www-gov-uk.map.fastly.net.` to the CloudFront domain name you found before, including the trailing period (e.g. `d0000000000000.cloudfront.net.`)
 - Test if the new Cloudfront domain is serving assets correctly, for example:
 
 ```bash
-curl -vs https://assets.staging.publishing.service.gov.uk/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview | grep cloudfront
+curl -vs https://www.gov.uk/browse/benefits
+
+curl -vs https://assets.publishing.service.gov.uk/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview
 ```
 
-- Two ways to check if the Cloudfront domain is working correctly:
-  - There will be a missing key: `fastly-backend-name`
-  - Look for a value of `xxxxx.cloudfront.net` in the `via` key.
+- Two ways to check if the Cloudfront domains are working correctly (do this for both curl requests above):
+  - There will **not** be an HTTP header returned with the name: `fastly-backend-name`
+  - Look for a value of `xxxxx.cloudfront.net` in the responses `via` HTTP Header.
 - After performing the manual failover, you should also update our infrastructure-as-code to match the changes you just made:
   - Raise and merge a PR in `govuk-infrastructure` to fail over to CloudFront
   - Terraform Cloud should automatically perform a plan when your PR is merged, but the apply will require manual approval - you can do this in the [govuk-publishing-inrastructure-production workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-production)
 
 ### Staging
 
-Open the following three pages as separate tabs:
+*NOTE* Staging does not use GCP as a failover DNS provider, so for staging you will only be updating AWS Route53.
 
-- [GCP Cloud DNS www.staging.publishing.service.gov.uk](https://console.cloud.google.com/net-services/dns/zones/publishing-service-gov-uk/rrsets/www.staging.publishing.service.gov.uk./CNAME/edit-standard?project=govuk-production)
-- [GCP Cloud DNS assets.staging.publishing.service.gov.uk](https://console.cloud.google.com/net-services/dns/zones/publishing-service-gov-uk/rrsets/assets.staging.publishing.service.gov.uk./CNAME/edit-standard?project=govuk-production)
-- [AWS Route 53 publishing.service.gov.uk](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z3SBFBO09PD5HF)
+You must be on the Cabinet Office VPN, a DSIT laptop with ZScaler authenticated, or either of the WiFi networks in the White Chapel building to test any changes on staging.
+
+Open the following page:
+
+- [AWS Route 53 publishing.service.gov.uk (in the staging AWS account)](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z05513091E15C53LVTH47)
 
 You are going to update the `CNAME` records for two different domains, in both GCP and AWS. These two domains are:
 
 - `www.staging.publishing.service.gov.uk`
 - `assets.staging.publishing.service.gov.uk`
 
+In order to stop these being reverted accidentally go to the [govuk-publishing-infrastructure-staging terraform workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-staging)
+and lock the workspace (press the Lock button in the top right of the page).
+
 You can get the `CNAME`s to use for the secondary CDN from the AWS CLI:
 
 ```bash
   # www.staging.publishing.service.gov.uk
-  gds aws govuk-staging-developer aws cloudfront list-distributions \
+  gds aws govuk-staging-developer aws cloudfront list-distributions --output text \
     --query "DistributionList.Items[?Aliases.Items[0]=='www.staging.publishing.service.gov.uk'].DomainName | [0]"
   # assets.staging.publishing.service.gov.uk
-  gds aws govuk-staging-developer aws cloudfront list-distributions \
+  gds aws govuk-staging-developer aws cloudfront list-distributions --output text \
     --query "DistributionList.Items[?Aliases.Items[0]=='assets.staging.publishing.service.gov.uk'].DomainName | [0]"
 ```
 
-The records should look like `d0000000000000.cloudfront.net.` (with 0s replaced with letters and numbers). Now you can manually update the `CNAME` records for both domains in both GCP and AWS, via the tabs you opened in your web browser earlier:
+The records should look like `d0000000000000.cloudfront.net.` (with 0s replaced with letters and numbers). Now you can manually update the `CNAME` records for both domains in AWS, via the tab you opened in your web browser earlier:
+
+Prior to changing the CNAMEs, do a quick test to ensure CloudFront is serving requests:
+
+```bash
+curl --fail -vs \
+  --connect-to www.staging.publishing.service.gov.uk:443:<www cloudfront domain e.g. d0000000000000.cloudfront.net> \
+  https://www.staging.publishing.service.gov.uk/browse/benefits && echo "Success"
+
+curl --fail -vs \
+  --connect-to assets.staging.publishing.service.gov.uk:443:<assets cloudfront domain e.g. d0000000000000.cloudfront.net> \
+  https://assets.staging.publishing.service.gov.uk/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview && echo success
+
+```
 
 - Change the canonical name from `www-gov-uk.map.fastly.net.` to the CloudFront domain name you found before, including the trailing period (e.g. `d0000000000000.cloudfront.net.`)
 - Test if the new Cloudfront domain is serving assets correctly, for example:
 
 ```bash
-curl -vs https://assets.staging.publishing.service.gov.uk/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview | grep cloudfront
+curl -vs https://www.staging.publishing.service.gov.uk/browse/benefits
+
+curl -vs https://assets.staging.publishing.service.gov.uk/media/662a74aa45f183ec818a72c2/dvsa-earned-recognition-vehicle-operators-accredited-list.csv/preview
 ```
 
-- Two ways to check if the Cloudfront domain is working correctly:
-  - There will be a missing key: `fastly-backend-name`
-  - Look for a value of `xxxxx.cloudfront.net` in the `via` key.
+- Two ways to check if the Cloudfront domains are working correctly (do this for both curl requests above):
+  - There will **not** be an HTTP header returned with the name: `fastly-backend-name`
+  - Look for a value of `xxxxx.cloudfront.net` in the responses `via` HTTP Header.
 
 ### Finishing up
 
