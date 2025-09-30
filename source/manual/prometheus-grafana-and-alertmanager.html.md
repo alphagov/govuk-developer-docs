@@ -9,6 +9,8 @@ parent: "/manual.html"
 
 ## How we use Prometheus on GOV.UK
 
+The Prometheus Operator installs and configures Prometheus, AlertManager and Grafana through Custom Resource Definitions.
+
 [Prometheus][link-1] is a systems monitoring and alerting toolkit. Its features include:
 
 - A time-series database, specifically optimised for graphing data over time.
@@ -38,17 +40,17 @@ Grafana provides a frontend for visualizing the Prometheus data. A common workfl
 
 ## Alertmanager
 
-Alertmanager reads data directly from Prometheus, and sends notifications when metrics cross predefined thresholds. These thresholds are defined as [rules][link-11] in the monitoring-config folder of [govuk-helm-charts][link-12].
+Alertmanager reads data directly from Prometheus, and sends notifications when metrics cross predefined thresholds. These thresholds are defined as [rules][link-11] in [govuk-helm-charts][link-12]. See [the Prometheus Operator manual][link-13] on how to write these rules.
 
-It is also possible to see all of the configured alerts via the Prometheus UI itself, by clicking the [Alerts tab][link-13].
+It is also possible to see all of the configured alerts via the Prometheus UI itself, by clicking the [Alerts tab][link-14].
 
-Somewhat confusingly, the [Alertmanager UI][link-14] does not show all configured alerts, only those which are currently firing.
+Somewhat confusingly, the [Alertmanager UI][link-15] does not show all configured alerts, only those which are currently firing.
 
 ### Alert severity levels
 
 As part of the rule definition, each alert is labelled with one of the following severity levels (in decreasing order of urgency), to indicate the impact and expected response time:
 
-- **Page:** Used for urgent, severe conditions that require an immediate response, even out-of-hours. These alerts will be forwarded to [PagerDuty][link-15]. Examples include conditions that make the service unusable or imminently unusable e.g. database is out of disk space.
+- **Page:** Used for urgent, severe conditions that require an immediate response, even out-of-hours. These alerts will be forwarded to [PagerDuty][link-16]. Examples include conditions that make the service unusable or imminently unusable e.g. database is out of disk space.
 - **Critical:** Used for conditions that should be addressed promptly within usual business hours, but do not require immediate out-of-hours attention. Examples include conditions that are likely to cause an outage soon e.g. disk usage at 90% with less than a day of capacity left.
 - **Warning:** Used as an early indicator of abnormal conditions, that might require investigation during usual business hours if they persist e.g. disk usage at 70%.
 
@@ -66,6 +68,7 @@ Alerts for purely informational or debugging conditions should be avoided, to re
 [link-10]: https://github.com/alphagov/govuk-helm-charts/pull/3100/files
 [link-11]: https://github.com/alphagov/govuk-helm-charts/tree/a787602eb4734d74babaf943eaa9a9dbb805eb8d/charts/monitoring-config/rules
 [link-12]: https://github.com/alphagov/govuk-helm-charts
-[link-13]: https://prometheus.eks.production.govuk.digital/alerts?search=Search-
-[link-14]: https://alertmanager.eks.production.govuk.digital/#/alerts
-[link-15]: https://docs.publishing.service.gov.uk/manual/pagerduty.html
+[link-13]: https://prometheus-operator.dev/docs/api-reference/api/#monitoring.coreos.com/v1alpha1.AlertmanagerConfig
+[link-14]: https://prometheus.eks.production.govuk.digital/alerts?search=Search-
+[link-15]: https://alertmanager.eks.production.govuk.digital/#/alerts
+[link-16]: https://docs.publishing.service.gov.uk/manual/pagerduty.html
