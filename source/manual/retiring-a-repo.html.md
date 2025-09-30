@@ -34,13 +34,9 @@ Archiving a repo does not remove its GitHub Pages site (if any). The site stays 
 
 ## 4. Archive the repo
 
-Before you proceed with archving the repo, ensure that all workflow runs listed under "Actions" have completed or [cancel them](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/canceling-a-workflow#canceling-a-workflow-run).
+Before you proceed with archiving the repo, ensure that all workflow runs listed under "Actions" have completed or [cancel them](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/canceling-a-workflow#canceling-a-workflow-run).
 
-Head to the `govuk-infrastructure` repository and find the `repos.yaml` [file inside the Github Terraform Deployment](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/repos.yml).
-
-Find your Repository in the YAML file and add the `archived: true` property to it. You may also wish to remove any status checks as these can result in additional Terraform resources being created and managed in Terraform State and can cause plans and applies to take longer unnecessarily.
-
-Submit your changes as a PR, have it approved, merge it and then ensure the Github Terraform applies in Terraform Cloud. The Terraform Deployment will run a series of precondition checks to catch any outstanding PRs or unaddressed Github Pages configuration. If you have missed any, the Terraform Plan will fail and you should back go over Steps 2-3 again to make sure nothing has been overlooked.
+Follow the ['Archiving repositories'](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/README.md#archiving-repositories) instructions in the govuk-infrastructure.
 
 ## 5. Update the Developer Docs
 
