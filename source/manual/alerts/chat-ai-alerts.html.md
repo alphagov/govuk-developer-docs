@@ -8,11 +8,11 @@ section: Monitoring and alerting
 
 > **Note**
 >
-> For any queries or assistance regarding Chat Alerts, please post in the #dev-notifications-ai-govuk Slack channel
+> For any queries or assistance regarding Chat Alerts, please post in the [#dev-notifications-ai-govuk] Slack channel
 
 ## Alerts by Priority
 
-For any alert, it is worth checking the Grafana `GOV.UK Chat Technical` Dashboards to see if any part of the service is showing signs of an issue:
+For any alert, it is worth checking the Grafana `GOV.UK Chat Technical` dashboards to see if any part of the service is showing signs of an issue:
 
 - [Integration]
 - [Staging]
@@ -31,15 +31,33 @@ The 503 error code has been excluded from being alerted on, as that will be used
 - HighPodCPUWorker
 - HighPodMemoryFE
 - HighPodMemoryWorker
-- NearTokensRateLimit
-- NearRequestsRateLimit
+- SidekiqQueueLength
+- SidekiqJobAge
+- govuk-chat-bedrock-token-threshold-50
+- govuk-chat-bedrock-token-threshold-100
 
 The `LongRequestDuration` alert indicates that a backend part of the service is not responding as expected, and as a result the user experience is severely impacted. For example, we have seen it fire when the RDS Postgres Database is offline.
 
-Any of the `High` alerts usually indicate that the service is under heavy load. In this situation, it may be necessary to increase the number of relevent pods running by modifying the `replicaCount` for FE or `workerReplicaCount` for Worker pods in the `govuk-chat` section of the relevant values Helm Chart file found [here].
+Any of the `High*` alerts relate to EKS Pod performance. Horizontal Pod Autoscaling has been employed, so along with the rate limiting in place, we should not see these trigger but if they do, it could indicate an issue with the EKS cluster. HPA configuration can be found in the relevant `values-{environment}.yaml` files [here].
 
-The `NearTokensRateLimit` and `NearRequestsRateLimit` alerts indicate that over 80% of the OpenAI limit for tokens or requests per minute has been used.
+`SidekiqQueueLength` is used as the metric to scale the worker pods, so an increase in this will likely be down to high load. If the age of the oldest job in the Sidekiq queue is increasing, it may be a process has got stuck.
 
+The bedrock token threshold alerts are for us to use as data for deciding if higher limits need to be requested of AWS. These alerts are configured in AWS Cloudwatch Alarms, rather than Prometheus like the other alerts. The dashboard graph showing Bedrock Service Exceptions is an indication of rate limiting or problems on the AWS side. `ValidationException` happens when the invoke request has too many input tokens and `ServiceUnavailableException` is a result of the model being throttled by AWS. To get the error message relating to the Cloudwatch error code for the exceptions, the lookup attribute `User name` can be used to filter events in Cloudtrail.
+
+The Grafana dashboards show usage of:
+
+- Application rate limits
+- Bedrock tokens usage
+- Bedrock invocations
+- Bedrock Service Exceptions
+- HTTP requests
+- Pod CPU & Memory
+- Opensearch cluster
+- RDS Postgres
+- Elasticache Redis
+- Sidekiq queues
+
+[#dev-notifications-ai-govuk]: https://gds.slack.com/archives/C06AWTPNJMV
 [Integration]: https://grafana.eks.integration.govuk.digital/d/govuk-chat-techical
 [Staging]: https://grafana.eks.staging.govuk.digital/d/govuk-chat-techical
 [Production]: https://grafana.eks.production.govuk.digital/d/govuk-chat-techical
