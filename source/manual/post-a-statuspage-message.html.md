@@ -12,11 +12,15 @@ As part of that, we update our status page [status.publishing.service.gov.uk][st
 
 The page is managed using a third party service called [Statuspage][sp].
 
-## Access StatusPage
+## Access Statuspage
 
-Use [manage.statuspage.io][man] to post messages.
+Login to [manage.statuspage.io][man] with your Google account to post messages.
 
-You should be able to log in using your Google account. Someone in #govuk-platform-engineering will need to [manually invite you](https://admin.atlassian.com/o/7387b684-a116-15k9-6b37-47cc1ab98c44/users) first (something we're [hoping to automate later](https://github.com/alphagov/govuk-user-reviewer/issues/1353)).
+Access to Statuspage is granted manually by [invitation](https://admin.atlassian.com/o/7387b684-a116-15k9-6b37-47cc1ab98c44/users), typically once [permanent Production Admin access](/manual/rules-for-getting-production-access.html) is
+approved and merged to [GOV.UK user reviewer](https://github.com/alphagov/govuk-user-reviewer) repository.
+_(It's something we're [hoping to automate later](https://github.com/alphagov/govuk-infrastructure/issues/2720))._
+
+If you should have access but don’t, ask your (civil servant) tech lead or a [Senior Tech member](https://docs.publishing.service.gov.uk/manual/ask-for-help.html#contact-senior-tech).
 
 ## Create an Incident
 
