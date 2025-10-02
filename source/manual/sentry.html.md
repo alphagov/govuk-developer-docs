@@ -24,7 +24,8 @@ Useful links:
 
 ## Getting access to Sentry
 
-Your tech lead should manually add you to Sentry via the Sentry UI. Once you've been added, you'll be able to [sign in](https://sentry.io/auth/login/) using your GDS Google account.
+Your tech lead should manually add you to Sentry via the Sentry UI. Access also has to be recorded in [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer?tab=readme-ov-file#adding-users).
+Once you've accept the invite, you'll be able to [sign in](https://sentry.io/auth/login/) using your GDS Google account.
 
 ## Nomenclature
 
