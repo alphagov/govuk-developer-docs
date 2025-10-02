@@ -121,7 +121,11 @@ Manually trigger `govuk-fastly-bouncer-production` 'Plan and apply' run in [Terr
 
 > If the domain currently has no DNS entries (e.g. it is brand new), this process will not set up the domain in Fastly (due to [this line of code](https://github.com/alphagov/transition/blob/8a532735ce8e61731986fd580a5d6ca1552e095f/app/controllers/hosts_controller.rb#L3C14-L3C49)). Instead you should request the domain's owner point the DNS to us (see next step) before running this project.
 
-### 5) Change the domain's DNS to point at Bouncer
+### 5) Obtain a TLS certificate
+
+You'll need to create a TLS certificate in Fastly, otherwise users will see a certificate error when being redirected from an external HTTPS URL to GOV.UK via Bouncer. Read how to [request a Fastly TLS certificate][].
+
+### 6) Change the domain's DNS to point at Bouncer
 
 Once the transition is ready to be deployed, the domain must be pointed at Bouncer.
 
@@ -133,10 +137,6 @@ This is done in one of two ways:
 If the domain is [administered by GDS](https://github.com/alphagov/govuk-dns-tf/tree/main/zones), you will need to [update and re-deploy the DNS config](/manual/dns.html#dns-for-the-publishingservicegovuk-domain). See an [example PR](https://github.com/alphagov/govuk-dns-tf/pull/405/files) for adding a new domain with a CNAME.
 
 If the domain is administered by the requester, you must send them the new DNS details and ask them to update the DNS records.
-
-### 6) Obtain a TLS certificate
-
-You'll need to create a TLS certificate in Fastly, otherwise users will see a certificate error when being redirected from an external HTTPS URL to GOV.UK via Bouncer. Read how to [request a Fastly TLS certificate][].
 
 ## Further reading
 
