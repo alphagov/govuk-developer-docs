@@ -87,7 +87,7 @@ Use the following settings for the site. All other form fields can be ignored.
 
 - TNA timestamp: get the latest timestamp as advised by the form guidance. Otherwise use the default specified on the form.
 - Homepage: the URL where all requests will be redirected to.
-- Hostname: the old domain that the requests come from (do not add `www`).
+- Hostname: the old domain that the requests come from. Do not include `www`. If you need to redirect from a `www` version of the domain, add it to the aliases.
 - Global type: select 'Redirect'.
 - Global new URL: the URL where all requests will be redirected to.
 - Global redirect append path: check this option if the requester would like the path appended to the redirect (e.g. they want `https://www.my-old-domain.gov.uk/some-path` to redirect to `https://www.my-new-domain.gov.uk/some-path`). When this option is not checked, `https://www.my-old-domain.gov.uk/some-path` will redirect to `https://www.my-new-domain.gov.uk`.
