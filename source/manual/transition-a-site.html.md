@@ -121,7 +121,9 @@ In order to cleanly switch the domain from the old site, the TTL needs to be low
 
 Manually trigger `govuk-fastly-bouncer-production` 'Plan and apply' run in [Terraform Cloud UI](https://app.terraform.io/app/govuk/workspaces/govuk-fastly-bouncer-production/runs). Review the plan with changes to `module.bouncer-production.fastly_service_vcl.service` and apply the configuration.
 
-> If the domain currently has no DNS entries (e.g. it is brand new), this process will not set up the domain in Fastly (due to [this line of code](https://github.com/alphagov/transition/blob/8a532735ce8e61731986fd580a5d6ca1552e095f/app/controllers/hosts_controller.rb#L3C14-L3C49)). Instead you should request the domain's owner point the DNS to us (see next step) before running this project.
+> A periodic cron job runs to populate the DNS records cached in the Transition app. For newly added domains, the DNS will be empty until the cron job next runs. Due to [this line of code](https://github.com/alphagov/transition/blob/8a532735ce8e61731986fd580a5d6ca1552e095f/app/controllers/hosts_controller.rb#L3C14-L3C49), the domain will not be added to Fastly if there are no cached DNS records. The `transition-import-dns` cron job can be run manually in [the Argo user interface](https://argo.eks.production.govuk.digital/applications/cluster-services/transition).
+>
+> If the domain currently has no DNS records (e.g. it is brand new), you should request the domain's owner point the DNS to us (see next step) before running this Terraform project, else the domain will not be added.
 
 ### 5) Obtain a TLS certificate
 
