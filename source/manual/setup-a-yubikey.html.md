@@ -40,7 +40,7 @@ YubiKey 5C NFC (5.7.1) [OTP+FIDO+CCID] Serial: 31234567
 
 The output might change slightly depending on the model of Yubikey and the Firmware version - for security reasons, Firmwares are permanently fixed and cannot be flashed or updated, as Yubikey operates on a "black box" security model.
 
-You can also confirm which applications are supported and enable or diabled on your Yubikey by running `ykman info` - you should get output like this:
+You can also confirm which applications are supported and enabled or disabled on your YubiKey by running `ykman info` - you should get output like this:
 
 ```
 Device type: YubiKey 5C NFC
@@ -49,15 +49,15 @@ Firmware version: 5.7.1
 Form factor: Keychain (USB-C)
 Enabled USB interfaces: FIDO, CCID
 NFC transport is enabled
-
-Applications	USB     	NFC    
-Yubico OTP  	Enabled	    Enabled
-FIDO U2F    	Enabled 	Enabled
-FIDO2       	Enabled 	Enabled
-OATH        	Enabled 	Enabled
-PIV         	Enabled 	Enabled
-OpenPGP     	Enabled 	Enabled
-YubiHSM Auth	Enabled 	Enabled
+.
+Applications    USB         NFC    
+Yubico OTP      Enabled     Enabled
+FIDO U2F        Enabled     Enabled
+FIDO2           Enabled     Enabled
+OATH            Enabled     Enabled
+PIV             Enabled     Enabled
+OpenPGP         Enabled     Enabled
+YubiHSM Auth    Enabled     Enabled
 ```
 
 If you see an output that resembles something like this...
@@ -69,15 +69,15 @@ Firmware version: 5.7.1
 Form factor: Keychain (USB-C)
 Enabled USB interfaces: FIDO
 NFC transport is enabled
-
-Applications	USB     	    NFC    
-Yubico OTP  	Not Supported   Not Supported
-FIDO U2F    	Enabled 	    Enabled
-FIDO2       	Enabled 	    Enabled
-OATH        	Not Supported   Not Supported
-PIV         	Not Supported   Not Supported
-OpenPGP     	Not Supported   Not Supported
-YubiHSM Auth	Not Supported   Not Supported
+.
+Applications    USB             NFC    
+Yubico OTP      Not Supported   Not Supported
+FIDO U2F        Enabled         Enabled
+FIDO2           Enabled         Enabled
+OATH            Not Supported   Not Supported
+PIV             Not Supported   Not Supported
+OpenPGP         Not Supported   Not Supported
+YubiHSM Auth    Not Supported   Not Supported
 ```
 
 ...then you have a YubiKey Security Key and you'll need to stop here and get a "proper" YubiKey 5 Series device before continuing.
@@ -128,24 +128,25 @@ gpg/card> kdf-setup
 
 The YubiKey's GPG Application has a built-in mechanism to prevent brute-force attempts of the PIN. By default, this is set to `3 0 3` which represents:
 
-* 3 Attempts of User PIN
-* 0 Attempts of Reset PIN (Disabled by default)
-* 3 Attempts of Administrator PIN
+- 3 Attempts of User PIN
+- 0 Attempts of Reset PIN (Disabled by default)
+- 3 Attempts of Administrator PIN
 
-If the User PIN is entered incorrectly too many times, it must be unlocked using the Administrator PIN. If the Administrator PIN is entered too many times, the key will 
+If the User PIN is entered incorrectly too many times, it must be unlocked using the Administrator PIN. If the Administrator PIN is entered too many times, the key will
 
 We would recommend setting these values to `10 0 10` which reduces the risk of accidentally locked or lost keys without increasing the risk of bruteforce attempts.
 
-### Set User and Administrator PINs
+### Set GPG User and Administrator PINs
 
 If you have enabled KDF and set your retries policy, you can now set your User and Administrator PINs.
 
 You will need to first confirm the "old" PINs - the Defaults are:
 
-* User: 123456
-* Administrator: 12345678
+- User: 123456
+- Administrator: 12345678
 
 You should set your Admin PIN:
+
 ```sh
 ykman openpgp access change-admin-pin
 
@@ -155,6 +156,7 @@ Confirm New Admin Pin: xxxxxxxx
 ```
 
 ...and then you can set your User PIN:
+
 ```
 Enter Admin Pin: 123456
 Enter New Pin: xxxxxx
@@ -191,7 +193,7 @@ We recommend **ECC** as it is more modern and secure than RSA and is now support
 
 ### Generate Key Pair
 
-Now you have configured
+Now you have configured the basic settings for GPG, it is time to generate a GPG key:
 
 ```
 gpg/card> generate
@@ -204,6 +206,7 @@ Make off-card backup of encryption key? (Y/n)
 ```
 
 You will be asked to set a validity for the key - we recommend setting it to "does not expire":
+
 ```
 Please specify how long the key should be valid.
          0 = key does not expire
@@ -217,6 +220,7 @@ Is this correct? (y/N) y
 ```
 
 Next you will be asked to confirm your personal details - use the prompts to confirm:
+
 ```
 Real name: Firstname Lastnamerson
 Email address: firstname.lastnamerson@digital.cabinet-office.gov.uk
@@ -226,19 +230,35 @@ You selected this USER-ID:
 ```
 
 When you are happy, Enter "O" and continue:
+
 ```
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
 ```
 
 Lastly, you will be asked to set a Passphrase. Set this to something only you know and are happy to recite on a regular basis when prompted to use the key.
 
+### Configure FIDO PIN
+
+The FIDO pin will be used by the SSH process. We will need to set this before continuing - for simplicity, you may wish to set this as the same as your GPG User PIN:
+
+```
+ykman fido access change-pin
+```
+
+...then follow the instructions.
+
 ### Configuring SSH to use the Yubikey
 
-Once you have generated your key pair, you can now set up SSH to use it. While this step will use ssh-keygen, all it is doing is effectively creating a "pointer" to the Security Key (hence the -sk designation).
+Once you have generated your key pair and set your FIDO PIN, you can now set up SSH to use your GPG key. While this step will use ssh-keygen, all it is doing is effectively creating a "pointer" to the Security Key (hence the -sk designation).
 
 ```
 ssh-keygen -t ed25519-sk -O resident -O verify-required -C "Firstname Lastnamerson (GDS) <firstname.lastnamerson@digital.cabinet-office.gov.uk>"
 ```
+
+Take note of the options above...
+
+- `-O resident` instructs that the actual key is "resident" to the Security Key and is what should be used for signing.
+- `-O verify-required` instructs that the key always requires touch "verification" each time it is to be used. If this option is omitted, the SSH client will not be forced to prompt the user (you) for a touch confirmation.
 
 Once you have generated the "pointer" file for the Security Key, you will want to make sure your SSH config (located at `~/.ssh/config`) contains a block like this:
 
@@ -260,11 +280,11 @@ This is where we actually get to use the keys you have just generated.
 
 Once your SSH key is created and attached to the SSH agent, you will want to add the Public Key to your GitHub Profile.
 
-* Go to your [GitHub Settings Page -> Access -> SSH and GPG keys](https://github.com/settings/keys).
-* Click "New SSH key"
-* Set the "Title" to something you can remember, e.g. "YubiKey SSH Key"
-* Select "Key type" as "Authentication Key"
-* Paste the contents of `~/.ssh/id_ed52219_sk.pub` into the "Key" field.
+- Go to your [GitHub Settings Page -> Access -> SSH and GPG keys](https://github.com/settings/keys).
+- Click "New SSH key"
+- Set the "Title" to something you can remember, e.g. "YubiKey SSH Key"
+- Select "Key type" as "Authentication Key"
+- Paste the contents of `~/.ssh/id_ed52219_sk.pub` into the "Key" field.
 
 Once this is done, you should now be able to use your new key to pull and push to/from GitHub.
 
@@ -280,11 +300,11 @@ Reader ...........: Yubico YubiKey FIDO CCID
 Application ID ...: D2760001240100000006322522270000
 [truncated]
 General key info..: pub  ed25519/A3F1E9C0B827D54E 2025-09-23 Firstname Lastnamerson (GDS/DSIT) <firstname.lastnamerson@digital.cabinet-office.gov.uk>
-sec>  ed25519/A3F1E9C0B827D54E  created: 2025-09-23  expires: never     
+sec>  ed25519/A3F1E9C0B827D54E  created: 2025-09-23  expires: never
                                 card-no: 0006 31234567
-ssb>  ed25519/4B7E0C1F8A9D6325  created: 2025-09-23  expires: never     
+ssb>  ed25519/4B7E0C1F8A9D6325  created: 2025-09-23  expires: never
                                 card-no: 0006 31234567
-ssb>  cv25519/9E5D2A6C8F0B4173  created: 2025-09-23  expires: never     
+ssb>  cv25519/9E5D2A6C8F0B4173  created: 2025-09-23  expires: never
                                 card-no: 0006 31234567
 ```
 
@@ -310,32 +330,58 @@ Take the output from this command and head back to [GitHub Settings Page -> Acce
 
 Again, set the "Title" to something you might find helpful and paste the Public Key Block into the "Key" field. GitHub will now be able to Verify any commits you make as coming from your GPG key (and therefore probably from you).
 
-# Set up a YubiKey as an MFA device for AWS
+### Setting Touch Preferences
 
-1. Install the [Yubico Authenticator](https://www.yubico.com/products/yubico-authenticator/) app on your computer.
+You will want to set your touch preferences for when using your OpenPGP keys. The options are listed:
+
+```
+Off (default)  no touch required
+On             touch required
+Fixed          touch required, can't be disabled without deleting the private key
+Cached         touch required, cached for 15s after use
+Cached-Fixed   touch required, cached for 15s after use, can't be disabled
+               without deleting the private key
+```
+
+Assuming you want to use the "Cached" option, this is how you set it for each of the PGP actions:
+
+```
+ykman openpgp keys set-touch sig cached
+ykman openpgp keys set-touch dec cached
+ykman openpgp keys set-touch aut cached
+ykman openpgp keys set-touch att cached
+```
+
+You may choose a more secure option, but this is what we recommend as a "best practice".
+
+### Other useful commands
+
+- `ykman fido credentials list` - List Resident Credentials (Keys)
+
+## Set up a YubiKey as an MFA device for AWS
+
 1. [Sign into the `gds-users` AWS account](https://gds-users.signin.aws.amazon.com/console).
-1. Select your email address in the top-right corner of the page.
-1. Choose __Security credentials__ from the drop-down menu.
-1. Select __Manage__, which is next to __Assigned MFA device__.
-1. Specify your email address as the MFA device name.
-1. Select __Authenticator app__, not __Security Key__.
-1. Click to reveal the QR code.
-1. Open the Yubico Authenticator app, choose Add Account from the hamburger menu at the top-right of the window and choose Scan QR code.
-1. Make sure __Require touch__ is enabled.
-1. Enter two consecutive codes from Yubico Authenticator and press __Save__.
-1. Configure gds-cli to use the YubiKey:
+2. Select your email address in the top-right corner of the page.
+3. Choose __Security credentials__ from the drop-down menu.
+4. Select __Manage__, which is next to __Assigned MFA device__.
+5. Specify your email address as the MFA device name.
+6. Select __Authenticator app__, not __Security Key__.
+7. Click to reveal the TOTP Token.
+8. Use the command `ykman oath accounts add -t gds-users` and paste the TOTP Token in. The `-t` option forces touch verification.
+9. Use the command `ykman oath accounts code gds-users` to generate two consecutive codes and then __Save__.
+10. Configure gds-cli to use the YubiKey:
 
     ```
     gds config yubikey true
     ```
 
-1. Go back to the __Security credentials__ page and add the YubiKey again as a second MFA device, but choose __Security Key__ this time.
+11. Go back to the __Security credentials__ page and add the YubiKey again as a second MFA device, but choose __Security Key__ this time.
 
 You have now:
 
 - added your YubiKey as a U2F/FIDO2 security key for logging into the AWS web console more securely and conveniently
 - added your YubiKey as a legacy OATH MFA device for compatibility with gds-cli/aws-vault on the command line
 
-> ⚠️ Now that you have an unphishable security key as an MFA device, you should never type or copy/paste the 6-digit OATH one-time codes. They're only for gds-cli/aws-vault now, not for you.
+> ⚠️ Now that you have an unphishable security key as an MFA device, you should never type or copy/paste the 6-digit OATH one-time codes. They're only for use via the gds-cli/aws-vault.
 >
-> Always use the __Security Key__ option and not the legacy Authenticator app option when signing into the AWS web console.
+> Always use the __Security Key__ option and not the legacy Authenticator app option when signing into the AWS web console, to reduce the risk of phishing attacks.
