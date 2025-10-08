@@ -49,8 +49,8 @@ Firmware version: 5.7.1
 Form factor: Keychain (USB-C)
 Enabled USB interfaces: FIDO, CCID
 NFC transport is enabled
-.
-Applications    USB         NFC    
+
+Applications    USB         NFC
 Yubico OTP      Enabled     Enabled
 FIDO U2F        Enabled     Enabled
 FIDO2           Enabled     Enabled
@@ -69,8 +69,8 @@ Firmware version: 5.7.1
 Form factor: Keychain (USB-C)
 Enabled USB interfaces: FIDO
 NFC transport is enabled
-.
-Applications    USB             NFC    
+
+Applications    USB             NFC
 Yubico OTP      Not Supported   Not Supported
 FIDO U2F        Enabled         Enabled
 FIDO2           Enabled         Enabled
