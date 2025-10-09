@@ -87,9 +87,12 @@ advice and medical safety alerts. Check whether the message appears there.
    go to the URL of the country's Edit page. The edition ID is a 24-digit hex
    number, for example `fedc13e231ccd7d63e1abf65`.
 
-1. Run the `email_alerts:trigger[<EDITION_ID>]` Rake task in
-   travel-advice-publisher, replacing `<EDITION_ID>` with the one from the
-   previous step.
+2. Run the `email_alerts:trigger[<EDITION_ID>]` rake task in
+   travel-advice-publisher. You must run the task interactively in the Rails console, as it includes a confirmation prompt. Select "yes" to proceed.
+
+   ```
+   kubectl exec -it deploy/travel-advice-publisher -- rake 'email_alerts:trigger[68da7ebffa37f4c83e804885]'
+   ```
 
 [medical safety alerts]: https://www.gov.uk/drug-device-alerts
 [travel advice alerts]: https://www.gov.uk/foreign-travel-advice
