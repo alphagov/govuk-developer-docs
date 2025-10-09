@@ -358,6 +358,12 @@ You may choose a more secure option, but this is what we recommend as a "best pr
 
 - `ykman fido credentials list` - List Resident Credentials (Keys)
 
+## Setting up a Yubikey without `ykman`
+
+If you are on a "non-tech" MacBook, then (at the time of writing) you will likely not be able to access the Mac Terminal and therefore cannot use `git`, `ykman` or `gpg` from the Terminal. If you are one of these people, you will be limited to what the Yubico Authenticator can support, which is management of OTP (TOTP MFA) codes and FIDO (Passkeys).
+
+You will be able to set a Password (or PIN) for your OTP Codes, or a PIN for your Passkeys by using the Yubico Authenticator app.
+
 ## Set up a YubiKey as an MFA device for AWS
 
 1. [Sign into the `gds-users` AWS account](https://gds-users.signin.aws.amazon.com/console).
