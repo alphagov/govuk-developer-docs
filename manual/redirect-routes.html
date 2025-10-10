@@ -1,0 +1,471 @@
+
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Redirect a route - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/redirect-routes.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="Redirect a route - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/redirect-routes.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Redirect a route" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/redirect-routes.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html" aria-current="page">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Redirect a route</span></a>
+    <ul>
+      <li>
+        <a href="#manually-apply-a-redirect-from-any-publishing-app"><span>Manually apply a redirect from any publishing app</span></a>
+        <ul>
+          <li>
+            <a href="#manually-re-present-the-content-item-in-publishing-api"><span>Manually re-present the content item in Publishing API</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#find-out-which-app-owns-the-route"><span>Find out which app owns the route</span></a>
+      </li>
+      <li>
+        <a href="#redirect-using-the-short-url-manager"><span>Redirect using the Short URL Manager</span></a>
+        <ul>
+          <li>
+            <a href="#removing-a-route-created-in-the-short-url-manager"><span>Removing a route created in the Short URL Manager</span></a>
+          </li>
+          <li>
+            <a href="#removing-a-route-completely-so-it-can-be-replaced-with-another-route"><span>Removing a route completely so it can be replaced with another route</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#redirects-for-hmrc-manuals"><span>Redirects for HMRC manuals</span></a>
+      </li>
+      <li>
+        <a href="#redirects-from-campaign-sites"><span>Redirects from campaign sites</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+                
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Routing",
+        "@id": "http://www.dev.gov.uk/manual.html#routing"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#routing">Routing</a>
+        </li>
+  </ol>
+</nav>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/754bde2d6e99641024638d45cf646089d3b39b79">16 May 2025</a>
+</div>
+
+ <h1 id='header'>Redirect a route</h1> <p>There are a number of different ways of applying redirects on GOV.UK.
+Here is a guide for choosing the right one:</p>
+
+<ul>
+<li>Is the redirect a short URL, such as <code>gov.uk/dfe</code>?
+<a href="#redirect-using-the-short-url-manager">Use Short URL Manager</a>.</li>
+<li>Are you redirecting a HMRC manual?
+Read the <a href="#redirects-for-hmrc-manuals">HMRC section</a>.</li>
+<li>Are you redirecting from a campaign site?
+Read the <a href="#redirects-from-campaign-sites">campaign sites section</a>.</li>
+</ul>
+<p>That covers the service-specific redirects. We then have several options
+for applying redirects to most GOV.UK content:</p>
+
+<ul>
+<li>Is the redirect correctly showing in Publishing API, but not in Content Store?
+Try <a href="#manually-re-present-the-content-item-in-publishing-api">re-presenting the content item downstream</a>.</li>
+<li>Does the redirect not exist anywhere yet?
+You&rsquo;ll need to <a href="#manually-apply-a-redirect-from-any-publishing-app">apply a redirect from within the relevant publishing app</a>.</li>
+</ul>
+<h2 id='manually-apply-a-redirect-from-any-publishing-app'>Manually apply a redirect from any publishing app</h2><p>The preferred method of creating redirects is to use the publishing app that
+originally published the content to set up the redirect.</p>
+<p>Once you&rsquo;ve established <a href="#find-out-which-app-owns-the-route">which app owns the route</a>,
+you should see if it is possible to set up the redirect from within the app
+UI itself. This usually involves unpublishing the content, whereupon the app
+gives the option to redirect the old route to another route. This approach
+is preferred as it keeps the workflow and publishing history within the app,
+as well as correctly propagating the changes through Publishing API and
+Content Store.</p>
+<p>Not all applications support unpublishing / setting redirects. In these
+cases, you&rsquo;ll need to interact with Publishing API manually - see below.</p>
+
+<blockquote>
+<p>Note that this won&rsquo;t work if the thing you&rsquo;re redirecting originates from
+the Short URL Manager: there&rsquo;s <a href="#removing-a-route-created-in-the-short-url-manager">a rake task</a>
+for that.</p>
+</blockquote>
+<p>You&rsquo;ll need to get the content ID of the current thing that exists at the
+route you want to redirect from. This is generally just a case of visiting
+the route prefixed with <code>/api/content</code> to expose its Content Store
+information.</p>
+<p>You may want to log into the Content Store app console in another shell:</p>
+<p><code>$ gds govuk connect app-console -e production content_store/content-store</code></p>
+<p>In the Content Store console, run
+<code>content_item = ContentItem.find_by(content_id: &quot;CONTENT_ID&quot;)</code> to get a
+handle on the current state of the content item. Make sure content item
+already has a <code>document_type</code> of <code>redirect</code> and the <code>redirects</code> property
+has the <code>path</code> and <code>destination</code> properties.
+If your content item doesn&rsquo;t have a redirect in Content Store, but you
+know a redirect has been applied in Publishing API, you may need to
+<a href="#manually-re-present-the-content-item-in-publishing-api">re-present the edition in Publishing API</a>.</p>
+<p>Assuming the redirect doesn&rsquo;t exist yet, and you know no attempt has been
+made to redirect the item in Publishing API, your next step is to open a
+console on the publishing app in question. Then run this command:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">GdsApi</span><span class="p">.</span><span class="nf">publishing_api</span><span class="p">.</span><span class="nf">unpublish</span><span class="p">(</span>
+  <span class="n">content_id</span><span class="p">,</span>
+  <span class="ss">type: </span><span class="s2">"redirect"</span><span class="p">,</span>
+  <span class="ss">explanation: </span><span class="s2">"manually redirected by YOUR_NAME"</span><span class="p">,</span>
+  <span class="ss">alternative_path: </span><span class="s2">"/new-path"</span><span class="p">,</span>
+  <span class="ss">discard_drafts: </span><span class="kp">true</span>
+<span class="p">)</span>
+</code></pre></div><p>You should see a 200 response:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>#&lt;GdsApi::Response:0x00007f81feba4c30 @http_response=&lt;RestClient::Response 200 "{\"content_i..."&gt;, @web_urls_relative_to=nil&gt;
+</code></pre></div><p>And you will see that the content item in the Content Store
+console has been updated, if you run <code>content_item.reload</code> in
+your other console.</p>
+<p>When Content Store is updated with a new route, it should be updated in Router.
+You should now be redirected when you visit the route in your browser.</p>
+<h3 id='manually-re-present-the-content-item-in-publishing-api'>Manually re-present the content item in Publishing API</h3><p>Sometimes, Publishing API and Content Store can end up out of sync
+with one another, whereby a redirect has been applied to a content
+item in Publishing API but hasn&rsquo;t been successfully processed by
+Content Store. In these cases, there are several
+<a href="https://github.com/alphagov/publishing-api/blob/main/lib/tasks/represent_downstream.rake">rake tasks</a>
+we can use to re-present the content item from Publishing API to
+Content Store.</p>
+<p>First, you&rsquo;ll need the content ID of the content item. Here we have
+a Publishing API console and we&rsquo;ve retrieved the Unpublishing record
+(which has the redirect information) for the content item. We find
+its associated content ID and can then use this in one of the linked
+rake tasks.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>unpublishing = Unpublishing.find_by(alternative_path: "/foo")
+
+unpublishing.edition.content_id
+=&gt; "ddcab6e2-8985-4646-9f3d-82d2f4770186"
+</code></pre></div><h2 id='find-out-which-app-owns-the-route'>Find out which app owns the route</h2><p>Open a Content Store console:</p>
+<div class="highlight"><pre class="highlight console" tabindex="0"><code><span class="gp">$</span><span class="w"> </span>gds govuk connect app-console <span class="nt">-e</span> production content_store/content-store
+</code></pre></div><p>Then search for the incoming path you are interested in:</p>
+<div class="highlight"><pre class="highlight console" tabindex="0"><code><span class="go">ContentItem.find_by(base_path: "/path-to-item").publishing_app
+</span></code></pre></div><h2 id='redirect-using-the-short-url-manager'>Redirect using the Short URL Manager</h2><p>If the redirect is from a URL that is not a currently-published content item,
+you should first look to use the <a href="https://short-url-manager.publishing.service.gov.uk">Short URL Manager</a> to
+create a redirect request. Requests are checked and approved by content
+designers, after which they are made live.</p>
+<p>Redirects created in Short URL Manager are published via the Publishing API.</p>
+<p>Specific Signon <a href="https://github.com/alphagov/short-url-manager/#permissions">permissions</a> are required to
+make and approve redirect requests through the Short URL Manager. Additionally,
+there is a <code>advanced_options</code> permission which enables creating redirects for
+pages that are already owned by other apps, creating <code>prefix</code> type redirects,
+and using non-default values for the <code>segments_mode</code>.</p>
+<h3 id='removing-a-route-created-in-the-short-url-manager'>Removing a route created in the Short URL Manager</h3><p>A Short URL route can be deleted from the <code>View short URL request</code> view in the UI of Short URL Manager.</p>
+<p>Once the redirect is removed, the page will return a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410">410 Gone status</a>.</p>
+<h3 id='removing-a-route-completely-so-it-can-be-replaced-with-another-route'>Removing a route completely so it can be replaced with another route</h3><p>Removing a route in the previous section returns a 410 Gone status - this means that the URL can not be reused by another publication as the route is still being used.</p>
+<p>To completely remove a route requires using the Rails console for several different apps using EKS.</p>
+<p>If you have not accessed the cluster before, you will need to follow <a href="/kubernetes/get-started/set-up-tools/">the set up instructions</a> first.</p>
+<p>To access an app&rsquo;s Rails console you’ll need to set your region and context as below (swapping out the environment as appropriate):</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">export </span><span class="nv">AWS_REGION</span><span class="o">=</span>eu-west-1
+<span class="nb">eval</span> <span class="si">$(</span>gds aws govuk-integration-developer <span class="nt">-e</span> <span class="nt">--art</span> 8h<span class="si">)</span>
+kubectl config use-context &lt;your-context-name&gt;
+</code></pre></div><p>You can then access an app&rsquo;s Rails console using the following command:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps <span class="nt">-it</span> deploy/&lt;app-name&gt; <span class="nt">--</span> rails c
+</code></pre></div><p>Removing the route, we need to know the slug that should be deleted. These examples use <code>/example-path</code>.</p>
+<p>In <code>publishing-api</code>, delete the reservation that makes sure that the route can&rsquo;t be used by any other app:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">PathReservation</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">base_path: </span><span class="s2">"/example-path"</span><span class="p">).</span><span class="nf">delete</span>
+</code></pre></div><p>In <code>content-store</code> <em>and</em> <code>draft-content-store</code>, remove the content item that used to inhabit the URL:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">ContentItem</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">base_path: </span><span class="s2">"/example-path"</span><span class="p">).</span><span class="nf">delete</span>
+</code></pre></div><p>You should now be able to replace the route with another one.
+For documents published in Mainstream Publisher, update and republish the content that should now sit at <code>/example-path</code>.</p>
+<p>(In Mainstream Publisher the edition id can be found at the end of the URL. For example, the edition found at publisher.publishing.service.gov.uk/editions/<mark>5fb53d8fd3bf7f626687198c</mark> has the edition id <code>5fb53d8fd3bf7f626687198c</code>.)</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">edition</span> <span class="o">=</span> <span class="no">Edition</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s2">"&lt;edition id&gt;"</span><span class="p">)</span>
+
+<span class="no">UpdateWorker</span><span class="p">.</span><span class="nf">perform_async</span><span class="p">(</span><span class="n">edition</span><span class="p">.</span><span class="nf">id</span><span class="p">.</span><span class="nf">to_s</span><span class="p">)</span>
+
+<span class="no">RepublishWorker</span><span class="p">.</span><span class="nf">perform_async</span><span class="p">(</span><span class="n">edition</span><span class="p">.</span><span class="nf">id</span><span class="p">.</span><span class="nf">to_s</span><span class="p">)</span>
+</code></pre></div><p>For documents published in other publishing apps that are not Mainstream Publisher, the instructions will differ.</p>
+<p>The final step is to <a href="/manual/purge-cache.html">clear the cache for the routes</a>.</p>
+<h2 id='redirects-for-hmrc-manuals'>Redirects for HMRC manuals</h2><p>There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be <a href="https://github.com/alphagov/hmrc-manuals-api/tree/main/lib/tasks">found in the hmrc-manuals-api repo</a>.</p>
+<p>An example of redirecting a HMRC manual section to another section would be to run <code>redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug]</code></p>
+<h2 id='redirects-from-campaign-sites'>Redirects from campaign sites</h2><p>The campaigns platform is a WordPress site managed by GDS (Business, Priority
+Response and Campaigns team) and supported by dxw. Redirects from a
+<code>*.campaign.gov.uk</code> site require a support ticket. You should contact
+<a href="mailto:govuk.campaigns@digital.cabinet-office.gov.uk">govuk.campaigns@digital.cabinet-office.gov.uk</a> to raise a support ticket.</p>
+
+  <div class='related-content'>
+    <h4>Related repositories</h4>
+
+    <ul class="govuk-list">
+      <li><a href="/repos/short-url-manager.html">short-url-manager</a></li>
+    </ul>
+
+    <h3>More in the Routing section</h3>
+
+    <div class='govuk-grid-row'>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/changing-organisation-slug.html">Change an organisation's slug</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/redirect-routes.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Redirect+a+route%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fredirect-routes.html%29&amp;labels=bug&amp;title=Re%3A+%27Redirect+a+route%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
