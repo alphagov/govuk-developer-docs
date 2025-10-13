@@ -289,7 +289,9 @@ Take note of the options above...
 - `-O resident` instructs that the actual key is "resident" to the Security Key and is what should be used for signing.
 - `-O verify-required` instructs that the key always requires touch "verification" each time it is to be used. If this option is omitted, the SSH client will not be forced to prompt the user (you) for a touch confirmation.
 
-Once you have generated the "pointer" file for the Security Key, you will want to make sure your SSH config (located at `~/.ssh/config`) contains a block like this:
+During the creation process, you will be prompted to set a passphrase for the key and the filename to store the key - there are both optional. Normally we would recommend setting a passphrase, however, as this private key is a pointer to the credentials on the security key, the passphrase would be redundant.
+
+Once the "pointer" file for the Security Key has been generated, the `ssh-keygen` command will output a path and filename of the new key. Copy the path and filename and update your SSH config (located at `~/.ssh/config`) to add a block like this:
 
 ```
 Host *
@@ -303,7 +305,7 @@ Make sure the `IdentityFile` property matches the name and path of your private 
 
 ### Configuring Git to use the SSH and Signing Keys
 
-This is where we actually get to use the keys you have just generated.
+This is where we actually get to use the keys you have just generated. First we will configure authentication (via SSH) and then we will configure the Git client to sign all commits by default.
 
 #### Configure Git to use your SSH Key
 
@@ -315,7 +317,7 @@ Once your SSH key is created and attached to the SSH agent, you will want to add
 - Select "Key type" as "Authentication Key"
 - Paste the contents of `~/.ssh/id_ed25519_sk.pub` into the "Key" field. Make sure this is the file ending in `.pub` and not the private key file.
 
-Once this is done, you should now be able to use your new key to pull and push to/from GitHub.
+Now this is done, you should be able to use your new key to pull and push to/from GitHub.
 
 #### Configure Git to use your GPG Key
 
