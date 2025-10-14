@@ -30,11 +30,14 @@ If you need to obtain a YubiKey, speak to your Delivery Manager or Tech Lead abo
 
 ### Software Dependencies
 
-You will first need to set up the following dependencies:
+You will first need to make sure the required software dependencies are installed and on the latest versions:
 
 ```sh
 brew update
 brew install gnupg
+brew install libfido2
+brew install openssh
+brew install openssl
 brew install ykman
 ```
 
