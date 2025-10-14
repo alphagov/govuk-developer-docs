@@ -23,9 +23,8 @@ Recommended: YubiKey 5C NFC.
 Alternative form factors: YubiKey 5C and YubiKey 5C Nano (if you prefer a smaller device).
 
 > **⚠️ Note**
-> 
+>
 > Yubico sells another product called **YubiKey Security Key**, which is a FIDO-only device that does not support the features required to perform commit signing or SSH authentication. Make sure you are requesting or purchasing the correct device.
-
 
 If you need to obtain a YubiKey, speak to your Delivery Manager or Tech Lead about how to get one - alternatively, you may be able to expense them with approval from your Line Manager.
 
@@ -155,6 +154,7 @@ If the User PIN is entered incorrectly too many times, it must be unlocked using
 We recommend setting these values to `10 10 10`. Increasing retry counts reduces the likelihood of accidentally locking yourself out while still making online brute-force attacks impractical for an attacker.
 
 To set this, use the following command:
+
 ```
 ykman openpgp access set-retries 10 10 10
 ```
