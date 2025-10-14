@@ -287,10 +287,16 @@ Once you have generated your key pair and set your FIDO PIN, set up SSH to use y
 ssh-keygen -t ed25519-sk -O resident -O verify-required -C "Firstname Lastnamerson (GDS) <firstname.lastnamerson@digital.cabinet-office.gov.uk>"
 ```
 
+If you encounter an error such as `"No FIDO SecurityKeyProvider specified"`, then head to the Troubleshooting part of this documentation for a solution.
+
 Take note of the options above...
 
 - `-O resident` instructs that the actual key is "resident" to the Security Key and is what should be used for signing.
 - `-O verify-required` instructs that the key always requires touch "verification" each time it is to be used. If this option is omitted, the SSH client will not be forced to prompt the user (you) for a touch confirmation.
+
+Optionally, if you want to store multiple SSH keys on a single YubiKey for some reason, you can differentiate between them by adding an extra option:
+
+- `-O application=ssh:custom_name` overrides the FIDO2 application name so you can store more than one SSH key on the device. The default is just `ssh:`
 
 During the creation process, you will be prompted to set a passphrase for the key and the filename to store the key - there are both optional. Normally we would recommend setting a passphrase, however, as this private key is a pointer to the credentials on the security key, the passphrase would be redundant.
 
@@ -342,7 +348,7 @@ ssb>  cv25519/9E5D2A6C8F0B4173  created: 2025-09-23  expires: never
                                 card-no: 0006 31234567
 ```
 
-Note the key ID from the "sec" row, e.g. `A3F1E9C0B827D54E` and add it to your Git config in `.git/config` - make sure you have a config that looks like this:
+Note the key ID from the "sec" row, e.g. `A3F1E9C0B827D54E` and add it to your Git config in `~/.gitconfig` - make sure you have a config that looks like this:
 
 ```
 [commit]
@@ -388,6 +394,45 @@ ykman openpgp keys set-touch aut cached
 ykman openpgp keys set-touch att cached
 ```
 
+### Cleaning-up
+
+Now you have a hardware-backed key for authenticating with Git, SSH and GPG, you can test that your new key is working by disabling your old keys. The easiest way to do this is to set the file permissions of your old keys to `000`. For example, from your terminal:
+
+```sh
+cd ~/.ssh
+
+ls -al
+
+total 80
+drwx------@ 11 firstname.lastnamerson  staff   352 22 Sep 14:40 .
+drwxr-x---+ 64 firstname.lastnamerson  staff  2048 13 Oct 18:01 ..
+-rw-------@  1 firstname.lastnamerson  staff   129 23 Sep 11:23 config
+-rw-------@  1 firstname.lastnamerson  staff  2602 12 Jul  2023 google_compute_engine
+-rw-------@  1 firstname.lastnamerson  staff   573 12 Jul  2023 google_compute_engine.pub
+-rw-------@  1 firstname.lastnamerson  staff   436  1 Nov  2023 google_compute_known_hosts
+-rw-------@  1 firstname.lastnamerson  staff   517 22 Sep 14:07 id_ed25519_sk
+-rw-r--r--@  1 firstname.lastnamerson  staff   193 22 Sep 14:07 id_ed25519_sk.pub
+-rw-------@  1 firstname.lastnamerson  staff   854 12 Jan 11:03 id_rsa
+-rw-r--r--@  1 firstname.lastnamerson  staff   287 12 Jan 11:03 id_rsa.pub
+-rw-------@  1 firstname.lastnamerson  staff  5720 19 Feb  2025 known_hosts
+
+chmod 000 id_rsa
+```
+
+Now try to make an SSH connection to GitHub:
+
+```
+ssh -T git@github.com
+
+Confirm user presence for key ED25519-SK SHA256:lrBwbswEEkWqyXAbd6WEPv9I++fSJdvkln1vlDkoFzs
+Enter PIN for ED25519-SK key /Users/firstname.lastnamerson/.ssh/id_ed25519_sk: 
+Confirm user presence for key ED25519-SK SHA256:lrBwbswEEkWqyXAbd6WEPv9I++fSJdvkln1vlDkoFzs
+User presence confirmed
+Hi firstname-lastnamerson! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+If this worked, you have successfully set up a YubiKey for authentication with GitHub and commit signing. Now you should go and create a backup set of credentials with a second YubiKey which you can store in a safe place.
+
 ### Other useful commands
 
 - `ykman fido credentials list` - List Resident Credentials (Keys)
@@ -425,3 +470,15 @@ You have now:
 > ⚠️ Now that you have an unphishable security key as an MFA device, you should never type or copy/paste the 6-digit OATH one-time codes. They're only for use via the gds-cli/aws-vault.
 >
 > Always use the __Security Key__ option and not the legacy Authenticator app option when signing into the AWS web console, to reduce the risk of phishing attacks.
+
+## Troubleshooting
+
+### "No FIDO SecurityKeyProvider specified"
+
+If you get this error message when trying to generate your SSH Key: 
+```
+No FIDO SecurityKeyProvider specified
+Key enrollment failed: invalid format
+```
+
+This is because the default OpenSSH client bundled with macOS does not support Hardware Security Keys. You will need to override this so the version installed by Homebrew takes precedence. [Follow this GitHub Gist for a solution](https://gist.github.com/BertanT/9d222da115ca2d1274ef34735c4260cf).
