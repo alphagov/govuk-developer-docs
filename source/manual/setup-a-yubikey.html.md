@@ -302,8 +302,8 @@ During the creation process, you will be prompted to set a passphrase for the ke
 
 Once the "pointer" file for the Security Key has been generated, the `ssh-keygen` command will output a path and filename of the new key. If you didn't change the defaults, the key files will be:
 
-* Private Key (pointer): `id_ed25519_sk`
-* Public Key: `id_ed25519_sk.pub`
+- Private Key (pointer): `id_ed25519_sk`
+- Public Key: `id_ed25519_sk.pub`
 
 Copy the path and filename and update your SSH config (located at `~/.ssh/config`) to add a block like this:
 
@@ -432,7 +432,7 @@ Now try to make an SSH connection to GitHub:
 ssh -T git@github.com
 
 Confirm user presence for key ED25519-SK SHA256:lrBwbswEEkWqyXAbd6WEPv9I++fSJdvkln1vlDkoFzs
-Enter PIN for ED25519-SK key /Users/firstname.lastnamerson/.ssh/id_ed25519_sk: 
+Enter PIN for ED25519-SK key /Users/firstname.lastnamerson/.ssh/id_ed25519_sk:
 Confirm user presence for key ED25519-SK SHA256:lrBwbswEEkWqyXAbd6WEPv9I++fSJdvkln1vlDkoFzs
 User presence confirmed
 Hi firstname-lastnamerson! You've successfully authenticated, but GitHub does not provide shell access.
@@ -482,7 +482,8 @@ You have now:
 
 ### "No FIDO SecurityKeyProvider specified"
 
-If you get this error message when trying to generate your SSH Key: 
+If you get this error message when trying to generate your SSH Key:
+
 ```
 No FIDO SecurityKeyProvider specified
 Key enrollment failed: invalid format
