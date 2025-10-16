@@ -298,9 +298,14 @@ Optionally, if you want to store multiple SSH keys on a single YubiKey for some 
 
 - `-O application=ssh:custom_name` overrides the FIDO2 application name so you can store more than one SSH key on the device. The default is just `ssh:`
 
-During the creation process, you will be prompted to set a passphrase for the key and the filename to store the key - there are both optional. Normally we would recommend setting a passphrase, however, as this private key is a pointer to the credentials on the security key, the passphrase would be redundant.
+During the creation process, you will be prompted to set a passphrase for the key and the filename to store the key - these are both optional. Normally we would recommend setting a passphrase, however, as this private key is a pointer to the credentials on the Security Key, the passphrase would be redundant.
 
-Once the "pointer" file for the Security Key has been generated, the `ssh-keygen` command will output a path and filename of the new key. Copy the path and filename and update your SSH config (located at `~/.ssh/config`) to add a block like this:
+Once the "pointer" file for the Security Key has been generated, the `ssh-keygen` command will output a path and filename of the new key. If you didn't change the defaults, the key files will be:
+
+* Private Key (pointer): `id_ed25519_sk`
+* Public Key: `id_ed25519_sk.pub`
+
+Copy the path and filename and update your SSH config (located at `~/.ssh/config`) to add a block like this:
 
 ```
 Host *
@@ -309,6 +314,8 @@ Host *
   IdentityAgent none
   AddKeysToAgent yes
 ```
+
+This section will configure your SSH agent to use the Security Key for every connection you make, including for GitHub.
 
 Make sure the `IdentityFile` property matches the name and path of your private key pointer. The default filename will be `id_ed25519_sk`. This instructs your SSH agent and Git to find and use the correct file.
 
@@ -448,9 +455,9 @@ You will be able to set a Password (or PIN) for your OTP Codes, or a PIN for you
 1. [Sign into the `gds-users` AWS account](https://gds-users.signin.aws.amazon.com/console).
 2. Select your email address in the top-right corner of the page.
 3. Choose __Security credentials__ from the drop-down menu.
-4. Select __Manage__, which is next to __Assigned MFA device__.
+4. Scroll down to the __Multi-factor authentication (MFA)__ section and select __Assign MFA device__.
 5. Specify your email address as the MFA device name.
-6. Select __Authenticator app__, not __Security Key__.
+6. Select __Authenticator app__, not __Passkey or security key__.
 7. Click to reveal the TOTP Token.
 8. Use the command `ykman oath accounts add -t gds-users` and paste the TOTP Token in. The `-t` option forces touch verification.
 9. Use the command `ykman oath accounts code gds-users` to generate two consecutive codes and then __Save__.
@@ -460,14 +467,14 @@ You will be able to set a Password (or PIN) for your OTP Codes, or a PIN for you
     gds config yubikey true
     ```
 
-11. Go back to the __Security credentials__ page and add the YubiKey again as a second MFA device, but choose __Security Key__ this time.
+11. Go back to the __Security credentials__ page and add the YubiKey again as a second MFA device, but choose __Passkey or security key__ this time.
 
 You have now:
 
-- added your YubiKey as a U2F/FIDO2 security key for logging into the AWS web console more securely and conveniently
+- added your YubiKey as a U2F/FIDO2 Security Key for logging into the AWS web console more securely and conveniently
 - added your YubiKey as a legacy OATH MFA device for compatibility with gds-cli/aws-vault on the command line
 
-> ⚠️ Now that you have an unphishable security key as an MFA device, you should never type or copy/paste the 6-digit OATH one-time codes. They're only for use via the gds-cli/aws-vault.
+> ⚠️ Now that you have an unphishable Security Key as an MFA device, you should never type or copy/paste the 6-digit OATH one-time codes. They're only for use via the gds-cli/aws-vault.
 >
 > Always use the __Security Key__ option and not the legacy Authenticator app option when signing into the AWS web console, to reduce the risk of phishing attacks.
 
