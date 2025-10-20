@@ -8,7 +8,13 @@ section: Security
 
 # Set up a YubiKey for GPG and SSH (for Git)
 
-This guide describes recommended steps to set up GPG (for commit signing) and SSH (for Git authentication with GitHub).
+This guide describes recommended steps to set up a YubiKey for use with GPG (for commit signing) and SSH (for Git authentication with GitHub).
+
+> **⚠️ Warning**
+>
+> Once you have followed this guide, your YubiKey is effectively now your only way to get into AWS or to Sign or push commits up to GitHub.
+>
+> You should treat your YubiKey with care - do not lose it and do not leave it unattended unless you are prepared to get locked out of your systems.
 
 ## Pre-Requisites
 
@@ -401,7 +407,7 @@ ykman openpgp keys set-touch aut cached
 ykman openpgp keys set-touch att cached
 ```
 
-### Cleaning-up
+### Testing your credentials and finishing-up
 
 Now you have a hardware-backed key for authenticating with Git, SSH and GPG, you can test that your new key is working by disabling your old keys. The easiest way to do this is to set the file permissions of your old keys to `000`. For example, from your terminal:
 
@@ -426,8 +432,6 @@ drwxr-x---+ 64 firstname.lastnamerson  staff  2048 13 Oct 18:01 ..
 chmod 000 id_rsa
 ```
 
-### Testing your credentials
-
 Now try to make an SSH connection to GitHub:
 
 ```
@@ -441,6 +445,8 @@ Hi firstname-lastnamerson! You've successfully authenticated, but GitHub does no
 ```
 
 If this worked, you have successfully set up a YubiKey for authentication with GitHub and commit signing. Now you should go and create a backup set of credentials with a second YubiKey which you can store in a safe place.
+
+You may also want to go back and delete or revoke any old credentials that you do not plan to use any longer.
 
 ### Other useful commands
 
