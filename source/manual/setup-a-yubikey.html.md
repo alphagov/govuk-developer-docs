@@ -426,6 +426,8 @@ drwxr-x---+ 64 firstname.lastnamerson  staff  2048 13 Oct 18:01 ..
 chmod 000 id_rsa
 ```
 
+### Testing your credentials
+
 Now try to make an SSH connection to GitHub:
 
 ```
@@ -479,6 +481,33 @@ You have now:
 > Always use the __Security Key__ option and not the legacy Authenticator app option when signing into the AWS web console, to reduce the risk of phishing attacks.
 
 ## Troubleshooting
+
+### "MFA device already exists"
+
+If you get this error message when trying to set up your MFA token on AWS:
+
+```
+MFA device already exists
+```
+
+This is because gds-users has an IAM policy requiring your Authenticator app device name to match your gds-users username. You should make sure that:
+
+* Your main/primary YubiKey is the one configured for the "Authenticator app" setting.
+* You create Passkeys on each YubiKey or Security Key you want to use, so you can log into gds-users at any time and swap or replace the "Authenticator app" if needed.
+
+### "Not authorized to perform iam:CreateVirtualMFADevice"
+
+If you get this error message when trying to set up your MFA token on AWS:
+
+```
+User: arn:aws:iam::123456789012:user/firstname.lastnamerson@digital.cabinet-office.gov.uk is not authorized to perform: iam:CreateVirtualMFADevice on resource: arn:aws:iam::123456789012:mfa/abc123 because no identity-based policy allows the iam:CreateVirtualMFADevice action
+```
+
+You need to make sure that your Authenticator app name is set to your email address (the same as your gds-users username), .e.g.
+
+```
+firstname.lastnamerson@digital.cabinet-office.gov.uk
+```
 
 ### "No FIDO SecurityKeyProvider specified"
 
