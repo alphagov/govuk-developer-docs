@@ -492,8 +492,8 @@ MFA device already exists
 
 This is because gds-users has an IAM policy requiring your Authenticator app device name to match your gds-users username. You should make sure that:
 
-* Your main/primary YubiKey is the one configured for the "Authenticator app" setting.
-* You create Passkeys on each YubiKey or Security Key you want to use, so you can log into gds-users at any time and swap or replace the "Authenticator app" if needed.
+- Your main/primary YubiKey is the one configured for the "Authenticator app" setting.
+- You create Passkeys on each YubiKey or Security Key you want to use, so you can log into gds-users at any time and swap or replace the "Authenticator app" if needed.
 
 ### "Not authorized to perform iam:CreateVirtualMFADevice"
 
