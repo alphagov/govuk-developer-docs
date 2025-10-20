@@ -273,7 +273,7 @@ When you are happy, Enter "O" and continue:
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
 ```
 
-Lastly, you will be asked to set a passphrase. Set this to something only you know and are happy to recite on a regular basis when prompted to use the key.
+Once you have confirmed with "Okay", you should be asked to set a passphrase. Set this to something only you know and are happy to recite on a regular basis when prompted to use the key.
 
 ### Configure FIDO PIN
 
