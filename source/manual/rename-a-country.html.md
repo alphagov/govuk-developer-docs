@@ -78,10 +78,11 @@ In [Whitehall](https://github.com/alphagov/whitehall):
 
 4. Update World Location News
    * Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_location_news). In the "Details" tab, edit the `Title`, `Mission statement` and relevant `Featured links`.
+   * In the "Translations" tab click the "Edit" link for each translation and update `Translation name`, `Title`, `Mission statement` as needed.
 5. Check and republish any `WorldwideOrganisations` linked to the country
    * In the Whitehall Rails console, run:
 
-   ```
+   ``` ruby
    location = WorldLocation.where(slug: <location_slug>)
    location.published_editions.where(type: "WorldwideOrganisation")
    ```
