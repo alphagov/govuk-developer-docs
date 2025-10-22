@@ -16,7 +16,7 @@ clearance, probation, building secure systems with audibility etc.
 
 ## Types of production access
 
-We have two types of production access:
+We have three types of production access:
 
 1. [Production Deploy access](#production-deploy-access)
 2. [Production Admin access](#production-admin-access)
