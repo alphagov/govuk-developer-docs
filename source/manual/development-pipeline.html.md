@@ -62,7 +62,7 @@ We've got [guidelines on merging of Pull Requests](/manual/merge-pr.html).
 
 Some applications [have restrictions on who can merge PRs](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/repos.yml).
 If you are unable to merge your own PR, you should ask
-[someone else](https://github.com/orgs/alphagov/teams/gov-uk-production/members)
+[someone else](https://github.com/orgs/alphagov/teams/gov-uk-production-deploy/members)
 to merge (and deploy) it for you.
 
 Code that is merged to `main` is tested again on CI. This is because
