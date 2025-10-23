@@ -26,6 +26,7 @@ Useful links:
 
 Your tech lead should manually add you to Sentry via the Sentry UI. Access also has to be recorded in [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer?tab=readme-ov-file#adding-users).
 Once you've accept the invite, you'll be able to [sign in](https://sentry.io/auth/login/) using your GDS Google account.
+We have a single `#govuk-developers` team and [additional teams should not be created in Sentry](https://github.com/alphagov/govuk-user-reviewer/issues/1306).
 
 ## Nomenclature
 
@@ -51,10 +52,7 @@ Projects can be created and edited in the Sentry UI, but this risks creating
 inconsistencies or missing apps. We therefore configure projects using
 Terraform.
 
-[Teams are managed in govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer/blob/main/terraform/saas/sentry.tf),
-and [projects are managed in govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/sentry/locals.tf).
-
-To create a new team or project, edit the respective terraform and run a
+[Projects are managed in govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/sentry/locals.tf). To create a new project, edit the respective terraform and run a
 plan and apply of the project in Terraform Cloud.
 
 ## How Sentry is integrated on GOV.UK

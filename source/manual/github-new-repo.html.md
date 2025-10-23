@@ -12,7 +12,7 @@ When creating a new GOV.UK repo in Github, you should follow these steps:
   - _Note that when adding an existing repository (created in the GitHub UI) you will need to import it into terraform state._
 - Make a well-written README (see [READMEs for GOV.UK applications](/manual/readmes.html), or the [GDS Way guidance][readmes] for general repositories)
 - Add a licence following [Licensing Guidelines](https://gds-way.digital.cabinet-office.gov.uk/manuals/licensing.html#specifying-the-licence)
-- Add [Dependency Review](/manual/dependency-review.html) and [CodeQL](/manual/codeql.html) scans to its CI pipeline
+- Add security scans to its CI pipeline. [Dependency Review](/manual/dependency-review.html), [CodeQL](/manual/codeql.html) are mandatory for all repos. Rails app also require [Brakeman](/manual/brakeman.html). [Code example](https://github.com/alphagov/whitehall/blob/15738e4efbf4d7df113eb3590a5367b34f482ae3/.github/workflows/ci.yml#L13-L30)
 - Add it to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the GOV.UK Developer Docs
 
 ## Managing Deployment Access
