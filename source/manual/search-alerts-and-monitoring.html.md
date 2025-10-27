@@ -22,9 +22,11 @@ The [GOV.UK Search Grafana dashboard][link-4] visualizes core metrics for site s
 
 ## Alertmanager
 
-We have an informal SLO to maintain a search and autocomplete success rate of about 99.99% over any 24 hour period. There are currently four Alertmanager rules configured in govuk-helm-charts to notify the #govuk-search-alerts channel, if rates drop below this.
+We have an informal SLO to maintain a search and autocomplete success rate of about 99.99% over any 24 hour period. There are currently four Alertmanager rules configured in govuk-helm-charts to send notifications on Slack, if rates drop below this.
 
-We also have additional Alertmanager rules related to search result quality configured in govuk-helm-charts to notify the #govuk-search-alerts channel, if search quality drops below given thresholds.
+We also have additional Alertmanager rules related to search result quality configured in govuk-helm-charts to send notifications on Slack, if search quality drops below given thresholds.
+
+All environments are configured for Slack notifications. Production alerts are routed to #govuk-search-alerts, while alerts for other environments are sent to #govuk-search-alerts-nonprod.
 
 Success rate rules:
 
