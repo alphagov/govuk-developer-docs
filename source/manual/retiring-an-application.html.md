@@ -52,14 +52,6 @@ Remove the app's entry in [govuk-helm-charts](https://github.com/alphagov/govuk-
 It's also wise to search that repo for other references to the app being retired.
 Once the PR is merged ([Example PR](https://github.com/alphagov/govuk-helm-charts/pull/1236)), the app pods will automatically be removed by Argo.
 
-### Remove from govuk-infrastructure
-
-Remove govuk-infrastructure's references to the app.
-
-This includes Terraform-managed resources as well as the Sentry integration. See [example](https://github.com/alphagov/govuk-infrastructure/pull/2264).
-
-Note that this will automatically destroy the corresponding resources in AWS (e.g. database) on merge.
-
 ### Remove from govuk-dependabot-merger (if applicable)
 
 [Example](https://github.com/alphagov/govuk-dependabot-merger/pull/105).
@@ -68,13 +60,25 @@ Note that this will automatically destroy the corresponding resources in AWS (e.
 
 [Example](https://github.com/alphagov/publishing-api/pull/3387)
 
+### Remove from govuk-infrastructure
+
+Remove govuk-infrastructure's references to the app.
+
+This includes Terraform-managed resources as well as the Sentry integration. See [example](https://github.com/alphagov/govuk-infrastructure/pull/2264).
+
+Note that this will automatically destroy the corresponding resources in AWS (e.g. database) on merge.
+
+This needs to be done in several stages. You can raise all of the PRs in advance, but shouldn't merge / apply them until [step 2](#2-soft-mark-the-application-as-retired).
+
+1. Archive the repo by following the steps at [Retire a repo](/manual/retiring-a-repo.html).
+   It will result in two PRs to govuk-infrastructure ([example 1](https://github.com/alphagov/govuk-infrastructure/pull/3064), [example 2](https://github.com/alphagov/govuk-infrastructure/pull/3065)), which have to be merged and applied in Terraform in turn.
+1. Retire any RDS instances for the app, which again will result in two PRs to govuk-infrastructure.
+   The first PR should be to add `deletion_protection = false` to the relevant declarations in `tfc-configuration/variables-{env}.tf` for every environment - see [example](https://github.com/alphagov/govuk-infrastructure/pull/3066).
+   This PR will need merging and applying first, before doing the same for the next PR.
+   The second PR will be to remove all remaining references to your app - see [example](https://github.com/alphagov/govuk-infrastructure/pull/3062).
+   This time, the act of removing the Terraform variables that define the Databases, and running the apply again, should cause the Databases to produce a final snapshot and then be destroyed.
+
 ## 2. Soft-mark the application as retired
-
-### Archive the repo
-
-Follow the steps at [Retire a repo](/manual/retiring-a-repo.html).
-
-Pay special attention to the Terraform aspects of those steps: you'll want to ensure those steps are followed prior merging your govuk-infrastructure PR from earlier.
 
 ### Remove from Heroku
 
@@ -105,12 +109,6 @@ See step 1.
 
 - Edit the application in the release app (you'll need the `deploy` permission to do this)
 - Press the 'Delete application' button.
-
-### Retire any related RDS Instances
-
-- Find the relevant "variable-set-rds" modules for each Environment.
-- Find the correct "tfvars" blocks for any relevant Databases and make sure that `deletion_protecton = false` is set and applied for each environment
-- Remove the Terraform variables that define the Databases and run the apply again - the Databases should produce a final snapshot and then be destroyed
 
 ### Retire a Document DB from the Shared DocumentDB Instance
 
