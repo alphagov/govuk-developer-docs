@@ -27,7 +27,7 @@ standalone image for your application.
 > The best way to establish what you need to do is to find an existing GOV.UK application similar to
 > yours, and adapt its `Dockerfile`.
 
-## Add Github Actions workflows
+## Add GitHub Actions workflows
 
 You will need to add (at least) the following workflows:
 
@@ -57,10 +57,20 @@ promote_deployment: false
 
 ## Add initial secrets to AWS Secrets Manager
 
+### Rails
+
+Rails applications use `SECRET_KEY_BASE`. [Rails](https://guides.rubyonrails.org/command_line.html#bin-rails-secret) allows you to generate these
+using `rails secret`. This must be manually added as a key/value pair to the `govuk/common/rails-secret-key-base` secret in all three environments.
+
 ### Sentry
 
-In order to set up Sentry for your app, you will need a _DSN_ from the Sentry UI. This must be
-manually added as a key/value pair to the `govuk/common/sentry` secret in all three environments.
+In order to set up Sentry for your app, you will need a _DSN_ from the Sentry UI.
+
+- Go to `Settings -> Projects`
+- Select your project (e.g. `account-api`)
+- Select `Settings -> Client Keys (DSN)`
+
+This must be manually added as a key/value pair to the `govuk/common/sentry` secret in all three environments.
 
 ## Add app to `app-config` chart values
 
@@ -88,12 +98,12 @@ environment, your integration configuration could look like this:
         value: 1
 ```
 
-There are configuration options available for a wide range of different needs your application may
-have, from mounting volumes to disabling the default asset upload.
+There are [configuration options](https://github.com/alphagov/govuk-helm-charts/blob/22af6dc661eab54f6f6f6fe10fa5da4b3c86c680/charts/generic-govuk-app/values.yaml)
+available for a wide range of different needs your application may have, from mounting volumes to disabling the default asset upload.
 
 ### Validate your deployment
 
-You can now trigger your Deploy Github action to push an image to AWS ECS, and visit [Integration
+You can now trigger your Deploy GitHub action to push an image to AWS ECS, and visit [Integration
 Argo CD][argo]. After a short wait, your new application will be available to find on the
 dashboard.
 
@@ -101,6 +111,8 @@ dashboard.
 
 Repeat the steps above for the other environments' values files (`values-staging.yaml` and
 `values-production.yaml`).
+
+Set `promote_deployment: true` if you want automatic promotions to higher environments.
 
 ## Congratulations!
 
