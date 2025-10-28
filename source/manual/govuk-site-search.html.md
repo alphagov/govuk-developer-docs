@@ -33,7 +33,9 @@ Broadly, the new search stack for site search introduces the following new compo
 
 - A deployment of **Vertex AI Search** (VAIS) in Google Cloud Platform (GCP) managed by Terraform, comprising per-environment GCP projects with a datastore (and schema), an engine, and serving configuration and controls
 
-- **Search API v2**: A Ruby on Rails application deployed on the standard GOV.UK AWS Kubernetes infrastructure, providing an API for querying (search and autocomplete) the VAIS serving configuration, a synchronisation module for updating the state of the VAIS datastore, and a scheduled task performing ongoing automated relevance evaluations.
+- **Search API v2**: A Ruby on Rails application deployed on the standard GOV.UK AWS Kubernetes infrastructure, providing an API for querying (search and autocomplete) the VAIS serving configuration, and a synchronisation module for updating the state of the VAIS datastore.
+
+- **Search API v2 beta features**: A Ruby on Rails application deployed on the standard GOV.UK AWS Kubernetes infrastructure, providing a scheduled task performing ongoing automated relevance evaluations.
 
 - **User event data pipeline**: BigQuery tables of GA4 user interaction data that are populated via a dataform pipeline, and used by Vertex to train the model serving relevant search results.
 
