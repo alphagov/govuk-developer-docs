@@ -51,5 +51,5 @@ You can fetch pages directly from the mirrors by specifying the `Backend-Overrid
 
 [govuk-aws]: https://github.com/alphagov/govuk-aws/blob/2053b554/terraform/projects/infra-mirror-bucket/main.tf#L197
 [govuk-mirror]: https://github.com/alphagov/govuk-mirror
-[govuk-mirror-sync configuration]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/govuk-jobs/templates/govuk-mirror-sync-cronjob.yaml
+[govuk-mirror-sync configuration]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/mirror/values.yaml
 [govuk-mirror-sync job]: https://argo.eks.production.govuk.digital/applications/cluster-services/govuk-jobs?view=tree&orphaned=false&resource=name%3Agovuk-mirror-sync
