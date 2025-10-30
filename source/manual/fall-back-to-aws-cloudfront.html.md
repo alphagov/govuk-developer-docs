@@ -96,6 +96,7 @@ curl -vs https://assets.publishing.service.gov.uk/media/662a74aa45f183ec818a72c2
 - After performing the manual failover, you should also update our infrastructure-as-code to match the changes you just made:
   - Raise and merge a PR in `govuk-infrastructure` to fail over to CloudFront
   - Terraform Cloud should automatically perform a plan when your PR is merged, but the apply will require manual approval - you can do this in the [govuk-publishing-inrastructure-production workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-production)
+  - [Manually run the e2e tests](/repos/govuk-e2e-tests.html#running-the-tests-manually) to confirm the core functionality is working as expected.
 
 ### Staging
 
@@ -153,6 +154,8 @@ curl -vs https://assets.staging.publishing.service.gov.uk/media/662a74aa45f183ec
 - Two ways to check if the Cloudfront domains are working correctly (do this for both curl requests above):
   - There will **not** be an HTTP header returned with the name: `fastly-backend-name`
   - Look for a value of `xxxxx.cloudfront.net` in the responses `via` HTTP Header.
+
+- [Manually run the e2e tests](/repos/govuk-e2e-tests.html#running-the-tests-manually) to confirm the core functionality is working as expected.
 
 ### Finishing up
 
