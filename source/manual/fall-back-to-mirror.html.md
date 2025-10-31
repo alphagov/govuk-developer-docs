@@ -24,11 +24,11 @@ We use multiple mirrors across various AWS regions and GCP to ensure redundancy 
 
 ## When is the GOV.UK mirror used?
 
-If [Fastly, our primary CDN](/manual/cdn.html), cannot fetch a page from our backend servers (becuase of a timeout or a 5xx error), then Fastly will attempt to serve a page from a mirror in order of priority.
+If [Fastly, our primary CDN](/manual/cdn.html), cannot fetch a page from our backend servers (because of a timeout or a 5xx error), then Fastly will attempt to serve a page from a mirror in order of priority.
 
 ## How are the mirrors populated?
 
-Every day the [govuk-mirror-sync cronjob][govuk-mirror-sync configuration] crawls the www and assets domains, saves pages and assets to disk and then uploads the files to the primary S3 bucket. The [govuk-mirror] repository contains the code responsible for crawling and saving pages to disk.
+Every night the [govuk-mirror-sync cronjob][govuk-mirror-sync configuration] crawls the www and assets domains, saves pages and assets to disk and then uploads the files to the primary S3 bucket. The [govuk-mirror] repository contains the code responsible for crawling and saving pages to disk.
 
 S3 Replication automatically copies any changes from the primary S3 bucket to the secondary S3 bucket. This is configured in [govuk-aws].
 
@@ -49,7 +49,7 @@ Check buckets in AWS S3 or GCP to see if they are populated.
 
 You can fetch pages directly from the mirrors by specifying the `Backend-Override` header, e.g. `curl -H 'Backend-Override: mirrorS3' https://www.gov.uk`. The [allowed values](https://github.com/alphagov/govuk-fastly/blob/68427d372df05fd23c6851cfbea610845c6c3997/modules/www/www.vcl.tftpl#L258-L289) are `mirrorS3`, `mirrorS3Replica` and `mirrorGCS`.
 
-[govuk-aws]: https://github.com/alphagov/govuk-aws/blob/2053b554/terraform/projects/infra-mirror-bucket/main.tf#L197
+[govuk-aws]: https://github.com/alphagov/govuk-infrastructure/blob/e6c2c58b9f1c9e530d4aa270d24e36ec3a8792c3/terraform/deployments/govuk-publishing-infrastructure/govuk_mirror_sync.tf#L235
 [govuk-mirror]: https://github.com/alphagov/govuk-mirror
-[govuk-mirror-sync configuration]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/mirror/values.yaml
-[govuk-mirror-sync job]: https://argo.eks.production.govuk.digital/applications/cluster-services/govuk-jobs?view=tree&orphaned=false&resource=name%3Agovuk-mirror-sync
+[govuk-mirror-sync configuration]: https://github.com/alphagov/govuk-helm-charts/tree/main/charts/mirror
+[govuk-mirror-sync job]: https://argo.eks.production.govuk.digital/applications/cluster-services/mirror?view=tree
