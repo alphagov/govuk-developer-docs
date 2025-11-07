@@ -209,7 +209,7 @@ Follow [the instructions for getting started with the GOV.UK Kubernetes clusters
 Ask your tech lead for:
 
 - a 'Superadmin' privileged account in [**integration** Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new)
-- a 'Normal' account in [**production** Signon](https://signon.publishing.gov.uk/users/invitation/new) with access to the 'Release' app **only** and no other apps
+- a 'Normal' account in [**production** Signon](https://signon.publishing.service.gov.uk/users/invitation/new) with access to the 'Release' app **only** and no other apps
 
 Production Signon accounts are copied automatically to the staging environment overnight, so you will have access to staging the next day.
 
