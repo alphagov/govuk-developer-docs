@@ -11,8 +11,8 @@ software-as-a-service log storage and retrieval system based on the
 [Elasticsearch, Logstash, Kibana
 stack](https://logit.io/blog/post/elk-stack-guide/#what-is-the-elk-stack).
 
-GOV.UK also sends Kubernetes Events to logit, these are stored in a separate set of
-indexes which all begin with the prefix `kubernetes-events-`. There is an index pattern
+GOV.UK also sends Kubernetes Events to Logit; these are stored in a separate set of
+indexes, which all begin with the prefix `kubernetes-events-`. There is an index pattern
 already created in Kibana in every environment to query these indexes.
 
 > **Fastly CDN logs are not stored in Logit.** See [Query CDN
@@ -79,11 +79,11 @@ GOV.UK](/manual/logging.html).
    known issue.
 
 1. Check that you can sign into other third-party services via Google Workspace
-   SSO, for example Terraform Cloud. If not then the problem is likely with
+   SSO, for example, Terraform Cloud. If not then the problem is likely with
    your account or GDS's Google Workspace setup. Contact the [IT
    helpdesk](https://gds.slack.com/channels/ask-it) if you suspect this.
 
-1. Try from a different network (for example by tethering your work mobile
+1. Try from a different network (for example, by tethering your work mobile
    phone to your laptop, or by disconnecting from the office VPN) to make sure
    it's not a local network issue.
 
@@ -134,27 +134,27 @@ Check for ingestion errors in Logstash:
 If there seems to be no recent data in Kibana when there really should be, you can try restarting the Logstash instance:
 
 1. From the Logit dashboard, choose Settings for the affected stack.
-1. Select Logstash Filters in the left hand menu.
+1. Select Logstash Filters in the left-hand menu.
 1. Under Danger Zone, press Restart Logstash.
 
 ### Grant logs access to new users
 
-If you cannot see the user in the user list, they need to first attempt to login via SSO to Logit.  Only once they have attempted to login to Logit will their account be visible for you to then assign them to a team.
+If the user is not visible in the list, they must first attempt to log in through SSO on Logit. Once they attempt to log in, their account will appear, enabling you to assign them to a team.
 
-1. Go to the main "Dashboard"
-2. Click "Manage Teams", then "Team Settings" and then click the appropriate team.
-3. Scroll down until you see a list of users and for the particular user give them "Member" access
-4. Click "Apply Changes"
+1. Go to the main "Dashboard".
+1. Click "Manage Teams", then "Team Settings", and then click the appropriate team.
+1. Scroll down until you see a list of users, and for the particular user, give them "Member" access.
+1. Click "Apply Changes".
 
 ### Update Logstash configuration
 
-At present there is no automated way to configure Logstash configuration.
+At present, there is no automated way to configure Logstash.
 
 1. Click the "Settings" button next to the stack you wish to configure.
-2. Go to "Logstash Filters"
-3. Amend the configuration
-4. Click "Validate"
-5. If correctly validated, click "Apply"
+1. Go to "Logstash Filters".
+1. Amend the configuration.
+1. Click "Validate".
+1. If correctly validated, click "Apply".
 
 We store our configuration in the [govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure/tree/main/docs/logit)
 repository. Any changes to the configuration should be stored in here, and they
@@ -162,7 +162,7 @@ should be consistent across stacks.
 
 ## Retention period
 
-- Production: 14 days
+- Production: 90 days
 - Staging: 7 days
 - Integration: 7 days
 
