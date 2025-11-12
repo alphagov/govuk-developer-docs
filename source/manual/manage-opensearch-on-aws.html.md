@@ -36,10 +36,29 @@ We typically can't access an OpenSearch dashboard with the URL provided in the A
     OPENSEARCH_URL=$(aws opensearch describe-domain --domain-name chat-engine | jq -r '.DomainStatus.Endpoints.vpc')
     ```
 
+1. Create a patch file containing the following config that adds GOV.UK's security context requirements to the pod created by [krelay]
+
+    ```yaml
+    metadata:
+      namespace: apps
+    spec:
+      containers:
+      - name: krelay-server
+        image: ghcr.io/knight42/krelay-server:v0.0.4
+        imagePullPolicy: Always
+        securityContext:
+          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+          seccompProfile:
+            type: RuntimeDefault
+    ```
+
 1. Forward the OpenSearch HTTPS port to your local machine:
 
     ```sh
-    kubectl relay host/$OPENSEARCH_URL 4443:443
+    kubectl relay --patch-file=your-krelay-patch-file.yml host/$OPENSEARCH_URL 4443:443
     ```
 
 1. The OpenSearch Dashboard web interface username and password for each environment can be found in [AWS Secrets Manager]. To find the `opensearch` secret name, use the command:
