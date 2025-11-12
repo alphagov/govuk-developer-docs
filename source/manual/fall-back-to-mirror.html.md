@@ -34,6 +34,7 @@ flowchart TB
 ```
 
 #### 2. Content Serving Flow (On Origin Failure)
+
 When Fastly cannot reach our origin servers, it attempts to serve content from mirrors in priority order.
 
 ```mermaid
@@ -59,6 +60,42 @@ We maintain three mirrors, ranked by priority:
 1. Tertiary: Google Cloud Storage (GCS) bucket named `govuk-<environment>-mirror`
 
 We use multiple mirrors across various AWS regions and GCP to ensure redundancy and increase availability.
+
+### GCP (GCS) Mirror
+
+#### Accessing the GCP Project
+
+Each environment's Google Cloud resources live inside the relevant Project for the environment, e.g. "GOVUK Integration", "GOVUK Staging", etc.
+
+If you want to access the GCP resources for the Integration environment, you can access these through the Google Cloud Console by navigating to:
+
+`Open Project Picker (⌘+O)` -> `GOVUK Integration`
+
+Then you can access the Bucket and Storage Transfer Jobs.
+
+#### GCS Bucket
+
+For example, in Integration, you can access these through the Google Cloud Console by navigating to:
+
+`Cloud Storage` -> `Buckets` -> `govuk-integration-mirror`
+
+Once there you should find the relevant directory structure for `assets` and `www.gov.uk`.
+
+#### Storage Transfer Job
+
+To find the job that manages the transfer from the AWS S3 Bucket to the GCS Bucket, navigate to:
+
+`Storage transfer` -> `Transfer jobs`
+
+From there, you should see all the configured transfer jobs (currently just one at the time of writing) and can view the configuration and history of them, such as:
+
+- Bytes copied
+- Bandwidth
+- Errors
+- Number of objects
+- Daily run histoy
+
+You may find the Terraform that configures the Storage Transfer [here](https://github.com/alphagov/govuk-aws/blob/81ee9f6e91fd8692fbf751ecf980c671c13aa3c0/terraform/projects/infra-google-mirror-bucket/main.tf#L124).
 
 ## When is the GOV.UK mirror used?
 
@@ -96,14 +133,17 @@ Certain page types aren't included in the mirrors:
 A healthy mirror sync can be verified through:
 
 **Job completion time:**
+
 - Normal runs typically complete in about **8-9 hours**
 - Check the [govuk-mirror-sync job in Argo][govuk-mirror-sync job] for completion status and duration
 
 **Content freshness:**
+
 - Pages published on a given day should appear in the mirror within **24 hours** (by the next nightly sync)
 - Spot-check recently published content by fetching directly from mirrors using the `Backend-Override` header
 
 **Storage verification:**
+
 - Check that all three mirror buckets (primary S3, secondary S3, tertiary GCS) contain recently updated objects
 - Verify object counts and total storage sizes are roughly consistent across mirrors
 
@@ -120,16 +160,19 @@ To verify mirror content is up to date:
 ### Signs that mirrors may need investigation
 
 **Job-level failures:**
+
 - govuk-mirror-sync job fails to complete in Argo
 - Job runs significantly longer than usual (more than 9 hours)
 - Error messages in job logs indicating crawl failures or upload issues
 
 **Storage-level issues:**
+
 - One or more mirror buckets are empty or contain significantly fewer objects than expected
 - Last modified timestamps on bucket objects are more than 24-48 hours old
 - S3 replication or GCS transfer metrics show failures
 
 **Serving-level problems:**
+
 - Users report stale content when origin is supposedly healthy
 - Direct mirror fetches return 404s for content that should exist
 
@@ -196,11 +239,13 @@ Check the [logs of the govuk-mirror-sync job in Argo][govuk-mirror-sync job] for
 Areas where the mirror and related components could be improved:
 
 **Monitoring gaps:**
+
 - We don't currently have automated alerts for mirror sync failures or unusual runtimes
 - Content freshness is checked manually rather than automatically
 - No automated verification that all three mirrors contain consistent content
 
 **Operational improvements:**
+
 - Better visibility into which mirror Fastly is actually serving from during failover scenarios
 - Clearer runbook for what to do if all mirrors are stale or unavailable
 - Differential or incremental changes to the sync script to reduce the time and costs required
