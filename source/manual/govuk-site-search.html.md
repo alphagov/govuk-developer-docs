@@ -27,7 +27,16 @@ Discovery Engine is the name of the API used by integrations with VAIS, which is
 
 ### Architecture summary
 
-![site-search-diagram][link-1]
+> You can [open the diagram below in Full Screen Mode][link-1] if you'd prefer.
+
+<iframe
+  title="Site search architecture diagram"
+  frameborder="0"
+  class="architecture-diagram"
+  src="https://viewer.diagrams.net/?highlight=0000ff&nav=1&title=Site%20search%20diagram#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Falphagov%2Fgovuk-developer-docs%2Fmain%2Fsource%2Fmanual%2Fimages%2Fsite-search-architecture-diagram.drawio">
+</iframe>
+
+To edit the diagram, visit <https://app.diagrams.net/#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Falphagov%2Fgovuk-developer-docs%2Fmain%2Fsource%2Fmanual%2Fimages%2Fsite-search-architecture-diagram.drawio>. If you see an "Error loading file" popup, click the "Try opening via this page" button and then use the "Open with" dropdown (at the top of the screen) to select "Open with draw.io".
 
 Broadly, the new search stack for site search introduces the following new components to the GOV.UK technical ecosystem:
 
@@ -96,7 +105,7 @@ There are two separate top level Terraform deployments in the infrastructure rep
 
 See [GOV.UK Site search alerts and monitoring][link-9]
 
-[link-1]: ../images/site-search-diagram.png
+[link-1]: https://viewer.diagrams.net/?highlight=0000ff&nav=1&title=Site%20search%20diagram#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Falphagov%2Fgovuk-developer-docs%2Fmain%2Fsource%2Fmanual%2Fimages%2Fsite-search-architecture-diagram.drawio
 [link-2]: https://grafana.eks.production.govuk.digital/d/govuk-search/gov-uk-search?orgId=1&from=now-24h&to=now&timezone=browser
 [link-3]: https://github.com/alphagov/govuk-infrastructure
 [link-4]: https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/gcp-search-api-v2
