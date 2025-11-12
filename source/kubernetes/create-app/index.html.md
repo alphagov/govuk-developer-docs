@@ -44,10 +44,7 @@ GOV.UK application (in `.github/workflows`).
 
 ## Add image tag files to `govuk-helm-charts`
 
-[GOV.UK Helm Charts](https://github.com/alphagov/govuk-helm-charts) uses image tag files to keep
-track of the image tag deployed into each environment. Add an initial image tag file named after
-your application into the `image-tags` folder for each of the four environments, i.e.
-`charts/app-config/image-tags/{test,integration,staging/production}/example`:
+[GOV.UK Helm Charts](https://github.com/alphagov/govuk-helm-charts) uses image tag files to keep track of the image tag deployed into each environment, as well as the [deployment configuration](https://docs.publishing.service.gov.uk/manual/deployments.html#deployment-configuration). Add an initial image tag file named after your application into the `image-tags` folder for each of the four environments, i.e. `charts/app-config/image-tags/{test,integration,staging/production}/example`:
 
 ```
 image_tag: latest
