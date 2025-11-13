@@ -12,9 +12,17 @@ GOV.UK applications can be deployed to one of three [environments](/manual/envir
 
 Deployments are performed through a CI/CD pipeline powered by GitHub Actions, [Argo CD](https://argo-cd.readthedocs.io/en/stable/), and [Argo Workflows](https://argo-workflows.eks.production.govuk.digital/workflows/apps). Most apps use [continuous deployment](#continuous-deployment) (CD), but manual deployment is also supported.
 
+The [Release app](https://release.publishing.service.gov.uk) shows the currently deployed versions of each app in each environment, including deployment status, deployment notes, and whether a [deployment freeze](#deployment-freezes) is in effect.
+
+### Deployment configuration
+
 We use [Helm charts](https://helm.sh/docs/topics/charts/) to define and manage [Kubernetes resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for each app. These are stored in the [`govuk-helm-charts` repo](https://github.com/alphagov/govuk-helm-charts). The source of truth is the image tag configuration for each app in the [`app-config` Helm chart](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/image-tags).
 
-The [Release app](https://release.publishing.service.gov.uk) shows the currently deployed versions of each app in each environment, including deployment status, deployment notes, and whether a [deployment freeze](#deployment-freezes) is in effect.
+The image tag configuration specifies:
+
+- `image_tag`: the initial image tag for an application
+- `automatic_deploys_enabled`: specifies whether there is a [deployment freeze](#deployment-freezes) on the application
+- `promote_deployment`: specifies whether deployment will be triggered automatically in the next environment as part of the continuous deployment workflow (Integration → Staging → Production)
 
 ## Types of deployment
 
@@ -30,6 +38,14 @@ The [Release app](https://release.publishing.service.gov.uk) shows the currently
 1. If tests pass and promotion is enabled, the app is automatically promoted to Staging and then Production, each followed by smoke tests.
 
 See the [overview of the deployment process](#overview-of-the-deployment-process) for a detailed walkthrough.
+
+#### Configuring continuous deployment
+
+Steps 1-7 above rely on having the [relevant GitHub Actions workflows](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/deploy-image/workflow.yaml) set up in the application.
+
+To automate deployment into all environments, set `promote_deployment` in the [image tag configuration](#deployment-configuration) for Integration and Staging to `true`. This should only be done in applications that meet the requirements outlined in [RFC 128](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md).
+
+Once continuous deployment has been turned on for an application, it should be added to the [list of continuously deployed apps in the Release app](https://github.com/alphagov/release/blob/main/data/continuously_deployed_apps.yml).
 
 ### Manual deployment
 
