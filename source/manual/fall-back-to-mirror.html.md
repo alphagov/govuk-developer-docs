@@ -26,11 +26,12 @@ The [govuk-mirror-sync cronjob][govuk-mirror-sync configuration] crawls content,
 flowchart TB
     A[govuk-mirror-sync<br/>cronjob in Argo] --> B[Crawl www &<br/>assets domains]
     B --> C[Save pages<br/>to local disk]
-    C --> D[Primary S3<br/>govuk-env-mirror<br/>eu-west-2]
-    D --> E[S3 Replication]
-    E --> F[Secondary S3<br/>govuk-env-mirror-replica<br/>eu-west-1<br/>production only]
-    D --> G[GCS Transfer<br/>Service]
-    G --> H[Tertiary GCS<br/>govuk-env-mirror]
+    C --> D[Upload files to Primary S3 Bucket]
+    D --> E[Primary S3<br/>govuk-env-mirror<br/>eu-west-2]
+    E --> |"Production Only"| F[S3 Replication]
+    E --> |"Staging & Production"|H[GCS Transfer<br/>Service]
+    F --> G[Secondary S3<br/>govuk-env-mirror-replica<br/>eu-west-1<br/>Production only]
+    H --> I[Tertiary GCS<br/>govuk-env-mirror<br/>Staging & Production]
 ```
 
 #### 2. Content Serving Flow (On Origin Failure)
@@ -40,13 +41,13 @@ When Fastly cannot reach our origin servers, it attempts to serve content from m
 ```mermaid
 flowchart TB
     I[User Request] --> J[Fastly CDN]
-    J --> K{Origin<br/>Available?}
+    J --> K{Fetch<br/>from Origin}
     K -->|"200 OK"| L[Serve from<br/>Origin]
-    K -->|"5xx/timeout"| M[Try Primary<br/>S3 Mirror]
+    K -->|"5xx/timeout"| M[Fall back to <br />Primary S3 Mirror]
     M --> N{Success?}
     N -->|Yes| O[Serve from<br/>Primary]
-    N -->|No| P[Try Secondary<br/>S3 Mirror<br/>prod only]
-    P --> Q{Success?}
+    N -->|No| P[Try Secondary<br/>S3 Mirror]
+    P --> Q{In Production<br/>and Successful?}
     Q -->|Yes| R[Serve from<br/>Secondary]
     Q -->|No| S[Try Tertiary<br/>GCS Mirror]
 ```
@@ -56,10 +57,12 @@ flowchart TB
 We maintain three mirrors, ranked by priority:
 
 1. Primary: AWS S3 bucket named `govuk-<environment>-mirror` in eu-west-2
-1. Secondary: AWS S3 bucket named `govuk-<environment>-mirror-replica` in eu-west-1 (production only)
-1. Tertiary: Google Cloud Storage (GCS) bucket named `govuk-<environment>-mirror`
+2. Secondary: AWS S3 bucket named `govuk-<environment>-mirror-replica` in eu-west-1 (production only)
+3. Tertiary: Google Cloud Storage (GCS) bucket named `govuk-<environment>-mirror` (staging and production only)
 
 We use multiple mirrors across various AWS regions and GCP to ensure redundancy and increase availability.
+
+Having our primary mirror in eu-west-2 is a conscious decision to improve redundancy in the instance that a problem with eu-west-1 is the cause of an outage that has impacted our compute capacity.
 
 ### GCP (GCS) Mirror
 
@@ -162,7 +165,8 @@ To verify mirror content is up to date:
 **Job-level failures:**
 
 - govuk-mirror-sync job fails to complete in Argo
-- Job runs significantly longer than usual (more than 9 hours)
+- Job runs significantly longer or slower than usual (more than 9 hours)
+- Job finishes much quicker than expected (e.g. 30 minutes)
 - Error messages in job logs indicating crawl failures or upload issues
 
 **Storage-level issues:**
@@ -180,7 +184,7 @@ To verify mirror content is up to date:
 
 If you suspect mirror issues:
 
-1. **Check the mirror sync job**: Review [Argo logs][govuk-mirror-sync job] for errors during crawl, save, or upload phases
+1. **Check the mirror sync job**: Review [LogIt](https://dashboard.logit.io) for errors during crawl, save, or upload phases - use field selector: `kubernetes.labels.app_kubernetes_io/name = mirror`
 2. **Verify bucket contents**: Check AWS S3 Console and GCP Console to confirm buckets are populated and recently updated
 3. **Test direct access**: Use `curl` with `Backend-Override` header to fetch from each mirror and verify responses
 4. **Review Fastly logs**: Check if Fastly is falling back to mirrors unexpectedly
@@ -221,7 +225,9 @@ The [allowed values](https://github.com/alphagov/govuk-fastly/blob/68427d372df05
 
 **Review job logs:**
 
-Check the [logs of the govuk-mirror-sync job in Argo][govuk-mirror-sync job] for any errors during crawling, saving pages or uploading to S3.
+Check the logs in [LogIt](https://dashboard.logit.io) for any errors during crawling, saving pages or uploading to S3.
+
+You can filter the correct logs by using the following field selector: `kubernetes.labels.app_kubernetes_io/name = mirror`.
 
 **Verify bucket contents:**
 
