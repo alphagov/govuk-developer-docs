@@ -41,7 +41,7 @@ See the [overview of the deployment process](#overview-of-the-deployment-process
 
 #### Configuring continuous deployment
 
-Steps 1-7 above rely on having the [relevant GitHub Actions workflows](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/deploy-image/workflow.yaml) set up in the application.
+Steps 1-7 above rely on having the [relevant GitHub Actions workflows](https://docs.publishing.service.gov.uk/kubernetes/create-app/#add-github-actions-workflows) set up in the application.
 
 To automate deployment into all environments, set `promote_deployment` in the [image tag configuration](#deployment-configuration) for Integration and Staging to `true`. This should only be done in applications that meet the requirements outlined in [RFC 128](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md).
 
