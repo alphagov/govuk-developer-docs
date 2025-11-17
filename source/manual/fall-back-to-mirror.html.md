@@ -43,7 +43,9 @@ flowchart TB
     I[User Request] --> J[Fastly CDN]
     J --> K{Fetch<br/>from Origin}
     K -->|"200 OK"| L[Serve from<br/>Origin]
-    K -->|"5xx/timeout"| M[Fall back to <br />Primary S3 Mirror]
+    K -->|"5xx/timeout"| T{Stale Cache<br/>Available?<br/>up to 24h}
+    T -->|Yes| U[Serve Stale<br/>from Cache]
+    T -->|No| M[Fall back to<br/>Primary S3 Mirror]
     M --> N{Success?}
     N -->|Yes| O[Serve from<br/>Primary]
     N -->|No| P[Try Secondary<br/>S3 Mirror]
@@ -70,7 +72,7 @@ Having our primary mirror in eu-west-2 is a conscious decision to improve redund
 
 Each environment's Google Cloud resources live inside the relevant Project for the environment, e.g. "GOVUK Integration", "GOVUK Staging", etc.
 
-If you want to access the GCP resources for the Integration environment, you can access these through the Google Cloud Console by navigating to:
+If you want to access the GCP resources for the Integration environment, first [make sure you have access to GCP](/manual/google-cloud-platform-gcp.html#gcp-access) and then you can access these through the Google Cloud Console by navigating to:
 
 `Open Project Picker (⌘+O)` -> `GOVUK Integration`
 
