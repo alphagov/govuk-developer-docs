@@ -59,6 +59,7 @@ Other useful groups:
 - Licensing - `1st Line--Licensing Support`
 - Security issues - `3rd Line--Cyber Security`
 - User Support - `2nd Line--User Support Escalation`
+- GOV.UK Forms - `1st Line--GOV.UK Forms`
 
 ## Zendesk triggers for technical GOV.UK groups
 
