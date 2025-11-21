@@ -88,6 +88,7 @@ Sidekiq web is enabled for the following applications (and requires the `Sidekiq
 
 | Application | Sidekiq Web URL                                                           |
 |-------------|---------------------------------------------------------------------------|
+| Publisher   | https://publisher.publishing.service.gov.uk/sidekiq                       |
 | Whitehall   | https://whitehall-admin.publishing.service.gov.uk/sidekiq                 |
 
 Apps that don't have any ingress routes are accessed through port forwarding. Detailed instructions on how to do this will
