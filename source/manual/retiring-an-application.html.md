@@ -6,11 +6,13 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-## 0. Unpublish routes
+## 0. Unpublish documents
 
-Some applications are responsible for publishing certain routes. If you're retiring a publishing application, make sure you check if any of its content items need to be unpublished and do it via the Publishing API.
+If you're retiring a publishing application, all the documents published by this application must be unpublished via Publishing API.
 
-This step is marked as step 0 as really it is a pre-requisite step you ought to do _before_ retiring the application.
+This will result in removal of the documents from Content Store and Search API, and the removal of routes from Router.
+
+> This step is marked as step 0 as really it is a pre-requisite step you ought to do _before_ retiring the application.
 
 ## 1. Raise PRs to remove the app from dependent places
 
