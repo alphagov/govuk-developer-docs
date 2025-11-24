@@ -107,71 +107,10 @@ For [Sentry], your tech lead should manually add you via the Sentry UI. Once you
 
 ## 7. Install and configure the GDS CLI
 
-On GOV.UK we use the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS access.
+> [!NOTE]
+> You must be a member of the [alphagov GitHub org](https://github.com/alphagov/) (see previous step) to proceed.
 
-You must be a member of the [alphagov GitHub org](https://github.com/alphagov/) (see previous step) to proceed.
-
-1. Install GDS CLI:
-
-    ```sh
-    brew tap alphagov/gds
-    brew install gds-cli
-    brew install --cask aws-vault
-    ```
-
-1. Run `gds --help` to check the installation.
-
-    If you see `fatal: no such path in the working tree`, that's because you're using ZSH, which has `gds` set up as a Git alias. To solve this, you can remove that alias by adding `unalias gds` to your `~/.zshrc`:
-
-    ```sh
-    echo unalias gds >>~/.zshrc
-    ```
-
-1. Configure your email address:
-
-    ```sh
-    gds config email <FIRSTNAME>.<LASTNAME>@digital.cabinet-office.gov.uk
-    ```
-
-1. By default, GDS CLI will use a Yubikey as the MFA device. If you don't
-   have a Yubikey you must disable this:
-
-    ```bash
-    gds config yubikey false
-    ```
-
-1. Set up AWS credentials:
-
-    1. [Create an AWS access key][create-aws-access-key] via the [console][gds-users-aws-signin].
-    1. Run any `gds aws` command to start the first-time setup process:
-
-        ```sh
-        gds aws govuk-integration-developer -l
-        ```
-
-    1. Enter your Access Key ID and Secret Access Key when prompted.
-    1. Enter your AWS MFA token when prompted.
-    1. When prompted, save credentials to your Mac's keychain as `aws-vault` and set a password for the keychain. Save that password somewhere safe, for example in a password manager.
-
-    For example:
-
-    ```
-    Welcome to the GDS CLI! We will now store your AWS credentials in the keychain using aws-vault.
-    Enter Access Key ID: <YOUR-ACCESS-KEY-ID>
-    Enter Secret Access Key: <YOUR-SECRET-ACCESS-KEY>
-    Added credentials to profile "gds-users" in vault
-    Successfully initialised gds-cli
-    Enter token for arn:aws:iam::123456789012:mfa/firstname.lastname@digital.cabinet-office.gov.uk: 123456
-    ```
-
-You can now use `gds aws` to run [AWS CLI](https://aws.amazon.com/cli/) commands by prefixing them with `gds aws <role>`. You can use `--` to avoid ambiguity between `gds` options and options for the wrapped command. For example:
-
-```sh
-gds aws govuk-integration-developer -- aws s3 ls
-```
-
-[gds-users-aws-signin]: https://gds-users.signin.aws.amazon.com/console
-[create-aws-access-key]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey
+On GOV.UK we use `gds-cli` for AWS access. Follow the instructions on the [repo's README](https://github.com/alphagov/gds-cli) to install/configure the tool.
 
 ## 8. Connect to the GDS VPN
 
