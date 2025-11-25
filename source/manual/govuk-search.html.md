@@ -7,20 +7,18 @@ section: Search on GOV.UK
 type: learn
 ---
 
-There are two common kinds of public-facing 'search' service on GOV.UK:
+There are two common kinds of public-facing search service on GOV.UK:
 
-1. The [main "site search"](#main-site-search), available at <https://www.gov.uk/search/all>:
-   - It is powered by [search-api-v2][]...
-   - ...except for when no search term has been provided, in which case it falls back to using [search-api][].
+1. The main "site search". Site search is provided on the GOV.UK homepage, as well as from the blue super navigation header at the top of all gov.uk pages. Site search is available at <https://www.gov.uk/search/all>. It is powered by [search-api-v2][], except in the following cases when it will fall back to using [search-api][]
+  - When [no search query][no-keyword-link] is provided.
+  - When the [query param `use_v1=true`][use-v1-link] is present, eg https://www.gov.uk/search/all?order=updated-newest&use_v1=true
+  - When a [world_locations][world-locations-link] query param is present, eg https://www.gov.uk/search/all?order=updated-newest&world_locations=france
 
-2. ["Finders" (or "Specialist Finders")](#finders)
-   - Powered by [search-api][].
-   - Finders can be published by:
-     - Search API, e.g. <https://www.gov.uk/search/research-and-statistics> (see [configuration](https://github.com/alphagov/search-api/blob/35c45fd61665869cead7b7fa7e3c123311f30bf3/config/finders/statistics_finder.yml))
-     - Whitehall, e.g. <https://www.gov.uk/government/people> (see [configuration](https://github.com/alphagov/whitehall/blob/6372d382990abd4d42e8696cf50204005382d5ca/lib/finders/people.json)) (legacy - we now [encourage non-specialist finders to be published from Search API](https://github.com/alphagov/whitehall/blob/e748b577e0f13c01fe62bad2a303340ab5acc7c4/docs/finders.md#L17))
-     - Specialist Publisher, e.g. <https://www.gov.uk/cma-cases> (see [configuration](https://github.com/alphagov/specialist-publisher/blob/73392474433567dd5da75d4c307d99a2fe83c9b6/lib/documents/schemas/cma_cases.json))
+2. "Finders" and "Specialist Finders", which are powered by [search-api][], and published by either:
+   - Search API, e.g. <https://www.gov.uk/search/research-and-statistics> (see [configuration](https://github.com/alphagov/search-api/blob/35c45fd61665869cead7b7fa7e3c123311f30bf3/config/finders/statistics_finder.yml))
+   - Specialist Publisher, e.g. <https://www.gov.uk/cma-cases> (see [configuration](https://github.com/alphagov/specialist-publisher/blob/73392474433567dd5da75d4c307d99a2fe83c9b6/lib/documents/schemas/cma_cases.json))
 
-Both are rendered by [finder-frontend](https://github.com/alphagov/finder-frontend).
+Both site search and finders are rendered by [finder-frontend][]. Documentation on how finder frontend queries the two search api applications is available at [Finder Frontend: How search works](https://docs.publishing.service.gov.uk/repos/finder-frontend/how-search-works.html)
 
 In addition, there is also the Search API endpoint itself, publicly available at <https://www.gov.uk/api/search.json>, powered by [search-api][]. See [Using the search API](https://docs.publishing.service.gov.uk/repos/search-api/using-the-search-api.html) for examples of how to use this.
 
@@ -59,3 +57,7 @@ As of March 2025, Search Admin is undergoing improvements. Watch this space!
 
 [search-api-v2]: https://github.com/alphagov/search-api-v2
 [search-api]: https://github.com/alphagov/search-api
+[finder-frontend]: https://github.com/alphagov/finder-frontend
+[no-keyword-link]: https://github.com/alphagov/finder-frontend/blob/main/app/lib/search/query.rb#L139
+[use-v1-link]: https://github.com/alphagov/finder-frontend/blob/main/app/lib/search/query.rb#L125
+[world-locations-link]: https://github.com/alphagov/finder-frontend/blob/main/app/lib/search/query.rb#L136
