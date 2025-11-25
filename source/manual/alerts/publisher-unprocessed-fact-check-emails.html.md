@@ -28,11 +28,17 @@ The current email addresses used for the fact checking process are:
 - govuk-fact-check-staging@digital.cabinet-office.gov.uk
 - govuk-fact-check-integration@digital.cabinet-office.gov.uk
 
-### Retrieve the mailbox credentials from the app
+### Logging into the account
+
+First, log into the AWS Console for the relevant environment:
 
 ```sh
-echo 'Publisher::Application.mail_fetcher_config' | k exec -i deploy/publisher -- rails c
+$ gds aws govuk-some-environment-developer -l
 ```
+
+Navigate to Secrets Manager. Search for and access the secret
+`govuk/publisher/fact-check-email-account`.
+Retrieve the `password` key.
 
 ### Investigate the unprocessed emails
 
