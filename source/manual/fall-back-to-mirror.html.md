@@ -22,7 +22,8 @@ The GOV.UK mirror system operates in two main flows:
 
 The [govuk-mirror-sync cronjob][govuk-mirror-sync configuration] crawls content, saves it locally, and distributes it across multiple storage locations for redundancy.
 
-```mermaid
+<pre lang="mermaid">
+<code>
 flowchart TB
     A[govuk-mirror-sync<br/>cronjob in Argo] --> B[Crawl www &<br/>assets domains]
     B --> C[Save pages<br/>to local disk]
@@ -32,13 +33,15 @@ flowchart TB
     E --> |"Staging & Production"|H[GCS Transfer<br/>Service]
     F --> G[Secondary S3<br/>govuk-env-mirror-replica<br/>eu-west-1<br/>Production only]
     H --> I[Tertiary GCS<br/>govuk-env-mirror<br/>Staging & Production]
-```
+</code>
+</pre>
 
 #### 2. Content Serving Flow (On Origin Failure)
 
 When Fastly cannot reach our origin servers, it attempts to serve content from mirrors in priority order.
 
-```mermaid
+<pre lang="mermaid">
+<code>
 flowchart TB
     I[User Request] --> J[Fastly CDN]
     J --> K{Fetch<br/>from Origin}
@@ -52,7 +55,8 @@ flowchart TB
     P --> Q{In Production<br/>and Successful?}
     Q -->|Yes| R[Serve from<br/>Secondary]
     Q -->|No| S[Try Tertiary<br/>GCS Mirror]
-```
+</code>
+</pre>
 
 ## Available mirrors
 
