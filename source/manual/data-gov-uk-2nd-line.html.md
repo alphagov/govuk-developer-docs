@@ -44,7 +44,7 @@ There are three environments for CKAN:
 
 There are three environments for data.gov.uk:
 
-- [Production](data.gov.uk)
+- [Production](https://www.data.gov.uk/)
 - [Staging](https://www.staging.data.gov.uk/)
 - [Integration](https://www.integration.data.gov.uk/)
 
