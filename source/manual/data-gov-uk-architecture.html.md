@@ -23,6 +23,11 @@ The `data.gov.uk` (DGU) platform is used to publish and view datasets. A dataset
 
 The original for this diagram is available in [Google Drive](https://drive.google.com/open?id=1xnwgUBrwnQI2aIfZ0FT8nBQ-pERNRo2r) and can be edited with draw.io.
 
+Data.gov.uk is currently (as of Nov 2025) hosted in GOV.UK's AWS infrastructure.
+
+Organogram files are stored in S3 buckets.
+Transactional emails (eg password resets) are sent via the Amazon Simple Email Service (SES).
+
 ## data.gov.uk Services
 
 Services owned by data.gov.uk:
