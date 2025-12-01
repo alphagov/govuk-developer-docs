@@ -28,7 +28,7 @@ GOV.UK developers are part of an [on-call rota](https://docs.google.com/spreadsh
   in order to bring the site back up, that's probably a good trade-off to make
 - Get paid. Follow the [documented process on the GDS Wiki][GDS Wiki].
 
-[GDS Wiki]: https://sites.google.com/digital.cabinet-office.gov.uk/the-gds-wiki/info-for-employees/people-services-hr-help/miscellaneous/out-of-hours-allowance
+[GDS Wiki]: https://sites.google.com/digital.cabinet-office.gov.uk/the-gds-wiki/info-for-employees/gds-guides/miscellaneous/out-of-hours-allowance
 
 ## When are you added to the on-call rota?
 
