@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-datagovuk"
+owner_slack: "#datagovuk-technical"
 title: Data.gov.uk Contracts Archive
 section: data.gov.uk
 layout: manual_layout
