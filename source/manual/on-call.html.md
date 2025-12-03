@@ -112,7 +112,6 @@ are set up for key parts of the website such as:
 - [Bouncer canary](/manual/pingdom-bouncer-canary-check.html)
 - [GOV.UK homepage](/manual/alerts/pingdom-homepage-check.html)
 - [S3 mirror](/manual/alerts/mirror-sync.html#impact) (London) and S3 Mirror Replica (Ireland)
-- [data.gov.uk](/manual/data-gov-uk-monitoring.html)
 
 ### Phone calls from people
 

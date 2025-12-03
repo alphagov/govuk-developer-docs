@@ -14,7 +14,6 @@ parent: "/manual.html"
 [find]: repos/datagovuk_find
 [Grafana]: https://grafana.eks.production.govuk.digital/d/app-requests/app3a-request-rates-errors-durations?orgId=1&refresh=1m&var-namespace=datagovuk&var-app=All&var-error_status=All
 [logit]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3
-[pagerduty]: https://govuk.pagerduty.com/
 [pingdom]: /manual/pingdom
 [sentry]: https://sentry.io/govuk/
 
@@ -64,7 +63,7 @@ You'll be able to exec onto any datagovuk pod in a similar way to other GOV.UK a
 
 ### Pingdom
 
-[Pingdom] monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downtime is detected.
+[Pingdom] monitors `https://data.gov.uk` uptime and alerts the #datagovuk-technical Slack channel when downtime is detected.
 
 ### Sentry
 
