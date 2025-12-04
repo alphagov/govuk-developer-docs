@@ -155,6 +155,9 @@ or just replace the old one with a new one, leaving other tagged organisations i
 [publisher-bulk-update-organisation-example]: https://github.com/alphagov/publishing-api/pull/1981
 [publisher-bulk-update-preserving-multiple-organisations-example]: https://github.com/alphagov/publishing-api/pull/2827
 
+For **Specialist Publisher**, you'd need to change the `organisations` property in all applicable finder JSON files, and republish said finders.
+The specialist documents themselves live entirely in Publishing API so would need retagging as per the instructions below.
+
 For anything else, in **Publishing Api**, the task responsible for retagging documents is
 [`data_hygiene:bulk_update_organisation[csv_file]`][publishing-api-bulk-update-organisation].
 *Note that you should always update via the Publishing apps themselves where possible - this rake task is a last resort.*
