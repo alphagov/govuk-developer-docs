@@ -6,7 +6,7 @@ layout: manual_layout
 section: Search on GOV.UK
 ---
 [link-1]: https://cloud.google.com/generative-ai-app-builder/docs/reference/rest
-[link-2]: /google-cloud-platform-gcp.html.md
+[link-2]: /manual/google-cloud-platform-gcp.html#using-the-cli
 [link-3]: https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1/projects.locations.collections.dataStores.branches.documents/get
 [link-4]: https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1/projects.locations.collections.dataStores.branches.documents/delete
 
