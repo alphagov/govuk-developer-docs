@@ -113,4 +113,4 @@ See [GOV.UK Site search alerts and monitoring][link-9]
 [link-6]: https://govuk.sentry.io/projects/app-search-api-v2/?project=4505862568935424
 [link-7]: https://dashboard.logit.io/sign-in
 [link-8]: /manual/google-cloud-platform-gcp
-[link-9]: /manual/search-alerts-and-monitoring.html.md
+[link-9]: /manual/search-alerts-and-monitoring.html
