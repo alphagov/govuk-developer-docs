@@ -1,0 +1,1017 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>account-api: API documentation - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/account-api/api.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="account-api: API documentation - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/account-api/api.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="account-api: API documentation" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/account-api/api.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/account-api.html" rel="noopener" class="govuk-link">account-api</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/account-api/api.html" rel="noopener" class="govuk-link">API documentation</a></li>
+    <li><a href="/repos/account-api/one-login-pipeline.html" rel="noopener" class="govuk-link">One Login to GOV.UK pipeline</a></li>
+    <li><a href="/repos/account-api/one-login.html" rel="noopener" class="govuk-link">One Login</a></li>
+    <li class="subdir__heading">adr</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/account-api/adr/001-flash-messages.html" rel="noopener" class="govuk-link">001-flash-messages</a></li>
+    <li><a href="/repos/account-api/adr/002-progressive-enhancement.html" rel="noopener" class="govuk-link">002-progressive-enhancement</a></li>
+    <li><a href="/repos/account-api/adr/003-cookie-consent.html" rel="noopener" class="govuk-link">003-cookie-consent</a></li>
+    <li><a href="/repos/account-api/adr/004-tombstone-records.html" rel="noopener" class="govuk-link">Tombstone records</a></li>
+
+    </ul>
+    <li class="subdir__heading">support</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/account-api/support/rake_tasks.html" rel="noopener" class="govuk-link">Rake Tasks</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "account-api",
+        "@id": "http://www.dev.gov.uk/repos/account-api.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/account-api.html">account-api</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/7379c66762bac9f3a8e53340e0fbc664e7ba4a3f">13 Sep 2023</a>
+</div>
+
+  <h1 class="page-title">account-api: API documentation</h1>
+
+  
+<p>This API is for GOV.UK Publishing microservices (the things which make
+up <a href="http://www.gov.uk">www.gov.uk</a>) to implement personalisation and user session
+management. This API is not for other government services.</p>
+<ul>
+<li>
+<a href="#nomenclature">Nomenclature</a>
+<ul>
+<li><a href="#identity-provider">Identity provider</a></li>
+<li><a href="#session-identifier">Session identifier</a></li>
+</ul>
+</li>
+<li><a href="#using-this-api">Using this API</a></li>
+<li>
+<a href="#api-endpoints">API endpoints</a>
+<ul>
+<li><a href="#get-apioauth2sign-in"><code>GET /api/oauth2/sign-in</code></a></li>
+<li><a href="#post-apioauth2callback"><code>POST /api/oauth2/callback</code></a></li>
+<li><a href="#get-apioauth2end-session"><code>GET /api/oauth2/end-session</code></a></li>
+<li><a href="#get-apiuser"><code>GET /api/user</code></a></li>
+<li><a href="#get-usermatch-by-email"><code>GET /user/match-by-email</code></a></li>
+<li><a href="#get-apiattributes"><code>GET /api/attributes</code></a></li>
+<li><a href="#patch-apiattributes"><code>PATCH /api/attributes</code></a></li>
+<li><a href="#put-apioidc-userssubject_identifier"><code>PUT /api/oidc-users/:subject_identifier</code></a></li>
+<li><a href="#delete-apioidc-userssubject_identifier"><code>DELETE /api/oidc-users/:subject_identifier</code></a></li>
+<li><a href="#get-apipersonalisationcheck-email-subscription"><code>GET /api/personalisation/check-email-subscription</code></a></li>
+<li><a href="#post-apioidc_eventsbackchannel_logout"><code>POST /api/oidc_events/backchannel_logout</code></a></li>
+</ul>
+</li>
+<li>
+<a href="#api-errors">API errors</a>
+<ul>
+<li><a href="#mfa-required">MFA required</a></li>
+<li><a href="#unknown-attribute-names">Unknown attribute names</a></li>
+<li><a href="#unwritable-attributes">Unwritable attributes</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="nomenclature">Nomenclature</h2>
+<h3 id="identity-provider">Identity provider</h3>
+<p>The service which authenticates a user. Currently we use the Digital Identity authentication service.</p>
+<h3 id="session-identifier">Session identifier</h3>
+<p>An opaque token which identifies a user and provides access to their attributes.</p>
+<h2 id="using-this-api">Using this API</h2>
+<p>You should use this API in combination with the <a href="https://github.com/alphagov/govuk_personalisation">govuk_personalisation</a> gem, like so:</p>
+<pre lang="ruby"><code>class YourRailsController &lt; ApplicationController
+  # include the concern in your controller
+  include GovukPersonalisation::AccountConcern
+
+  def show
+    # call the API with gds-api-adapters, the @govuk_account_session is provided by the concern
+    result = GdsApi.account_api.get_attributes(
+      attributes: %w[some user attributes],
+      govuk_account_session: @govuk_account_session,
+    )
+
+    # set up the response header and update @govuk_account_session
+    set_account_session_header(result["govuk_account_session"])
+
+    # do something in your view with the result
+    @attributes = result["values"]
+  rescue GdsApi::HTTPUnauthorized
+    # the user's session is invalid
+    logout!
+  rescue GdsApi::HTTPForbidden
+    # the user needs to reauthenticate with MFA
+  end
+end
+</code></pre>
+<p>The <a href="https://github.com/alphagov/govuk_personalisation">govuk_personalisation</a> gem handles setting the <code>GOVUK-Account-Session</code> and <code>Vary</code> response headers for your app, ensuring that responses are not cached.  In local development there is a cookie instead of a custom header, which the gem also handles for you.</p>
+<h2 id="api-endpoints">API endpoints</h2>
+<h3 id="get-apioauth2sign-in"><code>GET /api/oauth2/sign-in</code></h3>
+<p>Generates an OAuth sign in URL.</p>
+<p>This URL should be served to the user with a 302 response to authenticate the user against the identity provider.</p>
+<h4 id="query-parameters">Query parameters</h4>
+<ul>
+<li>
+<code>mfa</code> <em>(optional)</em>
+<ul>
+<li>either <code>true</code> (require MFA) or <code>false</code> (do not require MFA, the default)</li>
+</ul>
+</li>
+<li>
+<code>redirect_path</code> <em>(optional)</em>
+<ul>
+<li>a path on GOV.UK to send the user to after authenticating</li>
+</ul>
+</li>
+</ul>
+<h4 id="json-response-fields">JSON response fields</h4>
+<ul>
+<li>
+<code>auth_uri</code>
+<ul>
+<li>an absolute URL, pointing to the identity provider, which the user should be redirected to so they can authenticate</li>
+</ul>
+</li>
+<li>
+<code>state</code>
+<ul>
+<li>a random string, used for CSRF protection, which should be stored in a cookie and compared with the <code>state</code> returned by the identity provider after the user authenticated</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>200</li>
+</ul>
+<h4 id="example-request-response">Example request / response</h4>
+<p>Request (with gds-api-adapters):</p>
+<pre lang="ruby"><code>GdsApi.account_api.get_sign_in_url(
+    redirect_path: "/guidance/keeping-a-pet-pig-or-micropig",
+)
+</code></pre>
+<p>Response:</p>
+<pre lang="json"><code>{
+    "auth_uri": "https://www.account.publishing.service.gov.uk/oauth/authorize?client_id=clientid&amp;nonce=nonce&amp;redirect_uri=https%3A%2F%2Fwww.gov.uk%2Fsign-in%2Fcallback&amp;response_type=code&amp;scope=openid&amp;state=12345%3Aabcd",
+    "state": "12345:abcdef"
+}
+</code></pre>
+<h3 id="post-apioauth2callback"><code>POST /api/oauth2/callback</code></h3>
+<p>Validates an OAuth response from the identity provider.</p>
+<p>This is only used by the <a href="https://github.com/alphagov/frontend/blob/main/app/controllers/sessions_controller.rb"><code>SessionsController</code> in frontend</a>, as the
+identity provider redirects the user after signing in to
+<code>https://www.gov.uk/sign-in/callback</code>.</p>
+<h4 id="request-parameters">Request parameters</h4>
+<ul>
+<li>
+<code>code</code>
+<ul>
+<li>the value of the <code>code</code> parameter returned from the identity provider</li>
+</ul>
+</li>
+<li>
+<code>state</code>
+<ul>
+<li>the value of the <code>state</code> parameter returned from the identity provider</li>
+</ul>
+</li>
+</ul>
+<h4 id="json-response-fields">JSON response fields</h4>
+<ul>
+<li>
+<code>govuk_account_session</code>
+<ul>
+<li>a session identifier</li>
+</ul>
+</li>
+<li>
+<code>redirect_path</code> <em>(optional)</em>
+<ul>
+<li>the <code>redirect_path</code> which was previously passed to <code>GET /api/oauth2/sign-in</code>, if given</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>401 if authentication is unsuccessful</li>
+<li>200 otherwise</li>
+</ul>
+<h4 id="example-request-response">Example request / response</h4>
+<p>Request (with gds-api-adapters):</p>
+<pre lang="ruby"><code>GdsApi.account_api.validate_auth_response(
+    code: "12345",
+    state: "67890",
+)
+</code></pre>
+<p>Response:</p>
+<pre lang="json"><code>{
+    "govuk_account_session": "YWNjZXNzLXRva2Vu.cmVmcmVzaC10b2tlbg==",
+    "redirect_path": "/guidance/keeping-a-pet-pig-or-micropig",
+    "cookie_consent": false,
+}
+</code></pre>
+<h3 id="get-apioauth2end-session"><code>GET /api/oauth2/end-session</code></h3>
+<p>Generates a sign out URL.</p>
+<p>This URL should be served to the user with a 302 response to terminate
+their session with the identity provider and connected services.  If
+the session identifier is given, it may be passed to the identity
+provider to validate the user's session.</p>
+<p>This does not invalidate the user's session on <a href="http://www.gov.uk">www.gov.uk</a>.  You must
+also use the <code>logout!</code> method in <a href="https://github.com/alphagov/govuk_personalisation">govuk_personalisation</a> to do that.</p>
+<h4 id="request-headers">Request headers</h4>
+<ul>
+<li>
+<code>GOVUK-Account-Session</code> <em>(optional)</em>
+<ul>
+<li>the user's session identifier</li>
+</ul>
+</li>
+</ul>
+<h4 id="json-response-fields">JSON response fields</h4>
+<ul>
+<li>
+<code>end_session_uri</code>
+<ul>
+<li>an absolute URL, pointing to the identity provider, which the user should be redirected to to end their session</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>200</li>
+</ul>
+<h4 id="example-request-response">Example request / response</h4>
+<p>Request (with gds-api-adapters):</p>
+<pre lang="ruby"><code>GdsApi.account_api.get_end_session_url(
+    govuk_account_session: "session-identifier",
+)
+</code></pre>
+<p>Response:</p>
+<pre lang="json"><code>{
+    "end_session_uri": "https://www.account.publishing.service.gov.uk/sign-out?continue=1"
+}
+</code></pre>
+<h3 id="get-apiuser"><code>GET /api/user</code></h3>
+<p>Retrieves the information needed to render the <code>/account/home</code> page.</p>
+<h4 id="request-headers">Request headers</h4>
+<ul>
+<li>
+<code>GOVUK-Account-Session</code>
+<ul>
+<li>the user's session identifier</li>
+</ul>
+</li>
+</ul>
+<h4 id="json-response-fields">JSON response fields</h4>
+<ul>
+<li>
+<code>id</code>
+<ul>
+<li>the user identifier</li>
+</ul>
+</li>
+<li>
+<code>mfa</code>
+<ul>
+<li>
+<code>true</code> if the user has authenticated with MFA, <code>false</code> otherwise</li>
+</ul>
+</li>
+<li>
+<code>email</code>
+<ul>
+<li>the user's current email address</li>
+</ul>
+</li>
+<li>
+<code>email_verified</code>
+<ul>
+<li>whether the user has confirmed their email address or not</li>
+</ul>
+</li>
+<li>
+<code>services</code>
+<ul>
+<li>object of known services, keys are service names and values are one of:
+<ul>
+<li>
+<code>yes</code>: the user has used the service and can use it now</li>
+<li>
+<code>yes_but_must_reauthenticate</code>: the user has used the service but must reauthenticate with MFA</li>
+<li>
+<code>no</code>: the user has not used the service</li>
+<li>
+<code>unknown</code>: the user must reauthenticate with MFA to check whether they have used the service or not</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>401 if the session identifier is invalid</li>
+<li>200 otherwise</li>
+</ul>
+<h4 id="example-request-response">Example request / response</h4>
+<p>Request (with gds-api-adapters):</p>
+<pre lang="ruby"><code>GdsApi.account_api.get_user(
+    govuk_account_session: "session-identifier",
+)
+</code></pre>
+<p>Response:</p>
+<pre lang="json"><code>{
+    "id": "some-user-identifier",
+    "mfa": false,
+    "email": "email@example.com",
+    "email_verified": false,
+    "services": {}
+}
+</code></pre>
+<h3 id="get-usermatch-by-email"><code>GET /user/match-by-email</code></h3>
+<p>Checks if a user with the given email address exists and if it is the
+logged-in user (if a session is given).</p>
+<p>This is only used by email-alert-frontend, so it can check if an
+address corresponds to an account and either log the user in or show
+an appropriate message with a single API call.</p>
+<h4 id="request-headers">Request headers</h4>
+<ul>
+<li>
+<code>GOVUK-Account-Session</code> <em>(optional)</em>
+<ul>
+<li>the user's session identifier, if not given <code>"match": true</code> is not a possible response</li>
+</ul>
+</li>
+</ul>
+<h4 id="query-parameters">Query parameters</h4>
+<ul>
+<li>
+<code>email</code>
+<ul>
+<li>the email address to search for</li>
+</ul>
+</li>
+</ul>
+<h4 id="json-response-fields">JSON response fields</h4>
+<ul>
+<li>
+<code>match</code>
+<ul>
+<li>
+<code>true</code> if the session has the given email address, or <code>false</code> if a different user has that email address</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>404 if there is no user with that email address</li>
+<li>200 otherwise</li>
+</ul>
+<h4 id="example-request-response">Example request / response</h4>
+<p>Request (with gds-api-adapters):</p>
+<pre lang="ruby"><code>GdsApi.account_api.match_user_by_email(
+    email: "email@example.com",
+)
+</code></pre>
+<p>Response:</p>
+<pre lang="json"><code>{
+    "match": false
+}
+</code></pre>
+<p>Request with a session (with gds-api-adapters):</p>
+<pre lang="ruby"><code>GdsApi.account_api.match_user_by_email(
+    email: "email@example.com",
+    govuk_account_session: "session-identifier",
+)
+</code></pre>
+<p>Response:</p>
+<pre lang="json"><code>{
+    "match": true
+}
+</code></pre>
+<h3 id="get-apiattributes"><code>GET /api/attributes</code></h3>
+<p>Retrieves attribute values for the current user.</p>
+<h4 id="request-headers">Request headers</h4>
+<ul>
+<li>
+<code>GOVUK-Account-Session</code>
+<ul>
+<li>the user's session identifier</li>
+</ul>
+</li>
+</ul>
+<h4 id="query-parameters">Query parameters</h4>
+<ul>
+<li>
+<code>attributes[]</code> <em>(one for each attribute)</em>
+<ul>
+<li>a list of attribute names, specified once for each name</li>
+</ul>
+</li>
+</ul>
+<h4 id="json-response-fields">JSON response fields</h4>
+<ul>
+<li>
+<code>govuk_account_session</code> <em>(optional)</em>
+<ul>
+<li>a new session identifier</li>
+</ul>
+</li>
+<li>
+<code>values</code>
+<ul>
+<li>a JSON object of attribute values, where keys are attribute names and values are attribute values</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>422 if any attributes are unknown (see <a href="#unknown-attribute-names">error: unknown attribute names</a>)</li>
+<li>403 if the user must reauthenticate with MFA (see <a href="#mfa-required">error: MFA required</a>)</li>
+<li>401 if the session identifier is invalid</li>
+<li>200 otherwise</li>
+</ul>
+<h4 id="example-request-response">Example request / response</h4>
+<p>Request (with gds-api-adapters):</p>
+<pre lang="ruby"><code>GdsApi.account_api.get_attributes(
+    attributes: %w[name1 name2],
+    govuk_account_session: "session-identifier",
+)
+</code></pre>
+<p>Response:</p>
+<pre lang="json"><code>{
+    "govuk_account_session": "YWNjZXNzLXRva2Vu.cmVmcmVzaC10b2tlbg==",
+    "values": {
+        "name1": "value1",
+        "name2": "value2"
+    }
+}
+</code></pre>
+<h3 id="patch-apiattributes"><code>PATCH /api/attributes</code></h3>
+<p>Updates the attributes of the current user.</p>
+<h4 id="request-headers">Request headers</h4>
+<ul>
+<li>
+<code>GOVUK-Account-Session</code>
+<ul>
+<li>the user's session identifier</li>
+</ul>
+</li>
+</ul>
+<h4 id="json-request-parameters">JSON request parameters</h4>
+<ul>
+<li>
+<code>attributes</code>
+<ul>
+<li>a JSON object where keys are attribute names and values are attribute values</li>
+</ul>
+</li>
+</ul>
+<h4 id="json-response-fields">JSON response fields</h4>
+<ul>
+<li>
+<code>govuk_account_session</code> <em>(optional)</em>
+<ul>
+<li>a new session identifier</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>422 if any attributes are unknown (see <a href="#unknown-attribute-names">error: unknown attribute names</a>)</li>
+<li>403 if any attributes are unwritable (see <a href="#unwritable-attributes">error: unwritable attributes</a>)</li>
+<li>403 if the user must reauthenticate with MFA (see <a href="#mfa-required">error: MFA required</a>)</li>
+<li>401 if the session identifier is invalid</li>
+<li>200 otherwise</li>
+</ul>
+<h4 id="example-request-response">Example request / response</h4>
+<p>Request (with gds-api-adapters):</p>
+<pre lang="ruby"><code>GdsApi.account_api.set_attributes(
+    attributes: { name1: "value1", name2: "value2" },
+    govuk_account_session: "session-identifier",
+)
+</code></pre>
+<p>Response:</p>
+<pre lang="json"><code>{
+    "govuk_account_session": "YWNjZXNzLXRva2Vu.cmVmcmVzaC10b2tlbg=="
+}
+</code></pre>
+<h3 id="put-apioidc-userssubject_identifier"><code>PUT /api/oidc-users/:subject_identifier</code></h3>
+<p>Update an account and its email subscriptions by subject identifier.
+This endpoint requires the <code>update_protected_attributes</code> scope.</p>
+<h4 id="request-parameters">Request parameters</h4>
+<ul>
+<li>
+<code>subject_identifier</code>
+<ul>
+<li>the subject identifier of the user to update</li>
+</ul>
+</li>
+</ul>
+<h4 id="json-request-parameters">JSON request parameters</h4>
+<ul>
+<li>
+<code>legacy_sub</code> <em>(optional)</em>
+<ul>
+<li>if this is a user created pre-migration, their original subject identifier (a string)</li>
+</ul>
+</li>
+<li>
+<code>email</code> <em>(optional)</em>
+<ul>
+<li>the new email address (a string)</li>
+</ul>
+</li>
+<li>
+<code>email_verified</code> <em>(optional)</em>
+<ul>
+<li>whether the new email address is verified (a boolean)</li>
+</ul>
+</li>
+</ul>
+<h4 id="json-response-fields">JSON response fields</h4>
+<ul>
+<li>
+<code>sub</code>
+<ul>
+<li>the subject identifier</li>
+</ul>
+</li>
+<li><code>email</code></li>
+<li><code>email_verified</code></li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>200</li>
+</ul>
+<h4 id="example-request-response">Example request / response</h4>
+<p>Request (with gds-api-adapters):</p>
+<pre lang="ruby"><code>GdsApi.account_api.update_user_by_subject_identifier(
+    subject_identifier: "subject-identifier",
+    email: "user@example.com",
+    email_verified: true,
+)
+</code></pre>
+<p>Response:</p>
+<pre lang="json"><code>{
+    "sub": "subject-identifier",
+    "email": "user@example.com",
+    "email_verified": true,
+}
+</code></pre>
+<h3 id="delete-apioidc-userssubject_identifier"><code>DELETE /api/oidc-users/:subject_identifier</code></h3>
+<p>Delete an account by subject identifier.  This endpoint requires the
+<code>update_protected_attributes</code> scope.</p>
+<h4 id="request-parameters">Request parameters</h4>
+<ul>
+<li>
+<code>subject_identifier</code>
+<ul>
+<li>the subject identifier of the user to delete</li>
+</ul>
+</li>
+</ul>
+<h4 id="query-parameters">Query parameters</h4>
+<ul>
+<li>
+<code>legacy_sub</code> <em>(optional)</em>
+<ul>
+<li>if this is a user created pre-migration, their original subject identifier (a string)</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>404 if the user cannot be found</li>
+<li>204 otherwise</li>
+</ul>
+<h4 id="example-request-response">Example request / response</h4>
+<p>Request (with gds-api-adapters):</p>
+<pre lang="ruby"><code>GdsApi.account_api.delete_user_by_subject_identifier(
+    subject_identifier: "subject-identifier",
+)
+</code></pre>
+<p>Response is status code only.</p>
+<h3 id="get-apipersonalisationcheck-email-subscription"><code>GET /api/personalisation/check-email-subscription</code></h3>
+<p>Personalisation endpoint for checking if an email subscription is active.</p>
+<p>See <a href="https://github.com/alphagov/account-api/blob/main/docs/adr/002-progressive-enhancement.md">Progressive enhancement ADR for more details</a></p>
+<h4 id="request-parameters">Request parameters</h4>
+<ul>
+<li>
+<code>subject_identifier</code>
+<ul>
+<li>the subject identifier from a user session</li>
+</ul>
+</li>
+</ul>
+<h4 id="query-parameters">Query parameters</h4>
+<ul>
+<li>
+<code>base_path</code> <em>(optional)</em>
+<ul>
+<li>the base path of the page (to match against the "url" of an email-alert-api subscriber list)</li>
+</ul>
+</li>
+<li>
+<code>topic_slug</code> <em>(optional)</em>
+<ul>
+<li>the email-alert-api topic slug</li>
+</ul>
+</li>
+</ul>
+<p>Exactly one of <code>base_path</code> and <code>topic_slug</code> must be specified.</p>
+<h4 id="json-response-fields">JSON response fields</h4>
+<ul>
+<li>
+<code>base_path</code>
+<ul>
+<li>the base_path parameter, if there is one (a string)</li>
+</ul>
+</li>
+<li>
+<code>topic_slug</code>
+<ul>
+<li>the topic_slug parameter, if there is one (a string)</li>
+</ul>
+</li>
+<li>
+<code>active</code>
+<ul>
+<li>whether the subscription is active (a boolean)</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>401 if the session identifier is invalid</li>
+<li>422 if neither <code>base_path</code> nor <code>topic_slug</code> are passed; or if both are</li>
+<li>200 otherwise</li>
+</ul>
+<h4 id="example-request-response">Example request / response</h4>
+<p>Note: This endpoint is not included in the GDS API Adaptors wrappers.
+As a personalisation endpoint, it allows us to progressively enhance pages from client side requests.</p>
+<p>To test the endpoint with curl:</p>
+<pre><code>curl -H "GOVUK-Account-Session={{account_session_header}}" \
+  "{{GOV.UK environment}}/api/personalisation/check-email-subscription?base_path=/guidance/keeping-a-pet-pig-or-micropig"
+</code></pre>
+<pre lang="json"><code>{
+    "base_path": "/guidance/keeping-a-pet-pig-or-micropig",
+    "active": true,
+    "button_html": "&lt;form&gt;...&lt;/form&gt;"
+}
+</code></pre>
+<h3 id="post-apioidc_eventsbackchannel_logout"><code>POST /api/oidc_events/backchannel_logout</code></h3>
+<p>A public API endpoint that Implements OpenID Connect Back-Channel Logout 1.0 - draft 07.</p>
+<h4 id="query-parameters">Query parameters</h4>
+<ul>
+<li>
+<code>logout_token</code>
+<ul>
+<li>A signed JWT</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>400 if the Logout Token JWT is invalid or signature cannot be verified</li>
+<li>200 otherwise</li>
+</ul>
+<h4 id="note">Note</h4>
+<p>This endpoint will only ever receive calls from the Oidc OP (Digital Identity), as an OIDC event. Because of that, there is not an GDS API Adaptor for this endpoint, as it will not be called from another Ruby application.</p>
+<h2 id="api-errors">API errors</h2>
+<p>API errors are returned as an <a href="https://tools.ietf.org/html/rfc7807">RFC 7807</a> "Problem Detail" object, in
+the following format:</p>
+<pre lang="json"><code>{
+  "type": "URI which identifies the problem type and points to further information",
+  "title": "Short human-readable summary of the problem type",
+  "detail": "Human-readable explanation of this specific instance of the problem."
+}
+</code></pre>
+<p>Each error type may define additional response fields.</p>
+<h3 id="mfa-required">MFA required</h3>
+<p>You have tried to access something requires MFA, but the current user
+has not authenticated with MFA.</p>
+<h4 id="debugging-steps">Debugging steps</h4>
+<p>This is not an error, the user must be reauthenticated with MFA.</p>
+<h3 id="unknown-attribute-names">Unknown attribute names</h3>
+<p>One or more of the attribute names you have specified are not known.
+The <code>attributes</code> response field lists these.</p>
+<h3 id="unwritable-attributes">Unwritable attributes</h3>
+<p>One or more of the attributes you have specified cannot be updated
+through account-api.  The <code>attributes</code> response field lists these.</p>
+<p>Do not just reauthenticate the user and try again.</p>
+<h4 id="debugging-steps">Debugging steps</h4>
+<ul>
+<li>check the <code>errors</code> returned as an extra detail in the response for specific error messages</li>
+</ul>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/account-api/blob/main/docs/api.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Faccount-api%2Fapi.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
