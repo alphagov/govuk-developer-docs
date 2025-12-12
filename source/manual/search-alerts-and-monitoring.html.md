@@ -1,9 +1,10 @@
 ---
 owner_slack: "#govuk-search-alerts"
 title: GOV.UK Site search alerts and monitoring
-section: Monitoring and alerting
 layout: manual_layout
 parent: "/manual.html"
+section: Search on GOV.UK
+type: learn
 ---
 
 As desribed in [GOV.UK Search: How it works][link-0] there are two search stacks on GOV.UK. This page includes information on the monitoring and alerting for GOV.UK site search only.
