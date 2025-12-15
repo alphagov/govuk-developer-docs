@@ -12,7 +12,7 @@ parent: "/manual.html"
 [linting]: /manual/configure-linting.html
 [rails-conv]: /manual/conventions-for-rails-applications.html
 [naming]: /manual/naming.html
-[auto-config]: /manual/github.html
+[auto-config]: /manual/github-new-repo.html
 [app-list]: /#applications
 
 ## Before you start
@@ -152,7 +152,7 @@ You should:
    Rails.application.config.assets.version = "1.0"
    ```
 
-  This can also be done in `config/application.rb` if you prefer (this is done in some existing apps) eg:
+   This can also be done in `config/application.rb` if you prefer (this is done in some existing apps) eg:
 
    ```
    module YourApp
@@ -163,24 +163,64 @@ You should:
        ...
      end
    end
-   ```
+  ```
 
 1. Configure linting for your Rails app to make sure the app's code is consistent with other GOV.UK apps. Find out more information about [configuring linting][linting].
 
-### Setting up a Puma web server
+1. Set up a Puma web server
 
-Puma is already included in the [govuk_app_config](https://github.com/alphagov/govuk_app_config) gem.
+    Puma is already included in the [govuk_app_config](https://github.com/alphagov/govuk_app_config) gem.
 
-Create a `config/puma.rb` file that contains the following code:
+    Create a `config/puma.rb` file that contains the following code:
 
-  ```rb
-  require "govuk_app_config/govuk_puma"
-  GovukPuma.configure_rails(self)
+    ```rb
+    require "govuk_app_config/govuk_puma"
+    GovukPuma.configure_rails(self)
+    ```
+
+1. Add a software licence
+
+  You must add a `LICENCE` file to your project’s root folder that specifies the software licence. You should usually use the following MIT License text. Replace <YEAR> with the current year.
+
+  ```
+  The MIT License (MIT)
+
+  Copyright (c) <YEAR> Crown Copyright (Government Digital Service)
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
   ```
 
-### Add your Rails app to GOV.UK Docker
+1. Replace the default README.md
+
+  Change the default `README.md` file to match [the standard README template](/manual/readmes.html#template-for-new-readmes).
+
+1. Write API documentation
+
+  If your app is an API, you should create a `docs/api.md` file.
+
+  [Guidance on writing API reference documentation on GOV.UK](https://www.gov.uk/guidance/writing-api-reference-documentation).
+
+## Set up govuk-docker for local development
 
 Add your Rails app to GOV.UK Docker so you can run the app locally. See an [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465).
+
+Check that you can build your app and run the tests locally.
 
 ## Set up a GitHub repo for your Rails app
 
@@ -188,44 +228,6 @@ When you’ve finished developing your Rails app, you can [set up a GitHub repo 
 
 You must add a description to the _About_ section in the GitHub repo, or the GOV.UK developer documentation build will break when it tries to build the [list of apps][app-list].
 
-### Add a software licence
-
-You must add a `LICENCE` file to your project’s root folder that specifies the software licence. You should usually use the following MIT License text. Replace <YEAR> with the current year.
-
-```
-The MIT License (MIT)
-
-Copyright (c) <YEAR> Crown Copyright (Government Digital Service)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-### Replace the default README.md
-
-Change the default `README.md` file to match [the standard README template](/manual/readmes.html#template-for-new-readmes).
-
-### Write API documentation
-
-If your app is an API, you should create a `docs/api.md` file.
-
-[Guidance on writing API reference documentation on GOV.UK](https://www.gov.uk/guidance/writing-api-reference-documentation).
-
-### Add your app to the GOV.UK developer documentation
+## Add your app to the GOV.UK developer documentation
 
 Open a pull request to add your Rails app to the [GOV.UK developer documentation `data/repos.yml` file][docs-applications].
