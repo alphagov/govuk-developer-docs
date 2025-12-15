@@ -7,29 +7,37 @@ section: Search on GOV.UK
 type: learn
 ---
 
-As desribed in [GOV.UK Search: How it works][link-0] there are two search stacks on GOV.UK. This page includes information on the monitoring and alerting for GOV.UK site search only.
+As described in [GOV.UK Search: How it works][link-0] there are two search stacks on GOV.UK. This page includes information on the monitoring and alerting for GOV.UK site search only.
 
-## Sentry
+## Monitoring and alerting tools
+
+### Sentry
 
 Sentry is set up to track application errors from [Finder Frontend][link-1], [Search API v2][link-2] and [Search API v2 beta features][link-3] including the sync process and API calls from frontend apps.
 
-## Kibana
+All environments are configured for Slack notifications. Production alerts are routed to #govuk-search-alerts, while alerts for other environments are sent to #govuk-search-alerts-nonprod.
+
+### Kibana
 
 [Kibana][link-4] can be used to query application logs as per all other GOV.UK apps.
 
-## Grafana
+### Grafana
 
 The [GOV.UK Search Grafana dashboard][link-5] visualizes core metrics for site search.
 
-## Alertmanager
+### Alertmanager
 
-We have an informal SLO to maintain a search and autocomplete success rate of about 99.99% over any 24 hour period. There are currently four Alertmanager rules configured in govuk-helm-charts to send notifications on Slack, if rates drop below this.
+Alertmanager is used to monitor metrics in Prometheus, and send notifications when metrics cross predefined thresholds.
 
-We also have additional Alertmanager rules related to search result quality configured in govuk-helm-charts to send notifications on Slack, if search quality drops below given thresholds.
+For site search, we use AlertManager to notify us of ["degradation of service"](#degradation-of-service-alerts) and ["degradation of quality"](#degradation-of-search-quality-alerts) alerts.
 
 All environments are configured for Slack notifications. Production alerts are routed to #govuk-search-alerts, while alerts for other environments are sent to #govuk-search-alerts-nonprod.
 
-Success rate rules:
+## Alert types and how to handle them
+
+### Degradation of service alerts
+
+We have an informal SLO to maintain a search and autocomplete success rate of about 99.99% over any 24 hour period. There are currently four Alertmanager rules configured in govuk-helm-charts to send notifications on Slack, if rates drop below this:
 
 - [SearchDegradedAcute][link-6] 5 minute rolling success rate for search requests has dropped below 99% for more than 10 minutes.
 
@@ -39,13 +47,7 @@ Success rate rules:
 
 - [AutocompleteDegradedAcute][link-9] 5 minute rolling success rate for autocomplete requests has dropped below 90% for more than 10 minutes.
 
-Search quality rules:
-
-- [SearchQualityDegradedBinaryRecall][link-10] Top 3 recall for binary query set has dropped below 90% ("warning" level), and below 80% ("critical" level).
-
-- [SearchQualityDegradedClickstreamNDCG][link-11] Top 10 NDCG for clickstream query set has dropped below 85% ("warning" level), and below 75% ("critical" level).
-
-### Causes and steps to take in the event of a Degradation of service alert firing
+#### Causes and steps to take in the event of a degradation of service alert firing
 
 We are aware of the following occasional errors which should not be considered critical and do not need intervention unless they occur consistently for a large number of users and don’t go away by themselves within a few minutes.
 
@@ -53,12 +55,25 @@ We are aware of the following occasional errors which should not be considered c
 - `Google::Cloud::InternalError` An internal error occurred on the Google API
 - `AMQ::Protocol::EmptyResponseError` RabbitMQ sent an unexpected response, possibly due to restarting (the listener will restart by itself in most cases)
 
-If these errors persist and trigger the Degradation of service alerts, this indicates an issue with GCP or Google Vertex AI Search.
+If these errors persist and trigger the degradation of service alerts, this indicates an issue with GCP or Google Vertex AI Search.
 
 1. Login to the [Google Cloud console][link-12], and make sure that the project Search API v2 Production is selected.
 2. Under "APIs & Services" in the GCP Console, review the Discovery Engine API usage for traffic and error rates.
+3. Issues with Vertex should be [raised with Google](#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-google-vertex-ai-search).
 
-#### How to contact Google if there is a critical issue with GCP or Google Vertex AI Search
+### Degradation of search quality alerts
+
+We have additional Alertmanager rules related to search result quality configured in govuk-helm-charts to send notifications on Slack, if search quality drops below given thresholds:
+
+- [SearchQualityDegradedBinaryRecall][link-10] Top 3 recall for binary query set has dropped below 90% ("warning" level), and below 80% ("critical" level).
+
+- [SearchQualityDegradedClickstreamNDCG][link-11] Top 10 NDCG for clickstream query set has dropped below 85% ("warning" level), and below 75% ("critical" level).
+
+#### Steps to take in the event of a degradation of search quality firing
+
+Significant drops in search quality need to be investigated by the search team to diagnose the issue and [raise a support ticket with Google](#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-google-vertex-ai-search), if appropriate. If you notice a drop in search quality, make sure the Performance Analyst, Product Manager and Delivery Manager on the search team are aware.
+
+## How to contact Google if there is a critical issue with GCP or Google Vertex AI Search
 
 1. To raise a support ticket, you will first need to login to the [GCP console][link-12]
 2. Navigate to the [Support/Cases section][link-13] and press the GET HELP button, ensuring to provide comprehensive reproduction steps.
