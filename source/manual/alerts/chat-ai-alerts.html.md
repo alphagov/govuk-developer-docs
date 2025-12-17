@@ -31,8 +31,9 @@ The 503 error code has been excluded from being alerted on, as that will be used
 - HighPodCPUWorker
 - HighPodMemoryFE
 - HighPodMemoryWorker
-- SidekiqQueueLength
-- SidekiqJobAge
+- SidekiqAnswerQueueLength
+- SidekiqAnswerJobAge
+- SidekiqDefaultJobAge
 - govuk-chat-bedrock-token-threshold-50
 - govuk-chat-bedrock-token-threshold-100
 
@@ -40,7 +41,11 @@ The `LongRequestDuration` alert indicates that a backend part of the service is 
 
 Any of the `High*` alerts relate to EKS Pod performance. Horizontal Pod Autoscaling has been employed, so along with the rate limiting in place, we should not see these trigger but if they do, it could indicate an issue with the EKS cluster. HPA configuration can be found in the relevant `values-{environment}.yaml` files [here].
 
-`SidekiqQueueLength` is used as the metric to scale the worker pods, so an increase in this will likely be down to high load. If the age of the oldest job in the Sidekiq queue is increasing, it may be a process has got stuck.
+`SidekiqAnswerQueueLength` is used as the metric to scale the worker pods, so an increase in this will likely be down to high load. If the age of the oldest job in the Sidekiq answer queue is increasing, it may be a process has got stuck.
+
+The `SidekiqAnswerJobAge` alert indicates that a job has been in the answer queue for 15 minutes. We should process jobs from this queue immediately, as any delay will significantly degrade the user experience. If this alert fires, we should ensure that autoscaling is working as expected and jobs are being processed.
+
+The `SidekiqDefaultJobAge` alerts indicate that a Sidekiq job has been in the default queue for over 6 hours. These jobs are not time-sensitive, so our tolerance for delaying their processing is higher. However, if they have not been processed in 6 hours, there is either an issue with jobs not being processed or a concerningly large backlog, and we should investigate.
 
 The bedrock token threshold alerts are for us to use as data for deciding if higher limits need to be requested of AWS. These alerts are configured in AWS Cloudwatch Alarms, rather than Prometheus like the other alerts. The dashboard graph showing Bedrock Service Exceptions is an indication of rate limiting or problems on the AWS side. `ValidationException` happens when the invoke request has too many input tokens and `ServiceUnavailableException` is a result of the model being throttled by AWS. To get the error message relating to the Cloudwatch error code for the exceptions, the lookup attribute `User name` can be used to filter events in Cloudtrail.
 
