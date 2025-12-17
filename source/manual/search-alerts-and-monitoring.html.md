@@ -73,6 +73,43 @@ We have additional Alertmanager rules related to search result quality configure
 
 Significant drops in search quality need to be investigated by the search team to diagnose the issue and [raise a support ticket with Google](#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-google-vertex-ai-search), if appropriate. If you notice a drop in search quality, make sure the Performance Analyst, Product Manager and Delivery Manager on the search team are aware.
 
+### Failures running evaluations related rake tasks
+
+Evaluations are run regularly on a [schedule][evaluations-schedule], to measure and monitor the quality of search results and notify the search team if quality drops via ["degradation of quality"](#degradation-of-search-quality-alerts) alerts. Parts of this workflow are executed via rake tasks in [Search API v2 beta features][beta-features-repo], and raise errors in Sentry when they fail. The most common errors are:
+
+- `Google::Cloud::AlreadyExistsError` (Active evaluation already exists): Only one evaluation in each environment is allowed to be run at one time. This error occurs when an evaluation is triggered when there is already one running.
+- `Google::Cloud::NotFoundError` (SampleQuerySet): Occurs when a sample query set has not been created, but a rake task is attempting to use it.
+- `Google::Cloud::NotFoundError` (ServingConfig): Occurs when an evaluation cannot locate the specified serving configuration.
+
+Because the evaluations feature is in beta, rake tasks can also fail for unexpected reasons.
+
+#### Steps to take in the event of a sample query set not being created
+
+If a rake task is attempting to use a sample query set that does not exist and a related `Google::Cloud::NotFoundError` is being raised, the relevant sample query set should be created manually by re-running the [cronJob that creates the sample query sets in Argo][create-sample-query-sets-in-argo]. This rake task will run through to create all sample query sets (binary, clickstream and explicit) for the current month, and import the data from BigQuery. Where the sample query set has been created already, the creation of the sample query set will be skipped and the data will be reimported (replaced) into the sample query set.
+
+It is important to ensure that all required sample query sets exist in all environments, since evaluations cannot run without them.
+
+#### Steps to take in the event of a failed evaluation run
+
+If an evaluation fails for a reason other than a sample query set not existing, take the following steps:
+
+1. **Check the environment.** If the failure is in production, carry on through the next steps. Otherwise, do nothing. (Quality of search results is less meaningful/important in non-production environments.)
+
+2. **Check which evaluations have failed by checking logs in Kibana.** To get an effective read on current quality of search results, we need to be regularly reporting our [important metrics][important-metrics] for ["this month"][this-month-vs-last-month]. In practice this can mean:
+
+    - Ignoring any failed runs of "last month" evaluations.
+    - Ignoring any failed runs of the explicit evaluations.
+    - Ensuring there is a successful run of the "this month" clickstream evaluation at least every other day.
+    - Ensuring there is a successful run of the "this month" binary evaluation at least twice a day.
+
+    If an evaluation needs to be re-run, carry on through the next steps.
+
+3. **(Optional) Temporarily pause scheduled evaluations.** Because only one evaluation can run at a time in each environment, if a scheduled evaluation starts before an ad-hoc run has finished, the scheduled evaluation is likely to fail and raise more alerts. If you want to avoid this, you can edit the [cron schedule][report-quality-metrics-cron-tasks] in helm charts to temporarily pause scheduled evaluations.
+
+4. **Re-run the relevant [evaluation cronJob][report-quality-metrics-cron-tasks] in Argo for the evaluation that has failed.** Note that the evaluations rake task will run the evaluation for both "this month" and "last month".
+
+5. **Restore usual schedule of evaluation runs.** This is only relevant if scheduled evaluations were temporarily paused in step 3.
+
 ## How to contact Google if there is a critical issue with GCP or Google Vertex AI Search
 
 1. To raise a support ticket, you will first need to login to the [GCP console][link-12]
@@ -93,3 +130,11 @@ Significant drops in search quality need to be investigated by the search team t
 [link-11]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L179
 [link-12]: https://console.cloud.google.com/welcome?inv=1&invt=Ab3mhA&project=search-api-v2-production
 [link-13]: https://console.cloud.google.com/support/cases?inv=1&invt=Ab3mhA&project=search-api-v2-production
+[evaluations-schedule]: https://docs.publishing.service.gov.uk/repos/search-api-v2-beta-features/evaluations.html#schedule
+[beta-features-repo]: https://github.com/alphagov/search-api-v2-beta-features
+[create-sample-query-sets-in-argo]: https://argo.eks.integration.govuk.digital/applications/search-api-v2-beta-features?orphaned=false&resource=&node=batch%2FCronJob%2Fapps%2Fsearch-api-v2-beta-features-setup-sample-query-sets
+[create-sample-query-set-rake-task]: https://github.com/alphagov/search-api-v2-beta-features/blob/main/lib/tasks/quality.rake#L11-L21
+[important-metrics]: https://docs.publishing.service.gov.uk/repos/search-api-v2-beta-features/evaluations.html#important-metrics
+[this-month-vs-last-month]: https://docs.publishing.service.gov.uk/repos/search-api-v2-beta-features/evaluations.html#this-month-and-last-month
+[report-quality-metrics-cron-tasks]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml#L3094-L3105
+[report-quality-metrics-rake-task]: https://github.com/alphagov/search-api-v2-beta-features/blob/main/lib/tasks/quality.rake#L27
