@@ -29,37 +29,26 @@ You will need to set up Sentry for your app by adding it to the [Sentry terrafor
 
 1. [Allow your application to be built as a Docker image](#allow-your-application-to-be-built-as-a-docker-image)
 1. [Add GitHub actions workflows to your app](#add-gitHub-actions-workflows)
-1. Create a [release](https://github.com/alphagov/search-api-v2-beta-features/releases) of your app. You’ll need to manually create the first release so that it can be picked up by the GitHub actions.
+1. Create a release of your app. You’ll need to manually [create the first release](#creating-your-first-release) so that it can be picked up by the GitHub actions.
 
 ### Allow your application to be built as a Docker image
 
-Add a [Dockerfile](https://github.com/alphagov/search-api-v2-beta-features/blob/main/Dockerfile) to your app. This is different to setting up govuk-docker. This Dockerfile allows CI to build your app.
+Add a [Dockerfile](#dockerfile) and [`.dockerignore` file](#-dockerignore) to your app. This is different to setting up govuk-docker. This Dockerfile allows CI to build your app.
 
 If your application is written in Ruby, this should normally be based on the [GOV.UK Ruby Images][images]. This should do everything necessary to create a
 standalone image for your application.
 
-> **Note**
-> The best way to establish what you need to do is to find an existing GOV.UK application similar to
-> yours, and adapt its `Dockerfile`.
-
 ### Add GitHub Actions workflows
 
-You will need to add (at least) the following workflows:
+You will need to add (at least) the following workflows under `.github/workflows`:
 
-- `CI` (to test your application)
-- `release` (to create new releases and version tags)
-- `deploy` (to build/push an image and trigger deployment by updating image tags)
-
-Example workflows [here](https://github.com/alphagov/search-api-v2-beta-features/tree/4bffd3bdd6ef6d41f27434ad167515637e0e1675/.github/workflows)
+- [CI](#ci-workflow) to test your application
+- [release](#release-workflow) to create new releases and version tags
+- [deploy](#deploy-workflow) to build/push an image and trigger deployment by updating image tags
 
 Your Continuous Integration (CI) workflow will depend on the linting and testing needs of your
 application, but will act as a dependency for further workflows to block deployment in case of
 failure.
-
-For the `release` and `deploy` workflows, you can copy the workflow definitions from an existing
-GOV.UK application (in `.github/workflows`).
-
-// TODO: provide boilerplate files
 
 ## Deploy app to environments
 
@@ -153,6 +142,185 @@ dashboard.
 ## Congratulations!
 
 You've deployed an application to the Kubernetes platform!
+
+## Annex: boilerplate files
+
+This annex contains a number of boilerplate files whose contents you can copy into your new application. They are each
+referenced earlier in the document.
+
+### Dockerfile
+
+```dockerfile
+ARG ruby_version=3.4
+ARG base_image=ghcr.io/alphagov/govuk-ruby-base:$ruby_version
+ARG builder_image=ghcr.io/alphagov/govuk-ruby-builder:$ruby_version
+
+FROM $builder_image AS builder
+
+WORKDIR $APP_HOME
+COPY Gemfile* .ruby-version ./
+RUN bundle install
+COPY . .
+RUN bootsnap precompile --gemfile .
+
+FROM $base_image
+
+ENV GOVUK_APP_NAME=NEW_APP_NAME
+
+WORKDIR $APP_HOME
+COPY --from=builder $BUNDLE_PATH $BUNDLE_PATH
+COPY --from=builder $BOOTSNAP_CACHE_DIR $BOOTSNAP_CACHE_DIR
+COPY --from=builder $APP_HOME .
+
+USER app
+CMD ["puma"]
+```
+
+### `.dockerignore`
+
+```dockerignore
+/.git/
+/.bundle
+!/.env.example
+/log/*
+!/log/.keep
+tmp
+```
+
+### CI workflow
+
+```yaml
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'The branch, tag or SHA to checkout'
+        default: main
+        type: string
+
+jobs:
+  codeql-sast:
+    name: CodeQL SAST scan
+    uses: alphagov/govuk-infrastructure/.github/workflows/codeql-analysis.yml@main
+    permissions:
+      security-events: write
+
+  dependency-review:
+    name: Dependency Review scan
+    uses: alphagov/govuk-infrastructure/.github/workflows/dependency-review.yml@main
+
+  lint-ruby:
+    name: Lint Ruby
+    uses: alphagov/govuk-infrastructure/.github/workflows/rubocop.yml@main
+
+  security-analysis:
+    name: Security Analysis
+    uses: alphagov/govuk-infrastructure/.github/workflows/brakeman.yml@main
+    secrets: inherit
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+
+  test-ruby:
+    name: Test Ruby / Run RSpec
+    runs-on: ubuntu-latest
+    env:
+      # As we're running the tests through Rake, we need to make sure they are run in the `test`
+      # Rails env rather than `development`
+      RAILS_ENV: test
+      # All Google client library calls are mocked, but the application needs this set to boot
+      GOOGLE_CLOUD_PROJECT_ID: not-used
+      GOOGLE_CLOUD_PROJECT_ID_NUMBER: not-used
+      DISCOVERY_ENGINE_DEFAULT_COLLECTION_NAME: not-used
+      DISCOVERY_ENGINE_DEFAULT_LOCATION_NAME: not-used
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+          show-progress: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: bin/rake
+```
+
+### Deploy workflow
+
+```yaml
+name: Deploy
+
+run-name: Deploy ${{ inputs.gitRef || github.event.release.tag_name  }} to ${{ inputs.environment || 'integration' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      gitRef:
+        description: 'Commit, tag or branch name to deploy'
+        required: true
+        type: string
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        type: choice
+        options:
+        - integration
+        - staging
+        - production
+        default: 'integration'
+  release:
+    types: [released]
+
+jobs:
+  build-and-publish-image:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'v')
+    name: Build and publish image
+    uses: alphagov/govuk-infrastructure/.github/workflows/build-and-push-multiarch-image.yml@main
+    with:
+      gitRef: ${{ inputs.gitRef || github.event.release.tag_name }}
+    permissions:
+      id-token: write
+      contents: read
+      packages: write
+  trigger-deploy:
+    name: Trigger deploy to ${{ inputs.environment || 'integration' }}
+    needs: build-and-publish-image
+    uses: alphagov/govuk-infrastructure/.github/workflows/deploy.yml@main
+    with:
+      imageTag: ${{ needs.build-and-publish-image.outputs.imageTag }}
+      environment: ${{ inputs.environment || 'integration' }}
+    secrets:
+      WEBHOOK_TOKEN: ${{ secrets.GOVUK_ARGO_EVENTS_WEBHOOK_TOKEN }}
+      WEBHOOK_URL: ${{ secrets.GOVUK_ARGO_EVENTS_WEBHOOK_URL }}
+      GH_TOKEN: ${{ secrets.GOVUK_CI_GITHUB_API_TOKEN }}
+```
+
+### Release workflow
+
+```yaml
+name: Release
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  release:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    name: Release
+    uses: alphagov/govuk-infrastructure/.github/workflows/release.yml@main
+    secrets:
+      GH_TOKEN: ${{ secrets.GOVUK_CI_GITHUB_API_TOKEN }}
+```
 
 [argo]: https://argo.eks.integration.govuk.digital/applications
 [generic-app]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/generic-govuk-app/
