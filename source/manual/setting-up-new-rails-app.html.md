@@ -163,7 +163,7 @@ You should:
        ...
      end
    end
-  ```
+   ```
 
 1. Configure linting for your Rails app to make sure the app's code is consistent with other GOV.UK apps. Find out more information about [configuring linting][linting].
 
