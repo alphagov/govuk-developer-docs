@@ -125,7 +125,7 @@ environment, your integration configuration could look like this:
         value: 1
 ```
 
-There are [configuration options](https://github.com/alphagov/govuk-helm-charts/blob/22af6dc661eab54f6f6f6fe10fa5da4b3c86c680/charts/generic-govuk-app/values.yaml)
+There are [configuration options](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/generic-govuk-app/values.yaml)
 available for a wide range of different needs your application may have, from mounting volumes to disabling the default asset upload.
 
 #### Validate your deployment
