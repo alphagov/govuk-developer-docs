@@ -19,7 +19,7 @@ This guide assumes the following:
 
 Follow the steps in the ["Configure a new GOV.UK repository" guide][new-repo].
 
-This should have set up your application, and pushed your source code to a Github repository under the `alphagov` organisation with the `govuk` and `container` labels applied (this triggers setup of a number of Github Actions secrets from the organisation and permissions required for workflows)
+This should have set up your application, and pushed your source code to a Github repository under the `alphagov` organisation with the `govuk` and `container` labels applied
 
 ## Set up Sentry for your application
 
