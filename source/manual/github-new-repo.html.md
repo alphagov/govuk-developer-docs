@@ -19,12 +19,19 @@ Otherwise these are the general steps to create when creating a new GOV.UK repos
 
 ## Set up a GitHub repository for your App
 
-You can either [create a repository using the GitHub UI](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) or you can create the repository on your local machine first and [upload it to GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github).
+All GitHub repositories belonging to GOV.UK must be [created and managed by Terraform](#run-terraform-to-create-your-repository).
+If you have a pre-existing Git repository that is not managed by Terraform, it is possible to [import the repository to into Terraform](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/README.md#adding-existing-repositories) so that it can be managed.
 
-There are two ways to add a repository to alphagov. You can either:
+Alternatively, you can push the commit from your existing repository to the new repository using Git:
 
-1. [Run terraform to create your repository](#run-terraform-to-create-your-repository)
-2. [Create a repository manually and import it into the alphagov organisation](#create-a-repository-manually-and-import-it-into-the-alphagov-organisation)
+```shell
+cd existing-repository/
+git checkout main
+git remote add new-repo "git@github.com:alphagov/new-repo.git"
+git push new-repo main
+```
+
+Then check out the new repository afresh and delete the original.
 
 ### Run terraform to create your repository
 
@@ -50,31 +57,13 @@ new-application:
        - Test Ruby / Run RSpec
 ```
 
-2. contact #govuk-platform-engineering for a review, and after the changes have been merged, to run Terraform.
+2. contact #govuk-platform-engineering for a review and, after the changes have been merged, to run Terraform.
 
 The repository will be created and populated with required permissions and secrets.
 
-### Create a repository manually and import it into the alphagov organisation
-
-This approach is best used in scenarios where it’s not clear if the repository will become a permanent member of GOV.UK suite of repositories.
-
-To create a repository manually and add the repository to the alphagov organisation you can either:
-
-- Create it on your personal account first and [import into alphagov](https://github.com/new/import).
-
-or
-
-- Set up the [barebones app via UI in alphagov](https://github.com/organizations/alphagov/repositories/new) first and then populate it.
-
-Once the repository has been created in GitHub you need to run the following to add it to GOV.UK infrastructure:
-
-1. [Run terraform to create your repository](#run-terraform-to-create-your-repository)
-    - The workflow names must match the names of the workflows in the ci.yml file inside your app. For example, if you have a testing workflow named Test Ruby / Run RSpec, that must exactly match the app workflow or that step won’t run.
-2. [Import the repository to terraform](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/README.md#adding-existing-repositories) so that it can be managed in govuk-infrastructure.
-
 ## Add security scans to the CI pipeline
 
-The followng are mandatory for all repositorys:
+The following are mandatory for all repositories:
 
 - [Dependency Review](https://docs.publishing.service.gov.uk/manual/dependency-review.html)
 - [CodeQL](https://docs.publishing.service.gov.uk/manual/codeql.html)
