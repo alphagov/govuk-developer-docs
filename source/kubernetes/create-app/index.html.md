@@ -59,12 +59,14 @@ failure.
 For the `release` and `deploy` workflows, you can copy the workflow definitions from an existing
 GOV.UK application (in `.github/workflows`).
 
+// TODO: provide boilerplate files
+
 ## Deploy app to environments
 
 Start with Integration
 
 1. [Add image tag file to govuk-helm-charts](#add-image-tag-files-to-govuk-helm-charts) for integration
-    - Set your initial image_tag value to match the version number of your release. Do not use “latest”, this will result in issues with your application pulling in updates.
+    - Set your initial image_tag value to match the version number of [your first release](#creating-your-first-release). Do not use “latest”, this will result in issues with your application pulling in updates.
 1. [Add secrets in AWS Secrets Manager](#add-initial-secrets-to-aws-secrets-manager)
 1. [Add app to app-config chart values](#add-app-to-app-config-chart-values) in [integration](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-integration.yaml)
 1. Add a [CNAME record](https://github.com/alphagov/govuk-infrastructure/pull/3289/files) for your application in the Integration environment
@@ -73,6 +75,20 @@ Start with Integration
 Once the app builds successfully, follow the Deploy steps for [Staging](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-staging.yaml) and [Production](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml).
 
 Set `promote_deployment: true` if you want automatic promotions to higher environments.
+
+### Creating your first release
+
+To create the first release of your app:
+
+1. Merge a pull request into the `main` branch. It is important that the commit at tip of the branch is a merge commit.
+2. Tag the commit at the tip of the `main` branch with "v1" and push it up
+
+    ```shell
+    git tag v1
+    git push origin v1
+    ```
+
+3. Trigger the `deploy` workflow by visiting the workflow under Actions tab in GitHub and pressing "Run workflow".
 
 ### Add image tag files to `govuk-helm-charts`
 
