@@ -10,6 +10,7 @@ layout: multipage_layout
 
 This guide assumes the following:
 
+- You have an approved ADR or RFC document for the new application
 - You have completed all the steps in the ["get started" guide][get-started] of the developer docs
 - You are deploying an application named `example` (make sure to replace this with your
   application name in all steps as needed)
