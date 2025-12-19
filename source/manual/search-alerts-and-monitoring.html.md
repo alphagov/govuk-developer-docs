@@ -65,9 +65,9 @@ If these errors persist and trigger the degradation of service alerts, this indi
 
 We have additional Alertmanager rules related to search result quality configured in govuk-helm-charts to send notifications on Slack, if search quality drops below given thresholds:
 
-- [SearchQualityDegradedBinaryRecall][link-10] Top 3 recall for binary query set has dropped below 90% ("warning" level), and below 80% ("critical" level).
+- [SearchQualityDegradedBinaryRecall][link-10] Top 3 recall for the binary sample query set has dropped below 90% ("warning" level), and below 80% ("critical" level).
 
-- [SearchQualityDegradedClickstreamNDCG][link-11] Top 10 NDCG for clickstream query set has dropped below 85% ("warning" level), and below 75% ("critical" level).
+- [SearchQualityDegradedClickstreamNDCG][link-11] Top 10 NDCG for the clickstream sample query set has dropped below 85% ("warning" level), and below 75% ("critical" level).
 
 #### Steps to take in the event of a degradation of search quality firing
 
