@@ -20,7 +20,17 @@ Otherwise these are the general steps to create when creating a new GOV.UK repos
 ## Set up a GitHub repository for your App
 
 All GitHub repositories belonging to GOV.UK must be [created and managed by Terraform](#run-terraform-to-create-your-repository).
-If you have a pre-existing Git repository that is not managed by Terraform, it is possible to [import the repository to into Terraform](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/README.md#adding-existing-repositories) so that it can be managed.
+
+If you have a pre-existing Git repository that is not managed by Terraform, it is possible to [import the repository to into Terraform](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/README.md#adding-existing-repositories) so that it can be managed. To do that you'll need to add an entry to `terraform/deployments/github/import.tf` in govuk-infrastructure with an entry similar to:
+
+```
+import {
+  to = github_repository.govuk_repos["content-modelling-e2e"]
+  id = "content-modelling-e2e"
+}
+```
+
+If this file doesn't exist, you'll need to create it. See [example commit](https://github.com/alphagov/govuk-infrastructure/commit/c6774a7d42ca2eb9b0987a51cde8b57e13e0577f).
 
 Alternatively, you can push the commit from your existing repository to the new repository using Git:
 
@@ -31,7 +41,7 @@ git remote add new-repo "git@github.com:alphagov/new-repo.git"
 git push new-repo main
 ```
 
-Then check out the new repository afresh and delete the original.
+To reset your local repository to point to the new remote repository in alphagov, you'll need to check out the new repository afresh and delete the original.
 
 ### Run terraform to create your repository
 
@@ -56,6 +66,9 @@ new-application:
        - Test JavaScript / Run Jasmine
        - Test Ruby / Run RSpec
 ```
+
+> [!IMPORTANT]
+> The workflow names must match the names of the workflows in the ci.yml file inside your app. For example, if you have a testing workflow named Test Ruby / Run RSpec, that must exactly match the app workflow or that step won’t run.
 
 2. contact #govuk-platform-engineering for a review and, after the changes have been merged, to run Terraform.
 
