@@ -1,0 +1,619 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>smart-answers: Flow - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/smart-answers/design/flow-definition.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="smart-answers: Flow - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/smart-answers/design/flow-definition.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="smart-answers: Flow" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/smart-answers/design/flow-definition.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/smart-answers.html" rel="noopener" class="govuk-link">smart-answers</a>
+    </li>
+    <li>
+      <ul>
+            <li class="subdir__heading">arch</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/smart-answers/arch/002-store-responses-in-query-string.html" rel="noopener" class="govuk-link">ADR 2: Store responses in query string</a></li>
+    <li><a href="/repos/smart-answers/arch/003-testing-flows.html" rel="noopener" class="govuk-link">ADR 3: Testing Flows</a></li>
+    <li><a href="/repos/smart-answers/arch/adr-001-removing-smartdown.html" rel="noopener" class="govuk-link">ADR 1: Removing Smartdown</a></li>
+
+    </ul>
+    <li class="subdir__heading">debugging</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/smart-answers/debugging/viewing-state.html" rel="noopener" class="govuk-link">Viewing Smart Answer state</a></li>
+    <li><a href="/repos/smart-answers/debugging/visualising-flows.html" rel="noopener" class="govuk-link">Visualising flows</a></li>
+
+    </ul>
+    <li class="subdir__heading">design</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/smart-answers/design/erb-templates.html" rel="noopener" class="govuk-link">ERB templates</a></li>
+    <li><a href="/repos/smart-answers/design/file-structure.html" rel="noopener" class="govuk-link">File structure</a></li>
+    <li><a href="/repos/smart-answers/design/flow-definition.html" rel="noopener" class="govuk-link">Flow</a></li>
+    <li><a href="/repos/smart-answers/design/next-node-rules.html" rel="noopener" class="govuk-link">Next node rules</a></li>
+    <li><a href="/repos/smart-answers/design/question-types.html" rel="noopener" class="govuk-link">Question types</a></li>
+    <li><a href="/repos/smart-answers/design/storing-data.html" rel="noopener" class="govuk-link">Storing data for later use</a></li>
+    <li class="subdir__heading">erb-templates</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/smart-answers/design/erb-templates/landing-page-template.html" rel="noopener" class="govuk-link">Landing page template</a></li>
+    <li><a href="/repos/smart-answers/design/erb-templates/outcome-templates.html" rel="noopener" class="govuk-link">Outcome templates</a></li>
+    <li><a href="/repos/smart-answers/design/erb-templates/question-templates.html" rel="noopener" class="govuk-link">Question templates</a></li>
+
+    </ul>
+
+    </ul>
+    <li class="subdir__heading">tasks</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/smart-answers/tasks/creating-a-new-smart-answer.html" rel="noopener" class="govuk-link">Creating a new Smart Answer</a></li>
+    <li><a href="/repos/smart-answers/tasks/development-principles.html" rel="noopener" class="govuk-link">Smart Answer flows - Development principles</a></li>
+    <li><a href="/repos/smart-answers/tasks/fact-check.html" rel="noopener" class="govuk-link">Deploying changes for fact-check</a></li>
+    <li><a href="/repos/smart-answers/tasks/publishing.html" rel="noopener" class="govuk-link">## Publishing</a></li>
+    <li><a href="/repos/smart-answers/tasks/refactoring.html" rel="noopener" class="govuk-link">Refactoring existing Smart Answers</a></li>
+    <li><a href="/repos/smart-answers/tasks/retiring-a-smart-answer.html" rel="noopener" class="govuk-link">How to retire a Smart Answer</a></li>
+    <li><a href="/repos/smart-answers/tasks/updating-worldwide-fixture-data.html" rel="noopener" class="govuk-link">Updating Worldwide fixture data</a></li>
+    <li><a href="/repos/smart-answers/tasks/updating.html" rel="noopener" class="govuk-link">## Updating</a></li>
+    <li><a href="/repos/smart-answers/tasks/using-a-private-repo.html" rel="noopener" class="govuk-link">Using a private repo</a></li>
+    <li><a href="/repos/smart-answers/tasks/using-content-blocks.html" rel="noopener" class="govuk-link">Using content blocks in Smart Answers</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "smart-answers",
+        "@id": "http://www.dev.gov.uk/repos/smart-answers.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/smart-answers.html">smart-answers</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/6d069c1d2e313eb17fef8a10e2de77a24ea8b285">21 Jul 2021</a>
+</div>
+
+  <h1 class="page-title">smart-answers: Flow</h1>
+
+  
+<p>At the heart of each Smart Answer is a subclass of <code>SmartAnswer::Flow</code>. Subclasses like this make a DSL available for <a href="#metadata">specifying metadata</a>, and <a href="#definition">defining</a> all the <a href="#question-nodes">question nodes</a>, the <a href="#outcome-nodes">outcome nodes</a>, and the <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/next-node-rules.md">rules</a> to control routing between the nodes.</p>
+<h2 id="naming">Naming</h2>
+<p>The flow filename should be based on the path where the Smart Answer is to be found on gov.uk. For example, for a Smart Answer at <a href="https://www.gov.uk/example-smart-answer">https://www.gov.uk/example-smart-answer</a>, the flow file should be named <code>app/flows/example_smart_answer_flow.rb</code>. Similarly the template directory should be named <code>app/flows/example_smart_answer_flow/</code>.</p>
+<p>The flow class should be a camel-case version of the flow filename e.g. in the case above it would be <code>ExampleSmartAnswerFlow</code>. The class should inherit from <code>SmartAnswer::Flow</code>.</p>
+<p>For example:</p>
+<pre lang="ruby"><code># app/flows/example_smart_answer_flow.rb
+class ExampleSmartAnswerFlow &lt; SmartAnswer::Flow
+  def define
+    # flow definition specified here
+  end
+end
+</code></pre>
+<h2 id="definition">Definition</h2>
+<p>The flow is defined within the <code>define</code> instance method of the <code>Flow</code> subclass using a DSL to specify metadata, question nodes and outcome nodes.</p>
+<blockquote>
+<p>Unfortunately this DSL is overly complex and makes it all too easy to create code which is very hard to follow. The DSL makes heavy use of Ruby's <a href="http://ruby-doc.org/core-2.6.1/BasicObject.html#method-i-instance_eval"><code>BasicObject#instance_eval</code></a> &amp; <a href="http://ruby-doc.org/core-2.6.1/BasicObject.html#method-i-instance_exec"><code>#instance_exec</code></a>. This means that:</p>
+<ul>
+<li>It's not obvious what variables are in scope within a given block of code.</li>
+<li>It's all too easy to write arbitrary custom code which can make each flow a bit of a special case. This doesn't help on the maintainability front.</li>
+<li>It's confusing that blocks of code are not necessarily executed in the order that they appear in the flow definition.</li>
+<li>The code in the blocks is not easily unit-testable.</li>
+</ul>
+</blockquote>
+<p>Each flow is instantiated in the <a href="https://github.com/alphagov/smart-answers/blob/cc6c5050bb78d0085cffe0a40630784724aa062a/lib/smart_answer/flow_registry.rb"><code>FlowRegistry</code></a> via the <code>Flow.build</code> method which, in turn, instantiates the flow and invokes its <code>Flow#define</code> method.</p>
+<p>Currently when the app is running in the Rails <code>development</code> &amp; <code>production</code> environments (but not in <code>test</code>) a single instance of each flow class is instantiated at application start-up (or strictly speaking on the first request) and cached in the <code>FlowRegistry</code> i.e. the same instance of a particular flow class is used to service all the user requests involving that Smart Answer. Thus it's important that no request-specific state is stored on the flow instance, otherwise this could leak into other user requests.</p>
+<p>It's important to understand this distinction between "flow definition time" and "request time" when trying to understand a flow definition. A number of the sections below refer to this distinction.</p>
+<h3 id="metadata">Metadata</h3>
+<p>There are a number of methods on <code>SmartAnswer::Flow</code> which allow "metadata" for the flow to be specified:</p>
+<pre lang="ruby"><code>class ExampleSmartAnswerFlow &lt; SmartAnswer::Flow
+  def define
+    name 'example-smart-answer' # this is the path where the Smart Answer will be registered on gov.uk (via the publishing-api)
+    content_id "bfda3b4f-166b-48e7-9aaf-21bfbd606207" # a UUID used by v2 of the Publishing API (?)
+    status :published # this indicates whether or not the flow is available to be published to live gov.uk , those with `:draft` status will be available on draft gov.uk
+
+    # question &amp; outcome definitions specified here
+  end
+end
+</code></pre>
+<h3 id="arbitrary-ruby-code">Arbitrary Ruby code</h3>
+<p>Since the flow definition is just the body of a standard Ruby method, it's possible to write arbitrary Ruby code at any point within it. Arbitrary Ruby code is pretty much anything other than calls to the DSL methods described in this document. The use of a local variable at the top-level of the <code>#define</code> method and used later within a block is an example of arbitrary Ruby code which is explained in more detail below.</p>
+<blockquote>
+<p>It should be possible to implement the majority of flows <em>without</em> writing such arbitrary Ruby code. Any decision to introduce such arbitrary code should be very carefully considered, particularly regarding it's maintainability.</p>
+</blockquote>
+<blockquote>
+<p>Some exceptions to the "no arbitrary Ruby" rule are: instantiating and storing a "calculator" object (in an <code>on_response</code> block), storing a response on the "calculator" object, and conditional logic within a <code>next_node</code> block. Although even the latter should be kept to a minimum by extracting predicate methods onto the "calculator" object.</p>
+</blockquote>
+<p>Since the flow definition is just the body of a <code>Flow</code> instance method (<code>#define</code>), the value of <code>self</code> at the "top-level" within the method is an instance of the flow.</p>
+<h4 id="local-variables">Local variables</h4>
+<p>Some flows (e.g. <a href="https://github.com/alphagov/smart-answers/blob/20d2d9f524e912a3edcb9256ce2d790059538641/lib/smart_answer_flows/register-a-birth.rb#L9-L12">register-a-birth</a>) define local variables towards the top of the flow definition. Standard Ruby scoping means that these are then available within question &amp; outcome blocks, as well as within blocks nested inside these blocks. However, note that the value of the local variable is set at flow definition time and <em>not</em> at request time. Since a single flow instance is cached in the <code>FlowRegistry</code> at application start-up time, this means the local variable is <em>only assigned once</em>.</p>
+<h3 id="start-node">Start node</h3>
+<p>Every flow has an implicit start node which represents the "landing page" i.e. the page which displays the "Start" button. There is no representation of this start node in the flow definition. Clicking the "Start" button on the "landing page" takes you to the page for the first question node (see below).</p>
+<p>Also see the documentation for <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/erb-templates/landing-page-template.md">landing page templates</a>.</p>
+<h3 id="question-nodes">Question nodes</h3>
+<p>There is an implicit assumption that the question definition which appears first in the flow definition is the first question of the flow. All other "routing" between nodes is <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/next-node-rules.md">done explicitly</a> in a single <code>next_node</code> block per question node.</p>
+<p>By convention, question nodes are usually listed roughly in the order that a user would visit them. Although this isn't always straightforward when there are multiple paths through the flow.</p>
+<p>Since all "routing" is done explicitly within <code>next_node</code> blocks, the order of the question definitions (other than the first one) is functionally unimportant.</p>
+<p>By convention, all question nodes are defined <em>before</em> any of the outcome nodes. However, again the order is functionally unimportant.</p>
+<p>Question nodes are defined by calls to one of the various <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/question-types.md">question-type methods</a>. Since the value of <code>self</code> at the "top-level" within the <code>#define</code> method is an instance of the flow, these question-type methods are defined on the <code>SmartAnswer::Flow</code> base class.</p>
+<p>For example:</p>
+<pre lang="ruby"><code>class ExampleSmartAnswerFlow &lt; SmartAnswer::Flow
+  def define
+    # self = instance of SmartAnswer::Flow
+
+    # metadata specified here
+
+    radio :question_key do
+      option :option_key_1
+      option :option_key_2
+
+      # optional blocks specified here
+
+      next_node do
+        # routing logic specified here
+      end
+    end
+  end
+end
+</code></pre>
+<p>See <a href="#in-question-blocks">In-question blocks</a> below for more information on the optional blocks mentioned in a comment in the example.</p>
+<h4 id="scope">Scope</h4>
+<p>The value of <code>self</code> inside the question node definition block (but outside other blocks) is the instance of the relevant question node. Thus in the example above, the calls to <code>#option</code> and <code>#next_node</code> are made on the instance of the question node.</p>
+<p>In the same way that there is a single instance of each flow class, there is only ever a single instance of each question definition in the system at any one time i.e. a flow instance has a fixed set of question node definition instances.</p>
+<p>Since the same instance of a question definition is used across multiple requests, it's important that no request-specific state is stored on them.</p>
+<p>The value of <code>self</code> inside the <code>next_node</code> blocks (or the other <a href="#in-question-blocks">in-question blocks</a>) is an instance of <code>SmartAnswer::State</code> (<a href="#state">see below</a>), i.e. <em>not</em> an instance of a question node.</p>
+<pre lang="ruby"><code>def define
+  # self = instance of SmartAnswer::Flow
+
+  value_question :question_key do
+    # self = instance of SmartAnswer::Question::Value
+
+    on_response do |response|
+      # self = instance of SmartAnswer::State
+    end
+
+    next_node do
+      # self = instance of SmartAnswer::State
+    end
+  end
+end
+</code></pre>
+<h4 id="execution">Execution</h4>
+<p>The code inside the question node definition block (but outside other blocks) is executed at <em>flow definition time</em>, not at request time. However, the code inside the <code>next_node</code> blocks (or the other optional blocks) is executed at <em>request time</em>, not at flow definition time.</p>
+<pre lang="ruby"><code>def define
+  # executed at flow definition time
+
+  value_question :question_key do
+    # executed at flow definition time
+
+    on_response do |response|
+      # executed at request time
+    end
+
+    next_node do
+      # executed at request time
+    end
+  end
+end
+</code></pre>
+<h4 id="state">State</h4>
+<p>The state object is intended to store all request-specific state, keeping that away from the instance of the flow which is reused across multiple requests. <code>SmartAnswer::State</code> inherits from <code>OpenStruct</code> and uses <a href="http://ruby-doc.org/core-2.6.1/BasicObject.html#method-i-method_missing"><code>BasicObject#method_missing</code></a>
+to allow arbitrary "state variables" to be written and read.</p>
+<pre lang="ruby"><code>state = SmartAnswer::State.new(:first_node)
+state.example_state_variable = 123
+state.example_state_variable # =&gt; 123
+</code></pre>
+<p>Since the request path only includes the user's responses and <em>not</em> the question keys, and the app is stateless, <em>every</em> request has to be processed by walking through the question definition nodes starting at the first one. As a request is processed, the state is duplicated using <a href="http://ruby-doc.org/core-2.6.0/Object.html#method-i-dup"><code>Object#dup</code></a> in each "transition" to a new node.</p>
+<pre lang="ruby"><code>state = SmartAnswer::State.new(:first_node)
+state.example_state_variable = 123
+new_state = state.transition_to(:second_node, 'first-response')
+new_state.equal?(state) # =&gt; false (i.e. they are *different* instances)
+new_state.example_state_variable # =&gt; 123
+</code></pre>
+<p>It's important to note that <code>Object#dup</code> does not do a "deep" copy. Thus any "state variables" set on the state which are references to other objects will continue to reference the <em>same</em> instances of those other object - those objects will <em>not</em> themselves be duplicated. The exceptions to this are built-in state variables: <code>accepted_responses</code> and <code>forwarding_responses</code> (<a href="#built-in-state-variables">see below</a>), these are duplicated using <code>Object#dup</code> in <code>State#initialize_copy</code>.</p>
+<pre lang="ruby"><code>state = SmartAnswer::State.new(:first_node)
+state.example_state_variable = [1, 2, 3]
+new_state = state.transition_to(:second_node, 'first-response')
+new_state.example_state_variable # =&gt; [1, 2, 3]
+new_state.example_state_variable.equal?(state.example_state_variable)
+# =&gt; true (i.e. they are the *same* instance)
+</code></pre>
+<blockquote>
+<p>Since a new instance of the state is created for each request, it's not obvious <em>why</em> the state is duplicated in this way. I know that in the past there have been problems with state leaking between requests, so perhaps this was a mistaken attempt at preventing such leakage.</p>
+</blockquote>
+<p>It's possible to <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/viewing-state.md">view the state</a> when you're running the app in the development environment.</p>
+<h5 id="built-in-state-variables">Built-in state variables</h5>
+<ul>
+<li>
+<code>current_node_name</code> - symbol key for the node being processed</li>
+<li>
+<code>accepted_responses</code> - hash of symbol keys for nodes previously processed with the answer input</li>
+<li>
+<code>forwarding_responses</code> - hash of unprocessed user input of questions, used to store answers when returning to previous nodes</li>
+<li>
+<code>current_response</code> - the user input provided for the current question if provided</li>
+<li>
+<code>error</code> - key for validation error message to display; usually a string (?)</li>
+</ul>
+<pre lang="ruby"><code>state = SmartAnswer::State.new(:first_node)
+# =&gt; #&lt;SmartAnswer::State current_node_name=:first_node, accepted_responses={}, forwarding_responses={}, current_response=nil, error=nil&gt;
+first_state = state.transition_to(:second_node, 'first-response')
+# =&gt; #&lt;SmartAnswer::State current_node_name=:second_node, accepted_responses={:first_node=&gt;"first-response"}, forwarding_responses={}, current_response=nil, error=nil&gt; 
+second_state = first_state.transition_to(:third_node, 'second-response')
+# =&gt; #&lt;SmartAnswer::State current_node_name=:third_node, accepted_responses={:first_node=&gt;"first-response", :second_node=&gt;"second-response"}, forwarding_responses={}, current_response=nil, error=nil&gt;
+</code></pre>
+<blockquote>
+<p>Note that some of the application code (e.g. illegal radio response) erroneously sets the error key to the validation error message <em>string</em>. Since this string is not the <em>key</em> to an error message, the default error message is displayed.</p>
+</blockquote>
+<h4 id="in-question-blocks">In-question blocks</h4>
+<p>All question definition blocks, must include a single <code>next_node</code> block. A number of other in-question blocks can optionally be defined by passing a block to any of the following methods on <code>SmartAnswer::Node</code> &amp; <code>SmartAnswer::Question::Base</code>: <code>on_response</code>, <code>validate</code> and <code>next_node</code>.</p>
+<p>The value of <code>self</code> inside all these blocks is an instance of <code>SmartAnswer::State</code> (<a href="#state">see above</a>). The code inside these blocks is executed at request time, not at flow definition time.</p>
+<p>All blocks of a particular type (within a single question) are executed at particular points in the request processing sequence e.g. all <code>on_response</code> blocks are executed before all <code>validate</code> blocks.</p>
+<p>The order in which the blocks are defined only affects the order in which they are executed within the group of blocks of the same type e.g. when two <code>on_response</code> blocks are defined, the one defined first will be executed before the one defined second; however, even if a <code>validate</code> block is defined before both of these <code>on_response</code> blocks, it will always be executed after both of them.</p>
+<p>The block types are executed in the following order:</p>
+<ul>
+<li><a href="#on_responseblock"><code>on_response</code></a></li>
+<li><a href="#validatemessage_key-block"><code>validate</code></a></li>
+<li><a href="#next_nodeblock"><code>next_node</code></a></li>
+</ul>
+<p>Each of these block types and the point at which they are executed is explained in more detail below:</p>
+<h5 id="on_responseblock"><code>on_response(&amp;block)</code></h5>
+<ul>
+<li>These blocks are intended to be used to store user responses on a <code>calculator</code> state variable. They are a <a href="https://github.com/alphagov/smart-answers/pull/2408">relatively new addition to the DSL</a>.</li>
+<li>These blocks are called after the question/outcome template has been rendered and after the user response has been parsed from the request path, but before any of the <code>validate</code> blocks are executed.</li>
+<li>The parsed response is passed to the block as the only argument and by convention is named <code>response</code>.</li>
+<li>The block return value is not used and no state variable is stored.</li>
+</ul>
+<blockquote>
+<p>The use of these blocks is encouraged; however, they should only ever be used to store a single, <code>calculator</code> state variable (in the first question definition); otherwise they should only be used to store user responses on that <code>calculator</code> object.</p>
+</blockquote>
+<h5 id="validatemessage_key-block"><code>validate(message_key, &amp;block)</code></h5>
+<ul>
+<li>These blocks are intended to be used to validate the user response.</li>
+<li>These blocks are executed after all the <code>on_response</code> blocks have been executed and before the <code>next_node</code> block is executed.</li>
+<li>The parsed response is passed to the block as the only argument and by convention is named <code>response</code>.</li>
+<li>If the block return value is truth-y, then no action is taken.</li>
+<li>If the block return value is false-y, then:
+<ol>
+<li>A <code>SmartAnswer::InvalidResponse</code> exception is raised with the <code>message_key</code> set as the exception message.</li>
+<li>This exception is handled within the app and prevents the transition to the next node.</li>
+<li>The <code>message_key</code> from the exception message is set on the built-in state variable, <code>error</code>.</li>
+<li>When the question template is re-rendered, the <code>error</code> state variable is used to lookup the appropriate validation error message in the <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/erb-templates/question-templates.md#error_messagemessage">question template</a>.</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>The use of these blocks is encouraged. However, they should call <code>valid_xxx?</code> methods on the <code>calculator</code> state variable and not rely on the <code>response</code> argument passed into the block.</p>
+</blockquote>
+<pre lang="ruby"><code># Good
+validate :error_outside_range do
+  calculator.valid_weekly_amount_in_range?
+end
+
+# Bad
+validate do |response|
+  calculator.valid_age?(response)
+end
+</code></pre>
+<h5 id="next_nodeblock"><code>next_node(&amp;block)</code></h5>
+<ul>
+<li>There must only be one of these blocks per question definition.</li>
+<li>This block is intended to determine which node comes next based on the user responses so far.</li>
+<li>These blocks are executed after all the <code>validate</code> blocks have been executed.</li>
+<li>The built-in state variables, <code>path</code>, <code>current_node</code> &amp; <code>responses</code>, are updated if this block returns successfully.</li>
+<li>The block return value must be the result of calling the <code>#question</code> or <code>#outcome</code> methods passing in the key of the next node - see the <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/next-node-rules.md">next node documentation</a> for more details.</li>
+</ul>
+<blockquote>
+<p>The use of this block type is <em>required</em>. However, it should call methods on the <code>calculator</code> state variable and not rely on the <code>response</code> argument passed into the block.</p>
+</blockquote>
+<h4 id="further-information">Further information</h4>
+<p>See the <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/storing-data.md">documentation on storing data</a>.</p>
+<h4 id="templates">Templates</h4>
+<p>See the <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/erb-templates/question-templates.md">documentation for question templates</a>.</p>
+<h3 id="outcome-nodes">Outcome nodes</h3>
+<p>These are very similar to question nodes. There should never be a response associated with an outcome node. Having said that, the following methods are all <em>technically</em> available within the node definition, because they are instance methods on <code>SmartAnswer::Outcome</code> (or its superclasses):</p>
+<ul>
+<li><a href="#on_responseblock"><code>on_response</code></a></li>
+</ul>
+<p>If any attempt is made to process a response when the current node is an outcome node (e.g. by hacking the URL path), an exception will be raised.</p>
+<h4 id="templates">Templates</h4>
+<p>See the <a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/erb-templates/outcome-templates.md">documentation for outcome templates</a>.</p>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/smart-answers/blob/main/docs/design/flow-definition.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsmart-answers%2Fdesign%2Fflow-definition.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

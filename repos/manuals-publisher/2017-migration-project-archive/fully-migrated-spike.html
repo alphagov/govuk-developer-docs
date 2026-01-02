@@ -1,0 +1,574 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>manuals-publisher: Fully-migrated spike - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/fully-migrated-spike.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="manuals-publisher: Fully-migrated spike - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/fully-migrated-spike.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="manuals-publisher: Fully-migrated spike" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/2017-migration-project-archive/fully-migrated-spike.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/manuals-publisher.html" rel="noopener" class="govuk-link">manuals-publisher</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/manuals-publisher/data-model.html" rel="noopener" class="govuk-link">Manuals Publisher Data Model</a></li>
+    <li><a href="/repos/manuals-publisher/edition-workflow.html" rel="noopener" class="govuk-link">Manuals Publisher Edition Workflow</a></li>
+    <li class="subdir__heading">2017-migration-project-archive</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/manuals-publisher/2017-migration-project-archive/current-state.html" rel="noopener" class="govuk-link">Current state</a></li>
+    <li><a href="/repos/manuals-publisher/2017-migration-project-archive/fully-migrated-spike.html" rel="noopener" class="govuk-link">Fully-migrated spike</a></li>
+    <li><a href="/repos/manuals-publisher/2017-migration-project-archive/history.html" rel="noopener" class="govuk-link">History</a></li>
+    <li><a href="/repos/manuals-publisher/2017-migration-project-archive/next-steps.html" rel="noopener" class="govuk-link">Next steps</a></li>
+    <li><a href="/repos/manuals-publisher/2017-migration-project-archive/rake-tasks.html" rel="noopener" class="govuk-link">Rake tasks</a></li>
+    <li><a href="/repos/manuals-publisher/2017-migration-project-archive/start-here.html" rel="noopener" class="govuk-link">Manuals Publisher Migration Project Documentation - Start Here</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "manuals-publisher",
+        "@id": "http://www.dev.gov.uk/repos/manuals-publisher.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/manuals-publisher.html">manuals-publisher</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/05d195c707f13e1ec36c3ad35f43170f4e58f894">8 Aug 2024</a>
+</div>
+
+  <h1 class="page-title">manuals-publisher: Fully-migrated spike</h1>
+
+  
+<p>In June 2017, we (<a href="http://gofreerange.com">Go Free Range</a>) spiked on the idea of converting the app to use the Publishing API as its canonical/only persistence mechanism. This work was captured in the <a href="https://github.com/alphagov/manuals-publisher/compare/spike-fully-migrated-wrt-publishing-api"><code>spike-fully-migrated-wrt-publishing-api</code> branch</a>. The following notes record our discoveries and highlight potential problems.</p>
+<h2 id="reading-list-of-manuals">Reading list of manuals</h2>
+<ul>
+<li>Working OK</li>
+</ul>
+<h2 id="reading-single-manual-and-its-sections">Reading single manual and its sections</h2>
+<ul>
+<li>Working OK</li>
+</ul>
+<h2 id="reading-single-section-and-its-attachments">Reading single section and its attachments</h2>
+<ul>
+<li>Working OK</li>
+</ul>
+<h2 id="saving-of-attachments">Saving of attachments</h2>
+<ul>
+<li>This had to change a bit, because the attachments are embedded in sections in the local database. When we switch to using the Publishing API for persistence, we can no longer rely on the local database, and so we have to save the attachment's section to the Publishing API.</li>
+</ul>
+<h2 id="change-notes">Change notes</h2>
+<ul>
+<li>
+<p>Currently never <strong>read</strong> from the Publishing API so no changes needed.</p>
+</li>
+<li>
+<p>Currently uses custom attribute in details hash passing through Publishing API - does not use either of the official Publishing API mechanisms.</p>
+</li>
+</ul>
+<h2 id="scoping-based-on-users-roleorganisation">Scoping based on user's role/organisation</h2>
+<ul>
+<li>
+<p>We've solved this in the spike when loading all manuals by using <code>get_content_items</code> in conjunction with the <code>link_organisations</code> option and when loading a single manual by using <code>get_content</code> and checking the manual's organisation matches that of the user.</p>
+</li>
+<li>
+<p>It's not completely obvious where this logic should live, but we're confident we can make it work.</p>
+</li>
+</ul>
+<h2 id="publishing-asynchronous">Publishing (asynchronous)</h2>
+<ul>
+<li>
+<p>It looks as if we can keep this as it is for now, although that will mean keeping the local database in order to persist the instances of <code>ManualPublishTask</code> which represent the publish jobs queued by <code>Manual::QueuePublishService</code> and processed by <code>PublishManualWorker</code>.</p>
+</li>
+<li>
+<p>We think this is currently done asynchronously because we need to call <code>patch_links</code>, <code>put_content</code> &amp; <code>publish</code> for the manual <em>and each of its sections</em> which could easily be a lot of calls to the Publishing API.</p>
+</li>
+<li>
+<p>Once we're using the Publishing API for persistence, we suspect we may not need to call <code>patch_links</code> or <code>put_content</code>, only <code>publish</code>, and this may mean it's no longer so important to do this asynchronously. But it's probably simplest to keep it as it is, although see the issue about <code>VersionMismatchError</code> below.</p>
+</li>
+</ul>
+<h2 id="version-number-versionmismatcherror">Version number / <code>VersionMismatchError</code>
+</h2>
+<ul>
+<li>
+<p>We think <code>Manual#version_number</code> is always set to 0 at the moment in the spike, i.e. we don't think it's being set from the Publishing API. This is incorrect and the only reason we don't see a <code>VersionMismatchError</code> is because <code>0 == 0!</code></p>
+</li>
+<li>
+<p>It looks as if there is <a href="https://github.com/alphagov/manuals-publisher/issues/1177">a bug in <code>master</code></a> which means that this exception is never raised, so in a way we don't need to do anything in the spike to replicate this behaviour!</p>
+</li>
+<li>
+<p>If we need to, we can obtain the version number from the Publishing API via the <code>state_history</code> by finding the highest version number key in the Hash. However, it's worth noting that it looks as if the version number is not incremented if you keep saving a draft. We don't know whether it's a coincidence, but this behaviour actually matches what's happening in <code>master</code> with the version number stored in the local database.</p>
+</li>
+<li>
+<p>As we mentioned in the GitHub issue (see above), we think the best way to fix this is to prevent edits to a draft which is queued for publication.</p>
+</li>
+</ul>
+<h2 id="edit-first-publication-date-for-manual">Edit first publication date for manual</h2>
+<ul>
+<li>
+<p>Are we loading these timestamps correctly and/or do we need to load them correctly?</p>
+</li>
+<li>
+<p>Publishing API: <code>first_published_at</code>, <code>public_updated_at</code></p>
+</li>
+<li>
+<p>Manual: <code>originally_published_at</code>,
+<code>use_originally_published_at_for_public_timestamp?</code></p>
+</li>
+</ul>
+<h2 id="pagination-of-manuals-and-sections">Pagination of manuals and sections</h2>
+<ul>
+<li>
+<p>As far as we can see, although at one point the app used Kaminari to do pagination, it doesn't currently.</p>
+</li>
+<li>
+<p>The <code>get_content_items</code> method we plan to use for the manuals index page paginates results by default (50 per page).</p>
+</li>
+<li>
+<p>At a minimum, we will need to ensure that all manuals are listed, even if it is more than 50, because that is the current behaviour.</p>
+</li>
+<li>
+<p>The simplest way to do this may be to set the <code>per_page</code> option <code>get_content_items</code> on to a very large number; much bigger than the number of manuals in production. we have verified that this works and there doesn't appear to be any maximum value as far as the Publishing API is concerned.</p>
+</li>
+<li>
+<p>We've tried to load the manuals index page with recent production data and it times out because the SQL query in Publishing API takes ~9 seconds. So we think we're going to need to re-think this and probably introduce pagination of some sort.</p>
+</li>
+<li>
+<p>It looks as if Specialist Publisher does pagination using Kaminari and passes the various pagination options on to the Publishing API</p>
+<ul>
+<li><a href="https://github.com/alphagov/specialist-publisher/blob/6182aa430313c72683c033047081e1d7daef030f/app/views/documents/index.html.erb#L22">Kaminari paginate helper method</a></li>
+<li><a href="https://github.com/alphagov/specialist-publisher/blob/6182aa430313c72683c033047081e1d7daef030f/app/presenters/pagination_presenter.rb">PaginationPresenter</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="performance">Performance</h2>
+<ul>
+<li>
+<p>As mentioned above, when we run the whole system with production-like data, we start running into timeouts with calls to the Publishing API. We've seen this when trying to load a lot of manuals on the index page (see above), but also when trying to create a new section on a draft manual. In this case, at first glance, the slowest queries we could see were ones to do with loading or updating links.</p>
+</li>
+<li>
+<p>One optimisation we can imagine is if we stop putting the association between manuals &amp; sections and vice versa in the details hash, and instead rely entirely on the links in the Publishing API, we could avoid some operations, e.g. no need to save manual content when adding or removing a section; we could just update the links.</p>
+</li>
+<li>
+<p>However, this could all be a bit of a blocker. We can imagine we might need to tune the queries in the Publishing API which we can imagine taking a lot of time.</p>
+<ul>
+<li>An alternative solution might be to add more attributes to the details hash so we can avoid/reduce calls to get links.</li>
+<li>Also we might be able to avoid reloading a bunch of data when processing a form submission if we store extra data as hidden fields in the form.</li>
+</ul>
+</li>
+</ul>
+<h2 id="validation-errors">Validation errors</h2>
+<ul>
+<li>
+<p>Given that we'll be building the same domain model objects in memory even though we'll have read the data from the Publishing API, we think the existing validation will continue to work.</p>
+</li>
+<li>
+<p>However, we suspect it could probably be improved in order to ensure we avoid as many Publisher API exceptions as possible.</p>
+</li>
+<li>
+<p>Alternatively we might want to remove all validation from Manuals Publisher and instead rely on exceptions from the Publishing API.</p>
+</li>
+<li>
+<p>We'd prefer keeping the duplication of having the validation in the Manuals Publisher app because we think it will give a better user experience.</p>
+</li>
+</ul>
+<h2 id="other-api-errors">Other API errors</h2>
+<ul>
+<li>
+<p>Since we should only be adding methods which <strong>read</strong> the Publishing API, we think it's safe to assume that we won't encounter any API errors unless something very out of the ordinary has occurred, in which case an un-handled exception is probably OK and will be seen in Errbit.</p>
+</li>
+<li>
+<p>The only possible exception to this is when content items are not found.</p>
+</li>
+</ul>
+<h2 id="display-full-state-information-in-manuals-index-page">Display full state information in manuals index page</h2>
+<ul>
+<li>
+<p>Including "published with new draft" &amp; "withdrawn with new draft".</p>
+</li>
+<li>
+<p>We've implemented this in the spike based on <a href="https://github.com/alphagov/specialist-publisher/blob/master/docs/phase-2-migration/composed-states.md">this document in the Specialist Publisher repo</a>. In particular we've copied the <a href="https://github.com/alphagov/specialist-publisher/blob/ac002d8ffd7bb900142220012a2f700c6d2cc2f2/app/helpers/state_helper.rb"><code>StateHelper</code></a> class over in its entirety, because we're using almost all of its methods. The <code>StateHelper#state_for_frontend</code> method does what we need as long as we supply it with a document with a <code>state_history</code> which is available from calls to <code>get_content_items</code> and <code>get_content</code>.</p>
+</li>
+</ul>
+<h2 id="slug-uniqueness-check">Slug uniqueness check</h2>
+<ul>
+<li>
+<p>For now we've implemented this using the existing <code>PublishingAdapter#all</code> method and then checking all the slugs in memory.</p>
+</li>
+<li>
+<p>It would probably be more efficient to do the query as part of a custom call to <code>get_content_items</code>, i.e. using the <code>search_in</code> and <code>q</code> options for the <code>base_path</code> attribute.</p>
+</li>
+</ul>
+<h2 id="avoid-n1-calls-to-publishing-api-in-publishingadapterfind">Avoid N+1 calls to Publishing API in <code>PublishingAdapter#find</code>
+</h2>
+<ul>
+<li>We've successfully updated the implementation of <code>PublishingAdapter#find</code> to load data for all the sections in a single call to <code>get_content_items</code> and then use the <code>section_uuids</code> obtained from <code>get_links</code> to order them appropriately</li>
+</ul>
+<h2 id="withdrawing">Withdrawing</h2>
+<ul>
+<li>
+<p>Via the current user interface, this is only allowed for a section, not a manual. The way it currently seems to work is that <code>discard_draft</code> is called for the section on the Publishing API. Our understanding is that this will only have an effect if there a draft of the section exists and it will replace the draft section with the latest published section in the Draft Content Store. When the manual is next published, the <code>unpublish</code> method is called on the Publishing API for sections which have been withdrawn (<code>Manual#removed_sections</code>).</p>
+</li>
+<li>
+<p>It's not going to be straightforward to replicate this behaviour when using the Publishing API for persistence. In order to do so, we think we'd need to somehow mark the sections as "removed" in the Publishing API, perhaps using the details hash and then only actually unpublish them when publishing their manual. It might make sense for this behaviour to live within the Publishing API but then that's going to be even more work.</p>
+</li>
+<li>
+<p>An alternative is to un-publish sections immediately on withdrawal, i.e. don't wait until we next publish the manual.  However, we suspect this might not be acceptable to users, because a manual might be in an inconsistent state over an extended period.</p>
+</li>
+</ul>
+<h2 id="consistency">Consistency</h2>
+<ul>
+<li>
+<p>Before switching over to using the Publishing API as the canonical persistence mechanism it would be advisable to check that all the data in the local database for existing content is already in the Publishing API.</p>
+</li>
+<li>
+<p>We don't think it's safe to assume that older content has been saved to the Publishing API using the same attribute hash and it's possible some content items pre-date the Publishing API and were never added. Thus it would probably be sensible to re-publish all documents before switching over.</p>
+</li>
+</ul>
+<h2 id="re-publishing">Re-publishing</h2>
+<ul>
+<li>
+<p>This is not currently possible via the user interface, although it is probably one of the Rake tasks which we will need to keep in case e.g. the content schema changes.</p>
+</li>
+<li>
+<p>At first glance, the only complication we can see is how to implement <code>Manual#current_versions</code> which finds the latest published and latest draft versions if either exists, but we're fairly confident that should be possible.</p>
+</li>
+<li>
+<p>We can't find any documentation for the <code>update_type</code> supplied to <code>put_content</code> or <code>publish</code>, especially what it means to set it to "republish". Our best guess is that it just means used the timestamps from the previous edition so that it looks as if it was saved/published at the time it was originally saved/published, but we're not sure about that.</p>
+</li>
+</ul>
+<h2 id="rake-tasks-scripts">Rake tasks / scripts</h2>
+<ul>
+<li>
+<p>We would suggest removing the code from these and simply displaying a message suggesting the user contact whoever is switching the app over to use the Publishing API as the canonical/only persistence mechanism.</p>
+</li>
+<li>
+<p>As mentioned above, we probably need to retain some kind of republishing capability. We believe Specialist Publisher has a Rake task for republishing everything.</p>
+</li>
+</ul>
+<h2 id="fixing-re-writing-specs-features">Fixing / re-writing specs &amp; features</h2>
+<ul>
+<li>
+<p>This could involve quite a bit of work, although it should mostly be a matter of removing database setup and replacing it with stubs on the <code>PublishingAdapter</code>.</p>
+</li>
+<li>
+<p>No attempt was made to do this in the spike branch.</p>
+</li>
+<li>
+<p>In parallel with the spike we made a start on actually implementing the switchover for attachments. We tried to do this in incrementally by firstly changing the app to read from the Publishing API instead of the database, but still saving the attachments to the database; and secondly removing the code which saves the attachments to the database. The idea was that this would reduce the size of the commits, particularly the changes needed in the specs/features. However, it turned out that this introduced complications and we came to the conclusion it would probably be better to make the change in a single step.</p>
+</li>
+</ul>
+<h2 id="removing-persistence-related-code-database">Removing persistence-related code &amp; database</h2>
+<ul>
+<li>
+<p>Although it should be relatively straightforward, there would be quite a bit of persistence-related code to remove. Essentially the domain models should end up as <code>ActiveModel</code> classes with little, if any, behaviour i.e. mainly just attributes &amp; validation. Also there will probably be no need to model manual/section editions separately.</p>
+</li>
+<li>
+<p>Once the switchover has happened, it would be good to remove the relevant tables from the database.</p>
+</li>
+</ul>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/2017-migration-project-archive/fully-migrated-spike.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2F2017-migration-project-archive%2Ffully-migrated-spike.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
