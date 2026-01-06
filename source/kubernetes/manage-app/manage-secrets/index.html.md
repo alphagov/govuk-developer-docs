@@ -32,7 +32,7 @@ You can create 2 types of secret in AWS Secrets Manager:
 
 ### Creating an AWS managed database secret
 
-1. Open the [AWS Secrets Manager console](https://eu-west-1.console.aws.amazon.com/secretsmanager/listsecrets?region=eu-west-1). You will need to sign in if you have not already.
+1. Open the [AWS Secrets Manager console](https://eu-west-1.console.aws.amazon.com/secretsmanager/listsecrets?region=eu-west-1). You will need to sign in and assume the `fulladmin` role if you have not already.
 
     You must create the secret in the 3 AWS accounts for integration, staging and production.
 
@@ -50,7 +50,7 @@ You can create 2 types of secret in AWS Secrets Manager:
 
 ### Creating a non-database secret
 
-1. Open the [AWS Secrets Manager console](https://eu-west-1.console.aws.amazon.com/secretsmanager/listsecrets?region=eu-west-1). You will need to sign in if you have not already.
+1. Open the [AWS Secrets Manager console](https://eu-west-1.console.aws.amazon.com/secretsmanager/listsecrets?region=eu-west-1). You will need to sign in and assume the `fulladmin` role if you have not already.
 
     You must create the secret in the 3 AWS accounts for integration, staging and production.
 
