@@ -24,3 +24,5 @@ To switch off all public traffic, set the `GRAPHQL_RATE_*` environment variables
 - [integration](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-integration.yaml)
 - [staging](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-staging.yaml)
 - [production](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml)
+
+> The `govuk-helm-charts` repo requires a review from the Platform Engineering team if changes are being made to production values. In an emergency (e.g. out of hours), this requirement can be switched off by unticking "Require review from Code Owners" in the [repo's branch protection rules](https://github.com/alphagov/govuk-helm-charts/settings/branch_protection_rules/22109538).
