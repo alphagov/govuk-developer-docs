@@ -25,6 +25,8 @@ GOV.UK have [committed to a minimum service level agreement](https://www.gov.uk/
 
 [Create an account](https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;brand_id=3194076&amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;theme=hc) then assign a new ticket to `2nd/3rd Line--Zendesk Administration` asking to give you "GDS Resolver Agent" access to [your product team's Zendesk group](#where-to-triage-tickets).
 
+> The Zendesk admins sometimes bump accounts down to “Light Agent”, which has restricted permissions, because the person hasn't been very active in Zendesk and those accounts are cheaper. If you need more access, you can request it on the [#user-support](https://gds.slack.com/archives/CADFJBDQU) Slack channel and the team will make live changes to meet demand, but it is effectively a one in, one out situation.
+
 See the [Zendesk best practice slidedeck](https://docs.google.com/presentation/d/1iUbD-_uWyaNMeNj9h7Zvo9g2GWvRarg9kUh7pd0u32M/edit#slide=id.g134fafb13dc_0_0) for an overview and tour of the service.
 
 In addition, you may want to bookmark these links for searching Zendesk:
