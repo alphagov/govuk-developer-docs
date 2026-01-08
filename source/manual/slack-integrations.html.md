@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+> The Seal and Dependapanda can only post to public channels.
+
 ## Seal
 
 [Seal](https://github.com/alphagov/seal) is a Slack bot that informs teams which pull requests they have open.
