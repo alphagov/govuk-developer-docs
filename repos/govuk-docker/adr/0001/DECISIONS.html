@@ -1,0 +1,543 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>govuk-docker: Decisions - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-docker/adr/0001/DECISIONS.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="govuk-docker: Decisions - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/adr/0001/DECISIONS.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="govuk-docker: Decisions" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-docker/adr/0001/DECISIONS.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/govuk-docker.html" rel="noopener" class="govuk-link">govuk-docker</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/govuk-docker/compatibility.html" rel="noopener" class="govuk-link">Compatibility</a></li>
+    <li><a href="/repos/govuk-docker/how-tos.html" rel="noopener" class="govuk-link">How Tos</a></li>
+    <li><a href="/repos/govuk-docker/troubleshooting.html" rel="noopener" class="govuk-link">Troubleshooting</a></li>
+    <li class="subdir__heading">adr</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-docker/adr/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">0001-record-architecture-decisions</a></li>
+    <li><a href="/repos/govuk-docker/adr/0002-docker-images-for-ruby-applications.html" rel="noopener" class="govuk-link">2. Docker images for Ruby Applications</a></li>
+    <li><a href="/repos/govuk-docker/adr/0003-use-docker-volumes-for-improved-macos-performance.html" rel="noopener" class="govuk-link">3. Use Docker volumes for improved macOS performance</a></li>
+    <li><a href="/repos/govuk-docker/adr/0004-use-versioned-database-services.html" rel="noopener" class="govuk-link">1. Use versioned database services</a></li>
+    <li class="subdir__heading">0001</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-docker/adr/0001/DECISIONS.html" rel="noopener" class="govuk-link">Decisions</a></li>
+    <li><a href="/repos/govuk-docker/adr/0001/NEEDS.html" rel="noopener" class="govuk-link">make-1</a></li>
+
+    </ul>
+
+    </ul>
+    <li class="subdir__heading">how-tos</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-docker/how-tos/finder-setup.html" rel="noopener" class="govuk-link">How to Publish Content to a Finder in GOV.UK Docker</a></li>
+    <li><a href="/repos/govuk-docker/how-tos/publishing-content-on-whitehall.html" rel="noopener" class="govuk-link">Publishing Content from Whitehall for Developing Government Frontend</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Repos",
+        "@id": "http://www.dev.gov.uk/repos.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-docker",
+        "@id": "http://www.dev.gov.uk/repos/govuk-docker.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos.html">Repos</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-docker.html">govuk-docker</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/6f51d30bb8b7c413bbc1cdec1d5415bd7828e495">1 Mar 2023</a>
+</div>
+
+  <h1 class="page-title">govuk-docker: Decisions</h1>
+
+  
+<p><strong>DEPRECATED: much of what follows was written before we adopted a PR/ADR mechanism for making changes in this repo. Decisions may have changed since they were written here, so what follows should only be used to provide historical context.</strong></p>
+<p>This is a record of decisions in the design of govuk-docker, to support the various needs people have when developing in the GOV.UK ecosystem. Each decision has a reference anchor so it can be linked from its associated need(s).</p>
+<h2 id="make">Make</h2>
+<h3 id="make-clone">make-clone</h3>
+<p>Cloning or pulling all of the active GOV.UK repos is a time-consuming activity.</p>
+<ol>
+<li>Find the repo on Github</li>
+<li>Copy the clone URL</li>
+<li>Run <code>git clone &lt;url&gt;</code> in the appropriate directory</li>
+<li>Repeat for the next repo</li>
+</ol>
+<p>For a new developer on GOV.UK, it's also unclear which repos are active or relevant, so for both these reasons, <strong>govuk-docker has scripts to automate the clone/pull process, in the form of <code>make clone</code> and <code>make pull</code> tasks</strong>.</p>
+<p>Manually listing each repo to clone would introduce a maintenance overhead for the script, so with reference to <a href="#make-files">make-files</a> and <a href="#docker-compose">docker-compose</a>, <strong>govuk-docker groups config files for a service in directories named after their repos</strong>.</p>
+<h3 id="make-files">make-files</h3>
+<p>The commands to setup each service are often specific to the service - even running <code>bundle</code> is not uniform across GOV.UK. Having the tasks for each service in a single Makefile would make it difficult to navigate, and difficult to understand the hierarchy of the tasks; trying to combine all the commands into a smaller number of tasks would make it difficult to run them for a specific service. In order to make the task hierarchy of the Makefile clear, avoid a long single Makefile, and support multiple service-specific tasks, <strong>govuk-docker has a Makefile for each service</strong>.</p>
+<h3 id="make-idempotent">make-idempotent</h3>
+<p>If a make task fails, it should be possible to run it again. There are lots of reasons why this could happen, from transient network issues, to making a mistake when developing this repo!</p>
+<p>If a make task succeeds, it should be possible to run it again if the environment has changed. For example, with reference to <a href="#make-clone">make-clone</a>, this could be to clone a bunch of new repos.</p>
+<p>In order to support failure and changes in environment, <strong>govuk-docker make tasks are all idempotent, which means they can be run any number of times if this is necessary for them to succeed</strong>.</p>
+<h3 id="make-setup">make-setup</h3>
+<p>Running all of the individual make tasks is a time-consuming activity.</p>
+<ol>
+<li><code>make clone</code></li>
+<li><code>make build</code></li>
+<li><code>make -f asset-manager/Makefile</code></li>
+<li>...</li>
+<li><code>make clean</code></li>
+</ol>
+<p>For a new developer on GOV.UK, it's also unclear which tasks should be run, so for both these reasons, <strong>govuk-docker combines all service-specific tasks into <code>make setup</code>, and all top-level tasks into the default <code>make</code> task</strong>.</p>
+<h2 id="docker">Docker</h2>
+<h3 id="docker-stacks">docker-stacks</h3>
+<p>Most service commands fall into one of two groups:</p>
+<ul>
+<li>
+<code>rake</code>, <code>rspec</code>, <code>bundle</code>, etc.</li>
+<li>
+<code>rails s</code>, <code>./router</code>, <code>sidekiq</code>, etc.</li>
+</ul>
+<p>The first set of commands are related to building and testing a service; then require only minimal dependencies and have many variants. In order to support these commands, <strong>govuk-docker defines a <code>lite</code> stack for each service, with minimal dependencies and with specific support for testing</strong> e.g.</p>
+<pre><code>services:
+  my_service-lite:
+    environment:
+      TEST_DATABASE_URL: ...
+      ...
+    depends_on:
+      - postgres
+</code></pre>
+<p>Commands like <code>rails s</code> are related to running an app; they may require other apps to be running, but have a fixed form. Sometimes an app can be run in several different configurations e.g. with a worker to run async jobs; or with different environment variables, to make it a 'draft' instance, for example. In order to support these configurations, <strong>govuk-docker defines a variety of app-specific stacks for services that run as apps</strong> e.g.</p>
+<pre><code>services:
+  my_service-app:
+    depends_on:
+      - postgres
+      - another_service-app
+      ...
+    command: rails s ...
+
+  my_service-app-draft:
+    environment:
+      PLEK_HOSTNAME_PREFIX: "draft-"
+    depends_on:
+      - postgres
+      - another_service-app-draft
+      ...
+    command: rails s ...
+</code></pre>
+<h3 id="docker-compose">docker-compose</h3>
+<p>The config to run each service with docker-compose is specific to the service. Even with some refactoring, the config for each service is still many lines long. Defining multiple stacks for each service compounds the problem.</p>
+<pre><code>my_service-my_stack:
+  image: ...
+  build: ...
+  volumes: ...
+  environment: ...
+  command: ...
+  privileged: ...
+  working_dir: ...
+  ports: ...
+  depends_on: ...
+</code></pre>
+<p>Having all the services defined in a single file would make it difficult to navigate. In order to avoid a long single docker-compose.yml file, <strong>govuk-docker has a docker-compose.yml file for each service</strong>.</p>
+<h3 id="docker-aliases">docker-aliases</h3>
+<p>While the config to run each service with docker-compose is service-specific, there are common elements between each stack. In order to reduce this duplication, <strong>govuk-docker uses x-my_service sections to define the common elements</strong> and relies on YAML aliases to embed the common elements in each stack.</p>
+<pre><code>x-my_service: &amp;my_service
+  image: ...
+  build: ...
+  ...
+
+services:
+  my_service-lite:
+    &lt;&lt;: *my_service
+    volumes: ...
+</code></pre>
+<p>Some duplication also occurs between specific stacks e.g. a 'draft' stack is often an extension of the 'live' one. In order to reduce this duplication, <strong>govuk-docker uses YAML aliases when one service clearly inherits from another</strong>.</p>
+<h3 id="docker-dockerfiles">docker-dockerfiles</h3>
+<p>Running a service command makes use of an image for a particular service/stack pair. It's normal to use a Dockerfile to define how the image is built, and many GOV.UK services contain such a file in their repos. However, there are certain aspects of these files that are not optimised for development:</p>
+<ul>
+<li>They <a href="https://github.com/alphagov/publishing-api/blob/master/Dockerfile#L11">hard-code the RAILS_ENV</a>, which is unsuitable for testing</li>
+<li>They <a href="https://github.com/alphagov/publishing-api/blob/master/Dockerfile#L21">copy the service files into the image</a>, which makes them difficult to change</li>
+<li>They <a href="https://github.com/alphagov/publishing-api/blob/master/Dockerfile#L20">pre-install volatile dependencies</a>, which takes a long time (each time)</li>
+<li>They <a href="https://github.com/alphagov/publishing-api/blob/master/Dockerfile#L3">install unnecessary packages</a> in the context of govuk-docker</li>
+<li>They <a href="https://github.com/alphagov/publishing-api/blob/master/Dockerfile#L13">set environment variables and a command</a> that are stack-dependent</li>
+<li>They run service commands as the root user, which breaks headless Chrome</li>
+</ul>
+<p>Although many services have similar Dockerfiles, in order to optimise the service images for development and maintain flexibility, <strong>govuk-docker uses its own Dockerfile to build the image for each service</strong>.</p>
+<h3 id="docker-lockfiles">docker-lockfiles</h3>
+<p>The most appropriate Docker base image for each service is usally related to the associated language e.g. the <a href="https://hub.docker.com/_/ruby/">ruby</a> base images. From this base image, we then need to install system packages, which change infrequently and can be individually cached as part of the image build process. We then need to install language-specific packages, which change more often (e.g. <a href="https://dependabot.com/">dependabot</a>) and are harder to cache as they are specified in a versioned lockfile, such as <code>Gemfile.lock</code>.</p>
+<p>When a lockfile is used as part of the image build process, any change to the lockfile means all of the specified packages need to be reinstalled, since the layer previously cached with the old version of lockfile is no longer valid - the installation of all of the packages makes up one single, volatile layer of the image. In order to avoid long and voluminous image (re)builds, <strong>govuk-docker does not build images to include packages specified using a versioned lockfile</strong>.</p>
+<h3 id="docker-bundle">docker-bundle</h3>
+<p>When developing a Ruby/Rails app natively, it is common to run <code>bundle</code> to install/update Ruby packages. With <a href="#cli-aliases">cli-aliases</a>, the equivalent with the govuk-docker CLI would be <code>gdrd bundle</code>. However, because of the ephemeral nature of containers, the installed packages would be lost as soon as the command finishes. In order to persist and share packages installed with bundler, <strong>govuk-docker mounts a single, shared <code>bundle</code> volume for each Ruby service</strong>.</p>
+<p><strong>This decision also applies to 'go' packages and to the home directory of the 'build' user</strong>, the latter serving as the default user for most of the govuk-docker images and is where some packages are installed e.g. chromedriver.</p>
+<h3 id="docker-mount1">docker-mount1</h3>
+<p>When developing a Ruby/Rails app natively, it is common to make changes to the running code and for these to be immediately visible, without having to run additional commands. In order to support making live changes, <strong>govuk-docker mounts the service directory to <code>/govuk/my_service</code></strong> and does not require service files to be present in the image.</p>
+<p>Since the govuk-docker directory is separate from each service directory, in order to mount the service directory it must be possible to locate it using a relative path. In order to mount service directories consistently for each service, <strong>govuk-docker assumes all service directories are located in the same directory as itself</strong>.</p>
+<h3 id="docker-context">docker-context</h3>
+<p>When building a docker image for a service, it is common to use the service directory as the build context, and to <code>COPY</code> or <code>ADD</code> the necessary files into the image. This can often increase the build time when the service directory contains large, unnecessary files, such as logs and tempfiles. Although docker <a href="https://docs.docker.com/engine/reference/builder/#dockerignore-file">supports excluding files from the context</a>, this would involve adding a <code>.dockerignore</code> file to each service. <a href="#docker-mount1">docker-mount1</a> removes the need to copy files in the first place, so in order to minimise the image build time, <strong>govuk-docker uses itself as the build context for all images</strong>.</p>
+<h3 id="docker-mount2">docker-mount2</h3>
+<p>When developing a change across multiple services, it is sometimes necessary to access the files in other service directories. An example of this is developing a local change to a gem, such as <a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components</a>. When running service commands using docker/compose, the service does not have access to any files on the host unless they are mounted. In order to support access to files across different services, and using <a href="#docker-7">docker-7</a>, <strong>govuk-docker mounts all service directories to <code>/govuk</code> in the container</strong>.</p>
+<h3 id="docker-bindmount">docker-bindmount</h3>
+<p>Docker volumes are separate from 'bind-mounts', which mount part of the host file system in a running container. Bind mounts have <a href="https://docs.docker.com/docker-for-mac/osxfs-caching/">known performance issues on Macs</a> and even with the latest optimisations, still makes the container impractical. The problem is that read-heavy bind-mounts are not cached between docker commands and <a href="https://blog.docker.com/2017/05/user-guided-caching-in-docker-for-mac/#h.mtk84ij3vbkc">incur system call overheads</a> that are normally avoided by adding the files to the image as part of the build process.</p>
+<p>In order to support <a href="#docker-lockfiles">docker-lockfiles</a>, clarify <a href="#docker-bundle">docker-bundle</a> and achieve good performance, <strong>govuk-docker only uses docker volumes (and not bind-mounts)</strong> unless there is a specific reason not to. When there is a specific need to use bind-mounts, as in <a href="#docker-mount1">docker-mount1</a>, any writes are often to low-priority log and temporary files, where it's acceptable for the container and the host to diverge if resources are limited. In order to improve write performance, <strong>govuk-docker encourages the use of the <a href="https://docs.docker.com/docker-for-mac/osxfs-caching/#tuning-with-consistent-cached-and-delegated-configurations"><code>delegated</code></a> flag for all bind-mounts</strong>, which reduces the time for individual write operations.</p>
+<h3 id="docker-imagetag">docker-imagetag</h3>
+<p>When a change is made to the Dockerfile for a service, or to the files it reads from, it's necessary to rebuild and tag the associated image. Defining multiple stacks for each service compounds the problem, as this can lead to a each stack having its own image tag, each of which need to be (re)built and (re)tagged separately e.g. using <a href="#docker-aliases">docker-aliases</a>:</p>
+<pre><code>x-my_service: &amp;my_service
+  build: ...
+
+services:
+  # image tag is govuk_docker_my_service-my_stack_1
+  my_service-my_stack_1:
+    &lt;&lt;: *my_service
+
+  # image tag is govuk_docker_my_service-my_stack_2
+  my_service-my_stack_2:
+    &lt;&lt;: *my_service
+</code></pre>
+<p>Although docker will make use of the cached layers for the image to minimise the total build time, having to (remember to) do this for each service/stack pair is inefficient and could lead to subtle bugs, especially when all the images are the same. In order to avoid redundant tags and simplify making changes to the image for a service, <strong>govuk-docker forces the same image tag for all stacks for a service, using the <code>image</code> option</strong>, so that all stacks build and run the same image.</p>
+<h3 id="docker-bundleexec">docker-bundleexec</h3>
+<p>Running commands for a Ruby service is sometimes verbose due to the <a href="https://bundler.io/v2.0/man/bundle-exec.1.html"><code>bundle exec</code></a> prefix. This prefix is necessary to ensure the command runs in the context of the gems it is 'bundled' with i.e. not the system ones.</p>
+<p>Confusingly, it's not always necessary to write this prefix e.g. due to 'helper' scripts <a href="https://github.com/alphagov/content-publisher/tree/master/bin">provided by rails</a> like <code>bin/rake</code>, or <a href="https://github.com/alphagov/content-publisher/blob/master/.rspec">special config</a> for commands like <code>rspec</code>. Both of these examples avoid the need for <code>bundle exec</code> by <a href="https://guides.rubyonrails.org/initialization.html#config-boot-rb">running the equivalent code in Ruby</a>. This can also be done by adding <code>-r bundler/setup</code> to the <code>RUBYOPT</code> environment variable, which will cause <code>bundler/setup</code> to be automatically required, but isn't always appropriate e.g. for <code>bundle install</code>!</p>
+<p>Another approach to solving this problem is to set the <a href="https://reinteractive.com/posts/266-no-more-bundle-exec-using-the-new-rubygems_gemdeps-environment-variable">RUBYGEMS_GEMDEPS</a> environment variable, which behaves similarly, but (apparently) not identically to <code>bundle exec</code> and is <a href="https://github.com/bundler/bundler/issues/3656">not recommended</a>.</p>
+<p>Instead of trying to make <code>bundle exec</code> implicit in all commands, bundler recommends using <a href="https://bundler.io/man/bundle-binstubs.1.html">its binstub command</a> to generate wrappers to automate it for particular gems, much like the 'helper' scripts provided by rails. The existing wrappers like <code>bin/rake</code> do already many cover common commands in many GOV.UK services. In order to reduce typing, <strong>govuk-docker encourages the addition of bundler binstubs to individual projects as the developers think necessary</strong>.</p>
+<h3 id="docker-debugger">docker-debugger</h3>
+<p>Debugging a Ruby service is often done with the aid of a gem like <a href="https://github.com/deivid-rodriguez/byebug">byebug</a>, using <code>byebug</code> or <code>debugger</code> breakpoints to activate a prompt in the running command. By default, a docker command does not expose an interactive terminal, which would prevent the use of the prompt for debugger, since it could not receive any input. <strong>Using <a href="https://docs.docker.com/compose/reference/run/">docker-compose</a> automatically allocates an interactive terminal, so the prompt can be used</strong>.</p>
+<h3 id="docker-binding">docker-binding</h3>
+<p>Developing a webapp often involves making requests e.g. in the browser, or using CLI tools like <code>curl</code>. This can break if the app is running inside a Docker container, since commands like <code>rails server</code> and <code>middleman server</code> only listen to requests on the local machine (the container) by default. Commands like <code>rails server</code> support a <code>binding</code> option to change this behaviour e.g. <code>rails server -b 0.0.0.0</code> starts a webserver that listens on all interfaces.</p>
+<p>Using <a href="#docker-stacks">docker-stacks</a>, the command to start a webserver is specified automatically e.g. <code>govuk-docker run-this backend</code> is the same as <code>govuk-docker run-this backend rails s</code> but with the additional flag <code>-b 0.0.0.0</code>. This may cause confusion if a developer wishes to write a custom command, since the binding flag is docker-specific. In order to avoid confusion and reduce typing, <strong>govuk-docker encourages the use of environment variables to set binding options</strong>.</p>
+<p>Currently only <a href="https://github.com/rails/rails/issues/25677">rails</a> supports this behaviour.</p>
+<h2 id="cli">CLI</h2>
+<h3 id="cli-exists">cli-exists</h3>
+<p>Running a docker-compose command requires the presence of a docker-compose.yml file, which can be <a href="https://docs.docker.com/compose/reference/envvars/#compose_file">located in the directory tree or specified in the environment</a>. Having a docker-compose.yml file in the <code>govuk</code> directory tree would make version control difficult, while specifying an environment variable would make it harder to use docker-compose in another context, such as with the <a href="https://github.com/alphagov/publishing-e2e-tests">publishing-e2e-tests</a>, or non-GOV.UK projects.</p>
+<p>If we cannot use the config auto-detection feature of docker-compose, then we are left with a few options: (1) specify the file(s) manually or through a temporary env var; (2) navigate to a directory where the file can be auto-detected; or (3) create an abstraction layer for docker-compose. In order to reduce typing, <strong>govuk-docker has a govuk-docker CLI script that runs docker-compose with all the necessary config files</strong>.</p>
+<h3 id="cli-runthis">cli-runthis</h3>
+<p>Outside of the GOV.UK ecosystem, it's normal to run a service command by first <code>cd</code>ing to the directory for the service and then typing the command e.g. <code>whitehall$ rake</code>. Running a service command with docker-compose looks like this (ignoring config files): <code>docker-compose run my_service-my_stack command</code>. If the service is a webapp, then the <code>--service-ports</code> flag is also necessary to access the site from a browser on the host machine.</p>
+<p>In order to reduce typing, <strong>govuk-docker CLI extends docker-compose with a <code>run-this</code> command that automatically infers the <code>my_service</code> from the working directory</strong> e.g. <code>govuk-docker run-this default rake</code>. The name <code>run-this</code> was chosen to be distinct from the existing docker-compose <code>run</code> command, to avoid confusion between the two and allow for both commands to be used via the govuk-docker CLI wrapper.</p>
+<h3 id="cli-aliases">cli-aliases</h3>
+<p>Most service commands fall into one of two groups:</p>
+<ul>
+<li><code>govuk-docker run my_service-lite [rake, rspec, bundle, etc.]</code></li>
+<li><code>govuk-docker run my_service-web_stack</code></li>
+</ul>
+<p>In order to reduce typing, <strong>the govuk-docker README recommends the use of aliases for these types of command</strong>. For example, the first can be shortened to <code>alias gdrd=govuk-docker run-this default</code> by making use of <a href="#cli-exists">cli-exists</a>. And in order to promote interoperability between govuk-docker commands and native commands, <strong>govuk-docker does not recommend any aliases that override existing commands e.g. <code>rake</code></strong>.</p>
+<h3 id="cli-echo">cli-echo</h3>
+<p>Using a CLI wrapper for docker/compose has the potential to introduce confusion, especially for someone not familiar with the underlying technology. It may be unclear which commands are native to docker/compose, and which are provided by the script. In order to reduce confusion and make the govuk-docker CLI as transparent as possible, <strong>govuk-docker CLI prints the full form of the dockerc-compose command it wraps</strong>.</p>
+<h3 id="cli-buildthis">cli-buildthis</h3>
+<p>Sometimes it's necessary to (re)build the image for a specific service. This could be due to a new version of the language used by the service, or other iterations of its Dockerfile. Using <a href="#cli-exists">cli-exists</a>, this can be written as <code>gd build my_service-lite</code>. Although this is supported by <a href="#make-setup">make-setup</a>, which covers all services, it can also take a long time to run. If the changes were pulled en-masse, it may also be unclear which service images need (re)building, or the developer may simply forget they need to do this, or defer (re)building until the point of use. For these reasons, it may be necessary to (re)build an image at the point of use i.e. when trying to run a service command. In order to support this, and using <a href="#docker-stacks">docker-stacks</a>, <strong>govuk-docker CLI extends docker-compose with a <code>build</code> command that automatically infers the service image to (re)build, using the default stack</strong> for the service.</p>
+<h3 id="cli-env">cli-env</h3>
+<p>Running a service command may require certain environment variables to be set temporarily e.g. in order to pass options to a <code>rake</code> task. Natively this would be written <code>VAR1=val1 VAR2=val2 ... CMD</code>. This approach isn't compatible with the docker/compose CLI and normally it would be necessary to use the <a href="https://docs.docker.com/compose/reference/run/">-e option</a> instead. In order to retain the native approach for environment variables, when using <a href="#cli-runthis">cli-runthis</a> <strong>govuk-docker CLI executes the specified command via the <code>env</code> command, which will read any temporary environment variables</strong>. Using <a href="#cli-aliases">cli-aliases</a>, a command that requires temporary environment variables can now be written <code>gdrd VAR1=val1 VAR2=val2 ... CMD</code>.</p>
+<h2 id="web-requests">Web Requests</h2>
+<h3 id="web-nginx">web-nginx</h3>
+<p>Running a web app natively makes it available on a specific port; for rails apps, it's common to manually navigate to <code>http://localhost:3000</code> in order to test the app. This approach doesn't scale for multiple apps: it's unclear which app is on each port, and hard to avoid clashes. When the apps are inter-dependent and running inside containers, each with their own virtual network address, it fails completely. Both problems suggest the use of DNS e.g.</p>
+<pre><code># /etc/hosts on the host
+127.0.0.1 publishing-api.dev.gov.uk
+
+# docker-compose.yml
+services:
+  publishing-api-app:
+    ...
+    ports:
+      - "80:80"
+    networks:
+      default:
+        aliases:
+          - publishing-api.dev.gov.uk
+</code></pre>
+<p>The approach for the host machine does not scale beyond a single container, unless that container acts as a proxy to all the others. In order to simplify web requests to each app, <strong>govuk-docker uses the <a href="https://github.com/jwilder/nginx-proxy">nginx-proxy</a> image to automatically proxy web requests from other service containers and from the host machine</strong>. When the app has multiple stacks that run concurrently, such as a 'draft' stack and a 'live' stack, then it's essential to use multiple DNS names or 'virtual hosts' in order to distinguish them; otherwise, <strong>govuk-docker uses the same virtual host for each stack for an app</strong>.</p>
+<h3 id="web-dnsmasq">web-dnsmasq</h3>
+<p>In order to minimise the manual setup required on the host machine, <strong>govuk-docker uses dnsmasq to automatically map <code>*.dev.gov.uk</code> to the localhost</strong>.</p>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-docker/blob/main/docs/adr/0001/DECISIONS.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-docker%2Fadr%2F0001%2FDECISIONS.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

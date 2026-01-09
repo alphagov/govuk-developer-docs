@@ -1,0 +1,547 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>govuk-design-guide: search-filter - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-design-guide/patterns/search-filter.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="govuk-design-guide: search-filter - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-design-guide/patterns/search-filter.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="govuk-design-guide: search-filter" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-design-guide/patterns/search-filter.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/govuk-design-guide.html" rel="noopener" class="govuk-link">govuk-design-guide</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/govuk-design-guide/index.html" rel="noopener" class="govuk-link">index</a></li>
+    <li class="subdir__heading">about</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/about/index.html" rel="noopener" class="govuk-link">index</a></li>
+
+    </ul>
+    <li class="subdir__heading">accessibility-statement</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/accessibility-statement/index.html" rel="noopener" class="govuk-link">index</a></li>
+
+    </ul>
+    <li class="subdir__heading">community</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/community/get-involved.html" rel="noopener" class="govuk-link">get-involved</a></li>
+    <li><a href="/repos/govuk-design-guide/community/index.html" rel="noopener" class="govuk-link">index</a></li>
+    <li><a href="/repos/govuk-design-guide/community/questions-and-answers.html" rel="noopener" class="govuk-link">questions-and-answers</a></li>
+
+    </ul>
+    <li class="subdir__heading">components</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/components/*component-documentation-template.html" rel="noopener" class="govuk-link">*component-documentation-template</a></li>
+    <li><a href="/repos/govuk-design-guide/components/attachment.html" rel="noopener" class="govuk-link">attachment</a></li>
+    <li><a href="/repos/govuk-design-guide/components/breadcrumbs.html" rel="noopener" class="govuk-link">breadcrumbs</a></li>
+    <li><a href="/repos/govuk-design-guide/components/content-list.html" rel="noopener" class="govuk-link">content-list</a></li>
+    <li><a href="/repos/govuk-design-guide/components/emergency-banner.html" rel="noopener" class="govuk-link">emergency-banner</a></li>
+    <li><a href="/repos/govuk-design-guide/components/feedback.html" rel="noopener" class="govuk-link">feedback</a></li>
+    <li><a href="/repos/govuk-design-guide/components/global-banner.html" rel="noopener" class="govuk-link">global-banner</a></li>
+    <li><a href="/repos/govuk-design-guide/components/index.html" rel="noopener" class="govuk-link">index</a></li>
+    <li><a href="/repos/govuk-design-guide/components/previous-and-next-navigation.html" rel="noopener" class="govuk-link">previous-and-next-navigation</a></li>
+    <li><a href="/repos/govuk-design-guide/components/print-link.html" rel="noopener" class="govuk-link">print-link</a></li>
+    <li><a href="/repos/govuk-design-guide/components/related-navigation.html" rel="noopener" class="govuk-link">related-navigation</a></li>
+    <li><a href="/repos/govuk-design-guide/components/search-autocomplete.html" rel="noopener" class="govuk-link">search-autocomplete</a></li>
+    <li><a href="/repos/govuk-design-guide/components/single-page-notification-button.html" rel="noopener" class="govuk-link">single-page-notification-button</a></li>
+
+    </ul>
+    <li class="subdir__heading">cookies</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/cookies/index.html" rel="noopener" class="govuk-link">index</a></li>
+
+    </ul>
+    <li class="subdir__heading">frontend-templates</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/frontend-templates/*frontend-template-documentation-template.html" rel="noopener" class="govuk-link">*frontend-template-documentation-template</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/answer.html" rel="noopener" class="govuk-link">answer</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/calendar.html" rel="noopener" class="govuk-link">calendar</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/completed-transaction.html" rel="noopener" class="govuk-link">completed-transaction</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/detailed-guide.html" rel="noopener" class="govuk-link">detailed-guide</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/document-collections.html" rel="noopener" class="govuk-link">document-collections</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/guide.html" rel="noopener" class="govuk-link">guide</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/homepage.html" rel="noopener" class="govuk-link">homepage</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/index.html" rel="noopener" class="govuk-link">index</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/special-route.html" rel="noopener" class="govuk-link">special-route</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/step-by-step-nav.html" rel="noopener" class="govuk-link">step-by-step-nav</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/transaction.html" rel="noopener" class="govuk-link">transaction</a></li>
+    <li class="subdir__heading">finder</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/frontend-templates/finder/case-studies-finder.html" rel="noopener" class="govuk-link">case-studies-finder</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/departments-agencies-public-bodies-finder.html" rel="noopener" class="govuk-link">departments-agencies-public-bodies-finder</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/groups-finder.html" rel="noopener" class="govuk-link">groups-finder</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/hmrc-contacts-finder.html" rel="noopener" class="govuk-link">hmrc-contacts-finder</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/index.html" rel="noopener" class="govuk-link">index</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/people-finder.html" rel="noopener" class="govuk-link">people-finder</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/search.html" rel="noopener" class="govuk-link">search</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/specialist-document-finder.html" rel="noopener" class="govuk-link">specialist-document-finder</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/statistical-data-sets-finder.html" rel="noopener" class="govuk-link">statistical-data-sets-finder</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/supergroup-finder.html" rel="noopener" class="govuk-link">supergroup-finder</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/topical-events-finder.html" rel="noopener" class="govuk-link">topical-events-finder</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/finder/world-organisation-finder.html" rel="noopener" class="govuk-link">world-organisation-finder</a></li>
+
+    </ul>
+    <li class="subdir__heading">mainstream-browse</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/frontend-templates/mainstream-browse/index.html" rel="noopener" class="govuk-link">index</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/mainstream-browse/level-one.html" rel="noopener" class="govuk-link">level-one</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/mainstream-browse/level-two.html" rel="noopener" class="govuk-link">level-two</a></li>
+
+    </ul>
+    <li class="subdir__heading">smart-answer</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/frontend-templates/smart-answer/github-smart-answer.html" rel="noopener" class="govuk-link">github-smart-answer</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/smart-answer/index.html" rel="noopener" class="govuk-link">index</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/smart-answer/simple-smart-answer.html" rel="noopener" class="govuk-link">simple-smart-answer</a></li>
+
+    </ul>
+    <li class="subdir__heading">topical-events</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/frontend-templates/topical-events/about.html" rel="noopener" class="govuk-link">about</a></li>
+    <li><a href="/repos/govuk-design-guide/frontend-templates/topical-events/index.html" rel="noopener" class="govuk-link">index</a></li>
+
+    </ul>
+
+    </ul>
+    <li class="subdir__heading">glossary</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/glossary/attribute.html" rel="noopener" class="govuk-link">attribute</a></li>
+    <li><a href="/repos/govuk-design-guide/glossary/component.html" rel="noopener" class="govuk-link">component</a></li>
+    <li><a href="/repos/govuk-design-guide/glossary/container.html" rel="noopener" class="govuk-link">container</a></li>
+    <li><a href="/repos/govuk-design-guide/glossary/content-model.html" rel="noopener" class="govuk-link">content-model</a></li>
+    <li><a href="/repos/govuk-design-guide/glossary/content-schema.html" rel="noopener" class="govuk-link">content-schema</a></li>
+    <li><a href="/repos/govuk-design-guide/glossary/content-type.html" rel="noopener" class="govuk-link">content-type</a></li>
+    <li><a href="/repos/govuk-design-guide/glossary/index.html" rel="noopener" class="govuk-link">index</a></li>
+    <li><a href="/repos/govuk-design-guide/glossary/layout.html" rel="noopener" class="govuk-link">layout</a></li>
+    <li><a href="/repos/govuk-design-guide/glossary/template.html" rel="noopener" class="govuk-link">template</a></li>
+    <li><a href="/repos/govuk-design-guide/glossary/using-this-glossary.html" rel="noopener" class="govuk-link">using-this-glossary</a></li>
+
+    </ul>
+    <li class="subdir__heading">patterns</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-design-guide/patterns/*pattern-documentation-template.html" rel="noopener" class="govuk-link">*pattern-documentation-template</a></li>
+    <li><a href="/repos/govuk-design-guide/patterns/index.html" rel="noopener" class="govuk-link">index</a></li>
+    <li><a href="/repos/govuk-design-guide/patterns/search-filter.html" rel="noopener" class="govuk-link">search-filter</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Repos",
+        "@id": "http://www.dev.gov.uk/repos.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-design-guide",
+        "@id": "http://www.dev.gov.uk/repos/govuk-design-guide.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos.html">Repos</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-design-guide.html">govuk-design-guide</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/govuk-design-guide/commit/e9d702ca0419ccf47e0b3edc655992c333faf244">11 Dec 2024</a>
+</div>
+
+  <h1 class="page-title">govuk-design-guide: search-filter</h1>
+
+  <hr>
+
+<p>layout: pattern-documentation
+sectionKey: Patterns
+eleventyNavigation:
+parent: Patterns</p>
+<h1 id="step-1-duplicate-and-rename-this-file-to-the-proposed-pattern-you-want-to-include-in-the-publishing-design-guide-website-">Step 1: Duplicate and rename this file to the proposed pattern you want to include in the Publishing Design Guide website.</h1>
+<h1 id="when-duplicating-and-renaming-this-file-use-lowercase-and-replace-any-spaces-with-a-dash-ie-">When duplicating and renaming this file use lowercase and replace any spaces with a dash (ie. -)</h1>
+<h1 id="step-2-set-eleventyexcludefromcollections-to-false-this-will-ensure-that-the-code-snippet-is-commented-out-and-this-page-will-be-display-withinin-the-publishing-design-guide-">Step 2: Set "eleventyExcludeFromCollections" to "false". This will ensure that the code snippet is commented out and this page will be display withinin the Publishing Design Guide.</h1>
+<p>eleventyExcludeFromCollections: false</p>
+<h1 id="step-3-input-data-points-according-to-fields-below-to-the-best-of-your-ability-any-fields-without-any-data-points-will-not-be-displayed-on-the-website-">Step 3: Input data points according to fields below to the best of your ability. Any fields without any data points will not be displayed on the website.</h1>
+<h1 id="name-of-the-pattern">Name of the pattern</h1>
+<h1 id="this-is-the-name-of-the-pattern-ex-search-filter-it-is-required-to-display-the-title-on-the-page-in-the-meta-data-and-in-the-left-hand-navigation-menu-of-the-patterns-page-">This is the name of the pattern (ex. Search filter). It is required to display the title on the page, in the meta data, and in the left-hand navigation menu of the patterns page.</h1>
+<p>title: Search filter</p>
+<h1 id="description-of-the-pattern">Description of the pattern</h1>
+<h1 id="this-briefly-describes-what-the-pattern-is-it-is-required-to-display-the-description-on-the-page-and-in-the-meta-description-">This briefly describes what the pattern is. It is required to display the description on the page, and in the <!-- raw HTML omitted --> meta description.</h1>
+<p>description: Search filters are used to help refine search results.</p>
+<h1 id="embedding-the-figma-file-of-the-pattern">Embedding the figma file of the pattern</h1>
+<h1 id="this-will-display-a-figma-embed-on-the-page-">This will display a Figma embed on the page.</h1>
+<h1 id="to-add-a-figma-embed-copy-only-the-url-within-the-embed-snippet-">To add a Figma embed, copy only the URL within the embed snippet.</h1>
+<p>figmaLink: #Delete this comment before entering the Figma embed URL of the Figma representaiton of this pattern.</p>
+<h1 id="when-to-use-this-pattern">When to use this pattern</h1>
+<h1 id="briefly-describe-the-situations-when-to-use-this-pattern-">Briefly describe the situation(s) when to use this pattern.</h1>
+<h1 id="you-must-wrap-this-in-single-quotation-marks-ie-since-markdown-can-be-used-to-enter-this-information-to-create-a-heading-use-three-hashes-ie-">You MUST wrap this in single quotation marks (ie. ' '), since markdown can be used to enter this information. To create a heading, use three hashes (ie. ###).</h1>
+<p>whenToUse:
+Used exclusively for <a href="https://github.com/alphagov/govuk-design-guide/blob/main/frontend-templates/finder">finder frontend templates</a>.</p>
+<h1 id="when-not-to-use-this-pattern">When not to use this pattern</h1>
+<h1 id="briefly-describe-the-situations-when-not-to-use-this-pattern-">Briefly describe the situation(s) when not to use this pattern.</h1>
+<h1 id="you-must-wrap-this-in-single-quotation-marks-ie-since-markdown-can-be-used-to-enter-this-information-to-create-a-heading-use-three-hashes-ie-">You MUST wrap this in single quotation marks (ie. ' '), since markdown can be used to enter this information. To create a heading, use three hashes (ie. ###).</h1>
+<p>whenNotToUse:
+#Delete this comment before entering when not to use this pattern.</p>
+<h1 id="how-the-pattern-works">How the pattern works</h1>
+<h1 id="briefly-descibe-how-this-pattern-works-for-instance-listing-out-what-happens-when-an-end-user-interacts-with-this-pattern-">Briefly descibe how this pattern works. For instance, listing out what happens when an end-user interacts with this pattern.</h1>
+<h1 id="you-must-wrap-this-in-single-quotation-marks-ie-since-markdown-can-be-used-to-enter-this-information-to-create-a-heading-use-three-hashes-ie-">You MUST wrap this in single quotation marks (ie. ' '), since markdown can be used to enter this information. To create a heading, use three hashes (ie. ###).</h1>
+<p>howItWorks:
+Search filters are used to help refine search results which appear on the right side of the page.</p>
+<p>They display search facets which allow the user to drill deeper down into search results. Helping a user to create a smaller list of things to scan through.</p>
+<p>There are four types of filters currently. One with a dropdown of options. One with checkboxes. One with a search bar and checkboxes. And one with open text fields.</p>
+<p>On specialist finder, you can also find a small search bar.</p>
+<p>As a user interacts with the filters, the search results on the right auto-refresh automatically.</p>
+<p>On mobile the same functionality occurs, however the filters move into an accordion and a ‘Go to search results’ call to action appears to help users jump down to the top of their search results. In the past the filters have lived in an interstitial page, this changed around 2021 to the accordion interaction due to accessibility issues with interstitial pages.</p>
+<h1 id="variations-for-this-pattern">Variations for this pattern</h1>
+<h1 id="list-out-any-variations-that-exist-for-this-pattern-by-providing-1-the-name-of-said-variation-and-2-a-brief-description-of-that-variation-">List out any variations that exist for this pattern by providing (1) the name of said variation and (2) a brief description of that variation.</h1>
+<p>variations:</p>
+<h1 id="to-add-additional-variations-duplicate-the-the-fields-below-adhering-to-the-formating-but-increase-the-count-by-one-integer-">To add additional variations duplicate the the fields below (adhering to the formating) but increase the count by one integer.</h1>
+<p>0:
+title: #Delete this comment before entering the name of the variation that exists for this pattern.
+description:
+# You MUST wrap this in single quotation marks (ie. ' '), since markdown can be used to enter this information. To create a heading, use three hashes (ie. ###).
+#Delete this comment before entering a description of variation.</p>
+<h1 id="components-that-make-up-this-pattern">Components that make-up this pattern</h1>
+<h1 id="list-out-all-the-components-that-make-up-this-single-pattern-by-1-providing-the-name-of-the-component-and-2-a-link-to-the-documentation-for-said-component-">List out all the components that make-up this single pattern, by (1) providing the name of the component and (2) a link to the documentation for said component.</h1>
+<p>components:</p>
+<h1 id="to-add-additional-components-duplicate-the-the-fields-below-adhering-to-the-formating-but-increase-the-count-by-one-integer-">To add additional components duplicate the the fields below (adhering to the formating) but increase the count by one integer.</h1>
+<p>0:
+# Both title and link are REQUIRED in order for this information to be displayed on the page.
+title: Search
+link: <a href="https://components.publishing.service.gov.uk/component-guide/search">https://components.publishing.service.gov.uk/component-guide/search</a>
+1:
+# Both title and link are REQUIRED in order for this information to be displayed on the page.
+title: Expander
+link: <a href="https://govuk-finder-frontend.herokuapp.com/component-guide/expander">https://govuk-finder-frontend.herokuapp.com/component-guide/expander</a>
+2:
+# Both title and link are REQUIRED in order for this information to be displayed on the page.
+title: Form date input
+link: <a href="https://components.publishing.service.gov.uk/component-guide/date_input">https://components.publishing.service.gov.uk/component-guide/date_input</a>
+3:
+# Both title and link are REQUIRED in order for this information to be displayed on the page.
+title: Option select
+link: <a href="https://components.publishing.service.gov.uk/component-guide/option_select">https://components.publishing.service.gov.uk/component-guide/option_select</a>
+4:
+# Both title and link are REQUIRED in order for this information to be displayed on the page.
+title: Form radio button
+link: <a href="https://components.publishing.service.gov.uk/component-guide/radio">https://components.publishing.service.gov.uk/component-guide/radio</a></p>
+<h1 id="evidence-and-insights-for-this-pattern">Evidence and insights for this pattern</h1>
+<h1 id="list-out-all-past-documentationsupporting-material-with-regards-to-or-realted-to-this-pattern-it-can-include-1-past-design-documentation-2-research-findings-and-3-presentations-">List out all past documentation/supporting material with regards to or realted to this pattern. It can include (1) past design documentation, (2) research findings, and (3) presentations.</h1>
+<p>insights:</p>
+<h1 id="to-add-additional-insights-duplicate-the-the-fields-below-adhering-to-the-formating-but-increase-the-count-by-one-integer-">To add additional insights duplicate the the fields below (adhering to the formating) but increase the count by one integer.</h1>
+<p>0:
+# A description is REQUIRED in order for this information to render on the page.
+date: #Delete this comment before entering the date when the document was published.
+description:
+# You MUST wrap this in single quotation marks (ie. ' '), since markdown can be used to enter this information. To create a heading, use three hashes (ie. ###).
+#Delete this comment before entering a brief summary about the document being referred.
+title: #Delete this comment before entering the name of the insight document.
+link: #Delete this comment before entering the URL of the insight document.
+documentFormat: #Delete this comment before entering the format of the insight document. Example: (1) Google Docs, (2) Google Sheets, and (3) Google Slides.</p>
+<h1 id="accessibilty-criteria-for-this-pattern">Accessibilty criteria for this pattern</h1>
+<h1 id="list-out-the-accessibility-for-this-pattern-">List out the accessibility for this pattern.</h1>
+<h1 id="you-must-wrap-this-in-single-quotation-marks-ie-since-markdown-can-be-used-to-enter-this-information-to-create-a-heading-use-three-hashes-ie-">You MUST wrap this in single quotation marks (ie. ' '), since markdown can be used to enter this information. To create a heading, use three hashes (ie. ###).</h1>
+<p>accessibilty:
+There was an accessibility driven design change made to the mobile filters around 2021.</p>
+<h1 id="existing-issues-with-this-pattern">Existing issues with this pattern</h1>
+<h1 id="list-of-all-the-issues-that-are-associated-with-this-pattern-1-containing-the-title-used-to-describe-the-issue-on-github-and-2-the-link-to-the-github-issue-itself-">List of all the issues that are associated with this pattern, (1) containing the title used to describe the issue on GitHub, and (2) the link to the GitHub issue itself.</h1>
+<p>issues:</p>
+<h1 id="to-add-additional-issues-duplicate-the-the-fields-below-adhering-to-the-formating-but-increase-the-count-by-one-integer-">To add additional issues duplicate the the fields below (adhering to the formating) but increase the count by one integer.</h1>
+<h2 id="0-both-title-and-link-are-required-in-order-to-display-this-information-on-the-page-title-delete-this-comment-before-entering-the-title-of-the-github-issue-link-delete-this-comment-before-entering-the-url-of-the-corresponding-github-issue-">0:
+# Both title and link are REQUIRED in order to display this information on the page.
+title: #Delete this comment before entering the title of the GitHub issue.
+link: #Delete this comment before entering the URL of the corresponding GitHub issue.</h2>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-design-guide/blob/main/docs/patterns/search-filter.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-design-guide%2Fpatterns%2Fsearch-filter.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

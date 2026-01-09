@@ -1,0 +1,596 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>publishing-api: Decision Record: Change link_sets primary key from serial to content_id - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-009-change-linksets-primary-key-to-content-id.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="publishing-api: Decision Record: Change link_sets primary key from serial to content_id - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-009-change-linksets-primary-key-to-content-id.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="publishing-api: Decision Record: Change link_sets primary key from serial to content_id" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/arch/adr-009-change-linksets-primary-key-to-content-id.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/publishing-api.html" rel="noopener" class="govuk-link">publishing-api</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/publishing-api/admin-tasks.html" rel="noopener" class="govuk-link">Admin Tasks</a></li>
+    <li><a href="/repos/publishing-api/api.html" rel="noopener" class="govuk-link">Publishing API's API</a></li>
+    <li><a href="/repos/publishing-api/data-migration.html" rel="noopener" class="govuk-link">Writing data migrations</a></li>
+    <li><a href="/repos/publishing-api/deleting-content.html" rel="noopener" class="govuk-link">Deleting Documents, Editions and Links</a></li>
+    <li><a href="/repos/publishing-api/dependency-resolution.html" rel="noopener" class="govuk-link">Dependency Resolution</a></li>
+    <li><a href="/repos/publishing-api/link-expansion.html" rel="noopener" class="govuk-link">Links and Link Expansion</a></li>
+    <li><a href="/repos/publishing-api/model.html" rel="noopener" class="govuk-link">Publishing API's Model</a></li>
+    <li><a href="/repos/publishing-api/publishing-application-examples.html" rel="noopener" class="govuk-link">Publishing application examples</a></li>
+    <li><a href="/repos/publishing-api/rabbitmq.html" rel="noopener" class="govuk-link">RabbitMQ</a></li>
+    <li class="subdir__heading">arch</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/arch/adr-001-use-event-sourcing-pattern.html" rel="noopener" class="govuk-link">Decision record: use event sourcing</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-002-dont-log-events-which-result-in-error.html" rel="noopener" class="govuk-link">Decision record: don't log events which result in an error</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-003-representation-for-multiple-content-types.html" rel="noopener" class="govuk-link"># Decision Record: Representation for Multiple Content Types</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-004-govspeak-and-embedded-content.html" rel="noopener" class="govuk-link"># Decision Record: Govspeak and embedded content</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-005-documents-and-editions.html" rel="noopener" class="govuk-link">Decision Record: Resolve consistency and uniqueness in content</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-006-new-event-type-for-content-blocks.html" rel="noopener" class="govuk-link">Decision Record: Add new event type to add custom dependency resolution behaviour when a Content Block is updated</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-007-move-content-block-rendering-logic-to-external-gem.html" rel="noopener" class="govuk-link">Decision Record: Move Content Block rendering logic to external gem</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-008-typing-for-graphql-editions.html" rel="noopener" class="govuk-link">Decision Record: Typing for GraphQL proof of concept</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-009-change-linksets-primary-key-to-content-id.html" rel="noopener" class="govuk-link">Decision Record: Change link_sets primary key from serial to content_id</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-010-add-content-block-information-to-the-downstream-payload.html" rel="noopener" class="govuk-link">Decision Record: Include Content Block Change Notes in Downstream Payloads</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-011-cache-rendered-govspeak.html" rel="noopener" class="govuk-link">Decision Record: Cache Rendered Govspeak</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-012-representing-change-history.html" rel="noopener" class="govuk-link">Decision Record: Update representation of change history</a></li>
+
+    </ul>
+    <li class="subdir__heading">archive</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/archive/data-cleanup-plan.html" rel="noopener" class="govuk-link">Data Cleanup Plan: 17th December, 2015</a></li>
+
+    </ul>
+    <li class="subdir__heading">content_schemas</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/content_schemas/adding-a-new-schema.html" rel="noopener" class="govuk-link">Adding a new content schema</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/changing-an-existing-content-schema.html" rel="noopener" class="govuk-link">Changing an existing content schema</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/contract-testing-against-schemas.html" rel="noopener" class="govuk-link">Contract Testing against Schemas</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/retiring-a-schema.html" rel="noopener" class="govuk-link">How to retire a content schema</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/working-with-json-schema-keywords.html" rel="noopener" class="govuk-link">Working with JSON Schema keywords</a></li>
+
+    </ul>
+    <li class="subdir__heading">model</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/model/README.html" rel="noopener" class="govuk-link">README</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "publishing-api",
+        "@id": "http://www.dev.gov.uk/repos/publishing-api.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/publishing-api.html">publishing-api</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/c3ab60d3d36a987ae79a5bb01b525b2a0c698a0d">24 Mar 2025</a>
+</div>
+
+  <h1 class="page-title">publishing-api: Decision Record: Change link_sets primary key from serial to content_id</h1>
+
+  
+<h2 id="context">Context</h2>
+<p>Publishing API has the concept of "link sets".</p>
+<p>A link set comprises all the links belonging to a particular content_id. Links can have various link types and
+positions, but if they belong to the same content_id, they're part of the same link set.</p>
+<p>Link sets are exposed through the API as a resource - you can get the link set of a content_id
+using <a href="/repos/publishing-api/api.html">GET /v2/links/:content_id</a>,
+and you can update them
+using <a href="/repos/publishing-api/api.html">PATCH /v2/links/:content_id</a>.</p>
+<p>Because there's a potential race condition between getting and updating a link set, they have a lock version column. For
+example, two processes fetch a link set which looks like this:</p>
+<pre lang="json"><code>{
+  "links": {
+    "organisations": [
+      "591436ab-c2ae-416f-a3c5-1901d633fbfb"
+    ]
+  }
+}
+</code></pre>
+<p>And the first process attempts to add <code>492b07ba-1a83-4163-9d1f-37fa8a088b77</code> as an organisations link, and the second
+process attempts to add <code>489743df-25bd-45b3-b799-5bfcab131cce</code>, the request that comes later should fail because it's not
+updating the latest version of the resource.</p>
+<p>To enable this, link_sets have a stale_lock_version column, which is incremented on every update.</p>
+<h2 id="problem">Problem</h2>
+<p>The current database schema has link sets as a separate table, with a foreign key relationship to the links table.</p>
+<pre lang="mermaid"><code>erDiagram
+    Link {
+        serial id PK
+        integer link_set_id FK
+    }
+    Link }o--o| LinkSet: ""
+    LinkSet {
+        serial id PK
+        uuid content_id
+        integer stale_lock_version
+    }
+</code></pre>
+<p>Although this is nicely normalized, the presence of the link_sets table necessitates an additional join when following
+the links of a document. Assuming we already know the content_id we're starting from, and the link_type we're following,
+we need to do:</p>
+<pre><code>select links.*
+from link_sets
+join links on link_sets.id = links.link_set_id
+and link_sets.content_id = ?
+and links.link_type = ?
+</code></pre>
+<p>While postgres is usually pretty good at using appropriate indexes to join these two tables together, there are
+occasions when a query we would like to write can't be planned efficiently. For example, if we knew the edition id and
+content id of a particular edition, and we wanted to find both link set and edition links, we might want to do:</p>
+<pre><code>select links.* from link_sets
+join links on link_sets.id = links.link_set_id
+where (link_sets.content_id = '77fb899a-a86c-4bf4-858f-229ea665f02d' or links.edition_id = 6488459)
+and links.link_type = 'organisations';
+</code></pre>
+<p>However, because content_id and edition_id are on different tables, postgres can't join the two indexes together.
+Instead, it will come up with a rubbish query plan which takes tens of seconds to
+execute. <a href="https://www.cybertec-postgresql.com/en/avoid-or-for-better-performance/">As described in this article</a>, this
+can be worked around by doing a UNION ALL instead of an OR, but this increases the complexity of the query
+significantly.</p>
+<p>The link sets table has two columns with unique constraints - the id column (which is a serial) and the content_id
+column (which is a uuid). This means there's a one-to-one equivalence between id and content_id.</p>
+<p>The problem is that the links table refers to link_sets with a foreign key to its id. If it used a foreign
+key to content_id instead, we would be able to avoid the join in link expansion situations, and postgres would be able
+to use its <a href="https://www.postgresql.org/docs/current/indexes-bitmap-scans.html">clever index combination techniques</a> (
+BitmapOr specifically) to come up with efficient plans.</p>
+<h2 id="solution">Solution</h2>
+<p>Glossing over the steps to make this change, which are below, the proposed solution is that we would replace the
+link_set_id column on links with a link_set_content_id column, and corresponding foreign key. So we'd have:</p>
+<pre lang="mermaid"><code>erDiagram
+    Link {
+        serial id PK
+        foreign_key link_set_content_id FK
+    }
+    Link }o--o| LinkSet: ""
+    LinkSet {
+        uuid content_id PK
+        integer stale_lock_version
+    }
+</code></pre>
+<p>Link sets would still exist as its own model and table, as we need it for the lock version we use for optimistic locking.</p>
+<p>Because the links table would now have a column with the content_id in it, we could avoid joining link_sets when doing
+link expansion, instead doing something like:</p>
+<pre><code>select * from links
+where (links.link_set_content_id = '77fb899a-a86c-4bf4-858f-229ea665f02d' or links.edition_id = 6488459)
+and links.link_type = 'organisations';
+</code></pre>
+<p>Even though this looks very similar to the query above, it's much more performant. This is for two reasons:</p>
+<ul>
+<li>We avoid the unnecessary join to link_sets</li>
+<li>Both the link_set_content_id and edition_id columns are on the same table, so if they're both indexed postgres can do
+a BitmapOr on the indexes to efficiently find links where one or the other is true.</li>
+</ul>
+<p>It would also simplify the code in publishing-api somewhat, by removing most of the places where we need
+to <a href="https://github.com/alphagov/publishing-api/blob/e4b7b185346a1242cb85dda4379ba22318ff0ab5/app/queries/links.rb#L107">joins(:link_set)</a>.</p>
+<h2 id="steps-to-implement">Steps to implement</h2>
+<p>We'll need to coordinate changes to the database schema and changes to the code to avoid causing downtime.</p>
+<p>We also need to make sure that the <a href="https://docs.publishing.service.gov.uk/repos/govuk-knowledge-graph-gcp.html#content">gov-graph</a>
+code is updated so that it doesn't break during the migration, and so that it eventually uses the new column.</p>
+<h3 id="1-add-the-new-column">1 - Add the new column</h3>
+<p>Firstly, we'll need to add the new column:</p>
+<pre><code>class AddLinkSetContentIdToLinks &lt; ActiveRecord::Migration[8.0]
+  def change
+    add_column :links, :link_set_content_id, :uuid
+    add_foreign_key :links, :link_sets, column: :link_set_content_id, primary_key: :content_id
+  end
+end
+</code></pre>
+<p>We can add the foreign key constraint immediately, because we never want to allow values in this column which don't
+exist in the link sets table.</p>
+<p>At this point the old link_set_id column is still there, and the code will still be using that. The new column will
+initially be all nulls.</p>
+<h3 id="2-update-the-code-to-write-to-both-columns">2 - Update the code to write to both columns</h3>
+<p>Whenever new links are added, we'll need to write both the link_set_id column and the link_set_content_id column. This
+is the first step towards fully populating the column.</p>
+<p>For example,
+in <a href="https://github.com/alphagov/publishing-api/blob/9447ded9df0678167735f433ecc2acba2c1be6ef/app/commands/v2/patch_link_set.rb#L21">the patch link sets code</a>
+we would need to write the link_set.content_id to the link_set_content_id on each link we create. There might be a few
+other places in the code where we create links, or if we're lucky this might be the only one.</p>
+<h3 id="3-populate-the-new-column">3 - Populate the new column</h3>
+<p>We should be able to do something like this:</p>
+<pre><code>update links
+set links.link_set_content_id = link_sets.content_id
+from link_sets
+where links.link_set_id is not null and links.link_set_id = link_sets.id;
+</code></pre>
+<p>On my local database, this did <code>5,349,185 rows affected in 15 m 3 s 918 ms</code>. I'm not sure how much locking happened during
+this window - we might want to populate the links in batches if we're worried about locking other queries.</p>
+<h3 id="4-add-indexes">4 - Add indexes</h3>
+<p>There are three indexes on link_set_id in the current schema:</p>
+<ul>
+<li>index_links_on_link_set_id</li>
+<li>index_links_on_link_set_id_and_link_type</li>
+<li>index_links_on_link_set_id_and_target_content_id</li>
+</ul>
+<p>The statistics on index scan usage suggests these are all used:</p>
+<pre lang="shell"><code>kubectl exec deploy/publishing-api -- rake pg_extras:index_scans | awk 'NR&lt;7 || /index_links_on_link_set_id/ {print} END {print}'
+</code></pre>
+<pre><code>+-------------------------------------------------------------------------------------------------------------------------+
+|                                          Number of scans performed on indexes                                           |
++------------+----------------------+---------------------------------------------------------+------------+--------------+
+| schemaname | table                | index                                                   | index_size | index_scans  |
++------------+----------------------+---------------------------------------------------------+------------+--------------+
+| public     | links                | index_links_on_link_set_id_and_target_content_id        | 909 MB     | 10190392530  |
+| public     | links                | index_links_on_link_set_id_and_link_type                | 683 MB     | 1233485761   |
+| public     | links                | index_links_on_link_set_id                              | 567 MB     | 6082986136   |
++------------+----------------------+---------------------------------------------------------+------------+--------------+
+</code></pre>
+<p>So it makes sense to create the same indexes on link_set_content_id:</p>
+<pre><code>add_index :links, [:link_set_content_id], algorithm: :concurrently
+add_index :links, [:link_set_content_id, :link_type], algorithm: :concurrently
+add_index :links, [:link_set_content_id, :target_content_id], algorithm: :concurrently
+</code></pre>
+<p>Adding these indexes concurrently will take around twice as long, but will avoid locking the table.</p>
+<p>Note that these indexes will be larger than the indexes on link_set_id, because uuids are bigger than serial ids.</p>
+<h3 id="5-check-that-the-column-is-completely-populated">5 - Check that the column is completely populated</h3>
+<p>As a sanity check, we can check that all the links that have link_set_id all have the correct values for link_set_content_id:</p>
+<pre><code>select count(*) from links
+join link_sets on link_sets.id = links.link_set_id
+where link_sets.content_id != links.link_set_content_id;
+</code></pre>
+<p>This should return zero. Note this query may take several minutes, as it needs to scan the whole links table.</p>
+<h3 id="6-update-the-code-to-use-the-new-link_set_content_id-column">6 - Update the code to use the new link_set_content_id column</h3>
+<p>This will be the biggest change to the publishing-api codebase. Everywhere where we join links and link_sets we'll need
+to decide whether to remove the join (because we only needed content_id from link_sets, and we can now use
+link_set_content_id), or to update the join to use the new column.</p>
+<p>We should also update the LinkSet model so that it treats content_id as its primary key instead of id, and make sure
+that we update any situations where we're doing something like:</p>
+<pre><code>LinkSet.find(id)
+</code></pre>
+<p>To</p>
+<pre><code>LinkSet.find(content_id)
+</code></pre>
+<p>At this point, the code is using the new column, and we should get all the performance benefits it brings. The rest of
+the process is cleanup really, but it's worth doing to avoid leaving things in a confusing state.</p>
+<h3 id="7-drop-indexes-and-constraints-on-link_set_id">7 - Drop indexes and constraints on link_set_id</h3>
+<p>The indexes shouldn't be used anymore, so dropping them should be safe. We can also drop the foreign key constraint from
+link_sets to links, as we don't care about enforcing it anymore.</p>
+<h3 id="8-stop-writing-to-the-link_set_id-column">8 - Stop writing to the link_set_id column</h3>
+<p>At this point, we can update the code not to populate the link_set_id column on the links table, so only the
+link_set_content_id column is used. We need to be sure that we've done step 6 properly at this point, and that the code
+isn't using link_set_id anywhere, or stopping writing to it could cause confusing bugs.</p>
+<h3 id="9-remove-the-link_set_id-column-from-links">9 - Remove the link_set_id column from links</h3>
+<p>🔪</p>
+<h3 id="10-remove-the-id-column-from-link_sets">10 - Remove the id column from link_sets</h3>
+<p>Assuming we've already removed all the constraints and indexes that use id, it should now be safe enough to do this:</p>
+<pre lang="sql"><code>-- 1. Drop the original primary key
+ALTER TABLE link_sets DROP CONSTRAINT link_sets_pkey
+
+-- 2. Rename existing index
+ALTER INDEX index_link_sets_on_content_id RENAME TO link_sets_pkey
+
+-- 3. Create new primary key using existing index
+ALTER TABLE link_sets ADD PRIMARY KEY USING INDEX link_sets_pkey
+
+-- 4. Drop the old column
+ALTER TABLE link_sets DROP COLUMN id;
+</code></pre>
+<p>We could do these in a rails migration using the execute method. Might be better to just
+do them in a SQL console though.</p>
+<p>Probably best to update the schema.rb file at this point too.</p>
+<h3 id="11-update-documentation">11 - Update documentation</h3>
+<p>We should update the documentation to reflect the new column names, and to remove any references to the old column.
+For example <a href="https://docs.publishing.service.gov.uk/repos/publishing-api/model.html#diagram">this diagram</a> should be
+updated to make it clear that the relationship between Link and content_id is direct, rather than through LinkSet.</p>
+<h3 id="12-celebrate-">12 - Celebrate 🎉</h3>
+<p>Link expansion is now easier to do! We need fewer joins, and we can get more efficient query plans! Hooray!</p>
+<h2 id="consequences">Consequences</h2>
+<h3 id="positive">Positive</h3>
+<ul>
+<li>Link expansion SQL queries will be simpler (requiring fewer joins), and faster (making better use of indexes)</li>
+<li>The publishing-api codebase will be simpler, as we'll be able to remove a lot of the join logic</li>
+</ul>
+<h3 id="negative">Negative</h3>
+<ul>
+<li>Index size will increase, as the new indexes will be larger than the old ones</li>
+<li>We'll have to make the changes in a number of steps, some of which may be somewhat risky. This should be manageable
+with careful planning and testing.</li>
+</ul>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/publishing-api/blob/main/docs/arch/adr-009-change-linksets-primary-key-to-content-id.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-api%2Farch%2Fadr-009-change-linksets-primary-key-to-content-id.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

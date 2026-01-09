@@ -1,0 +1,616 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>publishing-api: Publishing API's Model - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-api/model.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="publishing-api: Publishing API's Model - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/model.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="publishing-api: Publishing API's Model" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/model.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/publishing-api.html" rel="noopener" class="govuk-link">publishing-api</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/publishing-api/admin-tasks.html" rel="noopener" class="govuk-link">Admin Tasks</a></li>
+    <li><a href="/repos/publishing-api/api.html" rel="noopener" class="govuk-link">Publishing API's API</a></li>
+    <li><a href="/repos/publishing-api/data-migration.html" rel="noopener" class="govuk-link">Writing data migrations</a></li>
+    <li><a href="/repos/publishing-api/deleting-content.html" rel="noopener" class="govuk-link">Deleting Documents, Editions and Links</a></li>
+    <li><a href="/repos/publishing-api/dependency-resolution.html" rel="noopener" class="govuk-link">Dependency Resolution</a></li>
+    <li><a href="/repos/publishing-api/link-expansion.html" rel="noopener" class="govuk-link">Links and Link Expansion</a></li>
+    <li><a href="/repos/publishing-api/model.html" rel="noopener" class="govuk-link">Publishing API's Model</a></li>
+    <li><a href="/repos/publishing-api/publishing-application-examples.html" rel="noopener" class="govuk-link">Publishing application examples</a></li>
+    <li><a href="/repos/publishing-api/rabbitmq.html" rel="noopener" class="govuk-link">RabbitMQ</a></li>
+    <li class="subdir__heading">arch</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/arch/adr-001-use-event-sourcing-pattern.html" rel="noopener" class="govuk-link">Decision record: use event sourcing</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-002-dont-log-events-which-result-in-error.html" rel="noopener" class="govuk-link">Decision record: don't log events which result in an error</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-003-representation-for-multiple-content-types.html" rel="noopener" class="govuk-link"># Decision Record: Representation for Multiple Content Types</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-004-govspeak-and-embedded-content.html" rel="noopener" class="govuk-link"># Decision Record: Govspeak and embedded content</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-005-documents-and-editions.html" rel="noopener" class="govuk-link">Decision Record: Resolve consistency and uniqueness in content</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-006-new-event-type-for-content-blocks.html" rel="noopener" class="govuk-link">Decision Record: Add new event type to add custom dependency resolution behaviour when a Content Block is updated</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-007-move-content-block-rendering-logic-to-external-gem.html" rel="noopener" class="govuk-link">Decision Record: Move Content Block rendering logic to external gem</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-008-typing-for-graphql-editions.html" rel="noopener" class="govuk-link">Decision Record: Typing for GraphQL proof of concept</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-009-change-linksets-primary-key-to-content-id.html" rel="noopener" class="govuk-link">Decision Record: Change link_sets primary key from serial to content_id</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-010-add-content-block-information-to-the-downstream-payload.html" rel="noopener" class="govuk-link">Decision Record: Include Content Block Change Notes in Downstream Payloads</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-011-cache-rendered-govspeak.html" rel="noopener" class="govuk-link">Decision Record: Cache Rendered Govspeak</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-012-representing-change-history.html" rel="noopener" class="govuk-link">Decision Record: Update representation of change history</a></li>
+
+    </ul>
+    <li class="subdir__heading">archive</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/archive/data-cleanup-plan.html" rel="noopener" class="govuk-link">Data Cleanup Plan: 17th December, 2015</a></li>
+
+    </ul>
+    <li class="subdir__heading">content_schemas</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/content_schemas/adding-a-new-schema.html" rel="noopener" class="govuk-link">Adding a new content schema</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/changing-an-existing-content-schema.html" rel="noopener" class="govuk-link">Changing an existing content schema</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/contract-testing-against-schemas.html" rel="noopener" class="govuk-link">Contract Testing against Schemas</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/retiring-a-schema.html" rel="noopener" class="govuk-link">How to retire a content schema</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/working-with-json-schema-keywords.html" rel="noopener" class="govuk-link">Working with JSON Schema keywords</a></li>
+
+    </ul>
+    <li class="subdir__heading">model</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/model/README.html" rel="noopener" class="govuk-link">README</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "publishing-api",
+        "@id": "http://www.dev.gov.uk/repos/publishing-api.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/publishing-api.html">publishing-api</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/7cea9433c32ff5a1de3fa6e4ee3b0744471972ba">12 Mar 2025</a>
+</div>
+
+  <h1 class="page-title">publishing-api: Publishing API's Model</h1>
+
+  
+<h1 id="contents">Contents</h1>
+<ul>
+<li>
+<a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#content_id">content_id</a></li>
+<li><a href="#diagram">Diagram</a></li>
+</ul>
+</li>
+<li>
+<a href="#content">Content</a>
+<ul>
+<li><a href="#document">Document</a></li>
+<li>
+<a href="#edition">Edition</a>
+<ul>
+<li><a href="#workflow">Workflow</a></li>
+<li><a href="#uniqueness">Uniqueness</a></li>
+<li><a href="#substitution">Substitution</a></li>
+</ul>
+</li>
+<li><a href="#unpublishing">Unpublishing</a></li>
+<li><a href="#changenote">ChangeNote</a></li>
+<li><a href="#accesslimit">AccessLimit</a></li>
+<li><a href="#pathreservation">PathReservation</a></li>
+</ul>
+</li>
+<li>
+<a href="#linking">Linking</a>
+<ul>
+<li><a href="#linkset">LinkSet</a></li>
+<li><a href="#link">Link</a></li>
+</ul>
+</li>
+<li>
+<a href="#history">History</a>
+<ul>
+<li><a href="#event">Event</a></li>
+<li><a href="#action">Action</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="introduction">Introduction</h1>
+<p>This document serves as a broad introduction to the domain models used in
+the Publishing API and their respective purposes. They can be separated into
+3 areas of concern:</p>
+<ul>
+<li>
+<a href="#content">Content</a> - Content that is stored in the Publishing API.</li>
+<li>
+<a href="#linking">Linking</a> - Links between content that is stored.</li>
+<li>
+<a href="#history">History</a> - The storing of operations that may have altered content
+or links.</li>
+</ul>
+<p>These areas are all interconnected through the use of shared <code>content_id</code>
+fields.</p>
+<h2 id="content_id">content_id</h2>
+<p><code>content_id</code> is a <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a> value that is used to identify distinct pieces
+of content that are used on GOV.UK. It is generated from within a publishing
+application and the same <code>content_id</code> is used for content that is available in
+multiple translations. Different iterations of the same piece of content all
+share the same <code>content_id</code>.</p>
+<p>Each piece of content stored in the Publishing API is associated with a
+<code>content_id</code>, the links stored are relationships between <code>content_ids</code>, and
+history is associated with a <code>content_id</code>.</p>
+<h2 id="diagram">Diagram</h2>
+<p>The following is a high-level diagram that was generated with
+<a href="http://plantuml.com/plantuml/">plantuml</a>. The
+<a href="https://github.com/alphagov/publishing-api/blob/main/docs/model/object-model.plantuml">source</a> that generated this diagram is checked
+into this repository.</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/publishing-api/main/docs/model/object-model.png" alt="Diagram of the object model"></p>
+<h1 id="content">Content</h1>
+<h2 id="document">Document</h2>
+<p>A document represents all iterations of a piece of content in a particular
+locale. It is associated with multiple editions that represent distinct
+versions of a piece of content.</p>
+<p>The concerns of a document are which iterations are represented on draft and
+live content stores; and the <a href="/repos/publishing-api/api.html">lock version</a> for the content.</p>
+<p>A document stores the <a href="#content_id"><code>content_id</code></a>, locale and lock version for
+content. It is designed to be a simple model so that it can be used for
+database level locking of concurrent requests.</p>
+<h2 id="edition">Edition</h2>
+<p>An edition is a particular iteration of a piece of content. It stores most
+of the data that is used to represent content in the content store and is
+associated with a document. There are <a href="#uniqueness">uniqueness constraints</a>
+to ensure there are not conflicting Editions. Previously an Edition was named
+ContentItem.</p>
+<p>Most of the fields stored on an edition are defined as part of the
+<a href="/repos/publishing-api/api.html">/put-content/:content_id</a> API.</p>
+<p>Key fields that are set internally by the Publishing API are:</p>
+<ul>
+<li>
+<code>state</code> - where an edition is in its <a href="#workflow">publishing workflow</a>, can
+be "draft", "published", "unpublished" or "superseded".</li>
+<li>
+<code>user_facing_version</code> - an integer that stores which iteration of a document
+an edition is.</li>
+<li>
+<code>content_store</code> - indicates whether an edition is intended for draft, live or
+no content store (for <a href="#substitution">substituted</a> or superseded editions).</li>
+</ul>
+<p>Documents that have an edition with a "live" <code>content_store</code> value will have
+the corresponding edition presented on the live content store.
+All documents where there is an edition with a "draft" or "live" value of
+<code>content_store</code> are presented on the draft content store. With the draft
+edition presented if available, otherwise the live one.</p>
+<h3 id="workflow">Workflow</h3>
+<p>An edition can be in one of four states: "draft", "published", "unpublished"
+and "superseded".</p>
+<p>At any one time a document can contain:</p>
+<ul>
+<li>
+<strong>1 edition</strong> in a "draft" state</li>
+<li>
+<strong>1 edition</strong> in a "published" or "unpublished" state</li>
+<li>
+<strong>any number of editions</strong> in a "superseded" state</li>
+</ul>
+<p>When the first edition of a document is created it is in a "draft" state and
+available on the draft content store. The content can be updated any number of
+times before publishing.</p>
+<p>Once an edition has been published it is possible to create a new edition of
+the draft - thereby having 1 draft edition and 1 published edition of a
+document.</p>
+<p>A published edition can be unpublished, which will create an
+<a href="#unpublishing"><code>unpublishing</code></a> for the edition. The unpublished edition will
+be represented on the live content store.</p>
+<p>If a draft is published while there is already a published or unpublished
+edition. The previous edition will have its <code>state</code> updated to "superseded"
+and will be replaced on the live content store with the newly published
+edition.</p>
+<h3 id="uniqueness">Uniqueness</h3>
+<p>There are uniqueness constraints to ensure conflicting editions cannot be
+stored:</p>
+<ul>
+<li>
+<strong>No two editions can share the same <code>base_path</code> and <code>content_store</code> values.</strong>
+This ensures there can't be multiple documents that are trying to use the
+same path on GOV.UK.</li>
+<li>
+<strong>For a document there can't be two editions with the same <code>user_facing_version</code>.</strong>
+This prevents there being two editions sharing the same version number.</li>
+<li>
+<strong>For a document there can't be two editions on the same content store.</strong> This
+prevents an edition being accidentally available in multiple versions in
+multiple places.</li>
+</ul>
+<h3 id="substitution">Substitution</h3>
+<p>When creating and publishing editions an existing edition with the
+same base_path will be blocked due to <a href="#uniqueness">uniqueness constraints</a>.
+However when one of the items that conflicts is considered substitutable
+(typically a non-content type) the operation can continue and the blocking item
+will be discarded, in the case of a draft; or <a href="#unpublishing">unpublished</a> if it
+is published.</p>
+<h2 id="unpublishing">Unpublishing</h2>
+<p>When an edition is unpublished an Unpublishing model is used to represent the
+type of unpublishing and associated meta data so that the unpublished edition
+can be represented correctly in the content store.</p>
+<p>There are 5 types an unpublishing can be:</p>
+<ul>
+<li>
+<strong><code>withdrawal</code></strong> - The edition will still be readable on GOV.UK but will have a
+withdrawn banner, provided with an <code>explanation</code> and an optional
+<code>alternative_path</code>.</li>
+<li>
+<strong><code>redirect</code></strong> - Attempts to access the edition on GOV.UK will be redirected
+to according to the <code>redirects</code> hash, or a provided <code>alternative_path</code>
+</li>
+<li>
+<strong><code>gone</code></strong> - Attempts to access the edition on GOV.UK will receive a 410 Gone
+HTTP response.</li>
+<li>
+<strong><code>vanish</code></strong> - Attempts to access the edition on GOV.UK will receive a 404 Not
+Found HTTP response.</li>
+<li>
+<strong><code>substitute</code></strong> - This type cannot be set by a user and is automatically
+created when an edition is <a href="#substitution">substituted</a>.</li>
+</ul>
+<h2 id="changenote">ChangeNote</h2>
+<p>An Edition can be associated with a ChangeNote, which stores a note describing
+the changes that have occurred between major editions of a Document and the
+time the changes occurred.</p>
+<p>When presenting an edition of a Document to the content store, the change notes
+for that edition and all previous editions are combined to create a list of
+the change notes for the document.</p>
+<h2 id="accesslimit">AccessLimit</h2>
+<p>AccessLimit is a concept that is associated with an Edition in a
+"draft" state. It is used to store a list of user id's (UIDs that represent
+users in <a href="https://github.com/alphagov/signon">signon</a>) which will be the only users who can view the
+Edition in the draft environment.</p>
+<h2 id="pathreservation">PathReservation</h2>
+<p>A PathReservation is a model that associates a path (in the URI context of
+<code>https://gov.uk/&lt;path&gt;</code>) with a publishing application. This model is used to
+restrict the usage of paths to a particular publishing application.</p>
+<p>These are created when content is created or moved, and can be created
+before content exists to ensure that no other app can use the path.</p>
+<h1 id="linking">Linking</h1>
+<p>Associations between content in the Publishing API is stored through <code>Links</code>,
+these are used to indicate a relationship with the documents of one
+<a href="#content_id"><code>content_id</code></a> with the documents of a different <code>content_id</code>.</p>
+<h2 id="linkset">LinkSet</h2>
+<p>A LinkSet is a model that is used to represent the association of a
+<a href="#content_id"><code>content_id</code></a> and a collection of <a href="#link">Links</a>.</p>
+<p>It stores a lock version number for usage in
+<a href="/repos/publishing-api/api.html">optimist locking</a>.</p>
+<h2 id="link">Link</h2>
+<p>A Link represents the association to another <code>content_id</code> - known as the
+<code>target_content_id</code>. A <code>link_type</code> and ordering is also stored on a Link.
+<code>link_type</code> is used to represent the relationship between the content of
+the content_id. It is common for a link to have multiple relationships to
+content of the same <code>link_type</code>, the ordering field is used to store the order
+in which the links of a certain <code>link_type</code> was specified. The source of a link
+can either be a <code>LinkSet</code> (i.e. a <code>content_id</code>), known as
+<a href="/repos/publishing-api/link-expansion.html">link set links</a> or an <code>Edition</code>, known as
+<a href="/repos/publishing-api/link-expansion.html">edition links</a>.</p>
+<h1 id="history">History</h1>
+<p>The Publishing API stores information on operations that change the state of
+data stored in the Publishing API. These are stored through the Event and
+Action models.</p>
+<h2 id="event">Event</h2>
+<p>An Event is used to store the details of data that may change state within the
+Publishing API. It stores data that identifies the end user and web request that
+initiated the operation; which operation and which content will be affected;
+and the payload of the input. Only operations that successfully complete are
+stored as Events.</p>
+<p>Events are used as a debugging and reference tool by developers of the
+Publishing API. As they generate large amounts of data the full details of
+them are not stored permanently.</p>
+<h2 id="action">Action</h2>
+<p>An Action is used to store the change history of a piece of content in the
+Publishing API. They are associated with both a <a href="#content_id"><code>content_id</code></a> and
+an <a href="#edition">Edition</a>. Requests that change the state in the Publishing API
+create Actions that store which action was performed and the end user who
+initiated the request.</p>
+<p>Actions can be created by publishing applications to store additional data
+on the workflow of content.</p>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/publishing-api/blob/main/docs/model.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-api%2Fmodel.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
