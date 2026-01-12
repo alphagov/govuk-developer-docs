@@ -29,13 +29,15 @@ The [GOV.UK Search Grafana dashboard][link-5] visualizes core metrics for site s
 
 Alertmanager is used to monitor metrics in Prometheus, and send notifications when metrics cross predefined thresholds.
 
-For site search, we use AlertManager to notify us of ["degradation of service"](#degradation-of-service-alerts) and ["degradation of quality"](#degradation-of-search-quality-alerts) alerts.
-
 All environments are configured for Slack notifications. Production alerts are routed to #govuk-search-alerts, while alerts for other environments are sent to #govuk-search-alerts-nonprod.
 
 ## Alert types and how to handle them
 
 ### Degradation of service alerts
+
+We monitor and alert on both Search API v2 success rates, and Google Vertex response times.
+
+#### Search API v2 success rates
 
 We have an informal SLO to maintain a search and autocomplete success rate of about 99.99% over any 24 hour period. There are currently four Alertmanager rules configured in govuk-helm-charts to send notifications on Slack, if rates drop below this:
 
@@ -46,6 +48,10 @@ We have an informal SLO to maintain a search and autocomplete success rate of ab
 - [SearchDegradedLong][link-8] 24 hour rolling success rate for search requests has dropped below 99.99% for more than 24 hours.
 
 - [AutocompleteDegradedAcute][link-9] 5 minute rolling success rate for autocomplete requests has dropped below 90% for more than 10 minutes.
+
+#### Google Vertex AI Search request durations
+
+There is currently one Alertmanager rule configured in govuk-helm-charts, [HighVertexP90Latency](link-14), which sends notifications in Slack if requests to Google Vertex's Search endpoint exceed acceptable duration thresholds.
 
 #### Causes and steps to take in the event of a degradation of service alert firing
 
@@ -122,14 +128,15 @@ If an evaluation fails for a reason other than a sample query set not existing, 
 [link-3]: https://govuk.sentry.io/insights/projects/app-search-api-v2-beta-features/?project=4510158725513217
 [link-4]: ./kibana.html
 [link-5]: https://grafana.eks.production.govuk.digital/d/govuk-search/gov-uk-search?orgId=1&from=now-24h&to=now&timezone=browser
-[link-6]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L41
-[link-7]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L93
-[link-8]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L130
-[link-9]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L56
-[link-10]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L153
-[link-11]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L179
+[link-6]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L63
+[link-7]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L115
+[link-8]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L152
+[link-9]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L78
+[link-10]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L188
+[link-11]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L201
 [link-12]: https://console.cloud.google.com/welcome?inv=1&invt=Ab3mhA&project=search-api-v2-production
 [link-13]: https://console.cloud.google.com/support/cases?inv=1&invt=Ab3mhA&project=search-api-v2-production
+[link-14]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L49
 [evaluations-schedule]: https://docs.publishing.service.gov.uk/repos/search-api-v2-beta-features/evaluations.html#schedule
 [beta-features-repo]: https://github.com/alphagov/search-api-v2-beta-features
 [create-sample-query-sets-in-argo]: https://argo.eks.integration.govuk.digital/applications/search-api-v2-beta-features?orphaned=false&resource=&node=batch%2FCronJob%2Fapps%2Fsearch-api-v2-beta-features-setup-sample-query-sets
