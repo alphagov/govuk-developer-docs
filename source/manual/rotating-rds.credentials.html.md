@@ -1,14 +1,14 @@
 ---
 owner_slack: "#govuk-platform-engineering"
-title: Rotating RDS Credentials for GOV.UK Applications
+title: Rotating Relational Database Service (RDS) Credentials for GOV.UK Applications
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
 ---
 
-Thid documentation explains how to rotate (or create) Credentials for an RDS Database (backed by MySQL or Postgres).
+This documentation explains how to rotate (or create) Credentials for an RDS Database (backed by MySQL or Postgres).
 
-## Brief: The Process
+## The process
 
 The process to rotate credentials on an RDS-hosted Database Instance is as follows:
 
@@ -17,13 +17,13 @@ The process to rotate credentials on an RDS-hosted Database Instance is as follo
 * Update the credentials used by the application
 * Delete the old user
 
-# Getting Started
+# Getting started
 
-## Create a Bastion or "Jumpbox" Pod
+## Create a bastion or "jump box" Pod
 
-Before you can interact with MySQL or Postgres, you will need a way to interact with the RDS instance which sits inside the VPC.
+Before you can interact with MySQL or Postgres, you will need a way to interact with the RDS instance that sits inside the VPC.
 
-### Pod Definition for MySQL
+### Pod definition for MySQL
 
 Save this Pod Definition to a local file of your choosing (such as `mysql-jumpbox.yaml`):
 
@@ -39,9 +39,9 @@ spec:
     env:
       - name: DATABASE_URL
         valueFrom:
-        secretKeyRef:
-          name: signon-mysql
-          key: DATABASE_URL
+          secretKeyRef:
+            name: signon-mysql
+            key: DATABASE_URL
     command:
       - bash
       - -c
@@ -60,14 +60,14 @@ spec:
     runAsGroup: 1000
 ```
 
-Once you've done this, you will want to apply this pod definition to the environment/cluster required -
+Once you've done this, you will want to apply this pod definition to the required cluster -
 you will need either `platformengineer` or `fulladmin` roles to do this:
 
 ```sh
 $ gds aws govuk-some-environment-fulladmin -- kubectl -n apps apply -f mysql-jumpbox.yaml
 ```
 
-### Pod Definition for Postgres
+### Pod definition for Postgres
 
 Save this Pod Definition to a local file of your choosing (such as `postgres-jumpbox.yaml`):
 
@@ -104,14 +104,14 @@ spec:
     runAsGroup: 1000
 ```
 
-Once you've done this, you will want to apply this pod definition to the environment/cluster required -
+Once you've done this, you will want to apply this pod definition to the required cluster -
 you will need either `platformengineer` or `fulladmin` roles to do this:
 
 ```sh
 $ gds aws govuk-some-environment-fulladmin -- kubectl -n apps apply -f postgres-jumpbox.yaml
 ```
 
-### Getting the `aws_db_admin` Root User Credentials
+### Getting the `aws_db_admin` root user credentials
 
 First, log in to the relevant AWS Console environment:
 
@@ -119,19 +119,18 @@ First, log in to the relevant AWS Console environment:
 $ gds aws govuk-some-environment-developer -l
 ```
 
-To manage Database Authentication, you will need to use the Root User which can be found in AWS Secrets Manager
+To manage Database Authentication, you will need to use the Root User, which you can find in AWS SecretsManager
  under the key `[env-name]-rds-admin-passwords` - replace `[env-name]` with the relevant environment name.
 
-Once you have found the above secret, you will find key/value pairs for each RDS instance and the corresponding password.
+Once you have found the secret, you will find key/value pairs for each RDS instance and the corresponding password.
 
-If you also need to find the hostname and Database Name for the relavant RDS instance, you can either find this by locating the RDS instance in the AWS Console,
- or you can view it in the relevant secret under `govuk/[app-name]/[db-engine]` - substitute `[app-name]` and `[db-engine]` as relevant.
+If you also need to find the hostname and Database Name for the relavant RDS instance, you can find this by locating the RDS instance in the AWS Console. Or, you can view it in the relevant secret under `govuk/[app-name]/[db-engine]` - substitute `[app-name]` and `[db-engine]` as relevant.
 
-## Managing Credentials for MySQL Instances
+## Managing credentials for MySQL instances
 
 Next, you will need to use the Jumpbox to start an interactive session with the Database Engine.
 
-### Authenticating to the MySQL Terminal with the `aws_db_admin` User
+### Authenticating to the MySQL terminal with the `aws_db_admin` user
 
 With a valid "fulladmin" AWS role, use `kubectl exec` against the Jumpbox you created earlier to start a bash session:
 
@@ -145,7 +144,7 @@ If everything worked, you should now have a bash prompt inside the container.
 $ mysql --host [rds-hostname] -p -u aws_db_admin
 ```
 
-Replace `[rds-hostname]` with the relevant hostname. You will be promted for the password you fetched earlier. If successful you will now have an authenticated interactive MySQL session.
+Replace `[rds-hostname]` with the relevant hostname. You will be prompted for the password you fetched earlier. If successful you will now have an authenticated interactive MySQL session.
 
 # Managing Credentials for Postgres Instances
 
@@ -165,13 +164,13 @@ If everything worked, you should now have a bash prompt inside the container:
 I have no name!@postgres-jumpbox:/$ 
 ```
 
-You should now be able to use the Bash Prompt to start an iteractive Postgres session:
+You should now be able to use the Bash Prompt to start an interactive Postgres session:
 
 ```sh
 $ psql --host [rds-hostname] --username aws_db_admin --password --database [database-name]
 ```
 
-Replace `[rds-hostname]` with the relevant hostname. You will be promted for the password you fetched earlier. If successful you will now have an authenticated interactive Postgres session.
+Replace `[rds-hostname]` with the relevant hostname. You will be prompted for the password you fetched earlier. If successful you will now have an authenticated interactive Postgres session.
 
 ## Identifying Existing Roles (Users) and Ownerships
 
@@ -213,13 +212,13 @@ Running `\dt` will produce something like:
  public | users                | table | account-api
 ```
 
-If it is apparant that the Database resources are owned by the active application user (in these examples, `account-api`), you will want to go through the process below to standardise the ownership of the Database and associated Tables.
+If it becomes clear that the active application user (in these examples, `account-api`) owns the database objects and tables, you will want to go through the following process to standardise the ownership of the Database and associated Tables.
 
-## Database Ownership Standardisation (One Time Only)
+## Database ownership standardisation (one time only)
 
-This section will describe the process to re-assigne the Database Ownership to use a single role that can be granted to one or more sets of credential sets (authenticated roles) to simplify the process of managing and rotating credentials in the future.
+Follow these instructions to re-assign the Database Ownership to use a single role that you can use to grant to one or more credential sets (authenticated roles) to simplify the process of managing and rotating credentials in the future.
 
-### Create the New Owner Role
+### Create the new owner role
 
 Create a role to serve as the Database Owner (substitute `account-api` with the app name):
 
@@ -229,7 +228,7 @@ CREATE ROLE "account-api-owner-role" WITH NOLOGIN;
 
 The `NOLOGIN` argument defines this role as a structural role and not a user role, preventing direct authentication.
 
-### Make Existing User Role a Member of New Owner Role
+### Make existing user role a member of the new owner role
 
 This is important! Missing this step will result in the current app user losing privileges and cause an outage.  
 Use the `GRANT` verb to make the existing `account-api` app user a member of the new owner role:
@@ -238,7 +237,7 @@ Use the `GRANT` verb to make the existing `account-api` app user a member of the
 GRANT "account-api-owner-role" TO "account-api";
 ```
 
-### Transfer Ownership of Database Objects
+### Transfer ownership of database objects
 
 First, transfer object ownership of all tables, sequences, views and functions over to the new role:
 
@@ -246,7 +245,7 @@ First, transfer object ownership of all tables, sequences, views and functions o
 REASSIGN OWNED BY "account-api" TO "account-api-owner-role";
 ```
 
-...then transfer the Database Owner:
+Then transfer the Database Owner:
 
 ```sql
 ALTER DATABASE "account-api_production" OWNER TO "account-api-owner-role";
@@ -257,9 +256,9 @@ ALTER DATABASE "account-api_production" OWNER TO "account-api-owner-role";
 ALTER SCHEMA public OWNER TO "account-api-owner-role";
 ```
 
-### Set Default Owners for Future Objects
+### Set default owners for future objects
 
-The previous changes will update everything that is currently in the Database, but any future migrations run the risk of there being "split ownership", so we will do something about this now. Set defaults as below:
+The earlier changes will update everything that is currently in the Database, but any future migrations run the risk of there being "split ownership", so we will do something about this now. Set defaults as follows:
 
 ```sql
 ALTER DEFAULT PRIVILEGES FOR ROLE "account-api" 
@@ -271,7 +270,7 @@ IN SCHEMA public
 GRANT ALL ON SEQUENCES TO "account-api-owner-role";
 ```
 
-### Verification of Ownership
+### Verification of ownership
 
 Run this query to confirm the Database Owner:
 
@@ -289,18 +288,112 @@ You should see the following result:
  account-api_production | account-api-owner-role
 ```
 
-If this looks correct, you can now proceed to Create a New User and rotate your credentials as desired.
+If this looks correct, you can now proceed to Create a New User and rotate your credentials as needed.
 
-## Create New User for Postgres DB
+## Create new user for Postgres DB
 
 Create a new user with a password of your choosing:
 
 ```sql
-CREATE USER someusername2 WITH password 'a secret password';
+CREATE USER "account-api-user2" WITH password 'a-secret-password';
 ```
 
 Then you will need to grant the new user access to the role that owns the relevant tables:
 
 ```sql
-GRANT somerolename TO someusername2;
+GRANT "account-api-owner-role" TO "account-api-user2";
+```
+
+### Verify role inheritance
+
+Run this command to verify the new user has the correct inheritance:
+
+```sql
+SELECT r.rolname as user_name, m.rolname as member_of
+FROM pg_roles r
+JOIN pg_auth_members am ON r.oid = am.member
+JOIN pg_roles m ON am.roleid = m.oid
+WHERE r.rolname = 'account-api-user2';
+```
+
+## Rotate credentials in AWS SecretsManager
+
+Next, you should access the AWS Console for the relevant environment with the `fulladmin` role and locate the relevant Secret in AWS SecretsManager. Locate the secret named `govuk/account-api/postgres` and edit the `username` and `password` keys to match the values of the new Postgres user you created earlier.
+
+### Force sync of Kubernetes secrets
+
+Once you have updated the stored secrets in AWS SecretsManager, you will want to force a sync of the ExternalSecret objects held by Kubernetes:
+
+```bash
+kubectl annotate -n apps externalsecrets.external-secrets.io \
+  account-api-postgres force-sync=$(date +%s) --overwrite
+```
+
+Then run this command to verify that the Secret in Kubernetes has updated:
+
+```bash
+kubectl get secret account-api-postgres -o json | jq '.data.DATABASE_URL | @base64d'
+```
+
+You should see a connection string that looks simular to `postgresql://account-api-user2:a-secret-password@hostname/account-api_production` - check that the `username:password` bit matches what you expect it to.
+
+### Check application variables
+
+Check one of the application pods that the DATABASE_URL environment variable has the correct secret (proving the pods have restarted with the new credentials):
+
+```bash
+kubectl exec -it deployment/account-api --container=app -- env | grep "DATABASE_URL"
+```
+
+You should see the same connection string as earlier.
+
+## Deleting old credentials
+
+If you have completed the earlier steps correctly and the application is working with the new credentials, you can now proceed to delete the old credentials.
+
+### Check lingering connections
+
+Run this command to see if there are any remaining connections from the old user:
+
+```sql
+SELECT count(*) as active_connections, application_name 
+FROM pg_stat_activity 
+WHERE usename = 'account-api'
+GROUP BY application_name;
+```
+
+If this returns `0` then you are able to continue.
+
+### Final check for temporary or recent objects
+
+Run the re-assign command again to catch any temporary or last-minute objects the old user might have created prior to the credential switchover:
+
+```sql
+REASSIGN OWNED BY "account-api" TO "account-api-owner-role";
+```
+
+Then strip away any orphaned direct privileges:
+
+```sql
+DROP OWNED BY "account-api";
+```
+
+### Delete the old user
+
+Finally, this deletes the old user:
+
+```sql
+DROP USER "account-api";
+```
+
+## Troubleshooting
+
+### Force-kill connections for a user
+
+If you have connections that do not appear to be going away, you can force-kill any connections from a user by running the following command:
+
+```sql
+SELECT pg_terminate_backend(pid) 
+FROM pg_stat_activity 
+WHERE usename = 'account-api'; --The username you want to drop connections for
 ```
