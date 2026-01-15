@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-platform-engineering"
-title: Rotating Relational Database Service (RDS) Credentials for GOV.UK Applications
+title: Rotate Relational Database Service (RDS) Credentials for GOV.UK Applications
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
