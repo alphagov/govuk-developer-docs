@@ -153,13 +153,13 @@ Replace `[rds-hostname]` with the relevant hostname. You will be prompted for th
 First check to see which users currently exist on the MySQL server:
 
 ```sql
-SELECT 
-    User, 
-    Host, 
+SELECT
+    User,
+    Host,
     plugin as Auth_Method,
     password_expired as Password_Expired,
     account_locked as Account_Locked,
-    Super_priv as Is_Superuser, 
+    Super_priv as Is_Superuser,
     Grant_priv as Can_Grant_Access
 FROM mysql.user
 ORDER BY User;
@@ -273,8 +273,8 @@ If any of the above commands return any results, you can use commands such as `S
 Check that the new user is now being used to make connections:
 
 ```sql
-SELECT USER, count(*) 
-FROM information_schema.PROCESSLIST 
+SELECT USER, count(*)
+FROM information_schema.PROCESSLIST
 GROUP BY USER;
 ```
 
@@ -316,7 +316,7 @@ $ gds aws govuk-some-environment-fulladmin -- kubectl -n apps exec -it postgres-
 If everything worked, you should now have a bash prompt inside the container:
 
 ```sh
-I have no name!@postgres-jumpbox:/$ 
+I have no name!@postgres-jumpbox:/$
 ```
 
 You should now be able to use the Bash Prompt to start an interactive Postgres session:
@@ -329,7 +329,7 @@ Replace `[rds-hostname]` with the relevant hostname. You will be prompted for th
 
 ## Identifying existing roles (users) and ownerships
 
-Before you continue, you may want to check what roles and users currently exist for the Database.  
+Before you continue, you may want to check what roles and users currently exist for the Database.
 
 Running `\du` should return a table that looks like this:
 
@@ -406,7 +406,8 @@ Then transfer the Database Owner:
 ALTER DATABASE "account-api_production" OWNER TO "account-api-owner-role";
 ```
 
-...and finally, update the public schema owner:
+Finally, update the public schema owner:
+
 ```sql
 ALTER SCHEMA public OWNER TO "account-api-owner-role";
 ```
@@ -416,12 +417,12 @@ ALTER SCHEMA public OWNER TO "account-api-owner-role";
 The earlier changes will update everything that is currently in the Database, but any future migrations run the risk of there being "split ownership", so we will do something about this now. Set defaults as follows:
 
 ```sql
-ALTER DEFAULT PRIVILEGES FOR ROLE "account-api" 
-IN SCHEMA public 
+ALTER DEFAULT PRIVILEGES FOR ROLE "account-api"
+IN SCHEMA public
 GRANT ALL ON TABLES TO "account-api-owner-role";
 
-ALTER DEFAULT PRIVILEGES FOR ROLE "account-api" 
-IN SCHEMA public 
+ALTER DEFAULT PRIVILEGES FOR ROLE "account-api"
+IN SCHEMA public
 GRANT ALL ON SEQUENCES TO "account-api-owner-role";
 ```
 
@@ -511,8 +512,8 @@ If you have completed the earlier steps correctly and the application is working
 Run this command to see if there are any remaining connections from the old user:
 
 ```sql
-SELECT count(*) as active_connections, application_name 
-FROM pg_stat_activity 
+SELECT count(*) as active_connections, application_name
+FROM pg_stat_activity
 WHERE usename = 'account-api'
 GROUP BY application_name;
 ```
@@ -548,8 +549,8 @@ DROP USER "account-api";
 If you have connections that aren't going away, you can forcibly close them by running:
 
 ```sql
-SELECT CONCAT('CALL mysql.rds_kill(', ID, ');') 
-FROM information_schema.PROCESSLIST 
+SELECT CONCAT('CALL mysql.rds_kill(', ID, ');')
+FROM information_schema.PROCESSLIST
 WHERE USER = 'signon'; --Replace with the user to disconnect
 ```
 
@@ -558,7 +559,7 @@ WHERE USER = 'signon'; --Replace with the user to disconnect
 If you have connections that do not appear to be going away, you can force-kill any connections from a user by running the following command:
 
 ```sql
-SELECT pg_terminate_backend(pid) 
-FROM pg_stat_activity 
+SELECT pg_terminate_backend(pid)
+FROM pg_stat_activity
 WHERE usename = 'account-api'; --The username you want to drop connections for
 ```
