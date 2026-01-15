@@ -305,7 +305,7 @@ DROP USER 'signon';
 
 For the purpose of demonstrating the process, we will assume the Database you are rotating the credentials for is the `account-api` Database.
 
-##  Authenticating to the Postgres terminal with the `aws_db_admin` user
+## Authenticating to the Postgres terminal with the `aws_db_admin` user
 
 With a valid "fulladmin" AWS role, use `kubectl exec` against the Jumpbox you created earlier to start a bash session:
 
@@ -335,9 +335,9 @@ Running `\du` should return a table that looks like this:
 
 ```
                                 List of roles
-    Role name    |                         Attributes                         
+    Role name    |                         Attributes
 -----------------+------------------------------------------------------------
- account-api     | 
+ account-api     |
  aws_db_admin    | Create role, Create DB                                    +
                  | Password valid until infinity
  rds_ad          | Cannot login
@@ -355,7 +355,7 @@ Running `\dt` will produce something like:
 
 ```
                    List of tables
- Schema |         Name         | Type  |    Owner    
+ Schema |         Name         | Type  |    Owner
 --------+----------------------+-------+-------------
  public | ar_internal_metadata | table | account-api
  public | auth_requests        | table | account-api
@@ -439,7 +439,7 @@ WHERE d.datname = 'account-api_production';
 You should see the following result:
 
 ```
-        datname         |    owner    
+        datname         |    owner
 ------------------------+-----------------------
  account-api_production | account-api-owner-role
 ```
