@@ -105,15 +105,14 @@ Navigate to one of the following locations in Whitehall Publisher and press the 
 - A [controller in
   Whitehall](https://github.com/alphagov/whitehall/blob/main/app/controllers/admin/emergency_banner_controller.rb)
   sets or removes the Redis key.
-- Static is responsible for reading the data from Redis and rendering a partial
-  page from a template.
-- Frontend rendering apps retrieve this partial page from Static via the
-  Slimmer library, which caches the response for up to 60 seconds.
+- The [govuk_web_banner](https://github.com/alphagov/govuk_web_banners) gem, included in frontend
+  apps, is responsible for reading the data from Redis and rendering the banner into all pages. It
+  caches the result from Redis for up to 60 seconds.
 
 ### The banner is not showing / not clearing
 
 Usually this is because some cached content has not yet expired. This could be
-in frontend rendering apps, in Static, or in your browser.
+in the frontend rendering apps or in your browser.
 
 1. Double-check that you are looking at the right environment.
 1. Use a fresh private/Incognito window so that your testing is not affected by
@@ -127,13 +126,9 @@ in frontend rendering apps, in Static, or in your browser.
      cache](/manual/purge-cache). This
      should not be necessary unless there is a bug or misconfiguration in
      GOV.UK.
-1. Check the banner is present in the page template from Static
-   ([staging](https://assets.staging.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb),
-   [production](https://assets.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb)).
 1. [Inspect the Redis key](#inspect-the-redis-key) to check whether the banner
    data was stored successfully.
-1. Try forcing a [rollout of Static](/manual/deploy-static.html), to eliminate
-   any temporary state stored in Static.
+1. Try forcing a redeploy of the app responsible for rendering the page you're looking at.
 1. Try clearing the frontend memcache. Log into the AWS web console for the
    appropriate environment, find [frontend-memcached-govuk under Elasticache,
    Memcached
@@ -146,10 +141,10 @@ in frontend rendering apps, in Static, or in your browser.
 
 You can query Redis to check whether the banner data has been stored.
 
-1. Open a Rails console for Static.
+1. Open a Rails console for Frontend.
 
     ```bash
-    kubectl -n apps exec -it deploy/static -- rails c
+    kubectl -n apps exec -it deploy/frontend -- rails c
     ```
 
 1. Retrieve the value of the Redis key.
