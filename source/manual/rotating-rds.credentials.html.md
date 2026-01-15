@@ -124,13 +124,15 @@ To manage Database Authentication, you will need to use the Root User, which you
 
 Once you have found the secret, you will find key/value pairs for each RDS instance and the corresponding password.
 
-If you also need to find the hostname and Database Name for the relavant RDS instance, you can find this by locating the RDS instance in the AWS Console. Or, you can view it in the relevant secret under `govuk/[app-name]/[db-engine]` - substitute `[app-name]` and `[db-engine]` as relevant.
+If you also need to find the hostname and Database Name for the relavant RDS instance, you can find this by locating the RDS instance in the AWS Console. Orgit p, you can view it in the relevant secret under `govuk/[app-name]/[db-engine]` - substitute `[app-name]` and `[db-engine]` as relevant.
 
-## Managing credentials for MySQL instances
+# Managing credentials for MySQL instances
 
 Next, you will need to use the Jumpbox to start an interactive session with the Database Engine.
 
-### Authenticating to the MySQL terminal with the `aws_db_admin` user
+For the purpose of demonstrating the process, we will assume the Database you are rotating the credentials for is the `signon` Database.
+
+## Authenticating to the MySQL terminal with the `aws_db_admin` user
 
 With a valid "fulladmin" AWS role, use `kubectl exec` against the Jumpbox you created earlier to start a bash session:
 
@@ -146,11 +148,164 @@ $ mysql --host [rds-hostname] -p -u aws_db_admin
 
 Replace `[rds-hostname]` with the relevant hostname. You will be prompted for the password you fetched earlier. If successful you will now have an authenticated interactive MySQL session.
 
-# Managing Credentials for Postgres Instances
+## Identifying existing users
+
+First check to see which users currently exist on the MySQL server:
+
+```sql
+SELECT 
+    User, 
+    Host, 
+    plugin as Auth_Method,
+    password_expired as Password_Expired,
+    account_locked as Account_Locked,
+    Super_priv as Is_Superuser, 
+    Grant_priv as Can_Grant_Access
+FROM mysql.user
+ORDER BY User;
+```
+
+This will give you a table that should look like this:
+
+```
++--------------------+-----------+-----------------------+------------------+----------------+--------------+------------------+
+| User               | Host      | Auth_Method           | Password_Expired | Account_Locked | Is_Superuser | Can_Grant_Access |
++--------------------+-----------+-----------------------+------------------+----------------+--------------+------------------+
+| aws_db_admin       | %         | mysql_native_password | N                | N              | N            | Y                |
+| mysql.infoschema   | localhost | caching_sha2_password | N                | Y              | N            | N                |
+| mysql.sys          | localhost | caching_sha2_password | N                | Y              | N            | N                |
+| rds_superuser_role | %         | mysql_native_password | Y                | Y              | N            | Y                |
+| rdsadmin           | localhost | auth_socket           | N                | N              | Y            | Y                |
+| signon             | %         | mysql_native_password | N                | N              | N            | N                |
++--------------------+-----------+-----------------------+------------------+----------------+--------------+------------------+
+```
+
+In this example, we can see the existing `signon` user.
+
+## Get existing permissions
+
+Next we will want to get the permissions for the `signon` user:
+
+```sql
+SHOW GRANTS for 'signon';
+```
+
+This will return a table that looks like:
+
+```
++---------------------------------------------------------------+
+| Grants for signon@%                                           |
++---------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `signon`@`%`                            |
+| GRANT ALL PRIVILEGES ON `signon_production`.* TO `signon`@`%` |
++---------------------------------------------------------------+
+```
+
+Take note of these permissions - you will want to make sure your new user has the same set of permissions.
+
+## Create new user
+
+Create the new user in MySQL by using:
+
+```sql
+CREATE USER 'signon_user2'@'%' IDENTIFIED BY 'a-secret-password';
+```
+
+Then grant the necessary permissions to the new user:
+
+```sql
+GRANT ALL PRIVILEGES ON signon_production.* TO 'signon_user2'@'%';
+```
+
+## Rotate credentials in AWS SecretsManager
+
+Next, you should access the AWS Console for the relevant environment with the `fulladmin` role and locate the relevant Secret in AWS SecretsManager. Locate the secret named `govuk/signon/mysql` and edit the `username` and `password` keys to match the values of the new Postgres user you created earlier.
+
+### Force sync of Kubernetes secrets
+
+Once you have updated the stored secrets in AWS SecretsManager, you will want to force a sync of the ExternalSecret objects held by Kubernetes:
+
+```bash
+kubectl annotate -n apps externalsecrets.external-secrets.io \
+  signon-mysql force-sync=$(date +%s) --overwrite
+```
+
+Then run this command to verify that the Secret in Kubernetes has updated:
+
+```bash
+kubectl get secret signon-mysql -o json | jq '.data.DATABASE_URL | @base64d'
+```
+
+You should see a connection string that looks simular to `mysql2://signon-user2:a-secret-password@hostname/signon_production` - check that the `username:password` bit matches what you expect it to.
+
+### Check application variables
+
+Check one of the application pods that the DATABASE_URL environment variable has the correct secret (proving the pods have restarted with the new credentials):
+
+```bash
+kubectl exec -it deployment/signon --container=app -- env | grep "DATABASE_URL"
+```
+
+You should see the same connection string as earlier.
+
+## Check for other MySQL objects
+
+MySQL has some specific objects that are "defined" (by default) by the database user that created them - specifically: Events, Functions, Procedures and Views. If your application uses any of these features, you will need to manually recreate these for the new user.
+
+Run these lines to identify any Stored Procedures or Triggers you may need to migrate manually:
+
+```sql
+SHOW FUNCTION STATUS WHERE db='signon_production';
+SHOW PROCEDURE STATUS WHERE db='signon_production';
+SHOW TRIGGERS FROM signon_production;
+```
+
+Run this to find any Views you may need to re-create:
+
+```sql
+SHOW FULL TABLES FROM signon_production WHERE table_type = 'VIEW';
+```
+
+If any of the above commands return any results, you can use commands such as `SHOW CREATE` to save the definitions of your Procedures and Views and re-create them for the new user. If there are no results or you have already migrated the required objects, you may now delete the old user.
+
+## Verify rotation and delete old user
+
+Check that the new user is now being used to make connections:
+
+```sql
+SELECT USER, count(*) 
+FROM information_schema.PROCESSLIST 
+GROUP BY USER;
+```
+
+You should see a table like this:
+
+```
++-----------------+----------+
+| USER            | count(*) |
++-----------------+----------+
+| rdsadmin        |        2 |
+| signon_user2    |        2 |
+| event_scheduler |        1 |
+| aws_db_admin    |        1 |
++-----------------+----------
+```
+
+If you have any dangling connections for your old user, you can kill them (see in Troubleshooting).
+
+### Deleting the old user
+
+Finally, you can delete the old user with:
+
+```sql
+DROP USER 'signon';
+```
+
+# Managing credentials for Postgres instances
 
 For the purpose of demonstrating the process, we will assume the Database you are rotating the credentials for is the `account-api` Database.
 
-##  Authenticating to the Postgres Terminal with the `aws_db_admin` User
+##  Authenticating to the Postgres terminal with the `aws_db_admin` user
 
 With a valid "fulladmin" AWS role, use `kubectl exec` against the Jumpbox you created earlier to start a bash session:
 
@@ -172,7 +327,7 @@ $ psql --host [rds-hostname] --username aws_db_admin --password --database [data
 
 Replace `[rds-hostname]` with the relevant hostname. You will be prompted for the password you fetched earlier. If successful you will now have an authenticated interactive Postgres session.
 
-## Identifying Existing Roles (Users) and Ownerships
+## Identifying existing roles (users) and ownerships
 
 Before you continue, you may want to check what roles and users currently exist for the Database.  
 
@@ -290,7 +445,7 @@ You should see the following result:
 
 If this looks correct, you can now proceed to Create a New User and rotate your credentials as needed.
 
-## Create new user for Postgres DB
+## Create new user for Postgres database
 
 Create a new user with a password of your choosing:
 
@@ -388,7 +543,17 @@ DROP USER "account-api";
 
 ## Troubleshooting
 
-### Force-kill connections for a user
+### Force-kill connections for a user (MySQL)
+
+If you have connections that aren't going away, you can forcibly close them by running:
+
+```sql
+SELECT CONCAT('CALL mysql.rds_kill(', ID, ');') 
+FROM information_schema.PROCESSLIST 
+WHERE USER = 'signon'; --Replace with the user to disconnect
+```
+
+### Force-kill connections for a user (Postgres)
 
 If you have connections that do not appear to be going away, you can force-kill any connections from a user by running the following command:
 
