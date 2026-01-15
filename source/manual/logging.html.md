@@ -120,7 +120,7 @@ Logstash is responsible for:
 
 Occasionally you may see some logs that look suspicious. For example, see the `controller` part of the following made up example:
 
-`http_request_duration_seconds_count { action="1", container="app", controller="../../../../../etc/passwd", endpoint="metrics", job="govuk", namespace="apps", pod="static-abc123-de7f" }`
+`http_request_duration_seconds_count { action="1", container="app", controller="../../../../../etc/passwd", endpoint="metrics", job="govuk", namespace="apps", pod="frontend-abc123-de7f" }`
 
 This sort of thing often originates from vulnerability scanners and isn't necessarily something to worry about. However, you should consider _how_ such activity ended up leaking into your logs, and whether or not there's anything you could/should do to patch it up. Read our [internal guidance on the issue](https://docs.google.com/document/d/1BZ_SBPuZmO8pseniqj1tlq7pss9iU3JslqQHp_JS9Wg/edit#heading=h.17fwpvs3mt0x).
 

@@ -5,20 +5,16 @@ section: Assets
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-related_repos: [asset-manager, static]
+related_repos: [asset-manager]
 ---
 
-There are three types of asset files.
+There are two types of asset files.
 
 **Static assets** are stylesheets (CSS), JavaScript (JS) and image files which
 make GOV.UK look the way it does.
 
 **Uploaded assets** - also called attachments - are files like PDFs, CSVs and
 images which are uploaded via the publishing apps and attached to documents.
-
-**Static templates** - these are HTML snippets served by the [Static](/repos/static.html)
-application. These are used by applications to share common parts of the GOV.UK
-page layout (such as header and footer).
 
 ## Static assets
 
@@ -60,16 +56,3 @@ There is a [hard limit of 500 MB](https://github.com/alphagov/govuk-helm-charts/
 Publishers may see timeouts if they attempt to upload very large attachments.
 In the past, we've worked around this by uploading a small file (in Whitehall) and
 then [replacing the file in Asset Manager](https://docs.publishing.service.gov.uk/manual/manage-assets.html#replacing-an-asset).
-
-## Static templates
-
-The templates that Static hosts are used by
-[GOV.UK frontend applications](/#frontend-apps) to render consistent aspects
-of GOV.UK pages. Production instances of GOV.UK applications access these by
-internal communication with Static.
-
-These assets are also available publicly for development and preview versions
-of GOV.UK applications. They allow apps to utilise these production resources
-without needing to run an instance of Static manaul. Public access to Static
-is provided by the `assets.publishing.service.gov.uk` hostname, which will
-proxy any requests not served by Asset Manager to Static.

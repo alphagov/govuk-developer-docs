@@ -187,7 +187,7 @@ then content items are retrieved via the [search-api].
 
 Whilst views can be any arbitrary HTML, GOV.UK pages are typically constructed
 from components defined in [govuk_publishing_components], set in a standard
-page template (header, footer, JavaScript and CSS) defined in [static].
+page template (header, footer, JavaScript and CSS) also defined in [govuk_publishing_components].
 For more details, read about the GOV.UK [Frontend architecture].
 
 Static JS/CSS is delivered over <https://assets.publishing.service.gov.uk>.
@@ -200,7 +200,6 @@ live in an [AWS S3 bucket]; read ["Assets: how they work"].
 [AWS S3 bucket]: https://aws.amazon.com/free/storage/
 [Frontend architecture]: /manual/frontend-architecture.html
 [govuk_publishing_components]: https://components.publishing.service.gov.uk/component-guide
-[static]: https://github.com/alphagov/static
 
 ### Summary
 

@@ -24,8 +24,8 @@ When a request to GOV.UK fails, we need to handle the error in some way, so that
     - Serve the response as-is from the origin (no special handling)
 
 - **Origin**. When a request fails in an upstream app, we:
-  - [Intercept the response in Nginx](https://github.com/alphagov/govuk-puppet/blob/7dafec7cccd8308ec90c28835de70243d79b323b/modules/router/templates/router_include.conf.erb#L81)
-  - Replace the response with [a pre-rendered one from Static](https://github.com/alphagov/govuk-puppet/blob/7dafec7cccd8308ec90c28835de70243d79b323b/modules/router/manifests/errorpage.pp#L14)
+  - [Intercept the response in Nginx](https://github.com/alphagov/govuk-helm-charts/blob/c64895014046605b0d8092c925ff44521b149e6b/charts/app-config/templates/router-nginx-config.tpl#L236-L269)
+  - Replace the response with [a pre-rendered one from Frontend](https://github.com/alphagov/govuk-helm-charts/blob/c64895014046605b0d8092c925ff44521b149e6b/charts/generic-govuk-app/templates/frontend-error-page-upload-job.yaml)
 
 - **App**. When an app raises an exception:
   - If we have chosen to handle it, we:

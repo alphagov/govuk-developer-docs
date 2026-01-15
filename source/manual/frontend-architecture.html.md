@@ -6,7 +6,6 @@ layout: manual_layout
 type: learn
 section: Frontend
 related_repos:
- - static
  - slimmer
  - govuk_publishing_components
 ---
@@ -22,7 +21,7 @@ _[Source](https://docs.google.com/drawings/d/1L7pqFrHB2IQCnr0w3ticqBuR4U12b8psZQ
 Applications that serve pages for the public (everything on www.gov.uk) use:
 
 - components and assets from [govuk_publishing_components](https://github.com/alphagov/govuk_publishing_components)
-- [layout_for_public](https://components.publishing.service.gov.uk/component-guide/layout_for_public) (via [static](https://github.com/alphagov/static) and [slimmer](https://github.com/alphagov/slimmer))
+- [layout_for_public](https://components.publishing.service.gov.uk/component-guide/layout_for_public)
 
 Most admin applications use:
 
