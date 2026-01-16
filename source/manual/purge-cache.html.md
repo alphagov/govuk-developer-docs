@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Purge a page from cache
 section: CDN & Caching
 layout: manual_layout

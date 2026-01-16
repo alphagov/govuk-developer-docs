@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Router error ratio too high
 parent: "/manual.html"
 layout: manual_layout

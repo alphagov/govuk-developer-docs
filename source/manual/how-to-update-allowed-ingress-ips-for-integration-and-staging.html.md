@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Update Allowed Ingress IPs for Staging and Integration
 section: Infrastructure
 layout: manual_layout

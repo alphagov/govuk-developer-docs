@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: DocumentDB and MongoDB Management
 section: Databases
 layout: manual_layout

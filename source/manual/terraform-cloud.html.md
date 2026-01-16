@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Terraform Cloud
 section: Infrastructure
 type: learn
@@ -17,4 +17,4 @@ You can sign up for Terraform Cloud and join the GOV.UK organisation yourself. Y
 2. After connecting Google, you'll be asked to create a Terraform Cloud account (or sign in if you already have one), as [SSO does not automatically provision Terraform Cloud user accounts](https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/single-sign-on#sso-identities-and-terraform-cloud-user-accounts). You'll need to set an account password, however, once the SSO identity is linked, you'll only log in to the GOV.UK organization using the linked (Google) account.
 3. You should now have access to [workspaces in the GOV.UK organisation](https://app.terraform.io/app/govuk/workspaces).
 
-If you have problems following any of the above steps, you might be missing from the required Google Group. Ask over in the [#govuk-platform-engineering](https://gds.slack.com/channels/govuk-platform-engineering) Slack channel for help.
+If you have problems following any of the above steps, you might be missing from the required Google Group. Ask over in the [#govuk-ask-platform-engineering](https://gds.slack.com/channels/govuk-ask-platform-engineering) Slack channel for help.

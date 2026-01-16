@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Rotate Fastly automation token for Emergency Alerts application
 section: Emergency Alerts
 layout: manual_layout

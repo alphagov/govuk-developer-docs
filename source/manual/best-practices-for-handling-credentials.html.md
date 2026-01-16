@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Best practices for handling credentials
 parent: "/manual.html"
 layout: manual_layout

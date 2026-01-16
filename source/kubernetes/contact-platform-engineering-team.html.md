@@ -17,7 +17,7 @@ If you're outside GDS, you can get in touch via [www.gov.uk/contact](https://www
 Within GDS, you can get in touch with GOV.UK Platform Engineering team:
 
 - via email to [`govuk-platform-engineering@`](mailto:govuk-platform-engineering@digital.cabinet-office.gov.uk) (requires a digital.cabinet-office.gov.uk account)
-- via instant message in [#govuk-platform-engineering](https://gds.slack.com/channels/govuk-platform-engineering) on Slack (requires access to gds.slack.com)
+- via instant message in [#govuk-ask-platform-engineering](https://gds.slack.com/channels/govuk-ask-platform-engineering) on Slack (requires access to gds.slack.com)
 
 ## What we can help with
 

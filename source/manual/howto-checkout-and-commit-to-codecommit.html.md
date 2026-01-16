@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: How to check and commit code to AWS CodeCommit
 section: AWS
 layout: manual_layout

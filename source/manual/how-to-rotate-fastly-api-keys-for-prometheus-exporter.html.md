@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Rotate Fastly automation token for Prometheus exporter
 section: Monitoring and alerting
 layout: manual_layout
