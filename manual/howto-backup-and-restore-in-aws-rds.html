@@ -1,0 +1,465 @@
+
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Backup and restore databases in AWS RDS - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="Backup and restore databases in AWS RDS - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Backup and restore databases in AWS RDS" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html" aria-current="page">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Backup and restore databases in AWS RDS</span></a>
+    <ul>
+      <li>
+        <a href="#restore-an-rds-instance-via-the-aws-cli"><span>Restore an RDS instance via the AWS CLI</span></a>
+        <ul>
+          <li>
+            <a href="#1-retrieve-a-list-of-all-snapshot-arns-for-your-application"><span>1. Retrieve a list of all snapshot ARNs for your application</span></a>
+          </li>
+          <li>
+            <a href="#2-find-which-database-the-snapshot-was-generated-by"><span>2. Find which database the snapshot was generated by</span></a>
+          </li>
+          <li>
+            <a href="#3-ensure-the-restored-database-has-the-same-security-groups"><span>3. Ensure the restored database has the same security groups</span></a>
+          </li>
+          <li>
+            <a href="#4-restore-the-database-instance-from-a-snapshot"><span>4. Restore the database instance from a snapshot</span></a>
+          </li>
+          <li>
+            <a href="#5-test-the-database-has-been-fully-restored"><span>5. Test the database has been fully restored</span></a>
+          </li>
+          <li>
+            <a href="#6-get-the-new-databases-hostname"><span>6. Get the new database’s hostname</span></a>
+          </li>
+          <li>
+            <a href="#7-connect-to-the-restored-backup-database"><span>7. Connect to the restored backup database</span></a>
+          </li>
+          <li>
+            <a href="#8-check-that-the-app-is-now-using-the-restored-database"><span>8. Check that the app is now using the restored database</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#delete-an-obsolete-database"><span>Delete an obsolete database</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+                
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Backups",
+        "@id": "http://www.dev.gov.uk/manual.html#backups"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#backups">Backups</a>
+        </li>
+  </ol>
+</nav>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36df86ad1ec20f8270c99fdd047895cb7a5da357">16 Jan 2026</a>
+</div>
+
+ <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>This playbook describes how to restore a database instance using Amazon&rsquo;s <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html">RDS Backups</a> feature.</p>
+<p>We use RDS Backups to give us fully nightly backups and point-in-time recovery (PITR) (also known as continuous data protection or CDP).</p>
+<h2 id='restore-an-rds-instance-via-the-aws-cli'>Restore an RDS instance via the AWS CLI</h2><p>This documentation will illustrate how to restore a database (DB) instance from a DB Snapshot with AWS CLI.</p>
+<p>Before you get started you need to know:</p>
+
+<ul>
+<li>The environment in which you are restoring the database - replace <environment> throughout the scripts</li>
+<li>The name of the database which needs to be restored - if you are restoring multiple databases, you will need to carry out these steps again for it</li>
+</ul>
+<p>For more information, read the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html">AWS documentation on Restoring from a DB Snapshot</a>.</p>
+<h3 id='1-retrieve-a-list-of-all-snapshot-arns-for-your-application'>1. Retrieve a list of all snapshot ARNs for your application</h3><p>In this example we are using <code>local-links-manager</code>:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">environment</span><span class="o">=</span>production
+gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><span class="p">?</span><span class="k">}</span><span class="nt">-fulladmin</span> <span class="se">\</span>
+  aws rds describe-db-snapshots <span class="se">\</span>
+    <span class="nt">--query</span> <span class="s1">'DBSnapshots[].DBSnapshotArn'</span> <span class="se">\</span>
+  | <span class="nb">grep </span>local-links-manager
+</code></pre></div><p>Choose the ARN of the most recent backup, and store it in an environment variable:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">snapshot_arn</span><span class="o">=</span><span class="s2">"&lt;e.g. arn:aws:rds:eu-west-1:210287912431:snapshot:rds:local-links-manager-postgres-2022-07-05-01-09&gt;"</span>
+</code></pre></div><p>If no snapshots are available on Integration for the drill you can manually take a snapshot. You can do this in the <a href="https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#take-snapshots:">RDS Snapshots</a> section of the AWS Console. Simply pick the DB instance you want in the <code>DB instance</code> select and give it a <code>Snapshot name</code>.</p>
+<p>Alternatively, you can take a snapshot via the AWS CLI:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><span class="p">?</span><span class="k">}</span><span class="nt">-fulladmin</span> <span class="se">\</span>
+  aws rds create-db-snapshot <span class="se">\</span>
+    <span class="nt">--db-instance-identifier</span> <span class="k">${</span><span class="nv">db</span><span class="p">-instance-name</span><span class="k">}</span> <span class="se">\</span>
+    <span class="nt">--db-snapshot-identifier</span> <span class="k">${</span><span class="nv">your</span><span class="p">-snapshot-name</span><span class="k">}</span>
+</code></pre></div><p>You can check the snapshot progress by running:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><span class="p">?</span><span class="k">}</span><span class="nt">-fulladmin</span> <span class="se">\</span>
+  aws rds describe-db-snapshots <span class="se">\</span>
+    <span class="nt">--db-snapshot-identifier</span> <span class="k">${</span><span class="nv">your</span><span class="p">-snapshot-name</span><span class="k">}</span> <span class="se">\</span>
+    <span class="nt">--query</span> <span class="s1">'DBSnapshots[DBSnapshotArn,Status,PercentProgress]'</span>
+</code></pre></div><p>Once the snapshot has been created, copy the ARN.</p>
+<h3 id='2-find-which-database-the-snapshot-was-generated-by'>2. Find which database the snapshot was generated by</h3><p>For example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><span class="p">?</span><span class="k">}</span><span class="nt">-fulladmin</span> <span class="se">\</span>
+  aws rds describe-db-snapshots <span class="se">\</span>
+    <span class="nt">--db-snapshot-identifier</span> <span class="k">${</span><span class="nv">snapshot_arn</span><span class="k">}</span> <span class="se">\</span>
+    <span class="nt">--query</span> <span class="s1">'DBSnapshots[].DBInstanceIdentifier'</span>
+</code></pre></div><p>Store the <code>DBInstanceIdentifier</code> as a variable:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">db_instance_identifier</span><span class="o">=</span><span class="s2">"&lt;e.g. local-links-manager-postgres&gt;"</span>
+</code></pre></div><h3 id='3-ensure-the-restored-database-has-the-same-security-groups'>3. Ensure the restored database has the same security groups</h3><p>The restored database must have the same security groups and be in the same VPC (that&rsquo;s the &ldquo;subnet group name&rdquo; parameter) as the original one, otherwise, apps won&rsquo;t be able to connect to it. Therefore the database needs to be restored in the same VPC and with the same security groups as the original instance the snapshot came from.</p>
+<p>After running the command below, you now have all the parameters you need (snapshot-arn, db-instance-identifier, security-group-id, db-parameter-group-name, and db-subnet-group-name) to restore the database and change the restored database&rsquo;s security groups to match the original&rsquo;s.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><span class="p">?</span><span class="k">}</span><span class="nt">-fulladmin</span> <span class="se">\</span>
+  aws rds describe-db-instances <span class="se">\</span>
+    <span class="nt">--db-instance-identifier</span> <span class="k">${</span><span class="nv">db_instance_identifier</span><span class="p">?</span><span class="k">}</span> <span class="se">\</span>
+    <span class="nt">--query</span> <span class="s1">'DBInstances[].[VpcSecurityGroups[].VpcSecurityGroupId,DBParameterGroups[].DBParameterGroupName,DBSubnetGroup.DBSubnetGroupName]'</span>
+</code></pre></div><p>Example of the output:</p>
+
+<ul>
+<li>vpc-security-group-id = sg-XXXXXXXX</li>
+<li>db-parameter-group-name = local-links-manager-postgres-XXXXXXXXXX</li>
+<li>db-subnet-group-name = blue-govuk-rds-subnet</li>
+</ul>
+<p>Store the output as environment variables:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">vpc_security_group_id</span><span class="o">=</span><span class="s2">"&lt;replace_with_previous_output&gt;"</span>
+<span class="nv">db_parameter_group_name</span><span class="o">=</span><span class="s2">"&lt;replace_with_previous_output&gt;"</span>
+<span class="nv">db_subnet_group_name</span><span class="o">=</span><span class="s2">"&lt;replace_with_previous_output&gt;"</span>
+</code></pre></div><h3 id='4-restore-the-database-instance-from-a-snapshot'>4. Restore the database instance from a snapshot</h3><p>Using the stored variables from the previous steps:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><span class="p">?</span><span class="k">}</span><span class="nt">-fulladmin</span> <span class="se">\</span>
+  aws rds restore-db-instance-from-db-snapshot <span class="se">\</span>
+    <span class="nt">--db-subnet-group-name</span> <span class="k">${</span><span class="nv">db_subnet_group_name</span><span class="p">?</span><span class="k">}</span> <span class="se">\</span>
+    <span class="nt">--db-instance-identifier</span> restored-<span class="k">${</span><span class="nv">db_instance_identifier</span><span class="p">?</span><span class="k">}</span> <span class="se">\</span>
+    <span class="nt">--db-snapshot-identifier</span> <span class="k">${</span><span class="nv">snapshot_arn</span><span class="p">?</span><span class="k">}</span>
+</code></pre></div><p>To see the newly created database instance, log into AWS Console &gt; RDS &gt; Databases &gt; filter for your database name. You should see the original and newly created one.</p>
+<h3 id='5-test-the-database-has-been-fully-restored'>5. Test the database has been fully restored</h3><p>Before moving on to the next step we need to ensure that the database has been fully restored and is ready to be used:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><span class="p">?</span><span class="k">}</span><span class="nt">-fulladmin</span> <span class="se">\</span>
+  aws rds <span class="nb">wait </span>db-instance-available <span class="se">\</span>
+    <span class="nt">--db-instance-identifier</span> restored-<span class="k">${</span><span class="nv">db_instance_identifier</span><span class="p">?</span><span class="k">}</span>
+</code></pre></div><p>This command will wait until the database is ready, and then exit without any output.</p>
+<h3 id='6-get-the-new-databases-hostname'>6. Get the new database&rsquo;s hostname</h3><p>Once the database is ready, fetch its hostname:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><span class="p">?</span><span class="k">}</span><span class="nt">-fulladmin</span> <span class="se">\</span>
+  aws rds describe-db-instances <span class="se">\</span>
+    <span class="nt">--db-instance-identifier</span> <span class="s2">"restored-</span><span class="k">${</span><span class="nv">db_instance_identifier</span><span class="p">?</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">--query</span> <span class="s1">'DBInstances[].Endpoint.Address'</span>
+</code></pre></div><p>Make a note of this.</p>
+<h3 id='7-connect-to-the-restored-backup-database'>7. Connect to the restored backup database</h3><p>This requires updating the <code>govuk/local-links-manager/postgres</code> secret in AWS Secrets Manager.</p>
+
+<ol>
+<li>Log in to AWS in the correct environment: <code>gds aws govuk-${environment?}-fulladmin -l</code></li>
+<li>In AWS Secrets Manager, search for and click on <code>govuk/local-links-manager/postgres</code>.</li>
+<li>Under the &ldquo;Overview&rdquo; tab, in the &ldquo;Secret Value&rdquo; section, select &ldquo;Retrieve Secret Value&rdquo;.</li>
+<li>Make a note of the existing value, in case you need to revert the changes (for example, if performing a drill).</li>
+<li><p>Click &ldquo;Edit&rdquo;, and replace the value of the &ldquo;host&rdquo; and &ldquo;dbInstanceIdentifier&rdquo; fields with the URL and identifier of the new database instance. Click &ldquo;Save&rdquo;.</p>
+
+<blockquote>
+<p>Some of our apps currently refer to their database directly (e.g. <code>app-name.hex-string.eu-west-1.rds.amazonaws.com</code>), some of them refer to their database indirectly via a <code>CNAME</code> record (e.g. <code>app-name.blue.staging.govuk-internal.digital</code>). In either case, you can replace this with the URL of the new database instance.</p>
+</blockquote></li>
+<li><p>Log into Argo CD in the correct environment (<a href="https://argo.eks.integration.govuk.digital/">integration</a>,
+<a href="https://argo.eks.staging.govuk.digital/">staging</a>, <a href="https://argo.eks.production.govuk.digital/">production</a>).</p></li>
+<li><p>Navigate to the <code>external-secrets</code> app, locate the <code>local-links-manager-postgres</code> external secret, select the &ldquo;&hellip;&rdquo; menu, and select &ldquo;Refresh&rdquo;.</p></li>
+<li><p>After refreshing this secret, the app&rsquo;s pods should automatically be restarted pointing at the correct database instance. To confirm that this happened, navigate to the <code>local-links-manager</code> app, locate the <code>local-links-manager</code> deployment, and check the uptime of the pods.</p>
+
+<blockquote>
+<p>If the pods were not automatically restarted, select the &ldquo;&hellip;&rdquo; menu next to the deployment, and select &ldquo;Restart&rdquo;.</p>
+</blockquote></li>
+</ol>
+<h3 id='8-check-that-the-app-is-now-using-the-restored-database'>8. Check that the app is now using the restored database</h3><p>Open a Rails console on the target app:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nb">exec</span> <span class="nt">-n</span> apps <span class="nt">-it</span> deploy/local-links-manager <span class="nt">--</span> bundle <span class="nb">exec </span>rails c
+</code></pre></div><p>Check which database ActiveRecord is connected to, and ensure it matches the hostname of the restored database:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">connection_db_config</span><span class="p">.</span><span class="nf">host</span>
+</code></pre></div><h2 id='delete-an-obsolete-database'>Delete an obsolete database</h2>
+<blockquote>
+<p>PLEASE BE CAREFUL WHEN EXECUTING THIS COMMAND AS IT CANNOT BE UNDONE</p>
+</blockquote>
+<p>For reference, here is the <a href="https://docs.aws.amazon.com/cli/latest/reference/rds/delete-db-instance.html#delete-db-instance">AWS documentation for deleting a database instance</a>.</p>
+<p>It is likely that the restored database is missing data since the snapshot was taken and you
+will want to have a copy of the original database for comparison before deleting it.</p>
+<p>If you are drilling this, then make sure you revert to the previous db credentials prior to deleting the database.</p>
+<p>The command below will create a DB snapshot before the DB instance is deleted. If you don&rsquo;t want this, replace the <code>--final-db-snapshot-identifier</code> parameter with <code>--skip-final-snapshot</code>.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">environment</span><span class="o">=</span>production
+<span class="nv">db_instance_identifier</span><span class="o">=</span>&lt;e.g. local-links-manager-postgres&gt;
+<span class="nv">snapshot_name</span><span class="o">=</span>&lt;e.g. local-links-manager-postgres-final-snapshot&gt;
+gds-cli aws govuk-<span class="k">${</span><span class="nv">environment</span><span class="p">?</span><span class="k">}</span><span class="nt">-fulladmin</span> <span class="se">\</span>
+  aws rds delete-db-instance <span class="se">\</span>
+    <span class="nt">--db-instance-identifier</span> <span class="k">${</span><span class="nv">db_instance_identifier</span><span class="p">?</span><span class="k">}</span> <span class="se">\</span>
+    <span class="nt">--final-db-snapshot-identifier</span> <span class="k">${</span><span class="nv">snapshot_name</span><span class="p">?</span><span class="k">}</span>
+</code></pre></div><p>You can check the snapshot is available by navigating to RDS &gt; Snapshots in the AWS console.</p>
+
+  <div class='related-content'>
+
+    <h3>More in the Backups section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/backups.html">Data backups in GOV.UK</a></li>
+            <li><a href="/manual/govuk-env-sync.html">Environment data sync</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/fix-out-of-date-search-indices.html">Fix out-of-date search indices</a></li>
+            <li><a href="/manual/elasticsearch-dumps.html">Restore Elasticsearch indices from backup</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-backup-and-restore-in-aws-rds.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Backup+and+restore+databases+in+AWS+RDS%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-backup-and-restore-in-aws-rds.html%29&amp;labels=bug&amp;title=Re%3A+%27Backup+and+restore+databases+in+AWS+RDS%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

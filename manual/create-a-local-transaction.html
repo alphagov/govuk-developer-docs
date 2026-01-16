@@ -1,0 +1,536 @@
+
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Create a Local Transaction - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/create-a-local-transaction.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="Create a Local Transaction - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/create-a-local-transaction.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Create a Local Transaction" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/create-a-local-transaction.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html" aria-current="page">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Create a Local Transaction</span></a>
+    <ul>
+      <li>
+        <a href="#outline"><span>Outline</span></a>
+      </li>
+      <li>
+        <a href="#assumptions"><span>Assumptions</span></a>
+      </li>
+      <li>
+        <a href="#get-details-of-or-create-the-service-in-the-electronic-service-delivery-esd"><span>Get details of or create the service in the Electronic Service Delivery (ESD)</span></a>
+      </li>
+      <li>
+        <a href="#get-a-list-of-local-authority-slugs-and-urls"><span>Get a list of local authority slugs and URLs</span></a>
+      </li>
+      <li>
+        <a href="#add-the-service-to-publisher"><span>Add the service to Publisher</span></a>
+      </li>
+      <li>
+        <a href="#make-the-service-unavailable-for-a-nation-in-frontend"><span>Make the service unavailable for a nation in Frontend</span></a>
+      </li>
+      <li>
+        <a href="#enable-or-create-the-service-in-local-links-manager-llm"><span>Enable or create the service in Local Links Manager (LLM)</span></a>
+      </li>
+      <li>
+        <a href="#upload-local-authority-urls-to-local-links-manager-llm"><span>Upload Local Authority URLs to Local Links Manager (LLM)</span></a>
+      </li>
+      <li>
+        <a href="#add-content-and-publish-the-service-in-publisher"><span>Add content and publish the service in Publisher</span></a>
+      </li>
+      <li>
+        <a href="#glossary"><span>Glossary</span></a>
+        <ul>
+          <li>
+            <a href="#electronic-service-delivery-esd"><span>Electronic Service Delivery (ESD)</span></a>
+          </li>
+          <li>
+            <a href="#lgsl-code"><span>LGSL code</span></a>
+          </li>
+          <li>
+            <a href="#lgil-code"><span>LGIL code</span></a>
+          </li>
+          <li>
+            <a href="#seek-content-advice"><span>Seek content advice</span></a>
+          </li>
+          <li>
+            <a href="#providing-tier"><span>Providing tier</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+                
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Applications",
+        "@id": "http://www.dev.gov.uk/manual.html#applications"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#applications">Applications</a>
+        </li>
+  </ol>
+</nav>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/754bde2d6e99641024638d45cf646089d3b39b79">16 May 2025</a>
+</div>
+
+ <h1 id='header'>Create a Local Transaction</h1> <p>This document describes the steps required to create a postcode-based local transaction similar to <a href="https://www.gov.uk/test-and-trace-support-payment">Apply for a Test and Trace Support Payment</a> and <a href="https://www.gov.uk/find-covid-19-lateral-flow-test-site">Find a rapid lateral flow test site in your area</a>.</p>
+<h2 id='outline'>Outline</h2>
+<ul>
+<li><a href="#get-details-of-or-create-the-service-in-the-electronic-service-delivery-esd">Get details of or create the service in the Electronic Service Delivery (ESD)</a> <sup>[1]</sup></li>
+<li><a href="#get-a-list-of-local-authority-slugs-and-urls">Get a list of local authority slugs and URLs</a> <sup>[1]</sup></li>
+<li><a href="#add-the-service-to-publisher">Add the service to Publisher</a> <sup>[2]</sup></li>
+<li><a href="#make-the-service-unavailable-for-a-nation-in-frontend">Make the service unavailable for a nation in Frontend</a> <sup>[3]</sup></li>
+<li><a href="#enable-or-create-the-service-in-local-links-manager-llm">Enable or create the service in Local Links Manager (LLM)</a></li>
+<li><a href="#upload-local-authority-urls-to-local-links-manager-llm">Upload Local Authority URLs to Local Links Manager (LLM)</a></li>
+<li><a href="#add-content-and-publish-the-service-in-publisher">Add content and publish the service in Publisher</a></li>
+</ul>
+<p><em>[1]: These steps are manual and can be very time consuming. It is recommended they are started as early as possible to reduce delay.</em></p>
+<p><em>[2]: This step requires a PR that can be created and deployed (once approved) at any point prior to publishing the service.</em></p>
+<p><em>[3]: This step requires a PR that can be created and deployed (once approved) at any point.</em></p>
+<h2 id='assumptions'>Assumptions</h2><p>The examples and procedures on this page make the following assumptions:</p>
+
+<ul>
+<li>You have set an alias for the <code>kubectl</code>, <a href="https://kubernetes.io/docs/reference/kubectl/quick-reference/">as per the Kubernetes Quick Reference</a>.</li>
+<li>You have set the <code>apps</code> namespace as the default namespace.</li>
+</ul>
+<h2 id='get-details-of-or-create-the-service-in-the-electronic-service-delivery-esd'>Get details of or create the service in the Electronic Service Delivery (ESD)</h2><p>Newly created services are automatically imported into <a href="https://local-links-manager.publishing.service.gov.uk/">Local Links Manager (LLM)</a> from <a href="#electronic-service-delivery-esd">Electronic Service Delivery (ESD)</a> via a nightly import process. So, if you know the ID of the service you want to use, <a href="https://standards.esd.org.uk/?tab=search">check if it exists in ESD</a> and <a href="https://local-links-manager.publishing.service.gov.uk/services">LLM</a>.</p>
+<p>If the service exists in <a href="#electronic-service-delivery-esd">ESD</a> but not LLM, and it is not possible to wait overnight, you can run <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/import/service_interactions.rake#L12">this rake task</a> to import them on demand.</p>
+<p>On occasion the service you are looking to use does not exist in <a href="#electronic-service-delivery-esd">ESD</a> and LLM. If this is the case, it may be possible to obtain a new service from&hellip;</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Nicki Gill (ESD Project Manager)
+Tel: +44 20 8570 5086
+Bon Marché Centre, 241–251 Ferndale Road, London SW9 8BJ
+nicki.gill@esd.org.uk | esd.org.uk
+</code></pre></div><p>While it is not essential that the service exists in <a href="#electronic-service-delivery-esd">ESD</a> or LLM before starting this process, it is preferable. However, if you are unable to create the service within a suitable timeframe, it is possible to carry on with the process as it will create the service in LLM for you anyway.</p>
+<p>Once you&rsquo;ve found the service, gather the following information:</p>
+
+<ul>
+<li>An <a href="#lgsl-code">LGSL_CODE</a> - the ID of the service in <a href="#electronic-service-delivery-esd">ESD</a></li>
+<li>An <a href="#lgil-code">LGIL_CODE</a> - the ID of the interaction in <a href="#electronic-service-delivery-esd">ESD</a></li>
+<li>The service <a href="#seek-content-advice"><code>name</code></a></li>
+<li>The service <a href="#seek-content-advice"><code>description</code></a></li>
+<li>The service <a href="#seek-content-advice"><code>slug</code></a></li>
+<li>The <a href="#providing-tier">providing tier(s)</a> for the service</li>
+<li>Which (if any) nations the service is unavailable in</li>
+</ul>
+<h2 id='get-a-list-of-local-authority-slugs-and-urls'>Get a list of local authority slugs and URLs</h2><p>We need to create a CSV file containing the <code>name</code>, <code>slug</code> and an empty space for a <code>url</code> for all available local authorities currently in LLM.</p>
+<p>The service product owner (your PM or DM should be able to identify them for you) can then add the specific URLs for each local authority that offers the service and return the finished file to us for import. This is used to associate the URL with the service and the local authority in LLM.</p>
+<p>We&rsquo;ll want to pick a <code>local-links-manager</code> pod to connect to the Console - normally we&rsquo;d just run exec via the <code>deploy</code> resource and let Kubernetes pick for us, but as we&rsquo;ll need to download a file from the pod, we should make sure everything is run from the context of the same pod.</p>
+<p>List the LLM pods and select one:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-developer <span class="nt">-e</span>
+k get pods <span class="nt">-l</span><span class="o">=</span><span class="nv">app</span><span class="o">=</span>local-links-manager
+
+NAME                                  READY   STATUS    RESTARTS   AGE
+local-links-manager-fdc5dbbb7-vrf96   2/2     Running   0          4h50m
+local-links-manager-fdc5dbbb7-x7rll   2/2     Running   0          4h50m
+</code></pre></div><p>Once you&rsquo;ve chosen a pod, connect to its Rails Console:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>local-links-manager-fdc5dbbb7-vrf96 <span class="nt">--</span> rails c
+</code></pre></div><p>Once in the rails console&hellip;</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">lgsl_code</span> <span class="o">=</span> <span class="mi">1234</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="si">}</span><span class="s2">/tmp/</span><span class="si">#{</span><span class="n">lgsl_code</span><span class="si">}</span><span class="s2">.csv"</span>
+
+<span class="c1"># Make a note of this REMOTE_FILE_PATH...</span>
+<span class="o">=&gt;</span> <span class="s2">"/app/tmp/1234.csv"</span>
+</code></pre></div><p>Generate the CSV file and exit out of the rails console.</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">CSV</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">csv</span><span class="o">|</span>
+  <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="s2">"name"</span><span class="p">,</span> <span class="s2">"slug"</span><span class="p">,</span> <span class="s2">"url"</span><span class="p">]</span>
+  <span class="no">LocalAuthority</span><span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="ss">name: :asc</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">la</span><span class="o">|</span>
+    <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="n">la</span><span class="p">.</span><span class="nf">name</span><span class="p">,</span> <span class="n">la</span><span class="p">.</span><span class="nf">slug</span><span class="p">,</span> <span class="kp">nil</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><p>Now using the same pod as before and the file path from above, run the <code>kubectl cp</code> command to pull the file:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">cp </span>local-links-manager-fdc5dbbb7-vrf96:/tmp/1234.csv ~/Downloads/1234.csv
+</code></pre></div><p>Hand this over to the service product owner.</p>
+<p><em>The <code>name</code> is only present in the CSV file to assist the product owner complete the URLs as differences between the local authority <code>name</code> and <code>slug</code> can make it tricky to match the local authority correctly. It is not used when importing the links into LLM.</em></p>
+<h2 id='add-the-service-to-publisher'>Add the service to Publisher</h2><p>Create a PR that adds the following to the bottom of <a href="https://github.com/alphagov/publisher/blob/a656ea44d0e3a086b096ff2b2053290f1b9fb4d9/data/local_services.csv">this</a> file:</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>LGSL</th>
+<th>Description</th>
+<th>Providing Tier</th>
+</tr><tr>
+<td><a href="#lgsl-code">LGSL_CODE</a></td>
+<td>SERVICE_DESCRIPTION</td>
+<td>PROVIDING_TIER</td>
+</tr>
+        </table>
+      </div><p><em>Where <code>SERVICE_DESCRIPTION</code> is the service <a href="#seek-content-advice"><code>description</code></a>, and <code>PROVIDING_TIER</code> is the service <a href="#providing-tier"><code>providing tier(s)</code></a>.</em></p>
+<p>Once your PR is merged and deployed, run <a href="https://github.com/alphagov/publisher/blob/b65989d9c37df639d53666ccb3cd801c1155d247/lib/tasks/local_transactions.rake#L3">this rake task</a> in Publisher&hellip;</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>local-links-manager-fdc5dbbb7-vrf96 <span class="nt">--</span> bundle <span class="nb">exec </span>rails local_transactions:fetch_and_clean
+</code></pre></div><h2 id='make-the-service-unavailable-for-a-nation-in-frontend'>Make the service unavailable for a nation in Frontend</h2><p><strong>Note</strong>: This is an optional step that can be done when the new service is live.</p>
+<p>If the service is unavailable in one or more devolved nation, create a PR to add the service to the <a href="https://github.com/alphagov/frontend/blob/master/lib/config/local_transaction_config.yml">Frontend local transaction configuration file</a>.</p>
+<p>This can be configured with or without <code>button_text</code> and <code>button_link</code>. <a href="#seek-content-advice">Seek content advice</a> with the content.</p>
+<p>For example (given an <a href="#lgsl-code">LGSL code</a> of <code>1234</code>):</p>
+<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="na">1234</span><span class="pi">:</span>
+  <span class="na">unavailable_in</span><span class="pi">:</span>
+    <span class="na">Scotland</span><span class="pi">:</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">This</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">available</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">Scotland"</span>
+      <span class="na">body</span><span class="pi">:</span> <span class="s2">"</span><span class="s">We</span><span class="nv"> </span><span class="s">do</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">know</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">they</span><span class="nv"> </span><span class="s">offer</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">service.</span><span class="nv"> </span><span class="s">Search</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Scottish</span><span class="nv"> </span><span class="s">Government</span><span class="nv"> </span><span class="s">website</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">see</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">they</span><span class="nv"> </span><span class="s">do,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">what</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">they</span><span class="nv"> </span><span class="s">offer."</span>
+      <span class="na">button_text</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Find</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">Scotland"</span>
+      <span class="na">button_link</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://www.mygov.scot"</span>
+    <span class="na">Northern Ireland</span><span class="pi">:</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">This</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">available</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">Northern</span><span class="nv"> </span><span class="s">Ireland"</span>
+      <span class="na">body</span><span class="pi">:</span> <span class="s2">"</span><span class="s">This</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">available</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">Northern</span><span class="nv"> </span><span class="s">Ireland.</span><span class="nv"> </span><span class="s">You</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">find</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">services</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">your</span><span class="nv"> </span><span class="s">council</span><span class="nv"> </span><span class="s">website"</span>
+</code></pre></div><h2 id='enable-or-create-the-service-in-local-links-manager-llm'>Enable or create the service in Local Links Manager (LLM)</h2><p>Run <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/service.rake#L3">this rake task</a> in LLM. This creates the following internal model instances and associations:</p>
+
+<ul>
+<li>A <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service.rb#L1"><code>Service</code></a> instance (if the service doesn&rsquo;t already exist)</li>
+<li>Associations between the <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service.rb#L1"><code>Service</code></a> and <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/tier.rb#L1"><code>Tier</code></a> models, giving us <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service_tier.rb#L1"><code>ServiceTier</code></a> instances</li>
+<li>An association between the <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service.rb#L1"><code>Service</code></a> and <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/interaction.rb#L1"><code>Interaction</code></a> models, giving us a <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service_interaction.rb#L1"><code>ServiceInteraction</code></a></li>
+<li>Enables the <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service.rb#L1"><code>Service</code></a> and <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/app/models/service_interaction.rb#L1"><code>ServiceInteraction</code></a></li>
+</ul>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>local-links-manager-fdc5dbbb7-vrf96 <span class="nt">--</span> bundle <span class="nb">exec </span>rails service:enable[LGSL_CODE,LGIL_CODE,SERVICE_NAME,SERVICE_SLUG]
+</code></pre></div><p><em>Where <code>SERVICE_NAME</code> is the service <a href="#seek-content-advice"><code>name</code></a>, and <code>SERVICE_SLUG</code> is the service <a href="#seek-content-advice"><code>slug</code></a>.</em></p>
+<p>Then run <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/import/missing_links.rake#L5">this rake task</a> in Local Links Manager to add (empty) links for all available local authorities&hellip;</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>local-links-manager-fdc5dbbb7-vrf96 <span class="nt">--</span> bundle <span class="nb">exec </span>rails import:missing_links
+</code></pre></div><h2 id='upload-local-authority-urls-to-local-links-manager-llm'>Upload Local Authority URLs to Local Links Manager (LLM)</h2><p>Upload the completed CSV file that was sent to the product owner <a href="#get-a-list-of-local-authority-slugs-and-urls">in this step</a>&hellip;</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">cp </span>LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-vrf96:/REMOTE_FILE_PATH
+</code></pre></div><p>Run <a href="https://github.com/alphagov/local-links-manager/blob/a1a2b23982f62d28ffbe38208807f2d4199548e6/lib/tasks/import/service_links_from_csv.rake#L5">this rake task</a> to import the links from the CSV file.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>k <span class="nb">exec </span>local-links-manager-fdc5dbbb7-vrf96 <span class="nt">--</span> bundle <span class="nb">exec </span>rails import:service_links[LGSL_CODE,LGIL_CODE,REMOTE_FILE_PATH]
+</code></pre></div><p><strong>Note</strong>: To run the <code>import:service_links</code> rake task, you will need to cp against one of the live pods. For example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="c"># To find out which pods you'll need to copy to, list the pods for that app.</span>
+k get pods <span class="nt">-l</span><span class="o">=</span><span class="nv">app</span><span class="o">=</span>local-links-manager
+
+NAME                                  READY   STATUS    RESTARTS   AGE
+local-links-manager-fdc5dbbb7-vrf96   2/2     Running   0          4h50m
+local-links-manager-fdc5dbbb7-x7rll   2/2     Running   0          4h50m
+
+<span class="c"># Copy the file to each...</span>
+k <span class="nb">cp </span>LOCAL_FILE_PATH local-links-manager-fdc5dbbb7-vrf96:/REMOTE_FILE_PATH
+</code></pre></div><h2 id='add-content-and-publish-the-service-in-publisher'>Add content and publish the service in Publisher</h2><p>Once <strong>all</strong> of the above steps are complete, ask a content designer to create a new local transaction page in <a href="https://publisher.publishing.service.gov.uk">Publisher</a> using the <a href="#lgsl-code">LGSL code</a> and <a href="#lgil-code">LGIL code</a>.</p>
+<h2 id='glossary'>Glossary</h2><h3 id='electronic-service-delivery-esd'>Electronic Service Delivery (ESD)</h3><p>Behind each local transaction is a public service, overseen and delivered by the <a href="https://www.local.gov.uk/">Local Government Association (LGA)</a>, that all local authorities should (in principle) offer and supply. These services are listed on the <a href="https://standards.esd.org.uk">Electronic Service Delivery (ESD)</a> website.</p>
+<p>The ESD <a href="https://standards.esd.org.uk/?uri=list%2Fservices&amp;tab=details">defines services</a> as&hellip;</p>
+
+<blockquote>
+<p>&ldquo;&hellip;a set of actions or activities undertaken by a council (or other public sector body) to deliver a product or conclusion.&rdquo;</p>
+</blockquote>
+<h3 id='lgsl-code'>LGSL code</h3><p>A Local Government Services List (LGSL) is a number that LLM uses to uniquely identify a service. They originate in <a href="#electronic-service-delivery-esd">ESD</a> where it is used as the service ID.</p>
+<h3 id='lgil-code'>LGIL code</h3><p>Along with services, <a href="#electronic-service-delivery-esd">ESD</a> has the concept of an Interaction. Functionally, the relationship between service and interaction is many-to-many.</p>
+<p>An interaction describes the reason, use, or purpose of the service.</p>
+<p>Like an <a href="#lgsl-code">LGSL code</a>, LLM uses the interaction ID from <a href="#electronic-service-delivery-esd">ESD</a> to uniquely identify an interaction. In LLM this is called the Local Government Interaction List (LGIL) code.</p>
+<p>One thing to note is that <a href="#electronic-service-delivery-esd">ESD</a> has deprecated the use of interactions. LLM has not however been updated to accommodate the replacement concept in <a href="#electronic-service-delivery-esd">ESD</a>. This means that services in LLM still need a relationship with one-or-more interaction in order to function correctly. If you are unsure which interaction(s) it is that you need, it is recommended that the <a href="https://standards.esd.org.uk/?uri=interaction%2F8">Providing information (LGIL code 8) interaction</a> be used as this ist generic in nature.</p>
+<h3 id='seek-content-advice'>Seek content advice</h3><p>For service details such as: <code>name</code>, <code>description</code> and <code>slug</code> - you must get a content designer to create them. It is highly unlikely that the details from <a href="#electronic-service-delivery-esd">ESD</a> will work and the <code>slug</code> will be used for the URL of the service on GOV.UK.</p>
+<p>For unavailability elements such as <code>title</code> and <code>body</code> standard text is available <a href="https://docs.google.com/document/d/1V1oP9O25IAudOsM168sYbsOegZfRZgPAJvdVrRxoEyY/edit#">here</a>.</p>
+<h3 id='providing-tier'>Providing tier</h3><p>A providing tier is way of identifying the <a href="https://www.gov.uk/understand-how-your-council-works">levels</a> at which a service is implemented by a local authority. A tier can be either:</p>
+
+<ul>
+<li><code>county/unitary</code></li>
+<li><code>district/unitary</code></li>
+<li><code>all</code></li>
+</ul>
+<p>In LLM each tier has a nominal level indicator that makes them hierarchical in nature.</p>
+
+<ol>
+<li>County</li>
+<li>District</li>
+<li>Unitary</li>
+</ol>
+<p>This is important as, in order to present the most appropriate URL for a service to the user, the tiers are checked for a match starting at the lowest level (3) working up to the highest level (1). This way http://www.coventry.gov.uk/a-specific-serivce would be presented before http://www.coventry.gov.uk for example.</p>
+<p>If the providing tier for a service is unknown, using <code>all</code> is recommended as this offers the best chance of finding the most appropriate URL.</p>
+
+  <div class='related-content'>
+
+    <h3>More in the Applications section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/architecture-deep-dive.html">Architectural deep-dive of GOV.UK</a></li>
+            <li><a href="/manual/architecture-shallow-dive.html">Architectural summary of GOV.UK</a></li>
+            <li><a href="/manual/architecture.html">Architecture overview of GOV.UK applications</a></li>
+            <li><a href="/manual/conventions-for-rails-applications.html">Conventions for Rails applications</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/ownership-meaning.html">Application ownership</a></li>
+            <li><a href="/manual/configure-linting.html">Configure linting</a></li>
+            <li><a href="/manual/incorrect-postcode-data.html">Incorrect postcode data</a></li>
+            <li><a href="/manual/naming.html">Name a new application or gem</a></li>
+            <li><a href="/manual/retiring-a-repo.html">Retire a repo</a></li>
+            <li><a href="/manual/retiring-an-application.html">Retire an application</a></li>
+            <li><a href="/manual/setting-up-new-rails-app.html">Set up a new Rails application</a></li>
+            <li><a href="/manual/update_popular_links.html">Update popular links</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/create-a-local-transaction.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Create+a+Local+Transaction%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fcreate-a-local-transaction.html%29&amp;labels=bug&amp;title=Re%3A+%27Create+a+Local+Transaction%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
