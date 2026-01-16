@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Fall back to AWS CloudFront
 section: Deployment
 layout: manual_layout

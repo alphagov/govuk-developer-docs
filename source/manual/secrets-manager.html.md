@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Retrieve shared credentials from AWS Secrets Manager
 section: Infrastructure
 layout: manual_layout

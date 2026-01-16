@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Raise issues with Reliability Engineering
 parent: "/manual.html"
 layout: manual_layout
@@ -10,7 +10,7 @@ You may experience an issue with GOV.UK where you need help from a Site Reliabil
 
 ## If you require assistance
 
-Ask in `#govuk-platform-engineering`.
+Ask in `#govuk-ask-platform-engineering`.
 
 ## Understanding what SREs can assist with
 

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Query Kibana (includes useful queries)
 layout: manual_layout
 parent: "/manual.html"

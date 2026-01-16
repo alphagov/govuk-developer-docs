@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: View GOV.UK logs in Logit
 section: Logging
 layout: manual_layout
@@ -112,7 +112,7 @@ count per time window.
 
 On the source Kubernetes cluster, make sure the filebeat daemonset is healthy
 and look for errors in its logs. [Platform Engineering
-team](https://gds.slack.com/channels/govuk-platform-engineering) can help you
+team](https://gds.slack.com/channels/govuk-ask-platform-engineering) can help you
 with this.
 
 ```sh

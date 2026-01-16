@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: 'Web Application Firewall (WAF) configuration'
 section: Security
 layout: manual_layout

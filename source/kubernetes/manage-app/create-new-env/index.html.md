@@ -6,7 +6,7 @@ layout: multipage_layout
 
 > 🚧 This document is outdated and untested. 🚧
 >
-> If you are thinking about creating an additional GOV.UK Kubernetes cluster, please get in touch with [#govuk-platform-engineering team] and we'll be happy to help you to achieve your goals.
+> If you are thinking about creating an additional GOV.UK Kubernetes cluster, please get in touch with [#govuk-ask-platform-engineering team] and we'll be happy to help you to achieve your goals.
 
 # Create a new environment
 
@@ -137,7 +137,7 @@ To check the environment is working, go to the new environment URL endpoint at `
 
 You must be in the office or on the VPN to access this endpoint.
 
-If the environment URL endpoint is not behaving as expected or shows an error, contact [#govuk-platform-engineering team].
+If the environment URL endpoint is not behaving as expected or shows an error, contact [#govuk-ask-platform-engineering team].
 
 ## Setting access permissions
 
@@ -153,4 +153,4 @@ See the [Kubescape user hub](https://hub.armosec.io/docs/welcome-to-kubescape-us
 
 See also the [Kubernetes conceptual overview documentation](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) for more information on Kubernetes overall.
 
-[#govuk-platform-engineering team]: /contact-platform-engineering-team.html
+[#govuk-ask-platform-engineering team]: /contact-platform-engineering-team.html

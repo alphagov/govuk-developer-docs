@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Convert an unencrypted AWS RDS instance into an encrypted one
 section: Infrastructure
 layout: manual_layout

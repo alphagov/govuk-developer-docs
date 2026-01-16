@@ -70,7 +70,7 @@ new-application:
 > [!IMPORTANT]
 > The workflow names must match the names of the workflows in the ci.yml file inside your app. For example, if you have a testing workflow named Test Ruby / Run RSpec, that must exactly match the app workflow or that step won’t run.
 
-2. contact #govuk-platform-engineering for a review and, after the changes have been merged, to run Terraform.
+2. contact #govuk-ask-platform-engineering for a review and, after the changes have been merged, to run Terraform.
 
 The repository will be created and populated with required permissions and secrets.
 

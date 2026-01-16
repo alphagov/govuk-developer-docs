@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Signon API user token expires soon
 parent: "/manual.html"
 layout: manual_layout

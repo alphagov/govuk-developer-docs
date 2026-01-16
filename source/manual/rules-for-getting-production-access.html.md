@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Rules for getting production access
 parent: "/manual.html"
 layout: manual_layout

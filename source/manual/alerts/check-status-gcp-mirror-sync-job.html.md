@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Check status of latest GCP mirror sync job
 section: Icinga alerts
 layout: manual_layout

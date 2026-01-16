@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: Ask for help
 parent: "/manual.html"
 layout: manual_layout
@@ -20,7 +20,7 @@ You can ping `@govuk-senior-tech-people` on Slack, or email [govuk-senior-tech-m
 
 There are channels for each area of GOV.UK:
 
-- `#govuk-platform-support`
+- `#govuk-ask-platform-engineering`
 - `#govuk-publishing-service-support`
 - `#govuk-web-support`
 
@@ -34,7 +34,7 @@ In addition, there's a `#govuk-technical-on-call` channel that can be used to co
 - supports each other with issues deploying changes to GOV.UK
 - ensures missions are delivered technically in the best and most appropriate way
 
-### GOV.UK [Platform Engineering] team ([#govuk-platform-engineering])
+### GOV.UK [Platform Engineering] team ([#govuk-ask-platform-engineering])
 
 - manages the Kubernetes clusters and base images for running GOV.UK applications
 - works on long-term improvements to the efficiency, reliability and security of GOV.UK
@@ -48,5 +48,5 @@ In addition, there's a `#govuk-technical-on-call` channel that can be used to co
   database to another safely and efficiently
 
 [#govuk-developers]: https://gds.slack.com/channels/govuk-developers
-[#govuk-platform-engineering]: https://gds.slack.com/channels/govuk-platform-engineering
+[#govuk-ask-platform-engineering]: https://gds.slack.com/channels/govuk-ask-platform-engineering
 [Platform Engineering]: /platform-engineering.html

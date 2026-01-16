@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-engineering"
+owner_slack: "#govuk-platform-engineering-team"
 title: GOV.UK's environments (integration, staging, production)
 section: Infrastructure
 type: learn
