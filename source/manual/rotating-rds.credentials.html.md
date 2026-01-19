@@ -322,7 +322,7 @@ I have no name!@postgres-jumpbox:/$
 You should now be able to use the Bash Prompt to start an interactive Postgres session:
 
 ```sh
-$ psql --host [rds-hostname] --username aws_db_admin --password --database [database-name]
+$ psql --host [rds-hostname] --username aws_db_admin --password [database-name]
 ```
 
 Replace `[rds-hostname]` with the relevant hostname. You will be prompted for the password you fetched earlier. If successful you will now have an authenticated interactive Postgres session.
