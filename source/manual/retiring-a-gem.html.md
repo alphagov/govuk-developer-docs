@@ -19,23 +19,26 @@ If the gem is being used you will either need to replace it with a different gem
 
 If removing the gem from an app, take the usual measures of due diligence (e.g. ensuring tests pass, monitoring the release for Sentry errors, etc).
 
-## 2. Update gem's README and archive it
+## 2. Update gem's README
 
 When the gem's repo is ready to be archived, push a commit explaining the reasons for archiving it.
 
 [Example](https://github.com/alphagov/govuk_taxonomy_helpers/pull/27)
 
-Go into the repository settings in GitHub, and
-[archive the repo](https://github.com/blog/2460-archiving-repositories).
+## 3. Archive the repo
 
-## 3. Remove references and update docs
+Before you proceed with archiving the repo, ensure that all workflow runs listed under "Actions" have completed or [cancel them](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/canceling-a-workflow#canceling-a-workflow-run).
+
+Follow the ['Archiving repositories'](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/README.md#archiving-repositories) instructions in the govuk-infrastructure.
+
+## 4. Remove references and update docs
 
 Do a [code search on GitHub][https://github.com/search?q=org%3Aalphagov+panopticon&type=Code] to find any references to the gem
 and update or remove them.
 
 Mark the gem as `retired` in [govuk-developer-docs][https://github.com/alphagov/govuk-developer-docs].
 
-## 4. Yank the gem (optional)
+## 5. Yank the gem (optional)
 
 Once the gem has been archived you may want to [yank it from Rubygems](https://guides.rubygems.org/removing-a-published-gem/) if it was published there. The Rubygems login credentials are under `2ndline/rubygems` in [Secrets Manager](secrets-manager.html).
 
