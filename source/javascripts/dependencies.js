@@ -4,7 +4,7 @@
 // to allow use of a custom modules.js with jQuery support
 
 // This adds in javascript that initialises components and dependencies
-// that are provided by Slimmer in public frontend applications.
+// that are provided by the component gem in public frontend applications.
 // = require ./modules.js
 
 $(document).ready(function() {
