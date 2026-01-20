@@ -512,13 +512,12 @@ If you have completed the earlier steps correctly and the application is working
 Run this command to see if there are any remaining connections from the old user:
 
 ```sql
-SELECT count(*) as active_connections, application_name
-FROM pg_stat_activity
-WHERE usename = 'account-api'
-GROUP BY application_name;
+SELECT count(*) as active_connections, application_name, usename 
+FROM pg_stat_activity 
+GROUP BY application_name, usename;
 ```
 
-If this returns `0` then you are able to continue.
+If you can only see active connections from your new user and not the old one, you are free to proceed.
 
 ### Final check for temporary or recent objects
 
