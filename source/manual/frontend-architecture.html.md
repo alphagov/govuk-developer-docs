@@ -6,7 +6,6 @@ layout: manual_layout
 type: learn
 section: Frontend
 related_repos:
- - slimmer
  - govuk_publishing_components
 ---
 

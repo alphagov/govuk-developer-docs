@@ -64,8 +64,6 @@ Ruby / Rails applications:
   for the current environment
 - [rubocop-govuk][] - Provides GOV.UK linting rules for Ruby, Rails, RSpec and
   Rake
-- [slimmer][] - Provides consistent templating for apps that serve content on
-  the www.gov.uk host
 
 Using these helps maintain consistency across the programme and enables common
 iterations to be pushed out. It is encouraged that gems are iterated or issues
@@ -85,7 +83,6 @@ introduced by these gems.
 [govuk_test]: https://github.com/alphagov/govuk_test
 [plek]: https://github.com/alphagov/plek
 [rubocop-govuk]: https://github.com/alphagov/rubocop-govuk
-[slimmer]: https://github.com/alphagov/slimmer
 [issue-example]: https://github.com/alphagov/govuk_app_config/issues/121
 
 ### Lint your code

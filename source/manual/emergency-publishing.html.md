@@ -135,8 +135,6 @@ in the frontend rendering apps or in your browser.
    clusters](https://eu-west-1.console.aws.amazon.com/elasticache/home?region=eu-west-1#/memcached/frontend-memcached-govuk)
    and press the Reboot button. The UI will ask you to confirm the request.
 
-[Slimmer cache]: https://github.com/search?q=repo%3Aalphagov%2Fslimmer%20CACHE_TTL&type=code
-
 ### Inspect the Redis key
 
 You can query Redis to check whether the banner data has been stored.
