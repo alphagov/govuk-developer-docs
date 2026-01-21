@@ -17,6 +17,18 @@ The process to rotate credentials on an RDS-hosted Database Instance is as follo
 * Update the credentials used by the application
 * Delete the old user
 
+## The process (for Staging and Production)
+
+The process for Staging and Production are a bit different, as Databases are synced from Production over the top of Staging each night. In which case, the process looks like this:
+
+* Access the Database Instance (inside the VPC) in Production
+* If Postgres, make sure Database and Object owners are set to an "owner role" (still in Production)
+* Create a new user (in Production)
+* Update the credentials used by the application in Production
+* Wait overnight for the changes to be replicated into Staging
+* Delete the old user in Production
+* Update the credentials used by the application in Staging
+
 # Getting started
 
 ## Create a bastion or "jump box" Pod
@@ -205,9 +217,43 @@ Then grant the necessary permissions to the new user:
 GRANT ALL PRIVILEGES ON signon_production.* TO 'signon_user2'@'%';
 ```
 
+## Check for other MySQL objects
+
+MySQL has some specific objects that are "defined" (by default) by the database user that created them - specifically: Events, Functions, Procedures and Views. If your application uses any of these features, you will need to manually re-create these for the new user.
+
+Run these lines to identify any Stored Procedures or Triggers you may need to migrate manually:
+
+```sql
+SHOW FUNCTION STATUS WHERE db='signon_production';
+SHOW PROCEDURE STATUS WHERE db='signon_production';
+SHOW TRIGGERS FROM signon_production;
+```
+
+Run this to find any Views you may need to re-create:
+
+```sql
+SHOW FULL TABLES FROM signon_production WHERE table_type = 'VIEW';
+```
+
+If any of these commands return any results, you can use commands such as `SHOW CREATE` to save the definitions of your Procedures and Views and re-create them for the new user. If there are no results or you have already migrated the required objects, you can continue.
+
 ## Rotate credentials in AWS SecretsManager
 
-Next, you should access the AWS Console for the relevant environment with the `fulladmin` role and locate the relevant Secret in AWS SecretsManager. Locate the secret named `govuk/signon/mysql` and edit the `username` and `password` keys to match the values of the new Postgres user you created earlier.
+Next, you should access the AWS Console for the relevant environment with the `fulladmin` role and locate the relevant Secret in AWS SecretsManager.
+
+Authenticate with the `fulladmin` or `platformengineer` role:
+
+```bash
+gds aws govuk-[environmentname]-fulladmin -l
+```
+
+Also make sure your shell has a current `fulladmin` or `platformengineer` session - you will need this momentarily:
+
+```bash
+gds aws govuk-[environmentname]-fulladmin --shell
+```
+
+Locate the secret named `govuk/signon/mysql` and edit the `username` and `password` keys to match the values of the new Postgres user you created earlier.
 
 ### Force sync of Kubernetes secrets
 
@@ -238,27 +284,7 @@ kubectl exec -it deployment/signon --container=app -- env | grep "DATABASE_URL"
 
 You should see the same connection string as earlier.
 
-## Check for other MySQL objects
-
-MySQL has some specific objects that are "defined" (by default) by the database user that created them - specifically: Events, Functions, Procedures and Views. If your application uses any of these features, you will need to manually re-create these for the new user.
-
-Run these lines to identify any Stored Procedures or Triggers you may need to migrate manually:
-
-```sql
-SHOW FUNCTION STATUS WHERE db='signon_production';
-SHOW PROCEDURE STATUS WHERE db='signon_production';
-SHOW TRIGGERS FROM signon_production;
-```
-
-Run this to find any Views you may need to re-create:
-
-```sql
-SHOW FULL TABLES FROM signon_production WHERE table_type = 'VIEW';
-```
-
-If any of these commands return any results, you can use commands such as `SHOW CREATE` to save the definitions of your Procedures and Views and re-create them for the new user. If there are no results or you have already migrated the required objects, you can now delete the old user.
-
-## Verify rotation and delete old user
+## Verify rotation
 
 Check that the new user is now being used to make connections:
 
@@ -282,6 +308,12 @@ You should see a table like this:
 ```
 
 If you have any dangling connections for your old user, you can kill them (see in Troubleshooting).
+
+### Wait for Production-to-Staging sync overnight
+
+If you are following this process to rotate credentials in Production and Staging, you should now wait overnight for the changes to be replicated in Staging.
+
+If you are not following this guide for Production or Staging, you can skip the wait and continue to the next step.
 
 ### Deleting the old user
 
@@ -363,6 +395,8 @@ If it becomes clear that the active application user (in these examples, `accoun
 
 Follow these instructions to re-assign the Database Ownership to use a single role that you can use to grant to one or more credential sets (authenticated roles) to simplify the process of managing and rotating credentials in the future.
 
+You also only need to complete this step once if you are performing the rotation process for Production or Staging - complete it in Production _only_ and then wait for the overnight backup-and-restore to replicate the changes into Staging.
+
 ### Create the new owner role
 
 Create a role to serve as the Database Owner (substitute `account-api` with the app name):
@@ -438,6 +472,8 @@ If this looks correct, you can now proceed to Create a New User and rotate your 
 
 ## Create new user for Postgres database
 
+Skip this stage if you are planning to rotate credentials in Staging only - any changes you make will be overwritten (or undone) by the overnight backup-and-restore job.
+
 Create a new user with a password of your choosing:
 
 ```sql
@@ -464,7 +500,19 @@ WHERE r.rolname = 'account-api-user2';
 
 ## Rotate credentials in AWS SecretsManager
 
-Next, you should access the AWS Console for the relevant environment with the `fulladmin` role and locate the relevant Secret in AWS SecretsManager. Locate the secret named `govuk/account-api/postgres` and edit the `username` and `password` keys to match the values of the new Postgres user you created earlier.
+Next, you should access the AWS Console for the relevant environment with the `fulladmin` or `platformengineer` role:
+
+```bash
+gds aws govuk-[environmentname]-fulladmin -l
+```
+
+Also make sure your shell has a current `fulladmin` or `platformengineer` session:
+
+```bash
+gds aws govuk-[environmentname]-fulladmin --shell
+```
+
+Then locate the relevant Secret in AWS SecretsManager. Locate the secret named `govuk/account-api/postgres` and edit the `username` and `password` keys to match the values of the new Postgres user you created earlier.
 
 ### Force sync of Kubernetes secrets
 
@@ -510,6 +558,12 @@ GROUP BY application_name, usename;
 ```
 
 If you can only see active connections from your new user and not the old one, you are free to proceed.
+
+### Wait for Production-to-Staging sync overnight
+
+If you are following this process to rotate credentials in Production and Staging, you should now wait overnight for the changes to be replicated in Staging.
+
+If you are not following this guide for Production or Staging, you can skip the wait and continue to the next step.
 
 ### Final check for temporary or recent objects
 
