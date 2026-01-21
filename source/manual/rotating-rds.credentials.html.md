@@ -111,7 +111,7 @@ you will need either `platformengineer` or `fulladmin` roles to do this:
 $ gds aws govuk-some-environment-fulladmin -- kubectl -n apps apply -f postgres-jumpbox.yaml
 ```
 
-### Getting the `aws_db_admin` root user credentials
+### Getting the `aws_db_admin` RDS admin user credentials
 
 First, log in to the relevant AWS Console environment:
 
@@ -119,7 +119,7 @@ First, log in to the relevant AWS Console environment:
 $ gds aws govuk-some-environment-developer -l
 ```
 
-To manage Database Authentication, you will need to use the Root User, which you can find in AWS SecretsManager
+To manage Database Authentication, you will need to use the RDS admin user, which you can find in AWS SecretsManager
  under the key `[env-name]-rds-admin-passwords` - replace `[env-name]` with the relevant environment name.
 
 Once you have found the secret, you will find key/value pairs for each RDS instance and the corresponding password.
@@ -208,13 +208,14 @@ Take note of these permissions - you will want to make sure your new user has th
 Create the new user in MySQL by using:
 
 ```sql
-CREATE USER 'signon_user2'@'%' IDENTIFIED BY 'a-secret-password';
+-- Create a new user, maybe date the user to make it clear when it was rotated.
+CREATE USER 'signon_user_20260121'@'%' IDENTIFIED BY 'a-secret-password';
 ```
 
 Then grant the necessary permissions to the new user:
 
 ```sql
-GRANT ALL PRIVILEGES ON signon_production.* TO 'signon_user2'@'%';
+GRANT ALL PRIVILEGES ON signon_production.* TO 'signon_user_20260121'@'%';
 ```
 
 ## Check for other MySQL objects
@@ -253,7 +254,7 @@ Also make sure your shell has a current `fulladmin` or `platformengineer` sessio
 gds aws govuk-[environmentname]-fulladmin --shell
 ```
 
-Locate the secret named `govuk/signon/mysql` and edit the `username` and `password` keys to match the values of the new Postgres user you created earlier.
+Locate the secret named `govuk/signon/mysql` and edit the `username` and `password` keys to match the values of the new MySQL user you created earlier.
 
 ### Force sync of Kubernetes secrets
 
@@ -301,7 +302,7 @@ You should see a table like this:
 | USER            | count(*) |
 +-----------------+----------+
 | rdsadmin        |        2 |
-| signon_user2    |        2 |
+| signon_user_20260121    |        2 |
 | event_scheduler |        1 |
 | aws_db_admin    |        1 |
 +-----------------+----------
@@ -477,13 +478,14 @@ Skip this stage if you are planning to rotate credentials in Staging only - any 
 Create a new user with a password of your choosing:
 
 ```sql
-CREATE USER "account-api-user2" WITH password 'a-secret-password';
+-- Create a new user, maybe date the user to make it clear when it was rotated.
+CREATE USER "account-api-user-20260121" WITH password 'a-secret-password';
 ```
 
 Then you will need to grant the new user access to the role that owns the relevant tables:
 
 ```sql
-GRANT "account-api-owner-role" TO "account-api-user2";
+GRANT "account-api-owner-role" TO "account-api-user-20260121";
 ```
 
 ### Verify role inheritance
@@ -495,7 +497,7 @@ SELECT r.rolname as user_name, m.rolname as member_of
 FROM pg_roles r
 JOIN pg_auth_members am ON r.oid = am.member
 JOIN pg_roles m ON am.roleid = m.oid
-WHERE r.rolname = 'account-api-user2';
+WHERE r.rolname = 'account-api-user-20260121';
 ```
 
 ## Rotate credentials in AWS SecretsManager
@@ -529,7 +531,7 @@ Then run this command to verify that the Secret in Kubernetes has updated:
 kubectl get secret account-api-postgres -o json | jq '.data.DATABASE_URL | @base64d'
 ```
 
-You should see a connection string that looks similar to `postgresql://account-api-user2:a-secret-password@hostname/account-api_production` - check that the `username:password` bit matches what you expect it to.
+You should see a connection string that looks similar to `postgresql://account-api-user-20260121:a-secret-password@hostname/account-api_production` - check that the `username:password` bit matches what you expect it to.
 
 ### Check application variables
 
