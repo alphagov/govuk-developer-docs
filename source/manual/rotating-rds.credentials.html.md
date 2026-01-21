@@ -36,12 +36,6 @@ spec:
   containers:
   - name: mysql-jumpbox
     image: mysql:latest
-    env:
-      - name: DATABASE_URL
-        valueFrom:
-          secretKeyRef:
-            name: signon-mysql
-            key: DATABASE_URL
     command:
       - bash
       - -c
@@ -80,12 +74,6 @@ spec:
   containers:
   - name: postgres-jumpbox
     image: postgres:latest
-    env:
-      - name: DATABASE_URL
-        valueFrom:
-          secretKeyRef:
-            name: account-api-postgres
-            key: DATABASE_URL
     command:
       - bash
       - -c
@@ -124,7 +112,7 @@ To manage Database Authentication, you will need to use the Root User, which you
 
 Once you have found the secret, you will find key/value pairs for each RDS instance and the corresponding password.
 
-If you also need to find the hostname and Database Name for the relavant RDS instance, you can find this by locating the RDS instance in the AWS Console. Or, you can view it in the relevant secret under `govuk/[app-name]/[db-engine]` - substitute `[app-name]` and `[db-engine]` as relevant.
+If you also need to find the hostname and Database Name for the relevant RDS instance, you can find this by locating the RDS instance in the AWS Console. Or, you can view it in the relevant secret under `govuk/[app-name]/[db-engine]` - substitute `[app-name]` and `[db-engine]` as relevant.
 
 # Managing credentials for MySQL instances
 
@@ -236,9 +224,11 @@ Then run this command to verify that the Secret in Kubernetes has updated:
 kubectl get secret signon-mysql -o json | jq '.data.DATABASE_URL | @base64d'
 ```
 
-You should see a connection string that looks simular to `mysql2://signon-user2:a-secret-password@hostname/signon_production` - check that the `username:password` bit matches what you expect it to.
+You should see a connection string that looks similar to `mysql2://signon-user2:a-secret-password@hostname/signon_production` - check that the `username:password` bit matches what you expect it to.
 
 ### Check application variables
+
+Wait a few minutes before doing this to allow the cluster to complete a rollout.
 
 Check one of the application pods that the DATABASE_URL environment variable has the correct secret (proving the pods have restarted with the new credentials):
 
@@ -250,7 +240,7 @@ You should see the same connection string as earlier.
 
 ## Check for other MySQL objects
 
-MySQL has some specific objects that are "defined" (by default) by the database user that created them - specifically: Events, Functions, Procedures and Views. If your application uses any of these features, you will need to manually recreate these for the new user.
+MySQL has some specific objects that are "defined" (by default) by the database user that created them - specifically: Events, Functions, Procedures and Views. If your application uses any of these features, you will need to manually re-create these for the new user.
 
 Run these lines to identify any Stored Procedures or Triggers you may need to migrate manually:
 
@@ -266,7 +256,7 @@ Run this to find any Views you may need to re-create:
 SHOW FULL TABLES FROM signon_production WHERE table_type = 'VIEW';
 ```
 
-If any of the above commands return any results, you can use commands such as `SHOW CREATE` to save the definitions of your Procedures and Views and re-create them for the new user. If there are no results or you have already migrated the required objects, you may now delete the old user.
+If any of these commands return any results, you can use commands such as `SHOW CREATE` to save the definitions of your Procedures and Views and re-create them for the new user. If there are no results or you have already migrated the required objects, you can now delete the old user.
 
 ## Verify rotation and delete old user
 
@@ -491,9 +481,11 @@ Then run this command to verify that the Secret in Kubernetes has updated:
 kubectl get secret account-api-postgres -o json | jq '.data.DATABASE_URL | @base64d'
 ```
 
-You should see a connection string that looks simular to `postgresql://account-api-user2:a-secret-password@hostname/account-api_production` - check that the `username:password` bit matches what you expect it to.
+You should see a connection string that looks similar to `postgresql://account-api-user2:a-secret-password@hostname/account-api_production` - check that the `username:password` bit matches what you expect it to.
 
 ### Check application variables
+
+Wait a few minutes before doing this to allow the cluster to complete a rollout.
 
 Check one of the application pods that the DATABASE_URL environment variable has the correct secret (proving the pods have restarted with the new credentials):
 
@@ -512,8 +504,8 @@ If you have completed the earlier steps correctly and the application is working
 Run this command to see if there are any remaining connections from the old user:
 
 ```sql
-SELECT count(*) as active_connections, application_name, usename 
-FROM pg_stat_activity 
+SELECT count(*) as active_connections, application_name, usename
+FROM pg_stat_activity
 GROUP BY application_name, usename;
 ```
 
