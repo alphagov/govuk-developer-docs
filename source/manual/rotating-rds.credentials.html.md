@@ -124,7 +124,7 @@ To manage Database Authentication, you will need to use the Root User, which you
 
 Once you have found the secret, you will find key/value pairs for each RDS instance and the corresponding password.
 
-If you also need to find the hostname and Database Name for the relavant RDS instance, you can find this by locating the RDS instance in the AWS Console. Orgit p, you can view it in the relevant secret under `govuk/[app-name]/[db-engine]` - substitute `[app-name]` and `[db-engine]` as relevant.
+If you also need to find the hostname and Database Name for the relavant RDS instance, you can find this by locating the RDS instance in the AWS Console. Or, you can view it in the relevant secret under `govuk/[app-name]/[db-engine]` - substitute `[app-name]` and `[db-engine]` as relevant.
 
 # Managing credentials for MySQL instances
 
