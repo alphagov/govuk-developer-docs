@@ -23,7 +23,7 @@ GOV.UK have [committed to a minimum service level agreement](https://www.gov.uk/
 
 ## Get started
 
-[Create an account](https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;brand_id=3194076&amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;theme=hc) then assign a new ticket to `2nd/3rd Line--Zendesk Administration` asking to give you "GDS Resolver Agent" access to [your product team's Zendesk group](#where-to-triage-tickets).
+[Create an account](https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;brand_id=3194076&amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;theme=hc) then assign a new ticket to `2nd/3rd Line--Zendesk Administration` asking to give you "GDS Resolver Agent" access to these three groups "GOV.UK Publishing Service Support", "GOV.UK Web Support", "GOV.UK Platform Support", plus [any other Zendesk group specific to your product team](#where-to-triage-tickets).
 
 > The Zendesk admins sometimes bump accounts down to “Light Agent”, which has restricted permissions, because the person hasn't been very active in Zendesk and those accounts are cheaper. If you need more access, you can request it on the [#user-support](https://gds.slack.com/archives/CADFJBDQU) Slack channel and the team will make live changes to meet demand, but it is effectively a one in, one out situation.
 
