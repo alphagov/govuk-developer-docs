@@ -35,81 +35,7 @@ The process for Staging and Production are a bit different, as Databases are syn
 
 Before you can interact with MySQL or Postgres, you will need a way to interact with the RDS instance that sits inside the VPC.
 
-### Pod definition for MySQL
-
-Save this Pod Definition to a local file of your choosing (such as `mysql-jumpbox.yaml`):
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: mysql-jumpbox
-spec:
-  containers:
-  - name: mysql-jumpbox
-    image: mysql:latest
-    command:
-      - bash
-      - -c
-      - "sleep 10d"
-    securityContext:
-      allowPrivilegeEscalation: false
-      capabilities:
-        drop:
-          - ALL
-  securityContext:
-    seccompProfile:
-      type: RuntimeDefault
-    fsGroup: 1000
-    runAsNonRoot: true
-    runAsUser: 1000
-    runAsGroup: 1000
-```
-
-Once you've done this, you will want to apply this pod definition to the required cluster -
-you will need either `platformengineer` or `fulladmin` roles to do this:
-
-```sh
-$ gds aws govuk-some-environment-fulladmin -- kubectl -n apps apply -f mysql-jumpbox.yaml
-```
-
-### Pod definition for Postgres
-
-Save this Pod Definition to a local file of your choosing (such as `postgres-jumpbox.yaml`):
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: postgres-jumpbox
-spec:
-  containers:
-  - name: postgres-jumpbox
-    image: postgres:latest
-    command:
-      - bash
-      - -c
-      - "sleep 10d"
-    securityContext:
-      allowPrivilegeEscalation: false
-      capabilities:
-        drop:
-          - ALL
-  securityContext:
-    seccompProfile:
-      type: RuntimeDefault
-    fsGroup: 1000
-    runAsNonRoot: true
-    runAsUser: 1000
-    runAsGroup: 1000
-```
-
-Once you've done this, you will want to apply this pod definition to the required cluster -
-you will need either `platformengineer` or `fulladmin` roles to do this:
-
-```sh
-$ gds aws govuk-some-environment-fulladmin -- kubectl -n apps apply -f postgres-jumpbox.yaml
-```
+Follow the [Bastion Documentation](/manual/create-bastion-pod.html) for detailed instructions on how to do this.
 
 ### Getting the `aws_db_admin` RDS admin user credentials
 
@@ -295,26 +221,24 @@ FROM information_schema.PROCESSLIST
 GROUP BY USER;
 ```
 
-You should see a table like this:
+You should see a table similar to this:
 
 ```
-+-----------------+----------+
-| USER            | count(*) |
-+-----------------+----------+
-| rdsadmin        |        2 |
++-------------------------+----------+
+| USER                    | count(*) |
++-------------------------+----------+
+| rdsadmin                |        2 |
 | signon_user_20260121    |        2 |
-| event_scheduler |        1 |
-| aws_db_admin    |        1 |
-+-----------------+----------
+| event_scheduler         |        1 |
+| aws_db_admin            |        1 |
++-------------------------+----------+
 ```
 
 If you have any dangling connections for your old user, you can kill them (see in Troubleshooting).
 
-### Wait for Production-to-Staging sync overnight
+### Repeat process in lower environments (if necessary)
 
-If you are following this process to rotate credentials in Production and Staging, you should now wait overnight for the changes to be replicated in Staging.
-
-If you are not following this guide for Production or Staging, you can skip the wait and continue to the next step.
+If you are following this process to rotate credentials in Production and Staging, you should repeat the process in other environments. Unlike our Postgres databases, MySQL's internal authentication or permission tables are not synced between environments. This means you will need to follow this process for each environment.
 
 ### Deleting the old user
 
@@ -374,7 +298,7 @@ Running `\du` should return a table that looks like this:
                  | Password valid until infinity
 ```
 
-Running `\dt` will produce something like:
+Running `\dt` will produce something similar to:
 
 ```
                    List of tables
@@ -390,86 +314,11 @@ Running `\dt` will produce something like:
  public | users                | table | account-api
 ```
 
-If it becomes clear that the active application user (in these examples, `account-api`) owns the database objects and tables, you will want to go through the following process to standardise the ownership of the Database and associated Tables.
+Unlike MySQL Databases, Postgres uses a different permissions model and has a concept of object owners that need to be managed correctly.
 
-## Database ownership standardisation (one time only)
+If the active application user (in these examples, `account-api`) owns the database objects and tables, you will need standardise the ownership of the Database and associated Tables.
 
-Follow these instructions to re-assign the Database Ownership to use a single role that you can use to grant to one or more credential sets (authenticated roles) to simplify the process of managing and rotating credentials in the future.
-
-You also only need to complete this step once if you are performing the rotation process for Production or Staging - complete it in Production _only_ and then wait for the overnight backup-and-restore to replicate the changes into Staging.
-
-### Create the new owner role
-
-Create a role to serve as the Database Owner (substitute `account-api` with the app name):
-
-```sql
-CREATE ROLE "account-api-owner-role" WITH NOLOGIN;
-```
-
-The `NOLOGIN` argument defines this role as a structural role and not a user role, preventing direct authentication.
-
-### Make existing user role a member of the new owner role
-
-This is important! Missing this step will result in the current app user losing privileges and cause an outage.  
-Use the `GRANT` verb to make the existing `account-api` app user a member of the new owner role:
-
-```sql
-GRANT "account-api-owner-role" TO "account-api";
-```
-
-### Transfer ownership of database objects
-
-First, transfer object ownership of all tables, sequences, views and functions over to the new role:
-
-```sql
-REASSIGN OWNED BY "account-api" TO "account-api-owner-role";
-```
-
-Then transfer the Database Owner:
-
-```sql
-ALTER DATABASE "account-api_production" OWNER TO "account-api-owner-role";
-```
-
-Finally, update the public schema owner:
-
-```sql
-ALTER SCHEMA public OWNER TO "account-api-owner-role";
-```
-
-### Set default owners for future objects
-
-The earlier changes will update everything that is currently in the Database, but any future migrations run the risk of there being "split ownership", so we will do something about this now. Set defaults as follows:
-
-```sql
-ALTER DEFAULT PRIVILEGES FOR ROLE "account-api"
-IN SCHEMA public
-GRANT ALL ON TABLES TO "account-api-owner-role";
-
-ALTER DEFAULT PRIVILEGES FOR ROLE "account-api"
-IN SCHEMA public
-GRANT ALL ON SEQUENCES TO "account-api-owner-role";
-```
-
-### Verification of ownership
-
-Run this query to confirm the Database Owner:
-
-```sql
-SELECT d.datname, pg_catalog.pg_get_userbyid(d.datdba) as owner
-FROM pg_catalog.pg_database d
-WHERE d.datname = 'account-api_production';
-```
-
-You should see the following result:
-
-```
-        datname         |    owner
-------------------------+-----------------------
- account-api_production | account-api-owner-role
-```
-
-If this looks correct, you can now proceed to Create a New User and rotate your credentials as needed.
+Follow the [Convert Postgres to use Owner Roles](/manual/convert-postgres-to-use-owner-roles.html) documentation before continuing.
 
 ## Create new user for Postgres database
 
@@ -569,7 +418,7 @@ If you are not following this guide for Production or Staging, you can skip the 
 
 ### Final check for temporary or recent objects
 
-Run the re-assign command again to catch any temporary or last-minute objects the old user might have created prior to the credential switchover:
+Run the re-assign command to catch any temporary or last-minute objects the old user might have created prior to the credential switchover:
 
 ```sql
 REASSIGN OWNED BY "account-api" TO "account-api-owner-role";
@@ -610,3 +459,9 @@ SELECT pg_terminate_backend(pid)
 FROM pg_stat_activity
 WHERE usename = 'account-api'; --The username you want to drop connections for
 ```
+
+## Future improvements
+
+There are potential improvements that could be made to our Database configurations, including:
+
+* IAM and/or OIDC authentication (eliminating the need for credential rotation and reducing the possibility of credential leakage)
