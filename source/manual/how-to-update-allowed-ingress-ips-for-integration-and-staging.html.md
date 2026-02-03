@@ -76,8 +76,9 @@ In the [govuk-fastly-secrets git repo](https://github.com/alphagov/govuk-fastly-
 
 ### Apply the Fastly Terraform Workspaces for datagovuk and www
 
-After the changes above are merged you need to apply the Terraform Workspaces:
+After the changes above are merged you need to apply the Terraform Workspaces (in this order):
 
+* [govuk-fastly-secrets](https://app.terraform.io/app/govuk/workspaces/govuk-fastly-secrets)
 * [govuk-fastly-datagovuk-integration](https://app.terraform.io/app/govuk/workspaces/govuk-fastly-datagovuk-integration)
 * [govuk-fastly-datagovuk-staging](https://app.terraform.io/app/govuk/workspaces/govuk-fastly-datagovuk-staging)
 * [govuk-fastly-www-integration](https://app.terraform.io/app/govuk/workspaces/govuk-fastly-www-integration)
