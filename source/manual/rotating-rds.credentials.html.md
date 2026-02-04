@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-This documentation explains how to rotate (or create) Credentials for an RDS Database (backed by MySQL or Postgres).
+This documentation explains how to rotate (or create) **[Application Credentials](#rotating-application-credentials)** for an RDS Database (backed by MySQL or Postgres). [Admin Credentials](#rotating-admin-credentials) are managed by terraform and are rotated differently to application credentials.
 
 ## The process for MySQL databases
 
@@ -33,7 +33,7 @@ The process for Postgres databases is a bit different, due to the way Postgres h
 7. Update the credentials used by the application in Staging
 8. Delete the old user in Production (the change will replicate into Staging overnight)
 
-# Getting started
+# Rotating Application Credentials
 
 ## Create a bastion or "jump box" Pod
 
@@ -494,6 +494,21 @@ Finally, this deletes the old user in Production:
 ```sql
 DROP USER "account-api";
 ```
+
+# Rotating admin credentials
+
+Rotating Admin Credentials requires a platform engineer to taint and reapply terraform, following these steps:
+
+1. cd into `govuk-infrastructure/terraform/deployments/rds/`
+2. `terraform login`
+3. `terraform workspace select rds-<environment>`
+4. `terraform init`
+5. `terraform state list` to list all of the resources. The database password will have a resource name like `random_string.database_password["<db_name>"]`
+6. `terraform show 'random_string.database_password["<db_name>"]'` to verify this is the correct resource to change, this will output sensitive data to your console.
+7. `terraform taint 'random_string.database_password["<db_name>"]'`. Tainting informs Terraform that this object is degraded and will prompt Terraform to replace the object in the next plan and apply.
+8. Visit Terraform Cloud in your browser and start a new run (plan and apply) in the correct workspace. This will update the SecretsManager version, recreate the terraform random_password and update the db instance with the new password
+9. The SecretsManager secret `govuk/db-backup/passwd` is updated manually so login to the correct aws environment with "platformengineer" and copy the new password value to the correct db in the secret, you can copy the value out of the `<env>-rds-admin-passwords` secret (which is updated by terraform).
+10. Lastly, roll the db-backup secret with `kubectl annotate -n apps externalsecrets.external-secrets.io db-backup-passwd force-sync=$(date +%s) --overwrite`
 
 ## Troubleshooting
 
