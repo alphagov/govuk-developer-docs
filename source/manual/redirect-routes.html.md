@@ -152,6 +152,7 @@ and using non-default values for the `segments_mode`.
 
 [short-url-manager]: https://short-url-manager.publishing.service.gov.uk
 [short-url-manager-permissions]: https://github.com/alphagov/short-url-manager/#permissions
+## Removing redirect routes
 
 ### Removing a route created in the Short URL Manager
 
@@ -163,11 +164,9 @@ Once the redirect is removed, the page will return a [410 Gone status](https://d
 
 ### Removing a route completely so it can be replaced with another route
 
-Removing a route in the previous section returns a 410 Gone status - this means that the URL can not be reused by another publication as the route is still being used.
+In cases where a redirect was created manually, or the Short URL Manager has left a [410 Gone status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410), we need to manually remove the redirect routes (or their reservation) so they can be used again.
 
-To completely remove a route requires using the Rails console for several different apps using EKS.
-
-If you have not accessed the cluster before, you will need to follow [the set up instructions](/kubernetes/get-started/set-up-tools/) first.
+To do so requires using the Rails console for several different apps using EKS. If you have not accessed the cluster before, you will need to follow [the set up instructions](/kubernetes/get-started/set-up-tools/) first.
 
 To access an app's Rails console you’ll need to set your region and context as below (swapping out the environment as appropriate):
 
@@ -214,7 +213,13 @@ For documents published in other publishing apps that are not Mainstream Publish
 
 The final step is to [clear the cache for the routes](/manual/purge-cache.html).
 
-## Redirects for HMRC manuals
+>There are rare cases wherein a slug is being held elsewhere in reservation, such as an archived document in Publisher. In such cases, the best course of action is to reslug the old document such as `document-slug` to `document-slug-old` to remove the reservation.
+>
+>Where this applies depends on the app, but is typically done at the highest container level (e.g. `Artefact` in Publisher).
+
+## Other Redirects
+
+### Redirects for HMRC manuals
 
 [hmrc-manuals-section]: #redirects-for-hmrc-manuals
 
@@ -222,7 +227,7 @@ There are rake tasks for redirecting HMRC manuals and HMRC manual sections, whic
 
 An example of redirecting a HMRC manual section to another section would be to run `redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug]`
 
-## Redirects from campaign sites
+### Redirects from campaign sites
 
 [campaign-sites-section]: #redirects-from-campaign-sites
 
