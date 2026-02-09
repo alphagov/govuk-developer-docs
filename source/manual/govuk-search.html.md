@@ -72,7 +72,7 @@ There are two Search API ADRs documenting the decision to move to one `govuk` in
 
 One can find out which index a piece of content is saved under, using Search API's API: see `"index": "government"` on [this example](https://www.gov.uk/api/search.json?filter_link=/government/news/scottish-secretary-attends-royal-national-mod).
 
-In addition search-api stores best bets in the metasearch index, and popularity data in the page traffic index.
+In addition search-api stores best bets in the `metasearch` index, and popularity data in the `page-traffic` index.
 
 ## Search Admin
 
