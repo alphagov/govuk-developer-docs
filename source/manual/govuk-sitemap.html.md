@@ -4,6 +4,7 @@ title: GOV.UK's sitemap
 parent: "/manual.html"
 type: learn
 layout: manual_layout
+section: Search on GOV.UK
 ---
 
 GOV.UK's sitemap is available at https://www.gov.uk/sitemap.xml.
