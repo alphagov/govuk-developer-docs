@@ -86,10 +86,15 @@ It needs to be configured and enabled on a per-app basis ([example](https://gith
 
 Sidekiq web is enabled for the following applications (and requires a Sidekiq Admin permission being set in the relevant app in Signon):
 
-| Application | Sidekiq Web URL                                                           |
-|-------------|---------------------------------------------------------------------------|
-| Publisher   | https://publisher.publishing.service.gov.uk/sidekiq                       |
-| Whitehall   | https://whitehall-admin.publishing.service.gov.uk/sidekiq                 |
+| Application           | Sidekiq Web URL                                                   |
+|-----------------------|-------------------------------------------------------------------|
+| Publisher             | https://publisher.publishing.service.gov.uk/sidekiq               |
+| Whitehall             | https://whitehall-admin.publishing.service.gov.uk/sidekiq         |
+| Content Block Manager | https://content-block-manager.publishing.service.gov.uk/sidekiq   |
+
+To add Sidekiq Web to an application, you can use the `GovukSidekiq::GdsSsoMiddleware` class in the `govuk_sidekiq`
+gem. See the [govuk_sidekiq README](https://github.com/alphagov/govuk_sidekiq?tab=readme-ov-file#sidekiq-web-ui) for
+more details.
 
 Apps that don't have any ingress routes are accessed through port forwarding. Detailed instructions on how to do this will
 be in the relevant readme files for the following applications that have the Sidekiq Web UI enabled in this way:
