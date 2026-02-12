@@ -166,7 +166,7 @@ To verify mirror content is up to date:
 
 #### Automatic drift detection
 
-Multiple times a week, an automatic process compares 200 pages on the site. The 200 pages are selected from among the
+Multiple times a week, [an automatic process](https://github.com/alphagov/govuk-mirror/tree/main/internal/drift_checker) compares 200 pages on the site. The 200 pages are selected from among the
 1000 most popular pages on the day 48 hours prior to the process commencing. We do this to avoid finding lots
 of false positives among pages that are new and popular and have yet to be mirrored.
 
@@ -270,12 +270,6 @@ You can filter the correct logs by using the following field selector: `kubernet
 ## Known Gaps & Potential Future Work
 
 Areas where the mirror and related components could be improved:
-
-**Monitoring gaps:**
-
-- We don't currently have automated alerts for mirror sync failures or unusual runtimes
-- Content freshness is checked manually rather than automatically
-- No automated verification that all three mirrors contain consistent content
 
 **Operational improvements:**
 
