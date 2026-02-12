@@ -164,6 +164,27 @@ To verify mirror content is up to date:
 2. Fetch it from the primary mirror: `curl -H 'Backend-Override: mirrorS3' https://www.gov.uk/path/to/page`
 3. Confirm the page content matches what's expected
 
+#### Automatic drift detection
+
+Multiple times a week, an automatic process compares 200 pages on the site. The 200 pages are selected from among the
+1000 most popular pages on the day 48 hours prior to the process commencing. We do this to avoid finding lots
+of false positives among pages that are new and popular and have yet to be mirrored.
+
+The process looks to see if the version in the mirror is different from live version. We expect that for the majority of
+the pages compared, the contents will be identical. For a small number we expect them to have very small differences,
+such as the publishing date (when a page has been edited between the mirroring process and drift check).
+
+A large number of pages with differences indicates that something is wrong with the mirroring process.
+
+The HTML of our pages changes frequently in ways that have no impact on how it is displayed: for example, nonce values
+associated with script blocks. To avoid false positives, when the process can be sure that both the live and mirror page
+are HTML, it extracts and compares the visible text on the pages. It compares these instead of comparing the HTTP
+response body as a generic string.
+
+For every other content type, or when the mirror and live pages disagree, the raw HTTP response bodies are compared.
+
+When any drifts are detected, an alert is issued in Slack.
+
 ## Failure Indicators
 
 ### Signs that mirrors may need investigation
