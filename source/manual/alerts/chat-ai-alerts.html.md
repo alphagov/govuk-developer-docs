@@ -74,6 +74,12 @@ The dashboard graph showing Bedrock Service Exceptions is an indication of rate 
 
 To get the error message relating to the Cloudwatch error code for the exceptions, the lookup attribute `User name` can be used to filter events in Cloudtrail.
 
+#### ElevatedAnswerErrorStatuses
+
+The [ElevatedAnswerErrorStatuses] alert fires when three or more answers generated in the last 20 minutes have an error status.
+
+To determine what the the issue is you should naviate to the [questions page in the admin console] for the relevant environment (this link is for production). Then view each questions with an error status and navigate to to the error message row.
+
 [#dev-notifications-ai-govuk]: https://gds.slack.com/archives/C06AWTPNJMV
 [Integration]: https://grafana.eks.integration.govuk.digital/d/govuk-chat-technical
 [Staging]: https://grafana.eks.staging.govuk.digital/d/govuk-chat-technical
@@ -90,3 +96,5 @@ To get the error message relating to the Cloudwatch error code for the exception
 [SidekiqDefaultJobAge]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/chat_ai.yaml#L192-L209
 [govuk-chat-bedrock-token-threshold-50]: https://github.com/alphagov/govuk-infrastructure/blob/eb25eaa313bb2ce3775e5819092ea8479674f745/terraform/deployments/chat/cloudwatch_alarms.tf#L9-L67
 [govuk-chat-bedrock-token-threshold-100]: https://github.com/alphagov/govuk-infrastructure/blob/eb25eaa313bb2ce3775e5819092ea8479674f745/terraform/deployments/chat/cloudwatch_alarms.tf#L69-L128
+[ElevatedAnswerErrorStatuses]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/chat_ai.yaml#L211-L228
+[questions page in the admin console]: https://chat.publishing.service.gov.uk/admin/questions
