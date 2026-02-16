@@ -63,7 +63,7 @@ The Grafana dashboards show usage of:
 - Sidekiq queues
 
 [#dev-notifications-ai-govuk]: https://gds.slack.com/archives/C06AWTPNJMV
-[Integration]: https://grafana.eks.integration.govuk.digital/d/govuk-chat-techical
-[Staging]: https://grafana.eks.staging.govuk.digital/d/govuk-chat-techical
-[Production]: https://grafana.eks.production.govuk.digital/d/govuk-chat-techical
+[Integration]: https://grafana.eks.integration.govuk.digital/d/govuk-chat-technical
+[Staging]: https://grafana.eks.staging.govuk.digital/d/govuk-chat-technical
+[Production]: https://grafana.eks.production.govuk.digital/d/govuk-chat-technical
 [here]: https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config
