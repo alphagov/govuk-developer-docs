@@ -23,15 +23,10 @@ Follow the file and directory [conventions used by Bundler][].
 ## Releasing gem versions
 
 Use GitHub Actions for releasing gems, with our [shared publish workflow][] and the
-`ALPHAGOV_RUBYGEMS_API_KEY` secret. For builds with extra needs (e.g. the npm
+`ALPHAGOV_RUBYGEMS_API_KEY` secret (added via [GitHub terraform deployment](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/main.tf)). For builds with extra needs (e.g. the npm
 build step in govuk_publishing_components), copy and adapt the shared workflow.
 
-Contact a [GOV.UK GitHub Owner][] to grant your repository
-[access to the secret][].
-
 [shared publish workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yml
-[GOV.UK GitHub Owner]: mailto:govuk-github-owners@digital.cabinet-office.gov.uk
-[access to the secret]: https://github.com/organizations/alphagov/settings/secrets/actions
 
 ## Enforcing the release of new gem versions
 
