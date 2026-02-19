@@ -11,6 +11,8 @@ parent: "/manual.html"
 
 The Prometheus Operator installs and configures Prometheus, AlertManager and Grafana through Custom Resource Definitions.
 
+Access to Prometheus, AlertManager and Grafana is managed via Dex, using Github team membership [(Integration example](https://github.com/alphagov/govuk-helm-charts/blob/a881e4ff40e60509d905c6f9f06a65572061613a/charts/kube-prometheus-stack-bootstrap/kube-prometheus-stack-values-integration.yaml#L15))
+
 [Prometheus][link-1] is a systems monitoring and alerting toolkit. Its features include:
 
 - A time-series database, specifically optimised for graphing data over time.

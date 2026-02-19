@@ -66,7 +66,7 @@ For more information, see the [Cluster autoscaler documentation](https://github.
 
 The [Dex OpenID connect provider](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/dex.tf) is a [federated identity provider](https://en.wikipedia.org/wiki/Federated_identity).
 
-The GOV.UK Kubernetes platform cluster uses Dex to manage single sign-on to services in the cluster, for example, [Grafana dashboards](https://docs.publishing.service.gov.uk/manual/grafana.html) and [Argo CD](/get-started/access-eks-cluster/#access-eks-cluster).
+The GOV.UK Kubernetes platform cluster uses Dex to manage single sign-on to services in the cluster, for example, [Grafana dashboards](https://docs.publishing.service.gov.uk/manual/prometheus-grafana-and-alertmanager.html) and [Argo CD](/get-started/access-eks-cluster/#access-eks-cluster).
 
 Dex acts as an intermediary between apps that are restricted to authorised users, and apps that know how to verify a user's identity.
 
