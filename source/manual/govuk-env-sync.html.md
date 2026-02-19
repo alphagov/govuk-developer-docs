@@ -45,3 +45,138 @@ The cronjobs in staging and integration pull from the backup S3 bucket in their 
 ## History
 
 The Kubernetes cronjobs replace the old "[govuk_env_sync](https://github.com/alphagov/govuk-puppet/tree/main/modules/govuk_env_sync)" scripts, configured in Puppet and executed on Jenkins. That, in turn, replaced something called "[env-sync-and-backup](https://github.com/alphagov/env-sync-and-backup)".
+
+## Alerts
+
+There are alerts configured to notify us in the #govuk-platform-support channel in Slack if any of the environment syncs fails.
+
+The scripts which perform the backups send metrics to Promtheus (via the Prometheus Pushgateway) for the following events:
+
+* Script execution starts
+* Script execution ends including whether the outcome was a success or failure
+* The time of transition of a script to a new state (running, failed or succeeded)
+* The size of the backup file on S3 (the file written in the case of a backup, or the file read in the case of a restore)
+
+We have alerts for:
+
+* Script has been running for a long time
+* Script execution failed
+* Backup/Restore operation has not completed recently
+
+We have a Grafana Dashboard called "Database Backups & Syncs" in each environment ([integration](), [staging](https://grafana.eks.integration.govuk.digital/d/jfc4fnp/database-backups-and-syncs), [production](https://grafana.eks.production.govuk.digital/d/jfc4fnp/database-backups-and-syncs)) which shows:
+
+* Most Recent Backup, Transform, Restore State, Duration, and File size - Shows a row for each database within each database instance, the state of the most
+  recent execution, how long that execution took, and the size of the file backed up/restored. The Restore, Transform, and Backup state columns will go Red if it was any state other than Succeeded.
+* Time since last Restore/Transform/Backup - How long since each database within each database instance was restored, transformed, and backed up. These will go red if it is over 8 days.
+* File Sizes Over Time - Graphs for every database instance showing how the file size for each operation has varied over time
+* Durations Over Time - Graphs for every database instance showing how the duration of each operation has varied over time
+* State Timeline - A state change chart for every database instance showing durations for each state the database enters. Note that because the metrics are pushed to a Prometheus Pushgateway which is scraped every 60 seconds
+  any state which lasts for less than 60 seconds may not show, this mostly occurs when a database takes only a few seconds to back up or restore and the running state is missing. Both failed and succeeded states will persist
+  since they are both the terminal outcome and will be easily visible.
+
+### Database backup and sync operation failed
+
+This indicates that an execution of the backup script exited unsuccessfully. This can be a backup, transformation, or restore.
+
+To diagnose this you should look at the container logs (the alert for this should have included a link to the logs in logit which you can follow).
+
+You will need to diagnose why the failure occurred and decide [whether to launch a new sync operation](#whether-to-launch-a-new-sync-operation)
+
+### Database backup taking a long time - Quicker Database
+
+This alert is for databases which complete their backup within an hour, it will trigger if a backup has been in the running state for over 1 hour.
+
+If the database frequently alerts you should move it into the Slower Databases group by editing the alert rule expressions.
+
+See [Database operation taking a long time](#database-operation-taking-a-long-time)
+
+### Database backup taking a long time - Slower Databases
+
+This alert is for databases which complete their backup within 4 hours, it will trigger if a backup has been in the running state for over 4 hours.
+
+See [Database operation taking a long time](#database-operation-taking-a-long-time)
+
+### Database restore taking a long time - Quicker Databases
+
+This alert is for databases which complete their restore within an hour, it will trigger if a restore has been in the running state for over 1 hour.
+
+If the database frequently alerts you should move it into the Slower Databases group by editing the alert rule expressions.
+
+See [Database operation taking a long time](#database-operation-taking-a-long-time)
+
+### Database restore taking a long time - Slower Databases
+
+This alert is for databases which complete their restore within 4 hours, it will trigger if a restore has been in the running state for over 4 hours.
+
+If the database frequently alerts you should move it into the Slowest Databases group by editing the alert rule expressions.
+
+See [Database operation taking a long time](#database-operation-taking-a-long-time)
+
+### Database restore taking a long time - Slowest Databases
+
+This alert is for databases which complete their restore within 13 hours, it will trigger if a restore has been in the running state for over 13 hours.
+
+See [Database operation taking a long time](#database-operation-taking-a-long-time)
+
+### Database transform taking a long time
+
+This alert will trigger if transforms take longer than 45 minutes in staging, or 30 minutes in integration.
+
+See [Database operation taking a long time](#database-operation-taking-a-long-time)
+
+### Database operation taking a long time
+
+Investigate to see if the job is still running. The alert notification will have included a link to logit which includes the Kubernetes pod name. You can see if that pod is still running.
+
+#### If the pod is still running
+
+If the pod is still running you will need to investigate why the operation (backup, transform, restore) is taking so long, you can look at the "Durations over time" graph in the Grafana dashboard to see if this has been a gradual trend, which might indicate normal growth of the database.
+If it appears to be natural growrth you can increase the allowed time by moving the database into a slower category.
+
+You could also speak to the team responsible for the application that uses the database.
+
+#### If the pod is no longer running
+
+It is possible for the pod to be terminated in such a way it cannot send the terminal (failed, succeeded) metric, in these instances you will
+need to decide [whether to launch a new sync operation](#whether-to-launch-a-new-sync-operation).
+
+### Database backup/restore not completed
+
+This alert will trigger if a database which is backed up or restored daily did not successfully complete a backup/restore operation within the last 25 hours.
+
+This can be because:
+
+* The backup script has failed - It is likely you will have received an additional alert for [Database backup and sync operation failed](#database-backup-and-sync-operation-failed), in which case investigate it as such.
+* The Kubernetes CronJob has been suspended - In this case you should either unsuspend the CronJob, or alert the alert expression to exclude the specific database or database instance.
+* The Kuberentes CronJob is failing to successfully launch a Job - In this case you will need to investigate why the Job cannot start successfully. You should be able to see them in ArgoCD in the db-backup Application.
+* The backup script is failing to execute before it can send any metric - You should look at the logs in logit (the alert will have included a link to the pods logs in logit), and if there aren't any then look at the job in ArgoCD to see why it is failing to execute.
+
+#### Database backup/restore not completed - Weekly backups
+
+This alert will trigger if a database which is backed up or restored weekly did not successfully complete a backup/restore operation within the last 1 week and 12 hours.
+
+Investigate this by following [Database backup/restore not completed](database-backup-restore-not-completed).
+
+#### Database backup/restore not completed - Weekday backups
+
+This alert will trigger on Tuesday to Saturday if a database which is backed up or restored on weekdays only did not successfully complete a backup/restore operation within the last 25 hours.
+
+Investigate this by following [Database backup/restore not completed](database-backup-restore-not-completed).
+
+#### Database backup/restore not completed - Sunday to Thursday backups
+
+This alert will trigger on Monday to Friday if a database which is backed up or restored on Sundays to Thursdays only did not successfully complete a backup/restore operation within the last 25 hours.
+
+Investigate this by following [Database backup/restore not completed](database-backup-restore-not-completed).
+
+### Whether to launch a new sync operation
+
+First and foremost you should speak to the team which is responsible for the application that uses that database instance. They can decide whether to launch a new sync.
+
+You should consider how long it is likely to take, you can see how long it usually takes by looking at the Durations over time graphs on the Grafana dashboard.
+
+If you launch a new sync:
+
+* in production it will only create a new backup file, this may put extra load on the RDS instance but won't have any other side effects.
+* in staging and integration it will restore the most recent backup from the higher environment, this may wipe out changes which the developers are testing
+* For MySQL databases in staging and integration it will make their database unavailable for the entire time of the restore (but not any transformation or backup).
