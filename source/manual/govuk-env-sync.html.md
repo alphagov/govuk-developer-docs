@@ -56,6 +56,7 @@ The scripts which perform the backups send metrics to Promtheus (via the Prometh
 * Script execution ends including whether the outcome was a success or failure
 * The time of transition of a script to a new state (running, failed or succeeded)
 * The size of the backup file on S3 (the file written in the case of a backup, or the file read in the case of a restore)
+* The duration of an execution of the script
 
 We have alerts for:
 
