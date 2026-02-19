@@ -64,7 +64,7 @@ We have alerts for:
 * Script execution failed
 * Backup/Restore operation has not completed recently
 
-We have a Grafana Dashboard called "Database Backups & Syncs" in each environment ([integration](), [staging](https://grafana.eks.integration.govuk.digital/d/jfc4fnp/database-backups-and-syncs), [production](https://grafana.eks.production.govuk.digital/d/jfc4fnp/database-backups-and-syncs)) which shows:
+We have a Grafana Dashboard called "Database Backups & Syncs" in each environment ([integration](https://grafana.eks.integration.govuk.digital/d/jfc4fnp/database-backups-and-syncs), [staging](https://grafana.eks.staging.govuk.digital/d/jfc4fnp/database-backups-and-syncs), [production](https://grafana.eks.production.govuk.digital/d/jfc4fnp/database-backups-and-syncs)) which shows:
 
 * Most Recent Backup, Transform, Restore State, Duration, and File size - Shows a row for each database within each database instance, the state of the most
   recent execution, how long that execution took, and the size of the file backed up/restored. The Restore, Transform, and Backup state columns will go Red if it was any state other than Succeeded.
