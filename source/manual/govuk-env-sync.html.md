@@ -156,19 +156,19 @@ This can be because:
 
 This alert will trigger if a database which is backed up or restored weekly did not successfully complete a backup/restore operation within the last 1 week and 12 hours.
 
-Investigate this by following [Database backup/restore not completed](database-backup-restore-not-completed).
+Investigate this by following [Database backup/restore not completed](#database-backuprestore-not-completed).
 
 #### Database backup/restore not completed - Weekday backups
 
 This alert will trigger on Tuesday to Saturday if a database which is backed up or restored on weekdays only did not successfully complete a backup/restore operation within the last 25 hours.
 
-Investigate this by following [Database backup/restore not completed](database-backup-restore-not-completed).
+Investigate this by following [Database backup/restore not completed](#database-backuprestore-not-completed).
 
 #### Database backup/restore not completed - Sunday to Thursday backups
 
 This alert will trigger on Monday to Friday if a database which is backed up or restored on Sundays to Thursdays only did not successfully complete a backup/restore operation within the last 25 hours.
 
-Investigate this by following [Database backup/restore not completed](database-backup-restore-not-completed).
+Investigate this by following [Database backup/restore not completed](#database-backuprestore-not-completed).
 
 ### Whether to launch a new sync operation
 
