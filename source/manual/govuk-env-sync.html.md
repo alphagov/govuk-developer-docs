@@ -77,7 +77,7 @@ We have a Grafana Dashboard called "Database Backups & Syncs" in each environmen
 
 ### Database backup and sync operation failed
 
-This indicates that an execution of the backup script exited unsuccessfully. This can be a backup, transformation, or restore.
+This indicates that the execution of a backup, transformation, or restore script exited unsuccessfully.
 
 To diagnose this you should look at the container logs (the alert for this should have included a link to the logs in logit which you can follow).
 
@@ -85,7 +85,7 @@ You will need to diagnose why the failure occurred and decide [whether to launch
 
 ### Database backup taking a long time - Quicker Database
 
-This alert is for databases which complete their backup within an hour, it will trigger if a backup has been in the running state for over 1 hour.
+This alert is for databases which complete their backup within an hour. It will trigger if a backup has been in the running state for over 1 hour.
 
 If the database frequently alerts you should move it into the Slower Databases group by editing the alert rule expressions.
 
@@ -93,13 +93,13 @@ See [Database operation taking a long time](#database-operation-taking-a-long-ti
 
 ### Database backup taking a long time - Slower Databases
 
-This alert is for databases which complete their backup within 4 hours, it will trigger if a backup has been in the running state for over 4 hours.
+This alert is for databases which complete their backup within 4 hours. It will trigger if a backup has been in the running state for over 4 hours.
 
 See [Database operation taking a long time](#database-operation-taking-a-long-time)
 
 ### Database restore taking a long time - Quicker Databases
 
-This alert is for databases which complete their restore within an hour, it will trigger if a restore has been in the running state for over 1 hour.
+This alert is for databases which complete their restore within an hour. It will trigger if a restore has been in the running state for over 1 hour.
 
 If the database frequently alerts you should move it into the Slower Databases group by editing the alert rule expressions.
 
@@ -107,7 +107,7 @@ See [Database operation taking a long time](#database-operation-taking-a-long-ti
 
 ### Database restore taking a long time - Slower Databases
 
-This alert is for databases which complete their restore within 4 hours, it will trigger if a restore has been in the running state for over 4 hours.
+This alert is for databases which complete their restore within 4 hours. It will trigger if a restore has been in the running state for over 4 hours.
 
 If the database frequently alerts you should move it into the Slowest Databases group by editing the alert rule expressions.
 
@@ -115,7 +115,7 @@ See [Database operation taking a long time](#database-operation-taking-a-long-ti
 
 ### Database restore taking a long time - Slowest Databases
 
-This alert is for databases which complete their restore within 13 hours, it will trigger if a restore has been in the running state for over 13 hours.
+This alert is for databases which complete their restore within 13 hours. It will trigger if a restore has been in the running state for over 13 hours.
 
 See [Database operation taking a long time](#database-operation-taking-a-long-time)
 
@@ -131,14 +131,14 @@ Investigate to see if the job is still running. The alert notification will have
 
 #### If the pod is still running
 
-If the pod is still running you will need to investigate why the operation (backup, transform, restore) is taking so long, you can look at the "Durations over time" graph in the Grafana dashboard to see if this has been a gradual trend, which might indicate normal growth of the database.
+If the pod is still running you will need to investigate why the operation (backup, transform, restore) is taking so long. You can look at the "Durations over time" graph in the Grafana dashboard to see if this has been a gradual trend, which might indicate normal growth of the database.
 If it appears to be natural growrth you can increase the allowed time by moving the database into a slower category.
 
 You could also speak to the team responsible for the application that uses the database.
 
 #### If the pod is no longer running
 
-It is possible for the pod to be terminated in such a way it cannot send the terminal (failed, succeeded) metric, in these instances you will
+It is possible for the pod to be terminated in such a way it cannot send the terminal (failed, succeeded) metric. In these instances you will
 need to decide [whether to launch a new sync operation](#whether-to-launch-a-new-sync-operation).
 
 ### Database backup/restore not completed
