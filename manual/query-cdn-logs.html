@@ -1,0 +1,847 @@
+
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Query CDN logs - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/query-cdn-logs.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="Query CDN logs - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/query-cdn-logs.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Query CDN logs" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/query-cdn-logs.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html" aria-current="page">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Query CDN logs</span></a>
+    <ul>
+      <li>
+        <a href="#access-athena"><span>Access Athena</span></a>
+      </li>
+      <li>
+        <a href="#write-an-athena-sql-query"><span>Write an Athena SQL query</span></a>
+        <ul>
+          <li>
+            <a href="#always-query-with-a-partition"><span>Always query with a partition</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#example-athena-queries"><span>Example Athena queries</span></a>
+        <ul>
+          <li>
+            <a href="#how-many-errors-were-served-to-users-in-a-timeframe"><span>How many errors were served to users in a timeframe</span></a>
+          </li>
+          <li>
+            <a href="#total-number-of-5xxs-responses-total-requests-and-percentage-of-5xxs-were-served-to-users-in-a-timeframe"><span>Total number of 5xx’s responses, total requests and percentage of 5xx’s were served to users in a timeframe</span></a>
+          </li>
+          <li>
+            <a href="#find-out-the-number-of-requests-per-status-per-hour-for-a-gov-uk-url"><span>Find out the number of requests per status per hour for a GOV.UK URL</span></a>
+          </li>
+          <li>
+            <a href="#ips-with-1000-requests-per-minute"><span>IPs with > 1000 requests per minute</span></a>
+          </li>
+          <li>
+            <a href="#requests-by-ja3-signature"><span>Requests by JA3 signature</span></a>
+          </li>
+          <li>
+            <a href="#which-gov-uk-pages-changed-from-200-to-a-410-status-codes"><span>Which GOV.UK pages changed from 200 to a 410 status codes</span></a>
+          </li>
+          <li>
+            <a href="#finding-out-how-frequently-a-gov-uk-url-is-accessed"><span>Finding out how frequently a GOV.UK URL is accessed</span></a>
+          </li>
+          <li>
+            <a href="#which-assets-are-being-serving-most-frequently"><span>Which assets are being serving most frequently</span></a>
+          </li>
+          <li>
+            <a href="#what-are-the-largest-assets-that-were-served"><span>What are the largest assets that were served</span></a>
+          </li>
+          <li>
+            <a href="#which-user-agents-and-hosts-is-bouncer-serving-to-the-most"><span>Which user agents and hosts is bouncer serving to the most</span></a>
+          </li>
+          <li>
+            <a href="#tls-versions-over-time"><span>TLS versions over time</span></a>
+          </li>
+          <li>
+            <a href="#requests-from-tor-exit-nodes"><span>Requests from Tor exit nodes</span></a>
+          </li>
+          <li>
+            <a href="#cdn-cache-response-rates"><span>CDN cache response rates</span></a>
+          </li>
+          <li>
+            <a href="#cdn-cache-hitmiss-rates"><span>CDN cache hit/miss rates</span></a>
+          </li>
+          <li>
+            <a href="#cache-miss-request-times-by-paths-with-greatest-summed-request-time"><span>Cache miss request times by paths with greatest summed request time</span></a>
+          </li>
+          <li>
+            <a href="#cdn-hitmiss-rates-request-times"><span>CDN hit/miss rates + request times</span></a>
+          </li>
+          <li>
+            <a href="#http-response-code-rates"><span>HTTP response code rates</span></a>
+          </li>
+          <li>
+            <a href="#minutes-during-the-week-where-error-rate-was-0-1"><span>Minutes during the week where error rate was >0.1%</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#snippets"><span>Snippets</span></a>
+        <ul>
+          <li>
+            <a href="#path-without-query-string"><span>Path without query string</span></a>
+          </li>
+          <li>
+            <a href="#exclude-the-gov-uk-crawler"><span>Exclude the GOV.UK Crawler</span></a>
+          </li>
+          <li>
+            <a href="#remove-extra-mirror-path-information"><span>Remove extra mirror path information</span></a>
+          </li>
+          <li>
+            <a href="#count-cases-of-a-thing"><span>Count cases of a thing</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#add-a-new-field-to-the-cdn-logs"><span>Add a new field to the CDN logs</span></a>
+      </li>
+      <li>
+        <a href="#troubleshooting"><span>Troubleshooting</span></a>
+        <ul>
+          <li>
+            <a href="#hive_cursor_error-row-is-not-a-valid-json-object"><span>HIVE_CURSOR_ERROR: Row is not a valid JSON Object</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#splunk"><span>Splunk</span></a>
+        <ul>
+          <li>
+            <a href="#query-cdn-logs-in-splunk"><span>Query CDN logs in Splunk</span></a>
+          </li>
+          <li>
+            <a href="#gain-access-to-splunk"><span>Gain access to Splunk</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+                
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Logging",
+        "@id": "http://www.dev.gov.uk/manual.html#logging"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#logging">Logging</a>
+        </li>
+  </ol>
+</nav>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1693bc63c72ace46aae42faade87c043714f4fc5">29 Aug 2024</a>
+</div>
+
+ <h1 id='header'>Query CDN logs</h1> <p>Fastly, GOV.UK&rsquo;s <a href="/manual/cdn.html">content distribution network</a>, logs
+metadata about HTTP requests to GOV.UK. Fastly sends log files to Amazon S3
+every 15 minutes, where we store them for <a href="https://www.gov.uk/help/privacy-notice#how-long-we-keep-your-data">120
+days</a>.</p>
+<p>You can query these logs using <a href="https://docs.aws.amazon.com/athena/latest/ug/what-is.html">Amazon
+Athena</a> to gain
+insights into GOV.UK traffic.</p>
+<p>The same Fastly logs are also available to query <a href="#splunk">in Splunk</a>.</p>
+<h2 id='access-athena'>Access Athena</h2><p>You can use Amazon Athena to query the CDN logs by writing SQL queries.</p>
+<p>There is a separate table for each CDN service (roughly corresponding to the
+hostname in the URL).</p>
+
+<ul>
+<li><code>fastly_logs.bouncer</code>: legacy government website domains which redirect to www.gov.uk</li>
+<li><code>fastly_logs.govuk_assets</code>: assets.publishing.service.gov.uk, which hosts
+static files such as images, attachments, CSS and JavaScript</li>
+<li><code>fastly_logs.govuk_www</code>: www.gov.uk, including most HTML content and APIs</li>
+<li><code>datagovuk.datagovuk</code>: www.data.gov.uk (DGU), the <em>Find open data</em> service</li>
+</ul>
+<p>You can access Athena through the AWS console in the <strong>production</strong> account.</p>
+
+<ol>
+<li><a href="/manual/get-started.html#sign-in-to-aws">Log in</a> to the <strong>production</strong> AWS
+account.</li>
+<li>Navigate to <a href="https://eu-west-1.console.aws.amazon.com/athena">Athena</a>.</li>
+<li>Select the relevant database (<code>fastly_logs</code> or <code>datagovuk</code>) under <em>Data</em> -&gt;
+<em>Data source</em> in the left-hand column.</li>
+</ol>
+<h2 id='write-an-athena-sql-query'>Write an Athena SQL query</h2><p>Athena is based on the <a href="https://trino.io/docs/current/">Trino</a> SQL dialect. See
+Amazon&rsquo;s documentation:</p>
+
+<ul>
+<li><a href="https://docs.aws.amazon.com/athena/latest/ug/dml-queries-functions-operators.html">Data manipulation language statements, functions and
+operators</a></li>
+<li><a href="https://docs.aws.amazon.com/athena/latest/ug/functions.html#functions-env3">Functions in Athena engine version
+3</a></li>
+</ul>
+<p>A basic query could be:</p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2018</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">request_received</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">10</span>
+</code></pre></div><p><strong>Note the <code>date</code>, <code>month</code> and <code>year</code> fields in the <code>WHERE</code> clause.</strong> These
+special fields represent a data <a href="https://docs.aws.amazon.com/athena/latest/ug/partitions.html">partition</a>. This helps the query engine to
+read just the data for the date you&rsquo;re interested in, instead of scanning the
+entire 120 days of data unnecessarily.</p>
+<h3 id='always-query-with-a-partition'>Always query with a partition</h3><p>Unless you have a good reason to run your query over the entire dataset, always
+specify just the dates that you care about. This makes your queries:</p>
+
+<ul>
+<li><strong>much faster</strong> because far less data needs to be scanned</li>
+<li><strong>more reliable</strong> because your query is less likely to time out</li>
+<li><strong>much cheaper</strong> because Athena queries
+<a href="https://aws.amazon.com/athena/pricing/#Pricing">cost</a> $5 per TB of data
+scanned</li>
+</ul>
+<h2 id='example-athena-queries'>Example Athena queries</h2><p>This is a selection of queries to show some of the ways to query the CDN logs.</p>
+<p>You can add to this list if you write a useful query for a new scenario.</p>
+<h3 id='how-many-errors-were-served-to-users-in-a-timeframe'>How many errors were served to users in a timeframe</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">status</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="k">count</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="n">status</span> <span class="o">&gt;=</span> <span class="mi">500</span> <span class="k">AND</span> <span class="n">status</span> <span class="o">&lt;=</span> <span class="mi">599</span>
+<span class="k">AND</span> <span class="n">request_received</span> <span class="o">&gt;=</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2018-08-20 08:00'</span>
+<span class="k">AND</span> <span class="n">request_received</span> <span class="o">&lt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2018-08-20 12:00'</span>
+<span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2018</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">status</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">count</span> <span class="k">DESC</span>
+</code></pre></div><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">url</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="k">count</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="n">status</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2018</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">url</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">count</span> <span class="k">DESC</span>
+</code></pre></div><h3 id='total-number-of-5xxs-responses-total-requests-and-percentage-of-5xxs-were-served-to-users-in-a-timeframe'>Total number of 5xx&rsquo;s responses, total requests and percentage of 5xx&rsquo;s were served to users in a timeframe</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"Total 5xx Responses"</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">requests</span><span class="p">)</span> <span class="nv">"Total Requests"</span><span class="p">,</span>
+    <span class="k">SUM</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">SUM</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">requests</span><span class="p">))</span> <span class="n">OVER</span> <span class="p">()</span> <span class="k">AS</span> <span class="nv">"5xx % of Total Requests"</span>
+<span class="k">FROM</span> <span class="p">(</span>
+    <span class="k">SELECT</span>
+        <span class="k">COUNT</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">status</span><span class="o">/</span><span class="mi">100</span><span class="o">=</span><span class="mi">5</span> <span class="k">THEN</span> <span class="mi">1</span> <span class="k">ELSE</span> <span class="k">NULL</span> <span class="k">END</span><span class="p">)</span> <span class="k">as</span> <span class="n">responses</span><span class="p">,</span>
+        <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">requests</span>
+    <span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+    <span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">6</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2021</span>
+    <span class="k">AND</span> <span class="n">request_received</span> <span class="o">&gt;=</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2021-06-02 15:00'</span>
+    <span class="k">AND</span> <span class="n">request_received</span> <span class="o">&lt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2021-06-02 17:00'</span>
+<span class="p">)</span>
+</code></pre></div><h3 id='find-out-the-number-of-requests-per-status-per-hour-for-a-gov-uk-url'>Find out the number of requests per status per hour for a GOV.UK URL</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'hour'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"timestamp"</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">status</span><span class="o">/</span><span class="mi">100</span><span class="o">=</span><span class="mi">2</span> <span class="k">THEN</span> <span class="mi">1</span> <span class="k">ELSE</span> <span class="k">NULL</span> <span class="k">END</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"2xx"</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">status</span><span class="o">/</span><span class="mi">100</span><span class="o">=</span><span class="mi">3</span> <span class="k">THEN</span> <span class="mi">1</span> <span class="k">ELSE</span> <span class="k">NULL</span> <span class="k">END</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"3xx"</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">status</span><span class="o">/</span><span class="mi">100</span><span class="o">=</span><span class="mi">4</span> <span class="k">THEN</span> <span class="mi">1</span> <span class="k">ELSE</span> <span class="k">NULL</span> <span class="k">END</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"4xx"</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">status</span><span class="o">/</span><span class="mi">100</span><span class="o">=</span><span class="mi">5</span> <span class="k">THEN</span> <span class="mi">1</span> <span class="k">ELSE</span> <span class="k">NULL</span> <span class="k">END</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"5xx"</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">'/vat-rates'</span>
+<span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">16</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">7</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2020</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'hour'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="nb">timestamp</span><span class="p">;</span>
+</code></pre></div><h3 id='ips-with-1000-requests-per-minute'>IPs with &gt; 1000 requests per minute</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>  <span class="n">client_ip</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">12</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2022</span>
+<span class="k">AND</span> <span class="n">request_received</span> <span class="o">&gt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2022-12-20 22:45:00'</span>
+<span class="k">AND</span> <span class="n">request_received</span> <span class="o">&lt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2022-12-20 22:55:00'</span>
+<span class="k">AND</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">'/'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">client_ip</span>
+<span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">;</span>
+</code></pre></div><h3 id='requests-by-ja3-signature'>Requests by JA3 signature</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">client_ja3</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">12</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2022</span>
+<span class="k">AND</span> <span class="n">request_received</span> <span class="o">&gt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2022-12-20 22:35:00'</span>
+<span class="k">AND</span> <span class="n">request_received</span> <span class="o">&lt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2022-12-20 22:45:00'</span>
+<span class="k">AND</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">'/'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">client_ja3</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">desc</span>
+<span class="k">LIMIT</span> <span class="mi">100</span><span class="p">;</span>
+</code></pre></div><p>Tip: you can also group requests by IP address, by swapping <code>client_ja3</code> for <code>client_ip</code>.
+<a href="https://github.com/alphagov/govuk-aws/blob/9026b5ec51f9a7efc831aa9de569876d03cfc2db/terraform/projects/infra-fastly-logs/main.tf#L186">See govuk-aws for a full range of fields</a>.</p>
+<h3 id='which-gov-uk-pages-changed-from-200-to-a-410-status-codes'>Which GOV.UK pages changed from 200 to a 410 status codes</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">response_200</span><span class="p">.</span><span class="n">url</span><span class="p">,</span> <span class="k">MAX</span><span class="p">(</span><span class="n">response_200</span><span class="p">.</span><span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">last_200_response</span><span class="p">,</span> <span class="k">MIN</span><span class="p">(</span><span class="n">response_non_200</span><span class="p">.</span><span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">first_non_200_response</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span> <span class="k">AS</span> <span class="n">response_200</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span> <span class="k">AS</span> <span class="n">response_non_200</span>
+  <span class="k">ON</span> <span class="n">response_200</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">response_non_200</span><span class="p">.</span><span class="n">url</span>
+  <span class="k">AND</span> <span class="n">response_non_200</span><span class="p">.</span><span class="k">method</span> <span class="o">=</span> <span class="n">response_200</span><span class="p">.</span><span class="k">method</span>
+  <span class="k">AND</span> <span class="n">response_non_200</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">410</span>
+  <span class="k">AND</span> <span class="n">response_non_200</span><span class="p">.</span><span class="n">request_received</span> <span class="o">&gt;</span> <span class="n">response_200</span><span class="p">.</span><span class="n">request_received</span>
+  <span class="k">AND</span> <span class="n">response_non_200</span><span class="p">.</span><span class="nb">date</span> <span class="o">=</span> <span class="n">response_200</span><span class="p">.</span><span class="nb">date</span>
+  <span class="k">AND</span> <span class="n">response_non_200</span><span class="p">.</span><span class="k">month</span> <span class="o">=</span> <span class="n">response_200</span><span class="p">.</span><span class="k">month</span>
+  <span class="k">AND</span> <span class="n">response_non_200</span><span class="p">.</span><span class="nb">year</span> <span class="o">=</span> <span class="n">response_200</span><span class="p">.</span><span class="nb">year</span>
+<span class="k">WHERE</span> <span class="n">response_200</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="k">AND</span> <span class="n">response_200</span><span class="p">.</span><span class="nb">date</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="k">AND</span> <span class="n">response_200</span><span class="p">.</span><span class="k">month</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="k">AND</span> <span class="n">response_200</span><span class="p">.</span><span class="nb">year</span> <span class="o">=</span> <span class="mi">2018</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">response_200</span><span class="p">.</span><span class="n">url</span>
+<span class="k">LIMIT</span> <span class="mi">100</span><span class="p">;</span>
+</code></pre></div><h3 id='finding-out-how-frequently-a-gov-uk-url-is-accessed'>Finding out how frequently a GOV.UK URL is accessed</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'hour'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">hour</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="k">count</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">'/vat-rates'</span>
+<span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2018</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'hour'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'hour'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span> <span class="k">ASC</span><span class="p">;</span>
+</code></pre></div><h3 id='which-assets-are-being-serving-most-frequently'>Which assets are being serving most frequently</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">url</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="k">count</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_assets</span>
+<span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2018</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">url</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">count</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">50</span>
+</code></pre></div><h3 id='what-are-the-largest-assets-that-were-served'>What are the largest assets that were served</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">url</span><span class="p">,</span> <span class="n">bytes</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">served</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_assets</span>
+<span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2018</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">url</span><span class="p">,</span> <span class="n">bytes</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">bytes</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">50</span>
+</code></pre></div><h3 id='which-user-agents-and-hosts-is-bouncer-serving-to-the-most'>Which user agents and hosts is bouncer serving to the most</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">user_agent</span><span class="p">,</span> <span class="k">host</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="k">count</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">bouncer</span>
+<span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2018</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">user_agent</span><span class="p">,</span> <span class="k">host</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">count</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">50</span>
+</code></pre></div><h3 id='tls-versions-over-time'>TLS versions over time</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>
+    <span class="nb">DATE</span><span class="p">(</span><span class="n">request_received</span><span class="p">),</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">hits</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">tls_client_protocol</span> <span class="o">=</span> <span class="s1">'TLSv1'</span><span class="p">)</span>       <span class="k">AS</span> <span class="n">TLSv10</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">tls_client_protocol</span> <span class="o">=</span> <span class="s1">'TLSv1'</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>   <span class="k">AS</span> <span class="n">TLSv10_perc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">tls_client_protocol</span> <span class="o">=</span> <span class="s1">'TLSv1.1'</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">TLSv11</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">tls_client_protocol</span> <span class="o">=</span> <span class="s1">'TLSv1.1'</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">AS</span> <span class="n">TLSv11_perc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">tls_client_protocol</span> <span class="o">=</span> <span class="s1">'TLSv1.2'</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">TLSv12</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">tls_client_protocol</span> <span class="o">=</span> <span class="s1">'TLSv1.2'</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">AS</span> <span class="n">TLSv12_perc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">tls_client_protocol</span> <span class="o">=</span> <span class="s1">'TLSv1.3'</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">TLSv13</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">tls_client_protocol</span> <span class="o">=</span> <span class="s1">'TLSv1.3'</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">AS</span> <span class="n">TLSv13_perc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">tls_client_protocol</span> <span class="o">=</span> <span class="s1">''</span><span class="p">)</span>            <span class="k">AS</span> <span class="k">unknown</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">tls_client_protocol</span> <span class="o">=</span> <span class="s1">''</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>        <span class="k">AS</span> <span class="n">unknown_perc</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="n">fastly_backend</span> <span class="o">!=</span> <span class="s1">'force_ssl'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="nb">DATE</span><span class="p">(</span><span class="n">request_received</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="nb">DATE</span><span class="p">(</span><span class="n">request_received</span><span class="p">)</span> <span class="k">ASC</span><span class="p">;</span>
+</code></pre></div><h3 id='requests-from-tor-exit-nodes'>Requests from Tor exit nodes</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="c1">-- Tor exit node list from https://www.dan.me.uk/torlist/?exit</span>
+<span class="c1">-- Tor nodes change regularly: the longer back in time you query, the less accurate it will be</span>
+<span class="k">SELECT</span> <span class="n">hit_date</span><span class="p">,</span> <span class="n">hits</span><span class="p">,</span> <span class="n">tor_hits</span><span class="p">,</span> <span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="n">hits</span><span class="o">*</span><span class="n">tor_hits</span> <span class="k">AS</span> <span class="n">tor_perc</span> <span class="k">FROM</span> <span class="p">(</span>
+    <span class="k">SELECT</span>
+        <span class="nb">DATE</span><span class="p">(</span><span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">hit_date</span><span class="p">,</span>
+        <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">hits</span><span class="p">,</span>
+        <span class="k">SUM</span><span class="p">(</span>
+          <span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">client_ip</span> <span class="k">IN</span> <span class="p">(</span>
+            <span class="c1">-- list of all exit nodes goes here</span>
+            <span class="s1">'103.15.28.215'</span><span class="p">,</span>
+            <span class="p">...</span>
+            <span class="s1">'98.174.90.43'</span>
+          <span class="p">)</span> <span class="k">THEN</span> <span class="mi">1</span> <span class="k">ELSE</span> <span class="mi">0</span> <span class="k">END</span><span class="p">)</span> <span class="k">AS</span> <span class="n">tor_hits</span>
+    <span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+    <span class="k">WHERE</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2021</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="n">X</span>
+      <span class="k">AND</span> <span class="n">fastly_backend</span> <span class="o">!=</span> <span class="s1">'force_ssl'</span>
+    <span class="k">GROUP</span> <span class="k">BY</span> <span class="nb">DATE</span><span class="p">(</span><span class="n">request_received</span><span class="p">)</span>
+    <span class="k">ORDER</span> <span class="k">BY</span> <span class="nb">DATE</span><span class="p">(</span><span class="n">request_received</span><span class="p">)</span> <span class="k">ASC</span>
+<span class="p">)</span>
+</code></pre></div><h3 id='cdn-cache-response-rates'>CDN cache response rates</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>
+    <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'minute'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="k">min</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">hits</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="o">=</span> <span class="s1">'HIT'</span><span class="p">)</span>       <span class="k">AS</span> <span class="n">hit_cnt</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="o">=</span> <span class="s1">'HIT'</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>   <span class="k">AS</span> <span class="n">hit_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="o">=</span> <span class="s1">'MISS'</span><span class="p">)</span>      <span class="k">AS</span> <span class="n">miss_cnt</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="o">=</span> <span class="s1">'MISS'</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>  <span class="k">AS</span> <span class="n">miss_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="o">=</span> <span class="s1">'ERROR'</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">error_cnt</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="o">=</span> <span class="s1">'ERROR'</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">AS</span> <span class="n">error_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="o">=</span> <span class="s1">'PASS'</span><span class="p">)</span>      <span class="k">AS</span> <span class="n">pass_cnt</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="o">=</span> <span class="s1">'PASS'</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>  <span class="k">AS</span> <span class="n">pass_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="o">=</span> <span class="s1">'SYNTH'</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">synth_cnt</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="o">=</span> <span class="s1">'SYNTH'</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">AS</span> <span class="n">synth_pc</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2021</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="n">X</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">1</span> <span class="k">ASC</span><span class="p">;</span>
+</code></pre></div><h3 id='cdn-cache-hitmiss-rates'>CDN cache hit/miss rates</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>
+    <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'second'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">period</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_requests</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">))</span>     <span class="k">AS</span> <span class="n">cache_hits</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">cache_hit_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">))</span>         <span class="k">AS</span> <span class="n">cache_misses</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">cache_miss_pc</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2021</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="n">X</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">2</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div><h3 id='cache-miss-request-times-by-paths-with-greatest-summed-request-time'>Cache miss request times by paths with greatest summed request time</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>
+    <span class="n">CONCAT</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="n">SPLIT_PART</span><span class="p">(</span><span class="n">SPLIT_PART</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s1">'?'</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">AS</span> <span class="n">url_start</span><span class="p">,</span>
+    <span class="k">method</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_requests</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">request_time</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="k">AS</span> <span class="n">average_rq_time</span><span class="p">,</span>
+    <span class="k">CAST</span><span class="p">(</span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">request_time</span><span class="p">))</span> <span class="k">AS</span> <span class="nb">INTEGER</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_rq_time</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="k">MIN</span><span class="p">(</span><span class="n">request_time</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p0</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">APPROX_PERCENTILE</span><span class="p">(</span><span class="n">request_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p50</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">APPROX_PERCENTILE</span><span class="p">(</span><span class="n">request_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p70</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">APPROX_PERCENTILE</span><span class="p">(</span><span class="n">request_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">8</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p80</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">APPROX_PERCENTILE</span><span class="p">(</span><span class="n">request_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">9</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p90</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">APPROX_PERCENTILE</span><span class="p">(</span><span class="n">request_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">95</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p95</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="k">MAX</span><span class="p">(</span><span class="n">request_time</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p100</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2020</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">11</span> <span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">26</span>
+  <span class="k">AND</span> <span class="n">url</span> <span class="k">NOT</span> <span class="k">LIKE</span> <span class="s1">'/assets/%'</span>
+  <span class="k">AND</span> <span class="n">cache_response</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">)</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">5</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">1000</span>
+</code></pre></div><h3 id='cdn-hitmiss-rates-request-times'>CDN hit/miss rates + request times</h3><p>Includes:</p>
+
+<ul>
+<li>unique IP / user agent combinations</li>
+<li>cache hit rates</li>
+<li>mean and summed request time</li>
+<li>approximated request time percentiles</li>
+</ul>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>
+    <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'minute'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">period</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_requests</span><span class="p">,</span>
+    <span class="c1">-- unique IP / user agent combinations</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="k">ROW</span><span class="p">(</span><span class="n">client_ip</span><span class="p">,</span> <span class="n">user_agent</span><span class="p">))</span> <span class="k">AS</span> <span class="n">total_ip_uas</span><span class="p">,</span>
+    <span class="c1">-- cache hit rates</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">))</span>     <span class="k">AS</span> <span class="n">cache_hits</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">cache_hit_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">))</span>         <span class="k">AS</span> <span class="n">cache_misses</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">cache_miss_pc</span><span class="p">,</span>
+    <span class="c1">-- mean and summed request time</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">request_time</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span> <span class="k">AS</span> <span class="n">average_rq_time</span><span class="p">,</span>
+    <span class="k">CAST</span><span class="p">(</span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">request_time</span><span class="p">))</span> <span class="k">AS</span> <span class="nb">INTEGER</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_rq_time</span><span class="p">,</span>
+    <span class="c1">-- approximated request time percentiles</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="k">MIN</span><span class="p">(</span><span class="n">request_time</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p0</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">APPROX_PERCENTILE</span><span class="p">(</span><span class="n">request_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p50</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">APPROX_PERCENTILE</span><span class="p">(</span><span class="n">request_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p70</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">APPROX_PERCENTILE</span><span class="p">(</span><span class="n">request_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">8</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p80</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">APPROX_PERCENTILE</span><span class="p">(</span><span class="n">request_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">9</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p90</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="n">APPROX_PERCENTILE</span><span class="p">(</span><span class="n">request_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">95</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p95</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="k">MAX</span><span class="p">(</span><span class="n">request_time</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">p100</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2021</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="n">X</span>
+  <span class="k">AND</span> <span class="n">url</span> <span class="k">LIKE</span> <span class="s1">'/find-coronavirus-local-restrictions?postcode=%'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">2</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div><h3 id='http-response-code-rates'>HTTP response code rates</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>
+    <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'minute'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">period</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_requests</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">s2xx</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">s2xx_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">s3xx</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">s3xx_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">s4xx</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">s4xx_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">s5xx</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">5</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">s5xx_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">))</span>     <span class="k">AS</span> <span class="n">cache_hits</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">AS</span> <span class="n">cache_hit_pc</span><span class="p">,</span>
+                             <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">))</span>         <span class="k">AS</span> <span class="n">cache_misses</span><span class="p">,</span>
+    <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">cache_response</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'PASS'</span><span class="p">,</span> <span class="s1">'MISS'</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span>     <span class="k">AS</span> <span class="n">cache_miss_pc</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2021</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="n">X</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">1</span> <span class="k">ASC</span><span class="p">;</span>
+</code></pre></div><h3 id='minutes-during-the-week-where-error-rate-was-0-1'>Minutes during the week where error rate was &gt;0.1%</h3><p>This is the &ldquo;availability&rdquo; metric shown on the SMT dashboard.</p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>
+  <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'week'</span><span class="p">,</span> <span class="k">minute</span><span class="p">)</span> <span class="k">AS</span> <span class="n">week</span><span class="p">,</span>
+  <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">mins_with_bad_error_rate</span><span class="p">,</span>
+  <span class="c1">-- Next line assumes we're calculating for a full week (7 days * 24 hours * 60 minutes)</span>
+  <span class="c1">-- This will need to be updated if the calculation range is changed.</span>
+  <span class="c1">-- It'll also be off during weeks where the clocks go forwards / back.</span>
+  <span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">7</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span> <span class="o">*</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">))</span> <span class="k">AS</span> <span class="n">availability</span>
+<span class="k">FROM</span> <span class="p">(</span>
+  <span class="k">SELECT</span>
+    <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'minute'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="k">minute</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_requests</span><span class="p">,</span>
+    <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="k">BETWEEN</span> <span class="mi">200</span> <span class="k">AND</span> <span class="mi">499</span><span class="p">)</span> <span class="k">AS</span> <span class="n">successful_requests</span><span class="p">,</span>
+    <span class="mi">100</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="k">BETWEEN</span> <span class="mi">200</span> <span class="k">AND</span> <span class="mi">499</span><span class="p">)</span> <span class="k">AS</span> <span class="n">availability</span>
+  <span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+  <span class="k">WHERE</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2021</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="nb">date</span> <span class="o">&gt;=</span> <span class="mi">12</span> <span class="k">AND</span> <span class="nb">date</span> <span class="o">&lt;=</span> <span class="mi">12</span>
+    <span class="k">AND</span> <span class="n">user_agent</span> <span class="k">NOT</span> <span class="k">LIKE</span> <span class="s1">'GOV.UK Crawler Worker%'</span>
+    <span class="k">AND</span> <span class="n">request_received</span> <span class="o">&gt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2021-01-12 15:00:00'</span>
+  <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'minute'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">WHERE</span> <span class="n">availability</span> <span class="o">&lt;</span> <span class="mi">99</span><span class="p">.</span><span class="mi">9</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'week'</span><span class="p">,</span> <span class="k">minute</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'week'</span><span class="p">,</span> <span class="k">minute</span><span class="p">)</span> <span class="k">ASC</span><span class="p">;</span>
+</code></pre></div><h2 id='snippets'>Snippets</h2><p>Little snippets of bits of SQL.</p>
+<h3 id='path-without-query-string'>Path without query string</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="n">SPLIT_PART</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">'?'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">AS</span> <span class="n">url_path</span>
+</code></pre></div><h3 id='exclude-the-gov-uk-crawler'>Exclude the GOV.UK Crawler</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="n">user_agent</span> <span class="k">NOT</span> <span class="k">LIKE</span> <span class="s1">'GOV.UK Crawler Worker%'</span>
+</code></pre></div><h3 id='remove-extra-mirror-path-information'>Remove extra mirror path information</h3><p>If an origin request fails and the request is failed over to a static mirror,
+the path is changed based on the location of the static file within the S3
+bucket. E.g. <code>/some/path</code> &ndash;&gt; <code>/www.gov.uk/some/path.html</code></p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">SPLIT_PART</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">'?'</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">'/www.gov.uk'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span> <span class="s1">'.html'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span> <span class="k">AS</span> <span class="n">url_path</span>
+</code></pre></div><h3 id='count-cases-of-a-thing'>Count cases of a thing</h3><p>If you want straight counts, use
+<a href="https://docs.data.world/documentation/sql/reference/aggregations/count_if.html"><code>COUNT_IF</code></a>.
+E.g.:</p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="n">COUNT_IF</span><span class="p">(</span><span class="n">status</span> <span class="k">BETWEEN</span> <span class="mi">200</span> <span class="k">AND</span> <span class="mi">499</span><span class="p">)</span>
+</code></pre></div><p>If you want to sum other values, rather than using a straight count, you can use a <code>CASE</code> inside a <code>SUM</code>:</p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="p">...</span> <span class="k">THEN</span> <span class="n">true_value</span> <span class="k">ELSE</span> <span class="n">false_value</span> <span class="k">END</span><span class="p">)</span>
+</code></pre></div><p>E.g.</p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">status</span> <span class="k">BETWEEN</span> <span class="mi">200</span> <span class="k">AND</span> <span class="mi">499</span> <span class="k">THEN</span> <span class="n">request_time</span> <span class="k">ELSE</span> <span class="mi">0</span> <span class="k">END</span><span class="p">)</span>
+</code></pre></div><h2 id='add-a-new-field-to-the-cdn-logs'>Add a new field to the CDN logs</h2><p>Adding a new field to the CDN logs is a half manual, half automated
+process and is <a href="https://trello.com/c/7pAvfM8R/167">tracked as tech debt</a>.</p>
+<p>You should do this in the Integration environment first and wait until
+you see the logs coming through to Athena from Fastly. Only then
+should you change Staging and next Production. This helps us catch
+syntax errors and incidents early. Note that the <code>bouncer</code> logs are
+only available in Production.</p>
+<p>Firstly, make the manual changes via Terraform and a PR. This ensures that
+you&rsquo;ve had two pairs of eyes on both the Athena/AWS Glue config changes and the
+eventual JSON you will manually put into the Fastly web UI:</p>
+
+<ol>
+<li>Edit the <a href="https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-fastly-logs/main.tf"><code>infra-fastly-logs</code> Terraform</a>.</li>
+<li>Find the <code>aws_glue_catalog_table</code> resource for the Fastly logs you want to
+add a column to (<code>govuk_www</code>, <code>govuk_assets</code> or <code>bouncer</code>).</li>
+<li>Copy the VCL for the log from
+<a href="https://docs.fastly.com/en/guides/useful-variables-to-log">Fastly&rsquo;s list of available logs</a> and add it to the list
+of commented (<code>//</code>) columns. It&rsquo;s important that these are in the same
+format as the preceding commented lines (that is, JSON, with quotes)
+otherwise Athena won&rsquo;t parse the logs correctly. Here&rsquo;s an
+<a href="https://github.com/alphagov/govuk-aws/blob/6a37004ff23b7da3b90b20b30a2068499b7904ed/terraform/projects/infra-fastly-logs/main.tf#L205">example for the <code>govuk_www.cache_response</code> column</a>.</li>
+<li>Add your new column name, type and description to the JSON below the
+comments (<a href="https://github.com/alphagov/govuk-aws/blob/6a37004ff23b7da3b90b20b30a2068499b7904ed/terraform/projects/infra-fastly-logs/main.tf#L284-L288">example
+for the <code>govuk_www.cache_response</code> column</a>).</li>
+<li>Raise a PR, get a review, merge and <a href="/manual/deploying-terraform.html">deploy</a>.</li>
+</ol>
+<p>The manual steps to make Fastly send the log data:</p>
+
+<ol>
+<li>Log in to Fastly using the credentials from
+<code>fastly/deployment_shared_credentials</code> in the 2ndline password store.</li>
+<li>Search for the environment, for example &ldquo;staging&rdquo;.</li>
+<li>On the environment page, click &ldquo;Real Time Stats&rdquo;.</li>
+<li>Click &ldquo;Configure&rdquo; on the page with the graphs.</li>
+<li>Click the blue &ldquo;Edit Configuration&rdquo; button on the far right to reveal a
+dropdown menu.</li>
+<li>Click &ldquo;Clone version xxx (active) to edit&rdquo;.</li>
+<li>Click &ldquo;Logging&rdquo; in the left hand menu.</li>
+<li>Find and click the link for the relevant log, for example &ldquo;GOV.UK Fastly
+Logs S3 Bucket&rdquo;.</li>
+<li>Paste the new log format (found <a href="https://docs.fastly.com/en/guides/useful-variables-to-log">in the list of available Fastly
+logs</a>) into the &ldquo;Log Format&rdquo; text box.</li>
+<li>Click &ldquo;Update&rdquo;.</li>
+<li>Click the purple &ldquo;ACTIVATE&rdquo; button in the top right corner to make the new
+configuration live.</li>
+</ol>
+<p>Both these sets of steps must be done! Check the S3 bucket and
+query Athena to see the added column and confirm that there&rsquo;s data for
+it. As the crawler runs on a schedule every four hours, it can take a
+while for Athena to recognise that there have been changes to the
+configuration. Due to this, it&rsquo;s advisable to manually <a href="https://eu-west-1.console.aws.amazon.com/glue/home?region=eu-west-1#catalog:tab=crawlers">run the AWS
+Glue Crawler</a> for the logs config you have changed once you
+know that Fastly is correct.</p>
+<p>Once you&rsquo;re happy that the Integration configuration works, you can
+deploy Terraform to Staging and make the same manual changes in the
+Fastly UI. Then do Production.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2><h3 id='hive_cursor_error-row-is-not-a-valid-json-object'>HIVE_CURSOR_ERROR: Row is not a valid JSON Object</h3><p>This error indicates that a row in the logs is invalid JSON. It can be very
+difficult to determine which file this error came from. It could either be
+caused by a change in the formatting of data sent from Fastly - which would
+make every record after a timestamp invalid -  or by something expected in
+input which isn&rsquo;t properly escaped.</p>
+<p>There is a tedious process that can be used to identify where there is a
+problem in a particular JSON file. You can sync all the log files from a day
+to your local machine and then parse each JSON blob in each of the files with a
+JSON tool (such as <code>JSON.parse</code> in Ruby) until you find the problem. Once
+identified you may need to need to contact Fastly about the
+problem or update the log formatting in Fastly to resolve the issue.</p>
+<h2 id='splunk'>Splunk</h2><h3 id='query-cdn-logs-in-splunk'>Query CDN logs in Splunk</h3><p>Fastly logs are also available in <a href="https://gds.splunkcloud.com/">Splunk Cloud</a>
+in the <code>govuk_cdn</code> index.</p>
+<p>Example query: <a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3Dgovuk_cdn%20http_method%3Dpost">all POST requests made in the last 30
+minutes</a>.</p>
+<h3 id='gain-access-to-splunk'>Gain access to Splunk</h3><p>You can see the logs if your account has access to GOV.UK&rsquo;s Splunk. If you do
+not have access to Splunk, you can request access by raising a support ticket
+with IT and asking them to enable Splunk for your Google account.  You&rsquo;ll need
+to:</p>
+
+<ul>
+<li>specify &ldquo;gds-006-govuk&rdquo; as the Splunk SAML Group you need access to,</li>
+<li>copy in the Approval Owner as outlined in the <a href="https://docs.google.com/spreadsheets/d/1qC91oySDbs993CKm214ebBvpwUT-s3hqEO-LByWnYhg/edit#gid=0">Splunk approval
+list</a>,</li>
+<li>include the reason why you need access and ask the for approval by replying
+to the IT support ticket.</li>
+</ul>
+
+  <div class='related-content'>
+
+    <h3>More in the Logging section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/logging.html">How logging works on GOV.UK</a></li>
+            <li><a href="/manual/request-tracing.html">Request tracing</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/kibana.html">Query Kibana (includes useful queries)</a></li>
+            <li><a href="/manual/logit.html">View GOV.UK logs in Logit</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/query-cdn-logs.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Query+CDN+logs%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fquery-cdn-logs.html%29&amp;labels=bug&amp;title=Re%3A+%27Query+CDN+logs%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
