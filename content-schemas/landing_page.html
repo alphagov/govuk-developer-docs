@@ -1,0 +1,1027 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Schema: landing_page - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/content-schemas/landing_page.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="description" content="Everything about the 'landing_page' schema" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="Schema: landing_page - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/content-schemas/landing_page.html" />
+
+      <meta property="og:description" content="Everything about the 'landing_page' schema" />
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Schema: landing_page" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/content-schemas/landing_page.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/content-schemas.html" aria-current="page">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/content-schemas.html"><span>Content schemas</span></a>
+      <ul>
+          <li>
+            <a href="/content-schemas/answer.html"><span>answer</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/calendar.html"><span>calendar</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/call_for_evidence.html"><span>call_for_evidence</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/case_study.html"><span>case_study</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/completed_transaction.html"><span>completed_transaction</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/consultation.html"><span>consultation</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/contact.html"><span>contact</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/content_block.html"><span>content_block</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/content_block_contact.html"><span>content_block_contact</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/content_block_pension.html"><span>content_block_pension</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/coronavirus_landing_page.html"><span>coronavirus_landing_page</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/corporate_information_page.html"><span>corporate_information_page</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/detailed_guide.html"><span>detailed_guide</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/document_collection.html"><span>document_collection</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/email_alert_signup.html"><span>email_alert_signup</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/embassies_index.html"><span>embassies_index</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/external_content.html"><span>external_content</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/facet.html"><span>facet</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/fatality_notice.html"><span>fatality_notice</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/field_of_operation.html"><span>field_of_operation</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/fields_of_operation.html"><span>fields_of_operation</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/finder.html"><span>finder</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/finder_email_signup.html"><span>finder_email_signup</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/generic.html"><span>generic</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/generic_with_external_related_links.html"><span>generic_with_external_related_links</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/get_involved.html"><span>get_involved</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/gone.html"><span>gone</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/government.html"><span>government</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/guide.html"><span>guide</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/help_page.html"><span>help_page</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/historic_appointment.html"><span>historic_appointment</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/historic_appointments.html"><span>historic_appointments</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/history.html"><span>history</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/hmrc_manual.html"><span>hmrc_manual</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/hmrc_manual_section.html"><span>hmrc_manual_section</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/homepage.html"><span>homepage</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/how_government_works.html"><span>how_government_works</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/html_publication.html"><span>html_publication</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/landing_page.html" class="toc-link--in-view"><span>landing_page</span></a>
+              <ul>
+                <li><a href="#frontend-schema">Frontend schema</a>
+                <li><a href="#publisher-content-schema">Publisher content schema</a>
+                <li><a href="#publisher-links-schema">Publisher links schema</a>
+              </ul>
+          </li>
+          <li>
+            <a href="/content-schemas/licence.html"><span>licence</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/link_collection.html"><span>link_collection</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/local_transaction.html"><span>local_transaction</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/mainstream_browse_page.html"><span>mainstream_browse_page</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/manual.html"><span>manual</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/manual_section.html"><span>manual_section</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/ministers_index.html"><span>ministers_index</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/news_article.html"><span>news_article</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/organisation.html"><span>organisation</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/organisations_homepage.html"><span>organisations_homepage</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/person.html"><span>person</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/place.html"><span>place</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/publication.html"><span>publication</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/redirect.html"><span>redirect</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/role.html"><span>role</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/role_appointment.html"><span>role_appointment</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/service_manual_guide.html"><span>service_manual_guide</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/service_manual_homepage.html"><span>service_manual_homepage</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/service_manual_service_standard.html"><span>service_manual_service_standard</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/service_manual_service_toolkit.html"><span>service_manual_service_toolkit</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/service_manual_topic.html"><span>service_manual_topic</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/simple_smart_answer.html"><span>simple_smart_answer</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/smart_answer.html"><span>smart_answer</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/special_route.html"><span>special_route</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/specialist_document.html"><span>specialist_document</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/speech.html"><span>speech</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/statistical_data_set.html"><span>statistical_data_set</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/statistics_announcement.html"><span>statistics_announcement</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/step_by_step_nav.html"><span>step_by_step_nav</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/substitute.html"><span>substitute</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/take_part.html"><span>take_part</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/taxon.html"><span>taxon</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/topical_event.html"><span>topical_event</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/topical_event_about_page.html"><span>topical_event_about_page</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/transaction.html"><span>transaction</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/travel_advice.html"><span>travel_advice</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/travel_advice_index.html"><span>travel_advice_index</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/vanish.html"><span>vanish</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/working_group.html"><span>working_group</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/world_index.html"><span>world_index</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/world_location.html"><span>world_location</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/world_location_news.html"><span>world_location_news</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/worldwide_corporate_information_page.html"><span>worldwide_corporate_information_page</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/worldwide_office.html"><span>worldwide_office</span></a>
+          </li>
+          <li>
+            <a href="/content-schemas/worldwide_organisation.html"><span>worldwide_organisation</span></a>
+          </li>
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <h1 class="page-title">Schema: landing_page</h1>
+
+
+  <h2 id='frontend-schema'>Frontend schema</h2><p>This schema describes the content item that is returned from the
+<a href="https://github.com/alphagov/content-store">content store</a>.</p>
+
+<table class='schema-table'><tr><td><strong>analytics_identifier</strong><br/><code>string</code> or <code>null</code></td> <td>A short identifier we send to Google Analytics for multi-valued fields. This means we avoid the truncated values we would get if we sent the path or slug of eg organisations.<br/></td></tr>
+<tr><td><strong>base_path</strong><br/><code>string</code></td> <td>A path only. Query string and/or fragment are not allowed.<br/></td></tr>
+<tr><td><strong>content_id</strong><br/><code>string</code></td> <td><br/></td></tr>
+<tr><td><strong>description</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
+<tr><td><strong>details</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>change_history</strong><br/><code>array</code></td> <td><br/></td></tr></table></td></tr>
+<tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>landing_page</code></td></tr>
+<tr><td><strong>first_published_at</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
+<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>available_translations</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>child_taxons</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>children</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>document_collections</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>documents</strong><br/></td> <td>Documents which belong underneath this landing page<br/></td></tr>
+<tr><td><strong>embed</strong><br/></td> <td>Content that will be embedded within the document, using embed tags.<br/></td></tr>
+<tr><td><strong>emphasised_organisations</strong><br/></td> <td><br/></td></tr>
+<tr><td><strong>finder</strong><br/></td> <td>Powers links from content back to finders the content is surfaced on<br/></td></tr>
+<tr><td><strong>government</strong><br/></td> <td>The government associated with this document<br/></td></tr>
+<tr><td><strong>lead_organisations</strong><br/></td> <td>DEPRECATED: A subset of organisations that should be emphasised in relation to this content item. All organisations specified here should also be part of the organisations array.<br/></td></tr>
+<tr><td><strong>level_one_taxons</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>mainstream_browse_pages</strong><br/></td> <td>Powers the /browse section of the site. These are known as sections in some legacy apps.<br/></td></tr>
+<tr><td><strong>ministers</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>ordered_related_items</strong><br/></td> <td>Related items, can be any page on GOV.UK. Mostly used for mainstream content to power the sidebar. Ordering of the links is determined by the editor in Content Tagger.<br/></td></tr>
+<tr><td><strong>ordered_related_items_overrides</strong><br/></td> <td>Related items, can be any page on GOV.UK. Overrides &lsquo;more like this&rsquo; automatically generated links in the beta navigation.<br/></td></tr>
+<tr><td><strong>organisations</strong><br/></td> <td><br/></td></tr>
+<tr><td><strong>parent</strong><br/></td> <td><br/></td></tr>
+<tr><td><strong>part_of_step_navs</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>policies</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr>
+<tr><td><strong>primary_publishing_organisation</strong><br/></td> <td>The organisation that published the page. Corresponds to the first of the &lsquo;Lead organisations&rsquo; in Whitehall, and is empty for all other publishing applications.<br/></td></tr>
+<tr><td><strong>related_policies</strong><br/></td> <td><br/></td></tr>
+<tr><td><strong>related_to_step_navs</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>role_appointments</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>secondary_to_step_navs</strong><br/></td> <td>Link type automatically added by Publishing API<br/></td></tr>
+<tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr>
+<tr><td><strong>topical_events</strong><br/></td> <td><br/></td></tr></table></td></tr>
+<tr><td><strong>locale</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>ar</code>, <code>az</code>, <code>be</code>, <code>bg</code>, <code>bn</code>, <code>cs</code>, <code>cy</code>, <code>da</code>, <code>de</code>, <code>dr</code>, <code>el</code>, <code>en</code>, <code>es</code>, <code>es-419</code>, <code>et</code>, <code>fa</code>, <code>fi</code>, <code>fr</code>, <code>gd</code>, <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>, <code>hu</code>, <code>hy</code>, <code>id</code>, <code>is</code>, <code>it</code>, <code>ja</code>, <code>ka</code>, <code>kk</code>, <code>ko</code>, <code>ku</code>, <code>ky</code>, <code>lt</code>, <code>lv</code>, <code>ms</code>, <code>mt</code>, <code>ne</code>, <code>nl</code>, <code>no</code>, <code>pa</code>, <code>pa-pk</code>, <code>pl</code>, <code>ps</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>si</code>, <code>sk</code>, <code>sl</code>, <code>so</code>, <code>sq</code>, <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>, <code>th</code>, <code>ti</code>, <code>tk</code>, <code>tr</code>, <code>uk</code>, <code>ur</code>, <code>uz</code>, <code>vi</code>, <code>yi</code>, <code>zh</code>, <code>zh-hk</code>, <code>zh-tw</code></td></tr>
+<tr><td><strong>phase</strong><br/><code>string</code></td> <td>The service design phase of this content item - https://www.gov.uk/service-manual/phases<br/>Allowed values: <code>alpha</code>, <code>beta</code>, <code>live</code></td></tr>
+<tr><td><strong>public_updated_at</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
+<tr><td><strong>publishing_app</strong><br/><code>string</code></td> <td>The application that published this item.<br/>Allowed values: <code>account-api</code>, <code>calculators</code>, <code>calendars</code>, <code>collections-publisher</code>, <code>contacts</code>, <code>content-block-manager</code>, <code>content-tagger</code>, <code>email-alert-frontend</code>, <code>external-link-tracker</code>, <code>feedback</code>, <code>frontend</code>, <code>government-frontend</code>, <code>hmrc-manuals-api</code>, <code>local-links-manager</code>, <code>manuals-publisher</code>, <code>performanceplatform-big-screen-view</code>, <code>publisher</code>, <code>publishing-api</code>, <code>rummager</code>, <code>search-admin</code>, <code>search-api</code>, <code>service-manual-publisher</code>, <code>share-sale-publisher</code>, <code>short-url-manager</code>, <code>smartanswers</code>, <code>specialist-publisher</code>, <code>static</code>, <code>tariff</code>, <code>travel-advice-publisher</code>, <code>whitehall</code></td></tr>
+<tr><td><strong>publishing_request_id</strong><br/></td> <td>A unique identifier used to track publishing requests to rendered content<br/></td></tr>
+<tr><td><strong>publishing_scheduled_at</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
+<tr><td><strong>rendering_app</strong><br/><code>string</code></td> <td>The application that renders this item.<br/>Allowed values: <code>account-api</code>, <code>calculators</code>, <code>calendars</code>, <code>collections</code>, <code>content-store</code>, <code>email-alert-frontend</code>, <code>email-campaign-frontend</code>, <code>feedback</code>, <code>finder-frontend</code>, <code>frontend</code>, <code>government-frontend</code>, <code>info-frontend</code>, <code>licensify</code>, <code>performanceplatform-big-screen-view</code>, <code>rummager</code>, <code>search-api</code>, <code>smartanswers</code>, <code>spotlight</code>, <code>static</code>, <code>tariff</code>, <code>whitehall-admin</code>, <code>whitehall-frontend</code></td></tr>
+<tr><td><strong>scheduled_publishing_delay_seconds</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
+<tr><td><strong>schema_name</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>landing_page</code></td></tr>
+<tr><td><strong>title</strong><br/><code>string</code></td> <td><br/></td></tr>
+<tr><td><strong>updated_at</strong><br/><code>string</code></td> <td><br/></td></tr>
+<tr><td><strong>withdrawn_notice</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>explanation</strong><br/><code>string</code></td> <td><br/></td></tr>
+<tr><td><strong>withdrawn_at</strong><br/></td> <td><br/></td></tr></table></td></tr></table>
+<p><a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/landing_page/frontend/schema.json">View this schema on GitHub</a></p>
+<h3 id='random-example'>Random example</h3><div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/feb8cab4-bdc2-17e6-a7a8-c0fea6ef5174/495505b4-b90c-1df5-aa4b-3adeae7bad5e"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"33cd8e6c-bd31-1c34-a50e-6dda3ce6e5d3"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"landing_page"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-11T00:14:08+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"available_translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/add045ef-b2ef-19f0-ac41-d942c3c7a3aa/ec3f6a54-b4aa-1d1d-a71e-255db6904a8f/cd3d49c2-8c22-1a92-acfe-aed226c5a21e/aedea11f-b73d-1e1b-a3e6-f10367a4816a"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://nam.com/975c6813-f59a-16a7-ab3d-cdb4f55fb35e#fc31beceab"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/bf06ff1c-be91-1fa7-afb2-e45e8c0c07ba/47b7eeee-2cfb-15fe-a9d0-a6be2a4b91ad"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c5c7a88a-5fef-11ce-abe9-f9ce25e8febb"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zh-hk"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eu habitant a purus Nam interdum et Aenean elit tempor sed ipsum consectetur sem tristique Nam aliquet vel ac risus ac molestie malesuada ultricies lorem orci massa vel imperdiet bibendum sit molestie sagittis vestibulum lectus nibh tristique amet pellentesque eu risus netus hendrerit suscipit at est Quisque scelerisque sollicitudin volutpat Lorem Mauris Ut eros in non cursus fames Duis porttitor egestas senectus mauris dolor nisl ac Suspendisse morbi tempor nibh interdum turpis adipiscing et ac leo libero Sed Ut non Pellentesque dolor finibus"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"molestie Quisque ac finibus consectetur sem habitant vel fames adipiscing eu Sed Ut volutpat hendrerit sed ac Suspendisse dolor pellentesque a vestibulum morbi tristique at lorem et tempor senectus purus in sit Duis ultricies risus elit dolor ipsum amet tempor Nam mauris suscipit tristique Pellentesque porttitor non aliquet Mauris"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lorem eu porttitor pellentesque at sit sed mauris Ut morbi lectus sem vestibulum purus dolor malesuada Nam Quisque ipsum a interdum nibh orci Lorem vel libero sagittis Duis Sed leo scelerisque Suspendisse Aenean ac senectus habitant interdum egestas eros tempor et risus"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/ac45eb96-15ec-1309-a273-c53f7e17a36e/4286b4c5-ab17-1bd6-abee-c0fce93f3f2f/3bee1a6e-b9a9-18d9-a668-d0f59febaffb/57d62fab-c497-1bff-af6d-046c01c698ae"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://lectus.com/d725fd5a-d895-1fff-aef4-e34a9decb9a9/6298a6ec-12e7-1f99-ac8c-0172ac62188f/7e001011-2a24-17bb-acf5-f8d99b01db9f/003f7da5-6b0d-170e-abae-0273bbd3350a#bc1e52dd6e"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/32cbcd3a-0589-1ea4-a00e-0eed3109df8c/9db457df-9762-131f-ad1a-430a10ad170a/265eb47e-0de0-1aa0-a095-eeaedf7aec0b/62fdebfd-5c3a-19d8-a1f3-429cca36e409/90aad627-63f5-1dce-a8b2-613a18625dcc"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"094a90ce-c76d-1ade-ae7b-d2c4d8b6b696"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"consectetur nibh eu lectus Duis Aenean ac Ut orci elit dolor tempor molestie in leo risus a Mauris sed eros libero egestas sollicitudin malesuada scelerisque volutpat non Nam pellentesque interdum vestibulum sagittis interdum sem Pellentesque eu Lorem senectus et tristique at morbi fames ipsum est lorem porttitor netus purus Quisque aliquet nibh hendrerit Ut ac molestie cursus Nam"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es-419"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aenean sed nibh ac hendrerit sem eu imperdiet ac egestas senectus habitant adipiscing cursus orci suscipit est eros finibus lectus Nam vestibulum dolor libero bibendum turpis interdum risus porttitor non purus ipsum elit fames ac pellentesque in molestie aliquet morbi tristique at vel sagittis Sed"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vel molestie senectus tempor Lorem vel vestibulum ac nisl Nam et risus ac ac eu lorem Pellentesque egestas malesuada in nibh Ut a suscipit hendrerit ultricies Suspendisse volutpat eros sit non risus lectus pellentesque dolor netus non imperdiet at tristique Mauris sollicitudin Ut amet libero Duis finibus tempor elit interdum Quisque purus ac eu habitant bibendum leo est Aenean sem Sed scelerisque ipsum nibh interdum cursus fames et mauris massa sagittis consectetur sed Nam turpis tristique molestie porttitor aliquet adipiscing orci morbi dolor"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://imperdiet.com/f6ee5426-b0eb-1b46-a52a-bdaec5f7e137/bf81e302-370e-1ddb-a31b-bf9afb310bb9#ffc1adffb6"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"et vel sit non consectetur sollicitudin scelerisque Suspendisse amet Nam volutpat Aenean nisl habitant ac dolor nibh Quisque sem bibendum elit adipiscing cursus eu tristique pellentesque eu senectus molestie in netus interdum dolor Nam ac suscipit Duis porttitor et est ac eros a molestie ultricies tempor risus Lorem Mauris turpis sagittis finibus orci Ut lectus malesuada fames Pellentesque vestibulum imperdiet hendrerit leo tristique ipsum morbi nibh purus Sed lorem at ac massa vel tempor risus egestas non Ut interdum"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://lectus.co.uk/b5b0ca00-1cd5-1eaf-adfc-e4fb307bef7c#bdacb95f9b"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/6ca8dd70-d173-1c36-a930-4f2b8bfccbfb/f437cfe6-ced8-1cfe-a362-0cc1b86e8555/bd52cc08-cb8e-154c-ad81-cf6ef99d55ab/1bc6d2fe-e7ce-10bf-aefb-e29a9c9ab4d6"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d376e8ff-0aa8-15bf-adac-1fa1005d888e"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sv"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"senectus ac sem Nam nibh Lorem turpis imperdiet"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ultricies molestie orci est massa cursus mauris morbi Duis scelerisque Sed ac vel nibh leo sit Lorem ac elit eu bibendum purus egestas fames imperdiet tempor vel amet senectus volutpat netus et ipsum Suspendisse et dolor pellentesque consectetur tempor eu Nam risus Nam vestibulum ac suscipit sagittis interdum hendrerit eros Mauris Quisque interdum malesuada tristique turpis a nibh non in Pellentesque at lorem adipiscing ac sem aliquet sollicitudin finibus lectus sed"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cursus.com/0a40dd6e-7bf3-16c6-a582-99f4e4f09a1c/07cbaab9-caf4-1645-af9c-a1d94177bd0d/e5a4fb7e-40cb-18cc-a7f5-dededdd9fccc/6bbc3de3-3a0e-1bbd-a30c-4a659321dfd2/647ea8cc-0d06-1cf6-ad67-5fcf485d9276#f2b4b11d39"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"child_taxons"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"finder"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/b0db912a-d772-1f52-a9bb-6d1fb52e57f2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eros.co.uk/3a9b35b7-c7ea-1c79-a71a-c7378ad5e5bc/acbbbb7a-e72f-1e19-ad3f-fc1512cde700/6d43bcc8-af79-18c4-aabe-a10dc040be85#e86bbaab6f"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/4e06aed9-a2cb-144c-ad24-8e3f4f1cfe2b/db06ab0c-f8b8-13cb-a249-fa4d81500e8f/e22fcb4d-ed7c-149b-a3c6-8fc9ffd33f5e/6ac30403-9c9a-17a4-a6ad-30bf6fe6c3b0/fd3689bf-e639-1434-a2bf-6ba2f5dab3dd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c92aaad2-57cc-1fbd-adb9-1834a6e1cbfd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eu adipiscing risus hendrerit habitant et cursus interdum ac Suspendisse ipsum imperdiet senectus nisl elit vestibulum suscipit Lorem malesuada netus sollicitudin Ut ac eu lorem molestie tristique eros in orci ultricies consectetur aliquet Nam molestie morbi risus porttitor leo mauris Pellentesque purus nibh Duis at ac vel bibendum finibus Nam Aenean volutpat tempor et nibh pellentesque lectus dolor fames egestas non massa Quisque scelerisque dolor libero turpis ac tempor amet Mauris Sed sagittis vel est Ut non a tristique interdum sem sit sed"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"suscipit est interdum Mauris Ut non libero massa amet et egestas malesuada senectus ac nibh vel tristique Ut vestibulum eros sed Aenean porttitor ac hendrerit risus tempor netus ac Lorem turpis molestie finibus at eu sem Duis tristique scelerisque Nam non vel leo ipsum Quisque adipiscing mauris consectetur Nam elit cursus pellentesque Sed in dolor et sollicitudin sagittis tempor morbi habitant ac sit risus interdum orci a molestie eu Pellentesque lorem Suspendisse ultricies"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"at egestas interdum Lorem massa libero Quisque Suspendisse Mauris aliquet eros"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://egestas.co.uk/d443fffe-32ba-10cd-afa9-9c76fbc0d26e/72a3f2b7-cfee-16ad-aa5f-fb0fab7e75d9/86c2402c-aaec-1bc0-a588-39eecfbe48a7/d76a26c4-a97d-1b1c-ac68-2964abc5b629#06fd7f0f33"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/d2473838-8d80-1dc6-ada5-f77d3aa04c51/eb0a4691-93ef-19e5-ac12-0e3df85cfbdc/8e2a9bd5-0cac-1dfb-af0e-7e12f3aabc87/d9fd35fa-3c00-10b9-a6b2-b598054ac93c"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eros.com/85d664a9-e05f-13b9-afab-eee5ffe47f5a/4a96b336-c442-18e2-acc8-aef1b85b4075#96efd9aaf6"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/e7ca4f3b-5a35-1ce9-ad2f-dd6f3f6e5bbd/cfc7766e-9107-1d54-a92f-cb1eec6bdfd4"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5565fc5c-f022-1d2c-aaab-7fd158df6f2d"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fi"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-09-19T21:55:10+00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ut libero pellentesque"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sed imperdiet leo a eu Pellentesque vel adipiscing amet interdum nibh molestie eros tempor purus mauris Nam habitant Ut risus non morbi elit fames netus est nisl aliquet egestas sollicitudin volutpat et ac sagittis Quisque ac cursus hendrerit lectus Ut scelerisque Lorem risus Sed senectus tristique consectetur tristique finibus vestibulum ipsum Duis nibh sem tempor Aenean sit bibendum Suspendisse eu suscipit libero"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"government"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"ordered_related_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/2c52f351-f566-1aab-aa76-9cc24557ba42"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://habitant.com/2e1e19e3-b43f-1b6a-a32a-0fac3eadaf1d/a40dff3a-82fa-1bae-ac73-0e9fb7fa34ab/04baf69d-7395-19cc-a5b0-930f063205bf/0c58657c-71ab-1e11-ade8-aaccffb2efd5#233bfeb1af"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/9a68ef92-b11d-1af2-aba6-7a9c79e93989/9c0c1fd2-27d5-19a1-a77f-2863d71a4aae/41d7a1af-aff5-1f43-ac8b-b8e98a2122ac/de1a1dcc-463d-1a42-aa7a-c4cc557fa9f0/caca3ba7-0daa-1b32-a92d-c23381f329dc"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ace14596-b61c-1994-aeb7-960ef1cb1de0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non morbi hendrerit volutpat eu est finibus interdum scelerisque risus lorem aliquet fames malesuada non risus Ut leo ac vel pellentesque molestie sem ac Ut eu Pellentesque Nam Aenean ac elit amet molestie habitant et nibh ac sed senectus vel Sed tristique Nam at egestas porttitor ipsum dolor tempor Mauris orci imperdiet lectus dolor turpis adipiscing purus Duis eros et vestibulum sagittis nisl mauris suscipit libero tristique consectetur nibh Suspendisse massa a Lorem interdum Quisque bibendum netus tempor sit cursus in ultricies sollicitudin"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"th"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-22T21:42:17+00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"libero amet at Pellentesque eu lectus malesuada tempor tristique vel et elit tempor risus leo Ut sagittis sed nibh nisl interdum Sed massa turpis ac vestibulum bibendum ipsum vel Quisque Suspendisse tristique porttitor lorem molestie pellentesque volutpat Mauris senectus scelerisque habitant hendrerit netus ac ac adipiscing"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non adipiscing mauris eu pellentesque Nam malesuada lectus non at a nibh tristique orci porttitor habitant bibendum elit tempor Nam dolor senectus Aenean et vel sollicitudin sagittis vel ac Duis eros fames Lorem Ut finibus sit volutpat ac consectetur Quisque eu purus suscipit interdum ac Suspendisse"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://suscipit.com/e14c2a28-d4db-1d9a-ac7f-4616f5dccf44/befcec08-beec-1ad3-a02d-7c0984efef43/4dc6d89e-bb85-1e5e-a7b0-6eb17f22bcda/b9486a31-7fba-1745-a92f-614eca3577ba/8453c247-ceae-13e5-a894-400d51ddc532#2b0f0ec5b2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/5e2d79a4-94fe-1ad3-a4e8-bfc60dae6ef4/fcaab0c2-ecbc-1c9d-a33d-bfbeb66ccb73/5ae0cbae-7add-1882-aaee-aa94f41fd01d/c800df38-a43d-1c42-a9b4-6cd86bcfd24f/f0ddd0da-8f9c-16e3-adc3-5bd343bec78b"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f143bfc-55e9-1ea1-accf-dab1da99bb04"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"habitant risus et molestie aliquet leo Sed morbi adipiscing ac dolor nisl Nam lectus tristique amet sollicitudin senectus tempor eu libero orci elit vel volutpat porttitor eros in a cursus scelerisque ac Pellentesque suscipit et ipsum egestas vestibulum bibendum non finibus sed mauris Mauris Lorem Ut interdum interdum massa nibh purus Suspendisse risus Nam non fames netus malesuada turpis at tristique"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cy"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tristique vel nisl netus et malesuada bibendum"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elit interdum interdum Pellentesque habitant sit molestie leo cursus molestie Quisque eu Sed vel amet a sagittis fames orci purus est tristique libero pellentesque Ut tristique ac nisl malesuada tempor scelerisque massa eros mauris turpis finibus vel imperdiet suscipit in nibh Ut at dolor Suspendisse Duis bibendum vestibulum hendrerit ac dolor Lorem Aenean et ac eu aliquet ultricies sem netus senectus nibh Nam Mauris adipiscing ac ipsum tempor sollicitudin sed lectus porttitor consectetur risus egestas morbi"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://in.co.uk/21bff1ad-4e5b-1ccf-a5fb-74f6a6aa86bb/61a9e6a2-5c20-1fda-a5e7-c3ed1b8efbce/c5795f62-6e48-1cea-a2fa-9c5bdc4828c4/57b6877d-f06d-18da-a737-c4cbd87fabeb/6a9bc0fa-1e3a-1925-a4ce-8ea2a2e8e28c#782a50b5c0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/b209e2ab-fbd8-118f-add8-425a667fa764"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6de112f2-df4b-1218-aae3-4f0afc03d5b0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duis adipiscing tristique et ipsum leo hendrerit Nam habitant Sed sagittis ac dolor Ut finibus Nam amet tristique malesuada imperdiet bibendum eu nisl volutpat Pellentesque libero purus"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mt"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tempor senectus volutpat finibus lectus elit vel Aenean sit nibh adipiscing in Sed leo risus cursus ac orci Nam Pellentesque ac Lorem"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suspendisse turpis Pellentesque ac Ut libero at lorem massa a nisl egestas purus malesuada tristique sit interdum Nam eu ultricies volutpat porttitor vel tristique netus ipsum et risus morbi nibh eu consectetur non Mauris imperdiet Aenean suscipit bibendum Ut dolor est Duis molestie molestie hendrerit non finibus Sed vel Nam nibh cursus in pellentesque Lorem fames orci et"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Quisque massa Duis volutpat aliquet vestibulum tempor ac interdum est dolor vel interdum suscipit lorem sagittis egestas risus ac ac finibus Ut senectus a libero habitant molestie ac Nam at pellentesque sem Ut"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/ed0eb01a-de9e-16a4-a9ef-534f0b2d1d4c/42845156-bf22-1e4d-adb8-9cf65e679402"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/e9216a71-c1ee-1fd7-aecd-0a2daf0866ef"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9eff2e53-e1ba-1e64-a7da-f1e07ad4b8bd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hy"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vel non Lorem sed risus molestie eu habitant sem adipiscing ac amet netus bibendum eros vestibulum tristique et molestie tempor turpis hendrerit tristique aliquet Nam morbi elit finibus Nam purus lectus at ac scelerisque sollicitudin dolor ac consectetur ac nibh Suspendisse suscipit malesuada vel pellentesque orci senectus leo"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eros.co.uk/7ba301d6-f8aa-1ac3-aa67-fbf4eff326b4#2ba5a37185"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a122e73e-7ced-11be-a61e-1bebf023fcb2/0a23abcf-a970-1ab7-ae4d-49bfaebf4e93/3798daeb-9aa4-1f11-a07d-adab9eb3fa9b/c0a98f2a-471f-1cce-a688-5c148cdb8d97"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51f4636c-f834-11dd-ad3b-538ac970fdf1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"he"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/6c1b2dae-c16d-1189-a1bf-16ac5dfdcc95"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8bc44acc-9b47-15ac-a628-4ced4a334856"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lv"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elit habitant finibus sed est Lorem vel bibendum eros lorem non aliquet eu a non Sed ac Aenean mauris leo libero Pellentesque purus nibh cursus tempor porttitor tristique amet nisl risus sit molestie molestie ac ac vestibulum Ut ac Duis suscipit et ipsum pellentesque lectus Mauris netus risus sollicitudin scelerisque sem tempor at morbi interdum egestas tristique massa volutpat ultricies hendrerit in adipiscing nibh consectetur vel Ut orci fames Nam eu sagittis Suspendisse"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sollicitudin dolor sem suscipit ultricies vel risus Ut et nibh amet in ac volutpat molestie interdum a tristique ac Pellentesque et Quisque vestibulum ac eros eu cursus scelerisque vel est porttitor Mauris mauris consectetur sed Duis netus Ut nisl risus orci Nam senectus massa Sed Suspendisse sagittis bibendum nibh aliquet lorem Lorem Nam tempor non non pellentesque fames turpis libero lectus ac egestas finibus molestie hendrerit malesuada adipiscing morbi at habitant tempor interdum dolor purus leo eu ipsum tristique elit Aenean imperdiet sit"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"policies"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"primary_publishing_organisation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/18f7eb5c-fd2d-162b-a732-efb9eef208f3/69aca07b-4c52-1823-a57e-89c0f3dac4bd/99d4ccb5-8a3c-1dbd-aff5-d8d8f897dc31"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://massa.co.uk/ccaa4eac-3b18-1f10-a364-8d2cbb56b4a3/c5fc61fd-62b1-108a-a9b1-ab9904a5c4b3/9c975b8b-cbdc-1247-ae3d-97f8be3cdbaf#d56ff4446b"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/feacb9d7-07ce-17e2-ad0d-c0be02a68750/15ca6d0b-3b25-18f4-a1d4-aaa065e7f791/b4a206ec-31ee-1af9-a9dc-fb6bddcaf341/65aa139f-c1df-1ddf-a425-bdc0b9ae68bb"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ccee79dc-01cc-11aa-a5d8-bfca917e7c87"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"libero egestas Duis massa pellentesque finibus et netus tristique bibendum adipiscing turpis purus Nam Mauris tempor tristique consectetur Lorem scelerisque ipsum imperdiet aliquet Sed sagittis lectus non suscipit ac senectus fames Aenean risus nibh leo in dolor sit Pellentesque habitant non molestie at orci dolor eros hendrerit et interdum Suspendisse sem tempor molestie ac porttitor ac risus vestibulum elit vel volutpat sed lorem cursus Quisque a Nam eu est morbi nibh vel eu Ut interdum nisl ultricies amet ac Ut mauris sollicitudin malesuada"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"et Pellentesque netus Suspendisse molestie dolor et sed consectetur sit non bibendum Sed adipiscing tristique imperdiet sem nisl nibh fames volutpat molestie a ac elit hendrerit Lorem ac vestibulum in interdum libero mauris scelerisque Duis at malesuada Nam Ut egestas vel purus massa dolor turpis cursus ipsum Aenean finibus lorem senectus amet tempor Mauris ac eros"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nam nibh finibus non massa molestie imperdiet in interdum est malesuada elit consectetur sem orci turpis Suspendisse volutpat tristique purus risus leo a eros sit nibh Pellentesque Mauris Quisque vestibulum vel Lorem et Ut libero scelerisque ac"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://ac.co.uk/914df5fb-37c8-1c90-a2a7-e89aa48d910c/a9a586f0-a124-19a6-ae51-dff75530ac3c/79af9ba1-d3ae-134d-a232-bab0c8da980a/e7d5090c-adc3-118f-ab83-b83ee7ac8610/9dc9a645-01c5-1d40-abf0-24a078134aaf#6013546ad0"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"secondary_to_step_navs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"molestie Nam finibus adipiscing interdum hendrerit lectus Ut risus sit Nam egestas ultricies at suscipit aliquet sed orci pellentesque malesuada"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://nibh.co.uk/d48cf0f4-deb0-1ac4-a657-c825fa274c86/e57dc2ab-1a45-13ce-ad5b-4b89bbeb9b70/e8d6cc6b-6e4f-1f38-afdf-fdfabeb1af95/7abe10fa-8a5b-1dfe-ade7-5bade58ea6be#6ca3fffbca"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/ac82d0ec-0067-1c2f-afd0-7789baa0faea/80a0f90f-87ef-1bac-aca8-ab4d35ffd829/0990ac4a-acfe-1e5a-a739-cde68d1c29bb/ba64a232-7ab3-1968-a2dd-4badcb70f542"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b7a3cf69-8fb9-13d6-a9a1-c3d76e089ecb"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non est sit aliquet pellentesque vestibulum amet Duis in bibendum ultricies hendrerit habitant nibh Ut volutpat senectus consectetur Ut Lorem Nam risus Nam egestas libero ac molestie leo malesuada suscipit interdum massa at cursus finibus fames eros nibh ipsum morbi tempor molestie Mauris dolor Quisque ac vel eu elit"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"si"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"netus aliquet in elit sem egestas Sed vel Quisque eros risus cursus libero et sed amet ipsum"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eu molestie malesuada Ut aliquet risus Quisque Mauris mauris sem Pellentesque vestibulum nisl orci dolor volutpat dolor ac Duis Suspendisse molestie nibh non porttitor tristique risus lorem est interdum libero et et ipsum Aenean pellentesque a senectus hendrerit adipiscing non ac vel at Sed scelerisque bibendum egestas suscipit morbi ac eros Nam ac vel sagittis sit sed elit netus Lorem purus lectus amet tempor turpis tempor habitant fames finibus interdum Ut tristique consectetur ultricies nibh massa imperdiet eu"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"massa Sed malesuada ipsum pellentesque at bibendum Nam ac sed senectus fames morbi egestas lectus Pellentesque adipiscing Nam purus consectetur non nibh imperdiet suscipit vestibulum sem et risus molestie tempor dolor dolor tempor cursus in vel tristique aliquet nibh vel est porttitor Ut eu amet ac turpis sit Mauris Ut interdum libero Lorem elit ac netus Duis Aenean mauris ac eros risus nisl scelerisque Suspendisse sollicitudin molestie habitant interdum non et eu ultricies leo"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/d8f8c2b1-7d8c-1c6e-abb5-c31f1b5d6b2a/eaabf6a2-9c0f-1eb2-aaed-1fbe34729cb4/fbbf846a-314f-1f78-abb2-ce8bc28a3cec"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/6beed6fd-a2fd-1be6-ac2a-4f3cb253ac05/f2cdcc06-e0de-188a-a9ad-edd452d76b7e/f9afeea0-aa3c-1c9e-abd0-fd9acb7cc8c8/6ebe26af-ead8-1bde-aaec-7af634feb91d/b2ff9c96-a9e3-1acf-aae4-dd6d13b03ade"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0eba3ed9-f8b5-15e2-a04b-3da5aa5cb3c1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tristique libero tristique nibh Mauris lorem Quisque bibendum eu dolor risus sollicitudin ac Pellentesque malesuada dolor Ut sem amet et vel netus ac non est nisl sit adipiscing consectetur Sed eros molestie tempor mauris Lorem lectus morbi Ut turpis habitant purus interdum egestas elit sagittis ipsum in volutpat nibh Aenean hendrerit finibus orci fames Nam risus sed vel ac tempor Duis leo cursus Suspendisse ultricies a aliquet porttitor scelerisque eu at non molestie Nam interdum pellentesque suscipit massa ac senectus vestibulum imperdiet et"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cs"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"consectetur volutpat dolor malesuada Ut turpis molestie est aliquet nisl interdum libero in dolor porttitor Nam tempor risus risus nibh senectus ultricies ac adipiscing sollicitudin ac egestas Nam tristique cursus lorem interdum et vel finibus vel vestibulum non et pellentesque Duis suscipit elit Quisque ipsum eros a nibh tristique Aenean fames mauris amet eu sagittis sed orci massa scelerisque netus Mauris"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://egestas.com/e23193ae-62ee-1260-ae81-a8e07229df49/0b4c7ba8-7cfd-1ae2-aeef-972b4fac125d#ef072fbd51"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a22c61b9-cc8e-10d6-af8c-b06e0abd1f41/fcddff5e-dc6f-1c2f-aee5-0074fd8fa2bd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ce07f61-42f1-1eb0-a6a9-2e1399f7fdd3"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"risus lectus scelerisque volutpat amet hendrerit"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"it"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Quisque ac adipiscing sed hendrerit"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://duis.co.uk/33f877f7-9c6e-1e5e-aeea-68d72fdd04a7/bfd43431-6bfd-193a-a80d-fa7a1843cd7b/9d760e5c-c2db-1cac-ad6e-62fc949d3cc8/b10f48cc-b5a8-1c8e-ab5d-f4df2af61b49/a4573cbd-8426-1d6d-a0af-11deca5febfa#f0dc0f705b"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/eab07bb0-8ecd-1542-aeb6-a4cf07c5a387/bbc94ffe-844f-1b9c-ae2a-3fff729cdc00/fd09a73e-cde2-1a3d-abe8-cda96a4c9931/ab8f0a86-ccc2-1687-acd8-815c49e3ac74/5108bd2b-4ffa-1de7-afea-2939fad3cecf"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e3fdff8d-9989-19cc-a2db-5ebf14a27e74"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"malesuada orci ipsum egestas risus vel scelerisque lectus vestibulum eu nisl senectus hendrerit libero dolor ac ac aliquet habitant interdum vel Nam lorem et fames massa a purus Nam turpis tristique amet tempor non sed elit"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zh-hk"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aenean sit morbi ac ac dolor Pellentesque a tristique Mauris Sed orci"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://interdum.co.uk/c1a84f72-a8ce-1566-abcb-74068538f24a/4ce815f5-6c39-1997-abd1-41a146778216#2ab19f7770"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/9ebb6e5d-b8d4-1bdf-a8cf-b2c2d8d2c7a2/49d3671b-86ac-1b24-a1a7-df6e749f50c2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f96ccdd-fd42-11db-a0fe-839d1bfb4ee3"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bn"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-06-03T04:08:53+00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adipiscing et cursus Pellentesque Duis interdum non purus finibus egestas porttitor sem Suspendisse volutpat molestie senectus ac dolor est morbi ac fames ac tristique at malesuada nisl nibh risus"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://nibh.co.uk/1efaefac-eef8-1b15-a804-ff3fc100cf9f/706e0e02-394d-13fd-a7fb-072f31bc7bf7/d0f4cefe-cc5d-1147-a153-0dad6fd26dc5/f9b031c5-52ac-194d-aece-bb449faef09b/65cb8cbe-0a6c-1b0b-acb1-eca1c468f179#dce36cbb8d"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/4457670a-302d-1d8e-a9da-65ef93ef708b/2f9673ce-7b92-1a31-ab3a-a250ecd3da44"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c9ba3976-fee4-1bdc-ab17-cfa6b32db09b"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nam non purus netus non leo ac bibendum a Lorem nibh Duis interdum ac sed dolor et in Suspendisse sit tempor vel scelerisque Aenean consectetur libero lectus est sagittis adipiscing egestas porttitor Mauris habitant cursus nibh ac turpis lorem finibus Nam eu massa orci morbi Ut Sed malesuada mauris risus suscipit sollicitudin Pellentesque volutpat eros sem at vestibulum aliquet ac eu ipsum imperdiet tempor Quisque senectus ultricies molestie Ut nisl vel dolor et pellentesque amet tristique interdum elit molestie hendrerit tristique risus fames"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dolor tristique Sed ac tristique fames ac consectetur Pellentesque volutpat porttitor sagittis Mauris netus et nisl hendrerit non vestibulum risus tempor leo non aliquet sed sit Duis molestie bibendum molestie habitant Ut elit nibh malesuada Aenean finibus massa sollicitudin egestas et scelerisque senectus tempor nibh interdum ac pellentesque turpis Lorem morbi suscipit in interdum eros sem eu at Suspendisse libero ipsum vel Nam eu ac Nam orci lectus vel cursus"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://egestas.com/afecf52f-b19a-1f43-ab3a-bef0c4cfb5ab/d775539f-36c4-1c2f-aad0-4a72edd4af2e/c6eae0d1-760f-1d30-aafb-8975e8080e62/4514e0bc-c359-1c93-a45e-453f0281b99d/ae46d8e2-661c-1b5b-a830-16abf8ef1e2b#54b5e1c6df"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://finibus.co.uk/bba41798-3fd5-1cf8-a00a-d9bfe0dd9fc7/c57efeda-ebb8-1f5c-ab4a-da89ddc9c7f9#3f9bfe77be"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/71ea403d-4afc-116b-a9c9-38fdce75b148"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b16d5086-6cf9-1a54-a3a2-ee8b8b3d20bb"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hu"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sit lectus aliquet et Suspendisse ac lorem sed bibendum vel egestas Lorem scelerisque risus netus orci ac porttitor amet finibus Quisque ultricies sem et massa in ipsum Mauris elit adipiscing eros cursus non habitant suscipit Ut nibh a hendrerit turpis ac dolor volutpat tristique consectetur Sed risus vel mauris Aenean fames"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"malesuada tristique Ut morbi risus finibus a Pellentesque porttitor tempor Sed habitant Duis amet purus orci ac Mauris sem dolor adipiscing at elit ac hendrerit fames lectus vel et eros consectetur molestie Quisque sed eu"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scelerisque.co.uk/fffaafaa-8d6c-140b-a56c-87cdf3f1f1dd/356d17aa-4fdd-105d-ae74-bbe1f86c4def/6c9ca0a7-9dbc-1afe-a5cc-d077c9b828fa#27405d1aba"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/ee661c9c-6e74-11c1-ade7-b9debcb6f76b/6eb3c05d-f604-1b8c-aeed-f50aabb9ec33"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sollicitudin.co.uk/ce8aed60-cbfb-1c9a-a0eb-d7b0570cfcae#5ebf08969d"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/f8924ebc-d5bf-1ab9-ad6b-692826e8dfee/ceb1a49f-eca3-1efb-a07b-d5f279ca3bc5/1209f1fd-cddf-1bd2-a4fe-faaed492ce9e/b9eae8c3-e99e-1ac6-acd0-fdd1cf03529b"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b9faac97-ad47-1dbb-a0b9-d660520f88d8"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hy"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"et"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/bab8547e-fd0e-1a3a-aab0-ed9bf7833e22/5f2b1c1b-9576-1bca-aeb2-30a350de65d9/eaf0ce3c-c5a8-18b4-a95d-3db1151babcc/dbae0d5c-0899-1a00-a88f-b22df8ff5d43/ecbc4ca5-92b2-116b-ade4-b11fc8078628"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/bbccfd7a-bb9e-1ced-a899-dfef15ebed4d/b334e2d3-d798-1f4f-adaa-bdaf96b7e06c/599ab153-9791-13ba-a05f-afb020447dea/cfcda1b7-278f-1fc3-ab5b-14344268a51b"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"84cf871f-5dad-130b-a765-2658f04b3eaf"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non tempor libero nibh massa habitant sem interdum molestie suscipit sed dolor ipsum volutpat eu Ut senectus risus sollicitudin cursus interdum lectus Mauris bibendum eros sit dolor et tristique amet Pellentesque Nam fames risus ac in turpis mauris ac elit Sed vel Lorem leo porttitor tempor Quisque ac eu orci morbi ultricies egestas Aenean Suspendisse sagittis tristique Ut lorem imperdiet molestie pellentesque ac Duis netus non nibh hendrerit malesuada finibus aliquet vel et at adipiscing purus scelerisque vestibulum Nam a consectetur est nisl"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-30T21:44:43+00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"massa eu egestas tristique turpis aliquet Ut senectus at Mauris cursus leo sed libero dolor pellentesque Nam sollicitudin vestibulum tempor eros non interdum risus et nibh Aenean ac molestie Pellentesque elit consectetur sagittis ac adipiscing lectus orci porttitor ultricies habitant sem interdum Suspendisse suscipit vel a ac non est sit mauris eu amet ipsum finibus dolor risus purus lorem Ut netus Duis et molestie tempor nisl Sed in malesuada Quisque volutpat nibh Lorem tristique Nam scelerisque morbi bibendum hendrerit vel ac imperdiet fames"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"interdum risus suscipit est sed lorem Sed habitant cursus tristique risus ac fames finibus hendrerit massa interdum ac sem sollicitudin eu scelerisque a Ut in sagittis dolor aliquet porttitor vel sit Quisque Aenean eu malesuada vestibulum orci leo dolor lectus ac libero tempor"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"taxons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://lorem.com/c9113eac-98b5-16ea-ae7d-4edbeedecf4e/ea4d9820-47a4-195c-a4ac-dffb72db869f/3dc7fd32-c7b6-1b31-a91b-3c914c3eb81d#5a10b5a4f3"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/27eabc63-b1a0-1205-a61d-59e9c070baaf/caa5859b-baec-1ed1-aefd-c14dfcae322f/fad3457a-0ec9-1e98-a74e-1b1787224eef/ccad0998-fdf1-118c-a76b-cd89fcc91dce"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7b5ea353-e5a2-19f1-a042-a5f3e1a53bed"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gu"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in interdum vel consectetur Quisque morbi molestie tempor ac mauris ac ultricies Nam cursus ac nisl turpis dolor finibus tempor vel pellentesque est massa interdum a nibh leo sagittis orci egestas Nam Ut sollicitudin et netus libero habitant tristique Lorem Suspendisse Pellentesque hendrerit Mauris"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sit Suspendisse risus Nam massa nisl Ut tristique turpis aliquet vel finibus interdum libero eu Mauris tempor et malesuada pellentesque Duis egestas sollicitudin Nam porttitor adipiscing tempor at"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://molestie.co.uk/e4708d65-50ae-10f2-aca1-cac80c5d4e3c/c5aa57bc-2f9c-1f22-a7fa-dfa85d27deca/4455a0a1-dadf-12df-a87e-d59a916c313e/fbede48f-9bfd-1dce-ad2b-c2cf9b615818#f4d9ff8e44"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/614bb50a-9efe-110f-acb8-5174f0d2c0e1/871b2bf0-95b3-140e-ae6d-6fa7ed2bef08/dcfe9eb1-9a5c-1bd3-ab5a-c59a0793eb02/d71bebe9-cfb2-1ec8-a197-7ccb19ace77d"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://suscipit.co.uk/0adadac5-dc81-12b4-ac54-3db28cdc5bee/6eef1ed1-6df4-1daa-ab2c-a8a4baeaac36/956c0c52-95ef-116b-a6bd-ba5fbbc0dfb4#c5b6d0bfea"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/2685dc6e-9d51-1028-ab78-d2dbdfb4b70d/77d752c7-e4b4-1ce7-a9e1-aae713a44a02/54fe17ee-b6eb-140a-ae94-80bf24e06af4"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"961d3ddd-5d36-154c-a23f-ab0784cc2fe5"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"netus hendrerit sagittis adipiscing in amet at dolor Suspendisse tristique Ut eu Pellentesque lectus sollicitudin molestie elit massa non tempor suscipit purus porttitor a orci"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uz"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-15T21:50:39+00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sit Suspendisse et eu molestie aliquet risus suscipit malesuada Nam lorem consectetur imperdiet orci purus vestibulum dolor risus Lorem sed tempor ipsum eros Ut nibh interdum ultricies lectus est molestie ac Sed vel bibendum Ut at sollicitudin et hendrerit vel habitant a dolor sem massa"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/2bcac82b-2aca-1be0-aae2-fcd83e6ae23e/a03e72c6-29ac-115e-a00f-4fbfb1fcbfdc/a24e4b2b-3844-11df-ae44-f66fd154a45d"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/bfceac7b-3ced-16a5-ae18-21c7fd3ee1fc/ba40bf53-f2ad-13d3-adb3-e5bdf5bc48cb/c04ed38b-2d08-18b9-a18b-edc51e0a1bb1/5daadaae-28ab-1f16-ab4a-427f6305ecc0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"591cfe5d-6dad-1062-a9b3-8a4078e6f1e7"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cs"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ultricies consectetur non Duis lectus porttitor morbi mauris suscipit lorem netus malesuada nibh senectus ac sem eu amet Sed"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://senectus.com/bb9d8cea-6575-1ca5-ab5d-10aebffe9e29/a29adf1e-31e9-1bfc-ac49-b7f1c09ee869#e8c0ba3771"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/affab264-f784-1ec9-a99a-df31f9df4f81/d1ded66a-4af4-1c6c-a3f0-6c4ead0a0945/f86ceaa8-0cfa-1def-acbe-ef4f4d97e12b/b1eca2f9-b6ff-12d6-accd-e0cdbdfa4f3c/f2a20b68-e096-1cfc-ab72-a56f5a5b54a9"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/4a01fbae-cc1c-1fce-a34c-ddc0bc4c7dd0/a97e3c2e-9a25-1b7b-af59-601a86abcf64/366ccade-dbe8-1aae-ac97-086c95fa0bfa/6ff2efc8-649c-1882-aba9-862addaa0bbe/c12ff71e-0be9-160a-ae0e-0ff8a836af59"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fdfadd8a-4cbf-160e-a566-4e91593826db"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ja"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suspendisse eu sagittis malesuada interdum hendrerit lorem vestibulum ipsum suscipit ac Aenean tempor scelerisque non vel mauris lectus et purus Duis libero fames nibh bibendum Ut habitant eu finibus pellentesque molestie risus massa in interdum netus ac sollicitudin volutpat tempor sit Sed nisl imperdiet Pellentesque est"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://ultricies.com/2fe6c26f-14fd-1d71-a1d5-e7490ffd2d4e#faaa73b0b2"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"analytics_identifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/e25fbf0b-ed48-1b2a-a4cf-27dd765d5ecc"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://vel.co.uk/466a01c5-6fd5-1e0d-a415-cbe95ab8f424/5f45bef4-ff67-1b5a-ab9c-50ecfffbf5e4/b6fc3d21-ba3d-1cb9-a33d-f3c87a9a742a#dbbe82e70f"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/aba957ba-b8a8-1afb-ad39-8b3e0fd5f1d5/19cdd316-4b5a-126e-a5c8-7b2da4af190e"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"content_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29ca1951-e691-1855-a6fc-f787eb3bc5cf"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-11-04T08:44:28+00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elit nibh porttitor Mauris suscipit tristique vel interdum est dolor hendrerit eros Ut purus scelerisque in Lorem eu eu dolor Ut non sem massa Sed ac nisl aliquet bibendum molestie et sagittis risus habitant ipsum mauris imperdiet sed senectus sit et molestie morbi amet leo Pellentesque a risus turpis consectetur Quisque Nam adipiscing interdum ultricies Nam ac pellentesque Duis tempor netus egestas volutpat tristique lectus fames malesuada Aenean libero orci sollicitudin nibh vestibulum finibus ac cursus Suspendisse at ac vel lorem tempor non"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"turpis porttitor interdum vel Sed sagittis lectus sed hendrerit libero tempor elit volutpat leo et habitant sollicitudin adipiscing ac interdum non pellentesque Nam nisl Aenean a dolor risus netus et purus Nam non molestie mauris ac Ut cursus fames lorem Duis molestie Lorem sit imperdiet Ut ac tempor aliquet senectus nibh orci bibendum tristique massa malesuada finibus egestas vel ultricies ipsum consectetur in Pellentesque nibh risus ac est vestibulum suscipit eu eros tristique sem Quisque at eu morbi Suspendisse scelerisque amet Mauris dolor"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"web_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://suspendisse.com/39b132ed-1153-1212-a4af-8fe1e9e29ead#3acbeffbe0"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tk"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"manuals-publisher"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_request_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pellentesque fames finibus at risus morbi est interdum pellentesque amet ac vel nibh sagittis sollicitudin mauris sed eu dolor tempor ultricies suscipit massa vel molestie lectus Nam"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"static"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scheduled_publishing_delay_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"landing_page"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nisl ultricies orci bibendum molestie vestibulum Aenean"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-04-26T05:47:51+00:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<hr>
+<h2 id='publisher-content-schema'>Publisher content schema</h2><p>This is what publisher apps should send to the publishing-api in This is what
+a publishing application sends to the publishing-api in a
+<a href="http://www.rubydoc.info/github/alphagov/gds-api-adapters/GdsApi/PublishingApiV2#put_content-instance_method"><code>put_content</code></a> call.</p>
+<h3 id='attributes'>Attributes</h3>
+<table class='schema-table'><tr><td><strong>access_limited</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>auth_bypass_ids</strong><br/></td> <td>Deprecated: auth_bypass_ids should be sent as a separate field<br/></td></tr>
+<tr><td><strong>organisations</strong><br/></td> <td>A list of organisation content ids permitted access to this item<br/></td></tr>
+<tr><td><strong>users</strong><br/><code>array</code></td> <td><br/></td></tr></table></td></tr>
+<tr><td><strong>analytics_identifier</strong><br/><code>string</code> or <code>null</code></td> <td>A short identifier we send to Google Analytics for multi-valued fields. This means we avoid the truncated values we would get if we sent the path or slug of eg organisations.<br/></td></tr>
+<tr><td><strong>auth_bypass_ids</strong><br/><code>array</code></td> <td><br/></td></tr>
+<tr><td><strong>base_path</strong><br/><code>string</code></td> <td>A path only. Query string and/or fragment are not allowed.<br/></td></tr>
+<tr><td><strong>bulk_publishing</strong><br/><code>boolean</code></td> <td><br/></td></tr>
+<tr><td><strong>change_note</strong><br/><code>["null", "string"]</code></td> <td><br/></td></tr>
+<tr><td><strong>content_id_alias</strong><br/><code>null</code></td> <td><br/></td></tr>
+<tr><td><strong>description</strong><br/><code></code> or <code>null</code></td> <td><br/></td></tr>
+<tr><td><strong>details</strong><br/><code>object</code></td> <td><table class='schema-table'></table></td></tr>
+<tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>landing_page</code></td></tr>
+<tr><td><strong>first_published_at</strong><br/><code>string</code></td> <td>The date the content was first published.  Automatically determined by the publishing-api, unless overridden by the publishing application.<br/></td></tr>
+<tr><td><strong>instructions_to_publishers</strong><br/><code>null</code></td> <td><br/></td></tr>
+<tr><td><strong>last_edited_at</strong><br/><code>string</code></td> <td>Last time when the content received a major or minor update.<br/></td></tr>
+<tr><td><strong>last_edited_by_editor_id</strong><br/><code>string</code></td> <td>The UUID of the editor who edited the content.<br/></td></tr>
+<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>documents</strong><br/></td> <td>Documents which belong underneath this landing page<br/></td></tr>
+<tr><td><strong>embed</strong><br/></td> <td>Content that will be embedded within the document, using embed tags.<br/></td></tr>
+<tr><td><strong>emphasised_organisations</strong><br/></td> <td><br/></td></tr>
+<tr><td><strong>government</strong><br/></td> <td>The government associated with this document<br/></td></tr>
+<tr><td><strong>organisations</strong><br/></td> <td><br/></td></tr>
+<tr><td><strong>parent</strong><br/></td> <td><br/></td></tr>
+<tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr>
+<tr><td><strong>primary_publishing_organisation</strong><br/></td> <td>The organisation that published the page. Corresponds to the first of the &lsquo;Lead organisations&rsquo; in Whitehall, and is empty for all other publishing applications.<br/></td></tr>
+<tr><td><strong>related_policies</strong><br/></td> <td><br/></td></tr>
+<tr><td><strong>topical_events</strong><br/></td> <td><br/></td></tr></table></td></tr>
+<tr><td><strong>locale</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>ar</code>, <code>az</code>, <code>be</code>, <code>bg</code>, <code>bn</code>, <code>cs</code>, <code>cy</code>, <code>da</code>, <code>de</code>, <code>dr</code>, <code>el</code>, <code>en</code>, <code>es</code>, <code>es-419</code>, <code>et</code>, <code>fa</code>, <code>fi</code>, <code>fr</code>, <code>gd</code>, <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>, <code>hu</code>, <code>hy</code>, <code>id</code>, <code>is</code>, <code>it</code>, <code>ja</code>, <code>ka</code>, <code>kk</code>, <code>ko</code>, <code>ku</code>, <code>ky</code>, <code>lt</code>, <code>lv</code>, <code>ms</code>, <code>mt</code>, <code>ne</code>, <code>nl</code>, <code>no</code>, <code>pa</code>, <code>pa-pk</code>, <code>pl</code>, <code>ps</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>si</code>, <code>sk</code>, <code>sl</code>, <code>so</code>, <code>sq</code>, <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>, <code>th</code>, <code>ti</code>, <code>tk</code>, <code>tr</code>, <code>uk</code>, <code>ur</code>, <code>uz</code>, <code>vi</code>, <code>yi</code>, <code>zh</code>, <code>zh-hk</code>, <code>zh-tw</code></td></tr>
+<tr><td><strong>phase</strong><br/><code>string</code></td> <td>The service design phase of this content item - https://www.gov.uk/service-manual/phases<br/>Allowed values: <code>alpha</code>, <code>beta</code>, <code>live</code></td></tr>
+<tr><td><strong>previous_version</strong><br/><code>string</code></td> <td><br/></td></tr>
+<tr><td><strong>public_updated_at</strong><br/><code>string</code></td> <td>When the content was last significantly changed (a major update). Shown to users.  Automatically determined by the publishing-api, unless overridden by the publishing application.<br/></td></tr>
+<tr><td><strong>publishing_app</strong><br/><code>string</code></td> <td>The application that published this item.<br/>Allowed values: <code>account-api</code>, <code>calculators</code>, <code>calendars</code>, <code>collections-publisher</code>, <code>contacts</code>, <code>content-block-manager</code>, <code>content-tagger</code>, <code>email-alert-frontend</code>, <code>external-link-tracker</code>, <code>feedback</code>, <code>frontend</code>, <code>government-frontend</code>, <code>hmrc-manuals-api</code>, <code>local-links-manager</code>, <code>manuals-publisher</code>, <code>performanceplatform-big-screen-view</code>, <code>publisher</code>, <code>publishing-api</code>, <code>rummager</code>, <code>search-admin</code>, <code>search-api</code>, <code>service-manual-publisher</code>, <code>share-sale-publisher</code>, <code>short-url-manager</code>, <code>smartanswers</code>, <code>specialist-publisher</code>, <code>static</code>, <code>tariff</code>, <code>travel-advice-publisher</code>, <code>whitehall</code></td></tr>
+<tr><td><strong>redirects</strong><br/><code>array</code></td> <td><br/></td></tr>
+<tr><td><strong>rendering_app</strong><br/><code>string</code></td> <td>The application that renders this item.<br/>Allowed values: <code>account-api</code>, <code>calculators</code>, <code>calendars</code>, <code>collections</code>, <code>content-store</code>, <code>email-alert-frontend</code>, <code>email-campaign-frontend</code>, <code>feedback</code>, <code>finder-frontend</code>, <code>frontend</code>, <code>government-frontend</code>, <code>info-frontend</code>, <code>licensify</code>, <code>performanceplatform-big-screen-view</code>, <code>rummager</code>, <code>search-api</code>, <code>smartanswers</code>, <code>spotlight</code>, <code>static</code>, <code>tariff</code>, <code>whitehall-admin</code>, <code>whitehall-frontend</code></td></tr>
+<tr><td><strong>routes</strong><br/><code>array</code></td> <td><br/></td></tr>
+<tr><td><strong>schema_name</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>landing_page</code></td></tr>
+<tr><td><strong>title</strong><br/><code>string</code></td> <td><br/></td></tr>
+<tr><td><strong>update_type</strong><br/></td> <td><br/>Allowed values: <code>major</code>, <code>minor</code>, <code>republish</code></td></tr></table>
+<p><a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/landing_page/publisher_v2/schema.json">View this schema on GitHub</a></p>
+<h3 id='random-example'>Random example</h3><div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"access_limited"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"auth_bypass_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"bfeb8cab-4bdc-127e-a67a-8c0fea6ef517"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4495505b-4b90-1cdf-a5a4-b3adeae7bad5"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ed3cd8e6-cbd3-11c3-a450-e6dda3ce6e5d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"3daf01af-d8dd-1045-aefb-2ef9f0c41d94"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"2c3c7a3a-aec3-1f6a-a54b-4aad1d71e255"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"db6904a8-fcd3-1d49-ac28-c22a92cfeaed"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"base_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/8f81eaed-ea11-1fb7-a3de-1b3e6f10367a/4816aaa9-75c6-1813-af59-a6a7b3dcdb4f/55fb35ef-c31b-1ece-aab9-bf06ff1cbe91"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bulk_publishing"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"change_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"landing_page"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-06T11:10:30+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_edited_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-07-03T15:16:29+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_edited_by_editor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"netus et ac eros sed sagittis et consectetur molestie tempor imperdiet purus nisl tristique fames ac malesuada pellentesque Mauris hendrerit porttitor in vel bibendum ipsum a amet senectus turpis Aenean lectus Nam dolor Pellentesque mauris tristique habitant ultricies orci non eu risus Suspendisse volutpat aliquet Quisque nibh tempor leo finibus lorem molestie eu risus Sed nibh dolor"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lorem Suspendisse Quisque Lorem ipsum non cursus Nam tristique tempor finibus Nam volutpat ac malesuada amet risus ac mauris non sagittis molestie dolor Aenean risus egestas sollicitudin consectetur purus morbi sem tempor imperdiet leo dolor a interdum nisl senectus nibh est molestie massa et vel at ultricies ac scelerisque interdum pellentesque eros eu adipiscing nibh Pellentesque libero fames et lectus eu Ut bibendum tristique elit habitant suscipit Mauris sed Ut"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"share-sale-publisher"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"redirects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Nam dolor ac senectus ac amet massa nisl ac dolor Nam volutpat leo eu Quisque non consectetur turpis Pellentesque Ut Sed libero bibendum ac suscipit vel hendrerit Lorem elit imperdiet sem sagittis purus est interdum risus at sed vestibulum ultricies a Suspendisse risus fames lorem non interdum aliquet adipiscing egestas tempor pellentesque eros lectus malesuada mauris scelerisque sit morbi ipsum netus eu finibus Duis tristique habitant in Ut molestie et sollicitudin et cursus orci tempor Mauris vel porttitor"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"habitant interdum ultricies risus Lorem Suspendisse egestas vel ac et morbi eu Ut sagittis in"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"scelerisque senectus fames elit habitant purus cursus tristique a aliquet nibh est orci vel vestibulum libero in massa imperdiet mauris lectus suscipit ac bibendum Suspendisse eu malesuada sit volutpat finibus ultricies ac Ut Nam"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dolor eu adipiscing suscipit nibh ac Duis aliquet Nam pellentesque Nam sed et Lorem sem vel dolor tristique Mauris eu risus volutpat leo non ultricies morbi massa purus at elit interdum fames malesuada consectetur scelerisque in cursus imperdiet molestie hendrerit Sed ac interdum nisl tristique vel Ut Aenean senectus Pellentesque Ut ac egestas habitant a finibus mauris sollicitudin et porttitor turpis molestie tempor netus nibh lorem amet lectus eros ipsum Quisque sagittis ac bibendum Suspendisse non orci est"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sem Duis adipiscing Suspendisse et scelerisque Nam cursus Quisque ipsum eros molestie molestie Nam netus interdum Mauris lectus finibus sagittis a hendrerit consectetur vel turpis Sed suscipit non ac"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interdum lorem hendrerit Aenean sollicitudin Ut scelerisque nibh purus Nam ipsum ac Nam cursus a eros molestie tristique morbi ultricies fames volutpat mauris ac non risus Lorem est sit risus aliquet molestie Pellentesque eu amet imperdiet dolor vel tempor et interdum massa sem eu malesuada finibus consectetur orci Ut bibendum ac non vestibulum turpis in porttitor et leo adipiscing suscipit nisl vel egestas Sed ac sagittis netus Duis sed tristique dolor senectus Suspendisse"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"scelerisque porttitor elit tempor Lorem massa sem molestie interdum fames purus habitant in cursus sagittis ac ac dolor risus Mauris Suspendisse sit Pellentesque vel interdum molestie tempor vestibulum mauris risus non Sed eros"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"whitehall-frontend"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"routes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adipiscing at volutpat est amet ac dolor lorem interdum vestibulum purus netus libero fames sollicitudin senectus risus eu eu dolor et malesuada ac porttitor finibus scelerisque interdum eros cursus tempor sed Lorem bibendum in tempor imperdiet Mauris ultricies nibh vel mauris sagittis turpis tristique Sed Suspendisse egestas hendrerit orci ac molestie molestie morbi Nam elit aliquet leo a"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"et Sed Suspendisse eu lectus ipsum elit tristique vel massa sit ac ac nisl scelerisque sagittis a at imperdiet non Quisque interdum dolor mauris netus egestas dolor nibh porttitor Lorem nibh libero et Ut sem senectus Mauris leo Aenean Nam interdum hendrerit cursus finibus Pellentesque molestie orci morbi sed pellentesque turpis consectetur ultricies eu purus vestibulum suscipit Nam ac lorem Duis Ut amet eros volutpat tempor risus aliquet non bibendum est vel tristique fames risus tempor molestie malesuada habitant adipiscing sollicitudin in ac"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"molestie ac non finibus imperdiet Duis interdum est ac sem tempor"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mauris ac non a morbi bibendum tempor molestie cursus risus Pellentesque ultricies orci sollicitudin tristique sagittis est nibh netus eu Suspendisse Quisque scelerisque consectetur non ac et senectus Nam nisl vestibulum at libero vel eros ac sem egestas leo risus interdum finibus volutpat Lorem sed nibh aliquet lorem eu et molestie dolor mauris dolor Ut amet tempor vel Ut lectus Nam hendrerit fames imperdiet Sed Aenean porttitor in adipiscing habitant massa turpis suscipit ac sit pellentesque malesuada tristique purus Duis interdum ipsum elit"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dolor vel massa libero at molestie Nam mauris bibendum Ut Sed tristique Pellentesque adipiscing suscipit sit consectetur pellentesque Quisque Suspendisse dolor hendrerit purus risus porttitor eros non nibh ipsum scelerisque sem sollicitudin Lorem"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"landing_page"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"imperdiet massa fames orci elit pellentesque vel senectus non Ut sed tempor egestas tempor tristique Sed Ut Suspendisse Mauris eu sagittis tristique leo a finibus interdum porttitor eu et bibendum sit eros nibh aliquet cursus Pellentesque molestie nisl mauris habitant ac Aenean ac est in libero ac dolor Quisque et risus nibh vestibulum risus Nam malesuada amet purus volutpat vel sollicitudin non lectus suscipit consectetur netus adipiscing ipsum turpis morbi sem ac molestie at scelerisque Duis lorem hendrerit ultricies dolor interdum Nam Lorem"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"update_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<hr>
+<h2 id='publisher-links-schema'>Publisher links schema</h2><p>The links for this item. This is what a publishing application sends in a
+<a href="http://www.rubydoc.info/github/alphagov/gds-api-adapters/GdsApi/PublishingApiV2#patch_links-instance_method"><code>patch_links</code></a> call.</p>
+<h3 id='attributes'>Attributes</h3>
+<table class='schema-table'><tr><td><strong>bulk_publishing</strong><br/><code>boolean</code></td> <td><br/></td></tr>
+<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>emphasised_organisations</strong><br/></td> <td>Lead organisations linked to this content item.<br/></td></tr>
+<tr><td><strong>finder</strong><br/></td> <td>Powers links from content back to finders the content is surfaced on<br/></td></tr>
+<tr><td><strong>lead_organisations</strong><br/></td> <td>DEPRECATED: A subset of organisations that should be emphasised in relation to this content item. All organisations specified here should also be part of the organisations array.<br/></td></tr>
+<tr><td><strong>mainstream_browse_pages</strong><br/></td> <td>Powers the /browse section of the site. These are known as sections in some legacy apps.<br/></td></tr>
+<tr><td><strong>ordered_related_items</strong><br/></td> <td>Related items, can be any page on GOV.UK. Mostly used for mainstream content to power the sidebar. Ordering of the links is determined by the editor in Content Tagger.<br/></td></tr>
+<tr><td><strong>ordered_related_items_overrides</strong><br/></td> <td>Related items, can be any page on GOV.UK. Overrides &lsquo;more like this&rsquo; automatically generated links in the beta navigation.<br/></td></tr>
+<tr><td><strong>organisations</strong><br/></td> <td>All organisations linked to this content item. This should include lead organisations.<br/></td></tr>
+<tr><td><strong>parent</strong><br/></td> <td>The parent content item.<br/></td></tr>
+<tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr>
+<tr><td><strong>primary_publishing_organisation</strong><br/></td> <td>The organisation that published the page. Corresponds to the first of the &lsquo;Lead organisations&rsquo; in Whitehall, and is empty for all other publishing applications.<br/></td></tr>
+<tr><td><strong>taxons</strong><br/></td> <td>Prototype-stage taxonomy label for this content item<br/></td></tr></table></td></tr>
+<tr><td><strong>previous_version</strong><br/><code>string</code></td> <td><br/></td></tr></table>
+<p><a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/landing_page/publisher_v2/links.json">View this schema on GitHub</a></p>
+<h3 id='random-example'>Random example</h3><div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"bulk_publishing"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"finder"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"feb8cab4-bdc2-17e6-a7a8-c0fea6ef5174"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"aaa5b4b9-0cdf-15a4-ab3a-deae7bad5ed3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cd8e6cbd-31c3-1450-ae6d-da3ce6e5d3da"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"f01afd8d-d045-1efb-a2ef-9f0c41d942c3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"c7a3aaec-3f6a-154b-a4aa-d1d71e255db6"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"policy_areas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"8f788fcd-3d49-1c28-ac22-a92cfeaed226"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"c5a21eae-dea1-11fb-a73d-e1b3e6f10367"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"a4816aaa-975c-1681-a3f5-9a6a7b3dcdb4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"f55fb35e-fc31-1bec-aeab-9bf06ff1cbe9"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"1fa7fb2e-45e8-1c0c-a07b-a47b7eeee2cf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"b5fe9d0a-6be2-1a4b-a91a-df5c7a88a5fe"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"primary_publishing_organisation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"1cebe9f9-ce25-1e8f-aebb-9397579923c6"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"taxons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"df34aa41-2fe8-1fa0-af5b-7a036b2feaf1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"60e5ccd3-5f12-12f6-aee2-4acceec0d92e"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"3e00ebf9-059f-1f3c-a054-53e5d2bdac45"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"eb9615ec-3092-173c-a53f-7e17a36e4286"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"b4c5ab17-bd6b-1eec-a0fc-e93f3f2f3bee"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"1a6eb9a9-8d96-168d-a0f5-9febaffb57d6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"2fabc497-bfff-16d0-a46c-01c698aecdd7"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+
+  <style media="screen">
+    .technical-documentation pre {
+      max-height: 400px;
+    }
+  </style>
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/templates/schema_template.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fcontent-schemas%2Flanding_page.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

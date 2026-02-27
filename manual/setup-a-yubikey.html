@@ -1,0 +1,716 @@
+
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Set up a YubiKey - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/setup-a-yubikey.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="description" content="Guide for setting up and using a YubiKey" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="Set up a YubiKey - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/setup-a-yubikey.html" />
+
+      <meta property="og:description" content="Guide for setting up and using a YubiKey" />
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Set up a YubiKey" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/setup-a-yubikey.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Set up a YubiKey</span></a>
+  </li>
+  <li>
+    <a href="#set-up-a-yubikey-for-gpg-and-ssh-for-git"><span>Set up a YubiKey for GPG and SSH (for Git)</span></a>
+    <ul>
+      <li>
+        <a href="#pre-requisites"><span>Pre-Requisites</span></a>
+        <ul>
+          <li>
+            <a href="#recommended-devices"><span>Recommended Devices</span></a>
+          </li>
+          <li>
+            <a href="#software-dependencies"><span>Software Dependencies</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#yubikey-initial-checks"><span>Yubikey Initial Checks</span></a>
+      </li>
+      <li>
+        <a href="#initial-configuration"><span>Initial Configuration</span></a>
+        <ul>
+          <li>
+            <a href="#default-pins"><span>Default PINs</span></a>
+          </li>
+          <li>
+            <a href="#disable-yubikey-otp"><span>Disable YubiKey OTP</span></a>
+          </li>
+          <li>
+            <a href="#enable-kdf-recommended"><span>Enable KDF (Recommended)</span></a>
+          </li>
+          <li>
+            <a href="#set-maximum-gpg-pin-entries"><span>Set Maximum GPG Pin Entries</span></a>
+          </li>
+          <li>
+            <a href="#set-gpg-user-and-administrator-pins"><span>Set GPG User and Administrator PINs</span></a>
+          </li>
+          <li>
+            <a href="#configuring-gpg"><span>Configuring GPG</span></a>
+          </li>
+          <li>
+            <a href="#generate-key-pair"><span>Generate Key Pair</span></a>
+          </li>
+          <li>
+            <a href="#configure-fido-pin"><span>Configure FIDO PIN</span></a>
+          </li>
+          <li>
+            <a href="#configuring-ssh-to-use-the-yubikey"><span>Configuring SSH to use the Yubikey</span></a>
+          </li>
+          <li>
+            <a href="#configuring-git-to-use-the-ssh-and-signing-keys"><span>Configuring Git to use the SSH and Signing Keys</span></a>
+          </li>
+          <li>
+            <a href="#setting-touch-preferences"><span>Setting Touch Preferences</span></a>
+          </li>
+          <li>
+            <a href="#testing-your-credentials-and-finishing-up"><span>Testing your credentials and finishing-up</span></a>
+          </li>
+          <li>
+            <a href="#other-useful-commands"><span>Other useful commands</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#set-up-a-yubikey-as-an-mfa-device-for-aws"><span>Set up a YubiKey as an MFA device for AWS</span></a>
+      </li>
+      <li>
+        <a href="#troubleshooting"><span>Troubleshooting</span></a>
+        <ul>
+          <li>
+            <a href="#mfa-device-already-exists"><span>“MFA device already exists”</span></a>
+          </li>
+          <li>
+            <a href="#not-authorized-to-perform-iamcreatevirtualmfadevice"><span>“Not authorized to perform iam:CreateVirtualMFADevice”</span></a>
+          </li>
+          <li>
+            <a href="#no-fido-securitykeyprovider-specified"><span>“No FIDO SecurityKeyProvider specified”</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+                
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Security",
+        "@id": "http://www.dev.gov.uk/manual.html#security"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#security">Security</a>
+        </li>
+  </ol>
+</nav>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/78e150b804eea946106d0a29fbf42af6a72e6162">23 Oct 2025</a>
+</div>
+
+ <h1 id='header'>Set up a YubiKey</h1> <h1 id='set-up-a-yubikey-for-gpg-and-ssh-for-git'>Set up a YubiKey for GPG and SSH (for Git)</h1><p>This guide describes recommended steps to set up a YubiKey for use with GPG (for commit signing) and SSH (for Git authentication with GitHub).</p>
+
+<blockquote>
+<p><strong>⚠️ Warning</strong></p>
+<p>Once you have followed this guide, your YubiKey is effectively now your only way to get into AWS or to Sign or push commits up to GitHub.</p>
+<p>You should treat your YubiKey with care - do not lose it and do not leave it unattended unless you are prepared to get locked out of your systems.</p>
+</blockquote>
+<h2 id='pre-requisites'>Pre-Requisites</h2><p>This guide assumes you are using a GDS-issued &ldquo;Developer Build&rdquo; MacBook Pro. We will predominantly use the CLI/terminal to interact with the YubiKey as this gives us the greatest flexibility with configuration.</p>
+<p>You will need at least one YubiKey. We recommend having two: keep one in daily use and store a second as an offline backup in case the primary key is lost or damaged.</p>
+<h3 id='recommended-devices'>Recommended Devices</h3><p>Recommended: YubiKey 5C NFC.</p>
+<p>Alternative form factors: YubiKey 5C and YubiKey 5C Nano (if you prefer a smaller device).</p>
+
+<blockquote>
+<p><strong>⚠️ Note</strong></p>
+<p>Yubico sells another product called <strong>YubiKey Security Key</strong>, which is a FIDO-only device that does not support the features required to perform commit signing or SSH authentication. Make sure you are requesting or purchasing the correct device.</p>
+</blockquote>
+<p>If you need to obtain a YubiKey, speak to your Delivery Manager or Tech Lead about how to get one - alternatively, you may be able to expense them with approval from your Line Manager.</p>
+<h3 id='software-dependencies'>Software Dependencies</h3><p>You will first need to make sure the required software dependencies are installed and on the latest versions:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>brew update
+brew <span class="nb">install </span>gnupg
+brew <span class="nb">install </span>libfido2
+brew <span class="nb">install </span>openssh
+brew <span class="nb">install </span>openssl
+brew <span class="nb">install </span>ykman
+</code></pre></div><h2 id='yubikey-initial-checks'>Yubikey Initial Checks</h2><p>Insert your YubiKey and open your favourite terminal. Run <code>ykman list</code> - you should see a result like this:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>YubiKey 5C NFC (5.7.1) [OTP+FIDO+CCID] Serial: 31234567
+</code></pre></div><p>The output might change slightly depending on the model of Yubikey and the Firmware version - for security reasons, Firmwares are permanently fixed and cannot be flashed or updated, as Yubikey operates on a &ldquo;black box&rdquo; security model.</p>
+<p>You can also confirm which applications are supported and enabled or disabled on your YubiKey by running <code>ykman info</code> - you should get output like this:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Device type: YubiKey 5C NFC
+Serial number: 31234567
+Firmware version: 5.7.1
+Form factor: Keychain (USB-C)
+Enabled USB interfaces: FIDO, CCID
+NFC transport is enabled
+
+Applications    USB         NFC
+Yubico OTP      Enabled     Enabled
+FIDO U2F        Enabled     Enabled
+FIDO2           Enabled     Enabled
+OATH            Enabled     Enabled
+PIV             Enabled     Enabled
+OpenPGP         Enabled     Enabled
+YubiHSM Auth    Enabled     Enabled
+</code></pre></div><p>If you see an output that resembles something like this&hellip;</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Device type: YubiKey Security Key
+Serial number: 31234567
+Firmware version: 5.7.1
+Form factor: Keychain (USB-C)
+Enabled USB interfaces: FIDO
+NFC transport is enabled
+
+Applications    USB             NFC
+Yubico OTP      Not Supported   Not Supported
+FIDO U2F        Enabled         Enabled
+FIDO2           Enabled         Enabled
+OATH            Not Supported   Not Supported
+PIV             Not Supported   Not Supported
+OpenPGP         Not Supported   Not Supported
+YubiHSM Auth    Not Supported   Not Supported
+</code></pre></div><p>&hellip;then you have a YubiKey Security Key and you&rsquo;ll need to stop here and get a &ldquo;proper&rdquo; YubiKey 5 Series device before continuing.</p>
+<p>Next, test that the GPG CLI can communicate with your YubiKey:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --card-status
+
+Reader ...........: Yubico YubiKey FIDO CCID
+Application ID ...: D2760001240100000006322522270000
+Application type .: OpenPGP
+Version ..........: 3.4
+Manufacturer .....: Yubico
+Serial number ....: 31234567
+[truncated]
+</code></pre></div><p>If you have reached this section, then <code>ykman</code> and GPG communication are working correctly and you can continue to configuration.</p>
+<h2 id='initial-configuration'>Initial Configuration</h2><p>This will now take you through the recommended initial configuration of the YubiKey before you start generating credentials. If some of these options are not set correctly, you may need to destroy and re-create your credentials.</p>
+<h3 id='default-pins'>Default PINs</h3><p>Some of the commands and options listed below will require you to confirm a User or Administrator PIN. If you have a new (or recently reset) YubiKey, the defaults will be:</p>
+
+<ul>
+<li>User: 123456</li>
+<li>Administrator: 12345678</li>
+</ul>
+<h3 id='disable-yubikey-otp'>Disable YubiKey OTP</h3><p>YubiKey has a proprietary OTP protocol that we currently do not use. It is generally recommended to turn this off to prevent accidental plaintext spam caused by touching the buttons on your YubiKey. You may be familiar with this if you have seen seemingly &ldquo;random&rdquo; messages from people on Slack such as <code>eerhtdgukfvhcetedhdejj</code>.</p>
+<p>To turn this off, run the following commands:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>ykman config usb <span class="nt">--disable</span> otp
+ykman config nfc <span class="nt">--disable</span> otp
+</code></pre></div><h3 id='enable-kdf-recommended'>Enable KDF (Recommended)</h3><p>KDF is &ldquo;Key Derived Format&rdquo; - it means your PINs are transmitted and stored in a hashed format rather than in plaintext. This is optional but may harden your security posture.</p>
+<p>The <code>kdf-setup</code> command may ask you for an Administrator PIN (the default is listed above). We will change this pin after enabling KDF, as this will reset the PINs anyway.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gpg <span class="nt">--edit-card</span>
+
+gpg/card&gt; admin
+gpg/card&gt; kdf-setup
+</code></pre></div><h3 id='set-maximum-gpg-pin-entries'>Set Maximum GPG Pin Entries</h3><p>The YubiKey&rsquo;s GPG Application has a built-in mechanism to prevent brute-force attempts of the PIN. By default, this is set to <code>3 0 3</code> which represents:</p>
+
+<ul>
+<li>3 Attempts of User PIN</li>
+<li>0 Attempts of Reset PIN (Disabled by default)</li>
+<li>3 Attempts of Administrator PIN</li>
+</ul>
+<p>If the User PIN is entered incorrectly too many times, it must be unlocked using the Administrator PIN. If the Administrator PIN is entered too many times, the OpenPGP application on the YubiKey will be permanently locked and the key may need to be replaced or require a factory reset (which will remove stored keys).</p>
+<p>We recommend setting these values to <code>10 10 10</code>. Increasing retry counts reduces the likelihood of accidentally locking yourself out while still making online brute-force attacks impractical for an attacker.</p>
+<p>To set this, use the following command:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ykman openpgp access set-retries 10 10 10
+</code></pre></div><h3 id='set-gpg-user-and-administrator-pins'>Set GPG User and Administrator PINs</h3><p>Now you can set your User and Administrator PINs. If you enabled KDF earlier, this will have reset your PINs and you will need to set new ones here.</p>
+<p>You will need to first confirm the &ldquo;old&rdquo; PINs - the Defaults are:</p>
+
+<ul>
+<li>User: 123456</li>
+<li>Administrator: 12345678</li>
+</ul>
+<p>Note that whenever you are entering or setting a PIN in the terminal, it will be fully masked - you will not see any characters being output to the terminal when typing.</p>
+<p>First, set your Admin PIN:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>ykman openpgp access change-admin-pin
+
+Enter Admin Pin: <span class="o">[</span>12345678]
+Enter New Admin Pin: <span class="o">[</span>your new PIN here]
+Confirm New Admin Pin: <span class="o">[</span>confirm new PIN]
+</code></pre></div><p>&hellip;and then set your User PIN:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>ykman openpgp access change-pin
+
+Enter User Pin: <span class="o">[</span>123456]
+Enter New Pin: <span class="o">[</span>your new PIN here]
+Confirm New Pin: <span class="o">[</span>confirm new PIN]
+</code></pre></div><h3 id='configuring-gpg'>Configuring GPG</h3><p>Once your PINs are set, you can start to configure GPG (and then generate a key-pair)</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gpg <span class="nt">--edit-card</span>
+
+gpg/card&gt; admin
+gpg/card&gt; <span class="nb">help</span> <span class="c"># Shows you the supported options</span>
+gpg/card&gt; name <span class="c"># Set to your name</span>
+gpg/card&gt; login <span class="c"># Set to your email address</span>
+</code></pre></div><p>Before generating the GPG key, set the key-attribute:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg/card&gt; key-attr
+
+key-attr
+Changing card key attribute for: Signature key
+Please select what kind of key you want:
+   (1) RSA
+   (2) ECC
+Your selection?  ECC
+</code></pre></div><p>We recommend <strong>ECC</strong> as it is more modern and secure than RSA and is now supported by the vast majority of applications.</p>
+<h3 id='generate-key-pair'>Generate Key Pair</h3><p>Now you have configured the basic settings for GPG, it is time to generate a GPG key:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg/card&gt; generate
+</code></pre></div><p>You may be asked to make a backup - say &ldquo;no&rdquo;:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Make off-card backup of encryption key? (Y/n)
+</code></pre></div><p>We strongly discourage backups as this increases security risk, as you would be allowing your private key to be exportable. We mitigate against this by suggesting you create a secondary key on a second YubiKey.</p>
+<p>You will be asked to set a validity for the key - we recommend setting it to &ldquo;does not expire&rdquo;:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Please specify how long the key should be valid.
+         0 = key does not expire
+         &lt;n&gt;  = key expires in n days
+         &lt;n&gt;w = key expires in n weeks
+         &lt;n&gt;m = key expires in n months
+         &lt;n&gt;y = key expires in n years
+Key is valid for? (0) 0
+Key does not expire at all
+Is this correct? (y/N) y
+</code></pre></div><p>Next you will be asked to confirm your personal details - use the prompts to confirm:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Real name: Firstname Lastnamerson
+Email address: firstname.lastnamerson@digital.cabinet-office.gov.uk
+Comment: GDS
+You selected this USER-ID:
+    "Firstname Lastnamerson (GDS) &lt;firstname.lastnamerson@digital.cabinet-office.gov.uk&gt;"
+</code></pre></div><p>When you are happy, Enter &ldquo;O&rdquo; and continue:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
+</code></pre></div><p>Once you have confirmed with &ldquo;Okay&rdquo;, you should be asked to set a passphrase. Set this to something only you know and are happy to recite on a regular basis when prompted to use the key.</p>
+<h3 id='configure-fido-pin'>Configure FIDO PIN</h3><p>The FIDO pin will be used by the SSH process. We will need to set this before continuing - for simplicity, you may wish to set this as the same as your GPG User PIN:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ykman fido access change-pin
+</code></pre></div><p>&hellip;then follow the instructions on screen.</p>
+<h3 id='configuring-ssh-to-use-the-yubikey'>Configuring SSH to use the Yubikey</h3><p>Once you have generated your key pair and set your FIDO PIN, set up SSH to use your GPG key. While this step will use ssh-keygen, all it is doing is creating a &ldquo;pointer&rdquo; to the Security Key (hence the -sk designation).</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ssh-keygen -t ed25519-sk -O resident -O verify-required -C "Firstname Lastnamerson (GDS) &lt;firstname.lastnamerson@digital.cabinet-office.gov.uk&gt;"
+</code></pre></div><p>If you encounter an error such as <code>&quot;No FIDO SecurityKeyProvider specified&quot;</code>, then head to the Troubleshooting part of this documentation for a solution.</p>
+<p>Take note of the options above&hellip;</p>
+
+<ul>
+<li><code>-O resident</code> instructs that the actual key is &ldquo;resident&rdquo; to the Security Key and is what should be used for signing.</li>
+<li><code>-O verify-required</code> instructs that the key always requires touch &ldquo;verification&rdquo; each time it is to be used. If this option is omitted, the SSH client will not be forced to prompt the user (you) for a touch confirmation.</li>
+</ul>
+<p>Optionally, if you want to store multiple SSH keys on a single YubiKey for some reason, you can differentiate between them by adding an extra option:</p>
+
+<ul>
+<li><code>-O application=ssh:custom_name</code> overrides the FIDO2 application name so you can store more than one SSH key on the device. The default is just <code>ssh:</code></li>
+</ul>
+<p>During the creation process, you will be prompted to set a passphrase for the key and the filename to store the key - these are both optional. Normally we would recommend setting a passphrase, however, as this private key is a pointer to the credentials on the Security Key, the passphrase would be redundant.</p>
+<p>Once the &ldquo;pointer&rdquo; file for the Security Key has been generated, the <code>ssh-keygen</code> command will output a path and filename of the new key. If you didn&rsquo;t change the defaults, the key files will be:</p>
+
+<ul>
+<li>Private Key (pointer): <code>id_ed25519_sk</code></li>
+<li>Public Key: <code>id_ed25519_sk.pub</code></li>
+</ul>
+<p>Copy the path and filename and update your SSH config (located at <code>~/.ssh/config</code>) to add a block like this:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Host *
+  IdentityFile /Users/firstname.lastnamerson/.ssh/id_ed25519_sk
+  IdentitiesOnly yes
+  IdentityAgent none
+  AddKeysToAgent yes
+</code></pre></div><p>This section will configure your SSH agent to use the Security Key for every connection you make, including for GitHub.</p>
+<p>Make sure the <code>IdentityFile</code> property matches the name and path of your private key pointer. The default filename will be <code>id_ed25519_sk</code>. This instructs your SSH agent and Git to find and use the correct file.</p>
+<h3 id='configuring-git-to-use-the-ssh-and-signing-keys'>Configuring Git to use the SSH and Signing Keys</h3><p>This is where we actually get to use the keys you have just generated. First we will configure authentication (via SSH) and then we will configure the Git client to sign all commits by default.</p>
+<h4 id='configure-git-to-use-your-ssh-key'>Configure Git to use your SSH Key</h4><p>Once your SSH key is created and attached to the SSH agent, you will want to add the Public Key to your GitHub Profile.</p>
+
+<ul>
+<li>Go to your <a href="https://github.com/settings/keys">GitHub Settings Page -&gt; Access -&gt; SSH and GPG keys</a>.</li>
+<li>Click &ldquo;New SSH key&rdquo;</li>
+<li>Set the &ldquo;Title&rdquo; to something you can remember, e.g. &ldquo;YubiKey SSH Key&rdquo;</li>
+<li>Select &ldquo;Key type&rdquo; as &ldquo;Authentication Key&rdquo;</li>
+<li>Paste the contents of <code>~/.ssh/id_ed25519_sk.pub</code> into the &ldquo;Key&rdquo; field. Make sure this is the file ending in <code>.pub</code> and not the private key file.</li>
+</ul>
+<p>Now this is done, you should be able to use your new key to pull and push to/from GitHub.</p>
+<h4 id='configure-git-to-use-your-gpg-key'>Configure Git to use your GPG Key</h4><p>The next step will configure Git to sign your commits using your GPG key. This is to allow Git (and other users) to cryptographically verify that commits that were signed by your key came from you (and not an impersonator who has spoofed your email address).</p>
+<p>First, you will need to find your key ID &ldquo;fingerprint&rdquo; from your YubiKey - run <code>gpg --card-status</code> to get something like this:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --card-status
+Reader ...........: Yubico YubiKey FIDO CCID
+Application ID ...: D2760001240100000006322522270000
+[truncated]
+General key info..: pub  ed25519/A3F1E9C0B827D54E 2025-09-23 Firstname Lastnamerson (GDS/DSIT) &lt;firstname.lastnamerson@digital.cabinet-office.gov.uk&gt;
+sec&gt;  ed25519/A3F1E9C0B827D54E  created: 2025-09-23  expires: never
+                                card-no: 0006 31234567
+ssb&gt;  ed25519/4B7E0C1F8A9D6325  created: 2025-09-23  expires: never
+                                card-no: 0006 31234567
+ssb&gt;  cv25519/9E5D2A6C8F0B4173  created: 2025-09-23  expires: never
+                                card-no: 0006 31234567
+</code></pre></div><p>Note the key ID from the &ldquo;sec&rdquo; row, e.g. <code>A3F1E9C0B827D54E</code> and add it to your Git config in <code>~/.gitconfig</code> - make sure you have a config that looks like this:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>[commit]
+    gpgsign = true
+
+[user]
+    email = firstname.lastnamerson@digital.cabinet-office.gov.uk
+    name = Firstname Lastnamerson
+    signingkey = A3F1E9C0B827D54E
+</code></pre></div><p>Now run this command from your terminal:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --armor --export A3F1E9C0B827D54E
+</code></pre></div><p>Take the output from this command and head back to <a href="https://github.com/settings/keys">GitHub Settings Page -&gt; Access -&gt; SSH and GPG keys</a>, scroll down to &ldquo;GPG keys&rdquo;, then &ldquo;New GPG key&rdquo;.</p>
+<p>Again, set the &ldquo;Title&rdquo; to something you might find helpful and paste the Public Key Block (that was printed from the <code>gpg --armor --export</code> command earlier) into the &ldquo;Key&rdquo; field. GitHub will now be able to verify any commits you make as coming from your GPG key (and therefore probably from you).</p>
+<h3 id='setting-touch-preferences'>Setting Touch Preferences</h3><p>You will want to set your touch preferences for when using your OpenPGP keys. The options are listed:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Off (default)  no touch required
+On             touch required
+Fixed          touch required, can't be disabled without deleting the private key
+Cached         touch required, cached for 15s after use
+Cached-Fixed   touch required, cached for 15s after use, can't be disabled
+               without deleting the private key
+</code></pre></div><p>We recommend the &ldquo;Cached&rdquo; option because it balances security and usability: it requires a touch when the key is first used and then gives 15 seconds of &ldquo;grace&rdquo; where the key will not prompt for another touch. If you would prefer higher assurance, you can use one of the other options.</p>
+<p>Assuming you want to use the &ldquo;Cached&rdquo; option, this is how you set it for each of the PGP actions:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ykman openpgp keys set-touch sig cached
+ykman openpgp keys set-touch dec cached
+ykman openpgp keys set-touch aut cached
+ykman openpgp keys set-touch att cached
+</code></pre></div><h3 id='testing-your-credentials-and-finishing-up'>Testing your credentials and finishing-up</h3><p>Now you have a hardware-backed key for authenticating with Git, SSH and GPG, you can test that your new key is working by disabling your old keys. The easiest way to do this is to set the file permissions of your old keys to <code>000</code>. For example, from your terminal:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> ~/.ssh
+
+<span class="nb">ls</span> <span class="nt">-al</span>
+
+total 80
+drwx------@ 11 firstname.lastnamerson  staff   352 22 Sep 14:40 <span class="nb">.</span>
+drwxr-x---+ 64 firstname.lastnamerson  staff  2048 13 Oct 18:01 ..
+<span class="nt">-rw-------</span>@  1 firstname.lastnamerson  staff   129 23 Sep 11:23 config
+<span class="nt">-rw-------</span>@  1 firstname.lastnamerson  staff  2602 12 Jul  2023 google_compute_engine
+<span class="nt">-rw-------</span>@  1 firstname.lastnamerson  staff   573 12 Jul  2023 google_compute_engine.pub
+<span class="nt">-rw-------</span>@  1 firstname.lastnamerson  staff   436  1 Nov  2023 google_compute_known_hosts
+<span class="nt">-rw-------</span>@  1 firstname.lastnamerson  staff   517 22 Sep 14:07 id_ed25519_sk
+<span class="nt">-rw-r--r--</span>@  1 firstname.lastnamerson  staff   193 22 Sep 14:07 id_ed25519_sk.pub
+<span class="nt">-rw-------</span>@  1 firstname.lastnamerson  staff   854 12 Jan 11:03 id_rsa
+<span class="nt">-rw-r--r--</span>@  1 firstname.lastnamerson  staff   287 12 Jan 11:03 id_rsa.pub
+<span class="nt">-rw-------</span>@  1 firstname.lastnamerson  staff  5720 19 Feb  2025 known_hosts
+
+<span class="nb">chmod </span>000 id_rsa
+</code></pre></div><p>Now try to make an SSH connection to GitHub:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ssh -T git@github.com
+
+Confirm user presence for key ED25519-SK SHA256:lrBwbswEEkWqyXAbd6WEPv9I++fSJdvkln1vlDkoFzs
+Enter PIN for ED25519-SK key /Users/firstname.lastnamerson/.ssh/id_ed25519_sk:
+Confirm user presence for key ED25519-SK SHA256:lrBwbswEEkWqyXAbd6WEPv9I++fSJdvkln1vlDkoFzs
+User presence confirmed
+Hi firstname-lastnamerson! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div><p>If this worked, you have successfully set up a YubiKey for authentication with GitHub and commit signing. Now you should go and create a backup set of credentials with a second YubiKey which you can store in a safe place.</p>
+<p>You may also want to go back and delete or revoke any old credentials that you do not plan to use any longer.</p>
+<h3 id='other-useful-commands'>Other useful commands</h3>
+<ul>
+<li><code>ykman fido credentials list</code> - List Resident Credentials (Keys)</li>
+</ul>
+<h2 id='set-up-a-yubikey-as-an-mfa-device-for-aws'>Set up a YubiKey as an MFA device for AWS</h2>
+<ol>
+<li><a href="https://gds-users.signin.aws.amazon.com/console">Sign into the <code>gds-users</code> AWS account</a>.</li>
+<li>Select your email address in the top-right corner of the page.</li>
+<li>Choose <strong>Security credentials</strong> from the drop-down menu.</li>
+<li>Scroll down to the <strong>Multi-factor authentication (MFA)</strong> section and select <strong>Assign MFA device</strong>.</li>
+<li>Specify your email address as the MFA device name.</li>
+<li>Select <strong>Authenticator app</strong>, not <strong>Passkey or security key</strong>.</li>
+<li>Click to reveal the TOTP Token.</li>
+<li>Use the command <code>ykman oath accounts add -t gds-users</code> and paste the TOTP Token in. The <code>-t</code> option forces touch verification.</li>
+<li>Use the command <code>ykman oath accounts code gds-users</code> to generate two consecutive codes and then <strong>Save</strong>.</li>
+<li><p>Configure gds-cli to use the YubiKey:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds config yubikey true
+</code></pre></div></li>
+<li><p>Go back to the <strong>Security credentials</strong> page and add the YubiKey again as a second MFA device, but choose <strong>Passkey or security key</strong> this time.</p></li>
+</ol>
+<p>You have now:</p>
+
+<ul>
+<li>added your YubiKey as a U2F/FIDO2 Security Key for logging into the AWS web console more securely and conveniently</li>
+<li>added your YubiKey as a legacy OATH MFA device for compatibility with gds-cli/aws-vault on the command line</li>
+</ul>
+
+<blockquote>
+<p>⚠️ Now that you have an unphishable Security Key as an MFA device, you should never type or copy/paste the 6-digit OATH one-time codes. They&rsquo;re only for use via the gds-cli/aws-vault.</p>
+<p>Always use the <strong>Security Key</strong> option and not the legacy Authenticator app option when signing into the AWS web console, to reduce the risk of phishing attacks.</p>
+</blockquote>
+<h2 id='troubleshooting'>Troubleshooting</h2><h3 id='mfa-device-already-exists'>&ldquo;MFA device already exists&rdquo;</h3><p>If you get this error message when trying to set up your MFA token on AWS:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>MFA device already exists
+</code></pre></div><p>This is because gds-users has an IAM policy requiring your Authenticator app device name to match your gds-users username. You should make sure that:</p>
+
+<ul>
+<li>Your main/primary YubiKey is the one configured for the &ldquo;Authenticator app&rdquo; setting.</li>
+<li>You create Passkeys on each YubiKey or Security Key you want to use, so you can log into gds-users at any time and swap or replace the &ldquo;Authenticator app&rdquo; if needed.</li>
+</ul>
+<h3 id='not-authorized-to-perform-iamcreatevirtualmfadevice'>&ldquo;Not authorized to perform iam:CreateVirtualMFADevice&rdquo;</h3><p>If you get this error message when trying to set up your MFA token on AWS:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>User: arn:aws:iam::123456789012:user/firstname.lastnamerson@digital.cabinet-office.gov.uk is not authorized to perform: iam:CreateVirtualMFADevice on resource: arn:aws:iam::123456789012:mfa/abc123 because no identity-based policy allows the iam:CreateVirtualMFADevice action
+</code></pre></div><p>You need to make sure that your Authenticator app name is set to your email address (the same as your gds-users username), .e.g.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>firstname.lastnamerson@digital.cabinet-office.gov.uk
+</code></pre></div><h3 id='no-fido-securitykeyprovider-specified'>&ldquo;No FIDO SecurityKeyProvider specified&rdquo;</h3><p>If you get this error message when trying to generate your SSH Key:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>No FIDO SecurityKeyProvider specified
+Key enrollment failed: invalid format
+</code></pre></div><p>This is because the default OpenSSH client bundled with macOS does not support Hardware Security Keys. You will need to override this so the version installed by Homebrew takes precedence. <a href="https://gist.github.com/BertanT/9d222da115ca2d1274ef34735c4260cf">Follow this GitHub Gist for a solution</a>.</p>
+
+  <div class='related-content'>
+
+    <h3>More in the Security section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/best-practices-for-handling-credentials.html">Best practices for handling credentials</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/content-security-policy.html">Content Security Policy on GOV.UK</a></li>
+            <li><a href="/manual/pentests.html">Pentests</a></li>
+            <li><a href="/manual/web_application_firewall_rules.html">Web Application Firewall (WAF) configuration</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/setup-a-yubikey.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Set+up+a+YubiKey%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fsetup-a-yubikey.html%29&amp;labels=bug&amp;title=Re%3A+%27Set+up+a+YubiKey%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
