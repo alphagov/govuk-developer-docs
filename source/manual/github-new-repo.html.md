@@ -88,7 +88,9 @@ Rails apps also require:
 
 ## Add repository to GOV.UK Developer Docs
 
-Add it to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the GOV.UK Developer Docs
+Add it to the [repos.yml](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml) file in the GOV.UK Developer Docs.
+
+If you want Slack alerts for issues during app deployment, provide a Slack channel name in `alerts_team`.
 
 ## Managing Deployment Access
 
