@@ -231,3 +231,5 @@ You must add a description to the _About_ section in the GitHub repo, or the GOV
 ## Add your app to the GOV.UK developer documentation
 
 Open a pull request to add your Rails app to the [GOV.UK developer documentation `data/repos.yml` file][docs-applications].
+
+If you want Slack alerts for issues during app deployment, provide a Slack channel name in `alerts_team`.
