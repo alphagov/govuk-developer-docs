@@ -41,7 +41,7 @@ These objectives are what we hope that our new starters are able to achieve by t
 
 Line managers should be meeting with the line report regularly to check progress against the objectives. If it looks as though these objectives won’t be achieved the probation period can be extended.
 
-### Mid-level developers
+### Mid-level developers on probation
 
 |Type                                  |What           |How            |Outcomes     |
 |:---                                  |:---           |:---           |:---         |
@@ -52,7 +52,7 @@ Line managers should be meeting with the line report regularly to check progress
 |Delivery<p>By 3-6 months|I will work independently on medium sized features|I will see a feature through from development to deployment to production<p><p>I will collaborate with other disciplines|_I will measure my progress against this objective using the following:_<p><p>I report progress on the feature e.g. by keeping tickets up to date and giving updates in stand-up<p><p>Feedback shows that I have collaborated with other disciplines|
 |Peer reviews|I will unblock team workflows|I will review PRs for features built by other team members as well as dependency upgrades.|_I will measure my progress against this objective using the following:_<p><p>I leave constructive comments on PRs|
 
-### Senior developers
+### Senior developers on probation
 
 |Type                                  |What           |How            |Outcomes     |
 |:---                                  |:---           |:---           |:---         |
