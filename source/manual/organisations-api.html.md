@@ -20,6 +20,8 @@ Requests to these routes are [handled by Collections](https://github.com/alphago
 
 The Organisations API response is very similar to what one would get from querying Search API directly: <https://www.gov.uk/api/search.json?filter_format=organisation>.
 
+**Note:** The Organisations API is currently being managed by the Navigation team.
+
 ### Not to be confused with the Organisations index and Content API
 
 As an aside, Collections has two competing methods for retrieving organisations. As stated above, Search API powers the Organisations API response, but a different mechanism is used to power the user-facing organisations pages:
