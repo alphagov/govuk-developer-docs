@@ -109,3 +109,25 @@ different applications.
 
 When an application calls an API directly, not via GDS API Adapters, this application will be the consumer. For example, Publishing API
 is the consumer in the pact tests between it and Content Store, since it makes [direct calls to Content store](https://github.com/alphagov/publishing-api/blob/main/app/adapters/content_store.rb).
+
+## How GDS API Adapters retrieves tests from the Providers
+
+Each provider defines some details of its tests in the `.github/workflows/pact-verify.yml` file. This workflow is used by both
+the provider and the consumer (gds-api-adapters), and behaves differently based on the value of the pact_artifact input, which can
+be confusing if you're unused to it.
+
+When the provider runs its CI pipeline, it does not set the `pact_artifact` input when it runs the `pact_verify` job, which causes it
+to retrieve the pact artifacts from Github and verify against them.
+
+When the consumer runs its CI pipeline, it:
+
+- generates the pact artifacts in the `generate_pacts` job. This generates the artifacts, but also uploads them to Github
+- runs the `pact_verify` job from each provider in turn, setting the `pact_artifact` input, which causes it to download the
+  pact artifacts from the pact broker (ie it's not using the artifacts it just created, but the previous versions). At this
+  point it uses the `pact_artifact_file_to_verify` value from the provider's `pact-verify.yml` file, which must be explicitly
+  set to match the implicit artifact names used when getting the pacts from Github (see below)
+- if all the verify jobs complete, it triggers the `publish_pacts` job, which publishes the generated pacts to the broker.
+
+You should be careful that the names in the pact_helper.rb files in both the provider and consumer match, and that the value of
+`pact_artifact_file_to_verify` is "gds_api_adapters-<provider_id>.json", where the provider_id is the name from the pact_helper
+file in snake case.
