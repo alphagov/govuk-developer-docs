@@ -19,7 +19,7 @@ When transitioning HTTPS domains, these are the steps to request a TLS certifica
 
     ![Screenshot of the Fastly website user interface on the "Service configuration" tab, which is nested under "Delivery". The word "engineering" has been typed into the search bar, which has given two results: engineering.gov.uk and www.engineering.gov.uk.](images/fastly/2.png)
 
-1. Once you have completed the previous step to confirm that your domain is listed, click on "Security", "TLS Management" then "Domains" in the toolbar on the left.
+1. Once you have completed the previous step to confirm that your domain is listed, click on "Domains", "TLS Management" then "Domains" in the toolbar on the left.
 
     ![Screenshot of the Fastly website user interface with the navigation bar on the left expanded to show "Security", "TLS Management" and then "Domains".](images/fastly/3.png)
 
