@@ -26,7 +26,7 @@ machine-readable secrets.
 
 ## Retrieve a credential from Secrets Manager
 
-1. Log into the __production__ AWS account. You'll need to assume the fulladmin role (`govuk-production-fulladmin`).
+1. Log into the __production__ AWS account. You'll need to assume the developer role (`gds aws govuk-production-developer -l`).
 1. Choose [Secrets
    Manager](https://eu-west-1.console.aws.amazon.com/secretsmanager/listsecrets?region=eu-west-1)
    from the Services menu.

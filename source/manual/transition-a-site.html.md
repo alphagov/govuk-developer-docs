@@ -35,47 +35,7 @@ The organisation that owns the site determines several things:
 
 Extra organisations can be added later.
 
-### 1) Verify the domain (for *.gov.uk domains only)
-
-For security reasons, Fastly require that *.gov.uk domains are verified before they can be added to our Fastly account.
-
-> When the steps below are not completed, there will be a `Domain 'gov.uk' is owned by another customer` error when the terraform apply command runs.
->
-> This error results in any further transitioned sites being blocked until the verification is completed. Therefore this step must be completed before moving onto the next step.
-
-We need to:
-
-1. Obtain the TXT record by submitting a Fastly support request. You will need to provide the 'Production bouncer' service ID and the subdomain you want to add.
-
-    Support requests are created on the [Fastly Support Case Management](https://support.fastly.com/s/case-management) website. You must login before creating the request, to verify you can perform actions on GOV.UK's account.
-
-    You will need the 'Service ID', which is obtained by logging into [Fastly](https://manage.fastly.com/home) and navigating to the 'Production Bouncer' service, then locating the value labelled 'ID' on the service page.
-
-    For the request type, select 'Other' and the subject can be 'Verify a subdomain'.
-
-    An example request may be as follows:
-
-    > Hi,
-    >
-    > Similar to our previous requests, we would like to add a new *.gov.uk domain to our service and understand that you now require explicit verification.
-    >
-    > Can you please provide me with the details of a TXT record we need to add to manually verify the addition?
-    >
-    > Details below:
-    >
-    > Service ID: [add the service ID here]
-    >
-    > Subdomain: [add the domain here]
-    >
-    > Kind regards,
-    >
-    > [your name]
-
-1. If the domain's DNS is managed by GOV.UK: add the DNS record to [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf) and apply terraform configuration. If the domain's DNS is managed by the department: send the TXT record to the department and ask them to add this record to the DNS.
-
-   > It's not possible to add additional records on a subdomain if a CNAME already exists. In such case Fastly accepts setting the record on a subdomain prefixed with `_fastly` as a proof of ownership. See an [example code change][code change].
-
-### 2) Add a site to the Transition app
+### 1) Add a site to the Transition app
 
 If you have the Site Manager permission for Transition, you will see an "Add a transition site" button on each organisation page. Follow the instructions on that form to add a site, using the following as guidance for common cases.
 
@@ -111,13 +71,13 @@ Use the following settings for the site. All other form fields can be ignored.
 
 See the ['Configure transition mappings for a site' guidance](/manual/configure-transition-mappings.html).
 
-### 3) Get the domain owner to lower the TTL on the DNS records a day ahead
+### 2) Get the domain owner to lower the TTL on the DNS records a day ahead
 
 > This step is only required if the domain currently has DNS records.
 
 In order to cleanly switch the domain from the old site, the TTL needs to be low enough that there isn't a significant period where some users will get the old site and some get the new one. This is important for several reasons, including user experience and giving a professional impression to stakeholders. We normally ask for this to be done a day in advance, and to be lowered to 300 seconds (5 minutes). It can be raised again once everyone is happy there is no need to switch back - normally the day after.
 
-### 4) Add the domain to Fastly
+### 3) Add the domain to Fastly
 
 Manually trigger `govuk-fastly-bouncer-production` 'Plan and apply' run in [Terraform Cloud UI](https://app.terraform.io/app/govuk/workspaces/govuk-fastly-bouncer-production/runs). Review the plan with changes to `module.bouncer-production.fastly_service_vcl.service` and apply the configuration.
 
@@ -125,11 +85,11 @@ Manually trigger `govuk-fastly-bouncer-production` 'Plan and apply' run in [Terr
 >
 > If the domain currently has no DNS records (e.g. it is brand new), you should request the domain's owner point the DNS to us (see next step) before running this Terraform project, else the domain will not be added.
 
-### 5) Obtain a TLS certificate
+### 4) Obtain a TLS certificate
 
 You'll need to create a TLS certificate in Fastly, otherwise users will see a certificate error when being redirected from an external HTTPS URL to GOV.UK via Bouncer. Read how to [request a Fastly TLS certificate][].
 
-### 6) Change the domain's DNS to point at Bouncer
+### 5) Change the domain's DNS to point at Bouncer
 
 Once the transition is ready to be deployed, the domain must be pointed at Bouncer.
 

@@ -17,7 +17,7 @@ For information on how Kubernetes works in general, see the:
 Specific to its implementation of Kubernetes, the GOV.UK Kubernetes platform cluster:
 
 - uses add-ons to manage storage and secrets
-- authenticates platform cluster users using an `aws-auth` ConfigMap
+- authenticates platform cluster users using AWS EKS Access Entries
 
 ## Platform cluster add-ons
 
@@ -66,7 +66,7 @@ For more information, see the [Cluster autoscaler documentation](https://github.
 
 The [Dex OpenID connect provider](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/dex.tf) is a [federated identity provider](https://en.wikipedia.org/wiki/Federated_identity).
 
-The GOV.UK Kubernetes platform cluster uses Dex to manage single sign-on to services in the cluster, for example, [Grafana dashboards](https://docs.publishing.service.gov.uk/manual/grafana.html) and [Argo CD](/get-started/access-eks-cluster/#access-eks-cluster).
+The GOV.UK Kubernetes platform cluster uses Dex to manage single sign-on to services in the cluster, for example, [Grafana dashboards](https://docs.publishing.service.gov.uk/manual/prometheus-grafana-and-alertmanager.html) and [Argo CD](/get-started/access-eks-cluster/#access-eks-cluster).
 
 Dex acts as an intermediary between apps that are restricted to authorised users, and apps that know how to verify a user's identity.
 
@@ -80,12 +80,10 @@ For more information, see the [Amazon EBS CSI driver documentation](https://docs
 
 ## Platform cluster user authentication
 
-To authenticate users, the GOV.UK Kubernetes platform cluster uses an [`aws-auth` ConfigMap](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/aws_auth_configmap.tf) in the `kube-system` [namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
+To authenticate users, the GOV.UK Kubernetes platform cluster uses [AWS EKS Access Entries](https://github.com/alphagov/govuk-infrastructure/tree/main/terraform/deployments/cluster-access).
 
-The ConfigMap maps a user's AWS Identity Access Management (IAM) role to the equivalent role in the [Kubernetes role-based access control system](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
+Each access entry is associated with a user’s AWS IAM role, and grants that user permissions inside the cluster via [Kubernetes role-based access control](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
 
-The list of authenticated users for the platform’s different environments is located in the [`govuk-aws-data/data/infra-security/` GitHub repo on alphagov](https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security).
+User IAM roles are managed in the [`govuk-user-reviewer` repository](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml).
 
-To make changes to this list, you must be in the [GOV.UK team on alphagov](https://github.com/orgs/alphagov/teams/gov-uk).
-
-For more information, see the [AWS documentation on enabling IAM user and role access to your cluster](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html).
+For more information, see the [AWS documentation on EKS access entries](https://docs.aws.amazon.com/eks/latest/userguide/access-entries.html).

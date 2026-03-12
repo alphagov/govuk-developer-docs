@@ -37,23 +37,6 @@
   description: For bulk merging Pull Requests for GOV.UK repos.
   sentry_url: false
 
-- repo_name: ckan-mock-harvest-sources
-  type: data.gov.uk apps
-  team: "#datagovuk-technical"
-
-- repo_name: ckanext-datagovuk
-  shortname: ckan
-  type: data.gov.uk apps
-  team: "#datagovuk-technical"
-  production_hosted_on: eks
-  dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
-  production_url: https://ckan.publishing.service.gov.uk/
-
-- repo_name: ckanext-spatial
-  type: data.gov.uk apps
-  team: "#datagovuk-technical"
-  sentry_url: false
-
 - repo_name: collections
   type: Frontend apps
   team: "#govuk-navigation-tech"
@@ -66,6 +49,7 @@
 - repo_name: collections-publisher
   type: Publishing apps
   team: "#govuk-publishing-mainstream-experience-tech"
+  alerts_team: "#govuk-publishing-mainstream-experience-tech"
   production_hosted_on: eks
 
 - repo_name: content-block-editor
@@ -111,24 +95,12 @@
 - repo_name: content-tagger
   type: Publishing apps
   team: "#govuk-publishing-mainstream-experience-tech"
+  alerts_team: "#govuk-publishing-mainstream-experience-tech"
   production_hosted_on: eks
 
 - repo_name: data-community-tech-docs
   type: Utilities
   team: "#insights-and-analytics-alerts"
-
-- repo_name: datagovuk-tech-docs
-  production_url: https://guidance.data.gov.uk/
-  type: data.gov.uk apps
-  team: "#datagovuk-technical"
-  sentry_url: false
-
-- repo_name: datagovuk_find
-  type: data.gov.uk apps
-  team: "#datagovuk-technical"
-  production_hosted_on: eks
-  sentry_url: https://sentry.io/govuk/find-data
-  dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
 
 - repo_name: email-alert-api
   type: APIs
@@ -148,6 +120,7 @@
 
 - repo_name: fact-check-manager
   type: Publishing apps
+  alerts_team: "#govuk-publishing-mainstream-experience-tech"
   team: "#govuk-publishing-mainstream-experience"
 
 - repo_name: feedback
@@ -216,29 +189,29 @@
 
 - repo_name: govuk-ai-accelerator
   team: "#publishing-classification-systems-metadata"
-  alerts_team: "#publishing-classification-systems-metadata"
-  type: Utilities
+  alerts_team: "#publishing-csm-alerts"
+  type: AI apps
   sentry_url: false
 
 - repo_name: govuk-ai-accelerator-generator-e2e-testing-framework
   private_repo: true
   team: "#publishing-classification-systems-metadata"
-  alerts_team: "#publishing-classification-systems-metadata"
-  type: Utilities
+  alerts_team: "#publishing-csm-alerts"
+  type: AI apps
   sentry_url: false
 
 - repo_name: govuk-ai-accelerator-tooling
   private_repo: true
   team: "#publishing-classification-systems-metadata"
-  alerts_team: "#publishing-classification-systems-metadata"
-  type: Utilities
+  alerts_team: "#publishing-csm-alerts"
+  type: AI apps
   sentry_url: false
 
 - repo_name: govuk-ai-accelerator-tw-accelerator 
   private_repo: true
   team: "#publishing-classification-systems-metadata"
-  alerts_team: "#publishing-classification-systems-metadata"
-  type: Utilities
+  alerts_team: "#publishing-csm-alerts"
+  type: AI apps
   sentry_url: false
 
 - repo_name: govuk-browser-extension
@@ -262,20 +235,20 @@
   type: Utilities
   sentry_url: false
 
-- repo_name: govuk-chat-gradio-prototype
-  private_repo: true
-  team: "#ai-govuk"
-  alerts_team: "#dev-notifications-ai-govuk"
-  type: AI apps
-  sentry_url: false
-  description: A private repo used for rapid experiments related to GOV.UK Chat utilising gradio's chatbot UI
-
 - repo_name: govuk-chat-opensearch
   team: "#ai-govuk"
   alerts_team: "#dev-notifications-ai-govuk"
   type: AI apps
   sentry_url: false
   description: A repo for managing GOV.UK Chat's OpenSearch snapshots
+
+- repo_name: govuk-chat-v1-iterations-2026
+  private_repo: true
+  team: "#ai-govuk"
+  alerts_team: "#dev-notifications-ai-govuk"
+  type: AI apps
+  sentry_url: false
+  description: A private repo used for experimenting and iterating on GOV.UK Chat v.1 in Python
 
 - repo_name: govuk-content-api-docs
   team: "#govuk-publishing-platform"
@@ -488,7 +461,7 @@
   sentry_url: false
 
 - repo_name: govuk_ab_testing
-  team: "#dev-notifications-ai-govuk"
+  team: "#govuk-navigation-tech"
   type: Gems
   sentry_url: false
 
@@ -513,6 +486,12 @@
 
 - repo_name: govuk_content_block_tools
   team: "#govuk-publishing-content-modelling-dev"
+  type: Gems
+  sentry_url: false
+
+- repo_name: govuk_content_item_loader
+  team: "#govuk-publishing-platform"
+  alerts_team: "#govuk-publishing-platform-system-alerts"
   type: Gems
   sentry_url: false
 
@@ -646,6 +625,7 @@
 - repo_name: publisher
   type: Publishing apps
   team: "#govuk-publishing-mainstream-experience-tech"
+  alerts_team: "#govuk-publishing-mainstream-experience-tech"
   production_hosted_on: eks
 
 - repo_name: publishing-api
@@ -696,27 +676,32 @@
 - repo_name: search-admin
   type: Supporting apps
   team: "#govuk-search"
+  alerts_team: "#govuk-search-tech"
   production_hosted_on: eks
 
 - repo_name: search-api
   type: APIs
   team: "#govuk-search"
+  alerts_team: "#govuk-search-tech"
   production_hosted_on: eks
   production_url: https://www.gov.uk/api/search.json
 
 - repo_name: search-api-v2
   type: APIs
   team: "#govuk-search"
+  alerts_team: "#govuk-search-tech"
   production_hosted_on: eks
 
 - repo_name: search-api-v2-beta-features
   type: Supporting apps
   team: "#govuk-search"
+  alerts_team: "#govuk-search-tech"
   production_hosted_on: eks
 
 - repo_name: search-api-v2-dataform
   type: Data engineering
   team: "#govuk-search"
+  alerts_team: "#govuk-search-tech"
   production_hosted_on: gcp
 
 - repo_name: service-manual-publisher
@@ -746,6 +731,7 @@
 - repo_name: smart-answers
   type: Frontend apps
   team: "#govuk-publishing-mainstream-experience-tech"
+  alerts_team: "#govuk-publishing-mainstream-experience-tech"
   production_hosted_on: eks
 
 - repo_name: specialist-publisher

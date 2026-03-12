@@ -266,9 +266,7 @@ Notes:
   [all currently supported minor versions of Ruby MRI][ruby-branches].
 - For a real world example of this workflow, see [govuk_admin_template][].
 - The `ALPHAGOV_RUBYGEMS_API_KEY` secret is an organisation secret that is added
-  to individual repositories by a GitHub Admin. Please talk to
-  [GOV.UK Senior Tech](/manual/ask-for-help.html#contact-senior-tech)
-  for this to be added to a repo.
+  to relevant repositories through [GitHub terraform deployment](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/github/main.tf).
 
 [ci]: https://en.wikipedia.org/wiki/Continuous_integration
 [GOV.UK RFC 123]: https://github.com/alphagov/govuk-rfcs/blob/main/rfc-123-github-actions-ci.md

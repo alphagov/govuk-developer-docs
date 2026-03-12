@@ -165,6 +165,7 @@ Depending on your role and the team you've joined, you will likely need access t
 - [Logit](/manual/logit.html#accessing-logit) for reading application logs and request logs. New developers typically need access to logs for the integration environment.
 - [Zendesk](/manual/zendesk.html) for working with user support tickets.
 - [Google Analytics](/manual/analytics.html) for analysing trends in user behaviour. Most new developers won't need this at first.
+- [Terraform](/manual/terraform-cloud.html) for reviewing and applying infrastructure changes.
 
 ## Supporting information
 
