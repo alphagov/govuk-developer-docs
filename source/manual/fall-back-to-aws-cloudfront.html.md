@@ -51,7 +51,7 @@ You are going to update the `CNAME` records for two different domains, in both G
 - `www-cdn.production.govuk.service.gov.uk`
 - `assets.publishing.service.gov.uk`
 
-Their values can be found in [the Terraform configuration](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/tfc-configuration/variables-production.tf) for GOV.UK publishing infrastructure.
+Their values can be found in [the Terraform configuration](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/variables/production/govuk-publishing-infrastructure.tfvars) for GOV.UK publishing infrastructure.
 
 In order to stop these being reverted accidentally go to the [govuk-publishing-infrastructure-production terraform workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-production)
 and lock the workspace (press the Lock button in the top right of the page).
@@ -163,7 +163,6 @@ curl -vs https://assets.staging.publishing.service.gov.uk/media/662a74aa45f183ec
 - As soon as you are confident that Fastly has recovered
   - Manually set each of the `CNAME` records you changed above back to `www-gov-uk.map.fastly.net.`
   - If you previously raised a PR in [govuk-infrastructure](https://github.com/alphagov/govuk-infrastructure), raise another PR to revert your changes and restore the old records.
-  - Apply the [tfc-configuration terraform workspace](https://app.terraform.io/app/govuk/workspaces/tfc-configuration).
   - Apply the appropriate govuk-publishing terraform workspace:
     - [govuk-publishing-infrastructure-production terraform workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-production)
     - [govuk-publishing-infrastructure-staging terraform workspace](https://app.terraform.io/app/govuk/workspaces/govuk-publishing-infrastructure-staging)
