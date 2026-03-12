@@ -9,7 +9,7 @@ This guide gives you guidance on how to provision a new database for a brand new
 
 ## Update the TFC configuration variables
 
-In the [govuk-infrastructure repo][govuk-infrastructure] repo, update the  relevant `tfc-configuration/variables-ENVIRONMENT.tf` file(s) (for example [`tfc-configuration/variables-integration.tf`][variables-integration.tf]) with your config. Make sure you do this for every environment you want to deploy to.
+In the [govuk-infrastructure repo][govuk-infrastructure] repo, update the  relevant `terraform/variables/ENVIRONMENT/rds.tfvars` file(s) (for example [`terraform/variables/integration/rds.tfvars`][integration tfvars]) with your config. Make sure you do this for every environment you want to deploy to.
 
 For example, if you're adding a database with the name `my_database`, you can add the following:
 
@@ -33,7 +33,7 @@ my_database = {
 }
 ```
 
-Once you have opened a PR and had it reviewed / merge, ensure you run the appropriate [`tfc-configuration`][tfc-configuration] workspace, as well as all the RDS workspaces for the appropriate environment (for example `rds-integration`).
+Once you have opened a PR and had it reviewed / merge, ensure you run the RDS workspace for the appropriate environment (for example `rds-integration`).
 
 ## Create a database secret
 
@@ -87,6 +87,6 @@ GRANT ALL ON SCHEMA public TO "YOUR_USER";
 
 [create-app]: https://docs.publishing.service.gov.uk/kubernetes/create-app/
 [govuk-infrastructure]: https://github.com/alphagov/govuk-infrastructure/
-[variables-integration.tf]: https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/tfc-configuration/variables-integration.tf
+[integration tfvars]: https://github.com/alphagov/govuk-infrastructure/blob/main/terraform//variables/integration/rds.tfvars
 [tfc-configuration]: https://app.terraform.io/app/govuk/workspaces/tfc-configuration
 [Create database secret]: https://docs.publishing.service.gov.uk/kubernetes/manage-app/manage-secrets/#creating-an-aws-managed-database-secret

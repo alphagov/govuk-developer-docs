@@ -75,7 +75,7 @@ This needs to be done in several stages. You can raise all of the PRs in advance
 1. Archive the repo by following the steps at [Retire a repo](/manual/retiring-a-repo.html).
    It will result in two PRs to govuk-infrastructure ([example 1](https://github.com/alphagov/govuk-infrastructure/pull/3064), [example 2](https://github.com/alphagov/govuk-infrastructure/pull/3065)), which have to be merged and applied in Terraform in turn.
 1. Retire any RDS instances for the app, which again will result in two PRs to govuk-infrastructure.
-   The first PR should be to add `deletion_protection = false` to the relevant declarations in `tfc-configuration/variables-{env}.tf` for every environment - see [example](https://github.com/alphagov/govuk-infrastructure/pull/3066).
+   The first PR should be to add `deletion_protection = false` to the relevant declarations in `terraform/variables/{env}/rds.tf` for every environment - see [example](https://github.com/alphagov/govuk-infrastructure/pull/3066).
    This PR will need merging and applying first, before doing the same for the next PR.
    The second PR will be to remove all remaining references to your app - see [example](https://github.com/alphagov/govuk-infrastructure/pull/3062).
    This time, the act of removing the Terraform variables that define the Databases, and running the apply again, should cause the Databases to produce a final snapshot and then be destroyed.
