@@ -7,28 +7,46 @@ type: learn
 parent: "/manual.html"
 ---
 
-> In a hurry? You may be looking for [So, you're having an incident][]!
+> In a hurry? You may be looking for [So, you're having an incident](/manual/incident-what-to-do.html)!
 
 GOV.UK developers are part of an [on-call rota](https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit) to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they've built up enough experience (see [Rules for Primary, Secondary and On Call](#rules-for-primary-secondary-and-on-call)).
-
-[So, you're having an incident]: /manual/incident-what-to-do.html
 
 ## On call charter
 
 - Attend the Monday morning handover, centered around the [GOV.UK Technical On-Call Trello board](https://trello.com/b/M7UzqXpk)
-- Prepare for your shift by following the steps in the [On-call Trello card template](https://trello.com/c/mK6p8hH4/977-on-call-checklist) (you'll be given your own card at the beginning of your shift)
+- Prepare for your shift by following the steps in the [On-call checklist](#on-call-checklist)
 - Be available to be phoned during your allocated shift
-- Be able to be online to start investigating a problem within half an hour
-  of being notified about it
-- Don't worry if you're not able to answer the phone immediately - that's
-  why we have more than one person on-call
-- Nobody is expected to understand every part of GOV.UK - you don't need to
-  know how to fix every issue on your own
-- Logs are not as important as being available - if you need to lose some logs
-  in order to bring the site back up, that's probably a good trade-off to make
-- Get paid. Follow the [documented process on the GDS Wiki][GDS Wiki].
+- Be able to be online to start investigating a problem within half an hour of being notified about it
+- Don't worry if you're not able to answer the phone immediately - that's why we have more than one person on-call
+- Nobody is expected to understand every part of GOV.UK - you don't need to know how to fix every issue on your own
+- Logs are not as important as being available - if you need to lose some logs in order to bring the site back up, that's probably a good trade-off to make
 
-[GDS Wiki]: https://sites.google.com/digital.cabinet-office.gov.uk/the-gds-wiki/info-for-employees/gds-guides/miscellaneous/out-of-hours-allowance
+### On call checklist
+
+Mandatory steps:
+
+- Ensure you're familiar with the "[So, you're having an incident](/manual/incident-what-to-do.html)" process
+- Confirm you have full [Production Admin access](/manual/rules-for-getting-production-access.html#production-admin-access) (should see `production_admin_access` next to your name [in govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml))
+- Confirm you can [access the Notify dashboard](/manual/govuk-notify.html#accessing-the-dashboard)
+- Confirm you can [access AWS](/manual/get-started.html#sign-in-to-aws) (over web console and CLI)
+- Confirm you can [access GCP](/manual/google-cloud-platform-gcp.html) (using the web console and the gcloud CLI) - you may need it
+- Confirm you can access [Statuspage](https://manage.statuspage.io/pages/xcz7hfscrbjs/incidents)
+- Ensure you can log into Zendesk (follow the [Zendesk onboarding instructions](/manual/zendesk.html#get-started))
+- You know how to [contact the rest of SMT](https://drive.google.com/drive/search?q=GOV.UK%20SMT%20Escalations%20rota), if the on-call SMT is unavailable.
+
+Optional:
+
+- [Add the PagerDuty rota to your calendar](/manual/pagerduty.html#add-your-pagerduty-rota-to-google-calendar)
+- Ensure you can connect to the VPN (needed to connect to Staging etc, which might be useful during an incident). No longer essential for most dev work though.
+- Make sure you have an up to date local copy of the [Developer Docs](https://github.com/alphagov/govuk-developer-docs/) repository and have built it (ideally with `GITHUB_TOKEN` set so that docs from other repos are fetched too)
+- Have the numbers of other people on your shift saved in your phone. This includes whoever is on Escalations (You can get these numbers from PagerDuty).
+- Set to be notified for every new message in the #govuk-incident Slack channel by clicking “Details”, “Change notifications” and selecting “Every new message.”
+- Double-check your PagerDuty alert settings will wake you if you’re called - you might want to install the PagerDuty App on your phone and send a test notification. You can do this by going to the [pagerduty team](https://governmentdigitalservice.pagerduty.com/teams/PG4Z8YR/users), then clicking on your name, on the Contact Information tab, then clicking on any of the `test` buttons.
+
+After your shift:
+
+- Complete the tech support [feedback form](https://forms.gle/6k5YfDqbQyeXTXYs7)
+- Get paid. Follow the [documented process on the GDS Wiki](https://sites.google.com/digital.cabinet-office.gov.uk/the-gds-wiki/info-for-employees/gds-guides/miscellaneous/out-of-hours-allowance)
 
 ## When are you added to the on-call rota?
 
