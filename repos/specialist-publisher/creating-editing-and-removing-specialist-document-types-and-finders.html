@@ -1,0 +1,679 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>specialist-publisher: Creating, editing and removing specialist document types and finders - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/specialist-publisher/creating-editing-and-removing-specialist-document-types-and-finders.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="specialist-publisher: Creating, editing and removing specialist document types and finders - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/specialist-publisher/creating-editing-and-removing-specialist-document-types-and-finders.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="specialist-publisher: Creating, editing and removing specialist document types and finders" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/specialist-publisher/creating-editing-and-removing-specialist-document-types-and-finders.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/specialist-publisher.html" rel="noopener" class="govuk-link">specialist-publisher</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/specialist-publisher/acceptance-testing.html" rel="noopener" class="govuk-link"># Acceptance Testing</a></li>
+    <li><a href="/repos/specialist-publisher/creating-editing-and-removing-specialist-document-types-and-finders.html" rel="noopener" class="govuk-link">Creating, editing and removing specialist document types and finders</a></li>
+    <li><a href="/repos/specialist-publisher/email-alerts.html" rel="noopener" class="govuk-link"># Email Alerts</a></li>
+    <li><a href="/repos/specialist-publisher/local-development.html" rel="noopener" class="govuk-link">Local Development</a></li>
+    <li><a href="/repos/specialist-publisher/naming-conventions.html" rel="noopener" class="govuk-link">Specialist Publisher naming conventions</a></li>
+    <li><a href="/repos/specialist-publisher/tasks.html" rel="noopener" class="govuk-link">Rake tasks</a></li>
+    <li><a href="/repos/specialist-publisher/updating-existing-organisation-data.html" rel="noopener" class="govuk-link">Updating existing organisation data</a></li>
+    <li class="subdir__heading">adr</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/specialist-publisher/adr/0001-implement-nested-facets-tagging-for-specialist-documents-as-a-single-dropdown.html" rel="noopener" class="govuk-link">1. Implement nested facets tagging for specialist documents as a single dropdown</a></li>
+
+    </ul>
+    <li class="subdir__heading">phase-2-migration</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/specialist-publisher/phase-2-migration/README.html" rel="noopener" class="govuk-link"># Phase 2 Migration</a></li>
+    <li><a href="/repos/specialist-publisher/phase-2-migration/automated-tests.html" rel="noopener" class="govuk-link"># Automated tests</a></li>
+    <li><a href="/repos/specialist-publisher/phase-2-migration/composed-states.html" rel="noopener" class="govuk-link"># Composed states</a></li>
+    <li><a href="/repos/specialist-publisher/phase-2-migration/deployment-guide.html" rel="noopener" class="govuk-link"># Deployment guide</a></li>
+    <li><a href="/repos/specialist-publisher/phase-2-migration/quality-assurance.html" rel="noopener" class="govuk-link"># Quality assurance</a></li>
+    <li><a href="/repos/specialist-publisher/phase-2-migration/republishing.html" rel="noopener" class="govuk-link"># Republishing</a></li>
+    <li><a href="/repos/specialist-publisher/phase-2-migration/roll-out-process.html" rel="noopener" class="govuk-link"># Roll-out process</a></li>
+    <li><a href="/repos/specialist-publisher/phase-2-migration/setting-the-scene.html" rel="noopener" class="govuk-link"># Setting the scene</a></li>
+    <li><a href="/repos/specialist-publisher/phase-2-migration/timestamps.html" rel="noopener" class="govuk-link"># Timestamps</a></li>
+    <li><a href="/repos/specialist-publisher/phase-2-migration/update-types.html" rel="noopener" class="govuk-link"># Update types</a></li>
+    <li><a href="/repos/specialist-publisher/phase-2-migration/workflow-of-content.html" rel="noopener" class="govuk-link"># Workflow of content</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "specialist-publisher",
+        "@id": "http://www.dev.gov.uk/repos/specialist-publisher.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/specialist-publisher.html">specialist-publisher</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/ff1333675b173d29904bda654c1680c34e3e9481">20 Jan 2026</a>
+</div>
+
+  <h1 class="page-title">specialist-publisher: Creating, editing and removing specialist document types and finders</h1>
+
+  
+<p>To create or edit a new specialist document you will have to make changes to this
+application, <a href="https://github.com/alphagov/publishing-api">publishing-api</a> and <a href="https://github.com/alphagov/search-api">search-api</a>. You will not have to make any changes to frontend
+applications.</p>
+<p><strong>IMPORTANT</strong></p>
+<p>Recent changes to Specialist Publisher now allow users to self-serve. Using the UI, publishers can request a change to finder metadata, or facet configuration (i.e. filters). The “Submit changes” button creates a Zendesk ticket in the publishing queue, complete with the updated JSON schema. Developers can then copy and paste the JSON into a pull request. Follow the steps below to validate the thoroughness of the changes and open the remaining PRs against <a href="https://github.com/alphagov/publishing-api">publishing-api</a> and <a href="https://github.com/alphagov/search-api">search-api</a>, if needed.</p>
+<h1 id="creating-a-specialist-document-type">
+<strong>Creating</strong> a specialist document type</h1>
+<p>The files you will be creating in this step follow <a href="/repos/specialist-publisher/naming-conventions.html">these conventions</a>.</p>
+<p>For additional guidance, consider reading through <a href="#9-Finder-requirements-and-content-support">Finder requirements and content support</a>.</p>
+<h2 id="1-add-a-schema-to-publishing-api">1. Add a schema to Publishing API</h2>
+<p>See <a href="https://github.com/alphagov/publishing-api/pull/3026/files">example PR here</a>.</p>
+<ol>
+<li>Add the <a href="/repos/specialist-publisher/naming-conventions.html">document type</a> to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/allowed_document_types.yml">allowed document types list</a>.</li>
+<li>Add any new field definitions to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">this file</a>.</li>
+<li>Run <code>bundle exec rake build_schemas</code> to regenerate schemas.</li>
+</ol>
+<p>When the PR is reviewed and its tests passing, it can be merged and deployed at this point.</p>
+<h2 id="2-create-a-new-specialist-document-format-in-specialist-publisher">2. Create a new specialist document format in Specialist Publisher</h2>
+<h3 id="create-the-schema">Create the schema</h3>
+<p>See <a href="https://github.com/alphagov/specialist-publisher/blob/main/lib/documents/schemas/cma_cases.json">CMA cases</a>.</p>
+<p>New formats should be added with <code>target_stack: "draft"</code> so that departments can preview the finder before you publish it.</p>
+<p>You'll need to generate your own UUIDs for the <code>content_id</code> (of the finder), and the <code>signup_content_id</code> fields:</p>
+<pre><code>$ irb
+irb(main):001:0&gt; require "securerandom"
+=&gt; true
+irb(main):002:0&gt; SecureRandom.uuid
+=&gt; "5087e8b6-ee54-40f9-b592-8c2813c7037d"
+</code></pre>
+<p>For a breakdown of email subscription options see <a href="#4-configure-the-email-sign-up-page">Configure the email sign up page</a>.</p>
+<h3 id="create-the-model">Create the model</h3>
+<p>See <a href="https://github.com/alphagov/specialist-publisher/blob/main/app/models/cma_case.rb">CMA cases</a>.</p>
+<p>Make sure to include all necessary validations, noting that validation for <a href="https://github.com/alphagov/specialist-publisher/blob/main/spec/features/creating_a_new_document_spec.rb#L72">'required'</a> fields and <a href="https://github.com/alphagov/specialist-publisher/blob/main/spec/features/creating_a_new_document_spec.rb#L104">date</a> is now schema-driven, with automatic checks for validity.</p>
+<p>Only <a href="https://github.com/alphagov/specialist-publisher/blob/main/app/models/marine_equipment_approved_recommendation.rb#L3">bespoke validations</a> should be added to the model; otherwise, you can apply validations as shown <a href="https://github.com/alphagov/specialist-publisher/blob/main/app/models/ai_assurance_portfolio_technique.rb#L2">here</a>.</p>
+<p>Keep in mind that adding custom validation may make the finder incompatible with general testing, requiring you to add it to the <a href="https://github.com/alphagov/specialist-publisher/blob/main/spec/features/creating_a_new_document_spec.rb#L10">exception list</a>.</p>
+<h3 id="create-the-view-template">Create the view template</h3>
+<p>It is no longer required to create a view. All the views will be auto-generated from the schema-defined fields, using the <a href="https://github.com/alphagov/specialist-publisher/blob/main/app/views/shared/_specialist_document_form.html.erb">shared template</a>.</p>
+<p>Note that the <code>select type</code> of an input (one/multiple) is now configured under the <code>specialist_publisher_properties</code> <a href="https://github.com/alphagov/specialist-publisher/blob/84b89e9f737f59a615b5a9df1a5b8d3e7d74f75d/lib/documents/schemas/algorithmic_transparency_records.json#L164">in the schema</a>.</p>
+<p>If you require custom behaviours, create a view file in the <a href="https://github.com/alphagov/specialist-publisher/tree/main/app/views/metadata_fields">views folder</a>. Other "non-conforming" views can be found there. Make use of the available <code>FacetInputComponent</code> subclasses to render the custom view's facets.</p>
+<h3 id="testing-your-document-type">Testing your document type</h3>
+<h4 id="1-general-approach">1. General approach</h4>
+<p>If no custom validation is required, the only testing task is to <a href="https://github.com/alphagov/specialist-publisher/blob/main/spec/fixtures/factories.rb#L874">create a factory</a> that conforms to the schema, ensuring it includes all required metadata. This factory will be used in the <a href="https://github.com/alphagov/specialist-publisher/blob/main/spec/features/publishing_workflow/creating_a_new_document_spec.rb">generic feature test</a> and <a href="https://github.com/alphagov/specialist-publisher/blob/main/spec/models/document_type_spec.rb">generic model test</a>.</p>
+<p>Tip: Since automation can somewhat obfuscate testing, run the <code>rspec</code> test command with the <code>--format doc</code> flag to get verbose output.</p>
+<h4 id="2-bespoke-approach">2. Bespoke approach</h4>
+<p>While you should ideally always use the test automation, you might need custom testing if:</p>
+<ul>
+<li>the document has a custom view</li>
+<li>the document needs additional validations</li>
+</ul>
+<p>In such cases, add your format to the <a href="https://github.com/alphagov/specialist-publisher/blob/3a0d89a821c6aeea87a20dae7c8f6e3fb1cf9ec0/spec/models/document_type_spec.rb#L4">generic model test exception list</a> and <a href="https://github.com/alphagov/specialist-publisher/blob/6849759b0206eb933f61710c1c6dddfab1792697/spec/features/publishing_workflow/creating_a_new_document_spec.rb#L3">generic feature test exception list</a>, and document the reason for doing so in your commit. To ensure proper coverage, you will need to create both a <a href="https://github.com/alphagov/specialist-publisher/tree/main/spec/features/non_conforming_types">feature test</a> and a <a href="https://github.com/alphagov/specialist-publisher/tree/main/spec/models">model test</a> for your document type.</p>
+<h2 id="3-configure-search-api">3. Configure Search API</h2>
+<p>Search API needs copies of the schema very similar to the one in Specialist Publisher. See:</p>
+<ul>
+<li>
+<a href="https://github.com/alphagov/search-api/blob/main/config/schema/elasticsearch_types/cma_case.json">CMA case schema</a> (example)</li>
+<li><a href="https://github.com/alphagov/search-api/blob/main/config/schema/field_definitions.json">field definitions</a></li>
+</ul>
+<p>You'll also need to add your document format to:</p>
+<ul>
+<li>the main ES types list <a href="https://github.com/alphagov/search-api/blob/main/config/schema/indexes/govuk.json">govuk.json</a>
+</li>
+<li><a href="https://github.com/alphagov/search-api/blob/main/config/govuk_index/migrated_formats.yaml">migrated_formats.yaml</a></li>
+<li><a href="https://github.com/alphagov/search-api/blob/main/config/govuk_index/mapped_document_types.yaml">mapped_document_types.yaml</a></li>
+</ul>
+<p>Finally, you'll need to add your custom fields to:</p>
+<ul>
+<li><a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/elasticsearch_presenter.rb">elasticsearch_presenter.rb</a></li>
+<li><a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/specialist_presenter.rb">specialist_presenter.rb</a></li>
+</ul>
+<h2 id="4-configure-the-email-sign-up-page">4. Configure the email sign up page</h2>
+<p>The email sign up page is rendered by <a href="https://github.com/alphagov/finder-frontend">Finder Frontend</a> using the schema configuration in specialist publisher.</p>
+<p>You can test the email subscription when your finder is deployed to the draft stack, using a test email. For more information see <a href="https://docs.publishing.service.gov.uk/repos/email-alert-api/receiving-emails-from-email-alert-api-in-integration-and-staging.html">Receive emails from Email Alert API in Integration and Staging</a>.</p>
+<p>The finder default is to have no email subscription. Email subscriptions can be set as:</p>
+<h3 id="1-subscribe-to-all-fields">1. Subscribe to all fields</h3>
+<ul>
+<li>The user gets updates for everything and cannot select any specific facet option to get updates on. You must set up a <code>signup_content_id</code> - a new <code>UUID</code> for the email signup page. No changes required to <code>email-alert-api</code>.</li>
+<li>The user may select any facet options to get updates on, before navigating to the email subscription page:
+<ul>
+<li>In the <code>email_filter_options</code> hash, set <code>email_filter_by</code> to <code>all_selected_facets</code>. This will pick up all the facets that have <code>allowed_values</code> and <code>filterable: true</code>. See <a href="https://github.com/alphagov/specialist-publisher/blob/91ee849549c5e5478126d06842513a516cacceb2/lib/documents/schemas/marine_equipment_approved_recommendations.json#L12">example</a>.</li>
+<li>Edit <a href="https://github.com/alphagov/email-alert-api/tree/main/lib">email-alert-api</a> by adding all filterable facets to <a href="https://github.com/alphagov/email-alert-api/blob/main/lib/valid_tags.rb">valid_tags.rb</a>. This is a required step.</li>
+</ul>
+</li>
+<li>Following on from the step above, you may exclude some of the facets by additionally setting <code>all_selected_facets_except_for</code> - see <a href="https://github.com/alphagov/specialist-publisher/blob/91ee849549c5e5478126d06842513a516cacceb2/lib/documents/schemas/export_health_certificates.json#L8">example</a>. You must still define the facets in <code>email-alert-api</code>.</li>
+<li>Set <code>subscription_list_title_prefix</code> (optional).</li>
+</ul>
+<h3 id="2-subscribe-to-specific-fieldsset">2. Subscribe to specific fields(set)</h3>
+<ul>
+<li>Configure the <code>signup_content_id</code> and, optionally, the <code>subscription_list_title_prefix</code>, as in the previous step.</li>
+<li>Set <code>email_filter_by</code> to a specific facet - see <a href="https://github.com/alphagov/specialist-publisher/blob/91ee849549c5e5478126d06842513a516cacceb2/lib/documents/schemas/tax_tribunal_decisions.json#L13">example</a>.</li>
+<li>Edit <a href="https://github.com/alphagov/email-alert-api/tree/main/lib">email-alert-api</a> by adding the new filters to <a href="https://github.com/alphagov/email-alert-api/blob/main/lib/valid_tags.rb">valid_tags.rb</a>.</li>
+</ul>
+<h4 id="breakdown-of-the-email-options">Breakdown of the email options:</h4>
+<ul>
+<li>
+<code>subscription_list_title_prefix</code> - typically set in most finders. It defines the beginning of the email title. For example, CMA cases have this value set to <code>CMA cases</code>, meaning an email title would read as "<em>CMA cases</em> with digital markets unit". When omitted, the email title will only reference subscribed facets.</li>
+<li>
+<code>email_alert_topic_name_overrides</code> - changes the display label of individual facets options in the email title the user receives upon subscribing.</li>
+<li>
+<code>downcase_email_alert_topic_names</code> - downcases the display label of individual facet options in the email title the user receives upon subscribing.</li>
+<li>
+<code>pre_checked_email_alert_checkboxes</code> - takes an array of facets, which will appear pre-checked on the email signup page.</li>
+</ul>
+<h3 id="3-signup-link">3. Signup link</h3>
+<p>If the subscription is managed by an external service, it should be set via a <code>signup_link</code>. See <a href="https://github.com/alphagov/specialist-publisher/blob/91ee849549c5e5478126d06842513a516cacceb2/lib/documents/schemas/drug_safety_updates.json#L148">example</a>.</p>
+<h2 id="5-deploy-a-finder-to-the-draft-stack-for-previewing">5. Deploy a finder to the draft stack (for previewing)</h2>
+<p>To deploy a new finder for previewing:</p>
+<ol>
+<li>Ensure the finder <code>target_stack</code> is set to <code>draft</code>
+</li>
+<li>
+<a href="#7-deploy-a-finder">Deploy the finder</a> to draft stack</li>
+<li>Wait for department's feedback and approval and agree on a release date</li>
+</ol>
+<p>NB: Depending on the finder requirements, you may choose to allow the users to publish documents in preview mode, which
+would enable them to test the full finder filtering functionality. Changes to the schema requested after documents have been
+published, could require running a reindex, and there is a risk of loss of data. In order to prevent users from publishing,
+we could give only basic Signon permissions whilst in preview mode. Signon access to the Specialist Publisher app, only
+gives the user writer access (they may create, edit, and update, but not publish or unpublish).</p>
+<h2 id="6-publish-a-finder-to-the-live-stack">6. Publish a finder to the live stack</h2>
+<p>To release the finder to the live stack:</p>
+<ol>
+<li>Open a new PR changing the <code>target_stack</code> of the finder from <code>draft</code> to <code>live</code> in Specialist Publisher json schema config</li>
+<li>
+<a href="#7-deploy-a-finder">Deploy the finder</a> to the live stack</li>
+</ol>
+<h2 id="7-deploy-a-finder">7. Deploy a finder</h2>
+<ol>
+<li>Merge and deploy Publishing API, Specialist Publisher and Search API, if changed.
+<ul>
+<li>Ensure you deploy Publishing API first, to avoid schema validation errors.</li>
+</ul>
+</li>
+<li>Also deploy Email Alert API if you have made changes to it.</li>
+<li>Depending on the changes you've made, you might need to update mappings in Search API.
+<ul>
+<li>You will likely need to run <code>rake SEARCH_INDEX=govuk 'search:update_schema'</code>. For further details, see this <a href="#reindexing-breakdown">section on reindexing</a>.</li>
+</ul>
+</li>
+<li>Publish the finder by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
+</ol>
+<blockquote>
+<p>Note that finder-frontend <a href="https://github.com/alphagov/finder-frontend/blob/4c27a8483f502969bc02e1de082a35b2efd0278e/app/lib/services.rb#L11">caches the finder content item for five minutes</a>, so you may not be able to see your changes immediately (even with a cachebust string).</p>
+</blockquote>
+<h2 id="8-permissions">8. Permissions</h2>
+<p>Specialist Publisher grants access to the publishing interface for a document type to the following Signon users:</p>
+<ol>
+<li>Users that belong to the owner organisation or an editing organisation - have default "write" permissions, allowing them to view and draft new documents.</li>
+<li>Users that belong to the owner organisation or an editing organisation, AND have <code>editor</code> permission in Signon - are considered "departmental editors" and can publish, unpublish and discard documents.</li>
+<li>Users that have the permission <code>&lt;your_new_document_type&gt;_editor</code> in Signon are granted "document_type_editor" access regardless of their organisation. This is sometimes required for cross-departmental documents. These special permissions need to be <a href="https://docs.publishing.service.gov.uk/repos/signon/usage.html#creating-editing-and-deleting-permissions">created manually</a> in Signon. You do not need to create this permission unless cross-departmental access has been explicitly requested for individual users outside the owning organisation. If you need access for an entire non-owning organisation, add it to <code>editing_organisations</code> in the schema file instead.</li>
+</ol>
+<p>You'll need to manually grant users access to the Specialist Publisher app in Signon, and the <code>editor</code> permission (or custom cross-organisation permissions from step 3 above) if appropriate.</p>
+<p>If the users do not yet have Signon access, direct them to the <a href="https://www.gov.uk/guidance/contact-the-government-digital-service/request-a-thing#:~:text=Show%20all%20sections-,Whitehall,-publisher%20accounts">Request a new account guidance</a>. Signon requests must go through this approval process.</p>
+<h2 id="9-finder-requirements-and-content-support">9. Finder requirements and content support</h2>
+<p>Whilst the finders go through content approval before becoming actionable tickets in the owning team's backlog, specific concerns only become apparent once the finder requirements form is filled out. It is recommended that the requirements should be validated by someone with technical expertise, and that necessary conversations with the department should be initiated early on.</p>
+<p>For specific content guidance, loop in the content team on the Zendesk ticket, who will be able to provide you with the necessary support.</p>
+<p>Here's a few content concerns to keep an eye on:</p>
+<ul>
+<li>Finder titles should usually be in the format "Find [brief description of finder content]". For example, "Find data ethics guidance, standards and frameworks".</li>
+<li>Sanity check that the facet selection is meaningful in the context of the finder and documents.</li>
+<li>The facet selection (one/multiple) should be appropriate for the content. Whilst the one/multiple option dictates how we tag the documents publisher-side, the filters on finder-frontend are always multiple. This can be confusing to users.</li>
+<li>You might need to translate certain fields (especially from pre-existing digital content) to match the GOV.UK frontend components style. For example, the date search (before/after) can easily encompass two distinct date fields.</li>
+<li>Make free text fields (which are not filterable in the way facets are) into facets if the list is known and unlikely to change. This will help users filter the content more easily. The now available admin area should make this a small maintenance task, if the list needs to change in the future.</li>
+<li>Long facet option lists should be alphabetical to aid search, unless the departments can justify a different order.</li>
+<li>For very long facet option lists, consider using the <code>show_option_select_filter</code> in the schema, which will add a search bar to the facet. See example <a href="https://github.com/alphagov/specialist-publisher/blob/3a0d89a821c6aeea87a20dae7c8f6e3fb1cf9ec0/lib/documents/schemas/licence_transactions.json#L243">here</a>.</li>
+</ul>
+<h1 id="editing-a-specialist-document-type">
+<strong>Editing</strong> a specialist document type</h1>
+<p>We often receive requests to add new fields to a specialist document or to add new values to existing fields.</p>
+<h2 id="adding-a-new-field-to-an-existing-specialist-document">Adding a new field to an existing specialist document</h2>
+<ol>
+<li>
+<p>In <code>publishing-api</code>:</p>
+<ul>
+<li>Add the new field in the <a href="https://github.com/alphagov/publishing-api/blob/6d5595470bd0e7f3072e06f0113e3ca5514b6e98/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">specialist_document schema</a>. See <a href="https://github.com/alphagov/publishing-api/pull/2968/commits/b7d9cd1f6bb5d8d08fda7b6e219b2467134406c4">example commit</a>.</li>
+<li>Run <code>bundle exec rake build_schemas</code> to regenerate schemas after adding the new value(s).</li>
+</ul>
+</li>
+<li>
+<p>In <code>specialist publisher</code>:</p>
+<ul>
+<li>Add the new field to the relevant <a href="https://github.com/alphagov/specialist-publisher/tree/main/app/models">model</a>, including any required validations, tests and factories.</li>
+<li>Add fields to relevant <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> files.</li>
+<li>For legacy finders that don't use the shared view, you may need to update the <a href="https://github.com/alphagov/specialist-publisher/tree/main/app/views/metadata_fields">view</a>.</li>
+</ul>
+</li>
+</ol>
+<!-- raw HTML omitted -->
+<p>See <a href="https://github.com/alphagov/specialist-publisher/pull/2847/commits/37fee332a721222c392f541a7f3b747d5d7a8c27">this</a> commit for an example.</p>
+<ol start="3">
+<li>
+<p>In <code>search-api</code>, add the new field in the following places (see <a href="https://github.com/alphagov/search-api/pull/3043/commits/12eee8d6bab4e7606b4014684907f60574e713ba">this</a> commit for an example):</p>
+<ul>
+<li>the relevant schema in the <a href="https://github.com/alphagov/search-api/tree/main/config/schema/elasticsearch_types">elasticsearch_types </a>directory.</li>
+<li>the <a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/elasticsearch_presenter.rb">elasticsearch_presenter</a>.</li>
+<li>the <a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/specialist_presenter.rb">specialist_presenter</a>.</li>
+<li>the <a href="https://github.com/alphagov/search-api/blob/main/config/schema/field_definitions.json">field_definitions</a> file.</li>
+</ul>
+</li>
+<li>
+<p><a href="#7-deploy-a-finder">Republish the finder</a></p>
+</li>
+</ol>
+<h2 id="removing-a-field-from-an-existing-specialist-document">Removing a field from an existing specialist document</h2>
+<p>NB: In order to remove a field, ensure no document are tagged with that field, or that the finder's owners are aware of the data loss implications.</p>
+<ol>
+<li>
+<p>In <code>publishing-api</code>:</p>
+<ul>
+<li>Remove the field from the <a href="https://github.com/alphagov/publishing-api/blob/6d5595470bd0e7f3072e06f0113e3ca5514b6e98/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">specialist_document schema</a>.</li>
+<li>Run <code>bundle exec rake build_schemas</code> to regenerate schemas after removing the new value(s).</li>
+</ul>
+<p>See removal of <code>key_reference</code> in <a href="https://github.com/alphagov/publishing-api/pull/3075/commits/03197cc43f11b762314a17ecbc37ec9601c0ede9">example commit</a>.</p>
+</li>
+<li>
+<p>In <code>specialist publisher</code>:</p>
+<ul>
+<li>Remove field from <a href="https://github.com/alphagov/specialist-publisher/tree/main/app/models">model</a>.</li>
+<li>Remove field usage from <a href="https://github.com/alphagov/specialist-publisher/tree/main/app/views/metadata_fields">view</a> (if this is a legacy finder that isn't referring to the shared view).</li>
+<li>Remove field from <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> files.</li>
+<li>Remove any other usages, such as from tests and factories.</li>
+</ul>
+<p>See removal of <code>key_reference</code> in <a href="https://github.com/alphagov/specialist-publisher/pull/2942/commits/6b215cb8d02fdcee6d6e05d108f7e2cffca091c4">example commit</a>.</p>
+</li>
+<li>
+<p>In <code>search-api</code>, remove the field from:</p>
+<ul>
+<li>The relevant schema in the <a href="https://github.com/alphagov/search-api/tree/main/config/schema/elasticsearch_types">elasticsearch_types </a>directory.</li>
+<li>The <a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/elasticsearch_presenter.rb">elasticsearch_presenter</a>.</li>
+<li>The <a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/specialist_presenter.rb">specialist_presenter</a>.</li>
+<li>The <a href="https://github.com/alphagov/search-api/blob/main/config/schema/field_definitions.json">field_definitions</a> file.</li>
+</ul>
+<p>See removal of <code>key_reference</code> in <a href="https://github.com/alphagov/search-api/pull/3120/commits/b18f25ce86f496e46294ebce6e37e42bf035c105">example commit</a>.</p>
+</li>
+<li>
+<p><a href="#7-deploy-a-finder">Republish the finder</a></p>
+</li>
+</ol>
+<h2 id="adding-values-for-existing-fields-on-a-specialist-document">Adding values for existing fields on a specialist document</h2>
+<p>Specific values for fields of type array are now defined only in the <code>specialist_publisher</code> app. To add a value:</p>
+<ol>
+<li>In <code>specialist publisher</code>, add the new values to the relevant file in the <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> directory. See <a href="https://github.com/alphagov/specialist-publisher/pull/2958/commits/930b4c82928a616cc848d1e759cf31b521771b15">this</a> commit for an example.</li>
+<li>Deploy Specialist Publisher.</li>
+<li>Publish the finder by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
+</ol>
+<h2 id="removing-values-for-existing-fields-on-a-specialist-document">Removing values for existing fields on a specialist document</h2>
+<p>NB: In order to remove a field value, ensure no document are tagged with that value, or that the finder's owners are aware of the data loss implications.</p>
+<p>Specific values for fields of type array are now defined only in the <code>specialist_publisher</code> app. To remove a value:</p>
+<ol>
+<li>In <code>specialist publisher</code>, remove the value entry from the <code>allowed_values</code> array of the relevant field, from the corresponding json file in the <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> directory.</li>
+<li>Deploy Specialist Publisher.</li>
+<li>Publish the finder by running the rake task <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app (rake tasks <a href="https://github.com/alphagov/specialist-publisher/blob/ce68fdb008cab05225e0493e19decba5365e1e20/lib/tasks/publishing_api.rake">here</a>).</li>
+</ol>
+<h1 id="editing-a-specialist-finder">
+<strong>Editing</strong> a specialist finder</h1>
+<p>The <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> files that define a specialist document, are also used to configure that document's specialist finder. See <a href="https://github.com/alphagov/specialist-publisher/pull/1899/commits/925abc689119138a0e04e17d3610f8ae276773dd">this</a> commit for an example.</p>
+<h1 id="unpublishing-a-specialist-finder">
+<strong>Unpublishing</strong> a specialist finder</h1>
+<p><strong>Important</strong>: In order to remove a finder, you should ensure there is a clear business requirement in doing so, and that all associated documents have been correctly dealt with - unpublished, redirected, migrated or removed.
+If the code is not removed from all relevant repositories, there is a chance the finder will be inadvertently republished, for example by republishing all finders. You must therefore make sure the code is removed in order to keep the finder unpublished.</p>
+<p>The following steps are required to remove a finder:</p>
+<ol>
+<li>
+<p>Unpublish the finder in all environments using the provided rake task:</p>
+<pre><code>rake unpublish:redirect_finder["uk_market_conformity_assessment_bodies","https://redirection_link.gov.uk"]
+</code></pre>
+</li>
+<li>
+<p>Remove usages from <code>publishing-api</code>:</p>
+<ul>
+<li>Remove the format from <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/allowed_document_types.yml">allowed document types list</a>.</li>
+<li>Remove the field definitions from <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">this file</a>.</li>
+<li>If present, remove the example from <a href="https://github.com/alphagov/publishing-api/tree/main/content_schemas/examples/specialist_document/frontend">this directory</a>.</li>
+<li>Run <code>bundle exec rake build_schemas</code> to regenerate schemas.</li>
+</ul>
+<p>See <a href="https://github.com/alphagov/publishing-api/pull/2706">example commit</a>.</p>
+</li>
+<li>
+<p>Remove usages from <code>specialist publisher</code>. See <a href="https://github.com/alphagov/specialist-publisher/pull/2588/files">example commit</a>.</p>
+</li>
+<li>
+<p>Remove usages from <code>search-api</code>. See <a href="https://github.com/alphagov/search-api/pull/2881/files">example commit</a>.</p>
+</li>
+<li>
+<p>Remove any usages from <code>finder-frontend</code>, if applicable.</p>
+</li>
+<li>
+<p>Deploy all changes.</p>
+</li>
+</ol>
+<h1 id="reindexing-breakdown">Reindexing breakdown</h1>
+<p>Regardless on the changes you're trying to make, you can implement them in such a way that a full reindex is not necessary.</p>
+<!-- raw HTML omitted -->
+<p>Here's a breakdown of the different scenarios:</p>
+<ol>
+<li>Add new, change or delete facet options</li>
+</ol>
+<p>No mapping update or reindex necessary, because Elasticsearch does not have an allowlist of options. Any value works, as long as it is the correct type.</p>
+<ol start="2">
+<li>Add new facet</li>
+</ol>
+<p>Mapping update (via <code>update_schema</code> rake task) necessary, but full reindex not required. Once the mapping has been updated, you can start adding data to both existing and new documents for the new field.</p>
+<p>Run: <code>rake SEARCH_INDEX=govuk 'search:update_schema'</code> in a Search API console, to update the mapping.</p>
+<ol start="3">
+<li>Change name of facet</li>
+</ol>
+<p>Just change the facet label in Specialist Publisher.</p>
+<p>There's no actual need to change the field key. If you nonetheless want to change the key as well:</p>
+<ul>
+<li>declare a new field by following steps similar to <a href="#adding-a-new-field-to-an-existing-specialist-document">adding a new field</a>
+</li>
+<li>remove the old field config from Specialist Publisher</li>
+<li>run <code>update_schema</code> as in 2) above</li>
+<li>republish the finder</li>
+<li>retag and republish all the content from Specialist Publisher with the new field.</li>
+</ul>
+<p>The Elasticsearch mapping for the old field would still exist, but it wouldn't be doing any harm.</p>
+<ol start="4">
+<li>Change type of facet</li>
+</ol>
+<p>To avoid a reindex, you can follow the same steps as for a field key change at 3) above.</p>
+<ol start="5">
+<li>Delete facet</li>
+</ol>
+<p>Remove config from Specialist Publisher and republish all content. The Elasticsearch mapping for the field would still exist, but it wouldn't be doing any harm.</p>
+<p>If you still want to reindex, follow the instructions <a href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html#how-to-reindex-an-elasticsearch-index">here</a>. A full reindex takes around 30-45 minutes on Production, or 3-4 hours on Integration.</p>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/specialist-publisher/blob/main/docs/creating-editing-and-removing-specialist-document-types-and-finders.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fspecialist-publisher%2Fcreating-editing-and-removing-specialist-document-types-and-finders.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
