@@ -29,8 +29,8 @@ Mandatory steps:
 - Confirm you have full [Production Admin access](/manual/rules-for-getting-production-access.html#production-admin-access) (should see `production_admin_access` next to your name [in govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml))
 - Confirm you can [access the Notify dashboard](/manual/govuk-notify.html#accessing-the-dashboard)
 - Confirm you can [access AWS](/manual/get-started.html#sign-in-to-aws) (over web console and CLI)
-- Confirm you can [access GCP](/manual/google-cloud-platform-gcp.html) (using the web console and the gcloud CLI) - you may need it
-- Confirm you can access [Statuspage](https://manage.statuspage.io/pages/xcz7hfscrbjs/incidents)
+- Confirm you can [access GCP](/manual/google-cloud-platform-gcp.html) (using the web console and the gcloud CLI)
+- Confirm you can access [GOV.UK's Statuspage account](https://manage.statuspage.io/pages/xcz7hfscrbjs/incidents)
 - Ensure you can log into Zendesk (follow the [Zendesk onboarding instructions](/manual/zendesk.html#get-started))
 - You know how to [contact the rest of SMT](https://drive.google.com/drive/search?q=GOV.UK%20SMT%20Escalations%20rota), if the on-call SMT is unavailable.
 
