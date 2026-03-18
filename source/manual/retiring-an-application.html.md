@@ -112,6 +112,12 @@ See step 1.
 - Edit the application in the release app (you'll need the `deploy` permission to do this)
 - Press the 'Delete application' button.
 
+### Delete the app in Sentry
+
+- In Sentry go to 'Settings' then 'Projects' and select the application
+- Under 'PROJECT ADMINISTRATION' click 'Remove Project'. (You'll need to be an organization-level owner, manager or team-level admin in Sentry to be able to remove a project.)
+- Remove the related key/value pair, e.g. `application-name-dsn` from `govuk/common/sentry` secret in AWS Secrets Manager for all three environments
+
 ### Retire a Document DB from the Shared DocumentDB Instance
 
 See the [DocumentDB and MongoDB](/manual/documentdb-mongodb.html) Documentation for instructions on how to do this.
