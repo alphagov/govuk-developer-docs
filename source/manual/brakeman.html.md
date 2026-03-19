@@ -14,7 +14,7 @@ as a job in the CI pipeline of all GOV.UK Ruby repositories.
 
 [brakeman]: https://github.com/presidentbeef/brakeman
 [rubocop]: https://github.com/rubocop-hq/rubocop
-[reusable workflow][https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/brakeman.yml]
+[reusable workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/brakeman.yml
 
 ## Add Brakeman to a project
 
