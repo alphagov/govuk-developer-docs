@@ -20,13 +20,13 @@ images which are uploaded via the publishing apps and attached to documents.
 
 These assets are served from `https://www.gov.uk/assets` with a path associated
 with the application that is serving them. For example files within
-`https://www.gov.uk/assets/government-frontend` are assets for the
-[Government Frontend](/repos/government-frontend.html) application. These files
+`https://www.gov.uk/assets/frontend` are assets for the
+[Frontend](/repos/frontend.html) application. These files
 are cached by [the GOV.UK content delivery network](cdn.html).
 
 These assets are served by the cache machines, these will proxy requests to
-the application based on the path. For example `/assets/government-frontend/`
-will proxy asset requests to Government Frontend
+the application based on the path. For example `/assets/frontend/`
+will proxy asset requests to Frontend
 
 ## Uploaded assets
 

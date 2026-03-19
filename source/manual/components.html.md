@@ -16,7 +16,6 @@ Components in applications are documented in component guides using the [govuk_p
 Find components in these guides:
 
 * [govuk_publishing_components component guide](https://components.publishing.service.gov.uk/component-guide)
-* [government-frontend component guide](https://govuk-government-frontend.herokuapp.com/component-guide)
 * [collections component guide](https://govuk-collections.herokuapp.com/component-guide/)
 * [finder-frontend component guide](https://govuk-finder-frontend.herokuapp.com/component-guide)
 * [frontend component guide](https://govuk-frontend.herokuapp.com/component-guide)

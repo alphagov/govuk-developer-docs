@@ -24,14 +24,13 @@ The language tag should be compatible with the [IETF Language Tag syntax][] and 
 
 ### Obtaining translations for internationalised strings
 
-At the time of writing, there are four codebases where we store internationalised strings. These are:
+At the time of writing, there are three codebases where we store internationalised strings. These are:
 
 - [Frontend](/repos/frontend.html)
-- [Government-frontend](/repos/government-frontend.html)
 - [Govuk-publishing-components](/repos/govuk_publishing_components.html)
 - [Govuk-app-config](/repos/govuk-app-config.html)
 
-Developers must export a csv containing all internationalised strings from frontend, government-frontend and govuk-publishing-components to be sent to the translator. Documentation on how to do this is available in [Rails translation manager](/repos/rails_translation_manager/translating-locale-files.html).
+Developers must export a csv containing all internationalised strings from frontend and govuk-publishing-components to be sent to the translator. Documentation on how to do this is available in [Rails translation manager](/repos/rails_translation_manager/translating-locale-files.html).
 
 Check if the new language is already supported by the Rails framework by looking for your language tag in the [rails locale folder][]. If it's not supported, translations will also be needed for govuk-app-config. The internationalised strings that Rails requires contain a lot of interpolation, which has proved challenging for translators to understand. There is a [template csv file][] that contains instructions for translators which can be used for the govuk-app-config translations.
 
@@ -43,14 +42,14 @@ Once translations have been obtained from the translators, publishing and render
 
 > Do not complete steps 3, 4 and 5 before steps 1 and 2 have been completed. This can cause failures in our CI/CD when the frontend rendering applications are asked to render content for all the locales publishable by whitehall.
 
-### 1. Add support for your new language to the frontend rendering applications
+### 1. Add support for your new language to the frontend rendering application
 
-At the time of writing, Whitehall content is rendered by either Frontend or Government Frontend. So both applications must be updated.
+Whitehall content is rendered by Frontend.
 
-[Example PR in government](https://github.com/alphagov/government-frontend/pull/1382)
+[Example PR](https://github.com/alphagov/frontend/pull/4971)
 
 1. Add the new language tag to `config/application.rb` and `config/locales/en.yml` in alphabetical order
-2. From within frontend, or government frontend, create a folder `tmp/locale_file`
+2. From within Frontend, create a folder `tmp/locale_file`
 3. Add your csv from the translator to this folder. The name of the csv should be in the format: `<new_locale>.csv`, eg `ky.csv`
 4. Run the following commands to import your csv, and create a new locale file.
 

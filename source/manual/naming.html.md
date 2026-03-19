@@ -40,7 +40,7 @@ Applications that render content to end users on GOV.UK are named
 
 Good:
 
-- government-frontend
+- finder-frontend
 - email-alert-frontend
 
 Not so good:

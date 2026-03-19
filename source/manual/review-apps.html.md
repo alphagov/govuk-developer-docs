@@ -14,7 +14,7 @@ looks with live data.
 These are examples of GOV.UK apps that have review apps enabled:
 
 - [collections](https://github.com/alphagov/collections)
-- [government-frontend](https://github.com/alphagov/government-frontend)
+- [frontend](https://github.com/alphagov/frontend)
 - [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs) - this project
 - [smart-answers](https://github.com/alphagov/smart-answers)
 
@@ -102,7 +102,7 @@ Heroku.
 
 Check out the `app.json` files on both
 [collections](https://github.com/alphagov/collections/blob/main/app.json) and
-[government-frontend](https://github.com/alphagov/government-frontend/blob/main/app.json)
+[frontend](https://github.com/alphagov/frontend/blob/main/app.json)
 for examples of necessary environment variables.
 
 You can create the application via the `app.json` file.

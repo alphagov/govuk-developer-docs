@@ -68,7 +68,7 @@ k exec -it deploy/content-store -- rails c
 ### Open a shell in an app container
 
 ```sh
-k exec -it deploy/government-frontend -- bash
+k exec -it deploy/frontend -- bash
 ```
 
 ### Open a shell on Router
