@@ -14,7 +14,7 @@ available on the public website.
 ## Design
 
 Content Preview consists of separate "draft" deployments of Router, Content
-Store and the frontend rendering apps such as government-frontend.
+Store and the frontend rendering apps such as Frontend.
 
 Publishing tools send content to
 [publishing-api](https://github.com/alphagov/publishing-api). Every content

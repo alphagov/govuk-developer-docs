@@ -18,17 +18,17 @@ The following sections contain specific details of these approaches.
 
 ### Using govuk-docker
 
-This assumes that you have already installed and setup [govuk-docker]. We will use [government-frontend] as an example here, but these instructions apply to any frontend app.
+This assumes that you have already installed and setup [govuk-docker]. We will use [frontend] as an example here, but these instructions apply to any frontend app.
 
 If you are making changes to a frontend app and nothing else, you can view these changes by running the following:
 
 ```shell
 cd ~/govuk/govuk-docker
-make government-frontend
+make frontend
 
-cd ~/govuk/government-frontend
+cd ~/govuk/frontend
 govuk-docker-up app-live
-# You can now view the app on government-frontend.dev.gov.uk
+# You can now view the app on frontend.dev.gov.uk
 ```
 
 Some frontend apps can be run against integration too. For example:
@@ -42,10 +42,10 @@ For `frontend`, if you wish to develop the CSV Preview functionality without hav
 
 ### Using startup scripts
 
-If you are making changes to certain frontend apps you can also view these changes by running the application's `./startup.sh` script - if it has one. This example is for [government-frontend], but these instructions may apply to other frontend apps.
+If you are making changes to certain frontend apps you can also view these changes by running the application's `./startup.sh` script - if it has one. This example is for [frontend], but these instructions may apply to other frontend apps.
 
 ```shell
-cd ~/govuk/government-frontend
+cd ~/govuk/frontend
 ./startup.sh --live
 # Check the output to see what port the app is running on, e.g: localhost:3005
 ```
@@ -64,7 +64,7 @@ To make this change take effect when using govuk-docker, do the following.
 cd [directory where application is]
 govuk-docker-run bundle install
 govuk-docker-up app-live
-# You can now view the app on government-frontend.dev.gov.uk
+# You can now view the app on frontend.dev.gov.uk
 ```
 
 To make this change take effect when using startup scripts, do the following.
@@ -112,7 +112,7 @@ sudo fuser -k [port number]/tcp
 [govuk_app_config]: https://github.com/alphagov/govuk_app_config
 [frontend]: https://github.com/alphagov/frontend
 [govuk_publishing_components]: https://github.com/alphagov/govuk_publishing_components
-[government-frontend]: https://github.com/alphagov/government-frontend
+[frontend]: https://github.com/alphagov/frontend
 [govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/README.md
 
 ### Changes in assets don't appear

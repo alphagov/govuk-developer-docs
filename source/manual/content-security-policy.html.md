@@ -26,7 +26,7 @@ that own admin applications to use it.
 
 We have a global base policy that can be modified in individual applications. When you need to make modifications you
 should prefer making changes in individual applications it is something that affects all GOV.UK pages or is across
-most applications. Each frontend app has an [initialiser](https://github.com/alphagov/government-frontend/blob/main/config/initializers/csp.rb)
+most applications. Each frontend app has an [initialiser](https://github.com/alphagov/frontend/blob/main/config/initializers/content_security_policy.rb)
 which invokes the CSP setting code in the gem.
 
 There are two approaches to apply a CSP configuration change to an individual application:

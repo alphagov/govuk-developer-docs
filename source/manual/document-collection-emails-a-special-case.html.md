@@ -7,10 +7,10 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-[Document collections][document_collections_schema] are a type of GOV.UK page that is published by Whitehall, and rendered by [government-frontend][government-frontend]. This documentation seeks to explain how emails work on document collection pages, because at the time of writing, both the signup journey and the resulting email subscription for these pages are unique.
+[Document collections][document_collections_schema] are a type of GOV.UK page that is published by Whitehall, and rendered by [frontend][frontend]. This documentation seeks to explain how emails work on document collection pages, because at the time of writing, both the signup journey and the resulting email subscription for these pages are unique.
 
 [document_collections_schema]: /document-types/document_collection.html
-[government-frontend]: https://github.com/alphagov/government-frontend
+[frontend]: https://github.com/alphagov/frontend
 
 ## Background: specialist topics retirement
 
@@ -77,7 +77,7 @@ It's worth highlighting that although the single page notification button looks 
 
 ### How does the Taxonomy topic email override field work
 
-When rendering a document collection page, government-frontend checks for the presence of a `taxonomy_topic_email_override` link in the content item.
+When rendering a document collection page, Frontend checks for the presence of a `taxonomy_topic_email_override` link in the content item.
 
 * If a link is found, the page is rendered with a [sign up link component][email-signup-documentation signup-link-heading] that will find or create a taxonomy topic email subscription for the topic stored in the field.
 

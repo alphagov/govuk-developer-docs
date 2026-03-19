@@ -40,10 +40,10 @@ You can save and load queries using the buttons in the top right. You may want t
 
 Every change to the query changes the URL in the browser. This URL is rather long and unfriendly, and often gets mangled by the Slack or Trello parser when trying to share it. Instead, you can generate a "short URL" by clicking the "Share" link in the top right, followed by "Short URL".
 
-### All requests rendered by the content_items controller in government-frontend
+### All requests rendered by the content_items controller in frontend
 
 ```rb
-application: government-frontend AND tags: request AND controller: content_items
+application: frontend AND tags: request AND controller: content_items
 ```
 
 ### All requests within the /government/groups path

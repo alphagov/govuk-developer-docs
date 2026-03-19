@@ -44,7 +44,7 @@ Fastly will then try to get a response from its cache.
 
 ### Application layer
 
-The application (for example, [government-frontend](/repos/government-frontend.html) or [collections](/repos/collections.html)) inspects the `GOVUK-ABTest-Example` header to determine which version of the content to return.
+The application (for example, [frontend](/repos/frontend.html) or [collections](/repos/collections.html)) inspects the `GOVUK-ABTest-Example` header to determine which version of the content to return.
 
 It also adds an extra response header: `vary: GOVUK-ABTest-Example`. This instructs Fastly and Varnish to cache both versions of the page separately.
 

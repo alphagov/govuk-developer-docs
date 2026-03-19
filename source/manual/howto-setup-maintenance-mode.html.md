@@ -4,7 +4,7 @@ title: Setup maintenance mode
 section: Frontend
 layout: manual_layout
 parent: "/manual.html"
-related_repos: [frontend, government-frontend]
+related_repos: [frontend]
 ---
 
 ## What is maintenance mode?
