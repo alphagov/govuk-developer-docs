@@ -1,0 +1,1587 @@
+
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>publishing-api: Publishing API's API - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-api/api.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="publishing-api: Publishing API's API - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/api.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="publishing-api: Publishing API's API" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/api.html" />
+
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var markup = `<div id="global-cookie-message" data-module="cookie-banner" data-nosnippet="" aria-label="Can we store analytics cookies on your device?" class="gem-c-cookie-banner govuk-clearfix govuk-cookie-banner js-banner-wrapper" role="region" hidden="hidden" title="Can we store analytics cookies on your device?"> <div class="govuk-cookie-banner__message govuk-width-container"> <div class="govuk-grid-row"> <div class="govuk-grid-column-two-thirds"> <h2 class="govuk-cookie-banner__heading govuk-heading-m">Can we store analytics cookies on your device?</h2> <div tabindex="-1" class="govuk-cookie-banner__content gem-c-cookie-banner__confirmation"> <div class="gem-c-cookie-banner__content"><p class='govuk-body'>We’d like to set some cookies to understand how you use this site and remember your settings.</p><p class='govuk-body'>We also use cookies set by other sites to help us deliver content from their services.</p></div> <p class="gem-c-cookie-banner__confirmation-message--accepted govuk-body" hidden data-ga4-cookie-banner data-module="ga4-link-tracker" data-ga4-track-links-only data-ga4-set-indexes data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" >You have accepted additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> <p class="gem-c-cookie-banner__confirmation-message--rejected govuk-body" hidden>You have rejected additional cookies. <span class="gem-c-cookie-banner__confirmation-message">You can <a class="govuk-link" href="/cookies.html">change your cookie settings</a> at any time.</span></p> </div> </div> </div> <div class="js-confirmation-buttons govuk-button-group"> <button class="gem-c-button govuk-button" type="submit" data-accept-cookies="true" data-cookie-types="all">Accept additional cookies</button> <button class="gem-c-button govuk-button" type="submit" data-reject-cookies="true">Reject additional cookies</button> <a class="govuk-link" href="/cookies.html">View cookies</a> </div> <div hidden class="js-hide-button govuk-button-group"> <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true" data-module="ga4-event-tracker" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;cookie banner&quot;,&quot;action&quot;:&quot;closed&quot;,&quot;section&quot;:&quot;You have accepted additional cookies&quot;}" > Hide cookie message </button> </div> </div> </div>`;
+    var banner = document.createElement('div');
+    banner.innerHTML = markup;
+    document.body.prepend(banner);
+  })
+</script>
+
+
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/publishing-api.html" rel="noopener" class="govuk-link">publishing-api</a>
+    </li>
+    <li>
+      <ul>
+            <li><a href="/repos/publishing-api/admin-tasks.html" rel="noopener" class="govuk-link">Admin Tasks</a></li>
+    <li><a href="/repos/publishing-api/api.html" rel="noopener" class="govuk-link">Publishing API's API</a></li>
+    <li><a href="/repos/publishing-api/data-migration.html" rel="noopener" class="govuk-link">Writing data migrations</a></li>
+    <li><a href="/repos/publishing-api/deleting-content.html" rel="noopener" class="govuk-link">Deleting Documents, Editions and Links</a></li>
+    <li><a href="/repos/publishing-api/dependency-resolution.html" rel="noopener" class="govuk-link">Dependency Resolution</a></li>
+    <li><a href="/repos/publishing-api/link-expansion.html" rel="noopener" class="govuk-link">Links and Link Expansion</a></li>
+    <li><a href="/repos/publishing-api/model.html" rel="noopener" class="govuk-link">Publishing API's Model</a></li>
+    <li><a href="/repos/publishing-api/publishing-application-examples.html" rel="noopener" class="govuk-link">Publishing application examples</a></li>
+    <li><a href="/repos/publishing-api/rabbitmq.html" rel="noopener" class="govuk-link">RabbitMQ</a></li>
+    <li class="subdir__heading">arch</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/arch/adr-001-use-event-sourcing-pattern.html" rel="noopener" class="govuk-link">Decision record: use event sourcing</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-002-dont-log-events-which-result-in-error.html" rel="noopener" class="govuk-link">Decision record: don't log events which result in an error</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-003-representation-for-multiple-content-types.html" rel="noopener" class="govuk-link"># Decision Record: Representation for Multiple Content Types</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-004-govspeak-and-embedded-content.html" rel="noopener" class="govuk-link"># Decision Record: Govspeak and embedded content</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-005-documents-and-editions.html" rel="noopener" class="govuk-link">Decision Record: Resolve consistency and uniqueness in content</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-006-new-event-type-for-content-blocks.html" rel="noopener" class="govuk-link">Decision Record: Add new event type to add custom dependency resolution behaviour when a Content Block is updated</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-007-move-content-block-rendering-logic-to-external-gem.html" rel="noopener" class="govuk-link">Decision Record: Move Content Block rendering logic to external gem</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-008-typing-for-graphql-editions.html" rel="noopener" class="govuk-link">Decision Record: Typing for GraphQL proof of concept</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-009-change-linksets-primary-key-to-content-id.html" rel="noopener" class="govuk-link">Decision Record: Change link_sets primary key from serial to content_id</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-010-add-content-block-information-to-the-downstream-payload.html" rel="noopener" class="govuk-link">Decision Record: Include Content Block Change Notes in Downstream Payloads</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-011-cache-rendered-govspeak.html" rel="noopener" class="govuk-link">Decision Record: Cache Rendered Govspeak</a></li>
+    <li><a href="/repos/publishing-api/arch/adr-012-representing-change-history.html" rel="noopener" class="govuk-link">Decision Record: Update representation of change history</a></li>
+
+    </ul>
+    <li class="subdir__heading">archive</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/archive/data-cleanup-plan.html" rel="noopener" class="govuk-link">Data Cleanup Plan: 17th December, 2015</a></li>
+
+    </ul>
+    <li class="subdir__heading">content_schemas</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/content_schemas/adding-a-new-schema.html" rel="noopener" class="govuk-link">Adding a new content schema</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/changing-an-existing-content-schema.html" rel="noopener" class="govuk-link">Changing an existing content schema</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/contract-testing-against-schemas.html" rel="noopener" class="govuk-link">Contract Testing against Schemas</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/retiring-a-schema.html" rel="noopener" class="govuk-link">How to retire a content schema</a></li>
+    <li><a href="/repos/publishing-api/content_schemas/working-with-json-schema-keywords.html" rel="noopener" class="govuk-link">Working with JSON Schema keywords</a></li>
+
+    </ul>
+    <li class="subdir__heading">model</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/publishing-api/model/README.html" rel="noopener" class="govuk-link">README</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "publishing-api",
+        "@id": "http://www.dev.gov.uk/repos/publishing-api.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/publishing-api.html">publishing-api</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/775fecf9e3f8bcf16f67db59542f32c14113d567">17 Dec 2025</a>
+</div>
+
+  <h1 class="page-title">publishing-api: Publishing API's API</h1>
+
+  
+<p>This is the primary interface from publishing apps to the publishing pipeline.
+Applications PUT items as JSON conforming to a schema specified in the <code>content_schemas</code> directory.</p>
+<p>Content locations are arbitrated internally by the Publishing API, the content
+is then forwarded to the live and draft content stores, and placed on the
+message queue for other apps (e.g. <code>email-alert-service</code>) to consume.</p>
+<h2 id="endpoints">Endpoints</h2>
+<ul>
+<li><a href="#put-v2contentcontent_id"><code>PUT /v2/content/:content_id</code></a></li>
+<li><a href="#post-v2contentcontent_idpublish"><code>POST /v2/content/:content_id/publish</code></a></li>
+<li><a href="#post-v2contentcontent_idrepublish"><code>POST /v2/content/:content_id/republish</code></a></li>
+<li><a href="#post-v2contentcontent_idunpublish"><code>POST /v2/content/:content_id/unpublish</code></a></li>
+<li><a href="#post-v2contentcontent_iddiscard-draft"><code>POST /v2/content/:content_id/discard-draft</code></a></li>
+<li><a href="#get-v2content"><code>GET /v2/content</code></a></li>
+<li><a href="#get-v2contentcontent_id"><code>GET /v2/content/:content_id</code></a></li>
+<li><a href="#get-v2contentcontent_idhost-content"><code>GET /v2/content/:content_id/host-content</code></a></li>
+<li><a href="#get-v2contentcontent_idhost-contenthost_content_id"><code>GET /v2/content/:content_id/host-content/:host_content_id</code></a></li>
+<li><a href="#get-v2contentcontent_idevents"><code>GET /v2/content/:content_id/events</code></a></li>
+<li><a href="#patch-v2linkscontent_id"><code>PATCH /v2/links/:content_id</code></a></li>
+<li><a href="#get-v2linkscontent_id"><code>GET /v2/links/:content_id</code></a></li>
+<li><a href="#get-v2expanded-linkscontent_id"><code>GET /v2/expanded-links/:content_id</code></a></li>
+<li><a href="#get-v2linkedcontent_id"><code>GET /v2/linked/:content_id</code></a></li>
+<li><a href="#get-v2linkables"><code>GET /v2/linkables</code></a></li>
+<li><a href="#get-v2linkschanges"><code>GET /v2/links/changes</code></a></li>
+<li><a href="#get-v2editions"><code>GET /v2/editions</code></a></li>
+<li><a href="#post-v2linksby-content-id"><code>POST /v2/links/by-content-id</code></a></li>
+<li><a href="#get-v2schemas"><code>GET /v2/schemas</code></a></li>
+<li><a href="#get-v2schemasschema_name"><code>GET /v2/schemas/:schema_name</code></a></li>
+<li><a href="#post-lookup-by-base-path"><code>POST /lookup-by-base-path</code></a></li>
+<li><a href="#put-pathsbase_path"><code>PUT /paths/:base_path</code></a></li>
+<li><a href="#delete-pathsbase_path"><code>DELETE /paths/:base_path</code></a></li>
+<li><a href="#put-publish-intentbase_path"><code>PUT /publish-intent(/*base_path)</code></a></li>
+<li><a href="#delete-publish-intentbase_path"><code>DELETE /publish-intent(/*base_path)</code></a></li>
+</ul>
+<h3 id="optimistic-locking-previous_version">Optimistic locking (<code>previous_version</code>)</h3>
+<p>All PUT and POST endpoints take an optional JSON attribute <code>previous_version</code>
+in the request. If given, the corresponding value should be a integer. This
+allows the Publishing API to check that the publishing app sending the request
+intends to update the latest lock version of the model in question.</p>
+<p>If <code>previous_version</code> is provided, the Publishing API will confirm that the
+provided value matches that of the edition in the Publishing API. If it
+does not, a 409 Conflict response will be provided.</p>
+<h3 id="warnings">Warnings</h3>
+<p>Some endpoints may return warnings along with the content. For
+those that do, in the top level object for the content, there
+will be a value named "warnings". This will be an object, where the
+names are the warnings that are applicable, and the corresponding
+values are a human readable description of the warning.</p>
+<h4 id="content-item-blocking-publish">Content Item Blocking Publish</h4>
+<p>This warning is only applicable for documents with an edition in a draft state,
+and indicates that the draft cannot be published due to the presence of an
+edition of a different at the base_path this edition is using.</p>
+<p>Some document types are exempt from this restriction, and if either the draft,
+or the blocking edition are of a "substitutable" document type, upon the
+publish of the draft, the blocking item will be unpublished.</p>
+<h2 id="put-v2contentcontent_id"><code>PUT /v2/content/:content_id</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_from_the_Whitehall_application_to_create_a_content_item_at_/test-item_given_/test-item_has_been_reserved_by_the_Publisher_application">Request/Response detail</a></p>
+<p>Used to create or update a draft edition of a document. It will restrict
+creation if there is different document with a draft edition using the same
+<code>base_path</code>. Uses <a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
+<p>The request must conform to the schema. If it does not, a 422 response will be returned.</p>
+<p>If the request is successful, this endpoint will respond with the
+presented edition and <a href="#warnings">warnings</a>.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Specifies the <code>content_id</code> of the content to be created or updated.</li>
+</ul>
+</li>
+</ul>
+<h3 id="json-attributes">JSON attributes</h3>
+<ul>
+<li>
+<code>access_limited</code> <em>(optional)</em>
+<ul>
+<li>A JSON object with a key of "users" the value of which is a array of UUIDs
+identifying users.</li>
+<li>If provided, only the specified users will be able to view the content item
+on the draft frontend applications. It has no effect on live content.</li>
+</ul>
+</li>
+<li>
+<code>analytics_identifier</code> <em>(optional)</em>
+<ul>
+<li>An identifier to track the content item in analytics software.</li>
+</ul>
+</li>
+<li>
+<code>base_path</code> <em>(conditionally required)</em>
+<ul>
+<li>Required if <code>schema_name</code> is not one of "contact" or "government".</li>
+<li>The path that this item will use on <a href="https://www.gov.uk">GOV.UK</a>.</li>
+</ul>
+</li>
+<li>
+<code>change_note</code> <em>(optional)</em>
+<ul>
+<li>Specifies the <a href="/repos/publishing-api/model.html">change note</a>.</li>
+<li>Ignored if the <code>update_type</code> is not "major" or "content_block".</li>
+</ul>
+</li>
+<li>
+<code>description</code> <em>(optional)</em>
+<ul>
+<li>A description of the content that can be displayed publicly.</li>
+</ul>
+</li>
+<li>
+<code>details</code> <em>(conditionally required, default: {})</em>
+<ul>
+<li>JSON object representing data specific to the <code>document_type</code>.</li>
+<li>If there is no top-level <code>change_note</code> attribute, and this is a "major"
+<code>update_type</code>, then the Publishing API may extract the <code>change_note</code> from
+the details hash.
+<ul>
+<li>If <code>details</code> has a member named <code>change_note</code>, that is used.</li>
+<li>Otherwise, if <code>details</code> contains a member named
+<code>change_history</code>, then the <code>note</code> with the latest corresponding
+<code>public_timestamp</code> is used.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<code>document_type</code> <em>(required)</em>
+<ul>
+<li>A particular type of document, used to differentiate between documents that
+are of different types but share the same schema.</li>
+</ul>
+</li>
+<li>
+<code>first_published_at</code> <em>(optional)</em>
+<ul>
+<li>Specifies the first_published_at date from the publishing app.</li>
+</ul>
+</li>
+<li>
+<code>last_edited_at</code> <em>(optional)</em>
+<ul>
+<li>An <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a> formatted timestamp should be provided, although
+<a href="http://apidock.com/rails/String/to_time">other formats</a> may be accepted.</li>
+<li>Specifies when this edition was last edited.</li>
+<li>If omitted and <code>update_type</code> is "major" or "minor" <code>last_edited_at</code> will be
+set to the current time.</li>
+</ul>
+</li>
+<li>
+<code>links</code> <em>(optional, default: {})</em>
+<ul>
+<li>A JSON object containing arrays of <a href="/repos/publishing-api/model.html"><code>content_id</code></a>s for
+each <code>link_type</code>.</li>
+<li>Applicable <code>link_type</code>s are defined in the schema for this document_type.</li>
+</ul>
+</li>
+<li>
+<code>locale</code> <em>(optional, default: "en")</em>
+<ul>
+<li>Accepts: An available locale from the <a href="https://github.com/svenfuchs/rails-i18n">Rails I18n gem</a>
+</li>
+<li>Specifies the locale of the edition.</li>
+</ul>
+</li>
+<li>
+<code>phase</code> <em>(optional, default: "live")</em>
+<ul>
+<li>Accepts: "alpha", "beta", "live"</li>
+</ul>
+</li>
+<li>
+<code>previous_version</code> <em>(optional, recommended)</em>
+<ul>
+<li>Used to ensure that the most recent version of the draft is being updated.</li>
+</ul>
+</li>
+<li>
+<code>public_updated_at</code> <em>(optional)</em>
+<ul>
+<li>Used to override the <code>public_updated_at</code> value that would be set by the
+Publishing API.</li>
+<li>An <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a> formatted timestamp should be provided, although
+<a href="http://apidock.com/rails/String/to_time">other formats</a> may be accepted.</li>
+</ul>
+</li>
+<li>
+<code>publishing_app</code> <em>(required)</em>
+<ul>
+<li>The hostname for the publishing application that has sent this content.</li>
+</ul>
+</li>
+<li>
+<code>redirects</code> <em>(conditionally required)</em>
+<ul>
+<li>Required for a <code>document_type</code> of "redirect".</li>
+<li>An array of redirect values. (TODO: link directly to example)</li>
+</ul>
+</li>
+<li>
+<code>rendering_app</code> <em>(conditionally required)</em>
+<ul>
+<li>Required for a <code>document_type</code> (or <code>format</code>) that is not "redirect" or
+"gone".</li>
+<li>The hostname for the frontend application that will eventually render this
+content.</li>
+</ul>
+</li>
+<li>
+<code>routes</code> <em>(conditionally required)</em>
+<ul>
+<li>Required for a <code>document_type</code> that is not "redirect".</li>
+<li>An array of route values.</li>
+</ul>
+</li>
+<li>
+<code>schema_name</code> <em>(required)</em>
+<ul>
+<li>The name of the schema that the request body will be validated against.</li>
+</ul>
+</li>
+<li>
+<code>title</code> <em>(conditionally required)</em>
+<ul>
+<li>Required for a <code>document_type</code> that is not "redirect" or "gone".</li>
+</ul>
+</li>
+<li>
+<code>update_type</code> <em>(optional)</em>
+<ul>
+<li>Accepts: "major", "minor", "republish"</li>
+<li>It is acceptable to send a "minor" update for the first ever draft</li>
+</ul>
+</li>
+<li>
+<code>bulk_publishing</code> <em>(optional, default: false)</em>
+<ul>
+<li>Set this to true when making multiple requests. Publishing API will use a
+lower priority queue to avoid delays to standard publishing activity.</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-changes">State changes</h3>
+<ul>
+<li>If a <code>base_path</code> is provided it is reserved for use of the given
+<code>publishing_app</code>.</li>
+<li>If this is changing the <code>base_path</code> of a draft edition the previous
+<code>base_path</code> reserved will be discarded.</li>
+<li>Any draft editions for different documents that have a matching <code>base_path</code>
+and have a document_type of "coming soon", "gone", "redirect" or
+"unpublishing" will be deleted.</li>
+<li>If an edition for this document already exists in a "draft" state:
+<ul>
+<li>The existing draft edition will be updated.</li>
+<li>If the <code>base_path</code> has changed since the last update, a draft redirect
+will be created.</li>
+</ul>
+</li>
+<li>If an edition for this document does not exist in a "draft" state:
+<ul>
+<li>A new edition will be created</li>
+<li>If the <code>base_path</code> is different to that of the published edition (if this
+exists) a draft redirect will be created.</li>
+</ul>
+</li>
+<li>The draft content store will be updated with the edition and any associated
+redirects.</li>
+</ul>
+<h2 id="post-v2contentcontent_idpublish"><code>POST /v2/content/:content_id/publish</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_publish_request_for_version_3_given_the_content_item_bed722e6-db68-43e5-9079-063f623335a7_is_at_version_3">Request/Response detail</a></p>
+<p>Transitions an edition from a draft state to a published state. The edition
+will be presented in the live content store. Uses
+<a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the document which has an edition to publish.</li>
+</ul>
+</li>
+</ul>
+<h3 id="json-attributes">JSON attributes</h3>
+<ul>
+<li>
+<code>update_type</code> <em>(conditionally required, deprecated)</em>
+<ul>
+<li>Accepts: "major", "minor", "republish"</li>
+<li>Will fallback to the <code>update_type</code> set when the draft was created if not
+specified in the request.</li>
+<li>This is deprecated, clients should instead set the update type when
+putting the content.</li>
+</ul>
+</li>
+<li>
+<code>locale</code> <em>(optional, default: "en")</em>
+<ul>
+<li>Accepts: An available locale from the <a href="https://github.com/svenfuchs/rails-i18n">Rails I18n gem</a>
+</li>
+<li>Specifies the locale of the document.</li>
+</ul>
+</li>
+<li>
+<code>previous_version</code> <em>(optional, recommended)</em>
+<ul>
+<li>Used to ensure that the version being published is the most recent draft
+update to the document.</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-changes">State changes</h3>
+<ul>
+<li>The draft edition for a document matching <code>content_id</code> and <code>locale</code> will
+change state to "published"</li>
+<li>Any previously published editions for this document will have their state set
+to "superseded".</li>
+<li>For an <code>update_type</code> of "major" the <code>public_updated_at</code> field will be updated
+to the current time.</li>
+<li>For an <code>update_type</code> other than "major" or "content_block":
+<ul>
+<li>If it exists, the <a href="/repos/publishing-api/model.html">change note</a> will be
+deleted, as change notes are only for major updates.</li>
+</ul>
+</li>
+<li>If the edition has a non-blank <code>base_path</code>:
+<ul>
+<li>If the <code>base_path</code> of the draft item differs to the published version of
+this edition:
+<ul>
+<li>Redirects to this edition will be published.</li>
+</ul>
+</li>
+<li>Any published editions that have a matching <code>base_path</code> and have a
+document_type of "coming soon", "gone", "redirect" or "unpublishing" will
+have their state changed to "unpublished" with a type
+of "substitute".</li>
+<li>The live content store will be updated with the published edition and any
+associated redirects.</li>
+<li>All published editions that link to this item (directly or through a
+recursive chain of links) will be updated in the live content store.</li>
+</ul>
+</li>
+</ul>
+<h2 id="post-v2contentcontent_idrepublish"><code>POST /v2/content/:content_id/republish</code></h2>
+<p>Used to set a live edition to a published state, used to remove unpublishing
+or to re-send published data downstream. Uses
+<a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the document which has an edition to republish.</li>
+</ul>
+</li>
+</ul>
+<h3 id="json-attributes">JSON attributes</h3>
+<ul>
+<li>
+<code>locale</code> <em>(optional, default: "en")</em>
+<ul>
+<li>Accepts: An available locale from the <a href="https://github.com/svenfuchs/rails-i18n">Rails I18n gem</a>
+</li>
+<li>Specifies the locale of the document.</li>
+</ul>
+</li>
+<li>
+<code>previous_version</code> <em>(optional, recommended)</em>
+<ul>
+<li>Used to ensure that the version being published is the most recent draft
+update to the document.</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-changes">State changes</h3>
+<ul>
+<li>Any unpublished editions will have their status set back to published</li>
+<li>The publishing_request_id for an edition will be updated</li>
+<li>The live content store will be updated with the published edition</li>
+<li>The draft content store will be updated unless the document has a draft
+edition</li>
+<li>All published editions that link to this item (directly or through a
+recursive chain of links) will be updated in the live content store.</li>
+</ul>
+<h2 id="post-v2contentcontent_idunpublish"><code>POST /v2/content/:content_id/unpublish</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#an_unpublish_request_given_a_published_content_item_exists_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p>Transitions an edition of a document into an unpublished state. The edition will
+be updated or removed from the live content store depending on the unpublishing
+type. Uses <a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the document which will have an edition unpublished.</li>
+</ul>
+</li>
+</ul>
+<h3 id="json-attributes">JSON attributes</h3>
+<ul>
+<li>
+<code>allow_draft</code> <em>(optional)</em>
+<ul>
+<li>Boolean value, cannot be <code>true</code> if <code>discard_drafts</code> is also <code>true</code>.</li>
+<li>Specifies that only a draft edition will be unpublished.</li>
+</ul>
+</li>
+<li>
+<code>alternative_path</code> <em>(conditionally required)</em>
+<ul>
+<li>Required for a <code>type</code> of "redirect" (if <code>redirects</code> is not given), Optional for a <code>type</code> of "gone".</li>
+<li>If specified, this should be a <code>base_path</code>.</li>
+</ul>
+</li>
+<li>
+<code>redirects</code> <em>(conditionally required)</em>
+<ul>
+<li>Required for a <code>document_type</code> of "redirect" (if <code>alternative_path</code> is not given).</li>
+<li>An array of redirect values similar to that which can be passed to <a href="#put-v2contentcontent_id"><code>PUT /v2/content/:content_id</code></a>.</li>
+</ul>
+</li>
+<li>
+<code>discard_drafts</code> <em>(optional)</em>
+<ul>
+<li>Boolean value, cannot be <code>true</code> if <code>allow_drafts</code> is also <code>true</code>.</li>
+<li>Specifies that if a draft exists, it will be discarded.</li>
+</ul>
+</li>
+<li>
+<code>explanation</code> <em>(conditionally required)</em>
+<ul>
+<li>Required for a <code>type</code> of "withdrawal", Optional for a type of "gone".</li>
+<li>Message that will be displayed publicly on the page that has been unpublished.</li>
+</ul>
+</li>
+<li>
+<code>locale</code> <em>(optional, default: "en")</em>
+<ul>
+<li>Accepts: An available locale from the <a href="https://github.com/svenfuchs/rails-i18n">Rails I18n gem</a>
+</li>
+<li>Specifies the document to unpublish.</li>
+</ul>
+</li>
+<li>
+<code>previous_version</code> <em>(optional, recommended)</em>
+<ul>
+<li>Used to ensure that the version being unpublished is the most recent
+version of the document.</li>
+</ul>
+</li>
+<li>
+<code>type</code> <em>(required)</em>
+<ul>
+<li>Accepts: "gone", "redirect", "withdrawal", "vanish"</li>
+<li>The type of unpublishing that is being performed.</li>
+</ul>
+</li>
+<li>
+<code>unpublished_at</code> <em>(optional)</em>
+<ul>
+<li>An <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a> formatted timestamp should be provided, although
+<a href="http://apidock.com/rails/String/to_time">other formats</a> may be accepted.</li>
+<li>Specifies a publisher provided time of when this content was removed/withdrawn.</li>
+<li>Used to override the <code>withdrawn_at</code> time provided to content store, for
+withdrawn documents content.</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-changes">State changes</h3>
+<ul>
+<li>If the unpublishing <code>type</code> is "gone", "redirect" or "withdrawal":
+<ul>
+<li>If the document matching <code>content_id</code> and <code>locale</code> has a draft state and
+<code>allow_draft</code> is <code>true</code>:
+<ul>
+<li>The draft edition state is set to "unpublished".</li>
+<li>If a previously published version of the edition exists it's state
+will be set to "superseded".</li>
+</ul>
+</li>
+<li>If the document matching <code>content_id</code> and <code>locale</code> has a draft and
+<code>discard_drafts</code> is <code>true</code>:
+<ul>
+<li>The draft edition will be deleted from the Publishing API.</li>
+<li>The draft edition will be removed from the draft content store.</li>
+<li>The published edition state is set to "unpublished".</li>
+</ul>
+</li>
+<li>If the document matching <code>content_id</code> and <code>locale</code> has no draft:
+<ul>
+<li>The published edition state is set to "unpublished".</li>
+</ul>
+</li>
+<li>The live content store will be updated with the unpublished edition.</li>
+<li>All published editions that link to this item (directly or through a
+recursive chain of links) will be updated in the live content store.</li>
+</ul>
+</li>
+<li>If the unpublishing <code>type</code> is "vanish":
+<ul>
+<li>The edition will be removed from the live content store.</li>
+</ul>
+</li>
+</ul>
+<h2 id="post-v2contentcontent_iddiscard-draft"><code>POST /v2/content/:content_id/discard-draft</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_discard_draft_content_given_a_content_item_exists_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p>Deletes a draft edition of a document. Replaces the draft content item on
+the draft content store with the published item, if one exists. Uses
+<a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the document with a draft edition.</li>
+</ul>
+</li>
+</ul>
+<h3 id="json-attributes">JSON attributes</h3>
+<ul>
+<li>
+<code>locale</code> <em>(optional, default: "en")</em>
+<ul>
+<li>Accepts: An available locale from the <a href="https://github.com/svenfuchs/rails-i18n">Rails I18n gem</a>
+</li>
+<li>With content_id, specifies the document with a draft edition.</li>
+</ul>
+</li>
+<li>
+<code>previous_version</code> <em>(optional, recommended)</em>
+<ul>
+<li>Used to ensure the edition being discarded is the current draft.</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-changes">State changes</h3>
+<ul>
+<li>The draft edition will be deleted from the Publishing API.</li>
+<li>Any reserved paths unique to the draft edition will also be discarded.</li>
+<li>The draft edition will be removed from the draft content store.</li>
+<li>If a published edition exists it will be added to the draft content store.</li>
+</ul>
+<h2 id="get-v2content"><code>GET /v2/content</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get_entries_request_given_a_content_item_exists_in_multiple_locales_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p>Retrieves a paginated list of editions for the provided query string
+parameters. If editions exists in both a published and a draft for a document
+and a state has been specified, the draft is returned.</p>
+<h3 id="query-string-parameters">Query string parameters</h3>
+<ul>
+<li>
+<code>document_type</code> <em>(optional)</em>
+<ul>
+<li>The type of editions to return.</li>
+</ul>
+</li>
+<li>
+<code>fields[]</code> <em>(optional)</em>
+<ul>
+<li>Accepts an array of: analytics_identifier, base_path,
+content_id_aliases, content_store, description, details, document_type,
+first_published_at, last_edited_at, major_published_at, phase,
+public_updated_at, published_at, publishing_api_first_published_at,
+publishing_api_last_edited_at, publishing_app, redirects, rendering_app,
+routes, schema_name, state, title, user_facing_version, update_type</li>
+<li>Determines which fields will be returned in the response, if omitted all
+fields will be returned.</li>
+</ul>
+</li>
+<li>
+<code>link_*</code> <em>(optional)</em>
+<ul>
+<li>Accepts a content_id.</li>
+<li>Used to restrict documents to those linking to another document,
+e.g. <code>link_organisations=056a9ff6-2ed1-4942-9f06-92df03da741d</code>
+will restrict the documents returned to those that have a link
+with type <code>organisations</code> to the document with specified content
+id.</li>
+</ul>
+</li>
+<li>
+<code>locale</code> <em>(optional, default "en")</em>
+<ul>
+<li>Accepts: An available locale from the <a href="https://github.com/svenfuchs/rails-i18n">Rails I18n gem</a>
+</li>
+<li>Used to restrict documents to a given locale.</li>
+</ul>
+</li>
+<li>
+<code>order</code> <em>(optional, default: "-public_updated_at")</em>
+<ul>
+<li>The field to sort the results by.</li>
+<li>Returned in an ascending order unless prefixed with a hyphen, e.g.
+"-base_path".</li>
+</ul>
+</li>
+<li>
+<code>page</code> <em>(optional, default: 1)</em>
+<ul>
+<li>The page of results requested.</li>
+</ul>
+</li>
+<li>
+<code>per_page</code> <em>(optional, default: 50)</em>
+<ul>
+<li>The number of results to be shown on a given page.</li>
+</ul>
+</li>
+<li>
+<code>q</code> <em>(optional)</em>
+<ul>
+<li>Search term to match against the fields in <code>search_in[]</code>.</li>
+</ul>
+</li>
+<li>
+<code>search_in[]</code> <em>(optional, default: [title, base_path])</em>
+<ul>
+<li>Array of fields to search against.</li>
+<li>Fields supported are <code>title</code>, <code>base_path</code>, <code>description</code>, and <code>details.*</code> -
+where * indicates a field within details, e.g. <code>details.internal_name</code>.</li>
+</ul>
+</li>
+<li>
+<code>publishing_app</code> <em>(optional)</em>
+<ul>
+<li>Used to restrict editions to those for a given publishing app.</li>
+</ul>
+</li>
+<li>
+<code>states</code> <em>(optional)</em>
+<ul>
+<li>Used to restrict editions to those in the specified states.</li>
+</ul>
+</li>
+<li>
+<code>content_id_aliases[]</code> <em>(optional)</em>
+<ul>
+<li>Accepts an array of content_id_aliases.</li>
+<li>Used to restrict editions to those which have a given content_id_alias associated with them</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2contentcontent_id"><code>GET /v2/content/:content_id</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_return_the_content_item_given_a_content_item_exists_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p>Retrieves a single edition of a document for a <code>content_id</code> and <code>locale</code>. By
+default the most recent edition is returned, which may be a draft.</p>
+<p>If the returned item is in the draft state, <a href="#warnings">warnings</a> may be
+included within the response.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the document to be returned.</li>
+</ul>
+</li>
+</ul>
+<h3 id="query-string-parameters">Query string parameters</h3>
+<ul>
+<li>
+<code>locale</code> <em>(optional, default "en")</em>
+<ul>
+<li>Accepts: An available locale from the <a href="https://github.com/svenfuchs/rails-i18n">Rails I18n gem</a>
+</li>
+<li>Used to return a specific locale.</li>
+</ul>
+</li>
+<li>
+<code>content_store</code> <em>(optional)</em>
+<ul>
+<li>Specify a content_store (live or draft) for the content item</li>
+<li>If omitted, the most recent edition (which may be a draft)</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2contentcontent_idevents"><code>GET /v2/content/:content_id/events</code></h2>
+<p>Retrieves a list of all events for a given <code>:content_id</code></p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the document to return events for</li>
+</ul>
+</li>
+</ul>
+<h3 id="query-parameters">Query parameters</h3>
+<ul>
+<li>
+<code>action</code> <em>(optional)</em>
+<ul>
+<li>Specify what action type to filter for</li>
+<li>If omitted, returns all actions</li>
+</ul>
+</li>
+<li>
+<code>from</code> <em>(optional)</em>
+<ul>
+<li>Filter for actions created after that particular datetime</li>
+</ul>
+</li>
+<li>
+<code>to</code> <em>(optional)</em>
+<ul>
+<li>Filter for actions created before that particular datetime</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2contentcontent_idhost-content"><code>GET /v2/content/:content_id/host-content</code></h2>
+<p>Retrieves a summary list of content which has an embedded reference to the target <code>:content_id</code>.</p>
+<!-- raw HTML omitted -->
+<p>Content can include an embedded reference in its body when
+it wants to defer to a reusable piece of content, such as an email address.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the target document for the reusable piece of content</li>
+</ul>
+</li>
+</ul>
+<h3 id="query-parameters">Query parameters</h3>
+<ul>
+<li>
+<code>order</code> <em>(optional, default: "unique_pageviews")</em>
+<ul>
+<li>The field to sort the results by.</li>
+<li>Returned in an ascending order unless prefixed with a hyphen, e.g.
+"-title".</li>
+</ul>
+</li>
+<li>
+<code>page</code> <em>(optional, default: "1")</em>
+<ul>
+<li>The page number of results to return</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2contentcontent_idhost-contenthost_content_id"><code>GET /v2/content/:content_id/host-content/:host_content_id</code></h2>
+<p>Returns metadata for a single item of content with ID <code>:host_content_id</code> that has an embedded reference to
+the target <code>:content_id</code>.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the target document for the reusable piece of content</li>
+</ul>
+</li>
+<li>
+<a href="/repos/publishing-api/model.html"><code>host_content_id</code></a>
+<ul>
+<li>Identifies the document to return the metadata for</li>
+</ul>
+</li>
+</ul>
+<h3 id="query-parameters">Query parameters</h3>
+<ul>
+<li>
+<code>locale</code> <em>(optional, default: "en")</em>
+<ul>
+<li>An optional locale to filter by</li>
+</ul>
+</li>
+</ul>
+<h2 id="patch-v2linkscontent_id"><code>PATCH /v2/links/:content_id</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_update_the_linkset_at_version_3_given_the_linkset_for_bed722e6-db68-43e5-9079-063f623335a7_is_at_version_3">Request/Response detail</a></p>
+<p>Creates or updates a set of links for the given <code>content_id</code>. Link sets can be
+created before or after the <a href="#put_v2contentcontent-id">PUT request</a> for the
+content. These are tied to documents solely by matching <code>content_id</code> and they
+are not associated with a locale or a particular edition. The ordering of links
+in the request is preserved.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the documents the links are for.</li>
+</ul>
+</li>
+</ul>
+<h3 id="json-attributes">JSON attributes</h3>
+<ul>
+<li>
+<code>links</code> <em>(required)</em>
+<ul>
+<li>A JSON object containing arrays of <a href="/repos/publishing-api/model.html"><code>content_id</code></a>s for
+each <code>link_type</code>.</li>
+<li>An empty array for a <code>link_type</code> will delete that <code>link_type</code>.</li>
+</ul>
+</li>
+</ul>
+<pre lang="json"><code>  {
+    "links": {
+      "organisations": [
+        "591436ab-c2ae-416f-a3c5-1901d633fbfb"
+      ],
+      "unwanted_link_type": []
+    }
+  }
+</code></pre>
+<ul>
+<li>
+<code>previous_version</code> <em>(optional, recommended)</em>
+<ul>
+<li>Used to ensure that we are updating the current version of the link set.</li>
+</ul>
+</li>
+<li>
+<code>bulk_publishing</code> <em>(optional, default: false)</em>
+<ul>
+<li>Set this to true when making multiple requests. Publishing API will use a lower priority queue to avoid delays to standard publishing activity.</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-changes">State changes</h3>
+<ul>
+<li>A link set is created or updated, with the <code>lock_version</code> of the link set
+being incremented.</li>
+<li>The draft content store is updated if there are editions of documents
+matching the <code>content_id</code> on the draft content store.</li>
+<li>The live content store is updated if there are editions of documents
+matching the <code>content_id</code> on the live content store.</li>
+</ul>
+<h2 id="get-v2linkscontent_id"><code>GET /v2/links/:content_id</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get-links_request_given_empty_links_exist_for_content_id_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p>Retrieves only the <a href="/repos/publishing-api/link-expansion.html">link set links</a> for the given <code>content_id</code>.
+Returns arrays of <code>content_id</code>s representing documents. These are grouped by
+<code>link_type</code>. The ordering of the returned links matches the ordering when they
+were created.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the documents links will be retrieved for.</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2expanded-linkscontent_id"><code>GET /v2/expanded-links/:content_id</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get-expanded-links_request_given_empty_links_exist_for_content_id_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
+<p>Retrieves the expanded link set for the given <code>content_id</code>. Returns arrays of
+details for each linked edition in groupings of <code>link_type</code>.</p>
+<p>To ensure fast performance the result for this is pulled from a database which
+is updated whenever the content store is updated. This may mean that if you
+update links and then request this endpoint you may get a stale response.</p>
+<p>You can request a fresh response by adding a query string of <code>generate=true</code>,
+this response can be slow though for large link sets.</p>
+<p>The response includes a field of <code>generated</code> and the timestamp of when the
+expanded link set was generated.</p>
+<p>If the links are generated at runtime (which happens if use <code>generate=true</code>)
+a version field will be returned which will be the <code>stale_lock_version</code> for
+the LinkSet of that content_id. This is a deprecated field and should not be
+used as it is not a reliable indicate of the version of the links.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the link set links will be retrieved for.</li>
+</ul>
+</li>
+</ul>
+<h3 id="query-string-parameters">Query string parameters:</h3>
+<ul>
+<li>
+<code>locale</code> <em>(optional, default: "en")</em>
+<ul>
+<li>Accepts: An available locale from the <a href="https://github.com/svenfuchs/rails-i18n">Rails I18n gem</a>
+</li>
+</ul>
+</li>
+<li>
+<code>with_drafts</code> <em>(optional, default: true)</em>
+<ul>
+<li>Whether links to draft editions should be included in the response.</li>
+</ul>
+</li>
+<li>
+<code>generate</code> <em>(optional, default: false)</em>
+<ul>
+<li>Whether to generate the expanded links at request time, ensures a fresh
+response but could make the request slow</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2linkedcontent_id"><code>GET /v2/linked/:content_id</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_return_the_items_linked_to_it_given_no_content_exists">Request/Response detail</a></p>
+<p>Retrieves all editions that have <a href="/repos/publishing-api/link-expansion.html">link set links</a> to the given <code>content_id</code>
+for some <code>link_type</code>.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
+<ul>
+<li>Identifies the link set editions may be linked to.</li>
+</ul>
+</li>
+</ul>
+<h3 id="query-string-parameters">Query string parameters</h3>
+<ul>
+<li>
+<code>link_type</code> <em>(required)</em>
+<ul>
+<li>The type of link between the documents.</li>
+</ul>
+</li>
+<li>
+<code>fields[]</code> <em>(required)</em>
+<ul>
+<li>Accepts an array of: analytics_identifier, base_path,
+content_store, description, details, document_type,
+first_published_at, last_edited_at, phase, public_updated_at,
+publishing_app, redirects, rendering_app, routes, schema_name,
+state, title, user_facing_version, update_type, state</li>
+<li>Determines which fields will be returned in the response.</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2linkables"><code>GET /v2/linkables</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get_linkables_request_given_there_is_content_with_format_'topic'">Request/Response detail</a></p>
+<p>Returns abridged versions of all editions matching the given
+<code>document_type</code>. Returns <code>title</code>, <code>content_id</code>, <code>publication_state</code>, <code>base_path</code>
+from the document and edition. It also adds a special field <code>internal_name</code>,
+which is <code>details.internal_name</code> and falls back to <code>title</code>.</p>
+<h3 id="query-string-parameters">Query string parameters:</h3>
+<ul>
+<li>
+<code>document_type</code> <em>(required)</em>
+<ul>
+<li>The <code>document_type</code> value that returned editions has.</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2linkschanges"><code>GET /v2/links/changes</code></h2>
+<p>Returns an array of changes to links, giving the information on what
+changed (source and target content ids, and the link type), when the
+change happened, what user was associated with the action, and if the
+link was created or deleted.</p>
+<p>The results will be in descending order by date, so newer changes come before
+older changes. A maximum of 250 changes will be returned.</p>
+<h3 id="query-string-parameters">Query string parameters</h3>
+<ul>
+<li>
+<code>link_types[]</code> <em>(required)</em>
+<ul>
+<li>Filter the changes by link type.</li>
+</ul>
+</li>
+<li>
+<code>source_content_ids[]</code>
+<ul>
+<li>Filter the changes by source content id.</li>
+</ul>
+</li>
+<li>
+<code>target_content_ids[]</code>
+<ul>
+<li>Filter the changes by source content id.</li>
+</ul>
+</li>
+<li>
+<code>users[]</code>
+<ul>
+<li>Filter the changes by user UIDs.</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2editions"><code>GET /v2/editions</code></h2>
+<p>Retrieves a paginated list of editions for the provided query string
+parameters.</p>
+<h3 id="query-string-parameters">Query string parameters</h3>
+<ul>
+<li>
+<code>document_type</code> <em>(optional)</em>
+<ul>
+<li>The type of editions to return.</li>
+</ul>
+</li>
+<li>
+<code>fields[]</code> <em>(optional)</em>
+<ul>
+<li>Accepts an array of: analytics_identifier, base_path,
+content_id, content_store, created_at, description, details, document_type,
+first_published_at, last_edited_at, links, locale, major_published_at,
+phase, public_updated_at, published_at, publishing_api_first_published_at,
+publishing_api_last_edited_at, publishing_app, redirects,
+rendering_app, routes, schema_name, stale_lock_version, state, title,
+user_facing_version, update_type, updated_at</li>
+<li>Determines which fields will be returned in the response, if omitted all
+fields will be returned.</li>
+</ul>
+</li>
+<li>
+<code>locale</code> <em>(optional)</em>
+<ul>
+<li>Accepts: An available locale from the <a href="https://github.com/svenfuchs/rails-i18n">Rails I18n gem</a>
+</li>
+<li>Used to restrict documents to a given locale.</li>
+</ul>
+</li>
+<li>
+<code>order</code> <em>(optional, default: "updated_at")</em>
+<ul>
+<li>The field to sort the results by.</li>
+<li>Returned in an ascending order unless prefixed with a hyphen, e.g.
+"-created_at".</li>
+<li>Accepts fields of: updated_at, public_updated_at, created_at, id</li>
+</ul>
+</li>
+<li>
+<code>before</code> and <code>after</code> <em>(optional)</em>
+<ul>
+<li>The pagination key of the previous page to pagination before or after.</li>
+<li>Usually, you do not need to work this out manually, since it will be given
+to you in the <code>links</code> hash of the response.</li>
+<li>The format is a comma separated string of the values of the pagination keys
+for the page you want.</li>
+</ul>
+</li>
+<li>
+<code>per_page</code> <em>(optional, default: 100)</em>
+<ul>
+<li>The number of results to be shown on a given page.</li>
+</ul>
+</li>
+<li>
+<code>publishing_app</code> <em>(optional)</em>
+<ul>
+<li>Used to restrict editions to those for a given publishing app.</li>
+</ul>
+</li>
+<li>
+<code>states[]</code> <em>(optional)</em>
+<ul>
+<li>Used to restrict editions to those in the specified states.</li>
+</ul>
+</li>
+</ul>
+<h2 id="post-v2linksby-content-id"><code>POST /v2/links/by-content-id</code></h2>
+<p>Retrieves the set of links for a given collection of content_ids. Returns a
+mapping of <code>content_id</code> to <code>links</code> hash.</p>
+<h3 id="post-parameters">POST parameters:</h3>
+<ul>
+<li>
+<code>content_ids[]</code> <em>(required)</em>
+<ul>
+<li>An array of <code>content_id</code>s to query by. This can be no longer than 1000 ids, or the API will return a 413 error.</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-v2schemas"><code>GET /v2/schemas</code></h2>
+<p>Lists all the schemas used by Publishing API. Returns an a mapping of a schema
+name to its JSON schema.</p>
+<h2 id="get-v2schemasschema_name"><code>GET /v2/schemas/:schema_name</code></h2>
+<p>Gets a schema by its name. Returns the relevant JSON schema if found, 404 if not.</p>
+<h2 id="post-lookup-by-base-path"><code>POST /lookup-by-base-path</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_/lookup-by-base-path-request_given_there_are_live_content_items_with_base_paths_/foo_and_/bar">Request/Response detail</a></p>
+<p>Retrieves live editions for a given collection of base paths. Returns
+a mapping of <code>base_path</code> to <code>content_id</code>.</p>
+<h3 id="post-parameters">POST parameters:</h3>
+<ul>
+<li>
+<code>base_paths[]</code> <em>(required)</em>
+<ul>
+<li>An array of <code>base_path</code>s to query by.</li>
+</ul>
+</li>
+<li>'exclude_unpublishing_types[]' <em>(optional, default: ['vanish', 'redirect', 'gone'])</em>
+<ul>
+<li>Content with these unpublishing types will be excluded from the lookup</li>
+</ul>
+</li>
+<li>'exclude_document_types[]' <em>(optional, default: ['gone', 'redirect'])</em>
+<ul>
+<li>Content with these documents types will be excluded from the lookup</li>
+</ul>
+</li>
+</ul>
+<h2 id="put-pathsbase_path"><code>PUT /paths/:base_path</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_put_a_path_given_no_content_exists">Request/response detail</a></p>
+<p>Reserves a path for a publishing application. Returns success or failure only.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<code>base_path</code>
+<ul>
+<li>Identifies the path that will be reserved</li>
+</ul>
+</li>
+</ul>
+<h3 id="json-parameters">JSON parameters:</h3>
+<ul>
+<li>
+<code>publishing_app</code> <em>(required)</em>
+<ul>
+<li>The name of the application making this request, words separated with hyphens.</li>
+</ul>
+</li>
+<li>
+<code>override_existing</code> <em>(optional)</em>
+<ul>
+<li>Explicitly claim a path that has already been reserved by a different
+publishing_app. If not true, attempting to do this will fail.</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-changes">State changes</h3>
+<ul>
+<li>If no path reservation for the supplied base_path is present, one will be
+created for the supplied publishing_app.</li>
+<li>If a path reservation exists for the supplied base_path but a different
+publishing_app, and <code>override_existing</code> is not true, the command will fail.</li>
+<li>If a path reservation exists for the supplied base_path and a different a
+publishing_app, and <code>override_existing</code> is true, the existing reservation will
+be updated to the supplied publishing_app.</li>
+</ul>
+<h2 id="delete-pathsbase_path"><code>DELETE /paths/:base_path</code></h2>
+<p>[Request/response detail][unreserve-path-pact]</p>
+<p>Unreserves a path for a publishing application. Returns success or failure only.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<code>base_path</code>
+<ul>
+<li>Identifies the path that will be unreserved</li>
+</ul>
+</li>
+</ul>
+<h3 id="json-parameters">JSON parameters:</h3>
+<ul>
+<li>
+<code>publishing_app</code> <em>(required)</em>
+<ul>
+<li>The name of the application making this request, words separated with hyphens.</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-changes">State changes</h3>
+<ul>
+<li>If no path reservation for the supplied base_path is present, the command will
+fail.</li>
+<li>If a path reservation exists for the supplied base_path but a different
+publishing_app, the command will fail.</li>
+</ul>
+<h2 id="put-publish-intentbase_path"><code>PUT /publish-intent(/*base_path)</code></h2>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_create_a_publish_intent_given_no_content_exists">Request/Response detail</a></p>
+<p>Used to create or update a publishing intent for a particular base_path and
+reserve the base path in the publishing-api. A publishing intent sets when the
+cache should expire for a piece of content.</p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<code>base_path</code>
+<ul>
+<li>Identifies the path to create the publishing intent for</li>
+</ul>
+</li>
+</ul>
+<h3 id="json-parameters">JSON parameters:</h3>
+<ul>
+<li>
+<code>publishing_app</code> <em>(required)</em>
+<ul>
+<li>The name of the application making this request.</li>
+</ul>
+</li>
+<li>
+<code>rendering_app</code> <em>(required)</em>
+<ul>
+<li>The name of the application rendering the content the base path refers to.</li>
+</ul>
+</li>
+<li>
+<code>publish_time</code> <em>(required)</em>
+<ul>
+<li>The <code>DateTime</code> the content is set to be published.</li>
+</ul>
+</li>
+<li>
+<code>routes</code> <em>(optional)</em>
+<ul>
+<li>
+<code>Array</code> - Fields supported are path and type, the exact requirements can be
+found <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/definitions/routes_redirects.jsonnet">here</a>. This is optional as it is only
+required if there needs to be a route created in router-api for the
+<code>base_path</code> at the same time the publishing intent is made.</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-changes">State changes</h3>
+<ul>
+<li>
+<code>base_path</code> is reserved for use of the given <code>publishing_app</code>.</li>
+<li>Creates a <code>PublishingIntent</code> in content-store to record when the cache should
+expire for a <code>base_path</code>.</li>
+<li>If <code>routes</code> are given, adds a route set in router-api.</li>
+</ul>
+<h2 id="delete-publish-intentbase_path"><code>DELETE /publish-intent(/*base_path)</code></h2>
+<p>Used to delete the publishing intent for a particular <code>base_path</code>. Removing a
+publishing intent means that the content will continue to be cached as
+normal.</p>
+<p><a href="https://govuk-pact-broker-6991351eca05.herokuapp.com/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_request_to_delete_a_publish_intent_given_no_content_exists">Request/Response detail</a></p>
+<h3 id="path-parameters">Path parameters</h3>
+<ul>
+<li>
+<code>base_path</code>
+<ul>
+<li>Identifies the path to delete the publishing intent for</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-changes">State changes</h3>
+<ul>
+<li>The <code>PublishingIntent</code> for the passed in base_path is removed from the
+content-store.</li>
+</ul>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/publishing-api/blob/main/docs/api.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-api%2Fapi.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies.html">Cookies</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
