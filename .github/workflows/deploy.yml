@@ -25,12 +25,12 @@ jobs:
           else
             echo "commit_message=Deploy via merge" >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           show-progress: false
       - name: Clone publishing api
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: alphagov/publishing-api
           ref: main
