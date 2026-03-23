@@ -39,7 +39,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           cache: 'npm'
       - run: yarn install --frozen-lockfile
