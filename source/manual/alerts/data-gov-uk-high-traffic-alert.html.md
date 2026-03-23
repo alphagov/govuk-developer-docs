@@ -32,7 +32,6 @@ The load test baseline for reference:
 | Peak throughput | 55.8 req/s |
 | Error rate at peak | 0.00% |
 | Find replicas (tested config) | 3 × 4Gi, RAILS_MAX_THREADS=16 |
-| CKAN replicas (tested config) | 2 × 4Gi, --workers 4 |
 
 ## Impact
 
@@ -40,7 +39,6 @@ At this traffic level the site may still be healthy — the alert is early warni
 If traffic continues to grow towards 55+ req/s without scaling, you can expect:
 
 - Find (Rails/Puma) pod latency to increase as Puma thread pools fill up
-- CKAN gunicorn workers to become fully occupied, causing dataset API slowdowns
 - Potential pod OOMKills if traffic generates large Ruby heap allocations
 - 504 Gateway Timeout errors at the ALB if pods become unresponsive
 
@@ -66,24 +64,15 @@ Look for pods in `CrashLoopBackOff`, `OOMKilled` (Exit Code 137), or showing a h
 restart count. If pods are already crashing, scale up immediately before investigating
 further.
 
-```bash
-gds aws govuk-production-dguengineer -- \
-  kubectl get pods -n datagovuk -l app=ckan-ckan
-```
-
-### 3. Check current replica counts
+### 3. Check current replica count
 
 ```bash
 gds aws govuk-production-dguengineer -- \
   kubectl get deployment -n datagovuk datagovuk-find \
   -o jsonpath='{.spec.replicas}'
-
-gds aws govuk-production-dguengineer -- \
-  kubectl get deployment -n datagovuk ckan-ckan \
-  -o jsonpath='{.spec.replicas}'
 ```
 
-Normal baseline: Find = 3 replicas, CKAN = 2 replicas.
+Normal baseline: Find = 3 replicas.
 
 ## Scaling up to handle +10 req/s
 
@@ -103,28 +92,11 @@ datagovukHelmValues:
 Create a PR, get it reviewed, and merge to main. ArgoCD will automatically roll
 out the change within a few minutes.
 
-### Step 2: Increase CKAN replicas if CKAN errors are observed (2 → 3)
-
-If the Grafana dashboard shows CKAN API errors or dataset page failures alongside
-elevated traffic, also increase CKAN:
-
-```yaml
-ckanHelmValues:
-  ckan:
-    replicaCount: 3   # increased from 2
-```
-
-Include this in the same PR as the Find change if both are needed.
-
-### Step 3: Verify the rollout
+### Step 2: Verify the rollout
 
 ```bash
-# Watch the rollout complete
 gds aws govuk-production-dguengineer -- \
   kubectl rollout status deployment/datagovuk-find -n datagovuk
-
-gds aws govuk-production-dguengineer -- \
-  kubectl rollout status deployment/ckan-ckan -n datagovuk
 ```
 
 Once rollout is complete, monitor the Grafana dashboard for 10–15 minutes to
@@ -132,7 +104,7 @@ confirm:
 
 - Request rate is being handled without increasing error rates
 - No new pod restarts or OOMKills
-- p(95) response time for Find and CKAN endpoints remains healthy
+- p(95) response time for Find endpoints remains healthy
 
 ### Additional option: increase Puma thread count
 
@@ -163,10 +135,6 @@ datagovukHelmValues:
   find:
     replicaCount: 3   # back to baseline
     # remove railsMaxThreads if it was added
-
-ckanHelmValues:
-  ckan:
-    replicaCount: 2   # back to baseline
 ```
 
 Create a PR with the description "Revert data.gov.uk scaling after high traffic
@@ -181,9 +149,6 @@ Check that the alert does not re-fire within 15 minutes of scaling back.
 | Find replicas | `find.replicaCount` | 3 |
 | Find memory limit | `find.appResources.limits.memory` | 4Gi |
 | Find memory request | `find.appResources.requests.memory` | 2Gi |
-| CKAN replicas | `ckan.replicaCount` | 2 |
-| CKAN memory limit | `ckan.appResources.limits.memory` | 4Gi |
-| CKAN gunicorn workers | `ckan.args` | `--workers 4` |
 
 These values are defined in
 `charts/app-of-apps/values-production.yaml` in the `govuk-dgu-charts` repository.
