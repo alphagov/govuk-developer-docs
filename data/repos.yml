@@ -313,6 +313,12 @@
   type: Utilities
   sentry_url: false
 
+- repo_name: govuk-document-clustering-experiment
+  description: Feasibility of suggesting new topics on GOV.UK using a sentence transformer model, document clustering & an LLM
+  team: "#govuk-publishing-tagging-workflow"
+  type: Utilities
+  sentry_url: false
+
 - repo_name: govuk-e2e-tests
   team: "#govuk-platform-engineering-team"
   alerts_team: "#govuk-platform-support"
@@ -369,6 +375,12 @@
   description: A simple Go program used by GOV.UK to populate mirrors hosted by AWS S3 and GCP Storage
   sentry_url: false
   production_hosted_on: gcp
+
+- repo_name: govuk-national-applicability-experiment
+  description: Feasibility of using machine classification to determine national applicability of GOV.UK content
+  team: "#govuk-publishing-tagging-workflow"
+  type: Utilities
+  sentry_url: false
 
 - repo_name: govuk-pact-broker
   team: "#govuk-platform-engineering-team"
@@ -447,6 +459,18 @@
   type: Utilities
   team: "#govuk-platform-engineering-team"
   alerts_team: "#govuk-platform-support"
+  sentry_url: false
+
+- repo_name: govuk-topic-taxonomy-dynamic-suggestions-experiment
+  description: Feasibility of suggesting new topic tags for new & existing documents on GOV.UK dynamically using a large, open-weight embedding model and a vector database
+  team: "#govuk-publishing-tagging-workflow"
+  type: Utilities
+  sentry_url: false
+
+- repo_name: govuk-topic-taxonomy-static-suggestions-experiment
+  description: Feasibility of suggesting new topic tags for existing documents on GOV.UK statically using a large, open-weight embedding model and a vector database
+  team: "#govuk-publishing-tagging-workflow"
+  type: Utilities
   sentry_url: false
 
 - repo_name: govuk-user-reviewer
