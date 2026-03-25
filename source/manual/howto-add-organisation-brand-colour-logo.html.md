@@ -4,7 +4,7 @@ title: Add an organisation's brand colour or logo
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-related_repos: [whitehall, government-frontend]
+related_repos: [whitehall, frontend]
 ---
 
 ## Add an organisation's logo in the publishing components gem
