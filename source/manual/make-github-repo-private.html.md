@@ -22,7 +22,7 @@ To fork an existing GOV.UK repository and make it private perform the following 
 1. Add the team 'GOV.UK - CI Bots' so that Jenkins can access the repository for deployment. Make sure it is set to 'write' access because Jenkins needs to access the repository and set the release tag.
 1. Add the 'gov-uk' team and set it 'write' access so that developers can create and merge pull requests.
 1. Consider adding [a GitHub action](https://github.com/search?q=org%3Aalphagov+%22Use+GitHub+Actions%22&type=Issues) to replace Jenkins CI that will not be running on this new repo.
-1. Add a branch protection rule against the main branch. You can [use the settings in another repo](https://github.com/alphagov/government-frontend/settings/branches) as a template.
+1. Add a branch protection rule against the main branch. You can [use the settings in another repo](https://github.com/alphagov/frontend/settings/branches) as a template.
 
 ## Deploying the private repository
 
