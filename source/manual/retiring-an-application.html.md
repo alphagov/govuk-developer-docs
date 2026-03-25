@@ -48,7 +48,6 @@ Remove the app's entry in [govuk-helm-charts](https://github.com/alphagov/govuk-
 - /charts/app-config/values-integration.yaml
 - /charts/app-config/values-staging.yaml
 - /charts/app-config/values-production.yaml
-- (if present) /charts/app-config/templates/signon-secrets-sync-configmap.yaml
 - (if present) /charts/external-secrets/templates/<app name>
 
 It's also wise to search that repo for other references to the app being retired.
@@ -70,7 +69,7 @@ This includes Terraform-managed resources as well as the Sentry integration. See
 
 Note that this will automatically destroy the corresponding resources in AWS (e.g. database) on merge.
 
-This needs to be done in several stages. You can raise all of the PRs in advance, but shouldn't merge / apply them until [step 2](#2-soft-mark-the-application-as-retired).
+This needs to be done in several stages. You can raise all of the PRs in advance, but shouldn't merge / apply them until [step 3](#3-apply-the-destructive-actions).
 
 1. Archive the repo by following the steps at [Retire a repo](/manual/retiring-a-repo.html).
    It will result in two PRs to govuk-infrastructure ([example 1](https://github.com/alphagov/govuk-infrastructure/pull/3064), [example 2](https://github.com/alphagov/govuk-infrastructure/pull/3065)), which have to be merged and applied in Terraform in turn.
@@ -88,7 +87,7 @@ If relevant (e.g. if Heroku was used for previews).
 
 ### Update Signon
 
-Mark the application as "retired" in signon, if it used it:
+Mark the application as "retired" in [Signon](https://signon.publishing.service.gov.uk/), if it used it:
 
 - Click on the Applications tab.
 - Find the application that is being retired and click the "edit" button.
@@ -105,16 +104,16 @@ Remove the application from the [GOV.UK architecture diagram](/manual/architectu
 
 ### Merge the PRs raised earlier
 
-See step 1.
+See [step 1](#1-raise-prs-to-remove-the-app-from-dependent-places).
 
 ### Delete the app in the Release app
 
-- Edit the application in the release app (you'll need the `deploy` permission to do this)
+- Edit the application in the [Release](https://release.publishing.service.gov.uk/applications) app (you'll need the `deploy` permission to do this)
 - Press the 'Delete application' button.
 
 ### Delete the app in Sentry
 
-- In Sentry go to 'Settings' then 'Projects' and select the application
+- In [Sentry](https://govuk.sentry.io/) go to 'Settings' then 'Projects' and select the application
 - Under 'PROJECT ADMINISTRATION' click 'Remove Project'. (You'll need to be an organization-level owner, manager or team-level admin in Sentry to be able to remove a project.)
 - Remove the related key/value pair, e.g. `application-name-dsn` from `govuk/common/sentry` secret in AWS Secrets Manager for all three environments
 
