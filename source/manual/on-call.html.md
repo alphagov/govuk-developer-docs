@@ -9,9 +9,9 @@ parent: "/manual.html"
 
 > In a hurry? You may be looking for [So, you're having an incident](/manual/incident-what-to-do.html)!
 
-GOV.UK developers are part of an [on-call rota](https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit) to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they've built up enough experience (see [Rules for Primary, Secondary and On Call](#rules-for-primary-secondary-and-on-call)).
+GOV.UK developers are part of an [on-call rota](https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit) to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they've built up enough experience (see [Rules for Primary, Secondary and On-Call](#rules-for-primary-secondary-and-on-call)).
 
-## On call charter
+## On-call charter
 
 - Attend the Monday morning handover, centered around the [GOV.UK Technical On-Call Trello board](https://trello.com/b/M7UzqXpk)
 - Prepare for your shift by following the steps in the [On-call checklist](#on-call-checklist)
@@ -21,17 +21,18 @@ GOV.UK developers are part of an [on-call rota](https://docs.google.com/spreadsh
 - Nobody is expected to understand every part of GOV.UK - you don't need to know how to fix every issue on your own
 - Logs are not as important as being available - if you need to lose some logs in order to bring the site back up, that's probably a good trade-off to make
 
-### On call checklist
+### On-call checklist
 
-Mandatory steps:
+You need to do the following when starting an on-call shift:
 
-- Ensure you're familiar with the "[So, you're having an incident](/manual/incident-what-to-do.html)" process
-- Confirm you have full [Production Admin access](/manual/rules-for-getting-production-access.html#production-admin-access) (should see `production_admin_access` next to your name [in govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml))
-- Confirm you can [access the Notify dashboard](/manual/govuk-notify.html#accessing-the-dashboard)
+- Ensure you're familiar with [GOV.UK's incident process](/manual/incident-what-to-do.html)
+- Confirm that you've [set up Pagerduty correctly and can be notified by it](/manual/pagerduty.html#setting-up-and-using-Pagerduty-while-on-call)
+- Confirm you have full [Production Admin access](/manual/rules-for-getting-production-access.html#production-admin-access). You should see `production_admin_access` next to your name [in govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml)
 - Confirm you can [access AWS](/manual/get-started.html#sign-in-to-aws) (over web console and CLI)
 - Confirm you can [access GCP](/manual/google-cloud-platform-gcp.html) (using the web console and the gcloud CLI)
 - Confirm you can access [GOV.UK's Statuspage account](https://manage.statuspage.io/pages/xcz7hfscrbjs/incidents)
 - Ensure you can log into Zendesk (follow the [Zendesk onboarding instructions](/manual/zendesk.html#get-started))
+- Confirm you can [access the Notify dashboard](/manual/govuk-notify.html#accessing-the-dashboard)
 - You know how to [contact the rest of SMT](https://drive.google.com/drive/search?q=GOV.UK%20SMT%20Escalations%20rota), if the on-call SMT is unavailable.
 
 Optional:
@@ -41,7 +42,6 @@ Optional:
 - Make sure you have an up to date local copy of the [Developer Docs](https://github.com/alphagov/govuk-developer-docs/) repository and have built it (ideally with `GITHUB_TOKEN` set so that docs from other repos are fetched too)
 - Have the numbers of other people on your shift saved in your phone. This includes whoever is on Escalations (You can get these numbers from PagerDuty).
 - Set to be notified for every new message in the #govuk-incident Slack channel by clicking “Details”, “Change notifications” and selecting “Every new message.”
-- Double-check your PagerDuty alert settings will wake you if you’re called - you might want to install the PagerDuty App on your phone and send a test notification. You can do this by going to the [pagerduty team](https://governmentdigitalservice.pagerduty.com/teams/PG4Z8YR/users), then clicking on your name, on the Contact Information tab, then clicking on any of the `test` buttons.
 
 After your shift:
 
@@ -54,7 +54,7 @@ When you have passed probation, you will be drafted onto the (in-hours) on-call 
 
 You will need to ensure you arrange to get [Production Admin access](/manual/rules-for-getting-production-access.html) in advance of your first allocated shift.
 
-## Rules for Primary, Secondary and On Call
+## Rules for Primary, Secondary and On-Call
 
 Folks start out as a Secondary on the in-hours shift. After two shifts as a Secondary, they'll start to fill the Primary in-hours role, with some exceptions (see [role specific policies](#role-specific-policies)).
 
@@ -117,13 +117,13 @@ Any checks that use `severity: page` will cause PagerDuty to be notified:
 #### Pingdom alerts
 
 We have downtime checks configured in Pingdom which notify Pagerduty directly rather
-than using GOV.UK's internal monitoring. They are all configured in Pingdom to:
+than using GOV.UK's internal monitoring. They're all configured in Pingdom to:
 
 - be considered down after 30 seconds
 - a check interval of 1 min
 - send an alert after 5 mins
 
-They are useful when network access to all machines running GOV.UK is down. These
+They're useful when network access to all machines running GOV.UK is down. These
 are set up for key parts of the website such as:
 
 - [Assets](/manual/assets.html) (assets.publishing.service.gov.uk)
@@ -133,13 +133,13 @@ are set up for key parts of the website such as:
 
 ### Phone calls from people
 
-Senior members of GOV.UK may phone you if they’ve been contacted by other parts
-of government. These phone calls will generally come from the group that is on the
-rota for the ‘Escalations’ contact number.
+Members of GOV.UK's SMT may phone you if they’ve been contacted by other parts
+of government. These phone calls will generally come from whoever is on the
+rota for the ‘SMT Escalations’ contact number.
 
 ### Emergency publishing
 
-The GOV.UK on-call escalations contact will call you to carry this out.  See the
+The GOV.UK on-call escalations contact will call you to carry this out. See the
 [deploy an emergency banner doc](/manual/emergency-publishing.html)
 for more information.
 
