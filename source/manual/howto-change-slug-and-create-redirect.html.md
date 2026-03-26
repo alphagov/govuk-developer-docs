@@ -61,7 +61,7 @@ If the content still exists and you want to change its slug while keeping it liv
 
 ### Whitehall
 
-For "editionable" documents, use the admin interface:
+For "editionable" documents, use the admin interface (you will need the "GDS Admin" permission in Signon):
 
 `https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edition_id>/edit_slug`
 
