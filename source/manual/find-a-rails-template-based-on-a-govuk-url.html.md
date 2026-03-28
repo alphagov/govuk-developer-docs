@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Find a rails template based on a GOV.UK URL or vice verca
+title: Find a rails template based on a GOV.UK URL or vice versa
 section: Frontend
 layout: manual_layout
 parent: "/manual.html"
