@@ -61,17 +61,17 @@ This will take a few minutes to execute since it's iterating over a lot of editi
 #### Find 'call to action'
 
 ```ruby
-Edition.where.not(content_store: nil).find_each { |e| puts "https://gov.uk#{e.base_path}" if e.details.to_s =~ /class=\\"call-to-action/ }
+Edition.where.not(content_store: nil).find_each { |e| puts "https://www.gov.uk#{e.base_path}" if e.details.to_s =~ /class=\\"call-to-action/ }
 ```
 
 #### Find YouTube links
 
 ```ruby
-Edition.where.not(content_store: nil).find_each { |e| puts "https://gov.uk#{e.base_path}" if e.details.to_s =~ /href=\\"https:\/\/www.youtube.com\/watch?v=/ }
+Edition.where.not(content_store: nil).find_each { |e| puts "https://www.gov.uk#{e.base_path}" if e.details.to_s =~ /href=\\"https:\/\/www.youtube.com\/watch?v=/ }
 ```
 
 #### Find hardcoded buttons
 
 ```ruby
-Edition.where.not(content_store: nil).find_each { |e| puts "https://gov.uk#{e.base_path}" if e.details.to_s =~ /class=\\"button/ }
+Edition.where.not(content_store: nil).find_each { |e| puts "https://www.gov.uk#{e.base_path}" if e.details.to_s =~ /class=\\"button/ }
 ```
