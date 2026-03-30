@@ -61,6 +61,159 @@ By default Dependabot will bump dependencies at the frequency specified in the c
 
 Go to your project in GitHub and click on "Insights", then "Dependency graph", then "Dependabot", then "Last checked X minutes ago" next to the package manager of choice (e.g. Gemfile). Then you can click "Check for updates".
 
+## Configuring Dependabot for your repository
+
+The following are suggested configurations for `.github/dependabot.yml`. These are opinions, not rules. Adapt them to suit your project.
+
+A good example to follow is the [govuk-frontend dependabot.yml](https://github.com/alphagov/govuk-frontend/blob/main/.github/dependabot.yml).
+
+### Schedule and cooldown
+
+A monthly schedule for version updates strikes a balance between staying current and not overwhelming reviewers. Pair this with a cooldown period so that Dependabot waits a few days after a version is published before raising a PR. This gives the community time to flag compromised or broken releases.
+
+### Grouping
+
+Group related dependencies (e.g. linting, testing, build tools) into a single PR rather than creating one PR per dependency.
+
+### Example configurations
+
+The following example covers Ruby, npm, Go and infrastructure tooling ecosystems in a single file. Most repositories will only need one or two of these.
+
+```yaml
+version: 2
+
+updates:
+  # Ruby (Bundler)
+  - package-ecosystem: bundler
+    directory: /
+    schedule:
+      interval: monthly
+      time: "10:30"
+      timezone: "Europe/London"
+    cooldown:
+      default-days: 3
+    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: direct
+    groups:
+      test:
+        patterns:
+          - "rspec"
+          - "rspec-*"
+          - "simplecov"
+          - "webmock"
+          - "factory_bot*"
+      lint:
+        patterns:
+          - "rubocop"
+          - "rubocop-*"
+
+  # npm
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+      time: "10:30"
+      timezone: "Europe/London"
+    cooldown:
+      default-days: 3
+    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: direct
+    groups:
+      test:
+        patterns:
+          - "jest"
+          - "jest-*"
+          - "@types/jest"
+      lint:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "prettier"
+          - "standard"
+
+  # Go modules
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: monthly
+      time: "10:30"
+      timezone: "Europe/London"
+    cooldown:
+      default-days: 3
+    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: direct
+
+  # Terraform and infrastructure tooling
+  - package-ecosystem: terraform
+    directory: /
+    schedule:
+      interval: monthly
+      time: "10:30"
+      timezone: "Europe/London"
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 5
+
+  # Docker base images
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: monthly
+      time: "10:30"
+      timezone: "Europe/London"
+    cooldown:
+      default-days: 7
+
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+      time: "10:30"
+      timezone: "Europe/London"
+    cooldown:
+      default-days: 3
+```
+
+### Key choices explained
+
+- **`interval: monthly`**: security updates are still raised immediately regardless of schedule.
+- **`cooldown: default-days: 3`**: waits 3 days after a version is published before raising a PR. Infrastructure tooling (Terraform, Docker) uses 7 days, as these changes tend to carry more risk.
+- **`allow: dependency-type: direct`**: only updates top-level dependencies, not transitive ones.
+- **`groups`**: bundles related dependencies (e.g. all RuboCop gems) into a single PR. Tailor these to the libraries your project actually uses.
+- **`open-pull-requests-limit`**: caps the number of open Dependabot PRs to avoid a backlog building up.
+
 ## Security
 
 We've [set up branch protection](/manual/github.html) for all repos with the `govuk` label. This prevents Dependabot from writing directly to main.
+
+## Further reading
+
+### Supply chain incidents and threat landscape
+
+- [tj-actions/changed-files compromise (March 2025)](https://emmer.dev/blog/pin-your-github-actions-to-protect-against-mutability/) — A detailed post-mortem on the incident that affected 23,000+ repositories. Illustrates why mutable Git tags are a structural risk.
+- [RFC-167: Auto-patch dependencies](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-167-auto-patch-dependencies.md) — GOV.UK's own rationale for why traditional manual review is insufficient against supply chain compromise.
+- [GitHub Actions has a package manager, and it might be the worst](https://nesbitt.io/2025/12/06/github-actions-package-manager.html) — A critical analysis of the structural gaps in GitHub Actions' dependency model, particularly around transitive dependencies and the absence of a lockfile.
+
+### Defensive practices
+
+- [GitHub Docs: Secure use reference for GitHub Actions](https://docs.github.com/en/actions/reference/security/secure-use) — The canonical GitHub guidance on securing workflows, including SHA pinning, minimum token permissions, and dependency review.
+- [GitHub Actions policy: blocking and SHA pinning](https://github.blog/changelog/2025-08-15-github-actions-policy-now-supports-blocking-and-sha-pinning-actions/) — August 2025 changelog covering new org-level controls for blocking specific actions and enforcing SHA pinning as policy.
+- [Pin your GitHub Actions to protect against supply chain attacks](https://emmer.dev/blog/pin-your-github-actions-to-protect-against-mutability/) — Practical guide to SHA pinning, including Renovate's `helpers:pinGitHubActionDigestsToSemver` preset as an alternative to Dependabot for managing pinned SHAs.
+- [zizmor](https://github.com/woodruffw/zizmor) — Static analysis tool for GitHub Actions workflows. Scans for security issues including over-privileged tokens, injection vulnerabilities, and unpinned actions.
+
+### GitHub's 2026 security roadmap
+
+- [What's coming to GitHub Actions 2026 security roadmap](https://github.blog/news-insights/product-news/whats-coming-to-our-github-actions-2026-security-roadmap/) — Covers the forthcoming `dependencies:` lockfile for workflows (analogous to `go.sum`), actor/event rules, and broader supply chain hardening. Directly relevant to where Dependabot integration is heading.
+
+### Build provenance and SLSA
+
+- [GitHub Artifact Attestations](https://docs.github.com/en/actions/concepts/security/artifact-attestations) — How to generate cryptographically verifiable build provenance. Relevant if any GOV.UK pipeline publishes deployable artefacts.
+- [SLSA framework](https://slsa.dev) — The Supply-chain Levels for Software Artifacts framework from OpenSSF. Provides a progression from basic provenance (Level 1) to hardened, tamper-resistant build platforms (Level 3).
+
+### NCSC guidance
+
+- [NCSC: Vulnerability management — apply updates by default](https://www.ncsc.gov.uk/collection/vulnerability-management/guidance/policy-update-by-default) — The underpinning policy rationale for automatic dependency updates referenced in this document.
