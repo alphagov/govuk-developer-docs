@@ -13,40 +13,46 @@ to escalate to these people (in order):
 
 1. Primary Engineer
 2. Secondary Engineer
-3. Programme Team member (might not be technical)
+3. GOV.UK Senior Management Team member (might not be technical)
 
-It is the responsibility of the people above to make sure their details are up to date in PagerDuty
+It's the responsibility of the people above to make sure their details are up to date in PagerDuty
 and that they're correctly scheduled in. You can [add your rota to Google calendar](#add-your-pagerduty-rota-to-google-calendar).
 
-When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
-them, otherwise they will be escalated further.
+When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge it, otherwise it will be escalated further.
 
-## Creating a schedule override
+## Setting up and using Pagerduty while on-call
 
-There are times where developers need to make rota swaps or cover someone at the last minute.
-See the [Pagerduty documentation on how to schedule an override](https://support.pagerduty.com/docs/edit-schedules#create-overrides).
+These are general instructions, which may vary depending on your mobile device.
+It’s your responsibility to ensure you can receive calls from Pagerduty while on-call, including setting it to bypass any DoNotDisturb features on your phone.
+
+Using the mobile app makes it easier to ensure that incident notifications make it through to you.
+
+> It’s highly recommended to use the Pagerduty app on your work mobile device. From 23 April 2026 you will not be able to use the Pagerduty app on a personal device unless you've accepted the [GDS BYOD policy](https://docs.google.com/document/d/1CP6VKSh5Q2ZzW7po8ehro2I-C--8Uh4y_9Ps4D46FSA/edit) and so accepted Cabinet Office installing a profile on your personal phone that imposes some restrictions. See [Pagerduty's instructions for setting up the app](https://support.pagerduty.com/main/docs/mobile-app-settings).
+
+You can send a test notification by clicking your picture in Pagerduty to access your profile, then on the Contact Information tab, then clicking any of the `test` buttons.
+
+If you decide not to use the mobile app, or don’t have a work mobile device, you'll need to:
+
+- [Download the Pagerduty vcard](https://support.pagerduty.com/main/docs/notification-phone-numbers) and add it to your phone contacts. You should download this periodically because the number used by Pagerduty can change
+- Follow the instructions for your mobile device to allow that contact to bypass DoNotDisturb features ([Android](https://support.google.com/android/answer/9069335?hl=en-GB#zippy=%2Cset-what-to-block-or-who-can-interrupt-you)/[Iphone](https://support.apple.com/en-gb/105112)). Those may be set automatically based on a schedule so do check.
+
+## Creating a schedule override in Pagerduty
+
+See the [Pagerduty documentation on how to schedule an override](https://support.pagerduty.com/docs/edit-schedules#create-overrides) if you need to make a rota swap or cover for someone at the last minute.
 
 ## PagerDuty drill
 
-Every week we test PagerDuty to make sure it can phone to alert us to
-any issues. This happens every Monday morning at 10am UTC (11am BST).
+We test PagerDuty weekly to make sure it can alert us. This happens [every Monday morning at 10am UTC (11am BST)](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/templates/alertmanager-config.tpl#L79-L85).
 
-Prometheus is currently firing a constant `Watchdog` alert, which fires all the time so that
-developers can see the that prometheus is integrated with alertmanager. In the
-[alertmanager configs](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/templates/alertmanager-config.tpl#L79-L85)
-the pagerduty drill is set up to trigger when the the clocks hit a specified time frame, between 10am to 10:03am UTC (11am to 11:03am BST) every Monday.
+The primary in-hours technical on-call developer should escalate the call to the secondary, who should then escalate it to "SMT escalations". The person on "SMT escalations" should resolve the PagerDuty alert to prevent anyone else being phoned.
 
-You don't need to take any action for this alert. The primary in-hours
-technical on-call developer should escalate the call to the secondary who should escalate
-it to "escalations" to ensure that phone redirection is working. The
-person on "escalations" will resolve the PagerDuty alert to prevent
-anyone else being phoned.
+Prometheus fires a constant `Watchdog` alert, so that developers can see that prometheus is integrated with alertmanager.
 
 ### Triggering the drill manually
 
 To trigger the drill manually, follow these steps:
 
-1. Ask someone in the #platform-engineering team in order to run the pagerduty drill.
+1. Ask someone in the #platform-engineering team to run the Pagerduty drill.
 
 1. Exec onto the alertmanager box after logging onto the production cluster:
 
@@ -54,7 +60,7 @@ To trigger the drill manually, follow these steps:
     $ kubectl exec -it alertmanager-kube-prometheus-stack-alertmanager-0  -n monitoring -- sh
     ```
 
-1. Create the pagerduty drill alert, update the end datetime field to be about 5 minutes from when you create the alert before creating the alert:
+1. Create the Pagerduty drill alert, update the end datetime field to be about 5 minutes from when you create the alert:
 
     ```shell
     $ amtool --alertmanager.url=http://localhost:9093 alert add --end <end of alert datetime in the form: 2023-11-03T15:59:00-00:00> alertname="PagerDuty test drill. Developers: escalate this alert. SMT: resolve this alert." severity='page'
