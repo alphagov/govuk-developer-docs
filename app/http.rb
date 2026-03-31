@@ -17,6 +17,7 @@ module HTTP
 
     faraday = Faraday.new(url: uri) do |conn|
       conn.response :logger, nil, { headers: false }
+      conn.request :authorization, "Bearer", ENV["GITHUB_TOKEN"] if ENV["GITHUB_TOKEN"]
       conn.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
       conn.use Octokit::Response::RaiseError
       conn.response :json, content_type: /\bjson$/
