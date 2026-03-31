@@ -10,6 +10,12 @@ parent: "/manual.html"
 We're [obliged to keep our software current](/manual/keeping-software-current.html). To help with this, we use a
 service called Dependabot (by GitHub) to open automated dependency upgrade PRs, and we use an in-house tool called the [Seal](/repos/seal.html) to notify us of Dependabot PRs that have not yet been merged. We also have an in-house tool, [govuk-dependabot-merger](https://github.com/alphagov/govuk-dependabot-merger), for automatically merging [certain Dependabot PRs](#auto-merging-dependabot-prs).
 
+## Responsibility
+
+Each service team is responsible for setting up and maintaining dependency management for their own repositories. This includes configuring Dependabot, reviewing and merging dependency PRs, and opting in to auto-merging where appropriate.
+
+GOV.UK Platform Engineering can provide advice and additional tooling (such as [govuk-dependabot-merger](https://github.com/alphagov/govuk-dependabot-merger)) to support this, but the day-to-day ownership sits with the service team.
+
 ## Auto merging Dependabot PRs
 
 According to the [National Cyber Security Centre](https://www.ncsc.gov.uk/collection/vulnerability-management/guidance/policy-update-by-default), we should apply updates as soon as possible, and ideally automatically.
