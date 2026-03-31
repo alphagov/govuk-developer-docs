@@ -190,7 +190,7 @@ updates:
 - **`cooldown: default-days: 3`**: waits 3 days after a version is published before raising a PR. Infrastructure tooling (Terraform, Docker) uses 7 days, as these changes tend to carry more risk.
 - **`allow: dependency-type: direct`**: only updates top-level dependencies, not transitive ones.
 - **`groups`**: bundles related dependencies (e.g. all RuboCop gems) into a single PR. Tailor these to the libraries your project actually uses.
-- **`open-pull-requests-limit`**: caps the number of open Dependabot PRs to avoid a backlog building up.
+- **`open-pull-requests-limit`**: the default is 5, which is easy to hit if you have a few dependencies that can't be auto-merged. A low cap has contributed to past incidents where security updates were blocked by the limit. We recommend setting this to at least 10 (see [alphagov/whitehall#11286](https://github.com/alphagov/whitehall/pull/11286) for prior art).
 
 ## Security
 
