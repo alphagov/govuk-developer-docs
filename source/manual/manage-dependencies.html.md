@@ -206,6 +206,7 @@ We've [set up branch protection](/manual/github.html) for all repos with the `go
 
 ### Defensive practices
 
+- [Best practices for handling credentials](/manual/best-practices-for-handling-credentials.html) — GOV.UK guidance on protecting credentials on developer workstations from supply chain malware, covering Git, AWS, GCP and local secrets. Written in response to the September 2025 npm malware incident.
 - [GitHub Docs: Secure use reference for GitHub Actions](https://docs.github.com/en/actions/reference/security/secure-use) — The canonical GitHub guidance on securing workflows, including SHA pinning, minimum token permissions, and dependency review.
 - [GitHub Actions policy: blocking and SHA pinning](https://github.blog/changelog/2025-08-15-github-actions-policy-now-supports-blocking-and-sha-pinning-actions/) — August 2025 changelog covering new org-level controls for blocking specific actions and enforcing SHA pinning as policy.
 - [Pin your GitHub Actions to protect against supply chain attacks](https://emmer.dev/blog/pin-your-github-actions-to-protect-against-mutability/) — Practical guide to SHA pinning, including Renovate's `helpers:pinGitHubActionDigestsToSemver` preset as an alternative to Dependabot for managing pinned SHAs.
