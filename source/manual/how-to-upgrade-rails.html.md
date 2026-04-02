@@ -136,9 +136,14 @@ guidance][] that follows.
     - [Rails change log][] for the given release
     - [Rails configuration documentation][]
 
+    One common non-default option in non-production environments is
+    `config.hosts.clear`, which is there [to allow custom aliased domains][]
+    like publishing-api.dev.gov.uk.
+
 - For changes in `public/*`, in general you can leave out HTML and image files
-  (and consider removing any existing ones). We serve our own error pages and
-  don't use Rails default app icons.
+  (and consider removing any existing ones). For most apps, we serve our own
+  error pages and don't use Rails default app icons. There are some exceptions,
+  e.g. Asset Manager uses the default Rails 404 page.
 - It's useful to commit the `config/initializers/new_framework_defaults_*.rb`
   file. These are new settings that will be used when you [update the version
   defaults setting][]. With this file committed, if there are any issues after
@@ -158,6 +163,7 @@ If you're still unsure about a change:
 [Rails configuration documentation]:
   https://guides.rubyonrails.org/configuring.html
 [Rails source code]: https://github.com/rails/rails
+[to allow custom aliased domains]: https://github.com/alphagov/whitehall/commit/6fcea012c1a0f9d5ba100aebf1653ae6ec5932d0
 [update the version defaults setting]: #switch-to-the-new-version-defaults
 [version-specific guidance]: #guidance-for-upgrades-to-specific-versions
 
