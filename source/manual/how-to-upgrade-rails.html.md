@@ -172,8 +172,10 @@ If you're still unsure about a change:
 Version-specific guidance is available, starting from Rails 8.0:
 
 - [8.0][]
+- [8.1][]
 
 [8.0]: /manual/guidance-for-upgrades-to-rails-8-0
+[8.1]: /manual/guidance-for-upgrades-to-rails-8-1
 
 ### Switch to the new version defaults
 
