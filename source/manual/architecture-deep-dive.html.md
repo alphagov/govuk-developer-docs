@@ -53,7 +53,7 @@ GOV.UK uses the [Fastly] CDN to handle the majority of requests, which - as
 well as reducing load on GOV.UK ('origin') by around 70% - provides 'edge nodes'
 (servers) that are closer to our end users (particularly those outside the UK).
 
-Fastly uses [Varnish] for caching, with a default cache time of 1 hour. (Read
+Fastly uses has a default cache time of 1 hour. (Read
 ["Our content delivery network"][our-cdn] for more information). If Fastly
 doesn't have a page in its cache, it fetches the page from origin.
 
@@ -64,7 +64,6 @@ origin).
 [Fastly]: https://www.fastly.com/
 [our-cdn]: /manual/cdn.html
 [purge-cache]: /manual/purge-cache.html
-[Varnish]: https://varnish-cache.org/
 
 #### Failover
 
@@ -83,64 +82,35 @@ and saving the output to disk.
 
 #### Routing on the CDN
 
-As well as for caching, Varnish is used for the redirection from `gov.uk` to
-`www.gov.uk`, which is configured in Varnish Configuration Language (VCL) and
-uploaded directly to Fastly via [govuk-cdn-config].
+Fastly also routes assets (e.g. `assets.publishing.service.gov.uk`) directly to the S3 bucket.
+
+Fastly is also used for the redirection from `gov.uk` to
+`www.gov.uk`, which is configured via [govuk-fastly].
 
 Other redirects that happen at the Fastly level include [bouncer]: a GOV.UK
 application responsible for redirecting traffic from old pre-GOV.UK websites.
 This is configured via [transition]. Read [Transition architecture] for more detail.
 
 [bouncer]: https://github.com/alphagov/bouncer
-[govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
+[govuk-fastly]: https://github.com/alphagov/govuk-fastly
 [Transition architecture]: /manual/transition-architecture.html
 [transition]: https://github.com/alphagov/transition
 
 ### Routing on GOV.UK
 
-#### Getting to the 'router' application
-
-![](images/load-balancer.png)
+<pre lang="mermaid">
+<code>
+graph LR;
+    A[Fastly]-->B[Router Load Balancer];
+    B[Router Load Balancer]-->C[Router nginx];
+    C[Router nginx]-->D[Router];
+    D[Router]-->E[Backend];
+</code>
+</pre>
 
 Some requests make it through the CDN and cache layers to 'origin'. Origin is
-a stack of computers in the cloud - in this case, AWS - and its entry point is
-a load balancer.
-
-The load balancer knows based on the hostname which machine 'class' to route
-to. Different classes of machine run different sets of GOV.UK applications.
-How many machines are allocated to a class - and how big those machines are -
-is configured using [Terraform], in [govuk-aws]. What runs on each machine
-class is configured in govuk-puppet, a file and process management system we'll
-cover in more detail later.
-
-![](images/nginx-routing.png)
-
-External requests are routed to a 'cache' machine, where the request is
-received by an [Nginx] web server running on the machine. Nginx proxies some
-routes directly to other apps, such as [asset URLs] being
-[routed to asset-manager][asset-proxy] - this is configured with govuk-puppet.
-However, [Nginx proxies most requests to Varnish][nginx-varnish-proxy].
-If Varnish has the route response in its cache, that is returned, otherwise it
-proxies the request to [router], which is a GOV.UK maintained application
-running on the cache machines.
-
-[asset URLs]: https://github.com/alphagov/govuk-puppet/blob/881cbcdef477332948e92b88ecd04a830fd02337/hieradata/common.yaml#L1176-L1178
-[asset-proxy]: https://github.com/alphagov/govuk-puppet/blob/a114dd5f80d789be368573545dc56fe388c0ac58/modules/router/templates/assets_origin.conf.erb#L53-L67
-[govuk-aws]: https://github.com/alphagov/govuk-aws
-[Nginx]: https://www.nginx.com/
-[nginx-varnish-proxy]: https://github.com/alphagov/govuk-puppet/blob/66b2f6c6d8e572d0b4cc8d6d47338c050a1c46a2/modules/router/templates/router_include.conf.erb#L78
-[router]: https://github.com/alphagov/router
-[Terraform]: https://www.terraform.io/
-
-#### Routing via 'router'
-
-'Router' is a reverse proxy app written in Go. It is designed to be fast,
-storing all known routes in memory using a [prefix trie], which it loads
-from a MongoDB database of all known routes.
-
-Every Router instance reloads it's in memory routes periodically or being
-triggered by LISTEN/NOTIFY notification from the Content Store Postgres
-database. This process is repeated across all instances.
+Router's load balancer. [Router] is a reverse proxy app written in Go and loads all routes into memory from
+from the content store Postgres database.
 
 Routes have different handlers. Routes marked as `gone` return a 410 Gone
 response. Routes marked as `redirect` serve a 301 Moved Permanently
@@ -158,6 +128,7 @@ Store - we'll cover this later. For example, if the route has a
 `backend_id` of `frontend`, it will forward the request to the [frontend]
 application.
 
+[router]: https://github.com/alphagov/router
 [frontend]: https://github.com/alphagov/frontend
 [prefix trie]: https://en.wikipedia.org/wiki/Trie
 [register-route]: https://github.com/alphagov/content-store/blob/08f02f990e621c9d2fd473e12a70a6805ddd8dcb/app/models/route_set.rb#L58-L82
@@ -203,23 +174,18 @@ live in an [AWS S3 bucket]; read ["Assets: how they work"].
 
 ### Summary
 
-The request is resolved through DNS, more often than not hitting the CDN/cache
-layers. Some requests make it through to origin, where they're routed to the
-machine running the (usually Rails-based) rendering application that knows how
+The request is resolved through DNS, more often than not hitting the CDN. Some requests make it through to origin,
+where they're routed to the pod running the (usually Rails-based) rendering application that knows how
 to handle the request.
 
 ## What happens when someone hits 'Publish'?
 
 ### Draft and live stacks
 
-![](images/draft-live-stacks.png)
-
 Everything you've just read about in the first section exists in two stacks:
-draft and live. These are very similar to each other: each is a collection
-of machines in the cloud, running GOV.UK applications. Everything that runs in
-the live stack also runs in the draft stack, in order to have a way of
-previewing content in a non-public-facing way. However, the draft stack also
-has additional machines that run the [publishing apps].
+draft and live. Everything that runs in the live stack also runs in the draft stack,
+in order to have a way of previewing content in a non-public-facing way. However, the draft stack also
+has applications that run the [publishing apps].
 
 Applications shouldn't know what stack they're in - they're simply configured
 to talk to other applications in their stack.
@@ -227,10 +193,22 @@ to talk to other applications in their stack.
 The live stack entry point is the 'router' app. You can swap `www` for
 `www-origin` to bypass Fastly and view the live stack at origin. This is
 only available to office IPs / VPN, and to Fastly IP addresses (configured in
-[govuk-provisioning]).
+[govuk-fastly]).
 
 The draft stack entry point is [authenticating-proxy], which sits in front
-of 'router'. You can swap `www` for `draft-origin` to view the draft stack at
+of 'router'.
+
+<pre lang="mermaid">
+<code>
+graph LR;
+    A[Authenticating Proxy Load Balancer]-->B[Authenticating Proxy nginx];
+    B[Authenticating Proxy nginx]-->C[Authenticating Proxy];
+    C[Authenticating Proxy]-->D[Draft Router nginx];
+    D[Draft Router nginx]-->E[Draft Router];
+    E[Draft Router]-->F[Draft backend];
+</code>
+</pre>
+You can swap `www` for `draft-origin` to view the draft stack at
 origin. The draft stack is not IP-restricted, as we need to be able to share
 links to be reviewed ("2i'd") or fact-checked by non-Government departments.
 It is, however, only visible to users who have been verified through
@@ -244,7 +222,7 @@ the necessary permissions to perform a given action, such as publishing
 content.
 
 [authenticating-proxy]: https://github.com/alphagov/authenticating-proxy
-[govuk-provisioning]: https://github.com/alphagov/govuk-provisioning
+[govuk-fastly]: https://github.com/alphagov/govuk-fastly
 ["How the draft stack works"]: /manual/content-preview.html
 [publishing apps]: /#publishing-apps
 [signon]: /repos/signon.html
