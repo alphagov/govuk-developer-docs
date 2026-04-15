@@ -109,6 +109,9 @@ The Kubernetes `ExternalSecret` defines the mapping between the AWS Secrets Mana
       dataFrom:
         - extract:
             key: govuk/<APPNAME>/<SECRETNAME>
+            conversionStrategy: Default
+            decodingStrategy: None
+            metadataPolicy: None
     ```
 
     Where `<APPNAME>` is the name of the app and `<SECRETNAME>` is the name of the secret.
@@ -137,6 +140,9 @@ The Kubernetes `ExternalSecret` defines the mapping between the AWS Secrets Mana
       dataFrom:
         - extract:
             key: govuk/frontend/elections-api
+            conversionStrategy: Default
+            decodingStrategy: None
+            metadataPolicy: None
     ```
 
 1. Save the `.yaml` file and merge the change.
