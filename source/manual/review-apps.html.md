@@ -107,8 +107,16 @@ for examples of necessary environment variables.
 
 You can create the application via the `app.json` file.
 
+## Connecting the Heroku app to the Github repo
+
 You will need a successful deploy with a correct configuration before you can
-deploy review apps.
+deploy review apps. You can set up deployments in Heroku by using the deploy tab on
+the app, then choosing Deployment method: Github and searching for the repo. (Note
+that the github account that is logged into Heroku to give access to the apps is
+`govuk-ci`, but you should choose `alphagov` as the account to search)
+
+This will cause Heroku to create a webhook in the github repo (you can confirm this
+in the repo's settings->Webhooks)
 
 Your Gemfile should contain logic to ensure it's using the same Ruby version as our infrastructure:
 
@@ -141,3 +149,11 @@ link will automatically be posted into the GitHub Pull Request.
 
 That's it! Now try to create a new test Pull Request and verify that the
 application is being deployed to a new review app.
+
+## Rotating the webhook secrets
+
+If you need to rotate the secret used by the webhook, note that this cannot be done in Github -
+there's an option in Github that allows you to manually change the secret, but there's no option
+to set it in Heroku. You will need to disconnect the heroku app from the Github repo, then reconnect
+it. You may need to recreate the pipeline after this.
+
