@@ -28,10 +28,6 @@ Anybody on the team should feel comfortable picking up any card, even if they do
 
 For existing teams, tech leads should on-board new developers to the team. You should meet with developers new to the team to introduce the team’s work and overall goals. Discuss the new developer’s objectives so you can help ensure there is suitable work for them and generally help settle them in to be productive team members.
 
-If the developer is new to GOV.UK, then it’s worth taking them through the [overview slides][].
-
-[overview slides]: https://docs.google.com/presentation/d/1nAE65Og04JYNAc0VjYaUYLqNLuUOM9r3Mvo0PGFy_Zk/edit
-
 ## Managing leavers
 
 When a team member leaves GOV.UK, either the person's Line Manager or their team's Delivery Manager should submit a leaver ticket to the service desk and [GOV.UK Starters, Movers, Leavers form](https://docs.google.com/forms/d/e/1FAIpQLSf5nuU8KMyutnL7K4H5URd1aIrp_BPQSrcWpALg1Ed5kU7BfA/viewform).
