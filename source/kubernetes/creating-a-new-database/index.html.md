@@ -85,6 +85,12 @@ And grant your user privileges to all tables in the database like so:
 GRANT ALL ON SCHEMA public TO "YOUR_USER";
 ```
 
+### Create a read only database user
+
+***NOTE:*** We hope to automate this in the near future.
+
+You should create a read only user in the RDS instance. You can follow the [Create readonly credentials for your RDS database guide](/kubernetes/creating-a-new-database/create-readonly-credentials-for-your-rds-database.html).
+
 [create-app]: https://docs.publishing.service.gov.uk/kubernetes/create-app/
 [govuk-infrastructure]: https://github.com/alphagov/govuk-infrastructure/
 [integration tfvars]: https://github.com/alphagov/govuk-infrastructure/blob/main/terraform//variables/integration/rds.tfvars
