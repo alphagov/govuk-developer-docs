@@ -54,10 +54,6 @@ If it isn't feasible to remove the asset in the publishing app, you can use thes
 
     <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID,true]") %>
 
-    For "Whitehall" Assets (paths starting with `/government/uploads/system`), use the [`assets:whitehall_delete`](https://github.com/alphagov/asset-manager/blob/796eb36/lib/tasks/assets.rake#L9-L13) rake task instead:
-
-    <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[ASSET_PATH]") %>
-
 3. Add a query string to the URL (e.g. `?cache-bust=12345`) to bypass the cache
    and check that the asset responds with a 404 not found.
 
@@ -100,10 +96,6 @@ steps to remove the asset in Asset Manager:
 1. Run the following rake task:
 
     <%= RunRakeTask.links("asset-manager", "assets:redirect[ASSET_ID,REDIRECT_URL]") %>
-
-    For Whitehall assets you will have to run:
-
-    <%= RunRakeTask.links("whitehall_redirect", "assets:redirect[LEGACY_PATH_URL,REDIRECT_URL]") %>
 
 ## Upload an asset
 
