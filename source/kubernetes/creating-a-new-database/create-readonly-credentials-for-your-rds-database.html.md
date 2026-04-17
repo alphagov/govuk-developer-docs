@@ -24,9 +24,9 @@ Throughout this guide the following naming conventions apply:
 --------------------------------------------|------------
 `<ENVIRONMENT>`                             | The name of the environment you are provisioning (e.g. `integration`, `staging`, or `production`)
 `<DB_NAME>`                                 | The ***KEY*** name for your database in the terraform databases variable in the rds.tfvars (e.g. for account-api in integration look in the [integration.tfvars](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/variables/integration/rds.tfvars) file and you'll see `account_api = {`, so the name here is `account_api` (it is usually the RDS instance name written in [snake case](https://en.wikipedia.org/wiki/Snake_case)
-`<DB_NAME_KEBAB_CASE>`                      | The `<DB_NAME>` after it has been converted into [kebab case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case) (e.g. `account_api` will become `account-api`
+`<DB_NAME_KEBAB_CASE>`                      | The `<DB_NAME>` after it has been converted into [kebab case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case) (e.g. `account_api` will become `account-api`)
 `<DB_ENGINE>`                               | The lower case name of the database engine as understood by terraform (e.g. `postgres`, or `mysql`)
-`<DB_ADMIN_PASSWORD>`                       | The RDS admin password retrieved as part of step [Get the secrets you will need](#get-the-secrets-you-will-need). 
+`<DB_ADMIN_PASSWORD>`                       | The RDS admin password retrieved as part of step [Get the secrets you will need](#get-the-secrets-you-will-need)
 `<READONLY_HOSTNAME>`                       | The hostname key retrieved as part of step [Get the secrets you will need](#get-the-secrets-you-will-need). This is named `<DB_ENGINE>_READONLY_HOSTNAME`
 `<READONLY_PORT>`                           | The port key retrieved as part of step [Get the secrets you will need](#get-the-secrets-you-will-need). This is named `<DB_ENGINE>_READONLY_PORT`
 `<READONLY_USERNAME>`                       | The username key retrieved as part of step [Get the secrets you will need](#get-the-secrets-you-will-need). This is named `<DB_ENGINE>_READONLY_USERNAME`
@@ -134,8 +134,6 @@ index a8acf75112..f7416422ce 100644
      - release
      - search_admin
 ```
-
-
 
 Within a few minutes of this PR being merged to main ArgoCD will (in all environments) apply the external secret configuration, which in turn will cause the external secrets operator to provision a secret in the cluster.
 
