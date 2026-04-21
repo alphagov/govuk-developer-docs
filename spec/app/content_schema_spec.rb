@@ -16,7 +16,11 @@ RSpec.describe ContentSchema do
       schema = ContentSchema.new("generic").frontend_schema
 
       expect(schema.properties["base_path"]["$ref"]).to eql(nil)
-      expect(schema.properties["base_path"]["type"]).to eql("string")
+
+      expect(schema
+        .properties
+        .dig("base_path", "allOf")
+        .map { _1["type"] }).to eql(%w[string string])
     end
   end
 
@@ -37,7 +41,10 @@ RSpec.describe ContentSchema do
       schema = ContentSchema.new("generic").publisher_content_schema
 
       expect(schema.properties["base_path"]["$ref"]).to eql(nil)
-      expect(schema.properties["base_path"]["type"]).to eql("string")
+      expect(schema
+        .properties
+        .dig("base_path", "allOf")
+        .map { _1["type"] }).to eql(%w[string string])
     end
   end
 
