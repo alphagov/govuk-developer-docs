@@ -52,7 +52,7 @@ the readonly credentials which will give you the hostname to connect to, and the
 # Get the aws-db-admin password for <DB_NAME>
 aws secretsmanager get-secret-value \
   --secret-id integration-rds-admin-passwords | \
-    jq -r '.SecretString | fromjson | .["account_api"]'
+    jq -r '.SecretString | fromjson | .["<DB_NAME>"]'
 
 # Get All of the readonly credentials
 aws secretsmanager get-secret-value \
