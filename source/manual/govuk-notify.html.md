@@ -26,13 +26,13 @@ for each environment):
 
   The [Email Alert API Product dashboard] shows usage over time.
 
-  **Note:** currently (as of 04/08/2020) GOV.UK Notify has a maximum rate limit
-  of 350 requests per second and a daily limit of 30 million emails per day
-  (Notify's daily allowance with Amazon SES) meaning we should adhere to these
-  limits when using Notify to deliver emails for our applications. The rate
-  limit of 350 requests per second is set in email-alert-api and can be found in the
-  [SendEmailWorker][SendEmailWorker]. If you wish to double check these figures
-  you could ask in their slack channel #govuk-notify.
+  **Note:** GOV.UK Notify limits this account (as a special case) to a daily
+  limit of 8 million emails, at a maximum rate of roughly 400 messages per
+  second (in fact they define this as 24,000 messages per rolling minute),
+  meaning that we should adhere to these limits when using Notify to deliver
+  emails for our applications. We set our rate slightly below that at 21,600
+  requests per second in the [SendEmailJob][SendEmailJob]. If you wish to
+  double check these figures you could ask in their slack channel #govuk-notify.
 
 - **GOV.UK Publishing**
 
@@ -50,7 +50,7 @@ for each environment):
   to users who click a survey banner or use the `Is this page useful?` feature.
 
 [Email Alert API Product dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_product.json?refresh=1m&orgId=1
-[SendEmailWorker]: https://github.com/alphagov/email-alert-api/blob/main/app/workers/send_email_worker.rb#L4
+[SendEmailJob]: https://github.com/alphagov/email-alert-api/blob/main/app/jobs/send_email_job.rb#L4
 
 ## Accessing the dashboard
 
@@ -58,6 +58,13 @@ for each environment):
 
 You'll need to use your own account, which should have been created as part of [getting production admin access](/manual/rules-for-getting-production-access.html#production-admin-access).
 If you lack an account, ask your tech lead or a [GOV.UK Senior Tech member](/manual/ask-for-help.html#contact-senior-tech) to invite you to the [GOV.UK](https://www.notifications.service.gov.uk/services/ca5ec9d0-3074-4495-bb15-dd6cf176d7ce/users), [GOV.UK Email](https://www.notifications.service.gov.uk/services/539d63a1-701d-400d-ab11-f3ee2319d4d4/users) and [GOV.UK Publishing](https://www.notifications.service.gov.uk/services/a4b5303c-bea0-4aa7-b3bd-7e5f1d25ff65/users) services in Notify.
+
+For the `GOV.UK Email (Integration)` and `GOV.UK Email (Staging)` applications, the administrator accounts
+are [email-alert-api-integration@digital.cabinet-office.gov.uk](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-integration) and [email-alert-api-staging@digital.cabinet-office.gov.uk](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-staging) respectively. To gain access you will need to be a member of the appropriate group.
+
+## Rotating API Keys
+
+GOV.UK Notify suggests that API keys should be rotated every 6 months, or when a member of the service team leaves. Create a new key in Notify's dashboard (give it a date name so that we know when it was created), and update the equivalent secret in Secrets Manager. The API Integration section on Notify's dashboard includes a message log, so you should be able to see when the new key is being used. Once it is, you can revoke the old key.
 
 ## Getting urgent support
 
