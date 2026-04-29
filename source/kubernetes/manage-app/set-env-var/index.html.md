@@ -56,20 +56,14 @@ To update an existing secret:
 
 1. Edit the JSON value of the secret in [Secrets Manager](https://eu-west-1.console.aws.amazon.com/secretsmanager/listsecrets?region=eu-west-1). You can also do this [via the `aws` command line tool](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/secretsmanager/put-secret-value.html#examples).
 
-2. Delete the corresponding Kubernetes secret in order to force an update. You can do this via the Argo CD web UI or via `kubectl`. If you prefer, you can wait for External Secrets Operator to pull the new value automatically. It polls once per hour, independently per secret.
+2. Force the secret to be synchronised to pods.
 
     ```sh
-    k delete secret foo-app-api-key
+    kubectl annotate -n apps externalsecrets <external-secret-name> force-sync=$(date +%s) --overwrite
     ```
 
-3. Do a rolling restart of the affected app (and its workers if it has any):
+   The name of the secret in AWS's web console probably has forward slashes in, which won't work. To find out its real name to use as `<external-secret-name>` do:
 
     ```sh
-    k rollout restart deploy/foo-app
-    k rollout status !$
-
-    k rollout restart deploy/foo-app-workers
-    k rollout status !$
+    kubectl get externalsecrets -n apps
     ```
-
-    You can also use the Argo CD web UI to see the progress of the rollout and the health of the app's pods.
