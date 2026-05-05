@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-platform"
+owner_slack: "#govuk-content-apis"
 title: Transition architecture
 section: Transition
 type: learn

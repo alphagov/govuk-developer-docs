@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-platform"
+owner_slack: "#govuk-content-apis"
 title: Configure transition mappings for a site
 section: Transition
 layout: manual_layout

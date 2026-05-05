@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-platform"
+owner_slack: "#govuk-content-apis"
 title: Transition a site to GOV.UK
 section: Transition
 layout: manual_layout

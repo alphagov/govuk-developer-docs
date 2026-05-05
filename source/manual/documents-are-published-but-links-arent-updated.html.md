@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-platform"
+owner_slack: "#govuk-content-apis"
 title: Debug published documents with incorrect links
 section: Publishing
 layout: manual_layout

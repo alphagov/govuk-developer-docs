@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-platform"
+owner_slack: "#govuk-content-apis"
 title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout

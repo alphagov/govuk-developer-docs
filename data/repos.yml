@@ -5,21 +5,21 @@
 
 - repo_name: asset-manager
   type: APIs
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
 
 - repo_name: authenticating-proxy
   type: Supporting apps
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
   production_url: false
 
 - repo_name: bouncer
   type: Transition apps
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
   production_url: false
 
@@ -89,8 +89,8 @@
 
 - repo_name: content-store
   type: APIs
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
   production_url: https://www.gov.uk/api/content
   argo_cd_apps:
@@ -152,28 +152,28 @@
   team: "#insights-and-analytics-alerts"
 
 - repo_name: gds-api-adapters
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   type: Gems
   sentry_url: false
 
 - repo_name: gds-sso
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   type: Gems
   description: OmniAuth adapter to allow apps to sign in via GOV.UK Signon.
   sentry_url: false
 
 - repo_name: govspeak
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   type: Gems
   sentry_url: false
 
 - repo_name: govspeak-preview
   production_url: https://govspeak-preview.publishing.service.gov.uk
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
   type: Utilities
   sentry_url: false
@@ -253,8 +253,8 @@
   description: A private repo used for experimenting and iterating on GOV.UK Chat v.1 in Python
 
 - repo_name: govuk-content-api-docs
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   type: Utilities
 
 - repo_name: govuk-content-publishing-guidance
@@ -346,7 +346,7 @@
   private_repo: true
 
 - repo_name: govuk-graphql
-  team: "#govuk-publishing-platform"
+  team: "#govuk-content-apis"
   alerts_team: "UAEH5J62J"
   type: Publishing apps
   description: Experimental high-performance GraphQL API for GOV.UK
@@ -517,8 +517,8 @@
   sentry_url: false
 
 - repo_name: govuk_content_item_loader
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   type: Gems
   sentry_url: false
 
@@ -528,8 +528,8 @@
   sentry_url: false
 
 - repo_name: govuk_message_queue_consumer
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   type: Gems
   sentry_url: false
 
@@ -544,14 +544,14 @@
   sentry_url: false
 
 - repo_name: govuk_schemas
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   type: Gems
   sentry_url: false
 
 - repo_name: govuk_sidekiq
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   type: Gems
   sentry_url: false
 
@@ -568,8 +568,8 @@
 
 - repo_name: hmrc-manuals-api
   type: APIs
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
 
 - repo_name: licensify
@@ -598,8 +598,8 @@
 
 - repo_name: link-checker-api
   type: APIs
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
 
 - repo_name: local-links-manager
@@ -624,8 +624,8 @@
   sentry_url: false
 
 - repo_name: optic14n
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   type: Gems
   sentry_url: false
 
@@ -658,8 +658,8 @@
 
 - repo_name: publishing-api
   type: APIs
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
 
 - repo_name: rack-logstasher
@@ -744,8 +744,8 @@
 
 - repo_name: signon
   type: Supporting apps
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
 
 - repo_name: siteimprove_api_client
@@ -770,14 +770,14 @@
 
 - repo_name: support
   type: Supporting apps
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
 
 - repo_name: support-api
   type: APIs
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
 
 - repo_name: terraform-govuk-infrastructure-sensitive
@@ -793,8 +793,8 @@
 
 - repo_name: transition
   type: Transition apps
-  team: "#govuk-publishing-platform"
-  alerts_team: "#govuk-publishing-platform-system-alerts"
+  team: "#govuk-content-apis"
+  alerts_team: "#govuk-content-apis-system-alerts"
   production_hosted_on: eks
   production_url: https://transition.publishing.service.gov.uk
 
