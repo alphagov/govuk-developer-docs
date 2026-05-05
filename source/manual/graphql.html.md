@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-platform"
+owner_slack: "#govuk-content-apis"
 title: GraphQL
 parent: "/manual.html"
 layout: manual_layout

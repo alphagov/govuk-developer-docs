@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-platform"
+owner_slack: "#govuk-content-apis"
 title: If documents aren't live after being published
 section: Publishing
 layout: manual_layout

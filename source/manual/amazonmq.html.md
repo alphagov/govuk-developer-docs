@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-platform"
+owner_slack: "#govuk-content-apis"
 title: Manage Amazon MQ
 section: Infrastructure
 layout: manual_layout
