@@ -9,9 +9,9 @@ related_repos: [bouncer, transition]
 
 Sometimes the requester will want to specify redirects for specific paths, e.g. if they want to maintain links from old documents to their new equivalent. In these cases, there are a number of steps to follow.
 
-## 1) Consider AKA domains
+## 1) Set up AKA domains if required
 
-If the department want to use the side-by-side browser to preview how their redirects will appear after transitioning they will need to set up AKA domains.
+If the department want to preview how their redirects will appear after transitioning they will need to set up AKA domains.
 
 They will need one new CNAME DNS entry for each domain/subdomain they wish to preview according to the following pattern:
 
