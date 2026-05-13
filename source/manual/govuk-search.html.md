@@ -17,7 +17,7 @@ Site search is available on the GOV.UK homepage and from the blue super navigati
 
 The url of site search is https://www.gov.uk/search/all which is rendered by finder frontend, and referred to in code as the all_content finder.
 
-Search results for site search are usually provided by [search-api-v2][] and Google Vertex AI Search. Except in the following cases when site search falls back to using [search-api][]
+Search results for site search are usually provided by [search-api-v2][] and Google Cloud Platform (GCP)'s Agent Search ("Discovery Engine"). Except in the following cases when site search falls back to using [search-api][]
 
 1. When [no search query][no-keyword-link] is provided.
 2. When the [query param `use_v1=true`][use-v1-link] is present, eg https://www.gov.uk/search/all?order=updated-newest&use_v1=true
@@ -41,7 +41,7 @@ Documentation on how finder frontend queries the two search api applications is 
 
 ## Search API versus Search API V2
 
-[search-api-v2][] was built to improve the quality of search results for the majority of GOV.UK users (when compared with search-api) and retains a "minimally compatible" API with search-api. It uses Google Cloud Platform (GCP)'s Vertex AI Search ("Discovery Engine") product as its underlying search engine.
+[search-api-v2][] was built to improve the quality of search results for the majority of GOV.UK users (when compared with search-api) and retains a "minimally compatible" API with search-api. It uses Google Cloud Platform (GCP)'s Agent Search ("Discovery Engine") product as its underlying search engine.
 
 [search-api][] uses an old version of Elasticsearch as its underlying search engine. There is currently no clear roadmap for retiring search-api.
 

@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-search"
-title: "How to get or delete a document from Vertex"
+title: "How to get or delete a document from Discovery Engine"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK

@@ -16,7 +16,7 @@ If the new `payload_version` is less or equal to the `latest_synced_version` the
 If this error is occurring for a lot of documents then the best option may be to clear the Redis cache.
 The [comparison logic] only executes if publishing-api sends a payload ID and the content_id has been seen before. If the content item isn't present in the cache, then `latest_synced_version` is nil and `sync?` [returns true], so it doesn't reach the comparison logic. Clearing the cache would make it seem as though the content_id hasn't been seen before. So the next time the content item is requeued by publishing-api it will trigger a sync regardless of payload version.
 
-The side effect of doing this is that if you represent every document from publishing-api, every document will be resynced, whereas if it existed in the cache, the sync would have been skipped as it would be known that Vertex already has the latest version of the document.
+The side effect of doing this is that if you represent every document from publishing-api, every document will be resynced, whereas if it existed in the cache, the sync would have been skipped as it would be known that Discovery Engine already has the latest version of the document.
 
 Using [kubectl]:
 

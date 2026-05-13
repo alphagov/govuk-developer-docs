@@ -8,7 +8,7 @@ section: Search on GOV.UK
 
 As described in [GOV.UK Search: how it works][link-1], there are two Search stacks on GOV.UK. This documentation aims to provide some debugging steps to take in the event that someone tells you "search is down".
 
-If you are confident there is an outage caused by GCP or Google Vertex AI Search, skip to [How to contact Google if there is a critical issue with GCP or Google Vertex AI Search](./search-alerts-and-monitoring.html#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-google-vertex-ai-search)
+If you are confident there is an outage caused by GCP or Discovery Engine, skip to [How to contact Google if there is a critical issue with GCP or Discovery Engine](./search-alerts-and-monitoring.html#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-discovery-engine)
 
 This information is currently summarised as a [flow chart][link-2]
 
@@ -16,7 +16,7 @@ This information is currently summarised as a [flow chart][link-2]
 
 ## Identify what exactly is broken
 
-Searches from [search/all][link-5] with a query param are sent to SearchAPI v2, and google vertex. [Without a query param][link-12], requests are sent to SearchAPI (v1), which talks to Elasticsearch. So a quick way to identify which search stack is implicated is to see if searching with or without a query param results in different behaviour.
+Searches from [search/all][link-5] with a query param are sent to SearchAPI v2, and Discovery Engine. [Without a query param][link-12], requests are sent to SearchAPI (v1), which talks to Elasticsearch. So a quick way to identify which search stack is implicated is to see if searching with or without a query param results in different behaviour.
 
 ### Check the error rates for site search
 
@@ -37,7 +37,7 @@ If both of those pages fail to load, it is highly unlikely that the cause is a f
 
 ## If site search is unavailable
 
-If the problem appears to be with Site search, is the problem with SearchAPI v2 or with Google Vertex which provides our search results?
+If the problem appears to be with Site search, is the problem with SearchAPI v2 or with Discovery Engine which provides our search results?
 
 Check for unexpected errors in Sentry and Kibana that might help identify issues. See [GOV.UK Site search alerts and monitoring](./search-alerts-and-monitoring.html) for an overview of the alerting in place.
 
@@ -50,13 +50,13 @@ Check for unexpected errors in Sentry and Kibana that might help identify issues
 #### Synchronisation errors
 
 In addition to catching general exceptions,
-Sentry is [also used][link-6] to catch synchronisation errors (when new content is pushed to the VAIS datastore).
+Sentry is [also used][link-6] to catch synchronisation errors (when new content is pushed to the Discovery Engine datastore).
 
 A high number of synchronisation errors would suggest that new/updated content is failing to reach our datastore, rather than failing to be returned as search results.
 
 #### DiscoveryEngine::InternalError
 
-SearchAPIv2 raises a [DiscoveryEngine::InternalError][link-7] in the event of an error from Vertex. A quick hacky way to find these errors in Kibana is to search for the Rails logger message ["Did not get search results"][link-9]. A high number of these requests suggests a problem with Vertex, which should be raised with Google support, see [How to contact Google if there is a critical issue with GCP or Google Vertex AI Search](./search-alerts-and-monitoring.html#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-google-vertex-ai-search)
+SearchAPIv2 raises a [DiscoveryEngine::InternalError][link-7] in the event of an error from Discovery Engine. A quick hacky way to find these errors in Kibana is to search for the Rails logger message ["Did not get search results"][link-9]. A high number of these requests suggests a problem with Discovery Engine, which should be raised with Google support, see [How to contact Google if there is a critical issue with GCP or Discovery Engine](./search-alerts-and-monitoring.html#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-discovery-engine)
 
 ## If site search is returning bad results
 
@@ -64,7 +64,7 @@ Search result relevance is fine tuned via a combination of:
 
 1. Boosts and demotions applied at the [serving configuration level][link-13]
 2. Boosts for [recency][link-14] applied at the application level at query time
-3. Constant training of the model on [user event (GA4) data][link-15] sent to vertex from our BiqQuery account.
+3. Constant training of the model on [user event (GA4) data][link-15] sent to Discovery Engine from our BiqQuery account.
 
 Recent changes to these files, or a failure of the user event data import would all be candidate causes of a reduction in search result quality. But they would be unlikely to have a catastrophically bad impact.
 

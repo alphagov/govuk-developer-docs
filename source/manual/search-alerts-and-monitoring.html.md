@@ -35,7 +35,7 @@ All environments are configured for Slack notifications. Production alerts are r
 
 ### Degradation of service alerts
 
-We monitor and alert on both Search API v2 success rates, and Google Vertex response times.
+We monitor and alert on both Search API v2 success rates, and Google Discovery Engine response times.
 
 #### Search API v2 success rates
 
@@ -49,9 +49,9 @@ We have an informal SLO to maintain a search and autocomplete success rate of ab
 
 - [AutocompleteDegradedAcute][link-9] 5 minute rolling success rate for autocomplete requests has dropped below 90% for more than 10 minutes.
 
-#### Google Vertex AI Search request durations
+#### Google Cloud Discovery Engine request durations
 
-There is currently one Alertmanager rule configured in govuk-helm-charts, [HighVertexP90Latency](link-14), which sends notifications in Slack if requests to Google Vertex's Search endpoint exceed acceptable duration thresholds.
+There is currently one Alertmanager rule configured in govuk-helm-charts, [HighVertexP90Latency](link-14), which sends notifications in Slack if requests to Google Cloud Discovery Engine search endpoint exceed acceptable duration thresholds.
 
 #### Causes and steps to take in the event of a degradation of service alert firing
 
@@ -61,11 +61,11 @@ We are aware of the following occasional errors which should not be considered c
 - `Google::Cloud::InternalError` An internal error occurred on the Google API
 - `AMQ::Protocol::EmptyResponseError` RabbitMQ sent an unexpected response, possibly due to restarting (the listener will restart by itself in most cases)
 
-If these errors persist and trigger the degradation of service alerts, this indicates an issue with GCP or Google Vertex AI Search.
+If these errors persist and trigger the degradation of service alerts, this indicates an issue with GCP or Discovery Engine.
 
 1. Login to the [Google Cloud console][link-12], and make sure that the project Search API v2 Production is selected.
 2. Under "APIs & Services" in the GCP Console, review the Discovery Engine API usage for traffic and error rates.
-3. Issues with Vertex should be [raised with Google](#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-google-vertex-ai-search).
+3. Issues with Discovery Engine should be [raised with Google](#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-discovery-engine).
 
 ### Degradation of search quality alerts
 
@@ -77,7 +77,7 @@ We have additional Alertmanager rules related to search result quality configure
 
 #### Steps to take in the event of a degradation of search quality firing
 
-Significant drops in search quality need to be investigated by the search team to diagnose the issue and [raise a support ticket with Google](#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-google-vertex-ai-search), if appropriate. If you notice a drop in search quality, make sure the Performance Analyst, Product Manager and Delivery Manager on the search team are aware.
+Significant drops in search quality need to be investigated by the search team to diagnose the issue and [raise a support ticket with Google](#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-discovery-engine), if appropriate. If you notice a drop in search quality, make sure the Performance Analyst, Product Manager and Delivery Manager on the search team are aware.
 
 ### Failures running evaluations related rake tasks
 
@@ -116,7 +116,7 @@ If an evaluation fails for a reason other than a sample query set not existing, 
 
 5. **Restore usual schedule of evaluation runs.** This is only relevant if scheduled evaluations were temporarily paused in step 3.
 
-## How to contact Google if there is a critical issue with GCP or Google Vertex AI Search
+## How to contact Google if there is a critical issue with GCP or Discovery Engine
 
 1. To raise a support ticket, you will first need to login to the [GCP console][link-12]
 2. Navigate to the [Support/Cases section][link-13] and press the GET HELP button, ensuring to provide comprehensive reproduction steps.

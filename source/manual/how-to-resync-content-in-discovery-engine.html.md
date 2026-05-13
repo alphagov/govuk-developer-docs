@@ -1,12 +1,12 @@
 ---
 owner_slack: "#govuk-search"
-title: "How to resync content in Vertex"
+title: "How to resync content in Discovery Engine"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
 ---
 
-To resync content items in Vertex search, publishing-api needs to push the documents to search-api-v2.
+To resync content items in Discovery Engine, publishing-api needs to push the documents to search-api-v2.
 There are various rake tasks to achieve this.
 
 ### Resyncing all content
