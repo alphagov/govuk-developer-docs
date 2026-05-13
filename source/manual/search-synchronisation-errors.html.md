@@ -15,7 +15,7 @@ Search API v2's `document_sync_worker` listens to this queue, and co-ordinates t
 If a document has been successfully published, is live on gov.uk, but is not being returned in search results, the first step is to confirm if this is the expected behaviour.
 
 1. Check the locale of the missing content_item. The document_sync_worker only sends documents with an `en` locale to the datastore.
-2. Check the document_type of the missing ContentItem. If it's is on the [document_type_ignorelist] the content has been intentionally ignored by the worker.
+2. Check the document_type of the missing ContentItem. If it's on the [document_type_ignorelist] the content has been intentionally ignored by the worker.
 3. Check the state of the missing ContentItem. Withdrawn content is desynchronised i.e. removed from the datastore.
 
 If you are sure that the document should be visible in results, you can try the following debugging steps:
@@ -35,7 +35,7 @@ If an unpublished document is still visible in search results, you can take the 
 
 1. Confirm if the document_sync_worker received a request to update the document. Do this by checking in Kibana by searching for the [content_id].
 2. Check for a message which explains why the desynchronisation failed.
-3. If there is no log for this request, it could be that the document was manually deleted from the   whitehall database and so no message was placed on the search_api_published_documents queue. If this is the case, you can manually [delete the document from the datastore].
+3. If there is no log for this request, it could be that the document was manually deleted from the Whitehall database and so no message was placed on the search_api_published_documents queue. If this is the case, you can manually [delete the document from the datastore].
 
 ## Wider synchronisation issues
 

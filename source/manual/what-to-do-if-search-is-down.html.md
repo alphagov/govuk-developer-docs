@@ -60,7 +60,7 @@ SearchAPIv2 raises a [DiscoveryEngine::InternalError][link-7] in the event of an
 
 ## If site search is returning bad results
 
-Search result relevance is fine tuned via a combination of:
+Search result relevance is fine-tuned via a combination of:
 
 1. Boosts and demotions applied at the [serving configuration level][link-13]
 2. Boosts for [recency][link-14] applied at the application level at query time
