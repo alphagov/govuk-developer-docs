@@ -43,11 +43,9 @@ for each environment):
 
 - **GOV.UK**
 
-  This service is for any public-facing application that does not use the Email Alert Api
-  to send emails.
-
-  Currently it is used by [Feedback](https://github.com/alphagov/feedback) to email a survey link
-  to users who click a survey banner or use the `Is this page useful?` feature.
+  This service is reserved for public-facing applications that do not use the Email Alert Api
+  to send emails. It it currently not used, and has no API Keys (which avoids the overhead
+  of rotating them).
 
 [Email Alert API Product dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_product.json?refresh=1m&orgId=1
 [SendEmailJob]: https://github.com/alphagov/email-alert-api/blob/main/app/jobs/send_email_job.rb#L4
