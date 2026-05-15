@@ -59,6 +59,6 @@ If all documents that have been successfully published or unpublished on gov.uk,
 [resynchronise]: /manual/how-to-resync-content-in-discovery-engine
 [document_sync_worker]: https://github.com/alphagov/search-api-v2/blob/1c3e8115b15703a44691311a2971ce2dbee10c59/lib/tasks/document_sync_worker.rake
 [UNPUBLISH_DOCUMENT_TYPES list]: https://github.com/alphagov/search-api-v2/blob/1c3e8115b15703a44691311a2971ce2dbee10c59/app/models/concerns/publishing_api/action.rb#L6
-[delete the document from the datastore]: /manual/get-or-delete-a-document-from-discovery-engine#delete-a-document-from-the-datastore
+[delete the document from the datastore]: /manual/interacting-with-discovery-engine#delete-a-document-from-the-datastore
 [Check the error rates for site search]: /manual/what-to-do-if-search-is-down#check-the-error-rates-for-site-search
 [if site search is unavailable]: /manual/what-to-do-if-search-is-down#if-site-search-is-unavailable
