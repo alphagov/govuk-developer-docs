@@ -125,7 +125,7 @@ Running `\drg` will show you role grants and produce something similar to:
 
 ```
                               List of role grants
-   Role name    |          Member of          |       Options       | Grantor  
+   Role name    |          Member of          |       Options       | Grantor
 ----------------+-----------------------------+---------------------+----------
  aws_db_admin   | account-api                 | INHERIT, SET        | rdsadmin
  aws_db_admin   | rds_superuser               | INHERIT, SET        | rdsadmin
@@ -164,7 +164,8 @@ The `NOLOGIN` argument defines this role as a structural role and not a user rol
 
 ## Make existing user role a member of the new owner role
 
-<%%= warning_text('This is important! Missing this step will result in the current app user losing privileges and cause an outage.') %>
+**Warning:**
+> Missing this step will result in the current app user losing privileges and cause an outage.
 
 Use the `GRANT` verb to make the existing `account-api` app user a member of the new owner role:
 
