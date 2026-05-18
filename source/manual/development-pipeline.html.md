@@ -84,5 +84,5 @@ Refer to the [deployments documentation](/manual/deployments.html#deployment-fre
 After a deployment:
 
 - [Check Sentry for any new errors](/manual/error-reporting.html).
-- Check the [Deployment Dashboard](/manual/graphite-and-deployment-dashboards.htmll) for any issues.
+- Check the [Release app](https://release.publishing.service.gov.uk/applications) for any issues.
 - Run a build of [end-to-end tests](https://github.com/alphagov/govuk-e2e-tests) in the environment you're deploying to.
