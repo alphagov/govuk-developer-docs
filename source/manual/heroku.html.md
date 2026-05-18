@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-We use Heroku to host some non-critical applications like the [monitoring screens](screens.html) and for auto-deploying [review apps](review-apps.html)
+We use Heroku to host some non-critical applications like the [live GOV.UK content analytics screen](/repos/govuk-display-screen.html) and for auto-deploying [review apps](review-apps.html).
 
 The credentials for Heroku are in `2ndline/heroku` in [Secrets Manager](secrets-manager.html).
 
