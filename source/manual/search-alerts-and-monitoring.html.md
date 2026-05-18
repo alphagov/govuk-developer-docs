@@ -41,31 +41,68 @@ We monitor and alert on both Search API v2 success rates, and Google Discovery E
 
 We have an informal SLO to maintain a search and autocomplete success rate of about 99.99% over any 24 hour period. There are currently four Alertmanager rules configured in govuk-helm-charts to send notifications on Slack, if rates drop below this:
 
-- [SearchDegradedAcute][link-6] 5 minute rolling success rate for search requests has dropped below 99% for more than 10 minutes.
+##### Search alerts
 
-- [SearchDegradedMid][link-7] 1 hour rolling success rate for search requests has dropped below 99.9% for more than 2 hours.
+- [SearchDegradedAcute][link-6] (__Critical__) 5 minute rolling success rate for search requests has dropped below 99% for more than 10 minutes.
 
-- [SearchDegradedLong][link-8] 24 hour rolling success rate for search requests has dropped below 99.99% for more than 24 hours.
+- [SearchDegradedMid][link-7] (__Critical__) 1 hour rolling success rate for search requests has dropped below 99.9% for more than 2 hours.
 
-- [AutocompleteDegradedAcute][link-9] 5 minute rolling success rate for autocomplete requests has dropped below 90% for more than 10 minutes.
+- [SearchDegradedLong][link-8] (__Warning__) 24 hour rolling success rate for search
+
+##### Autocomplete alerts
+
+- [AutocompleteDegradedAcute][link-9] (__Critical__) 5 minute rolling success rate for autocomplete requests has dropped below 90% for more than 10 minutes.
+
+- Note on future work: The Search team is developing improved autocomplete monitoring. Currently our success rate will remain 100% if the Discovery Engine API responds with a 200 success code but provides no autocomplete suggestions for queries where suggestions are available.
 
 #### Google Cloud Discovery Engine request durations
 
 There is currently one Alertmanager rule configured in govuk-helm-charts, [HighVertexP90Latency](link-14), which sends notifications in Slack if requests to Google Cloud Discovery Engine search endpoint exceed acceptable duration thresholds.
 
-#### Causes and steps to take in the event of a degradation of service alert firing
+#### Causes of degradation of service alerts firing
 
-We are aware of the following occasional errors which should not be considered critical and do not need intervention unless they occur consistently for a large number of users and don’t go away by themselves within a few minutes.
+A common cause of drops in search success rate, is high latency from the DiscoveryEngine API. This will result in the [Google::Cloud::DiscoveryEngine Ruby client][link-15] timing out and raising `Google::Cloud::DeadlineExceededError` errors, which in turn lead Search API v2 to respond with 499 errors for search result requests.
 
-- `Google::Cloud::DeadlineExceededError` A timeout occurred on the Google API
-- `Google::Cloud::InternalError` An internal error occurred on the Google API
-- `AMQ::Protocol::EmptyResponseError` RabbitMQ sent an unexpected response, possibly due to restarting (the listener will restart by itself in most cases)
+We are also aware of the following occasional errors which should not be considered critical and do not need intervention unless they occur consistently for a large number of users and trigger critical alerts.
 
-If these errors persist and trigger the degradation of service alerts, this indicates an issue with GCP or Discovery Engine.
+- Google::Cloud::InternalError An internal error occurred on the Google API
+- AMQ::Protocol::EmptyResponseError RabbitMQ sent an unexpected response, possibly due to restarting (the listener will restart by itself in most cases)
+
+#### Steps to take in the event of a critical alert being triggered
+
+If a high number of `Google::Cloud::DeadlineExceededError` or `Google::Cloud::InternalError` errors persist and trigger a critical degradation of service alert, this indicates an issue with GCP or Discovery Engine that we should raise with Google.
 
 1. Login to the [Google Cloud console][link-12], and make sure that the project Search API v2 Production is selected.
 2. Under "APIs & Services" in the GCP Console, review the Discovery Engine API usage for traffic and error rates.
 3. Issues with Discovery Engine should be [raised with Google](#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-discovery-engine).
+
+#### Quantifying the user impact of low search success rates
+
+A degradation in Search API v2 success rates indicates that users will be experiencing a problem with site search on GOV.UK. However it is not a quantitative representation of the number of users being impacted. A better measure would be to look at the error rates for Finder Frontend or Router for requests to search/all with a keyword.
+
+Suggested Kibana query:
+
+```
+logjson.request_uri: *search/all?keywords=*
+kubernetes.labels.app_kubernetes_io/name: finder-frontend
+logjson.status: 500 to 503
+kubernetes.container.name: nginx
+```
+
+The most accurate way to measure the number of the error pages shown to users is to use [Athena to query the Fastly CDN logs][link-16]
+
+Suggested Athena query:
+
+```
+SELECT status, COUNT(*) AS count
+FROM fastly_logs.govuk_www
+WHERE date = 8 AND month = 5 AND year = 2026
+  AND request_received >= TIMESTAMP '2026-05-08 16:00:00.000'
+  AND request_received < TIMESTAMP '2026-05-08 23:00:00.000'
+  AND url LIKE '%/search/all.html?keywords=%'
+GROUP BY status
+ORDER BY count DESC
+```
 
 ### Degradation of search quality alerts
 
@@ -145,3 +182,5 @@ If an evaluation fails for a reason other than a sample query set not existing, 
 [this-month-vs-last-month]: https://docs.publishing.service.gov.uk/repos/search-api-v2-beta-features/evaluations.html#this-month-and-last-month
 [report-quality-metrics-cron-tasks]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml#L3094-L3105
 [report-quality-metrics-rake-task]: https://github.com/alphagov/search-api-v2-beta-features/blob/main/lib/tasks/quality.rake#L27
+[link-15]: https://github.com/alphagov/search-api-v2/blob/v592/app/services/discovery_engine/clients.rb#L16
+[link-16]: https://docs.publishing.service.gov.uk/manual/query-cdn-logs.html
