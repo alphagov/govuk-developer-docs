@@ -47,7 +47,7 @@ We have an informal SLO to maintain a search and autocomplete success rate of ab
 
 - [SearchDegradedMid][link-7] (__Critical__) 1 hour rolling success rate for search requests has dropped below 99.9% for more than 2 hours.
 
-- [SearchDegradedLong][link-8] (__Warning__) 24 hour rolling success rate for search
+- [SearchDegradedLong][link-8] (__Warning__) 24 hour rolling success rate for search requests has dropped below 99.99% for more than 24 hours.
 
 ##### Autocomplete alerts
 
@@ -57,11 +57,11 @@ We have an informal SLO to maintain a search and autocomplete success rate of ab
 
 #### Google Cloud Discovery Engine request durations
 
-There is currently one Alertmanager rule configured in govuk-helm-charts, [HighVertexP90Latency](link-14), which sends notifications in Slack if requests to Google Cloud Discovery Engine search endpoint exceed acceptable duration thresholds.
+There is currently one Alertmanager rule configured in govuk-helm-charts, [HighVertexP90Latency][link-14], which sends notifications in Slack if requests to Google Cloud Discovery Engine search endpoint exceed acceptable duration thresholds.
 
 #### Causes of degradation of service alerts firing
 
-A common cause of drops in search success rate, is high latency from the DiscoveryEngine API. This will result in the [Google::Cloud::DiscoveryEngine Ruby client][link-15] timing out and raising `Google::Cloud::DeadlineExceededError` errors, which in turn lead Search API v2 to respond with 499 errors for search result requests.
+A common cause of drops in search success rate, is high latency from the DiscoveryEngine API. This will result in the [Google::Cloud::DiscoveryEngine Ruby client][link-15] timing out and raising `Google::Cloud::DeadlineExceededError` errors, which in turn lead Search API v2 to respond with 500 errors for search result requests.
 
 We are also aware of the following occasional errors which should not be considered critical and do not need intervention unless they occur consistently for a large number of users and trigger critical alerts.
 
