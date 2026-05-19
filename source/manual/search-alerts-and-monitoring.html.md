@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-search-alerts"
+owner_slack: "#govuk-search"
 title: GOV.UK Site search alerts and monitoring
 layout: manual_layout
 parent: "/manual.html"
