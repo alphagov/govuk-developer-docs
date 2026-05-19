@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-search"
-title: "How to clear the Redis cache"
+title: "Clear the Redis cache for site search"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK

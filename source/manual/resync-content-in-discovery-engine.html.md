@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-search"
-title: "How to resync content in Discovery Engine"
+title: "Resync content in Discovery Engine"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
