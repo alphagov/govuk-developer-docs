@@ -4,6 +4,7 @@ title: "Boost or demote a document in site search"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api-v2]
 ---
 
 Some kinds of content are more useful to our users than others. To account for this, we configure Discovery Engine to always apply certain “boosts” to search results. These are generally applied by [document type] but some documents are boosted based on their [base path].

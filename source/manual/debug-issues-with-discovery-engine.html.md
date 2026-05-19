@@ -4,6 +4,7 @@ title: "Debug issues with Discovery Engine"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api-v2]
 ---
 [link-1]: https://cloud.google.com/generative-ai-app-builder/docs/reference/rest
 [link-2]: /manual/google-cloud-platform-gcp.html#using-the-cli

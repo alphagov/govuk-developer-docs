@@ -4,6 +4,7 @@ title: "How to resync content in Discovery Engine"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api-v2, publishing-api]
 ---
 
 To resync content items in Discovery Engine, publishing-api needs to push the documents to search-api-v2.

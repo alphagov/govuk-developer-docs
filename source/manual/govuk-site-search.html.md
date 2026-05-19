@@ -4,6 +4,7 @@ title: "GOV.UK Site search: How it works"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api-v2]
 type: learn
 ---
 

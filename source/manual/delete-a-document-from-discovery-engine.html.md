@@ -4,6 +4,7 @@ title: "Delete a document from Discovery Engine"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api-v2]
 ---
 [link-1]: https://github.com/alphagov/search-admin/blob/main/lib/tasks/document.rake#L8
 

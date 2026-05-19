@@ -4,6 +4,7 @@ title: "Search synchronisation errors"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api-v2]
 ---
 
 ## A document doesn't appear in site search after it is published

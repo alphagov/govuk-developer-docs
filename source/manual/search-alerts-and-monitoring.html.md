@@ -4,6 +4,7 @@ title: GOV.UK Site search alerts and monitoring
 layout: manual_layout
 parent: "/manual.html"
 section: Search on GOV.UK
+related_repos: [search-api-v2, search-api-v2-beta-features]
 type: learn
 ---
 

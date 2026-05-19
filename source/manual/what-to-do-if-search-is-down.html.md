@@ -4,6 +4,7 @@ title: "What to do if someone says search is down"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api, search-api-v2]
 ---
 
 As described in [GOV.UK Search: how it works][link-1], there are two Search stacks on GOV.UK. This documentation aims to provide some debugging steps to take in the event that someone tells you "search is down".
