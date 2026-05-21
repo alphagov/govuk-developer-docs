@@ -4,6 +4,7 @@ title: "GOV.UK Search: Introduction and overview"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-admin, search-api, search-api-v2]
 type: learn
 ---
 

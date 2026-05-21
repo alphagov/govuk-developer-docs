@@ -1,9 +1,10 @@
 ---
 owner_slack: "#govuk-search"
-title: "How to clear the Redis cache"
+title: "Clear the Redis cache for site search"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api-v2]
 ---
 
 Search API V2 uses [Redis] to track the latest synced payload version for a document. It compares the payload version of the document being synced with the `latest_synced_version` number for that version in the cache.

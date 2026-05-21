@@ -1,9 +1,10 @@
 ---
 owner_slack: "#govuk-search"
-title: "Search synchronisation errors"
+title: "Debug documents showing incorrectly in site search"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api-v2]
 ---
 
 ## A document doesn't appear in site search after it is published
@@ -55,10 +56,10 @@ If all documents that have been successfully published or unpublished on gov.uk,
 [filter by]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/data-explorer/discover#?_a=(discover:(columns:!(_source),isDirty:!f,sort:!()),metadata:(indexPattern:'filebeat-*',view:discover))&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_q=(filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:search-api-v2-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:search-api-v2-worker)))),query:(language:kuery,query:''))
 [content_id]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/data-explorer/discover#?_a=(discover:(columns:!(_source),isDirty:!f,sort:!()),metadata:(indexPattern:'filebeat-*',view:discover))&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-7d,to:now))&_q=(filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:search-api-v2-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:search-api-v2-worker)))),query:(language:kuery,query:%22225d80c5-01bb-47d0-b57c-6862efbed7b3%22))
 [ignore list]: https://github.com/alphagov/search-api-v2/blob/main/config/document_type_ignorelist.yml
-[clear the redis cache]: /manual/how-to-clear-the-redis-cache
-[resynchronise]: /manual/how-to-resync-content-in-discovery-engine
+[clear the redis cache]: /manual/clear-the-redis-cache
+[resynchronise]: /manual/resync-content-in-discovery-engine
 [document_sync_worker]: https://github.com/alphagov/search-api-v2/blob/1c3e8115b15703a44691311a2971ce2dbee10c59/lib/tasks/document_sync_worker.rake
 [UNPUBLISH_DOCUMENT_TYPES list]: https://github.com/alphagov/search-api-v2/blob/1c3e8115b15703a44691311a2971ce2dbee10c59/app/models/concerns/publishing_api/action.rb#L6
 [delete the document from the datastore]: /manual/delete-a-document-from-discovery-engine#delete-a-document-from-the-datastore
-[Check the error rates for site search]: /manual/what-to-do-if-search-is-down#check-the-error-rates-for-site-search
-[if site search is unavailable]: /manual/what-to-do-if-search-is-down#if-site-search-is-unavailable
+[Check the error rates for site search]: /manual/investigate-when-search-is-down#check-the-error-rates-for-site-search
+[if site search is unavailable]: /manual/investigate-when-search-is-down#if-site-search-is-unavailable

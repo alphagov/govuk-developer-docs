@@ -4,6 +4,7 @@ title: "Add a best bet to site search"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api-v2]
 ---
 
 ### What is a best bet?

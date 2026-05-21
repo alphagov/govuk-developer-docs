@@ -4,6 +4,7 @@ title: "Prevent a page being returned in search results"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api-v2]
 ---
 
 ## How to filter a page from Site search results

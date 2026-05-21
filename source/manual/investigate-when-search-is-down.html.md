@@ -1,9 +1,10 @@
 ---
 owner_slack: "#govuk-search"
-title: "What to do if someone says search is down"
+title: "Investigate when someone says search is down"
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
+related_repos: [search-api, search-api-v2]
 ---
 
 As described in [GOV.UK Search: how it works][link-1], there are two Search stacks on GOV.UK. This documentation aims to provide some debugging steps to take in the event that someone tells you "search is down".
@@ -45,7 +46,7 @@ Check for unexpected errors in Sentry and Kibana that might help identify issues
 
 #### Degradation of service alerts
 
- See [Causes and steps to take in the event of a Degradation of service alert firing](./search-alerts-and-monitoring.html#causes-and-steps-to-take-in-the-event-of-a-degradation-of-service-alert-firing).
+ See [Causes of degradation of service alerts firing](./search-alerts-and-monitoring.html#causes-of-degradation-of-service-alerts-firing) and [Steps to take in the event of a critical alert being triggered](./search-alerts-and-monitoring.html#steps-to-take-in-the-event-of-a-critical-alert-being-triggered).
 
 #### Synchronisation errors
 
