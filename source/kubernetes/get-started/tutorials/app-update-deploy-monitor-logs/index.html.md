@@ -1,10 +1,10 @@
 ---
-title: Deploy a new version of the example test app, check the deployment, monitor the app on Grafana and view application logs
+title: Update, Deploy and Monitor an Application
 weight: 20
 layout: multipage_layout
 ---
 
-# Deploy a new version of the example test app, check the deployment, monitor the app on Grafana and view application logs
+# Update, Deploy and Monitor an Application
 
 This tutorial will teach you how to deploy changes to an app and how to view application metrics and logs.
 
