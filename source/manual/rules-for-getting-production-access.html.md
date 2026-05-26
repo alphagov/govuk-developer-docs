@@ -37,9 +37,7 @@ systems. Access includes:
 - The AWS "developer" Role will also grant to access to most resources and actions in EKS (using `kubectl`) through RBAC (Role-Based Access Control)
 - "Normal" role in to GOV.UK Signon on Staging and Production (with app permissions granted as needed)
 
-The steps above are outlined in the [GOV.UK Production Deploy template Trello card](https://trello.com/c/S9sex2XU/1391-govuk-production-deploy-access-for-name), which can be copied to
-your team's board and carried out by developers. You can ask Platform Engineering for help if you have
-any access issues.
+The steps above are outlined in the [GOV.UK Production Deploy new issue template](https://github.com/alphagov/govuk-platform-internal/issues/new?template=3-govuk-production-deploy.md). You can ask Platform Engineering for help if you have any access issues.
 
 #### When you get Production Deploy access
 
@@ -53,7 +51,7 @@ Before approving access, the sponsor should ensure that the engineer:
 - knows [how to roll back to an older release](/kubernetes/manage-app/roll-back-app/#roll-back-your-app) if there are any issues
 - knows [how to get help](/manual/ask-for-help.html) from someone with more access if they need it
 
-To grant access, the sponsor should follow the steps in the ["GOV.UK Production Deploy" access](https://trello.com/c/S9sex2XU/3227-govuk-production-deploy-access-for-name) template card.
+To grant access, the sponsor should create an issue for ["GOV.UK Production Deploy" access](https://github.com/alphagov/govuk-platform-internal/issues/new?template=3-govuk-production-deploy.md) and follow the steps listed in the issue.
 
 Note that a technologist apprentice is limited to Production Deploy access. However, if they are confident and want to take on an in-hours technical on-call shift as a Secondary, they can follow the Production Admin access steps (at their Line Manager's discretion).
 
@@ -74,7 +72,7 @@ Gives:
 - You have passed your probation period, AND
 - You have completed the [Production Admin Preparedness checklist](https://docs.google.com/forms/d/e/1FAIpQLSeY5H8ei89AJFaQLuDrd6CpWjCighCvF3d2iXx7QsyJdQjL-Q/viewform), covering the [learning objectives](#production-admin-learning-objectives) below, and have had your form response reviewed by [someone in Senior Tech](/manual/ask-for-help.html#contact-senior-tech).
 
-To grant access, the senior tech person should follow the steps in the ["GOV.UK Production Admin" access](https://trello.com/c/GIHPZi2o) template card.
+To grant access, the senior tech person should create an issue for ["GOV.UK Production Admin" access](https://github.com/alphagov/govuk-platform-internal/issues/new?template=2-govuk-production-admin.md) and follow the steps listed in the issue.
 
 #### Production Admin learning objectives
 
