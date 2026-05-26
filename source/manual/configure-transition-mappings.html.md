@@ -18,77 +18,37 @@ They will need one new CNAME DNS entry for each domain/subdomain they wish to pr
 - www.domain.gov.uk → aka.domain.gov.uk
 - sub.domain.gov.uk → aka-sub.domain.gov.uk
 
-There are lots of examples of these in [hosts currently configured in Transition][transition-hosts].
+There are lots of examples of these in [hosts currently configured in Transition](https://transition.publishing.service.gov.uk/hosts).
 
-These AKA domains should be CNAMEd to: `bouncer-cdn.production.govuk.service.gov.uk`
+These AKA domains should have a single DNS record added as a CNAME to: `bouncer-cdn.production.govuk.service.gov.uk`.
 
-Previously we used a `redirector-cdn` address which reached its capacity and will now fail if added as the CNAME record for any new domains.
+Once the DNS on the AKA domains have been updated, the "Add the domain to Fastly" and "Obtain a TLS certificate" steps of the [main transition guidance](/manual/configure-transition-mappings.html) will need to be run again, but specifically for the AKA domains.
 
-[transition-hosts]: https://transition.publishing.service.gov.uk/hosts
+## 2) Set up user accounts for the department
 
-## 2) Get a list of old URLs
+Ask the requester for names and email addresses of users who need access to the Transition app.
 
-In order for us to redirect anything but the homepage, we need a list of URLs for the old site so that they can be mapped. In the past, this is something GDS did for the organisation as it requires some technical skill and experience.
+Give the user(s) the "Site Manager" permission in Signon for the Transition app.
 
-Getting traffic logs from a transitioning organisation is the best option, as we can get a list of URLs we know are actively used. If we can't get this then there are other options.
+> If they do not have a Signon account in production already, create one for them at 'Normal' level with access to Transition and Support only (i.e. no ability to publish or preview documents, which may be granted by default when creating an account).
 
-One option is to get a list of the URLs from the Internet Archive. The [archive_lister](https://github.com/rgarner/archive_lister) gem can do this for you. Sometimes the Internet Archive doesn't have any data, so try the domain name with `http` or `https`, or with and without the `www.`.
+## 3) Add the old URLs as mappings
 
-An alternative is to crawl the site with a crawler like [Anemone](https://github.com/chriskite/anemone), though for a large site this might take several hours. This will give you a list of URLs for a domain:
+Ask the department to add mappings to the Transition app themselves.
 
-```sh
-$ anemone url-list 'transitioning-site.gov.uk'
-```
+These can be added in bulk using a CSV file. An example of the format is given in the app prior to upload.
 
-> **Note:** This will include 404s, 301s, etc.
+To allow mappings which redirect away from GOV.UK, you'll need to add the site into [the allowlisted hosts in Transition](https://transition.publishing.service.gov.uk/admin/whitelisted_hosts). You'll need the `admin` permission in Transition to be able to see this page and should be done by GDS, not the department. You may wish to seek advice from the Policy & Strategy team before adding a domain the the external allowlist.
 
-## 3) Clean up URLs
+## 4) Switch the DNS once all mappings are created
 
-### Strip paths and pattern
+Follow the remaining steps in the [main transition guidance](/manual/configure-transition-mappings.html).
 
-There are lots of file formats we don't want to provide mappings for, like static assets, images, or common spammy/malicious crawlers. These can be stripped using the [strip_mappings.sh][smsh] script.
-
-[smsh]: https://github.com/alphagov/transition/blob/main/tools/strip_mappings.sh
-
-### Query parameter analysis
-
-From your set of URLs, you can attempt to identify significant query string parameter names and then add them to the site configuration. A query string parameter is considered significant if it significantly changes the content seen on the old site and/or it would be mapped to a different new URL.
-
-There are some transition scripts to help analyse query param usage:
-
-- [analyse_query_params.sh](https://github.com/alphagov/transition/blob/main/tools/analyse_query_params.sh)
-- [analyse_query_usage.sh](https://github.com/alphagov/transition/blob/main/tools/analyse_query_usage.sh)
-
-Some common examples of significant parameters:
-
-- article ID
-- attachment ID
-- document ID
-
-Some common examples of non-significant parameters:
-
-- pagination
-- analytics
-- search queries
-
-## 4) Add the old URLs as mappings
-
-Ideally, any significant query string parameters should be identified and added to the site before adding the mappings. This is because URLs are canonicalised and then deduplicated before being saved and part of canonicalisation is to remove non-significant parameters. However, significant query string parameters can be added later; after they have been imported adding old URLs which include the parameters will be canonicalised using the new list of significant parameters. Note that mappings created under the previous list won't be removed and in some (complicated) situations won't be used by Bouncer.
-
-To add or edit mappings, you will need the "GDS Editor" permission in GOV.UK Signon for the Transition app. This lets you edit any site, rather than just ones belonging to your organisation. You can then go the [transition app](https://transition.publishing.service.gov.uk), find the site and click `Add mappings` to add them in bulk.
-
-To allow mappings which redirect away from GOV.UK, you'll need to add the site into [the allowlisted hosts in Transition][]. You'll need the `admin` permission in Transition to be able to see this page.
-
-[the allowlisted hosts in Transition]: https://transition.publishing.service.gov.uk/admin/whitelisted_hosts
-
-## 5) Get the organisation to do the mapping work
-
-By default, the mappings will present an archive page to users visiting the old URL. The objective is to get users to somewhere that best serves the need fulfilled by the old page. Usually this means redirecting them to the page on GOV.UK or elsewhere. It is really important that this is done by people who understand the users and content.
-
-## 6) Get the organisation to monitor the traffic data in the Transition app
+## 5) Get the organisation to monitor the traffic data in the Transition app
 
 There are two things that need to be responded to:
 
-- high numbers of 404s - this means a mapping is missing
-- high numbers hitting 410s - this means the old page is popular and
-  should perhaps be redirected instead
+- high numbers of 404s: this means a mapping is missing
+- high numbers hitting 410s: this means the old page is popular and should perhaps be redirected instead of being marked as archived
+
+These metrics can be viewed in the Transition app.
