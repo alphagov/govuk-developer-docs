@@ -92,7 +92,7 @@ an associated document wasn't unpublished correctly.
 If it isn't possible or desirable to redirect the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:
 
-1. [Get the asset ID](/manual/manage-assets.html#get-an-assets-id). 
+1. [Get the asset ID](/manual/manage-assets.html#get-an-assets-id).
 1. Run the following rake task:
 
     <%= RunRakeTask.links("asset-manager", "assets:redirect[ASSET_ID,REDIRECT_URL]") %>
@@ -113,7 +113,7 @@ best to simply perform the upload directly in production.
 1. Get the name of an asset-manager app pod.
 
     ```sh
-    POD=$(kubectl get pods -l app=asset-manager -o name | head -1)
+    POD=$(kubectl get pods -l app=asset-manager -o name | head -1 | xargs basename)
     echo $POD
     ```
 
@@ -159,7 +159,7 @@ steps to remove the asset in Asset Manager:
 1. Get the name of an asset-manager app pod.
 
     ```sh
-    POD=$(kubectl get pods -l app=asset-manager -o name | head -1)
+    POD=$(kubectl get pods -l app=asset-manager -o name | head -1 | xargs basename)
     echo $POD
     ```
 
