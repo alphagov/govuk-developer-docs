@@ -1,4 +1,4 @@
-// used by the cookie banner component
+// used by the cookie banner component and the cookie settings page
 
 (function (root) {
   'use strict'
@@ -13,20 +13,8 @@
   var COOKIE_CATEGORIES = {
     cookies_policy: 'essential',
     cookies_preferences_set: 'essential',
-    '_email-alert-frontend_session': 'essential',
-    intervention_campaign: 'essential',
-    licensing_session: 'essential',
-    govuk_contact_referrer: 'essential',
-    app_promo_banner: 'settings',
-    global_banner_seen: 'settings',
-    govuk_chat_onboarding_complete: 'settings', // cookie details page to be updated when this is in use
-    'ABTest-BankHolidaysTest': 'usage',
-    'ABTest-SearchFreshnessBoost': 'usage',
     _ga: 'usage',
-    _ga_VBLT2V3FZR: 'usage', // gtag cookie used to persist the session state, integration
-    _ga_P1DGM6TVYF: 'usage', // staging
-    _ga_S5RQ7FTGVR: 'usage', // production
-    lux_uid: 'usage'
+    _ga_EYTJMCJ2LP: 'usage', // gtag cookie used to persist the session state, production
   }
 
   /*
