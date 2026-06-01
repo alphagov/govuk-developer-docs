@@ -92,7 +92,7 @@ an associated document wasn't unpublished correctly.
 If it isn't possible or desirable to redirect the asset in the publishing app, use these
 steps to remove the asset in Asset Manager:
 
-1. [Get the asset ID](/manual/manage-assets.html#get-an-assets-id). 
+1. [Get the asset ID](/manual/manage-assets.html#get-an-assets-id).
 1. Run the following rake task:
 
     <%= RunRakeTask.links("asset-manager", "assets:redirect[ASSET_ID,REDIRECT_URL]") %>
@@ -113,20 +113,20 @@ best to simply perform the upload directly in production.
 1. Get the name of an asset-manager app pod.
 
     ```sh
-    POD=$(kubectl get pods -l app=asset-manager -o name | head -1)
+    POD=$(kubectl get pods -l app=asset-manager -o name | head -1 | xargs basename)
     echo $POD
     ```
 
 1. Upload the file to the pod's `/tmp` directory:
 
     ```sh
-    k cp my_file.jpg apps/$POD:/tmp
+    kubectl cp my_file.jpg apps/$POD:/tmp
     ```
 
 1. Run the create_asset command on the same pod:
 
     ```sh
-    k exec -it $POD -- bin/create_asset /tmp/my_file.jpg
+    kubectl exec -it $POD -- bin/create_asset /tmp/my_file.jpg
     ```
 
     The output will look like the following:
@@ -159,20 +159,20 @@ steps to remove the asset in Asset Manager:
 1. Get the name of an asset-manager app pod.
 
     ```sh
-    POD=$(kubectl get pods -l app=asset-manager -o name | head -1)
+    POD=$(kubectl get pods -l app=asset-manager -o name | head -1 | xargs basename)
     echo $POD
     ```
 
 1. Upload the file to the pod's `/tmp` directory:
 
     ```sh
-    k cp my_file.jpg apps/$POD:/tmp
+    kubectl cp my_file.jpg apps/$POD:/tmp
     ```
 
 1. Open an app console on that same pod:
 
     ```sh
-    k exec -it $POD -- rails c
+    kubectl exec -it $POD -- rails c
     ```
 
 1. Find the asset by its ID (see "[Get an asset's ID](/manual/manage-assets.html#get-an-assets-id)"):
@@ -194,7 +194,7 @@ steps to remove the asset in Asset Manager:
 1. If the attachment is a PDF that was originally uploaded in Whitehall, update the page count field in Whitehall:
 
     ```sh
-    k exec -it deploy/whitehall-admin -- rails c
+    kubectl exec -it deploy/whitehall-admin -- rails c
     ```
 
     ```ruby
