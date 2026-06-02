@@ -15,7 +15,7 @@ Dir.glob("source/manual/**/*.md").each do |filename|
       expect(frontmatter["title"]).to be_present, "Page doesn't have `title` set"
     end
 
-    unless frontmatter["section"] == "Icinga alerts"
+    unless frontmatter["section"] == "Monitoring and alerting"
       it "follows the styleguide" do
         expect(frontmatter["title"].split(" ").first).not_to end_with("ing"),
                                                              "Page title `#{frontmatter['title']}`: don't use 'ing' at the end of verbs - https://docs.publishing.service.gov.uk/manual/docs-style-guide.html#title"
