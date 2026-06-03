@@ -21,23 +21,19 @@ Run the `represent_downstream:published_between['2018-12-17T01:02:30,%202018-12-
 [Other replay options are available](https://github.com/alphagov/publishing-api/blob/main/lib/tasks/represent_downstream.rake), for example replaying all traffic for a single publishing app or doctype.
 Be aware that these options will replay the entire Publisher API history for that app or doctype, and may take some time.
 
-## `government`/`detailed` indexes
-
-**This will not be necessary after whitehall content has been moved to the
-`govuk` index.**
-
-These indexes are populated by whitehall calling an HTTP API in Search API.
-Missing documents can be recovered by resending the content to Search API directly.
-
-Run the `search:index:published_between['2018-12-17T01:02:30,%202018-12-18T10:20:30']` rake task in Whitehall, remembering to change the two timestamps.
-
 ## `metasearch` index
 
-This index is used for best bets, which are published by Search Admin
-communicating with Search API directly (like how whitehall updates the
-`government` and `detailed` indices directly).
+This index contains best bets, which used to be published by Search Admin until that functionality was removed in https://github.com/alphagov/search-admin/pull/1174.
+There is currently no support for reindexing this index. This is known tech debt.
 
-Run the `reindex_best_bets` rake task in search admin to resend all bets to Search API.
+## `page-traffic` index
+
+The `page-traffic` index contains traffic data from GA4, which is used to update popularity scores on content in the `govuk` index.
+(See docs on [updating popularity][popularity-docs] for more information.) There is a [nightly cron job][popularity-job], which
+updates this index. To update it manually, you can run the [associated rake task][popularity-rake-task].
 
 [restore-backups]: /manual/elasticsearch-dumps.html
 [queue]: https://github.com/alphagov/search-api/blob/main/docs/new-indexing-process.md
+[popularity-docs]: https://docs.publishing.service.gov.uk/repos/search-api/updating_popularity.html
+[popularity-job]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml#L2972
+[popularity-rake-task]: https://github.com/alphagov/search-api/blob/main/lib/tasks/page_traffic.rake
