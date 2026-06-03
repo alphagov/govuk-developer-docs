@@ -1,20 +1,22 @@
 ---
-owner_slack: "#govuk-searchandnav"
+owner_slack: "#govuk-search"
 title: Fix out-of-date search indices
 parent: "/manual.html"
 layout: manual_layout
-section: Backups
+section: Search on GOV.UK
+related_repos: [search-api]
 ---
-
-If the data in the search index is out-of-sync with the Publishing API,
-(for example, after [restoring a backup][restore-backups]), then any `publish`
-and `unpublish` messages that have not been processed need to be resent.
 
 ## `govuk` index
 
-Content in the `govuk` index is populated from the [Publishing API message queue][queue].
-Missing documents can be recovered by resending the content to the message queue, using
-the `represent_downstream:published_between` rake task.
+GOV.UK content in [Search API](/repos/search-api.html) is stored in the `govuk` index in Elasticsearch.
+This is populated from the [Publishing API message queue][queue]. This can get out of sync with publishing API,
+which affects any part of the site using it, including navigation pages and related links.
+This can happen after [restoring a backup][restore-backups] or [reindexing search][reindex-search].
+When it does, any `publish` and `unpublish` messages that have not been processed need to be resent.
+
+To resend the content to the message queue, use the `represent_downstream:published_between` rake task.
+This will recover recently published documents that are missing or not up-to-date, and will remove recently unpublished documents.
 
 Run the `represent_downstream:published_between['2018-12-17T01:02:30,%202018-12-18T10:20:30']` rake task in Publishing API, but changing the two timestamps to cover the period of downtime.
 
@@ -23,7 +25,7 @@ Be aware that these options will replay the entire Publisher API history for tha
 
 ## `metasearch` index
 
-This index contains best bets, which used to be published by Search Admin until that functionality was removed in https://github.com/alphagov/search-admin/pull/1174.
+The `metasearch` index contains best bets, which used to be published by Search Admin until that functionality was removed in https://github.com/alphagov/search-admin/pull/1174.
 There is currently no support for reindexing this index. This is known tech debt.
 
 ## `page-traffic` index
@@ -33,6 +35,7 @@ The `page-traffic` index contains traffic data from GA4, which is used to update
 updates this index. To update it manually, you can run the [associated rake task][popularity-rake-task].
 
 [restore-backups]: /manual/elasticsearch-dumps.html
+[reindex-search]: /manual/reindex-elasticsearch.html
 [queue]: https://github.com/alphagov/search-api/blob/main/docs/new-indexing-process.md
 [popularity-docs]: https://docs.publishing.service.gov.uk/repos/search-api/updating_popularity.html
 [popularity-job]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml#L2972
