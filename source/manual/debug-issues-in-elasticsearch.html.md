@@ -13,36 +13,30 @@ A page with URL [/council-tax](https://www.gov.uk/council-tax) can be queried us
 switch between the two using the [GOV.UK browser extension](https://github.com/alphagov/govuk-browser-extension).
 
 You can compare the data returned with the relevant publishing app or content store to check if it's up
-to date. An empty response means search has never received the content.
+to date. An empty response means no documents match the given query.
 
 ## Check the document is in elasticsearch
 
-If the document is missing from the search API, check the search index itself to
-see if it is present and has the expected fields:
+If the document is missing from the search API, you can check the search index itself to
+see if it is present and has the expected fields, by sending a request to elasticsearch
+[from a shell][open-a-shell] in `search-api`:
 
-0. SSH to a search box:
+```
+curl -X GET "$ELASTICSEARCH_URI/govuk/_search?pretty" -H "content-type: application/json" -d "
+{
+  \"query\": {
+    \"match\": {
+      \"link\": \"/the/path/to/the/page\"
+    }
+  }
+}"
+```
 
-    ```
-    gds govuk connect ssh -e integration search
-    ```
-
-0. Send a request to elasticsearch:
-
-    ```
-    govuk_setenv search-api \
-    bash -c 'curl "$ELASTICSEARCH_URI/govuk/_search" -H "content-type: application/json" -d "
-    {
-      \"post_filter\": {
-        \"term\": {
-          \"link\": \"/the/path/to/the/page\"
-        }
-      }
-    }"' | json_pp
-    ```
-
-   To search by content ID use `\"content_id\": \"...\"` instead.
+To search by content ID use `\"content_id\": \"...\"` instead.
 
 If the document is present and looks correct, it suggests that the problem is
 that the document does not match the search query. You can debug the query by
 adding the parameter `debug=show_query` to the search API URL, e.g.
 <https://www.gov.uk/api/search.json?q=badgers&debug=show_query>.
+
+[open-a-shell]: https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html#open-a-shell-in-an-app-container
