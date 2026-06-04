@@ -54,26 +54,11 @@ search-api and search-api-v2 [listen to the publishing queue](https://github.com
 
 In addition to GOV.UK content, GDS staff can insert "external links" into search [via Search Admin](#search-admin).
 
-### Legacy means for getting content into search
+### Filtered content
 
-search-api (v1) also has some 'legacy' means of getting content into its indices. Whitehall makes [some calls to Search API directly](https://github.com/alphagov/whitehall/blob/e748b577e0f13c01fe62bad2a303340ab5acc7c4/lib/whitehall/searchable.rb#L53) (typically for 'non-editioned' content), via [Whitehall::SearchIndex](https://github.com/alphagov/whitehall/blob/e748b577e0f13c01fe62bad2a303340ab5acc7c4/lib/whitehall/search_index.rb#L40), which is [called by](https://github.com/alphagov/whitehall/blob/a67fae1b8a0963927f38ce9987b99059fa9fff92/app/models/concerns/searchable.rb#L116) any model that includes the [Searchable](https://github.com/alphagov/whitehall/blob/a67fae1b8a0963927f38ce9987b99059fa9fff92/app/models/concerns/searchable.rb) module. This legacy behaviour is [recognised tech debt](https://trello.com/c/vnrBGTvr/26-search-is-populated-by-whitehall-sending-data) and is in the process of being removed.
+Not all content is indexed into search. For example, currently we only allow documents in English to be added to search, and we ignore particular formats.
 
-Note that there shouldn't be a situation where Whitehall submits content to Search API both directly _and_ via Publishing API: the [Search API's 'migrated formats' file](https://github.com/alphagov/search-api/blob/main/config/govuk_index/migrated_formats.yaml) controls which document types Search API expects from each source. There's a `non_indexable` section at the bottom that includes all of the Whitehall document types. Search API checks when processing messages from Publishing API whether or not the document type is indexable, and [ignores them if it's not](https://github.com/alphagov/search-api/blob/60a909bb51229fa5ad683be49f873084557fc0a9/lib/govuk_index/publishing_event_worker.rb#L88).
-
-### Search api (v1) indices
-
-search-api-v2 has no concept of an 'index', but search-api (v1) has multiple.
-
-Documents are spread across two elasticsearch indices in Search API:
-
-- `govuk`: the index populated by Publishing API, intended to encapsulate all GOV.UK content
-- `government` - the remaining legacy '[content index](https://github.com/alphagov/search-api/blob/aef1da207bc6183e1681c405b8883f29a2d6fe56/elasticsearch.yml#L3)', encapsulating some Whitehall content that is in the process of being migrated to the govuk index.
-
-There are two Search API ADRs documenting the decision to move to one `govuk` index: [ADR-04](repos/search-api/arch/adr-004-transition-mainstream-to-publishing-api-index.html) and [ADR-06](/repos/search-api/arch/adr-006-transition-whitehall-to-publishing-api-index.html). Some legacy indices (e.g. `mainstream`) have been fully migrated into it, but the legacy government index still remains.
-
-One can find out which index a piece of content is saved under, using Search API's API: see `"index": "government"` on [this example](https://www.gov.uk/api/search.json?filter_link=/government/news/scottish-secretary-attends-royal-national-mod).
-
-In addition search-api stores best bets in the `metasearch` index, and popularity data in the `page-traffic` index.
+The document filtering is part of the message handling functionality in [search-api](https://github.com/alphagov/search-api/blob/main/lib/govuk_index/publishing_event_message_handler.rb#L71-L77) and [search-api-v2](https://github.com/alphagov/search-api-v2/blob/main/app/models/concerns/publishing_api/action.rb).
 
 ## Search Admin
 
