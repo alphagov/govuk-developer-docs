@@ -34,9 +34,32 @@ The `page-traffic` index contains traffic data from GA4, which is used to update
 (See docs on [updating popularity][popularity-docs] for more information.) There is a [nightly cron job][popularity-job], which
 updates this index. To update it manually, you can run the [associated rake task][popularity-rake-task].
 
+## Environment syncs
+
+There are nightly cron jobs that [synchronise elasticsearch][sync-job] in integration and staging with the production environment.
+These jobs work in sequence to take a snapshot of a higher level environment (e.g. production) and then restore the snapshot in the lower
+level environment (e.g. staging). If documents that are published or unpublished in production are not reflected in integration and staging after 1 day, that
+could be because of issues with the synchronisation jobs. If any part of the workflow needs to be rerun, this can be done manually in Argo:
+
+1. Login to [Argo][argo] for the relevant environment
+1. Navigate to the search-index-env-sync app
+1. Find the relevant cron job:
+   - `search-index-env-sync-green-es6-snapshot` takes a snapshot
+   - `search-index-env-sync-green-es6-cp-prod` restores the production snapshot in staging
+   - `search-index-env-sync-green-es6-cp-stag` restores the staging snapshot in integration
+1. Click on the kebab menu next to the job name and click “Create Job”
+
+[Taking a snapshot][snapshot-docs] does not cause any downtime. However, please be aware that restoring a snapshop in staging or integration
+may wipe out changes that other developers are testing.
+
+For more information on environment syncs across GOV.UK see https://docs.publishing.service.gov.uk/manual/govuk-env-sync.html
+
 [restore-backups]: /manual/elasticsearch-dumps.html
 [reindex-search]: /manual/reindex-elasticsearch.html
 [queue]: https://github.com/alphagov/search-api/blob/main/docs/new-indexing-process.md
 [popularity-docs]: https://docs.publishing.service.gov.uk/repos/search-api/updating_popularity.html
 [popularity-job]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml#L2972
 [popularity-rake-task]: https://github.com/alphagov/search-api/blob/main/lib/tasks/page_traffic.rake
+[sync-job]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/search-index-env-sync/values.yaml
+[argo]: https://argo.eks.production.govuk.digital/
+[snapshot-docs]: https://www.elastic.co/docs/deploy-manage/tools/snapshot-and-restore
