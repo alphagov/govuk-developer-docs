@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-search"
-title: "How to reindex an Elasticsearch index"
+title: "Reindex an Elasticsearch index"
 section: Search on GOV.UK
 layout: manual_layout
 parent: "/manual.html"
@@ -19,9 +19,6 @@ used.
 >
 > Reindexing locks the index for writes, so content is not updated in the
 > search index. Reindexing takes around 2 hours to complete.
->
-> See [Fix out-of-date search indices](fix-out-of-date-search-indices.html) if you
-> need to reindex during working hours.
 
 **You don't need to reindex when making a change to the govuk_document_types gem.**
 Instead, run the Rake task `search:update_supertypes` to update documents
@@ -104,7 +101,7 @@ new index:
 k exec deploy/search-api -- sh -c 'curl "$ELASTICSEARCH_URI/_cat/indices?v"'
 ```
 
-### 2. Clean up
+### 3. Clean up
 
 Reindexing does not delete the old index. This lets us switch back to the old
 index if there is a serious problem with the new one.
@@ -116,6 +113,13 @@ Once you're confident that the reindexing was successful, delete the old
 
 Avoid leaving old indices around, otherwise we may run into storage limitations
 and be unable to index new documents.
+
+### 4. Update index
+
+There may be newly published content that is not reflected in the new index because of the lock that applies
+during reindexing. This is especially likely to be the case if you have re-indexed during working hours.
+
+To update the index, follow the guidance on [fixing out-of-date search indices](fix-out-of-date-search-indices.html#govuk-index).
 
 ### Troubleshooting
 
@@ -158,5 +162,4 @@ and UUID, e.g. `govuk-2018-01-29t17:08:21z-31f39bdb-c62b-4607-8081-19ea87fb1498`
 
 Switching back to an old index means that you'll **lose any content updates**
 that were published while the new index was live. To fix this, [re-present the
-changes](fix-out-of-date-search-indices.html) from both publishing-api and
-Whitehall.
+changes](fix-out-of-date-search-indices.html#govuk-index) from publishing-api.
