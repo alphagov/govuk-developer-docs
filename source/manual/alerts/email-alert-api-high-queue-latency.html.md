@@ -46,14 +46,12 @@ diagnostic steps you could take are:
 * check whether workers are raising errors to [Sentry];
 * check [Kibana] to see the Sidekiq logs for Email Alert API;
 * you can investigate the health of the [underlying application
-  machines][machine metrics] and the [RDS PostgeSQL database
-  instance][postgres dash].
+  machines][machine metrics].
 
 [Sidekiq]: /manual/sidekiq.html
 [queues]: https://github.com/alphagov/email-alert-api/blob/main/config/sidekiq.yml
-[Sidekiq dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=email-alert-api&var-Queues=All&from=now-3h&to=now
+[Sidekiq dashboard]: https://grafana.eks.production.govuk.digital/d/sidekiq-queues/f0958a1?var-namespace=apps&var-app=email-alert-api&from=now-6h&to=now&timezone=browser&orgId=1
 [technical dash]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_technical.json
 [Sentry]: https://sentry.io/organizations/govuk/issues/?project=202220&statsPeriod=12h
 [Kibana]: https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-1h,mode:quick,to:now))&_a=(columns:!('@message',host),index:'*-*',interval:auto,query:(query_string:(query:'@type:%20sidekiq%20AND%20application:%20email-alert-api')),sort:!('@timestamp',desc))
-[machine metrics]: https://grafana.blue.production.govuk.digital/dashboard/file/machine.json?refresh=1m&orgId=1&var-hostname=email_alert_api*&var-cpmetrics=cpu-system&var-cpmetrics=cpu-user&var-filesystem=All&var-disk=All&var-tcpconnslocal=All&var-tcpconnsremote=All
-[postgres dash]: https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&var-region=eu-west-1&var-dbinstanceidentifier=email-alert-api-postgres&from=now-3h&to=now
+[machine metrics]: https://grafana.eks.production.govuk.digital/d/a164a7f0339f99e89cea5cb47e9be617/kubernetes-compute-resources-workload?orgId=1&from=now-3h&to=now&timezone=Europe%2FLondon&var-datasource=default&var-cluster=&var-namespace=apps&var-type=$__all&var-workload=email-alert-api&refresh=10s

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-notifications"
+owner_slack: "#govuk-web-support"
 title: "Email signup journeys and email subscriptions across GOV.UK"
 section: Emails
 type: learn
