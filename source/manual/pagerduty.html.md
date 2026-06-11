@@ -20,14 +20,14 @@ and that they're correctly scheduled in. You can [add your rota to Google calend
 
 When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge it, otherwise it will be escalated further.
 
-## Setting up and using Pagerduty while on-call
+## Setting up and using PagerDuty while on-call
 
 These are general instructions, which may vary depending on your mobile device.
 It’s your responsibility to ensure you can receive calls from Pagerduty while on-call, including setting it to bypass any DoNotDisturb features on your phone.
 
 Using the mobile app makes it easier to ensure that incident notifications make it through to you.
 
-> It’s highly recommended to use the Pagerduty app on your work mobile device. From 23 April 2026 you will not be able to use the Pagerduty app on a personal device unless you've accepted the [GDS BYOD policy](https://docs.google.com/document/d/1CP6VKSh5Q2ZzW7po8ehro2I-C--8Uh4y_9Ps4D46FSA/edit) and so accepted Cabinet Office installing a profile on your personal phone that imposes some restrictions. See [Pagerduty's instructions for setting up the app](https://support.pagerduty.com/main/docs/mobile-app-settings).
+> It’s highly recommended to use the PagerDuty app on your work mobile device. From 23 April 2026 you will not be able to use the PagerDuty app on a personal device unless you've accepted the [GDS BYOD policy](https://docs.google.com/document/d/1CP6VKSh5Q2ZzW7po8ehro2I-C--8Uh4y_9Ps4D46FSA/edit) and so accepted Cabinet Office installing a profile on your personal phone that imposes some restrictions. See [Pagerduty's instructions for setting up the app](https://support.pagerduty.com/main/docs/mobile-app-settings).
 
 You can send a test notification by clicking your picture in Pagerduty to access your profile, then on the Contact Information tab, then clicking any of the `test` buttons.
 
@@ -42,19 +42,19 @@ See the [Pagerduty documentation on how to schedule an override](https://support
 
 ## PagerDuty drill
 
-We test PagerDuty weekly to make sure it can alert us. This happens [every Monday morning at 10am UTC (11am BST)](https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services/templates/alertmanager-config.tpl#L79-L85).
+We test PagerDuty weekly to make sure it can alert us. This happens [every Monday morning at 10am UTC (11am BST)](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/pagerdutydrill.yaml).
 
 The primary in-hours technical on-call developer should escalate the call to the secondary, who should then escalate it to "SMT escalations". The person on "SMT escalations" should resolve the PagerDuty alert to prevent anyone else being phoned.
 
-Prometheus fires a constant `Watchdog` alert, so that developers can see that prometheus is integrated with alertmanager.
+Prometheus fires a constant `Watchdog` alert, so that developers can see that Prometheus is integrated with AlertManager.
 
 ### Triggering the drill manually
 
 To trigger the drill manually, follow these steps:
 
-1. Ask someone in the #platform-engineering team to run the Pagerduty drill.
+1. Ask someone in the #platform-engineering team to run the PagerDuty drill.
 
-1. Exec onto the alertmanager box after logging onto the production cluster:
+1. Exec onto the AlertManager box after logging onto the production cluster:
 
     ```shell
     $ kubectl exec -it alertmanager-kube-prometheus-stack-alertmanager-0  -n monitoring -- sh
@@ -72,9 +72,9 @@ To trigger the drill manually, follow these steps:
     $ amtool --alertmanager.url=http://localhost:9093 alert query 'alertname=PagerDuty test drill. Developers: escalate this alert. SMT: resolve'
     ```
 
-### Add your Pagerduty rota to Google calendar
+### Add your PagerDuty rota to Google calendar
 
-You can sync your Pagerduty with Google Calendar so you can see your
+You can sync your PagerDuty with Google Calendar so you can see your
 on-call shifts in one place.
 
 1. Go to https://governmentdigitalservice.pagerduty.com/my-on-call/month
