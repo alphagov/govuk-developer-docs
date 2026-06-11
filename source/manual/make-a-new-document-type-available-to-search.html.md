@@ -39,9 +39,9 @@ fields is [ElasticsearchPresenter][e-s-presenter].
 Modify this if there is anything special you want search to do with your
 documents (for example: appending additional information to the title).
 
-### 2. Add the document type to migrated_formats.yaml
+### 2. Add the document type to allowed_formats.yaml
 
-Add the document_type name to the [`migrated` list][migrated-list] in Search
+Add the document_type name to the [`allowed_formats` list][allowed-formats] in Search
 API.
 
 ### 3. Reindex
@@ -71,7 +71,7 @@ You can test that the documents appear in search through the API using a query s
 [mapped-doc-types]: https://github.com/alphagov/search-api/blob/main/config/govuk_index/mapped_document_types.yaml
 [i-c-presenter]: https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/indexable_content_presenter.rb
 [e-s-presenter]: https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/elasticsearch_presenter.rb
-[migrated-list]: https://github.com/alphagov/search-api/blob/main/config/govuk_index/migrated_formats.yaml
+[allowed-formats]: https://github.com/alphagov/search-api/blob/main/config/govuk_index/allowed_formats.yaml
 [reindex]: reindex-elasticsearch.html
 [task]: https://github.com/alphagov/publishing-api/blob/main/lib/tasks/represent_downstream.rake
 [query-1]: https://www.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide

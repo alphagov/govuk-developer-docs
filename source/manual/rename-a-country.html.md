@@ -47,7 +47,7 @@ This will update `www.gov.uk/world/<country_slug>` to `www.gov.uk/world/<new_cou
 
 In [Search API](https://github.com/alphagov/search-api):
 
-1. Create a [pull request](https://github.com/alphagov/search-api/pull/2884/files) with a change to the relevant country taxon in `config/govuk_index/migrated_formats.yaml`
+1. Create a [pull request](https://github.com/alphagov/search-api/pull/2884/files) with a change to the relevant country taxon in `config/govuk_index/allowed_formats.yaml`
 2. Deploy Search API
 
 In [Content Tagger](https://content-tagger.integration.publishing.service.gov.uk/):
