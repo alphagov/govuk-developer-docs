@@ -2,9 +2,9 @@
 //= require govuk_frontend
 //= require dependencies
 //= require govuk_publishing_components/lib/trigger-event
-//= require govuk_publishing_components/lib/cookie-functions
 //= require govuk_publishing_components/lib/cookie-settings
 //= require govuk_publishing_components/components/cookie-banner
 //= require govuk_publishing_components/load-analytics
+//= require cookie-functions
 //= require filter-list
 //= require mermaid-init
