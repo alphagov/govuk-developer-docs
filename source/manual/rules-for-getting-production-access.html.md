@@ -59,7 +59,7 @@ Note that a technologist apprentice is limited to Production Deploy access. Howe
 
 Gives:
 
-- Write access to Argo CD in staging and production via the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production-admin)
+- Membership of the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production-admin) - which provides write access to Argo CD in staging and production, the `admin` role on repos and also access to Github security settings for repos
 - Privileged AWS Access in Production and Staging environments (via the `production_admin_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml))
 - [Google Cloud Platform (GCP)](/manual/google-cloud-platform-gcp.html) access to role to manage [static mirrors](/manual/fall-back-to-mirror.html) and DNS
 - Signon "Super Admin" access in production
