@@ -63,7 +63,7 @@ advice and medical safety alerts. Check whether the message appears there.
 
 * Previously, the introduction of a new content sub-type of medical safety
   alerts caused an [outage][checkbox-incident]. See ["all" checkbox is
-  misleading for finder_email_signups](https://trello.com/c/v2ees2fD).
+  misleading for finder_email_signups](http://gov-uk.atlassian.net/browse/PNP-5460).
 
 * If all else fails, investigate the Email Alert API database to determine
   whether the content change was received and what state it is in.
@@ -81,9 +81,13 @@ advice and medical safety alerts. Check whether the message appears there.
 1. Run the `republish:one[<CONTENT_ID>]` Rake task in specialist-publisher,
    replacing `<CONTENT_ID>` with the one from the previous step.
 
+   ```
+   kubectl exec -it deploy/specialist-publisher -- rake 'republish:one[68da7ebffa37f4c83e804885]'
+   ```
+
 ## Resend a travel advice alert
 
-1. Find the edition ID of the affected content item. In Travel Advice Publisher,
+1. Find the edition ID of the affected content item. In [Travel Advice Publisher],
    go to the URL of the country's Edit page. The edition ID is a 24-digit hex
    number, for example `fedc13e231ccd7d63e1abf65`.
 
@@ -105,3 +109,4 @@ advice and medical safety alerts. Check whether the message appears there.
 [checkbox-incident]: https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#
 [Sentry]: https://sentry.io/organizations/govuk/issues/?project=202220&statsPeriod=12h
 [email-alert-api-alert-listener]: https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-alert-listener
+[Travel Advice Publisher]: http://travel-advice-publisher.integration.publishing.service.gov.uk/admin

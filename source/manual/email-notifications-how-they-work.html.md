@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-notifications"
+owner_slack: "#govuk-web-support"
 title: "Email notifications: how they work"
 section: Emails
 type: learn
@@ -64,7 +64,7 @@ Communication from Email Alert API to Notify is done via a HTTP API which is aut
 [email-frontend-readme]: https://github.com/alphagov/email-alert-frontend
 [Specialist Publisher]: /repos/specialist-publisher.html
 [Travel Advice Publisher]: /repos/travel-advice-publisher.html
-[travel-specialist-tech-debt]: https://trello.com/c/tWIZfxfc/94-travel-advice-publisher-and-specialist-publisher-talk-directly-to-email-alert-api
+[travel-specialist-tech-debt]: https://gov-uk.atlassian.net/browse/PTD-13
 [email-alert-api-technical]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api_technical.json
 [email-alert-api-product]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api_product.json
 [email-alert-api-matching]: https://github.com/alphagov/email-alert-api/blob/main/docs/matching-content-to-subscriber-lists.md
