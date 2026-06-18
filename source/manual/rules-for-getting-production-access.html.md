@@ -70,7 +70,7 @@ Gives:
 
 - You have a minimum of BPSS security clearance (blue building pass), AND
 - You have passed your probation period, AND
-- You have completed the [Production Admin Preparedness checklist](https://docs.google.com/forms/d/e/1FAIpQLSeY5H8ei89AJFaQLuDrd6CpWjCighCvF3d2iXx7QsyJdQjL-Q/viewform), covering the [learning objectives](#production-admin-learning-objectives) below, and have had your form response reviewed by [someone in Senior Tech](/manual/ask-for-help.html#contact-senior-tech).
+- You have completed the Production Admin Preparedness checklist [Google form](https://docs.google.com/forms/d/e/1FAIpQLSeY5H8ei89AJFaQLuDrd6CpWjCighCvF3d2iXx7QsyJdQjL-Q/viewform) or [Microsoft form](https://forms.cloud.microsoft/e/Q9YjUYCrhg) covering the [learning objectives](#production-admin-learning-objectives) below, and have had your form response reviewed by [someone in Senior Tech](/manual/ask-for-help.html#contact-senior-tech) (N.B. let them know which version of the form you have completed).
 
 To grant access, the senior tech person should create an issue for ["GOV.UK Production Admin" access](https://github.com/alphagov/govuk-platform-internal/issues/new?template=2-govuk-production-admin.md) and follow the steps listed in the issue.
 
