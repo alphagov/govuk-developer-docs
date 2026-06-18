@@ -47,18 +47,15 @@ Help others know who you are by [updating your Slack profile's 'title' field](ht
 1. Follow instructions in the email to sign into the `gds-users` AWS account for the first time.
 1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User.
 
-> <strong>You must specify your email address as the MFA device name.</strong>
+> **You must specify your email address as the MFA device name.**
 
 ![Screenshot of the Add MFA Device dialog in the AWS console](images/aws/assign-mfa-device.png)
 
 You should [use your Yubikey as your MFA device][yubikey-aws-mfa] if you have one.
 
-[aws-account-info]: https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws
-[iam-role-creation]: #6-get-permissions-for-aws-github-and-other-third-party-services
 [request-aws-user]: https://request-an-aws-user.digital.cabinet-office.gov.uk/user
 [enable-mfa]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-iam-user
 [yubikey-aws-mfa]: /manual/setup-a-yubikey.html#set-up-as-an-mfa-device-for-aws
-[aws-cli-auth]: https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html#cli-authentication-user-get
 
 ## 5. Set up your GitHub account
 
@@ -102,7 +99,6 @@ For [Sentry], your tech lead should manually add you via the Sentry UI. Once you
 [GitHub]: /manual/github.html
 [Sentry]: /manual/sentry.html
 [Pagerduty]: /manual/pagerduty.html
-[govuk-user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 [instructions]: https://github.com/alphagov/govuk-user-reviewer#adding-users
 
 ## 7. Install and configure the GDS CLI
@@ -154,11 +150,5 @@ Depending on your role and the team you've joined, you will likely need access t
 
 Now you have completed the get started process, you should look at the following supporting information:
 
-- the [architectural deep dive of GOV.UK][architectural-deep-dive]
+- the [architectural deep dive of GOV.UK](/manual/architecture-deep-dive.html)
 - GOV.UK's [conventions for Rails applications](/manual/conventions-for-rails-applications.html)
-
-[architectural-deep-dive]: /manual/architecture-deep-dive.html
-[govuk-aws-data-users-group]: /manual/set-up-aws-account.html#4-get-the-appropriate-access
-[infra-terra]: https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security
-[MFA]: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#multi-factor-authentication
-[iam]: https://console.aws.amazon.com/iam/home?region=eu-west-1#/users
