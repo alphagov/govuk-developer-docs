@@ -40,7 +40,7 @@ We monitor and alert on both Search API v2 success rates and Google Discovery En
 
 #### Search API v2 success rates
 
-We have an informal SLO to maintain a search success rate of about 99.99% over any 24-hour period. There are currently three Alertmanager rules configured in govuk-helm-charts to send notifications on Slack, if rates drop below this:
+We aim to maintain a search success rate of about 99.99% over any 24-hour period. There are currently three Alertmanager rules configured in govuk-helm-charts to send notifications on Slack, if rates drop below this:
 
 - [SearchDegradedAcute][link-6] (__Critical__) 5 minute rolling success rate for search requests has dropped below 99% for more than 10 minutes.
 
