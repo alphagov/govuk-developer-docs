@@ -23,25 +23,19 @@ export AWS_REGION=eu-west-1
 eval $(gds aws govuk-<govuk-environment>-readonly -e --art 8h)
 ```
 
-1. Add this environment's `govuk` cluster to your kubectl configuration in `~/.kube/config`:
+1. Add this environment's `govuk` cluster to your kubectl configuration in `~/.kube/config`, and name it (e.g. `--alias govuk-integration` or `--alias integration`):
 
     ```sh
-    aws eks update-kubeconfig --name govuk
+    aws eks update-kubeconfig --name govuk --alias govuk-<govuk-environment>
     ```
-
-1. Rename the new context to match the name of the environment (to make it easier to switch between clusters, namespaces or users):
-
-    Edit the `name` field of the last context in `~/.kube/config`. For example, for the staging environment you could set `name` to `govuk-staging` or simply `staging`.
-
-    See the [Kubernetes documentation on configuring access to multiple clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) for more information.
 
 1. Set the current context:
 
     ```sh
-    kubectl config use-context <govuk-environment>
+    kubectl config use-context <alias>
     ```
 
-    Where `govuk-environment` is the name of the context you chose in the step above.
+    Where `alias` is the name of the context you chose in the step above.
 
 1. Set the [default namespace](/kubernetes/manage-app/get-app-info/#choose-and-set-a-namespace) of the context:
 
