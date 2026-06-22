@@ -52,6 +52,8 @@ We aim to maintain a search success rate of about 99.99% over any 24-hour period
 
 There is currently one Alertmanager rule configured in govuk-helm-charts, [HighVertexP90Latency][link-14], which sends notifications in Slack if requests to Google Cloud Discovery Engine search endpoint exceed acceptable duration thresholds.
 
+Note that, since we have [introduced a 2-second timeout][link-17] on search requests to Discovery Engine, this alert is not expected to fire until the levels are adjusted.
+
 #### Causes of degradation of search service alerts firing
 
 A common cause of drops in search success rate, is high latency from the DiscoveryEngine API. This will result in the [Google::Cloud::DiscoveryEngine Ruby client][link-15] timing out and raising `Google::Cloud::DeadlineExceededError` errors, which in turn lead Search API v2 to respond with 500 errors for search result requests.
@@ -241,7 +243,7 @@ If an evaluation fails for a reason other than a sample query set not existing, 
 [link-11]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L201
 [link-12]: https://console.cloud.google.com/welcome?inv=1&invt=Ab3mhA&project=search-api-v2-production
 [link-13]: https://console.cloud.google.com/support/cases?inv=1&invt=Ab3mhA&project=search-api-v2-production
-[link-14]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L49
+[link-14]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L31
 [evaluations-schedule]: https://docs.publishing.service.gov.uk/repos/search-api-v2-beta-features/evaluations.html#schedule
 [beta-features-repo]: https://github.com/alphagov/search-api-v2-beta-features
 [create-sample-query-sets-in-argo]: https://argo.eks.integration.govuk.digital/applications/search-api-v2-beta-features?orphaned=false&resource=&node=batch%2FCronJob%2Fapps%2Fsearch-api-v2-beta-features-setup-sample-query-sets
@@ -252,5 +254,6 @@ If an evaluation fails for a reason other than a sample query set not existing, 
 [report-quality-metrics-rake-task]: https://github.com/alphagov/search-api-v2-beta-features/blob/main/lib/tasks/quality.rake#L27
 [link-15]: https://github.com/alphagov/search-api-v2/blob/v592/app/services/discovery_engine/clients.rb#L16
 [link-16]: https://docs.publishing.service.gov.uk/manual/query-cdn-logs.html
+[link-17]: https://github.com/alphagov/search-api-v2/blob/main/app/services/discovery_engine/clients.rb#L17
 [gcp-logging]: https://docs.publishing.service.gov.uk/manual/increase-logging-for-site-search.html#increase-logging-in-google-cloud-platform
 [autocomplete-error-handling]: https://github.com/alphagov/search-api-v2/blob/main/app/services/discovery_engine/autocomplete/complete.rb#L29
