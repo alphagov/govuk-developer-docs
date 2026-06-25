@@ -34,15 +34,13 @@ All environments are configured for Slack notifications. Production alerts are r
 
 ## Alert types and how to handle them
 
-### Degradation of service alerts
+### Degradation of search service alerts
 
-We monitor and alert on both Search API v2 success rates, and Google Discovery Engine response times.
+We monitor and alert on both Search API v2 success rates and Google Discovery Engine response times.
 
 #### Search API v2 success rates
 
-We have an informal SLO to maintain a search and autocomplete success rate of about 99.99% over any 24 hour period. There are currently four Alertmanager rules configured in govuk-helm-charts to send notifications on Slack, if rates drop below this:
-
-##### Search alerts
+We aim to maintain a search success rate of about 99.99% over any 24-hour period. There are currently three Alertmanager rules configured in govuk-helm-charts to send notifications on Slack, if rates drop below this:
 
 - [SearchDegradedAcute][link-6] (__Critical__) 5 minute rolling success rate for search requests has dropped below 99% for more than 10 minutes.
 
@@ -50,17 +48,13 @@ We have an informal SLO to maintain a search and autocomplete success rate of ab
 
 - [SearchDegradedLong][link-8] (__Warning__) 24 hour rolling success rate for search requests has dropped below 99.99% for more than 24 hours.
 
-##### Autocomplete alerts
-
-- [AutocompleteDegradedAcute][link-9] (__Critical__) 5 minute rolling success rate for autocomplete requests has dropped below 90% for more than 10 minutes.
-
-- Note on future work: The Search team is developing improved autocomplete monitoring. Currently our success rate will remain 100% if the Discovery Engine API responds with a 200 success code but provides no autocomplete suggestions for queries where suggestions are available.
-
 #### Google Cloud Discovery Engine request durations
 
 There is currently one Alertmanager rule configured in govuk-helm-charts, [HighVertexP90Latency][link-14], which sends notifications in Slack if requests to Google Cloud Discovery Engine search endpoint exceed acceptable duration thresholds.
 
-#### Causes of degradation of service alerts firing
+Note that, since we have [introduced a 2-second timeout][link-17] on search requests to Discovery Engine, this alert is not expected to fire until the levels are adjusted.
+
+#### Causes of degradation of search service alerts firing
 
 A common cause of drops in search success rate, is high latency from the DiscoveryEngine API. This will result in the [Google::Cloud::DiscoveryEngine Ruby client][link-15] timing out and raising `Google::Cloud::DeadlineExceededError` errors, which in turn lead Search API v2 to respond with 500 errors for search result requests.
 
@@ -104,6 +98,81 @@ WHERE date = 8 AND month = 5 AND year = 2026
 GROUP BY status
 ORDER BY count DESC
 ```
+
+### Degradation of autocomplete service alerts
+
+For autocomplete requests, we have [error handling][autocomplete-error-handling] within `search-api-v2` to catch the common errors from the Discovery Engine API
+(namely, `Google::Cloud::DeadlineExceededError` and `Google::Cloud::InternalError`) and return an empty array of suggestions. Therefore,
+it doesn't make sense to monitor the success rate for autocomplete requests to `search-api-v2`, as this should always be 100%. Instead, we
+monitor the number of autocomplete suggestions returned from each request to the Discovery Engine API, and raise an alert if we haven’t received any suggestions
+for over an hour (subject to receiving a minimum of 500 responses during that time):
+
+- [AutocompleteDegradedMid][link-9] (__Warning__): Maximum number of autocomplete suggestions returned by Google Cloud Discovery Engine over 1 hour
+  has dropped to zero for more than 10 minutes.
+
+#### Causes of degradation of autocomplete service alerts firing
+
+There are three common issues that could cause all autocomplete responses from the Discovery Engine API to be empty (i.e. contain zero suggestions):
+
+- Requests to the Discovery Engine API returning `Google::Cloud::DeadlineExceededError`
+- Requests to the Discovery Engine API returning `Google::Cloud::InternalError`
+- Requests to the Discovery Engine API returning a successful but empty response.
+
+It's worth noting that, even in healthy environments, we expect around 50% of autocomplete requests to Discovery Engine API to return
+zero suggestions (because some search queries are not common enough to have associated autocomplete suggestions).
+However, if all requests are returning zero suggestions, that indicates an issue.
+
+#### Steps to take in the event of an alert being triggered
+
+If the [AutocompleteDegradedMid][link-9] alert is firing, the DiscoveryEngine API is either responding to autocomplete
+requests with an error code or it's responding with a successful but empty response (i.e. one that contains zero suggestions).
+
+It's important to understand which scenario has occurred so that we can provide a detailed description of the issue we are experiencing to Google.
+
+Use Kibana to locate the cause:
+
+1. Search for logs over the last hour that contain the following text:
+
+```DiscoveryEngine::Autocomplete::Complete: Did not get autocomplete suggestion```
+
+2. Check the `debug_error_string` field for `DeadlineExceededError` or `InternalError`.
+
+The absence of these error messages suggests that Discovery Engine is returning successful but empty responses.
+
+You can also try a few common queries that should always return autocomplete suggestions, and track the logs for these
+in Kibana and Google Cloud Platform (after [switching on increased logging][gcp-logging]) to see what's happening.
+Such queries include: "tax", "credit" and "work".
+
+Once you know what is causing the issue, [raise a support ticket with Google](#how-to-contact-google-if-there-is-a-critical-issue-with-gcp-or-discovery-engine),
+with as much information about the problem as possible including the time the issue started and what the cause is.
+
+#### Quantifying the user impact of degraded autocomplete service
+
+To estimate how many users are not getting autocomplete suggestions when they should be, you could look at how many
+requests were made during the window, and divide this by two. This is because we expect about 50% of responses to
+legitimately return zero suggestions.
+
+To get a more up-to-date and accurate percentage of responses that should return zero responses, you can look at the
+Prometheus histogram metric `search_api_v2_discovery_engine_autocomplete_suggestions_response_bucket`:
+
+1. Pick a timeframe that you want to base the analysis on. This needs to be a timeframe when the autocomplete service was healthy.
+You might want to consider choosing a timeframe that matches characteristics of the period that autocomplete is degraded over.
+For example, if autocomplete was not working on a Monday, you could choose the last Monday that the service was healthy on to estimate the impact.
+
+2. Go to the Prometheus UI and execute the following query:
+
+   ```sum by(le) (increase(search_api_v2_discovery_engine_autocomplete_suggestions_response_bucket[1h]))```
+
+   Replace `1h` with the length of your chosen timeframe (e.g. 24h, 48h etc).
+
+3. Observe the shown metrics at the **end** of your chosen timeframe by either selecting the relevant time from the calendar selector in the 'table' tab or by hovering over the relevant time in the 'graph' tab.
+
+4. Divide the value shown for `{le="0.0"}` (this is the number of observations with zero suggestions over your chosen timeframe) by the value shown for `{le="+Inf"}` (this is the total number of observations over your chosen timeframe). This gives you the proportion of total requests to Discovery Engine that returned zero suggestions over your chosen timeframe.
+
+5. 1 minus the value from step 4 gives you the proportion of total requests to Discovery Engine that **did not** return zero suggestions over your chosen timeframe.
+
+You can then multiply the value from step 5 with the number of requests made when autocomplete was degraded, to get an estimate
+of how many users were affected.
 
 ### Degradation of search quality alerts
 
@@ -166,15 +235,15 @@ If an evaluation fails for a reason other than a sample query set not existing, 
 [link-3]: https://govuk.sentry.io/insights/projects/app-search-api-v2-beta-features/?project=4510158725513217
 [link-4]: ./kibana.html
 [link-5]: https://grafana.eks.production.govuk.digital/d/govuk-search/gov-uk-search?orgId=1&from=now-24h&to=now&timezone=browser
-[link-6]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L63
-[link-7]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L115
-[link-8]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L152
-[link-9]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L78
-[link-10]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L188
-[link-11]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L201
+[link-6]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L45
+[link-7]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L89
+[link-8]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L141
+[link-9]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L104
+[link-10]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L164
+[link-11]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L190
 [link-12]: https://console.cloud.google.com/welcome?inv=1&invt=Ab3mhA&project=search-api-v2-production
 [link-13]: https://console.cloud.google.com/support/cases?inv=1&invt=Ab3mhA&project=search-api-v2-production
-[link-14]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L49
+[link-14]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_v2.yaml#L31
 [evaluations-schedule]: https://docs.publishing.service.gov.uk/repos/search-api-v2-beta-features/evaluations.html#schedule
 [beta-features-repo]: https://github.com/alphagov/search-api-v2-beta-features
 [create-sample-query-sets-in-argo]: https://argo.eks.integration.govuk.digital/applications/search-api-v2-beta-features?orphaned=false&resource=&node=batch%2FCronJob%2Fapps%2Fsearch-api-v2-beta-features-setup-sample-query-sets
@@ -185,3 +254,6 @@ If an evaluation fails for a reason other than a sample query set not existing, 
 [report-quality-metrics-rake-task]: https://github.com/alphagov/search-api-v2-beta-features/blob/main/lib/tasks/quality.rake#L27
 [link-15]: https://github.com/alphagov/search-api-v2/blob/v592/app/services/discovery_engine/clients.rb#L16
 [link-16]: https://docs.publishing.service.gov.uk/manual/query-cdn-logs.html
+[link-17]: https://github.com/alphagov/search-api-v2/blob/main/app/services/discovery_engine/clients.rb#L17
+[gcp-logging]: https://docs.publishing.service.gov.uk/manual/increase-logging-for-site-search.html#increase-logging-in-google-cloud-platform
+[autocomplete-error-handling]: https://github.com/alphagov/search-api-v2/blob/main/app/services/discovery_engine/autocomplete/complete.rb#L29
