@@ -1,0 +1,1560 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>govuk-ai-accelerator: Runbook: Ontology Generation Process - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-ai-accelerator/runbooks/ontology_generation_runbook.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="govuk-ai-accelerator: Runbook: Ontology Generation Process - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-ai-accelerator/runbooks/ontology_generation_runbook.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="govuk-ai-accelerator: Runbook: Ontology Generation Process" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-ai-accelerator/runbooks/ontology_generation_runbook.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/govuk-ai-accelerator.html" rel="noopener" class="govuk-link">govuk-ai-accelerator</a>
+    </li>
+    <li>
+      <ul>
+            <li class="subdir__heading">architecture</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-ai-accelerator/architecture/cross-repo-integration.html" rel="noopener" class="govuk-link">Ontology Generation Cross-Repo Integration</a></li>
+    <li class="subdir__heading">decisions</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-ai-accelerator/architecture/decisions/001-use-postgres-backed-queue-for-ontology-generation.html" rel="noopener" class="govuk-link">001. Use a PostgreSQL-backed queue for ontology generation</a></li>
+
+    </ul>
+
+    </ul>
+    <li class="subdir__heading">runbooks</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-ai-accelerator/runbooks/ontology-generator-metrics.html" rel="noopener" class="govuk-link">ontology-generator-metrics</a></li>
+    <li><a href="/repos/govuk-ai-accelerator/runbooks/ontology_generation_runbook.html" rel="noopener" class="govuk-link">Runbook: Ontology Generation Process</a></li>
+    <li><a href="/repos/govuk-ai-accelerator/runbooks/ontology_ingestion_domain_creation_runbook.html" rel="noopener" class="govuk-link">Runbook: Domain Creation and Ingestion</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-ai-accelerator",
+        "@id": "http://www.dev.gov.uk/repos/govuk-ai-accelerator.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-ai-accelerator.html">govuk-ai-accelerator</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-ai-accelerator/commit/e54ac2b99d8904b54d319710179a6dbc0c6e82ad">26 Jun 2026</a>
+</div>
+
+  <h1 class="page-title">govuk-ai-accelerator: Runbook: Ontology Generation Process</h1>
+
+  
+<p>This guide provides a comprehensive runbook for the ontology generation process. It is split into two sections:</p>
+<ol>
+<li>
+<strong><a href="#part-1-user-guide-non-technical">User Guide (Non-Technical)</a></strong> - For Information Architects, Domain Experts, and Content Designers using the web interface.</li>
+<li>
+<strong><a href="#part-2-technical--developer-reference">Technical &amp; Developer Reference</a></strong> - For software developers, platform engineers, and developers maintaining the pipeline code and infrastructure.</li>
+</ol>
+<hr>
+<h1 id="part-1-user-guide-non-technical">Part 1: User Guide (Non-Technical)</h1>
+<h2 id="what-is-ontology-generation">What is Ontology Generation?</h2>
+<p>Once a domain has been created and its GOV.UK pages have been ingested (cleaned and downloaded), you can generate a <strong>seed ontology</strong>.</p>
+<p>An ontology is a structured model of the concepts, relationships, and attributes that define a domain. The <strong>Ontology Generator</strong> uses Large Language Models (LLMs) to automatically read the ingested pages, identify important concepts, map their relationships, and format them into standard semantic web data.</p>
+<hr>
+<h2 id="how-to-generate-an-ontology-ui-workflow">How to Generate an Ontology (UI Workflow)</h2>
+<p>Follow these steps to configure and trigger an ontology generation run:</p>
+<h3 id="step-1-open-the-application">Step 1: Open the Application</h3>
+<p>Navigate to the <strong>Create Ontology</strong> page in your web browser:
+Link: <strong><a href="https://govuk-ai-accelerator-app.integration.publishing.service.gov.uk/ontology/create">https://govuk-ai-accelerator-app.integration.publishing.service.gov.uk/ontology/create</a></strong></p>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk-ai-accelerator/main/docs/runbooks/images/ontology_generator_homepage.png" alt="Ontology Generator Homepage"></p>
+<h3 id="step-2-choose-your-domain">Step 2: Choose Your Domain</h3>
+<p>Select the domain you want to process from the dropdown list.</p>
+<ul>
+<li>Only domains that have already been created and ingested successfully will appear in this list. If you do not see your domain, complete the domain ingestion process first.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk-ai-accelerator/main/docs/runbooks/images/domain_selection_dropdown.png" alt="Domain Selection Dropdown Screen"></p>
+<h3 id="step-3-customize-the-domain-prompt-optional-but-recommended">Step 3: Customize the Domain Prompt (Optional but Recommended)</h3>
+<p>The domain prompt guides the LLM on what type of information and concepts to extract.</p>
+<ol>
+<li>Enter your instructions directly into the <strong>Domain prompt text box</strong> in the user interface. For example:
+<blockquote>
+<p>"Focus on extracting user requirements, eligibility criteria, required documents, fee structures, and application steps. Ignore generic navigation terms."</p>
+</blockquote>
+</li>
+<li>The prompt input is optional; if left blank, the generator uses built-in baseline prompts to create the ontology.</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk-ai-accelerator/main/docs/runbooks/images/domain_prompt_textarea.png" alt="Domain Prompt Text Area Screen"></p>
+<h3 id="step-4-configure-advanced-settings-optional">Step 4: Configure Advanced Settings (Optional)</h3>
+<p>By default, if you do not modify any of the parameters in this step, the generator uses the <strong>default configuration</strong> settings automatically. However, you can toggle the <strong>Advanced Parameters</strong> checkbox to customize settings if needed.</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk-ai-accelerator/main/docs/runbooks/images/config_editor_panel.png" alt="Config Editor Panel"></p>
+<p>Below is the complete, parameter-by-parameter reference guide to all settings available in the configuration:</p>
+<hr>
+<h3 id="1-large-language-model-settings-llm">1. Large Language Model Settings (<code>llm</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>llm.model</code></strong></td>
+<td>String</td>
+<td><code>"bedrock:eu.anthropic.claude-sonnet-4-6"</code></td>
+<td>The target LLM. Supports Bedrock prefix (<code>bedrock:</code>) and models like Claude Sonnet.</td>
+</tr>
+<tr>
+<td><strong><code>llm.temperature</code></strong></td>
+<td>Float</td>
+<td><code>0.0</code></td>
+<td>Controls AI randomness. Use <code>0.0</code> for predictable, deterministic extraction.</td>
+</tr>
+<tr>
+<td><strong><code>llm.max_tokens</code></strong></td>
+<td>Integer</td>
+<td><code>16000</code></td>
+<td>Maximum token length for the model response. Higher values prevent text truncation.</td>
+</tr>
+<tr>
+<td><strong><code>llm.aws_bedrock_enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Toggles Bedrock API integration.</td>
+</tr>
+<tr>
+<td><strong><code>llm.bedrock_enable_context_1m_beta</code></strong></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>Enables AWS Bedrock experimental 1M token context support.</td>
+</tr>
+<tr>
+<td><strong><code>llm.bedrock_context_1m_beta_flag</code></strong></td>
+<td>String</td>
+<td><code>"context-1m-2025-08-07"</code></td>
+<td>Bedrock model flag for the beta context feature.</td>
+</tr>
+<tr>
+<td><strong><code>llm.bedrock_read_timeout_seconds</code></strong></td>
+<td>Integer</td>
+<td><code>600</code></td>
+<td>Read timeout limit for Bedrock API calls.</td>
+</tr>
+<tr>
+<td><strong><code>llm.extraction_prompt_file</code></strong></td>
+<td>String / Null</td>
+<td><code>null</code></td>
+<td>Custom path to an override system extraction prompt.</td>
+</tr>
+<tr>
+<td><strong><code>llm.retries</code></strong></td>
+<td>Integer</td>
+<td><code>3</code></td>
+<td>Simple retry attempts count for API calls.</td>
+</tr>
+<tr>
+<td><strong><code>llm.retry_strategy.enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Enables exponential backoff retry handler for rate limits.</td>
+</tr>
+<tr>
+<td><strong><code>llm.retry_strategy.strategy_type</code></strong></td>
+<td>Choice</td>
+<td><code>"exponential"</code></td>
+<td>Backoff mathematical strategy: <code>"exponential"</code>, <code>"linear"</code>, <code>"constant"</code>.</td>
+</tr>
+<tr>
+<td><strong><code>llm.retry_strategy.initial_delay</code></strong></td>
+<td>Float</td>
+<td><code>1.0</code></td>
+<td>Delay in seconds before initiating the first retry attempt.</td>
+</tr>
+<tr>
+<td><strong><code>llm.retry_strategy.max_delay</code></strong></td>
+<td>Float</td>
+<td><code>30.0</code></td>
+<td>Maximum limit on delays between retries.</td>
+</tr>
+<tr>
+<td><strong><code>llm.retry_strategy.backoff_multiplier</code></strong></td>
+<td>Float</td>
+<td><code>2.0</code></td>
+<td>The factor by which delay increases each retry.</td>
+</tr>
+<tr>
+<td><strong><code>llm.retry_strategy.jitter</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Adds random time variance to avoid coordinated request spikes.</td>
+</tr>
+<tr>
+<td><strong><code>llm.retry_strategy.retry_on_rate_limit</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Automatically retry on API 429 rate limit exceptions.</td>
+</tr>
+<tr>
+<td><strong><code>llm.retry_strategy.retry_on_timeout</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Automatically retry on API connection timeout errors.</td>
+</tr>
+<tr>
+<td><strong><code>llm.bedrock_quota_governor.enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Active rate-limit governor guarding Bedrock client calls.</td>
+</tr>
+<tr>
+<td><strong><code>llm.bedrock_quota_governor.requests_per_minute</code></strong></td>
+<td>Integer</td>
+<td><code>7000</code></td>
+<td>Threshold of maximum requests allowed per minute.</td>
+</tr>
+<tr>
+<td><strong><code>llm.bedrock_quota_governor.tokens_per_minute</code></strong></td>
+<td>Integer</td>
+<td><code>3500000</code></td>
+<td>Threshold of maximum tokens allowed per minute.</td>
+</tr>
+<tr>
+<td><strong><code>llm.bedrock_quota_governor.max_concurrency</code></strong></td>
+<td>Integer</td>
+<td><code>10</code></td>
+<td>Maximum parallel threads communicating with AWS Bedrock.</td>
+</tr>
+<tr>
+<td><strong><code>llm.bedrock_quota_governor.window_seconds</code></strong></td>
+<td>Integer</td>
+<td><code>60</code></td>
+<td>Time window length for rate limitation tracking.</td>
+</tr>
+<tr>
+<td><strong><code>llm.bedrock_quota_governor.jitter_min_seconds</code></strong></td>
+<td>Float</td>
+<td><code>0.2</code></td>
+<td>Minimum random delay factor.</td>
+</tr>
+<tr>
+<td><strong><code>llm.bedrock_quota_governor.jitter_max_seconds</code></strong></td>
+<td>Float</td>
+<td><code>1.5</code></td>
+<td>Maximum random delay factor.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2-batching-settings-batching">2. Batching Settings (<code>batching</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>batching.chunks_per_batch</code></strong></td>
+<td>Integer</td>
+<td><code>2</code></td>
+<td>Number of text chunks processed in a single LLM request.</td>
+</tr>
+<tr>
+<td><strong><code>batching.chunk_separator</code></strong></td>
+<td>String</td>
+<td><code>"\n\n---\n\n"</code></td>
+<td>Character boundary marking different chunks within a batch.</td>
+</tr>
+<tr>
+<td><strong><code>batching.file_level_scaffold_enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Generates a per-file summary first to guide chunk-level consistency.</td>
+</tr>
+<tr>
+<td><strong><code>batching.input_token_ratio</code></strong></td>
+<td>Float</td>
+<td><code>0.5</code></td>
+<td>Fraction of context window reserved for input chunks.</td>
+</tr>
+<tr>
+<td><strong><code>batching.max_batch_size_anthropic</code></strong></td>
+<td>Integer</td>
+<td><code>4</code></td>
+<td>Hard limit on chunks per batch for Anthropic models.</td>
+</tr>
+<tr>
+<td><strong><code>batching.max_batch_text_length</code></strong></td>
+<td>Integer / Null</td>
+<td><code>null</code></td>
+<td>Safety limit on character count in a single batch.</td>
+</tr>
+<tr>
+<td><strong><code>batching.max_input_tokens</code></strong></td>
+<td>Integer</td>
+<td><code>32000</code></td>
+<td>Safety limit to prevent prompt sizing from collapsing batch size.</td>
+</tr>
+<tr>
+<td><strong><code>batching.min_batch_size</code></strong></td>
+<td>Integer</td>
+<td><code>1</code></td>
+<td>Lower bound on batch size.</td>
+</tr>
+<tr>
+<td><strong><code>batching.min_batch_tokens</code></strong></td>
+<td>Integer</td>
+<td><code>200</code></td>
+<td>Lower bound on tokens allocated per batch.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="3-checkpointing-settings-checkpointing">3. Checkpointing Settings (<code>checkpointing</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>checkpointing.enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Enable state saving to resume jobs that fail mid-run.</td>
+</tr>
+<tr>
+<td><strong><code>checkpointing.auto_resume</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Automatically pick up progress from an existing checkpoint.</td>
+</tr>
+<tr>
+<td><strong><code>checkpointing.checkpoint_filename</code></strong></td>
+<td>String</td>
+<td><code>"processing_checkpoint.json"</code></td>
+<td>Saved progress filename.</td>
+</tr>
+<tr>
+<td><strong><code>checkpointing.flush_interval_batches</code></strong></td>
+<td>Integer</td>
+<td><code>100</code></td>
+<td>Write to disk interval based on batch count.</td>
+</tr>
+<tr>
+<td><strong><code>checkpointing.flush_timeout_seconds</code></strong></td>
+<td>Integer</td>
+<td><code>600</code></td>
+<td>Force flush checkpointer after time elapsed.</td>
+</tr>
+<tr>
+<td><strong><code>checkpointing.max_state_checkpoints</code></strong></td>
+<td>Integer</td>
+<td><code>3</code></td>
+<td>Limit on history retention of checkpoints.</td>
+</tr>
+<tr>
+<td><strong><code>checkpointing.persist_state</code></strong></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>Deep persistence of extraction state (opt-in).</td>
+</tr>
+<tr>
+<td><strong><code>checkpointing.state_checkpoint_stages</code></strong></td>
+<td>List</td>
+<td><code>['extraction', 'deduplication', 'schema']</code></td>
+<td>Specific stages where status checkpoints are persisted.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="4-conflict-resolution-deduplication-settings-conflict_resolution-deduplication">4. Conflict Resolution &amp; Deduplication Settings (<code>conflict_resolution</code>, <code>deduplication</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>conflict_resolution.enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Resolve properties conflict automatically.</td>
+</tr>
+<tr>
+<td><strong><code>conflict_resolution.strategy</code></strong></td>
+<td>Choice</td>
+<td><code>"higher_confidence"</code></td>
+<td>Resolving rule: pick value with higher LLM confidence score.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.conflict_resolution_strategy</code></strong></td>
+<td>Choice</td>
+<td><code>"confidence"</code></td>
+<td>Merge strategy: <code>"confidence"</code> or <code>"latest"</code>.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.enable_label_similarity_check</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Enforces lexical similarity on labels before allowing semantic merge.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.exact_threshold</code></strong></td>
+<td>Float</td>
+<td><code>1.0</code></td>
+<td>Match score for string-identity based deduplication.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.high_semantic_similarity</code></strong></td>
+<td>Float</td>
+<td><code>0.985</code></td>
+<td>Unconditional merge score for semantic vector distance.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.min_label_similarity</code></strong></td>
+<td>Float</td>
+<td><code>0.75</code></td>
+<td>Required character/token overlap score before merging.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.semantic_threshold</code></strong></td>
+<td>Float</td>
+<td><code>0.88</code></td>
+<td>General cosine similarity threshold for vector merges.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.faiss.threshold</code></strong></td>
+<td>Integer</td>
+<td><code>100</code></td>
+<td>Entity count trigger to shift from array search to FAISS indexing.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.faiss.batch_size</code></strong></td>
+<td>Integer</td>
+<td><code>100</code></td>
+<td>Search lookup batch size in FAISS.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.faiss.index_type</code></strong></td>
+<td>Choice</td>
+<td><code>"auto"</code></td>
+<td>Index structure strategy.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.faiss.rebuild_threshold</code></strong></td>
+<td>Integer</td>
+<td><code>10000</code></td>
+<td>Rebuild index after N insertions to maintain precision.</td>
+</tr>
+<tr>
+<td><strong><code>deduplication.faiss.top_k</code></strong></td>
+<td>Integer</td>
+<td><code>50</code></td>
+<td>Nearest neighbors depth searched.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="5-semantic-embeddings-settings-embeddings">5. Semantic Embeddings Settings (<code>embeddings</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>embeddings.model</code></strong></td>
+<td>String</td>
+<td><code>"bedrock:cohere.embed-multilingual-v3"</code></td>
+<td>Model used for semantic distance calculations.</td>
+</tr>
+<tr>
+<td><strong><code>embeddings.dimension</code></strong></td>
+<td>Integer</td>
+<td><code>1024</code></td>
+<td>Cohere vector size. (Gemini: <code>3072</code>, OpenAI Large: <code>1536</code>).</td>
+</tr>
+<tr>
+<td><strong><code>embeddings.batch_size</code></strong></td>
+<td>Integer</td>
+<td><code>100</code></td>
+<td>Text chunk array size dispatched for vector extraction.</td>
+</tr>
+<tr>
+<td><strong><code>embeddings.max_batch_size</code></strong></td>
+<td>Integer</td>
+<td><code>100</code></td>
+<td>System safety batch cap to avoid request memory limits.</td>
+</tr>
+<tr>
+<td><strong><code>embeddings.concurrency</code></strong></td>
+<td>Integer</td>
+<td><code>10</code></td>
+<td>Concurrency limit on embedding API workers.</td>
+</tr>
+<tr>
+<td><strong><code>embeddings.task_type</code></strong></td>
+<td>String</td>
+<td><code>"SEMANTIC_SIMILARITY"</code></td>
+<td>Embedding downstream task flag.</td>
+</tr>
+<tr>
+<td><strong><code>embeddings.cache.enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Avoid recalculations by caching generated embeddings.</td>
+</tr>
+<tr>
+<td><strong><code>embeddings.cache.directory</code></strong></td>
+<td>String</td>
+<td><code>"domains/.cache"</code></td>
+<td>Cache files storage destination folder.</td>
+</tr>
+<tr>
+<td><strong><code>embeddings.cache.file</code></strong></td>
+<td>String</td>
+<td><code>"embeddings.json"</code></td>
+<td>Vector cache storage filename.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="6-error-handling-limits-settings-error_handling-limits">6. Error Handling &amp; Limits Settings (<code>error_handling</code>, <code>limits</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>error_handling.continue_on_error</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Continues processing on non-fatal chunk failures.</td>
+</tr>
+<tr>
+<td><strong><code>error_handling.collect_severities</code></strong></td>
+<td>List</td>
+<td><code>['error', 'warning', 'info']</code></td>
+<td>Log details collected during execution.</td>
+</tr>
+<tr>
+<td><strong><code>error_handling.max_errors</code></strong></td>
+<td>Integer / Null</td>
+<td><code>null</code></td>
+<td>Error count limit before halting pipeline.</td>
+</tr>
+<tr>
+<td><strong><code>limits.max_entities</code></strong></td>
+<td>Integer / Null</td>
+<td><code>null</code></td>
+<td>Hard cap on total entities allowed.</td>
+</tr>
+<tr>
+<td><strong><code>limits.max_entity_types</code></strong></td>
+<td>Integer / Null</td>
+<td><code>null</code></td>
+<td>Hard cap on total classes (Entity Types).</td>
+</tr>
+<tr>
+<td><strong><code>limits.max_relationships</code></strong></td>
+<td>Integer / Null</td>
+<td><code>null</code></td>
+<td>Hard cap on total relationships allowed.</td>
+</tr>
+<tr>
+<td><strong><code>limits.max_relationship_types</code></strong></td>
+<td>Integer / Null</td>
+<td><code>null</code></td>
+<td>Hard cap on unique relation properties.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="7-filesystem-storage-options-filesystem-output">7. Filesystem &amp; Storage Options (<code>filesystem</code>, <code>output</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>filesystem.protocol</code></strong></td>
+<td>Choice</td>
+<td><code>"s3"</code></td>
+<td>Storage interface: <code>"s3"</code>, <code>"local"</code>, <code>"gcs"</code>.</td>
+</tr>
+<tr>
+<td><strong><code>filesystem.options</code></strong></td>
+<td>Map</td>
+<td><code>{}</code></td>
+<td>Backend parameters (e.g. region keys).</td>
+</tr>
+<tr>
+<td><strong><code>output.base_directory</code></strong></td>
+<td>String</td>
+<td><em>(Auto-resolved)</em></td>
+<td>Run output files destination directory.</td>
+</tr>
+<tr>
+<td><strong><code>output.append_domain_name</code></strong></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>Append domain subfolder suffix dynamically.</td>
+</tr>
+<tr>
+<td><strong><code>output.compress_output</code></strong></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>Gzip output JSON files.</td>
+</tr>
+<tr>
+<td><strong><code>output.pretty_print</code></strong></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>Human-readable pretty format for S3 outputs.</td>
+</tr>
+<tr>
+<td><strong><code>output.include_metadata</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Include audit telemetry in output graphs.</td>
+</tr>
+<tr>
+<td><strong><code>output.type_aware_canonical_keys</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Prefixes keys with types to block collision.</td>
+</tr>
+<tr>
+<td><strong><code>output.graph_filename</code></strong></td>
+<td>String</td>
+<td><code>"graph.json"</code></td>
+<td>Network visualization target file.</td>
+</tr>
+<tr>
+<td><strong><code>output.schema_filename</code></strong></td>
+<td>String</td>
+<td><code>"schema.json"</code></td>
+<td>Taxonomy mapping target file.</td>
+</tr>
+<tr>
+<td><strong><code>output.export.enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>RDF translation activation flag.</td>
+</tr>
+<tr>
+<td><strong><code>output.export.format</code></strong></td>
+<td>Choice</td>
+<td><code>"turtle"</code></td>
+<td>RDF encoding syntax (<code>"turtle"</code> or <code>"rdfxml"</code>).</td>
+</tr>
+<tr>
+<td><strong><code>output.export.base_uri</code></strong></td>
+<td>String</td>
+<td><code>"http://example.org/ontology"</code></td>
+<td>Global RDF ontology target namespace.</td>
+</tr>
+<tr>
+<td><strong><code>output.export.min_property_frequency</code></strong></td>
+<td>Integer</td>
+<td><code>4</code></td>
+<td>Ignore properties seen fewer than N times.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="8-naming-conventions-naming_conventions">8. Naming Conventions (<code>naming_conventions</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>naming_conventions.enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Active normalization enforcement.</td>
+</tr>
+<tr>
+<td><strong><code>naming_conventions.entity_type_casing</code></strong></td>
+<td>Choice</td>
+<td><code>"UpperCamelCase"</code></td>
+<td>Class casing (e.g. <code>MedicalConcept</code>).</td>
+</tr>
+<tr>
+<td><strong><code>naming_conventions.property_casing</code></strong></td>
+<td>Choice</td>
+<td><code>"lowerCamelCase"</code></td>
+<td>Attribute casing (e.g. <code>startDate</code>).</td>
+</tr>
+<tr>
+<td><strong><code>naming_conventions.relationship_type_casing</code></strong></td>
+<td>Choice</td>
+<td><code>"lowerCamelCase"</code></td>
+<td>Relationship type casing.</td>
+</tr>
+<tr>
+<td><strong><code>naming_conventions.entity_label_spelling_variant</code></strong></td>
+<td>Choice</td>
+<td><code>"UK"</code></td>
+<td>Language mapping preference.</td>
+</tr>
+<tr>
+<td><strong><code>naming_conventions.entity_iri_spelling_variant</code></strong></td>
+<td>Choice</td>
+<td><code>"US"</code></td>
+<td>Global identifier format.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="9-relationship-processing-relationship_processing">9. Relationship Processing (<code>relationship_processing</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>relationship_processing.auto_create_missing_entities</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Automatically create missing nodes to avoid losing relations.</td>
+</tr>
+<tr>
+<td><strong><code>relationship_processing.auto_created_entity_confidence</code></strong></td>
+<td>Float</td>
+<td><code>0.5</code></td>
+<td>Lower confidence factor assigned to implied nodes.</td>
+</tr>
+<tr>
+<td><strong><code>relationship_processing.auto_created_entity_default_type</code></strong></td>
+<td>String</td>
+<td><code>"entity"</code></td>
+<td>Default class type for implied nodes.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="10-web-research-settings-research">10. Web Research Settings (<code>research</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>research.max_fetches</code></strong></td>
+<td>Integer</td>
+<td><code>50</code></td>
+<td>Maximum pages gathered during exploration.</td>
+</tr>
+<tr>
+<td><strong><code>research.allowed_domains</code></strong></td>
+<td>List</td>
+<td><code>[]</code></td>
+<td>Limit lookup to specific domain patterns.</td>
+</tr>
+<tr>
+<td><strong><code>research.blocked_domains</code></strong></td>
+<td>List</td>
+<td><code>[]</code></td>
+<td>Blacklist specific sites.</td>
+</tr>
+<tr>
+<td><strong><code>research.num_queries</code></strong></td>
+<td>Integer</td>
+<td><code>5</code></td>
+<td>Generated LLM queries count.</td>
+</tr>
+<tr>
+<td><strong><code>research.results_per_query</code></strong></td>
+<td>Integer</td>
+<td><code>10</code></td>
+<td>Results returned from search engine per query.</td>
+</tr>
+<tr>
+<td><strong><code>research.http_timeout</code></strong></td>
+<td>Float</td>
+<td><code>30.0</code></td>
+<td>Maximum wait for web response.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="11-schema-evolution-settings-schema_evolution">11. Schema Evolution Settings (<code>schema_evolution</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>schema_evolution.type_similarity_threshold</code></strong></td>
+<td>Float</td>
+<td><code>0.75</code></td>
+<td>Distance score allowed before merging classes.</td>
+</tr>
+<tr>
+<td><strong><code>schema_evolution.default_entity_type</code></strong></td>
+<td>String</td>
+<td><code>"entity"</code></td>
+<td>Fallback type when missing.</td>
+</tr>
+<tr>
+<td><strong><code>schema_evolution.initial_version</code></strong></td>
+<td>String</td>
+<td><code>"1.0"</code></td>
+<td>Baseline version.</td>
+</tr>
+<tr>
+<td><strong><code>schema_evolution.version_increment</code></strong></td>
+<td>Choice</td>
+<td><code>"patch"</code></td>
+<td>Version progression: <code>"major"</code>, <code>"minor"</code>, <code>"patch"</code>.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="12-source-grounding-settings-source_grounding">12. Source Grounding Settings (<code>source_grounding</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>source_grounding.enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Maps data points back to source files.</td>
+</tr>
+<tr>
+<td><strong><code>source_grounding.source_property_name</code></strong></td>
+<td>String</td>
+<td><code>"sourceUrls"</code></td>
+<td>Metadata key holding origin paths.</td>
+</tr>
+<tr>
+<td><strong><code>source_grounding.merge_sources_on_deduplication</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Combines sources when merging duplicate terms.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="13-text-processing-settings-text_processing">13. Text Processing Settings (<code>text_processing</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>text_processing.chunking.chunk_size</code></strong></td>
+<td>Integer</td>
+<td><code>2500</code></td>
+<td>Size in characters of chunks.</td>
+</tr>
+<tr>
+<td><strong><code>text_processing.chunking.chunk_overlap</code></strong></td>
+<td>Integer</td>
+<td><code>250</code></td>
+<td>Character overlap.</td>
+</tr>
+<tr>
+<td><strong><code>text_processing.chunking.min_chunk_size</code></strong></td>
+<td>Integer</td>
+<td><code>100</code></td>
+<td>Rejects tiny fragment chunks.</td>
+</tr>
+<tr>
+<td><strong><code>text_processing.normalization.casing</code></strong></td>
+<td>Choice</td>
+<td><code>"lowercase"</code></td>
+<td>Target normalization casing.</td>
+</tr>
+<tr>
+<td><strong><code>text_processing.normalization.punctuation_handling</code></strong></td>
+<td>Choice</td>
+<td><code>"remove"</code></td>
+<td>Casing/punctuation handler strategy.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="14-performance-feature-flags-performance-features">14. Performance &amp; Feature Flags (<code>performance</code>, <code>features</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type / Format</th>
+<th>Default</th>
+<th>Description / Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>performance.llm_cache_enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Cache LLM text generation calls locally.</td>
+</tr>
+<tr>
+<td><strong><code>performance.embedding_cache_enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Cache embedding calculation responses.</td>
+</tr>
+<tr>
+<td><strong><code>performance.max_cache_size_mb</code></strong></td>
+<td>Integer</td>
+<td><code>500</code></td>
+<td>Storage cache memory cap.</td>
+</tr>
+<tr>
+<td><strong><code>features.schema_evolution</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Allow taxonomy discovery.</td>
+</tr>
+<tr>
+<td><strong><code>features.incremental_updates</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Runs comparison on existing artifacts.</td>
+</tr>
+<tr>
+<td><strong><code>features.conflict_resolution</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Resolve conflicts during merges.</td>
+</tr>
+<tr>
+<td><strong><code>features.cross_session_deduplication</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Deduplicates terms across previous jobs.</td>
+</tr>
+<tr>
+<td><strong><code>parallel_files</code></strong></td>
+<td>Integer</td>
+<td><code>1</code></td>
+<td>Number of files processed in parallel.</td>
+</tr>
+<tr>
+<td><strong><code>batch_api_enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>Enable batch LLM request API.</td>
+</tr>
+<tr>
+<td><strong><code>term_extraction.enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>Enable intermediate terminology phase.</td>
+</tr>
+<tr>
+<td><strong><code>upper_ontology_enabled</code></strong></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Enforces structural hierarchy consistency.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="step-5-submit-the-generation-job">Step 5: Submit the Generation Job</h3>
+<p>Click the green <strong>Create Ontology</strong> button at the bottom of the page.</p>
+<ul>
+<li>Once submitted, you will receive a <strong>Job ID</strong> and a confirmation screen.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk-ai-accelerator/main/docs/runbooks/images/ontology_generation_started.png" alt="Ontology Generation Started"></p>
+<hr>
+<h2 id="monitoring-and-reviewing-generated-ontologies">Monitoring and Reviewing Generated Ontologies</h2>
+<h3 id="step-1-open-the-jobs-dashboard">Step 1: Open the Jobs Dashboard</h3>
+<p>Go to <strong>Review Ontology</strong>:
+Link: <strong><a href="https://govuk-ai-accelerator-app.integration.publishing.service.gov.uk/ontology/jobs/review">https://govuk-ai-accelerator-app.integration.publishing.service.gov.uk/ontology/jobs/review</a></strong></p>
+<h3 id="step-2-view-your-job">Step 2: View Your Job</h3>
+<p>Look for your domain name and Job ID in the dashboard. Jobs progress through the following statuses:</p>
+<ul>
+<li>⏳ <strong>Pending:</strong> The job is queued and waiting for an available background worker.</li>
+<li>⚙️ <strong>Running:</strong> The worker is processing your domain pages (chunking, calling the LLM, deduplicating).</li>
+<li>✅ <strong>Completed:</strong> The ontology was successfully generated and saved.</li>
+<li>🛑 <strong>Stopped:</strong> The job was manually terminated by a user.</li>
+<li>❌ <strong>Failed:</strong> An error occurred (e.g., LLM rate limits or incorrect configuration).</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk-ai-accelerator/main/docs/runbooks/images/jobs_dashboard_list.png" alt="Jobs Dashboard List"></p>
+<h3 id="step-3-access-generated-artifacts">Step 3: Access Generated Artifacts</h3>
+<p>Click on a completed job to expand its details and download the output files:</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk-ai-accelerator/main/docs/runbooks/images/job_details_ontology_files.png" alt="Job Details - Ontology Files"></p>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk-ai-accelerator/main/docs/runbooks/images/job_details_reports.png" alt="Job Details - Reports"></p>
+<p>| Artifact Name | Description | Recommended Action |</p>
+<p>|---|---|---|
+| <strong><code>ontology.ttl</code></strong> | The raw ontology file formatted in standard RDF Turtle syntax. | Download to import into external ontology editors (e.g., Protégé). |
+| <strong><code>graph.json</code></strong> | Visual representation of the ontology network. | Used by the interactive visualizer. |
+| <strong><code>schema.json</code></strong> | Summarizes the classes, properties, and relationship types discovered. | Quick text review of the ontology structure. |
+| <strong><code>stdout.log</code></strong> | Detailed runtime logs for debugging. | Send to developers if the job fails. |
+| <strong><code>bedrock_costs.csv</code></strong> | Approximate API costs incurred by the LLM during this run. | Review for budgeting and scaling analysis. |</p>
+<h3 id="step-4-visualize-your-ontology">Step 4: Visualize Your Ontology</h3>
+<p>For any completed job, click the <strong>Visualize Ontology</strong> link. This opens the interactive visualizer, allowing you to search nodes, filter relationship types, and inspect the structure of your generated ontology.</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk-ai-accelerator/main/docs/runbooks/images/ontology_visualizer.png" alt="Ontology Visualizer Screen"></p>
+<h3 id="step-5-job-notes-and-collaboration">Step 5: Job Notes and Collaboration</h3>
+<p>You can add annotations, comments, or review notes directly to a job:</p>
+<ol>
+<li>Click <strong>Add Note</strong> under the job details panel.</li>
+<li>Enter your observations (e.g., "The model extracted visa classes correctly but missed some minor sub-relationships").</li>
+<li>Click <strong>Save Note</strong>. These notes are saved to the database and can be viewed by all team members.</li>
+</ol>
+<hr>
+<h1 id="part-2-technical-developer-reference">Part 2: Technical &amp; Developer Reference</h1>
+<p>This section is for software developers and infrastructure engineers maintaining the ontology pipeline.</p>
+<h2 id="technical-architecture">Technical Architecture</h2>
+<p>The ontology generation pipeline utilizes an asynchronous task queue managed within the web app and executed via background worker threads:</p>
+<pre lang="mermaid"><code>flowchart TD
+    A[User Form: Select Domain &amp; Prompt] --&gt; B[POST /ontology/submit]
+    B --&gt; C[Validate JSON/YAML Config &amp; Insert Job into DB]
+    C --&gt; D[Task Manager claims 'pending' job via Advisory Lock]
+    D --&gt; E[Spawn ThreadExecutor: run_ontology_background_task]
+    E --&gt; F[Load domain configs &amp; init S3 Workspace]
+    F --&gt; G[Text Chunking &amp; Batching]
+    G --&gt; H[LLM Extraction of Entities &amp; Relationships]
+    H --&gt; I[Deduplication: Exact Hash &amp; Semantic Embeddings]
+    I --&gt; J[Validate &amp; Export to Turtle RDF / graph.json]
+    J --&gt; K[Upload Artifacts to S3 run-YYYYMMDD-HHMMSS/folder]
+    K --&gt; L[Update PostgreSQL job status to 'completed' or 'failed']
+</code></pre>
+<p>Key files involved in this pipeline:</p>
+<ul>
+<li>
+<strong>Web Interface:</strong> <a href="">govuk_ai_accelerator_app.py</a> handles HTTP requests and manages database records for <code>ProcessingJob</code>.</li>
+<li>
+<strong>Pipeline Orchestrator:</strong> <a href="">scripts/pipeline/ontology_generator.py</a> defines the asynchronous processing steps and finalizes results.</li>
+<li>
+<strong>Task Worker Queue:</strong> <a href="">scripts/pipeline/task_manager.py</a> leases pending jobs, runs them concurrently, and manages leases/timeouts.</li>
+<li>
+<strong>Config Management:</strong> <a href="">scripts/pipeline/utils.py</a> parses parameters and maps domain properties.</li>
+</ul>
+<h3 id="integration-libraries">Integration Libraries</h3>
+<ul>
+<li>
+<strong><code>boto3</code></strong>: The pipeline interfaces directly with AWS Bedrock APIs for text generation (e.g. Anthropic Claude models) and embedding calculations (e.g. Cohere Multilingual Embeddings).</li>
+<li>
+<strong><code>fsspec</code></strong>: Handles unified storage protocols. Based on the domain configuration (like <code>filesystem.protocol</code>), <code>fsspec</code> abstracts all input/output reads and writes to local directories or AWS S3 buckets seamlessly.</li>
+</ul>
+<hr>
+<h2 id="detailed-pipeline-execution-stages">Detailed Pipeline Execution Stages</h2>
+<p>When <code>run_ontology_background_task</code> is executed, it invokes the following workflow stages:</p>
+<ol>
+<li>
+<p><strong>Setup Pipeline (<code>setup_pipeline</code>):</strong></p>
+<ul>
+<li>Resolves input paths (usually pointing to <code>s3://&lt;bucket&gt;/&lt;domain&gt;/input/</code>).</li>
+<li>Resolves output directory (usually <code>s3://&lt;bucket&gt;/&lt;domain&gt;/run-&lt;datetime&gt;/</code>).</li>
+<li>If <code>incremental: true</code> is set, loads existing ontology artifacts from S3 so new extractions can build upon them.</li>
+</ul>
+</li>
+<li>
+<p><strong>Extraction Stage (<code>_extract_ontology</code>):</strong></p>
+<ul>
+<li>
+<strong>Chunking:</strong> Parses input markdown files into text chunks based on the configured token size (default: 4000 tokens) and overlap (default: 100 tokens).</li>
+<li>
+<strong>Batching:</strong> Groups multiple chunks together to optimize LLM call throughput and minimize API latency.</li>
+<li>
+<strong>LLM Calls:</strong> Invokes the Bedrock or Anthropic API to perform structured zero-shot / few-shot entity and relationship extraction.</li>
+</ul>
+</li>
+<li>
+<p><strong>Processing Stage (<code>_process_ontology</code>):</strong></p>
+<ul>
+<li>
+<strong>Deduplication:</strong> Merges identical entities using a two-stage method:
+<ol>
+<li>
+<em>Exact:</em> Hash-based exact string matching on entity labels.</li>
+<li>
+<em>Semantic:</em> Generates embeddings (default: <code>bedrock:cohere.embed-multilingual-v3</code>) and uses cosine similarity / FAISS to merge synonyms and spelling variants.</li>
+</ol>
+</li>
+<li>
+<strong>Relation Building:</strong> Links entities using extracted properties.</li>
+<li>
+<strong>Schema Evolution:</strong> Automatically identifies and merges newly discovered entity types or relationship patterns into the global schema definitions.</li>
+</ul>
+</li>
+<li>
+<p><strong>Graph Exporter (<code>_create_ontology_graph</code>):</strong></p>
+<ul>
+<li>Converts extracted data structures into standard RDF graph representations.</li>
+<li>Exports the graph into:
+<ul>
+<li>
+<code>ontology.ttl</code> (Turtle RDF/OWL ontology).</li>
+<li>
+<code>graph.json</code> (Network graph for visualization).</li>
+<li>
+<code>schema.json</code> (Taxonomy / schema overview).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Finalize Stage (<code>_save_pipeline_output</code>):</strong></p>
+<ul>
+<li>Uploads files and cost/performance logs (<code>bedrock_costs.csv</code>, <code>owl_ontology_metrics.csv</code>) to S3.</li>
+<li>Saves a copy of the configuration (<code>config.yaml</code>) and system prompts (<code>prompts.txt</code>) to the output path.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="storage-directory-layout-s3">Storage Directory Layout (S3)</h2>
+<p>Outputs from ontology runs are written under the domain name with unique timestamped directories. No intermediate chunk/embedding database files or archives are saved to S3:</p>
+<pre lang="text"><code>s3://&lt;bucket_name&gt;/&lt;domain_name&gt;/
+├── input/
+│   ├── &lt;slug&gt;.md
+│   └── sources.json
+├── run-YYYYMMDD-HHMMSS/              # Single run workspace
+│   ├── config.yaml                   # The exact configuration used
+│   ├── prompts.txt                   # Prompt instructions used
+│   ├── stdout.log                    # Run logs
+│   └── output/                       # Output files
+│       ├── ontology.ttl              # Turtle RDF ontology
+│       ├── graph.json                # Network graph JSON
+│       ├── schema.json               # Schema JSON
+│       ├── bedrock_costs.csv         # Cost metrics
+│       ├── owl_ontology_metrics.csv  # Node/Edge counts
+│       └── deduplication_summary.json
+</code></pre>
+<hr>
+<h2 id="task-manager-database-queue-configuration">Task Manager, Database Queue, &amp; Configuration</h2>
+<p>The background execution queue relies on PostgreSQL transactions and metadata tables for job synchronization.</p>
+<h3 id="database-schema-structure">Database Schema Structure</h3>
+<h4 id="1-processingjob">1. <code>ProcessingJob</code>
+</h4>
+<p>Stores the configuration, logs, and current status of all ingestion and ontology generation jobs:</p>
+<ul>
+<li>
+<code>id</code> (String, Primary Key): Unique job ID (UUID).</li>
+<li>
+<code>status</code> (String): Status of the job (<code>pending</code>, <code>running</code>, <code>completed</code>, <code>stopped</code>, <code>failed</code>).</li>
+<li>
+<code>pipeline</code> (String): The type of execution pipeline (<code>ingestion</code>, <code>ontology</code>, or <code>ontology-harness</code>).</li>
+<li>
+<code>domain</code> (String): The domain name (e.g. <code>housing</code>).</li>
+<li>
+<code>config_data</code> (Text): JSON string representation of the config dictionary.</li>
+<li>
+<code>domain_prompt</code> (Text): The custom prompt guidelines typed by the user.</li>
+<li>
+<code>attempt_count</code> (Integer): Number of execution attempts.</li>
+<li>
+<code>claimed_by</code> (String): Hostname of the worker pod currently running the job.</li>
+<li>
+<code>claimed_at</code> (DateTime) &amp; <code>heartbeat_at</code> (DateTime): Lease tracking timestamps.</li>
+</ul>
+<h4 id="2-processingjobnote">2. <code>ProcessingJobNote</code>
+</h4>
+<p>Stores annotations added by team members to individual jobs:</p>
+<ul>
+<li>
+<code>id</code> (Integer, Primary Key): Auto-increment note ID.</li>
+<li>
+<code>job_id</code> (String, Foreign Key): Links to <code>ProcessingJob.id</code>.</li>
+<li>
+<code>text</code> (Text): The note content.</li>
+<li>
+<code>created_at</code> (DateTime) &amp; <code>updated_at</code> (DateTime): Timestamps for note creation.</li>
+</ul>
+<h3 id="task-management-mechanisms">Task Management Mechanisms</h3>
+<p>To prevent duplicate processing in scaled/containerized environments, the application uses <strong>PostgreSQL Advisory Locks</strong> for leader election:</p>
+<ul>
+<li>
+<strong>Leader Election:</strong> The task manager thread calls <code>SELECT pg_try_advisory_lock(420021)</code> to ensure only one pod processes queue maintenance operations (like job cleanup and requeuing).</li>
+<li>
+<strong>Lease Claiming:</strong> Workers claim jobs using a database transaction with <code>SELECT ... FOR UPDATE SKIP LOCKED</code> on the <code>ProcessingJob</code> table. This updates job state to <code>running</code> and signs the <code>claimed_by</code> column with the hostname.</li>
+<li>
+<strong>Heartbeat &amp; Recovery:</strong> If a worker crashes, the job remains in <code>running</code>. The leader checks jobs running longer than <code>PROGRESS_TIMEOUT_MINUTES</code> (default: 45) and requeues them up to <code>MAX_JOB_ATTEMPTS</code> (default: 2) before marking them as failed.</li>
+</ul>
+<h3 id="environment-variable-settings">Environment Variable Settings</h3>
+<p>The following variables govern the queue:</p>
+<ul>
+<li>
+<code>PROGRESS_TIMEOUT_MINUTES</code> (default: <code>45</code>): The timeframe after which a running job with no progress updates is considered stale.</li>
+<li>
+<code>MAX_JOB_ATTEMPTS</code> (default: <code>2</code>): The limit of requeue attempts for failed/stale tasks.</li>
+<li>
+<code>S3_BUCKET_NAME</code> (default: <code>govuk-ai-accelerator-data-integration</code>): The destination bucket for pipeline read/write.</li>
+</ul>
+<hr>
+<h2 id="local-development-cli-usage">Local Development &amp; CLI Usage</h2>
+<h3 id="running-the-pipeline-locally">Running the Pipeline locally</h3>
+<p>Developers can run a local task worker that listens to the database and processes queued ontology generation jobs:</p>
+<pre lang="bash"><code># 1. Export AWS credentials for Bedrock and S3 access
+export AWS_ACCESS_KEY_ID="your-key"
+export AWS_SECRET_ACCESS_KEY="your-secret"
+export S3_BUCKET_NAME="govuk-ai-accelerator-data-integration"
+
+# 2. Boot the Flask app (which starts the task manager thread automatically)
+source environment.sh
+uv run govuk_ai_accelerator_app.py
+</code></pre>
+<h3 id="triggering-ingestion-ontology-scripting">Triggering Ingestion &amp; Ontology Scripting</h3>
+<p>To trigger an ontology run directly from Python without spawning the Flask UI:</p>
+<pre lang="bash"><code>uv run python -c "
+import asyncio
+from scripts.pipeline.ontology_generator import run_ontology_pipeline
+
+config_override = {
+    'domain_name': 'tenancy-rules',
+    'path': {
+        'input_path': 's3://govuk-ai-accelerator-data-integration/tenancy-rules/input',
+        'output_dir': 's3://govuk-ai-accelerator-data-integration/tenancy-rules/manual-run'
+    }
+}
+
+async def main():
+    path = await run_ontology_pipeline(
+        config_data=config_override,
+        domain_prompt='Focus on landlord and tenant obligations.'
+    )
+    print(f'Ontology saved to: {path}')
+
+asyncio.run(main())
+"
+</code></pre>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-ai-accelerator/blob/main/docs/runbooks/ontology_generation_runbook.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-ai-accelerator%2Frunbooks%2Fontology_generation_runbook.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
