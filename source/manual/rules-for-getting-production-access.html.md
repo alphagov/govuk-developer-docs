@@ -60,7 +60,8 @@ Note that a technologist apprentice is limited to Production Deploy access. Howe
 Gives:
 
 - Membership of the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production-admin) - which provides write access to Argo CD in staging and production, the `admin` role on repos and also access to Github security settings for repos
-- Privileged AWS Access in Production and Staging environments (via the `production_admin_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml))
+- Privileged AWS Access in the Staging environment (via the `production_admin_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml))
+- AWS `developer` Access in the Production environment (via the `production_admin_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml))
 - [Google Cloud Platform (GCP)](/manual/google-cloud-platform-gcp.html) access to role to manage [static mirrors](/manual/fall-back-to-mirror.html) and DNS
 - Signon "Super Admin" access in production
 - `engineer` and "Access all services" permissions in Fastly
@@ -83,11 +84,27 @@ A new starter/engineer will be expected to work through the following checklist 
 - The incident management process. E.g. by reading through the [So, you're having an incident](/manual/incident-what-to-do) doc and completing the [incident preparedness quizzes](https://drive.google.com/drive/folders/1X9eGQMIl9ifb3X2jYcdjqrt01P9JYJzR).
 - Best practices around the principle of least privilege, how to safely debug production issues, and how to work with credentials and accounts. E.g. by pairing with another developer to practise a drill on your product team.
 
+### Temporary Production Admin access
+
+Temporary Production Admin access is a special set of access permissions that are granted to a user on a time-expiring temporary basis, peer-approved and requestable for up to 25 hours at a time. It is used to provide access to production infrastructure in a controlled and secure manner, without giving permanent and unchecked access to the user.
+
+Access is granted by creating a Pull Request that adds a record to [config/temporary_admin.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/temporary_admin.yml) in `alphagov/govuk-user-reviewer`, like so:
+
+```yaml
+- name: Developer McDeveloperface
+  email_address: developer.mcdeveloperface@digital.cabinet-office.gov.uk
+  expires_at: 2026-07-08T12:34:00Z
+  why_do_they_need_access: "Applying a Database upgrade for publisher."
+```
+
+Once this has been approved and merged, the user will be granted Temporary Production Admin access for the specified period of time via the GDS CLI by assuming the `govuk-production-tempadmin` IAM role.
+
 ### Platform Engineer access
 
 Platform Engineer access is a special set of access permissions that are very similar to Production Admin, except with specific additional access to aid Platform Engineers with their day-to-day operational needs. In addition to the access granted by Production Admin, it also gives:
 
 - A special set of `-platformengineer` IAM roles for each environment that provide an access level similar to the `-developer` roles except also grants "Cluster Admin" access to our EKS clusters to allow Platform Engineers to access and manage all namespaces and resources
+- The ability to assume the `fulladmin` role in the Production environment, as platform engineers routinely make changes to production infrastructure and need to maintain "break glass" access in case of an emergency
 
 This is necessary because without this, the only way to obtain Cluster Admin access would be to assume the `fulladmin` role on a regular basis, which we are trying to discourage except for "break glass" type scenarios that may trigger alerting.
 
