@@ -11,11 +11,7 @@ related_repos: [bouncer, transition]
 The Transition system is built to transition government websites to GOV.UK. The
 main work around this [happened in 2014][blog], but we still take on websites.
 
-All the repositories involved in transition have been [tagged with govuk-transition
-on GitHub][repos].
-
 [blog]: https://insidegovuk.blog.gov.uk/2014/12/19/300-websites-to-just-1-in-15-months
-[repos]: https://github.com/search?q=topic%3Agovuk-transition+org%3Aalphagov
 
 ## Components
 
@@ -26,6 +22,7 @@ on GitHub][repos].
 - [bouncer][] is the application that does the actual redirecting.
 - [govuk-cdn-config][] contains the script that the [Bouncer_CDN job][] uses
   to send the [hosts from transition][] to Fastly.
+- [optic14n][] gem used by both apps to canonicalises URLs
 
 ## Transition data sources
 
@@ -38,6 +35,7 @@ defined in the [infra-fastly-logs][] Terraform project.
 [transition]: /repos/transition.html
 [stats-import]: https://deploy.blue.production.govuk.digital/job/Transition_load_all_data/
 [infra-fastly-logs]: https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-fastly-logs
+[optic14n]: /repos/optic14n.html
 
 ## Bouncer
 
