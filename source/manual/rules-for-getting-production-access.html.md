@@ -97,6 +97,8 @@ Access is granted by creating a Pull Request that adds a record to [config/tempo
   why_do_they_need_access: "Applying a Database upgrade for publisher."
 ```
 
+You will need to find another Engineer with Production Admin access to approve your Pull Request as govuk-user-reviewer is not actively monitored.
+
 Once this has been approved and merged, the user will be granted Temporary Production Admin access for the specified period of time via the GDS CLI by assuming the `govuk-production-tempadmin` IAM role.
 
 ### Platform Engineer access
