@@ -171,7 +171,7 @@ A Fastly CDN service can normally handle up to 1000 domains - this limit is curr
 
 We have asked them to increase this limit for Bouncer's service a few times as the number of domains it handled grew, and the limit is [currently 3500](https://fastly.zendesk.com/requests/7356). We have [about 2000 domains](https://transition.publishing.service.gov.uk/hosts) so shouldn't need to increase it again for a while.
 
-If we reach the limit then the [Jenkins job to update Bouncer's CDN config](https://deploy.blue.production.govuk.digital/job/Bouncer_CDN/) should fail and new domains won't be added to the service.
+If we reach the limit then the [govuk-fastly-bouncer-production Terraform project](https://github.com/alphagov/govuk-fastly/tree/main/bouncer) should fail and new domains won't be added to the service.
 
 Configuring a new site in Transition generally adds at least 4 domains to the service, including the `aka` domain for each real domain. For example:
 
