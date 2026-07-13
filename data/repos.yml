@@ -55,7 +55,7 @@
 - repo_name: content-block-manager
   type: Publishing apps
   production_url: https://content-block-manager.publishing.service.gov.uk
-  team: "#govuk-publishing-content-modelling-dev"
+  team: "#govuk-publishing-content-reuse-dev"
   alerts_team: "#govuk-publishing-content-modelling-automations"
   argo_cd_apps:
     - content-block-manager
@@ -64,25 +64,25 @@
   kibana_worker_url: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover?security_tenant=global#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-3h,to:now))&_a=(columns:!(level,message),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:kubernetes.labels.app_kubernetes_io%2Fname,negate:!f,params:(query:whitehall-admin-worker),type:phrase),query:(match_phrase:(kubernetes.labels.app_kubernetes_io%2Fname:content-block-manager-worker)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!())
 
 - repo_name: content-block-picker
-  team: "#govuk-publishing-content-modelling-dev"
+  team: "#govuk-publishing-content-reuse-dev"
   alerts_team: "#govuk-publishing-content-modelling-automations"
   type: Utilities
   sentry_url: false
 
 - repo_name: content-data-admin
   type: Supporting apps
-  team: "#govuk-publishing-content-modelling-dev"
+  team: "#govuk-publishing-content-reuse-dev"
   alerts_team: "#govuk-publishing-content-modelling-automations"
   production_hosted_on: eks
 
 - repo_name: content-data-api
   type: APIs
-  team: "#govuk-publishing-content-modelling-dev"
+  team: "#govuk-publishing-content-reuse-dev"
   alerts_team: "#govuk-publishing-content-modelling-automations"
   production_hosted_on: eks
 
 - repo_name: content-modelling-e2e
-  team: "#govuk-publishing-content-modelling-dev"
+  team: "#govuk-publishing-content-reuse-dev"
   alerts_team: "#govuk-publishing-content-modelling-automations"
   type: Utilities
   sentry_url: false
@@ -551,7 +551,7 @@
   type: Gems
 
 - repo_name: govuk_content_block_tools
-  team: "#govuk-publishing-content-modelling-dev"
+  team: "#govuk-publishing-content-reuse-dev"
   alerts_team: "#govuk-publishing-content-modelling-automations"
   type: Gems
   sentry_url: false
@@ -658,7 +658,7 @@
   production_hosted_on: eks
 
 - repo_name: nokodiff
-  team: "#govuk-publishing-content-modelling-dev"
+  team: "#govuk-publishing-content-reuse-dev"
   alerts_team: "#govuk-publishing-content-modelling-automations"
   type: Gems
   sentry_url: false
@@ -789,7 +789,7 @@
   production_hosted_on: eks
 
 - repo_name: siteimprove_api_client
-  team: "#govuk-publishing-content-modelling-dev"
+  team: "#govuk-publishing-content-reuse-dev"
   alerts_team: "#govuk-publishing-content-modelling-automations"
   type: Gems
   sentry_url: false
