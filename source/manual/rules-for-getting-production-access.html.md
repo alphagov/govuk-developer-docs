@@ -97,9 +97,10 @@ Access is granted by creating a Pull Request that adds a record to [config/tempo
   why_do_they_need_access: "Applying a Database upgrade for publisher."
 ```
 
-You will need to find another Engineer who is a member of the [GOV.UK Production Admin GitHub Team](https://github.com/orgs/alphagov/teams/gov-uk-production-admin) to approve your Pull Request, as govuk-user-reviewer is not actively monitored.
+You'll need to find another Engineer who's a member of the [GOV.UK Production Admin GitHub Team](https://github.com/orgs/alphagov/teams/gov-uk-production-admin) to approve your Pull Request, as govuk-user-reviewer is not actively monitored. If you're on-call, you will probably need to ask the other on-call person.
+If you are not able to find an approver, in an emergency you can contact Dan or James ([contact details](https://beisgov.sharepoint.com/:x:/r/sites/Govukldrship/Shared%20Documents/Escalations/GOV.UK%20SMT%20Escalations%20rota.xlsx?d=w8d88e79cf47c4d48a1daf8cbeeb61ac9&csf=1&web=1&e=ThTsT9)).
 
-Once this has been approved and merged, the user will be granted Temporary Production Admin access for the specified period of time via the GDS CLI by assuming the `govuk-production-tempadmin` IAM role.
+Once the PR has been approved and merged, the user will be granted Temporary Production Admin access for the specified period of time via the GDS CLI by assuming the `govuk-production-tempadmin` IAM role.
 
 ### Platform Engineer access
 
