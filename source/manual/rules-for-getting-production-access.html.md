@@ -57,11 +57,13 @@ Note that a technologist apprentice is limited to Production Deploy access. Howe
 
 ### Production Admin access
 
-Gives:
+Despite its name, this type of production access no longer grants `fulladmin` AWS access to the Production environment. See [Temporary Production Admin access](#temporary-production-admin-access) for instructions on how to obtain `fulladmin` access to Production.
+
+This role gives:
 
 - Membership of the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production-admin) - which provides write access to Argo CD in staging and production, the `admin` role on repos and also access to Github security settings for repos
-- Privileged AWS Access in the Staging environment (via the `production_admin_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml))
-- AWS `developer` Access in the Production environment (via the `production_admin_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml))
+- AWS `fulladmin` Access in the Staging environment (via the `production_admin_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/f32720d72be16e9a3f96783f5a1d0e2a4bd1da36/config/govuk_tech.yml#L55))
+- AWS `developer` Access in the Production environment (via the `production_admin_access` role [in `govuk-user-reviewer`](https://github.com/alphagov/govuk-user-reviewer/blob/f32720d72be16e9a3f96783f5a1d0e2a4bd1da36/config/govuk_tech.yml#L56))
 - [Google Cloud Platform (GCP)](/manual/google-cloud-platform-gcp.html) access to role to manage [static mirrors](/manual/fall-back-to-mirror.html) and DNS
 - Signon "Super Admin" access in production
 - `engineer` and "Access all services" permissions in Fastly
