@@ -8,7 +8,7 @@ parent: "/manual.html"
 
 ## Change a government in Whitehall
 
-Following a General Election or other reason for governmental change the
+Following a General Election or other reason for governmental change, the
 current Government in Whitehall will need to be closed, and a new one created.
 
 The Content Support team will normally be the ones who close the government and
@@ -17,21 +17,31 @@ will often be required to monitor the queues, as detailed below.
 
 ### Closing a government
 
-Governments are listed at the [government path of Whitehall Admin][].
+Governments are listed at the [governments path of Whitehall Admin][].
 
-[government path of Whitehall Admin]: https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/governments
+A government is considered "closed" when an end date is set.
+Depending on what you want to action, there are two possible paths.
 
-1. Select the current government, and click the `Prepare to close this
-   government` link.
-2. Close the government - note that this may take some time, be patient after clicking the button
+#### Setting an end date for the government
 
-This will close the current government and remove all [ministerial
-appointments][].
+1. From the [governments list][], select 'Edit' for the current government
+2. On the government's 'Edit' page, input an 'End date' and click 'Save'
 
-This will cause a high number of documents to be represented by the Publishing
-API which might mean some delays on content being up to date on the website.
-Previous tests have shown that it takes around 3.5 hours for the queues to
-clear in integration / staging.
+This closes the current government and triggers downstream republishing of associated documents.
+
+#### Closing the government and all the ministerial appointments
+
+1. From the [governments list][], select 'Edit' for the current government
+2. Click the `Prepare to close this government` link
+3. Close the government - note that this may take some time, be patient after clicking the button
+
+This will set an end date for the current government, closing it, and it will also remove all [ministerial appointments][].
+If an end date has already been set, actioning the close of government in this manner will not override the original end date.
+
+Closing the government will cause a high number of documents to be represented by the Publishing API via link expansion.
+This happens on the lower priority queue and should not interfere with the publication of urgent content under the new government.
+Note that it is not required to action any additional republishing of documents.
+Previous tests have shown that it takes around 3.5 hours for the queues to clear in integration / staging.
 
 Grafana monitoring for the Publishing API queues:
 
@@ -39,19 +49,9 @@ Grafana monitoring for the Publishing API queues:
 - [Staging](https://grafana.eks.staging.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&var-namespace=apps&var-app=publishing-api-worker)
 - [Production](https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq3a-queue-length-max-delay?orgId=1&var-namespace=apps&var-app=publishing-api-worker)
 
+[governments path of Whitehall Admin]: https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/governments
+[governments list]: https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/governments
 [ministerial appointments]: https://www.integration.publishing.service.gov.uk/government/ministers
-
-#### Reindexing political content in search
-
-There is a Rake task to reindex all political content in search. This must be
-done after a government is closed, but can be done before the publishing-api queues
-have completed their processing.
-
-This is necessary because [search is populated by whitehall][], which is a piece of technical debt.
-
-<%= RunRakeTask.links("whitehall-admin", "search:political") %>
-
-[search is populated by whitehall]: https://trello.com/c/vnrBGTvr/26-search-is-populated-by-whitehall-sending-data?filter=search
 
 ### Open a new government
 
