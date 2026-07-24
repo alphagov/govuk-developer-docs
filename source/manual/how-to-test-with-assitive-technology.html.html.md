@@ -23,6 +23,15 @@ AssistivTunnel is a small command line interface (CLI) that creates a secure con
 
 [How to get set up with AssistivTunnel](https://assistivlabs.com/support/assistivtunnel)
 
+To launch AssistivTunnel:
+
+1. Download the [Zscaler root certificate](https://github.com/alphagov/govuk-infrastructure/blob/main/cacerts/zscaler-root-ca.pem)
+2. Pass the cert as an environment variable when running the command containing your access key:
+
+```
+NODE_EXTRA_CA_CERTS=~/Downloads/zscaler-root-ca.pem ./AssistivTunnel  --accessKey ****
+```
+
 ## Using Assistiv Labs
 
 We have been assured by Assistiv Labs that the Virtual Machine (VM) is deleted when you exit, however in the interests of security and to make sure we do not leak any personal data or sensitive material:
