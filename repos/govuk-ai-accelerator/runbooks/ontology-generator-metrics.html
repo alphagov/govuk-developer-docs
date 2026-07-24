@@ -1,0 +1,893 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>govuk-ai-accelerator: ontology-generator-metrics - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-ai-accelerator/runbooks/ontology-generator-metrics.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="govuk-ai-accelerator: ontology-generator-metrics - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-ai-accelerator/runbooks/ontology-generator-metrics.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="govuk-ai-accelerator: ontology-generator-metrics" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-ai-accelerator/runbooks/ontology-generator-metrics.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/govuk-ai-accelerator.html" rel="noopener" class="govuk-link">govuk-ai-accelerator</a>
+    </li>
+    <li>
+      <ul>
+            <li class="subdir__heading">architecture</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-ai-accelerator/architecture/cross-repo-integration.html" rel="noopener" class="govuk-link">Ontology Generation Cross-Repo Integration</a></li>
+    <li class="subdir__heading">decisions</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-ai-accelerator/architecture/decisions/001-use-postgres-backed-queue-for-ontology-generation.html" rel="noopener" class="govuk-link">001. Use a PostgreSQL-backed queue for ontology generation</a></li>
+
+    </ul>
+
+    </ul>
+    <li class="subdir__heading">runbooks</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-ai-accelerator/runbooks/ontology-generator-metrics.html" rel="noopener" class="govuk-link">ontology-generator-metrics</a></li>
+    <li><a href="/repos/govuk-ai-accelerator/runbooks/ontology_generation_runbook.html" rel="noopener" class="govuk-link">Runbook: Ontology Generation Process</a></li>
+    <li><a href="/repos/govuk-ai-accelerator/runbooks/ontology_ingestion_domain_creation_runbook.html" rel="noopener" class="govuk-link">Runbook: Domain Creation and Ingestion</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-ai-accelerator",
+        "@id": "http://www.dev.gov.uk/repos/govuk-ai-accelerator.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-ai-accelerator.html">govuk-ai-accelerator</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-ai-accelerator/commit/a29d7ac83f4e75722b47c2a07bf147adb889783d">25 Jun 2026</a>
+</div>
+
+  <h1 class="page-title">govuk-ai-accelerator: ontology-generator-metrics</h1>
+
+  <!-- raw HTML omitted -->
+
+<p>This run book helps you understand the metrics produced by the GOV.UK Ontology
+Generator and decide what to do next when a run passes, fails, or looks
+surprising.</p>
+<p>It is written for a mixed audience. You do not need to know the codebase to use
+the main guidance sections. The technical details are at the end for people who
+need to investigate further.</p>
+<h2 id="start-here">Start Here</h2>
+<p>The metrics are there to answer four practical questions:</p>
+<ol>
+<li>Did the ontology run complete and produce the expected files?</li>
+<li>Does the new ontology have a similar structure to the accepted baseline?</li>
+<li>If something changed, which part of the ontology changed?</li>
+<li>Is the change expected, or does someone need to investigate?</li>
+</ol>
+<p>The metrics are useful signals, not a final quality score. They can tell you
+that the generated ontology is smaller, flatter, less connected, more expensive,
+or missing expected files. They cannot prove that the ontology is semantically
+correct, complete, or useful for a specific policy/content task.</p>
+<h2 id="which-question-are-you-trying-to-answer">Which Question Are You Trying To Answer?</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Start with</th>
+<th>Then check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Did an ordinary ontology run complete?</td>
+<td>
+<strong>Review Ontologies</strong> in the Ontology Generator web app</td>
+<td>
+<code>ontology.ttl</code>, <code>schema.json</code>, <code>graph.json</code>, and <code>owl_ontology_metrics.csv</code>
+</td>
+</tr>
+<tr>
+<td>Did the post-deployment harness pass?</td>
+<td>
+<strong>Review Tests</strong> in the Ontology Generator web app</td>
+<td>
+<code>Harness Result</code> and <code>regression_report.json</code>
+</td>
+</tr>
+<tr>
+<td>Why did the harness fail?</td>
+<td><code>regression_report.json</code></td>
+<td>Failed metrics, baseline values, candidate values, and the generated ontology files</td>
+</tr>
+<tr>
+<td>Did costs or token usage look unusual?</td>
+<td><code>bedrock_costs.csv</code></td>
+<td>Input/output tokens, model ID, run start/end time, and error fields</td>
+</tr>
+<tr>
+<td>Did export fail or metrics go missing?</td>
+<td><code>export_status.json</code></td>
+<td>Export status, output path, timing fields, and <code>stdout.log</code>
+</td>
+</tr>
+<tr>
+<td>Did deduplication change the output shape?</td>
+<td><code>deduplication_summary.json</code></td>
+<td>Entity counts before/after deduplication and merge counts</td>
+</tr>
+<tr>
+<td>Should a new baseline be promoted?</td>
+<td>Generated ontology files first, metrics second</td>
+<td>Baseline manifest, candidate outputs, and written notes explaining the decision</td>
+</tr>
+</tbody>
+</table>
+<h2 id="where-to-find-metrics">Where To Find Metrics</h2>
+<p>Use the Ontology Generator web app first.</p>
+<ul>
+<li>
+<strong>Review Ontologies</strong> shows ordinary ontology runs.</li>
+<li>
+<strong>Review Tests</strong> shows ontology harness test runs.</li>
+<li>Open a job row to find downloads for generated files, reports, configuration,
+prompts, and logs.</li>
+</ul>
+<p>The most important files are:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>owl_ontology_metrics.csv</code></td>
+<td>Main structural metrics for generated ontologies.</td>
+</tr>
+<tr>
+<td><code>regression_report.json</code></td>
+<td>Harness report comparing a candidate run against the accepted baseline.</td>
+</tr>
+<tr>
+<td><code>ontology.ttl</code></td>
+<td>Generated ontology in Turtle format. Use this when you need to inspect the ontology itself.</td>
+</tr>
+<tr>
+<td><code>schema.json</code></td>
+<td>Entity and relationship type definitions.</td>
+</tr>
+<tr>
+<td><code>graph.json</code></td>
+<td>Generated graph structure.</td>
+</tr>
+<tr>
+<td><code>bedrock_costs.csv</code></td>
+<td>Token usage and estimated Bedrock costs.</td>
+</tr>
+<tr>
+<td><code>export_status.json</code></td>
+<td>OWL export status and timing information.</td>
+</tr>
+<tr>
+<td><code>deduplication_summary.json</code></td>
+<td>Summary of how many entities were merged during deduplication.</td>
+</tr>
+<tr>
+<td><code>stdout.log</code></td>
+<td>Detailed run log. Use this when a run failed or an artifact is missing.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quick-decisions">Quick Decisions</h2>
+<h3 id="if-metrics-pass">If Metrics Pass</h3>
+<p>Recommended action:</p>
+<ol>
+<li>Confirm the job status is <code>completed</code>.</li>
+<li>Download the main artifacts if the run is part of a release or handover
+decision.</li>
+<li>Spot-check <code>ontology.ttl</code>, <code>schema.json</code>, and <code>graph.json</code>.</li>
+<li>Keep the run as evidence.</li>
+<li>Do not promote a new baseline unless this run is intentionally becoming the
+new comparison point.</li>
+</ol>
+<h3 id="if-the-harness-fails">If The Harness Fails</h3>
+<p>Recommended action:</p>
+<ol>
+<li>Open the harness job in <strong>Review Tests</strong>.</li>
+<li>Download <code>regression_report.json</code>.</li>
+<li>Look at <code>failed_metrics</code>.</li>
+<li>Compare the baseline value and candidate value for each failed metric.</li>
+<li>Download the baseline and candidate <code>ontology.ttl</code> files if you need to
+inspect the ontology change directly.</li>
+<li>Check whether the failure matches an intentional change to the prompt,
+config, model, schema, or export behaviour.</li>
+<li>If the failure is unexpected, ask the relevant maintainer to fix the
+Generator or Workflow change and rerun.</li>
+<li>If the failure is expected and acceptable, consider promoting a new baseline.</li>
+</ol>
+<p>Do not disable the harness or change thresholds just to make a failed run pass.
+If the old baseline no longer applies, record why.</p>
+<h3 id="if-metrics-are-missing">If Metrics Are Missing</h3>
+<p>Recommended action:</p>
+<ol>
+<li>Confirm that <code>ontology.ttl</code> exists. The main metrics CSV is written during
+OWL/RDF export.</li>
+<li>Check <code>export_status.json</code>.</li>
+<li>Check <code>stdout.log</code> and application logs.</li>
+<li>Confirm the run wrote to the expected domain and run folder.</li>
+<li>Confirm the app can read the S3 bucket or local path.</li>
+<li>Rerun the ontology job after fixing the export or storage issue.</li>
+</ol>
+<h3 id="if-costs-look-wrong">If Costs Look Wrong</h3>
+<p>Recommended action:</p>
+<ol>
+<li>Open <code>bedrock_costs.csv</code>.</li>
+<li>Check <code>model_id</code>, <code>input_tokens</code>, <code>output_tokens</code>, and
+<code>estimated_cost_usd</code>.</li>
+<li>If costs are much higher than expected, check input size, prompt changes,
+retries, and model choice.</li>
+<li>If costs are near zero, check whether the run skipped LLM calls, failed
+early, or did not process the expected input.</li>
+</ol>
+<h2 id="what-the-main-metrics-mean">What The Main Metrics Mean</h2>
+<p>These metrics describe the shape of the generated ontology. They are most useful
+when compared with another run for the same domain.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Plain-English meaning</th>
+<th>When to pay attention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Class Count</code></td>
+<td>How many classes or concept types are in the ontology.</td>
+<td>A sharp drop can mean concepts were lost. A sharp rise can mean over-extraction or schema growth.</td>
+</tr>
+<tr>
+<td><code>Object Properties Count</code></td>
+<td>How many relationship types connect classes or entities.</td>
+<td>Too few can mean weak relationship extraction. Too many can mean noisy relationship vocabulary.</td>
+</tr>
+<tr>
+<td><code>Data Properties Count</code></td>
+<td>How many attribute types exist, such as literal fields or values.</td>
+<td>A drop can mean attributes were lost. A rise can mean richer extraction or over-specific properties.</td>
+</tr>
+<tr>
+<td><code>Subclass Hierarchies</code></td>
+<td>How many parent-child class links exist.</td>
+<td>Low values can mean the ontology is too flat.</td>
+</tr>
+<tr>
+<td><code>Property Domains</code></td>
+<td>How many properties define what type they start from.</td>
+<td>A drop can mean relationships are less constrained.</td>
+</tr>
+<tr>
+<td><code>Property Ranges</code></td>
+<td>How many properties define what type they point to.</td>
+<td>A drop can mean relationship targets are less well specified.</td>
+</tr>
+<tr>
+<td><code>Disjointness</code></td>
+<td>How many declarations say two classes/properties should not overlap.</td>
+<td>Usually low or zero. Inspect any unexpected change.</td>
+</tr>
+<tr>
+<td><code>Inverse Properties</code></td>
+<td>How many relationships have explicit reverse relationships.</td>
+<td>Useful when reverse meaning matters. Inspect sudden changes.</td>
+</tr>
+<tr>
+<td><code>Cardinality Restriction</code></td>
+<td>How many min/max count restrictions exist.</td>
+<td>Usually low or zero unless the ontology deliberately models strict OWL constraints.</td>
+</tr>
+<tr>
+<td><code>Equivalent Classes</code></td>
+<td>How many declarations say classes are equivalent.</td>
+<td>Usually low or zero. A rise may be deliberate modelling or accidental duplication.</td>
+</tr>
+<tr>
+<td><code>Relationships Density</code></td>
+<td>Object properties divided by class count.</td>
+<td>Shows how relationship-heavy the ontology is. Compare with the baseline.</td>
+</tr>
+<tr>
+<td><code>Attribute Richness</code></td>
+<td>Data properties divided by class count.</td>
+<td>Shows how attribute-heavy the ontology is. Compare with the baseline.</td>
+</tr>
+<tr>
+<td><code>Max Inheritance Depth</code></td>
+<td>The deepest parent-child class chain.</td>
+<td>Very low can mean a flat ontology. Very high can mean over-nesting.</td>
+</tr>
+</tbody>
+</table>
+<p>If you are unsure what a metric change means, inspect the generated ontology
+files rather than relying on the number alone.</p>
+<h2 id="how-the-harness-result-works">How The Harness Result Works</h2>
+<p>The harness is a post-deployment check. It runs the Generator against a known
+baseline domain and compares the candidate run with an accepted baseline run.</p>
+<p>The harness result is written back into <code>owl_ontology_metrics.csv</code> using these
+columns:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Harness Result</code></td>
+<td>
+<code>PASS</code> or <code>FAIL</code>.</td>
+</tr>
+<tr>
+<td><code>Harness Baseline Run ID</code></td>
+<td>The accepted run used for comparison.</td>
+</tr>
+<tr>
+<td><code>Harness Deployment ID</code></td>
+<td>The deployment or Generator revision being checked.</td>
+</tr>
+<tr>
+<td><code>Harness Failed Metrics</code></td>
+<td>The metrics that failed the comparison.</td>
+</tr>
+<tr>
+<td><code>Harness Report URI</code></td>
+<td>Where to download the full report.</td>
+</tr>
+</tbody>
+</table>
+<p>The harness checks for large drops in key structural metrics. Current default
+checks are:</p>
+<table>
+<thead>
+<tr>
+<th>Harness metric</th>
+<th>Related CSV metric</th>
+<th>Current threshold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subclass_hierarchy_count</code></td>
+<td><code>Subclass Hierarchies</code></td>
+<td>Candidate must be at least 80% of baseline.</td>
+</tr>
+<tr>
+<td><code>property_domain_count</code></td>
+<td><code>Property Domains</code></td>
+<td>Candidate must be at least 80% of baseline.</td>
+</tr>
+<tr>
+<td><code>property_range_count</code></td>
+<td><code>Property Ranges</code></td>
+<td>Candidate must be at least 80% of baseline.</td>
+</tr>
+<tr>
+<td><code>relationship_density</code></td>
+<td><code>Relationships Density</code></td>
+<td>Candidate must be at least 80% of baseline.</td>
+</tr>
+<tr>
+<td><code>attribute_richness</code></td>
+<td><code>Attribute Richness</code></td>
+<td>Candidate must be at least 80% of baseline.</td>
+</tr>
+<tr>
+<td><code>max_inheritance_depth</code></td>
+<td><code>Max Inheritance Depth</code></td>
+<td>Candidate may drop by at most 1.</td>
+</tr>
+</tbody>
+</table>
+<p>A failed harness does not automatically mean the candidate is bad. It means the
+candidate changed enough that someone should review it.</p>
+<h2 id="baseline-promotion">Baseline Promotion</h2>
+<p>Promoting a baseline means telling future harness runs to compare against a new
+accepted run.</p>
+<p>Only promote a new baseline when the team has reviewed the generated ontology
+and agrees the new output shape is acceptable. Do not promote a baseline just to
+make a failed deployment green.</p>
+<p>Recommended action before promotion:</p>
+<ol>
+<li>Review <code>ontology.ttl</code>, <code>schema.json</code>, and <code>graph.json</code>.</li>
+<li>Compare the candidate run against the previous baseline.</li>
+<li>Confirm the change is expected and acceptable.</li>
+<li>Record the reason in <code>baselines/accepted.json</code>.</li>
+<li>Point <code>baseline_run_id</code> and <code>baseline_output_uri</code> at an immutable run.</li>
+<li>Do not move, rewrite, or delete the run folder after promotion.</li>
+<li>Rerun or wait for the next harness run to confirm the new baseline works.</li>
+</ol>
+<p>Example baseline manifest:</p>
+<pre lang="json"><code>{
+  "baseline_run_id": "run-20260520-1",
+  "baseline_output_uri": "s3://govuk-ai-accelerator-data-integration/ontology-harness-baseline/run-20260520-1/output",
+  "promoted_at": "2026-05-20T14:00:00Z",
+  "notes": "Accepted baseline after metric changes"
+}
+</code></pre>
+<h2 id="common-scenarios">Common Scenarios</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>What to check next</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Harness failed on <code>property_domain_count</code> or <code>property_range_count</code>
+</td>
+<td>Check whether relationship/property export lost domain or range declarations.</td>
+</tr>
+<tr>
+<td>Harness failed on <code>relationship_density</code>
+</td>
+<td>Check whether relationship extraction, deduplication, or export produced fewer object properties relative to classes.</td>
+</tr>
+<tr>
+<td>Harness failed on <code>attribute_richness</code>
+</td>
+<td>Check whether datatype properties or attributes were lost or renamed.</td>
+</tr>
+<tr>
+<td>Harness failed on <code>subclass_hierarchy_count</code> or <code>max_inheritance_depth</code>
+</td>
+<td>Check whether the class hierarchy became flatter.</td>
+</tr>
+<tr>
+<td>
+<code>Class Count</code> rose sharply</td>
+<td>Check for over-extraction, prompt drift, or reduced deduplication.</td>
+</tr>
+<tr>
+<td>
+<code>Class Count</code> fell sharply</td>
+<td>Check input coverage, failed extraction, over-aggressive deduplication, or export failure.</td>
+</tr>
+<tr>
+<td>Costs rose sharply</td>
+<td>Check input size, model choice, retries, and cache behaviour.</td>
+</tr>
+<tr>
+<td>Costs are near zero</td>
+<td>Check whether the run skipped LLM calls, failed early, or did not process expected input.</td>
+</tr>
+<tr>
+<td>Metrics row exists but harness columns are blank</td>
+<td>Confirm the job was a harness run and that the harness could update the shared metrics CSV.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="technical-reference">Technical Reference</h2>
+<p>The rest of this page is for maintainers or investigators who need the exact
+artifact layout and implementation details.</p>
+<h3 id="main-artifact-layout">Main Artifact Layout</h3>
+<p>The exact path is controlled by the run configuration. The default harness
+domain is <code>ontology-harness-baseline</code>. The bucket for this work is
+<code>govuk-ai-accelerator-data-integration</code>.</p>
+<pre lang="text"><code>&lt;domain&gt;/
++-- output/
+|   +-- owl_ontology_metrics.csv
++-- baselines/
+|   +-- accepted.json
++-- run-YYYYMMDD-N/
+    +-- bedrock_costs.csv
+    +-- config.yaml
+    +-- stdout.log
+    +-- output/
+        +-- graph.json
+        +-- ontology.ttl
+        +-- regression_report.json
+        +-- schema.json
+        +-- export_status.json
+        +-- deduplication.jsonl
+        +-- deduplication_summary.json
+</code></pre>
+<p>Default harness paths:</p>
+<ul>
+<li><code>s3://govuk-ai-accelerator-data-integration/ontology-harness-baseline/config.yaml</code></li>
+<li><code>s3://govuk-ai-accelerator-data-integration/ontology-harness-baseline/input</code></li>
+<li><code>s3://govuk-ai-accelerator-data-integration/ontology-harness-baseline</code></li>
+<li><code>s3://govuk-ai-accelerator-data-integration/ontology-harness-baseline/baselines/accepted.json</code></li>
+</ul>
+<h3 id="how-the-harness-runs">How The Harness Runs</h3>
+<ol>
+<li>The Workflow schedules one harness job per deployment ID when
+<code>ONTOLOGY_HARNESS_ENABLED=true</code>.</li>
+<li>The deployment ID comes from <code>ONTOLOGY_HARNESS_DEPLOYMENT_ID</code>.</li>
+<li>The harness loads the harness config and runs the normal Generator pipeline
+against the harness domain.</li>
+<li>The harness reads <code>baselines/accepted.json</code>.</li>
+<li>It loads the baseline and candidate <code>ontology.ttl</code> files.</li>
+<li>It rebuilds comparable metrics from both Turtle files.</li>
+<li>It writes <code>regression_report.json</code> to the candidate run output folder.</li>
+<li>It updates the candidate row in <code>owl_ontology_metrics.csv</code>.</li>
+<li>It marks the harness job <code>completed</code> when the report passes, or <code>failed</code>
+when one or more regression checks fail.</li>
+</ol>
+<h3 id="supporting-diagnostic-files">Supporting Diagnostic Files</h3>
+<h4 id="bedrock_costs-csv"><code>bedrock_costs.csv</code></h4>
+<p>Typical columns:</p>
+<ul>
+<li><code>status</code></li>
+<li><code>run_tag</code></li>
+<li><code>usage_tag</code></li>
+<li><code>model_id</code></li>
+<li><code>input_tokens</code></li>
+<li><code>output_tokens</code></li>
+<li><code>cache_read_tokens</code></li>
+<li><code>cache_write_tokens</code></li>
+<li><code>estimated_cost_usd</code></li>
+<li><code>estimated_cost_text</code></li>
+<li><code>start_time_utc</code></li>
+<li><code>end_time_utc</code></li>
+<li><code>error_code</code></li>
+<li><code>error_message</code></li>
+</ul>
+<h4 id="export_status-json"><code>export_status.json</code></h4>
+<p>Useful fields:</p>
+<ul>
+<li><code>status</code></li>
+<li><code>mode</code></li>
+<li><code>format</code></li>
+<li><code>output_path</code></li>
+<li><code>schema_path</code></li>
+<li><code>graph_path</code></li>
+<li><code>completed_at</code></li>
+<li><code>timings</code></li>
+<li><code>total_seconds</code></li>
+</ul>
+<h4 id="deduplication_summary-json"><code>deduplication_summary.json</code></h4>
+<p>Useful fields:</p>
+<ul>
+<li><code>total_entities_before</code></li>
+<li><code>total_entities_after</code></li>
+<li><code>total_merged</code></li>
+<li><code>merge_by_stage</code></li>
+<li><code>avg_similarity_semantic</code></li>
+<li><code>timestamp</code></li>
+</ul>
+<h4 id="processing-metadata">Processing Metadata</h4>
+<p>The Generator builds <code>OntologyOutput.metadata</code> with runtime and quality signals
+including:</p>
+<ul>
+<li>extracted entity and relationship counts</li>
+<li>post-deduplication entity and relationship counts</li>
+<li>new entity and relationship type counts</li>
+<li>processing time</li>
+<li>LLM call counts</li>
+<li>token counts and estimated token counts</li>
+<li>estimated cost when price calculation is available</li>
+<li>stage timings</li>
+<li>throughput</li>
+<li>ontology shape metrics</li>
+</ul>
+<p>Ontology shape metrics include placeholder type counts, auto-created entity
+counts, same-type subclass relationship counts, concrete root type counts,
+hierarchy depth, and relationship-type pressure.</p>
+<h3 id="source-references">Source References</h3>
+<p>Workflow repository:</p>
+<ul>
+<li>Harness scheduling and comparison:
+<code>scripts/pipeline/ontology_harness.py</code>
+</li>
+<li>Ontology job orchestration:
+<code>scripts/pipeline/ontology_generator.py</code>
+</li>
+<li>Review Tests route:
+<code>govuk_ai_accelerator_app.py</code>
+</li>
+<li>Cross-repo overview:
+<code>docs/architecture/cross-repo-integration.md</code>
+</li>
+</ul>
+<p>Generator repository:</p>
+<ul>
+<li>OWL metrics CSV writing:
+<code>taxonomy_ontology_accelerator/ontology_engine/storage/export.py</code>
+</li>
+<li>Regression thresholds and report shape:
+<code>taxonomy_ontology_accelerator/ontology_engine/evaluation/regression.py</code>
+</li>
+<li>Processing metadata and ontology shape metrics:
+<code>taxonomy_ontology_accelerator/ontology_engine/core/extraction_finalize.py</code>
+and <code>taxonomy_ontology_accelerator/ontology_engine/core/models.py</code>
+</li>
+<li>Generator production run book:
+<code>docs/ontology/RUNBOOK.md</code>
+</li>
+</ul>
+<p>The cross-repository lifecycle is documented in
+<a href="https://github.com/alphagov/govuk-ai-accelerator/blob/main/docs/architecture/cross-repo-integration.md">docs/architecture/cross-repo-integration.md</a>.</p>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-ai-accelerator/blob/main/docs/runbooks/ontology-generator-metrics.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-ai-accelerator%2Frunbooks%2Fontology-generator-metrics.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

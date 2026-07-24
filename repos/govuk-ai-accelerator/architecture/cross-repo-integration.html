@@ -1,0 +1,777 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template govuk-template--rebranded no-js">
+  <head>
+    
+    
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>govuk-ai-accelerator: Ontology Generation Cross-Repo Integration - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-ai-accelerator/architecture/cross-repo-integration.html">
+      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/rebrand/images/favicon.ico">
+      <link rel="icon" sizes="any" href="/assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="/assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+      <link rel="manifest" href="/assets/govuk/assets/rebrand/manifest.json">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta name="twitter:title" content="govuk-ai-accelerator: Ontology Generation Cross-Repo Integration - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-ai-accelerator/architecture/cross-repo-integration.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="govuk-ai-accelerator: Ontology Generation Cross-Repo Integration" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-ai-accelerator/architecture/cross-repo-integration.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+
+    <div class="app-pane">
+      
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <svg
+          focusable="false"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 324 60"
+          height="30"
+          width="162"
+          fill="currentcolor"
+          class="govuk-header__logotype"
+          aria-label="GOV.UK">
+          <title>GOV.UK</title>
+          <g>
+            <circle cx="20" cy="17.6" r="3.7"></circle>
+            <circle cx="10.2" cy="23.5" r="3.7"></circle>
+            <circle cx="3.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <circle cx="43.3" cy="17.6" r="3.7"></circle>
+            <circle cx="53.2" cy="23.5" r="3.7"></circle>
+            <circle cx="59.7" cy="33.2" r="3.7"></circle>
+            <circle cx="31.7" cy="30.6" r="3.7"></circle>
+            <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+          </g>
+          <circle class="govuk-logo-dot" cx="226" cy="36" r="7.3"/>
+          <path d="M93.94 41.25c.4 1.81 1.2 3.21 2.21 4.62 1 1.4 2.21 2.41 3.61 3.21s3.21 1.2 5.22 1.2 3.61-.4 4.82-1c1.4-.6 2.41-1.4 3.21-2.41.8-1 1.4-2.01 1.61-3.01s.4-2.01.4-3.01v.14h-10.86v-7.02h20.07v24.08h-8.03v-5.56c-.6.8-1.38 1.61-2.19 2.41-.8.8-1.81 1.2-2.81 1.81-1 .4-2.21.8-3.41 1.2s-2.41.4-3.81.4a18.56 18.56 0 0 1-14.65-6.63c-1.6-2.01-3.01-4.41-3.81-7.02s-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83a20.45 20.45 0 0 1 19.46-13.65c3.21 0 4.01.2 5.82.8 1.81.4 3.61 1.2 5.02 2.01 1.61.8 2.81 2.01 4.01 3.21s2.21 2.61 2.81 4.21l-7.63 4.41c-.4-1-1-1.81-1.61-2.61-.6-.8-1.4-1.4-2.21-2.01-.8-.6-1.81-1-2.81-1.4-1-.4-2.21-.4-3.61-.4-2.01 0-3.81.4-5.22 1.2-1.4.8-2.61 1.81-3.61 3.21s-1.61 2.81-2.21 4.62c-.4 1.81-.6 3.71-.6 5.42s.8 5.22.8 5.22Zm57.8-27.9c3.21 0 6.22.6 8.63 1.81 2.41 1.2 4.82 2.81 6.62 4.82S170.2 24.39 171 27s1.4 5.62 1.4 8.83-.4 6.02-1.4 8.83-2.41 5.02-4.01 7.02-4.01 3.61-6.62 4.82-5.42 1.81-8.63 1.81-6.22-.6-8.63-1.81-4.82-2.81-6.42-4.82-3.21-4.41-4.01-7.02-1.4-5.62-1.4-8.83.4-6.02 1.4-8.83 2.41-5.02 4.01-7.02 4.01-3.61 6.42-4.82 5.42-1.81 8.63-1.81Zm0 36.73c1.81 0 3.61-.4 5.02-1s2.61-1.81 3.61-3.01 1.81-2.81 2.21-4.41c.4-1.81.8-3.61.8-5.62 0-2.21-.2-4.21-.8-6.02s-1.2-3.21-2.21-4.62c-1-1.2-2.21-2.21-3.61-3.01s-3.21-1-5.02-1-3.61.4-5.02 1c-1.4.8-2.61 1.81-3.61 3.01s-1.81 2.81-2.21 4.62c-.4 1.81-.8 3.61-.8 5.62 0 2.41.2 4.21.8 6.02.4 1.81 1.2 3.21 2.21 4.41s2.21 2.21 3.61 3.01c1.4.8 3.21 1 5.02 1Zm36.32 7.96-12.24-44.15h9.83l8.43 32.77h.4l8.23-32.77h9.83L200.3 58.04h-12.24Zm74.14-7.96c2.18 0 3.51-.6 3.51-.6 1.2-.6 2.01-1 2.81-1.81s1.4-1.81 1.81-2.81a13 13 0 0 0 .8-4.01V13.9h8.63v28.15c0 2.41-.4 4.62-1.4 6.62-.8 2.01-2.21 3.61-3.61 5.02s-3.41 2.41-5.62 3.21-4.62 1.2-7.02 1.2-5.02-.4-7.02-1.2c-2.21-.8-4.01-1.81-5.62-3.21s-2.81-3.01-3.61-5.02-1.4-4.21-1.4-6.62V13.9h8.63v26.95c0 1.61.2 3.01.8 4.01.4 1.2 1.2 2.21 2.01 2.81.8.8 1.81 1.4 2.81 1.81 0 0 1.34.6 3.51.6Zm34.22-36.18v18.92l15.65-18.92h10.82l-15.03 17.32 16.03 26.83h-10.21l-11.44-20.21-5.62 6.22v13.99h-8.83V13.9"/>
+        </svg>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/kubernetes/">Kubernetes</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html" aria-current="page">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/mobile/">Mobile</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search">
+      Search (via Google)
+    </label>
+    <input
+      type="search"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/govuk-ai-accelerator.html" rel="noopener" class="govuk-link">govuk-ai-accelerator</a>
+    </li>
+    <li>
+      <ul>
+            <li class="subdir__heading">architecture</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-ai-accelerator/architecture/cross-repo-integration.html" rel="noopener" class="govuk-link">Ontology Generation Cross-Repo Integration</a></li>
+    <li class="subdir__heading">decisions</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-ai-accelerator/architecture/decisions/001-use-postgres-backed-queue-for-ontology-generation.html" rel="noopener" class="govuk-link">001. Use a PostgreSQL-backed queue for ontology generation</a></li>
+
+    </ul>
+
+    </ul>
+    <li class="subdir__heading">runbooks</li>
+    <ul class="subdir__menu">
+          <li><a href="/repos/govuk-ai-accelerator/runbooks/ontology-generator-metrics.html" rel="noopener" class="govuk-link">ontology-generator-metrics</a></li>
+    <li><a href="/repos/govuk-ai-accelerator/runbooks/ontology_generation_runbook.html" rel="noopener" class="govuk-link">Runbook: Ontology Generation Process</a></li>
+    <li><a href="/repos/govuk-ai-accelerator/runbooks/ontology_ingestion_domain_creation_runbook.html" rel="noopener" class="govuk-link">Runbook: Domain Creation and Ingestion</a></li>
+
+    </ul>
+
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-ai-accelerator",
+        "@id": "http://www.dev.gov.uk/repos/govuk-ai-accelerator.html"
+      }
+    }
+  ]
+}
+</script>
+
+<nav data-module="ga4-link-tracker" aria-label="Breadcrumb" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumb&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-ai-accelerator.html">govuk-ai-accelerator</a>
+        </li>
+  </ol>
+</nav>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-ai-accelerator/commit/7ce286c6e04d88f287dc1bb087e4d65ef2cabdd0">24 Jun 2026</a>
+</div>
+
+  <h1 class="page-title">govuk-ai-accelerator: Ontology Generation Cross-Repo Integration</h1>
+
+  
+<p>This technical overview explains how the Workflow, Generator, Ontology
+Validator, Data Science Repo, and Content Workflow connect across the GOV.UK AI
+ontology repositories. It is intended for handover: a new team should be able to
+see which repository owns each part of the lifecycle, which runtime dependencies
+are involved, and which artifacts move between stages.</p>
+<h2 id="repositories">Repositories</h2>
+<table>
+<thead>
+<tr>
+<th>Name used here</th>
+<th>Repository</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workflow</td>
+<td><a href="https://github.com/alphagov/govuk-ai-accelerator">alphagov/govuk-ai-accelerator</a></td>
+<td>Web app, ingestion workflow, ontology job orchestration, job tracking, artifact browsing, and ontology harness baseline comparison.</td>
+</tr>
+<tr>
+<td>Generator</td>
+<td><a href="https://github.com/alphagov/govuk-ai-accelerator-tw-accelerator">alphagov/govuk-ai-accelerator-tw-accelerator</a></td>
+<td>Generator library. It reads domain inputs/configuration, runs the ontology pipeline, and writes schema, graph, and OWL/RDF artifacts.</td>
+</tr>
+<tr>
+<td>Ontology Validator</td>
+<td><a href="https://github.com/alphagov/govuk-ai-accelerator-generator-e2e-testing-framework">alphagov/govuk-ai-accelerator-generator-e2e-testing-framework</a></td>
+<td>Rule-based validator for generated Turtle (<code>.ttl</code>) ontology files, including naming/spelling checks and optional golden-schema comparison.</td>
+</tr>
+<tr>
+<td>Data Science Repo</td>
+<td><a href="https://github.com/alphagov/govuk-ai-accelerator-tooling">alphagov/govuk-ai-accelerator-tooling</a></td>
+<td>Research and analysis notebooks, ground-truth ontology files, term extraction experiments, Bedrock exploration, and matching utilities.</td>
+</tr>
+<tr>
+<td>Content Workflow</td>
+<td><a href="https://github.com/alphagov/govuk-ai-graph-tools">alphagov/govuk-ai-graph-tools</a></td>
+<td>Downstream proof-of-concept graph and content-quality tooling that consumes ontology/knowledge-graph output for duplicate, outlier, and graph exploration workflows.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lifecycle">Lifecycle</h2>
+<pre lang="mermaid"><code>flowchart TD
+    subgraph workflowRepo["Workflow"]
+        urls["Source URLs"]
+        ingest["Ingest content&lt;br/&gt;/ontology/ingest"]
+        cleaned["Cleaned content&lt;br/&gt;S3 or local"]
+        submit["Submit job&lt;br/&gt;/ontology/submit"]
+        baseline["Accepted baseline&lt;br/&gt;accepted.json"]
+        harness["Compare baseline"]
+        report["Harness report&lt;br/&gt;regression_report.json"]
+    end
+
+    subgraph generatorRepo["Generator"]
+        generatorPackage["Installed package&lt;br/&gt;taxonomy-ontology-accelerator"]
+        generator["Build ontology&lt;br/&gt;OntologyPipelineBuilder"]
+        artifacts["Run artifacts&lt;br/&gt;schema.json&lt;br/&gt;graph.json&lt;br/&gt;ontology.ttl&lt;br/&gt;metrics CSV"]
+    end
+
+    subgraph dataScienceRepo["Data Science Repo"]
+        dataScience["Research + ground truth"]
+    end
+
+    subgraph validatorRepo["Ontology Validator"]
+        validator["Validate TTL"]
+    end
+
+    subgraph contentRepo["Content Workflow"]
+        contentWorkflow["Explore graph output"]
+    end
+
+    urls --&gt;|"provide source list"| ingest
+    ingest --&gt;|"extract and clean"| cleaned
+    cleaned --&gt;|"stored as input"| submit
+    submit --&gt;|"imports installed library"| generatorPackage
+    generatorPackage --&gt;|"runs pipeline builder"| generator
+    generator --&gt;|"writes output files"| artifacts
+    artifacts --&gt;|"compare TTL and metrics"| harness
+    baseline --&gt;|"provides accepted run"| harness
+    harness --&gt;|"writes report"| report
+    artifacts --&gt;|"process ontology.ttl"| validator
+    artifacts --&gt;|"process graph.json"| contentWorkflow
+    dataScience -.-&gt;|"inform prompts and baselines"| generator
+    dataScience -.-&gt;|"inform validation rules"| validator
+</code></pre>
+<p>The Data Science Repo informs prompts, baselines, ground-truth checks, and
+validation expectations, but it is not part of the production run path.</p>
+<h2 id="runtime-and-support-paths">Runtime And Support Paths</h2>
+<p>The production runtime path is the Workflow plus the Generator. The Workflow
+ingests content, accepts ontology jobs, stores job state, and runs the Generator
+as an installed Python package (<code>taxonomy-ontology-accelerator</code>) to produce
+ontology artifacts. The Generator is a library dependency of the Workflow
+runtime, not a separate service endpoint.</p>
+<p>The supporting repositories sit around that path:</p>
+<ul>
+<li>The Ontology Validator checks generated <code>ontology.ttl</code> files against agreed
+validation rules.</li>
+<li>The Data Science Repo contains the notebooks, ground-truth files, and
+experiments that informed prompts, baselines, and validation expectations.</li>
+<li>The Content Workflow consumes generated graph output for downstream graph,
+duplicate, and outlier exploration.</li>
+</ul>
+<h2 id="integration-contracts">Integration Contracts</h2>
+<p>These files are the main contracts between repositories. Treat their names,
+formats, and meanings as cross-repo dependencies.</p>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Produced by</th>
+<th>Consumed by</th>
+<th>Contract</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ontology.ttl</code></td>
+<td>Generator via the Workflow</td>
+<td>Workflow harness, Ontology Validator, reviewers</td>
+<td>OWL/RDF Turtle export for the generated ontology.</td>
+</tr>
+<tr>
+<td><code>schema.json</code></td>
+<td>Generator via the Workflow</td>
+<td>Workflow UI, reviewers, downstream consumers</td>
+<td>Entity and relationship type definitions.</td>
+</tr>
+<tr>
+<td><code>graph.json</code></td>
+<td>Generator via the Workflow</td>
+<td>Workflow UI, Content Workflow, reviewers</td>
+<td>Generated ontology/knowledge graph structure.</td>
+</tr>
+<tr>
+<td><code>owl_ontology_metrics.csv</code></td>
+<td>Generator and Workflow harness</td>
+<td>Workflow historical jobs view, deployment review</td>
+<td>Run metrics, with harness result columns when the harness has run.</td>
+</tr>
+<tr>
+<td><code>regression_report.json</code></td>
+<td>Workflow harness</td>
+<td>Deployment/review process</td>
+<td>Baseline comparison report for the candidate run.</td>
+</tr>
+<tr>
+<td><code>baselines/accepted.json</code></td>
+<td>Maintained baseline manifest</td>
+<td>Harness</td>
+<td>Pointer to the immutable accepted baseline run.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="version-coupling">Version Coupling</h2>
+<p>The Workflow orchestrates the Generator, but Generator changes can alter the
+artifact shape, ontology terms, metrics, and validation results. A Generator
+update can therefore affect the Workflow UI, harness baseline, Ontology
+Validator expectations, and Content Workflow consumers.</p>
+<p>When promoting or deploying Generator changes, check whether the accepted
+baseline, Ontology Validator fixtures, and Content Workflow assumptions still
+match the new outputs.</p>
+<h2 id="stage-responsibilities">Stage Responsibilities</h2>
+<h3 id="1-workflow-ingestion">1. Workflow Ingestion</h3>
+<p>Owned by the Workflow.</p>
+<p>The ingestion workflow starts from a list of GOV.UK URLs and produces cleaned
+content files for a domain. The Workflow exposes <code>POST /ontology/ingest</code>; the
+underlying scripts can also be run locally. Ingestion supports local or S3
+storage through <code>fsspec</code> and writes timestamped logs for auditing.</p>
+<p>Primary artifacts:</p>
+<ul>
+<li>raw downloaded HTML;</li>
+<li>extracted and cleaned markdown/text content;</li>
+<li>ingestion logs;</li>
+<li>domain input folders suitable for the Generator.</li>
+</ul>
+<h3 id="2-generator-execution">2. Generator Execution</h3>
+<p>Orchestrated by the Workflow, implemented by the Generator.</p>
+<p>The Workflow accepts ontology jobs through <code>POST /ontology/submit</code>, tracks job
+state in PostgreSQL, and runs the Generator package in a background task. The
+Generator uses <code>OntologyPipelineBuilder</code> to set up the pipeline, extract
+ontology data, deduplicate, build relationships, update the schema, validate,
+save, and export the ontology.</p>
+<p>Primary artifacts:</p>
+<ul>
+<li>
+<code>schema.json</code>: entity and relationship type definitions;</li>
+<li>
+<code>graph.json</code>: generated ontology graph;</li>
+<li>
+<code>ontology.ttl</code>: OWL/RDF Turtle export used by the Ontology Validator and
+harness checks;</li>
+<li>
+<code>config.yaml</code>: persisted run configuration;</li>
+<li>logs and run metadata;</li>
+<li>
+<code>owl_ontology_metrics.csv</code> where enabled by the Generator workflow.</li>
+</ul>
+<h3 id="3-workflow-harness-comparison">3. Workflow Harness Comparison</h3>
+<p>Owned by the Workflow.</p>
+<p>The ontology harness is a post-deployment baseline check. When enabled, it runs
+the normal Generator against a dedicated harness domain, reads an accepted
+baseline manifest, compares baseline and candidate <code>ontology.ttl</code> metrics, and
+writes a regression report.</p>
+<p>Harness configuration:</p>
+<ul>
+<li>
+<code>ONTOLOGY_HARNESS_ENABLED</code>: turns the scheduled harness on. If it is unset or
+false-like, the Workflow starts without queueing a harness job.</li>
+<li>
+<code>ONTOLOGY_HARNESS_DEPLOYMENT_ID</code>: identifies the deployment or Generator
+revision being checked. This is required when the harness is enabled because
+it becomes part of the one-job-per-deployment key.</li>
+<li>
+<code>ONTOLOGY_HARNESS_DOMAIN</code>: optional domain/folder name for the harness input
+and output. Defaults to <code>ontology-harness-baseline</code>.</li>
+<li>
+<code>ONTOLOGY_HARNESS_CONFIG_URI</code>: optional config file location. Defaults to
+<code>s3://&lt;bucket&gt;/&lt;domain&gt;/config.yaml</code>.</li>
+<li>
+<code>ONTOLOGY_HARNESS_BASELINE_MANIFEST_URI</code>: optional accepted-baseline manifest
+location. Defaults to <code>s3://&lt;bucket&gt;/&lt;domain&gt;/baselines/accepted.json</code>.</li>
+<li>
+<code>baselines/accepted.json</code>: the manifest the harness reads to find the
+immutable baseline run to compare against.</li>
+</ul>
+<p>Only <code>ONTOLOGY_HARNESS_ENABLED=true</code> and <code>ONTOLOGY_HARNESS_DEPLOYMENT_ID</code> are
+needed to schedule the harness with the default S3/domain layout. The other
+settings are overrides for non-default locations. If the post-deployment harness
+is not being run, none of these variables are needed.</p>
+<p>Primary artifacts:</p>
+<ul>
+<li>candidate run output folder;</li>
+<li>
+<code>regression_report.json</code>;</li>
+<li>harness summary columns added to <code>owl_ontology_metrics.csv</code>.</li>
+</ul>
+<h3 id="4-ontology-validation">4. Ontology Validation</h3>
+<p>Owned by the Ontology Validator.</p>
+<p>The Ontology Validator validates generated <code>ontology.ttl</code> files. This is
+validation/testing rather than LLM scoring. It checks naming conventions,
+US-English spelling conventions, and optional golden-schema comparison.</p>
+<p>Primary inputs:</p>
+<ul>
+<li>generated <code>ontology.ttl</code>;</li>
+<li>optional golden/reference <code>.ttl</code>;</li>
+<li>optional <code>.allowlist</code> for intentional domain terms.</li>
+</ul>
+<p>Primary artifacts:</p>
+<ul>
+<li>command-line pass/fail output;</li>
+<li>JSON output when requested;</li>
+<li>numbered violation report folders containing a copy of the checked <code>.ttl</code> and
+<code>violations.txt</code>.</li>
+</ul>
+<h3 id="5-data-science-repo">5. Data Science Repo</h3>
+<p>Owned by the Data Science Repo.</p>
+<p>This repository contains experimental notebooks and helper utilities used during
+the ontology work. It is not the production runtime path, but it helps explain how
+ground-truth ontologies, extraction experiments, Bedrock exploration, and
+matching approaches informed Generator and Ontology Validator expectations.</p>
+<p>Primary artifacts:</p>
+<ul>
+<li>ground-truth <code>.ttl</code> and <code>.rdf</code> files;</li>
+<li>notebooks for term extraction and enrichment experiments;</li>
+<li>matching utilities for direct, fuzzy, and semantic matching;</li>
+<li>Bedrock model exploration outputs.</li>
+</ul>
+<h3 id="6-content-workflow">6. Content Workflow</h3>
+<p>Owned by the Content Workflow.</p>
+<p>The Content Workflow consumes ontology/knowledge-graph output downstream. It
+turns a knowledge graph into browsable graph views and content-quality signals,
+including semantic duplicate and outlier workflows.</p>
+<p>Primary inputs:</p>
+<ul>
+<li>generated knowledge graph JSON;</li>
+<li>S3 source markdown/documents;</li>
+<li>optional OpenSearch index for retrieval.</li>
+</ul>
+<p>Primary artifacts:</p>
+<ul>
+<li>graph view model output such as <code>graphNode.json</code>;</li>
+<li>visual graph views;</li>
+<li>duplicate and outlier analysis outputs.</li>
+</ul>
+<h2 id="runtime-dependencies">Runtime Dependencies</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Main dependencies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workflow</td>
+<td>Python 3.13, <code>uv</code>, Flask, Waitress, PostgreSQL, SQLAlchemy, AWS credentials, S3, <code>fsspec</code>.</td>
+</tr>
+<tr>
+<td>Generator</td>
+<td>
+<code>taxonomy-ontology-accelerator</code>, LLM provider configuration, AWS Bedrock where configured, S3 or local filesystem storage.</td>
+</tr>
+<tr>
+<td>Workflow harness</td>
+<td>Same Generator dependencies plus baseline manifest and S3 access to baseline/candidate <code>ontology.ttl</code> files.</td>
+</tr>
+<tr>
+<td>Ontology Validator</td>
+<td>Python, <code>uv</code>, <code>rdflib</code>, OWL-RL inference, rule modules, optional golden <code>.ttl</code>.</td>
+</tr>
+<tr>
+<td>Data Science Repo</td>
+<td>Python notebooks, Bedrock access for experiments, ontology files, matching libraries such as sentence-transformers/rapidfuzz where used.</td>
+</tr>
+<tr>
+<td>Content Workflow</td>
+<td>Python 3.12, Flask/Uvicorn, AWS Bedrock, Amazon OpenSearch, S3, Cytoscape.js, Pydantic, <code>uv</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="artifact-flow">Artifact Flow</h2>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Input</th>
+<th>Output</th>
+<th>Next consumer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workflow ingestion</td>
+<td>GOV.UK URLs or source list</td>
+<td>Cleaned markdown/text, logs</td>
+<td>Generator execution</td>
+</tr>
+<tr>
+<td>Generator execution</td>
+<td>Domain config, prompt, cleaned input content</td>
+<td>
+<code>schema.json</code>, <code>graph.json</code>, <code>ontology.ttl</code>, metrics/logs</td>
+<td>Workflow harness, Ontology Validator, Content Workflow, Workflow UI</td>
+</tr>
+<tr>
+<td>Harness comparison</td>
+<td>Candidate <code>ontology.ttl</code>, accepted baseline manifest</td>
+<td>
+<code>regression_report.json</code>, harness CSV columns</td>
+<td>Deployment/review process</td>
+</tr>
+<tr>
+<td>Ontology validation</td>
+<td>Generated <code>ontology.ttl</code>, optional golden <code>.ttl</code>
+</td>
+<td>Pass/fail result, optional JSON, violation reports</td>
+<td>Generator maintainers and handover reviewers</td>
+</tr>
+<tr>
+<td>Content Workflow</td>
+<td>Knowledge graph JSON and source documents</td>
+<td>Graph visualisations, duplicate/outlier reports</td>
+<td>Content quality review</td>
+</tr>
+<tr>
+<td>Data Science Repo</td>
+<td>Ground truth, generated runs, experiment data</td>
+<td>Matching results, notebooks, prompts/analysis</td>
+<td>Generator and Ontology Validator design decisions</td>
+</tr>
+</tbody>
+</table>
+<h2 id="change-impact-guide">Change Impact Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>Check these repositories</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Change <code>ontology.ttl</code> structure or naming conventions</td>
+<td>Workflow, Ontology Validator, Content Workflow.</td>
+</tr>
+<tr>
+<td>Change <code>schema.json</code> or <code>graph.json</code> shape</td>
+<td>Workflow, Content Workflow, any Data Science Repo notebooks that read generated output.</td>
+</tr>
+<tr>
+<td>Change Generator prompts, models, or extraction logic</td>
+<td>Harness baseline, Ontology Validator fixtures, ground-truth assumptions in the Data Science Repo.</td>
+</tr>
+<tr>
+<td>Change harness metrics or report fields</td>
+<td>Workflow historical jobs view, deployment review process, <code>owl_ontology_metrics.csv</code> consumers.</td>
+</tr>
+<tr>
+<td>Promote a new accepted baseline</td>
+<td>
+<code>baselines/accepted.json</code>, harness run history, any handover notes explaining why the baseline changed.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="where-to-start-when-debugging">Where To Start When Debugging</h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Start here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source URLs did not produce usable files</td>
+<td>Workflow ingestion route and <code>scripts/ingestion/README.md</code>.</td>
+</tr>
+<tr>
+<td>Ontology job failed or stopped</td>
+<td>Workflow job status, logs, and <code>scripts/pipeline/ontology_generator.py</code>.</td>
+</tr>
+<tr>
+<td>Generated output looks structurally wrong</td>
+<td>Generator ontology engine docs and run book.</td>
+</tr>
+<tr>
+<td>Harness failed after deployment</td>
+<td>Workflow harness docs and <code>scripts/pipeline/ontology_harness.py</code>.</td>
+</tr>
+<tr>
+<td>
+<code>ontology.ttl</code> violates naming/spelling/golden expectations</td>
+<td>Ontology Validator run book and validator reports.</td>
+</tr>
+<tr>
+<td>Graph/outlier UI output is missing or surprising</td>
+<td>Content Workflow README and generated graph artifacts.</td>
+</tr>
+<tr>
+<td>You need historical experiment context</td>
+<td>Data Science Repo notebooks, ground truth data, and matching utilities.</td>
+</tr>
+</tbody>
+</table>
+
+  <script>
+    /*
+      Manually trigger the styling of the 'current page' in the sidebar,
+      as it does not happen automatically because we are still technically
+      in single page mode.
+    */
+    (function () {
+        'use strict'
+        /*
+          Cannot use `$(document).ready` on next line as jQuery has not loaded
+          yet. But we can use jQuery in the callback.
+        */
+        window.addEventListener('load', function () {
+            try {
+                new GOVUK.Modules.InPageNavigation().start($("html"));
+            }
+            catch (error) {
+                /* Fail without causing other JS in the page to break */
+                console.log("Error calling GOVUK's InPageNavigation module", error);
+            }
+        })
+    }());
+</script>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-ai-accelerator/blob/main/docs/architecture/cross-repo-integration.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-ai-accelerator%2Farchitecture%2Fcross-repo-integration.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <svg focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 60" height="30" width="32" fill="currentcolor" class="govuk-footer__crown">
+    <g>
+      <circle cx="20" cy="17.6" r="3.7"></circle>
+      <circle cx="10.2" cy="23.5" r="3.7"></circle>
+      <circle cx="3.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <circle cx="43.3" cy="17.6" r="3.7"></circle>
+      <circle cx="53.2" cy="23.5" r="3.7"></circle>
+      <circle cx="59.7" cy="33.2" r="3.7"></circle>
+      <circle cx="31.7" cy="30.6" r="3.7"></circle>
+      <path d="M33.1,9.8c.2-.1.3-.3.5-.5l4.6,2.4v-6.8l-4.6,1.5c-.1-.2-.3-.3-.5-.5l1.9-5.9h-6.7l1.9,5.9c-.2.1-.3.3-.5.5l-4.6-1.5v6.8l4.6-2.4c.1.2.3.3.5.5l-2.6,8c-.9,2.8,1.2,5.7,4.1,5.7h0c3,0,5.1-2.9,4.1-5.7l-2.6-8ZM37,37.9s-3.4,3.8-4.1,6.1c2.2,0,4.2-.5,6.4-2.8l-.7,8.5c-2-2.8-4.4-4.1-5.7-3.8.1,3.1.5,6.7,5.8,7.2,3.7.3,6.7-1.5,7-3.8.4-2.6-2-4.3-3.7-1.6-1.4-4.5,2.4-6.1,4.9-3.2-1.9-4.5-1.8-7.7,2.4-10.9,3,4,2.6,7.3-1.2,11.1,2.4-1.3,6.2,0,4,4.6-1.2-2.8-3.7-2.2-4.2.2-.3,1.7.7,3.7,3,4.2,1.9.3,4.7-.9,7-5.9-1.3,0-2.4.7-3.9,1.7l2.4-8c.6,2.3,1.4,3.7,2.2,4.5.6-1.6.5-2.8,0-5.3l5,1.8c-2.6,3.6-5.2,8.7-7.3,17.5-7.4-1.1-15.7-1.7-24.5-1.7h0c-8.8,0-17.1.6-24.5,1.7-2.1-8.9-4.7-13.9-7.3-17.5l5-1.8c-.5,2.5-.6,3.7,0,5.3.8-.8,1.6-2.3,2.2-4.5l2.4,8c-1.5-1-2.6-1.7-3.9-1.7,2.3,5,5.2,6.2,7,5.9,2.3-.4,3.3-2.4,3-4.2-.5-2.4-3-3.1-4.2-.2-2.2-4.6,1.6-6,4-4.6-3.7-3.7-4.2-7.1-1.2-11.1,4.2,3.2,4.3,6.4,2.4,10.9,2.5-2.8,6.3-1.3,4.9,3.2-1.8-2.7-4.1-1-3.7,1.6.3,2.3,3.3,4.1,7,3.8,5.4-.5,5.7-4.2,5.8-7.2-1.3-.2-3.7,1-5.7,3.8l-.7-8.5c2.2,2.3,4.2,2.7,6.4,2.8-.7-2.3-4.1-6.1-4.1-6.1h10.6,0Z"></path>
+    </g>
+  </svg>
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/govuk_frontend.js" type="module"></script>
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
