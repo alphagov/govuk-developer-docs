@@ -36,7 +36,7 @@ $ kubectl logs -n apps db-backup-link-checker-api-postgres-29220583-abcde -c 0-r
 
 ## How it works
 
-The env sync process is made up of a lot of small Kubernetes cronjobs - one per app and environment - [configured in the 'db-backup' chart](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/db-backup/values.yaml). There is also a [search-index-env-sync](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/search-index-env-sync) chart for copying search index data.
+The env sync process is made up of a lot of small Kubernetes cronjobs - one per app and environment - [configured in the 'db-backup' chart](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/db-backup/values.yaml). There is also a [search-index-env-sync](https://github.com/alphagov/govuk-helm-charts/tree/main/charts/search-index-env-sync) chart for copying search API's elasticsearch index data.
 
 The 'production' cronjobs back up their respective application's database data to a production S3 bucket called `govuk-production-database-backups` (using a 'backup' operation - see [example](https://github.com/alphagov/govuk-helm-charts/blob/4b922fc7eb79757080570d33b1ae668c4d9dbb4f/charts/db-backup/values.yaml#L107-L111)). The bucket is [configured to automatically replicate](https://github.com/alphagov/govuk-infrastructure/blob/4f451dd56d43042e3fe0477235e9f2126618c957/terraform/deployments/govuk-publishing-infrastructure/db_backup_s3.tf) to S3 buckets [in the other environments](https://github.com/alphagov/govuk-infrastructure/blob/4f451dd56d43042e3fe0477235e9f2126618c957/terraform/deployments/govuk-publishing-infrastructure/db_backup_iam.tf#L1-L8). You can read more about [how GOV.UK data backups are configured in AWS](/manual/backups.html).
 
