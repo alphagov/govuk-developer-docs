@@ -99,6 +99,8 @@ Access is granted by creating a Pull Request that adds a record to [config/tempo
   why_do_they_need_access: "Applying a Database upgrade for publisher."
 ```
 
+Note that the `expires_at` date must be in the format of [the W3C implementation of ISO 8601](https://www.w3.org/TR/NOTE-datetime), the upshot of which is that for the timezone the only acceptable formats are `Z` or `+hh:mm` or `-hh:mm`.
+
 You'll need to find another Engineer who's a member of the [GOV.UK Production Admin GitHub Team](https://github.com/orgs/alphagov/teams/gov-uk-production-admin) to approve your Pull Request, as govuk-user-reviewer is not actively monitored. If you're on-call, you will probably need to ask the other on-call person.
 If you are not able to find an approver, in an emergency you can contact Dan or James ([contact details](https://beisgov.sharepoint.com/:x:/r/sites/Govukldrship/Shared%20Documents/Escalations/GOV.UK%20SMT%20Escalations%20rota.xlsx?d=w8d88e79cf47c4d48a1daf8cbeeb61ac9&csf=1&web=1&e=ThTsT9)).
 
