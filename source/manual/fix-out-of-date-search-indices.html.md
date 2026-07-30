@@ -36,9 +36,10 @@ updates this index. To update it manually, you can run the [associated rake task
 
 ## Environment syncs
 
-There are nightly cron jobs that [synchronise elasticsearch][sync-job] in integration and staging with the production environment.
-These jobs work in sequence to take a snapshot of a higher level environment (e.g. production) and then restore the snapshot in the lower
-level environment (e.g. staging). If documents that are published or unpublished in production are not reflected in integration and staging after 1 day, that
+There are cron jobs that [synchronise elasticsearch][sync-job] environments. Staging is synced with production every night, and integration is synced with staging on a Monday morning.
+These jobs work in sequence to take a snapshot of a higher level environment (e.g. production) and then restore the snapshot in the lower level environment (e.g. staging), before the snapshot for that environment is taken.
+
+If documents that are published or unpublished in production are not reflected in integration and staging after 1 day, that
 could be because of issues with the synchronisation jobs. If any part of the workflow needs to be rerun, this can be done manually in Argo:
 
 1. Login to [Argo][argo] for the relevant environment
