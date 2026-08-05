@@ -51,6 +51,16 @@ Logit named `GOV.UK <environment> EKS`.
 1. You should be redirected to `dashboard.logit.io` and see a list of available
    stacks.
 
+### OpenSearch API Access
+
+Logit provides each user a set of API keys for interacting with the OpenSearch API.
+
+1. Log in to Logit
+1. Go to [your profile](https://dashboard.logit.io/profile#opensearch-api-settings-section)
+1. Click 'Enable OpenSearch API Access'
+1. Take the endpoint URL, username and password from the page
+1. Once you're done, click 'Disable Access' to revoke your API keys
+
 ### If you don't have access to Logit
 
 > Make sure you have followed the [instructions](#log-into-logit) precisely.
