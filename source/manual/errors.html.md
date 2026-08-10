@@ -24,7 +24,7 @@ When a request to GOV.UK fails, we need to handle the error in some way, so that
     - Serve the response as-is from the origin (no special handling)
 
 - **Origin**. When a request fails in an upstream app, we:
-  - [Intercept the response in Nginx](https://github.com/alphagov/govuk-helm-charts/blob/c64895014046605b0d8092c925ff44521b149e6b/charts/app-config/templates/router-nginx-config.tpl#L236-L269)
+  - [Intercept the response in Nginx](https://github.com/alphagov/govuk-helm-charts/blob/9b25add7095bcc2d048c2f72e658eab9db865583/charts/app-config/templates/router-nginx-config.tpl#L249-L284)
   - Replace the response with [a pre-rendered one from Frontend](https://github.com/alphagov/govuk-helm-charts/blob/c64895014046605b0d8092c925ff44521b149e6b/charts/generic-govuk-app/templates/frontend-error-page-upload-job.yaml)
   - ***410 / 460***. A slight modification to this happens when the returned value is a 410. Because we sometimes need to return custom 410 pages, we can't simply intercept them all and replace with a pre-rendered response. So we ignore 410s and allow them to pass straight back to the user. The only app that can return 410s is Frontend, and it returns them only for `gone` records with custom rendering needs. Because there is still a need for some apps (Router and Email-Alert-Frontend) to return 410s without rendering them, they return 460 status values. These are intercepted in Nginx as above, and replaced with a pre-rendered 410 error page. Nginx also rewrites the 460 status code as a 410 which is returned to the user.
 
