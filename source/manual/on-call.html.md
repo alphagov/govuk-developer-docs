@@ -9,7 +9,7 @@ parent: "/manual.html"
 
 > In a hurry? You may be looking for [So, you're having an incident](/manual/incident-what-to-do.html)!
 
-GOV.UK developers are part of an [on-call rota](https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit) to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they've built up enough experience (see [Rules for Primary, Secondary and On-Call](#rules-for-primary-secondary-and-on-call)).
+GOV.UK developers are part of an [on-call rota](https://beisgov.sharepoint.com/:x:/r/sites/GOVUKTSAndEsc/Shared%20Documents/General/2nd%20line%20and%20incident%20management/GOV.UK%20technical%20support%20rota%20(in-hours%20and%20out-of-hours%20on-call).xlsx?d=w68463a202d694ab79ff38613b3980086&csf=1&web=1&e=12vqQ2) to keep GOV.UK running 24/7. Engineers are enrolled onto the in-hours rota first, then onto the out-of-hours rota once they've built up enough experience (see [Rules for Primary, Secondary and On-Call](#rules-for-primary-secondary-and-on-call)).
 
 ## On-call charter
 
@@ -33,7 +33,7 @@ You need to do the following when starting an on-call shift:
 - Confirm you can access [GOV.UK's Statuspage account](https://manage.statuspage.io/pages/xcz7hfscrbjs/incidents)
 - Ensure you can log into Zendesk (follow the [Zendesk onboarding instructions](/manual/zendesk.html#get-started))
 - Confirm you can [access the Notify dashboard](/manual/govuk-notify.html#accessing-the-dashboard)
-- You know how to [contact the rest of SMT](https://drive.google.com/drive/search?q=GOV.UK%20SMT%20Escalations%20rota), if the on-call SMT is unavailable.
+- You know how to [contact the rest of SMT](https://beisgov.sharepoint.com/:x:/r/sites/Govukldrship/Shared%20Documents/Escalations/GOV.UK%20SMT%20Escalations%20rota.xlsx?d=w8d88e79cf47c4d48a1daf8cbeeb61ac9&csf=1&web=1&e=orYvrZ), if the on-call SMT is unavailable.
 
 Optional:
 
