@@ -33,10 +33,10 @@ Follow the ['Archiving repositories'](https://github.com/alphagov/govuk-infrastr
 
 ## 4. Remove references and update docs
 
-Do a [code search on GitHub][https://github.com/search?q=org%3Aalphagov+panopticon&type=Code] to find any references to the gem
+Do a [code search on GitHub](https://github.com/search?q=org%3Aalphagov+panopticon&type=Code) to find any references to the gem
 and update or remove them.
 
-Mark the gem as `retired` in [govuk-developer-docs][https://github.com/alphagov/govuk-developer-docs].
+Mark the gem as `retired` in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs).
 
 ## 5. Yank the gem (optional)
 
