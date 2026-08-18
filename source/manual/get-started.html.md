@@ -42,7 +42,7 @@ Help others know who you are by [updating your Slack profile's 'title' field](ht
 
 ## 4. Set up your AWS IAM user account
 
-1. [Request a AWS user account][request-aws-user].
+1. [Request a AWS user account][request-aws-user] using your `digital.cabinet-office.gov.uk` email address.
 1. You should receive an email when your account is created.
 1. Follow instructions in the email to sign into the `gds-users` AWS account for the first time.
 1. [Enable Multi-factor Authentication (MFA)][enable-mfa] for your IAM User.
