@@ -1,5 +1,5 @@
 ---
-owner_slack: "#dev-notifications-ai-govuk"
+owner_slack: "#ai-govuk-chat-devs"
 title: GOV.UK Chat Alerts
 parent: "/manual.html"
 layout: manual_layout
@@ -8,7 +8,7 @@ section: Monitoring and alerting
 
 > **Note**
 >
-> For any queries or assistance regarding Chat Alerts, please post in the [#dev-notifications-ai-govuk] Slack channel
+> For any queries or assistance regarding Chat Alerts, please post in the [#ai-govuk-chat-devs] Slack channel
 
 ## Alerts by Priority
 
@@ -80,7 +80,7 @@ The [ElevatedAnswerErrorStatuses] alert fires when three or more answers generat
 
 To determine what the the issue is you should naviate to the [questions page in the admin console] for the relevant environment (this link is for production). Then view each questions with an error status and navigate to to the error message row.
 
-[#dev-notifications-ai-govuk]: https://gds.slack.com/archives/C06AWTPNJMV
+[#ai-govuk-chat-devs]: https://gds.slack.com/archives/C06AWTPNJMV
 [Integration]: https://grafana.eks.integration.govuk.digital/d/govuk-chat-technical
 [Staging]: https://grafana.eks.staging.govuk.digital/d/govuk-chat-technical
 [Production]: https://grafana.eks.production.govuk.digital/d/govuk-chat-technical

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#dev-notifications-ai-govuk"
+owner_slack: "#ai-govuk-chat-devs"
 title: Support GOV.UK Chat
 section: GOV.UK Chat
 type: learn
