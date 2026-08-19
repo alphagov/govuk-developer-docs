@@ -62,7 +62,7 @@ You should [use your Yubikey as your MFA device][yubikey-aws-mfa] if you have on
 1. [Log into your existing GitHub account](https://github.com/login) or [create a new one](https://github.com/signup).
 1. [Add your `digital.cabinet-office.gov.uk` and `dsit.gov.uk` email addresses to your GitHub account][associate-email-github], which can be in addition to your personal email address.
 
-   > Even though we are no longer employed by Cabinet Office and are using DSIT IT, the `digital.cabinet-office.gov.uk` email address must be added to your GitHub account to avoid triggering this leavers process whilst we migrate to DSIT.
+   > Even though we are no longer employed by Cabinet Office and are using DSIT IT, the `digital.cabinet-office.gov.uk` email address must be added to your GitHub account to avoid triggering the leavers process whilst we migrate to DSIT.
 
 1. [Generate an SSH key].
 1. [Add the SSH key to your GitHub account][add-ssh-key].
