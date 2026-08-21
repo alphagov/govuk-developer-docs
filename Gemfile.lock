@@ -116,7 +116,7 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
-    concurrent-ruby (1.3.7)
+    concurrent-ruby (1.3.8)
     connection_pool (3.0.2)
     contracts (0.17.3)
     crack (1.0.1)
@@ -247,9 +247,9 @@ GEM
     hashdiff (1.2.1)
     hashie (5.1.0)
       logger
-    html-pipeline (2.14.3)
-      activesupport (>= 2)
-      nokogiri (>= 1.4)
+    html-pipeline (3.2.4)
+      selma (~> 0.4)
+      zeitwerk (~> 2.5)
     http_parser.rb (0.8.1)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
@@ -722,6 +722,10 @@ GEM
       faraday (>= 0.17.3, < 3)
     schmooze (0.2.0)
     securerandom (0.4.1)
+    selma (0.5.1-aarch64-linux)
+    selma (0.5.1-arm64-darwin)
+    selma (0.5.1-x86_64-darwin)
+    selma (0.5.1-x86_64-linux)
     sentry-rails (6.6.2)
       railties (>= 5.2.0)
       sentry-ruby (~> 6.6.2)
@@ -794,7 +798,7 @@ DEPENDENCIES
   govuk_publishing_components
   govuk_schemas
   govuk_tech_docs
-  html-pipeline (~> 2.0)
+  html-pipeline (~> 3.2)
   mdl
   middleman
   middleman-search_engine_sitemap
