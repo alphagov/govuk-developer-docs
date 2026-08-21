@@ -42,7 +42,7 @@ If your role requires access to Github, you'll need to be added to the organisat
 
 - If you're an engineer or contractor, ask your tech lead to add you by following the instructions in [govuk-user-reviewer][govuk-user-reviewer].
 - If you don't have a tech lead, [ask someone in Senior Tech](/manual/ask-for-help.html#contact-senior-tech) to add you.
-- If you're a content designer, ask for GitHub access via Zendesk (see [example ticket](https://govuk.zendesk.com/agent/tickets/5812930)). Make sure you include the `govuk_platform_support` tag.
+- If you're a content designer, ask for GitHub access via a Zendesk ticket assigned to `1st Line -- GOV.UK Platform Support` (see [example ticket](https://govuk.zendesk.com/agent/tickets/6595297)).
 
 In these last two cases, you must state:
 
