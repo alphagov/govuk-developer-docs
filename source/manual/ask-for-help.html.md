@@ -24,7 +24,18 @@ There are channels for each area of GOV.UK:
 - `#govuk-publishing-service-support`
 - `#govuk-web-support`
 
-In addition, there's a `#govuk-technical-on-call` channel that can be used to communicate with the on-call engineers in a public forum. However, bear in mind that Slack does not page their phones, so whereas in-hours you may be able to `@` the on-call engineer, out-of-hours you'll need to contact via PagerDuty.
+## Escalate to Technical On-Call
+
+There's a `#govuk-technical-on-call` channel that can be used to communicate with the on-call engineers in a public forum, in-hours only.
+
+Out of hours, or if you need to escalate urgently in-hours, create an incident in PagerDuty:
+
+- Impacted Service: "GOV.UK"
+- Urgency" "High"
+- Assignee: “GOV.UK Regular Coverage”)
+- Fill out the incident detail and create the incident
+
+This causes the engineer(s) to be paged by PagerDuty.
 
 ## Ask the developer communities
 
