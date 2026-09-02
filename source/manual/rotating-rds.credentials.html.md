@@ -373,11 +373,7 @@ Follow the [Convert Postgres to use Owner Roles](/manual/convert-postgres-to-use
 
 Skip this stage if you are planning to rotate credentials in Staging only - any changes you make will be overwritten (and therefore undone) by the overnight backup-and-restore job.
 
-Prepare a new randomly-generated password for the user that does not contain any "special" characters that would need to be URL-encoded. For example, you could use the `pwgen` command:
-
-```bash
-pwgen -s 32 1
-```
+Prepare a new randomly-generated password as per [our guidelines](/manual/kubernetes/creating-a-new-database/password.html).
 
 Create a new user with the password you just generated:
 
