@@ -14,22 +14,22 @@ layout: multipage_layout
   * [Creating a JobRequest](#creating-a-jobrequest)
   * [Reviewing a JobRequest](#reviewing-a-jobrequest)
 * [Using Kubectl to view JobRequests and JobRequestReviews](#using-kubectl-to-view-jobrequests-and-jobrequestreviews)
-  * [Viewing-a-JobRequest-or-JobRequestReview](#viewing-a-jobrequest-or-jobrequestreview)
+  * [Viewing a JobRequest or JobRequestReview](#viewing-a-jobrequest-or-jobrequestreview)
   * [Listing JobRequests or JobRequestReviews](#listing-jobrequests-or-jobrequestreviews)
   * [Showing the Job that was launched from a JobRequest](#showing-the-job-that-was-launched-from-a-jobrequest)
-  * [Viewing-the-logs-for-the-Job-that-was-launched-from-a-JobRequest](#viewing-the-logs-for-the-job-that-was-launched-from-a-jobrequest)
+  * [Viewing the logs for the Job that was launched from a JobRequest](#viewing-the-logs-for-the-job-that-was-launched-from-a-jobrequest)
 
 ## Terminology
 
 * **JobRequest**: A request to run a Job in Kubernetes is known as a JobRequest
-  (with the short name of jr in Kubernetes)
+  (with the short name of `jr` in Kubernetes)
 * **JobRequestReview**: A review of a JobRequest with a decision of Approve or
-  Reject is known as a JobRequestReview (with the short name of jrr in
+  Reject is known as a JobRequestReview (with the short name of `jrr` in
   Kubernetes)
 
 ## What is this guide
 
-This guide provides instruction and examples for creating a JobRequest, for
+This guide provides instructions and examples for creating a JobRequest, for
 reviewing JobRequests, and for viewing the status of, and logs for, a
 JobRequest.
 
@@ -41,26 +41,26 @@ JobRequest Technical Architecture](/kubernetes/job-requests/architecture/)
 
 ## Prerequisites
 
-* [govuk-cli installed](#installing-govuk-cli)
+* [`govuk-cli` installed](#installing-govuk-cli)
 * [gds-cli installed](/kubernetes/get-started/set-up-tools/#install-gds-cli)
 * kubectl installed and set up to access the cluster you need to run a Job in
 
 ## Important notes and Limitations
 
-* Immutability: Once you have created a JobRequest you cannot edit it, if you
+* Immutability: Once you have created a JobRequest you cannot edit it. If you
   have made a mistake you will need to create a new JobRequest (and ideally have
   someone else reject the incorrect JobRequest). This is by design to ensure a
   JobRequest cannot be approved and then modified later.
 * At present you cannot run a Job that requires uploading a CSV, to do that you
-  will need to assume an Admin role and follow the instructions [in the Working
+  will need to assume the fulladmin role and follow the instructions [in the Working
   with CSVs on
   Kubernetes](/manual/running-rake-tasks.html#working-with-csvs-on-kubernetes)
   section of the [old Running Rake Tasks page](/manual/running-rake-tasks.html)
 * You cannot review your own JobRequests. This is irrespective of the AWS role
-  you have assumed (so as the FullAdmin role, you cannot approve your job request
+  you have assumed (so as the fulladmin role, you cannot approve your JobRequest
   created as Developer)
 * You can only create JobRequests in the apps, or licensify namespaces
-* JobRequests and JobRequestReviews will remain in kubernetes for 30 days
+* JobRequests and JobRequestReviews will remain in Kubernetes for 30 days
   (720 hours) before being removed automatically
 
 ## Usage
@@ -72,13 +72,13 @@ JobRequest Technical Architecture](/kubernetes/job-requests/architecture/)
 
 You should create a JobRequest as below, and then ask a colleague to review it
 for you. When you run the create command you will be given the review command
-at the end of the output, you can copy and paste this to a colleague. They will
+at the end of the output, which you can copy and paste to a colleague. They will
 be shown the command you wish to run, and asked to approve or reject it.
 
 If you don't know the name of the deployment/pod you want see [Find the name of
 a deployment or pod](#find-the-name-of-a-deployment-or-pod)
 
-Once a colleague approves your JobRequest, kubernetes will launch a new Job
+Once a colleague approves your JobRequest, Kubernetes will launch a new Job
 which copies the configuration of the deployment or pod you specified, and
 executes the command you specified in the JobRequest. This will be executed in
 the container named `app`, if you need to run a differently named container in
@@ -129,8 +129,8 @@ Hello World!
 
 #### Find the name of a deployment or pod
 
-First you need to decide what deployment/pod do you want the job to run in,
-usually targetting a deployment is easiest, you can get a list of the
+First you need to decide what deployment/pod do you want the job to run in.
+It's usually easiest targetting a deployment. You can get a list of the
 deployments with kubectl. You can do the same for pods.
 
 ```shell
@@ -243,10 +243,11 @@ Failed! Exiting process
 * [Showing the Job that was launched from a JobRequest](#showing-the-job-that-was-launched-from-a-jobrequest)
 * [Viewing the logs for the Job that was launched from a JobRequest](#viewing-the-logs-for-the-job-that-was-launched-from-a-jobrequest)
 
-The process for interrogating kubernetes for JobRequests and JobRequestReviews
-is the same as any other kubernetes resources.
+The process for interrogating Kubernetes for JobRequests and JobRequestReviews
+is the same as any other Kubernetes resources.
 
-* You can use either the full resource names: JobRequest, JobReqeustReview; or
+* You can use either the full resource names (which are case insensitive):
+  JobRequest, JobReqeustReview; or
 * The short names: jr, jrr (respectively)
 
 ### Viewing a JobRequest or JobRequestReview
@@ -343,9 +344,9 @@ jrr-jr-govuk-replatform-test-app-547582753    jr-govuk-replatform-test-app-54758
 
 Note: Kubernetes cleans up Jobs after they have run in a much shorter time
 scale than we clear up JobRequests and JobRequestReviews, so the Job may not be
-present anymore and you will need to look in login for the Jobs logs (if you
+present anymore and you will need to look in Logit for the Jobs logs. If you
 run `govuk-cli jobrequest get <jobrequest>` it will give you a pre-populated
-link to the logs in logit).
+link to the logs in logit.
 
 The name of the Kubernetes Job that a JobRequest caused to be launched is
 available in the `status.jobName` field of the JobRequest, so you first need to
@@ -409,7 +410,7 @@ Failed! Exiting process
 ```
 
 If the logs are no longer available in Kubernetes you will need to look in
-login for the Jobs logs (if you run `govuk-cli jobrequest get <jobrequest>` it
+Logit for the Jobs logs (if you run `govuk-cli jobrequest get <jobrequest>` it
 will give you a pre-populated link to the logs in logit).
 
 ## Installing govuk-cli
