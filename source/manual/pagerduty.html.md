@@ -16,7 +16,7 @@ to escalate to these people (in order):
 3. GOV.UK Senior Management Team member (might not be technical)
 
 It's the responsibility of the people above to make sure their details are up to date in PagerDuty
-and that they're correctly scheduled in. You can [add your rota to Google calendar](#add-your-pagerduty-rota-to-google-calendar).
+and that they're correctly scheduled in. You can [add your rota to Microsoft calendar](#add-your-pagerduty-rota-to-microsoft-calendar).
 
 When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge it, otherwise it will be escalated further.
 
@@ -72,9 +72,9 @@ To trigger the drill manually, follow these steps:
     $ amtool --alertmanager.url=http://localhost:9093 alert query 'alertname=PagerDuty test drill. Developers: escalate this alert. SMT: resolve'
     ```
 
-### Add your PagerDuty rota to Google calendar
+### Add your PagerDuty rota to Microsoft calendar
 
-You can sync your PagerDuty with Google Calendar so you can see your
+You can sync your PagerDuty with Microsoft Calendar so you can see your
 on-call shifts in one place.
 
 1. Go to https://governmentdigitalservice.pagerduty.com/my-on-call/month
@@ -82,4 +82,4 @@ on-call shifts in one place.
 1. On the left side, click "Export Calendar", right click on "WebCal Feed" and copy
    the link
 
-1. In Google Calendar, under "other calendars" click the plus symbol and add "From URL"
+1. In Microsoft Calendar, click "Add calendar", then select "Subscribe from web" and paste in the copied URL.
