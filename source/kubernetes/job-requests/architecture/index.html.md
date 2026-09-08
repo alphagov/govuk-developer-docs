@@ -46,15 +46,15 @@ The following describes the intended happy path from creation of a JobRequest to
 2. User A sends User B the printed out CLI command to run in order to review the request.
 3. User B runs the CLI command, reads and reviews the command intended to run, chooses to approve or reject it, then `govuk-cli` creates a JobRequestReview.
 4. Review outcome:
-    a. If user B rejects the JobRequest, assuming user A is still following the logs, user A will see a message telling them the request was rejected. This flow ends here.
+    a. If user B rejects the JobRequest, assuming user A is still following the logs, user A sees a message telling them the request was rejected. This flow ends here.
     b. If user B approves the JobRequest then continue this process
-5. The JobRequest operator will change the Status of the JobRequest to approved.
-6. The JobRequest operator will read the pod spec it needs to create from the target resource specified in the JobRequest
-7. The JobRequest operator will create a Kubernetes Job from the pod spec retrieved in the previous step, overriding the command to be the one approved in the JobRequest
-8. The JobRequest operator will update the Status of the JobRequest to include the name of the Job that was created
-9. The govuk-cli command that was run in step 1. will see the Job has been created, inform user A, and start printing out the logs of the Job as they are produced.
-9. The JobRequest operator will watch for the status of the Job and update the JobRequest status to include the current state of the Job.
-10. When the status of the Job reaches a terminal state, the govuk-cli will stop following the logs and inform User A the Job has completed.
+5. The JobRequest operator changes the Status of the JobRequest to approved.
+6. The JobRequest operator reads the pod spec it needs to create from the target resource specified in the JobRequest
+7. The JobRequest operator creates a Kubernetes Job from the pod spec retrieved in the previous step, overriding the command to be the one approved in the JobRequest
+8. The JobRequest operator updates the Status of the JobRequest to include the name of the Job that was created
+9. The govuk-cli command that was run in step 1. sees the Job has been created, informs user A, and starts printing out the logs of the Job as they are produced.
+9. The JobRequest operator watches the status of the Job and updates the JobRequest status to include the current state of the Job.
+10. When the status of the Job reaches a terminal state, the govuk-cli stops following the logs and informs User A the Job has completed.
 
 ### Sequence Diagram for an Approved JobRequest
 
