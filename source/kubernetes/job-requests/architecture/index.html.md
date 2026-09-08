@@ -62,25 +62,20 @@ The following describes the intended happy path from creation of a JobRequest to
 
 <code>
 sequenceDiagram
-    participant Requester
-    participant Reviewer
-    participant requesters-govuk-cli
-    participant reviewers-govuk-cli
+    actor Requester
+    actor Reviewer
+    participant k8sAPI as Kubernetes API
     participant Operator
 
-    Requester->>requesters-govuk-cli: `govuk-cli create jobrequest... --follow`
-    requesters-govuk-cli->>Operator: Create JobRequest
+    Requester->>k8sAPI: `govuk-cli create jobrequest... --follow`
+    k8sAPI->>Operator: Job Request Created
     Requester->>Reviewer: Please review my request
-    Reviewer->>reviewers-govuk-cli: `govuk-cli jobrequest review...` Approved
-    reviewers-govuk-cli->>Operator: Create Approved JobRequestReview
-    Operator->>Kubernetes: Create Job
-    Operator->>requesters-govuk-cli: Job has started
-    Operator->>requesters-govuk-cli: Logs
-    requesters-govuk-cli->>Requester: Logs
-    Operator->>requesters-govuk-cli: More Logs
-    requesters-govuk-cli->>Requester: More Logs
-    Operator->>requesters-govuk-cli: Job Complete
-    requesters-govuk-cli->>Requester: Job Complete
+    Reviewer->>k8sAPI: `govuk-cli jobrequest review...` Approved
+    k8sAPI->>Operator: JobRequestReview Created
+    Operator->>k8sAPI: Create Job
+    k8sAPI->>Requester: Logs
+    k8sAPI->>Requester: More Logs
+    k8sAPI->>Requester: Job Complete
 </code>
 </pre>
 
@@ -90,26 +85,25 @@ sequenceDiagram
 
 <code>
 sequenceDiagram
-    participant Requester
-    participant Reviewer
-    participant requesters-govuk-cli
-    participant reviewers-govuk-cli
+    actor Requester
+    actor Reviewer
+    participant k8sAPI as Kubernetes API
     participant Operator
 
-    Requester->>requesters-govuk-cli: `govuk-cli create jobrequest... --follow`
-    requesters-govuk-cli->>Operator: Create JobRequest
+    Requester->>k8sAPI: `govuk-cli create jobrequest... --follow`
+    k8sAPI->>Operator: JobRequest Created
     Requester->>Reviewer: Please review my request
-    Reviewer->>reviewers-govuk-cli: `govuk-cli jobrequest review...` Rejected
-    reviewers-govuk-cli->>Operator: Create Rejected JobRequestReview
-    Operator->>requesters-govuk-cli: JobRequest Rejected
-    requesters-govuk-cli->>Requester: JobRequest Rejected
+    Reviewer->>k8sAPI: `govuk-cli jobrequest review...` Rejected
+    k8sAPI->>Operator: Rejected JobRequestReview Created
+    Operator->>k8sAPI: Update JobRequest to Rejected
+    k8sAPI->>Requester: JobRequest Rejected
 </code>
 </pre>
 
 ## Garbage Collection
 
 Any time a JobRequest or JobRequestReview resource is presented for
-reconcilliation, if it was created longer than the TTL duration (which is set
+reconcilliation, if it has lived longer than the TTL duration (which is set
 for 720 hours (30 days)), it will be deleted.
 
 The [Kubernetes Controller Runtime
@@ -137,8 +131,11 @@ stateDiagram
     Pending --> Rejected
     Pending --> Approved
     Approved --> Started
+    Approved --> Malformed
     Started --> Complete
     Started --> Failed
+    Started --> Malformed
+    Malformed --> [*]
     Complete --> [*]
     Failed --> [*]
 </code>
