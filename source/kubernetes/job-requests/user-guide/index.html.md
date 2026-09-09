@@ -257,7 +257,7 @@ is the same as any other Kubernetes resources.
 JobRequests
 
 ```shell
-$ kubectl get jobrequest jfharden-jr-fail-1 -o yaml
+$ kubectl get -jobrequest jfharden-jr-fail-1 -o yaml -n apps
 apiVersion: platform.publishing.service.gov.uk/v1
 kind: JobRequest
 metadata:
@@ -290,7 +290,7 @@ status:
 JobRequestReviews
 
 ```shell
-$ kubectl get jobrequestreview jrr-jfharden-jr-fail-1 -o yaml
+$ kubectl get jobrequestreview jrr-jfharden-jr-fail-1 -n apps -o yaml
 apiVersion: platform.publishing.service.gov.uk/v1
 kind: JobRequestReview
 metadata:
@@ -315,7 +315,7 @@ status:
 JobRequests
 
 ```shell
-$ kubectl get jobrequests
+$ kubectl get jobrequests -n apps
 NAME                                                      COMMAND   ARGUMENTS            STATE       JOB NAME                                  AGE
 jfharden-jr-fail-1                                        rake      ["failed"]           Failed      jfharden-jr-fail-1                        7m10s
 jr-govuk-replatform-test-app-1520372482                   rake      ["hello"]            Complete    jr-govuk-replatform-test-app-1520372482   9d
@@ -332,7 +332,7 @@ jr-govuk-replatform-test-app-f45ff4fdd-zld5s-1127513522   rake      ["hello:worl
 JobRequestReviews:
 
 ```shell
-$ kubectl get jobrequestreviews
+$ kubectl get jobrequestreviews -n apps
 NAME                                          JOB REQUEST                               STATE      AGE
 jfharden-jrr-approve-1                        jr-govuk-replatform-test-app-243822854    Approved   133m
 jrr-jfharden-jr-fail-1                        jfharden-jr-fail-1                        Approved   6m35s
@@ -356,10 +356,10 @@ get that Job name, then you can query for the Job (it will usually have the
 same name as the JobRequest):
 
 ```shell
-$ kubectl get jr jfharden-jr-fail-1 -o=jsonpath='{.status.jobName}{"\n"}'
+$ kubectl get jr jfharden-jr-fail-1 -o=jsonpath='{.status.jobName}{"\n"}' -n apps
 jfharden-jr-fail-1
 
-$ kubectl get job jfharden-jr-fail-1 -o yaml
+$ kubectl get job jfharden-jr-fail-1 -n apps -o yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -405,7 +405,7 @@ JobRequest](#showing-the-job-that-was-launched-from-a-jobrequest), then you can
 query kubernetes for the logs:
 
 ```shell
-$ kubectl logs job/jfharden-jr-fail-1
+$ kubectl logs job/jfharden-jr-fail-1 -n apps
 INFO: with_tmpdir_for_ruby: execing rake with TMPDIR=/tmp/ruby-app-mWGlewoH
 ...SNIP...
 Failed! Exiting process
