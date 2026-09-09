@@ -44,6 +44,8 @@ JobRequest Technical Architecture](/kubernetes/job-requests/architecture/)
 * [`govuk-cli` installed](#installing-govuk-cli)
 * [gds-cli installed](/kubernetes/get-started/set-up-tools/#install-gds-cli)
 * kubectl installed and set up to access the cluster you need to run a Job in
+* AWS Credentials in your terminal (i.e. have run
+  `gds aws govuk-<account>-developer -s` first)
 
 ## Important notes and Limitations
 
@@ -75,8 +77,8 @@ for you. When you run the create command you will be given the review command
 at the end of the output, which you can copy and paste to a colleague. They will
 be shown the command you wish to run, and asked to approve or reject it.
 
-If you don't know the name of the deployment/pod you want see [Find the name of
-a deployment or pod](#find-the-name-of-a-deployment-or-pod)
+If you don't know the name of the deployment you want see [Find the name of
+a deployment](#find-the-name-of-a-deployment)
 
 Once a colleague approves your JobRequest, Kubernetes will launch a new Job
 which copies the configuration of the deployment or pod you specified, and
@@ -127,11 +129,10 @@ INFO: with_tmpdir_for_ruby: execing rake with TMPDIR=/tmp/ruby-app-yoUXmHrb
 Hello World!
 ```
 
-#### Find the name of a deployment or pod
+#### Find the name of a deployment
 
-First you need to decide what deployment/pod do you want the job to run in.
-It's usually easiest targetting a deployment. You can get a list of the
-deployments with kubectl. You can do the same for pods.
+First you need to decide what deployment you want the job to run in.
+You can get a list of the deployments with kubectl.
 
 ```shell
 # Get all the deployments
@@ -148,25 +149,13 @@ $ kubectl get deployments -n apps | grep whitehall
 whitehall-admin                    2/2     2            2           290d
 whitehall-admin-redis              1/1     1            1           414d
 whitehall-admin-worker             2/2     2            2           290d
-
-# Get pods instead (there will be a lot more returned than deployments)
-$ kubectl get pods -n apps | grep whitehall-admin
-whitehall-admin-65b6d995b4-hxnk6                                  2/2     Running            0                 98m
-whitehall-admin-65b6d995b4-vp9w7                                  2/2     Running            0                 97m
-...SNIP...
-whitehall-admin-worker-86b9fff5db-m2m6w                           1/1     Running            0                 98m
-whitehall-admin-worker-86b9fff5db-p962w                           1/1     Running            0                 98m
 ```
 
-Then you can run the command to create a JobRequest with either a deployment or
-pod:
+Then you can run the command to create a JobRequest with either a deployment:
 
 ```shell
 # With a deployment
 govuk-cli jobrequest create deployment/whitehall-admin -- rake republish_political_content
-
-# With a pod
-govuk-cli jobrequest create whitehall-admin-65b6d995b4-hxnk6 -- rake republish_political_content
 ```
 
 ### Reviewing a JobRequest
@@ -255,7 +244,7 @@ is the same as any other Kubernetes resources.
 JobRequests
 
 ```shell
-$ kubectl get jobrequest jfharden-jr-fail-1 -o yaml
+$ kubectl get jobrequest jfharden-jr-fail-1 -o yaml -n apps
 apiVersion: platform.publishing.service.gov.uk/v1
 kind: JobRequest
 metadata:
@@ -280,7 +269,7 @@ spec:
       kind: Deployment
       name: govuk-replatform-test-app
 status:
-  jobName: jfharden-jr-fail-1
+  jobName: jfharden-jr-fail-1-1234abcd
   reviewName: jrr-jfharden-jr-fail-1
   state: Failed
 ```
@@ -288,7 +277,7 @@ status:
 JobRequestReviews
 
 ```shell
-$ kubectl get jobrequestreview jrr-jfharden-jr-fail-1 -o yaml
+$ kubectl get jobrequestreview jrr-jfharden-jr-fail-1 -n apps -o yaml
 apiVersion: platform.publishing.service.gov.uk/v1
 kind: JobRequestReview
 metadata:
@@ -303,7 +292,7 @@ metadata:
 spec:
   decision: Approved
   description: Test JobRequest which will spawn a failing job
-  jobRequestName: jfharden-jr-fail-1
+  jobRequestName: jfharden-jr-fail-1-1234abcd
 status:
   state: Approved
 ```
@@ -313,9 +302,9 @@ status:
 JobRequests
 
 ```shell
-$ kubectl get jobrequests
+$ kubectl get jobrequests -n apps
 NAME                                                      COMMAND   ARGUMENTS            STATE       JOB NAME                                  AGE
-jfharden-jr-fail-1                                        rake      ["failed"]           Failed      jfharden-jr-fail-1                        7m10s
+jfharden-jr-fail-1                                        rake      ["failed"]           Failed      jfharden-jr-fail-1-1234abcd               7m10s
 jr-govuk-replatform-test-app-1520372482                   rake      ["hello"]            Complete    jr-govuk-replatform-test-app-1520372482   9d
 jr-govuk-replatform-test-app-238732814                    rake      ["broken"]           Failed      jr-govuk-replatform-test-app-238732814    8d
 jr-govuk-replatform-test-app-243822854                    rake      ["hello"]            Complete    jr-govuk-replatform-test-app-243822854    138m
@@ -330,7 +319,7 @@ jr-govuk-replatform-test-app-f45ff4fdd-zld5s-1127513522   rake      ["hello:worl
 JobRequestReviews:
 
 ```shell
-$ kubectl get jobrequestreviews
+$ kubectl get jobrequestreviews -n apps
 NAME                                          JOB REQUEST                               STATE      AGE
 jfharden-jrr-approve-1                        jr-govuk-replatform-test-app-243822854    Approved   133m
 jrr-jfharden-jr-fail-1                        jfharden-jr-fail-1                        Approved   6m35s
@@ -350,14 +339,14 @@ link to the logs in logit.
 
 The name of the Kubernetes Job that a JobRequest caused to be launched is
 available in the `status.jobName` field of the JobRequest, so you first need to
-get that Job name, then you can query for the Job (it will usually have the
-same name as the JobRequest):
+get that Job name, then you can query for the Job (it will be the name of the
+JobRequest suffixed with a random string):
 
 ```shell
-$ kubectl get jr jfharden-jr-fail-1 -o=jsonpath='{.status.jobName}{"\n"}'
-jfharden-jr-fail-1
+$ kubectl get jr jfharden-jr-fail-1 -o=jsonpath='{.status.jobName}{"\n"}' -n apps
+jfharden-jr-fail-1-1234abcd
 
-$ kubectl get job jfharden-jr-fail-1 -o yaml
+$ kubectl get job jfharden-jr-fail-1-1234abcd -n apps -o yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -372,7 +361,7 @@ metadata:
     app: govuk-replatform-test-app
     app.kubernetes.io/arch: arm64
     app.kubernetes.io/name: govuk-replatform-test-app
-  name: jfharden-jr-fail-1
+  name: jfharden-jr-fail-1-1234abcd
   namespace: apps
   ownerReferences:
   - apiVersion: platform.publishing.service.gov.uk/v1
@@ -403,7 +392,7 @@ JobRequest](#showing-the-job-that-was-launched-from-a-jobrequest), then you can
 query kubernetes for the logs:
 
 ```shell
-$ kubectl logs job/jfharden-jr-fail-1
+$ kubectl logs job/jfharden-jr-fail-1-1234abcd -n apps
 INFO: with_tmpdir_for_ruby: execing rake with TMPDIR=/tmp/ruby-app-mWGlewoH
 ...SNIP...
 Failed! Exiting process
