@@ -44,6 +44,8 @@ JobRequest Technical Architecture](/kubernetes/job-requests/architecture/)
 * [`govuk-cli` installed](#installing-govuk-cli)
 * [gds-cli installed](/kubernetes/get-started/set-up-tools/#install-gds-cli)
 * kubectl installed and set up to access the cluster you need to run a Job in
+* AWS Credentials in your terminal (i.e. have run
+  `gds aws govuk-<account>-developer -s` first)
 
 ## Important notes and Limitations
 
