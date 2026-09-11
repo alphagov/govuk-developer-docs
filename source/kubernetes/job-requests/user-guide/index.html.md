@@ -13,6 +13,7 @@ layout: multipage_layout
 * [Usage](#usage)
   * [Creating a JobRequest](#creating-a-jobrequest)
   * [Reviewing a JobRequest](#reviewing-a-jobrequest)
+  * [Listing JobRequests](#listing-jobrequests)
 * [Using Kubectl to view JobRequests and JobRequestReviews](#using-kubectl-to-view-jobrequests-and-jobrequestreviews)
   * [Viewing a JobRequest or JobRequestReview](#viewing-a-jobrequest-or-jobrequestreview)
   * [Listing JobRequests or JobRequestReviews](#listing-jobrequests-or-jobrequestreviews)
@@ -68,7 +69,8 @@ JobRequest Technical Architecture](/kubernetes/job-requests/architecture/)
 ## Usage
 
 * [Creating a JobRequest](#creating-a-jobrequest)
-* [Reviewing a JobRequest](reviewing-a-jobrequest)
+* [Reviewing a JobRequest](#reviewing-a-jobrequest)
+* [Listing JobRequests](#listing-jobrequests)
 
 ### Creating a JobRequest
 
@@ -223,6 +225,37 @@ Submit review? [Y/n]: Y
 INFO: with_tmpdir_for_ruby: execing rake with TMPDIR=/tmp/ruby-app-mWGlewoH
 ...SNIP...
 Failed! Exiting process
+```
+
+### Listing JobRequests
+
+View a list of JobRequests with the `list` subcommand.
+
+```shell
+govuk-cli jobrequest list [--mine] [--namespace=<namespace (default apps)>]
+```
+
+By default this will list all JobRequests in the namespace specified (`apps` by default):
+
+```shell
+$ govuk-cli jobrequest list
+┌─────────────────────────────────────────┬──────────┬─────────────────┬─────────────────────┐
+│                  Name                   │  State   │   Created By    │    Created Time     │
+├─────────────────────────────────────────┼──────────┼─────────────────┼─────────────────────┤
+│ jr-frontend-87942889                    │ Complete │ joe.blogs       │ 2026/09/09 10:58:42 │
+│ jr-govuk-replatform-test-app-1842561907 │ Pending  │ jonathan.harden │ 2026/09/10 17:08:46 │
+└─────────────────────────────────────────┴──────────┴─────────────────┴─────────────────────┘
+```
+
+You can also filter to just your own JobRequests with the `--mine` flag:
+
+```shell
+$ govuk-cli jobrequest list --mine
+┌─────────────────────────────────────────┬─────────┬─────────────────┬─────────────────────┐
+│                  Name                   │  State  │   Created By    │    Created Time     │
+├─────────────────────────────────────────┼─────────┼─────────────────┼─────────────────────┤
+│ jr-govuk-replatform-test-app-1842561907 │ Pending │ jonathan.harden │ 2026/09/10 17:08:46 │
+└─────────────────────────────────────────┴─────────┴─────────────────┴─────────────────────┘
 ```
 
 ## Using Kubectl to view JobRequests and JobRequestReviews
