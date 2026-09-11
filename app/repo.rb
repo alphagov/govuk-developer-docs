@@ -8,6 +8,7 @@ class Repo
   def api_payload
     {
       app_name:, # beware renaming the key - it's used here: https://github.com/alphagov/seal/blob/36a897b099943713ea14fa2cfe1abff8b25a83a7/lib/team_builder.rb#L97
+      repo_name:,
       team:,
       alerts_team:,
       shortname:,
