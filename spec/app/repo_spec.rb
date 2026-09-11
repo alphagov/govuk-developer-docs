@@ -48,6 +48,7 @@ RSpec.describe Repo do
         "production_hosted_on" => "aws",
       }
       payload = Repo.new(app_details).api_payload
+      expect(payload[:repo_name]).to eq(app_details["repo_name"])
       expect(payload[:app_name]).to eq(app_details["repo_name"])
       expect(payload[:team]).to eq(app_details["team"])
       expect(payload[:alerts_team]).to eq(app_details["alerts_team"])
