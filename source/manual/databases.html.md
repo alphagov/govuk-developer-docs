@@ -12,7 +12,7 @@ GOV.UK uses mostly PostgreSQL and some MySQL for apps that require a relational 
 
 GOV.UK uses MongoDB or DocumentDB for apps that require a document database. Whilst there are some [big differences between the two](https://www.mongodb.com/atlas-vs-amazon-documentdb), they're broadly compatible, and we tend to use the term "Mongo" to apply to both.
 
-Finally, GOV.UK uses an ElasticSearch database for search.
+Finally, GOV.UK uses an OpenSearch database for search.
 
 ## Hosting
 
@@ -22,7 +22,7 @@ Each Postgres and MySQL database runs in its own RDS instance. Whilst RDS instan
 
 Mongo databases are hosted either in DocumentDB clusters (managed by AWS) or MongoDB clusters (managed by us on self-hosted EC2 instances). On production, there is currently one DocumentDB cluster for Licensify and one 'shared' DocumentDB cluster, each with three instances. There is also one Mongo cluster of three EC2s. We have agreed that [we should move apps from MongoDB to DocumentDB](/repos/govuk-aws/architecture/decisions/0038-mongo_replacement_by_documentdb.html).
 
-ElasticSearch is hosted in [AWS's OpenSearch service](https://eu-west-1.console.aws.amazon.com/esv3/home?region=eu-west-1#opensearch/domains). It has [two types of node](https://github.com/alphagov/govuk-aws/blob/6b5f78824bb14f5f6aaa7f7d269915b7831a13c3/terraform/projects/app-elasticsearch6/main.tf#L186-L193) - "master" and "data" (instance).
+OpenSearch is hosted in [AWS's OpenSearch service](https://eu-west-1.console.aws.amazon.com/aos/home?region=eu-west-1#opensearch/dashboard). It has [two types of node](https://github.com/alphagov/govuk-infrastructure/blob/a4e63cec8ebf07116c2cf4d49165c66601ed37f8/terraform/variables/production/search-opensearch.tfvars#L8-L14) - "master" and "data" (instance).
 
 ## DB admin
 

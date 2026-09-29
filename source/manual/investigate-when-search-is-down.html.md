@@ -17,7 +17,7 @@ This information is currently summarised as a [flow chart][link-2]
 
 ## Identify what exactly is broken
 
-Searches from [search/all][link-5] with a query param are sent to SearchAPI v2, and Discovery Engine. [Without a query param][link-12], requests are sent to SearchAPI (v1), which talks to Elasticsearch. So a quick way to identify which search stack is implicated is to see if searching with or without a query param results in different behaviour.
+Searches from [search/all][link-5] with a query param are sent to SearchAPI v2, and Discovery Engine. [Without a query param][link-12], requests are sent to SearchAPI (v1), which talks to Opensearch. So a quick way to identify which search stack is implicated is to see if searching with or without a query param results in different behaviour.
 
 ### Check the error rates for site search
 

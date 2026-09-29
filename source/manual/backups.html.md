@@ -12,7 +12,7 @@ This document describes the backup policies and strategies for GOV.UK's producti
 > For restore playbooks, see:
 >
 > - [Restore a database in Amazon RDS](howto-backup-and-restore-in-aws-rds.html)
-> - [Restore Elasticsearch indices from snapshots](elasticsearch-dumps.html)
+> - [Restore OpenSearch indices from snapshots](opensearch-dumps.html)
 
 ## Databases in Amazon RDS and DocumentDB
 
@@ -74,14 +74,14 @@ These buckets have:
 - versioning, so that we can restore previous or deleted object versions
 - 120-day timelock on the replica (in governance mode, so that we can still delete an object if, for example, a department publishes private information by mistake)
 
-## Elasticsearch indices in Amazon OpenSearch
+## OpenSearch indices in Amazon OpenSearch
 
 | Strategy | Retention | Recovery point objective (RPO) | Recovery time objective (RTO) |
 | --- | --- | --- | --- |
 | Incremental snapshots | 14 days | 1 hour | 1 working day (best effort) |
 
-GOV.UK does not store any original data in Elasticsearch, but regenerating the full index takes a long time.
+GOV.UK does not store any original data in OpenSearch, but regenerating the full index takes a long time.
 
-The Search feature on GOV.UK no longer uses Elasticsearch, but some other features of the website still rely on Elasticsearch indices for legacy reasons.
+The Search feature on GOV.UK no longer uses OpenSearch, but some other features of the website still rely on OpenSearch indices for legacy reasons.
 
-Amazon OpenSearch Service [takes hourly snapshots](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html#managedomains-snapshot-restore) of Elasticsearch indices as standard. We can [restore Elasticsearch indices from snapshots](elasticsearch-dumps.html) relatively quickly compared to a full reindex.
+Amazon OpenSearch Service [takes hourly snapshots](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html#managedomains-snapshot-restore) of OpenSearch indices as standard. We can [restore OpenSearch indices from snapshots](opensearch-dumps.html) relatively quickly compared to a full reindex.
