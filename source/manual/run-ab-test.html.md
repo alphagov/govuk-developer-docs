@@ -56,4 +56,4 @@ Make sure you monitor your test after deployment.
 [terraform-cloud]: https://app.terraform.io/app/govuk/workspaces/govuk-fastly
 [ab-tests-file]: https://github.com/alphagov/govuk-fastly/blob/main/www/ab_tests.yaml
 [dictionary-config]: https://github.com/alphagov/govuk-fastly/blob/main/dictionaries.yaml
-[register]: https://docs.google.com/spreadsheets/d/1h4vGXzIbhOWwUzourPLIc8WM-iU1b6WYOVDOZxmU1Uo/edit
+[register]: https://beisgov.sharepoint.com/:x:/r/sites/PerformanceAndDACmty/Shared%20Documents/Shared%20files/Performance%20analysis%20work/GOV.UK/Publishing/GOV.UK%20A_B%20test%20register.xlsx?d=wdd09505747fb44469a887911b639cd2c&csf=1&web=1&e=sv38HU

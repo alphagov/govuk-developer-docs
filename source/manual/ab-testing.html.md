@@ -59,6 +59,6 @@ If the original request did not have the `ABTest-Example` cookie, Fastly will se
 - ["A/B testing at the edge" - Fastly blog](https://www.fastly.com/blog/ab-testing-edge)
 - ["Best Practices for Using the Vary Header" - Fastly blog](https://www.fastly.com/blog/best-practices-for-using-the-vary-header)
 
-[ab-test-log]: https://docs.google.com/spreadsheets/d/1h4vGXzIbhOWwUzourPLIc8WM-iU1b6WYOVDOZxmU1Uo/edit#gid=254065189
+[ab-test-log]: https://beisgov.sharepoint.com/:x:/r/sites/PerformanceAndDACmty/Shared%20Documents/Shared%20files/Performance%20analysis%20work/GOV.UK/Publishing/GOV.UK%20A_B%20test%20register.xlsx?d=wdd09505747fb44469a887911b639cd2c&csf=1&web=1&e=sv38HU
 [cdn]: /manual/cdn.html
 [dicts]: https://docs.fastly.com/guides/edge-dictionaries/
