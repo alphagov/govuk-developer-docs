@@ -9,7 +9,7 @@ related_repos: [search-api]
 
 ## `govuk` index
 
-GOV.UK content in [Search API](/repos/search-api.html) is stored in the `govuk` index in Elasticsearch.
+GOV.UK content in [Search API](/repos/search-api.html) is stored in the `govuk` index in OpenSearch.
 This is populated from the [Publishing API message queue][queue]. This can get out of sync with publishing API,
 which affects any part of the site using it, including navigation pages and related links.
 This can happen after [restoring a backup][restore-backups] or [reindexing search][reindex-search].
@@ -36,7 +36,7 @@ updates this index. To update it manually, you can run the [associated rake task
 
 ## Environment syncs
 
-There are cron jobs that [synchronise elasticsearch][sync-job] environments. Staging is synced with production every night, and integration is synced with staging on a Monday morning.
+There are cron jobs that [synchronise OpenSearch][sync-job] environments. Staging is synced with production every night, and integration is synced with staging on a Monday morning.
 These jobs work in sequence to take a snapshot of a higher level environment (e.g. production) and then restore the snapshot in the lower level environment (e.g. staging), before the snapshot for that environment is taken.
 
 If documents that are published or unpublished in production are not reflected in staging after 1 day or in integration after 1 week, that
@@ -55,12 +55,12 @@ may wipe out changes that other developers are testing.
 
 For more information on environment syncs across GOV.UK see https://docs.publishing.service.gov.uk/manual/govuk-env-sync.html
 
-[restore-backups]: /manual/elasticsearch-dumps.html
-[reindex-search]: /manual/reindex-elasticsearch.html
+[restore-backups]: /manual/opensearch-dumps.html
+[reindex-search]: /manual/reindex-opensearch.html
 [queue]: https://github.com/alphagov/search-api/blob/main/docs/new-indexing-process.md
 [popularity-docs]: https://docs.publishing.service.gov.uk/repos/search-api/updating_popularity.html
 [popularity-job]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml#L2972
 [popularity-rake-task]: https://github.com/alphagov/search-api/blob/main/lib/tasks/page_traffic.rake
 [sync-job]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/search-index-env-sync/values.yaml
 [argo]: https://argo.eks.production.govuk.digital/
-[snapshot-docs]: https://www.elastic.co/docs/deploy-manage/tools/snapshot-and-restore
+[snapshot-docs]: https://docs.opensearch.org/latest/tuning-your-cluster/availability-and-recovery/snapshots/snapshot-restore/
