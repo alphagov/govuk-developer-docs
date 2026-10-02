@@ -82,7 +82,7 @@ advice and medical safety alerts. Check whether the message appears there.
    replacing `<CONTENT_ID>` with the one from the previous step.
 
    ```
-   kubectl exec -it deploy/specialist-publisher -- rake 'republish:one[68da7ebffa37f4c83e804885]'
+   govuk jobrequest create deploy/specialist-publisher -- rake 'republish:one[68da7ebffa37f4c83e804885]'
    ```
 
 ## Resend a travel advice alert
@@ -95,7 +95,7 @@ advice and medical safety alerts. Check whether the message appears there.
    travel-advice-publisher. You must run the task interactively in the Rails console, as it includes a confirmation prompt. Select "yes" to proceed.
 
    ```
-   kubectl exec -it deploy/travel-advice-publisher -- rake 'email_alerts:trigger[68da7ebffa37f4c83e804885]'
+   govuk jobrequest create deploy/travel-advice-publisher -- rake 'email_alerts:trigger[68da7ebffa37f4c83e804885]'
    ```
 
 [medical safety alerts]: https://www.gov.uk/drug-device-alerts
