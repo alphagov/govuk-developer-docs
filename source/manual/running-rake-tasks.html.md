@@ -12,7 +12,7 @@ important: true
 To run a [rake](https://ruby.github.io/rake/) task in Kubernetes, create a job request which specifies  the deployment in which to run the task,
 and the task you want to run.
 
-For more on how to use job requets, refer to [the job request user guide]((/kubernetes/job-requests/user-guide/))
+For more on how to use job requests, refer to [the job request user guide](/kubernetes/job-requests/user-guide/)
 
 ## Working with CSVs on Kubernetes
 
