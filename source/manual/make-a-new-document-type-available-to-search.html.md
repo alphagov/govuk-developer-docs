@@ -19,7 +19,7 @@ For the new document type to be indexed, you need to add it to a whitelist.
 ### 1. Decide what fields you want to make available to search
 
 Search API has its own concept of [document type][doc-types], which represents
-the schema used to store documents in Elasticsearch (the search engine).
+the schema used to store documents in OpenSearch (the search engine).
 Normally, you’ll map your document type to an existing Search API document type.
 If in doubt, use "[edition][edition]", as this is used for most documents.
 Then, modify [mapped_document_types.yml][mapped-doc-types] with the mapping
@@ -35,7 +35,7 @@ schema uses different fields to render the text of the page, update the
 [IndexableContentPresenter][i-c-presenter] as well.
 
 The part of Search API that translates between Publishing API fields and search
-fields is [ElasticsearchPresenter][e-s-presenter].
+fields is [OpensearchPresenter][o-s-presenter].
 Modify this if there is anything special you want search to do with your
 documents (for example: appending additional information to the title).
 
@@ -49,7 +49,7 @@ API.
 If your new document uses an existing schema, **this is not necessary**.
 
 Reindex the `govuk` index following the instructions in
-[Reindex an Elasticsearch index][reindex].
+[Reindex an OpenSearch index][reindex].
 
 ### 4. Republish all the documents
 
@@ -66,13 +66,13 @@ You can test that the documents appear in search through the API using a query s
 - [https://www-origin.integration.publishing.service.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide][query-2]
 
 [search-api]: https://github.com/alphagov/search-api
-[doc-types]: https://github.com/alphagov/search-api/blob/main/docs/schemas.md#elasticsearch-document-types
-[edition]: https://github.com/alphagov/search-api/blob/main/config/schema/elasticsearch_types/edition.json
+[doc-types]: https://github.com/alphagov/search-api/blob/main/docs/schemas.md#opensearch-document-types
+[edition]: https://github.com/alphagov/search-api/blob/main/config/schema/opensearch_types/edition.json
 [mapped-doc-types]: https://github.com/alphagov/search-api/blob/main/config/govuk_index/mapped_document_types.yaml
 [i-c-presenter]: https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/indexable_content_presenter.rb
-[e-s-presenter]: https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/elasticsearch_presenter.rb
+[o-s-presenter]: https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/opensearch_presenter.rb
 [allowed-formats]: https://github.com/alphagov/search-api/blob/main/config/govuk_index/allowed_formats.yaml
-[reindex]: reindex-elasticsearch.html
+[reindex]: reindex-opensearch.html
 [task]: https://github.com/alphagov/publishing-api/blob/main/lib/tasks/represent_downstream.rake
 [query-1]: https://www.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide
 [query-2]: https://www-origin.integration.publishing.service.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide

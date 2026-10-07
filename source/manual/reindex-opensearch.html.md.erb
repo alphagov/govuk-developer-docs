@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-search"
-title: "Reindex an Elasticsearch index"
+title: "Reindex an OpenSearch index"
 section: Search on GOV.UK
 layout: manual_layout
 parent: "/manual.html"
@@ -9,8 +9,8 @@ related_repos: [search-api]
 
 ## When to reindex
 
-After updating an Elasticsearch index's schema by [changing the fields or document
-types](add-a-new-field-to-an-elasticsearch-document-type.html),
+After updating an OpenSearch index's schema by [changing the fields or document
+types](add-a-new-field-to-an-opensearch-document-type.html),
 you need to reindex the affected index before the new fields and types can be
 used.
 
@@ -26,25 +26,21 @@ in-place. Updating supertypes can be done during working hours.
 
 ## What the reindexing process does
 
-1. Locks the Elasticsearch index to prevent writes to the index while data is being copied.
+1. Locks the OpenSearch index to prevent writes to the index while data is being copied.
 1. Creates a new index using the schema defined in the deployed version of search-api.
 1. Copies all the data from the old to the new index.
 1. Checks that the task completed successfully.
 1. If everything looks good, switches the [index
-   alias](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html)
+   alias](https://docs.opensearch.org/latest/im-plugin/index-alias/)
    to the new index.
 
-## Reindex an Elasticsearch index
+## Reindex an OpenSearch index
 
 ### 1. Preflight checks
 
 Make sure that you have sufficient space to complete an index migration.
 
-You can check this in:
-
-- The [AWS Opensearch cluster health dashboard](https://eu-west-1.console.aws.amazon.com/aos/home?region=eu-west-1#opensearch/domains/green-elasticsearch6-domain?tabId=clusterHealth).
-- [Total free storage space](https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#metricsV2?graph=~(metrics~(~(~(expression~'FLOOR*28m1*2f1024*29~label~'FreeStorageSpace~id~'e1~region~'eu-west-1~yAxis~'right))~(~'AWS*2fES~'FreeStorageSpace~'DomainName~'green-elasticsearch6-domain~'ClientId~'172025368201~(id~'m1~region~'eu-west-1~visible~false)))~view~'timeSeries~stacked~false~region~'eu-west-1~title~'Total*20free*20storage*20space*20*28GiB*29~period~60~stat~'Sum~yAxis~(left~(showUnits~true~min~0)~right~(min~0))~legend~(position~'hidden)~start~'-PT12H~end~'P0D)) for the cluster in AWS CloudWatch.
-(This link is for the production cluster. For integration/staging you will need to update the client ID.)
+You can check this in [AWS Opensearch cluster health dashboard](https://eu-west-1.console.aws.amazon.com/aos/home?region=eu-west-1#opensearch/domains). Click 'search-domain-<green/blue>' and 'cluster-health'.
 
 If the free storage is below 250GB, check to see if there are any old indices from a previous migration that have not been cleaned up.
 
@@ -59,7 +55,7 @@ eval $(gds aws govuk-production-developer -e --art 8h)
 List the search indices (sorting by index name):
 
 ```sh
-k exec deploy/search-api -- sh -c 'curl -s "$ELASTICSEARCH_URI/_cat/indices?v&s=i"'
+k exec deploy/search-api -- sh -c 'curl -s "$OPENSEARCH_URI/_cat/indices?v&s=i"'
 ```
 
 You should see a table listing the indices. There should be one each of `govuk`, `metasearch` and `page-traffic` (plus others which are not affected by this task).
@@ -98,7 +94,7 @@ To monitor progress, you can check how many documents have been copied to the
 new index:
 
 ```sh
-k exec deploy/search-api -- sh -c 'curl "$ELASTICSEARCH_URI/_cat/indices?v"'
+k exec deploy/search-api -- sh -c 'curl "$OPENSEARCH_URI/_cat/indices?v"'
 ```
 
 ### 3. Clean up
@@ -125,7 +121,7 @@ To update the index, follow the guidance on [fixing out-of-date search indices](
 
 #### Failed to switch to new index
 
-The final part of the reindex is to switch Elasticsearch over to the newly created indexes. We've noticed recently that this isn't always successful.
+The final part of the reindex is to switch OpenSearch over to the newly created indexes. We've noticed recently that this isn't always successful.
 It appears that if content is written to the database while the reindex task is running, the task will fail at the end as it detects a difference in the data.
 
 **Re-running the reindex task usually fixes this.**
@@ -137,13 +133,13 @@ If you need to cancel the reindexing while it's in progress:
 1. Find the ID of the reindexing task:
 
     ```sh
-    k exec deploy/search-api -- sh -c 'curl "$ELASTICSEARCH_URI/_tasks?actions=%2Areindex&pretty"'
+    k exec deploy/search-api -- sh -c 'curl "$OPENSEARCH_URI/_tasks?actions=%2Areindex&pretty"'
     ```
 
 1. Stop the task:
 
     ```
-    k exec deploy/search-api -- sh -c 'curl -XPOST "$ELASTICSEARCH_URI/_tasks/<task_id>/_cancel"'
+    k exec deploy/search-api -- sh -c 'curl -XPOST "$OPENSEARCH_URI/_tasks/<task_id>/_cancel"'
     ```
 
 1. Unlock the old index by running the `search:unlock` Rake task:

@@ -54,13 +54,13 @@ Good example:
 
 > Title: Reboot a machine
 >
-> Subheadings: Redis, MongoDB, Elasticsearch
+> Subheadings: Redis, MongoDB, OpenSearch
 
 Bad example:
 
 > Title: Rebooting machines
 >
-> Subheadings: Rebooting Redis machines, Rebooting MongoDB machines, Rebooting Elasticsearch machines.
+> Subheadings: Rebooting Redis machines, Rebooting MongoDB machines, Rebooting OpenSearch machines.
 
 ## Writing style
 
