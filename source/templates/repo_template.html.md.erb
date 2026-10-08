@@ -51,6 +51,13 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repo
 <%= partial("partials/repo/example_rendered_pages") %>
 <% end %>
 
+<% if repo.rake_tasks.any? %>
+## Rake tasks
+
+See the [<%= pluralize(repo.rake_tasks.count, "rake task") %> for <%= repo.repo_name %>](<%= repo.rake_tasks_path %>), with the commands to run them.
+
+<% end %>
+
 ## README
 
 <%= partial("partials/repo/readme") %>
