@@ -165,7 +165,29 @@ class Repo
     repo_data.fetch("skip_docs", false)
   end
 
+  def skip_rake_tasks?
+    repo_data.fetch("skip_rake_tasks", false)
+  end
+
+  def rake_tasks
+    return [] unless import_rake_tasks?
+
+    @rake_tasks ||= GitHubRepoFetcher.instance.rake_tasks(repo_name) || []
+  end
+
+  def rake_tasks_path
+    "/repos/#{repo_name}/rake-tasks.html"
+  end
+
+  def deployment_name
+    argo_cd_apps.first
+  end
+
 private
+
+  def import_rake_tasks?
+    production_hosted_on_eks? && !private_repo? && !skip_rake_tasks?
+  end
 
   def kibana_url_for(app:, hours: 3, include: %w[level request status message])
     if production_hosted_on_eks?
