@@ -7,6 +7,7 @@
 @import "govuk_publishing_components/components/_summary-list";
 @import "govuk_publishing_components/components/_breadcrumbs";
 @import "govuk_publishing_components/components/_button";
+@import "govuk_publishing_components/components/_details";
 @import "govuk_publishing_components/components/_fieldset";
 @import "govuk_publishing_components/components/_heading";
 @import "govuk_publishing_components/components/_input";
@@ -16,6 +17,11 @@
 
 .gem-c-summary-list {
   border-bottom: 0; /* We have an extra border-bottom for some reason */
+}
+
+// Rake task descriptions are prose, so wrap long lines rather than scroll
+.govuk-details__text pre {
+  white-space: pre-wrap;
 }
 
 .information-callout {

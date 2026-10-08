@@ -1,6 +1,7 @@
 class ProxyPages
   def self.resources
     repo_docs +
+      repo_rake_tasks +
       govuk_schema_names +
       repo_overviews +
       repo_overviews_json +
@@ -34,6 +35,26 @@ class ProxyPages
     end
 
     docs.flatten.compact
+  end
+
+  def self.repo_rake_tasks
+    Repos.active.select { |repo| repo.rake_tasks.any? }.map do |repo|
+      {
+        path: repo.rake_tasks_path,
+        template: "templates/rake_tasks_template.html",
+        frontmatter: {
+          title: "#{repo.repo_name}: Rake tasks",
+          locals: {
+            title: "#{repo.repo_name}: Rake tasks",
+            description: "Rake tasks for #{repo.repo_name}, from the descriptions in its lib/tasks folder",
+            repo:,
+          },
+          data: {
+            source_url: "#{repo.repo_url}/tree/HEAD/lib/tasks",
+          },
+        },
+      }
+    end
   end
 
   def self.govuk_schema_names
