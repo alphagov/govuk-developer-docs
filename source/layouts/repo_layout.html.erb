@@ -6,6 +6,9 @@
     <li>
       <ul>
         <%= partial("partials/repo/sidebar", locals: { items: RepoSidebar.new(repo.repo_name).items }) unless repo.private_repo? %>
+        <% if repo.rake_tasks.any? %>
+          <li><a href="<%= repo.rake_tasks_path %>" rel="noopener" class="govuk-link">Rake tasks</a></li>
+        <% end %>
       </ul>
     </li>
   </ul>
