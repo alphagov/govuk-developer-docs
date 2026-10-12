@@ -17,6 +17,13 @@ insights into GOV.UK traffic.
 
 The same Fastly logs are also available to query [in Splunk](#splunk).
 
+> Before extracting the data from CDN logs, consider whether you have a
+> lawful basis to process and store that data in accordance with the
+> [GOV.UK Privacy Notice](https://www.gov.uk/help/privacy-notice).
+>
+> A performance analyst should be able to help you determine this and decide
+> whether a Data Protection Impact Assessment (DPIA) is required.
+
 ## Access Athena
 
 You can use Amazon Athena to query the CDN logs by writing SQL queries.

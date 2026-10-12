@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-search"
-title: Debug issues in elasticsearch
+title: Debug issues in OpenSearch
 parent: "/manual.html"
 layout: manual_layout
 section: Search on GOV.UK
@@ -15,14 +15,14 @@ switch between the two using the [GOV.UK browser extension](https://github.com/a
 You can compare the data returned with the relevant publishing app or content store to check if it's up
 to date. An empty response means no documents match the given query.
 
-## Check the document is in elasticsearch
+## Check the document is in OpenSearch
 
 If the document is missing from the search API, you can check the search index itself to
-see if it is present and has the expected fields, by sending a request to elasticsearch
+see if it is present and has the expected fields, by sending a request to OpenSearch
 [from a shell][open-a-shell] in `search-api`:
 
 ```
-curl -X GET "$ELASTICSEARCH_URI/govuk/_search?pretty" -H "content-type: application/json" -d "
+curl -X GET "$OPENSEARCH_URI/govuk/_search?pretty" -H "content-type: application/json" -d "
 {
   \"query\": {
     \"match\": {

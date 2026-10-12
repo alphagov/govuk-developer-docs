@@ -160,7 +160,7 @@ Here is an example of finding all requests to the Transition Checker login page 
 
 This has no advantage over using Lucene query syntax in the search bar, which is much simpler: `request:*transition-check\/login* AND status:410`.
 
-However, if you wanted to count the number of unique IP addresses that were served this response, you need an [aggregation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html), which requires the Elasticsearch syntax.
+However, if you wanted to count the number of unique IP addresses that were served this response, you need an [aggregation](https://docs.opensearch.org/latest/aggregations/), which requires the OpenSearch syntax.
 
 Choose "Dev Tools" in the menu on the left, then fill out your JSON search, ensuring that you retain the `GET _search` on line 1.
 You'll probably want to specify your date range in JSON as there is no way to do this through the UI on this screen.

@@ -1,12 +1,12 @@
 ---
 owner_slack: "#govuk-searchandnav"
-title: Elasticsearch cluster health
+title: OpenSearch cluster health
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 ---
 
-Elasticsearch reports cluster health as one of three possible states, based on
+OpenSearch reports cluster health as one of three possible states, based on
 the state of its [primary and replica shards][primary-and-replica-shards].
 
 - `green` - all primary and secondary (replica) shards are allocated. There are
@@ -18,17 +18,17 @@ the state of its [primary and replica shards][primary-and-replica-shards].
   entire cluster is cold started, before it's initially allocated the primary
   shards. If it happens at other times this may be a sign of data loss.
 
-[primary-and-replica-shards]: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/_basic_concepts.html#_shards_amp_replicas
+[primary-and-replica-shards]: https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-health/
 
 More [comprehensive documentation on cluster health][cluster-health-endpoint]
-can be found in the Elasticsearch documentation.
+can be found in the OpenSearch documentation.
 
 Make sure you understand the consequences of the problem before jumping to a
 solution.
 
 Icinga uses the `check_elasticsearch_aws` check from [nagios-plugins][] to
-monitor the health of the AWS managed Elasticsearch cluster. This plugin uses
-various endpoints of the Elasticsearch API, but also extrapolates additional
+monitor the health of the AWS managed OpenSearch cluster. This plugin uses
+various endpoints of the OpenSearch API, but also extrapolates additional
 information to help you diagnose any problems.
 
 [nagios-plugins]: https://github.com/alphagov/nagios-plugins/
@@ -43,13 +43,13 @@ There are tabs for 'Cluster health' and 'Instance health'.  The graphs in the
 console link to AWS Cloudwatch, where historic metrics can be viewed over custom
 time periods.
 
-#### Use the Elasticsearch API
+#### Use the OpenSearch API
 
-An alternative to using the dashboard is accessing the Elasticsearch health API
+An alternative to using the dashboard is accessing the OpenSearch health API
 yourself. Start with the [`/_cluster/health` endpoint][cluster-health-endpoint]
 and go from there.
 
-[cluster-health-endpoint]: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/cluster-health.html
+[cluster-health-endpoint]: https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-health/
 
 Response JSON from the `/_cluster/health` endpoint looks like:
 
@@ -68,14 +68,14 @@ Response JSON from the `/_cluster/health` endpoint looks like:
 }
 ```
 
-A tunnel to Elasticsearch in a specific environment (e.g staging) can be created
+A tunnel to OpenSearch in a specific environment (e.g staging) can be created
 using the following:
 
 ```
-gds govuk connect ssh --environment staging search -- -N -L 9200:elasticsearch6:80
+gds govuk connect ssh --environment staging search -- -N -L 9200:selasticsearch6:80
 ```
 
-Elasticsearch will then be available at <http://localhost:9200>.
+OpenSearch will then be available at <http://localhost:9200>.
 
 #### Logging
 
@@ -85,7 +85,7 @@ Access to logs is detailed in the [logging documentation](/manual/logging.html#e
 
 GOV.UK have a Enterprise level support plan with AWS for staging and
 production. Since we are using a managed service, AWS should be the first point
-of contact for fixing issues with the Elasticsearch cluster.  They can be
+of contact for fixing issues with the OpenSearch cluster.  They can be
 contacted by telephone, live chat or support request.
 
 Response times are:

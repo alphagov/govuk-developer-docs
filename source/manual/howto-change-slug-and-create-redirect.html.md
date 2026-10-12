@@ -86,17 +86,17 @@ kubectl config use-context <your-context-name>
 Then run the appropriate task:
 
 ```bash
-kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:person[OLD_SLUG,NEW_SLUG]'
-kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:role[OLD_SLUG,NEW_SLUG]'
-kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:policy_group[OLD_SLUG,NEW_SLUG]'
-kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:world_location[OLD_SLUG,NEW_SLUG]'
-kubectl exec -n apps deploy/whitehall-admin -- rake 'reslug:statistics_announcement[OLD_SLUG,NEW_SLUG]'
+govuk jobrequest create deploy/whitehall-admin -- rake 'reslug:person[OLD_SLUG,NEW_SLUG]'
+govuk jobrequest create deploy/whitehall-admin -- rake 'reslug:role[OLD_SLUG,NEW_SLUG]'
+govuk jobrequest create deploy/whitehall-admin -- rake 'reslug:policy_group[OLD_SLUG,NEW_SLUG]'
+govuk jobrequest create deploy/whitehall-admin -- rake 'reslug:world_location[OLD_SLUG,NEW_SLUG]'
+govuk jobrequest create deploy/whitehall-admin -- rake 'reslug:statistics_announcement[OLD_SLUG,NEW_SLUG]'
 ```
 
 If the redirect works but the new location returns a 404, the republish may be waiting in a low-priority queue. You can enqueue it at high priority with:
 
 ```bash
-kubectl exec -n apps deploy/publishing-api -- rake 'represent_downstream:high_priority:content_id[CONTENT_ID]'
+govuk jobrequest create deploy/publishing-api -- rake 'represent_downstream:high_priority:content_id[CONTENT_ID]'
 ```
 
 Queue volumes can be checked in Grafana.

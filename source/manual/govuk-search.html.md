@@ -44,7 +44,7 @@ Documentation on how finder frontend queries the two search api applications is 
 
 [search-api-v2][] was built to improve the quality of search results for the majority of GOV.UK users (when compared with search-api) and retains a "minimally compatible" API with search-api. It uses Google Cloud Platform (GCP)'s Agent Search ("Discovery Engine") product as its underlying search engine.
 
-[search-api][] uses an old version of Elasticsearch as its underlying search engine. There is currently no clear roadmap for retiring search-api.
+[search-api][] uses OpenSearch as its underlying search engine. There is currently no clear roadmap for retiring search-api.
 
 ## How content gets into search
 

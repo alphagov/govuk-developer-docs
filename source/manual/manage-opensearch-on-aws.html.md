@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-[AWS OpenSearch] is an open source, distributed search and analytics suite derived from Elasticsearch.
+[AWS OpenSearch] is an open source, distributed search and analytics suite derived from OpenSearch.
 
 ## Access OpenSearch Dashboard
 
