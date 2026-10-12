@@ -12,11 +12,11 @@ GOV.UK frontend applications, with the exception of Licensing and Email Alert Fr
 We configure Varnish to strip cookies for
 [inbound](https://github.com/alphagov/govuk-puppet/blob/a6c51d887a6501f02766b7279127b60f02037a7f/modules/varnish/templates/default.vcl.erb#L83) and [outbound](https://github.com/alphagov/govuk-puppet/blob/a6c51d887a6501f02766b7279127b60f02037a7f/modules/varnish/templates/default.vcl.erb#L119) requests.
 
-This means any features in frontend application relying on sessions/cookies will not work.
+This means any features in frontend applications relying on sessions/cookies will not work.
 
 ## CSRF protection
 
-By default, Rails enforces CSRF protection by adding a hidden `athenticity_token`
+By default, Rails enforces CSRF protection by adding a hidden `authenticity_token`
 to forms. This is verified by Rails on the subsequent POST. In order to
 verify the `authenticity_token`, Rails needs to set and access a session cookie.
 
