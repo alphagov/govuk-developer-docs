@@ -40,13 +40,13 @@ You can create 2 types of secret in AWS Secrets Manager:
 
 1. Select the appropriate secret type, for example __Credentials for Amazon RDS database__.
 
-1. Enter the __Username__ (e.g. `specialist_publisher_mysql_user`) and __Password__ for the database. The password *must* follow [our guidelines](/manual/kubernetes/creating-a-new-database/password.html).
+1. Enter the __Username__ (e.g. `specialist_publisher`) and __Password__ for the database. The password *must* follow [our guidelines](/kubernetes/creating-a-new-database/password.html).
 
 1. Select the database that you want to connect to.
 
 1. Select __Next__.
 
-1. Provide a secret name (e.g. `govuk/specialist-publisher/mysql`)
+1. Provide a secret name (e.g. `govuk/specialist-publisher/mysql` or `govuk/locations-api/postgres`)
 
 1. Select __Next__.
 
