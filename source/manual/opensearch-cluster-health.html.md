@@ -1,9 +1,11 @@
 ---
-owner_slack: "#govuk-searchandnav"
-title: OpenSearch cluster health
-parent: "/manual.html"
+owner_slack: "#govuk-search"
+title: Opensearch cluster health
 layout: manual_layout
-section: Icinga alerts
+parent: "/manual.html"
+section: Search on GOV.UK
+related_repos: [search-api]
+type: learn
 ---
 
 OpenSearch reports cluster health as one of three possible states, based on
@@ -20,22 +22,14 @@ the state of its [primary and replica shards][primary-and-replica-shards].
 
 [primary-and-replica-shards]: https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-health/
 
-More [comprehensive documentation on cluster health][cluster-health-endpoint]
-can be found in the OpenSearch documentation.
-
-Make sure you understand the consequences of the problem before jumping to a
-solution.
-
-Icinga uses the `check_elasticsearch_aws` check from [nagios-plugins][] to
-monitor the health of the AWS managed OpenSearch cluster. This plugin uses
-various endpoints of the OpenSearch API, but also extrapolates additional
-information to help you diagnose any problems.
-
-[nagios-plugins]: https://github.com/alphagov/nagios-plugins/
-
 ### Investigating problems
 
-#### View a live dashboard
+#### Grafana dashboard
+
+Opensearch cluster health metrics are available on the [Search API v1 Grafana dashboard][search-api-v1-dashboard]
+[search-api-v1-dashboard]: https://grafana.eks.production.govuk.digital/goto/sx8shj?orgId=default
+
+#### AWS dashboards
 
 Follow the [instructions to login to the AWS Console UI](/manual/access-aws-console.html).
 
@@ -68,18 +62,11 @@ Response JSON from the `/_cluster/health` endpoint looks like:
 }
 ```
 
-A tunnel to OpenSearch in a specific environment (e.g staging) can be created
-using the following:
+### Access OpenSearch dashboard
 
-```
-gds govuk connect ssh --environment staging search -- -N -L 9200:selasticsearch6:80
-```
+See [Manage OpenSearch on AWS][manage-opensearch-on-aws]
 
-OpenSearch will then be available at <http://localhost:9200>.
-
-#### Logging
-
-Access to logs is detailed in the [logging documentation](/manual/logging.html#elasticsearch).
+[manage-opensearch]: ./manage-opensearch-on-aws.html.md
 
 ### Fixing issues with the cluster
 

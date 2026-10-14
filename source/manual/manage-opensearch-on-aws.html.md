@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-searchandnav"
+owner_slack: "#govuk-search"
 title: Manage OpenSearch on AWS
 section: Infrastructure
 layout: manual_layout
