@@ -16,6 +16,7 @@ gem "middleman-search_engine_sitemap"
 gem "git"
 gem "html-pipeline", "~>2.0" # TODO: remove direct dependency + constraint for html-pipeline once govuk_tech_docs is fixed.
 gem "mdl"
+gem "open3"
 
 gem "govuk_publishing_components"
 gem "govuk_schemas"
