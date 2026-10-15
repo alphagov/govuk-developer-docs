@@ -1,0 +1,27 @@
+---
+layout: repo_layout
+parent: /apps.html
+---
+
+These rake tasks come from the `desc` descriptions in [<%= repo.repo_name %>'s `lib/tasks` folder](<%= repo.repo_url %>/tree/HEAD/lib/tasks).
+To change what's shown here, change the description in the code.
+
+<% repo.rake_tasks.each do |rake_task| %>
+<% summary, more_details = rake_task[:description].split("\n", 2) %>
+
+## <%= rake_task[:name] %>
+
+<p class="govuk-body"><%= ERB::Util.h(summary) %></p>
+
+<%= RunRakeTask.links(repo.deployment_name, rake_task[:command]) %>
+
+<% if more_details.present? %>
+<details class="govuk-details">
+<summary class="govuk-details__summary"><span class="govuk-details__summary-text">More about this task</span></summary>
+<div class="govuk-details__text"><pre><%= ERB::Util.h(more_details.strip) %></pre></div>
+</details>
+<% end %>
+
+[View source](<%= rake_task[:source_url] %>) (`<%= rake_task[:source_path] %>`)
+
+<% end %>

@@ -39,6 +39,58 @@ RSpec.describe Repo do
     end
   end
 
+  describe "skip_rake_tasks?" do
+    it "returns false if 'skip_rake_tasks' is omitted" do
+      expect(Repo.new({}).skip_rake_tasks?).to be(false)
+    end
+
+    it "returns true if 'skip_rake_tasks' is true" do
+      expect(Repo.new({ "skip_rake_tasks" => true }).skip_rake_tasks?).to be(true)
+    end
+  end
+
+  describe "rake_tasks" do
+    let(:eks_app) { { "repo_name" => "some-app", "production_hosted_on" => "eks" } }
+    let(:rake_tasks) { [{ name: "reslug:person" }] }
+
+    it "returns the rake tasks fetched from GitHub for apps hosted on EKS" do
+      allow(GitHubRepoFetcher.instance).to receive(:rake_tasks).with("some-app").and_return(rake_tasks)
+
+      expect(Repo.new(eks_app).rake_tasks).to eq(rake_tasks)
+    end
+
+    it "returns an empty array if GitHub has none" do
+      allow(GitHubRepoFetcher.instance).to receive(:rake_tasks).with("some-app").and_return(nil)
+
+      expect(Repo.new(eks_app).rake_tasks).to eq([])
+    end
+
+    it "doesn't ask GitHub for repos that aren't EKS apps, or are private or skipped" do
+      expect(GitHubRepoFetcher.instance).not_to receive(:rake_tasks)
+
+      expect(Repo.new(eks_app.merge("production_hosted_on" => "gcp")).rake_tasks).to eq([])
+      expect(Repo.new(eks_app.except("production_hosted_on")).rake_tasks).to eq([])
+      expect(Repo.new(eks_app.merge("private_repo" => true)).rake_tasks).to eq([])
+      expect(Repo.new(eks_app.merge("skip_rake_tasks" => true)).rake_tasks).to eq([])
+    end
+  end
+
+  describe "rake_tasks_path" do
+    it "is a page under the repo's own path" do
+      expect(Repo.new({ "repo_name" => "whitehall" }).rake_tasks_path).to eq("/repos/whitehall/rake-tasks.html")
+    end
+  end
+
+  describe "deployment_name" do
+    it "defaults to the repo name" do
+      expect(Repo.new({ "repo_name" => "publishing-api" }).deployment_name).to eq("publishing-api")
+    end
+
+    it "uses the first Argo CD app when the deployment is named differently" do
+      expect(Repo.new({ "repo_name" => "whitehall", "argo_cd_apps" => %w[whitehall-admin] }).deployment_name).to eq("whitehall-admin")
+    end
+  end
+
   describe "api_payload" do
     it "returns a hash of keys describing the app" do
       app_details = {

@@ -46,6 +46,19 @@ class GitHubRepoFetcher
     end
   end
 
+  # Fetch and parse the rake tasks in the repo's 'lib/tasks' folder
+  def rake_tasks(repo_name)
+    return nil if repo(repo_name).private_repo? || repo(repo_name).archived?
+
+    CACHE.fetch("alphagov/#{repo_name} rake tasks", expires_in: LOCAL_CACHE_DURATION) do
+      recursively_list_rake_files(repo_name, "lib/tasks").flat_map do |rake_file|
+        rake_tasks_from(rake_file)
+      end
+    rescue Octokit::NotFound
+      nil
+    end
+  end
+
 private
 
   def all_alphagov_repos
@@ -85,6 +98,30 @@ private
       source_url: doc.html_url,
       latest_commit: latest_commit(repo_name, doc.path),
     }
+  end
+
+  # Works the same way as `recursively_fetch_files`, but collects `.rake`
+  # files and leaves turning them into tasks to `rake_tasks_from`.
+  def recursively_list_rake_files(repo_name, directory_path)
+    directory_entries = client.contents("alphagov/#{repo_name}", path: directory_path)
+    rake_files = directory_entries.select { |entry| entry.path.end_with?(".rake") }
+    subdirectories = directory_entries.select { |entry| entry.type == "dir" }
+    subdirectories.each_with_object(rake_files) do |subdirectory, all_rake_files|
+      all_rake_files.concat(recursively_list_rake_files(repo_name, subdirectory.path))
+    end
+  end
+
+  def rake_tasks_from(rake_file)
+    rake_file_source = HTTP.get(rake_file.download_url).to_s.force_encoding("UTF-8")
+    RakeTaskParser.parse(rake_file_source).map do |rake_task|
+      {
+        name: rake_task.name,
+        command: rake_task.command,
+        description: rake_task.description,
+        source_path: rake_file.path,
+        source_url: "#{rake_file.html_url}#L#{rake_task.line_number}",
+      }
+    end
   end
 
   def client

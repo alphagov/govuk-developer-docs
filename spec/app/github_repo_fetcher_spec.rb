@@ -228,4 +228,65 @@ RSpec.describe GitHubRepoFetcher do
       expect(instance.docs(repo_name)).to eq(nil)
     end
   end
+
+  describe "#rake_tasks" do
+    let(:repo_name) { "some-app" }
+    let(:active_repo) { double("Active repo", private_repo?: false, archived?: false) }
+    let(:archived_repo) { double("Archived repo", private_repo?: false, archived?: true) }
+    let(:client) { double("Octokit::Client") }
+
+    before { stub_cache }
+
+    def fetcher_for(github_repo)
+      fetcher = GitHubRepoFetcher.new
+      allow(fetcher).to receive(:repo).with(repo_name).and_return(github_repo)
+      fetcher.instance_variable_set(:@client, client)
+      fetcher
+    end
+
+    def rake_file(path, contents:)
+      file = double("GitHub file", path:, type: "file", download_url: "https://raw/#{path}", html_url: "https://github.com/alphagov/some-app/blob/main/#{path}")
+      allow(HTTP).to receive(:get).with(file.download_url).and_return(contents)
+      file
+    end
+
+    it "parses every .rake file in lib/tasks, including subfolders" do
+      top_level_file = rake_file("lib/tasks/reslug.rake", contents: "desc 'Reslug'\ntask :reslug")
+      subfolder = double("GitHub folder", path: "lib/tasks/data", type: "dir")
+      readme = double("GitHub file", path: "lib/tasks/README.md", type: "file")
+      nested_file = rake_file("lib/tasks/data/export.rake", contents: "namespace :data do\n  desc 'Export'\n  task :export, %i[date] => :environment\nend")
+      allow(client).to receive(:contents).with("alphagov/some-app", path: "lib/tasks").and_return([top_level_file, subfolder, readme])
+      allow(client).to receive(:contents).with("alphagov/some-app", path: "lib/tasks/data").and_return([nested_file])
+
+      expect(fetcher_for(active_repo).rake_tasks(repo_name)).to eq([
+        {
+          name: "reslug",
+          command: "reslug",
+          description: "Reslug",
+          source_path: "lib/tasks/reslug.rake",
+          source_url: "https://github.com/alphagov/some-app/blob/main/lib/tasks/reslug.rake#L2",
+        },
+        {
+          name: "data:export",
+          command: "data:export[date]",
+          description: "Export",
+          source_path: "lib/tasks/data/export.rake",
+          source_url: "https://github.com/alphagov/some-app/blob/main/lib/tasks/data/export.rake#L3",
+        },
+      ])
+    end
+
+    it "returns nil if the repo has no lib/tasks folder" do
+      allow(client).to receive(:contents).and_raise(Octokit::NotFound)
+
+      expect(fetcher_for(active_repo).rake_tasks(repo_name)).to be_nil
+    end
+
+    it "returns nil without asking GitHub for files if the repo is private or archived" do
+      expect(client).not_to receive(:contents)
+
+      expect(fetcher_for(private_repo).rake_tasks(repo_name)).to be_nil
+      expect(fetcher_for(archived_repo).rake_tasks(repo_name)).to be_nil
+    end
+  end
 end
