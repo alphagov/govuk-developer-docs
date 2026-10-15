@@ -71,6 +71,7 @@ JobRequest Technical Architecture](/kubernetes/job-requests/architecture/)
 * [Creating a JobRequest](#creating-a-jobrequest)
 * [Reviewing a JobRequest](#reviewing-a-jobrequest)
 * [Listing JobRequests](#listing-jobrequests)
+* [Viewing JobRequest Logs](#viewing-jobrequest-logs)
 
 ### Creating a JobRequest
 
@@ -421,19 +422,17 @@ status:
 
 You will need to find the Job name as described in [Showing the Job that was
 launched from a
-JobRequest](#showing-the-job-that-was-launched-from-a-jobrequest), then you can
-query kubernetes for the logs:
+JobRequest](#showing-the-job-that-was-launched-from-a-jobrequest). Then,
 
 ```shell
-$ kubectl logs job/jfharden-jr-fail-1-1234abcd -n apps
-INFO: with_tmpdir_for_ruby: execing rake with TMPDIR=/tmp/ruby-app-mWGlewoH
-...SNIP...
-Failed! Exiting process
+$ govuk-cli jobrequest logs -n apps jfharden-jr-fail-1-1234abcd
 ```
 
-If the logs are no longer available in Kubernetes you will need to look in
-Logit for the Jobs logs (if you run `govuk-cli jobrequest get <jobrequest>` it
-will give you a pre-populated link to the logs in logit).
+If the logs are still in Kubernetes, they will be dumped to your console. Add
+`--follow` (or `-f`) for real-time updates.
+
+If the logs have been purged from the cluster, you will be given a link to
+Logit.
 
 ## Installing govuk-cli
 
