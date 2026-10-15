@@ -154,7 +154,7 @@ This is what happens when a new app version is deployed:
      > ⚠️ Migrations are **not guaranteed to complete before** new containers start — ensure they are [backward-compatible](/manual/deployment.html#make-database-changes-safe)
 
 1. **After sync, the [post-sync workflow](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/post-sync/workflow.yaml) runs:**
-   - Executes [end-to-end smoke tests](https://github.com/alphagov/govuk-e2e-tests)
+   - Executes [end-to-end smoke tests](https://github.com/alphagov/govuk-e2e-tests). Note, not all the tests are run. Only, the relevant tests with tags eg. [test.describe\("Content Block Manager", { tag: \["@app-content-block-manager"\] }, \(\) => {](https://github.com/alphagov/govuk-e2e-tests/blob/29c3853eb4ac60e1fb2a5fd45767b3d3c6acf7a7/tests/content-block-manager.spec.js#L14) that match the [application name in argo](https://github.com/alphagov/govuk-helm-charts/blob/2000a0f1c91f1be7f1c490d79b61ddc3df3d4de3/charts/argo-services/templates/workflows/post-sync/workflow.yaml#L50) are run.
    - If tests pass and `promote_deployment: true` is set:
      - Triggers the `deploy-image` workflow for the **next environment**
      - This continues environment-by-environment (Integration → Staging → Production)
