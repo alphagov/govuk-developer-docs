@@ -431,7 +431,8 @@ $ govuk-cli jobrequest logs -n apps jfharden-jr-fail-1-1234abcd
 If the logs are still in Kubernetes, they will be dumped to your console. Add
 `--follow` (or `-f`) for real-time updates.
 
-If the logs have been purged from the cluster, you will be given a link to Logit. 
+If the logs have been purged from the cluster, you will be given a link to
+Logit.
 
 ## Installing govuk-cli
 
