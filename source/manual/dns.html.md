@@ -58,28 +58,70 @@ The deployment process is the same as for any other Terraform root in the `govuk
 
 ## DNS for the `gov.uk` top level domain
 
-[Jisc](https://www.jisc.ac.uk/) is a non-profit which provides networking to
-UK education and government. They host DNS for the `gov.uk.` zone.
+[Nominet](https://www.nominet.uk/) hosts DNS for the `gov.uk.` zone. The
+`.gov.uk` registry is managed by the Services team at the Government Cyber
+Unit (GCU) at the Department for Digital, Culture, Media and Sport (DCMS).
 
-Requests to modify the DNS records for `gov.uk.` should be sent by
-email to `naming@ja.net` from someone on Jisc's approved contacts
-list. Speak to a member of Senior Tech or someone in the Platform Engineering team if you
-need to make a change and don't have access.
+### Before requesting a DNS change
 
-You should also make sure that the following groups of people are aware before
-requesting any changes:
+Speak to a member of Senior Tech or someone in the Platform Engineering team if
+you need to make a DNS change and are unsure of the process or do not have the
+required access.
+
+Before submitting a request, make sure the following people are aware of the
+proposed change:
 
 - GOV.UK Technical On Call (via Slack)
-- GOV.UK's Head of Tech and the senior tech team
-- The CDDO domains team (#team-domains)
+- GOV.UK's Head of Technology and the Senior Tech team
 
-Note:
+### Requesting a DNS change
+
+Send all requests for changes to the `gov.uk.` DNS to the GCU Services team at
+[support@domains.gov.uk](mailto:support@domains.gov.uk). Make it clear in the
+subject line that you need a DNS change to `.gov.uk`.
+
+Your request should include:
+
+- Timings: when the change is needed and any relevant deadlines or dependencies
+- Zone and record: the DNS zone and record(s) to be changed
+- New values: the exact new DNS values or DNSSEC records needed
+- Outcome: what the change is intended to achieve
+- Verification of success: how successful implementation of the change can be confirmed
+- Risks: any identified risks associated with making the change
+- Fallback plan: what should happen if the change is unsuccessful or needs to be reversed
+
+Providing complete information when you submit the request will help GCU and
+Nominet progress the change as quickly as possible.
+
+### Change control and timescales
+
+DNS changes to the `.gov.uk` registry are subject to an established
+change-control process between GCU and Nominet. This provides appropriate
+assurance before changes are implemented. The GCU Services team aims to
+acknowledge requests within 24 hours.
+
+Changes can take up to 10 working days to complete, as they must pass through
+Nominet's weekly Change Approval Board and be verified out-of-band. Changes may
+take longer if additional information is needed or the request needs to be
+amended.
+
+Submit requests well in advance of any service, certificate or other
+operational deadline. If your change is linked to a fixed deadline, such as a
+TLS certificate renewal, make this clear in the request.
+
+### Out-of-hours changes
+
+GCU does not currently operate an out-of-hours approval service for DNS
+changes. Plan changes far enough in advance to allow for the change-control
+timescales.
+
+### Technical notes
 
 - The domain name `gov.uk.` is an apex domain so it [cannot have a CNAME record](https://tools.ietf.org/html/rfc1912#section-2.4).
   Instead, it has A records that point directly to anycast virtual IP addresses (VIPs) for our CDN provider.
 - `www.gov.uk.` is a CNAME to `www-cdn.production.govuk.service.gov.uk.`, which
-  means we do not need to make a request to Jisc if we want to change CDN
-  providers. We can just change where the CNAME points to.
+  means we do not need to request a change to the `gov.uk.` apex DNS records if
+  we want to change CDN providers. We can just change where the CNAME points to.
 
 ## DNS for non-`gov.uk` domains
 
