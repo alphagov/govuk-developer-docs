@@ -325,6 +325,22 @@ This section will configure your SSH agent to use the Security Key for every con
 
 Make sure the `IdentityFile` property matches the name and path of your private key pointer. The default filename will be `id_ed25519_sk`. This instructs your SSH agent and Git to find and use the correct file.
 
+In order to reduce the number of times you have to enter a pin and touch your yubikey you can configure SSH to use session multiplexing which will keep the ssh connection open to github. If you wish to do this you can create the directory `~/.ssh/controlmasters/`
+
+```
+mkdir ~/.ssh/controlmasters/
+chmod 700 ~/.ssh/controlmasters/
+```
+
+Then add this section to your SSH config (located at `~/.ssh/config`) which will keep the connection open for 10 minutes:
+
+```
+Host github.com
+  ControlPath ~/.ssh/controlmasters/%r@%h:%p
+  ControlMaster auto
+  ControlPersist 10m
+```
+
 ### Configuring Git to use the SSH and Signing Keys
 
 This is where we actually get to use the keys you have just generated. First we will configure authentication (via SSH) and then we will configure the Git client to sign all commits by default.
