@@ -59,6 +59,8 @@ end
 ignore "templates/*"
 
 unless ENV["SKIP_PROXY_PAGES"] == "true"
+  GitHubRepoFetcher.instance.prefetch(Repos.public.uniq(&:repo_name)) if ENV["GITHUB_TOKEN"]
+
   ProxyPages.resources.each do |resource|
     proxy resource[:path], resource[:template], resource[:frontmatter]
   end

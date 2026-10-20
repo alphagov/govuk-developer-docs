@@ -24,7 +24,12 @@ end
 namespace :assets do
   desc "Build the static site"
   task :precompile do
-    sh "rm -rf /tmp/govuk-content-schemas; git clone https://github.com/alphagov/publishing-api.git /tmp/govuk-content-schemas --depth=1 && NO_CONTRACTS=true GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas/content_schemas middleman build --verbose --bail"
+    schemas_path = ENV["GOVUK_CONTENT_SCHEMAS_PATH"]
+    unless schemas_path
+      sh "rm -rf /tmp/govuk-content-schemas; git clone https://github.com/alphagov/publishing-api.git /tmp/govuk-content-schemas --depth=1"
+      schemas_path = "/tmp/govuk-content-schemas/content_schemas"
+    end
+    sh "NO_CONTRACTS=true GOVUK_CONTENT_SCHEMAS_PATH=#{schemas_path} middleman build --verbose --bail"
   end
 end
 

@@ -183,11 +183,11 @@ class Repo
     argo_cd_apps.first
   end
 
-private
-
   def import_rake_tasks?
     production_hosted_on_eks? && !private_repo? && !skip_rake_tasks?
   end
+
+private
 
   def kibana_url_for(app:, hours: 3, include: %w[level request status message])
     if production_hosted_on_eks?
