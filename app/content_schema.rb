@@ -1,5 +1,9 @@
 require "govuk_schemas"
 
+# Parse schemas with the standard library rather than MultiJSON, which
+# json-schema has deprecated support for.
+JSON::Validator.use_multi_json = false
+
 class ContentSchema
   attr_reader :schema_name, :seed
 
