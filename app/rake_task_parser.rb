@@ -95,7 +95,12 @@ class RakeTaskParser
     end
 
     def literal_text(literal)
-      literal.unescaped if literal.is_a?(Prism::StringNode) || literal.is_a?(Prism::SymbolNode)
+      case literal
+      when Prism::StringNode, Prism::SymbolNode
+        literal.unescaped
+      when Prism::InterpolatedStringNode
+        literal.parts.map(&:unescaped).join if literal.parts.all?(Prism::StringNode)
+      end
     end
 
     # Long descriptions are often written over several lines, indented to line

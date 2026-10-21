@@ -37,6 +37,20 @@ RSpec.describe RakeTaskParser do
       expect(described_class.parse(rake_file).map(&:command)).to eq(%w[outer:inner:with_args[foo,bar] outer:without_args])
     end
 
+    it "reads descriptions written as heredocs" do
+      rake_file = <<~'RUBY'
+        desc <<~DESCRIPTION
+          Change the slug of a manual.
+          Example: rake "reslug_manual[old_slug,new_slug]"
+        DESCRIPTION
+        task :reslug_manual, %i[old_slug new_slug] => :environment
+      RUBY
+
+      expect(described_class.parse(rake_file).map(&:description)).to eq([
+        "Change the slug of a manual.\nExample: rake \"reslug_manual[old_slug,new_slug]\"",
+      ])
+    end
+
     it "skips tasks without a plain string description" do
       rake_file = <<~'RUBY'
         task :no_description
