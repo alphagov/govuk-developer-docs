@@ -13,8 +13,36 @@ class GitHubRepoFetcher
   # cache clearing step above.
   LOCAL_CACHE_DURATION = 1.week
 
+  PREFETCH_THREADS = 8
+
   def self.instance
     @instance ||= new
+  end
+
+  # Fetch the README, docs and rake tasks of each repo concurrently, so that
+  # later calls are served from CACHE rather than making HTTP requests one at
+  # a time as pages are built.
+  #
+  # Each thread uses its own fetcher, as Octokit::Client keeps per-request
+  # state (used for pagination) that isn't safe to share between threads.
+  def prefetch(repos, threads: PREFETCH_THREADS)
+    all_alphagov_repos
+
+    queue = Queue.new
+    repos.each { |repo| queue << repo }
+    queue.close
+
+    workers = Array.new(threads) do
+      Thread.new do
+        fetcher = self.class.new
+        while (repo = queue.pop)
+          fetcher.readme(repo.repo_name)
+          fetcher.docs(repo.repo_name)
+          fetcher.rake_tasks(repo.repo_name) if repo.import_rake_tasks?
+        end
+      end
+    end
+    workers.each(&:join)
   end
 
   # Fetch a repo from GitHub

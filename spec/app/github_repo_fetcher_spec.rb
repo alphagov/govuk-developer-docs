@@ -26,6 +26,51 @@ RSpec.describe GitHubRepoFetcher do
     end
   end
 
+  describe "#prefetch" do
+    let(:repos) do
+      [
+        double("Repo", repo_name: "app-one", import_rake_tasks?: true),
+        double("Repo", repo_name: "app-two", import_rake_tasks?: false),
+      ]
+    end
+
+    before :each do
+      stub_cache
+      allow_any_instance_of(GitHubRepoFetcher).to receive(:readme)
+      allow_any_instance_of(GitHubRepoFetcher).to receive(:docs)
+      allow_any_instance_of(GitHubRepoFetcher).to receive(:rake_tasks)
+    end
+
+    it "fetches the README and docs of every repo" do
+      fetched = Queue.new
+      allow_any_instance_of(GitHubRepoFetcher).to receive(:readme) { |_, name| fetched << [:readme, name] }
+      allow_any_instance_of(GitHubRepoFetcher).to receive(:docs) { |_, name| fetched << [:docs, name] }
+
+      GitHubRepoFetcher.new.prefetch(repos, threads: 2)
+
+      expect(Array.new(fetched.size) { fetched.pop }).to contain_exactly(
+        [:readme, "app-one"], [:docs, "app-one"], [:readme, "app-two"], [:docs, "app-two"]
+      )
+    end
+
+    it "only fetches rake tasks for repos that import them" do
+      fetched = Queue.new
+      allow_any_instance_of(GitHubRepoFetcher).to receive(:rake_tasks) { |_, name| fetched << name }
+
+      GitHubRepoFetcher.new.prefetch(repos, threads: 2)
+
+      expect(Array.new(fetched.size) { fetched.pop }).to eq(%w[app-one])
+    end
+
+    it "raises errors from the worker threads" do
+      allow_any_instance_of(GitHubRepoFetcher).to receive(:docs).and_raise(Octokit::ServerError)
+
+      expect {
+        GitHubRepoFetcher.new.prefetch(repos, threads: 1)
+      }.to raise_error(Octokit::ServerError)
+    end
+  end
+
   describe "#repo" do
     it "fetches a repo from cache if it exists" do
       allow(stub_cache).to receive(:fetch).with("all-repos", hash_including(:expires_in)) do
