@@ -14,10 +14,12 @@ We use RDS Backups to give us fully nightly backups and point-in-time recovery (
 
 This documentation will illustrate how to restore a database (DB) instance from a DB Snapshot with AWS CLI.
 
-Before you get started you need to know:
+Before you get started you need to:
 
-* The environment in which you are restoring the database - replace <environment> throughout the scripts
-* The name of the database which needs to be restored - if you are restoring multiple databases, you will need to carry out these steps again for it
+* Have [gotten temporarily admin privilege](/manual/rules-for-getting-production-access.html#production-admin-access)
+  in the environment in which you are restoring the database
+* Know the environment in which you are restoring the database - replace <environment> throughout the scripts
+* Know the name of the database which needs to be restored - if you are restoring multiple databases, you will need to carry out these steps again for it
 
 For more information, read the [AWS documentation on Restoring from a DB Snapshot](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html).
 

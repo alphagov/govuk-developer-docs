@@ -22,6 +22,12 @@ As the majoriy of GOV.UK application databases are synced "top-down" from Produc
 
 # Getting started
 
+## Prerequisite
+
+This guide will require you to use `kubectl exec`. In staging and production, this will require administrative access.
+To get administrative access you will need to [get temporarily elevated privileges](/manual/rules-for-getting-production-access.html#production-admin-access).
+This is not necessary in lower environments, where the `developer` role will suffice.
+
 ## Create a bastion or "jump box" Pod
 
 Before you can interact with MySQL or Postgres, you will need a way to interact with the RDS instance that sits inside the VPC.
@@ -46,7 +52,7 @@ For the purpose of demonstrating the process, we will assume the Database you ar
 
 ## Authenticating to the Postgres terminal with the `aws_db_admin` user
 
-With a valid "fulladmin" AWS role, use `kubectl exec` against the Jumpbox you [created earlier](/manual/create-bastion-pod.html) to start a bash session:
+With a valid "tempadmin" AWS role, use `kubectl exec` against the Jumpbox you [created earlier](/manual/create-bastion-pod.html) to start a bash session:
 
 ```sh
 $ gds aws govuk-some-environment-fulladmin -- kubectl -n apps exec -it postgres-jumpbox -- bash

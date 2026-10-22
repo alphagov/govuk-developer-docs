@@ -7,6 +7,12 @@ layout: multipage_layout
 
 This guide gives you guidance on how to provision a new database for a brand new application. It assumes you have gone through all the steps and prerequisites in the [Create a new Application guidance][create-app]
 
+## Prerequisite
+
+This guide will require you to use `kubectl exec`. In staging and production, this will require administrative access.
+To get administrative access you will need to [get temporarily elevated privileges](/manual/rules-for-getting-production-access.html#production-admin-access).
+This is not necessary in lower environments, where the `developer` role will suffice.
+
 ## 1. Update the TFC configuration variables
 
 In the [govuk-infrastructure repo][govuk-infrastructure] repo, update the  relevant `terraform/variables/ENVIRONMENT/rds.tfvars` file(s) (for example [`terraform/variables/integration/rds.tfvars`][integration tfvars]) with your config. Make sure you do this for every environment you want to deploy to.
@@ -47,7 +53,7 @@ The first step is to [create an AWS managed database secret][Create database sec
 
 Now you have created your secret, you'll need to create the database and user inside your new instance.
 
-First, you'll need to get the `aws_db_admin` password for your database. Acting as `govuk-ENVIRONMENT-fulladmin`, run the following command (where `DATABASE_NAME` is the name of the database instance you created in step 1, e.g. `example_publisher`):
+First, you'll need to get the `aws_db_admin` password for your database. Acting as `govuk-ENVIRONMENT-tempadmin`, run the following command (where `DATABASE_NAME` is the name of the database instance you created in step 1, e.g. `example_publisher`):
 
 ```bash
 aws secretsmanager get-secret-value --secret-id  ENVIRONMENT-rds-admin-passwords | jq '.SecretString' | jq 'fromjson | .DATABASE_NAME'

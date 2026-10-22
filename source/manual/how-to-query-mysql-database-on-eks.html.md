@@ -13,6 +13,12 @@ In order to run the SQL queries and extract files from EKS pods, you would need 
 1. the bash shell from the desired EKS pod in the corresponding environment
 1. MySQL database login credentials from AWS Secrets Manager for the corresponding environment
 
+## Pre-requisites: Temporary admin access
+
+This guide will require you to use `kubectl exec`. In staging and production, this will require administrative access.
+To get administrative access you will need to [get temporarily elevated privileges](/manual/rules-for-getting-production-access.html#production-admin-access).
+This is not necessary in lower environments, where the `developer` role will suffice.
+
 ### Log into an EKS pod bash session
 
 1. Setup Kubernetes and environments according to [the EKS setup guide](https://docs.publishing.service.gov.uk/kubernetes/cheatsheet.html#content)
