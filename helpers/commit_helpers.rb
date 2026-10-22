@@ -33,6 +33,6 @@ private
   end
 
   def local_commit(current_page)
-    Git.open(".").log.path(source_file(current_page)).first
+    Git.open(".").log(1).path(source_file(current_page)).execute.first
   end
 end
