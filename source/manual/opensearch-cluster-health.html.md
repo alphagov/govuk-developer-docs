@@ -66,7 +66,7 @@ Response JSON from the `/_cluster/health` endpoint looks like:
 
 See [Manage OpenSearch on AWS][manage-opensearch-on-aws]
 
-[manage-opensearch]: ./manage-opensearch-on-aws.html.md
+[manage-opensearch-on-aws]: ./manage-opensearch-on-aws.html.md
 
 ### Fixing issues with the cluster
 
