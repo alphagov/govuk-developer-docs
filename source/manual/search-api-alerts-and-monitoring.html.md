@@ -63,9 +63,9 @@ We have the following alerts configured:
 [link-2]: ./kibana.html
 [link-3]: https://grafana.eks.production.govuk.digital/goto/sx8shj?orgId=default
 [link-4]: ./opensearch-cluster-health.html
-[link-5]: https://github.com/alphagov/govuk-helm-charts/blob/3aa66aae4bfb89d503d6127936dca932b341970c/charts/monitoring-config/rules/search_api_alerts.yaml#L4
+[link-5]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L72-L104
 [link-6]: ./opensearch-cluster-health.html#fixing-issues-with-the-cluster
-[link-7]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L37
+[link-7]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L105-L126
 [link-8]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L43-L55
 [link-9]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L56-L68
 [link-10]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-28
