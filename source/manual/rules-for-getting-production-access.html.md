@@ -22,7 +22,7 @@ We have three types of production access:
 2. [Production Admin access](#production-admin-access)
 3. [Platform Engineer access](#platform-engineer-access)
 
-We have a [spreadsheet documenting the full list of permissions for both access levels](https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing).
+We have a [spreadsheet documenting the full list of permissions for both access levels](https://beisgov.sharepoint.com/:x:/r/sites/GOVUKTechnologyCommunity-TechnologyCommunity/Shared%20Documents/Discussions/RFC%20146%20-%20Production%20Deploy%20Access/GOV.UK%20who%20should%20have%20access%20to%20what_.xlsx?d=wc5f27fd284464dd9a1fe41d5d01f0feb&csf=1&web=1&e=S6WAOq).
 
 ### Production Deploy access
 
