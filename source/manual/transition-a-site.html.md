@@ -79,11 +79,11 @@ In order to cleanly switch the domain from the old site, the TTL needs to be low
 
 ### 3) Add the domain to Fastly
 
-Manually trigger `govuk-fastly-bouncer-production` 'Plan and apply' run in [Terraform Cloud UI](https://app.terraform.io/app/govuk/workspaces/govuk-fastly-bouncer-production/runs). Review the plan with changes to `module.bouncer-production.fastly_service_vcl.service` and apply the configuration.
+If the domain currently has no DNS records, then request that the domain's owner point the DNS to us (see next steps), else the domain cannot be added. This is often the case for brand new domains such as AKA domains for previewing a transition.
 
-> A periodic cron job runs to populate the DNS records cached in the Transition app. For newly added domains, the DNS will be empty until the cron job next runs. Due to [this line of code](https://github.com/alphagov/transition/blob/8a532735ce8e61731986fd580a5d6ca1552e095f/app/controllers/hosts_controller.rb#L3C14-L3C49), the domain will not be added to Fastly if there are no cached DNS records. The `transition-import-dns` cron job can be run manually in [the Argo user interface](https://argo.eks.production.govuk.digital/applications/cluster-services/transition).
->
-> If the domain currently has no DNS records (e.g. it is brand new), you should request the domain's owner point the DNS to us (see next step) before running this Terraform project, else the domain will not be added.
+Check that the domain is among the [hosts currently configured in Transition](https://transition.publishing.service.gov.uk/hosts). If not, manually run the `transition-import-dns` cron job in [the Argo user interface](https://argo.eks.production.govuk.digital/applications/cluster-services/transition), or wait for it to be run according to its schedule. Due to [this line of code](https://github.com/alphagov/transition/blob/8a532735ce8e61731986fd580a5d6ca1552e095f/app/controllers/hosts_controller.rb#L3C14-L3C49), the domain will not be added to Fastly if there are no cached DNS records.
+
+Once the domain is among the [hosts currently configured in Transition](https://transition.publishing.service.gov.uk/hosts), manually trigger `govuk-fastly-bouncer-production` 'Plan and apply' run in [Terraform Cloud UI](https://app.terraform.io/app/govuk/workspaces/govuk-fastly-bouncer-production/runs). Review the plan with changes to `module.bouncer-production.fastly_service_vcl.service` and apply the configuration.
 
 ### 4) Obtain a TLS certificate
 
