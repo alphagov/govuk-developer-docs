@@ -11,6 +11,23 @@ RSpec.describe ExternalDoc do
       expect(described_class.parse(markdown).to_s).to eq(expected_html)
     end
 
+    it "renders backslash-escaped characters as plain text" do
+      markdown = "an app/flows/\\_flow.rb file and a \\* footnote"
+      expected_html = "<p>an app/flows/_flow.rb file and a * footnote</p>"
+      expect(described_class.parse(markdown).to_s).to eq(expected_html)
+    end
+
+    it "does not convert emoji shortcodes" do
+      markdown = ":information_source: Some information"
+      expected_html = "<p>:information_source: Some information</p>"
+      expect(described_class.parse(markdown).to_s).to eq(expected_html)
+    end
+
+    it "omits raw HTML" do
+      markdown = "<script>alert('hi')</script>\n\nSome text"
+      expect(described_class.parse(markdown).to_s).not_to include("<script>")
+    end
+
     it "forces encoding to UTF-8 " do
       markdown = String.new(
         "These curly quotes “make commonmarker throw an exception”",
