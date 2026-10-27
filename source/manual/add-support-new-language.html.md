@@ -36,7 +36,7 @@ Check if the new language is already supported by the Rails framework by looking
 
 [rails locale folder]: https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale
 [govuk-app-config Readme]: https://github.com/alphagov/govuk_app_config?tab=readme-ov-file#internationalisation
-[template csv file]: https://docs.google.com/spreadsheets/d/12lhWVXz30l3c8WTakK_EIxJLUBoLJO80lekvq-treww/edit?usp=sharing
+[template csv file]: https://beisgov.sharepoint.com/:x:/r/sites/GOVUKWeb/Shared%20Documents/General/Navigation/2023-2026%20Navigation%20work/Ongoing%20-%20Translations/Rails%20translations/Rails%20translations%20template.xlsx?d=wdad5a0e7a4034b23a81870686d2f9c70&csf=1&web=1&e=mmqB31
 
 Once translations have been obtained from the translators, publishing and rendering applications can be updated via the following steps:
 

@@ -7,7 +7,7 @@ section: GitHub
 type: learn
 ---
 
-GOV.UK uses GitHub for version control, code deployments, authentication, CI, Dependabot and GitHub Pages. Read the "[GOV.UK reliance on GitHub features doc](https://docs.google.com/document/d/1KsYWCHSQZEwqB2NF1A7Z9rmP1s1azcZhEamaPsXAoxk/edit)" Google doc for more information.
+GOV.UK uses GitHub for version control, code deployments, authentication, CI, Dependabot and GitHub Pages. Read the "[GOV.UK reliance on GitHub features doc](https://beisgov.sharepoint.com/:w:/r/sites/GOVUKPE/Shared%20Documents/Archives/OLD%20Platform%20Security%20%26%20Reliability/Disaster%20Recovery%20resilience%20and%20security/GOV.UK%20reliance%20on%20GitHub%20features.docx?d=w6092ff322f7e44e88ba58dec6ab91eee&csf=1&web=1&e=aPTBgV)" for more information.
 
 You must follow [these instructions when creating and configuring a new GOV.UK repository](/manual/github-new-repo).
 

@@ -21,4 +21,4 @@ The feedback app has in-app rate limiting provided by the Rack::Attack gem and u
 
 ## Further reading
 
-* Tech Fornightly Presentation [Rate Limiting in the Feedback App](https://docs.google.com/presentation/d/14TUCoc6mxf9z5eR0hvrU9LFd-Cr6zNu4E-5gXVll-U8/htmlpresent) (GDS only)
+* Tech Fortnightly Presentation [Rate Limiting in the Feedback App](https://beisgov.sharepoint.com/:p:/r/sites/GOVUKTechnologyCommunity-TechnologyCommunity/Shared%20Documents/Tech%20Fortnightly%20Talks/Tech%20fortnightly%20talk%20-%20Rate%20Limiting%20in%20the%20Feedback%20App.pptx?d=w2f8aa8eccba549ae8631ac9a3a027b55&csf=1&web=1&e=x0rWIP) (GDS only)

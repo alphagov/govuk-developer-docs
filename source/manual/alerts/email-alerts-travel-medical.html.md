@@ -106,7 +106,7 @@ advice and medical safety alerts. Check whether the message appears there.
 [email statistics rake task]: https://github.com/alphagov/email-alert-api/blob/main/docs/alert_check_scheduled_jobs.md#support-tasks
 [Sidekiq dashboard]: https://grafana.eks.production.govuk.digital/d/sidekiq-queues/?var-namespace=apps&var-app=email-alert-api-worker&from=now-24h&to=now
 [email-alert-api dashboard]: https://grafana.eks.production.govuk.digital/d/app-requests/?var-namespace=apps&var-app=email-alert-api&var-error_status=All&from=now-24h&to=now
-[checkbox-incident]: https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#
+[checkbox-incident]: https://beisgov.sharepoint.com/:w:/r/sites/GOVUKTSAndEsc/Shared%20Documents/General/2nd%20line%20and%20incident%20management/Incident%20management/GOV.UK%20Incident%20Reports/2020/2020-11/2020-11-05%20-%20Medical%20safety%20alert%20emails%20not%20sent%20-%20P3.docx?d=wbb23b6815685422c906fbd8cd32de79a&csf=1&web=1&e=HHuemE
 [Sentry]: https://sentry.io/organizations/govuk/issues/?project=202220&statsPeriod=12h
 [email-alert-api-alert-listener]: https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-alert-listener
 [Travel Advice Publisher]: http://travel-advice-publisher.integration.publishing.service.gov.uk/admin

@@ -287,10 +287,7 @@ are lost.
 
 ## GDS-wide usage of Sentry
 
-Sentry is used by several programmes in GDS, not just GOV.UK. A report,
-[GDS use of Sentry.io](https://docs.google.com/document/d/1yVa9iiu-DayGy-MtlrdXeV0E09CsetUenZJCmusLfLg/edit),
-covers this in more detail, including documenting some of the limitations of the
-setup.
+[Sentry is used by several programmes in GDS](https://engineering-enablement.gds-reliability.engineering/tools/sentry/), not just GOV.UK.
 
 ## Retention period
 
