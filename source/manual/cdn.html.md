@@ -104,7 +104,7 @@ If we are experiencing an attack, and this is providing insufficient mitigation 
 
 Sign in to Fastly and check for [DDOS events](https://manage.fastly.com/security/ddos/protection/events). There should be more information about any attack there.
 
-If you need to raise a support ticket with Fastly, use the contact details on the ["So you're having an incident" document](https://docs.google.com/document/d/1ty12B5eBWB9YSfnD9xY1mr5rtTQxdNxRdmEGgibilN0).
+If you need to raise a support ticket with Fastly, use the contact details on the ["So you're having an incident" document](https://beisgov.sharepoint.com/:w:/r/sites/GOVUKTSAndEsc/Shared%20Documents/General/2nd%20line%20and%20incident%20management/Incident%20management/GOV.UK%C2%A0%E2%80%94%20So,%20you%27re%20having%20an%20incident.docx?d=wf5db53774fc845f5bd08ce6e7f7c09af&csf=1&web=1&e=NZ4LCc).
 
 You may want to consider adjusting the other [Web Application Firewalls](/manual/web_application_firewall_rules.html) we use. Further CDN traffic management options are below.
 

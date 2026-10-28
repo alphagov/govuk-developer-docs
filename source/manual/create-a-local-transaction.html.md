@@ -236,7 +236,7 @@ One thing to note is that [ESD](#electronic-service-delivery-esd) has deprecated
 
 For service details such as: `name`, `description` and `slug` - you must get a content designer to create them. It is highly unlikely that the details from [ESD](#electronic-service-delivery-esd) will work and the `slug` will be used for the URL of the service on GOV.UK.
 
-For unavailability elements such as `title` and `body` standard text is available [here](https://docs.google.com/document/d/1V1oP9O25IAudOsM168sYbsOegZfRZgPAJvdVrRxoEyY/edit#).
+For unavailability elements such as `title` and `body` standard text is available [here](https://beisgov.sharepoint.com/:w:/r/sites/GOVUKTeams/Shared%20Documents/General/Coronavirus/C19%20Products/Local%20Lookups/Enable%20publishers%20to%20control%20DA%20content/Standard%20content%20for%20all%20local%20lookups%20.docx?d=w396e035a367349b68c2af3745ea4b583&csf=1&web=1&e=4rSrbP).
 
 ### Providing tier
 
