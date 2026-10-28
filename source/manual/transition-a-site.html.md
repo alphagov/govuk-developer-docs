@@ -102,12 +102,6 @@ If the domain is [administered by GDS](https://github.com/alphagov/govuk-dns-tf/
 
 If the domain is administered by the requester, you must send them the new DNS details and ask them to update the DNS records.
 
-## Further reading
-
-> The documents below may contain outdated information.
-
-The transition checklist covers the whole process of transitioning a site from the technical side. There’s a [full version for complex sites](https://docs.google.com/document/d/1SiBwYtV_d_D9pPcqzpqvRWs0kscUtB7yqxN8Ub_uRSA/edit) and a [slightly simplified one](https://docs.google.com/document/d/1gIJBUuPaZqtYsrgwqMBSrU4lpr2e93tuhQcgylnSHb4/edit) - we probably only need the simpler one for upcoming transitions.
-
 [Transition]: /repos/transition.html
 [Bouncer]: /repos/bouncer.html
 [request a Fastly TLS certificate]: /manual/request-fastly-tls-certificate.html
