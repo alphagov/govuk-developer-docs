@@ -42,6 +42,8 @@ If the problem appears to be with Site search, is the problem with SearchAPI v2 
 
 Check for unexpected errors in Sentry and Kibana that might help identify issues. See [GOV.UK Site search alerts and monitoring](./search-alerts-and-monitoring.html) for an overview of the alerting in place.
 
+In the event of a major issue with Search API v2 or Discovery Engine it is possible to [force all traffic to Search API (v1) via a feature flag in Finder Frontend][link-16].
+
 ### Types of alerts
 
 #### Degradation of service alerts
@@ -83,3 +85,4 @@ Recent changes to these files, or a failure of the user event data import would 
 [link-13]: https://github.com/alphagov/govuk-infrastructure/blob/1fa78b9fabcc3cdbfd419e0964a7bec45089bcd3/terraform/deployments/search-api-v2/serving_config_global_default.tf#L8-L14
 [link-14]: https://github.com/alphagov/search-api-v2/blob/d820f02b1bd94a5f34eb44ca67b536b85e630f96/app/services/discovery_engine/query/news_recency_boost.rb#L8
 [link-15]: https://github.com/alphagov/search-api-v2/blob/d820f02b1bd94a5f34eb44ca67b536b85e630f96/lib/tasks/user_events.rake
+[link-16]: https://docs.publishing.service.gov.uk/repos/finder-frontend/search-apis.html#using-v1-as-a-backup-in-case-of-v2-issues
