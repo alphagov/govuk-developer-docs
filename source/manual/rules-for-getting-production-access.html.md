@@ -86,11 +86,11 @@ A new starter/engineer will be expected to work through the following checklist 
 - The incident management process. E.g. by reading through the [So, you're having an incident](/manual/incident-what-to-do) doc and completing the [incident preparedness quizzes](https://drive.google.com/drive/folders/1X9eGQMIl9ifb3X2jYcdjqrt01P9JYJzR).
 - Best practices around the principle of least privilege, how to safely debug production issues, and how to work with credentials and accounts. E.g. by pairing with another developer to practise a drill on your product team.
 
-### Temporary Production Admin access
+### Temporary Production and Staging admin access
 
-Temporary Production Admin access is a special set of access permissions that are granted to a user on a time-expiring temporary basis, peer-approved and requestable for up to 25 hours at a time. It is used to provide access to production infrastructure in a controlled and secure manner, without giving permanent and unchecked access to the user.
+Temporary production and staging admin access is a special set of access permissions that are granted to a user on a time-expiring temporary basis, peer-approved and requestable for up to 25 hours at a time. It is used to provide access to production infrastructure in a controlled and secure manner, without giving permanent and unchecked access to the user.
 
-Access is granted by creating a Pull Request that adds a record to [config/temporary_admin.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/temporary_admin.yml) in `alphagov/govuk-user-reviewer`, like so:
+Access is granted by creating a Pull Request that adds a record to [config/production_temporary_admin.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/production_temporary_admin.yml) or [config/staging_temporary_admin.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/staging_temporary_admin.yml) in `alphagov/govuk-user-reviewer`, like so:
 
 ```yaml
 - name: Developer McDeveloperface
@@ -101,10 +101,10 @@ Access is granted by creating a Pull Request that adds a record to [config/tempo
 
 Note that the `expires_at` date must be in the format of [the W3C implementation of ISO 8601](https://www.w3.org/TR/NOTE-datetime), the upshot of which is that for the timezone the only acceptable formats are `Z` or `+hh:mm` or `-hh:mm`.
 
-You'll need to find another Engineer who's a member of the [GOV.UK Production Admin GitHub Team](https://github.com/orgs/alphagov/teams/gov-uk-production-admin) to approve your Pull Request, as govuk-user-reviewer is not actively monitored. If you're on-call, you will probably need to ask the other on-call person.
+You'll need to find another engineer who's a member of the [GOV.UK Production Admin GitHub Team](https://github.com/orgs/alphagov/teams/gov-uk-production-admin) to approve your Pull Request, as `govuk-user-reviewer` is not actively monitored. If you're on-call, you will probably need to ask the other on-call person.
 If you are not able to find an approver, in an emergency you can contact Dan or James ([contact details](https://beisgov.sharepoint.com/:x:/r/sites/Govukldrship/Shared%20Documents/Escalations/GOV.UK%20SMT%20Escalations%20rota.xlsx?d=w8d88e79cf47c4d48a1daf8cbeeb61ac9&csf=1&web=1&e=ThTsT9)).
 
-Once the PR has been approved and merged, the user will be granted Temporary Production Admin access for the specified period of time via the GDS CLI by assuming the `govuk-production-tempadmin` IAM role.
+Once the PR has been approved and merged, the user will be granted temporary production admin access for the specified period of time via the GDS CLI by assuming the `govuk-production-tempadmin` or `gds-staging-tempadmin` IAM roles.
 
 ### Platform Engineer access
 

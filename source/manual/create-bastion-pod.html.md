@@ -15,6 +15,11 @@ This documentation explains how to create, use and destroy a bastion or "jump bo
 3. Use `kubectl exec` to enter the pod container and use the MySQL or Postgres CLI clients as necessary
 4. Use `kubectl delete` to tear down the bastion pod
 
+# Prerequisite
+
+This guide requires you to use `kubectl exec`. To do this in staging or production, you need to [get temporarily elevated admin access](/manual/rules-for-getting-production-access.html#production-admin-access)
+and use the `tempadmin` role. In lower environments this is not necessary, and the `developer` role will suffice.
+
 # Create the bastion or "jump box" pod defintion
 
 Depending on the database engine, you will need to use a different image - select the correct pod definition template...
@@ -87,7 +92,7 @@ Once you've saved the pod defnition file locally, you will want to apply it to t
 you will need either `platformengineer` or `fulladmin` roles to do this:
 
 ```sh
-$ gds aws govuk-some-environment-fulladmin -- kubectl -n apps apply -f mysql-jumpbox.yaml # or postgres-jumpbox.yaml
+$ gds aws govuk-some-environment-tempadmin -- kubectl -n apps apply -f mysql-jumpbox.yaml # or postgres-jumpbox.yaml
 ```
 
 # Connect to the bastion
@@ -95,7 +100,7 @@ $ gds aws govuk-some-environment-fulladmin -- kubectl -n apps apply -f mysql-jum
 Assuming the pod definition was applied correctly, you can now enter the Bastion:
 
 ```sh
-$ gds aws govuk-some-environment-fulladmin -- kubectl -n apps exec -it mysql-jumpbox -- bash # or postgres-jumpbox
+$ gds aws govuk-some-environment-tempadmin -- kubectl -n apps exec -it mysql-jumpbox -- bash # or postgres-jumpbox
 ```
 
 You should now have a bash prompt inside the container:
@@ -109,5 +114,5 @@ I have no name!@mysql-jumpbox:/$
 Once you finish with the bastion pod, you should delete it:
 
 ```sh
-$ gds aws govuk-some-environment-fulladmin -- kubectl -n apps delete -f mysql-jumpbox.yaml # or postgres-jumpbox.yaml
+$ gds aws govuk-some-environment-tempadmin -- kubectl -n apps delete -f mysql-jumpbox.yaml # or postgres-jumpbox.yaml
 ```

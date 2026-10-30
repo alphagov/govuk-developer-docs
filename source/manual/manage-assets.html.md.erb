@@ -110,6 +110,9 @@ best to simply perform the upload directly in production.
 > If the pod terminates at any point during this process (e.g. a deployment occurs),
 > you will need to start again as the `/tmp` directory is specific to the pod.
 
+> `kubectl exec` requires admin privilege in staging and production. You will need to [get temporarily elevated access](/manual/rules-for-getting-production-access.html#production-admin-access).
+> This is not necessary in integration.
+
 1. Get the name of an asset-manager app pod.
 
     ```sh
