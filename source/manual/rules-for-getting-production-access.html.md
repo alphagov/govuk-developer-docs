@@ -90,7 +90,7 @@ A new starter/engineer will be expected to work through the following checklist 
 
 Temporary Production Admin access is a special set of access permissions that are granted to a user on a time-expiring temporary basis, peer-approved and requestable for up to 25 hours at a time. It is used to provide access to production infrastructure in a controlled and secure manner, without giving permanent and unchecked access to the user.
 
-Access is granted by creating a Pull Request that adds a record to [config/temporary_admin.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/temporary_admin.yml) in `alphagov/govuk-user-reviewer`, like so:
+Access is granted by creating a Pull Request that adds a record to [config/production_temporary_admin.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/production_temporary_admin.yml) in `alphagov/govuk-user-reviewer`, like so:
 
 ```yaml
 - name: Developer McDeveloperface
