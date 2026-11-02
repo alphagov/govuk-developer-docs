@@ -40,6 +40,12 @@ The way the updates work:
 
 The files are stored in S3, along with the rest of our uploaded assets.
 
+## Prerequisite
+
+This guide will require you to use `kubectl exec`. In staging and production, this will require administrative access.
+To get administrative access you will need to [get temporarily elevated privileges](/manual/rules-for-getting-production-access.html#production-admin-access).
+This is not necessary in lower environments, where the `developer` role will suffice.
+
 ## The process for uploading new versions of the app
 
 The manifest file version vXX is given as an example. You should confirm the

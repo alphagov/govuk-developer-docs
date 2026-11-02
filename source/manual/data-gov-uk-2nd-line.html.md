@@ -88,7 +88,11 @@ Traffic for data.gov.uk is recorded using Google Analytics. If a user requests a
 
 You can log into [CKAN][dgu-ckan] using a shared account. The credentials are available in [Secrets Manager](secrets-manager.html) under `2ndline/datagovuk/ckan`.
 
-For commands not available via the user interface you need to `kubectl exec` into a CKAN pod. Further instructions and sample commands are in the relevant section below.
+For commands not available via the user interface you need to `kubectl exec` into a CKAN pod. To do this in staging or
+production you will need to [get temporarily elevated admin access](/manual/rules-for-getting-production-access.html#production-admin-access).
+For lower environemnts, the `dguengineer` role will suffice.
+
+Further instructions and sample commands are in the relevant section below.
 
 ## Users and publishing organisations
 

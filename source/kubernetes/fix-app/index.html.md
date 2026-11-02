@@ -24,12 +24,6 @@ Almost all GOV.UK apps are configured through environment variables. These envir
 
 For example, the [`values-integration.yaml` file](https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-integration.yaml) contains the environment variables for the integration environment.
 
-To check you have set up your app's environment variables correctly, run the following in the command line:
-
-```sh
-kubectl -n apps exec deploy/<APPNAME> -c app -- env
-```
-
 To change a plain text environment variable, edit the value in the `values-<ENVIRONMENT>.yaml` file.
 
 To change a Kubernetes secret, see the [Add secrets to your app documentation](/kubernetes/manage-app/manage-secrets).
@@ -39,6 +33,12 @@ When you change a Kubernetes secret, run the following in the command line to re
 ```sh
 kubectl -n apps rollout restart deploy/<APPNAME>
 ```
+
+When debugging an environment variable, you should avoid getting shell access to the container and running `env` or any
+other command that would print the potentially sensitive values to `stdout`. The contents of `stdout` are captured as log
+lines and ingested in our log storage system.
+
+If you do it, let the Platform Engineering team know as soon as you can, and they can delete the offending log lines.
 
 ## Allocating more resources to an app
 
@@ -89,6 +89,9 @@ To get logs for your apps, follow the [viewing app logs documentation](/kubernet
 ### Creating a shell inside a running container
 
 If you cannot diagnose an issue by looking at the app logs, you can create a shell to run commands inside a running app container.
+
+This is an action with a high level of privilege. To do it in staging or production, you will need to [get temporarily elevated admin access](/manual/rules-for-getting-production-access.html#production-admin-access).
+In lower environments, non-admin users are permitted.
 
 Run the following in the command line:
 
