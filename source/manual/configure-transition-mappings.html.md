@@ -13,14 +13,14 @@ Sometimes the requester will want to specify redirects for specific paths, e.g. 
 
 If the department want to preview how their redirects will appear after transitioning they will need to set up AKA domains.
 
-They will need one new CNAME DNS entry for each domain/subdomain they wish to preview according to the following pattern:
+Each domain/subdomain they wish to preview must have a single DNS record added as a CNAME to: `bouncer-cdn.production.govuk.service.gov.uk`.
 
-- www.domain.gov.uk → aka.domain.gov.uk
-- sub.domain.gov.uk → aka-sub.domain.gov.uk
+The CNAME DNS entries must follow a naming convention, otherwise the [logic](https://github.com/alphagov/transition/blob/fb8818dacbd7b1f07e94050db3daa9f32ce9186e/app/models/host.rb#L49-L57) in the transition app won't recognise them.
+
+- To preview a domain that begins with `www.`, replace the `www.` with `aka.`. For example, to preview www.domain.gov.uk, create a CNAME DNS entry for aka.domain.gov.uk.
+- To preview any other domain, prefix it with `aka-`. For example, to preview sub.domain.gov.uk, create a CNAME DNS entry for aka-sub.domain.gov.uk.
 
 There are lots of examples of these in [hosts currently configured in Transition](https://transition.publishing.service.gov.uk/hosts).
-
-These AKA domains should have a single DNS record added as a CNAME to: `bouncer-cdn.production.govuk.service.gov.uk`.
 
 Once the DNS on the AKA domains have been updated, the "Add the domain to Fastly" and "Obtain a TLS certificate" steps of the [main transition guidance](/manual/configure-transition-mappings.html) will need to be run again, but specifically for the AKA domains.
 
