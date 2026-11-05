@@ -420,19 +420,17 @@ status:
 
 ### Viewing the logs for the Job that was launched from a JobRequest
 
-You will need to find the Job name as described in [Showing the Job that was
-launched from a
-JobRequest](#showing-the-job-that-was-launched-from-a-jobrequest). Then,
+You can use the logs subcommand which will print the logs directly if they
+are still in Kubernetes.
+
+Whether Kubernetes still has the logs or not, it will also print a link to Logit
+which will show you the logs for your Job.
 
 ```shell
-$ govuk-cli jobrequest logs -n apps jfharden-jr-fail-1-1234abcd
+govuk-cli jobrequest logs -n apps jfharden-jr-fail-1-1234abcd
 ```
 
-If the logs are still in Kubernetes, they will be dumped to your console. Add
-`--follow` (or `-f`) for real-time updates.
-
-If the logs have been purged from the cluster, you will be given a link to
-Logit.
+You can add `--follow` (or `-f`) for real-time updates if the Job is still running.
 
 ## Installing govuk-cli
 
