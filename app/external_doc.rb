@@ -1,3 +1,4 @@
+require "commonmarker"
 require "html/pipeline"
 require "uri"
 require_relative "./string_to_id"
@@ -25,7 +26,7 @@ class ExternalDoc
       URI.join(context[:image_base_url], File.join(".", File.dirname(path), "/"))
 
     filters = [
-      HTML::Pipeline::MarkdownFilter,
+      MarkdownFilter,
       HTML::Pipeline::AbsoluteSourceFilter,
       PrimaryHeadingFilter,
       HeadingFilter,
@@ -45,6 +46,35 @@ class ExternalDoc
     return nil unless markdown_title
 
     markdown_title[1].strip
+  end
+
+  # Converts Markdown to HTML. This replaces HTML::Pipeline::MarkdownFilter,
+  # which only supports the CommonMarker 0.x API - and those versions of
+  # commonmarker don't support Ruby 4.
+  class MarkdownFilter < HTML::Pipeline::TextFilter
+    def call
+      Commonmarker.to_html(
+        @text.delete("\r"),
+        options: {
+          render: {
+            hardbreaks: context[:gfm] != false,
+            github_pre_lang: true,
+            unsafe: false,
+            escaped_char_spans: false,
+          },
+          extension: {
+            table: true,
+            strikethrough: true,
+            tagfilter: true,
+            autolink: true,
+            tasklist: false,
+            header_ids: nil,
+            shortcodes: false,
+          },
+        },
+        plugins: { syntax_highlighter: nil },
+      ).rstrip
+    end
   end
 
   # When we import external documentation it can contain relative links to
