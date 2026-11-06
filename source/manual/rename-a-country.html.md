@@ -95,7 +95,7 @@ In [Whitehall](https://github.com/alphagov/whitehall):
 
 > **Note**
 >
-> `smart-answers` validates country names against the production worldwide API, which is managed by `whitehall`.  So do this *after* deploying the Whitehall change.
+> `smart-answers` [validates country names against the production worldwide API](https://github.com/alphagov/smart-answers/blob/6a1d414bb8a301b2802f8f8b0cc2f69f66e3bf09/app/models/world_location.rb#L16-L26), which is managed by `whitehall`.  So do this *after* deploying the Whitehall change.
 
 This will update content from pages served by `smart-answers` such as:
 
