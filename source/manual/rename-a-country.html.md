@@ -129,13 +129,7 @@ Each subscriber list also has a "slug", which appears in the query params of the
 2. Run the rake task `data_migration:update_subscriber_list_slug[slug,new_slug]`
   to update the subscription lists
 
-### 6. Remove duplicate search results
-
-In [Whitehall](https://github.com/alphagov/whitehall) run `SearchIndexDeleteWorker.perform_async(link, index)`
-
-For example `SearchIndexDeleteWorker.perform_async('/world/micronesia/news', 'government')`
-
-### 7. Update Specialist Publisher
+### 6. Update Specialist Publisher
 
 1. Create and deploy pull requests for schemas in publishing api ([example](https://github.com/alphagov/publishing-api/pull/2712)) and Specialist Publisher ([example](https://github.com/alphagov/specialist-publisher/pull/2592)) to support both countries temporarily (during the data migration).
 
