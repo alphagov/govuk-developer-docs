@@ -38,7 +38,11 @@ Refinement of these alerts (to make sure they are comprehensively covering relev
 
 We monitor and alert on Opensearch health. We have the following alerts configured:
 
-- [SearchApiClusterStatus][link-5] triggers if the status is [unavailable, yellow or red][link-4]. See [Fixing issues with the cluster][link-6]
+- [SearchApiOpensearchClusterStatusRed][link-5] (__Critical__) cluster status is RED for 5 minutes
+
+- [SearchApiOpensearchClusterStatusUnkUnav][link-16] (__Critical__) cluster status is UNKNOWN or UNAVAILABLE for 5 minutes
+
+- [SearchApiOpensearchClusterStatusYellow][link-17] (__Warning__) cluster status is YELLOW for 30 minutes
 
 - [SearchApiOpensearchDiskSpaceLow][link-7] (__Warning__) disk space has dropped below 30% for 15 minutes
 
@@ -46,7 +50,7 @@ We monitor and alert on Opensearch health. We have the following alerts configur
 
 #### Possible causes and steps to take in the event of an alert being triggered
 
-See [Opensearch Cluster Health][link-4] for steps to take in the event that an SearchApiOpensearchClusterStatus alert fires.
+Check the [Opensearch cluster status panel on the GOV.UK Search API V1 grafana dashboard][link-18] to see the cluster status history. See [Opensearch Cluster Health][link-4] for steps to take in the event that an SearchApiOpensearchClusterStatus alert fires.
 
 If a disk space alert fires then we are running out of EBS storage.
 
@@ -77,7 +81,7 @@ The [GOV.UK Search API v1 Grafana dashboard][link-3] visualizes core metrics for
 [link-2]: ./kibana.html
 [link-3]: https://grafana.eks.production.govuk.digital/goto/sx8shj?orgId=default
 [link-4]: ./opensearch-cluster-health.html
-[link-5]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L72-L104
+[link-5]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L86-L100
 [link-6]: ./opensearch-cluster-health.html#fixing-issues-with-the-cluster
 [link-7]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L105-L119
 [link-8]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L43-L55
@@ -88,3 +92,6 @@ The [GOV.UK Search API v1 Grafana dashboard][link-3] visualizes core metrics for
 [link-13]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L120-L134
 [link-14]: https://grafana.eks.production.govuk.digital/goto/stnd2f?orgId=default
 [link-15]: https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/variables/production/search-opensearch.tfvars#L23
+[link-16]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L72-L85
+[link-17]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L101-L116
+[link-18]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?from=now-24h&to=now&timezone=browser&var-client_error_status=$__all&var-server_error_status=$__all&dtab=Users-get-search-results-quickly&viewPanel=panel-28
