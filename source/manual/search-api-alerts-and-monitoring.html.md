@@ -10,22 +10,6 @@ type: learn
 
 As described in [GOV.UK Search: How it works][link-0] there are two search stacks on GOV.UK. This page includes information on the monitoring and alerting for Search API and its Opensearch cluster.
 
-## Monitoring and alerting tools
-
-### Sentry
-
-[Sentry][link-1] is set up to track application errors from Search API.
-
-All environments are configured for Slack notifications. Production alerts are routed to #govuk-search-alerts, while alerts for other environments are sent to #govuk-search-alerts-nonprod.
-
-### Kibana
-
-[Kibana][link-2] can be used to query application logs as per all other GOV.UK apps.
-
-### Grafana
-
-The [GOV.UK Search API v1 Grafana dashboard][link-3] visualizes core metrics for Search API and Finder Frontend.
-
 ## Alert types and how to handle them
 
 ### Search API success rate and latency alerts
@@ -57,6 +41,22 @@ We have the following alerts configured:
 - [SearchApiClusterStatus][link-5] triggers if the status is [unavailable, yellow or red][link-4]. See [Fixing issues with the cluster][link-6]
 
 - [SearchApiElasticsearchDiskSpace][link-7] triggers if disk space drops below 30% (warning level) or 10% (critical level). Consider increasing storage capacity if this alert fires.
+
+## Monitoring and alerting tools
+
+### Sentry
+
+[Sentry][link-1] is set up to track application errors from Search API.
+
+All environments are configured for Slack notifications. Production alerts are routed to #govuk-search-alerts, while alerts for other environments are sent to #govuk-search-alerts-nonprod.
+
+### Kibana
+
+[Kibana][link-2] can be used to query application logs as per all other GOV.UK apps.
+
+### Grafana
+
+The [GOV.UK Search API v1 Grafana dashboard][link-3] visualizes core metrics for Search API and Finder Frontend.
 
 [link-0]: ./govuk-search.html
 [link-1]: https://govuk.sentry.io/insights/projects/app-search-api/?project=202224
