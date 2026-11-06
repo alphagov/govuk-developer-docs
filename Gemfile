@@ -14,7 +14,7 @@ gem "middleman"
 gem "middleman-search_engine_sitemap"
 
 gem "git"
-gem "html-pipeline", "~>2.0" # TODO: remove direct dependency + constraint for html-pipeline once govuk_tech_docs is fixed.
+gem "html-pipeline", "~>3.2" # TODO: remove direct dependency + constraint for html-pipeline once govuk_tech_docs is fixed.
 gem "mdl"
 
 gem "govuk_publishing_components"
