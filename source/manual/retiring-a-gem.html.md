@@ -10,7 +10,7 @@ parent: "/manual.html"
 
 Search for references to the gem in our codebase to see if any apps are still using it:
 
-[example](https://github.com/search?q=org%3Aalphagov+rack-logstasher+filename%3AGemfile+filename%3A*.gemspec&type=Code&ref=advsearch&l=&l=)
+[example](https://github.com/search?q=org%3Aalphagov+govuk_content_item_loader+path%3A%2F%28Gemfile%7C.gemspec%29%2F&type=code&ref=advsearch)
 
 For any repos which are found to have the gem as a dependency, you should confirm that the gem _is_ actually being used and that it's not simply a leftover artefact that is no longer in use.
 Check the usage instructions in the gem's README and then search for the corresponding code in the repo (e.g. `use Rack::Logstasher::Logger`). Alternatively, find the commits where the gem was added and used, and see if the corresponding code that uses the gem still exists.
