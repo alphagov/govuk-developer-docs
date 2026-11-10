@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+> Also check the general guidance on [retiring repos](/manual/retiring-a-repo.html).
+
 ## 1. Ensure the gem is not used by any apps
 
 Search for dependents of the gem in our codebases.
