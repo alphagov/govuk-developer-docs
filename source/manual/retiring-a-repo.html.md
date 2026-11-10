@@ -6,6 +6,10 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+> If you're retiring an app or a gem, also check the dedicated guidance:
+> - [Retire an application](/manual/retiring-an-application.html)
+> - [Retire a gem](/manual/retiring-a-gem.html)
+
 ## 1. Update the README
 
 Add a note to the top of the README explaining that the repo has been retired and, if applicable, what has replaced it.

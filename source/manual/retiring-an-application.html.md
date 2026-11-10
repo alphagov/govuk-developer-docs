@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+> Also check the general guidance on [retiring repos](/manual/retiring-a-repo.html).
+
 ## 0. Unpublish documents
 
 If you're retiring a publishing application, all the documents published by this application must be unpublished via Publishing API.
