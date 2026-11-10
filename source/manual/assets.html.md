@@ -98,7 +98,7 @@ sequenceDiagram
 </code>
 </pre>
 
-The network flow for the [draft stack](/manual/content-preview.html). is identical except the request goes to [authenticating proxy](https://github.com/alphagov/authenticating-proxy/) then to [draft router](https://github.com/alphagov/router#draft-stack).
+The network flow for the [draft stack](/manual/content-preview.html) is identical except the request bypasses Fastly and goes to [authenticating proxy](https://github.com/alphagov/authenticating-proxy/) then to [draft router](https://github.com/alphagov/router#draft-stack).
 
 ### File size limit
 
