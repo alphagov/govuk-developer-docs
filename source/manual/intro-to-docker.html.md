@@ -29,20 +29,24 @@ Before you start, make sure you:
 
 ```shell
 $mac docker --version
-Docker version 18.09.2, build 6247962
+Docker version <version number>, build <build>
 ```
+
+The [Docker Engine release notes](https://docs.docker.com/engine/release-notes/) list the latest version number.
 
 ### Images and containers
 
 * Run from the root of the [content-publisher] project:
 
 ```shell
-$mac docker run -it ruby:2.6.3 bash
+$mac docker run -it ruby:2.7.2 bash
 ```
 
-`ruby:2.6.3` is the "image" that we specify. Using object oriented programming as an analogy, an image is like a "class". When we "instantiate" an instance of a class, these are called "containers".
+`ruby:2.7.2` is the "image" that we specify. Using object oriented programming as an analogy, an image is like a "class". When we "instantiate" an instance of a class, these are called "containers".
 
-The `ruby:2.6.3` image we are using is a debian system with Ruby pre-installed. Images are downloaded from the [Docker Registry][docker-registry]. The `bash` argument at the end will execute this inside the container, which means we get a bash shell.
+The `ruby:2.7.2` image we are using is a debian system with Ruby pre-installed. Images are downloaded from the [Docker Registry][docker-registry]. The `bash` argument at the end will execute this inside the container, which means we get a bash shell.
+
+You can leave the shell by typing `exit`.
 
 What are the flags?
 
@@ -59,7 +63,7 @@ $mac docker run --help
 * Mount your current directory as a volume to the container by running:
 
 ```shell
-$mac docker run -it -v $(pwd):/app ruby:2.6.3 bash
+$mac docker run -it -v $(pwd):/app ruby:2.7.2 bash
 ```
 
 This will map your current directory (the root of the [content-publisher] project) to `/app` inside of the container. So now the files on your `$mac` for [content-publisher] are now also available inside of the container.
@@ -71,7 +75,7 @@ $dev cd /app
 $dev bundle install
 ```
 
-> Note: you may need to use a different image (e.g. `ruby:2.6.5`) depending on the version specified in [`.ruby-version`][content-publisher-ruby] in [content-publisher].
+> Note: you may need to use a different image (e.g. `ruby:2.7.2`) depending on the version specified in [`.ruby-version`][content-publisher-ruby] in [content-publisher].
 >
 > Note: this may take a while, so feel free to stop it by pressing Ctrl+c as the next step will show why it doesn't matter at this point.
 
@@ -94,7 +98,7 @@ $mac docker volume create content-publisher-bundle
 * Run docker with that volume by using the `-v` flag and passing it the name of the volume:
 
 ```shell
-$mac docker run -it -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle ruby:2.6.3 bash
+$mac docker run -it -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle ruby:2.7.2 bash
 ```
 
 * Then install the gems again:
@@ -116,7 +120,7 @@ $dev bundle exec rake
 
 We get an error: “could not find javascript runtime” - we need Node installed on our container. We can try to install Node here, but this won't persist and we'll have the same problem that we had above with installing gems.
 
-Unlike gems, our install of Node won't need to change in the foreseeable future. It would be nice if our `ruby:2.6.3` image had it as well. We can't change the `ruby:2.6.3` image, but we can create our own image based off it.
+Unlike gems, our install of Node won't need to change in the foreseeable future. It would be nice if our `ruby:2.7.2` image had it as well. We can't change the `ruby:2.7.2` image, but we can create our own image based off it.
 
 ### Create ruby + node image
 
@@ -133,7 +137,7 @@ Create a Dockerfile in the content-publisher project:
 * Create a `Dockerfile` in the root of the [content-publisher] project:
 
 ```docker
-FROM ruby:2.6.3
+FROM ruby:2.7.2
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -200,7 +204,15 @@ Docker containers are quick to start and it's possible for them to talk to each 
 * In another terminal, run the following to start a new container based on the `postgres` image:
 
 ```shell
-$mac docker run -it postgres
+$mac docker run -e POSTGRES_PASSWORD=password -it postgres
+```
+
+Before it starts Postgres will check if a password is set. If do not supply a password `docker run` will print an error and fail to start the container. Postgres can set this password with an environment variable. We can supply this to docker with the `-e` flag.
+
+```shell
+$mac docker run --help
+...
+-e, --env list                       Set environment variables
 ```
 
 * Now to see what containers you have, in another terminal run:
@@ -210,10 +222,11 @@ $mac docker ps
 
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
 a7b87be3e1bc        postgres            "docker-entrypoint.s…"   21 minutes ago      Up 21 minutes       5432/tcp            jovial_matsumoto
-...
 ```
 
-This shows us that `a7b87be3e1bc` or "jovial_matsumoto" is up and running. We can "inspect" the configuration of the container and get its IP, which we can use in the content-publisher container.
+When containers spin up they are assigned an ID, in this case `a7b87be3e1bc`. Containers also have name. If you do not supply one it will default to a random one, in this case `jovial_matsumoto`.
+
+We can see from running `docker ps` that `a7b87be3e1bc` or "jovial_matsumoto" is up and running. We can "inspect" the configuration of the container and get its IP, which we can use in the content-publisher container.
 
 * Find the ID for the postgres container, and with it run:
 
