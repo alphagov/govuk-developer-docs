@@ -21,7 +21,7 @@ infrastructure and should be phased out now that we're on Kubernetes, as contain
 ephemeral.
 
 Running rake tasks that require a CSV is not supported in job requests. The correct workaround is to [get temporarily
-elevated privileges](/manual/rules-for-getting-production-access.html#temporary-production-admin-access) and
+elevated privileges](/manual/rules-for-getting-production-access.html#temporary-production-and-staging-admin-access) and
 use `kubectl exec` to upload the file and then run the task.
 
 It is not possible to use the job request system to run the job once the file is uploaded because jobs are not run in

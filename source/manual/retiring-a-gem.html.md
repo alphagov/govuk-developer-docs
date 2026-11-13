@@ -6,11 +6,13 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+> Also check the general guidance on [retiring repos](/manual/retiring-a-repo.html).
+
 ## 1. Ensure the gem is not used by any apps
 
-Search for references to the gem in our codebase to see if any apps are still using it:
+Search for dependents of the gem in our codebases.
 
-[example](https://github.com/search?q=org%3Aalphagov+rack-logstasher+filename%3AGemfile+filename%3A*.gemspec&type=Code&ref=advsearch&l=&l=)
+[Example](https://github.com/search?q=org%3Aalphagov+govuk_content_item_loader+path%3A%2F%28Gemfile%7C.gemspec%29%2F&type=code&ref=advsearch)
 
 For any repos which are found to have the gem as a dependency, you should confirm that the gem _is_ actually being used and that it's not simply a leftover artefact that is no longer in use.
 Check the usage instructions in the gem's README and then search for the corresponding code in the repo (e.g. `use Rack::Logstasher::Logger`). Alternatively, find the commits where the gem was added and used, and see if the corresponding code that uses the gem still exists.
@@ -33,10 +35,11 @@ Follow the ['Archiving repositories'](https://github.com/alphagov/govuk-infrastr
 
 ## 4. Remove references and update docs
 
-Do a [code search on GitHub](https://github.com/search?q=org%3Aalphagov+panopticon&type=Code) to find any references to the gem
-and update or remove them.
+Remove the repo's entry from [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml).
 
-Mark the gem as `retired` in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs).
+Search for any other references to the gem in our codebases and update or remove them.
+
+[Example](https://github.com/search?q=org%3Aalphagov+panopticon&type=Code)
 
 ## 5. Yank the gem (optional)
 

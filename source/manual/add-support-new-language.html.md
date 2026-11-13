@@ -49,7 +49,7 @@ Whitehall content is rendered by Frontend.
 [Example PR](https://github.com/alphagov/frontend/pull/4971)
 
 1. Add the new language tag to `config/application.rb` and `config/locales/en.yml` in alphabetical order
-2. From within Frontend, create a folder `tmp/locale_file`
+2. From within Frontend, create a folder `tmp/locale_csv`
 3. Add your csv from the translator to this folder. The name of the csv should be in the format: `<new_locale>.csv`, eg `ky.csv`
 4. Run the following commands to import your csv, and create a new locale file.
 
