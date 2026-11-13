@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "activesupport"
+gem "commonmarker" # Used directly by ExternalDoc::MarkdownFilter.
 gem "csv"
 gem "dotenv"
 gem "ffi"
