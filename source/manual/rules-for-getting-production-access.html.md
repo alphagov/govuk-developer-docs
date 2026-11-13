@@ -57,7 +57,7 @@ Note that a technologist apprentice is limited to Production Deploy access. Howe
 
 ### Production Admin access
 
-Despite its name, this type of production access no longer grants `fulladmin` AWS access to the Production environment. See [Temporary Production Admin access](#temporary-production-admin-access) for instructions on how to obtain `fulladmin` access to Production.
+Despite its name, this type of production access no longer grants `fulladmin` AWS access to the Production environment. See [Temporary Production and Staging Admin access](#temporary-production-and-staging-admin-access) for instructions on how to obtain `fulladmin` access to Production.
 
 This role gives:
 
