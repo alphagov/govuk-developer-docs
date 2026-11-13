@@ -52,9 +52,7 @@ We monitor and alert on Opensearch health. We have the following alerts configur
 
 #### Possible causes and steps to take in the event of an alert being triggered
 
-Check the [Opensearch cluster status panel on the GOV.UK Search API V1 grafana dashboard][link-18] to see the cluster status history. See [Opensearch Cluster Health][link-4] for steps to take in the event that an SearchApiOpensearchClusterStatus alert fires.
-
-See [Opensearch Cluster Health][link-4] for steps to take in the event that an SearchApiOpensearchClusterStatus alert fires.
+Check the [Opensearch cluster status panel on the GOV.UK Search API V1 grafana dashboard][link-18] to see the cluster status history. See [Opensearch Cluster Health][link-6] for steps to take in the event that an SearchApiOpensearchClusterStatus alert fires.
 
 If a disk space alert fires then we are running out of EBS storage.
 
