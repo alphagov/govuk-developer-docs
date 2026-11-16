@@ -20,6 +20,17 @@ the state of its [primary and replica shards][primary-and-replica-shards].
   entire cluster is cold started, before it's initially allocated the primary
   shards. If it happens at other times this may be a sign of data loss.
 
+If the cluster is unresponsive to health checks OpenSearch may report one of the
+following statuses:
+
+- `unknown` - the cluster is currently being created, updating its configuration,
+  or the management platform is unable to retrieve its health state from the nodes.
+- `unavailable` - all or one or more cluster nodes are completely unreachable,
+  offline, or unresponsive to health checks. Unlike standard OpenSearch cluster
+  health colors (`green`, `yellow`, or `red`), an `unavailable` infrastructure
+  status means the underlying virtual machines, containers, or cloud service
+  instances are not running or cannot be reached over the network.
+
 [primary-and-replica-shards]: https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-health/
 
 ### Investigating problems
