@@ -22,11 +22,67 @@ These assets are served from `https://www.gov.uk/assets` with a path associated
 with the application that is serving them. For example files within
 `https://www.gov.uk/assets/frontend` are assets for the
 [Frontend](/repos/frontend.html) application. These files
-are cached by [the GOV.UK content delivery network](cdn.html).
+are cached by [Fastly](cdn.html).
 
-These assets are served by the cache machines, these will proxy requests to
-the application based on the path. For example `/assets/frontend/`
-will proxy asset requests to Frontend
+Asset files are stored in an S3 bucket (e.g. `govuk-app-assets-production` in
+production) with object prefixes (e.g. `/assets/frontend`) for each application.
+
+### Network flow for static assets
+
+1. User makes a request for `https://www.gov.uk/assets/frontend/govuk_publishing_components/vendor/example.js` which hits Fastly
+2. Fastly on a cache miss makes a request to the `govuk-app-assets-production` S3 bucket for `https://govuk-app-assets-production.s3.eu-west-1.amazonaws.com/assets/frontend/example.js`
+3. The `govuk-app-assets-production` S3 bucket retrieves `assets/frontend/example.js` and returns it back to Fastly which caches it
+8. Fastly returns the `assets/frontend/example.js` asset back to the user
+
+<pre lang="mermaid">
+
+<code>
+sequenceDiagram
+    actor User
+    participant Fastly
+    participant S3
+
+    User->>Fastly:
+    activate Fastly
+    Fastly->>S3:
+    S3-->>Fastly:
+    Fastly-->>User:
+    deactivate Fastly
+
+</code>
+</pre>
+
+### Network flow for static assets on the draft stack
+
+1. User makes a request for `https://draft-origin.publishing.service.gov.uk/assets/frontend/example.js` which hits authenticating-proxy
+2. authenticating-proxy proxies the request to draft-Router's nginx which hits the location `/assets` directive
+3. draft-Router proxies the request to the `govuk-app-assets-production` S3 bucket for `https://govuk-app-assets-production.s3.eu-west-1.amazonaws.com/assets/frontend/example.js`
+3. The `govuk-app-assets-production` S3 bucket retrieves `assets/frontend/example.js` and returns it back to draft-Router's nginx
+4. draft-Router's nginx returns the `assets/frontend/example.js` asset back to authenticating-proxy
+5. authenticating-proxy returns the `assets/frontend/example.js` asset back to the user
+
+<pre lang="mermaid">
+
+<code>
+sequenceDiagram
+    actor User
+    participant proxy as authenticating proxy
+    participant Router as draft-Router nginx
+    participant S3
+
+    User->>proxy:
+    activate proxy
+    proxy->>Router:
+    activate Router
+    Router->>S3:
+    S3-->>Router:
+    deactivate Router
+    Router-->>proxy:
+    deactivate proxy
+    proxy-->>User:
+
+</code>
+</pre>
 
 ## Uploaded assets
 
