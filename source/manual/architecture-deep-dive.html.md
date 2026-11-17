@@ -180,6 +180,10 @@ to handle the request.
 
 ## What happens when someone hits 'Publish'?
 
+### Routing
+
+Publishing apps (e.g. whitehall admin) don't use Router nor Fastly.
+
 ### Draft and live stacks
 
 Everything you've just read about in the first section exists in two stacks:

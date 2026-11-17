@@ -89,9 +89,9 @@ sequenceDiagram
 Publishing apps (e.g. whitehall-admin) don't use Router nor Fastly so their static assets are served from their nginx instance proxying to S3 for both the live and draft stacks.
 
 1. User makes a request for `https://whitehall-admin.publishing.service.gov.uk/assets/whitehall/admin/example.js` which hits whitehall-admin's nginx location `/assets` directive
-2. whitehall-admin's nginx makes a request to the `govuk-app-assets-production` S3 bucket for `https://govuk-app-assets-production.s3.eu-west-1.amazonaws.com/assets/frontend/example.js`
-3. The `govuk-app-assets-production` S3 bucket retrieves `assets/frontend/example.js` and returns it back to whitehall-admin's nginx
-8. whitehall-admin's nginx returns the `assets/frontend/example.js` asset back to the user
+2. whitehall-admin's nginx makes a request to the `govuk-app-assets-production` S3 bucket for `https://govuk-app-assets-production.s3.eu-west-1.amazonaws.com/assets/whitehall/example.js`
+3. The `govuk-app-assets-production` S3 bucket retrieves `assets/whitehall/example.js` and returns it back to whitehall-admin's nginx
+8. whitehall-admin's nginx returns the `assets/whitehall/example.js` asset back to the user
 
 <pre lang="mermaid">
 
