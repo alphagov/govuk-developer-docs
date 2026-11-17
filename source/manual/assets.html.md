@@ -22,7 +22,7 @@ These assets are served from `https://www.gov.uk/assets` with a path associated
 with the application that is serving them. For example files within
 `https://www.gov.uk/assets/frontend` are assets for the
 [Frontend](/repos/frontend.html) application. These files
-are cached by [Fastly](cdn.html).
+are cached by [Fastly](https://github.com/alphagov/govuk-fastly/blob/main/www/www.vcl.tftpl).
 
 Asset files are stored in an S3 bucket (e.g. `govuk-app-assets-production` in
 production) with object prefixes (e.g. `/assets/frontend`) for each application.
@@ -84,12 +84,40 @@ sequenceDiagram
 </code>
 </pre>
 
+### Network flow for static assets served by publishing apps
+
+Publishing apps (e.g. whitehall-admin) don't use Router nor Fastly so their static assets are served from their nginx instance proxying to S3 for both the live and draft stacks.
+
+1. User makes a request for `https://whitehall-admin.publishing.service.gov.uk/assets/whitehall/admin/example.js` which hits whitehall-admin's nginx location `/assets` directive
+2. whitehall-admin's nginx makes a request to the `govuk-app-assets-production` S3 bucket for `https://govuk-app-assets-production.s3.eu-west-1.amazonaws.com/assets/frontend/example.js`
+3. The `govuk-app-assets-production` S3 bucket retrieves `assets/frontend/example.js` and returns it back to whitehall-admin's nginx
+8. whitehall-admin's nginx returns the `assets/frontend/example.js` asset back to the user
+
+<pre lang="mermaid">
+
+<code>
+sequenceDiagram
+    actor User
+    participant nginx as whitehall-admin nginx
+    participant S3
+
+    User->>nginx:
+    activate nginx
+    nginx->>S3:
+    S3-->>nginx:
+    nginx-->>User:
+    deactivate nginx
+
+</code>
+</pre>
+
 ## Uploaded assets
 
 [Asset Manager](/repos/asset-manager.html) is an API that is called internally
 by [GOV.UK publishing applications](/#publishing-apps) to manage
 their uploads. It serves the uploaded assets on
-`assets.publishing.service.gov.uk`.
+`assets.publishing.service.gov.uk`. These files
+are cached by [Fastly](https://github.com/alphagov/govuk-fastly/blob/main/assets/assets.vcl.tftpl).
 
 ### How uploaded assets are stored and served
 
@@ -124,7 +152,7 @@ Retrieving an uploaded asset involves requests between asset-manager's [nginx pr
 sequenceDiagram
     actor User
     participant Fastly
-    participant nginx
+    participant nginx as asset-manager nginx
     participant asset-manager
     participant S3
 
