@@ -104,29 +104,9 @@ designers make bulk changes to documents and users.
 
 ### Bulk changing users
 
-There is a Rake task in Signon to change the organisation that a user belongs
-to in bulk. **However**, it may be necessary to leave the old users around so they
-can still edit content for the old organisation (in which case you can bulk invite
-new users [using the interface in Signon][signon-batch-invitations]).
-
-The rake task for changing the organisation the user belongs to is:
-
-[`data_hygiene:bulk_update_organisation[csv_file]`][signon-bulk-update-organisation].
-
-It accepts a CSV file which should have at least the following columns (in any
-order):
-
-| Column Header | Description |
-| --- | --- |
-| `Old email` | The old email address of the user. |
-| `New email` | The new email address of the user. |
-| `New organisation` | The slug of the new organisations for the user. |
-
-We should phase out CSV-reliant rake tasks now that we're on Kubernetes.
-In the meantime, follow the [working with CSVs on Kubernetes][running-csv-rake-tasks] instructions.
-
-[signon-bulk-update-organisation]: https://github.com/alphagov/signon/blob/256ede9caa6061fd68b1daffd7123fff49df679f/lib/tasks/data_hygiene.rake#L3
-[signon-batch-invitations]: https://signon.publishing.service.gov.uk/batch_invitations/new
+Users can be updated in bulk (e.g. email and organisation) through the Signon
+[user interface](http://signon.publishing.service.gov.uk.gov.uk/bulk_update)
+by anyone with a Superadmin account.
 
 ### Bulk retagging documents
 
