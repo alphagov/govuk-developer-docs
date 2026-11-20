@@ -43,18 +43,25 @@ layout: multipage_layout
 The following describes the intended happy path from creation of a JobRequest to Job completion.
 
 1. User A uses `govuk-cli` to create a JobRequest, it prints out the CLI command which can be used to review the JobRequest, and waits to show the logs from the Job that will be created later.
-2. User A sends User B the printed out CLI command to run in order to review the request.
-3. User B runs the CLI command, reads and reviews the command intended to run, chooses to approve or reject it, then `govuk-cli` creates a JobRequestReview.
-4. Review outcome:
-    a. If user B rejects the JobRequest, assuming user A is still following the logs, user A sees a message telling them the request was rejected. This flow ends here.
-    b. If user B approves the JobRequest then continue this process
-5. The JobRequest operator changes the Status of the JobRequest to approved.
-6. The JobRequest operator reads the pod spec it needs to create from the target resource specified in the JobRequest
-7. The JobRequest operator creates a Kubernetes Job from the pod spec retrieved in the previous step, overriding the command to be the one approved in the JobRequest
-8. The JobRequest operator updates the Status of the JobRequest to include the name of the Job that was created
-9. The govuk-cli command that was run in step 1. sees the Job has been created, informs user A, and starts printing out the logs of the Job as they are produced.
-9. The JobRequest operator watches the status of the Job and updates the JobRequest status to include the current state of the Job.
-10. When the status of the Job reaches a terminal state, the govuk-cli stops following the logs and informs User A the Job has completed.
+1. User A sends User B the printed out CLI command to run in order to review the request.
+1. User B runs the CLI command, reads and reviews the command intended to run, chooses to approve or reject it, then `govuk-cli` creates a JobRequestReview.
+1. Review outcome:
+
+    1. If user B rejects the JobRequest; then
+
+        1. Internally the JobRequestReview controller sets the JobRequest Status to "Rejecting" and then the JobRequest controller processes this new state and updates the JobRequest to its terminal state of "Rejected". Assuming user A is still following the logs, user A sees a message telling them the request was rejected. This flow ends here.
+
+    1. If user B rejects a JobRequest whose target resource has altered and become malformed, then the Job Request state will change from "Rejecting" to "Malformed". This flow ends here.
+
+    1. If user B approves the Jobrequest; then continue
+
+1. The JobRequest operator changes the Status of the JobRequest to approved.
+1. The JobRequest operator reads the pod spec it needs to create from the target resource specified in the JobRequest
+1. The JobRequest operator creates a Kubernetes Job from the pod spec retrieved in the previous step, overriding the command to be the one approved in the JobRequest
+1. The JobRequest operator updates the Status of the JobRequest to include the name of the Job that was created
+1. The govuk-cli command that was run in step 1. sees the Job has been created, informs user A, and starts printing out the logs of the Job as they are produced.
+1. The JobRequest operator watches the status of the Job and updates the JobRequest status to include the current state of the Job.
+1. When the status of the Job reaches a terminal state, the govuk-cli stops following the logs and informs User A the Job has completed.
 
 ### Sequence Diagram for an Approved JobRequest
 
@@ -95,7 +102,10 @@ sequenceDiagram
     Requester->>Reviewer: Please review my request
     Reviewer->>k8sAPI: `govuk-cli jobrequest review...` Rejected
     k8sAPI->>Operator: Rejected JobRequestReview Created
-    Operator->>k8sAPI: Update JobRequest to Rejected
+    Operator->>k8sAPI: JobRequestReview controller updates JobRequest to Rejecting
+    k8sAPI->>Operator: JobRequest resource updated to Rejecting
+    Operator->>k8sAPI: JobRequest controller updates JobRequest to Rejected
+
     k8sAPI->>Requester: JobRequest Rejected
 </code>
 </pre>
@@ -128,7 +138,9 @@ stateDiagram
     [*] --> NoState
     NoState --> Malformed
     NoState --> Pending
-    Pending --> Rejected
+    Pending --> Rejecting
+    Rejecting --> Rejected
+    Rejecting --> Malformed
     Pending --> Approved
     Approved --> Started
     Approved --> Malformed
@@ -138,6 +150,7 @@ stateDiagram
     Malformed --> [*]
     Complete --> [*]
     Failed --> [*]
+    Rejected --> [*]
 </code>
 </pre>
 
@@ -237,7 +250,7 @@ flowchart TD
         validateJobRequestReview-- invalid\n\nSet JobRequestReview Malformed -->k8sAPI
 
         validateJobRequestReview-- valid -->jobRequestFound{JobRequest Exists?}
-        jobRequestFound-- found\n\nSet state of JobRequestReview to Approved/Rejected\n\nSet state of JobRequest to Approved/Rejected -->k8sAPI
+        jobRequestFound-- found\n\nSet state of JobRequestReview to Approved/Rejected\n\nSet state of JobRequest to Approved/Rejecting -->k8sAPI
         jobRequestFound-- not-found\n\nSet state of JobRequestReview toJobRequestNotFound -->k8sAPI
     end
 </code>
