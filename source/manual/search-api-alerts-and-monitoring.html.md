@@ -76,18 +76,18 @@ All environments are configured for Slack notifications. Production alerts are r
 The [GOV.UK Search API v1 Grafana dashboard][search-api-dashboard] visualizes core metrics for Search API and Finder Frontend.
 
 [how-search-works]: ./govuk-search.html
-[sentry]: https://govuk.sentry.io/insights/projects/app-search-api/?project=202224
-[kibana]: ./kibana.html
 [search-api-dashboard]: https://grafana.eks.production.govuk.digital/goto/sx8shj?orgId=default
-[status-red-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L86-L100
-[fix-cluster-guide]: ./opensearch-cluster-health.html#fixing-issues-with-the-cluster
-[diskspace-warning-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L117-L131
 [success-degraded-acute-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L43-L55
 [success-degraded-mid-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L56-L68
-[cluster-status-panel]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-28
-[diskspace-panel]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-29
+[sentry]: https://govuk.sentry.io/insights/projects/app-search-api/?project=202224
 [sentry-issues]: https://govuk.sentry.io/issues/?environment=production&project=1461905&statsPeriod=14d
-[diskspace-critical-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L132-L146
-[terraform-vars]: https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/variables/production/search-opensearch.tfvars#L23
+[kibana]: ./kibana.html
+[status-red-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L86-L100
 [status-unknown-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L72-L85
 [status-yellow-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L101-L116
+[diskspace-critical-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L132-L146
+[diskspace-warning-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L117-L131
+[cluster-status-panel]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-28
+[fix-cluster-guide]: ./opensearch-cluster-health.html#fixing-issues-with-the-cluster
+[diskspace-panel]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-29
+[terraform-vars]: https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/variables/production/search-opensearch.tfvars#L23
