@@ -24,8 +24,6 @@ We monitor and alert on Search API success rates. There are currently two Alertm
 
 - [SearchApiSearchSuccessRateDegradedMid][success-degraded-mid-alert] (__Critical__) 1 hour rolling success rate for search requests to search-api has dropped below 99.9%.
 
-Refinement of these alerts (to make sure they are comprehensively covering relevant errors) and further alerting has been prioritised by the Search Team for Q3 26/27.
-
 #### Possible causes and steps to take in the event of a critical alert being triggered
 
 - If search-api has recently been deployed and is returning errors, it may require a rollback.
