@@ -245,7 +245,7 @@ jobs:
         with:
           ref: ${{ inputs.ref || github.ref }}
           show-progress: false
-      - uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@be3c7df29b3349ec6bcfc6b4792f1cf9f5237d18 # v1.343.0
         with:
           bundler-cache: true
       - run: bin/rake
