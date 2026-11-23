@@ -8,11 +8,11 @@ related_repos: [search-api]
 type: learn
 ---
 
-As described in [GOV.UK Search: How it works][link-0] there are two search stacks on GOV.UK. This page includes information on the monitoring and alerting for Search API and its Opensearch cluster.
+As described in [GOV.UK Search: How it works][how-search-works] there are two search stacks on GOV.UK. This page includes information on the monitoring and alerting for Search API and its Opensearch cluster.
 
 ## Dashboard
 
-The [GOV.UK Search API v1 Grafana dashboard][link-3] visualizes core metrics for Search API and Finder Frontend.
+The [GOV.UK Search API v1 Grafana dashboard][search-api-dashboard] visualizes core metrics for Search API and Finder Frontend.
 
 ## Alert types and how to handle them
 
@@ -20,9 +20,9 @@ The [GOV.UK Search API v1 Grafana dashboard][link-3] visualizes core metrics for
 
 We monitor and alert on Search API success rates. There are currently two Alertmanager rules configured in govuk-helm-charts to send notifications on Slack:
 
-- [SearchApiSearchSuccessRateDegradedAcute][link-7] (__Critical__) 5 minute rolling success rate for search requests to search-api has dropped below 99%.
+- [SearchApiSearchSuccessRateDegradedAcute][success-degraded-acute-alert] (__Critical__) 5 minute rolling success rate for search requests to search-api has dropped below 99%.
 
-- [SearchApiSearchSuccessRateDegradedMid][link-8] (__Critical__) 1 hour rolling success rate for search requests to search-api has dropped below 99.9%.
+- [SearchApiSearchSuccessRateDegradedMid][success-degraded-mid-alert] (__Critical__) 1 hour rolling success rate for search requests to search-api has dropped below 99.9%.
 
 Refinement of these alerts (to make sure they are comprehensively covering relevant errors) and further alerting has been prioritised by the Search Team for Q3 26/27.
 
@@ -31,63 +31,63 @@ Refinement of these alerts (to make sure they are comprehensively covering relev
 - If search-api has recently been deployed and is returning errors, it may require a rollback.
 - Search-api is heavily dependent on OpenSearch. If search-api is showing a high number of errors, it could indicate an issue with the OpenSearch
   cluster health, or a disk space issue. See the [Opensearch alerts runbook](#possible-causes-and-steps-to-take-in-the-event-of-an-opensearch-alert-being-triggered) for debugging steps.
-- For further diagnosis of issues, check the issue reports in [Sentry][link-11] and/or the logs in [Kibana][link-2].
+- For further diagnosis of issues, check the issue reports in [Sentry][sentry-issues] and/or the logs in [Kibana][kibana].
 
 ### Opensearch alerts
 
 We monitor and alert on Opensearch health. We have the following alerts configured:
 
-- [SearchApiOpensearchClusterStatusRed][link-4] (__Critical__) cluster status is RED for 5 minutes
+- [SearchApiOpensearchClusterStatusRed][status-red-alert] (__Critical__) cluster status is RED for 5 minutes
 
-- [SearchApiOpensearchClusterStatusUnkUnav][link-14] (__Critical__) cluster status is UNKNOWN or UNAVAILABLE for 5 minutes
+- [SearchApiOpensearchClusterStatusUnkUnav][status-unknown-alert] (__Critical__) cluster status is UNKNOWN or UNAVAILABLE for 5 minutes
 
-- [SearchApiOpensearchClusterStatusYellow][link-15] (__Warning__) cluster status is YELLOW for 30 minutes
+- [SearchApiOpensearchClusterStatusYellow][status-yellow-alert] (__Warning__) cluster status is YELLOW for 30 minutes
 
-- [SearchApiOpensearchDiskSpace][link-12] (__Critical__) disk space has dropped below 10% for 10 minutes
+- [SearchApiOpensearchDiskSpace][diskspace-critical-alert] (__Critical__) disk space has dropped below 10% for 10 minutes
 
-- [SearchApiOpensearchDiskSpace][link-6] (__Warning__) disk space has dropped below 30% for 10 minutes
+- [SearchApiOpensearchDiskSpace][diskspace-warning-alert] (__Warning__) disk space has dropped below 30% for 10 minutes
 
 #### Possible causes and steps to take in the event of an opensearch alert being triggered
 
-Check the [Opensearch cluster status panel on the GOV.UK Search API V1 grafana dashboard][link-9] to see the cluster status history. See [Opensearch Cluster Health][link-5] for steps to take in the event that an SearchApiOpensearchClusterStatus alert fires.
+Check the [Opensearch cluster status panel on the GOV.UK Search API V1 grafana dashboard][cluster-status-panel] to see the cluster status history. See [Opensearch Cluster Health][fix-cluster-guide] for steps to take in the event that an SearchApiOpensearchClusterStatus alert fires.
 
 If a disk space alert fires then we are running out of EBS storage.
 
-- Check the [Opensearch - Percent disk space free Grafana dashboard panel][link-10] to see if this is just a blip or if we're genuinely running out of space
+- Check the [Opensearch - Percent disk space free Grafana dashboard panel][diskspace-panel] to see if this is just a blip or if we're genuinely running out of space
 - If there's been a sudden drop in free disk space investigate where the documents have come from:
   - have they been added in error?
   - can they be removed?
-- If we're running out of storage you can increase the capacity of the EBS volume by adjusting the [opensearch variables in terraform][link-13].
+- If we're running out of storage you can increase the capacity of the EBS volume by adjusting the [opensearch variables in terraform][terraform-vars].
 
 ## Monitoring and alerting tools
 
 ### Sentry
 
-[Sentry][link-1] is set up to track application errors from Search API.
+[Sentry][sentry] is set up to track application errors from Search API.
 
 All environments are configured for Slack notifications. Production alerts are routed to #govuk-search-alerts, while alerts for other environments are sent to #govuk-search-alerts-nonprod.
 
 ### Kibana
 
-[Kibana][link-2] can be used to query application logs as per all other GOV.UK apps.
+[Kibana][kibana] can be used to query application logs as per all other GOV.UK apps.
 
 ### Grafana
 
-The [GOV.UK Search API v1 Grafana dashboard][link-3] visualizes core metrics for Search API and Finder Frontend.
+The [GOV.UK Search API v1 Grafana dashboard][search-api-dashboard] visualizes core metrics for Search API and Finder Frontend.
 
-[link-0]: ./govuk-search.html
-[link-1]: https://govuk.sentry.io/insights/projects/app-search-api/?project=202224
-[link-2]: ./kibana.html
-[link-3]: https://grafana.eks.production.govuk.digital/goto/sx8shj?orgId=default
-[link-4]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L86-L100
-[link-5]: ./opensearch-cluster-health.html#fixing-issues-with-the-cluster
-[link-6]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L117-L131
-[link-7]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L43-L55
-[link-8]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L56-L68
-[link-9]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-28
-[link-10]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-29
-[link-11]: https://govuk.sentry.io/issues/?environment=production&project=1461905&statsPeriod=14d
-[link-12]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L132-L146
-[link-13]: https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/variables/production/search-opensearch.tfvars#L23
-[link-14]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L72-L85
-[link-15]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L101-L116
+[how-search-works]: ./govuk-search.html
+[sentry]: https://govuk.sentry.io/insights/projects/app-search-api/?project=202224
+[kibana]: ./kibana.html
+[search-api-dashboard]: https://grafana.eks.production.govuk.digital/goto/sx8shj?orgId=default
+[status-red-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L86-L100
+[fix-cluster-guide]: ./opensearch-cluster-health.html#fixing-issues-with-the-cluster
+[diskspace-warning-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L117-L131
+[success-degraded-acute-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L43-L55
+[success-degraded-mid-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L56-L68
+[cluster-status-panel]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-28
+[diskspace-panel]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-29
+[sentry-issues]: https://govuk.sentry.io/issues/?environment=production&project=1461905&statsPeriod=14d
+[diskspace-critical-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L132-L146
+[terraform-vars]: https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/variables/production/search-opensearch.tfvars#L23
+[status-unknown-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L72-L85
+[status-yellow-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L101-L116
