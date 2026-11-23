@@ -16,7 +16,7 @@ The [GOV.UK Search API v1 Grafana dashboard][search-api-dashboard] visualizes co
 
 ## Alert types and how to handle them
 
-### Search API success rate and latency alerts
+### Search API success rate
 
 We monitor and alert on Search API success rates. There are currently two Alertmanager rules configured in govuk-helm-charts to send notifications on Slack:
 
@@ -32,6 +32,20 @@ Refinement of these alerts (to make sure they are comprehensively covering relev
 - Search-api is heavily dependent on OpenSearch. If search-api is showing a high number of errors, it could indicate an issue with the OpenSearch
   cluster health, or a disk space issue. See the [Opensearch alerts runbook](#possible-causes-and-steps-to-take-in-the-event-of-an-opensearch-alert-being-triggered) for debugging steps.
 - For further diagnosis of issues, check the issue reports in [Sentry][sentry-issues] and/or the logs in [Kibana][kibana].
+
+### Latency alerts
+
+We monitor and alert on Search API latency. There is currently one alert configured:
+
+- [SearchApiHighP90SearchLatency][search-latency-alert] (__Critical__) 90th percentile of search request duration has exceeded 2.5 seconds for more than 15 minutes.
+
+#### Possible causes and steps to take in the event of a latency alert being triggered
+
+- If search-api has recently been deployed and that has caused latency to increase, it may require a rollback.
+- Search-api is heavily dependent on OpenSearch. If the latency panels on the
+  [GOV.UK Search API v1 Grafana dashboard][search-api-dashboard] are showing that OpenSearch latency
+  has also increased compared to the baseline, it could indicate an issue with OpenSearch.
+  See [Opensearch Cluster Health manual][fix-cluster-guide] for steps to take to fix issues with the cluster.
 
 ### Opensearch alerts
 
@@ -82,6 +96,7 @@ The [GOV.UK Search API v1 Grafana dashboard][search-api-dashboard] visualizes co
 [sentry]: https://govuk.sentry.io/insights/projects/app-search-api/?project=202224
 [sentry-issues]: https://govuk.sentry.io/issues/?environment=production&project=1461905&statsPeriod=14d
 [kibana]: ./kibana.html
+[search-latency-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L80-93
 [status-red-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L86-L100
 [status-unknown-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L72-L85
 [status-yellow-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L101-L116
