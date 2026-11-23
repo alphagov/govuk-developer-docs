@@ -54,6 +54,8 @@ sequenceDiagram
 
 ### Network flow for static assets on the draft stack
 
+The network flow for the [draft stack](/manual/content-preview.html) bypasses Fastly and goes to [authenticating proxy](https://github.com/alphagov/authenticating-proxy/) then to [draft router](https://github.com/alphagov/router#draft-stack).
+
 1. User makes a request for `https://draft-origin.publishing.service.gov.uk/assets/frontend/example.js` which hits authenticating-proxy
 2. authenticating-proxy proxies the request to draft-Router's nginx which hits the location `/assets` directive
 3. draft-Router proxies the request to the `govuk-app-assets-production` S3 bucket for `https://govuk-app-assets-production.s3.eu-west-1.amazonaws.com/assets/frontend/example.js`
@@ -159,7 +161,6 @@ sequenceDiagram
     User->>Fastly:
     activate Fastly
     Fastly->>nginx:
-
     activate nginx
     nginx->>nginx: location @app
     nginx->>asset-manager:
@@ -176,7 +177,39 @@ sequenceDiagram
 </code>
 </pre>
 
-The network flow for the [draft stack](/manual/content-preview.html) is identical except the request bypasses Fastly and goes to [authenticating proxy](https://github.com/alphagov/authenticating-proxy/) then to [draft router](https://github.com/alphagov/router#draft-stack) then to asset-manager.
+### Additional assets
+
+Some uploaded assets have `/government/uploads` in their path (e.g. https://www.gov.uk/government/uploads/uploaded/hmrc/payetools-rti-17.3.17151.465-win.zip).
+
+<pre lang="mermaid">
+
+<code>
+sequenceDiagram
+    actor User
+    participant Fastly
+    participant Router
+    participant Frontend
+
+    User->>Fastly:
+    activate Fastly
+    Fastly->>Router:
+    activate Router
+    Router->>Frontend:
+    Frontend-->>Router:
+    deactivate Router
+    Router-->>Fastly:
+    deactivate Fastly
+    Fastly-->>User:
+
+</code>
+</pre>
+
+1. User makes a request for `https://www.gov.uk/government/uploads/uploaded/example.pdf` which hits Fastly
+2. Fastly on a cache miss makes a request to Router for `https://www.gov.uk/government/uploads/uploaded/example.pdf`
+3. Router proxies this request to a backend (e.g. frontend)
+4. Frontend returns a `301` redirect for `https://assets.publishing.service.gov.uk/government/uploads/uploaded/department/example.pdf`
+5. Router returns this back to Fastly
+6. Fastly returns this back to the user who is redirected to `https://assets.publishing.service.gov.uk/government/uploads/uploaded/department/example.pdf` to begin the [network flow for live assets](#network-flow-for-live-assets)
 
 ### File size limit
 
