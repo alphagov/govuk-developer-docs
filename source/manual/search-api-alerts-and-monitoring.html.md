@@ -97,11 +97,11 @@ The [GOV.UK Search API v1 Grafana dashboard][search-api-dashboard] visualizes co
 [sentry-issues]: https://govuk.sentry.io/issues/?environment=production&project=1461905&statsPeriod=14d
 [kibana]: ./kibana.html
 [search-latency-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L80-93
-[status-red-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L86-L100
-[status-unknown-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L72-L85
-[status-yellow-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L101-L116
-[diskspace-critical-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L132-L146
-[diskspace-warning-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L117-L131
+[status-red-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L111-L125
+[status-unknown-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L97-L110
+[status-yellow-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L126-L141
+[diskspace-critical-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L157-L171
+[diskspace-warning-alert]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/monitoring-config/rules/search_api_alerts.yaml#L142-L156
 [cluster-status-panel]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-28
 [fix-cluster-guide]: ./opensearch-cluster-health.html#fixing-issues-with-the-cluster
 [diskspace-panel]: https://grafana.eks.production.govuk.digital/d/emvd8hx/gov-uk-search-api-v1?viewPanel=panel-29
