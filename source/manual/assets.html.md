@@ -56,12 +56,10 @@ sequenceDiagram
 
 The network flow for the [draft stack](/manual/content-preview.html) bypasses Fastly and goes to [authenticating proxy](https://github.com/alphagov/authenticating-proxy/) then to [draft router](https://github.com/alphagov/router#draft-stack).
 
-1. User makes a request for `https://draft-origin.publishing.service.gov.uk/assets/frontend/example.js` which hits authenticating-proxy
-2. authenticating-proxy proxies the request to draft-Router's nginx which hits the location `/assets` directive
-3. draft-Router proxies the request to the `govuk-app-assets-production` S3 bucket for `https://govuk-app-assets-production.s3.eu-west-1.amazonaws.com/assets/frontend/example.js`
-3. The `govuk-app-assets-production` S3 bucket retrieves `assets/frontend/example.js` and returns it back to draft-Router's nginx
-4. draft-Router's nginx returns the `assets/frontend/example.js` asset back to authenticating-proxy
-5. authenticating-proxy returns the `assets/frontend/example.js` asset back to the user
+1. User makes a request for `https://draft-origin.publishing.service.gov.uk/assets/frontend/example.js` which hits authenticating-proxy's location `/assets` directive
+2. authenticating-proxy proxies the request to the `govuk-app-assets-production` S3 bucket for `https://govuk-app-assets-production.s3.eu-west-1.amazonaws.com/assets/frontend/example.js`
+3. The `govuk-app-assets-production` S3 bucket retrieves `assets/frontend/example.js` and returns it back to authenticating-proxy's nginx
+4. authenticating-proxy's nginx returns the `assets/frontend/example.js` asset back to the user
 
 <pre lang="mermaid">
 
@@ -69,18 +67,12 @@ The network flow for the [draft stack](/manual/content-preview.html) bypasses Fa
 sequenceDiagram
     actor User
     participant proxy as authenticating proxy
-    participant Router as draft-Router nginx
     participant S3
 
     User->>proxy:
     activate proxy
-    proxy->>Router:
-    activate Router
-    Router->>S3:
-    S3-->>Router:
-    deactivate Router
-    Router-->>proxy:
-    deactivate proxy
+    proxy->>S3:
+    S3-->>proxy:
     proxy-->>User:
 
 </code>
