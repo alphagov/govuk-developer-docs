@@ -54,7 +54,7 @@ sequenceDiagram
 
 ### Network flow for static assets on the draft stack
 
-The network flow for the [draft stack](/manual/content-preview.html) bypasses Fastly and goes to [authenticating proxy](https://github.com/alphagov/authenticating-proxy/) then to [draft router](https://github.com/alphagov/router#draft-stack).
+The network flow for the [draft stack](/manual/content-preview.html) bypasses Fastly and goes to [authenticating proxy](https://github.com/alphagov/authenticating-proxy/).
 
 1. User makes a request for `https://draft-origin.publishing.service.gov.uk/assets/frontend/example.js` which hits authenticating-proxy's location `/assets` directive
 2. authenticating-proxy proxies the request to the `govuk-app-assets-production` S3 bucket for `https://govuk-app-assets-production.s3.eu-west-1.amazonaws.com/assets/frontend/example.js`
