@@ -55,6 +55,10 @@ You will need to re-run the rake task in **all** environments.
 
 `rake "user_events:import_events_for_date['<date>']"`
 
+If you need to import user events for multiple dates at once you can use
+
+`rake "user_events:import_events_for_multiple_dates['<date> <date>']`
+
 ## Background information
 
 ### The user events pipeline on site search
