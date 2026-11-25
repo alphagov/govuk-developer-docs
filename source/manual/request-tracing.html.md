@@ -11,13 +11,14 @@ Request tracing makes it easier to understand how requests originating from user
 
 ## How it works
 
-Nginx [sets a `GOVUK-Request-Id` HTTP header] on the initial request. Apps then pass the header to any APIs that they call.
+Fastly [sets a `GOVUK-Request-Id` HTTP header] on the initial request. Apps then pass the header to any APIs that they call. Apps which don't go through Fastly (e.g. publishing) will [set their own `GOVUK-Request-ID` HTTP header].
 
 For the most part, [gds-api-adapters][] handles this for you. The adapters read the `HTTP_GOVUK_REQUEST_ID` header and forward this onto backend services. A search can then be carried out against log files for a single request id to see all of the backend service requests that were made in consequence to the originating request.
 
 For example, the nginx logs in `/var/log/nginx/<service>-json.event.access.log`will include a `govuk_request_id` field. You can also filter on `govuk_request_id` in [Kibana][].
 
-[sets a `GOVUK-Request-Id` HTTP header]: https://github.com/alphagov/govuk-puppet/blob/05af15200690afdeb0f5a48c73601c3cabbadeae/modules/nginx/templates/proxy-vhost.conf#L7-L25
+[sets a `GOVUK-Request-Id` HTTP header]: https://github.com/alphagov/govuk-fastly/blob/abdd24eda55e3d7504849f0e7b4cc89203687bae/www/www.vcl.tftpl#L230
+[set their own `GOVUK-Request-ID` HTTP header]: https://github.com/alphagov/govuk-helm-charts/blob/c33ccc59fcaa9ed0d6fa1dc68f717aca6c003424/charts/generic-govuk-app/templates/nginx-configmap.yaml#L41-L45
 [gds-api-adapters]: https://github.com/alphagov/gds-api-adapters
 [Kibana]: /manual/logit.html#viewing-kibana
 
