@@ -71,7 +71,6 @@ JobRequest Technical Architecture](/kubernetes/job-requests/architecture/)
 * [Creating a JobRequest](#creating-a-jobrequest)
 * [Reviewing a JobRequest](#reviewing-a-jobrequest)
 * [Listing JobRequests](#listing-jobrequests)
-* [Viewing JobRequest Logs](#viewing-jobrequest-logs)
 
 ### Creating a JobRequest
 
