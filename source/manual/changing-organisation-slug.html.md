@@ -9,7 +9,15 @@ section: Routing
 The organisation slug is used as a foreign key for organisations across
 multiple apps.
 
-### 1. Change the organisation's slug in Whitehall
+### 1. Check for hard-coded references to the organisation's slug
+
+Some organisations (such as [Number 10](https://www.gov.uk/government/organisations/prime-ministers-office-no-10)) have hard-coded references in various GOV.UK repositories.
+
+Do a search for the slug to see if any code needs updating.
+
+The vast majority of the time, the search will come up empty.
+
+### 2. Change the organisation's slug in Whitehall
 
 Run the rake task:
 
@@ -19,7 +27,7 @@ rake reslug:organisation['old-slug','new-slug']
 
 Note: it's important that single-quotes are used otherwise they will fail.
 
-### 2. Update the organisation slug in Manuals Publisher
+### 3. Update the organisation slug in Manuals Publisher
 
 Run the following rake task in Manuals Publisher:
 
@@ -27,7 +35,7 @@ Run the following rake task in Manuals Publisher:
 rake reslug_organisation[old_slug,new_slug]
 ```
 
-### 3. Sync the organisations with Signon
+### 4. Sync the organisations with Signon
 
 [Signon][signon] assigns users to organisations. This is used by apps such as
 Whitehall for authorisation.
@@ -38,7 +46,7 @@ permissions for the renamed organisation.
 
 [signon]: https://signon.publishing.service.gov.uk/
 
-### 4. Update any best bet searches in Search Admin
+### 5. Update any best bet searches in Search Admin
 
 Check the [best_bets.yml file in search-api-v2][search-api-v2] for any references to the old organisation name, and update them if so.
 
