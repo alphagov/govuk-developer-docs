@@ -105,6 +105,47 @@ sequenceDiagram
 </code>
 </pre>
 
+### Network flow for static assets for Licensify frontend
+
+Static assets for Licensify frontend (e.g. [https://www.gov.uk/apply-for-a-licence/assets/stylesheets/govuk-frontend-5.11.1.min.css](https://www.gov.uk/apply-for-a-licence/assets/stylesheets/govuk-frontend-5.11.1.min.css)) are served from the Scala app rather than from S3.
+
+1. User makes a request for `https://www.gov.uk/apply-for-a-licence/assets/stylesheets/example.css` which hits Fastly
+2. Fastly on a cache miss makes a request to router's nginx for `example.css` on location `^/(apply-for-a-licence|email|sign-in\/callback)`
+3. Router's nginx proxies the request for `example.css` to licensify frontend's nginx
+4. licensify nginx proxies the request for `example.css` to licensify frontend
+5. licensify frontend serves up `example.css` and returns the asset back to licensify frontend's nginx
+6. licensify frontend's nginx returns `example.css` back to router's nginx
+7. Router's nginx returns `example.css` back to Fastly which caches it
+6. Fastly returns `example.css` back to the user
+
+<pre lang="mermaid">
+
+<code>
+sequenceDiagram
+    actor User
+    participant Fastly
+    participant routerNginx as Router nginx
+    participant licensifyNginx as licensify frontend nginx
+    participant licensifyFrontend as licensify frontend
+
+    User->>Fastly:
+    activate Fastly
+    Fastly->>routerNginx:
+    activate routerNginx
+    routerNginx->>licensifyNginx:
+    activate licensifyNginx
+    licensifyNginx->>licensifyFrontend:
+    licensifyFrontend-->>licensifyNginx:
+    licensifyNginx-->>routerNginx:
+    deactivate licensifyNginx
+    routerNginx-->>Fastly:
+    deactivate routerNginx
+    Fastly-->>User:
+    deactivate Fastly
+
+</code>
+</pre>
+
 ## Uploaded assets
 
 [Asset Manager](/repos/asset-manager.html) is an API that is called internally
