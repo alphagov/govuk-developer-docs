@@ -13,9 +13,7 @@ Request tracing makes it easier to understand how requests originating from user
 
 Fastly [sets a `GOVUK-Request-Id` HTTP header] on the initial request. Apps then pass the header to any APIs that they call. Apps which don't go through Fastly (e.g. publishing) will [set their own `GOVUK-Request-ID` HTTP header].
 
-For the most part, [gds-api-adapters][] handles this for you. The adapters read the `HTTP_GOVUK_REQUEST_ID` header and forward this onto backend services. A search can then be carried out against log files for a single request id to see all of the backend service requests that were made in consequence to the originating request.
-
-For example, the nginx logs in `/var/log/nginx/<service>-json.event.access.log`will include a `govuk_request_id` field. You can also filter on `govuk_request_id` in [Kibana][].
+For the most part, [gds-api-adapters][] handles this for you. The adapters read the `GOVUK_REQUEST_ID` header and forward this onto backend services. A search can then be carried out in [Kibana][] filtering on `govuk_request_id` to see all of the backend service requests that were made in consequence to the originating request.
 
 [sets a `GOVUK-Request-Id` HTTP header]: https://github.com/alphagov/govuk-fastly/blob/abdd24eda55e3d7504849f0e7b4cc89203687bae/www/www.vcl.tftpl#L230
 [set their own `GOVUK-Request-ID` HTTP header]: https://github.com/alphagov/govuk-helm-charts/blob/c33ccc59fcaa9ed0d6fa1dc68f717aca6c003424/charts/generic-govuk-app/templates/nginx-configmap.yaml#L41-L45
@@ -28,7 +26,7 @@ If you are using [gds-api-adapters][] to speak to backend services and your requ
 
 ## When it doesn't "just work"
 
-If you are running out-of-band processes via asynchronous workers (e.g. Sidekiq)the request id won't be available in the worker and will not be sent downstream. This also includes any rake tasks you may have, such as republishing tasks.
+If you are running out-of-band processes via asynchronous workers (e.g. Sidekiq) the request id won't be available in the worker and will not be sent downstream. This also includes any rake tasks you may have, such as republishing tasks.
 
 For many of these cases, there isn't an originating request and so it's fine not to send a request id downstream. The request id will be generated and populated once a subsequent downstream request hits a load balancer, this will result in a partial trace.
 
