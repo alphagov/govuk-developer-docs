@@ -32,6 +32,12 @@ Select **Run Query** and it will return all the traces. If you click on a `trace
 To see all the available `span` attributes to query on type in `{ span.` and a drop-down menu will appear. To see all the available `resource`
 attributes to query on type in `{ resource.` and a drop-down menu will appear.
 
+### Retrieve traces for a specific govuk-request-id
+
+```
+{span.http.request.header.govuk_request_id ="2143"}
+```
+
 ### Retrieve traces where the service return a 200 status code
 
 ```
